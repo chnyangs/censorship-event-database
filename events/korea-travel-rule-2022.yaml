@@ -1,0 +1,128 @@
+id: korea-travel-rule-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T09:30:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: nation_state_block
+  actor: KR_FSC
+  timestamp: 2022-03-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsc.go.kr/eng/pr010101
+      body_hash: sha256:3cd314107092a3609e78b723dc98e4ba7ce140bbb683b5be94a4459c8bb5cbe4
+      body_path: sources/http_captures/korea-travel-rule-2022/primary/www.fsc.go.kr__eng-pr010101__a21609a3b9.html
+      note: |
+        Korea Financial Services Commission (FSC) press release index (English
+        site) — captured as primary anchor for the KR FSC Travel Rule
+        enforcement effective date 2022-03-25. Travel Rule implementation in
+        South Korea: Virtual Asset Service Providers (VASPs) must collect
+        and transmit originator + beneficiary information for any crypto
+        transfer ≥KRW 1,000,000 (~USD 750). First Asia-jurisdiction national-
+        scale Travel Rule enforcement in the dataset. Implements FATF
+        Recommendation 16 domestically under the Specific Financial
+        Transactions Reporting Act amendment.
+  timestamp_sources:
+    - type: primary_legal
+      note: Effective date 2022-03-25 per KR FSC implementation timeline.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Registered Korean VASPs (Virtual Asset Service Providers) — as of
+    2022-03-25 approximately 26 VASPs registered under the FSC KoFIU
+    licensing regime. Targets entire VASP class rather than enumerable
+    addresses. Downstream effect: restriction on transfers to/from
+    non-KYC-identifiable wallets (including self-custody) via regulated
+    Korean exchanges.
+  protocol: null
+  actor_type: vasp_sector_regulation
+  actor_name: Korean registered VASPs
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [KR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: Travel Rule is backend KYC/transaction-metadata enforcement, not frontend takedown.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No asset-layer blacklist; the rule restricts transfer metadata, not the underlying asset.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: kr_regulated_vasp_ecosystem
+    event: travel_rule_effective_across_all_kr_vasps
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-03-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.fsc.go.kr/eng/pr010101
+        body_hash: sha256:3cd314107092a3609e78b723dc98e4ba7ce140bbb683b5be94a4459c8bb5cbe4
+        body_path: sources/http_captures/korea-travel-rule-2022/primary/www.fsc.go.kr__eng-pr010101__a21609a3b9.html
+        scope_descriptor:
+          providers: [upbit, bithumb, coinone, korbit, gopax, all_kr_vasps]
+          time_window:
+            - 2022-03-25T00:00:00Z
+            - 2022-04-25T23:59:59Z
+          addresses_cohort: kr_vasp_regulated_transfers
+        note: |
+          KR FSC is the primary legal actor for Travel Rule enforcement.
+          Effective 2022-03-25; immediate application to all registered
+          Korean VASPs (Upbit, Bithumb, Coinone, Korbit, etc.). All crypto
+          transfers ≥KRW 1M must carry originator/beneficiary KYC data.
+          Direct attribution: the FSC rule itself mandates the behavior.
+      - type: primary_legal
+        url: https://www.fsc.go.kr/eng/pr010101
+        body_hash: sha256:3cd314107092a3609e78b723dc98e4ba7ce140bbb683b5be94a4459c8bb5cbe4
+        body_path: sources/http_captures/korea-travel-rule-2022/primary/www.fsc.go.kr__eng-pr010101__a21609a3b9.html
+        note: |
+          Second anchor to same FSC index; FATF Recommendation 16 framework
+          context. Cross-reference to Specific Financial Transactions
+          Reporting Act (특정금융정보법) implementing regulations.
+
+analysis_notes: |
+  comparison documenting South Korea's 2022-03-25 Travel Rule
+  effective-date. First and one of the strictest national Travel Rule
+  implementations globally — KRW 1M threshold is an order of magnitude
+  lower than typical international implementations. Structural
+  contribution to the dataset: a non-OFAC, non-sanction, regulatory-KYC
+  event that nonetheless materially affects crypto-transfer flows.
+  Paper-worthy because it illustrates censorship-measurement questions
+  at the metadata layer (transfer-approval gating) rather than the
+  asset- or list-layer.
+
+scoped_claim: |
+  "South Korea's 2022-03-25 Travel Rule effective date imposed metadata-
+  transmission requirements on all registered Korean VASPs for crypto
+  transfers ≥KRW 1M, representing the first national-scale FATF
+  Recommendation 16 implementation in the dataset and the strictest
+  threshold globally. Paper-relevant as a metadata-layer censorship-
+  adjacent regulatory event distinct from OFAC / sanction modes."
+
+tags:
+  - nation_state_block
+  - travel_rule
+  - fatf_r16
+  - south_korea
+  - metadata_layer_regulation

@@ -1,0 +1,246 @@
+id: suex-ofac-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-21T14:10:00Z
+last_verified: 2026-04-21
+
+related_events:
+  - chatex-ofac-2021
+  - garantex-ofac-2022
+  - grinex-garantex-successor-ofac-2025
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2021-09-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20210921
+      wayback: https://web.archive.org/web/20260421135840/https://ofac.treasury.gov/recent-actions/20210921
+      body_hash: sha256:f97fd4561d582baeb726de448689d8297d45a7d12a7df59b1dcae7dcf0f02b45
+      body_path: sources/http_captures/suex-ofac-2021/ofac-recent-actions/ofac.treasury.gov__recent-actions-20210921__f3281d8050.html
+      note: |
+        OFAC Recent Actions page for 2021-09-21. **First crypto exchange ever sanctioned by
+        OFAC**. Entity SUEX OTC, S.R.O. (a.k.a. "SUCCESSFUL EXCHANGE"), Moscow + Prague; website
+        suex.io. 25 digital-currency addresses attached across XBT×14, ETH×4, USDT×7 (Tether
+        addresses include both ERC20-on-Ethereum and OMNI-on-Bitcoin variants). Tag [CYBER2].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy0364
+      note: Treasury press release "Treasury Takes Robust Actions to Counter Ransomware" (2021-09-21). Frames SUEX designation as the opening of a new OFAC policy tool against crypto exchanges.
+  timestamp_sources:
+    - type: primary_legal
+      note: OFAC Recent Actions page carries day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    Full set of 25 unique digital-currency addresses attached to the SUEX OTC SDN entity entry,
+    extracted verbatim from the 2021-09-21 Recent Actions page. Mix of chains: 14 XBT, 4 ETH,
+    and 7 USDT (3 ETH-based ERC-20 + 4 BTC-based OMNI/Liquid-layer, inferred from address
+    format). Several USDT addresses duplicate underlying ETH/XBT addresses (Tether tokens on
+    top of those base chains).
+  protocol: suex_otc
+  actor_type: exchange
+  actor_name: SUEX OTC S.R.O.
+  chains:
+    - bitcoin
+    - ethereum
+  canonical_domains:
+    - suex.io
+  addresses:
+    - 12HQDsicffSBaYdJ6BhnE22sfjTESmmzKx
+    - 1295rkVyNfFpqZpXvKGhDqwhP1jZcNNDMV
+    - 13mnk8SvDGqsQTHbiGiHBXqtaQCUKfcsnP
+    - 16iWn2J1McqjToYLHSsAyS6En3QA8YQ91H
+    - 1B64QRxfaa35MVkf7sDjuGUYAP5izQt7Qi
+    - 1CF46Rfbp97absrs7zb7dFfZS6qBXUm9EP
+    - 1Df883c96LVauVsx9FEgnsourD8DELwCUQ
+    - 1ECeZBxCVJ8Wm2JSN3Cyc6rge2gnvD3W5K
+    - 1Edue8XZCWNoDBNZgnQkCCivDyr9GEo4x6
+    - 1J9oGoAiHeRfeMZeUnJ9W7RpV55CdKtgYE
+    - 1KUUJPkyDhamZXgpsyXqNGc3x1QPXtdhgz
+    - 1L4ncif9hh9TnUveqWq77HfWWt6CJWtrnb
+    - 1LiNmTUPSJEd92ZgVJjAV3RT9BzUjvUCkx
+    - 1LrxsRd7zNuxPJcL5rttnoeJFy1y4AffYY
+    - bc1qdt3gml5z5n50y5hm04u2yjdphefkm0fl2zdj68
+    - "0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff"
+    - "0x2f389ce8bd8ff92de3402ffce4691d17fc4f6535"
+    - "0x308ed4b7b49797e1a98d3818bff6fe5385410370"
+    - "0xe7aa314c77f4233c18c6cc84384a9247c0cf367b"
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [suex.io]
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across:
+        suex.io  2021-08-21..2021-10-21  -> 0 results
+      All 1 queries returned 0 measurements.
+      Artifact: sources/l0_datasets/suex-ofac-2021/suex.io__ooni.json
+      (body_hash sha256:792ebc3e6dd883c0ee1cddc742d4c7b9e6d297ffe8473e496e7cb21e9b717209).
+      Measurement-gap finding: OONI volunteer probe coverage is absent.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Event predates The Merge (2022-09-15) by 359 days. Ethereum PBS / MEV-Boost relay
+      infrastructure did not exist; L1 consensus-layer filtering of OFAC-listed addresses was
+      not an observable phenomenon yet. not_applicable rather than not_measured because the
+      construct itself was unavailable at event time.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-compliance-adjacent
+      public Ethereum RPC substrate (Flashbots Protect launched 2022-11,
+      MEV-Blocker launched 2023-03-27) did not exist at event time. Same
+      construct-did-not-exist reasoning as L1 consensus coverage for
+      pre-Merge events. not_applicable rather than not_measured.
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+  - layer: l4_frontend
+    status: measured
+    scope: [suex.io]
+    note: |
+      Canonical suex.io verified operational at Wayback snapshots 1-5 days post-event (same
+      affiliate program / sign-in / buy-crypto application as pre-event). Attached as
+      observed_no_change. Foreign-operated exchange (Russia + Czech Republic) with no US
+      infrastructure dependency; SUEX was not subject to US-compliance-driven takedown.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Full scan of the 4 ETH addresses via usdtbanlist.com
+      (sources/asset_layer_scan/suex-ofac-2021.json): **4/4 blocked**.
+      - Circle USDC batch-blacklisted all 4 on 2021-09-23 01:44 UTC (2 days after OFAC
+        designation, single-batch same-minute timestamps). First exchange case in the
+        dataset where Circle responded within 48h.
+      - Tether USDT retroactively froze the same 4 addresses on 2023-12-09 04:34-05:36 UTC
+        (part of the broader Tether 2023-12-09 retroactive sweep alongside Chatex, Russia
+        election, Russian cyber theft).
+      XBT / OMNI-USDT freeze status on the 14 XBT + 7 USDT-Omni addresses not yet queried
+      for this draft.
+  - layer: offramp_cex
+    status: not_measured
+    scope: [binance, coinbase, kraken, bybit]
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      SUEX was itself an OTC/exchange service; the interesting layer is counterparty CEX
+      reactions to SUEX-tagged deposit clusters. Chain-analytics firms (Chainalysis in
+      particular) published tagging updates; promotion gated on a pinned report.
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: circle_batch_blacklisted_all_4_eth_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-09-23T01:44:00Z
+    precision: minute
+    delta_hours: 49.73
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x2a4fc26c80db5fcc76e3b67b549ca28f2bfe00fd2b1f51c449151453bc74e06e
+        tx_hash: "0x2a4fc26c80db5fcc76e3b67b549ca28f2bfe00fd2b1f51c449151453bc74e06e"
+        block: 0
+        note: USDC Blacklisted() tx for SUEX ETH address 0x19aa5fe8... at 2021-09-23 01:44 UTC (first of 4 batch entries).
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff
+        body_hash: sha256:e946a8a44c3614815c900592d087e55c382e967d681383737473c72702df1cce
+        body_path: sources/http_captures/suex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff.html
+        evidence_group_id: suex-usdc-batch-20210923
+        note: |
+          Circle USDC batch-froze all 4 SUEX ETH addresses on 2021-09-23 01:44 UTC
+          (identical minute, single-batch op), ~50 hours after OFAC designation. Full
+          per-address data at sources/asset_layer_scan/suex-ofac-2021.json.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x2f389ce8bd8ff92de3402ffce4691d17fc4f6535
+        body_hash: sha256:9c3e87bbfa586aab9cd7210d967df191258b6b8e5e292170358cf440dba07a0e
+        body_path: sources/http_captures/suex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x2f389ce8bd8ff92de3402ffce4691d17fc4f6535.html
+        note: Second sampled SUEX ETH address, same 2021-09-23 01:44 UTC batch.
+  - layer: l4_frontend
+    actor: frontend:suex_io
+    event: canonical_frontend_remained_operational_post_designation
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2021-09-22T00:01:51Z
+    precision: minute
+    delta_hours: 12.0
+    window:
+      - 2021-09-22T00:00:00Z
+      - 2021-09-26T23:59:59Z
+    sources:
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20210922000151/https://suex.io/
+        body_hash: sha256:badaa19bd92ce63bdbeaeea803be9f3fdddb2fb6bf931e46c2a5bcb3422d819d
+        body_path: sources/http_captures/suex-ofac-2021/frontend-wayback/web.archive.org__web-20210922000151-https-suex.io__8815f4636a.html
+        evidence_group_id: suex-io-wayback-postevent
+        note: |
+          Wayback snapshot at 2021-09-22 00:01:51 UTC (≈ 0-half-day post-event). 200 OK, full
+          application rendering: "Affiliate Program / Sign In / Sign Up / Buy Cryptocurrencies
+          With A Credit Card" — no takedown banner, no degradation.
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20210926203825/https://suex.io/
+        body_hash: sha256:5af7f3e4e4923ef33d22866314e406bda4665f356b42ca9fc6c9aa7b9ba6f743
+        body_path: sources/http_captures/suex-ofac-2021/frontend-wayback/web.archive.org__web-20210926203825-https-suex.io__254492f512.html
+        note: |
+          Second Wayback snapshot 5 days post-event (2021-09-26 20:38 UTC), still full
+          application with identical affiliate / sign-in / buy-crypto UI. Same functional
+          surface as pre-event. Independent archival anchor for the observed_no_change claim.
+
+analysis_notes: |
+  comparison documenting the first OFAC designation of a crypto exchange (SUEX
+  OTC, 2021-09-21). Pre-Merge by 359 days, so L1 consensus layer is structurally
+  not_applicable. The foreign-operated exchange (Russia + Czech Republic) had no US
+  infrastructure dependency and the canonical suex.io domain remained fully operational for
+  at least 5 days post-designation — another L4 observed_no_change case, structurally
+  consistent with Sinbad 2023-11 (foreign mixer persists) but distinct from Tornado 2022
+  (US-hosted frontend collapses within 22h).
+
+  Follow-up directions (post-admission): (1) Tether freeze query on the 4 ETH USDT addresses (highest probability
+  of a fresh freeze given Tether's typical behaviour toward OFAC-listed entities); (2)
+  Etherscan query for USDC blacklist on the 4 ETH addresses; (3) pinned chain-analytics firm
+  (Chainalysis) SUEX cluster tagging report; (4) SUEX's eventual fate — later Wayback
+  snapshots or press reporting on whether the service stopped operating.
+
+scoped_claim: |
+  This draft supports the claim: "OFAC designation of SUEX OTC on 2021-09-21 — the first
+  exchange-level crypto sanction — did not disrupt the canonical suex.io frontend within a
+  5-day post-event window; the Russian-and-Czech-operated exchange continued to serve its
+  full application. L1 consensus layer is not_applicable by construction (pre-Merge)."
+
+tags:
+  - sanctions
+  - exchange_designation
+  - russia_related
+  - foreign_frontend_persistence
+  - first_exchange_sanction

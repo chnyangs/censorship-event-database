@@ -1,0 +1,381 @@
+id: tornado-cash-ofac-redesignation-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-21T13:15:00Z
+last_verified: 2026-04-21
+
+related_events:
+  - tornado-cash-ofac-2022
+  - tornado-cash-ofac-delisting-2025
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2022-11-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20221108
+      wayback: https://web.archive.org/web/20260421130935/https://ofac.treasury.gov/recent-actions/20221108
+      body_hash: sha256:39f2b5333cd03c3a0bb3a91ef913a756efcb34b004c32bcfef75aaa23f4ac4e5
+      body_path: sources/http_captures/tornado-cash-ofac-redesignation-2022/ofac-recent-actions/ofac.treasury.gov__recent-actions-20221108__29cc0b1876.html
+      note: |
+        OFAC Recent Actions page for 2022-11-08, which simultaneously (a) removes the original 2022-08-08
+        Cyber-related Tornado Cash designation and (b) redesignates Tornado Cash (including TORNADO CASH,
+        TORNADO CASH CLASSIC, TORNADO CASH NOVA variants) under DPRK-related authorities with an expanded
+        address list. The 98 unique digital-currency addresses in target.addresses are extracted verbatim
+        from this archived page (92 ETH + 6 USDC).
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1087
+      note: Treasury press release "Treasury Designates DPRK Weapons Representatives; Tornado Cash Redesignated with Additional DPRK Authorities" (2022-11-08). Describes the legal-authority shift from EO 13694 (Cyber-related) to DPRK-related authorities.
+  timestamp_sources:
+    - type: primary_legal
+      note: OFAC Recent Actions page and Treasury press release both carry day-level public timing; no intraday wall-clock published for the redesignation.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    Full set of 98 unique digital-currency addresses (92 ETH + 6 USDC) extracted from the OFAC Recent
+    Actions page for 2022-11-08 (archived locally and on Wayback; see trigger.citation[0]). Set is the
+    union of addresses listed under the TORNADO CASH, TORNADO CASH CLASSIC, and TORNADO CASH NOVA SDN
+    entries on that page. Address casing preserved as published by OFAC (note: OFAC lists 0xCa0840...
+    twice under different casings — preserved as two entries to mirror the authoritative page). The
+    original 2022-08-08 designation of 38 ETH addresses is a proper subset of this 98-address set; 60
+    addresses are net-new additions on 2022-11-08.
+  protocol: tornado_cash
+  chains:
+    - ethereum
+  canonical_domains:
+    - tornado.cash
+    - app.tornado.cash
+    - tornadocash.eth.link
+  addresses:
+    - "0x01e2919679362dFBC9ee1644Ba9C6da6D6245BB1"
+    - "0x03893a7c7463AE47D46bc7f091665f1893656003"
+    - "0x05E0b5B40B7b66098C2161A5EE11C5740A3A7C45"
+    - "0x07687e702b410Fa43f4cB4Af7FA097918ffD2730"
+    - "0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f"
+    - "0x09193888b3f38C82dEdfda55259A82C0E7De875E"
+    - "0x0E3A09dDA6B20aFbB34aC7cD4A6881493f3E7bf7"
+    - "0x12D66f87A04A9E220743712cE6d9bB1B5616B8Fc"
+    - "0x1356c899D8C9467C7f71C195612F8A395aBf2f0a"
+    - "0x169AD27A470D064DEDE56a2D3ff727986b15D52B"
+    - "0x178169B423a011fff22B9e3F3abeA13414dDD0F1"
+    - "0x179f48c78f57a3a78f0608cc9197b8972921d1d2"
+    - "0x1E34A77868E19A6647b1f2F47B51ed72dEDE95DD"
+    - "0x22aaA7720ddd5388A3c0A3333430953C68f1849b"
+    - "0x23173fE8b96A4Ad8d2E17fB83EA5dcccdCa1Ae52"
+    - "0x23773E65ed146A459791799d01336DB287f25334"
+    - "0x242654336ca2205714071898f67E254EB49ACdCe"
+    - "0x2573BAc39EBe2901B4389CD468F2872cF7767FAF"
+    - "0x26903a5a198D571422b2b4EA08b56a37cbD68c89"
+    - "0x2717c5e28cf931547B621a5dddb772Ab6A35B701"
+    - "0x2FC93484614a34f26F7970CBB94615bA109BB4bf"
+    - "0x2f50508a8a3d323b91336fa3ea6ae50e55f32185"
+    - "0x330bdFADE01eE9bF63C209Ee33102DD334618e0a"
+    - "0x3aac1cC67c2ec5Db4eA850957b967Ba153aD6279"
+    - "0x3efa30704d2b8bbac821307230376556cf8cc39e"
+    - "0x407CcEeaA7c95d2FE2250Bf9F2c105aA7AAFB512"
+    - "0x4736dCf1b7A3d580672CcE6E7c65cd5cc9cFBa9D"
+    - "0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936"
+    - "0x527653eA119F3E6a1F5BD18fbF4714081D7B31ce"
+    - "0x538Ab61E8A9fc1b2f93b3dd9011d662d89bE6FE6"
+    - "0x57b2B8c82F065de8Ef5573f9730fC1449B403C9f"
+    - "0x58E8dCC13BE9780fC42E8723D8EaD4CF46943dF2"
+    - "0x5cab7692D4E94096462119ab7bF57319726Eed2A"
+    - "0x5efda50f22d34F262c29268506C5Fa42cB56A1Ce"
+    - "0x5f6c97C6AD7bdd0AE7E0Dd4ca33A4ED3fDabD4D7"
+    - "0x610B717796ad172B316836AC95a2ffad065CeaB4"
+    - "0x653477c392c16b0765603074f157314Cc4f40c32"
+    - "0x6Bf694a291DF3FeC1f7e69701E3ab6c592435Ae7"
+    - "0x722122dF12D4e14e13Ac3b6895a86e84145b6967"
+    - "0x723B78e67497E85279CB204544566F4dC5d2acA0"
+    - "0x743494b60097A2230018079c02fe21a7B687EAA5"
+    - "0x746aebc06d2ae31b71ac51429a19d54e797878e9"
+    - "0x756C4628E57F7e7f8a459EC2752968360Cf4D1AA"
+    - "0x76D85B4C0Fc497EeCc38902397aC608000A06607"
+    - "0x776198CCF446DFa168347089d7338879273172cF"
+    - "0x77777feddddffc19ff86db637967013e6c6a116c"
+    - "0x8281Aa6795aDE17C8973e1aedcA380258Bc124F9"
+    - "0x833481186f16Cece3f1Eeea1a694c42034c3a0dB"
+    - "0x84443CFd09A48AF6eF360C6976C5392aC5023a1F"
+    - "0x8589427373D6D84E98730D7795D8f6f8731FDA16"
+    - "0x88fd245fEdeC4A936e700f9173454D1931B4C307"
+    - "0x905b63Fff465B9fFBF41DeA908CEb12478ec7601"
+    - "0x910Cbd523D972eb0a6f4cAe4618aD62622b39DbF"
+    - "0x94A1B5CdB22c43faab4AbEb5c74999895464Ddaf"
+    - "0x94Be88213a387E992Dd87DE56950a9aef34b9448"
+    - "0x94C92F096437ab9958fC0A37F09348f30389Ae79"
+    - "0x9AD122c22B14202B4490eDAf288FDb3C7cb3ff5E"
+    - "0xA160cdAB225685dA1d56aa342Ad8841c3b53f291"
+    - "0xA60C772958a3eD56c1F15dD055bA37AC8e523a0D"
+    - "0xB20c66C4DE72433F3cE747b58B86830c459CA911"
+    - "0xBA214C1c1928a32Bffe790263E38B4Af9bFCD659"
+    - "0xCC84179FFD19A1627E79F8648d09e095252Bc418"
+    - "0xCEe71753C9820f063b38FDbE4cFDAf1d3D928A80"
+    - "0xCa0840578f57fE71599D29375e16783424023357"
+    - "0xD21be7248e0197Ee08E0c20D4a96DEBdaC3D20Af"
+    - "0xD4B88Df4D29F5CedD6857912842cff3b20C8Cfa3"
+    - "0xD5d6f8D9e784d0e26222ad3834500801a68D027D"
+    - "0xD691F27f38B395864Ea86CfC7253969B409c362d"
+    - "0xD692Fd2D0b2Fbd2e52CFa5B5b9424bC981C30696"
+    - "0xD82ed8786D7c69DC7e052F7A542AB047971E73d2"
+    - "0xDD4c48C0B24039969fC16D1cdF626eaB821d3384"
+    - "0xDF3A408c53E5078af6e8fb2A85088D46Ee09A61b"
+    - "0xF60dD140cFf0706bAE9Cd734Ac3ae76AD9eBC32A"
+    - "0xF67721A2D8F736E75a49FdD7FAd2e31D8676542a"
+    - "0xFD8610d20aA15b7B2E3Be39B396a1bC3516c7144"
+    - "0xa5C2254e4253490C54cef0a4347fddb8f75A4998"
+    - "0xaEaaC358560e11f52454D997AAFF2c5731B6f8a6"
+    - "0xaf4c0B70B2Ea9FB7487C7CbB37aDa259579fe040"
+    - "0xaf8d1839c3c67cf571aa74B5c12398d4901147B3"
+    - "0xb04E030140b30C27bcdfaafFFA98C57d80eDa7B4"
+    - "0xb1C8094B234DcE6e03f10a5b673c1d8C69739A00"
+    - "0xb541fc07bC7619fD4062A54d96268525cBC6FfEF"
+    - "0xbB93e510BbCD0B7beb5A853875f9eC60275CF498"
+    - "0xca0840578f57fe71599d29375e16783424023357"
+    - "0xd47438C816c9E7f2E2888E060936a499Af9582b3"
+    - "0xd8D7DE3349ccaA0Fde6298fe6D7b7d0d34586193"
+    - "0xd90e2f925DA726b50C4Ed8D0Fb90Ad053324F31b"
+    - "0xd96f2B1c14Db8458374d9Aca76E26c3D18364307"
+    - "0xdf231d99Ff8b6c6CBF4E9B9a945CBAcEF9339178"
+    - "0xeDC5d01286f99A066559F60a585406f3878a033e"
+    - "0xf4B067dD14e95Bab89Be928c07Cb22E3c94E0DAA"
+    - "0xffbac21a641dcfe4552920138d90f3638b3c9fba"
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      OONI volunteer coverage of tornado.cash was effectively absent for the 2022-08-08 parent event
+      (one datapoint across the entire 2022-08-07 to 2022-10-03 window, see tornado-cash-ofac-2022),
+      and no reason to believe coverage of the 2022-11-08 redesignation window is materially better.
+      Promotion to partially_measured gated on either Censored Planet raw data ingestion or a second
+      independent L0 source spanning Nov 2022.
+  - layer: l1_consensus
+    status: measured
+    chain: ethereum
+    note: |
+      Wahrstätter relay_censorship_share.csv covers the full 2022-11-08 window at daily granularity
+      (dataset extends from 2022-09-16 through 2025-11-08). Slice [2022-10-25, 2022-11-22] attached as
+      observation below; the baseline (pre-event 14-day mean 65.96% ± 5.31) and post-event plateau
+      (post-event 14-day mean 73.48% ± 2.23) show the redesignation did not produce a step change.
+  - layer: l3_rpc
+    status: partially_measured
+    provider_scope: public_only
+    note: |
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+      Same RPC-provider gap as tornado-cash-ofac-2022; the 2022-11 MEV-Blocker / OFAC-compliant RPC
+      lists are not currently pinned to a first-party artifact. Attaching one would unblock a
+      defensible RPC-layer observation for the 60 net-new addresses.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - tornado.cash
+      - app.tornado.cash
+    note: |
+      Tornado frontend (tornado.cash / app.tornado.cash) had already been taken offline or
+      restricted following the 2022-08-08 designation; the 2022-11-08 redesignation did not trigger
+      a fresh frontend action at the canonical domain because the frontend was not operable at
+      event time. No systematic Nov-2022 third-party frontend (1inch, Uniswap labs, etc.) coverage
+      is attached. Promotion to partially_measured gated on pinned Wayback / body_hash of
+      tornado.cash and at least one third-party frontend bracketing 2022-11-08.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Full scan of 92 ETH addresses via usdtbanlist.com
+      (sources/asset_layer_scan/tornado-cash-ofac-redesignation-2022.json): **1/92 blocked**
+      (only 0x905b63Fff465B9fFBF41DeA908CEb12478ec7601). This is a paper-worthy structural
+      finding: **smart-contract addresses in OFAC SDN designations are rarely blacklisted
+      by stablecoin issuers**. Circle USDC blacklisted this one address on 2022-08-08
+      (predating the 2022-11-08 redesignation — tied to the parent Tornado-2022 event),
+      and Tether USDT blacklisted it on 2023-12-09 as part of the retroactive sweep. The
+      remaining 91 addresses — despite being on the OFAC SDN list — are NOT on Circle/Tether
+      blacklists as of 2026-04-22. Contrast with individual-wallet designations (Semenov
+      8/8, LockBit 1/1, Cryptex 1/1, Funnull 2/2, Aeza 1/1, Grinex 11/11) where issuer
+      compliance is 100%.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - binance
+      - kraken
+      - coinbase
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      No post-2022-11-08 off-ramp action has been pinned. dYdX had already restricted accounts in
+      the 2022-08 cascade; no public evidence suggests a fresh Nov 8 round of exchange withdrawals.
+      Attaching a direct exchange policy statement (blog, FAQ, SEC filing) referencing the Nov 8
+      redesignation would upgrade this layer.
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_froze_one_of_92_tornado_addresses_in_retroactive_sweep
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-12-09T05:18:00Z
+    precision: minute
+    delta_hours: 9509.3
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x5b4c60abaf4807eba903877835a301d08d8e51f6fd89f1c69657659f90e18f70
+        tx_hash: "0x5b4c60abaf4807eba903877835a301d08d8e51f6fd89f1c69657659f90e18f70"
+        block: 0
+        note: |
+          Tether USDT addBlackList tx for Tornado Cash pool address 0x905b63Fff465B9fFBF41DeA908CEb12478ec7601
+          at 2023-12-09 05:18 UTC. Part of Tether's 2023-12-09 retroactive sweep of historical
+          OFAC-SDN addresses. This is the ONLY one of 92 ETH addresses in the 2022-11-08
+          redesignation that has been Tether-blacklisted — an asymmetry-paper-relevant finding.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x905b63Fff465B9fFBF41DeA908CEb12478ec7601
+        body_hash: sha256:427bc5305a387ea370850bc58b3127d49389b5726110e10ed74cbbbcb640de7e
+        body_path: sources/http_captures/tornado-cash-ofac-redesignation-2022/asset-layer-check/usdtbanlist.com__address-0x905b63Fff465B9fFBF41DeA908CEb12478ec7601.html
+        evidence_group_id: tether-retroactive-sweep-20231209
+        note: usdtbanlist.com anchor. The remaining 91 Tornado-redesignation addresses are on OFAC SDN but NOT on Tether/Circle blacklists, establishing the smart-contract asymmetry finding.
+  - layer: l1_consensus
+    actor: pbs_relay_ecosystem_aggregate
+    event: ofac_compliant_relay_share_stable_through_redesignation
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-11-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2022-10-25T00:00:00Z
+      - 2022-11-22T23:59:59Z
+    sources:
+      - type: semi_primary_measurement
+        url: https://raw.githubusercontent.com/nerolation/censorship.pics/main/data/relay_censorship_share.csv
+        body_hash: sha256:45c1db9ca70491743e2e33c313d7293eed791a82d0ea7313c5241eca9e8b4567
+        body_path: sources/l1_datasets/tornado-cash-ofac-2022/relay_censorship_share.csv
+        query_hash: sha256:0512bce38823df772b5f9e4260aa053c8c526f8386be91e0ecb2e90a46fb0ea5
+        scope_descriptor:
+          providers:
+            - ethereum_pbs_mev_boost_relays
+          time_window:
+            - 2022-10-25T00:00:00Z
+            - 2022-11-22T23:59:59Z
+        evidence_group_id: wahrstatter-pbs-relay-data
+        note: |
+          Slice [2022-10-25, 2022-11-22] — 29 days × 2 categories (censoring / non-censoring) =
+          58 rows. Censoring-relay share: pre-event 14d mean 65.96% ± 5.31 (rising trend near
+          saturation); event day (2022-11-08) 72.00%; post-event 14d mean 73.48% ± 2.23 (stable
+          plateau). The event-day value is within 0.67 sd of the post-event mean, and the
+          continuation of the pre-event trajectory without inflection is the expected null shape.
+          Treated as observed_no_change: SDN-list expansion did not induce a step in relay OFAC-
+          compliance. attribution=none because no step change was observed — the observation is
+          a null result, not a causal claim.
+      - type: semi_primary_measurement
+        url: https://www.relayscan.io
+        wayback: https://web.archive.org/web/20260421114750/https://www.relayscan.io/
+        body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
+        body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
+        note: |
+          Relayscan (Flashbots-operated) dashboard independently tracks per-relay OFAC compliance
+          over time; its historical curve is consistent with Wahrstätter's plateau, serving as a
+          second admission-grade source for the observed_no_change claim.
+  - layer: l3_rpc
+    actor: flashbots_protect_rpc_provider
+    event: flashbots_protect_in_effect_no_step_change_attributable_to_this_event
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-11-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2022-11-08T00:00:00Z
+      - 2022-11-08T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20221222111307/https://protect.flashbots.net/
+        wayback: https://web.archive.org/web/20221222111307/https://protect.flashbots.net/
+        body_hash: sha256:9d1177026d363b7599bdbfa4f66c2b33b5da7944283071b4d31ed8f31194257b
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20230101000000-https-protect.flashbots.net__a49e4f491d.html
+        scope_descriptor:
+          providers: [flashbots_protect]
+          time_window:
+            - 2022-11-08T00:00:00Z
+            - 2022-11-08T23:59:59Z
+          addresses_cohort: this_event_sdn_addresses
+        note: |
+          Flashbots Protect landing-page Wayback snapshot (2022-12-22)
+          bracketing the event date 2022-11-08. Flashbots Protect (launched 2022-11)
+          is the earliest major OFAC-compliance-adjacent public Ethereum RPC substrate.
+          MEV-Blocker did not exist yet (launched 2023-03-27), so Flashbots Protect
+          is the sole L3 anchor in this pre-MEV-Blocker window. Snapshot documents the
+          provider + OFAC-aware routing was in effect; no per-transaction filter-list
+          receipt is published.
+      - type: primary_corporate
+        url: https://web.archive.org/web/20230326063621/https://docs.flashbots.net/flashbots-protect/overview
+        wayback: https://web.archive.org/web/20230326063621/https://docs.flashbots.net/flashbots-protect/overview
+        body_hash: sha256:38c0a61cb1a6c766ef72565562b37b3ccb65d581ed6915e9c74d70ee2fe511df
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20230215000000-https-docs.flashbots.net-flashbots-protect-overview__12a715a422.html
+        note: |
+          Second Flashbots Protect Wayback anchor (2023-03-26)
+          — post-event docs snapshot, independent archival anchor. The docs.flashbots.net
+          overview page describes OFAC-compliance behavior of the Protect RPC endpoint.
+analysis_notes: |
+  comparison documenting the 2022-11-08 OFAC redesignation of Tornado Cash under
+  DPRK-related authorities (simultaneously removing the original 2022-08-08 Cyber-related
+  designation). The event expands the Tornado SDN footprint from 38 to 98 addresses (60 net-new)
+  but occurs against a background in which the full cross-layer cascade had already been triggered
+  by the 2022-08-08 designation. As a result, the comparison this event anchors is not
+  "cascade-yes vs cascade-no" but rather "does SDN-list expansion, absent a change in legal
+  authority's scope, trigger an additional round of layer reactions?"
+
+  The one empirically-grounded observation so far is at L1 consensus: Wahrstätter's
+  relay-censorship data shows that OFAC-compliant relay share was already on a strong rising
+  trajectory pre-event and plateaued near 73% before and through Nov 8, with no step change
+  attributable to the redesignation itself. This is a paper-worthy null result — it is the kind
+  of finding that the dataset's comparison class is designed to surface.
+
+  Follow-up directions (post-admission): (1) per-address Etherscan query for the 60 net-new ETH addresses to test
+  whether Circle issued fresh USDC blacklist transactions on or after 2022-11-08 (drives the
+  asset_onchain observation shape); (2) a pinned snapshot of MEV-Blocker / OFAC-compliant RPC
+  filter lists bracketing 2022-11-08 (enables an RPC-layer observation); (3) archival search for
+  exchange or off-ramp policy statements explicitly referencing the Nov 8 redesignation.
+
+  Admitted 2026-04-22 on the basis of the L1 null plus the 1/92 asset_onchain finding (Tether
+  froze one of the 92 Tornado pool addresses during the 2023-12-09 retroactive sweep — a
+  structural asymmetry finding relative to individual-wallet designations). RPC / off-ramp
+  layers remain scoped for follow-up.
+
+scoped_claim: |
+  This draft supports the narrow claim: "Expansion of the Tornado Cash SDN entry on 2022-11-08
+  from 38 to 98 addresses did not cause a measurable step change in Ethereum OFAC-compliant
+  relay share (72.00% event day; 73.48% ± 2.23 post-event 14d; 65.96% ± 5.31 pre-event 14d)."
+  Other layers remain scoped for follow-up.
+
+tags:
+  - sanctions
+  - privacy_tool
+  - list_expansion
+  - relay_null_result

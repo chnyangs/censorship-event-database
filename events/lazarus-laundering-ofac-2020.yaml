@@ -1,0 +1,149 @@
+id: lazarus-laundering-ofac-2020
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T01:20:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - lazarus-entity-ofac-2019
+  - sichuan-silence-ofac-2024
+  - dprk-usdt-network-ofac-2025
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2020-03-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20200302
+      wayback: https://web.archive.org/web/20260421141654/https://ofac.treasury.gov/recent-actions/20200302
+      body_hash: sha256:52785ac24ed108c94962601d6957ba440702bc7eafc4b816dc02a41246b927b3
+      body_path: sources/http_captures/lazarus-laundering-ofac-2020/ofac-recent-actions/ofac.treasury.gov__recent-actions-20200302__65d2ac091f.html
+      note: |
+        OFAC Recent Actions page for 2020-03-02. Two Chinese nationals laundering crypto for
+        DPRK/Lazarus designated: LI Jiadong (aka blackjack1987 / khaleesi) with 12 XBT, and
+        TIAN Yinyin (aka snowsjohn) with 8 XBT. Tags [DPRK3] [CYBER2] (Linked To: LAZARUS
+        GROUP). Total 20 unique XBT addresses.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sm924
+      note: Treasury press release "Treasury Sanctions Individuals Laundering Cryptocurrency for Lazarus Group" (2020-03-02).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: 20 unique Bitcoin addresses across 2 Chinese individuals (12 + 8).
+  protocol: null
+  actor_type: individuals
+  actor_name: LI Jiadong + TIAN Yinyin
+  chains: [bitcoin]
+  canonical_domains: []
+  addresses:
+    - 1EfMVkxQQuZfBdocpJu6RUsCJvenQWbQyE
+    - 17UVSMegvrzfobKC82dHXpZLtLcqzW9stF
+    - 39eboeqYNFe2VoLC3mUGx4dh6GNhLB3D2q
+    - 39fhoB2DohisGBbHvvfmkdPdShT75CNHdX
+    - 3E6rY4dSCDW6y2bzJNwrjvTtdmMQjB6yeh
+    - 3EeR8FbcPbkcGj77D6ttneJxmsr3Nu7KGV
+    - 3HQRveQzPifZorZLDXHernc5zjoZax8U9f
+    - 3JXKQ81JzBqVbB8VHdV9Jtd7auWokkdPgY
+    - 3KHfXU24Bt3YD5Ef4J7uNp2buCuhrxfGen
+    - 3LbDu1rUXHNyiz4i8eb3KwkSSBMf7C583D
+    - 3MN8nYo1tt5hLxMwMbxDkXWd7Xu522hb9P
+    - 3N6WeZ6i34taX8Ditser6LKWBcXmt2XXL4
+    - 134r8iHv69xdT6p5qVKTsHrcUEuBVZAYak
+    - 15YK647qtoZQDzNrvY6HJL6QwXduLHfT28
+    - 1PfwHNxUnkpfkK9MKjMqzR3Xq3KCtq9u17
+    - 14kqryJUxM3a7aEi117KX9hoLUw592WsMR
+    - 1F2Gdug9ib9NQMhKMGGJczzMk5SuENoqrp
+    - 3F2sZ4jbhvDKQdGbHYPC6ZxFXEau2m5Lqj
+    - 1AXUTu9y3H8w4wYx4BjyFWgRhZKDhmcMrn
+    - 1Hn9ErTCPRP6j5UDBeuXPGuq5RtRjFJxJQ
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin + pre-Merge by 929 days.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin native; no issuer freeze primitive.
+  - layer: offramp_cex
+    status: measured
+    note: |
+      14-day post-event public-CEX-announcement scan: no public statement from Binance,
+      Huobi, Kraken, Coinbase, or other major exchanges specifically naming the 20
+      Lazarus-laundering BTC addresses was published in 2020-03-02 to 2020-03-16. This is
+      the observed_no_change at public-disclosure level; private chain-analytics flagging
+      workflows (Chainalysis / Elliptic) are outside the scope of this observation.
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2020-03-02T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2020-03-02T00:00:00Z
+      - 2020-03-16T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20200302
+        body_hash: sha256:52785ac24ed108c94962601d6957ba440702bc7eafc4b816dc02a41246b927b3
+        body_path: sources/http_captures/lazarus-laundering-ofac-2020/ofac-recent-actions/ofac.treasury.gov__recent-actions-20200302__65d2ac091f.html
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2020-03-02T00:00:00Z
+            - 2020-03-16T23:59:59Z
+          addresses_cohort: lazarus_laundering_20_btc
+        note: |
+          No public CEX policy statement referencing the 20 Lazarus-laundering BTC addresses
+          was published in the 14-day window post-designation. This is the honest empirical
+          null for individual-level BTC-only designations from 2020-era OFAC actions: the
+          offramp-CEX cascade, if any occurred, happened through private
+          chain-analytics-driven KYC flags rather than public corporate statements.
+          attribution=none because an absence-of-public-announcement is not causally
+          attributable to the OFAC action — it reflects the industry's preference for
+          private compliance workflows over public disclosure for this event class.
+
+analysis_notes: |
+  null_event documenting the 2020-03-02 designation of two Chinese nationals
+  laundering DPRK-stolen cryptocurrency. Bitcoin-only, individual-level; all infrastructure
+  layers not_applicable. The only meaningful measurement axis is offramp_cex (deposit-block
+  reactions to the 20 BTC addresses), recorded as coverage_gap with the OFAC SDN entry as
+  the legal anchor.
+
+  Admitting as null_event rather than null_event — the target is individuals
+  without services, so there's no service-layer cascade to compare.
+
+scoped_claim: |
+  "OFAC designation of two DPRK-laundering Chinese nationals on 2020-03-02 attached 20
+  Bitcoin addresses to SDN; cross-layer cascade is structurally unmeasurable (Bitcoin native,
+  individuals). Serves as a datapoint for the individual-BTC-sanction class."
+
+tags:
+  - sanctions
+  - individual_designation
+  - dprk_linked
+  - lazarus_laundering

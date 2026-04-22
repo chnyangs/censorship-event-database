@@ -1,0 +1,120 @@
+id: irgc-ransomware-ofac-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T01:40:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2022-09-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20220914
+      wayback: https://web.archive.org/web/20260421142243/https://ofac.treasury.gov/recent-actions/20220914
+      body_hash: sha256:07f9e6b2bc857376834c2188f539a03aeb009ef55a20e7e313d34cdc8d0c7b2d
+      body_path: sources/http_captures/irgc-ransomware-ofac-2022/ofac-recent-actions/ofac.treasury.gov__recent-actions-20220914__66d8577259.html
+      note: |
+        OFAC Recent Actions page for 2022-09-14. Multiple Iranian IRGC-affiliated individuals
+        designated for ransomware conduct: KHATIBI AGHADA Ahmad (3 XBT), NIKAEEN RAVARI Amir
+        Hossein (4 XBT — one address duplicates KHATIBI's), plus 4 other individuals with no
+        addresses. Entity AFKAR SYSTEM YAZD COMPANY also designated. Tags [IRGC] [IFSR]
+        [CYBER2]. 6 unique XBT addresses total. Event occurred 1 day before The Merge
+        (Ethereum Merge: 2022-09-15) — structurally in the pre-PBS liminal window.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy0948
+      note: Treasury press release "Treasury Sanctions IRGC-Affiliated Cyber Actors for Roles in Ransomware Activity" (2022-09-14).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: 6 unique Bitcoin addresses across 2 of the 6 designated individuals (KHATIBI 3, NIKAEEN 4, one address overlap).
+  protocol: null
+  actor_type: individuals
+  actor_name: IRGC-affiliated ransomware actors
+  chains: [bitcoin]
+  canonical_domains: []
+  addresses:
+    - 1H939dom7i4WDLCKyGbXUp3fs9CSTNRzgL
+    - bc1q3y5v2khlyvemcz042wl98dzflywr8ghglqws6s
+    - bc1qx3e2axj3wsfn0ndtvlwmkghmmgm4583nqg8ngk
+    - bc1qsxf77cvwcd6jv6j8d8j3uhh4g0xqw4meswmwuc
+    - bc1q9lvynkfpaw330uhqmunzdz6gmafsvapv7y3zty
+    - bc1qpaly5nm7pfka9v92d6qvl4fc2l9xzee8a6ys3s
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin + event falls 1 day before The Merge (Ethereum PBS era boundary).
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin native; no issuer freeze primitive.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-09-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2022-09-14T00:00:00Z
+      - 2022-09-28T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20220914
+        body_hash: sha256:07f9e6b2bc857376834c2188f539a03aeb009ef55a20e7e313d34cdc8d0c7b2d
+        body_path: sources/http_captures/irgc-ransomware-ofac-2022/ofac-recent-actions/ofac.treasury.gov__recent-actions-20220914__66d8577259.html
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2022-09-14T00:00:00Z
+            - 2022-09-28T23:59:59Z
+          addresses_cohort: irgc_iranian_6_btc
+        note: |
+          No public CEX policy statement referencing 6 IRGC-affiliated BTC addresses was published by major
+          exchanges (Binance, Kraken, Coinbase, Bybit) in the 14-day post-designation
+          window. Observation records the absence of public disclosure; private
+          chain-analytics flagging workflows (Chainalysis / Elliptic / TRM) are outside
+          the scope of this observation and may have produced unpublished KYT flags.
+
+analysis_notes: |
+  null_event documenting Iranian IRGC-affiliated individual ransomware-actor
+  designations on 2022-09-14, 1 day before The Merge. Bitcoin-only, individual-level; all
+  infrastructure / asset layers structurally not_applicable. Included in the dataset for
+  Iran-related class comparison (pairs with 2018-11-28 Iran ransomware facilitators).
+
+scoped_claim: |
+  "OFAC designation of 6 IRGC-affiliated individuals on 2022-09-14 attached 6 Bitcoin
+  addresses. Cross-layer cascade structurally unmeasurable. Datapoint for Iran-related
+  individual-BTC-sanction class."
+
+tags:
+  - sanctions
+  - individual_designation
+  - iran_related
+  - irgc_affiliated
+  - ransomware

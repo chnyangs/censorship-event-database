@@ -1,0 +1,107 @@
+id: zservers-ofac-2025
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T02:40:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-02-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20250211
+      wayback: https://web.archive.org/web/20260421144035/https://ofac.treasury.gov/recent-actions/20250211
+      body_hash: sha256:b00e6923a6af0d7887fd2a92d2ab3520939c451ebcc1bdfea43589dbcdd0879f
+      body_path: sources/http_captures/zservers-ofac-2025/ofac-recent-actions/ofac.treasury.gov__recent-actions-20250211__478b1f5c3d.html
+      note: |
+        OFAC Recent Actions page for 2025-02-11. Joint US/UK/Australia action against Russian
+        bulletproof-hosting provider ZSERVERS + operators KOLESNIKOV Alexander / MISHIN
+        Alexander (aka ALEX560560 / TRIPLEX560 / etc.). 4 XBT addresses attached. Tag [CYBER3].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0012
+      note: Treasury press release "United States, Australia, and the United Kingdom Jointly Sanction Key Infrastructure that Enables Ransomware Actors" (2025-02-11).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: 4 unique XBT addresses attached to the ZSERVERS / MISHIN / KOLESNIKOV SDN entries.
+  protocol: null
+  actor_type: hosting_provider
+  actor_name: Zservers
+  chains: [bitcoin]
+  canonical_domains: []
+  addresses:
+    - 3FfRvC3kSo2SxiQe5e7SSuNdegwgq8iusL
+    - 1M5N4sJ1NHb4fviLVZA5MZLKhLZqU4CPZz
+    - 1Gekw8ACSs37oXcc5XQHvoux3iKoVFtpF4
+    - bc1q4yzd2rjmshm8ucrwy6dzj5rna20j0zlf8hf8vz
+
+jurisdiction: [US, UK, AU]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical domain listed in SDN entries; infrastructure provider.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-02-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-02-11T00:00:00Z
+      - 2025-02-25T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20250211
+        body_hash: sha256:b00e6923a6af0d7887fd2a92d2ab3520939c451ebcc1bdfea43589dbcdd0879f
+        body_path: sources/http_captures/zservers-ofac-2025/ofac-recent-actions/ofac.treasury.gov__recent-actions-20250211__478b1f5c3d.html
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2025-02-11T00:00:00Z
+            - 2025-02-25T23:59:59Z
+          addresses_cohort: zservers_russian_4_btc
+        note: |
+          No public CEX policy statement referencing Zservers 4 BTC addresses was published by major
+          exchanges (Binance, Kraken, Coinbase, Bybit) in the 14-day post-designation
+          window. Observation records the absence of public disclosure; private
+          chain-analytics flagging workflows (Chainalysis / Elliptic / TRM) are outside
+          the scope of this observation and may have produced unpublished KYT flags.
+
+analysis_notes: |
+  null_event — joint US/UK/AU designation of Zservers Russian bulletproof
+  hosting. Pairs with Aeza (2025-07-01) as second 2025 hosting-provider event. No canonical
+  domain published; Bitcoin-only addresses; cross-layer cascade structurally limited.
+
+scoped_claim: |
+  "Joint US/UK/AU OFAC designation of Zservers on 2025-02-11 attached 4 BTC addresses.
+  Infrastructure-provider target with limited cross-layer measurable surface."
+
+tags: [sanctions, russia_related, bulletproof_hosting, joint_international, null_event]

@@ -1,0 +1,127 @@
+id: coinbase-india-exit-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T09:15:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - india-rbi-crypto-ban-2018
+
+trigger:
+  type: corporate_policy_change
+  actor: coinbase_inc
+  timestamp: 2022-04-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.coinbase.com/en-au/blog
+      body_hash: sha256:e6a793e115b6bfb11a6b75fbbc86c7cf7179e94ea13503cf4733c0fd23967fc4
+      body_path: sources/http_captures/coinbase-india-exit-2022/primary/blog.coinbase.com__where-coinbase-operates-and-how-we-comply-around-the-world-d2f6bbf53d36__2f3902d770.html
+      note: |
+        Coinbase corporate blog landing (redirected from the specific
+        "where-coinbase-operates-and-how-we-comply-around-the-world"
+        Medium-era post URL that has since been re-slugged). Primary corporate
+        anchor. Captures the period in which Coinbase India UPI-rail access
+        was disabled following pushback from NPCI (National Payments
+        Corporation of India). Coinbase had launched India app 2022-04-07
+        with UPI-rail deposit/withdrawal; within 3 days NPCI issued a
+        statement disowning Coinbase's integration, and UPI support was
+        suspended. CEO Brian Armstrong subsequently discussed the sequence
+        in a May 2022 earnings call (secondary context).
+  timestamp_sources:
+    - type: primary_corporate
+      note: Day-level timing per Coinbase India launch + NPCI response sequence.
+
+target:
+  kind: domain
+  enumeration: complete
+  enumeration_note: |
+    Coinbase India consumer product (app.coinbase.com — India-rail
+    integration). No on-chain addresses; the target is a regulated-market
+    withdrawal by a US exchange from a nation-state market following
+    domestic regulatory pushback (NPCI disavowal).
+  protocol: null
+  actor_type: exchange_market_withdrawal
+  actor_name: Coinbase Inc (India market)
+  chains: []
+  canonical_domains:
+    - app.coinbase.com
+
+jurisdiction: [IN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Coinbase app remained reachable globally; India-specific UPI-integration removal is at payment-rail level, not at domain level.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    scope: [app.coinbase.com]
+    note: |
+      India-specific UPI deposit/withdrawal path disabled in-app within
+      days of launch. Frontend remained globally accessible; restriction is
+      at payment-rail level rather than domain-level takedown, so L4 is
+      not the primary observational axis.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    note: Coinbase is itself the CEX; the event documents an exchange's market-exit response to regulatory pushback.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:coinbase
+    event: india_upi_rail_disabled_within_3d_of_launch
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-04-10T00:00:00Z
+    precision: day
+    delta_hours: 72.0
+    sources:
+      - type: primary_corporate
+        url: https://www.coinbase.com/en-au/blog
+        body_hash: sha256:e6a793e115b6bfb11a6b75fbbc86c7cf7179e94ea13503cf4733c0fd23967fc4
+        body_path: sources/http_captures/coinbase-india-exit-2022/primary/blog.coinbase.com__where-coinbase-operates-and-how-we-comply-around-the-world-d2f6bbf53d36__2f3902d770.html
+        scope_descriptor:
+          providers: [coinbase_india]
+          time_window:
+            - 2022-04-07T00:00:00Z
+            - 2022-04-14T23:59:59Z
+          addresses_cohort: coinbase_india_market
+        note: |
+          Coinbase corporate blog anchor documenting Coinbase India market-
+          retreat sequence. Specific article re-slugged post-2022; landing
+          page is the current canonical anchor. attribution=direct because
+          Coinbase (the CEX subject to NPCI pushback) itself made the
+          feature-disable decision.
+
+analysis_notes: |
+  comparison documenting Coinbase's 2022-04 India market retreat:
+  launched 2022-04-07 with UPI integration; NPCI issued disavowal statement
+  within 3 days; Coinbase disabled India UPI within the same week. Brian
+  Armstrong later characterized it as "informal pressure" from RBI. This is
+  an unusual datapoint — a market-exit by a US exchange from a major
+  jurisdiction via informal rather than formal sanction, distinct from the
+  direct RBI bank-rail severance of 2018 (see india-rbi-crypto-ban-2018).
+
+scoped_claim: |
+  "Coinbase's 2022-04 India market entry was reversed within days through
+  informal regulatory pushback via NPCI, illustrating that even after the
+  2020 Supreme Court IAMAI ruling lifting the direct RBI crypto ban,
+  informal financial-rail-level pressure can effectively block major
+  US-exchange market access. Documents informal-pressure enforcement mode
+  alongside the 2018 RBI formal-prohibition mode."
+
+tags:
+  - corporate_policy_change
+  - market_exit
+  - india
+  - informal_pressure
+  - coinbase

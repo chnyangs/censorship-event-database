@@ -1,0 +1,159 @@
+id: sec-v-uniswap-wells-notice-2024
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T11:30:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - sec-v-binance-2023
+  - sec-v-coinbase-2023
+  - uniswap-frontend-delisting-2023
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2024-04-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://blog.uniswap.org/fighting-for-defi
+      body_hash: sha256:19c7774af50f60cb0acf14edd8a3784ca199301e257bd6e3fd436c2960913638
+      body_path: sources/http_captures/sec-v-uniswap-wells-notice-2024/primary/blog.uniswap.org__fighting-for-defi__2b28cd4e31.html
+      note: |
+        Uniswap Labs blog post "Fighting for DeFi" (2024-04-10) — the primary
+        corporate disclosure that Uniswap Labs received a Wells notice from
+        the SEC on 2024-04-10. Wells notice is a pre-enforcement SEC staff
+        letter indicating intent to recommend formal enforcement. Uniswap Labs
+        publicly committed to "fight" any action and framed the notice as a
+        jurisdiction-exceeding SEC reach. **No formal SEC complaint was ever
+        filed**; SEC formally dropped the matter on 2025-02-25 under the new
+        administration.
+    - type: primary_legal
+      url: https://www.sec.gov/newsroom/press-releases
+      body_hash: sha256:0723d2cb0d308353d4a0584a49bedf28fe6c0ebe9179d2b758c5651fabb2374a
+      body_path: sources/http_captures/sec-v-uniswap-wells-notice-2024/primary/www.sec.gov__newsroom-press-releases__17015ee9c7.html
+      note: |
+        SEC Newsroom press-releases index captured 2026-04-22 as corroborating
+        archival anchor — no SEC press release was ever issued about the
+        Uniswap Wells notice (Wells notices are pre-enforcement private
+        correspondence, not announced publicly by the SEC). The absence of
+        an SEC press release is itself the paper-worthy signal distinguishing
+        this event from the 2023-06-05/06 SEC v. Binance/Coinbase formal
+        filings.
+  timestamp_sources:
+    - type: primary_corporate
+      note: Day-level timing per Uniswap Labs blog disclosure.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Uniswap Labs (the frontend-operator entity; distinct from the underlying
+    Uniswap Protocol smart contracts). No tokens named, no on-chain addresses
+    attached — the Wells notice is a pre-enforcement signal re. the
+    unregistered-broker / unregistered-exchange theory applied to Uniswap
+    Labs' frontend operations.
+  protocol: uniswap_v2_v3
+  actor_type: frontend_operator_wells_notice
+  actor_name: Uniswap Labs
+  chains: []
+  canonical_domains:
+    - app.uniswap.org
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [app.uniswap.org]
+    note: |
+      app.uniswap.org remained operational throughout the Wells-notice period
+      (2024-04-10 → 2025-02-25 drop). No frontend takedown, no enforced
+      restriction from the notice itself. Attached below as observed_no_change
+      — the Wells notice did NOT produce an L4 cascade, distinguishing it
+      from the formal-complaint events (Binance 2023-06-05).
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:uniswap_labs
+    event: uniswap_frontend_remained_operational_through_wells_notice_period
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-04-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-04-10T00:00:00Z
+      - 2025-02-25T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://blog.uniswap.org/fighting-for-defi
+        body_hash: sha256:19c7774af50f60cb0acf14edd8a3784ca199301e257bd6e3fd436c2960913638
+        body_path: sources/http_captures/sec-v-uniswap-wells-notice-2024/primary/blog.uniswap.org__fighting-for-defi__2b28cd4e31.html
+        scope_descriptor:
+          providers: [uniswap_labs_frontend]
+          time_window:
+            - 2024-04-10T00:00:00Z
+            - 2025-02-25T23:59:59Z
+          addresses_cohort: uniswap_labs_wells_notice
+        note: |
+          Uniswap Labs publicly committed to continuing operations during the
+          Wells-notice period. app.uniswap.org frontend remained operational;
+          Uniswap Labs pursued litigation-readiness rather than compliance
+          remediation. Paper-worthy contrast to the Binance.US fiat-rail
+          collapse triggered by the formal SEC complaint (2023-06-05): Wells
+          notice alone does NOT produce L4 cascade; formal complaint (especially
+          one bundled with asset-freeze motion) does.
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases
+        body_hash: sha256:0723d2cb0d308353d4a0584a49bedf28fe6c0ebe9179d2b758c5651fabb2374a
+        body_path: sources/http_captures/sec-v-uniswap-wells-notice-2024/primary/www.sec.gov__newsroom-press-releases__17015ee9c7.html
+        note: |
+          SEC press-releases index — absence-of-notice anchor. The Wells notice
+          is private correspondence; the SEC never filed a formal complaint,
+          making this the lowest-enforcement-intensity SEC regulatory-pressure
+          event in the dataset.
+
+analysis_notes: |
+  null_event — **lowest-enforcement-intensity SEC event in the dataset**.
+  Wells notice is a pre-enforcement signal (staff intent to recommend), not
+  a formal enforcement action. No SEC complaint filing, no court proceedings,
+  no mandated compliance remediation. The matter was formally dropped on
+  2025-02-25 under the new SEC administration, with no final adjudication.
+
+  Paper-relevant as the low-intensity end of the SEC-enforcement-intensity
+  gradient:
+    - lowest: Wells notice only → no L4 cascade (THIS EVENT)
+    - medium: formal complaint without asset-freeze motion → limited cascade (Coinbase 2023-06-06)
+    - highest: formal complaint WITH asset-freeze motion → full L4 cascade (Binance 2023-06-05)
+
+  This three-tier comparison is a structural finding the dataset now supports
+  directly via three paired SEC events.
+
+scoped_claim: |
+  "SEC Wells notice against Uniswap Labs (disclosed 2024-04-10, dropped
+  2025-02-25) was the lowest-enforcement-intensity SEC crypto event in the
+  dataset, producing no L4 cascade. Demonstrates that SEC pre-enforcement
+  signals alone — without formal complaint filing — do NOT produce
+  measurable censorship effects at the frontend or off-ramp layers."
+
+tags:
+  - sec_enforcement
+  - wells_notice
+  - pre_enforcement_signal
+  - uniswap_labs
+  - sec_intensity_gradient

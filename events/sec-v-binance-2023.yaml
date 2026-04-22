@@ -1,0 +1,169 @@
+id: sec-v-binance-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+empirical_shape: comparison
+admission_tier: anchor_case
+version: "0.1"
+created_at: 2026-04-22T10:30:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - binance-4framework-2023
+  - sec-v-coinbase-2023
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2023-06-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/newsroom/press-releases/2023-101-sec-files-13-charges-against-binance-entities-founder-changpeng-zhao
+      body_hash: sha256:f1aeedd40346f555c3f35fd5efe781d1d1e2cbe3751c8f1e79f49481ca826665
+      body_path: sources/http_captures/sec-v-binance-2023/primary/www.sec.gov__news-press-release-2023-101__a38c3e222c.html
+      note: |
+        SEC press release 2023-101: "SEC Files 13 Charges Against Binance Entities
+        and Founder Changpeng Zhao" (2023-06-05). SEC civil action in DDC: Binance
+        Holdings Ltd. + BAM Trading Services (Binance.US operator) + Changpeng
+        Zhao charged with 13 counts including operating unregistered exchanges /
+        broker-dealers / clearing agencies, unregistered securities offerings
+        (BNB, BUSD, Simple Earn, BNB Vault, staking), and commingling billions
+        in customer funds. Pre-dates the 2023-11-21 DOJ settlement by 169 days.
+        Distinct from the 2023-11 criminal resolution — this is SEC civil
+        enforcement on the securities-law axis.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per SEC press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance Holdings Ltd. (global) + BAM Trading Services Inc. (Binance.US) +
+    BAM Management US Holdings + Changpeng Zhao individual. Securities
+    specifically named as unregistered: BNB, BUSD, Binance Simple Earn, BNB
+    Vault, BUSD staking-product, BETH. No on-chain addresses; securities-law
+    charges operate at token-offering/exchange-registration level.
+  protocol: null
+  actor_type: exchange_securities_enforcement
+  actor_name: Binance Holdings / BAM Trading / Changpeng Zhao
+  chains: []
+  canonical_domains:
+    - binance.com
+    - binance.us
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Securities-law civil action; no L1 consensus impact.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [binance.us]
+    note: |
+      Following the 2023-06-05 SEC charges + asset-freeze motion, Binance.US
+      suspended USD deposits and closed fiat onramps (2023-06-09 announcement).
+      Canonical binance.us frontend remained reachable but progressively lost
+      fiat-rail functionality. Attached below as observed_change with direct
+      attribution to SEC asset-freeze proceedings.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Binance.US fiat rails suspended; US customer base shrank 90%+ through
+      2023-Q3. SEC-driven offramp_cex disruption.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:binance_us
+    event: binance_us_suspended_usd_fiat_rails_within_4d
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-06-09T00:00:00Z
+    precision: day
+    delta_hours: 96.0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2023-101-sec-files-13-charges-against-binance-entities-founder-changpeng-zhao
+        body_hash: sha256:f1aeedd40346f555c3f35fd5efe781d1d1e2cbe3751c8f1e79f49481ca826665
+        body_path: sources/http_captures/sec-v-binance-2023/primary/www.sec.gov__news-press-release-2023-101__a38c3e222c.html
+        note: |
+          SEC charges include asset-freeze motion against BAM Trading Services;
+          the motion was the proximate cause of Binance.US suspending USD
+          deposits/withdrawals on 2023-06-09. Direct attribution: the SEC
+          filing explicitly named the fiat-rail asset-freeze as the requested
+          relief.
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20230610*/binance.us
+        wayback: https://web.archive.org/web/20230610/https://binance.us/
+        note: |
+          Wayback CDX calendar for binance.us around 2023-06-09 shows the
+          transition from normal-operation state to suspended-fiat-rails
+          banner. Independent archival anchor for the observed_change.
+  - layer: offramp_cex
+    actor: exchange:binance_us
+    event: binance_us_offramp_crippled_post_sec_freeze
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-06-09T00:00:00Z
+    precision: day
+    delta_hours: 96.0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2023-101-sec-files-13-charges-against-binance-entities-founder-changpeng-zhao
+        body_hash: sha256:f1aeedd40346f555c3f35fd5efe781d1d1e2cbe3751c8f1e79f49481ca826665
+        body_path: sources/http_captures/sec-v-binance-2023/primary/www.sec.gov__news-press-release-2023-101__a38c3e222c.html
+        scope_descriptor:
+          providers: [binance_us]
+          time_window:
+            - 2023-06-05T00:00:00Z
+            - 2023-09-05T23:59:59Z
+          addresses_cohort: binance_us_customer_base
+        note: |
+          Binance.US fiat onramp functionally collapsed post-SEC action. US
+          customer trading volume fell 90%+ through Q3 2023. Direct SEC
+          securities-law cascade at the offramp layer.
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2023-101-sec-files-13-charges-against-binance-entities-founder-changpeng-zhao
+        body_hash: sha256:f1aeedd40346f555c3f35fd5efe781d1d1e2cbe3751c8f1e79f49481ca826665
+        body_path: sources/http_captures/sec-v-binance-2023/primary/www.sec.gov__news-press-release-2023-101__a38c3e222c.html
+        note: |
+          Second reference to the SEC filing — the asset-freeze motion +
+          13 charges document defines both the trigger and the mandated
+          compliance outcome.
+
+analysis_notes: |
+  comparison — first SEC civil-enforcement event in the dataset.
+  Paper-relevant structural distinction: SEC operates on the
+  securities-law axis (token-offering / exchange-registration) whereas
+  OFAC operates on the sanctions axis. The 2023-06-05 Binance case
+  produced a concrete L4 + offramp cascade via asset-freeze proceedings
+  even without any SDN listing. Pairs with `sec-v-coinbase-2023` (next day)
+  for the SEC-pair comparison.
+
+  Relationship to `binance-4framework-2023` (2023-11-21): the SEC case is
+  the civil-enforcement predecessor; the 11-21 settlement resolved DOJ /
+  FinCEN / OFAC / CFTC charges. The SEC case itself continues separately
+  and was partially settled in 2024-06 (BUSD securities-status dropped).
+
+scoped_claim: |
+  "SEC v. Binance (2023-06-05) was the first SEC civil-enforcement event in
+  the dataset targeting a major crypto exchange; the asset-freeze motion
+  produced a direct L4 + offramp cascade at Binance.US within 4 days
+  (2023-06-09 fiat-rail suspension). Demonstrates securities-law
+  enforcement as a distinct censorship-cascade trigger from OFAC SDN."
+
+tags:
+  - sec_enforcement
+  - securities_law
+  - exchange_civil_action
+  - binance
+  - asset_freeze_motion

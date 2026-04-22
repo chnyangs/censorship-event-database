@@ -1,0 +1,65 @@
+id: example-event-id
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate          # S1_ofac_sdn / S2_ofac_removal / S3_doj_sec_cftc_fiod / S4_nation_state / S5_corporate
+empirical_shape: comparison             # cascade (≥3 observed_change layers) / comparison (1–2) / null_event (0)
+admission_tier: empirical_case          # anchor_case (≥2 strong-attrib) / empirical_case (≥1) / null_case (0)
+version: "0.1"
+created_at: 2026-04-21T00:00:00Z
+last_verified: 2026-04-21
+
+trigger:
+  type: corporate_policy_change
+  actor: EXAMPLE_ACTOR
+  timestamp: 2026-04-21T00:00:00Z
+  timestamp_precision: hour
+  citation:
+    - type: primary_legal
+      url: https://example.org/primary-source
+
+target:
+  kind: entity
+  entity: example_target
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: fill in
+  - layer: l1_consensus
+    status: not_measured
+    note: fill in
+  - layer: l3_rpc
+    status: not_measured
+    note: fill in
+  - layer: l4_frontend
+    status: not_measured
+    note: fill in
+  - layer: asset_onchain
+    status: not_measured
+    note: fill in
+  - layer: offramp_cex
+    status: not_measured
+    note: fill in
+
+observations:
+  - layer: l4_frontend
+    actor: example_actor
+    event: example_change
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2026-04-21T00:00:00Z
+    precision: hour
+    sources:
+      - type: primary_corporate
+        url: https://example.org/primary-source
+
+analysis_notes: |
+  Replace this template text with event-specific notes.
+
+tags:
+  - example

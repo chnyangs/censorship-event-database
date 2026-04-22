@@ -1,0 +1,557 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/p1-event-db/schema/event.schema.json",
+  "title": "Cross-Layer Censorship Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "schema_version",
+    "status",
+    "research_stratum",
+    "empirical_shape",
+    "admission_tier",
+    "trigger",
+    "target",
+    "jurisdiction",
+    "coverage",
+    "observations"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "observation_active",
+        "observation_closed",
+        "admitted",
+        "rejected"
+      ]
+    },
+    "research_stratum": {
+      "type": "string",
+      "enum": [
+        "S1_ofac_sdn",
+        "S2_ofac_removal",
+        "S3_doj_sec_cftc_fiod",
+        "S4_nation_state",
+        "S5_corporate"
+      ],
+      "description": "Research stratum / trigger family. Derived from trigger.type."
+    },
+    "empirical_shape": {
+      "type": "string",
+      "enum": [
+        "cascade",
+        "comparison",
+        "null_event"
+      ],
+      "description": "Empirical cascade shape: cascade = ≥3 distinct observed_change layers; comparison = 1-2; null_event = 0 (admitted via observed_no_change)."
+    },
+    "admission_tier": {
+      "type": "string",
+      "enum": [
+        "anchor_case",
+        "empirical_case",
+        "null_case"
+      ],
+      "description": "Admission-quality tier: anchor_case = ≥2 observed_change layers with strong attribution; empirical_case = ≥1; null_case = 0. Used to select anchor cases for paper exposition vs. catalog-completeness cases."
+    },
+    "version": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "human_authored",
+        "agent_draft",
+        "human_reviewed"
+      ],
+      "description": "Authorship lineage. human_authored = written by a human end-to-end. agent_draft = ingested / drafted by an agent and not yet reviewed; only valid at status=draft. human_reviewed = agent-drafted then reviewed and accepted by a human."
+    },
+    "last_human_audit": {
+      "type": "string",
+      "format": "date",
+      "description": "YYYY-MM-DD of the most recent human adversarial audit of this event. Used by staleness report."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_verified": {
+      "type": "string",
+      "format": "date"
+    },
+    "trigger": {
+      "$ref": "#/$defs/trigger"
+    },
+    "target": {
+      "$ref": "#/$defs/target"
+    },
+    "jurisdiction": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coverage"
+      }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/observation"
+      }
+    },
+    "recovery": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recovery"
+      }
+    },
+    "follow_on_reaction": {
+      "type": "array",
+      "description": "Cross-event reactions observed after the trigger but with attribution=unknown or temporal gap too large for direct causation. Tracked here for informational / cross-event-anchor purposes; does NOT count toward empirical_shape / admission_tier. Added 2026-04-22 per reviewer Action 4.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "analysis_notes": {
+      "type": "string"
+    },
+    "scoped_claim": {
+      "type": "string",
+      "description": "One plain-language sentence stating the narrow empirical claim supported by the retained observations. Required when status=admitted and review_report classifies the event as release_ready_scoped."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "citation": {
+      "description": "Flexible citation object. Validator logic should enforce stronger source-level rules.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "wayback": {
+              "type": "string",
+              "format": "uri"
+            },
+            "label": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "primary_legal",
+            "primary_onchain",
+            "primary_corporate",
+            "semi_primary_measurement",
+            "semi_primary_wayback",
+            "supporting_journalism",
+            "supporting_community",
+            "supporting_tracker"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "wayback": {
+          "type": "string",
+          "format": "uri"
+        },
+        "note": {
+          "type": "string"
+        },
+        "tx_hash": {
+          "type": "string"
+        },
+        "block": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "query_hash": {
+          "type": "string"
+        },
+        "body_hash": {
+          "type": "string"
+        },
+        "body_path": {
+          "type": "string",
+          "description": "Relative path (from repo root) to the local archived body this body_hash refers to."
+        },
+        "measurement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scope_descriptor": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Structured scope of this evidence. E.g. enumerated domains, countries, providers, and time windows the source actually covered. Used to make observed_no_change claims falsifiable.",
+          "properties": {
+            "domains": {"type": "array", "items": {"type": "string"}},
+            "countries": {"type": "array", "items": {"type": "string"}},
+            "providers": {"type": "array", "items": {"type": "string"}},
+            "time_window": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {"type": "string", "format": "date-time"}
+            }
+          }
+        },
+        "evidence_group_id": {
+          "type": "string",
+          "description": "Sources sharing the same evidence_group_id count as a single evidence unit toward admission. Use for mirrored repos, archived snapshots of the same page, or other semantically identical evidence."
+        }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "actor",
+        "timestamp",
+        "timestamp_precision",
+        "citation"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ofac_sdn_designation",
+            "ofac_sdn_removal",
+            "doj_indictment",
+            "doj_seizure_order",
+            "cftc_action",
+            "sec_action",
+            "non_us_sanctions",
+            "court_civil_order",
+            "corporate_policy_change",
+            "nation_state_block"
+          ]
+        },
+        "actor": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timestamp_precision": {
+          "type": "string",
+          "enum": [
+            "second",
+            "minute",
+            "hour",
+            "hour_range",
+            "day",
+            "week"
+          ]
+        },
+        "citation": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/citation"
+          }
+        },
+        "timestamp_sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/citation"
+          }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "address_set",
+            "protocol",
+            "domain",
+            "asset",
+            "entity"
+          ]
+        },
+        "enumeration": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "subset",
+            "pending"
+          ],
+          "description": "Completeness claim for the enumerated target. `complete` = full target set asserted; `subset` = a defensible slice with rationale; `pending` = not yet audited (only valid on draft events)."
+        },
+        "enumeration_note": {
+          "type": "string"
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "chains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "canonical_domains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "asset": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string"
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layer",
+        "status"
+      ],
+      "properties": {
+        "layer": {
+          "type": "string",
+          "enum": [
+            "l0_network",
+            "l1_consensus",
+            "l3_rpc",
+            "l4_frontend",
+            "asset_onchain",
+            "offramp_cex"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "measured",
+            "partially_measured",
+            "not_measured",
+            "not_applicable"
+          ]
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chain": {
+          "type": "string"
+        },
+        "provider_scope": {
+          "type": "string",
+          "enum": [
+            "public_only",
+            "public_and_enterprise",
+            "unknown"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layer",
+        "actor",
+        "event",
+        "observation_kind",
+        "attribution",
+        "sources"
+      ],
+      "properties": {
+        "layer": {
+          "type": "string",
+          "enum": [
+            "l0_network",
+            "l1_consensus",
+            "l3_rpc",
+            "l4_frontend",
+            "asset_onchain",
+            "offramp_cex"
+          ]
+        },
+        "actor": {
+          "type": "string"
+        },
+        "event": {
+          "type": "string"
+        },
+        "observation_kind": {
+          "type": "string",
+          "enum": [
+            "observed_change",
+            "observed_no_change",
+            "coverage_gap"
+          ]
+        },
+        "attribution": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "plausible",
+            "unknown",
+            "none"
+          ]
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timestamp_range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "precision": {
+          "type": "string",
+          "enum": [
+            "second",
+            "minute",
+            "hour",
+            "hour_range",
+            "day",
+            "week"
+          ]
+        },
+        "delta_hours": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        },
+        "target_address": {
+          "type": "string"
+        },
+        "window": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        }
+      }
+    },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layer"
+      ],
+      "properties": {
+        "layer": {
+          "type": "string",
+          "enum": [
+            "l0_network",
+            "l1_consensus",
+            "l3_rpc",
+            "l4_frontend",
+            "asset_onchain",
+            "offramp_cex"
+          ]
+        },
+        "resolved": {
+          "type": "boolean"
+        },
+        "resolved_timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "citation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/citation"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

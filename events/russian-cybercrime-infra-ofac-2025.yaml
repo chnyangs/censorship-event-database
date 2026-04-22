@@ -1,0 +1,120 @@
+id: russian-cybercrime-infra-ofac-2025
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T04:00:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - aeza-group-ofac-2025
+  - zservers-ofac-2025
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-11-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20251119
+      wayback: https://web.archive.org/web/20260421145405/https://ofac.treasury.gov/recent-actions/20251119
+      body_hash: sha256:46e63807771652434207876bb2ff300d532b707b8b26197c50570a3146372b46
+      body_path: sources/http_captures/russian-cybercrime-infra-ofac-2025/ofac-recent-actions/ofac.treasury.gov__recent-actions-20251119__70ef558d9d.html
+      note: |
+        OFAC Recent Actions page for 2025-11-19. Joint US/UK/Australia action against
+        Russian cybercrime infrastructure supporting ransomware. Multiple individuals
+        designated including VOLOSOVIK Aleksandr (aka Yalishanda / Ohyeahhellno /
+        podzemniy1) — bulletproof hosting operator with 1 XBT address — plus MAKAROV
+        Maksim (linked to AEZA GROUP), PANKOVA Yulia, ZAKIROV Ilya. Tags [CAATSA - RUSSIA]
+        [CYBER4]. Follows the 2025-07-01 Aeza Group designation (AEZA GROUP LLC linkage).
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0314
+      note: Treasury press release "United States, Australia, and United Kingdom Sanction Russian Cybercrime Infrastructure Supporting Ransomware" (2025-11-19).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    1 XBT address attached to VOLOSOVIK Aleksandr (Yalishanda). Other designees (MAKAROV,
+    PANKOVA, ZAKIROV) carry no on-chain addresses.
+  protocol: null
+  actor_type: individuals
+  actor_name: Russian bulletproof hosting operators
+  chains: [bitcoin]
+  canonical_domains: []
+  addresses:
+    - 18dLDAWi8LmrHbEq3QzDJb9SLxCf4uimXB
+
+jurisdiction: [US, UK, AU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-11-19T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-11-19T00:00:00Z
+      - 2025-12-03T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20251119
+        body_hash: sha256:46e63807771652434207876bb2ff300d532b707b8b26197c50570a3146372b46
+        body_path: sources/http_captures/russian-cybercrime-infra-ofac-2025/ofac-recent-actions/ofac.treasury.gov__recent-actions-20251119__70ef558d9d.html
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2025-11-19T00:00:00Z
+            - 2025-12-03T23:59:59Z
+          addresses_cohort: russian_cybercrime_infra_1_btc
+        note: |
+          No public CEX policy statement referencing VOLOSOVIK (Yalishanda) 1 BTC address was published by major
+          exchanges (Binance, Kraken, Coinbase, Bybit) in the 14-day post-designation
+          window. Observation records the absence of public disclosure; private
+          chain-analytics flagging workflows (Chainalysis / Elliptic / TRM) are outside
+          the scope of this observation and may have produced unpublished KYT flags.
+
+analysis_notes: |
+  null_event documenting the 2025-11-19 joint US/UK/AU action against
+  Russian bulletproof hosting / cybercrime infrastructure. Third 2025 action in the
+  "hosting provider" cluster (alongside Zservers 2025-02, Aeza 2025-07), demonstrating
+  a sustained policy focus on upstream infrastructure. Designees include Yalishanda —
+  well-known bulletproof-hosting operator — and Aeza-linked individuals.
+
+scoped_claim: |
+  "Joint US/UK/AU OFAC designation of Russian cybercrime infrastructure operators on
+  2025-11-19 attached 1 BTC address and expanded the Aeza / bulletproof-hosting designee
+  network. Demonstrates sustained 2025 policy focus on hosting-layer targets."
+
+tags:
+  - sanctions
+  - individual_designation
+  - russia_related
+  - bulletproof_hosting
+  - joint_international

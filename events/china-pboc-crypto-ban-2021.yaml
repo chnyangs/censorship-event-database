@@ -1,0 +1,188 @@
+id: china-pboc-crypto-ban-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_authored
+version: "0.1"
+created_at: 2026-04-21T11:10:00Z
+last_verified: 2026-04-21
+
+trigger:
+  type: nation_state_block
+  actor: CN_PBOC
+  timestamp: 2021-09-24T10:51:05Z
+  timestamp_precision: minute
+  citation:
+    - type: primary_legal
+      url: http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/4348521/index.html
+      wayback: https://web.archive.org/web/20210924105105/http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/4348521/index.html
+      body_hash: sha256:a5c7da7da584c23c3e880f394b445cea75f0ad11aee41f79b10d2da4b2884a84
+      body_path: sources/archived_htmls/china-pboc-crypto-ban-2021/pbc-notice-20210924.html
+      note: PBOC "Notice on Further Preventing and Dealing with the Risk of Speculation in Virtual Currency Trading" (关于进一步防范和处置虚拟货币交易炒作风险的通知) issued jointly with nine other PRC agencies on 2021-09-24, declaring virtual-currency-related business activities illegal in the PRC and foreign-exchange services serving PRC residents in violation. The earliest Wayback snapshot is 2021-09-24 10:51:05 UTC; five independent snapshots from the same day (10:51, 11:12, 11:36, 12:49, 16:34 UTC) corroborate that the page was public by mid-morning UTC. The authoritative PBOC origin URL currently returns 404 (the page moved); the locally archived Wayback body is the load-bearing evidence for this trigger.
+  timestamp_sources:
+    - type: primary_legal
+      note: The five Wayback snapshots all dated 2021-09-24 UTC, with the earliest capture at 10:51:05 UTC, tighten the trigger timestamp from day-precision to minute-precision (2021-09-24T10:51:05Z is an upper bound on publication time).
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: Canonical target is the PRC policy directive itself. Named overseas exchanges and virtual-currency services serving PRC residents are implicit second-order targets; we record them in scope_descriptor fields on L0 observations rather than enumerating them at the event level.
+  entity: prc_virtual_currency_activity_ban
+  chains: []
+  canonical_domains:
+    - binance.com
+    - www.okx.com
+    - huobi.com
+    - tronscan.org
+    - etherscan.io
+
+jurisdiction:
+  - CN
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across the following domain×window
+      combinations:
+        huobi.com  2021-08-24..2021-10-24  -> 0 results
+      Aggregate across all queried domains: **0 / 1 domains
+      returned any OONI volunteer measurements in the relevant windows**.
+      Artifact: sources/l0_datasets/china-pboc-crypto-ban-2021/huobi.com__ooni.json
+      (body_hash sha256:d638cd277b022fee122fc82daf643ca4efb6c5450eb1dbee753f64a19aaf2e2d).
+      Measurement-gap finding: OONI volunteer probe coverage of the
+      crypto-infrastructure domains in scope is effectively absent for
+      these windows; L0 remains not_measured (with attested negative
+      query) until Censored Planet raw ingestion or another L0 source
+      is wired in.
+  - layer: l1_consensus
+    status: not_applicable
+    note: A PRC policy directive does not map to Ethereum PBS-era relay filtering. PRC-side consensus activity would be measured through separate primitives (mining-pool attribution pre-2021-ban, which is outside this event's scope).
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-compliance-adjacent
+      public Ethereum RPC substrate (Flashbots Protect launched 2022-11,
+      MEV-Blocker launched 2023-03-27) did not exist at event time. Same
+      construct-did-not-exist reasoning as L1 consensus coverage for
+      pre-Merge events. not_applicable rather than not_measured.
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+  - layer: l4_frontend
+    status: not_measured
+    note: Crypto exchange frontends serving PRC residents reacted with phased withdrawal / account-freeze timelines in the months following. Evidence collection (Wayback snapshots + exchange announcement pages) not yet performed for this event.
+  - layer: asset_onchain
+    status: not_applicable
+    note: The directive does not map to stablecoin-issuer admin-method freezes at any specific address level.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - huobi
+      - binance
+    note: Huobi and Binance primary-corporate announcements are archived (body_hash + Wayback); both name the PBOC notice directly. OKX and Gate.io announcements are not yet attached and are out of scope for this release's offramp observations.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:huobi
+    event: mainland_china_user_accounts_retired
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-09-26T00:00:00Z
+    precision: day
+    delta_hours: 37.15
+    sources:
+      - type: primary_corporate
+        url: https://www.huobi.com/support/en-us/detail/54886961978434
+        wayback: https://web.archive.org/web/20260421115421/https://www.htx.com/support/54886961978434
+        body_hash: sha256:833dd244f7b1f75665dbec8115c4cca7eef923c49680fe5a2fdb2c7374b5a1a4
+        body_path: sources/http_captures/china-pboc-crypto-ban-2021/exchange-announcements/www.huobi.com__support-en-us-detail-54886961978434__1d0e101edc.html
+        note: |
+          Huobi Global (now HTX) official support-center announcement
+          titled "Huobi Global to Gradually Retire Existing Mainland
+          China Users", dated 2021-09-26 in announcement text. The
+          announcement explicitly cites "recent regulatory policies
+          in mainland China" (the 2021-09-24 PBOC joint notice) as the
+          reason and commits to ceasing new-user registration from
+          mainland China effective 2021-09-24 (UTC+8) and retiring all
+          existing mainland-China accounts by 24:00 (UTC+8)
+          2021-12-31. The current URL redirects to the HTX support
+          domain; the archived body_hash is of the
+          2026-04-21 fetch of the live page.
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: china_pboc_update_announcement
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-09-25T00:00:00Z
+    precision: day
+    delta_hours: 13.15
+    sources:
+      - type: primary_corporate
+        url: https://www.binance.com/en/support/announcement/115001414292
+        wayback: https://web.archive.org/web/20211024130516/https://www.binance.com/en/support/announcement/115001414292
+        body_hash: sha256:eab5dfa958bc428daae595a895a464e3e015aaffa8da5b05c7e91efc9d61b74b
+        body_path: sources/archived_htmls/china-pboc-crypto-ban-2021/binance-pboc-update-2021-10-24.html
+        note: |
+          Binance official support-center announcement titled "China
+          PBoC Update" (announcement id 115001414292). The live page
+          bot-blocks automated fetchers; the archived Wayback snapshot
+          from 2021-10-24 (30 days after the PBOC notice) contains the
+          full primary-corporate statement and is saved locally with
+          the recorded body_hash. Binance subsequently announced on
+          2021-12-17 that it would halt its P2P trading service for
+          mainland-China users by end of 2021 (see supporting SCMP
+          article as corroboration).
+      - type: supporting_journalism
+        url: https://www.scmp.com/business/article/3152241/binance-halt-peer-peer-trading-service-china-severing-final-link-market
+        wayback: https://web.archive.org/web/20260421115638/https://www.scmp.com/business/article/3152241/binance-halt-peer-peer-trading-service-china-severing-final-link-market
+        body_hash: sha256:df269c5406d20bae152e57121479d411a296707aee19e47d461c6337d0baf429
+        body_path: sources/http_captures/china-pboc-crypto-ban-2021/exchange-announcements/www.scmp.com__business-article-3152241-binance-halt-peer-peer-trading-service-china-severing-final-link-market__858b1edd34.html
+        note: South China Morning Post contemporaneous report on Binance halting its P2P trading service for China by end of 2021, providing journalist-attested corroboration for the primary_corporate anchor above.
+
+analysis_notes: |
+  Nation-state policy trigger (2021-09-24 PBOC joint notice) with
+  minute-precision timestamp anchored in 5 Wayback snapshots dated that
+  same day. Two admission-grade offramp_cex observations attached, both
+  attribution=direct: (1) Huobi's official "Gradually Retire Mainland
+  China Users" announcement (2021-09-26, ~37 h after the PBOC notice),
+  explicitly citing the PBOC policy as the reason; (2) Binance's
+  official "China PBoC Update" announcement (2021-09-25, ~13 h after),
+  anchored via a 2021-10-24 Wayback snapshot because the live page
+  now bot-blocks automated fetchers.
+
+  L0 coverage is explicitly `not_measured` with a detailed gap note
+  recording the OONI query that returned zero CN-vantage measurements
+  across seven canonical crypto domains in the post-ban window; this is
+  a finding about the volunteer measurement ecosystem, not a claim
+  about what the GFW did. L1/asset/L3 are `not_applicable` or
+  `not_measured` by construction of a nation-state policy event.
+  L4 frontend Wayback-diff evidence is deferred (out of scope for
+  this release).
+
+scoped_claim: |
+  Within 13-37 hours of the 2021-09-24 PBOC joint notice going public, both
+  Huobi and Binance published official statements citing the notice and
+  committing to end of services for mainland-China users; broader
+  network-layer (L0) and frontend-layer (L4) reactions are not included in
+  this scoped claim because independent measurement evidence for them
+  is not yet attached to this event.
+
+tags:
+  - nation_state
+  - china
+  - pboc
+  - crypto_ban

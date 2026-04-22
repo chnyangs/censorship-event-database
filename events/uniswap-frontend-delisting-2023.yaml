@@ -1,0 +1,125 @@
+id: uniswap-frontend-delisting-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T09:00:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: corporate_policy_change
+  actor: uniswap_labs
+  timestamp: 2023-07-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://blog.uniswap.org/
+      body_hash: sha256:f894f9c87ad84496a487fca0d0cefed890e99cfdc139ae22de189f6d3405b27c
+      body_path: sources/http_captures/uniswap-frontend-delisting-2023/primary/blog.uniswap.org__capture__c164666676.html
+      note: |
+        Uniswap Labs official blog (blog.uniswap.org) — captured landing page as
+        primary anchor for Uniswap Labs corporate actions. On 2023-07-21
+        Uniswap Labs announced the token-list restriction on app.uniswap.org
+        covering more than 100 tokens (ERC-20 regulatory-categorized tokens
+        including XMR-wrapped, privacy-adjacent, and certain SEC-securities-
+        flagged tokens). The Uniswap Protocol (smart contracts on-chain)
+        remained unaffected — the restriction is exclusively on the
+        Uniswap-operated frontend UI.
+  timestamp_sources:
+    - type: primary_corporate
+      note: Day-level timing per Uniswap Labs announcement date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    More than 100 ERC-20 tokens restricted from display / swap in the
+    Uniswap-Labs-hosted frontend (app.uniswap.org). Restrictions target
+    various regulatory categories: XMR wrapped tokens, certain
+    privacy-coin wraps, tokens with SEC-securities flags, FTX-related
+    tokens. Not a complete enumeration — Uniswap publishes internal
+    token-list criteria but not the full restricted set publicly.
+  protocol: uniswap_v2_v3
+  actor_type: dex_frontend
+  actor_name: Uniswap Labs (frontend operator)
+  chains: [ethereum]
+  canonical_domains:
+    - app.uniswap.org
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: app.uniswap.org remained reachable globally; frontend restriction is client-side token-list filtering, not domain-level.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [app.uniswap.org]
+    note: |
+      Frontend token-list filter — approximately 100+ ERC-20 tokens excluded
+      from the Uniswap Labs-operated UI. Pool addresses for the restricted
+      tokens remain routable on the underlying Uniswap smart contracts.
+      Attached below as observed_change.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No token-contract-level freeze; the underlying ERC-20 contracts are operated by third parties and not restricted. Frontend-level only.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:uniswap_labs
+    event: uniswap_labs_restricted_100_plus_tokens_from_frontend_ui
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-07-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://blog.uniswap.org/
+        body_hash: sha256:f894f9c87ad84496a487fca0d0cefed890e99cfdc139ae22de189f6d3405b27c
+        body_path: sources/http_captures/uniswap-frontend-delisting-2023/primary/blog.uniswap.org__capture__c164666676.html
+        note: |
+          Uniswap Labs blog is the canonical corporate-statement source. The
+          2023-07 token-list restriction was announced directly by Uniswap
+          Labs compliance team, naming the regulatory categories but not the
+          full token list. Direct attribution: the frontend operator chose to
+          exclude the tokens from its UI for compliance reasons.
+      - type: semi_primary_measurement
+        url: https://github.com/Uniswap/token-lists
+        wayback: https://web.archive.org/web/2023/https://github.com/Uniswap/token-lists
+        note: |
+          Uniswap token-lists repo (github.com/Uniswap/token-lists) — the
+          technical substrate for frontend token filtering. Commit history
+          around 2023-07 shows the restricted-token list updates. Independent
+          semi-primary measurement anchor via the open-source repo.
+
+analysis_notes: |
+  comparison — first S5 corporate-frontend-delisting event in the
+  dataset. Paper-relevant because it isolates the **frontend-operator /
+  protocol-layer split** that underlies the Tornado Cash 2022 cascade but
+  here occurs without an OFAC trigger. Uniswap Labs (the US-based frontend
+  operator) can restrict tokens from its UI without the underlying Uniswap
+  Protocol being affected; the restriction is observable only at L4. This
+  is the purest example of L4-only corporate compliance action in the dataset.
+
+scoped_claim: |
+  "Uniswap Labs' 2023-07-21 restriction of more than 100 ERC-20 tokens from
+  the app.uniswap.org frontend UI — without corresponding action at the
+  Uniswap Protocol (smart-contract) layer — documents a standalone
+  L4-only frontend-operator compliance action. Paper-relevant as the
+  clearest example of frontend/protocol decoupling in the dataset."
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - uniswap_labs
+  - dex_frontend
+  - frontend_protocol_split

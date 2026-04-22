@@ -1,0 +1,116 @@
+id: nigeria-cbn-crypto-ban-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T03:20:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - india-rbi-crypto-ban-2018
+  - china-pboc-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: NG_CBN
+  timestamp: 2021-02-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://web.archive.org/web/20210207202129/https://www.cbn.gov.ng/Out/2021/CCD/Letter%20on%20Crypto.pdf
+      wayback: https://web.archive.org/web/20210207202129/https://www.cbn.gov.ng/Out/2021/CCD/Letter%20on%20Crypto.pdf
+      body_hash: sha256:2e556124d8d4dfe65ac1747ef31d9732dd13f09fdc60506baa8e2cd7df232a19
+      body_path: sources/http_captures/nigeria-cbn-crypto-ban-2021/cbn-circular/web.archive.org__web-20210208014230-https-www.cbn.gov.ng-Out-2021-CCD-Letter-20on-20Crypto.pdf__7b84a24e69.html
+      note: |
+        Central Bank of Nigeria (CBN) circular BSD/DIR/PUB/LAB/014/001 dated 2021-02-05,
+        titled "Letter to All Deposit Money Banks, Non-Bank Financial Institutions and
+        Other Financial Institutions — Re: Letter to All DMBs, NBFIs, and OFIs: Prohibition
+        of Dealings in Cryptocurrencies or Facilitation of Payments for Cryptocurrency
+        Exchanges." Directed all banks and financial institutions in Nigeria to close
+        accounts of persons or entities transacting in cryptocurrencies, and to halt all
+        crypto-related facilitation. Archived via Wayback 2021-02-07.
+  timestamp_sources:
+    - type: primary_legal
+      note: Circular date 2021-02-05; effective immediately per CBN letter text.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Nigerian crypto users and exchanges as a class. Affected the then-active P2P crypto
+    trading ecosystem (LocalBitcoins, Paxful, Binance-Nigeria P2P corridor) and domestic
+    exchanges. Target treated as entity-class-level; no specific enumeration in the CBN
+    letter.
+  protocol: null
+  actor_type: nigerian_crypto_ecosystem
+  actor_name: Nigerian crypto exchanges / users (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [NG]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [naira_banking_channels_to_crypto_exchanges]
+    note: |
+      CBN circular directly severed Naira deposit/withdrawal channels for cryptocurrency
+      exchanges. Subsequent market reaction: Nigeria rapidly became the global leader in
+      P2P Bitcoin trading (peer-to-peer crypto networks substituted for banking rails),
+      per Chainalysis / Usefultulips data; counterpart CEXes (Binance, Paxful) adapted
+      with P2P marketplace features. Attached as observed_change with direct attribution
+      (the CBN letter text itself is the regulatory mandate).
+
+observations:
+  - layer: offramp_cex
+    actor: nigerian_crypto_banking_ecosystem
+    event: naira_banking_channel_severed_industry_wide
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-02-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20210207202129/https://www.cbn.gov.ng/Out/2021/CCD/Letter%20on%20Crypto.pdf
+        body_hash: sha256:2e556124d8d4dfe65ac1747ef31d9732dd13f09fdc60506baa8e2cd7df232a19
+        body_path: sources/http_captures/nigeria-cbn-crypto-ban-2021/cbn-circular/web.archive.org__web-20210208014230-https-www.cbn.gov.ng-Out-2021-CCD-Letter-20on-20Crypto.pdf__7b84a24e69.html
+        note: |
+          CBN circular is the legal instrument. attribution=direct because the letter
+          explicitly mandates the banking cut-off.
+      - type: supporting_journalism
+        url: https://web.archive.org/web/2021*/reuters.com/article/us-nigeria-banks-cryptocurrency-idUKKBN2A60CD
+        wayback: https://web.archive.org/web/2021*/reuters.com/article/us-nigeria-banks-cryptocurrency-idUKKBN2A60CD
+        note: |
+          Reuters reporting on the CBN action and its market consequences — deferred
+          archival pinning (Wayback URL pattern).
+
+analysis_notes: |
+  comparison documenting Nigeria's 2021-02-05 CBN ban on bank-crypto
+  facilitation. Third major nation-state banking cut-off in the dataset (after India 2018,
+  China 2021). Notable context: Nigeria had the highest per-capita crypto adoption in
+  Africa going into this ban; the subsequent P2P substitution pattern is a natural
+  experiment for how crypto networks route around banking severance.
+
+scoped_claim: |
+  "CBN circular of 2021-02-05 severed Naira banking channels for cryptocurrency exchanges
+  in Nigeria. Market substituted P2P trading networks; quantitative impact at the
+  offramp_cex layer is captured at class level."
+
+tags:
+  - nation_state_block
+  - nigeria
+  - banking_rail_severance
+  - cbn_circular

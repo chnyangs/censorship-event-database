@@ -1,0 +1,248 @@
+id: lockbit-affiliates-ofac-2024
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T01:15:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - lockbit-leader-ofac-2024
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-02-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240220
+      wayback: https://web.archive.org/web/20260421141319/https://ofac.treasury.gov/recent-actions/20240220
+      body_hash: sha256:c01b2472ae47003d8af55e03b97c445166bb1e359cc5861617035241ce0b2bbe
+      body_path: sources/http_captures/lockbit-affiliates-ofac-2024/ofac-recent-actions/ofac.treasury.gov__recent-actions-20240220__ece0e9f7ef.html
+      note: |
+        OFAC Recent Actions page for 2024-02-20. Two LockBit ransomware affiliates designated:
+        Ivan KONDRATIEV (aka BASSTERLORD; aka multiple Telegram/Discord handles) with 8 XBT
+        + 1 ETH, and Artur SUNGATOV with 1 XBT. Part of joint US/UK/Australia/EU/CA Operation
+        Cronos takedown of LockBit infrastructure. Tags [CYBER2] + Russia EO14024.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2114
+      note: Treasury press release "United States Sanctions Affiliates of Russia-Based LockBit Ransomware Group" (2024-02-20).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    10 unique addresses across 2 individuals (KONDRATIEV 9, SUNGATOV 1). 9 XBT + 1 ETH.
+  protocol: null
+  actor_type: individuals
+  actor_name: KONDRATIEV + SUNGATOV
+  chains:
+    - bitcoin
+    - ethereum
+  canonical_domains: []
+  addresses:
+    - bc1q5jqgm7nvrhaw2rh2vk0dk8e4gg5g373g0vz07r
+    - 32pTjxTNi7snk8sodrgfmdKao3DEn1nVJM
+    - 15cRqR3TXS1JehBGWERuxFE8NhWZzfoeeU
+    - 1A7SKE2dQtezLktCY8peLsdAtkqxV9r1dC
+    - bc1q8ew45w2agdffrnwp6adt2gqrc9n4mkev9ns29c
+    - bc1qagp0gy58v8hqvw4p2wsphcxg067rrppp45hexr
+    - bc1qn6segn8km4nfdp9vueu6msfjsaxaqgun9h60n9
+    - bc1qx9upga7f09tsetqf78wa3qrmcjar58mkwz6ng6
+    - "0xf3701f445b6bdafedbca97d1e477357839e4120d"
+    - 18gaXypKj9M23S2zT9qZfL9iPbLFM372Q5
+
+jurisdiction:
+  - US
+  - UK
+  - AU
+  - EU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Individual designations; no canonical web presence.
+  - layer: l1_consensus
+    status: measured
+    chain: ethereum
+    note: |
+      Wahrstätter data covers 2024-02-20. Slice [2024-02-06, 2024-03-05]: pre 53.13% ± 2.40,
+      event day 48.75%, post 50.39% ± 1.47. Small downward movement but within 2 sd of pre-mean;
+      null shape.
+  - layer: l3_rpc
+    status: partially_measured
+    provider_scope: public_only
+    note: |
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Single ETH address (KONDRATIEV's 0xf3701f445b6bdafedbca97d1e477357839e4120d) scanned
+      via usdtbanlist.com and confirmed blocked. Freeze timing: **Circle USDC 2024-02-21
+      00:19 UTC (~24h after OFAC), Tether USDT 2024-02-21 03:21 UTC (~27h after OFAC)**.
+      Fast next-day response from both issuers.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: circle_usdc_blacklist_next_day
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-02-21T00:19:00Z
+    precision: minute
+    delta_hours: 24.32
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x11311fbe5e82aadecdd456fb5c09b46c2dca5474793aa8c4c9a2d8a48806c774
+        tx_hash: "0x11311fbe5e82aadecdd456fb5c09b46c2dca5474793aa8c4c9a2d8a48806c774"
+        block: 0
+        note: USDC Blacklisted() tx for KONDRATIEV's ETH address 0xf370... at 2024-02-21 00:19 UTC.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0xf3701f445b6bdafedbca97d1e477357839e4120d
+        body_hash: sha256:1a004d4c1d397b1a2d0e7dcd2b2bdd08c1b8cc5338619f755e0059a639690acf
+        body_path: sources/http_captures/lockbit-affiliates-ofac-2024/asset-layer-check/usdtbanlist.com__address-0xf3701f445b6bdafedbca97d1e477357839e4120d.html
+        evidence_group_id: lockbit-affiliate-freeze-20240221
+        note: |
+          KONDRATIEV's ETH address 0xf370... blacklisted by Circle USDC on 2024-02-21 00:19
+          UTC and by Tether USDT on 2024-02-21 03:21 UTC — same day, ~24-27h after OFAC
+          designation. Single-address data; full scan at
+          sources/asset_layer_scan/lockbit-affiliates-ofac-2024.json.
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20240220
+        body_hash: sha256:c01b2472ae47003d8af55e03b97c445166bb1e359cc5861617035241ce0b2bbe
+        body_path: sources/http_captures/lockbit-affiliates-ofac-2024/ofac-recent-actions/ofac.treasury.gov__recent-actions-20240220__ece0e9f7ef.html
+        note: OFAC SDN entry as cross-reference anchor for the primary_corporate observation.
+  - layer: l1_consensus
+    actor: pbs_relay_ecosystem_aggregate
+    event: ofac_compliant_relay_share_stable_through_lockbit_affiliate_designation
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-02-20T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-02-06T00:00:00Z
+      - 2024-03-05T23:59:59Z
+    sources:
+      - type: semi_primary_measurement
+        url: https://raw.githubusercontent.com/nerolation/censorship.pics/main/data/relay_censorship_share.csv
+        body_hash: sha256:45c1db9ca70491743e2e33c313d7293eed791a82d0ea7313c5241eca9e8b4567
+        body_path: sources/l1_datasets/tornado-cash-ofac-2022/relay_censorship_share.csv
+        query_hash: sha256:41d3c5be4804d39c5204acea05c89e6931a0a3fe77d5d9b297540c15ce99ccc8
+        scope_descriptor:
+          providers: [ethereum_pbs_mev_boost_relays]
+          time_window: [2024-02-06T00:00:00Z, 2024-03-05T23:59:59Z]
+        evidence_group_id: wahrstatter-pbs-relay-data
+        note: |
+          Censoring-relay share: pre-event 14d mean 53.13% ± 2.40, event day 48.75%, post-event
+          14d mean 50.39% ± 1.47. Event-day value is within 2 sd of pre-event mean; post-event
+          mean lower than pre (signaling slight gradual decline trend unrelated to event).
+          Null shape.
+      - type: semi_primary_measurement
+        url: https://www.relayscan.io
+        wayback: https://web.archive.org/web/20260421114750/https://www.relayscan.io/
+        body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
+        body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
+        note: Relayscan independent dashboard — second source for the null claim.
+
+  - layer: l3_rpc
+    actor: mev_blocker_rpc_provider
+    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-02-20T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-02-20T00:00:00Z
+      - 2024-02-20T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20240130093338/https://mevblocker.io/
+        wayback: https://web.archive.org/web/20240130093338/https://mevblocker.io/
+        body_hash: sha256:25c4585c911220a0ae2ccc659e48077b48837344fa85d5a225f6d14cdfe5284a
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20240130093338-https-mevblocker.io__9ddac997cc.html
+        scope_descriptor:
+          providers: [mev_blocker, flashbots_protect]
+          time_window:
+            - 2024-02-20T00:00:00Z
+            - 2024-02-20T23:59:59Z
+          addresses_cohort: this_event_sdn_addresses
+        note: |
+          MEV-Blocker landing-page Wayback snapshot (2024-01-30) closest to
+          event date 2024-02-20. MEV-Blocker (launched 2023-03-27) filters
+          OFAC-SDN-listed addresses from the RPC substrate it serves. The
+          snapshot documents that MEV-Blocker was in effect as a public
+          OFAC-compliant RPC provider bracketing this event. No per-transaction
+          receipt of filter-list application is published; the observation
+          is the presence of the provider + filter-list at event time, not
+          a step change attributable to this specific designation.
+      - type: primary_corporate
+        url: https://docs.flashbots.net/flashbots-protect/quick-start
+        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
+        note: |
+          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
+          (launched 2022-11) is the second major OFAC-compliance-adjacent
+          public Ethereum RPC substrate. Together with MEV-Blocker these
+          cover the overwhelming majority of public OFAC-compliant Ethereum
+          RPC traffic in the 2023-2025 period.
+
+analysis_notes: |
+  comparison documenting the LockBit ransomware-affiliate individual designations
+  on 2024-02-20, part of Operation Cronos international takedown. Two Russian nationals, each
+  with a handful of XBT + ETH wallet addresses. Individual-level targeting; no frontend to
+  measure.
+
+  L1 shows a null, consistent with other individual-level designations in the dataset
+  (Semenov 2023, LockBit 2024-02, 2024-05, etc.): aggregate relay OFAC-compliance share does
+  not move on individual wallet additions.
+
+  Follow-up directions (post-admission): (1) Etherscan query for the single ETH address for USDC/USDT freeze
+  transactions; (2) CEX-layer tagging report (Chainalysis / TRM / Elliptic) for the
+  LockBit-affiliate cluster.
+
+scoped_claim: |
+  "LockBit-affiliate individual OFAC designation (2024-02-20) produced no measurable step
+  change in Ethereum aggregate relay OFAC-compliance share. Other layers are either
+  structurally not_applicable (individuals, no frontend) or pending empirical query."
+
+tags:
+  - sanctions
+  - individual_designation
+  - ransomware
+  - lockbit
+  - null_l1

@@ -1,0 +1,122 @@
+id: pertsev-nl-arrest-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T07:45:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - tornado-cash-ofac-2022
+  - storm-semenov-doj-2023
+  - semenov-ofac-2023
+
+trigger:
+  type: doj_indictment
+  actor: NL_FIOD
+  timestamp: 2022-08-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fiod.nl/arrest-of-suspected-developer-of-tornado-cash/
+      body_hash: sha256:213fa9ac504b216e4522420e3a8308b9983d521acdb2d7342d147931c5f279cb
+      body_path: sources/http_captures/pertsev-nl-arrest-2022/primary/www.fiod.nl__arrest-of-suspected-developer-of-tornado-cash__85a8894c8d.html
+      note: |
+        FIOD (Fiscal Information and Investigation Service, Netherlands) press release
+        "Arrest of suspected developer of Tornado Cash" (2022-08-10). Alexey Pertsev
+        arrested in Amsterdam 2 days after the 2022-08-08 OFAC Tornado Cash
+        designation. FIOD — not a US-jurisdiction action — the first cross-border
+        enforcement arrest of a crypto privacy-tool developer. Investigation by
+        FIOD's multi-disciplinary Financial Advanced Cyber Team (FACT), Amsterdam.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per FIOD press release.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Alexey Pertsev (Russian national, resident in Netherlands). Tornado Cash
+    developer / contributor. No on-chain addresses in the FIOD press release —
+    the arrest is person-level, with investigation ongoing re. specific
+    transactions. Dutch prosecution under Money Laundering Act.
+  protocol: tornado_cash
+  actor_type: individual_developer
+  actor_name: Alexey Pertsev
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [NL]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: Tornado Cash frontend already offline from 2022-08-08 OFAC cascade; no fresh L4 action for Pertsev arrest.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_for_individual_developer_arrest
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-08-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2022-08-10T00:00:00Z
+      - 2022-08-24T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.fiod.nl/arrest-of-suspected-developer-of-tornado-cash/
+        body_hash: sha256:213fa9ac504b216e4522420e3a8308b9983d521acdb2d7342d147931c5f279cb
+        body_path: sources/http_captures/pertsev-nl-arrest-2022/primary/www.fiod.nl__arrest-of-suspected-developer-of-tornado-cash__85a8894c8d.html
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2022-08-10T00:00:00Z
+            - 2022-08-24T23:59:59Z
+          addresses_cohort: pertsev_individual_developer
+        note: |
+          No CEX policy statement referencing Pertsev individually (vs. the 2022-08-08
+          protocol-level OFAC cascade) in the 14-day window. Observation records the
+          absence of developer-individual-level cascade; the Tornado Cash protocol-
+          level cascade from 2022-08-08 absorbed the CEX-response bandwidth.
+
+analysis_notes: |
+  null_event — first cross-border arrest of a crypto privacy-tool
+  developer. Netherlands FIOD action, not a US-jurisdiction event; 2 days
+  downstream of 2022-08-08 OFAC Tornado Cash SDN. Pertsev spent 9 months in
+  pretrial detention; 2024-05-14 Dutch court conviction on money-laundering
+  (5y4m sentence). This event captures the 2022-08-10 arrest trigger; the
+  2024 conviction is a follow-on event not yet separately catalogued.
+
+  Structural significance: developer-level enforcement via a non-US
+  jurisdiction demonstrates that OFAC SDN pressure can catalyze parallel
+  enforcement in allied states (NL-US MLAT framework). Paper-worthy as the
+  first such extension.
+
+scoped_claim: |
+  "FIOD arrest of Alexey Pertsev on 2022-08-10 in Amsterdam — 2 days after
+  the OFAC Tornado Cash designation — was the first cross-border arrest of
+  a crypto privacy-tool developer. Non-US jurisdiction (NL) extension of the
+  Tornado Cash OFAC cascade; individual-developer-level enforcement
+  downstream of protocol-level OFAC action."
+
+tags:
+  - developer_arrest
+  - cross_border_enforcement
+  - privacy_tool
+  - netherlands_fiod
+  - tornado_cash_thread

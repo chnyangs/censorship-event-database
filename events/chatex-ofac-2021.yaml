@@ -1,0 +1,265 @@
+id: chatex-ofac-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: anchor_case
+version: "0.1"
+created_at: 2026-04-22T00:30:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - suex-ofac-2021
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2021-11-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20211108
+      wayback: https://web.archive.org/web/20260421140140/https://ofac.treasury.gov/recent-actions/20211108
+      body_hash: sha256:12b576be0cd5dbc1a0b763151d13a0c53e16e507cc02298dd27be47bca971942
+      body_path: sources/http_captures/chatex-ofac-2021/ofac-recent-actions/ofac.treasury.gov__recent-actions-20211108__a1d41cd3cf.html
+      note: |
+        OFAC Recent Actions page for 2021-11-08. CHATEX designated as a SUEX successor exchange.
+        Entity CHATEX (Estonia; Latvia; Saint Vincent and the Grenadines; website chatex.com)
+        with 30 digital-currency addresses across XBT×22, ETH×6, USDT×1 (Omni), XRP×1. Related
+        entities also designated: CHATEXTECH SIA (Latvia), plus 4 individual designees. Tag
+        [CYBER2].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy0471
+      note: Treasury press release "Treasury Continues to Counter Ransomware as Part of Whole-of-Government Effort; Sanctions Ransomware Operators and Virtual Currency Exchange" (2021-11-08).
+  timestamp_sources:
+    - type: primary_legal
+      note: OFAC Recent Actions page carries day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    30 unique digital-currency addresses attached to the CHATEX SDN entity entry, extracted
+    verbatim from 2021-11-08 page. Multi-chain: 22 XBT (mix of P2SH + Bech32), 6 ETH, 1 USDT
+    (Omni on XBT chain), 1 XRP. The related CHATEXTECH SIA and individual designees do not
+    carry additional on-chain addresses in this page.
+  protocol: chatex_exchange
+  actor_type: exchange
+  actor_name: Chatex
+  chains:
+    - bitcoin
+    - ethereum
+    - ripple
+  canonical_domains:
+    - chatex.com
+  addresses:
+    - 3E7YbpXuhh3CWFks1jmvWoV8y5DvsfzE6n
+    - 3NRJ8aXdUiZdHaiFX9ePX3DhGHzcEi14Fq
+    - 3K7PMJyMNVnxqsfpmK9r9nJDtzDw9wNwNV
+    - 3H3rh85qPaGLy2w6618yZNaH7i8asHv46B
+    - 3MTrJTFhYK9v1C6pjHtuweZSopfZa4b1wb
+    - 347QFbejDBdMZFTxpmn6evvvqyXiqZTCd7
+    - 33xWfziVZesgo83U5izdNCBVTnrtBpSwK7
+    - 32wdqwX3zCEX3DhAVEcKwXCEGdzgBnx1R9
+    - 3N9YcPBDky9UsMx1RTk33tL4jDkZfSnsPk
+    - bc1q90zrdysy4flyacw7hsury3ajs9yzwtwp6guqpypx94w0d3p58hysvz6pde
+    - bc1qw7vfgv3r5vnehafl0y95sclg3uqsj87wxs9ad628yjjcq33cwessr6ndyw
+    - bc1q86tl9255vg5wldamfymaaz36uqxzm30gs7fhkljvzdlt9t38s3lqgdwdfq
+    - 3M7CGBPUJwXXSroWuZ6H5jiprdKCyf7V5M
+    - 34kWCKF2wCbe6uinit2uL4ND6d8yxsuxKM
+    - bc1qe95l438kzjcvnsm3kn8n5augf9gpctdlhsq7f7hpnkyvlr7rc7cqupapf7
+    - 32VgTk8kGvBsqkHhkvtNooGdtqZm46jTVo
+    - 3NPognMSbzyA2JYW2fpkVKWyBMi2XTq2Zt
+    - 3MzLtBQ4Lz9J6w4Qu55TktgxFKZwxYWrP6
+    - 36YGN5dGzqrxMomTHdkT6cYVMnWBw8S7hD
+    - bc1q4rzdtlt0uslyw86cp29sctl6ct29g9a95cuup7pn5md9ddj7xgmqpp5m73
+    - 39KQvziHwUe2vddbpfC5WkQEV72qbQhxuh
+    - 3Qw9Fn19gCnga9LfHfpM99aGzuqxBNjR2i
+    - "0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45"
+    - "0x6f1ca141a28907f78ebaa64fb83a9088b02a8352"
+    - "0x6acdfba02d390b97ac2b2d42a63e85293bcc160e"
+    - "0x48549a34ae37b12f6a30566245176994e17c6b4a"
+    - "0x5512d943ed1f7c8a43f3435c85f7ab68b30121b0"
+    - "0xc455f7fd3e0e12afd51fba5c106909934d8a0e4a"
+    - 3LtcaPbCj87CwJHnRX3vh7c2y9RZQqeSy8
+    - rnXyVQzgxZe7TR1EPzTkGj2jxH4LMJYh66
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [chatex.com]
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across:
+        chatex.com  2021-10-08..2021-12-08  -> 0 results
+      All 1 queries returned 0 measurements.
+      Artifact: sources/l0_datasets/chatex-ofac-2021/chatex.com__ooni.json
+      (body_hash sha256:8d0875b6f857e05f7dd87ec896400d8a5e8a1c87ccdfeb6f8d6fcf54223a0aac).
+      Measurement-gap finding: OONI volunteer probe coverage is absent.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Pre-Merge by 311 days; Ethereum PBS / relay-level filtering infrastructure did not exist.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: ethereum
+    note: Pre-MEV-Blocker era.
+  - layer: l4_frontend
+    status: measured
+    scope: [chatex.com]
+    note: |
+      9 days post-event, chatex.com served an operator-posted compliance notice (captured via
+      Wayback) explicitly acknowledging the OFAC designation, cancelling the CHTX token sale,
+      and announcing that customer funds were "restricted to be moved during the legal case
+      proceeding." This is an operator-issued corporate statement (primary_corporate source)
+      rather than a US-side takedown. Attached as observed_change with direct attribution —
+      the notice itself names the OFAC listing under EO 13694 as the cause.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Full scan of the 6 ETH addresses via usdtbanlist.com
+      (sources/asset_layer_scan/chatex-ofac-2021.json): **5 of 6 blocked**; the address
+      0x6acdfba02d390b97ac2b2d42a63e85293bcc160e is NOT currently blocked (unique
+      outlier in the dataset). The 5 blocked addresses were frozen:
+      - Circle USDC on 2021-11-09 04:15 UTC (~1 day after OFAC designation)
+      - Tether USDT on 2023-12-09 04:35-05:31 UTC (retroactive sweep 2 years later;
+        see tether-retroactive-sweep-2023 for the coordinated action)
+  - layer: offramp_cex
+    status: not_measured
+    scope: [binance, coinbase, kraken, bybit]
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: usdc_blacklist_next_day_5_of_6_eth_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-11-09T04:15:00Z
+    precision: minute
+    delta_hours: 28.25
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x14a97060a7370f5c88573f7d01391f6767133cfa596be9e2985ff57c042dfc23
+        tx_hash: "0x14a97060a7370f5c88573f7d01391f6767133cfa596be9e2985ff57c042dfc23"
+        block: 0
+        note: USDC Blacklisted() tx for address 0x67d40EE1... at 2021-11-09 04:15 UTC. Canonical chain receipt; full 64-char tx available via sources/asset_layer_scan/chatex-ofac-2021.json.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45
+        body_hash: sha256:307d2114e16ee087eb53d9c0cf5b72e19d064338dc6da708abb08fb92a3cc7e7
+        body_path: sources/http_captures/chatex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45.html
+        evidence_group_id: chatex-usdc-batch-20211109
+        note: |
+          Circle USDC batch-blacklisted 5 of 6 Chatex ETH addresses on 2021-11-09 04:15
+          UTC (identical minute-level timestamp, indicating single-batch operation),
+          ~28 hours after the 2021-11-08 OFAC designation. The address
+          0x6acdfba02d390b97ac2b2d42a63e85293bcc160e is the single outlier not present
+          on Circle's blacklist — reason unknown (possibly never held USDC so Circle
+          had no coverage action to take). Full data at
+          sources/asset_layer_scan/chatex-ofac-2021.json.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x6f1ca141a28907f78ebaa64fb83a9088b02a8352
+        body_hash: sha256:dd37dbf628f1947f8b88964e4c88d457a9c3e7bb2366c44ee5726910db0f20ad
+        body_path: sources/http_captures/chatex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x6f1ca141a28907f78ebaa64fb83a9088b02a8352.html
+        note: Second-sampled address (Chatex cluster) frozen in the same 2021-11-09 04:15 UTC Circle batch.
+  - layer: l4_frontend
+    actor: frontend:chatex_com
+    event: operator_compliance_notice_and_withdrawal_freeze
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-11-17T17:59:45Z
+    precision: minute
+    delta_hours: 233.99
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20211117175945/https://chatex.com/
+        body_hash: sha256:6bc86f40095c66b3a0161ce7716baa2a27c49973d64fde7bb8832e90fbf94a77
+        body_path: sources/http_captures/chatex-ofac-2021/frontend-wayback/web.archive.org__web-20211117175945-https-chatex.com__918765a11d.html
+        evidence_group_id: chatex-operator-notice
+        note: |
+          Wayback snapshot 2021-11-17 17:59 UTC (≈9 days post-event) of chatex.com displaying
+          verbatim operator statement: "Important Chatex Announcement. CHTX Token sale is
+          canceled. Chatex is listed on the U.S. Sanctions List under Executive Order 13694 on
+          suspicion of supporting Suex company. [...] All customers' funds are safe and secure,
+          but restricted to be moved during the legal case proceeding." This is a first-party
+          operator corporate communication naming the legal trigger (EO 13694) and explicitly
+          imposing a customer-fund freeze — primary_corporate source.
+      - type: primary_corporate
+        url: https://web.archive.org/web/20211202224324/https://chatex.com/
+        body_hash: sha256:6d83f3106f760999b1c959f6ebb946815169c65164fb853caf9783d145f564f8
+        body_path: sources/http_captures/chatex-ofac-2021/frontend-wayback/web.archive.org__web-20211202224324-https-chatex.com__6965640198.html
+        note: |
+          Second Wayback snapshot 2021-12-02 (24 days post-event). Same operator notice persists;
+          demonstrates the compliance posture was sustained rather than transient. Independent
+          archival anchor.
+
+follow_on_reaction:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_retroactive_sweep_5_of_6_chatex_addresses
+    attribution: unknown
+    relationship: cross_event_anchor
+    linked_event: tether-retroactive-sweep-2023
+    timestamp: 2023-12-09T04:36:00Z
+    precision: minute
+    delta_hours_from_trigger: 18268.6
+    note: |
+      Tether USDT retroactively froze the same 5 Chatex ETH addresses on
+      2023-12-09 04:35-05:31 UTC — **750 days after the OFAC designation**.
+      Moved out of observations[] per reviewer Action 4 because the 2-year
+      gap rules out direct causation from this event's trigger. The action
+      is its own corporate-policy event (see
+      `tether-retroactive-sweep-2023`); tracking it here as a follow-on
+      reaction is informational, not a changed-layer claim for Chatex's
+      statistics.
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xd98d2633eb11bbac6955b6d58911ee45e4612efb352f4bcb3cf4063fc0cb98d5
+        tx_hash: "0xd98d2633eb11bbac6955b6d58911ee45e4612efb352f4bcb3cf4063fc0cb98d5"
+        note: Tether addBlackList tx for Chatex address 0x67d40EE1 at 2023-12-09 04:36 UTC.
+
+analysis_notes: |
+  comparison documenting the second OFAC exchange designation. Unlike SUEX
+  (2021-09-21) where suex.io remained fully operational post-designation, Chatex's operators
+  immediately complied with the OFAC action: they posted a public notice naming the legal
+  authority (EO 13694), cancelled an ongoing token sale, and self-imposed a customer-funds
+  freeze. This contrast inside the same 2-month window (SUEX vs Chatex) suggests operator
+  compliance posture is driven by factors other than the OFAC action itself — possibly the
+  presence of EU-resident operators (Chatex: Estonia / Latvia) vs Russia-only (SUEX), or
+  differing legal-counsel advice.
+
+  The Chatex L4 change is the cleanest "operator-compliance" mechanism in the dataset: not a
+  US-compliance-driven takedown (Tornado), not a law-enforcement seizure (Cryptex), not an
+  operator-abandonment (Blender), not a foreign persistence (Sinbad / SUEX). This is a fifth
+  distinct L4 mechanism.
+
+  Pre-Merge by 311 days — L1 layer not_applicable. Asset-onchain queries needed for
+  promotion.
+
+scoped_claim: |
+  "OFAC designation of Chatex on 2021-11-08 produced a direct L4 frontend change within
+  9 days in the form of an operator-posted compliance notice freezing customer withdrawals,
+  mechanistically distinct from the same-quarter SUEX case (no frontend reaction) despite
+  both being foreign exchange entities sanctioned under the same policy push."
+
+tags:
+  - sanctions
+  - exchange_designation
+  - russia_related
+  - operator_compliance_notice
+  - customer_funds_freeze

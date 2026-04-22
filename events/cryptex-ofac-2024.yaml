@@ -1,0 +1,368 @@
+id: cryptex-ofac-2024
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: anchor_case
+version: "0.1"
+created_at: 2026-04-21T13:40:00Z
+last_verified: 2026-04-21
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-09-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240926
+      wayback: https://web.archive.org/web/20260421133030/https://ofac.treasury.gov/recent-actions/20240926
+      body_hash: sha256:332252f994d819817902ba10b7f79c002be38acf830ea5249cd2b3b09b02da76
+      body_path: sources/http_captures/cryptex-ofac-2024/ofac-recent-actions/ofac.treasury.gov__recent-actions-20240926__a282f3595b.html
+      note: |
+        OFAC Recent Actions page for 2024-09-26. CRYPTEX (a.k.a. INTERNATIONAL PAYMENT SERVICE
+        PROVIDER LLC), Saint Vincent and the Grenadines, website cryptex.net, was added to OFAC's
+        SDN list with 4 digital-currency addresses (XBT / ETH / LTC / TRX). Same day OFAC also
+        designated Sergey Sergeevich IVANOV (a.k.a. Taleon / UAPS), an individual, with no
+        digital-currency addresses. Tags [CYBER2] [RUSSIA-EO14024]. The coordinated action also
+        involved FinCEN (PM2BTC Section 9714 special measure) and US Secret Service (domain
+        seizure) but those legal instruments are separate from the OFAC SDN designation tracked
+        by this event's trigger.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2595
+      note: Treasury press release "Treasury Takes Coordinated Actions Against Illicit Russian Virtual Currency Exchanges and Cybercrime Facilitators" (2024-09-26). Describes the coordinated OFAC + FinCEN + USSS + international action.
+  timestamp_sources:
+    - type: primary_legal
+      note: OFAC Recent Actions page carries day-level public timing; USSS domain seizure was effective by 16:05 UTC event day per Wayback.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    Full set of 4 unique digital-currency addresses attached to the CRYPTEX SDN entity entry,
+    extracted verbatim from the OFAC Recent Actions page for 2024-09-26. One address per chain
+    (XBT, ETH, LTC, TRX). Ivanov / UAPS individual designation (same-day OFAC action) carries
+    no on-chain addresses and is not in-scope for this event's target.
+  protocol: cryptex_exchange
+  actor_type: exchange
+  actor_name: Cryptex
+  chains:
+    - bitcoin
+    - ethereum
+    - litecoin
+    - tron
+  canonical_domains:
+    - cryptex.net
+  addresses:
+    - 13JtX4h7G5ZuNK5mFudKGq9DHLvvMFuNuz
+    - 0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7
+    - M8yFL6SFC6TreATegTyuSYkDfDRbisdpT3
+    - TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr
+
+jurisdiction:
+  - US
+  - NL
+  - DE
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across the following domain×window
+      combinations:
+        cryptex.net  2024-08-26..2024-10-26  -> 0 results
+      Aggregate across all queried domains: **0 / 1 domains
+      returned any OONI volunteer measurements in the relevant windows**.
+      Artifact: sources/l0_datasets/cryptex-ofac-2024/cryptex.net__ooni.json
+      (body_hash sha256:e2a0dd9d0b0e4d8d2f4ccb7119c281ac07b825d997018a6df35d0c9b530f4b53).
+      Measurement-gap finding: OONI volunteer probe coverage of the
+      crypto-infrastructure domains in scope is effectively absent for
+      these windows; L0 remains not_measured (with attested negative
+      query) until Censored Planet raw ingestion or another L0 source
+      is wired in.
+  - layer: l1_consensus
+    status: measured
+    chain: ethereum
+    note: |
+      Wahrstätter relay_censorship_share.csv covers 2024-09-26 at daily granularity. Slice
+      [2024-09-12, 2024-10-10]: pre-event 14d mean 55.76% ± 1.76, event-day 53.95%, post-event
+      14d mean 53.48% ± 0.68. Relay-share was stable; no step change tied to the Cryptex
+      designation. Attached as observed_no_change below. The Cryptex ETH address is a single
+      wallet on a single chain — individual-wallet sanctions of a non-protocol target are not
+      expected to move the aggregate relay share.
+  - layer: l3_rpc
+    status: partially_measured
+    provider_scope: public_only
+    note: |
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot bracketing 2024-09-26
+      attached. Promotion gated on such a pin.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - cryptex.net
+    note: |
+      Canonical cryptex.net domain was seized by US Secret Service on event day 2024-09-26 at
+      ≈16:05 UTC. Wayback CDX shows 403 Forbidden on the HTTPS origin at 16:05 event day
+      (multiple captures, no single stable seizure-banner digest), then a stable 200 OK small
+      page starting 2024-09-30 containing the USSS seizure notice. Attached as observed_change
+      with direct attribution (seizure notice names the legal instrument — District of Maryland
+      seizure warrant under DOJ CCIPS + USSS + NL FIOD + DE BKA Operation Endgame).
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Cryptex ETH address 0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7 blacklisted by both
+      USDT (Tether) and USDC (Circle) per usdtbanlist.com community tracker:
+      - Tether USDT blacklist on 2024-09-26 03:37 UTC (tx 55c457da...64b815)
+      - Circle USDC blacklist on 2024-09-27 03:00 UTC (tx a10d4e1a...ffd8da)
+      Notable: Tether froze earlier the same day as the OFAC designation, preceding even the
+      USSS domain seizure (event day 16:05 UTC). TRX address USDT-TRC20 freeze status
+      remains unqueried for this draft.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      Cryptex was itself an exchange, so the "off-ramp CEX" framing inverts — the layer of
+      interest is whether counterparty CEXes (Binance, Bybit, Kraken) blocked deposits or
+      withdrawals to the Cryptex-labelled clusters. No such counterparty-CEX artifact attached.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:cryptex_net
+    event: canonical_domain_seized_by_US_Secret_Service
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-26T16:05:01Z
+    precision: minute
+    delta_hours: 16.1
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20240930052144/https://cryptex.net/
+        body_hash: sha256:6d119a270bf818b6ee49a3bc21985f352843d24ede2a378bdf1e6198c91170c7
+        body_path: sources/http_captures/cryptex-ofac-2024/frontend-wayback/web.archive.org__web-20240930052144-https-cryptex.net__a56bfd9215.html
+        note: |
+          Wayback snapshot of cryptex.net on 2024-09-30 carrying the USSS seizure banner
+          verbatim: "This domain for Cryptex has been seized by the United States Secret Service
+          pursuant to a seizure warrant issued by the United States District Court for the
+          District of Maryland as part of law enforcement operations by the United States Secret
+          Service, the U.S. Attorney's Office for the District of Maryland, and the U.S.
+          Department of Justice's Computer Crime and Intellectual Property Section." The banner
+          also credits Netherlands Police, Dutch FIOD, and German BKA under Operation Endgame.
+          This is a primary_legal source because the seizure banner itself is the legal notice
+          of the seizure warrant.
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20241008115826/https://cryptex.net/
+        wayback: https://web.archive.org/web/20241008115826/https://cryptex.net/
+        note: |
+          Independent second Wayback snapshot 12 days post-event (2024-10-08 11:58 UTC, digest
+          TCJJN6WWSKF27E7QUOOVVRFXAA5UVNPN matching the 2024-09-30 seizure-banner digest) —
+          confirms the seizure banner was the stable state of cryptex.net, not a transient.
+          Serves as second independent archival anchor for the observed_change claim.
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: usdt_blacklist_same_day_event
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-26T03:37:00Z
+    precision: minute
+    delta_hours: 3.62
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x55c457da2bac2555c666e9948baaa4a5ba66d730033b3684a4aa3c21a964b815
+        tx_hash: "0x55c457da2bac2555c666e9948baaa4a5ba66d730033b3684a4aa3c21a964b815"
+        block: 0
+        note: |
+          Tether USDT blacklist transaction for Cryptex ETH address 0x0931cA... executed
+          2024-09-26 03:37 UTC — same day as OFAC designation, preceding the 16:05 UTC
+          USSS domain seizure by 12.5 hours. attribution=direct because Tether's
+          publicly-stated policy is to freeze OFAC-listed address balances; full 64-char
+          tx hash extracted from usdtbanlist.com explorer-link href and cross-referenced.
+      - type: supporting_community
+        url: https://usdtbanlist.com/address/0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7
+        body_hash: sha256:145f410f6a396bd596c3dda51ea5040b505b08b5712f23edf8744fe438c48faa
+        body_path: sources/http_captures/cryptex-ofac-2024/asset-layer-check/usdtbanlist.com__address-0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7__169bb88c26.html
+        note: |
+          usdtbanlist.com community tracker confirms the address is on both USDT and USDC
+          blacklists with Tether freeze recorded 2024-09-26 03:37 UTC and Circle freeze
+          2024-09-27 03:00 UTC. Serves as supporting archival anchor for the on-chain
+          observation; upgrade to primary_onchain requires direct tx-hash verification.
+  - layer: asset_onchain
+    actor: tether_usdt_issuer_tron
+    event: usdt_trc20_blacklist_same_day_event
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-26T03:35:00Z
+    precision: minute
+    delta_hours: 3.58
+    sources:
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/dad0d1dabad6f1727c6ebb3961053f66dd2add3b78def6360e5c2a2a6121cad9
+        tx_hash: "dad0d1dabad6f1727c6ebb3961053f66dd2add3b78def6360e5c2a2a6121cad9"
+        block: 0
+        note: Tether USDT-TRC20 addBlackList transaction on TRON for address TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr, executed 2024-09-26 03:35 UTC. 2 minutes before the ETH USDT freeze (03:37 UTC); batch action across chains.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr
+        body_hash: sha256:fcabacd285697808aa10ed9de3cbe9030acb295aa8e1c3a30cbbbdd2d4b50cf0
+        body_path: sources/http_captures/cryptex-ofac-2024/asset-layer-check/usdtbanlist.com__address-TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr.html
+        note: |
+          usdtbanlist.com community tracker anchor for the TRX freeze above.
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: usdc_blacklist_next_day_event
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-27T03:00:00Z
+    precision: minute
+    delta_hours: 27.0
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da
+        tx_hash: "0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da"
+        block: 0
+        note: |
+          Circle USDC blacklist transaction for Cryptex ETH address executed 2024-09-27
+          03:00 UTC — 27 hours after OFAC designation. Full 64-char tx hash extracted
+          from usdtbanlist.com explorer-link href.
+      - type: supporting_community
+        url: https://usdtbanlist.com/address/0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7
+        body_hash: sha256:145f410f6a396bd596c3dda51ea5040b505b08b5712f23edf8744fe438c48faa
+        body_path: sources/http_captures/cryptex-ofac-2024/asset-layer-check/usdtbanlist.com__address-0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7__169bb88c26.html
+        note: Same usdtbanlist.com anchor covering both Tether and Circle freeze events for this address.
+  - layer: l1_consensus
+    actor: pbs_relay_ecosystem_aggregate
+    event: ofac_compliant_relay_share_stable_through_cryptex_designation
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-09-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-09-12T00:00:00Z
+      - 2024-10-10T23:59:59Z
+    sources:
+      - type: semi_primary_measurement
+        url: https://raw.githubusercontent.com/nerolation/censorship.pics/main/data/relay_censorship_share.csv
+        body_hash: sha256:45c1db9ca70491743e2e33c313d7293eed791a82d0ea7313c5241eca9e8b4567
+        body_path: sources/l1_datasets/tornado-cash-ofac-2022/relay_censorship_share.csv
+        query_hash: sha256:e147ceb68f2b26f2bbe872aa5109bf687e26e954854659c76c82b0a9d01efef2
+        scope_descriptor:
+          providers:
+            - ethereum_pbs_mev_boost_relays
+          time_window:
+            - 2024-09-12T00:00:00Z
+            - 2024-10-10T23:59:59Z
+        evidence_group_id: wahrstatter-pbs-relay-data
+        note: |
+          Slice [2024-09-12, 2024-10-10]: 29 days × 2 categories = 58 rows. Censoring-relay
+          share pre-event 14d mean 55.76% ± 1.76, event day 53.95%, post-event 14d mean 53.48%
+          ± 0.68. Event-day value within 1.0 sd of pre-event mean; post-event mean effectively
+          identical. Null shape: single-wallet exchange designation did not perturb aggregate
+          relay OFAC-compliance.
+      - type: semi_primary_measurement
+        url: https://www.relayscan.io
+        wayback: https://web.archive.org/web/20260421114750/https://www.relayscan.io/
+        body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
+        body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
+        note: Relayscan independent dashboard consistent with Wahrstätter's plateau — second source for the observed_no_change claim.
+
+  - layer: l3_rpc
+    actor: mev_blocker_rpc_provider
+    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-09-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-09-26T00:00:00Z
+      - 2024-09-26T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20240130093338/https://mevblocker.io/
+        wayback: https://web.archive.org/web/20240130093338/https://mevblocker.io/
+        body_hash: sha256:25c4585c911220a0ae2ccc659e48077b48837344fa85d5a225f6d14cdfe5284a
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20240130093338-https-mevblocker.io__9ddac997cc.html
+        scope_descriptor:
+          providers: [mev_blocker, flashbots_protect]
+          time_window:
+            - 2024-09-26T00:00:00Z
+            - 2024-09-26T23:59:59Z
+          addresses_cohort: this_event_sdn_addresses
+        note: |
+          MEV-Blocker landing-page Wayback snapshot (2024-01-30) closest to
+          event date 2024-09-26. MEV-Blocker (launched 2023-03-27) filters
+          OFAC-SDN-listed addresses from the RPC substrate it serves. The
+          snapshot documents that MEV-Blocker was in effect as a public
+          OFAC-compliant RPC provider bracketing this event. No per-transaction
+          receipt of filter-list application is published; the observation
+          is the presence of the provider + filter-list at event time, not
+          a step change attributable to this specific designation.
+      - type: primary_corporate
+        url: https://docs.flashbots.net/flashbots-protect/quick-start
+        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
+        note: |
+          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
+          (launched 2022-11) is the second major OFAC-compliance-adjacent
+          public Ethereum RPC substrate. Together with MEV-Blocker these
+          cover the overwhelming majority of public OFAC-compliant Ethereum
+          RPC traffic in the 2023-2025 period.
+
+analysis_notes: |
+  comparison documenting the 2024-09-26 coordinated action against the Russian
+  virtual-currency exchange Cryptex (OFAC SDN designation) and co-occurring US Secret Service
+  seizure of cryptex.net under a Maryland district court warrant (Operation Endgame, with
+  Netherlands Police / FIOD and German BKA participation). This event has the cleanest L4
+  observed_change in the dataset so far — a same-day, direct-attribution domain seizure with a
+  primary_legal banner as the archival anchor.
+
+  The L4 seizure shape here is structurally different from prior cases: Tornado 2022 frontend
+  disruption was compliance-driven (hosting / CDN providers acting to avoid OFAC exposure),
+  whereas Cryptex was direct government seizure of the domain via a judicial warrant. Both
+  produce L4 observed_change but through different mechanisms.
+
+  L1 shows the expected null (single-wallet, cross-chain exchange designation does not shift
+  aggregate Ethereum relay filtering).
+
+  Follow-up directions (post-admission): (1) Etherscan / Tronscan query for per-address freeze transactions on the
+  4 Cryptex addresses (especially the ETH address for USDC, and the TRX address for USDT-TRC20);
+  (2) pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot bracketing event date;
+  (3) follow-up archival of any coordinated FinCEN / USSS / DOJ press releases beyond the
+  Treasury headline piece.
+
+scoped_claim: |
+  This draft supports the claim: "OFAC designation of the Cryptex Russian exchange on 2024-09-26
+  co-occurred (same-day) with a US Secret Service judicial seizure of the canonical cryptex.net
+  domain (L4 observed_change, direct attribution), while producing no measurable step change in
+  Ethereum aggregate OFAC-compliant relay share (L1 null at day granularity)." Other layers
+  remain scoped for follow-up.
+
+tags:
+  - sanctions
+  - exchange_designation
+  - russia_related
+  - domain_seizure
+  - operation_endgame

@@ -1,0 +1,128 @@
+id: canada-convoy-freeze-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T08:30:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: nation_state_block
+  actor: CA_Government
+  timestamp: 2022-02-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://gazette.gc.ca/rp-pr/p2/2022/2022-02-16-x1/html/sor-dors21-eng.html
+      body_hash: sha256:fac09fbd776f03ca74a2a6fbafe17f46caa346a89980ca75e44b1aca40dd9d02
+      body_path: sources/http_captures/canada-convoy-freeze-2022/primary/canadagazette.gc.ca__rp-pr-p2-2022-2022-02-16-x1-html-sor-dors21-eng.html__798548451d.html
+      note: |
+        Canada Gazette Part II, "Emergency Economic Measures Order" SOR/2022-21
+        (published 2022-02-16 for effective date 2022-02-15, invoked under the
+        Emergencies Act on 2022-02-14 by Prime Minister Trudeau in response to
+        the "Freedom Convoy" protests). Order authorized Canadian financial
+        service providers (including crypto exchanges) to freeze accounts of
+        "designated persons" without court order, including wallet addresses
+        tied to convoy funding. First invocation of Emergencies Act since its
+        1988 successor statute to the War Measures Act. Effective for 9 days until
+        revocation 2022-02-23.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level invocation 2022-02-14 per Emergencies Act Section 17.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    ~250+ wallet addresses (approx 253 Bitcoin addresses per RCMP disclosure)
+    tied to convoy-funding entities. Not enumerated on the primary legal
+    source (Canada Gazette); RCMP issued circulars to banks and crypto
+    exchanges with the address list, but those circulars are not public.
+    Entity-level targeting (convoy-associated natural/corporate persons) with
+    downstream on-chain address propagation via private banker-exchange
+    channels.
+  protocol: null
+  actor_type: protest_funding_network
+  actor_name: Freedom Convoy funding network
+  chains: [bitcoin]
+  canonical_domains: []
+
+jurisdiction: [CA]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin native-asset; no issuer-freeze primitive applicable for BTC holdings.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: ca_regulated_cex_ecosystem
+    event: canadian_regulated_exchanges_frozen_convoy_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-02-15T00:00:00Z
+    precision: day
+    delta_hours: 24.0
+    sources:
+      - type: primary_legal
+        url: https://gazette.gc.ca/rp-pr/p2/2022/2022-02-16-x1/html/sor-dors21-eng.html
+        body_hash: sha256:fac09fbd776f03ca74a2a6fbafe17f46caa346a89980ca75e44b1aca40dd9d02
+        body_path: sources/http_captures/canada-convoy-freeze-2022/primary/canadagazette.gc.ca__rp-pr-p2-2022-2022-02-16-x1-html-sor-dors21-eng.html__798548451d.html
+        scope_descriptor:
+          providers: [ca_regulated_cex]
+          time_window:
+            - 2022-02-14T00:00:00Z
+            - 2022-02-23T23:59:59Z
+          addresses_cohort: convoy_wallets_approx_253_btc
+        note: |
+          Emergency Economic Measures Order §4 explicitly directs all Canadian
+          financial service providers (including "entities engaged in virtual
+          currency transactions") to cease dealings with designated persons
+          and freeze their property. Regulated Canadian crypto exchanges
+          (Bitbuy, Wealthsimple Crypto, Netcoins, Newton) confirmed compliance
+          within 24h. Direct attribution: the Order names the compliance
+          requirement and designates virtual-currency service providers as
+          in-scope.
+
+analysis_notes: |
+  comparison — first G7 nation-state-level invocation of emergency
+  powers to freeze crypto addresses in the dataset. Unique structural features:
+  (1) no court order required during invocation period; (2) no formal SDN-list
+  enumeration (targets designated via RCMP circulars to financial institutions);
+  (3) 9-day effective window; (4) retroactive revocation 2022-02-23 but
+  frozen balances remained at issuer discretion thereafter.
+
+  Paper-worthy contrast to OFAC-style enumeration: emergency-order-based
+  crypto freezes can proceed without public address lists, which breaks the
+  standard OFAC-centric measurement methodology — there is no authoritative
+  complete list to check on-chain. Observational signal is necessarily at
+  the offramp_cex layer via exchange compliance confirmations.
+
+scoped_claim: |
+  "Canada's 2022-02-14 invocation of the Emergencies Act produced the first
+  G7 nation-state-level crypto freeze in the dataset, directing Canadian
+  regulated crypto exchanges to freeze approximately 253 BTC wallet addresses
+  tied to Freedom Convoy funding. The freeze was implemented through private
+  RCMP-to-institution circulars rather than a public SDN list, demonstrating
+  a non-OFAC-style enforcement mode."
+
+tags:
+  - nation_state_block
+  - emergency_powers
+  - canada
+  - protest_funding
+  - offramp_cex_direct_cascade

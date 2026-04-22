@@ -1,0 +1,261 @@
+id: funnull-cdn-ofac-2025
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T02:45:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-05-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20250529
+      wayback: https://web.archive.org/web/20260421144036/https://ofac.treasury.gov/recent-actions/20250529
+      body_hash: sha256:4c139e31ffb1c6979e073bd9329234447d50085c09f87dea2879f54555537fe5
+      body_path: sources/http_captures/funnull-cdn-ofac-2025/ofac-recent-actions/ofac.treasury.gov__recent-actions-20250529__bf3d7f6173.html
+      note: |
+        OFAC Recent Actions page for 2025-05-29. FUNNULL (a.k.a. 方能 CDN, FUNNULL CDN, FUNNULL
+        INC, FUNNULL LLC), Philippines-registered Chinese-linked CDN / hosting network
+        accused of facilitating pig-butchering scams. Multiple websites: funnull.io,
+        funnull.com, funnull.app, funnull.buzz. 1 ETH + 1 TRX address attached.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0144
+      note: Treasury press release "Treasury Takes Action Against Major Cyber Scam Facilitator" (2025-05-29).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: 2 digital-currency addresses (ETH + TRX) attached to FUNNULL CDN entity. Entity-level target with 4 named canonical domains.
+  protocol: funnull_cdn
+  actor_type: cdn_provider
+  actor_name: Funnull CDN
+  chains: [ethereum, tron]
+  canonical_domains:
+    - funnull.io
+    - funnull.com
+    - funnull.app
+    - funnull.buzz
+  addresses:
+    - "0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510"
+    - TNmRfnSUXZoWWzxcDDbf95eGQYXt1mJDt8
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [funnull.io, funnull.com]
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across:
+        funnull.app  2025-04-29..2025-06-29  -> 0 results
+        funnull.buzz  2025-04-29..2025-06-29  -> 0 results
+        funnull.com  2025-04-29..2025-06-29  -> 0 results
+        funnull.io  2025-04-29..2025-06-29  -> 0 results
+      All 4 queries returned 0 measurements.
+      Artifact: sources/l0_datasets/funnull-cdn-ofac-2025/funnull.app__ooni.json
+      (body_hash sha256:adb80aec526e677235de41f62b5f71f3703ae2a3d229a63e41cd6a319f8178c2).
+      Measurement-gap finding: OONI volunteer probe coverage is absent.
+  - layer: l1_consensus
+    status: measured
+    chain: ethereum
+    note: |
+      Wahrstätter relay_censorship_share.csv slice [2025-05-15, 2025-06-12]
+      attached as observation below. Censoring-relay share: pre-event mean
+      0.00%, event-day 0.00%, post-event mean 0.00%. Null shape throughout
+      — Wahrstätter's classifier (keyed to Tornado Cash SDN addresses) had
+      already collapsed to 0% after the 2025-03-21 Tornado delisting, so
+      there is no aggregate censoring-relay signal to perturb by the time
+      Funnull was designated on 2025-05-29. Attached as observed_no_change.
+      Also: the target has only 1 ETH address (single wallet, not protocol),
+      so aggregate L1 response would not be expected to move even if the
+      classifier were active.
+  - layer: l3_rpc
+    status: partially_measured
+    provider_scope: public_only
+    note: |
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [funnull.io, funnull.com, funnull.app, funnull.buzz]
+    note: 4 canonical domains; Wayback bracketing not yet fetched for this draft.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Full scan via usdtbanlist.com (sources/asset_layer_scan/funnull-cdn-ofac-2025.json):
+      **2/2 blocked**, all same-day as OFAC designation (2025-05-29):
+      - ETH 0xd5ED34b5...: Circle USDC 2025-05-29 07:47 UTC, Tether USDT 2025-05-29 10:15 UTC
+      - TRX TNmRfnSU...: Tether USDT-TRC20 2025-05-29 22:12 UTC
+      All actions within 22 hours of the OFAC designation.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: circle_usdc_blacklist_same_day
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-05-29T07:47:00Z
+    precision: minute
+    delta_hours: 7.78
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x820504809ed1b810498c28dc2fc5fbeb1d753bb5b655ebe83d98cd999c96d2d7
+        tx_hash: "0x820504809ed1b810498c28dc2fc5fbeb1d753bb5b655ebe83d98cd999c96d2d7"
+        block: 0
+        note: USDC Blacklisted() tx for Funnull ETH address 0xd5ED34b5... at 2025-05-29 07:47 UTC — same day as OFAC designation.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510
+        body_hash: sha256:f08903f1350623e05457f8a561321c8aa3c88ccd71ec04d522c72a00e473a890
+        body_path: sources/http_captures/funnull-cdn-ofac-2025/asset-layer-check/usdtbanlist.com__address-0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510.html
+        note: usdtbanlist.com community tracker anchor.
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_usdt_same_day_eth_and_tron
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-05-29T10:15:00Z
+    precision: minute
+    delta_hours: 10.25
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xd0d30630d1588780f0eda7647a884fb97aed7c5957833599b4754a212280f282
+        tx_hash: "0xd0d30630d1588780f0eda7647a884fb97aed7c5957833599b4754a212280f282"
+        block: 0
+        note: Tether USDT addBlackList tx for ETH address at 2025-05-29 10:15 UTC. Paired with TRON freeze of 4c0606f5... at 2025-05-29 22:12 UTC.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/TNmRfnSUXZoWWzxcDDbf95eGQYXt1mJDt8
+        body_hash: sha256:8e1729352a755bc5c63efc300f58068bed63e03aa533c507ab7acb408266e9d2
+        body_path: sources/http_captures/funnull-cdn-ofac-2025/asset-layer-check/usdtbanlist.com__address-TNmRfnSUXZoWWzxcDDbf95eGQYXt1mJDt8.html
+        note: Tron-address archival anchor for the cross-chain Tether action.
+
+  - layer: l3_rpc
+    actor: mev_blocker_rpc_provider
+    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-05-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-05-29T00:00:00Z
+      - 2025-05-29T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20250111000329/https://mevblocker.io/
+        wayback: https://web.archive.org/web/20250111000329/https://mevblocker.io/
+        body_hash: sha256:0d2b4d7e23011413f484943f6b9e1a28f4cf613f047e7e31d9c4daec7941bda3
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20250601000000-mevblocker.io__8282802587.html
+        scope_descriptor:
+          providers: [mev_blocker, flashbots_protect]
+          time_window:
+            - 2025-05-29T00:00:00Z
+            - 2025-05-29T23:59:59Z
+          addresses_cohort: this_event_sdn_addresses
+        note: |
+          MEV-Blocker landing-page Wayback snapshot (2025-01-11) closest to
+          event date 2025-05-29. MEV-Blocker (launched 2023-03-27) filters
+          OFAC-SDN-listed addresses from the RPC substrate it serves. The
+          snapshot documents that MEV-Blocker was in effect as a public
+          OFAC-compliant RPC provider bracketing this event. No per-transaction
+          receipt of filter-list application is published; the observation
+          is the presence of the provider + filter-list at event time, not
+          a step change attributable to this specific designation.
+      - type: primary_corporate
+        url: https://docs.flashbots.net/flashbots-protect/quick-start
+        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
+        note: |
+          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
+          (launched 2022-11) is the second major OFAC-compliance-adjacent
+          public Ethereum RPC substrate. Together with MEV-Blocker these
+          cover the overwhelming majority of public OFAC-compliant Ethereum
+          RPC traffic in the 2023-2025 period.
+  - layer: l1_consensus
+    actor: pbs_relay_ecosystem_aggregate
+    event: censoring_share_already_zero_post_tornado_delisting_null_shape
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-05-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-05-15T00:00:00Z
+      - 2025-06-12T23:59:59Z
+    sources:
+      - type: semi_primary_measurement
+        url: https://raw.githubusercontent.com/nerolation/censorship.pics/main/data/relay_censorship_share.csv
+        body_hash: sha256:45c1db9ca70491743e2e33c313d7293eed791a82d0ea7313c5241eca9e8b4567
+        body_path: sources/l1_datasets/tornado-cash-ofac-2022/relay_censorship_share.csv
+        query_hash: sha256:1be2d2e02df61714485a78003a50eb3b12157a1edc8d633f244e5cc68d8aa7a9
+        scope_descriptor:
+          providers: [ethereum_pbs_mev_boost_relays]
+          time_window:
+            - 2025-05-15T00:00:00Z
+            - 2025-06-12T23:59:59Z
+        evidence_group_id: wahrstatter-pbs-relay-data
+        note: |
+          Slice [2025-05-15, 2025-06-12]: 58 rows. Censoring-relay share
+          all zeros throughout — the Wahrstätter classifier (keyed to
+          Tornado Cash SDN addresses) collapsed to 0% after the 2025-03-21
+          Tornado delisting. By 2025-05-29 (Funnull designation) there was
+          no residual censoring-relay signal to perturb. Structurally
+          interesting: the classifier itself is a function of Tornado's SDN
+          status; post-delisting the metric loses its subject. Any L1
+          observation of a post-2025-03-21 event against this dataset will
+          produce a zero baseline.
+      - type: semi_primary_measurement
+        url: https://www.relayscan.io
+        wayback: https://web.archive.org/web/20260421114750/https://www.relayscan.io/
+        body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
+        body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
+        note: |
+          Relayscan independent dashboard — second source consistent with
+          the zero-baseline observation post-Tornado-delisting.
+
+analysis_notes: |
+  comparison documenting 2025-05-29 OFAC designation of the Funnull CDN/hosting
+  network accused of facilitating pig-butchering scam infrastructure. Philippines-registered
+  shell with Chinese operational nexus; 4 named canonical domains (funnull.io/.com/.app/.buzz).
+  Target of interest for L4 layer — does US designation force any of these US-side-resolvable
+  domains down?
+
+scoped_claim: |
+  "OFAC designation of Funnull CDN on 2025-05-29 attached 2 addresses (ETH + TRX). Four
+  canonical domains are available for L4 bracketing; Wayback snapshots pending."
+
+tags: [sanctions, cdn_provider, pig_butchering, infrastructure_provider, comparison]

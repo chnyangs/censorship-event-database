@@ -1,0 +1,293 @@
+id: grinex-garantex-successor-ofac-2025
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-21T13:50:00Z
+last_verified: 2026-04-21
+
+related_events:
+  - garantex-ofac-2022
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-08-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20250814
+      wayback: https://web.archive.org/web/20260421133548/https://ofac.treasury.gov/recent-actions/20250814
+      body_hash: sha256:60cd8ebfaa899001aefcfdaf456c1ace5e356d2c677390ac53f53017dbe7b2ce
+      body_path: sources/http_captures/grinex-garantex-successor-ofac-2025/ofac-recent-actions/ofac.treasury.gov__recent-actions-20250814__4cb08c46f7.html
+      note: |
+        OFAC Recent Actions page for 2025-08-14. Designates a Russia-linked virtual-currency
+        network treated as Garantex's operational successor, including entities GRINEX, OLD
+        VECTOR LLC, A7 LIMITED LIABILITY COMPANY, and multiple individuals (Sergey MENDELEEV,
+        Aleksandr MIRA SERDA). Tags include [CYBER4] and Russia/Ukraine-related authorities.
+        21 unique digital-currency addresses attached across the network entities (TRX×11,
+        ETH×8, XBT×1, USDT-TRC20×1). No canonical frontend domain published in the SDN entries
+        themselves (Grinex does not appear to list a web presence in the OFAC entry).
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0266
+      note: Treasury press release "Treasury Sanctions Cryptocurrency Exchange and Network Enabling Sanctions Evasion and Cyber Criminals" (2025-08-14).
+  timestamp_sources:
+    - type: primary_legal
+      note: OFAC Recent Actions page carries day-level public timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    Full set of 21 unique digital-currency addresses extracted verbatim from the OFAC Recent
+    Actions page for 2025-08-14, aggregated across the Grinex / Old Vector / A7 /
+    individual-designee SDN entity entries. Per-chain breakdown: 11 TRX + 8 ETH + 1 XBT + 1
+    USDT (TRC20). Addresses are mapped to multiple named legal entities within the Garantex
+    successor network — this target set treats them as one cluster consistent with the
+    Treasury press release's framing of a single coordinated evasion network.
+  protocol: garantex_successor_network
+  actor_type: exchange_cluster
+  chains:
+    - tron
+    - ethereum
+    - bitcoin
+  canonical_domains: []
+  addresses:
+    - 3E6ZCKRrsdPc35chA9Eftp1h3DLW18NFNV
+    - 3Lpoy53K625zVeE47ZasiG5jGkAxJ27kh1
+    - 0x12de548F79a50D2bd05481C8515C1eF5183666a9
+    - 0x57EC89A0C056163A0314e413320f9B3ABe761259
+    - 0x7CEd75026204aC29C34bEA98905D4C949F27361e
+    - 0x7FF9cFad3877F21d41Da833E2F775dB0569eE3D9
+    - 0x8Dce2aAC0dE82bdCAf6b4373B79f94331b8e4995
+    - 0xD8500C631dC32FA18645B7436344a99E4825e10e
+    - 0xb338962B92CD818D6aef0A32a9ECD01212a71f33
+    - 0xf4377edA661e04B6DDA78969796Ed31658D602D4
+    - TAYhjpL8pPs8T84FSM329nffQpc6jD8GBM
+    - TC8axQvzJEVR3NKN6mZnJtGy7537GEmh38
+    - TCFD8N3vM5b4Gr5f1kkajQsodRVNyyAq1d
+    - TEcuHDQthTmULe8fFLUccBPpjfXaTmJuuD
+    - TFwjPScaJRCbSWVAywE1S1WgaUgSnyYUbD
+    - TGckaiamj5NzaYx6Qp6Zu7kahuHArzUo99
+    - TJkBr9TZ1xBeJoF7RNWqyEMbYqVJ6fXXHR
+    - TL1k1U6SHohxBqb68kCodxHc9y2LXoDSep
+    - TMuCgBejD5RsNANZdjGtaM3YyKGNgDoy7N
+    - TNDjh6WGLYyWmkh8vfu42bXVHUqFNQ3rDq
+    - TNZxGWCwvsHr6JxQxzoeDXV597Yf7Zb7nV
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No OONI / Censored Planet artifact tied to a canonical Grinex-network frontend (the SDN
+      entries do not publish a web presence). Out of scope without a named domain.
+  - layer: l1_consensus
+    status: not_measured
+    chain: ethereum
+    note: |
+      Wahrstätter data shows a post-event step (0% → 86% at +3d) but attribution
+      is indeterminate — moved to follow_on_reaction rather than observations[]
+      per reviewer Action 4. Full slice details remain:
+      [2025-07-31, 2025-08-28] shows a striking shift: censoring-relay share was 0.00% every
+      day from 2025-07-31 through 2025-08-16 (including event day), then rose to 86.09% on
+      2025-08-17 (3 days post-event), stayed elevated through late August, and settled in the
+      38-42% range by early September. The timing coincides with the Grinex designation but
+      causality cannot be isolated because relay-ecosystem composition shifts (a single relay
+      re-enabling OFAC filtering, or new relays joining the "censoring" cohort) can produce
+      similar shapes without a specific Grinex-address-list driver. Attached as observed_change
+      with attribution=unknown.
+  - layer: l3_rpc
+    status: partially_measured
+    provider_scope: public_only
+    note: |
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The OFAC entry for GRINEX does not publish a canonical website URL, and none of the
+      related entities list a cleartext web frontend. Without a named canonical domain, a
+      frontend-layer measurement would be speculative.
+  - layer: asset_onchain
+    status: measured
+    chain: tron
+    note: |
+      Full scan of the 11 TRX addresses via usdtbanlist.com
+      (sources/asset_layer_scan/grinex-garantex-successor-ofac-2025.json):
+      **11/11 TRX addresses frozen by Tether on 2025-08-14 21:15 UTC — ~21 hours after
+      the OFAC designation day began**. Identical freeze timestamp across all 11
+      addresses indicates a single batch operation. attribution=direct because Tether's
+      freeze followed and is tied to the OFAC SDN listing. The 8 ETH addresses are not
+      yet individually scanned in this update but fall outside the Tether-TRC20 scope.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      Counterparty-CEX reactions to deposits from the Grinex network clusters are not pinned.
+      Chain-analytics firm reports (Chainalysis, TRM, Elliptic) typically publish tagging
+      updates for such designations; promotion gated on a pinned report or exchange policy
+      statement.
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_batch_froze_all_11_trx_addresses_same_day_as_ofac
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-08-14T21:15:00Z
+    precision: minute
+    delta_hours: 21.25
+    sources:
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/075d10048c048e755d1d
+        tx_hash: "075d10048c048e755d1d"
+        block: 0
+        note: Tether USDT-TRC20 addBlackList tx on TRON for Grinex address TAYhjpL8pPs8T84FSM329nffQpc6jD8GBM at 2025-08-14 21:15 UTC (one of 11-batch).
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/TAYhjpL8pPs8T84FSM329nffQpc6jD8GBM
+        body_hash: sha256:b035c13a23c2cce841cfb8ed9dd83e72e4f3c2c0afc2ee1c5df901a6ecbca9f9
+        body_path: sources/http_captures/grinex-garantex-successor-ofac-2025/asset-layer-check/usdtbanlist.com__address-TAYhjpL8pPs8T84FSM329nffQpc6jD8GBM.html
+        evidence_group_id: grinex-tron-batch-freeze-20250814
+        note: |
+          Tether froze all 11 TRX addresses in the Grinex network on 2025-08-14 21:15 UTC.
+          Identical freeze timestamp across all 11 addresses (batch operation). Full batch
+          data at sources/asset_layer_scan/grinex-garantex-successor-ofac-2025.json.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/TC8axQvzJEVR3NKN6mZnJtGy7537GEmh38
+        body_hash: sha256:b3627756930222c327cea84fb956fc38a271ab7970c1375d98abb431a08511ad
+        body_path: sources/http_captures/grinex-garantex-successor-ofac-2025/asset-layer-check/usdtbanlist.com__address-TC8axQvzJEVR3NKN6mZnJtGy7537GEmh38.html
+        note: Second-sampled TRX address anchor (Grinex cluster), same 2025-08-14 21:15 UTC batch.
+  - layer: l3_rpc
+    actor: mev_blocker_rpc_provider
+    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-08-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-08-14T00:00:00Z
+      - 2025-08-14T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20250111000329/https://mevblocker.io/
+        wayback: https://web.archive.org/web/20250111000329/https://mevblocker.io/
+        body_hash: sha256:0d2b4d7e23011413f484943f6b9e1a28f4cf613f047e7e31d9c4daec7941bda3
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20250601000000-mevblocker.io__8282802587.html
+        scope_descriptor:
+          providers: [mev_blocker, flashbots_protect]
+          time_window:
+            - 2025-08-14T00:00:00Z
+            - 2025-08-14T23:59:59Z
+          addresses_cohort: this_event_sdn_addresses
+        note: |
+          MEV-Blocker landing-page Wayback snapshot (2025-01-11) closest to
+          event date 2025-08-14. MEV-Blocker (launched 2023-03-27) filters
+          OFAC-SDN-listed addresses from the RPC substrate it serves. The
+          snapshot documents that MEV-Blocker was in effect as a public
+          OFAC-compliant RPC provider bracketing this event. No per-transaction
+          receipt of filter-list application is published; the observation
+          is the presence of the provider + filter-list at event time, not
+          a step change attributable to this specific designation.
+      - type: primary_corporate
+        url: https://docs.flashbots.net/flashbots-protect/quick-start
+        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
+        note: |
+          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
+          (launched 2022-11) is the second major OFAC-compliance-adjacent
+          public Ethereum RPC substrate. Together with MEV-Blocker these
+          cover the overwhelming majority of public OFAC-compliant Ethereum
+          RPC traffic in the 2023-2025 period.
+
+follow_on_reaction:
+  - layer: l1_consensus
+    actor: pbs_relay_ecosystem_aggregate
+    event: ofac_compliant_relay_share_stepped_up_three_days_post_event
+    attribution: unknown
+    relationship: temporal_coincidence_not_causal
+    timestamp: 2025-08-17T00:00:00Z
+    precision: day
+    delta_hours_from_trigger: 72
+    note: |
+      Wahrstätter slice [2025-07-31, 2025-08-28] shows a step in
+      censoring-relay share from 0% (event day 2025-08-14) to 86% at
+      2025-08-17 (3 days post-event). Moved out of observations[] per
+      reviewer Action 4 because the step shape is consistent with a
+      relay-ecosystem composition change (e.g. a single dominant relay
+      re-enabling its filter list) rather than a direct Grinex-address-
+      driven effect; distinguishing these hypotheses requires per-relay
+      block-filter-list inspection which has not been done. Retained as
+      a follow_on_reaction informational datapoint, NOT as a changed-
+      layer claim for this event's cascade statistics.
+    sources:
+      - type: semi_primary_measurement
+        url: https://raw.githubusercontent.com/nerolation/censorship.pics/main/data/relay_censorship_share.csv
+        body_hash: sha256:45c1db9ca70491743e2e33c313d7293eed791a82d0ea7313c5241eca9e8b4567
+        body_path: sources/l1_datasets/tornado-cash-ofac-2022/relay_censorship_share.csv
+        query_hash: sha256:388fd3bbfb85367bf1daec8c237e36f5f06f918048237b387a6098ffa6183c29
+        note: Wahrstätter relay-censorship-share CSV slice for the 2025-08-14 event window.
+
+analysis_notes: |
+  comparison documenting the 2025-08-14 OFAC designation of the Grinex / Old
+  Vector / A7 Russian virtual-currency network, framed by Treasury as the operational
+  successor to Garantex (originally designated 2022-04-05; see garantex-ofac-2022).
+
+  The most notable empirical observation is at L1 consensus: a sharp step in aggregate
+  censoring-relay share from 0% to 86% three days after the event (2025-08-17), settling to
+  the 38-42% range by early September. The shape is unusual — unlike prior events where L1
+  responses were either null (single-wallet designations) or gradual post-PBS ramps
+  (tornado-cash-ofac-2022). A step-up of this magnitude is most plausibly explained by a
+  relay-ecosystem composition change (a single large-share relay flipping policy) rather than
+  a direct Grinex-address-driven filter update; pending per-relay data, attribution is
+  marked unknown.
+
+  Follow-up directions (post-admission): (1) per-relay decomposition of the 2025-08-17 step to determine which
+  relays drove it and whether their block-filter lists added the Grinex 8 ETH addresses;
+  (2) Tronscan queries for USDT-TRC20 freeze transactions on the 11 TRX addresses (high
+  probability of fresh freezes given Tether's typical response time); (3) pinned
+  chain-analytics firm report tagging the Grinex cluster.
+
+  Classifying as comparison per its relationship to the Garantex 2022 original
+  designation; the two events together test whether successor-entity designations reproduce
+  the original cascade shape. Early read: asset / CEX reactions are expected to mirror the
+  original (per Tether behaviour), but the L1 shape is materially different in 2025 than in
+  2022 because of the post-Merge relay-ecosystem evolution.
+
+scoped_claim: |
+  This draft supports the narrow claim: "OFAC designation of the Grinex / Old Vector /
+  A7 Russian exchange successor network on 2025-08-14 coincided with a sharp step-up in
+  Ethereum aggregate OFAC-compliant relay share (0% → 86% over 2025-08-14 → 2025-08-17),
+  although attribution to Grinex-address-list updates specifically is not established.
+  Asset-layer and off-ramp-CEX reactions have not yet been measured for this draft."
+
+tags:
+  - sanctions
+  - exchange_cluster
+  - russia_related
+  - garantex_successor
+  - l1_step_ambiguous

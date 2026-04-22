@@ -1,0 +1,167 @@
+id: russian-cyber-theft-ofac-2020
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T00:45:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2020-09-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20200916
+      wayback: https://web.archive.org/web/20260421140559/https://ofac.treasury.gov/recent-actions/20200916
+      body_hash: sha256:0683b60f1923123a2ee05c76a9fbad6b2e46665acaefc93366f8d2f0eb522cbd
+      body_path: sources/http_captures/russian-cyber-theft-ofac-2020/ofac-recent-actions/ofac.treasury.gov__recent-actions-20200916__183a1e9b84.html
+      note: |
+        OFAC Recent Actions page for 2020-09-16. Two Russian individuals designated for
+        virtual-currency theft from exchanges: Dmitrii KARASAVIDI (8-chain address diversity:
+        XBT, ETH, XMR, LTC, ZEC, DASH, BTG, ETC — the most chain-diverse single SDN entry in
+        the dataset) and Danil POTEKHIN (XBT + ETH). Tag [CYBER2].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sm1123
+      note: Treasury press release "Treasury Sanctions Russian Cyber Actors for Virtual Currency Theft".
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    12 unique digital-currency addresses across 8 chains attached to the KARASAVIDI (9 addrs)
+    and POTEKHIN (3 addrs) individual SDN entries. ETH and ETC share the same 0xd882... address
+    (Ethereum and Ethereum Classic use identical address format on the same underlying key).
+  protocol: null
+  actor_type: individuals
+  actor_name: KARASAVIDI + POTEKHIN
+  chains:
+    - bitcoin
+    - ethereum
+    - ethereum_classic
+    - monero
+    - litecoin
+    - zcash
+    - dash
+    - bitcoin_gold
+  canonical_domains: []
+  addresses:
+    - 1Q6saNmqKkyFB9mFR68Ck8F7Dp7dTopF2W
+    - 1DDA93oZPn7wte2eR1ABwcFoxUFxkKMwCf
+    - "0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b"
+    - 5be5543ff73456ab9f2d207887e2af87322c651ea1a873c5b25b7ffae456c320
+    - LNwgtMxcKUQ51dw7bQL1yPQjBVZh6QEqsd
+    - t1g7wowvQ8gn2v8jrU1biyJ26sieNqNsBJy
+    - XnPFsRWTaSgiVauosEwQ6dEitGYXgwznz2
+    - GPwg61XoHqQPNmAucFACuQ5H9sGCDv9TpS
+    - 1Q9UAQbcDezmyouFrzt94t4dSMxgsUfW1X
+    - 1Kys8fqDen8NGFUJ6AFcXfFW5qquuTH4eh
+    - "0x7F367cC41522cE07553e823bf3be79A889DEbe1B"
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Individual designation with no canonical web presence.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Pre-Merge by 729 days.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: ethereum
+    note: Pre-MEV-Blocker era.
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical frontend — individuals not service operators.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Full scan of the 2 ETH-matching addresses via usdtbanlist.com
+      (sources/asset_layer_scan/russian-cyber-theft-ofac-2020.json): 2/2 blocked.
+      - Circle USDC freeze on 2021-04-21 (7 months after OFAC designation)
+      - Tether USDT retroactive sweep on 2023-12-09 04:43 / 05:15 UTC (part of broader
+        tether-retroactive-sweep-2023)
+      Privacy chains (XMR, ZEC) and other native-asset chains (BTG, DASH, LTC) have no
+      issuer-freeze primitive so cascade at the asset layer is structurally limited to
+      the ETH cohort.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      Chainalysis and other chain-analytics firms published tagging updates for these
+      individuals; primary target would be exchange deposit blocks. Pinned reports needed.
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: circle_usdc_blacklist_7_months_after_ofac
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-04-21T09:04:00Z
+    precision: minute
+    delta_hours: 5217.07
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x4098800943f50ee7c5b7c7369bba2f3903ae5e59bd057aa00e2f98abed44d4a7
+        tx_hash: "0x4098800943f50ee7c5b7c7369bba2f3903ae5e59bd057aa00e2f98abed44d4a7"
+        block: 0
+        note: USDC Blacklisted() tx for KARASAVIDI ETH address 0xd882... at 2021-04-21 09:19 UTC. Circle first-responder.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b
+        body_hash: sha256:3242f21ffc6d0052323d94b6ba90e0de379d38f91f87a0890dc66aa5c19cf259
+        body_path: sources/http_captures/russian-cyber-theft-ofac-2020/asset-layer-check/usdtbanlist.com__address-0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b.html
+        evidence_group_id: russian-cyber-theft-usdc-20210421
+        note: |
+          Circle USDC blacklisted KARASAVIDI's ETH address on 2021-04-21 09:19 UTC (~7
+          months after OFAC designation). Second Russian-cyber-theft ETH address (POTEKHIN's
+          0x7F367...) frozen at 2021-04-21 09:04 UTC — 15 minutes earlier, suggesting a
+          single batch of 2+ addresses processed sequentially.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x7F367cC41522cE07553e823bf3be79A889DEbe1B
+        body_hash: sha256:e70b6cff009eeed8e85496ba730d07734a2664a5d95a6d7863bd81dc3fd83815
+        body_path: sources/http_captures/russian-cyber-theft-ofac-2020/asset-layer-check/usdtbanlist.com__address-0x7F367cC41522cE07553e823bf3be79A889DEbe1B.html
+        note: Second ETH address frozen in the same 2021-04-21 Circle batch (~09:04 UTC).
+
+analysis_notes: |
+  comparison documenting the 2020-09-16 Russian-cyber-theft individual-level
+  sanctions. Two individuals with remarkable cross-chain diversity (8 chains on KARASAVIDI
+  alone including pure privacy chains XMR and ZEC), illustrating early OFAC attention to the
+  multi-asset laundering surface before the protocol-level 2022 cluster.
+
+  All infrastructural layers (L0 / L1 / L3 / L4) are structurally not_applicable — pre-Merge
+  pre-frontend-era individuals. The meaningful measurement axis is asset_onchain (freeze
+  primitives) and offramp_cex. Admitting as comparison (closer fit than cascade /
+  comparison given the individual-targeting shape).
+
+  Follow-up directions (post-admission): asset-layer empirical work.
+
+scoped_claim: |
+  "OFAC individual designation of two Russian cyber-theft actors on 2020-09-16 attached 12
+  unique addresses spanning 8 chains, the most chain-diverse single SDN entry in the
+  dataset. Cross-layer observational analysis is constrained because event predates the
+  Ethereum PBS era by 2 years and targets individuals not service operators."
+
+tags:
+  - sanctions
+  - individual_designation
+  - russia_related
+  - multi_chain_address_set

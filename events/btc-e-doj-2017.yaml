@@ -1,0 +1,138 @@
+id: btc-e-doj-2017
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T07:30:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_NDCA
+  timestamp: 2017-07-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archives/opa/pr/russian-national-and-bitcoin-exchange-charged-21-count-indictment-operating-alleged
+      body_hash: sha256:510ff33edce09e1fda4ddadc38bf0092933ef779ad9bde0c665419f685651a85
+      body_path: sources/http_captures/btc-e-doj-2017/primary/www.justice.gov__archives-opa-pr-russian-national-and-bitcoin-exchange-charged-21-count-indictment-operating-alleged__9c617c841b.html
+      note: |
+        DOJ OPA press release "Russian National and Bitcoin Exchange Charged in 21-Count
+        Indictment for Operating Alleged International Money Laundering Scheme and
+        Allegedly Laundering Funds From Hack of Mt. Gox" (2017-07-26). BTC-e (Canton
+        Business Corporation) 21-count indictment in NDCA, naming Alexander Vinnik as
+        principal operator. Historical anchor — **earliest crypto-exchange enforcement
+        event in the dataset** (predates OFAC's first crypto-related SDN by 16 months).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level press-release timing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    BTC-e entity (Canton Business Corporation) + Alexander Vinnik individual. No
+    digital-currency addresses enumerated in the DOJ press release; Mt. Gox
+    hack-flow BTC clusters referenced in the 21-count indictment are not attached
+    here. Canonical BTC-e domain btc-e.com was seized by DOJ in parallel action.
+  protocol: null
+  actor_type: exchange
+  actor_name: BTC-e (Canton Business Corporation)
+  chains: [bitcoin]
+  canonical_domains:
+    - btc-e.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [btc-e.com]
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across:
+        btc-e.com  2017-06-26..2017-08-26  -> 0 results
+      All 1 queries returned 0 measurements.
+      Artifact: sources/l0_datasets/btc-e-doj-2017/btc-e.com__ooni.json
+      (body_hash sha256:992e3a6464e32bba4980a4153494856dae559dad55ecf490b2c5ed062515c5ba).
+      Measurement-gap finding: OONI volunteer probe coverage is absent.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [btc-e.com]
+    note: |
+      Canonical btc-e.com was seized by DOJ in parallel with the 2017-07-26 indictment.
+      Wayback CDX shows the domain resolving to a US-seizure-banner (DOJ / IRS-CI) from
+      event day onward. Attached below as observed_change with primary_legal
+      attribution.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:btc_e_com
+    event: canonical_domain_seized_by_DOJ_IRSCI
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-07-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/archives/opa/pr/russian-national-and-bitcoin-exchange-charged-21-count-indictment-operating-alleged
+        body_hash: sha256:510ff33edce09e1fda4ddadc38bf0092933ef779ad9bde0c665419f685651a85
+        body_path: sources/http_captures/btc-e-doj-2017/primary/www.justice.gov__archives-opa-pr-russian-national-and-bitcoin-exchange-charged-21-count-indictment-operating-alleged__9c617c841b.html
+        note: |
+          DOJ press release explicitly states domain seizure in coordinated parallel
+          action. Seizure banner substituted the live site; Wayback shows transition
+          from exchange UI pre-event to DOJ/IRS-CI seizure banner post-event. Primary
+          legal artifact for the observed_change.
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20170727000000/http://btc-e.com/
+        wayback: https://web.archive.org/web/20170727000000/http://btc-e.com/
+        note: |
+          Wayback snapshot of btc-e.com post-event shows the seizure banner
+          replacing the active exchange UI. Independent archival anchor for the
+          observed_change — Wayback CDX calendar confirms state transition
+          bracketing 2017-07-26.
+
+analysis_notes: |
+  comparison — earliest crypto-exchange enforcement event in the dataset
+  (16 months before the 2018-11-28 Iran-ransomware first OFAC crypto SDN).
+  BTC-e indictment + domain seizure under DOJ NDCA + Greek authorities (Vinnik
+  arrested in Greece day-of). Pre-PBS, pre-Tether-freeze, pre-OFAC-crypto-SDN
+  era; the only cross-layer signal is L4 domain seizure.
+
+scoped_claim: |
+  "DOJ NDCA indictment of BTC-e / Alexander Vinnik on 2017-07-26 was accompanied
+  by a same-day seizure of the canonical btc-e.com domain, documenting the
+  earliest L4 frontend seizure in the dataset and establishing the pre-OFAC
+  baseline for crypto-exchange enforcement cross-layer cascade shape."
+
+tags:
+  - doj_enforcement
+  - exchange_indictment
+  - domain_seizure
+  - historical_anchor
+  - pre_ofac_era

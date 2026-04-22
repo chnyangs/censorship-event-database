@@ -1,0 +1,128 @@
+id: eu-mica-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S6_supranational
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T09:45:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: supranational_regulation
+  actor: EU_Council
+  timestamp: 2023-06-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/eli/reg/2023/1114/oj
+      body_hash: sha256:07e4a5574cc57713ecd12cb3d214843d916a5efc8919e67afc744ef5d35129a1
+      body_path: sources/http_captures/eu-mica-2023/primary/eur-lex.europa.eu__eli-reg-2023-1114-oj__2fcc7e5369.html
+      note: |
+        Regulation (EU) 2023/1114 of the European Parliament and of the
+        Council of 31 May 2023 on Markets in Crypto-Assets (MiCA), published
+        in the Official Journal of the European Union on 2023-06-09.
+        Establishes comprehensive EU-wide regulatory framework for crypto-
+        asset service providers (CASPs), stablecoin issuers (ARTs / EMTs),
+        and custodial wallet providers. Phased application: stablecoin
+        provisions effective 2024-06-30; full CASP licensing regime effective
+        2024-12-30. First supranational (EU-27) unified crypto regulatory
+        framework globally.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level publication timing in EU Official Journal.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All EU-operating Crypto-Asset Service Providers (CASPs) and stablecoin
+    issuers (Asset-Referenced Tokens ARTs + E-Money Tokens EMTs). Affects
+    USDC, USDT, DAI, and any other stablecoin issuer distributing to EU
+    users. CASPs under MiCA include exchanges (e.g. Binance, Coinbase
+    EU operations), custodians, portfolio managers, advisors. No address-
+    level enumeration — this is sector-wide regulation.
+  protocol: null
+  actor_type: supranational_regulatory_framework
+  actor_name: EU Crypto-Asset Service Provider ecosystem (MiCA-regulated)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: Regulation affects licensing/compliance obligations, not frontend takedown. Individual CASPs may reconfigure UI for EU users but no single-domain effect.
+  - layer: asset_onchain
+    status: not_applicable
+    note: MiCA does not mandate issuer freeze; stablecoin provisions constrain new issuance / reserve requirements rather than retroactive address-level action.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: eu_casp_ecosystem
+    event: eu_mica_regulation_published_phased_rollout_begins
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-06-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/eli/reg/2023/1114/oj
+        body_hash: sha256:07e4a5574cc57713ecd12cb3d214843d916a5efc8919e67afc744ef5d35129a1
+        body_path: sources/http_captures/eu-mica-2023/primary/eur-lex.europa.eu__eli-reg-2023-1114-oj__2fcc7e5369.html
+        scope_descriptor:
+          providers: [eu_casp_aggregate, stablecoin_issuers]
+          time_window:
+            - 2023-06-09T00:00:00Z
+            - 2024-12-30T23:59:59Z
+          addresses_cohort: all_eu_operating_casps
+        note: |
+          MiCA OJ publication is the primary legal instrument. EU Council +
+          European Parliament are direct actors. CASPs subject to licensing,
+          capital, custody, and transparency requirements phased through
+          2024-12-30. Direct attribution: the regulation itself mandates
+          the behavior of affected entities.
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/eli/reg/2023/1114/oj
+        body_hash: sha256:07e4a5574cc57713ecd12cb3d214843d916a5efc8919e67afc744ef5d35129a1
+        body_path: sources/http_captures/eu-mica-2023/primary/eur-lex.europa.eu__eli-reg-2023-1114-oj__2fcc7e5369.html
+        note: |
+          Second anchor to the same OJ publication — MiCA Title III (ART),
+          Title IV (EMT), and Title V (CASP) provisions. Cross-reference
+          context for downstream CASP-registration events (2024-12 effective).
+
+analysis_notes: |
+  comparison documenting the EU's 2023-06-09 MiCA Regulation OJ
+  publication — the first supranational unified crypto regulatory
+  framework globally. Distinct from individual EU-member-state actions;
+  MiCA operates at the EU-27 level. Paper-relevant as a regulatory
+  framework that creates the legal substrate for downstream CASP actions
+  (Binance EU compliance, Kraken UK withdrawal, Tether's USDT delisting
+  from some EU CASPs in late 2024). This event captures the regulatory
+  trigger; the downstream CASP actions are separate follow-on events
+  (not yet in dataset — future S5 expansion).
+
+scoped_claim: |
+  "EU MiCA Regulation 2023/1114 publication on 2023-06-09 established the
+  first supranational unified crypto regulatory framework globally, with
+  phased rollout through 2024-12-30. Represents a regulatory-framework-
+  trigger event distinct from SDN-style enforcement; downstream CASP-
+  specific compliance actions are expected as follow-on events through
+  2025."
+
+tags:
+  - nation_state_block
+  - eu_regulation
+  - mica
+  - supranational_framework
+  - crypto_asset_regulation

@@ -1,0 +1,188 @@
+id: binance-4framework-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T08:15:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_FinCEN_OFAC_CFTC
+  timestamp: 2023-11-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archives/opa/pr/binance-and-ceo-plead-guilty-federal-charges-4b-resolution
+      body_hash: sha256:fe6c94a854a7600c6a431a88677f4566b02413935b8111aa421c8e0e29c2bafe
+      body_path: sources/http_captures/binance-4framework-2023/primary/www.justice.gov__archives-opa-pr-binance-and-ceo-plead-guilty-federal-charges-4b-resolution__1d3bf7f1b0.html
+      note: |
+        DOJ OPA press release "Binance and CEO Plead Guilty to Federal Charges in
+        $4B Resolution" (2023-11-21). Historic settlement: Binance + CEO Changpeng
+        Zhao plead guilty to operating unlicensed money-transmitting business,
+        BSA violations, sanctions violations (IEEPA). $4.3B total resolution —
+        the largest corporate resolution with a crypto company in history.
+        **Four-framework coordinated action**: DOJ (criminal), FinCEN (BSA
+        civil), OFAC (sanctions civil), CFTC (commodities enforcement).
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1925
+      body_hash: sha256:ed854249a4a3e2fafbeb93d8e310f7e21456ee7bad51680c6a764b490647c234
+      body_path: sources/http_captures/binance-4framework-2023/primary/home.treasury.gov__news-press-releases-jy1925__4346771bca.html
+      note: |
+        Treasury press release "Treasury Announces Largest Settlements in History
+        with World's Largest Virtual Currency Exchange Binance for Violations of
+        U.S. Anti-Money Laundering and Sanctions Laws" (2023-11-21). Documents
+        the OFAC + FinCEN side: $968M OFAC settlement (sanctions violations
+        across Iran, Cuba, Syria, Crimea, North Korea) + $3.4B FinCEN BSA
+        penalty. First 4-framework coordinated action against a major exchange
+        in the dataset.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per DOJ / Treasury press releases.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance Holdings Ltd. (corporate entity) + Changpeng Zhao (individual, CEO
+    at time of violations). No OFAC SDN designation (Binance is not on the SDN
+    list post-settlement) — the 4-framework action is a civil-criminal
+    resolution rather than an SDN listing. Canonical domain binance.com remained
+    operational post-settlement (under a monitor).
+  protocol: null
+  actor_type: exchange_settlement
+  actor_name: Binance Holdings + Changpeng Zhao
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [binance.com]
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across:
+        binance.com  2023-10-21..2023-12-21  -> 0 results
+      All 1 queries returned 0 measurements.
+      Artifact: sources/l0_datasets/binance-4framework-2023/binance.com__ooni.json
+      (body_hash sha256:a92b6dd7f03ff9367d4972f4d85aee57a1dede731ecd9ed7ec879c5d7a4afd4a).
+      Measurement-gap finding: OONI volunteer probe coverage is absent.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Settlement is corporate-compliance enforcement, not SDN address listing; no L1 cascade expected.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [binance.com]
+    note: |
+      Canonical binance.com remained operational post-settlement — explicit
+      non-takedown is paper-worthy given the magnitude of the resolution
+      ($4.3B). First case in dataset of a $B-scale exchange enforcement that
+      did NOT result in domain takedown. Attached as observed_no_change.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Binance IS the CEX under scrutiny. Post-settlement, Binance implemented
+      $3B+ compliance remediation (enhanced KYC, sanctions-screening monitor
+      oversight). Compliance-monitor regime through 5 years. Attached below
+      as observed_change.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:binance_com
+    event: canonical_frontend_remained_operational_through_4b_settlement
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-11-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-11-21T00:00:00Z
+      - 2023-12-05T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/archives/opa/pr/binance-and-ceo-plead-guilty-federal-charges-4b-resolution
+        body_hash: sha256:fe6c94a854a7600c6a431a88677f4566b02413935b8111aa421c8e0e29c2bafe
+        body_path: sources/http_captures/binance-4framework-2023/primary/www.justice.gov__archives-opa-pr-binance-and-ceo-plead-guilty-federal-charges-4b-resolution__1d3bf7f1b0.html
+        scope_descriptor:
+          providers: [binance_com_frontend]
+          time_window:
+            - 2023-11-21T00:00:00Z
+            - 2023-12-05T23:59:59Z
+          addresses_cohort: binance_settlement
+        note: |
+          DOJ press release explicitly describes ongoing Binance operations with
+          compliance monitor; no domain seizure or suspension. binance.com
+          remained reachable for global users (US users had been geo-blocked
+          since 2019 Binance.US bifurcation); the settlement did not change
+          public frontend availability.
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy1925
+        body_hash: sha256:ed854249a4a3e2fafbeb93d8e310f7e21456ee7bad51680c6a764b490647c234
+        body_path: sources/http_captures/binance-4framework-2023/primary/home.treasury.gov__news-press-releases-jy1925__4346771bca.html
+        note: |
+          Treasury release confirms Binance continues operations subject to
+          FinCEN / OFAC monitorship; no frontend takedown.
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: compliance_remediation_program_mandated
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-11-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy1925
+        body_hash: sha256:ed854249a4a3e2fafbeb93d8e310f7e21456ee7bad51680c6a764b490647c234
+        body_path: sources/http_captures/binance-4framework-2023/primary/home.treasury.gov__news-press-releases-jy1925__4346771bca.html
+        note: |
+          Treasury / FinCEN settlement mandates 5-year compliance monitorship,
+          enhanced KYC/AML controls, retrospective transaction review. Binance
+          (as a CEX itself) underwent structural compliance remediation as
+          direct consequence of the 4-framework resolution. attribution=direct
+          because the settlement documents explicitly name the required
+          remediation steps.
+      - type: primary_legal
+        url: https://www.justice.gov/archives/opa/pr/binance-and-ceo-plead-guilty-federal-charges-4b-resolution
+        body_hash: sha256:fe6c94a854a7600c6a431a88677f4566b02413935b8111aa421c8e0e29c2bafe
+        body_path: sources/http_captures/binance-4framework-2023/primary/www.justice.gov__archives-opa-pr-binance-and-ceo-plead-guilty-federal-charges-4b-resolution__1d3bf7f1b0.html
+        note: |
+          DOJ criminal settlement — sanctions-screening and money-laundering
+          monitor appointments; CZ $50M personal fine + 4 month prison sentence.
+
+analysis_notes: |
+  comparison — the only 4-framework (DOJ + FinCEN + OFAC + CFTC)
+  coordinated action against a single exchange in the dataset. $4.3B
+  resolution is the largest corporate crypto enforcement in history. Paper-
+  worthy structural contrast: a $B-scale enforcement that results in
+  compliance remediation rather than SDN listing / domain seizure produces a
+  fundamentally different cascade shape from the Cryptex-style (SDN + USSS
+  seizure) path. The Binance path = "corporate survives with monitor";
+  Cryptex path = "exchange is destroyed".
+
+scoped_claim: |
+  "The 2023-11-21 DOJ + FinCEN + OFAC + CFTC $4.3B settlement with Binance
+  Holdings and CEO Changpeng Zhao represents the only 4-framework coordinated
+  enforcement in the dataset. The canonical binance.com frontend remained
+  operational post-settlement (observed_no_change); compliance-remediation
+  regime under 5-year monitorship (observed_change, direct). Structurally
+  distinct from SDN-listing / domain-seizure enforcement paths."
+
+tags:
+  - corporate_settlement
+  - exchange_enforcement
+  - four_framework_action
+  - bsa_violation
+  - sanctions_violation

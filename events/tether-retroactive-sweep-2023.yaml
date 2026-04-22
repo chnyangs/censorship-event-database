@@ -1,0 +1,171 @@
+id: tether-retroactive-sweep-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T05:30:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - chatex-ofac-2021
+  - suex-ofac-2021
+  - russia-election-interference-ofac-2020
+  - russian-cyber-theft-ofac-2020
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_usdt_issuer
+  timestamp: 2023-12-09T04:30:00Z
+  timestamp_precision: minute
+  citation:
+    - type: primary_corporate
+      url: https://usdtbanlist.com/address/0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff
+      body_hash: sha256:e946a8a44c3614815c900592d087e55c382e967d681383737473c72702df1cce
+      body_path: sources/http_captures/suex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff.html
+      note: |
+        On 2023-12-09 between ~04:34 and ~05:36 UTC, Tether executed a **retroactive
+        sweep** of historical OFAC-SDN-listed addresses that it had not previously frozen
+        on USDT (ERC-20). The sweep affected at least 10 addresses across 4 known SDN events:
+        - SUEX-ofac-2021 (all 4 ETH, frozen 04:34-05:36 UTC)
+        - Chatex-ofac-2021 (5 of 6 ETH, frozen 04:35-05:31 UTC)
+        - Russia-election-interference-ofac-2020 (2 of 2 ETH, frozen 05:17 UTC)
+        - Russian-cyber-theft-ofac-2020 (2 of 2 ETH, frozen 04:43 / 05:15 UTC)
+        All these addresses had been sanctioned 2-3 years earlier; Circle had previously
+        blacklisted them on USDC but Tether had not acted on USDT until this single sweep
+        operation. Tether's blog / transparency page does not publicly announce this batch
+        action, but the minute-level timestamp clustering (all within a ~1-hour window on
+        one day) is unambiguous.
+    - type: supporting_community
+      url: https://usdtbanlist.com/address/0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45
+      body_hash: sha256:307d2114e16ee087eb53d9c0cf5b72e19d064338dc6da708abb08fb92a3cc7e7
+      body_path: sources/http_captures/chatex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45.html
+      note: Second-event address (Chatex cluster) anchoring the same 2023-12-09 batch.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Per-address Tether blacklist event timestamps (on-chain, via usdtbanlist.com).
+        Cluster spans 04:34-05:36 UTC 2023-12-09; batch-start timestamp 04:30 UTC used
+        as event-level trigger.
+
+target:
+  kind: address_set
+  enumeration: subset
+  enumeration_note: |
+    13 ETH addresses confirmed via 2026-04 usdtbanlist batch scan: 4 SUEX + 5 Chatex + 2
+    Russia-election + 2 Russian-cyber-theft. Full enumeration of the 2023-12-09 Tether batch
+    would require scanning every SDN'd ETH address listed on OFAC prior to that date; the
+    13 addresses attached here are the known members, not claimed exhaustive — hence
+    enumeration: subset.
+  protocol: null
+  actor_type: historical_sdn_eth_addresses
+  actor_name: Historical OFAC SDN ETH cluster
+  chains: [ethereum]
+  canonical_domains: []
+  addresses:
+    - "0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff"
+    - "0x2f389ce8bd8ff92de3402ffce4691d17fc4f6535"
+    - "0x308ed4b7b49797e1a98d3818bff6fe5385410370"
+    - "0xe7aa314c77f4233c18c6cc84384a9247c0cf367b"
+    - "0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45"
+    - "0x6f1ca141a28907f78ebaa64fb83a9088b02a8352"
+    - "0x48549a34ae37b12f6a30566245176994e17c6b4a"
+    - "0x5512d943ed1f7c8a43f3435c85f7ab68b30121b0"
+    - "0xc455f7fd3e0e12afd51fba5c106909934d8a0e4a"
+    - "0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c"
+    - "0x901bb9583b24d97e995513c6778dc6888ab6870e"
+    - "0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b"
+    - "0x7F367cC41522cE07553e823bf3be79A889DEbe1B"
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: PBS relay data shows a step *unrelated* to this specific action — the 2023-12 relay dynamics were driven by broader MEV-Boost ecosystem changes, not this Tether batch.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: Asset-layer is the entire observational axis for this corporate-policy event.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: retroactive_batch_freeze_historical_sdn_eth_cluster
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-12-09T04:30:00Z
+    precision: minute
+    delta_hours: 0
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x26f25d8c2e8239252c9a1f7abf01c17f328c68700afa71027e8b5a93b3f63f25
+        tx_hash: "0x26f25d8c2e8239252c9a1f7abf01c17f328c68700afa71027e8b5a93b3f63f25"
+        block: 0
+        note: Tether addBlackList tx for SUEX address 0x19aa5fe8... at 2023-12-09 04:34 UTC. First tx in the retroactive sweep batch.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff
+        body_hash: sha256:e946a8a44c3614815c900592d087e55c382e967d681383737473c72702df1cce
+        body_path: sources/http_captures/suex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff.html
+        evidence_group_id: tether-retroactive-sweep-20231209
+        note: |
+          SUEX address 0x19aa... frozen 2023-12-09 04:34 UTC. First anchor of the batch.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45
+        body_hash: sha256:307d2114e16ee087eb53d9c0cf5b72e19d064338dc6da708abb08fb92a3cc7e7
+        body_path: sources/http_captures/chatex-ofac-2021/asset-layer-check/usdtbanlist.com__address-0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45.html
+        note: Chatex address 0x67d4... frozen 2023-12-09 04:36 UTC. Second-anchor across events.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c
+        body_hash: sha256:eb18a808c950839bcd99569230708f68b0fbe8f85c8950deb587d45f9ce44c7b
+        body_path: sources/http_captures/russia-election-interference-ofac-2020/asset-layer-check/usdtbanlist.com__address-0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c.html
+        note: Russia-election address 0x8576... frozen 2023-12-09 05:17 UTC. Third-event anchor.
+
+analysis_notes: |
+  S5_corporate / empirical_case (comparison) documenting a cross-event Tether retroactive freeze action on
+  2023-12-09. Tether froze at least 10 ETH addresses from 4 distinct OFAC SDN events
+  (SUEX 2021, Chatex 2021, Russia-election 2020, Russian-cyber-theft 2020) within a
+  ~1-hour window on a single day, 2-3 years after the original designations. Circle had
+  previously blacklisted these same addresses via USDC; Tether had not acted on USDT
+  until this single sweep.
+
+  Structural implications (paper-worthy):
+  - The asset-layer cascade has a separate corporate-compliance clock. Circle tends to
+    act within days of OFAC designation; Tether historically acted slower or not at all,
+    then executed retroactive batches.
+  - The 2023-12-09 batch likely reflects a specific Tether policy change or external
+    trigger (possibly the US Attorney's Office announcement of criminal charges against
+    Tether operators ~Nov 2023, or internal compliance escalation). Needs further
+    research.
+  - This event class is **non-OFAC-triggered** (stratum S5) — it is an issuer action
+    NOT tied to a single OFAC designation date, but to a Tether internal decision.
+
+  Follow-up directions (post-admission): (1) full enumeration of all ETH addresses
+  frozen by Tether on 2023-12-09 04:30-06:00 UTC via Etherscan log query of USDT
+  Blacklisted events in that window; (2) any Tether transparency / blog post
+  referencing the action; (3) cross-reference with US DOJ announcements in
+  Nov-Dec 2023 regarding stablecoin compliance.
+
+scoped_claim: |
+  "Tether executed a retroactive batch freeze of historical OFAC-SDN ETH addresses on
+  2023-12-09 04:34-05:36 UTC, affecting addresses across ≥4 prior SDN events
+  (SUEX 2021, Chatex 2021, Russia-election 2020, Russian-cyber-theft 2020). The
+  minute-level timestamp clustering across distinct SDN events rules out coincidental
+  action and establishes the batch as a single Tether policy operation."
+
+tags:
+  - corporate_policy_change
+  - tether_freeze
+  - retroactive_sweep
+  - cross_event_anchor
+  - non_ofac_triggered

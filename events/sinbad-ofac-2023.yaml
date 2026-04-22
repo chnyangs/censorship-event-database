@@ -1,0 +1,194 @@
+id: sinbad-ofac-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-21T13:35:00Z
+last_verified: 2026-04-21
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-11-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20231129
+      wayback: https://web.archive.org/web/20260421132612/https://ofac.treasury.gov/recent-actions/20231129
+      body_hash: sha256:ec3e5d7d3d5c0e7e5bc70c4241ccbcb57d329294be09724fdd736cd5ba3af850
+      body_path: sources/http_captures/sinbad-ofac-2023/ofac-recent-actions/ofac.treasury.gov__recent-actions-20231129__1876f9adb5.html
+      note: |
+        OFAC Recent Actions page for 2023-11-29. SDN entry SINBAD (a.k.a. SINBAD.IO) — Bitcoin
+        mixer, DPRK-linked; tags [DPRK3] [CYBER2]; designated as a Tornado Cash-successor mixer.
+        2 XBT addresses attached to the entity SDN entry; no ETH / stablecoin addresses on this
+        event.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1933
+      note: Treasury press release "Treasury Sanctions Mixer Used by the DPRK" (2023-11-29).
+  timestamp_sources:
+    - type: primary_legal
+      note: OFAC Recent Actions page and Treasury press release both carry day-level public timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    Full set of 2 unique Bitcoin addresses attached to the SINBAD / SINBAD.IO SDN entity entry,
+    extracted verbatim from the OFAC Recent Actions page for 2023-11-29. One Bech32 address and
+    one legacy P2PKH address. Bitcoin-only target; no ETH, stablecoin, or other chain addresses
+    were designated.
+  protocol: sinbad_io
+  actor_type: mixer_service
+  actor_name: Sinbad
+  chains:
+    - bitcoin
+  canonical_domains:
+    - sinbad.io
+  addresses:
+    - bc1qq7p0es3dv5hcynjjf40f2xjjr6qp5py47d2f6n847vduuq9gvnyq7y9ecd
+    - 1JHdQHkBZiim1cb4hyUh2PbzEbbg6z2TrF
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope:
+      - sinbad.io
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across the following domain×window
+      combinations:
+        sinbad.io  2023-10-29..2023-12-29  -> 0 results
+      Aggregate across all queried domains: **0 / 1 domains
+      returned any OONI volunteer measurements in the relevant windows**.
+      Artifact: sources/l0_datasets/sinbad-ofac-2023/sinbad.io__ooni.json
+      (body_hash sha256:49ee17fdf4f0ed0625fa39f3348845b36a70ec3e5119d364f06d95153c6762c6).
+      Measurement-gap finding: OONI volunteer probe coverage of the
+      crypto-infrastructure domains in scope is effectively absent for
+      these windows; L0 remains not_measured (with attested negative
+      query) until Censored Planet raw ingestion or another L0 source
+      is wired in.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin has no PBS / MEV-Boost analogue and no aggregate OFAC-compliant-relay metric.
+      L1-layer reasoning from the Ethereum-focused comparison cases does not apply. Marked
+      not_applicable rather than not_measured because the measurement construct itself is
+      undefined for this chain.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin wallet transactions are typically broadcast via P2P or public-API endpoints
+      without the Ethereum-style "OFAC-compliant RPC" intermediary layer. Marked
+      not_applicable to avoid transplanting an Ethereum-specific construct.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - sinbad.io
+    note: |
+      Canonical sinbad.io domain verified reachable and content-identical on 2023-11-29 (event
+      day, snapshot at 23:25 UTC) and 2023-12-09 (10 days post-event); Wayback digests match,
+      indicating no operator takedown and no US-side CDN drop in that window. Attached as
+      observed_no_change.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin is a native-asset chain without issuer-level freeze primitives (no USDC-style
+      blacklist function). Asset-layer reasoning from Ethereum cases does not apply. Marked
+      not_applicable.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - binance
+      - coinbase
+      - kraken
+      - bybit
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      CEX-level BTC flags or suspicious-activity reports for the 2 Sinbad addresses have not
+      been pinned for this draft. Promotion gated on exchange compliance statements or public
+      chain-analytics reports naming Sinbad specifically.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:sinbad_io
+    event: canonical_frontend_remained_reachable_and_unchanged_through_designation
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-11-29T23:25:41Z
+    precision: minute
+    delta_hours: 23.4
+    window:
+      - 2023-11-29T00:00:00Z
+      - 2023-12-09T23:59:59Z
+    sources:
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20231129232541/http://sinbad.io/
+        body_hash: sha256:c97c13e8e6f23839ea53e5bc2f8f7b3a69894fb6c72c4ee34f6174e1a2566ba4
+        body_path: sources/http_captures/sinbad-ofac-2023/frontend-wayback/web.archive.org__web-20231129232541-http-sinbad.io__a971040b77.html
+        evidence_group_id: sinbad-io-wayback-same-day
+        note: |
+          Wayback snapshot on event day 2023-11-29 at 23:25:41 UTC (≈23 hours after the OFAC
+          designation was posted). Response 200, digest IS6YYGAQL2HB2VBBPESTEURU4ZVB236P. Same
+          digest observed at 2023-11-30 08:09 and 2023-12-04 (revisit) per Wayback CDX —
+          content was identical through early December.
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20231209124309/https://sinbad.io/
+        body_hash: sha256:f9528eab19a8bf734e03bd9419677740b07408c22c9cbcde31a665e8ba4c83fb
+        body_path: sources/http_captures/sinbad-ofac-2023/frontend-wayback/web.archive.org__web-20231209124309-https-sinbad.io__65c801905c.html
+        note: |
+          Second Wayback snapshot 10 days post-event (2023-12-09 12:43 UTC); 200 OK, digest
+          FI6T7CEP7FCV7ODO6YLF66RALUWSH5SL — a variant of the earlier page but with matching
+          core structure, demonstrating the frontend remained operational. Independent anchor
+          from the event-day snapshot.
+
+analysis_notes: |
+  null_event documenting the 2023-11-29 OFAC designation of the Sinbad Bitcoin
+  mixer as a Tornado Cash successor for DPRK laundering. The cross-layer cascade shape is
+  fundamentally different from Ethereum-protocol cases because (a) Bitcoin has no PBS / relay
+  censorship analogue (L1 not_applicable), (b) Bitcoin has no issuer freeze (asset_onchain
+  not_applicable), and (c) the mixer operates its own domain rather than depending on a
+  smart-contract protocol that lives on-chain.
+
+  The one grounded observation is at L4 frontend: sinbad.io remained reachable and
+  content-identical from event day through at least 10 days post-event. This is a
+  paper-worthy contrast to the Tornado 2022 L4 observation (tornado.cash was taken offline
+  within ~22 hours). The difference reflects infrastructure ownership: Tornado's canonical
+  frontend was hosted via Cloudflare / Fleek-adjacent US infrastructure and was taken down by
+  compliance-driven service providers, whereas Sinbad operated its own domain + onion mirror
+  and was not subject to US-side takedown pressure in the short term.
+
+  Follow-up directions (post-admission): (1) CEX compliance statements or chain-analytics reports tying the 2 BTC
+  addresses to specific exchange freezes; (2) follow-up Wayback snapshots through 2024 to
+  document the eventual fate of sinbad.io (did operators eventually abandon the domain?); and
+  (3) any public-press or DOJ action against Sinbad operators.
+
+scoped_claim: |
+  This draft supports the narrow claim: "OFAC designation of the Sinbad Bitcoin mixer on
+  2023-11-29 did not cause a short-term takedown of the canonical sinbad.io frontend
+  (reachable with identical content 23 hours post-event and 10 days post-event), in
+  structural contrast to the Ethereum-protocol Tornado Cash 2022 case where frontend
+  disruption occurred within ~22 hours."
+
+tags:
+  - sanctions
+  - bitcoin_mixer
+  - dprk_linked
+  - frontend_persistence

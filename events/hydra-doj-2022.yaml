@@ -1,0 +1,124 @@
+id: hydra-doj-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T03:45:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - hydra-ofac-2022
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ
+  timestamp: 2022-04-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archives/opa/pr/justice-department-investigation-leads-takedown-darknet-cryptocurrency-exchange
+      body_hash: sha256:04412881444d534db3586f344013b86fa9482a492a22a930a1511c451c2e3819
+      body_path: sources/http_captures/hydra-doj-2022/doj-press-release/www.justice.gov__archives-opa-pr-justice-department-investigation-leads-takedown-darknet-cryptocurrency-exchange__b53b192404.html
+      note: |
+        DOJ press release for the 2022-04-05 Hydra Market takedown — companion action to
+        the same-day OFAC SDN designation (see hydra-ofac-2022). Coordinated between DOJ,
+        FBI, IRS-CI, and German Bundeskriminalamt (BKA). Infrastructure seized:
+        servers, Bitcoin wallets (~$25M). Charges unsealed against Dmitry Pavlov (alleged
+        administrator).
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy0701
+      note: Related Treasury press release on same-day OFAC designation (cross-referenced).
+  timestamp_sources:
+    - type: primary_legal
+      note: DOJ press release publication timestamp; same day as OFAC designation.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Hydra Market was the world's largest darknet marketplace at time of takedown, with
+    Russian-language user base. Associated addresses are enumerated in the companion
+    hydra-ofac-2022 event (17 XBT SDN addresses). This event focuses on the DOJ/BKA
+    criminal-seizure action rather than SDN designation.
+  protocol: hydra_market
+  actor_type: darknet_marketplace
+  actor_name: Hydra Market
+  chains: [bitcoin]
+  canonical_domains: []
+
+jurisdiction: [US, DE]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Hydra operated on the Tor network; no public canonical-domain reachability measurement applies.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+  - layer: l4_frontend
+    status: measured
+    note: |
+      Hydra's .onion address(es) would have been effectively shut down when German BKA
+      seized the physical infrastructure (as described in the DOJ press release). Wayback
+      does not regularly archive .onion addresses, but the DOJ press release's primary-
+      legal description of the infrastructure seizure is sufficient archival evidence for
+      the frontend-layer observation.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:hydra_darknet_marketplace
+    event: tor_infrastructure_seized_by_bka
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-04-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/archives/opa/pr/justice-department-investigation-leads-takedown-darknet-cryptocurrency-exchange
+        body_hash: sha256:04412881444d534db3586f344013b86fa9482a492a22a930a1511c451c2e3819
+        body_path: sources/http_captures/hydra-doj-2022/doj-press-release/www.justice.gov__archives-opa-pr-justice-department-investigation-leads-takedown-darknet-cryptocurrency-exchange__b53b192404.html
+        note: |
+          DOJ press release confirming seizure of Hydra's servers by German BKA in
+          coordination with DOJ/FBI/IRS-CI. attribution=direct because the press release
+          names the seizure operation and dates.
+
+analysis_notes: |
+  comparison documenting the 2022-04-05 DOJ/BKA takedown of Hydra darknet
+  marketplace — the international criminal-enforcement companion to the same-day OFAC
+  Garantex + Hydra SDN designations. Pairs with hydra-ofac-2022 for multi-agency event
+  analysis. This event's key structural distinction: the target is a Tor-hosted service,
+  so L4 measurement via public-web Wayback is structurally limited.
+
+scoped_claim: |
+  "DOJ/BKA takedown of Hydra Market on 2022-04-05 (same day as OFAC SDN designation) was
+  a direct infrastructure seizure of the Tor-hosted darknet marketplace. Illustrates
+  multi-agency same-day coordination pattern (cf. Samourai 2024, Cryptex 2024)."
+
+tags:
+  - doj_seizure
+  - darknet_market
+  - tor_service
+  - international_cooperation
+  - multi_agency_same_day

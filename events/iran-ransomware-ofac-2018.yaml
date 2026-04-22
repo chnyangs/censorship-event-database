@@ -1,0 +1,155 @@
+id: iran-ransomware-ofac-2018
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T01:00:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2018-11-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20181128
+      wayback: https://web.archive.org/web/20260421140931/https://ofac.treasury.gov/recent-actions/20181128
+      body_hash: sha256:cd4dc480fb0a3659458f82d30e107a61fb1059f933464d43472c228fe4bc4c40
+      body_path: sources/http_captures/iran-ransomware-ofac-2018/ofac-recent-actions/ofac.treasury.gov__recent-actions-20181128__d39d4e5882.html
+      note: |
+        OFAC Recent Actions page for 2018-11-28. **Historically the first-ever SDN entries to
+        include digital-currency addresses** ("for the First Time Identifies Associated Digital
+        Currency Addresses" per the press-release title). Two Iranian individuals:
+        Mohammad GHORBANIYAN (aka EnExchanger, website enexchanger.com) and Ali KHORASHADIZADEH
+        — SamSam-ransomware facilitators. Each carries one XBT address. Tag [CYBER2].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sm556
+      note: Treasury press release "Treasury Designates Iran-Based Financial Facilitators of Malicious Cyber Activity and for the First Time Identifies Associated Digital Currency Addresses" (2018-11-28).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    2 unique Bitcoin addresses — one per individual SDN entry. The historical anchor of the
+    entire dataset: the first on-chain sanction action in OFAC's history.
+  protocol: null
+  actor_type: individuals
+  actor_name: GHORBANIYAN + KHORASHADIZADEH
+  chains:
+    - bitcoin
+  canonical_domains:
+    - enexchanger.com
+  addresses:
+    - 1AjZPMsnmpdK2Rv9KQNfMurTXinscVro9V
+    - 149w62rY42aZBox8fGcmqNsXUzSStKeq8C
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [enexchanger.com]
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin + pre-Merge by 1387 days.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [enexchanger.com]
+    note: |
+      enexchanger.com (Ghorbaniyan's listed website) measured via Wayback snapshots pre- and
+      post-event: 2018-11-23 (5 days pre-event) and 2018-12-12 (14 days post-event). Both
+      return 303 redirects — the domain was a redirect shell, not a hosted application.
+      Persistence through the event suggests no US-side takedown of the Iranian-operated
+      redirect. Partially measured because the small-body redirect responses don't give rich
+      application-state evidence.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin native asset — no issuer freeze primitive.
+  - layer: offramp_cex
+    status: not_measured
+    scope: [binance, kraken]
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      CEX deposit blocks on the 2 XBT addresses would be the primary observational axis; not
+      yet pinned. Given the pre-Chainalysis-tagging-era timing, documentation is sparse.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:enexchanger_com
+    event: redirect_shell_unchanged_pre_and_post_designation
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2018-11-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2018-11-23T00:00:00Z
+      - 2018-12-12T23:59:59Z
+    sources:
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20181123094507/http://enexchanger.com/
+        body_hash: sha256:dcb7c6e97a55aba3e84245fe4bbff63e4255e33eff0e2feb5f682cab834dd1a7
+        body_path: sources/http_captures/iran-ransomware-ofac-2018/frontend-wayback/web.archive.org__web-20181123094507-http-enexchanger.com__cf3a7b8821.html
+        evidence_group_id: enexchanger-wayback-bracket
+        note: |
+          Pre-event Wayback snapshot 2018-11-23 (5 days before designation). 303 redirect with
+          digest 4WO4P3H4OIGHSLGBJG2L3SGKLOED3WNU per CDX.
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/20181212063124/http://www.enexchanger.com/
+        body_hash: sha256:85842344f112567e6cb7de348a9b3343957a448154d327b14e50eb14966450f2
+        body_path: sources/http_captures/iran-ransomware-ofac-2018/frontend-wayback/web.archive.org__web-20181212063124-http-www.enexchanger.com__b9cb6763bc.html
+        note: |
+          Post-event Wayback snapshot 2018-12-12 (14 days after designation). 303 redirect
+          with digest JQ4LSL5LOS2KX6REN2UWAGNQBX5GEK4C; differs from pre-event digest because
+          it resolves the www. subdomain (different Host header path), but structurally the
+          same redirect-shell shape. The domain operator did not shut it down and US-side
+          infrastructure (DNS / CDN / registrar) did not enforce the OFAC listing against the
+          cleartext domain.
+
+analysis_notes: |
+  null_event documenting the historical anchor of the entire dataset: the
+  2018-11-28 Iran ransomware facilitators designation, when OFAC first attached digital-
+  currency addresses to an SDN entry. Individual-level targeting (not protocol / service),
+  Bitcoin-only, no asset-layer freeze primitive, pre-Merge by 3.8 years.
+
+  The one observable is L4: the Iranian-operated enexchanger.com redirect shell persisted
+  through the event with no evidence of takedown. This is consistent with later foreign-
+  operator persistence cases (SUEX 2021, Sinbad 2023).
+
+  Admitting as null_event because the L1/L3/asset layers are all structurally
+  not_applicable and only a passive L4 null is available; the event is effectively a pure
+  legal designation with no cross-layer cascade measurable.
+
+scoped_claim: |
+  "OFAC first on-chain sanction (2018-11-28 Iran ransomware facilitators) produced no
+  observable cross-layer cascade. The targeted individuals' associated website (enexchanger.com)
+  persisted unchanged through a 20-day window bracketing the designation. Direct asset-layer
+  reactions are structurally impossible (Bitcoin native chain, no issuer freeze) and L1 / L3
+  Ethereum layers did not yet have OFAC-relevant infrastructure."
+
+tags:
+  - sanctions
+  - first_on_chain_designation
+  - iran_related
+  - individual_designation

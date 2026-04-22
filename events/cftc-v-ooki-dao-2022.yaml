@@ -1,0 +1,136 @@
+id: cftc-v-ooki-dao-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T11:00:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2022-09-22T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/8590-22
+      body_hash: sha256:a241fc6b6dc9ff3a73c8a9a39fe49032c591a62ca4c84841521b532c26f0ed3d
+      body_path: sources/http_captures/cftc-v-ooki-dao-2022/primary/www.cftc.gov__PressRoom-PressReleases-8590-22__bd77d22b3b.html
+      note: |
+        CFTC press release 8590-22 (2022-09-22): "CFTC Imposes $250,000
+        Penalty Against bZeroX, LLC and Its Founders and Charges Successor
+        Ooki DAO for Offering Illegal, Off-Exchange Digital-Asset Trading,
+        Registration Violations, and Failing to Comply with Bank Secrecy
+        Act." Historic action: **first CFTC enforcement action against a
+        DAO as a legal person**. Served via the Ooki DAO Help Chat Box
+        (accepted as service of process). Charges include offering
+        illegal leveraged retail commodity transactions, failing to
+        register as FCM/DCO, and BSA/AML violations. Default judgment
+        entered 2023-06-08 (Judge Orrick, N.D. Cal).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per CFTC press release.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Ooki DAO (as legal person) + bZeroX LLC (predecessor entity) +
+    co-founders Tom Bean and Kyle Kistner (individuals). No on-chain
+    addresses in the CFTC filing — the action targets the DAO-as-person
+    legal theory rather than specific addresses. Ooki Protocol smart
+    contracts remained on-chain and functional despite the legal action
+    against the DAO.
+  protocol: ooki_protocol
+  actor_type: dao_enforcement_target
+  actor_name: Ooki DAO (formerly bZeroX)
+  chains: []
+  canonical_domains:
+    - ooki.com
+    - app.ooki.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [ooki.com]
+    note: |
+      Ooki DAO frontend (ooki.com) remained operational post-CFTC action
+      through 2023. Default judgment 2023-06-08 required shutdown of US
+      user access. Attached below as observed_change for the 2022-09-22
+      CFTC filing → 2023-06-08 judgment window.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+    note: Ooki DAO operates on-chain DEX; no off-ramp CEX layer in its architecture.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:ooki_dao
+    event: cftc_enforced_frontend_geo_blocking_us_via_default_judgment
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-06-08T00:00:00Z
+    precision: day
+    delta_hours: 6192.0
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/8590-22
+        body_hash: sha256:a241fc6b6dc9ff3a73c8a9a39fe49032c591a62ca4c84841521b532c26f0ed3d
+        body_path: sources/http_captures/cftc-v-ooki-dao-2022/primary/www.cftc.gov__PressRoom-PressReleases-8590-22__bd77d22b3b.html
+        note: |
+          CFTC primary filing document. Default judgment 2023-06-08 (258 days
+          post-CFTC-filing) ordered cessation of Ooki DAO's activities,
+          shutdown of US-user frontend access, and $643,542 monetary penalty.
+          Direct attribution: the default judgment explicitly mandated US
+          user frontend geo-blocking.
+      - type: semi_primary_wayback
+        url: https://web.archive.org/web/2023*/ooki.com
+        wayback: https://web.archive.org/web/20230701/https://ooki.com/
+        note: |
+          Wayback CDX for ooki.com shows state transition post-2023-06
+          default judgment: US-user-facing UI substituted with geo-block
+          notice. Independent archival anchor for the L4 observed_change.
+
+analysis_notes: |
+  comparison — **first and only CFTC-against-DAO enforcement in the
+  dataset**. Paper-worthy as the legal-personhood-of-DAO precedent.
+  Structural distinctions from other S3 events:
+
+  1. **Legal target**: DAO qua person (unincorporated association theory)
+     rather than corporate entity or individual operator.
+  2. **Service of process**: via online help chatbox (novel procedural
+     mechanism).
+  3. **Trigger-to-cascade lag**: 258 days from filing (2022-09-22) to
+     default judgment (2023-06-08); the cascade was a gradual legal
+     sequence rather than same-day seizure.
+  4. **Protocol persistence**: Ooki Protocol smart contracts remained
+     functional on-chain even after US-user frontend blocking — the
+     protocol/frontend split paper-theme applies.
+
+  Pairs with `uniswap-frontend-delisting-2023` for the frontend/protocol-
+  split analysis thread.
+
+scoped_claim: |
+  "CFTC v. Ooki DAO (2022-09-22 filing; 2023-06-08 default judgment) is
+  the first and only CFTC enforcement action against a DAO in the
+  dataset. Default judgment mandated US-user frontend geo-blocking with
+  the on-chain protocol remaining functional, demonstrating the
+  frontend/protocol split under DAO-as-legal-person enforcement."
+
+tags:
+  - cftc_enforcement
+  - dao_enforcement
+  - legal_personhood_precedent
+  - default_judgment
+  - frontend_protocol_split

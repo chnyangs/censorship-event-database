@@ -1,0 +1,122 @@
+id: lazarus-entity-ofac-2019
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T07:00:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - lazarus-laundering-ofac-2020
+  - dprk-usdt-network-ofac-2025
+  - tether-dprk-precommit-freeze-2025
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2019-09-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20190913
+      body_hash: sha256:7c57efc7805c34000026f6ee9374609f5e69212a7655743e20cfcbc5c5c5440b
+      body_path: sources/http_captures/lazarus-entity-ofac-2019/ofac-recent-actions/ofac.treasury.gov__recent-actions-20190913__1d08e1f7ab.html
+      note: |
+        OFAC Recent Actions page for 2019-09-13. Three DPRK-linked cyber entity
+        designations: BLUENOROFF (a.k.a. APT 38 / STARDUST CHOLLIMA), LAZARUS GROUP
+        (a.k.a. APPLEWORM / APT-C-26 / HIDDEN COBRA / ZINC / many other aliases), and
+        ANDARIEL. All three under DPRK3 tag. Secondary sanctions risk flagged under
+        North Korea Sanctions Regulations §510.201 and §510.210. **No on-chain
+        addresses attached to the RA page** — entity-level designation only;
+        addresses were surfaced later in Yinyin/Jiadong 2020-03-02 and subsequent
+        DPRK-laundering events.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sm774
+      note: Treasury press release "Treasury Sanctions North Korean State-Sponsored Malicious Cyber Groups" (2019-09-13).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per OFAC RA page + Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Three DPRK-linked cyber entities: BLUENOROFF, LAZARUS GROUP, ANDARIEL. No
+    digital-currency addresses enumerated on the RA page. Entity-level
+    designation; addresses surface in downstream events (Yinyin/Jiadong 2020,
+    Lazarus laundering 2020, DPRK USDT network 2025).
+  protocol: null
+  actor_type: state_sponsored_cyber_group
+  actor_name: Lazarus Group + Bluenoroff + Andariel
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    note: Pre-Merge by 1097 days; Ethereum PBS / MEV-Boost infrastructure did not exist.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical web presence for a state-sponsored cyber group entity.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No on-chain addresses on the RA page; no issuer freeze primitive to test.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2019-09-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2019-09-13T00:00:00Z
+      - 2019-09-27T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20190913
+        body_hash: sha256:7c57efc7805c34000026f6ee9374609f5e69212a7655743e20cfcbc5c5c5440b
+        body_path: sources/http_captures/lazarus-entity-ofac-2019/ofac-recent-actions/ofac.treasury.gov__recent-actions-20190913__1d08e1f7ab.html
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2019-09-13T00:00:00Z
+            - 2019-09-27T23:59:59Z
+          addresses_cohort: lazarus_entity_designation
+        note: |
+          No public CEX policy statement referencing the Lazarus/Bluenoroff/Andariel
+          entity designations was issued by major exchanges (Binance, Coinbase, Kraken)
+          in the 14-day post-designation window. Observation records absence of public
+          disclosure; private chain-analytics KYT-flag workflows are outside scope.
+
+analysis_notes: |
+  null_event documenting the 2019-09-13 OFAC entity-level designation of
+  three DPRK-linked cyber groups (LAZARUS GROUP, BLUENOROFF, ANDARIEL). First
+  OFAC action explicitly targeting state-sponsored cyber groups; no on-chain
+  addresses on the RA page. Historical anchor for the DPRK-laundering thread
+  (Yinyin 2020, Lazarus laundering 2020, DPRK USDT 2025, Tether pre-commit 2025).
+
+scoped_claim: |
+  "OFAC designation of three DPRK-linked cyber entities (Lazarus Group, Bluenoroff,
+  Andariel) on 2019-09-13 was entity-level with no enumerated on-chain addresses
+  on the RA page. First state-sponsored-cyber-group OFAC action; historical
+  anchor for the DPRK-laundering event thread."
+
+tags:
+  - sanctions
+  - dprk_linked
+  - entity_designation
+  - state_sponsored_cyber
+  - historical_anchor

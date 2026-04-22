@@ -1,0 +1,155 @@
+id: tether-dprk-precommit-freeze-2025
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T05:00:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - dprk-usdt-network-ofac-2025
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_usdt_issuer
+  timestamp: 2025-04-30T07:05:00Z
+  timestamp_precision: minute
+  citation:
+    - type: primary_corporate
+      url: https://usdtbanlist.com/address/TA3941uFAvmVibSkQ6fMJXxmaSNovX86mz
+      body_hash: sha256:5d6317eb4970c6d1f570dc8b37892db66664fd3fab838a1ce879341facf32e50
+      body_path: sources/http_captures/dprk-usdt-network-ofac-2025/asset-layer-check/usdtbanlist.com__address-TA3941uFAvmVibSkQ6fMJXxmaSNovX86mz__a69f3029ba.html
+      note: |
+        Tether executed a batch freeze of at least two DPRK-laundering-network USDT-TRC20
+        addresses on 2025-04-30 07:05 UTC. Both sampled addresses
+        (TA3941uFAvmVibSkQ6fMJXxmaSNovX86mz with 302,676 USDT frozen and
+        TYxwUhoLPF7AgfG9GaXFEp8CQi8K8KG1m3 with 285,733 USDT frozen) show identical freeze
+        timestamp down to the minute, indicating a single batch operation. Tether acted 188
+        days BEFORE the formal OFAC SDN designation (2025-11-04), making this a non-OFAC-
+        triggered corporate policy action — the defining stratum-S5 shape.
+    - type: primary_corporate
+      url: https://usdtbanlist.com/address/TYxwUhoLPF7AgfG9GaXFEp8CQi8K8KG1m3
+      body_hash: sha256:200f60acba98b02da2d51134a4d5b8b731d571ebde3c95bea99402e52462300b
+      body_path: sources/http_captures/dprk-usdt-network-ofac-2025/asset-layer-check/usdtbanlist.com__address-TYxwUhoLPF7AgfG9GaXFEp8CQi8K8KG1m3__f1f6804eff.html
+      note: Second sampled address confirming same 2025-04-30 07:05 UTC batch-freeze timestamp. Independent archival anchor.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Freeze transaction on-chain timestamp via usdtbanlist.com (community tracker
+        parsing Tether blacklist events on TRON). Exact timestamp 2025-04-30 07:05 UTC
+        reflected in both address entries.
+
+target:
+  kind: address_set
+  enumeration: subset
+  enumeration_note: |
+    At least 2 of 53 DPRK-cluster USDT-TRC20 addresses frozen on 2025-04-30. Remaining 51
+    addresses' freeze status not systematically sampled for this draft — promotion to
+    enumeration=complete gated on full batch scan of the 53-address universe (the scanned
+    2/53 both showed matching 2025-04-30 07:05 UTC freeze timestamps, suggesting the
+    remaining 51 were likely frozen in the same batch but this is inference, not
+    measurement).
+  protocol: null
+  actor_type: dprk_laundering_cluster
+  actor_name: DPRK USDT-TRC20 cluster (subset)
+  chains: [tron]
+  canonical_domains: []
+  addresses:
+    - TA3941uFAvmVibSkQ6fMJXxmaSNovX86mz
+    - TYxwUhoLPF7AgfG9GaXFEp8CQi8K8KG1m3
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: tron
+  - layer: l3_rpc
+    status: not_applicable
+    chain: tron
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: measured
+    chain: tron
+    note: |
+      2 of 2 sampled addresses confirmed frozen by Tether on 2025-04-30 07:05 UTC with
+      identical timestamps, frozen balances ranging 285K-302K USDT. Batch-freeze pattern
+      indicates Tether's internal compliance signal triggered simultaneous action on
+      multiple DPRK-cluster addresses.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: batch_freeze_dprk_cluster_pre_ofac_designation
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-04-30T07:05:00Z
+    precision: minute
+    delta_hours: 0
+    sources:
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/29c22d0444c84f77a861064285093eb005cef4ffd656944645766480bcd0bc78
+        tx_hash: "29c22d0444c84f77a861064285093eb005cef4ffd656944645766480bcd0bc78"
+        block: 0
+        note: Tether USDT-TRC20 addBlackList tx for TA3941uFAvmVibSkQ6fMJXxmaSNovX86mz at 2025-04-30 07:05 UTC. Full 64-char tx hash anchored on TRON.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/TA3941uFAvmVibSkQ6fMJXxmaSNovX86mz
+        body_hash: sha256:5d6317eb4970c6d1f570dc8b37892db66664fd3fab838a1ce879341facf32e50
+        body_path: sources/http_captures/dprk-usdt-network-ofac-2025/asset-layer-check/usdtbanlist.com__address-TA3941uFAvmVibSkQ6fMJXxmaSNovX86mz__a69f3029ba.html
+        evidence_group_id: dprk-batch-freeze-20250430
+        note: |
+          Sampled address #1 — frozen balance 302,676 USDT at 2025-04-30 07:05 UTC (tx
+          prefix 29c22d04...d0bc78). attribution=direct because Tether's smart-contract
+          addToBlackList() call is the direct action carrying the freeze.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/TYxwUhoLPF7AgfG9GaXFEp8CQi8K8KG1m3
+        body_hash: sha256:200f60acba98b02da2d51134a4d5b8b731d571ebde3c95bea99402e52462300b
+        body_path: sources/http_captures/dprk-usdt-network-ofac-2025/asset-layer-check/usdtbanlist.com__address-TYxwUhoLPF7AgfG9GaXFEp8CQi8K8KG1m3__f1f6804eff.html
+        note: |
+          Sampled address #2 — frozen balance 285,733 USDT, exact same timestamp 2025-04-30
+          07:05 UTC (tx prefix bd1f7b7f). Matching minute-level timestamps across two
+          independent addresses establish this as a coordinated batch operation rather
+          than two coincidental freezes.
+
+analysis_notes: |
+  comparison documenting a non-OFAC-triggered corporate Tether freeze action
+  against a subset of DPRK-laundering USDT-TRC20 addresses, executed 2025-04-30 07:05 UTC
+  in a batch. Paired with dprk-usdt-network-ofac-2025 (the subsequent OFAC designation
+  on 2025-11-04, 188 days later), this event establishes a rare stratum-S5 datapoint:
+  **the asset-layer cascade can precede the OFAC cascade rather than follow it**.
+
+  Structural implications for the paper:
+  - Cross-layer cascade "direction" is not always top-down from legal trigger to asset
+    layer. In this case, the asset layer (Tether freeze) preceded the legal trigger by
+    6 months.
+  - Tether's internal compliance process has access to intelligence that either comes
+    from US Treasury / FBI / TRM Labs directly, or is developed independently via chain
+    analytics — but either way produces action months before formal OFAC SDN publication.
+  - This challenges simple linear cascade models and supports a networked-reaction view
+    of censorship response.
+
+  Follow-up directions (post-admission): (1) full 53/53 address confirmation vs the 2/53 spot check (batch
+  query already shows 2-of-2 at identical timestamp; extrapolation is reasonable but
+  requires explicit enumeration); (2) attempted interview / FOIA for any Tether
+  Transparency announcements or US agency communications referencing this batch action;
+  (3) cross-reference with Chainalysis / TRM Labs DPRK-cluster tagging dates.
+
+scoped_claim: |
+  "Tether batch-froze a subset of DPRK-laundering USDT-TRC20 addresses on 2025-04-30 at
+  identical minute-precision timestamps, 188 days before the corresponding OFAC SDN
+  designation (2025-11-04). Demonstrates that asset-layer cascade can precede the legal
+  cascade in time, inverting the common top-down cascade model."
+
+tags:
+  - corporate_policy_change
+  - tether_freeze
+  - dprk_related
+  - non_ofac_triggered
+  - reverse_cascade_chronology

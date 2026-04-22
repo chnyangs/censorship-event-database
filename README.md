@@ -293,7 +293,7 @@ p1-event-db/
 
 | | |
 | --- | --- |
-| Editor-in-chief | Xinyuan Yan (<xwy411@gmail.com>) |
+| Editor-in-chief | Xiangwen Yang (<xwy411@gmail.com>) |
 | Capacity commitment | 5-10 h/month for the 12 months following the first admitted release |
 | Inbound response SLA | 48 hours |
 | Release attribution | Monthly CHANGELOG entries carry the editor-in-chief's name on each release line |

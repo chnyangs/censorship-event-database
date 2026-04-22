@@ -1,0 +1,149 @@
+id: aeza-group-ofac-2025
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T02:30:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-07-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20250701
+      wayback: https://web.archive.org/web/20260421143729/https://ofac.treasury.gov/recent-actions/20250701
+      body_hash: sha256:af4c4f34b9a24535fa556b3e8b853f4a4fa6af44b57bde133edd57cbb2476e22
+      body_path: sources/http_captures/aeza-group-ofac-2025/ofac-recent-actions/ofac.treasury.gov__recent-actions-20250701__4afdb9fe8c.html
+      note: |
+        OFAC Recent Actions page for 2025-07-01. AEZA GROUP LLC (Russia-based bulletproof
+        hosting provider) + AEZA INTERNATIONAL LTD (UK) + AEZA LOGISTIC LLC (Russia) +
+        CLOUD SOLUTIONS LLC + multiple individual officers (GAST, KNYAZEV, PENZEV and
+        additional directors). Websites named: aeza.ru, aeza.net, aezadns.com. One TRX
+        digital-currency address attached to AEZA GROUP LLC entity entry. Tags [CAATSA -
+        RUSSIA] [CYBER4].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0188
+      note: Treasury press release "Treasury Sanctions Global Bulletproof Hosting Service Enabling Cybercriminals and Technology Theft" (2025-07-01).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Aeza is treated as an entity-level target (bulletproof hosting provider with multiple
+    aliased corporate shells + affiliated individuals). 1 TRX digital-currency address was
+    attached but the event is primarily an entity / infrastructure designation rather than
+    address-set driven.
+  protocol: aeza_hosting
+  actor_type: hosting_provider
+  actor_name: Aeza Group
+  chains: [tron]
+  canonical_domains:
+    - aeza.ru
+    - aeza.net
+    - aezadns.com
+  addresses:
+    - TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F
+
+jurisdiction:
+  - US
+  - UK
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [aeza.ru, aeza.net]
+    note: |
+      L0 network-layer OONI API query performed 2026-04-22. Searched the
+      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
+      test_name=web_connectivity across:
+        aeza.net  2025-06-01..2025-08-01  -> 0 results
+        aeza.ru  2025-06-01..2025-08-01  -> 0 results
+        aezadns.com  2025-06-01..2025-08-01  -> 0 results
+      All 3 queries returned 0 measurements.
+      Artifact: sources/l0_datasets/aeza-group-ofac-2025/aeza.net__ooni.json
+      (body_hash sha256:43fbb3d557333a0af403d950db2c8320ef9417cf9183b1a9a692e145f73bc0fc).
+      Measurement-gap finding: OONI volunteer probe coverage is absent.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: tron
+    note: TRON has no PBS / relay analogue.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: tron
+  - layer: l4_frontend
+    status: not_measured
+    scope: [aeza.ru, aeza.net]
+    note: Wayback CDX for aeza.ru / aeza.net in the 2025-06 / 2025-07 window not fetched for this draft (CDX API timed out during automated capture). Promotion gated on direct Wayback snapshot anchors.
+  - layer: asset_onchain
+    status: measured
+    chain: tron
+    note: |
+      Full scan via usdtbanlist.com (sources/asset_layer_scan/aeza-group-ofac-2025.json):
+      **1/1 blocked**. Tether USDT-TRC20 froze TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F on
+      **2025-07-02 06:25 UTC — ~30 hours after OFAC designation** (2025-07-01).
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_usdt_tron_blacklist_30h_after_ofac
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-07-02T06:25:00Z
+    precision: minute
+    delta_hours: 30.42
+    sources:
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/38ffd94e58210970bb1c5359aca6794b638530c7555eb3e10cacc3dc8c340fc9
+        tx_hash: "38ffd94e58210970bb1c5359aca6794b638530c7555eb3e10cacc3dc8c340fc9"
+        block: 0
+        note: Tether USDT-TRC20 addBlackList tx for Aeza's TRX address TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F at 2025-07-02 06:25 UTC (~30h after OFAC designation).
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F
+        body_hash: sha256:e256728ea510f7b63a7ddf10549b9b1ca10cebdd470536e87ea66109f49e9a36
+        body_path: sources/http_captures/aeza-group-ofac-2025/asset-layer-check/usdtbanlist.com__address-TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F.html
+        note: usdtbanlist.com community tracker archival anchor.
+
+analysis_notes: |
+  comparison documenting the 2025-07-01 OFAC designation of the Aeza Group
+  bulletproof-hosting network. Entity-level designation of a hosting-infrastructure
+  provider is structurally distinct from the exchange / mixer / wallet cases in the
+  dataset — Aeza is an L0 / L4 infrastructure provider to other illicit services, not a
+  consumer-facing crypto service. The on-chain footprint is small (1 TRX address) but the
+  off-chain (hosting infrastructure, UK corporate shell) surface is large.
+
+  Follow-up directions (post-admission): (1) Wayback CDX for aeza.ru / aeza.net post-event (did UK-side
+  pressure shut aeza.net but leave aeza.ru untouched?); (2) Tether query on the TRX
+  address; (3) UK Companies House state changes on AEZA INTERNATIONAL LTD.
+
+scoped_claim: |
+  "OFAC designation of the Aeza Group Russian bulletproof-hosting network on 2025-07-01
+  targeted an upstream infrastructure layer rather than a consumer-facing crypto service.
+  Primary observational gap: Wayback post-event snapshots of aeza.ru / aeza.net and TRX
+  freeze data not yet attached."
+
+tags:
+  - sanctions
+  - russia_related
+  - bulletproof_hosting
+  - infrastructure_provider

@@ -1,0 +1,128 @@
+version: 0.2.0
+
+# Deprecated 2026-04-22: event_class replaced by three orthogonal fields
+# (research_stratum / empirical_shape / admission_tier) per reviewer feedback.
+# Kept here only for vestigial reference; validator no longer uses these.
+event_classes:
+  - cascade_event
+  - comparison_event
+  - state_block_event
+
+research_strata:
+  - S1_ofac_sdn
+  - S2_ofac_removal
+  - S3_doj_sec_cftc_fiod            # US federal enforcement (DOJ / SEC / CFTC / FinCEN) + non-US MLAT companions (e.g. NL FIOD)
+  - S4_nation_state                 # single-country central-bank / emergency-order actions (IN RBI, NG CBN, TR CBRT, CN PBOC, CA Emergencies Act, KR FSC)
+  - S5_corporate                    # issuer / exchange / frontend unilateral policy (Circle, Tether, Uniswap Labs, Coinbase)
+  - S6_supranational                # EU / UN / G7-level actions: regulatory frameworks (MiCA) + sanctions packages (EU Russia sanctions)
+
+empirical_shapes:
+  - cascade          # ≥ 3 distinct observed_change layers
+  - comparison       # 1–2 distinct observed_change layers
+  - null_event       # 0 observed_change layers (admitted on observed_no_change + admission-grade sources)
+
+admission_tiers:
+  - anchor_case      # ≥ 2 observed_change layers with attribution ∈ {direct, plausible}
+  - empirical_case   # ≥ 1 strong-attribution observed_change layer
+  - null_case        # 0 strong-attribution observed_change layers
+
+event_statuses:
+  - draft
+  - observation_active
+  - observation_closed
+  - admitted
+  - rejected
+
+trigger_types:
+  - ofac_sdn_designation
+  - ofac_sdn_removal
+  - doj_indictment
+  - doj_seizure_order
+  - cftc_action
+  - sec_action
+  - non_us_sanctions                # e.g. EU Council Russia sanctions packages
+  - supranational_regulation        # e.g. EU MiCA regulatory framework (Parliament + Council regulation, not sanctions)
+  - court_civil_order
+  - corporate_policy_change
+  - nation_state_block
+
+layers:
+  - l0_network
+  - l1_consensus
+  - l3_rpc
+  - l4_frontend
+  - asset_onchain
+  - offramp_cex
+
+source_types:
+  - primary_legal
+  - primary_onchain
+  - primary_corporate
+  - semi_primary_measurement
+  - semi_primary_wayback
+  - supporting_journalism
+  - supporting_community
+  - supporting_tracker
+
+provider_scopes:
+  - public_only
+  - public_and_enterprise
+  - unknown
+
+coverage_statuses:
+  - measured
+  - partially_measured
+  - not_measured
+  - not_applicable
+
+observation_kinds:
+  - observed_change
+  - observed_no_change
+  - coverage_gap
+
+attribution_levels:
+  - direct
+  - plausible
+  - unknown
+  - none
+
+precision_levels:
+  - second
+  - minute
+  - hour
+  - hour_range
+  - day
+  - week
+
+target_kinds:
+  - address_set
+  - protocol
+  - domain
+  - asset
+  - entity
+
+target_enumerations:
+  - complete
+  - subset
+  - pending
+
+origins:
+  - human_authored
+  - agent_draft
+  - human_reviewed
+
+jurisdictions:
+  - US
+  - EU
+  - UK
+  - UN
+  - CN
+  - RU
+  - IR
+  - SG
+  - JP
+  - CA
+
+notes:
+  - This file is the human-maintained enum source for schema generation and review.
+  - The JSON Schema mirrors the stable subsets here, but this file may include future values first.

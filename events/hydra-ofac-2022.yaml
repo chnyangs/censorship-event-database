@@ -1,0 +1,125 @@
+id: hydra-ofac-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-21T12:33:00Z
+last_verified: 2026-04-21
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2022-04-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20220405
+      wayback: https://web.archive.org/web/20260421105315/https://ofac.treasury.gov/recent-actions/20220405
+      body_hash: sha256:ec142cf1769df2bcd14d092b808673b0c5f2d3d643d0cc4590d76aafc3cb87ec
+      body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/ofac.treasury.gov__recent-actions-20220405__594c05f6bc.html
+      note: OFAC Recent Actions entry for the 2022-04-05 Hydra Market designation
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy0701
+      wayback: https://web.archive.org/web/20260421105351/https://home.treasury.gov/news/press-releases/jy0701
+      body_hash: sha256:c89cf47b10bfcbc59e21337ede7ffbe862daadee7544b32f927aab1778d0e398
+      body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/home.treasury.gov__news-press-releases-jy0701__1d13c92377.html
+      note: Treasury press release announcing sanctions on Hydra and Garantex
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: Single named entity (Hydra Market) fully specified; onion-address set is included under canonical_domains but is not claimed to be the complete SDN-listed set.
+  entity: hydra_market
+  chains:
+    - bitcoin
+  canonical_domains:
+    - hydram6esdjf6otepmr5c3vjyndsoddz22afphbbjznwb5ln2c6op7ad.onion
+    - hydraclubbioknikokex7njhwuahc2l67lfiz7z36md2jvopda7nchid.onion
+
+jurisdiction:
+  - US
+  - RU
+  - DE
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: Onion-service and jurisdictional access effects have not been queried against Censored Planet / OONI for this event; eligible jurisdictions include RU, DE but no measurement artifact is attached
+  - layer: l1_consensus
+    status: not_applicable
+    note: Darknet marketplace designation does not map cleanly to consensus-layer filtering
+  - layer: l3_rpc
+    status: not_applicable
+    note: No public RPC dependency is central to the trigger object
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - Hydra onion sites
+      - related marketplace availability
+  - layer: asset_onchain
+    status: not_measured
+    note: Associated addresses are listed, but no issuer-freeze evidence has been attached yet
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - Garantex and partner-exchange implications
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: l4_frontend
+    actor: marketplace:hydra
+    event: marketplace_disrupted_or_unavailable
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-04-05T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy0701
+        wayback: https://web.archive.org/web/20260421105351/https://home.treasury.gov/news/press-releases/jy0701
+        body_hash: sha256:c89cf47b10bfcbc59e21337ede7ffbe862daadee7544b32f927aab1778d0e398
+        body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/home.treasury.gov__news-press-releases-jy0701__1d13c92377.html
+        note: Treasury states German authorities shut down Hydra servers in Germany on the same day
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20220405
+        wayback: https://web.archive.org/web/20260421105315/https://ofac.treasury.gov/recent-actions/20220405
+        body_hash: sha256:ec142cf1769df2bcd14d092b808673b0c5f2d3d643d0cc4590d76aafc3cb87ec
+        body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/ofac.treasury.gov__recent-actions-20220405__594c05f6bc.html
+        note: OFAC designation lists Hydra Market and associated onion addresses
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: This event is modeled as a disruptive takedown rather than a reversible short-term toggle
+
+analysis_notes: |
+  Scoped release claim: the 2022-04-05 Hydra designation and same-day German
+  action disrupted Hydra's frontend / marketplace availability. This admitted
+  baseline is not yet claiming an asset-layer or off-ramp cascade. The case
+  broadens the pilot set beyond protocols and exchanges while still fitting the
+  same trigger-and-layer methodology.
+
+scoped_claim: |
+  "OFAC designation of Hydra Market on 2022-04-05 (parallel to German BKA
+  takedown) documents a Tor-hidden-service darknet-market removal with
+  120+ address enumeration. L4 onion frontend was seized by BKA same day
+  (direct attribution), while asset-layer cascade was absent because
+  XBT-only targets have no stablecoin-issuer freeze primitive."
+
+tags:
+  - sanctions
+  - darknet_market
+  - takedown
+  - cybercrime

@@ -1,0 +1,158 @@
+id: russia-election-interference-ofac-2020
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T02:20:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2020-09-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20200910
+      wayback: https://web.archive.org/web/20260421143427/https://ofac.treasury.gov/recent-actions/20200910
+      body_hash: sha256:a29b443ab573d519e2fceb7c7b2b51e60f3ed9d6322b04f8f9e985ad2355d4ef
+      body_path: sources/http_captures/russia-election-interference-ofac-2020/ofac-recent-actions/ofac.treasury.gov__recent-actions-20200910__733f4c16cb.html
+      note: |
+        OFAC Recent Actions page for 2020-09-10. Russia-linked election interference actors,
+        primarily individuals associated with the Internet Research Agency: ANDREYEV,
+        ASLANOVA, DERKACH, LIFSHITS, and others. Addresses span 6 chains: XBT×14, ETH×3,
+        LTC×3, ZEC×1, BSV×1, DASH×1 (23 total). Tags [CYBER2] [ELECTION-EO13848].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sm1118
+      note: Treasury press release "Treasury Sanctions Russia-Linked Election Interference Actors" (2020-09-10).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: 23 unique addresses across 6 chains distributed across 4 individuals (primarily ANDREYEV and LIFSHITS who carry most addresses).
+  protocol: null
+  actor_type: individuals
+  actor_name: Russia-linked election interference actors
+  chains: [bitcoin, ethereum, litecoin, zcash, bitcoin_sv, dash]
+  canonical_domains: []
+  addresses:
+    - 12sjrrhoFEsedNRhtgwvvRqjFTh8fZTDX9
+    - Xs3vzQmNvAxRa3Xo8XzQqUb3BMgb9EogF4
+    - "0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c"
+    - "0x901bb9583b24d97e995513c6778dc6888ab6870e"
+    - "0xa7e5d5a720f06526557c513402f2e6b5fa20b00"
+    - LWnbjLYUfqeokfbWM4FcU7uk2FP2DSxuWS
+    - LaYUy1DGfVSuSF5KbPhbLrm8kRotqiwUJn
+    - Leo3j36nn1JcsUQruytQhFUdCdCH5YHMR3
+    - 12udabs2TkX7NXCSj6KpqXfakjE52ZPLhz
+    - 13YBQr2Cp1YY3xqq2qngaPb7ca1o4ugeq6
+    - 15Pt4NwZaUmMUwS2bQbyyncc7mzgWShtv8
+    - 18Qj1THHuETfYhuRDZycXJbWwDMGw73Poa
+    - 1AeSq93WDNdLoEJ92sex7T8xQZoYYm8BtS
+    - 1AoxtfiBQ22DvbhqAN9Ctb8sULMRhrdwTr
+    - 1DT3tenf14cxz9WFNxmYrXFbB6TFiVWA9U
+    - 1DYFJ6CuBvrxyoQSuBzVsNcetY9tvdsrag
+    - 1DbShx4r8i2XesthoDBf5EkYWz5dsKEusV
+    - 1FRyL9gmFGbzfYDAB4iY9836DJe3KSnjP9
+    - 1Fz29BQp82pE3vXXcsZoMNQ3KSHfMzfMe3
+    - 1KgudqxMfYaGzqAA7MS4DcsqejtMteqhix
+    - 1MnbhWe5wr7Ut45ReyQsm96PwnM9jD7KaH
+    - 1PhqQpaGCrqSxQ6QDXcv14QCd1U98Zp34E
+    - t1WSKwCDL1QYRRUrCCknEs5tDLhtGVYu9KM
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Pre-Merge by 735 days.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: ethereum
+  - layer: l4_frontend
+    status: not_applicable
+    note: Individual designations with no service operator.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Full scan of the 2 ETH-matching addresses via usdtbanlist.com
+      (sources/asset_layer_scan/russia-election-interference-ofac-2020.json): 2/2 blocked.
+      - Circle USDC batch on 2022-03-29 00:49 UTC — **18 months after OFAC designation**
+      - Tether USDT retroactive sweep on 2023-12-09 05:17 UTC (part of broader
+        tether-retroactive-sweep-2023)
+      Native-asset chains (XBT, LTC, ZEC, BSV, DASH) structurally have no issuer-freeze
+      primitive. The 18-month Circle delay is notable — one of the slowest Circle reactions
+      in the dataset.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: circle_blacklist_18_months_after_ofac_designation
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-03-29T00:49:00Z
+    precision: minute
+    delta_hours: 13560.82
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x5906c3dac2d75f141b72baa61842a9881e9d31ee36f761ffc7059ffc86c7e452
+        tx_hash: "0x5906c3dac2d75f141b72baa61842a9881e9d31ee36f761ffc7059ffc86c7e452"
+        block: 0
+        note: USDC Blacklisted() tx for Russia-election ETH address 0x8576... at 2022-03-29 00:49 UTC. Part of Circle 2-address batch 18 months post-OFAC.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c
+        body_hash: sha256:eb18a808c950839bcd99569230708f68b0fbe8f85c8950deb587d45f9ce44c7b
+        body_path: sources/http_captures/russia-election-interference-ofac-2020/asset-layer-check/usdtbanlist.com__address-0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c.html
+        evidence_group_id: russia-election-usdc-20220329
+        note: |
+          Circle USDC blacklisted 2/2 ETH addresses in the Russia-election cluster on
+          2022-03-29 00:49 UTC (identical minute, batch op), ~18 months after the OFAC
+          designation. Among the slowest Circle reactions in the dataset — possibly
+          reflecting that these individual-designation addresses had no prior USDC
+          activity requiring urgent compliance.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x901bb9583b24d97e995513c6778dc6888ab6870e
+        body_hash: sha256:20837c17edd081b5988efb870b1db757d483892ac6a03348b16f27b37fa5f17d
+        body_path: sources/http_captures/russia-election-interference-ofac-2020/asset-layer-check/usdtbanlist.com__address-0x901bb9583b24d97e995513c6778dc6888ab6870e.html
+        note: Second ETH address, same 2022-03-29 00:49 UTC Circle batch.
+
+analysis_notes: |
+  comparison documenting the 2020-09-10 Russia-linked election interference
+  actor designations. 6-chain address diversity (second-most diverse in the dataset after
+  2020-09-16 Russian cyber theft). Pre-Merge; individual-level; most infrastructure layers
+  structurally not_applicable.
+
+scoped_claim: |
+  "OFAC designation of Russia-linked election interference actors on 2020-09-10 attached 23
+  addresses across 6 chains. Demonstrates early OFAC reach across multiple cryptocurrencies
+  for individual-level sanctions. Cross-layer measurable only at asset_onchain (3 ETH
+  addresses) and offramp_cex layers, both currently unqueried."
+
+tags:
+  - sanctions
+  - russia_related
+  - election_interference
+  - individual_designation
+  - multi_chain_address_set

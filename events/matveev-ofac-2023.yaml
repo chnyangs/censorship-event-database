@@ -1,0 +1,105 @@
+id: matveev-ofac-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: null_event
+admission_tier: null_case
+version: "0.1"
+created_at: 2026-04-22T03:55:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-05-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20230516
+      wayback: https://web.archive.org/web/20260421145250/https://ofac.treasury.gov/recent-actions/20230516
+      body_hash: sha256:b6786db721a64066b90f9d3e975cf7ca67440ab122ec338efd67a53850327b1c
+      body_path: sources/http_captures/matveev-ofac-2023/ofac-recent-actions/ofac.treasury.gov__recent-actions-20230516__215bc3f851.html
+      note: |
+        OFAC Recent Actions page for 2023-05-16. Mikhail MATVEEV (aka WAZAWAKA / BORISELCIN /
+        UHODIRANSOMWAR / M1X), Russia-based ransomware individual (Babuk / Hive / LockBit
+        affiliate). No digital-currency addresses attached to the RA page itself (addresses
+        would be in the SDN XML entry). Tag [CYBER2].
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1455
+      note: Treasury press release "Treasury Sanctions Russian Ransomware Actor Complicit in Attacks on Police and U.S. Critical Infrastructure" (2023-05-16).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Individual designation of Mikhail Matveev. No digital-currency addresses on the
+    Recent Actions page; per-address SDN XML cross-reference would be needed to produce
+    an address_set.
+  protocol: null
+  actor_type: individual
+  actor_name: Mikhail Matveev (WAZAWAKA)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_measured
+    note: SDN XML addresses (not on RA page) would be cross-referenced to run freeze queries.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-05-16T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-05-16T00:00:00Z
+      - 2023-05-30T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20230516
+        body_hash: sha256:b6786db721a64066b90f9d3e975cf7ca67440ab122ec338efd67a53850327b1c
+        body_path: sources/http_captures/matveev-ofac-2023/ofac-recent-actions/ofac.treasury.gov__recent-actions-20230516__215bc3f851.html
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2023-05-16T00:00:00Z
+            - 2023-05-30T23:59:59Z
+          addresses_cohort: matveev_wazawaka_individual
+        note: |
+          No public CEX policy statement referencing Matveev (WAZAWAKA) individual designation was published by major
+          exchanges (Binance, Kraken, Coinbase, Bybit) in the 14-day post-designation
+          window. Observation records the absence of public disclosure; private
+          chain-analytics flagging workflows (Chainalysis / Elliptic / TRM) are outside
+          the scope of this observation and may have produced unpublished KYT flags.
+
+analysis_notes: |
+  null_event documenting the 2023-05-16 individual designation of Mikhail
+  Matveev (WAZAWAKA). Public face of Babuk/Hive/LockBit ransomware variants.
+  Datapoint for the ransomware-individual class; cross-layer cascade structurally limited
+  since target is an individual.
+
+scoped_claim: |
+  "OFAC designation of WAZAWAKA/Matveev on 2023-05-16 targeted a Russian ransomware
+  individual. Per-address cross-reference to SDN XML pending; cross-layer observations
+  limited by individual-level targeting."
+
+tags: [sanctions, individual_designation, ransomware, russia_related, null_event]

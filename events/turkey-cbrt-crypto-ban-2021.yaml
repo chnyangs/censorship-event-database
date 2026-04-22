@@ -1,0 +1,111 @@
+id: turkey-cbrt-crypto-ban-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T03:30:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - india-rbi-crypto-ban-2018
+  - nigeria-cbn-crypto-ban-2021
+  - china-pboc-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: TR_CBRT
+  timestamp: 2021-04-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://web.archive.org/web/20210416073914/https://www.tcmb.gov.tr/
+      wayback: https://web.archive.org/web/20210416073914/https://www.tcmb.gov.tr/
+      body_hash: sha256:43f6e1d01042f479c52a2f281c803e30271557de1b56b81820f08f7921a07360
+      body_path: sources/http_captures/turkey-cbrt-crypto-ban-2021/cbrt-regulation/web.archive.org__web-20210416100000-https-www.tcmb.gov.tr__effb7c7ee3.html
+      note: |
+        Central Bank of the Republic of Turkey (CBRT / TCMB) "Regulation on the
+        Disuse of Crypto-Assets in Payments" (Ödemelerde Kripto Varlıkların Kullanılmamasına
+        Dair Yönetmelik), published in the Official Gazette 2021-04-16 (No. 31456), effective
+        2021-04-30. Prohibits use of crypto-assets directly or indirectly in payments and
+        bans payment service providers from offering any crypto-payment functionality.
+        Wayback snapshot of tcmb.gov.tr on 2021-04-16 captures the homepage as primary-source
+        anchor; the specific Regulation text is linked from the Official Gazette site
+        (pinned archive deferred).
+  timestamp_sources:
+    - type: primary_legal
+      note: Official Gazette publication date 2021-04-16; regulation effective date 2021-04-30.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: Turkish payment service providers and users of crypto for payments, as a class.
+  protocol: null
+  actor_type: turkish_payment_ecosystem
+  actor_name: Turkish payment service providers (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [TR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [turkish_lira_payment_channels_to_crypto]
+    note: |
+      CBRT Regulation explicitly prohibits Turkish payment institutions from processing
+      crypto-asset-related transactions, severing direct TRY-to-crypto on-ramp rails
+      (though exchanges themselves remain legal). Observed_change with direct attribution.
+
+observations:
+  - layer: offramp_cex
+    actor: turkish_payment_ecosystem
+    event: try_payment_rail_to_crypto_severed
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-04-30T00:00:00Z
+    precision: day
+    delta_hours: 336
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20210416073914/https://www.tcmb.gov.tr/
+        body_hash: sha256:43f6e1d01042f479c52a2f281c803e30271557de1b56b81820f08f7921a07360
+        body_path: sources/http_captures/turkey-cbrt-crypto-ban-2021/cbrt-regulation/web.archive.org__web-20210416100000-https-www.tcmb.gov.tr__effb7c7ee3.html
+        note: CBRT homepage snapshot on regulation-publication day as primary anchor.
+      - type: supporting_journalism
+        url: https://web.archive.org/web/2021*/reuters.com/article/turkey-cryptocurrency-idUSKBN2C30W5
+        wayback: https://web.archive.org/web/2021*/reuters.com/article/turkey-cryptocurrency-idUSKBN2C30W5
+        note: Reuters coverage of the CBRT ban; archive pinning deferred.
+
+analysis_notes: |
+  comparison documenting Turkey's 2021-04-16 CBRT regulation prohibiting
+  crypto-asset use in payments. Fourth major nation-state ban in the dataset. Structurally
+  distinct from India / Nigeria bans: the Turkish regulation targets payment services
+  (on-ramps for retail crypto-for-goods flows) rather than exchange banking, so exchanges
+  like BtcTurk and Paribu remained formally operational.
+
+  Notable context: ban was announced days after the collapse of Turkish exchange Thodex
+  (user funds stolen), creating a tangled regulatory narrative.
+
+scoped_claim: |
+  "CBRT regulation of 2021-04-16 (effective 2021-04-30) prohibited Turkish payment service
+  providers from handling crypto-asset-related transactions. Exchanges themselves remained
+  operational but direct payment-rail on-ramp was severed. Observational axis at
+  offramp_cex layer at national-policy level."
+
+tags:
+  - nation_state_block
+  - turkey
+  - payment_rail_severance
+  - cbrt_regulation

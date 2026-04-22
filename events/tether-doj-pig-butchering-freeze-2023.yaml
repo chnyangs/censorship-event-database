@@ -1,0 +1,157 @@
+id: tether-doj-pig-butchering-freeze-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T12:00:00Z
+last_verified: 2026-04-22
+
+related_events:
+  - tether-retroactive-sweep-2023
+  - tether-dprk-precommit-freeze-2025
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_usdt_issuer
+  timestamp: 2023-11-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://tether.to/en/tether-freezes-225-million-linked-to-international-human-trafficking-syndicate/
+      body_hash: sha256:c37819595db98b24face1d35241c4c62a5fe0dc3fa6606450e17c25c6505c114
+      body_path: sources/http_captures/tether-doj-pig-butchering-freeze-2023/primary/tether.to__en-tether-freezes-225-million-linked-to-international-human-trafficking-syndicate__ae3e393bc3.html
+      note: |
+        Tether official blog post (2023-11-20): "Tether Freezes $225 Million
+        Linked to International Human Trafficking Syndicate." First publicly
+        announced Tether freeze action **explicitly at DOJ request** rather
+        than in response to OFAC SDN designation. Coordination partners
+        named: U.S. Secret Service (USSS), U.S. Department of Justice DOJ,
+        and OKX exchange. Freeze covers wallets linked to "pig butchering"
+        romance-scam syndicate in Southeast Asia. **No OFAC SDN listing was
+        issued for the target addresses** — this is pure DOJ-request-driven
+        freeze, distinct from all prior Tether freeze events in the dataset.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-edva/pr/united-states-files-civil-forfeiture-complaint-seeking-recovery-over-112-million-crypto
+      body_hash: sha256:be9f63130d3a946049f43e8cb2d8a2a4bbeb0b21fcff76600646f9a141a7d9f0
+      body_path: sources/http_captures/tether-doj-pig-butchering-freeze-2023/primary/www.justice.gov__usao-edva-pr-united-states-files-civil-forfeiture-complaint-seeking-recovery-over-112-million-crypto__3f4a45e92b.html
+      note: |
+        DOJ EDVA civil forfeiture companion filing — parallel DOJ action
+        seeking recovery of $112M+ in crypto connected to the same
+        pig-butchering scam network. Confirms the DOJ-request framing of
+        the Tether freeze: DOJ identifies targets + files civil forfeiture;
+        Tether freezes USDT holdings of those targets. Second-anchor
+        primary_legal artifact for the freeze's causal chain.
+  timestamp_sources:
+    - type: primary_corporate
+      note: Day-level timing per Tether blog post.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Pig-butchering syndicate wallet cluster with ~$225M USDT total frozen.
+    Tether blog post does not enumerate individual wallet addresses; the
+    DOJ civil-forfeiture complaint references ~$112M+ in identified
+    addresses. On-chain targets are therefore subset-enumerable through
+    the DOJ civil-forfeiture filings but not complete via primary Tether
+    source alone.
+  protocol: null
+  actor_type: scam_syndicate_wallet_cluster
+  actor_name: Pig-butchering / romance-scam network
+  chains: [ethereum, tron]
+  canonical_domains: []
+
+jurisdiction: [corporate_global, US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Asset-layer issuer freeze; no consensus-layer mechanism involved.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical web presence for a wallet-cluster target.
+  - layer: asset_onchain
+    status: not_measured
+    chain: ethereum
+    note: |
+      Tether's $225M USDT freeze across 37-39 wallets is an asset-layer
+      action in principle, but the 37-39 specific wallet addresses are not
+      enumerated in either primary source (Tether blog reports aggregate
+      $225M; DOJ EDVA civil-forfeiture references $112M+ aggregate); per-
+      tx primary_onchain receipts therefore cannot be anchored without a
+      secondary derivation pass. The paper-relevant observation is moved
+      to the offramp_cex layer (issuer-level stablecoin-access denial);
+      asset_onchain remains not_measured until the wallet cohort is pinned.
+  - layer: offramp_cex
+    status: measured
+    scope: [tether_usdt_issuer]
+    note: |
+      Issuer-level offramp denial: Tether-as-stablecoin-issuer suspended
+      USDT redemption/transfer capability for 37-39 wallets controlling
+      approximately $225M, effectively blocking the USDT offramp path for
+      the pig-butchering syndicate cohort. Attached below as observed_change
+      direct attribution.
+
+observations:
+  - layer: offramp_cex
+    actor: tether_usdt_issuer
+    event: tether_froze_225m_at_doj_request_non_ofac_trigger
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-11-20T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://tether.to/en/tether-freezes-225-million-linked-to-international-human-trafficking-syndicate/
+        body_hash: sha256:c37819595db98b24face1d35241c4c62a5fe0dc3fa6606450e17c25c6505c114
+        body_path: sources/http_captures/tether-doj-pig-butchering-freeze-2023/primary/tether.to__en-tether-freezes-225-million-linked-to-international-human-trafficking-syndicate__ae3e393bc3.html
+        note: |
+          Tether blog explicitly announces the freeze + names USSS, DOJ,
+          and OKX as coordination partners. Direct attribution: issuer
+          itself is the actor; the action is announced simultaneously with
+          execution. First concrete public example in the dataset of Tether
+          executing a non-OFAC-driven freeze.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-edva/pr/united-states-files-civil-forfeiture-complaint-seeking-recovery-over-112-million-crypto
+        body_hash: sha256:be9f63130d3a946049f43e8cb2d8a2a4bbeb0b21fcff76600646f9a141a7d9f0
+        body_path: sources/http_captures/tether-doj-pig-butchering-freeze-2023/primary/www.justice.gov__usao-edva-pr-united-states-files-civil-forfeiture-complaint-seeking-recovery-over-112-million-crypto__3f4a45e92b.html
+        note: |
+          DOJ EDVA civil-forfeiture filing corroborating the DOJ-driven
+          framing. Independent primary_legal artifact.
+
+analysis_notes: |
+  comparison — first **DOJ-request-driven (non-OFAC) Tether freeze**
+  in the dataset. Paper-relevant S5 datapoint completing the Tether issuer-
+  compliance profile:
+    - OFAC-driven (Tornado 2022 cluster, via tether-retroactive-sweep-2023)
+    - Pre-OFAC forward-looking (DPRK USDT pre-commit 2025, via
+      tether-dprk-precommit-freeze-2025)
+    - **DOJ-request-driven, non-OFAC (this event)**
+  Together these three Tether events span the spectrum of issuer-compliance
+  trigger modes. Paper claim: stablecoin issuer compliance is NOT a pure
+  function of OFAC SDN listings; it also responds to (a) DOJ direct
+  requests without corresponding SDN and (b) issuer-internal intelligence
+  ahead of OFAC timelines.
+
+scoped_claim: |
+  "Tether's 2023-11-20 freeze of $225M USDT linked to a Southeast Asia
+  pig-butchering syndicate — executed at DOJ/USSS request without any
+  corresponding OFAC SDN listing — documents the DOJ-request-driven mode
+  of stablecoin-issuer freeze action. Completes the 3-mode Tether
+  compliance spectrum (OFAC-reactive / OFAC-preemptive / DOJ-request-only)
+  at S5."
+
+tags:
+  - corporate_policy_change
+  - tether_freeze
+  - doj_request_driven
+  - non_ofac_triggered
+  - pig_butchering

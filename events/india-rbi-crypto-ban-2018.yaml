@@ -1,0 +1,138 @@
+id: india-rbi-crypto-ban-2018
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-22T03:00:00Z
+last_verified: 2026-04-22
+
+trigger:
+  type: nation_state_block
+  actor: IN_RBI
+  timestamp: 2018-04-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://rbidocs.rbi.org.in/rdocs/notification/PDFs/NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF
+      wayback: https://web.archive.org/web/20260421144628/https://rbidocs.rbi.org.in/rdocs/notification/PDFs/NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF
+      body_hash: sha256:d06e4b01c74822b7a395308abc8820016abf95f64c12dca5b4c02ed58c228fd9
+      body_path: sources/http_captures/india-rbi-crypto-ban-2018/rbi-circular/rbidocs.rbi.org.in__rdocs-notification-PDFs-NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF__be75532d01.html
+      note: |
+        Reserve Bank of India (RBI) Circular DBR.No.BP.BC.104/08.13.102/2017-18 dated
+        2018-04-06 titled "Prohibition on dealing in Virtual Currencies (VCs)". Directed
+        all RBI-regulated entities (including scheduled commercial banks, cooperative banks,
+        NBFCs, and payment system operators) to cease providing services to any individual
+        or business dealing with or settling virtual currencies, and to exit existing
+        relationships within three months. Effectively cut off Indian bank access for
+        crypto exchanges from 2018-07-06 onward. Overturned by Supreme Court of India on
+        2020-03-04 in Internet and Mobile Association of India v. RBI — that Supreme Court
+        ruling is a separate event (candidate for future addition as a comparison
+        showing ban-reversal).
+    - type: primary_legal
+      url: https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=43574
+      note: RBI press release accompanying the 2018-04-05 monetary-policy announcement that first mentioned the VC restrictions.
+  timestamp_sources:
+    - type: primary_legal
+      note: RBI circular is dated 2018-04-06; the related monetary-policy press conference was 2018-04-05. Day-level precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Indian crypto exchanges and VC service providers as a class — not an enumerated
+    entity list. Affected exchanges included Zebpay, Unocoin, CoinSecure, Koinex, WazirX,
+    and the broader class of Indian crypto businesses that relied on INR bank rails. Target
+    treated as entity-level at the population level.
+  protocol: null
+  actor_type: regulated_crypto_service_providers
+  actor_name: Indian crypto exchanges (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [IN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Banking-channel ban, not a DNS / connectivity action.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Indian exchange frontends (zebpay.com, unocoin.com, wazirx.com, etc.) remained
+      accessible; the ban operated at the INR-deposit/withdrawal banking layer rather than
+      at the L4 application layer. Wayback bracketing could document continued frontend
+      availability but that's less informative than the off-ramp impact.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - zebpay
+      - unocoin
+      - coinsecure
+      - wazirx
+    note: |
+      The RBI circular is by construction an off-ramp-layer event — it severed banking
+      rails between Indian exchanges and INR. Zebpay, then India's largest exchange, cited
+      the RBI circular as the reason for shutting down its Indian operations in September
+      2018. Attached as observed_change with direct attribution (the circular itself names
+      the banking-service severance as the regulatory mandate).
+
+observations:
+  - layer: offramp_cex
+    actor: indian_crypto_exchange_ecosystem
+    event: rupee_banking_channel_severed_industry_wide
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-07-06T00:00:00Z
+    precision: day
+    delta_hours: 2184
+    sources:
+      - type: primary_legal
+        url: https://rbidocs.rbi.org.in/rdocs/notification/PDFs/NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF
+        body_hash: sha256:d06e4b01c74822b7a395308abc8820016abf95f64c12dca5b4c02ed58c228fd9
+        body_path: sources/http_captures/india-rbi-crypto-ban-2018/rbi-circular/rbidocs.rbi.org.in__rdocs-notification-PDFs-NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF__be75532d01.html
+        note: |
+          The RBI circular text itself is the legal instrument mandating the banking
+          cut-off. It gives a 3-month compliance deadline from issuance (2018-04-06), so
+          effective-observation timestamp is 2018-07-06. attribution=direct because the
+          circular specifies the regulatory mandate and timing.
+      - type: supporting_journalism
+        url: https://www.reuters.com/article/india-cryptocurrency-banking-idINKCN1LL0SA
+        wayback: https://web.archive.org/web/2019*/https://www.reuters.com/article/india-cryptocurrency-banking-idINKCN1LL0SA
+        note: |
+          Reuters coverage of Zebpay's September 2018 shutdown citing the RBI circular
+          ("Unfortunately, the banking problems have severely crippled our ability to
+          transact business"). Serves as a supporting journalism anchor documenting the
+          downstream industry impact. Wayback URL pattern for future archival pinning.
+
+analysis_notes: |
+  comparison documenting India's 2018-04-06 RBI Circular prohibiting banks
+  from servicing crypto entities — the first major nation-state banking-level crypto ban
+  in a major economy (cf. China PBOC 2021, Nigeria CBN 2021, Turkey CBRT 2021). Structurally
+  distinct from OFAC designations: no address set, no individual target, no digital-
+  currency address enumeration — instead, an industry-class banking severance.
+
+  This is a sibling event to china-pboc-crypto-ban-2021 (admitted). Both share the
+  comparison shape: nation-state regulator cuts banking rails rather than targeting
+  specific crypto addresses. The RBI ban was overturned by the Supreme Court 2020-03-04,
+  making it the only ban in the dataset with a legally-forced reversal — that would be a
+  natural comparison candidate for future addition.
+
+scoped_claim: |
+  "RBI Circular of 2018-04-06 severed INR banking channels for Indian crypto exchanges
+  effective 2018-07-06 (3-month compliance window). Primary observational axis is
+  offramp_cex at industry-aggregate level; multiple exchanges (Zebpay, Unocoin) shut down
+  or relocated as a direct consequence."
+
+tags:
+  - nation_state_block
+  - india
+  - banking_rail_severance
+  - rbi_circular

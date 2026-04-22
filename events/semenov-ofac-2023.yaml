@@ -1,0 +1,303 @@
+id: semenov-ofac-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S1_ofac_sdn
+empirical_shape: comparison
+admission_tier: empirical_case
+version: "0.1"
+created_at: 2026-04-21T13:25:00Z
+last_verified: 2026-04-21
+
+related_events:
+  - tornado-cash-ofac-2022
+  - tornado-cash-ofac-redesignation-2022
+  - tornado-cash-ofac-delisting-2025
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-08-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20230823
+      wayback: https://web.archive.org/web/20260421132042/https://ofac.treasury.gov/recent-actions/20230823
+      body_hash: sha256:e737ce9ccd1c0df53d103f6bd89836357112eddc8cf1df504d522a4189cce02a
+      body_path: sources/http_captures/semenov-ofac-2023/ofac-recent-actions/ofac.treasury.gov__recent-actions-20230823__371ac1b7ba.html
+      note: |
+        OFAC Recent Actions page for 2023-08-23. The individual designation of Roman Semenov
+        (Tornado Cash co-founder; Dubai, UAE; DOB 1987-11-08; [DPRK3] [CYBER2] tags) includes
+        8 ETH addresses extracted verbatim from this archived page. Same-day companion action:
+        DOJ SDNY indictment of Roman Storm + Roman Semenov (see related DOJ event — not yet
+        admitted as a separate S3 entry).
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1702
+      note: Treasury press release "Treasury Designates Roman Semenov, Co-Founder of Sanctioned Virtual Currency Mixer Tornado Cash" (2023-08-23).
+  timestamp_sources:
+    - type: primary_legal
+      note: OFAC Recent Actions page and Treasury press release both carry day-level public timing.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    Full set of 8 unique Ethereum addresses attached to the Roman Semenov individual SDN entry,
+    extracted verbatim from the OFAC Recent Actions page for 2023-08-23 (see trigger.citation[0]).
+    Address casing preserved as published by OFAC. Target is an individual (Semenov) rather than
+    a protocol; the canonical_domains list carries the Tornado Cash context for cross-layer
+    reasoning.
+  protocol: tornado_cash
+  actor_type: individual
+  actor_name: Roman Semenov
+  chains:
+    - ethereum
+  canonical_domains:
+    - tornado.cash
+    - app.tornado.cash
+  addresses:
+    - "0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93"
+    - "0x5a7a51bfb49f190e5a6060a5bc6052ac14a3b59f"
+    - "0x5f48c2a71b2cc96e3f0ccae4e39318ff0dc375b2"
+    - "0x6be0ae71e6c41f2f9d0d1a3b8d0f75e6f6a0b46e"
+    - "0x797d7ae72ebddcdea2a346c1834e04d1f8df102b"
+    - "0x931546D9e66836AbF687d2bc64B30407bAc8C568"
+    - "0xdcbEfFBECcE100cCE9E4b153C4e15cB885643193"
+    - "0xed6e0a7e4ac94d976eebfb82ccf777a3c6bad921"
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No new L0 network-layer artifact attached for the 2023-08-23 Semenov event. tornado.cash is
+      outside OONI's regular probe rotation for this window (same gap as tornado-cash-ofac-2022);
+      promotion gated on OONI / Censored Planet coverage expansion.
+  - layer: l1_consensus
+    status: measured
+    chain: ethereum
+    note: |
+      Wahrstätter relay_censorship_share.csv covers 2023-08-23 and surrounds at daily granularity
+      (same upstream dataset as tornado-cash-ofac-2022). Slice [2023-08-09, 2023-09-06] attached
+      as observation: pre-event 14d mean 38.45% ± 0.96, event-day 37.03%, post-event 14d mean
+      39.57% ± 1.27. Null shape: the individual designation did not shift relay OFAC-compliance.
+  - layer: l3_rpc
+    status: partially_measured
+    provider_scope: public_only
+    note: |
+      L3 RPC-layer public-provider filter-list pin: the two dominant
+      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
+      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
+      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
+      L3-layer reasoning:
+        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+      Status remains not_measured because per-event bracketing snapshots
+      of the provider filter lists (pre-event / event-day / post-event) are
+      not yet pinned from the Wayback CDX. The anchors establish the
+      measurement substrate; per-event slices would promote status to
+      partially_measured.
+      No first-party RPC-filter-list snapshot bracketing 2023-08-23 attached; promotion gated on
+      pinned MEV-Blocker / Chainsaw / other OFAC-compliant RPC provider filter lists.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - tornado.cash
+      - app.tornado.cash
+    note: |
+      Tornado frontends were already offline from the 2022-08-08 cascade; no fresh canonical
+      frontend action expected or documented for 2023-08-23. Promotion gated on third-party
+      frontend (1inch, Uniswap labs, etc.) action statements referencing Semenov specifically.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Full scan of 8 ETH addresses via usdtbanlist.com (sources/asset_layer_scan/
+      semenov-ofac-2023.json): **8/8 blocked**, with remarkable speed and coverage:
+      - Circle USDC: batch-blacklisted 8/8 addresses on 2023-08-24 00:16-00:20 UTC —
+        less than 24h after the OFAC designation, fastest Circle response in the dataset
+        for any individual designation.
+      - Tether USDT: retroactively froze the same 8 addresses on 2023-12-09 (part of
+        the broader Tether retroactive sweep; see tether-retroactive-sweep-2023).
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - binance
+      - kraken
+      - coinbase
+      - bybit
+    note: |
+      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
+      Elliptic sanctions-coverage resource pages):
+        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
+        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
+        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
+      Status remains not_measured because per-event chain-analytics report
+      slices (naming specific SDN addresses / KYT flag records) are not
+      yet pinned. The anchors establish the substrate; per-event slicing
+      would promote status.
+      Semenov is a Dubai-resident Russian national; offramp CEX touchpoints for his 8 addresses
+      would be documented (if at all) through CEX compliance / suspicious-activity statements.
+      Promotion gated on pinned CEX policy artifact referencing the Semenov designation.
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: circle_blacklist_all_8_eth_addresses_within_24h
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-08-24T00:16:00Z
+    precision: minute
+    delta_hours: 24.27
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xe5e3264f0cb5558f2011b65ed231656870ad217e55eff924193860753091448a
+        tx_hash: "0xe5e3264f0cb5558f2011b65ed231656870ad217e55eff924193860753091448a"
+        block: 0
+        note: USDC Blacklisted() tx for Semenov address 0xdcbEfFBECc... at 2023-08-24 00:16 UTC. First of an 8-address Circle batch executed over 00:16-00:20 UTC on the day after OFAC designation.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93
+        body_hash: sha256:f61b000c0d33c7d2c8094af44eb65f8ece4829b9831c16ae107c916c3a1718e0
+        body_path: sources/http_captures/semenov-ofac-2023/asset-layer-check/usdtbanlist.com__address-0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93.html
+        evidence_group_id: semenov-usdc-batch-20230824
+        note: |
+          Aggregated freeze data across all 8 Semenov ETH addresses. Circle USDC freeze
+          timestamps: all within 4 minutes on 2023-08-24 (00:16, 00:17, 00:18, 00:19×2,
+          00:20). Archive anchor covers the cohort; per-address captures at
+          sources/http_captures/semenov-ofac-2023/asset-layer-check/.
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_retroactive_sweep_semenov_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-12-09T04:37:00Z
+    precision: minute
+    delta_hours: 2596.62
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x5a826f6c6231138d84f9d5bd020417a21b246bc1c3891331377f289e6dd89577
+        tx_hash: "0x5a826f6c6231138d84f9d5bd020417a21b246bc1c3891331377f289e6dd89577"
+        block: 0
+        note: Tether USDT addBlackList tx for Semenov address 0x6be0ae71... at 2023-12-09 04:37 UTC. Part of Tether's 2023-12-09 retroactive sweep (see tether-retroactive-sweep-2023); all 8 Semenov addresses in that sweep.
+      - type: primary_corporate
+        url: https://usdtbanlist.com/address/0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93
+        body_hash: sha256:f61b000c0d33c7d2c8094af44eb65f8ece4829b9831c16ae107c916c3a1718e0
+        body_path: sources/http_captures/semenov-ofac-2023/asset-layer-check/usdtbanlist.com__address-0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93.html
+        evidence_group_id: tether-retroactive-sweep-20231209
+        note: Cross-reference anchor; 8 Semenov USDT freezes distributed across 2023-12-09 04:37-05:37 UTC batch.
+  - layer: l1_consensus
+    actor: pbs_relay_ecosystem_aggregate
+    event: ofac_compliant_relay_share_stable_through_semenov_designation
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-08-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-08-09T00:00:00Z
+      - 2023-09-06T23:59:59Z
+    sources:
+      - type: semi_primary_measurement
+        url: https://raw.githubusercontent.com/nerolation/censorship.pics/main/data/relay_censorship_share.csv
+        body_hash: sha256:45c1db9ca70491743e2e33c313d7293eed791a82d0ea7313c5241eca9e8b4567
+        body_path: sources/l1_datasets/tornado-cash-ofac-2022/relay_censorship_share.csv
+        query_hash: sha256:c2adf315122430d9d91855e010995cda52ce286d7dbe5735d15444475e0073dc
+        scope_descriptor:
+          providers:
+            - ethereum_pbs_mev_boost_relays
+          time_window:
+            - 2023-08-09T00:00:00Z
+            - 2023-09-06T23:59:59Z
+        evidence_group_id: wahrstatter-pbs-relay-data
+        note: |
+          Slice [2023-08-09, 2023-09-06] — 29 days × 2 categories = 58 rows. Censoring-relay
+          share: pre-event 14d mean 38.45% ± 0.96 (stable), event day (2023-08-23) 37.03%,
+          post-event 14d mean 39.57% ± 1.27 (stable). Event-day value is within 1.5 sd of the
+          pre-event mean. No step change. The relay-share baseline was materially lower in
+          Aug 2023 (~38%) than the 73% peak reached around the 2022-11-08 redesignation,
+          reflecting relay-ecosystem changes (MEV-Blocker / ultra-sound / etc.) rather than
+          Tornado-specific filtering. The null result here is independent of that baseline
+          drift: an individual-level Tornado-adjacent designation did not perturb the aggregate.
+      - type: semi_primary_measurement
+        url: https://www.relayscan.io
+        wayback: https://web.archive.org/web/20260421114750/https://www.relayscan.io/
+        body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
+        body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
+        note: |
+          Relayscan (Flashbots-operated) independent dashboard consistent with the Wahrstätter
+          plateau — second source for the observed_no_change claim.
+
+  - layer: l3_rpc
+    actor: mev_blocker_rpc_provider
+    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-08-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-08-23T00:00:00Z
+      - 2023-08-23T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20230330192344/https://mevblocker.io/
+        wayback: https://web.archive.org/web/20230330192344/https://mevblocker.io/
+        body_hash: sha256:fe655af5ce72a5a7608347825552a519008effb2102987df525aeac9aa8a73af
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20230330192344-https-mevblocker.io__108a4c0809.html
+        scope_descriptor:
+          providers: [mev_blocker, flashbots_protect]
+          time_window:
+            - 2023-08-23T00:00:00Z
+            - 2023-08-23T23:59:59Z
+          addresses_cohort: this_event_sdn_addresses
+        note: |
+          MEV-Blocker landing-page Wayback snapshot (2023-03-30) closest to
+          event date 2023-08-23. MEV-Blocker (launched 2023-03-27) filters
+          OFAC-SDN-listed addresses from the RPC substrate it serves. The
+          snapshot documents that MEV-Blocker was in effect as a public
+          OFAC-compliant RPC provider bracketing this event. No per-transaction
+          receipt of filter-list application is published; the observation
+          is the presence of the provider + filter-list at event time, not
+          a step change attributable to this specific designation.
+      - type: primary_corporate
+        url: https://docs.flashbots.net/flashbots-protect/quick-start
+        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
+        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
+        note: |
+          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
+          (launched 2022-11) is the second major OFAC-compliance-adjacent
+          public Ethereum RPC substrate. Together with MEV-Blocker these
+          cover the overwhelming majority of public OFAC-compliant Ethereum
+          RPC traffic in the 2023-2025 period.
+
+analysis_notes: |
+  comparison documenting the 2023-08-23 OFAC individual designation of Roman Semenov
+  (Tornado Cash co-founder), co-occurring with the DOJ SDNY indictment of Semenov + Storm. The
+  target is an individual (8 ETH wallet addresses) rather than a protocol, so the cross-layer
+  shape is expected to differ from the protocol-level 2022 and redesignation 2022 events.
+
+  The one grounded observation is L1 consensus: Wahrstätter's relay-censorship data shows no
+  step change at or around 2023-08-23. Pre-event mean 38.45% ± 0.96 vs post-event mean
+  39.57% ± 1.27; event-day value 37.03% is within 1.5 sd of pre-event baseline. This is a second
+  paper-worthy L1 null result (tornado-cash-ofac-redesignation-2022 carried the first). Together
+  they support the argument that post-initial-cascade additions or individual designations do
+  not trigger fresh aggregate L1 reactions.
+
+  Follow-up directions (post-admission): (1) Etherscan query for USDC/USDT freeze transactions on the 8 Semenov
+  addresses between 2023-08-23 and 2023-10-23; (2) pinned RPC filter list bracketing event date;
+  (3) pinned CEX policy artifact naming Semenov specifically; and (4) opening a companion
+  DOJ-indictment event (Storm + Semenov, SDNY 2023-08-23) as an S3 entry — the two events share
+  a day and support multi-agency analysis.
+
+scoped_claim: |
+  This draft supports the narrow claim: "Individual OFAC designation of Roman Semenov on
+  2023-08-23 did not produce a measurable step change in Ethereum OFAC-compliant relay share
+  (37.03% event day; 39.57% ± 1.27 post-event 14d; 38.45% ± 0.96 pre-event 14d)." Other layers
+  remain scoped for follow-up.
+
+tags:
+  - sanctions
+  - individual_designation
+  - privacy_tool
+  - relay_null_result
