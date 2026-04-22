@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S2_ofac_removal` · **Shape**: `cascade` (3 changed layer(s): `asset_onchain`, `l1_consensus`, `l4_frontend`) · **Tier**: `anchor_case`
 
-**Dataset version**: `unknown` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-22T05:44:02Z`
+**Dataset version**: `22898e2` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-22T12:37:02Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -132,7 +132,7 @@
 
 - **`primary_onchain`**
   - URL: <https://etherscan.io/tx/0x1c2fbd8b25f201327e0b469164ab753c89a802de7e0768e4e278d224cc10b25a>
-  - tx_hash: `12749109753864282829776519000802659275877034053568520406018765398351910318682`
+  - tx_hash: `0x1c2fbd8b25f201327e0b469164ab753c89a802de7e0768e4e278d224cc10b25a`
   > USDC unblacklist transaction for target address 0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936 on 2025-03-22
 - **`supporting_community`**
   - URL: <https://usdtbanlist.com/address/0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936>
@@ -141,7 +141,7 @@
   - body_path: `sources/http_captures/tornado-cash-ofac-delisting-2025/backfill-1.3/usdtbanlist.com__address-0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936__a06f6feca5.html`
   > Third-party cross-check showing the same address was USDC-unbanned on 2025-03-22 with the matching Etherscan transaction
 
-### l1_consensus · attribution: `direct` · Δt = 0h
+### l1_consensus · attribution: `plausible` · Δt = 0h
 
 **Event label**: `censoring_relay_share_dropped_post_delisting`
 
@@ -160,10 +160,13 @@
 > indicates bimodal days — some relays continued Tornado-filtering
 > while others unwound within days. **First observed_change at
 > L1 consensus tied to an OFAC delisting** in the dataset.
-> attribution=direct because Wahrstätter's censoring-relay
-> classifier is defined against the Tornado Cash SDN-listed
-> addresses themselves, so a post-delisting drop in that specific
-> metric is structurally tied to the delisting event.
+> attribution=plausible (not direct) because the only evidence
+> anchors are two semi-primary measurement sources; no primary
+> relay/builder policy statement corroborates the drop. The
+> classifier's definition against the Tornado-Cash SDN addresses
+> makes the signal structurally meaningful, but under the validator's
+> attribution=direct ⇒ primary_* rule (added 2026-04-22) this
+> observation is retained at the plausible tier.
 - **`semi_primary_measurement`**
   - URL: <https://www.relayscan.io>
   - Wayback: <https://web.archive.org/web/20260421114750/https://www.relayscan.io/>
@@ -211,7 +214,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at `unknown`.
+1. Clone the repository at `22898e2`.
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

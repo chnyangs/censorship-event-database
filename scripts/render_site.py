@@ -15,7 +15,7 @@ import json
 import pathlib
 import shutil
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 import yaml
 
@@ -259,7 +259,7 @@ def render_event(event, relroot=".."):
 <p><a href="{relroot}/raw/{escape(slug)}.yaml">View raw YAML</a></p>
 
 <footer>
-  Generated {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')} from <code>events/{escape(slug)}.yaml</code>.
+  Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} from <code>events/{escape(slug)}.yaml</code>.
   Every primary source has a sha256 body_hash; values above truncated to 23 chars for readability.
   See repo for full hashes + archival anchors.
 </footer>
@@ -328,7 +328,7 @@ designations, DOJ seizures, nation-state bans, SEC enforcement, and
 issuer-policy actions. Every event YAML carries one or more primary
 sources with sha256 <code>body_hash</code> for independent reproduction.</p>
 
-<p class="meta">Generated {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}.
+<p class="meta">Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}.
 {len(events)} events; all validate via <code>scripts/validate.py</code>.</p>
 
 <div class="stat-grid">

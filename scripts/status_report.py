@@ -5,45 +5,20 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _gap_markers import STATUS as GAP_MARKERS, SKIP_FIELDS_FOR_GAP_SCAN  # noqa: E402,F401
+
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
 OUT_PATH = REPO_ROOT / "analysis" / "pilot-status.json"
-
-# Gap markers must be narrow enough to only catch true placeholder text, not
-# analytical prose. Reviewer P2 2026-04-22 flagged that the previous list
-# treated "needs " / "requires " as gap markers, which fired on legitimate
-# prose like "requires per-relay block-filter-list inspection" and
-# "requires explicit enumeration" in follow-up / analysis notes — those are
-# descriptions of future research directions, not unresolved evidence
-# scaffolding. Keep only markers that are unambiguously placeholder-like.
-GAP_MARKERS = (
-    "placeholder",
-    "fill in",
-    "to be collected",
-    "before admission",
-    "still to be pinned",
-    "tbd",
-    "todo",
-)
-
-# Fields that hold analytical prose rather than retained-observation evidence;
-# recursion skips these so gap markers in prose don't count against the event.
-# Reviewer P2 2026-04-22.
-SKIP_FIELDS_FOR_GAP_SCAN = frozenset({
-    "analysis_notes",
-    "scoped_claim",
-    "scoped_knowledge",
-    "follow_on_reaction",
-    "enumeration_note",   # target enumeration prose
-    "tags",
-})
 
 
 def parse_args() -> argparse.Namespace:

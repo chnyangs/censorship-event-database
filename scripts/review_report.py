@@ -5,11 +5,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from status_report import collect_gap_count, load_events
+# Allow invocation from any working directory (`python3 scripts/review_report.py`
+# from the repo root would otherwise fail on the sibling import).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from status_report import collect_gap_count, load_events  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/p1-event-db/schema/event.schema.json",
+  "$id": "https://github.com/xwy411/chain-censorship-measurement/censorship-event-database/schema/event.schema.json",
   "title": "Cross-Layer Censorship Event",
   "type": "object",
   "additionalProperties": false,
@@ -42,7 +42,8 @@
         "S2_ofac_removal",
         "S3_doj_sec_cftc_fiod",
         "S4_nation_state",
-        "S5_corporate"
+        "S5_corporate",
+        "S6_supranational"
       ],
       "description": "Research stratum / trigger family. Derived from trigger.type."
     },
@@ -134,6 +135,20 @@
     "scoped_claim": {
       "type": "string",
       "description": "One plain-language sentence stating the narrow empirical claim supported by the retained observations. Required when status=admitted and review_report classifies the event as release_ready_scoped."
+    },
+    "scoped_knowledge": {
+      "type": "string",
+      "description": "Multi-paragraph structured note on what the event teaches about the cascade shape, beyond the one-sentence scoped_claim. Optional."
+    },
+    "related_events": {
+      "type": "array",
+      "description": "Cross-references to sibling events (e.g. redesignation → delisting, parent → follow-on). Each entry is an event slug or a small object describing the relationship.",
+      "items": {
+        "oneOf": [
+          {"type": "string"},
+          {"type": "object", "additionalProperties": true}
+        ]
+      }
     },
     "tags": {
       "type": "array",
@@ -274,6 +289,7 @@
             "cftc_action",
             "sec_action",
             "non_us_sanctions",
+            "supranational_regulation",
             "court_civil_order",
             "corporate_policy_change",
             "nation_state_block"
@@ -367,6 +383,14 @@
         },
         "entity": {
           "type": "string"
+        },
+        "actor_name": {
+          "type": "string",
+          "description": "Free-form human-readable name of the target actor (e.g. exchange brand name). Informational only."
+        },
+        "actor_type": {
+          "type": "string",
+          "description": "Coarse category of the target actor (exchange, mixer, ransomware_group, individual, etc.). Informational only."
         }
       }
     },
@@ -497,7 +521,8 @@
           "type": "string"
         },
         "target_address": {
-          "type": "string"
+          "type": "string",
+          "description": "Specific target address this observation speaks to, when the enclosing event's target is an address_set with multiple entries. Informational."
         },
         "window": {
           "type": "array",

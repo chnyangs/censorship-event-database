@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `cascade` (4 changed layer(s): `asset_onchain`, `l1_consensus`, `l4_frontend`, `offramp_cex`) · **Tier**: `anchor_case`
 
-**Dataset version**: `unknown` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-22T05:44:02Z`
+**Dataset version**: `22898e2` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-22T12:37:02Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -96,7 +96,7 @@
 
 - **`primary_onchain`**
   - URL: <https://etherscan.io/tx/0xa61326744a21ce8d5397831d107ee14909b3f4eaaaddbf1f3dce879a19e30dd9>
-  - tx_hash: `75117768360575018115561291813527611824138002666351339078444181871786696314329`
+  - tx_hash: `0xa61326744a21ce8d5397831d107ee14909b3f4eaaaddbf1f3dce879a19e30dd9`
   > USDC blacklist transaction for target address 0x8589427373D6D84E98730D7795D8f6f8731FDA16 on 2022-08-08
 - **`supporting_community`**
   - URL: <https://usdtbanlist.com/address/0x8589427373d6d84e98730d7795d8f6f8731fda16>
@@ -160,7 +160,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at `unknown`.
+1. Clone the repository at `22898e2`.
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

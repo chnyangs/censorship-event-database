@@ -770,13 +770,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: A direct-attribution changed layer lacks any primary_legal / primary_corporate / primary_onchain source.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 

@@ -6,12 +6,19 @@
 
 **A curated, evidence-chained catalog of cross-layer crypto censorship events, with an open schema that can be adopted by other researchers. Intended as a descriptive historical record for empirical measurement research, event studies, and journalism — not as a normative compliance or legal playbook.**
 
-Every major crypto censorship event (SDN listing, court order, corporate policy change) triggers a **cascade** of reactions across independent layers of the stack: network-layer blocking, consensus-layer relay filtering, RPC rejection, frontend delisting, asset-layer freezing. **No one has ever measured the cascade as a single phenomenon.** Existing sources are siloed:
+Every major crypto censorship event (SDN listing, court order, corporate policy change) triggers a **cascade** of reactions across independent layers of the stack: network-layer blocking, consensus-layer relay filtering, RPC rejection, frontend delisting, asset-layer freezing. Prior measurement work covers individual layers well but treats them as isolated snapshots; **no existing dataset tracks an identified trigger event through all six layers on a shared, hour-precision timeline with an open multi-source admission protocol**. Concretely:
 
 - Chainalysis / Elliptic see asset-layer freezes, but data is proprietary.
-- Wahrstätter's dashboards see L1 relay filtering.
-- Censored Planet sees L0 blocking, but doesn't crypto-slice.
-- Journalists write narrative accounts but without structured timestamps.
+- Wahrstätter et al. ("Blockchain Censorship", ACM WebConf 2024) formalize L0–L1 censorship — relay / builder filtering — but do not link specific events to L3–L4 or off-ramp reactions.
+- Censored Planet (CCS 2020+) sees L0 blocking but does not crypto-slice.
+- MEV coordination work (e.g. USENIX Security 2025 on sandwich-driven private routing) captures behavioral cascades, not policy-trigger cascades.
+- Journalists write narrative accounts but without structured timestamps or open provenance.
+
+The contribution, relative to that prior art, is:
+
+1. **Event-keyed**, not state-keyed — each row is a specific OFAC / DOJ / corporate / nation-state trigger.
+2. **Six-layer**, not one — L0 network, L1 consensus, L3 RPC, L4 frontend, asset on-chain freeze, off-ramp CEX.
+3. **Hour-precision, archived, multi-source-verified** — every observation carries primary/semi-primary sources with wayback + body-hash anchors that a reviewer can replay.
 
 The deliverable has two layers:
 
@@ -196,7 +203,11 @@ Grouped by trigger type. Exact selection refined after pilots.
 
 ## 7. Methodology paper outline
 
-Target venue: **AFT 2026** (primary) or **IMC 2026** (secondary). Either welcomes dataset + methodology contributions.
+Target venue: **IMC 2026 (Cycle 2, Aug decision)** as primary — its explicit
+artifact / replicability track is the best fit for a dataset + methodology paper
+spanning network + consensus + RPC + frontend + asset + off-ramp observations.
+**AFT 2026** remains a secondary target for the empirical-finance framing of the
+same dataset (event-study of regulatory cascades on crypto infrastructure).
 
 Proposed structure:
 
@@ -217,6 +228,7 @@ Three surfaces for reading the catalog:
 - **Live site (recommended for review)** — run `make render-site` to generate `site/index.html` locally; open in a browser. The site shows all events with filters by class/year/chain and one page per event. Auto-deployed on push via `.github/workflows/site.yml` if GitHub Pages is enabled for the repo.
 - **Raw YAMLs** — `events/*.yaml` with full primary-source citations, body_hashes, and analysis notes. Validate-clean via `make validate`.
 - **Markdown indices** — `EVENTS-CHECKLIST.md` for admission status per stratum, `CHANGELOG.md` for chronological provenance, `analysis/review-report.md` for readiness scoring.
+- **Datasheet** — [docs/datasheet.md](docs/datasheet.md) follows Gebru et al.'s "Datasheets for Datasets" template and is the single-page intake point for external consumers (motivation, composition, admission protocol, biases, distribution).
 
 Three framework tools are built on the dataset (see [docs/limitations-and-use.md](docs/limitations-and-use.md) before using any output):
 

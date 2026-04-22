@@ -1,0 +1,83 @@
+name: Validate
+
+on:
+  pull_request:
+    paths:
+      - 'events/**'
+      - 'schema/**'
+      - 'scripts/**'
+      - 'templates/**'
+      - '.github/workflows/validate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'events/**'
+      - 'schema/**'
+      - 'scripts/**'
+      - 'templates/**'
+      - '.github/workflows/validate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install pyyaml jsonschema
+      - name: Validator + schema-drift self-check
+        run: python3 scripts/validate.py
+      - name: JSON-Schema conformance (external consumer view)
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, sys
+          import yaml, jsonschema
+
+          def clean(node):
+              # Strip explicit nulls — they're YAML stylistic "absent" markers
+              # rather than real values. Keeps the wire format tidy for external
+              # consumers without forcing authors to drop the `protocol: ~`
+              # shorthand from their YAML.
+              if isinstance(node, dict):
+                  return {k: clean(v) for k, v in node.items() if v is not None}
+              if isinstance(node, list):
+                  return [clean(v) for v in node]
+              return node
+
+          schema = json.loads(pathlib.Path("schema/event.schema.json").read_text())
+          fails = []
+          paths = sorted(pathlib.Path("events").glob("*.yaml"))
+          for p in paths:
+              # Round-trip through JSON (default=str) to coerce datetime.date
+              # / datetime.datetime to ISO strings — jsonschema judges the JSON
+              # wire format, not the Python-object form.
+              raw = yaml.safe_load(p.read_text())
+              data = json.loads(json.dumps(clean(raw), default=str))
+              try:
+                  jsonschema.validate(data, schema)
+              except jsonschema.ValidationError as e:
+                  ptr = "/".join(str(x) for x in e.absolute_path)
+                  fails.append(f"{p.name} at /{ptr}: {e.message[:200]}")
+          if fails:
+              print("[FAIL] JSON-Schema validation failures:")
+              for f in fails:
+                  print(" -", f)
+              sys.exit(1)
+          print(f"[OK] JSON-Schema validated {len(paths)} events.")
+          PY
+      - name: Status report
+        run: python3 scripts/status_report.py
+      - name: Review report
+        run: python3 scripts/review_report.py
+      - name: Staleness report
+        run: python3 scripts/staleness_report.py
+      - name: Draft gap report (informational)
+        run: python3 scripts/draft_gap_report.py
+      - name: Dataset build (JSON + CSV)
+        run: python3 scripts/build_dataset.py

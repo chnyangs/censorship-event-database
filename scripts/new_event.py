@@ -71,7 +71,7 @@ def main() -> int:
         raise SystemExit(f"Refusing to overwrite existing file: {path}")
 
     event = build_template(args)
-    path.write_text(yaml.safe_dump(event, sort_keys=False, allow_unicode=False))
+    path.write_text(yaml.safe_dump(event, sort_keys=False, allow_unicode=True))
     print(f"Created {path}")
     return 0
 

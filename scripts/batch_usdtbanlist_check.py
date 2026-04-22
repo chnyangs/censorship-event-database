@@ -12,6 +12,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import sys
 import time
 import urllib.request
 import urllib.parse
@@ -72,17 +73,28 @@ def scan_event(event_yaml: Path) -> dict:
         text = re.sub(r"<[^>]+>", " ", body.decode("utf-8", errors="ignore"))
         text = re.sub(r"\s+", " ", text)
         blocked = "BLOCKED" in text
-        frozen_m = re.search(
-            r"Frozen:\s+([\d,]+\.\d{2})\s+USD[CT]", text
-        )
+        # Amount regex is permissive on decimals: matches "12", "12.5", "12.56",
+        # "1,234", "1,234.567". The previous `\.\d{2}` requirement silently
+        # dropped freeze rows if usdtbanlist.com ever rendered 1- or 3-decimal
+        # amounts. If the HTML structure changes wholesale and no bans match,
+        # `_warn_if_no_matches` surfaces a warning instead of failing silently.
+        amount_pat = r"[\d,]+(?:\.\d+)?"
+        frozen_m = re.search(rf"Frozen:\s+({amount_pat})\s+USD[CT]", text)
         frozen_balance = frozen_m.group(1) if frozen_m else None
         # capture all Banned rows: "Banned <amt> <TOKEN> <date>  <txprefix>"
         bans = re.findall(
-            r"Banned\s+([\d,]+\.\d{2})\s+(USD[CT])\s+"
+            rf"Banned\s+({amount_pat})\s+(USD[CT])\s+"
             r"([A-Z][a-z]+\s+\d+,\s+\d+,\s+\d+:\d+\s+[AP]M\s+UTC)\s+"
             r"([0-9a-f]{6,10})",
             text,
         )
+        if blocked and not bans and len(body) > 2000:
+            print(
+                f"[WARN] {addr}: page contains BLOCKED marker but no Banned rows "
+                f"parsed — usdtbanlist.com HTML may have changed. "
+                f"Check regex against latest page format.",
+                file=sys.stderr,
+            )
         # Extract full tx hashes from explorer links inside the body HTML.
         # ETH: etherscan.io/tx/0x<64hex>; TRON: tronscan.org/#/transaction/<64hex>
         body_text = body.decode("utf-8", errors="ignore")

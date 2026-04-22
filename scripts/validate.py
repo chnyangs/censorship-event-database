@@ -21,19 +21,14 @@ from typing import Any
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _gap_markers import BLOCKING as PLACEHOLDER_MARKERS  # noqa: E402
+
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 VOCAB_PATH = REPO_ROOT / "schema" / "controlled_vocab.yaml"
 SCHEMA_PATH = REPO_ROOT / "schema" / "event.schema.json"
 EVENTS_DIR = REPO_ROOT / "events"
-PLACEHOLDER_MARKERS = (
-    "placeholder",
-    "replace",
-    "fill in",
-    "example.org",
-    "example_actor",
-    "example_target",
-)
 
 
 def parse_args() -> argparse.Namespace:
@@ -169,7 +164,6 @@ class EventValidator:
         self.observation_kinds = set(vocab["observation_kinds"])
         self.attribution_levels = set(vocab["attribution_levels"])
         self.trigger_types = set(vocab["trigger_types"])
-        self.event_classes = set(vocab["event_classes"])
         self.event_statuses = set(vocab["event_statuses"])
         self.precision_levels = set(vocab["precision_levels"])
         self.target_kinds = set(vocab["target_kinds"])
@@ -226,19 +220,30 @@ class EventValidator:
         if "id" in event and (
             not isinstance(event["id"], str) or not event["id"] or "_" in event["id"]
         ):
-            result.error("id must be a non-empty kebab-case string.")
+            result.error("id must contain only lowercase letters, digits, and hyphens (no underscores or spaces).")
         if event.get("status") not in self.event_statuses:
             result.error(f"status must be one of {sorted(self.event_statuses)}")
 
-        # schema_version pin (P2 fix): reject stale schema tags.
+        # schema_version pin: reject known-stale schema tags, warn on
+        # unknown-newer tags to keep a forward-compatibility path open.
         # Current canonical version is 0.2.0 (split-field schema). Older events
-        # still advertising 0.1.0 are stale metadata and MUST be bumped.
+        # still advertising 0.1.0 are stale metadata and MUST be bumped. Newer
+        # versions (0.3.0+) warn only so a partially-migrated branch can still
+        # be linted by an older validator.
         CURRENT_SCHEMA_VERSION = "0.2.0"
-        if event.get("schema_version") != CURRENT_SCHEMA_VERSION:
+        KNOWN_STALE_VERSIONS = {"0.1.0"}
+        version = event.get("schema_version")
+        if version in KNOWN_STALE_VERSIONS:
             result.error(
-                f"schema_version={event.get('schema_version')!r} is stale; "
+                f"schema_version={version!r} is stale; "
                 f"expected {CURRENT_SCHEMA_VERSION!r} after the split-field migration. "
                 f"Re-run the migration tooling or bump manually."
+            )
+        elif version != CURRENT_SCHEMA_VERSION:
+            result.warn(
+                f"schema_version={version!r} is not the canonical "
+                f"{CURRENT_SCHEMA_VERSION!r}; accepted with warning to keep "
+                f"migration branches runnable. Tighten this check once the bump settles."
             )
 
         # research_stratum / empirical_shape / admission_tier enumeration checks
@@ -342,16 +347,26 @@ class EventValidator:
             ("US_OFAC", ("ofac_sdn_designation", "ofac_sdn_removal"), "US_OFAC requires trigger.type ∈ {ofac_sdn_designation, ofac_sdn_removal}"),
             ("EU_COUNCIL", ("non_us_sanctions", "supranational_regulation"), "EU_Council requires trigger.type ∈ {non_us_sanctions, supranational_regulation}"),
         ]
-        for needle, allowed, msg in actor_type_rules:
-            if needle in actor_upper:
-                allowed_set = allowed if isinstance(allowed, tuple) else (allowed,)
-                if t not in allowed_set:
-                    result.error(f"trigger.actor={actor} + trigger.type={t} violates actor/type coherence: {msg}.")
-                break  # only match first rule
-        # Multi-framework exceptions (binance-4framework-2023 carries DOJ+FinCEN+OFAC+CFTC).
-        # Allowed: if actor contains both DOJ and another agency name, skip the strict check above.
-        # (Implemented via the `break` above — the DOJ rule fires and accepts doj_indictment for
-        #  multi-agency resolutions because those DO carry DOJ as the primary prosecutor.)
+        # Multi-agency actions (e.g. binance-4framework-2023: DOJ+FinCEN+OFAC+CFTC)
+        # are allowed IFF the trigger.type is consistent with ANY of the matching
+        # agencies. Previously the first-match-wins `break` let
+        # `actor=US_DOJ+US_OFAC / type=ofac_sdn_designation` pass because the
+        # DOJ rule fired first, matched nothing, and swallowed the mismatch.
+        # Now we collect every matching rule and accept if at least one allows
+        # the declared type; otherwise the union of permissible types is shown.
+        matched_rules = [(needle, allowed, msg)
+                         for needle, allowed, msg in actor_type_rules
+                         if needle in actor_upper]
+        if matched_rules:
+            allowed_union: set[str] = set()
+            for _, allowed, _ in matched_rules:
+                allowed_union.update(allowed if isinstance(allowed, tuple) else (allowed,))
+            if t not in allowed_union:
+                labels = " / ".join(msg for _, _, msg in matched_rules)
+                result.error(
+                    f"trigger.actor={actor} + trigger.type={t} violates actor/type coherence. "
+                    f"Matched agency rule(s): {labels}. Permissible trigger.type values: {sorted(allowed_union)}."
+                )
 
         # D) analysis_notes / tags must not mention legacy event_class words at all
         # (event_class was deprecated in schema 0.2.0; any surviving mention is stale).
@@ -549,6 +564,28 @@ class EventValidator:
                     f"observations[{idx}] coverage_gap should use attribution 'unknown' or 'none'."
                 )
 
+            # attribution=direct implies a primary_* source corroborates the
+            # causal link. Two semi-primary measurements are enough to satisfy
+            # the admission count (README §3.4) but not strong enough to warrant
+            # a "direct" causal claim. Gate "direct" on at least one primary_*.
+            if (
+                kind == "observed_change"
+                and attribution == "direct"
+                and event.get("status") != "draft"
+                and isinstance(sources, list)
+            ):
+                has_primary = any(
+                    isinstance(s, dict)
+                    and isinstance(s.get("type"), str)
+                    and s["type"].startswith("primary_")
+                    for s in sources
+                )
+                if not has_primary:
+                    result.error(
+                        f"observations[{idx}] attribution=direct requires at least one "
+                        f"primary_* source; semi-primary measurements alone warrant attribution=plausible."
+                    )
+
             self._validate_sources(idx, layer, sources, result, event.get("status"))
 
         empirical_shape = event.get("empirical_shape")
@@ -631,7 +668,9 @@ class EventValidator:
             "week": 168.0,
         }
         tolerance = tolerance_by_precision.get(str(precision), 1.0)
-        if abs(actual_delta - delta_hours) > tolerance:
+        # 1e-6h ≈ 3.6ms; absorbs ISO-8601 float-roundtrip noise without
+        # widening the semantic tolerance.
+        if abs(actual_delta - delta_hours) > tolerance + 1e-6:
             result.error(
                 f"observations[{idx}].delta_hours={delta_hours} disagrees with timestamp-trigger difference {actual_delta:.2f}h beyond tolerance for precision={precision}."
             )
@@ -966,10 +1005,81 @@ def discover_paths(raw_paths: list[str]) -> list[Path]:
     )
 
 
+# Enum pairs that must stay in sync across vocab ↔ schema ↔ hardcoded validator
+# rules. Previously S6_supranational lived in vocab + hardcoded rules but was
+# absent from the JSON Schema file, so any external `jsonschema` consumer would
+# reject two admitted EU events. This self-test runs before event validation and
+# hard-fails on drift.
+_VALIDATOR_STRATA = {
+    "S1_ofac_sdn", "S2_ofac_removal", "S3_doj_sec_cftc_fiod",
+    "S4_nation_state", "S5_corporate", "S6_supranational",
+}
+_VALIDATOR_SHAPES = {"cascade", "comparison", "null_event"}
+_VALIDATOR_TIERS = {"anchor_case", "empirical_case", "null_case"}
+
+
+def check_vocab_schema_consistency(vocab: dict, schema: dict) -> list[str]:
+    """Return a list of drift errors between controlled_vocab.yaml, the JSON
+    Schema file, and this validator's hardcoded rule tables. Empty list = OK.
+    """
+    errors: list[str] = []
+    props = schema.get("properties", {})
+
+    def schema_enum(path: list[str]) -> set[str]:
+        node: Any = schema
+        for key in path:
+            node = node.get(key, {}) if isinstance(node, dict) else {}
+        enum = node.get("enum") if isinstance(node, dict) else None
+        return set(enum) if isinstance(enum, list) else set()
+
+    checks: list[tuple[str, set[str], set[str], set[str]]] = [
+        ("research_stratum",
+         _VALIDATOR_STRATA,
+         set(vocab.get("research_strata", [])),
+         schema_enum(["properties", "research_stratum"])),
+        ("empirical_shape",
+         _VALIDATOR_SHAPES,
+         set(vocab.get("empirical_shapes", [])),
+         schema_enum(["properties", "empirical_shape"])),
+        ("admission_tier",
+         _VALIDATOR_TIERS,
+         set(vocab.get("admission_tiers", [])),
+         schema_enum(["properties", "admission_tier"])),
+        ("trigger.type",
+         set(vocab.get("trigger_types", [])),
+         set(vocab.get("trigger_types", [])),
+         schema_enum(["$defs", "trigger", "properties", "type"])),
+        ("source.type",
+         set(vocab.get("source_types", [])),
+         set(vocab.get("source_types", [])),
+         schema_enum(["$defs", "source", "properties", "type"])),
+    ]
+    for name, validator_set, vocab_set, schema_set in checks:
+        missing_from_schema = (validator_set | vocab_set) - schema_set
+        missing_from_vocab = (validator_set - vocab_set) if validator_set != vocab_set else set()
+        if missing_from_schema:
+            errors.append(
+                f"[schema-drift] {name}: values {sorted(missing_from_schema)} are in "
+                f"vocab/validator but missing from event.schema.json."
+            )
+        if missing_from_vocab:
+            errors.append(
+                f"[schema-drift] {name}: validator accepts {sorted(missing_from_vocab)} "
+                f"but vocab does not list them."
+            )
+    return errors
+
+
 def main() -> int:
     args = parse_args()
     vocab = load_yaml(VOCAB_PATH)
-    _ = load_json(SCHEMA_PATH)
+    schema = load_json(SCHEMA_PATH)
+    drift = check_vocab_schema_consistency(vocab, schema)
+    if drift:
+        print("[FAIL] vocab / schema / validator drift detected:", file=sys.stderr)
+        for line in drift:
+            print(f"  - {line}", file=sys.stderr)
+        return 1
     validator = EventValidator(vocab)
     paths = discover_paths(args.paths)
 

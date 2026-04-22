@@ -270,7 +270,7 @@ def render_report(
         out.append("")
         # Feature contribution breakdown
         out.append("**Why this ranked here** (feature → contribution):")
-        contribs = sorted(breakdown.items(), key=lambda x: -x[1])
+        contribs = sorted(breakdown.items(), key=lambda x: (-x[1], x[0]))
         for feat, contrib in contribs:
             if contrib > 0:
                 out.append(f"- `{feat}`: +{contrib:.2f}")
@@ -373,7 +373,7 @@ def main() -> int:
     for slug, ev in candidates.items():
         score, breakdown = score_similarity(query, ev)
         scored.append((slug, score, breakdown))
-    scored.sort(key=lambda x: -x[1])
+    scored.sort(key=lambda x: (-x[1], x[0]))
 
     report = render_report(query, ref, scored, events, args.top)
 

@@ -1,5 +1,95 @@
 # Changelog
 
+## 2026-04-22 (systematic review sweep)
+
+Round-trip of reviewer findings from the 2026-04-22 systematic review. Every
+change is backed by an explicit [R#] tag:
+
+- **[R1] JSON Schema was dead code — fixed.** `scripts/validate.py` loaded
+  `schema/event.schema.json` and discarded the result (`_ = load_json(...)`).
+  The hand-rolled validator hardcoded `S6_supranational` /
+  `supranational_regulation`, but those values were absent from the JSON Schema
+  file, so any external consumer using `jsonschema validate` would reject the
+  two admitted EU events (`eu-mica-2023`, `eu-12th-russia-sanctions-2023`).
+  - Added the missing enum values to `schema/event.schema.json`.
+  - Replaced the `example.org` placeholder `$id` with the repo URL.
+  - Added `check_vocab_schema_consistency(vocab, schema)` in `validate.py`
+    that diffs validator ⇄ vocab ⇄ JSON Schema enums and hard-fails on drift
+    (see `_VALIDATOR_STRATA` / `_VALIDATOR_SHAPES` / `_VALIDATOR_TIERS`).
+  - New CI workflow `validate.yml` runs the validator on every PR and also
+    round-trips every event through `jsonschema` (pip-installed) to catch
+    external-consumer drift that the hand-rolled validator might miss.
+- **[R2] CI surface expanded.** Previously only `site.yml` ran on push-to-main;
+  PRs were unprotected and `verify_citations.py` / `staleness_report.py` never
+  ran in CI, so link rot accumulated silently.
+  - Added `validate.yml`: runs on PR + push, executes `validate.py`,
+    `status_report.py`, `review_report.py`, `staleness_report.py`,
+    `draft_gap_report.py`, `build_dataset.py`.
+  - Added `freshness.yml`: weekly cron (Mon 07:00 UTC) runs
+    `freshness_check.py` + `verify_citations.py`, uploads log as artifact, and
+    opens/refreshes an issue labeled `freshness` when rot is detected.
+  - `site.yml` now also `pip install jsonschema`.
+- **[R3] Gap markers consolidated.** `validate.py`, `status_report.py`, and
+  `draft_gap_report.py` each defined their own marker list, which diverged —
+  a draft with "replace Wayback hash" would fail validate but show 0 gaps on
+  the status dashboard because status_report dropped the word "replace".
+  Moved to `scripts/_gap_markers.py` with three strictly-nested tiers:
+  `BLOCKING` ⊆ `STATUS` ⊆ `AUTHOR_DRAFT`. validate + status now use the same
+  `BLOCKING` set; `draft_gap_report` uses the broader author-hint set.
+- **[R4] `attribution=direct` ⇒ primary source.** Previously two semi-primary
+  measurements satisfied both the admission count rule AND allowed
+  `attribution=direct`. Added a distinct rule in `validate.py`:
+  `observed_change + attribution=direct + status != draft` requires at least
+  one `primary_*` source. Degraded the single violating observation
+  (`tornado-cash-ofac-delisting-2025.yaml` L1 consensus) from `direct` to
+  `plausible` and extended the analysis note to explain the downgrade.
+- **[R5] Reproducibility sweep.**
+  - `datetime.utcnow()` (deprecated in 3.12) → `datetime.now(timezone.utc)`
+    in `render_site.py` and `ooni_batch_query.py`. Every other script was
+    already correct; sweep makes the repo uniform.
+  - `find_comparable_cases.py` sort keys now include a secondary key on the
+    slug / feature name so tied scores produce byte-identical Markdown across
+    runs. Without it, CPython insertion order changes could flip the output.
+  - `validate.py` delta_hours tolerance check now widens by 1e-6h
+    (≈ 3.6 ms) to absorb ISO-8601 round-trip float noise without broadening
+    the semantic tolerance.
+  - `validate.py` schema_version check: `0.1.0` still hard-fails (migration
+    pin); unknown newer versions now warn instead of erroring so a
+    partially-migrated branch is still runnable by an older validator.
+- **[R6] USDT-banlist parser hardened.** `batch_usdtbanlist_check.py` regex
+  required exactly two decimal places and would silently drop 1- or 3-decimal
+  amounts. Widened to `[\d,]+(?:\.\d+)?` and added a `[WARN]` when the page
+  carries the `BLOCKED` marker but the parser extracts zero Banned rows —
+  the canary for a future HTML change.
+- **[R7] Multi-agency trigger check fixed.** `validate.py` actor/type coherence
+  previously `break`'d on the first matching agency substring. For
+  `binance-4framework-2023` and similar, that allowed inconsistent
+  (actor, trigger.type) pairs to pass if the wrong agency matched first. Now
+  collects every matching rule and accepts if the declared type is in the
+  union of permissible types; error message lists all matched agencies.
+- **[R8] Hygiene.**
+  - `review_report.py` now prepends `scripts/` to `sys.path` so it imports
+    `status_report` regardless of cwd.
+  - `new_event.py` now dumps with `allow_unicode=True`, matching
+    `agent_draft_event.py` (no more byte-level difference between the two).
+  - `templates/event.yaml` stratum comment includes `S6_supranational`.
+  - `validate.py` id error wording spells out "lowercase letters, digits,
+    and hyphens only" instead of "kebab-case".
+  - Dead vocab key `event_classes` removed from `EventValidator.__init__`
+    (it was loaded then never read).
+- **[R9] Prior-art positioning in README §1.** Replaced the broad
+  "no one has ever measured the cascade" framing with a contribution
+  statement that acknowledges Wahrstätter et al. (ACM WebConf 2024), Censored
+  Planet (CCS 2020+), and MEV-coordination work (USENIX Security 2025), and
+  states the incremental contribution as **event-keyed + six-layer +
+  hour-precision + open multi-source admission protocol**.
+- **[R10] Venue ordering.** README §7 now lists IMC 2026 Cycle 2 as primary
+  (artifact/replicability track is the best fit for a dataset+methodology
+  paper) and AFT 2026 as secondary for the financial-framing angle.
+- **[R11] Datasheet.** Added [`docs/datasheet.md`](docs/datasheet.md),
+  following Gebru et al.'s "Datasheets for Datasets" template. Linked from
+  README §7.5.
+
 ## 2026-04-22
 
 - **Repository cleanup: merged stray root-level `sources/` into `p1-event-db/sources/`**.

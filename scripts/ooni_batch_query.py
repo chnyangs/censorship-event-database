@@ -18,7 +18,7 @@ import pathlib
 import sys
 import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 OONI_API = "https://api.ooni.io/api/v1/measurements"
@@ -60,7 +60,7 @@ def main() -> int:
     for domain, cfg in domains.items():
         slugs = cfg["slugs"]
         since = cfg.get("since", "2020-01-01")
-        until = cfg.get("until", datetime.utcnow().strftime("%Y-%m-%d"))
+        until = cfg.get("until", datetime.now(timezone.utc).strftime("%Y-%m-%d"))
         print(f"[query] {domain} {since}..{until} ({len(slugs)} slug refs)")
 
         data = query_ooni(domain, since, until)

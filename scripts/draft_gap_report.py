@@ -4,27 +4,19 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _gap_markers import AUTHOR_DRAFT as GAP_MARKERS  # noqa: E402
+
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
-GAP_MARKERS = (
-    "placeholder",
-    "replace",
-    "fill in",
-    "need ",
-    "needs ",
-    "still need",
-    "still needs",
-    "to be collected",
-    "before admission",
-    "requires ",
-)
 
 
 def parse_args() -> argparse.Namespace:
