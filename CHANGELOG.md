@@ -1,5 +1,88 @@
 # Changelog
 
+## 2026-04-23 (systematic UI overhaul)
+
+Full rewrite of `scripts/render_site.py`. Previously the site was a single
+466-line Python file emitting inline CSS + minimal HTML; the output displayed
+the data but did not reflect the project's thesis. After this pass, every
+event page surfaces the cascade as a first-class visual and the index makes
+the structural distribution browsable at a glance.
+
+- **Semantic foundation.** Every page now carries `<html lang="en">`,
+  `<meta name="viewport">`, `<meta name="description">`, a sticky
+  `<header class="site-header">`, `<main>` content region, `<article>`
+  wrappers for event bodies, `<nav>` for breadcrumbs/prev-next, and
+  `aria-label` / `aria-pressed` / `aria-sort` on interactive controls.
+  All 54 pages pass HTML tag-balance checks.
+- **Coherent color system.** The old palette reused red (`pill-cascade`
+  and `pill-direct`) across semantic axes, which collapsed different
+  meanings onto the same hue. Introduced CSS custom properties with
+  **non-overlapping** palettes for status, empirical_shape, admission_tier,
+  attribution, observation_kind, and per-layer qualitative colors.
+- **Dark mode.** `prefers-color-scheme: dark` plus a manual toggle in the
+  header persisted in `localStorage` (`ccdb.theme`). Full variable remap
+  so every surface, border, and pill has legible contrast in both modes.
+- **Cascade visualization (index + event).** Each event renders a
+  6-dot `cascade-dots` glyph — one dot per layer in canonical order, filled
+  with that layer's color when observed_change, dashed-outlined when
+  observed_no_change, muted when no observation. The glyph appears on every
+  event row in the index table AND enlarged in the event hero.
+- **Per-event cascade timeline.** New horizontal timeline SVG-in-CSS
+  showing trigger at t=0, each layer as a colored track, observation
+  markers at their `delta_hours` position, axis ticks at
+  {0h, 6h, 12h, 24h, 48h, 72h, 168h}, and an off-axis "+N beyond 7d" note
+  for observations outside the 7-day window.
+- **Event hero.** Title-cased slug with acronym-aware rendering
+  (`tornado-cash-ofac-delisting-2025` → `Tornado Cash OFAC Delisting 2025`).
+  Above-the-fold: shape / tier / status pills, scoped_claim blockquote,
+  6-layer cascade summary, then a compact fact grid (trigger date, type,
+  actor, jurisdiction, chains, stratum).
+- **Observations grouped by layer.** Observations are now shown as
+  per-layer `<article>` groups (L0 → L1 → L3 → L4 → asset → offramp),
+  each with layer-colored header and a compact source list. The flat
+  observation table is retired; the layered view makes the cascade visible.
+- **Index filtering overhaul.** Replaced the single text box + class
+  dropdown with a chip bar across **five facets**: shape, tier, stratum,
+  year, chain. Filters are ORed within a facet and ANDed across facets.
+  Filter state round-trips to the URL hash (e.g. `#shape=cascade&year=2022`),
+  so filtered views are shareable. "Reset filters" button + live result
+  count. Search blob now includes tags, protocol, entity, title.
+- **Sortable columns.** Every `events` table header with `data-sort` is
+  click-/Enter-sortable, with `aria-sort` set on the active column and an
+  arrow indicator. Default sort: date ascending.
+- **Sticky chrome.** Site header + filter bar + table thead all stick to
+  the top on scroll; the sticky offsets are tuned per breakpoint.
+- **Hero chip deep-links.** Index hero exposes canned filter links
+  (cascade events / anchor cases / OFAC SDN / nation-state / by-year);
+  clicking updates the URL hash and the page reacts via a `hashchange`
+  listener that clears, reloads, and scrolls to the events table.
+- **Prev/next sibling nav on event pages.** Event pages now carry a
+  date-ordered prev/next pair at the bottom so readers can sweep
+  chronologically through the dataset.
+- **Distribution as tiny bar charts.** The old distribution "table" was
+  four `<br>`-stacked lists. Replaced with four `dist-card`s, each
+  showing the top-6 values with horizontal bar fills scaled to the
+  facet maximum.
+- **Externalized assets.** `styles.css` (655 lines, was 59) and a new
+  `site.js` (143 lines) are separate files rather than inlined in the
+  Python string. Easier to edit, cacheable, and unblocks CSP experiments.
+- **Typography, responsive, print.** Fluid `max-width: 1180px`; mobile
+  breakpoint at 700px hides lower-priority columns and restacks the fact
+  grid; print CSS hides the header/filter/nav chrome and flattens to black
+  on white.
+- **Timestamp normalization.** PyYAML parses `2022-08-08T13:30:00Z` as a
+  `datetime`; the old renderer `str()`'d it into the ugly
+  `2022-08-08 13:30:00+00:00` form. New `fmt_ts()` helper always emits
+  `2022-08-08T13:30:00Z`; used consistently in hero, trigger section,
+  timeline, and `<time datetime="…">` elements.
+- **Tag cloud links feed the search box.** Event-page tags now link to
+  `index.html#q=<tag>`, which the index hash router maps to the search
+  input rather than trying to filter by a non-existent `tag` facet.
+
+Regeneration: `python3 scripts/render_site.py` → 53 event pages + index,
+all passing tag-balance checks. Hand-rolled validator + external
+`jsonschema` round-trip remain green.
+
 ## 2026-04-22 (systematic review sweep)
 
 Round-trip of reviewer findings from the 2026-04-22 systematic review. Every
