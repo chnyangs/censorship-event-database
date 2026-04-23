@@ -1643,7 +1643,7 @@ def render_index(events: list[dict]) -> str:
   <div class="site-header-inner">
     <div class="brand"><a href="./index.html">Chain Censorship Events</a><span class="brand-tag">database</span></div>
     <div class="header-spacer"></div>
-    <a class="header-link" href="https://github.com/xwy411/chain-censorship-measurement" rel="noopener">GitHub</a>
+    <a class="header-link" href="https://github.com/chnyangs/censorship-event-database" rel="noopener">GitHub</a>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀ light</button>
   </div>
 </header>

@@ -1,49 +1,109 @@
-name: Render and deploy site
+name: Build and publish site
+
+# Source repo builds `site/` from YAML and pushes the rendered static files
+# into a separate public repo (chnyangs/censorship-event-database-site),
+# whose GitHub Pages is configured to deploy from that repo's main branch.
+#
+# One-time setup in the SOURCE repo (this one):
+#   1. Create a GitHub Personal Access Token (fine-grained recommended):
+#      - Resource owner: chnyangs
+#      - Repository access: Only select repositories → censorship-event-database-site
+#      - Repository permissions: Contents → Read and write
+#   2. Settings → Secrets and variables → Actions → New repository secret:
+#      name  = SITE_DEPLOY_TOKEN
+#      value = <the PAT>
+#
+# One-time setup in the TARGET repo (chnyangs/censorship-event-database-site):
+#   1. Initialise with at least one commit so the `main` branch exists
+#      (e.g. an empty README).
+#   2. Settings → Pages → Source = "Deploy from a branch", Branch = main,
+#      Folder = / (root). Save.
+#
+# After that, every push to main here (or a manual workflow_dispatch) rebuilds
+# and publishes the site. Free plan compatible; no GitHub Pro required.
 
 on:
   push:
     branches: [main]
     paths:
       - 'events/**'
+      - 'schema/**'
       - 'scripts/render_site.py'
       - '.github/workflows/site.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "site-publish"
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Install dependencies
         run: pip install pyyaml jsonschema
+
       - name: Validate events
         run: python3 scripts/validate.py
+
       - name: Render site
         run: python3 scripts/render_site.py
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./site
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Disable Jekyll on Pages
+        run: touch site/.nojekyll
+
+      - name: Publish to external site repo
+        env:
+          TARGET_REPO: chnyangs/censorship-event-database-site
+          TARGET_BRANCH: main
+          GH_TOKEN: ${{ secrets.SITE_DEPLOY_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "::error::SITE_DEPLOY_TOKEN secret is not set in this repository."
+            echo "See .github/workflows/site.yml for one-time setup instructions."
+            exit 1
+          fi
+
+          # Clone the target repo (shallow, auth via x-access-token).
+          # If --branch main fails because the target repo has no main yet,
+          # fall back to a plain clone and create main.
+          if ! git clone --depth 1 --branch "${TARGET_BRANCH}" \
+              "https://x-access-token:${GH_TOKEN}@github.com/${TARGET_REPO}.git" target 2>/dev/null; then
+            echo "Branch ${TARGET_BRANCH} not found on ${TARGET_REPO}; cloning default and creating it."
+            git clone --depth 1 \
+              "https://x-access-token:${GH_TOKEN}@github.com/${TARGET_REPO}.git" target
+            (cd target && git checkout -B "${TARGET_BRANCH}")
+          fi
+
+          # Wipe target tree (preserving .git) and overlay fresh site.
+          find target -mindepth 1 -not -path 'target/.git' -not -path 'target/.git/*' -delete
+          cp -r site/. target/
+
+          cd target
+          git config user.email "deploy@ci.local"
+          git config user.name "censorship-event-database CI"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No site changes to publish."
+            exit 0
+          fi
+
+          SHORT_SHA="${GITHUB_SHA::7}"
+          STAMP="$(date -u +%Y-%m-%dT%H:%MZ)"
+          git commit -m "Deploy from ${GITHUB_REPOSITORY}@${SHORT_SHA} (${STAMP})"
+          git push origin "HEAD:${TARGET_BRANCH}"
+
+          echo "::notice::Published to https://github.com/${TARGET_REPO}. Pages URL: https://${TARGET_REPO%/*}.github.io/${TARGET_REPO#*/}/"

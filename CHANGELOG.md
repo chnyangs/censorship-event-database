@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-04-23 (publish pipeline: split source/site repos)
+
+- **site.yml rewritten** to build locally and push the rendered `site/` tree
+  into a separate public repo `chnyangs/censorship-event-database-site`
+  whose GitHub Pages deploys from that repo's `main` branch.
+- **Why not the built-in Pages deploy?** The project's original deploy used
+  `actions/deploy-pages@v4`, which requires either a public source repo
+  *plus* native Pages on that repo, or a paid GitHub plan for private Pages.
+  The split gives us: source-of-truth stays in one repo (with issue tracking
+  / PR review for dataset changes), while the rendered site lives in a
+  dedicated public site repo whose history is a clean deploy log. Also
+  survives any future decision to re-privatise the source repo — only the
+  target repo needs to stay public for Pages.
+- **Auth**: cross-repo push via a `SITE_DEPLOY_TOKEN` secret (fine-grained
+  PAT scoped to the target repo only, Contents: Read and write). Setup
+  instructions are in the workflow file's top comment.
+- **Hygiene**: adds `site/.nojekyll` at build time so Pages skips Jekyll
+  preprocessing (safer default for a hand-rendered static bundle). Fixed
+  the repo URL placeholder (`xwy411/…`) in the JSON Schema `$id` and the
+  index header's GitHub link to the real `chnyangs/censorship-event-database`.
+
 ## 2026-04-23 (systematic UI overhaul)
 
 Full rewrite of `scripts/render_site.py`. Previously the site was a single
