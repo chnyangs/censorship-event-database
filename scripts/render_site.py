@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Render events/*.yaml into a static HTML site under site/.
 
 No external dependencies beyond PyYAML. Emits:

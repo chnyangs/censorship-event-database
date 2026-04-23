@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Canonical gap-marker vocabularies shared across validate / status / draft-gap tooling.
 
 Three tiers, strictly nested: BLOCKING ⊆ STATUS ⊆ AUTHOR_DRAFT.

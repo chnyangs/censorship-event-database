@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Create a new draft event file from a built-in template."""
 
 from __future__ import annotations

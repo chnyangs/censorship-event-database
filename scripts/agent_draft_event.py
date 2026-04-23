@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Convert a `candidate_triggers/<stub>.yaml` into a draft event YAML.
 
 Given a candidate-trigger stub produced by a watcher, this script writes a

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Validate event YAML files against the repo's methodology rules.
 
 This validator intentionally avoids non-stdlib dependencies except PyYAML,

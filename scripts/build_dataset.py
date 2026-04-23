@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Build dataset release artifacts from event YAML files.
 
 Emits three files at the repo root:

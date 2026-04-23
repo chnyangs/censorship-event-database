@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Summarize unresolved evidence gaps across draft events."""
 
 from __future__ import annotations

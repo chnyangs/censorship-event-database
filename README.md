@@ -231,6 +231,7 @@ Three surfaces for reading the catalog:
 - **Datasheet** — [docs/datasheet.md](docs/datasheet.md) follows Gebru et al.'s "Datasheets for Datasets" template and is the single-page intake point for external consumers (motivation, composition, admission protocol, biases, distribution).
 - **Citation** — [`CITATION.cff`](CITATION.cff) is the canonical machine-readable record (GitHub renders a "Cite this repository" button from it; Zenodo reads it on each tagged release to mint a DOI). [docs/citing.md](docs/citing.md) holds BibTeX / APA / Chicago templates and the release cadence. [docs/releasing.md](docs/releasing.md) documents the Zenodo ↔ GitHub integration (one-time setup, then tag-to-DOI on every release).
 - **Stable metadata** — [`dataset.meta.json`](dataset.meta.json) is emitted on every `make dataset` run and pins version, cutoff date, schema, commit, and per-facet counts. This is the file downstream pipelines / site / evidence-chain / comparable-case reports read to stamp their output with a consistent snapshot identity.
+- **License** — two licenses, one per artifact class. The dataset + docs are **CC-BY-4.0** ([`LICENSE`](LICENSE)); the code is **MIT** ([`LICENSE-CODE`](LICENSE-CODE)). Full split + rationale in [`NOTICE`](NOTICE) and [`docs/limitations-and-use.md §6`](docs/limitations-and-use.md).
 
 Three framework tools are built on the dataset (see [docs/limitations-and-use.md](docs/limitations-and-use.md) before using any output):
 

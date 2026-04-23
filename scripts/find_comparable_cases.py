@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """
 Layer B of the framework: given a proposed action (or a current event as a
 reference), find the top-N most similar historical events in the dataset.

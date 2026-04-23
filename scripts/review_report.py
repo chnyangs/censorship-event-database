@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Generate a case-review report focused on robustness and completeness."""
 
 from __future__ import annotations

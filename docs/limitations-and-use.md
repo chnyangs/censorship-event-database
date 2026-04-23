@@ -179,17 +179,37 @@ dataset.
 
 ## 6. License and attribution
 
-The dataset (YAMLs + captured HTML sources) is published under the
-license recorded in the repo root. Tools (`scripts/*.py`) are
-MIT-licensed unless otherwise stated in the file. Commercial use is not
-prohibited but is strongly discouraged from relying on stability — we
-do not make uptime guarantees.
+This repo ships two artifacts under two different licenses. Both are at
+the repo root and authoritative; the machine-readable declarations live
+in `CITATION.cff` (dataset) and the `SPDX-License-Identifier` header on
+each source file (code). See [`NOTICE`](../NOTICE) for the full
+file-list split.
 
-When you cite the dataset, cite the git commit hash (not "latest") and
-the specific event slugs you use. When you cite a tool output, cite
-the tool version + the full output artifact (including its
-`dataset_version` stamp). This is the minimum bar for anything
-downstream to be independently verifiable.
+- **Dataset & documentation** — Creative Commons Attribution 4.0
+  International (**CC-BY-4.0**). Covers `events/`, `schema/`,
+  `analysis/`, `dataset.{json,csv,meta.json}`, `docs/`, `site/`,
+  `README.md`, `CHANGELOG.md`, `EVENTS-CHECKLIST.md`, `CITATION.cff`,
+  `.zenodo.json`, and the archived bodies under `sources/` to the
+  extent they are our copyright. Legal text: [`LICENSE`](../LICENSE).
+  SPDX: `CC-BY-4.0`.
+- **Source code** — MIT License. Covers `scripts/**/*.py`, `Makefile`,
+  `.github/workflows/*.yml`. Every Python file carries an
+  `SPDX-License-Identifier: MIT` header. Legal text:
+  [`LICENSE-CODE`](../LICENSE-CODE). SPDX: `MIT`.
+
+**Why the split**: Creative Commons explicitly recommends against using
+CC licenses for software. MIT is permissive enough for academic +
+industry tool reuse without friction; CC-BY-4.0 is the standard for
+open research data.
+
+**Attribution**: when you cite the dataset, cite the tagged
+`dataset_version` (from `CITATION.cff` / `dataset.meta.json`) and the
+specific event slugs you use — see [`citing.md`](citing.md) for
+templates. When you cite tool output, cite the tool version + the full
+output artifact (including its `dataset_version` stamp). When you
+redistribute or modify the code, keep the MIT copyright line + the SPDX
+header. Commercial use is not prohibited, but we do not make uptime or
+API-stability guarantees.
 
 ---
 

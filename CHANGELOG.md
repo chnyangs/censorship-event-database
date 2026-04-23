@@ -1,5 +1,54 @@
 # Changelog
 
+## 2026-04-23 (provenance / transparency / license consistency)
+
+Three P2 follow-ups from the release-prep review, all about
+"documentation promise vs record-level evidence" drift:
+
+- **Audit stamp finally lands on record.** The 2026-04-22 CHANGELOG entry
+  claimed an adversarial audit of 5 events but the event YAMLs carried no
+  `last_human_audit`. Stamped `last_human_audit: 2026-04-22` on the 5
+  re_scoped events from that audit (`tornado-cash-ofac-2022`,
+  `semenov-ofac-2023`, `cryptex-ofac-2024`,
+  `tether-retroactive-sweep-2023`, `tornado-cash-ofac-redesignation-2022`).
+  Did NOT stamp the expansion-pass fixups (`suex-ofac-2021`,
+  `chatex-ofac-2021`, `lockbit-affiliates-ofac-2024`) since those were
+  scope-widening tx_hash repairs, not part of the headline audit sample.
+- **`staleness_report.py` no longer masks missing audits.** Previous logic
+  used `last_verified` as a fallback when `last_human_audit` was absent,
+  so 53/53 events reported `ok` even though 0 had ever been audited.
+  Refactored to two independent dimensions:
+  - `audit_flag` — driven by `last_human_audit` alone; missing =
+    `no_audit_recorded` (explicit, not silently-ok).
+  - `verification_flag` — driven by `last_verified`; missing =
+    `no_verification_recorded`.
+  Row-level `summary_flag` = worst of the two, with an explicit severity
+  ordering (`no_audit_recorded > no_verification_recorded > red > ok`).
+  Current state: **5/53 audit:ok, 48/53 no_audit_recorded** — the report
+  now honestly surfaces the audit-coverage gap it was designed to
+  monitor. `analysis/staleness.md` now carries a flag legend + coverage
+  snapshot + per-event table with both dimensions.
+- **Code/data license split made explicit.** Previously the repo-root
+  `LICENSE` was CC-BY-4.0 but `docs/limitations-and-use.md §6` said
+  "tools under scripts/*.py are MIT-licensed unless otherwise stated"
+  with no actual MIT text or per-file headers — contradictory signal.
+  Concretely:
+  - Added [`LICENSE-CODE`](LICENSE-CODE) with the canonical MIT license
+    text.
+  - Added [`NOTICE`](NOTICE) at repo root enumerating which files are
+    CC-BY-4.0 vs MIT and explaining the split rationale (CC recommends
+    against using its licenses for software).
+  - Added `SPDX-License-Identifier: MIT` header to every file under
+    `scripts/` (18 files), so the per-file declaration is machine-
+    readable and survives cut-and-paste into downstream projects.
+  - Rewrote `docs/limitations-and-use.md §6` to name both licenses,
+    link to both legal texts, and explain the why. README gained a
+    one-line license callout linking to `NOTICE`.
+  - `LICENSE` itself is untouched (canonical CC-BY-4.0 from
+    creativecommons.org) — no preamble, because modifying canonical
+    CC text is exactly what Zenodo / external citation tooling doesn't
+    expect.
+
 ## 2026-04-23 (release-prep cleanup)
 
 Three corrections found in the citability pass review:

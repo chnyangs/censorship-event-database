@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Shared accessor for dataset-level metadata (version, cutoff, commit, counts).
 
 `dataset.meta.json` is the single source of truth: `scripts/build_dataset.py`

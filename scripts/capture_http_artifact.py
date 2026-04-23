@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Capture reproducible HTTP artifacts for current-state web evidence.
 
 Three modes are available:

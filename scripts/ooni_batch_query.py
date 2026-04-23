@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """
 Batch-query the OONI public API for a list of domains and persist raw results
 for L0-layer observation admission.

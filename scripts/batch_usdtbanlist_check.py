@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Batch-query usdtbanlist.com for each ETH/TRX address across all draft events.
 
 For each address, capture the usdtbanlist page under sources/http_captures/<slug>/asset-layer-check/

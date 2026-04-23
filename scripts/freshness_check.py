@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Check whether URLs recorded in event files are still reachable."""
 
 from __future__ import annotations

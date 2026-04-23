@@ -1,0 +1,53 @@
+Cross-Layer Censorship Event Database — Licensing
+
+This repository contains two distinct artifacts under two distinct licenses.
+They are released together but governed separately so downstream users can
+compose each piece into their own projects without conflating the two.
+
+1. Dataset and documentation — CC-BY-4.0
+   ------------------------------------------------------------------------
+   Files:
+     - events/*.yaml                 (the event records)
+     - schema/*.{json,yaml}          (schema + controlled vocabulary)
+     - analysis/**                   (generated analysis artifacts)
+     - dataset.{json,csv}            (release artifacts)
+     - dataset.meta.json             (stable metadata sidecar)
+     - docs/**                       (methodology, datasheet, citing, etc.)
+     - site/**                       (rendered static site)
+     - README.md, CHANGELOG.md, EVENTS-CHECKLIST.md
+     - CITATION.cff, .zenodo.json
+     - sources/**                    (archived primary-source bodies, where
+                                      included in the repo; third-party
+                                      sources retain their own rights)
+
+   License: Creative Commons Attribution 4.0 International Public License
+   License text: see LICENSE at the repo root.
+   SPDX-License-Identifier: CC-BY-4.0
+   Attribution target: "Xiangwen Yang, Cross-Layer Censorship Event Database"
+                       plus the version and DOI (see CITATION.cff).
+
+2. Source code — MIT
+   ------------------------------------------------------------------------
+   Files:
+     - scripts/**/*.py               (validators, generators, watchers, UI)
+     - scripts/_*.py                 (shared helper modules)
+     - Makefile
+     - .github/workflows/*.yml       (CI / publish workflows)
+
+   License: MIT License
+   License text: see LICENSE-CODE at the repo root.
+   SPDX-License-Identifier: MIT
+   Every Python file under scripts/ carries a `SPDX-License-Identifier: MIT`
+   header as the authoritative per-file declaration.
+
+Why two licenses?
+  - CC-BY-4.0 is the standard license for open research data / open
+    documentation. It is NOT a software license (Creative Commons
+    explicitly recommends against using CC licenses for code).
+  - MIT is a widely-understood permissive software license with minimal
+    downstream obligations. It lets tool reuse by academic, industry, and
+    hobbyist users without chilling adoption.
+
+If you copy both dataset rows and tooling into a downstream project, carry
+both attributions: cite the dataset per CITATION.cff and preserve the MIT
+copyright notice in the tooling source.

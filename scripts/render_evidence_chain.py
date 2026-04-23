@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """
 Layer A of the framework: render a single event as a structured evidence
 chain — "claim → supporting observations → sources (with body_hash) → gaps".
