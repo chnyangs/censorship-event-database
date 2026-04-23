@@ -1,5 +1,92 @@
 # Changelog
 
+## 2026-04-23 (derived research layer — v0.1 scaffolding)
+
+Inaugurates the three-layer structure: evidence (events/) stays immutable;
+a new **derived/** tree holds machine-generated analytical artifacts; two
+new schema docs define the **evaluation** surface without populating it
+yet. Everything is coverage-denominator honest and decoupled, per reviewer
+discipline.
+
+- **`derived/event_metrics.{csv,json,meta.json}`** — per-event panel
+  (~24 columns): cascade breadth / latency / attribution layer counts /
+  recovery per-layer / source-strength / structural flags
+  (`has_large_target_set`, `is_reversal_event`, `target_is_privacy_tool`).
+  Regenerates on `make event-metrics`. The `derived_archetype` placeholder
+  that originally lived here has been **removed** — archetype
+  classification is its own artifact (below), so base-metric logic stays
+  pure-function of the evidence layer.
+- **`derived/layer_observability.{csv,json,meta.json}`** —
+  coverage-aware per-layer table (one row per layer, 6 total). Columns:
+  `applicable_event_count`, measured / partial / not_measured /
+  not_applicable composition, `changed_count`, and conditional rates
+  `changed_given_measured` + `changed_given_measured_or_partial`. This
+  artifact is what lets claims about L0/L1/L3 observability read as
+  "zero changes *with N measured denominators*" rather than the
+  indefensible "L0 has no censorship". Key numbers from the current
+  snapshot (v0.1.0, cutoff 2026-04-22, 53 events):
+  - `l0_network` — 0 / 22 applicable measured; `changed_given_measured`
+    is **null** (undefined denominator). Pure observability gap.
+  - `l1_consensus` — 6 measured + 1 partial; `changed_given_measured` =
+    33%. The two L1 changes in the corpus are both Tornado-related.
+  - `l3_rpc` — 0 measured + 8 partial; `changed_given_measured_or_partial`
+    = 0/8. Weak denominator, weak claim.
+  - `l4_frontend` — 16 measured; **changed_given_measured = 81%**.
+  - `asset_onchain` — 17 measured; **changed_given_measured = 100%**.
+  - `offramp_cex` — 25 measured; `changed_given_measured` = 64%.
+- **`derived/event_archetypes.{csv,json,meta.json}`** +
+  **`derived/archetype_distribution.md`** — rule-based
+  deterministic classifier (no clustering). Six classes, priority-ordered:
+  `null_event` → `multi_layer` → `asset_only` → `frontend_only` →
+  `cex_only` → `other_single_layer` (safety catch for future L0/L1/L3
+  singletons; currently empty). Per-event emits `changed_layer_signature`
+  (e.g. `asset_onchain+l4_frontend`), `latency_regime`
+  (`synchronous` ≤ 1h / `acute` ≤ 30h / `delayed` ≤ 30d / `lagged` > 30d /
+  `none`), and structural flags (`is_upper_layer_only`,
+  `is_base_layer_observed`, `has_recovery_signal`, `trigger_is_action`).
+  The `trigger_is_action` flag separates `synchronous` rows where the
+  trigger *is* the observed action (all 5 `corporate_policy_change` events:
+  Circle/Tether×3/Uniswap — t=0 is definitional) from the 12 real
+  same-hour cascades with external trigger. Paper claims about reaction
+  speed should cite the latter subset. Report has 5
+  sections: rules / distribution / exemplars / edge-cases /
+  hand-eyeball checklist. Current distribution:
+  `asset_only: 13 · frontend_only: 8 · cex_only: 14 · multi_layer: 5 ·
+  other_single_layer: 0 · null_event: 13`. All multi-layer signatures
+  include L4 or asset; L1 consensus appears only in Tornado cases.
+- **`docs/stack-features-schema.md`** — v0.1 schema definition for the
+  per-stack architectural feature table (NOT populated). Four feature
+  families (frontend-control / asset-control / off-ramp + access /
+  base-layer) + cross-cutting governance. Mandatory provenance triplet
+  (`measured_at`, `measurement_source`, `confidence`) on every feature.
+  5 pilot stacks named: `eth_usdc_uniswap_cex`, `tron_usdt`,
+  `privacy_tool_stack`, `btc_base_stack`, `frontend_mediated_defi_stack`.
+  Solana deferred to v0.3.
+- **`docs/evaluation-profile-schema.md`** — v0.1 rubric definition
+  (NOT populated). Five ordinal dimensions (`high/medium/low/insufficient`):
+  Frontend / Asset / Off-ramp Enforcement Exposure + Coordination
+  Surface Density + Evidence Confidence. Explicit per-dimension grading
+  heuristics. Recoverability **deferred** (n=1 reversal event in corpus).
+  Composite index **deferred indefinitely** (reviewer-demand gated).
+  Phrasing discipline preserved: "historically associated with" / "not
+  predictive".
+- **Makefile** — new targets `event-metrics`, `layer-observability`,
+  `archetypes`, and umbrella `derived` (which runs `dataset` first so
+  the meta snapshot is current). `regenerate` extended to rebuild the
+  derived layer. `clean` also drops `derived/`. `make help` shows the
+  new derived-layer section.
+
+Explicit non-goals for v0.1 (all deferred with stated reason):
+
+- Populated stack-feature rows — schema only; manual annotation is a
+  separate work stream.
+- Evaluation-profile rows — same rationale.
+- Recoverability as an evaluation dimension — n=1 reversal.
+- Composite censorship-resistance score — sample size + incommensurability.
+- Solana stack pilot — evidence coverage too thin.
+- Unsupervised clustering — sample distribution strongly single-layer
+  dominant; rule-based taxonomy more defensible and fully reproducible.
+
 ## 2026-04-23 (provenance / transparency / license consistency)
 
 Three P2 follow-ups from the release-prep review, all about

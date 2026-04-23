@@ -11,6 +11,7 @@ REVIEW_MD       ?= analysis/review-report.md
 STALENESS_JSON  ?= analysis/staleness.json
 STALENESS_MD    ?= analysis/staleness.md
 DATASET_META    ?= dataset.meta.json
+DERIVED_DIR     ?= derived
 SITE_DIR        ?= site
 EVIDENCE_DIR    ?= analysis/evidence-chains
 
@@ -25,6 +26,7 @@ COMPARE_OUT ?= -
 .PHONY: help \
     validate validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset \
+    event-metrics layer-observability archetypes derived \
     render-site render-evidence render-evidence-all compare \
     ooni-scan usdt-scan capture \
     check check-network check-all \
@@ -44,7 +46,13 @@ help:
 	    'make status                # write $(STATUS_OUT)' \
 	    'make review                # write $(REVIEW_JSON) + $(REVIEW_MD)' \
 	    'make staleness             # write $(STALENESS_JSON) + $(STALENESS_MD)' \
-	    'make dataset               # rebuild $(DATASET_JSON) + $(DATASET_CSV)' \
+	    'make dataset               # rebuild $(DATASET_JSON) + $(DATASET_CSV) + $(DATASET_META)' \
+	    '' \
+	    '### Derived research layer (→ $(DERIVED_DIR)/)' \
+	    'make event-metrics         # per-event metrics panel (cascade breadth/speed/source strength)' \
+	    'make layer-observability   # coverage-aware per-layer observability table (denominator-honest)' \
+	    'make archetypes            # rule-based archetype classifier + archetype_distribution.md' \
+	    'make derived               # all three derived artifacts in one shot' \
 	    '' \
 	    '### Static site + framework outputs' \
 	    'make render-site           # render events/*.yaml → $(SITE_DIR)/' \
@@ -95,7 +103,21 @@ staleness:
 	$(PYTHON) scripts/staleness_report.py --json-out $(STALENESS_JSON) --md-out $(STALENESS_MD)
 
 dataset:
-	$(PYTHON) scripts/build_dataset.py --json-out $(DATASET_JSON) --csv-out $(DATASET_CSV)
+	$(PYTHON) scripts/build_dataset.py --json-out $(DATASET_JSON) --csv-out $(DATASET_CSV) --meta-out $(DATASET_META)
+
+event-metrics:
+	$(PYTHON) scripts/build_event_metrics.py --out-dir $(DERIVED_DIR)
+
+layer-observability:
+	$(PYTHON) scripts/build_layer_observability.py --out-dir $(DERIVED_DIR)
+
+archetypes:
+	$(PYTHON) scripts/assign_archetypes.py --out-dir $(DERIVED_DIR)
+
+# Umbrella target: rebuild every derived artifact (dataset.meta.json must
+# land first so downstream scripts read the latest version/cutoff).
+derived: dataset event-metrics layer-observability archetypes
+	@echo "[derived] all three derived artifacts rebuilt under $(DERIVED_DIR)/"
 
 # ---- Static site + framework ----
 render-site:
@@ -150,11 +172,11 @@ check-network: verify-citations freshness
 check-all: check check-network
 
 # Full rebuild of all derived artifacts (after an event-YAML change)
-regenerate: dataset status review render-site render-evidence-all
+regenerate: dataset event-metrics layer-observability archetypes status review staleness render-site render-evidence-all
 	@echo "[regenerate] all derived artifacts rebuilt"
 
 clean:
 	rm -rf $(SITE_DIR)
-	rm -f $(DATASET_JSON) $(DATASET_CSV)
-	rm -rf $(EVIDENCE_DIR)
-	@echo "[clean] removed site/, dataset.{json,csv}, evidence-chains/"
+	rm -f $(DATASET_JSON) $(DATASET_CSV) $(DATASET_META)
+	rm -rf $(EVIDENCE_DIR) $(DERIVED_DIR)
+	@echo "[clean] removed site/, dataset.{json,csv,meta.json}, evidence-chains/, derived/"

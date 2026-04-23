@@ -1,0 +1,45 @@
+{
+  "artifact": "event_metrics",
+  "csv_columns": [
+    "event_id",
+    "research_stratum",
+    "empirical_shape",
+    "admission_tier",
+    "applicable_layer_count",
+    "changed_layer_count",
+    "cascade_breadth",
+    "time_to_first_change_hours",
+    "time_to_last_change_hours",
+    "cascade_span_hours",
+    "direct_attribution_layer_count",
+    "plausible_attribution_layer_count",
+    "recovered_layer_count",
+    "unrecovered_layer_count",
+    "recovery_unknown_layer_count",
+    "recovery_rate",
+    "mean_resolved_hours",
+    "coverage_measured_count",
+    "coverage_partial_count",
+    "coverage_gap_count",
+    "primary_source_count",
+    "semi_primary_source_count",
+    "primary_onchain_source_count",
+    "has_large_target_set",
+    "is_reversal_event",
+    "target_is_privacy_tool"
+  ],
+  "dataset_snapshot": {
+    "cutoff_date": "2026-04-22",
+    "dataset_version": "0.1.0",
+    "schema_version": "0.2.0",
+    "source_commit": "c1d39f8"
+  },
+  "event_count": 53,
+  "generated_at": "2026-04-23T04:41:38Z",
+  "generator": {
+    "python": "3.14.4",
+    "script": "scripts/build_event_metrics.py",
+    "version": "0.1.0"
+  },
+  "notes": "Derived metrics. Evidence layer (events/*.yaml) is the source of truth; this artifact is a pure function of it. Regenerate with `make event-metrics`. Archetype / signature / latency-regime labels live in derived/event_archetypes.json (join on event_id)."
+}
