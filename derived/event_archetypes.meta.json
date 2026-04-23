@@ -1,0 +1,45 @@
+{
+  "archetype_order": [
+    "asset_only",
+    "frontend_only",
+    "cex_only",
+    "multi_layer",
+    "other_single_layer",
+    "null_event"
+  ],
+  "artifact": "event_archetypes",
+  "csv_columns": [
+    "event_id",
+    "research_stratum",
+    "empirical_shape",
+    "admission_tier",
+    "derived_archetype",
+    "changed_layer_signature",
+    "changed_layer_count",
+    "latency_regime",
+    "time_to_first_change_hours",
+    "trigger_is_action",
+    "has_recovery_signal",
+    "is_upper_layer_only",
+    "is_base_layer_observed"
+  ],
+  "dataset_snapshot": {
+    "cutoff_date": "2026-04-22",
+    "dataset_version": "0.1.0",
+    "schema_version": "0.2.0",
+    "source_commit": "c1d39f8"
+  },
+  "event_count": 53,
+  "generated_at": "2026-04-23T04:55:24Z",
+  "generator": {
+    "python": "3.14.4",
+    "script": "scripts/assign_archetypes.py",
+    "version": "0.1.0"
+  },
+  "latency_bands_hours": {
+    "acute_max": 30.0,
+    "delayed_max": 720.0,
+    "synchronous_max": 1.0
+  },
+  "notes": "Rule-based deterministic taxonomy. No clustering, no latent-class assumptions. Rules live in scripts/assign_archetypes.py::classify. Merging with base metrics: join derived/event_metrics.json on event_id."
+}
