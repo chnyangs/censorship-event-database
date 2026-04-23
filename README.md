@@ -214,8 +214,8 @@ Proposed structure:
 1. Motivation — single-layer views are incomplete; censorship is observed as cascades.
 2. Definition — "censorship cascade" as a formal object: ordered tuple of layer-level reactions with hour-precision timestamps.
 3. Methodology — multi-source verification protocol, event admission criteria, handling ambiguous cases.
-4. Dataset — 20-50 events, descriptive statistics on cascade shape (layers touched, propagation time, recovery rates).
-5. Empirical observations — e.g. "US-origin triggers propagate to L3 RPC within 6h in 80% of cases; L0 reactions observed only on non-US jurisdiction triggers"; "asset-layer freezes show 0% recovery rate vs 34% for L1 relay filtering".
+4. Dataset — current 53-event snapshot, with descriptive statistics on cascade shape, layer concentration, and response latency.
+5. Empirical observations — e.g. "in the current admitted corpus, observed changes concentrate on frontend / asset / off-ramp layers rather than L0/L1/L3"; "35 / 53 events are single-layer responses, so deterministic archetypes are more informative than count-based clustering"; "recoverability is excluded from v0.1 because the corpus has only one reversal event."
 6. Limitations — survivorship bias in source availability, unobserved private-decision layers.
 7. Open dataset + schema.
 

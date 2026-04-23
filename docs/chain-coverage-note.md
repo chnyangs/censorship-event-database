@@ -5,12 +5,13 @@ representation.
 
 ## Observation
 
-Across 49 admitted events, target-chain distribution is:
+As of dataset snapshot `v0.1.0` (cutoff `2026-04-22`), across **53
+admitted events**, target-chain distribution is:
 
 ```
-bitcoin:          24
-ethereum:         17
-tron:              6
+bitcoin:          23
+ethereum:         18
+tron:              7
 litecoin:          3
 dash:              2
 zcash:             2
@@ -27,8 +28,9 @@ across all event YAMLs for "solana", "polygon", "bnb chain", "bep-20",
 
 ## Interpretation
 
-This is not a sampling gap in the dataset — it reflects the actual content
-of OFAC SDN crypto designations from 2018-11-28 through 2025-11-19:
+This is not a sampling gap in the current dataset state — it reflects
+the actual content of the admitted corpus, which is itself dominated by
+OFAC SDN practice from 2018-11-28 through 2025-11-19:
 
 1. **OFAC SDN practice is BTC/ETH/TRON-centric.** The long-tail chains
    (LTC/DASH/ZEC/XMR) appear only in the 2020-09-10 Russia-election and

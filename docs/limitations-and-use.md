@@ -62,9 +62,13 @@ Documented in [`docs/chain-coverage-note.md`](chain-coverage-note.md)
 and in each event's `coverage[].note` fields. Key structural gaps:
 
 - **L0 network layer**: 0 / 23 queried crypto domains had any OONI
-  volunteer measurement in the event-bracketing windows. L0 is
-  attested-negative across the dataset. Any L0 claim in derived tools
-  is based on domain reachability inferences from L4, not probe data.
+  volunteer measurement in the event-bracketing windows. In the current
+  corpus, `l0_network` is therefore an **observability gap**, not an
+  attested-negative layer: `derived/layer_observability.*` currently
+  shows no measured denominator and no admitted `observed_change` or
+  `observed_no_change` rows at L0. Any L0 discussion in downstream tools
+  must be framed as "not measured here", not as evidence that network-
+  layer reactions did not occur.
 - **Solana / Polygon / BNB Chain**: no events in the dataset target
   addresses on these chains. This reflects the actual BTC/ETH/TRON
   dominance of OFAC SDN practice, not a sampling omission — but
