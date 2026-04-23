@@ -11,15 +11,17 @@ This dataset aims to be **stratified-complete within each stratum**, not a cherr
 | S1. OFAC SDN designations (crypto-related) 2018–2025 | Original designations with ≥ 1 digital-asset address on the SDN list | 25–35 | **27 (complete)** | 0 | 27 |
 | S2. OFAC SDN removals (crypto-related) 2018–2025 | Delistings of earlier crypto-designated entities or addresses | 3–6 | ≈ 1–3 (small) | 0 | 1 |
 | S3. DOJ / CFTC / SEC crypto enforcement 2017–2025 | Federal criminal or civil action with material on-chain effect | 8–12 | ≈ 12 | 0 | 12 |
-| S4. Nation-state infrastructure bans | Named policy directive that alters L0 / off-ramp access | 3–5 | ≥ 8 confirmed | 0 | 7 |
-| S5. Corporate policy (non-OFAC) | Issuer / exchange / frontend unilateral decisions | 5–8 | representative (open) | 0 | 7 |
-| **Total** | | **44–66** | | **0 drafts** | **53 admitted** |
+| S4. Nation-state infrastructure bans | Named policy directive that alters L0 / off-ramp access | 3–5 | ≥ 8 confirmed | 0 | 6 |
+| S5. Corporate policy (non-OFAC) | Issuer / exchange / frontend unilateral decisions | 5–8 | representative (open) | 0 | 6 |
+| S6. Supranational actions | EU / UN / G7-level sanctions or unified crypto-regulatory frameworks | 2–4 | 2 confirmed | 0 | 2 |
+| **Total** | | **46–70** | | **0 drafts** | **53 admitted** |
 
-As of 2026-04-22: **53 / 53 admitted, 0 drafts**.
+As of the current `v0.1.0` snapshot (cutoff `2026-04-22`):
+**53 / 53 admitted, 0 drafts**.
 
-Schema bumped to 0.2.0 (reviewer Actions 1–4 applied): `event_class` replaced by three orthogonal fields — `research_stratum` (sampling-frame stratum), `empirical_shape` (cascade / comparison / null_event based on observed_change layer count), `admission_tier` (anchor_case / empirical_case / null_case based on strong-attribution layer count). `follow_on_reaction` added for `attribution: unknown` observations that should not count toward cross-case statistics. See [docs/methodology.md §3.2](docs/methodology.md#L95). Tier distribution: **4 anchor_case, 36 empirical_case, 13 null_case**. See `CHANGELOG.md` 2026-04-22 entries; event YAMLs under `events/`; chain-distribution structural finding in `docs/chain-coverage-note.md`.
+Schema bumped to 0.2.0 (reviewer Actions 1–4 applied): `event_class` replaced by three orthogonal fields — `research_stratum` (sampling-frame stratum), `empirical_shape` (cascade / comparison / null_event based on observed_change layer count), `admission_tier` (anchor_case / empirical_case / null_case based on strong-attribution layer count). `follow_on_reaction` added for `attribution: unknown` observations that should not count toward cross-case statistics. See [docs/methodology.md §3.2](docs/methodology.md#L95). Tier distribution: **5 anchor_case, 35 empirical_case, 13 null_case**. See `dataset.meta.json`, `CHANGELOG.md`, event YAMLs under `events/`, and the chain-distribution structural finding in `docs/chain-coverage-note.md`.
 
-The paper's "20 events minimum" milestone has been cleared (2.45×). Strata that cannot be exhaustively enumerated (S5 in particular) are declared `scope: representative` in the paper rather than claimed complete.
+The paper's "20 events minimum" milestone has been cleared (2.65×). Strata that cannot be exhaustively enumerated (S5 in particular) are declared `scope: representative` in the paper rather than claimed complete.
 
 ## Legend
 
@@ -185,9 +187,9 @@ Stratum is naturally small; most designated entities are never removed.
 
 ## Process rollup
 
-### Current state (2026-04-22)
+### Current state (2026-04-23)
 
-- **49 admitted, 0 drafts.** Full dataset validates via `scripts/validate.py`.
+- **53 admitted, 0 drafts.** Full dataset validates via `scripts/validate.py`.
 - **All 2026-Q2 adversarial audit outcomes applied** (5 re_scoped + 1 escalation resolved).
 - **L0 / L3 / offramp_cex substrate pinned** (documented measurement-gap findings rather than fabricated data).
 - **Chain-distribution structural finding** written to [`docs/chain-coverage-note.md`](docs/chain-coverage-note.md).
@@ -250,4 +252,7 @@ The bootstrap sequence (2026-04-21 → 2026-04-22) that took the dataset from 6 
 5. **2026-Q2 adversarial audit** (2026-04-22 PM): 5-event sample, 5 re_scoped + 1 escalation; expanded to 9 more events during audit scope-expansion.
 6. **Phase B/C/D expansion** (2026-04-22 PM): +13 new events (Lazarus-2019 through EU-12th-Russia-2023) + L0 OONI pass + L3 MEV-Blocker anchors + offramp_cex chain-analytics anchors + chain-coverage structural note.
 
-Final count: **49 admitted / 0 drafts** — exceeds paper's 20-event gate by 2.45× and clears the 50-event stratum-complete target.
+Bootstrap subtotal: **49 admitted / 0 drafts** — the point at which the
+initial stratified corpus first exceeded the paper's 20-event gate.
+Subsequent schema / coverage / stratum updates raised the live snapshot
+to **53 admitted / 0 drafts**.
