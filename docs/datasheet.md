@@ -78,14 +78,93 @@ points at the authoritative source of truth in the repo rather than restating it
   - Off-ramp CEX observations lean on press releases; private API-level
     evidence is rare.
 
+### 5.1 How to use a specific observation in a paper / brief
+
+The dataset is designed for observation-grade quotation. Every observation
+you cite should carry four things:
+
+1. **The event slug + layer + observation index**, e.g.
+   `tornado-cash-ofac-2022 / l1_consensus / obs[0]`. Event-level citation
+   alone is too coarse — a single event often contains both `observed_change`
+   and `observed_no_change` observations on different layers.
+2. **The `attribution` grade**. `direct` is reserved for observations
+   anchored to a primary source that itself names the trigger; `plausible`
+   is temporal-proximity + structurally-consistent measurement; `unknown`
+   and `none` are weaker. Cite `direct` observations as evidence of
+   cause-effect; cite `plausible` as evidence of coincident timing, not
+   causation.
+3. **The source `body_hash` you depended on**. Footnote it. A reader who
+   wants to verify your quote should be able to `sha256` the archived
+   body at the recorded `body_path` / Wayback URL and match your hash.
+4. **The dataset snapshot pin** — the version + cutoff pair, or the Zenodo
+   DOI once one is minted. Without this your citation drifts as the
+   catalog grows.
+
+Example citation form (footnote-safe):
+
+> …the Tornado Cash designation produced a 5.9-hour asset-layer reaction
+> (`circle_usdc address_blacklisted`, `attribution: direct`, source
+> `primary_onchain` tx `0xa613…dd9`, `body_hash sha256:3696…65` [^1]).
+>
+> [^1]: Cross-Layer Censorship Event Database v0.1.0, cutoff 2026-04-22,
+>       event `tornado-cash-ofac-2022`, observation
+>       `asset_onchain/circle_usdc/address_blacklisted`. See
+>       [CITATION.cff](../CITATION.cff) for the canonical citation record.
+
+### 5.2 Granularity of claim the data supports
+
+Prefer claims of the shape the `scoped_claim` field already asserts —
+they've been through admission review. Examples that stay within scope:
+
+- **Timeline claim** — "the OFAC designation of Tornado Cash preceded an
+  asset-layer blacklist within 6 hours." Backed by a single primary_onchain
+  source + trigger timestamp. Safe.
+- **Cascade-shape claim** — "cross-layer reactions were observed on at
+  least three layers within 72 hours." Backed by the per-layer observation
+  tallies. Safe when restated in layer-count terms.
+- **Distribution claim** — "among 53 curated events, 38 satisfy the
+  `comparison` shape (1–2 observed-change layers) and only 2 satisfy the
+  `cascade` shape (≥3)." Safe *if* you carry the dataset version + cutoff
+  so readers understand which 53 you counted.
+
+What the data does **not** support:
+
+- **Probabilistic forecasts** about future events of the same trigger type.
+  With 53 events across 6 strata, the per-cell sample is too small.
+- **Individualised covered-party determinations.** The dataset records
+  what happened to listed targets; it does not opine on whether a
+  particular future action falls under a regulator's authority.
+- **Mechanistic causation beyond attribution grade.** A `plausible`
+  attribution is not evidence of intent; it is evidence of correlated
+  timing under the admission rule.
+
+### 5.3 Audience-specific guidance
+
+- **Paper authors.** Use `scripts/render_evidence_chain.py <slug>` to
+  produce a Markdown snapshot of the exact observation / source chain
+  behind a claim; include it (or a link to it) as supplementary material.
+  The first line of the rendered chain pins the dataset version + cutoff
+  so reviewers can verify replayability. See
+  [docs/citing.md](citing.md) for BibTeX.
+- **Policy / legal analysts.** Use `scripts/find_comparable_cases.py
+  --like <slug> --top 5` to surface structurally similar precedents
+  with transparent similarity weights. The output is retrieval, not
+  prediction; it supports a "prior art" framing in briefs but cannot
+  substitute for expert legal judgment.
+- **Journalists.** Quote individual observations with the
+  event-slug/layer/source chain above. Link to the specific event page
+  on the published site (`events/<slug>.html`) so readers can audit
+  the archival body_hash themselves.
+
 ## 6. Distribution
 
-- Repository: this repo.
-- License: see the `LICENSE` file at the repo root when published (the dataset
-  is released openly so other researchers can extend it; the Layer-2 schema
-  contribution depends on this).
-- Citation: pending DOI. At time of release, cite by the git tag + URL; once a
-  Zenodo deposit exists, cite the DOI.
+- Repository: <https://github.com/chnyangs/censorship-event-database>
+- Published site: <https://chnyangs.github.io/censorship-event-database/>
+- License: CC-BY-4.0 (see [`LICENSE`](../LICENSE) at the repo root).
+- Citation: see [citing.md](citing.md) for BibTeX / APA / Chicago templates
+  and DOI handling. The canonical record is [`CITATION.cff`](../CITATION.cff);
+  tagged releases mint a Zenodo DOI via the GitHub integration (one-time
+  setup documented in [releasing.md](releasing.md)).
 
 ## 7. Maintenance
 

@@ -34,16 +34,11 @@ REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
 DEFAULT_OUT_DIR = REPO_ROOT / "analysis" / "evidence-chains"
 
-
-def git_hash() -> str:
-    try:
-        r = subprocess.run(
-            ["git", "rev-parse", "--short", "HEAD"],
-            cwd=REPO_ROOT, capture_output=True, text=True, timeout=5,
-        )
-        return r.stdout.strip() or "unknown"
-    except Exception:
-        return "unknown"
+# Shared dataset-identity accessor (reads dataset.meta.json; falls back to a
+# synthesized dict so this script keeps working on a fresh checkout that
+# hasn't yet run `make dataset`).
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from _dataset_meta import load_meta  # noqa: E402
 
 
 def load_event(slug: str) -> dict:
@@ -80,7 +75,10 @@ def render_source(src: dict, indent: str = "    ") -> list[str]:
     return lines
 
 
-def render_event_evidence_chain(event: dict, dataset_version: str) -> str:
+def render_event_evidence_chain(event: dict, meta: dict) -> str:
+    dataset_version = meta.get("dataset_version") or "unknown"
+    cutoff = meta.get("cutoff_date") or "n/a"
+    commit = meta.get("source_commit") or ""
     slug = event.get("id", "unknown")
     stratum = event.get("research_stratum", "?")
     shape = event.get("empirical_shape", "?")
@@ -106,7 +104,9 @@ def render_event_evidence_chain(event: dict, dataset_version: str) -> str:
                f"**Tier**: `{tier}`")
     out.append("")
     out.append(f"**Dataset version**: `{dataset_version}` · "
-               f"**Schema**: `{schema_v}` · "
+               f"**Dataset cutoff**: `{cutoff}`"
+               + (f" · **Source commit**: `{commit}`" if commit else "")
+               + f" · **Schema**: `{schema_v}` · "
                f"**Event last_verified**: `{last_verified}` · "
                f"**Tool version**: `{TOOL_VERSION}` · "
                f"**Generated**: `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}`")
@@ -264,7 +264,11 @@ def render_event_evidence_chain(event: dict, dataset_version: str) -> str:
     # ===== How to audit =====
     out.append("## 8. How to audit this chain")
     out.append("")
-    out.append(f"1. Clone the repository at `{dataset_version}`.")
+    out.append(
+        f"1. Clone the repository at tag `v{dataset_version}`"
+        + (f" (commit `{commit}`)" if commit else "")
+        + "."
+    )
     out.append(f"2. For each source above, fetch the file at its `body_path` and "
                f"compute its sha256. It must match the recorded `body_hash`.")
     out.append(f"3. For each primary-onchain source, look up the `tx_hash` on the "
@@ -289,7 +293,7 @@ def main() -> int:
                    help="print single-event output to stdout instead of writing")
     args = p.parse_args()
 
-    dataset_version = git_hash()
+    meta = load_meta()
 
     if args.all:
         out_dir = pathlib.Path(args.output_dir)
@@ -297,17 +301,18 @@ def main() -> int:
         n = 0
         for f in sorted(EVENTS_DIR.glob("*.yaml")):
             event = yaml.safe_load(f.read_text())
-            content = render_event_evidence_chain(event, dataset_version)
+            content = render_event_evidence_chain(event, meta)
             (out_dir / f"{f.stem}.md").write_text(content)
             n += 1
-        print(f"[render_evidence_chain] wrote {n} chains to {out_dir}")
+        print(f"[render_evidence_chain] wrote {n} chains to {out_dir} "
+              f"(dataset v{meta.get('dataset_version')}, cutoff {meta.get('cutoff_date')})")
         return 0
 
     if not args.slug:
         p.error("provide a slug or use --all")
 
     event = load_event(args.slug)
-    content = render_event_evidence_chain(event, dataset_version)
+    content = render_event_evidence_chain(event, meta)
 
     if args.stdout:
         print(content)

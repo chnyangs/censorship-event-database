@@ -83,6 +83,20 @@ applied 2026-Q2 adversarial audit discipline, but **derived tools must
 display the dataset `cutoff_date` prominently**. Do not use a
 >6-month-stale comparable-case output without re-checking the dataset.
 
+**Canonical definition (single source of truth):**
+`dataset.meta.json :: cutoff_date` = **max** of (`last_verified`,
+`last_human_audit`) across all events. This is the **upper bound** of
+verification activity in the snapshot — i.e., "the dataset includes
+events verified up through this date." It is **not** a uniform freshness
+guarantee across events; individual events may carry older
+`last_verified` values. Per-event freshness is surfaced in
+`analysis/staleness.md`, which flags any event whose verification anchor
+is older than the configured red threshold (90 days by default).
+
+Four consumers of this field (`scripts/build_dataset.py`,
+`scripts/_dataset_meta.py`, `docs/citing.md`, this document) must stay in
+sync; if you change the semantic in one, change it in all.
+
 ## 3. Intended use (who this is for)
 
 ### 3.1 Primary: Academic research
@@ -125,17 +139,25 @@ The tool is a retrieval-and-assembly aid, not the expert.
 
 Every tool output under this framework carries:
 
-- `dataset_version` — git commit hash at generation time
-- `dataset_cutoff_date` — `last_verified` minimum across all events
-- `schema_version` — currently `0.2.0`
+- `dataset_version` — semver version from `CITATION.cff :: version`
+  (e.g. `0.1.0`). `scripts/build_dataset.py` bakes it into every
+  `dataset.meta.json` run so all derived outputs agree.
+- `source_commit` — short git SHA at generation time (7 chars);
+  resolves the snapshot precisely between tagged releases.
+- `cutoff_date` — **max** of (`last_verified`, `last_human_audit`)
+  across events. See §2.5 for the canonical definition.
+- `schema_version` — currently `0.2.0`. The generator hard-fails if
+  events disagree.
 - `tool_version` — semantic version of the specific script
-- `generated_at` — ISO-8601 UTC timestamp
+  (`render_evidence_chain.py`, `find_comparable_cases.py`, etc.).
+- `generated_at` — ISO-8601 UTC timestamp.
 - For every cited event: `event_id` + `scoped_claim` + the `body_hash`
-  of at least one primary source
+  of at least one primary source.
 
-A reader can re-check any claim by: clone repo at `dataset_version` →
-verify `body_hash` matches the file at `body_path` → read the original
-primary source. No step requires any proprietary service.
+A reader can re-check any claim by: `git checkout v{dataset_version}`
+(or `git checkout {source_commit}` between releases) → verify
+`body_hash` matches the file at `body_path` → read the original primary
+source. No step requires any proprietary service.
 
 ## 5. Corrections and dispute resolution
 

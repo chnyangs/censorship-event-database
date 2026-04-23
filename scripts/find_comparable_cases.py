@@ -46,6 +46,10 @@ TOOL_VERSION = "0.1.0"
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
 
+# Shared dataset-identity accessor (see scripts/_dataset_meta.py).
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from _dataset_meta import load_meta  # noqa: E402
+
 
 # ----------------------------------------------------------------------
 # Similarity scoring — transparent, weighted discrete matches.
@@ -219,14 +223,21 @@ def render_report(
     all_events: dict[str, dict],
     top_n: int,
 ) -> str:
-    dv = git_hash()
+    meta = load_meta()
+    dv = meta.get("dataset_version") or "unknown"
+    cutoff = meta.get("cutoff_date") or "n/a"
+    commit = meta.get("source_commit") or ""
     out = []
     out.append("# Comparable-case retrieval")
     out.append("")
-    out.append(f"**Dataset version**: `{dv}` · **Schema**: `0.2.0` · "
-               f"**Tool version**: `{TOOL_VERSION}` · "
-               f"**Generated**: `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}` · "
-               f"**Universe**: {len(all_events)} admitted events")
+    out.append(
+        f"**Dataset version**: `{dv}` · **Cutoff**: `{cutoff}`"
+        + (f" · **Commit**: `{commit}`" if commit else "")
+        + f" · **Schema**: `{meta.get('schema_version') or '0.2.0'}` · "
+        f"**Tool version**: `{TOOL_VERSION}` · "
+        f"**Generated**: `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}` · "
+        f"**Universe**: {len(all_events)} admitted events"
+    )
     out.append("")
     out.append("> ⚠️ **This is case-based retrieval, not a predictive model.** "
                "The ranked list below shows historical events structurally similar "

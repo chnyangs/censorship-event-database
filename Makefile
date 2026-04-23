@@ -8,8 +8,9 @@ DATASET_CSV     ?= dataset.csv
 STATUS_OUT      ?= analysis/pilot-status.json
 REVIEW_JSON     ?= analysis/review-report.json
 REVIEW_MD       ?= analysis/review-report.md
-STALENESS_JSON  ?= analysis/staleness-report.json
-STALENESS_MD    ?= analysis/staleness-report.md
+STALENESS_JSON  ?= analysis/staleness.json
+STALENESS_MD    ?= analysis/staleness.md
+DATASET_META    ?= dataset.meta.json
 SITE_DIR        ?= site
 EVIDENCE_DIR    ?= analysis/evidence-chains
 

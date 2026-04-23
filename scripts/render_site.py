@@ -37,7 +37,12 @@ import yaml
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
+DOCS_DIR = REPO_ROOT / "docs"
 SITE_DIR = REPO_ROOT / "site"
+
+# Shared dataset-identity accessor (see scripts/_dataset_meta.py).
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from _dataset_meta import load_meta  # noqa: E402
 
 # Canonical layer ordering used everywhere a cascade is shown.
 LAYER_ORDER = [
@@ -1326,7 +1331,10 @@ def render_prev_next(slug: str, ordered_slugs: list[str]) -> str:
     return f'<nav class="prev-next" aria-label="Sibling events">{left}{right}</nav>'
 
 
-def render_event_page(event: dict, all_events: list[dict]) -> str:
+def render_event_page(event: dict, all_events: list[dict], meta: dict | None = None) -> str:
+    meta = meta or load_meta()
+    dv = meta.get("dataset_version") or "unknown"
+    cutoff = meta.get("cutoff_date") or "n/a"
     slug = event.get("id", "unknown")
     title = titleify(slug)
     shape = event.get("empirical_shape") or ""
@@ -1414,6 +1422,7 @@ def render_event_page(event: dict, all_events: list[dict]) -> str:
     </div>
     <h1>{escape(title)}</h1>
     <p class="meta">
+      dataset v{escape(dv)} · cutoff {escape(cutoff)} ·
       schema {escape(event.get("schema_version") or "—")} ·
       last verified {escape(event.get("last_verified") or "—")} ·
       {len(target.get("addresses") or [])} target address{"es" if len(target.get("addresses") or []) != 1 else ""} ·
@@ -1454,7 +1463,7 @@ def render_event_page(event: dict, all_events: list[dict]) -> str:
   {render_prev_next(slug, ordered)}
 
   <footer class="site-footer">
-    <div>Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} from <code>events/{escape(slug)}.yaml</code>.</div>
+    <div>Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} from <code>events/{escape(slug)}.yaml</code> · dataset v{escape(dv)} · cutoff {escape(cutoff)}. See <a href="../docs/citing.md">how to cite</a>.</div>
     <div><a href="../raw/{escape(slug)}.yaml">Raw YAML</a> · <a href="../index.html">All events</a></div>
   </footer>
 </main>
@@ -1527,7 +1536,11 @@ def chip_group(label: str, facet: str, values: list[tuple[str, int]]) -> str:
     )
 
 
-def render_index(events: list[dict]) -> str:
+def render_index(events: list[dict], meta: dict | None = None) -> str:
+    meta = meta or load_meta()
+    dv = meta.get("dataset_version") or "unknown"
+    cutoff = meta.get("cutoff_date") or "n/a"
+    commit = meta.get("source_commit") or ""
     shape_counts: collections.Counter = collections.Counter(
         e.get("empirical_shape") for e in events
     )
@@ -1731,7 +1744,7 @@ def render_index(events: list[dict]) -> str:
   </div>
 
   <h2>Framework tools</h2>
-  <p class="meta">Three tools built on the dataset. Each is retrieval- and argument-structure-focused; none of them make decisions for you. See <a href="raw/../docs/limitations-and-use.md">limitations &amp; use</a> before citing.</p>
+  <p class="meta">Three tools built on the dataset. Each is retrieval- and argument-structure-focused; none of them make decisions for you. See <a href="docs/limitations-and-use.md">limitations &amp; use</a> and <a href="docs/citing.md">how to cite</a> before using any output.</p>
   <div class="stat-grid">
     <div class="stat-card">
       <div class="stat-label"><strong>A · Evidence chain</strong></div>
@@ -1748,11 +1761,14 @@ def render_index(events: list[dict]) -> str:
   </div>
 
   <h2>About</h2>
-  <p>Schema v0.2.0. Each event YAML carries a <strong>trigger</strong> (legal / corporate action with primary citations), a <strong>target</strong> (address set / entity / domain), six <strong>coverage</strong> entries (measured / partially_measured / not_measured / not_applicable), layer-level <strong>observations</strong> with attribution grading, and a <strong>scoped_claim</strong> — the defensible single sentence the event supports. See <code>docs/methodology.md</code> and <code>docs/datasheet.md</code> in the repo.</p>
+  <p>Schema v{escape(meta.get('schema_version') or '0.2.0')}. Each event YAML carries a <strong>trigger</strong> (legal / corporate action with primary citations), a <strong>target</strong> (address set / entity / domain), six <strong>coverage</strong> entries (measured / partially_measured / not_measured / not_applicable), layer-level <strong>observations</strong> with attribution grading, and a <strong>scoped_claim</strong> — the defensible single sentence the event supports. See <a href="docs/methodology.md">methodology</a>, <a href="docs/datasheet.md">datasheet</a>, <a href="docs/limitations-and-use.md">limitations &amp; use</a>.</p>
+
+  <h2>Cite this dataset</h2>
+  <p>This release is <strong>version {escape(dv)}</strong>, cutoff <code>{escape(cutoff)}</code>{f' (source commit <code>{escape(commit)}</code>)' if commit else ''}. Machine-readable metadata: <a href="CITATION.cff">CITATION.cff</a> · <a href="dataset.meta.json">dataset.meta.json</a>. Citation templates in <a href="docs/citing.md">docs/citing.md</a>. Once the first tagged release is made, Zenodo mints a DOI you can pin against.</p>
 
   <footer class="site-footer">
-    <div>Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} · {len(events)} events</div>
-    <div><a href="raw/">raw YAMLs</a> · repo: <code>censorship-event-database</code></div>
+    <div>Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} · {len(events)} events · v{escape(dv)} · cutoff {escape(cutoff)}</div>
+    <div><a href="raw/">raw YAMLs</a> · <a href="https://github.com/chnyangs/censorship-event-database">GitHub</a></div>
   </footer>
 </main>
 
@@ -1772,6 +1788,36 @@ def copy_yaml_raw(events_dir: pathlib.Path, site_dir: pathlib.Path) -> None:
         shutil.copy2(src, raw_dir / src.name)
 
 
+def copy_docs_tree(docs_dir: pathlib.Path, site_dir: pathlib.Path) -> int:
+    """Copy docs/*.md (and any static image/pdf siblings) into site/docs/ so
+    that in-site links like `docs/limitations-and-use.md` resolve after
+    deploy. Previously the site pointed at `raw/../docs/...` which broke on
+    GitHub Pages because `docs/` wasn't part of the published bundle."""
+    if not docs_dir.is_dir():
+        return 0
+    dest = site_dir / "docs"
+    dest.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for src in docs_dir.rglob("*"):
+        if not src.is_file():
+            continue
+        rel = src.relative_to(docs_dir)
+        target = dest / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, target)
+        n += 1
+    return n
+
+
+def copy_meta(site_dir: pathlib.Path) -> None:
+    """Publish CITATION.cff + dataset.meta.json alongside the site so
+    citation tooling / consumers can fetch them via Pages URL."""
+    for name in ("CITATION.cff", "dataset.meta.json"):
+        src = REPO_ROOT / name
+        if src.exists():
+            shutil.copy2(src, site_dir / name)
+
+
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--events-dir", default=str(EVENTS_DIR))
@@ -1788,19 +1834,28 @@ def main() -> int:
     events: list[dict] = []
     for f in sorted(events_dir.glob("*.yaml")):
         events.append(yaml.safe_load(f.read_text()))
-    print(f"[render_site] loaded {len(events)} events")
+    meta = load_meta()
+    print(
+        f"[render_site] loaded {len(events)} events · "
+        f"dataset v{meta.get('dataset_version')} · cutoff {meta.get('cutoff_date')}"
+    )
 
     (site_dir / "styles.css").write_text(STATIC_CSS)
     (site_dir / "site.js").write_text(STATIC_JS)
 
     for e in events:
         slug = e.get("id", "unknown")
-        (site_dir / "events" / f"{slug}.html").write_text(render_event_page(e, events))
+        (site_dir / "events" / f"{slug}.html").write_text(render_event_page(e, events, meta))
 
-    (site_dir / "index.html").write_text(render_index(events))
+    (site_dir / "index.html").write_text(render_index(events, meta))
     copy_yaml_raw(events_dir, site_dir)
+    n_docs = copy_docs_tree(DOCS_DIR, site_dir)
+    copy_meta(site_dir)
 
-    print(f"[render_site] wrote {site_dir}/index.html + {len(events)} per-event pages + raw/")
+    print(
+        f"[render_site] wrote {site_dir}/index.html + {len(events)} per-event pages + "
+        f"raw/ + docs/ ({n_docs} files) + CITATION.cff + dataset.meta.json"
+    )
     return 0
 
 
