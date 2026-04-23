@@ -1,5 +1,43 @@
 # Changelog
 
+## 2026-04-23 (derived-layer correctness fixes)
+
+Post-review corrections to the three derived artifacts. All three are
+pure regenerations — the evidence layer (events/*.yaml) is untouched.
+
+- **P1 — `changed_given_measured` numerator filter.** Previously
+  `build_layer_observability.py` computed `changed_given_measured =
+  changed_count / measured_count`, where `changed_count` included rows
+  whose coverage was `partially_measured`. The numerator now filters to
+  the same coverage subset as the denominator, and two new column
+  counts are exposed: `changed_under_measured_count` and
+  `changed_under_measured_or_partial_count`. Corrected values at
+  v0.1.0 snapshot: `l1_consensus` 1/6 = 0.1667 (was 0.3333);
+  `l4_frontend` 11/16 = 0.6875 (was 0.8125); `offramp_cex` 15/25 = 0.60
+  (was 0.64).
+- **P2 — recovery counts could exceed changed-layer count.** Previously
+  `build_event_metrics.py` consumed every `recovery[]` row, even when
+  the named layer was never in `changed_layers`. For
+  `tornado-cash-ofac-delisting-2025` this produced `recovered +
+  unrecovered + recovery_unknown = 4` against `changed_layer_count = 3`
+  because a `resolved=false` row for `l3_rpc` (coverage
+  `partially_measured`, `observed_no_change`) was miscounted. Recovery
+  rows are now intersected with `changed_layers` before the tallies;
+  rows outside that set are ignored. Per-layer `resolved` in
+  `event_metrics.json` reports `null` for non-changed layers.
+- **P3 — null-event note in `archetype_distribution.md` overstated the
+  admission contract.** Text previously claimed every null event
+  carries `observed_no_change` rows anchored by `scope_descriptor +
+  body_hash`. The validator rule is weaker: any ONE of
+  `query_hash`, `measurement_ids`, `body_hash`+`body_path`, or a
+  structured `scope_descriptor` is sufficient, and several admitted
+  null events (`iran-ransomware-ofac-2018`, `sinbad-ofac-2023`) rely
+  on `body_hash`+`body_path` alone. The note now describes the actual
+  rule.
+
+Regenerate with `make derived`. No change to schema, no change to
+events, no change to dataset version.
+
 ## 2026-04-23 (derived research layer — v0.1 scaffolding)
 
 Inaugurates the three-layer structure: evidence (events/) stays immutable;

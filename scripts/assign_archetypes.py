@@ -408,12 +408,14 @@ def render_report(
     ]
     if nulls_with_evidence:
         notes.append(
-            f"- `null_event` count is {len(nulls_with_evidence)}. Every null event is admitted "
-            "on the basis of `observed_no_change` observations with scope_descriptor + body_hash "
-            "anchors (validator rule). Reading the null-event count as 'censorship did not "
-            "happen' requires checking the per-layer coverage composition in "
-            "`derived/layer_observability.csv` — absence of observation is NOT absence of "
-            "phenomenon."
+            f"- `null_event` count is {len(nulls_with_evidence)}. Each such event carries at "
+            "least one `observed_no_change` row whose source supplies a falsifiable evidence "
+            "anchor — per validator rule, any one of `query_hash`, `measurement_ids`, "
+            "`body_hash`+`body_path`, or a structured `scope_descriptor` is sufficient (not all "
+            "four, and not necessarily `scope_descriptor`). Reading the null-event count as "
+            "'censorship did not happen' still requires checking the per-layer coverage "
+            "composition in `derived/layer_observability.csv` — absence of observation is NOT "
+            "absence of phenomenon."
         )
 
     # multi_layer with only 1 signature type → signature diversity warning

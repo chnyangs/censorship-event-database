@@ -78,6 +78,8 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
     total = len(events)
     cov_status = collections.Counter()
     changed_events: list[str] = []
+    changed_under_measured: list[str] = []
+    changed_under_measured_or_partial: list[str] = []
     no_change_events: list[str] = []
     gap_events: list[str] = []
 
@@ -99,8 +101,13 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
             for obs in e.get("observations") or []
             if isinstance(obs, dict) and obs.get("layer") == layer
         }
-        if "observed_change" in kinds_here:
+        is_changed = "observed_change" in kinds_here
+        if is_changed:
             changed_events.append(slug)
+            if status == "measured":
+                changed_under_measured.append(slug)
+            if status in ("measured", "partially_measured"):
+                changed_under_measured_or_partial.append(slug)
         elif "observed_no_change" in kinds_here:
             no_change_events.append(slug)
         if "coverage_gap" in kinds_here:
@@ -117,6 +124,12 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
         return None if denom == 0 else num / denom
 
     changed_n = len(changed_events)
+    # Coverage-matched numerators: only count a `changed` row if its
+    # coverage status is in the same subset as the denominator. Mixing
+    # `partially_measured`-coverage rows into the `measured`-only
+    # denominator inflates the ratio (see P1 in the 2026-04-23 review).
+    changed_m = len(changed_under_measured)
+    changed_mp = len(changed_under_measured_or_partial)
     return {
         "layer": layer,
         "total_events": total,
@@ -127,13 +140,17 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
         "not_applicable_count": not_applicable,
         "missing_coverage_count": missing,
         "changed_count": changed_n,
+        "changed_under_measured_count": changed_m,
+        "changed_under_measured_or_partial_count": changed_mp,
         "no_change_count": len(no_change_events),
         "coverage_gap_count": len(gap_events),
-        "changed_given_measured": safe_ratio(changed_n, measured),
-        "changed_given_measured_or_partial": safe_ratio(changed_n, measured + partial),
+        "changed_given_measured": safe_ratio(changed_m, measured),
+        "changed_given_measured_or_partial": safe_ratio(changed_mp, measured + partial),
         "changed_given_applicable": safe_ratio(changed_n, applicable),
         # event lists for drilldown (JSON only)
         "changed_event_ids": sorted(changed_events),
+        "changed_under_measured_event_ids": sorted(changed_under_measured),
+        "changed_under_measured_or_partial_event_ids": sorted(changed_under_measured_or_partial),
         "no_change_event_ids": sorted(no_change_events),
         "coverage_gap_event_ids": sorted(gap_events),
     }
@@ -149,6 +166,8 @@ CSV_COLUMNS = [
     "not_applicable_count",
     "missing_coverage_count",
     "changed_count",
+    "changed_under_measured_count",
+    "changed_under_measured_or_partial_count",
     "no_change_count",
     "coverage_gap_count",
     "changed_given_measured",
@@ -206,8 +225,12 @@ def main() -> int:
         "interpretation_notes": [
             "`changed_given_measured` and `changed_given_measured_or_partial`",
             "are the only ratios that support coverage-aware empirical claims",
-            "about a layer. Bare `changed_count` without a denominator is",
-            "meaningful only in combination with the coverage composition.",
+            "about a layer. Both are coverage-matched: the numerator counts",
+            "only the subset of observed_change events whose coverage status",
+            "is in the same bucket as the denominator. Mixing partially_measured",
+            "rows into a measured-only denominator would inflate the ratio.",
+            "Bare `changed_count` without a denominator is meaningful only",
+            "in combination with the coverage composition.",
             "A layer with changed_count = 0 and not_measured_count large is",
             "an observability gap — NOT evidence that censorship does not",
             "occur at that layer.",

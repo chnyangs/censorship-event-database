@@ -172,6 +172,13 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
     )
 
     # ---- recovery ----
+    # Only count recovery rows whose layer is actually in changed_layers.
+    # A recovery entry for a layer that was never observed to change is
+    # either a mis-annotation or a general-state note and must not appear
+    # in the resolved/unresolved tallies — otherwise recovered + unresolved
+    # + recovery_unknown can exceed changed_layer_count (see P2 in the
+    # 2026-04-23 review; tornado-cash-ofac-delisting-2025 had l3_rpc
+    # resolved=false despite l3_rpc never being in changed_layers).
     resolved_true: set[str] = set()
     resolved_false: set[str] = set()
     resolved_hours: list[float] = []
@@ -179,6 +186,8 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
         if not isinstance(r, dict):
             continue
         layer = r.get("layer")
+        if layer not in changed_layers:
+            continue
         if r.get("resolved") is True:
             resolved_true.add(layer)
             rts = parse_ts(r.get("resolved_timestamp"))

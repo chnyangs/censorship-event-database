@@ -10,6 +10,8 @@
     "not_applicable_count",
     "missing_coverage_count",
     "changed_count",
+    "changed_under_measured_count",
+    "changed_under_measured_or_partial_count",
     "no_change_count",
     "coverage_gap_count",
     "changed_given_measured",
@@ -20,9 +22,9 @@
     "cutoff_date": "2026-04-22",
     "dataset_version": "0.1.0",
     "schema_version": "0.2.0",
-    "source_commit": "c1d39f8"
+    "source_commit": "d96dc79"
   },
-  "generated_at": "2026-04-23T04:41:39Z",
+  "generated_at": "2026-04-23T05:12:09Z",
   "generator": {
     "python": "3.14.4",
     "script": "scripts/build_layer_observability.py",
@@ -31,8 +33,12 @@
   "interpretation_notes": [
     "`changed_given_measured` and `changed_given_measured_or_partial`",
     "are the only ratios that support coverage-aware empirical claims",
-    "about a layer. Bare `changed_count` without a denominator is",
-    "meaningful only in combination with the coverage composition.",
+    "about a layer. Both are coverage-matched: the numerator counts",
+    "only the subset of observed_change events whose coverage status",
+    "is in the same bucket as the denominator. Mixing partially_measured",
+    "rows into a measured-only denominator would inflate the ratio.",
+    "Bare `changed_count` without a denominator is meaningful only",
+    "in combination with the coverage composition.",
     "A layer with changed_count = 0 and not_measured_count large is",
     "an observability gap \u2014 NOT evidence that censorship does not",
     "occur at that layer."
