@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `c1d39f8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-23T04:41:40Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:35Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -60,16 +60,7 @@
   - body_hash: `sha256:510ff33edce09e1fda4ddadc38bf0092933ef779ad9bde0c665419f685651a85`
   - body_path: `sources/http_captures/btc-e-doj-2017/primary/www.justice.gov__archives-opa-pr-russian-national-and-bitcoin-exchange-charged-21-count-indictment-operating-alleged__9c617c841b.html`
   > DOJ press release explicitly states domain seizure in coordinated parallel
-> action. Seizure banner substituted the live site; Wayback shows transition
-> from exchange UI pre-event to DOJ/IRS-CI seizure banner post-event. Primary
-> legal artifact for the observed_change.
-- **`semi_primary_wayback`**
-  - URL: <https://web.archive.org/web/20170727000000/http://btc-e.com/>
-  - Wayback: <https://web.archive.org/web/20170727000000/http://btc-e.com/>
-  > Wayback snapshot of btc-e.com post-event shows the seizure banner
-> replacing the active exchange UI. Independent archival anchor for the
-> observed_change — Wayback CDX calendar confirms state transition
-> bracketing 2017-07-26.
+> action. Primary legal artifact for the observed_change.
 
 ## 5. Honest coverage gaps
 
@@ -78,7 +69,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `c1d39f8`).
+1. Clone the repository at tag `v0.1.0` (commit `6857971`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

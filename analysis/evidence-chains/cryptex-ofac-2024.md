@@ -2,13 +2,13 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `comparison` (2 changed layer(s): `asset_onchain`, `l4_frontend`) · **Tier**: `anchor_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `c1d39f8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-23T04:41:40Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:35Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> This draft supports the claim: "OFAC designation of the Cryptex Russian exchange on 2024-09-26
+> "OFAC designation of the Cryptex Russian exchange on 2024-09-26
 > co-occurred (same-day) with a US Secret Service judicial seizure of the canonical cryptex.net
 > domain (L4 observed_change, direct attribution), while producing no measurable step change in
 > Ethereum aggregate OFAC-compliant relay share (L1 null at day granularity)." Other layers
@@ -77,13 +77,6 @@
 > also credits Netherlands Police, Dutch FIOD, and German BKA under Operation Endgame.
 > This is a primary_legal source because the seizure banner itself is the legal notice
 > of the seizure warrant.
-- **`semi_primary_wayback`**
-  - URL: <https://web.archive.org/web/20241008115826/https://cryptex.net/>
-  - Wayback: <https://web.archive.org/web/20241008115826/https://cryptex.net/>
-  > Independent second Wayback snapshot 12 days post-event (2024-10-08 11:58 UTC, digest
-> TCJJN6WWSKF27E7QUOOVVRFXAA5UVNPN matching the 2024-09-30 seizure-banner digest) —
-> confirms the seizure banner was the stable state of cryptex.net, not a transient.
-> Serves as second independent archival anchor for the observed_change claim.
 
 ### asset_onchain · attribution: `direct` · Δt = 3.62h
 
@@ -208,7 +201,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `c1d39f8`).
+1. Clone the repository at tag `v0.1.0` (commit `6857971`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

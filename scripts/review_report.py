@@ -274,6 +274,31 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
     else:
         overall_readiness = "needs_re_scoping"
 
+    if (
+        event.get("status") == "admitted"
+        and event.get("admission_tier") == "anchor_case"
+        and changed_layer_count >= 2
+        and gap_marker_count == 0
+    ):
+        paper_use_role = "paper_anchor"
+    elif (
+        event.get("status") == "admitted"
+        and event.get("admission_tier") == "null_case"
+        and event.get("empirical_shape") == "null_event"
+    ):
+        paper_use_role = "null_control"
+    elif (
+        event.get("status") == "admitted"
+        and event.get("admission_tier") == "empirical_case"
+        and changed_layer_count >= 1
+        and gap_marker_count == 0
+        and observation_reliability != "low"
+        and attribution_reliability != "low"
+    ):
+        paper_use_role = "aggregate_datapoint"
+    else:
+        paper_use_role = "appendix_only"
+
     deduped_blockers: list[str] = []
     for blocker in blockers:
         if blocker not in deduped_blockers:
@@ -300,6 +325,7 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
             "case_shape_completeness": case_shape_completeness,
         },
         "overall_readiness": overall_readiness,
+        "paper_use_role": paper_use_role,
         "blockers": deduped_blockers,
         "next_actions": deduped_actions,
         "notes": notes,
@@ -351,6 +377,7 @@ def build_report(events: list[dict[str, Any]]) -> dict[str, Any]:
                 "case_shape_completeness",
             )
         },
+        "paper_use_role_distribution": dict(Counter(case["paper_use_role"] for case in cases)),
     }
     return {"process": process, "cases": cases}
 
@@ -373,6 +400,7 @@ def render_markdown(report: dict[str, Any]) -> str:
         f"- Scope-limited release-ready cases: `{len(process['release_ready_scoped_cases'])}`",
         f"- Working drafts: `{len(process['working_drafts'])}`",
         f"- Cases with gap markers: `{len(process['events_with_gap_markers'])}`",
+        f"- Paper-use roles: `{process['paper_use_role_distribution']}`",
         f"- Draft priority order: `{', '.join(process['priority_cases']) if process['priority_cases'] else 'none'}`",
         "",
         "## Cases",
@@ -387,6 +415,7 @@ def render_markdown(report: dict[str, Any]) -> str:
                 "",
                 f"- Status: `{case['status']}`",
                 f"- Readiness: `{case['overall_readiness']}`",
+                f"- Paper-use role: `{case['paper_use_role']}`",
                 f"- Trigger reliability: `{scores['trigger_reliability']}`",
                 f"- Observation reliability: `{scores['observation_reliability']}`",
                 f"- Attribution reliability: `{scores['attribution_reliability']}`",

@@ -228,7 +228,7 @@ def main() -> int:
         "changed_layer_count", "changed_layers", "source_file",
     ]
     with csv_out.open("w", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=fieldnames)
+        writer = csv.DictWriter(fh, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

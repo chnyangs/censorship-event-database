@@ -19,6 +19,7 @@ import argparse
 import hashlib
 import json
 import re
+import ssl
 import sys
 import urllib.error
 import urllib.parse
@@ -68,6 +69,15 @@ def parse_args() -> argparse.Namespace:
         help="Directory where capture metadata and bodies should be written.",
     )
     parser.add_argument("--timeout", type=float, default=20.0)
+    parser.add_argument(
+        "--allow-insecure-tls",
+        action="store_true",
+        help=(
+            "Fetch with certificate verification disabled. Use only for archival "
+            "capture when the local CA bundle cannot validate a source that is "
+            "already independently identified by URL and body hash."
+        ),
+    )
     parser.add_argument(
         "--force",
         action="store_true",
@@ -136,10 +146,11 @@ def extract_title(body: bytes, content_type: str) -> str | None:
     return parser.title
 
 
-def capture_url(url: str, timeout: float) -> dict[str, Any]:
+def capture_url(url: str, timeout: float, allow_insecure_tls: bool = False) -> dict[str, Any]:
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    with urllib.request.urlopen(request, timeout=timeout) as response:
+    context = ssl._create_unverified_context() if allow_insecure_tls else None
+    with urllib.request.urlopen(request, timeout=timeout, context=context) as response:
         body = response.read()
         content_type = response.headers.get("Content-Type", "application/octet-stream")
         return {
@@ -287,7 +298,7 @@ def main() -> int:
         captured_ok = False
 
         try:
-            capture = capture_url(url, args.timeout)
+            capture = capture_url(url, args.timeout, args.allow_insecure_tls)
             captured_ok = True
         except urllib.error.HTTPError as exc:
             failures += 1

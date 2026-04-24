@@ -975,11 +975,14 @@ class EventValidator:
         result: ValidationResult,
         timeout: float,
     ) -> None:
-        """Archival rot detector: HEAD-check every wayback URL on every source.
+        """Archival rot detector: check Wayback URLs without overriding local hashes.
 
         body_hash re-verification is already run unconditionally by
-        `_validate_body_hash` during regular validation, so --check-archives
-        only needs to hit the network for wayback URLs.
+        `_validate_body_hash` during regular validation. If a source has a
+        valid local body_hash+body_path pair, Wayback reachability is useful
+        redundancy but not the only replay path. Treat Wayback failures as
+        warnings in that case; keep them as errors when Wayback is the sole
+        archive anchor.
         """
         for obs_idx, obs in enumerate(event.get("observations", [])):
             if not isinstance(obs, dict):
@@ -993,7 +996,15 @@ class EventValidator:
                 label = f"observations[{obs_idx}].sources[{src_idx}].wayback"
                 ok, detail = fetch_url_status(str(wayback), timeout)
                 if not ok:
-                    result.error(f"{label} unreachable: {wayback} ({detail})")
+                    has_local_body = bool(source.get("body_hash")) and bool(source.get("body_path"))
+                    message = f"{label} unreachable: {wayback} ({detail})"
+                    if has_local_body:
+                        result.warn(
+                            f"{message}; nonblocking because body_hash+body_path "
+                            "already verified the local archive artifact."
+                        )
+                    else:
+                        result.error(message)
 
 
 def discover_paths(raw_paths: list[str]) -> list[Path]:

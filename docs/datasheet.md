@@ -8,7 +8,7 @@ points at the authoritative source of truth in the repo rather than restating it
 ## 1. Motivation
 
 - **Purpose**: a curated catalog of crypto censorship events with cross-layer,
-  hour-precision, multi-source-verified observations of how each event
+  precision-aware, multi-source-verified observations of how each event
   propagated through network (L0), consensus (L1), RPC (L3), frontend (L4),
   asset on-chain, and CEX off-ramp layers.
 - **Intended tasks**: event-study analysis of regulatory cascades; empirical

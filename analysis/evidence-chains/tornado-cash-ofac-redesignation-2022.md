@@ -2,13 +2,13 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `comparison` (1 changed layer(s): `asset_onchain`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `c1d39f8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-23T04:41:40Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:36Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> This draft supports the narrow claim: "Expansion of the Tornado Cash SDN entry on 2022-11-08
+> "Expansion of the Tornado Cash SDN entry on 2022-11-08
 > from 38 to 98 addresses did not cause a measurable step change in Ethereum OFAC-compliant
 > relay share (72.00% event day; 73.48% ± 2.23 post-event 14d; 65.96% ± 5.31 pre-event 14d)."
 > Other layers remain scoped for follow-up.
@@ -144,7 +144,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `c1d39f8`).
+1. Clone the repository at tag `v0.1.0` (commit `6857971`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

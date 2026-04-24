@@ -90,7 +90,7 @@ A candidate trigger must satisfy all of:
 1. Identifiable actor with legal or policy authority (no anonymous Twitter rumors).
 2. Machine-checkable primary source at a stable URL (archived to Wayback at discovery time).
 3. Concrete target: address set, protocol contract, domain, asset, or entity.
-4. Datable to at least hour precision (acceptable: press release timestamp, SDN list commit time, block timestamp of a corporate filing).
+4. Datable with an explicit precision level. Hour-level or better is required for intraday cascade timing claims; day-level legal or corporate sources may be admitted only when the event records `timestamp_precision: day` and downstream analysis treats the uncertainty explicitly.
 
 ### 3.2 Classification fields (schema 0.2.0)
 

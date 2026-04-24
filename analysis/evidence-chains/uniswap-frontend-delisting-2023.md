@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `c1d39f8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-23T04:41:40Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:36Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -73,6 +73,8 @@
 - **`semi_primary_measurement`**
   - URL: <https://github.com/Uniswap/token-lists>
   - Wayback: <https://web.archive.org/web/2023/https://github.com/Uniswap/token-lists>
+  - body_hash: `sha256:7f74d95b70d4fde33a4aced832dd61be5827b156a6959e9e0a9b35863ddf605a`
+  - body_path: `sources/http_captures/uniswap-frontend-delisting-2023/token-lists-local/github.com__Uniswap-token-lists__12917a3e9f.html`
   > Uniswap token-lists repo (github.com/Uniswap/token-lists) — the
 > technical substrate for frontend token filtering. Commit history
 > around 2023-07 shows the restricted-token list updates. Independent
@@ -84,7 +86,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `c1d39f8`).
+1. Clone the repository at tag `v0.1.0` (commit `6857971`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

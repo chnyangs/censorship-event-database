@@ -326,7 +326,9 @@ def main() -> int:
 
     csv_path = out_dir / "event_metrics.csv"
     with csv_path.open("w", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=CSV_COLUMNS, extrasaction="ignore")
+        writer = csv.DictWriter(
+            fh, fieldnames=CSV_COLUMNS, extrasaction="ignore", lineterminator="\n"
+        )
         writer.writeheader()
         for m in metrics:
             writer.writerow({k: _fmt_for_csv(m.get(k)) for k in CSV_COLUMNS})

@@ -74,7 +74,7 @@ coverage:
     note: |
       No new L0 network-layer artifact attached for the 2023-08-23 Semenov event. tornado.cash is
       outside OONI's regular probe rotation for this window (same gap as tornado-cash-ofac-2022);
-      promotion gated on OONI / Censored Planet coverage expansion.
+      this row remains a coverage gap until OONI / Censored Planet coverage is added.
   - layer: l1_consensus
     status: measured
     chain: ethereum
@@ -99,8 +99,9 @@ coverage:
       not yet pinned from the Wayback CDX. The anchors establish the
       measurement substrate; per-event slices would promote status to
       partially_measured.
-      No first-party RPC-filter-list snapshot bracketing 2023-08-23 attached; promotion gated on
-      pinned MEV-Blocker / Chainsaw / other OFAC-compliant RPC provider filter lists.
+      No first-party RPC-filter-list snapshot bracketing 2023-08-23 is attached; this should not be
+      read as an event-specific L3 measurement until pinned MEV-Blocker / Chainsaw / other
+      OFAC-compliant RPC provider filter lists are available.
   - layer: l4_frontend
     status: not_measured
     scope:
@@ -108,8 +109,8 @@ coverage:
       - app.tornado.cash
     note: |
       Tornado frontends were already offline from the 2022-08-08 cascade; no fresh canonical
-      frontend action expected or documented for 2023-08-23. Promotion gated on third-party
-      frontend (1inch, Uniswap labs, etc.) action statements referencing Semenov specifically.
+      frontend action expected or documented for 2023-08-23. No third-party frontend artifact
+      (1inch, Uniswap Labs, etc.) naming Semenov specifically is attached.
   - layer: asset_onchain
     status: measured
     chain: ethereum
@@ -141,7 +142,7 @@ coverage:
       would promote status.
       Semenov is a Dubai-resident Russian national; offramp CEX touchpoints for his 8 addresses
       would be documented (if at all) through CEX compliance / suspicious-activity statements.
-      Promotion gated on pinned CEX policy artifact referencing the Semenov designation.
+      No pinned CEX policy artifact referencing the Semenov designation is attached.
 
 observations:
   - layer: asset_onchain
@@ -293,7 +294,7 @@ analysis_notes: |
   a day and support multi-agency analysis.
 
 scoped_claim: |
-  This draft supports the narrow claim: "Individual OFAC designation of Roman Semenov on
+  "Individual OFAC designation of Roman Semenov on
   2023-08-23 did not produce a measurable step change in Ethereum OFAC-compliant relay share
   (37.03% event day; 39.57% ± 1.27 post-event 14d; 38.45% ± 0.96 pre-event 14d)." Other layers
   remain scoped for follow-up.

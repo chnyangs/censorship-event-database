@@ -1648,7 +1648,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Cross-Layer Censorship Event Database — {len(events)} curated crypto censorship events across six layers (network, consensus, RPC, frontend, asset, off-ramp) with hour-precision timelines and primary-source evidence.">
+  <meta name="description" content="Cross-Layer Censorship Event Database — {len(events)} curated crypto censorship events across six layers (network, consensus, RPC, frontend, asset, off-ramp) with precision-aware timelines and primary-source evidence.">
   <title>Chain Censorship Events Database</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -1669,7 +1669,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
       Curated catalog of crypto censorship events (OFAC SDN, DOJ, SEC/CFTC,
       nation-state, corporate) tracked across six independent layers — network,
       consensus, RPC, frontend, asset on-chain, and off-ramp CEX — with
-      hour-precision timelines and primary-source evidence. Every event is
+      precision-aware timelines and primary-source evidence. Every event is
       admitted under a documented multi-source protocol and published as YAML
       with sha256 <code>body_hash</code> archival anchors.
     </p>

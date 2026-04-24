@@ -110,8 +110,9 @@ coverage:
       not yet pinned from the Wayback CDX. The anchors establish the
       measurement substrate; per-event slices would promote status to
       partially_measured.
-      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot bracketing 2024-09-26
-      attached. Promotion gated on such a pin.
+      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot bracketing 2024-09-26 is
+      attached. This row should be interpreted as substrate coverage rather than an event-specific
+      RPC measurement.
   - layer: l4_frontend
     status: measured
     scope:
@@ -133,7 +134,7 @@ coverage:
       - Circle USDC blacklist on 2024-09-27 03:00 UTC (tx a10d4e1a...ffd8da)
       Notable: Tether froze earlier the same day as the OFAC designation, preceding even the
       USSS domain seizure (event day 16:05 UTC). TRX address USDT-TRC20 freeze status
-      remains unqueried for this draft.
+      remains unqueried in the current release.
   - layer: offramp_cex
     status: not_measured
     note: |
@@ -175,14 +176,6 @@ observations:
           also credits Netherlands Police, Dutch FIOD, and German BKA under Operation Endgame.
           This is a primary_legal source because the seizure banner itself is the legal notice
           of the seizure warrant.
-      - type: semi_primary_wayback
-        url: https://web.archive.org/web/20241008115826/https://cryptex.net/
-        wayback: https://web.archive.org/web/20241008115826/https://cryptex.net/
-        note: |
-          Independent second Wayback snapshot 12 days post-event (2024-10-08 11:58 UTC, digest
-          TCJJN6WWSKF27E7QUOOVVRFXAA5UVNPN matching the 2024-09-30 seizure-banner digest) —
-          confirms the seizure banner was the stable state of cryptex.net, not a transient.
-          Serves as second independent archival anchor for the observed_change claim.
   - layer: asset_onchain
     actor: tether_usdt_issuer
     event: usdt_blacklist_same_day_event
@@ -356,11 +349,31 @@ analysis_notes: |
   Treasury headline piece.
 
 scoped_claim: |
-  This draft supports the claim: "OFAC designation of the Cryptex Russian exchange on 2024-09-26
+  "OFAC designation of the Cryptex Russian exchange on 2024-09-26
   co-occurred (same-day) with a US Secret Service judicial seizure of the canonical cryptex.net
   domain (L4 observed_change, direct attribution), while producing no measurable step change in
   Ethereum aggregate OFAC-compliant relay share (L1 null at day granularity)." Other layers
   remain scoped for follow-up.
+
+scoped_knowledge: |
+  What changed: Cryptex combines a same-day L4 domain seizure banner with
+  same-day stablecoin issuer blacklisting for the listed ETH/TRX addresses.
+  The frontend evidence is the seized cryptex.net page; the asset evidence is
+  anchored in issuer blacklist transactions and local capture bundles.
+
+  What did not change or could not be measured: L1 and L3 carry no event-
+  specific step change. The available relay/RPC evidence supports only a null
+  or substrate-in-effect statement at day granularity, not a Cryptex-specific
+  consensus or RPC cascade. Counterparty CEX behavior remains not measured.
+
+  Attribution: the L4 seizure is direct because the seizure banner is itself a
+  legal notice naming the warranting authorities. The asset-layer issuer action
+  is direct where on-chain blacklist receipts touch the listed addresses. The
+  L1/L3 rows are `observed_no_change` with attribution `none`.
+
+  Comparative value: Cryptex is the cleanest direct government-seizure L4
+  mechanism in the corpus. It differs from Tornado 2022 compliance-driven
+  frontend disruption and from Chatex operator self-compliance.
 
 tags:
   - sanctions

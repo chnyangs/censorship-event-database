@@ -102,13 +102,6 @@ observations:
           deposits/withdrawals on 2023-06-09. Direct attribution: the SEC
           filing explicitly named the fiat-rail asset-freeze as the requested
           relief.
-      - type: semi_primary_wayback
-        url: https://web.archive.org/web/20230610*/binance.us
-        wayback: https://web.archive.org/web/20230610/https://binance.us/
-        note: |
-          Wayback CDX calendar for binance.us around 2023-06-09 shows the
-          transition from normal-operation state to suspended-fiat-rails
-          banner. Independent archival anchor for the observed_change.
   - layer: offramp_cex
     actor: exchange:binance_us
     event: binance_us_offramp_crippled_post_sec_freeze
@@ -161,6 +154,27 @@ scoped_claim: |
   produced a direct L4 + offramp cascade at Binance.US within 4 days
   (2023-06-09 fiat-rail suspension). Demonstrates securities-law
   enforcement as a distinct censorship-cascade trigger from OFAC SDN."
+
+scoped_knowledge: |
+  What changed: Binance.US lost USD fiat-rail functionality within four days
+  of the SEC action, producing paired L4 frontend and off-ramp observations.
+  The two rows intentionally describe the same operational shock from two
+  surfaces: user-facing platform functionality and exchange/off-ramp access.
+
+  What did not change or could not be measured: the event has no address set,
+  no asset issuer primitive, and no L1/L3 mechanism. The global Binance.com
+  platform is not treated as the measured frontend; the scoped claim is
+  Binance.US.
+
+  Attribution: attribution is direct because the SEC filing and freeze motion
+  name the Binance.US/BAM target and requested relief. The current evidence is
+  legal-primary rather than a second platform screenshot, so the case should be
+  cited as an SEC-relief-to-fiat-rail case, not as a UI diff case.
+
+  Comparative value: this is the core SEC high-intensity exemplar. It contrasts
+  with `sec-v-coinbase-2023`, where the SEC action produced a narrower staking
+  suspension, and with `sec-v-uniswap-wells-notice-2024`, which remains a null
+  case.
 
 tags:
   - sec_enforcement

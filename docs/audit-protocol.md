@@ -25,7 +25,7 @@ The audit is **adversarial**. Default assumption: the admission is wrong somehow
 Concrete checks to run against each sampled event:
 
 1. **Body-hash drift** — run `python3 scripts/validate.py events/<slug>.yaml --check-archives`. Any error is a failed audit for that case.
-2. **Wayback rot** — same flag, covers `wayback` URLs.
+2. **Wayback rot** — same flag, covers `wayback` URLs. A Wayback failure is blocking only when Wayback is the source's sole archive anchor. If the source also has a valid local `body_hash` + `body_path`, the validator emits a warning because the replay path still exists.
 3. **Attribution re-read** — for every `attribution: direct`, find the primary source backing it and read the exact passage. If the passage does not explicitly name the target or the order, downgrade to `plausible`.
 4. **Evidence independence** — inspect semi-primary sources for hidden sharing. If two mirrors of the same repo or two archives of the same URL are counted as independent, assign an `evidence_group_id` to collapse them.
 5. **Scope-vs-claim** — re-read `analysis_notes` and compare to `coverage[]`. If notes claim effects on layers that are `not_measured`, remove or rewrite.

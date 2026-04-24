@@ -172,8 +172,8 @@ def render_markdown(report: dict[str, Any]) -> str:
     lines = [
         "# Staleness report",
         "",
-        f"Generated at: `{report['generated_at']}`  ",
-        f"Red threshold: audits / verifications older than `{report['red_threshold_days']}` days.  ",
+        f"Generated at: `{report['generated_at']}`",
+        f"Red threshold: audits / verifications older than `{report['red_threshold_days']}` days.",
         f"Most recent agent activity in `candidate_triggers/`: `{report.get('last_agent_run') or 'none recorded'}`.",
         "",
         "## Coverage snapshot",

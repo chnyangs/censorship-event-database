@@ -209,10 +209,6 @@ observations:
     delta_hours: 110.53
     sources:
       - type: primary_corporate
-        url: https://git.tornado.ws/tornadocash/docs/blame/branch/master/book/README.md
-        wayback: https://web.archive.org/web/20260421101538/https://git.tornado.ws/tornadocash/docs/blame/branch/master/book/README.md
-        note: Official Tornado Cash documentation states that user interfaces are hosted on IPFS by the community and that the latest IPFS content hashes are published via tornadocash.eth and nova.tornadocash.eth, providing a first-party statement about the frontend distribution path
-      - type: primary_corporate
         url: https://git.tornado.ws/tornadocash/classic-ui/commit/2437ecc426
         body_hash: sha256:61113286ed87fac777e474c648b60f0857a7825977f6fac7d682ce68db575eda
         body_path: sources/operator_commits/tornado-cash-ofac-delisting-2025/2437ecc426.diff
@@ -231,30 +227,6 @@ observations:
           Full diff archived locally at
           sources/operator_commits/tornado-cash-ofac-delisting-2025/2437ecc426.diff
           (body_hash above) for reproducibility.
-      - type: semi_primary_measurement
-        url: https://git.tornado.ws/tornadocash/classic-ui/commits/branch/master
-        wayback: https://web.archive.org/web/20260421101653/https://git.tornado.ws/tornadocash/classic-ui/commits/branch/master
-        evidence_group_id: classic-ui-commit-2437ecc426
-        note: Gitea commit history shows commit 2437ecc426 at 2025-03-25 22:31:33 +08:00 referencing a move to tornadocash.eth.limo together with USDC and USDT unlock messaging, providing a repo-side anchor for frontend rollback work after the delisting
-      - type: semi_primary_measurement
-        url: https://git.tornado.ws/tornadocash/classic-ui/src/branch/master
-        wayback: https://web.archive.org/web/20260421101721/https://git.tornado.ws/tornadocash/classic-ui/src/branch/master
-        evidence_group_id: classic-ui-commit-2437ecc426
-        note: The branch view attributes nuxt.config.js to the same 2025-03-25 22:31:33 +08:00 commit, tying the rollback anchor to a frontend configuration file rather than only a generic repo commit list
-      - type: semi_primary_measurement
-        url: https://git.tornado.ws/tornadosto/classic-ui
-        wayback: https://web.archive.org/web/20260421101749/https://git.tornado.ws/tornadosto/classic-ui
-        evidence_group_id: classic-ui-commit-2437ecc426
-        note: Mirror repository page shows the same 2437ecc426 commit and timestamp on the master branch, corroborating the frontend reconfiguration anchor
-      - type: semi_primary_measurement
-        url: https://git.tornado.ws/tornadosto/classic-ui/src/branch/master
-        wayback: https://web.archive.org/web/20260421101816/https://git.tornado.ws/tornadosto/classic-ui/src/branch/master
-        evidence_group_id: classic-ui-commit-2437ecc426
-        note: Mirror branch view attributes both networkConfig.js and nuxt.config.js to the same 2025-03-25 22:31:33 +08:00 commit, reinforcing that the rollback anchor touched frontend configuration rather than only repository metadata
-      - type: supporting_community
-        url: https://git.tornado.ws/tornadocash/classic-ui/actions
-        wayback: https://web.archive.org/web/20260421101845/https://git.tornado.ws/tornadocash/classic-ui/actions
-        note: Actions page records commit 2437ecc426 as pushed by Theo to master, which corroborates that the 2025-03-25 frontend-related commit entered the maintained branch
       - type: semi_primary_measurement
         url: https://app.tornado.cash
         wayback: https://web.archive.org/web/20260421105831/https://tornadocash.eth.limo/
@@ -413,20 +385,40 @@ analysis_notes: |
   warnings. The removed comment is a first-party operator acknowledgement
   that the prior code state was a sanctions response; this upgrades L4
   attribution from plausible to direct. Official Tornado Cash docs
-  separately state that user interfaces are hosted on IPFS and published
-  via ENS-linked hashes, and a 2026 current-state capture bundle confirms
-  that the UI remains reachable. RPC, L1, L0, and off-ramp rollback remain
-  in coverage rather than observations. The event stays a cascade
-  by layer count (two changed layers), not by evidence quality.
+  current-state capture bundle confirms that the UI remains reachable. L0 and
+  off-ramp rollback remain in coverage rather than observations. The event
+  stays a cascade by layer count (three changed layers), while only some layers
+  have direct attribution.
 
 scoped_claim: |
   "OFAC delisting of Tornado Cash on 2025-03-21 (Van Loon-litigation driven)
   is the first reverse-cascade event in the dataset, producing observed_change
   on 3 layers: L1 consensus censoring-relay share dropped ≈25pp within 14
-  days; Circle USDC unblacklisted at least one historical address; L4
-  frontend remained partially absent (tornado.cash domain never restored).
-  Establishes structural asymmetry between cascade and reverse-cascade
-  shapes — the latter is slower and patchier than the former."
+  days; Circle USDC unblacklisted at least one historical address; and L4
+  frontend access/listing partially reemerged via maintained UI paths while
+  canonical-domain restoration remained incomplete. Establishes structural
+  asymmetry between cascade and reverse-cascade shapes: rollback is slower and
+  patchier than the original cascade."
+
+scoped_knowledge: |
+  What changed: the delisting produced three retained changed layers: an
+  operator-authored classic-ui rollback commit, at least one Circle USDC
+  unblacklist transaction, and a post-delisting drop in Tornado-filtering
+  relay share.
+
+  What did not change or could not be measured: L0 is not measured and
+  off-ramp rollback is not measured. L3 has public-provider substrate evidence
+  but no event-specific rollback receipt, so it remains an observed-no-change /
+  no-step-change row rather than a recovery claim.
+
+  Attribution: the frontend and asset rows are direct because the frontend diff
+  and on-chain unblacklist are primary artifacts. The L1 consensus row remains
+  plausible because it is based on measurement data keyed to the Tornado address
+  set without a primary relay-operator policy statement.
+
+  Comparative value: this is the only reverse-cascade anchor. It should be
+  reported as n=1 and used to show asymmetry: removal from a sanctions list did
+  not simply replay the 2022 cascade in reverse.
 
 tags:
   - sanctions

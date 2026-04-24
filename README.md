@@ -6,7 +6,7 @@
 
 **A curated, evidence-chained catalog of cross-layer crypto censorship events, with an open schema that can be adopted by other researchers. Intended as a descriptive historical record for empirical measurement research, event studies, and journalism — not as a normative compliance or legal playbook.**
 
-Every major crypto censorship event (SDN listing, court order, corporate policy change) triggers a **cascade** of reactions across independent layers of the stack: network-layer blocking, consensus-layer relay filtering, RPC rejection, frontend delisting, asset-layer freezing. Prior measurement work covers individual layers well but treats them as isolated snapshots; **no existing dataset tracks an identified trigger event through all six layers on a shared, hour-precision timeline with an open multi-source admission protocol**. Concretely:
+Major crypto censorship events (SDN listing, court order, corporate policy change) can trigger **cascades** of reactions across independent layers of the stack: network-layer blocking, consensus-layer relay filtering, RPC rejection, frontend delisting, asset-layer freezing. Prior measurement work covers individual layers well but treats them as isolated snapshots; **no existing open dataset tracks identified trigger events through a shared six-layer, precision-aware timeline with an open multi-source admission protocol**. Concretely:
 
 - Chainalysis / Elliptic see asset-layer freezes, but data is proprietary.
 - Wahrstätter et al. ("Blockchain Censorship", ACM WebConf 2024) formalize L0–L1 censorship — relay / builder filtering — but do not link specific events to L3–L4 or off-ramp reactions.
@@ -18,11 +18,11 @@ The contribution, relative to that prior art, is:
 
 1. **Event-keyed**, not state-keyed — each row is a specific OFAC / DOJ / corporate / nation-state trigger.
 2. **Six-layer**, not one — L0 network, L1 consensus, L3 RPC, L4 frontend, asset on-chain freeze, off-ramp CEX.
-3. **Hour-precision, archived, multi-source-verified** — every observation carries primary/semi-primary sources with wayback + body-hash anchors that a reviewer can replay.
+3. **Precision-aware, archived, multi-source-verified** — every observation records the strongest timestamp precision supported by the source and carries primary/semi-primary sources with wayback + body-hash anchors that a reviewer can replay.
 
 The deliverable has two layers:
 
-- **Layer 1** — a dataset of historical events, each with cross-layer timelines accurate to the hour and multi-source-verified evidence chains.
+- **Layer 1** — a dataset of historical events, each with precision-aware cross-layer timelines and multi-source-verified evidence chains.
 - **Layer 2** — a reusable schema, admission protocol, and six-layer cascade model that other researchers can adopt to measure events we did not cover.
 
 Layer 2 is the more durable contribution: it lets the framework be cited even when the specific events go stale.
@@ -65,7 +65,7 @@ Not every event touches every layer. **An event with cross-layer reactions in �
 
 ### 3.3 Timestamp precision requirement
 
-**Hour-level or better.** Day-level aggregation is insufficient — many cascades complete within hours (Tornado Cash: OFAC at 14:30 UTC → Infura filtering by ~18:00 UTC → Circle freeze by ~19:30 UTC the same day). Day-level bins would collapse the cascade into a single cell.
+**Precision-aware UTC timestamps.** The dataset stores the strongest precision supported by the evidence: second/minute precision for on-chain or commit-level artifacts, hour precision where publication metadata supports it, and day precision where legal or corporate sources publish only dates. Cascade timing analysis must carry this precision explicitly; observations coarser than hour-level are tagged with `precision: day` or `precision: week` and excluded from intraday latency claims.
 
 ### 3.4 Multi-source verification rule
 
@@ -212,7 +212,7 @@ same dataset (event-study of regulatory cascades on crypto infrastructure).
 Proposed structure:
 
 1. Motivation — single-layer views are incomplete; censorship is observed as cascades.
-2. Definition — "censorship cascade" as a formal object: ordered tuple of layer-level reactions with hour-precision timestamps.
+2. Definition — "censorship cascade" as a formal object: ordered tuple of layer-level reactions with precision-aware timestamps.
 3. Methodology — multi-source verification protocol, event admission criteria, handling ambiguous cases.
 4. Dataset — current 53-event snapshot, with descriptive statistics on cascade shape, layer concentration, and response latency.
 5. Empirical observations — e.g. "in the current admitted corpus, observed changes concentrate on frontend / asset / off-ramp layers rather than L0/L1/L3"; "35 / 53 events are single-layer responses, so deterministic archetypes are more informative than count-based clustering"; "recoverability is excluded from v0.1 because the corpus has only one reversal event."
@@ -298,8 +298,8 @@ p1-event-db/
 ## 10. Quality standards (non-negotiable)
 
 1. **Admission rule** — a layer-level observation needs one primary source or two independent semi-primary sources; `supporting_*` sources never satisfy admission by themselves.
-2. **Hour-precision or flagged** — any observation coarser than hour-level is tagged `precision: day` and excluded from cascade timing analysis.
-3. **Archival requirement** — every web-based source must have a Wayback snapshot hash recorded at admission time.
+2. **Precision-aware timing** — every timestamp carries a `precision` value; observations coarser than hour-level are excluded from intraday cascade timing analysis.
+3. **Archival requirement** — every web-based source must have a Wayback snapshot or a local `body_hash` + `body_path` replay artifact recorded at admission time.
 4. **Reversibility** — every event is reviewable; the `validate.py` script must re-verify all citations against archived copies and flag rot.
 5. **Coverage accounting** — every layer must record `measured`, `partially_measured`, `not_measured`, or `not_applicable`; "no reaction observed" is only allowed when coverage is explicit.
 6. **Contributor vetting** — external contributions go through two-reviewer approval, modeled on CVE numbering authority practice.

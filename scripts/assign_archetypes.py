@@ -501,7 +501,9 @@ def main() -> int:
 
     csv_path = out_dir / "event_archetypes.csv"
     with csv_path.open("w", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=CSV_COLUMNS, extrasaction="ignore")
+        writer = csv.DictWriter(
+            fh, fieldnames=CSV_COLUMNS, extrasaction="ignore", lineterminator="\n"
+        )
         writer.writeheader()
         for r in rows:
             writer.writerow({k: _fmt(r.get(k)) for k in CSV_COLUMNS})

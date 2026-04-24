@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S2_ofac_removal` · **Shape**: `cascade` (3 changed layer(s): `asset_onchain`, `l1_consensus`, `l4_frontend`) · **Tier**: `anchor_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `c1d39f8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-23T04:41:40Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:36Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -11,10 +11,11 @@
 > "OFAC delisting of Tornado Cash on 2025-03-21 (Van Loon-litigation driven)
 > is the first reverse-cascade event in the dataset, producing observed_change
 > on 3 layers: L1 consensus censoring-relay share dropped ≈25pp within 14
-> days; Circle USDC unblacklisted at least one historical address; L4
-> frontend remained partially absent (tornado.cash domain never restored).
-> Establishes structural asymmetry between cascade and reverse-cascade
-> shapes — the latter is slower and patchier than the former."
+> days; Circle USDC unblacklisted at least one historical address; and L4
+> frontend access/listing partially reemerged via maintained UI paths while
+> canonical-domain restoration remained incomplete. Establishes structural
+> asymmetry between cascade and reverse-cascade shapes: rollback is slower and
+> patchier than the original cascade."
 
 ## 1. Trigger
 
@@ -56,10 +57,6 @@
 **Sources**:
 
 - **`primary_corporate`**
-  - URL: <https://git.tornado.ws/tornadocash/docs/blame/branch/master/book/README.md>
-  - Wayback: <https://web.archive.org/web/20260421101538/https://git.tornado.ws/tornadocash/docs/blame/branch/master/book/README.md>
-  > Official Tornado Cash documentation states that user interfaces are hosted on IPFS by the community and that the latest IPFS content hashes are published via tornadocash.eth and nova.tornadocash.eth, providing a first-party statement about the frontend distribution path
-- **`primary_corporate`**
   - URL: <https://git.tornado.ws/tornadocash/classic-ui/commit/2437ecc426>
   - body_hash: `sha256:61113286ed87fac777e474c648b60f0857a7825977f6fac7d682ce68db575eda`
   - body_path: `sources/operator_commits/tornado-cash-ofac-delisting-2025/2437ecc426.diff`
@@ -77,26 +74,6 @@
 > Full diff archived locally at
 > sources/operator_commits/tornado-cash-ofac-delisting-2025/2437ecc426.diff
 > (body_hash above) for reproducibility.
-- **`semi_primary_measurement`**
-  - URL: <https://git.tornado.ws/tornadocash/classic-ui/commits/branch/master>
-  - Wayback: <https://web.archive.org/web/20260421101653/https://git.tornado.ws/tornadocash/classic-ui/commits/branch/master>
-  > Gitea commit history shows commit 2437ecc426 at 2025-03-25 22:31:33 +08:00 referencing a move to tornadocash.eth.limo together with USDC and USDT unlock messaging, providing a repo-side anchor for frontend rollback work after the delisting
-- **`semi_primary_measurement`**
-  - URL: <https://git.tornado.ws/tornadocash/classic-ui/src/branch/master>
-  - Wayback: <https://web.archive.org/web/20260421101721/https://git.tornado.ws/tornadocash/classic-ui/src/branch/master>
-  > The branch view attributes nuxt.config.js to the same 2025-03-25 22:31:33 +08:00 commit, tying the rollback anchor to a frontend configuration file rather than only a generic repo commit list
-- **`semi_primary_measurement`**
-  - URL: <https://git.tornado.ws/tornadosto/classic-ui>
-  - Wayback: <https://web.archive.org/web/20260421101749/https://git.tornado.ws/tornadosto/classic-ui>
-  > Mirror repository page shows the same 2437ecc426 commit and timestamp on the master branch, corroborating the frontend reconfiguration anchor
-- **`semi_primary_measurement`**
-  - URL: <https://git.tornado.ws/tornadosto/classic-ui/src/branch/master>
-  - Wayback: <https://web.archive.org/web/20260421101816/https://git.tornado.ws/tornadosto/classic-ui/src/branch/master>
-  > Mirror branch view attributes both networkConfig.js and nuxt.config.js to the same 2025-03-25 22:31:33 +08:00 commit, reinforcing that the rollback anchor touched frontend configuration rather than only repository metadata
-- **`supporting_community`**
-  - URL: <https://git.tornado.ws/tornadocash/classic-ui/actions>
-  - Wayback: <https://web.archive.org/web/20260421101845/https://git.tornado.ws/tornadocash/classic-ui/actions>
-  > Actions page records commit 2437ecc426 as pushed by Theo to master, which corroborates that the 2025-03-25 frontend-related commit entered the maintained branch
 - **`semi_primary_measurement`**
   - URL: <https://app.tornado.cash>
   - Wayback: <https://web.archive.org/web/20260421105831/https://tornadocash.eth.limo/>
@@ -214,7 +191,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `c1d39f8`).
+1. Clone the repository at tag `v0.1.0` (commit `6857971`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

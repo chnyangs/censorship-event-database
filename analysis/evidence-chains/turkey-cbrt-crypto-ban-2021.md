@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `c1d39f8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-23T04:41:40Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:36Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -58,10 +58,6 @@
   - body_hash: `sha256:43f6e1d01042f479c52a2f281c803e30271557de1b56b81820f08f7921a07360`
   - body_path: `sources/http_captures/turkey-cbrt-crypto-ban-2021/cbrt-regulation/web.archive.org__web-20210416100000-https-www.tcmb.gov.tr__effb7c7ee3.html`
   > CBRT homepage snapshot on regulation-publication day as primary anchor.
-- **`supporting_journalism`**
-  - URL: <https://web.archive.org/web/2021*/reuters.com/article/turkey-cryptocurrency-idUSKBN2C30W5>
-  - Wayback: <https://web.archive.org/web/2021*/reuters.com/article/turkey-cryptocurrency-idUSKBN2C30W5>
-  > Reuters coverage of the CBRT ban; archive pinning deferred.
 
 ## 5. Honest coverage gaps
 
@@ -75,7 +71,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `c1d39f8`).
+1. Clone the repository at tag `v0.1.0` (commit `6857971`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
