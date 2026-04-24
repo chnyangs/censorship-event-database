@@ -131,10 +131,27 @@ in every table**; collapsing them is a phrasing violation.
 
 ### Sampling frame
 
-The v0.1 sampling frame is **publicly documented crypto censorship
-events with an identifiable legal, regulatory, state, or corporate
-trigger and at least one independently archivable evidence surface**.
-This is an evidence-bearing research frame, not a population sample.
+The v0.1 sampling frame is **publicly documented, English-indexable
+crypto censorship events with an identifiable legal, regulatory,
+state, or corporate trigger and at least one independently
+archivable evidence surface**. This is an evidence-bearing research
+frame, not a population sample.
+
+**Jurisdictional composition (v0.1)**: 40/53 events
+(**75.5%**) carry `US` in their `jurisdiction` list. Region
+membership is **inclusive of multi-jurisdiction events** so the
+shares do not sum to 100%: 13/53 (24.5%) touch Europe (UK / EU /
+DE / NL / PL / PT / CH / IS), 13/53 (24.5%) touch Rest-of-World
+(RU / CN / IN / KR / NG / TR / AU / CA), 4/53 (7.5%) are
+corporate-global with no jurisdiction. See
+[`analysis/paper_tables/table7_jurisdiction_distribution.md`](../analysis/paper_tables/table7_jurisdiction_distribution.md)
+for the inclusive-counting caveat (column sum exceeds corpus
+total). This concentration is a property of the frame, not the
+phenomenon: the public-English-language-archival requirement plus
+the high absolute volume of OFAC / DOJ / SEC activity in 2022-2025
+drives the US share. The paper's abstract and §1 **must** carry
+the phrase "US-trigger-dominant" or equivalent; landscape claims
+beyond that are out of scope at v0.1.
 
 In scope:
 
@@ -152,7 +169,11 @@ Out of scope:
 - private compliance signals unavailable to public verification;
 - rumor-only or anonymous social-media claims;
 - general crypto-market policy changes without a concrete target;
-- population prevalence claims over "all censorship events".
+- population prevalence claims over "all censorship events";
+- non-English-indexable events (Russian-language VTB/RBK filings,
+  Chinese-language PBOC implementation circulars beyond the 2021
+  anchor, Iranian IRGC internal materials). These are named open
+  work for v0.2 scope expansion.
 
 ### Claim-to-table-source matrix
 
@@ -167,7 +188,7 @@ boundary, it stays out of v0.1.
 | C3 latency | Table 4 Panels A/B/C | `trigger.timestamp_precision`, `time_to_first_change_hours`, `trigger_is_action` | timed `observed_change` rows only | any named latency exemplar needs audit | hour claims only from Panel A; day and trigger-is-action panels separate |
 | C4 trigger-is-action | Table 4 Panel C | `trigger.type`, `trigger_is_action` | `corporate_policy_change` events | named examples need audit | `t≈0` is record structure, not reaction speed |
 | C5 cross-stratum reach | Table 3 | `research_stratum`, `derived_archetype` | all 53 | named exemplars need audit | stratum is an admission frame, not jurisdiction or population weight |
-| C6 recovery insufficiency | Table 1 + Table 3 / metrics | `is_reversal_event`, `recovery[]` | reversal anchor only | `tornado-cash-ofac-delisting-2025` requires human audit before narrative use | n=1; no recovery rate |
+| ~~C6 recovery insufficiency~~ **[DEMOTED to exemplar-inside-C1; see §C6 below]** | — | — | — | — | reversal appears only as a narrative exemplar inside the Flashbots bidirectional mechanism finding, never as a standalone claim |
 
 ### Uncertainty-to-analysis mapping
 
@@ -179,6 +200,34 @@ boundary, it stays out of v0.1.
 | `not_measured` coverage | phrase as observability gap, not no reaction |
 | `target.enumeration: subset` | say "named subset" rather than protocol-wide target |
 | missing `last_human_audit` | allowed for aggregate tables with warning; blocks narrative spotlight use |
+
+### Prior-art delta (required for §2 of the paper)
+
+The paper's §2 Related Work must credit the methodology ancestors
+(OONI / Pearce et al. 2017 / Censored Planet /
+Datasheets-for-Datasets) as transplanted, not invented. Reviewer
+pushback of the form "the six-layer cascade is a repackaging" is
+addressed by the operator-substrate delta: Wahrstätter et al. infer
+L1 filtering from block content; this work adds a cross-layer event
+frame and a multi-repo git-history census that Wahrstätter did not do.
+
+### Reliability discipline (required for §3 of the paper)
+
+Every conditional rate in the paper has a corresponding κ floor:
+
+- C1 depends on `coverage.status` — current κ = 0.983 (n=90 rows,
+  15 events, LLM-assisted blind recode, 2026-04-24,
+  `analysis/inter_rater/kappa_report.md`).
+- C2 depends on `observation_kind` — κ pending (blind worksheet
+  generated; re-run via `make irr-kappa` after filling
+  `analysis/inter_rater/observation_kind_blind.csv`).
+- C3 / phrasing-lock discipline depends on `attribution` — κ
+  pending.
+
+Paper §3 must not report a conditional rate whose underlying
+variable is below κ ≥ 0.6 (substantial). The protocol is implemented
+by `scripts/build_irr_sample.py` and `scripts/compute_irr_kappa.py`;
+the current report is `analysis/inter_rater/kappa_report.md`.
 
 ## 1. Candidate claims (ranked by strength of current evidence)
 
@@ -209,6 +258,13 @@ subset of events admissible, and the phrasing lock.
   numerator (per P1 fix, 2026-04-23).
   `analysis/paper_tables/table2_layer_observability.md` is the
   reader-facing re-emission.
+- **Admission sensitivity**: recomputed under three rubrics in
+  `derived/admission_sensitivity.md`. `asset_onchain` (Δ=0) and
+  `offramp_cex` (Δ=0.015) are robust; `l4_frontend` (Δ=0.12) and
+  `l1_consensus` (Δ=0.29) are sensitive and the paper must report
+  their rates under all three rubrics. `l0_network` and `l3_rpc`
+  are undefined under strict (no `measured` denominator) and the
+  paper reads their numbers as observability gaps.
 - **n**: 53 events across 6 layers.
 - **Case role**: all 53 (empirical + null + anchor all contribute
   coverage denominators; only observed_change rows enter the
@@ -355,9 +411,21 @@ subset of events admissible, and the phrasing lock.
     (stratum ≠ jurisdiction), "consistent pattern"
     (correlational, not causal).
 
-### C6 · Recovery evidence is insufficient for v0.1
+### C6 · [DEMOTED TO FUTURE WORK — do not cite in v0.1 paper]
 
-**Claim**:
+**Status (2026-04-24)**: this claim is demoted from the v0.1
+candidate list to the future-work list. Reviewers across the
+2026-04-24 four-agent review converged on "n=1 recovery won't
+survive a peer-review objection even with careful phrasing". The
+paper's v0.1 submission should present the
+`tornado-cash-ofac-delisting-2025` reversal as **a worked exemplar
+inside the primary mechanism finding** (the Flashbots
+`rpc-endpoint` deletion commit `1e9c29c` is the same substrate as
+the PR #90 addition commit), not as a standalone claim about
+recovery dynamics.
+
+Retained text below for historical record; **do not extract into
+the paper body**:
 
 > "The admitted corpus carries one reversal event
 > (`tornado-cash-ofac-delisting-2025`). Per-layer recovery counts are
@@ -365,14 +433,18 @@ subset of events admissible, and the phrasing lock.
 > rate. v0.1 does not support a recovery-rate claim; any such claim
 > is deferred to a later release."
 
-- **Evidence**: `derived/event_metrics.json :: is_reversal_event`;
+- **Evidence (retained for the exemplar-inside-C1 role)**:
+  `derived/event_metrics.json :: is_reversal_event`;
   `derived/archetype_distribution.md §4` reversal note.
-- **n**: 1.
-- **Case role**: anchor_case only.
-- **Phrasing lock**:
-  - PREFER "n=1 reversal event", "recovery not defensible at v0.1".
-  - FORBID any recovery *rate* across layers; "recovery is rare",
-    "censorship is rarely reversed".
+- **Reframing**: the reversal appears *only* in the primary
+  mechanism narrative (Flashbots bidirectional exemplar in
+  [README §1 point 2](../README.md) and
+  [`analysis/evidence-chains/tornado-cash-ofac-delisting-2025.md`](../analysis/evidence-chains/tornado-cash-ofac-delisting-2025.md)),
+  never as a standalone numbered claim.
+- **v0.2 gate**: C6 may be reinstated only when the corpus admits
+  ≥ 3 independent reversal events (OFAC delistings, court
+  overturnings, corporate policy reversals). Until then the
+  phrasing lock forbids any recovery-rate language in the paper.
 
 ## 2. Claims explicitly NOT in v0.1
 
@@ -452,11 +524,13 @@ this claim stays correct as the corpus evolves.
 
 ## 4. Paper-table generator (live)
 
-`scripts/build_paper_tables.py` produces the six tables below under
-`analysis/paper_tables/`. Run `make paper-tables` after any change to
-`events/*.yaml` or `derived/*`. Each of C1–C6 is frozen to its exact
-number by the relevant table at a given `source_commit`. Numbers not
-produced by that generator do not enter the paper.
+The paper-table surface under `analysis/paper_tables/` is rebuilt by
+`make paper-tables` after any change to `events/*.yaml` or
+`derived/*`. `scripts/build_paper_tables.py` emits Tables 1-6;
+`scripts/build_jurisdiction_distribution.py` emits Table 7 as the
+`jurisdiction` prerequisite. Each claim is frozen to its exact number
+by the relevant table at a given `source_commit`. Numbers not
+produced by this reproducible surface do not enter the paper.
 
 | # | table | file | supports |
 | --- | --- | --- | --- |
@@ -466,6 +540,7 @@ produced by that generator do not enter the paper.
 | 4 | Latency (precision-filtered) | [`table4_latency_by_precision.md`](../analysis/paper_tables/table4_latency_by_precision.md) | C3, C4 |
 | 5 | Target enumeration | [`table5_target_enumeration.md`](../analysis/paper_tables/table5_target_enumeration.md) | §4 complete-vs-subset |
 | 6 | Null denominator | [`table6_null_denominator.md`](../analysis/paper_tables/table6_null_denominator.md) | C6, null-event interpretation |
+| 7 | Jurisdictional composition | [`table7_jurisdiction_distribution.md`](../analysis/paper_tables/table7_jurisdiction_distribution.md) | §0 sampling frame |
 
 Fail-closed properties the generator enforces:
 

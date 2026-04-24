@@ -2,8 +2,10 @@
 # SPDX-License-Identifier: MIT
 """Reproducible paper-table generator.
 
-Emits the six tables called out in `docs/paper_claims.md §4` under
-`analysis/paper_tables/`. Every table is a pure function of:
+Emits the six core tables called out in `docs/paper_claims.md §4`
+under `analysis/paper_tables/`. Table 7 is emitted by
+`scripts/build_jurisdiction_distribution.py`, which is a Makefile
+prerequisite of `make paper-tables`. Every table is a pure function of:
 
   - `events/*.yaml`            (evidence layer)
   - `derived/*.json`            (derived-metric layer; required — run
@@ -28,7 +30,7 @@ Fail-closed discipline:
     pointing to `make derived`.
 
 Usage:
-    make paper-tables                     # rebuild all 6
+    make paper-tables                     # rebuild all paper tables
     python3 scripts/build_paper_tables.py --out-dir analysis/paper_tables
 """
 
@@ -730,6 +732,8 @@ def build_index(
     lines.append("| 4 | [table4_latency_by_precision.md](table4_latency_by_precision.md) | `C3`, `C4` | `events/*.yaml` + `derived/event_metrics` + `derived/event_archetypes` |")
     lines.append("| 5 | [table5_target_enumeration.md](table5_target_enumeration.md) | `§4 item 5` | `events/*.yaml` + `derived/event_archetypes` |")
     lines.append("| 6 | [table6_null_denominator.md](table6_null_denominator.md) | `C6`, null-event interpretation | `events/*.yaml` + `derived/event_archetypes` |")
+    if (out_dir / "table7_jurisdiction_distribution.md").exists():
+        lines.append("| 7 | [table7_jurisdiction_distribution.md](table7_jurisdiction_distribution.md) | `§0 sampling frame` | `events/*.yaml` via `scripts/build_jurisdiction_distribution.py` |")
     lines.append("")
     lines.append(
         "Claims that are NOT yet backed by a table (because the underlying "
@@ -789,12 +793,17 @@ def main() -> int:
             "table4_latency_by_precision",
             "table5_target_enumeration",
             "table6_null_denominator",
+            *(
+                ["table7_jurisdiction_distribution"]
+                if (out_dir / "table7_jurisdiction_distribution.md").exists()
+                else []
+            ),
         ],
     }
     (out_dir / ".meta.json").write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n")
 
     print(
-        f"[build_paper_tables] wrote 6 tables + index to "
+        f"[build_paper_tables] wrote core tables + index to "
         f"{out_dir.relative_to(REPO_ROOT)}/ "
         f"(dataset v{ds_meta.get('dataset_version')} "
         f"cutoff {ds_meta.get('cutoff_date')})"

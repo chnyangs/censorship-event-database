@@ -42,6 +42,18 @@ REQUIRED_TABLES = [
     "table5_target_enumeration.md",
     "table6_null_denominator.csv",
     "table6_null_denominator.md",
+    "table7_jurisdiction_distribution.md",
+]
+
+# Derived artifacts that paper_claims.md cites by name; these must
+# exist after `make regenerate` so the reproduction path stays
+# consistent with the paper claims.
+REQUIRED_DERIVED = [
+    "admission_sensitivity.md",
+    "admission_sensitivity.csv",
+    "admission_sensitivity.meta.json",
+    "jurisdiction_distribution.md",
+    "jurisdiction_distribution.csv",
 ]
 
 FORBIDDEN_CLAIM_PHRASES = [
@@ -123,6 +135,14 @@ def main() -> int:
         path = paper_tables_dir / rel
         if not path.exists():
             errors.append(f"missing paper table artifact: {path.relative_to(REPO_ROOT)}")
+
+    for rel in REQUIRED_DERIVED:
+        path = derived_dir / rel
+        if not path.exists():
+            errors.append(
+                f"missing derived artifact cited by paper claims: "
+                f"{path.relative_to(REPO_ROOT)} — run "
+                f"`make admission-sensitivity` and `make jurisdiction`")
 
     try:
         table_meta = load_json(paper_tables_dir / ".meta.json")

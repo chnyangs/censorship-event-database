@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S2_ofac_removal` · **Shape**: `cascade` (4 changed layer(s): `asset_onchain`, `l1_consensus`, `l3_rpc`, `l4_frontend`) · **Tier**: `anchor_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `930f3d6` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T03:27:38Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `dd67577` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T09:48:21Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -148,6 +148,26 @@
 > 2025-04-01T19:28:21Z UTC (11 days 19 hours 28 minutes after
 > OFAC delisted Tornado Cash on 2025-03-21). Full diff at
 > sources/operator_commits/tornado-cash-ofac-delisting-2025/commit-1e9c29c.diff.
+- **`semi_primary_measurement`**
+  - URL: <https://api.github.com/repos/flashbots/rpc-endpoint/pulls/173>
+  - body_hash: `sha256:a800191f0391c2304542a60647bc3a0ca2db76a60fbc636d83d7bdfcd9bef9e3`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-delisting-2025/github-api/pr-173.response.json`
+  > Independent GitHub API confirmation of organizational
+> provenance: `base.repo.full_name = "flashbots/rpc-endpoint"`,
+> `merged = true`, `merged_at = 2025-04-01T19:28:21Z`,
+> `merge_commit_sha = 1e9c29c…`. Served by GitHub Inc.
+> (not Flashbots); rules out fork / unofficial-commit readings.
+- **`semi_primary_measurement`**
+  - URL: <https://api.github.com/repos/flashbots/rpc-endpoint/commits/1e9c29c5d3896bdc661805f4995b4d65834db6e4>
+  - body_hash: `sha256:63d666d38777830bd3c2962df0b96d6966c0e464de78bf0df82b2a5c653315bb`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-delisting-2025/github-api/commit.response.json`
+  > Independent GitHub API commit confirmation:
+> `sha = 1e9c29c…`, `commit.author.date = 2025-04-01T19:28:21Z`.
+> The commit message and PR title both frame the deletion as
+> operational cleanup ("Cleanup unused and unmaintained
+> blacklist file"), NOT as an explicit policy response to the
+> Tornado delisting — this is why the observation's attribution
+> stays `plausible` rather than `direct`.
 
 ### l1_consensus · attribution: `plausible` · Δt = 0h
 
@@ -222,7 +242,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `930f3d6`).
+1. Clone the repository at tag `v0.1.0` (commit `dd67577`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

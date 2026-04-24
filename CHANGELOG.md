@@ -1,5 +1,114 @@
 # Changelog
 
+## 2026-04-24 (second multi-agent review follow-through — pivot to defensible submission frame)
+
+A fresh four-agent review (IMC/AFT PC perspective, methodology
+critic, novelty critic, impact analyst) converged on three
+requirements to lift the paper from borderline-reject to
+defensible IMC/AFT submission: (1) match the headline language to
+the C1 phrasing lock, (2) run the Flashbots methodology as a
+multi-repo census, (3) cross-check the author-coded categoricals
+with an independent recoder. All three landed.
+
+**P0 — factual and framing (fast).**
+
+- **Corrected `tests/` count** from "36 pytest regression tests"
+  to the more honest **"27 test functions yielding 36
+  pytest-collected cases"** (parametrize expansion in
+  `test_archetype_classifier.py`). See
+  [`tests/README.md`](tests/README.md) for the scoping document
+  that also enumerates what the suite does NOT guarantee (content
+  validity, inter-rater consistency).
+- **README §1 point 2 and §7** demoted from a channel / discovery
+  framing to an honest exemplar framing. The Flashbots
+  rpc-endpoint bidirectional case is now tagged "**n=1 operator**"
+  in both locations, with the multi-repo census cited as the
+  existence-proof backing. The primary-finding paragraph was
+  deleted in favor of a "primary contribution (framework-level)"
+  paragraph and a "worked exemplars" paragraph — language that
+  matches the C1 phrasing lock in `docs/paper_claims.md §0`.
+
+**P1 — would move rejection to acceptance (scope expansion).**
+
+- **Multi-repo operator-compliance census** —
+  [`scripts/scan_operator_census.py`](scripts/scan_operator_census.py) +
+  [`sources/operator_census/candidates.yaml`](sources/operator_census/candidates.yaml)
+  (8 repos: `flashbots/{rpc-endpoint, mev-boost-relay, rbuilder,
+  builder}`, `MetaMask/eth-phishing-detect`, `trustwallet/assets`,
+  `Uniswap/token-lists`, `ethereum-lists/tokens`). A five-class
+  keyword classifier distinguishes **sanctions_reaction /
+  sanctions_maintenance / entity_keyword_hit /
+  generic_list_maintenance / other**, with the entity-hit class
+  specifically designed to surface prefix false positives
+  (`stormtokens.com` 2017 phishing entries do NOT indicate a
+  Storm/Semenov 2023 OFAC reaction). **Result**: of 8 surveyed
+  operator repos, exactly ONE (`flashbots/rpc-endpoint`) ships an
+  OFAC-keyed filter file in public source control. Six ship no
+  public compliance substrate; MetaMask's phishing registry has
+  heavy list activity but zero OFAC-keyed commits after false-positive
+  filtering. **This is a stronger paper finding than a larger N**
+  would have been, because it sharpens the observability-gap claim
+  rather than diluting it into a prevalence claim. Full findings in
+  [`analysis/operator_census/README.md`](analysis/operator_census/README.md).
+- **Inter-rater reliability study** —
+  [`scripts/build_irr_sample.py`](scripts/build_irr_sample.py) +
+  [`scripts/compute_irr_kappa.py`](scripts/compute_irr_kappa.py).
+  Stratified blind sample of 15 events (5 anchor / 7 empirical / 3
+  null, seed 20260424); blind LLM-assisted recoder assigned the
+  90 coverage-status codes without access to the originals.
+  **Cohen's κ = 0.983 (almost perfect)** with 89/90 agreement,
+  clearing the paper-readiness κ ≥ 0.6 threshold with margin. The
+  two remaining variables (`observation_kind`, `attribution`) have
+  blind worksheets generated and are runnable via
+  `make irr-kappa` once the second-coder pass is recorded. Full
+  report: [`analysis/inter_rater/kappa_report.md`](analysis/inter_rater/kappa_report.md).
+- **Prior-art delta framing** — README §1 and
+  `docs/paper_claims.md` now keep the paper's related-work delta
+  inline: methodology ancestors credited as *transplanted* rather
+  than invented, with Wahrstätter et al. (WWW 2024) distinguished by
+  the event frame plus operator-source-control census.
+- **Admission-protocol sensitivity ablation** —
+  [`scripts/build_admission_sensitivity.py`](scripts/build_admission_sensitivity.py)
+  recomputes the per-layer change rate under **strict / current /
+  permissive** admission rubrics and labels each as
+  robust / moderate / sensitive based on the strict-to-permissive
+  Δ. **Result**: `asset_onchain` (Δ=0) and `offramp_cex` (Δ=0.015)
+  are robust; `l4_frontend` (Δ=0.12) and `l1_consensus` (Δ=0.29)
+  are sensitive and the paper must report their rates under all
+  three rubrics; `l0_network` and `l3_rpc` are undefined under
+  strict (no `measured` denominator) and read as observability
+  gaps. Report: [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md).
+
+**P2 — quality (polish).**
+
+- **Jurisdictional composition table (Table 7)** —
+  [`scripts/build_jurisdiction_distribution.py`](scripts/build_jurisdiction_distribution.py)
+  emits `analysis/paper_tables/table7_jurisdiction_distribution.md`.
+  **Corpus composition**: 40/53 (75.5%) have `US` in their
+  jurisdiction list; inclusive multi-jurisdiction counting gives
+  13/53 Europe touches, 13/53 Rest-of-World touches, and 4/53
+  corporate-global touches. `docs/paper_claims.md §0 Sampling frame`
+  now mandates the paper's abstract and §1 carry
+  "US-trigger-dominant" or equivalent; non-English-indexable events
+  named as v0.2 open work.
+- **Zenodo artifact-eval reproducibility path** —
+  [`Dockerfile`](Dockerfile) + [`.dockerignore`](.dockerignore).
+  Pinned to `python:3.12.8-slim-bookworm` with pinned `git` and
+  `make` for optional census use. Verified byte-stable across two
+  `SOURCE_DATE_EPOCH=1714000000 make regenerate` runs on all 12
+  `derived/` + `analysis/paper_tables/` artifacts (diff = empty).
+- **C6 demoted to exemplar-inside-C1** — reviewers unanimous that
+  n=1 recovery won't survive even careful phrasing. The reversal
+  event appears only inside the Flashbots bidirectional
+  mechanism narrative (§1 point 2), never as a standalone claim.
+  `docs/paper_claims.md §C6` now carries the demotion notice and
+  a v0.2 reinstatement gate (≥3 independent reversal events).
+
+Validation still clean: 36 pytest cases pass, `paper-check` OK,
+derived artifacts byte-stable under pinned `SOURCE_DATE_EPOCH`.
+Archetype counts unchanged (13 / 8 / 14 / 5 / 0 / 13). Coverage
+κ=0.983 on the 90-row blind recode.
+
 ## 2026-04-24 (specialist-review follow-through — re-pitch, evidence strengthening, engineering hardening)
 
 Four specialist agents audited the repo for novelty / methodology /
@@ -59,14 +168,21 @@ Panel B (1d–30d band). Panel C is now n=5, Panel B n=33, both honest.
   `make paper-tables` runs at a pinned epoch produce identical
   sha256s for both `dataset.meta.json` and
   `analysis/paper_tables/table2_layer_observability.md`.
-- **`tests/` directory with 36 pytest regression tests** covering the
-  classifier (6 archetype rules + latency-band inclusivity +
-  `trigger_is_action` coincidence), the coverage-matched numerator
-  (the 2026-04-23 P1 fix), the recovery-row filter (the 2026-04-23 P2
-  fix), and paper-table fail-closed properties (precision helper uses
-  canonical schema field; null-anchor abort). Runnable via `make test`
-  and wired into CI. Every prior review finding now has a test that
-  fails-closed on re-introduction.
+- **`tests/` directory — 27 test functions yielding 36 pytest
+  collected cases** (the expansion is from parametrized latency-band
+  and other-single-layer suites in `test_archetype_classifier.py`).
+  Covers the classifier (23 cases: 6 archetype rules + latency-band
+  inclusivity + `trigger_is_action` coincidence), the coverage-matched
+  numerator (5 cases, the 2026-04-23 P1 fix), the recovery-row filter
+  (3 cases, the 2026-04-23 P2 fix), and paper-table fail-closed
+  properties (5 cases: precision helper uses canonical schema field;
+  null-anchor abort). Runnable via `make test` and wired into CI.
+  Every prior review finding has a test that fails-closed on
+  re-introduction. Scope of what these tests do and do not guarantee
+  is documented in [`tests/README.md`](tests/README.md) — in
+  particular, they verify numerical / structural invariants, not
+  content-validity of evidence anchors or inter-coder consistency of
+  `coverage.status`.
 
 Validation still clean. Derived + paper tables byte-stable under
 `SOURCE_DATE_EPOCH`. Archetype counts unchanged

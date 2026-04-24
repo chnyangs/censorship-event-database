@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `cascade` (5 changed layer(s): `asset_onchain`, `l1_consensus`, `l3_rpc`, `l4_frontend`, `offramp_cex`) · **Tier**: `anchor_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `930f3d6` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T03:27:38Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `dd67577` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T09:48:21Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -116,6 +116,30 @@
 > #90 merged_at). The full diff showing exactly which
 > addresses were added is preserved at
 > sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.diff.
+- **`semi_primary_measurement`**
+  - URL: <https://api.github.com/repos/flashbots/rpc-endpoint/pulls/90>
+  - body_hash: `sha256:affdc83394ae6abf0c5c549716bd2ae8909800e3466b8149294d394e13fcac41`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-2022/github-api/pr-90.response.json`
+  > Independent GitHub API confirmation of organizational
+> provenance: `base.repo.full_name = "flashbots/rpc-endpoint"`,
+> `merged = true`, `merged_at = 2022-08-08T16:20:51Z`,
+> `merge_commit_sha = 92ab6b1f…`. Served by GitHub Inc.
+> (not Flashbots); the response is a third-party measurement
+> of the repository state that rules out the "one developer's
+> fork" alternative reading of the git-side sources above.
+- **`semi_primary_measurement`**
+  - URL: <https://api.github.com/repos/flashbots/rpc-endpoint/commits/92ab6b1f9abfc62261f72361e8c8df48f832f2a9>
+  - body_hash: `sha256:5ed6923bcc1c9b3ed33599e20dd5df645930c3c343ffe0e883eb6f62140c99f5`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-2022/github-api/commit.response.json`
+  > Independent GitHub API confirmation of commit content.
+> `sha = 92ab6b1f…`, `commit.author.date = 2022-08-08T16:20:50Z`,
+> `commit.message` expands the single-line title into five
+> sub-commit descriptions: "update ofac black list", "add more
+> address", "more ofac addresses", "convert ofac list to lower
+> case", "add ofac test" — the word "ofac" appears four times
+> in the committer's own message. This rules out the "incidental
+> cleanup that happened to include Tornado addresses"
+> alternative reading.
 
 ### asset_onchain · attribution: `direct` · Δt = 5.93h
 
@@ -191,7 +215,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `930f3d6`).
+1. Clone the repository at tag `v0.1.0` (commit `dd67577`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

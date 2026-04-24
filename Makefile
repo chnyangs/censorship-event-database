@@ -26,10 +26,12 @@ COMPARE_OUT ?= -
 .PHONY: help \
     validate validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset \
-    event-metrics layer-observability archetypes derived \
+    event-metrics layer-observability archetypes \
+    admission-sensitivity jurisdiction derived \
     audit-worksheets paper-tables paper-check test \
     render-site render-evidence render-evidence-all compare \
-    ooni-scan usdt-scan capture \
+    ooni-scan usdt-scan operator-census capture \
+    irr-sample irr-kappa \
     check check-network check-all \
     regenerate clean
 
@@ -53,6 +55,8 @@ help:
 	    'make event-metrics         # per-event metrics panel (cascade breadth/speed/source strength)' \
 	    'make layer-observability   # coverage-aware per-layer observability table (denominator-honest)' \
 	    'make archetypes            # rule-based archetype classifier + archetype_distribution.md' \
+	    'make admission-sensitivity # strict/current/permissive admission-rubric ablation' \
+	    'make jurisdiction          # jurisdictional composition of the admitted corpus (Table 7)' \
 	    'make derived               # all three derived artifacts in one shot' \
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
@@ -69,6 +73,9 @@ help:
 	    '### Data collection (targeted)' \
 	    'make ooni-scan             # OONI Explorer batch query for L0 substrate' \
 	    'make usdt-scan             # usdtbanlist.com batch scan across all events' \
+	    'make operator-census       # multi-repo git-history scan of operator compliance' \
+	    'make irr-sample            # stratified blind sample for inter-rater reliability' \
+	    'make irr-kappa             # compute Cohen'"'"'s κ on filled-in blind worksheets' \
 	    'make capture URL=<url> OUT=<dir>   # capture a single URL with body_hash' \
 	    '' \
 	    '### Omnibus' \
@@ -119,6 +126,21 @@ layer-observability:
 archetypes:
 	$(PYTHON) scripts/assign_archetypes.py --out-dir $(DERIVED_DIR)
 
+# Admission-protocol sensitivity ablation: recomputes the per-layer
+# change rate under strict/current/permissive admission rubrics and
+# labels each as robust/moderate/sensitive (see
+# derived/admission_sensitivity.md). Reviewer-facing answer to
+# "can partially_measured loosening inflate the rate?".
+admission-sensitivity:
+	$(PYTHON) scripts/build_admission_sensitivity.py --out-dir $(DERIVED_DIR)
+
+# Jurisdictional composition of the admitted corpus (Table 7). The
+# US-trigger share + non-US split is the honest sampling-frame
+# statement reviewers asked for; the paper's abstract and §1 must
+# cite this table when framing the corpus.
+jurisdiction:
+	$(PYTHON) scripts/build_jurisdiction_distribution.py --out-dir $(DERIVED_DIR)
+
 # Per-event audit worksheets for human sign-off (default: anchor cases).
 # Usage:
 #   make audit-worksheets                 # all anchor_case events
@@ -129,11 +151,12 @@ audit-worksheets:
 	    $(if $(SLUG),--slug $(SLUG)) \
 	    $(if $(TIERS),--tiers $(TIERS))
 
-# Reproducible paper-table generator (see docs/paper_claims.md §4).
-# Requires `make derived` to have been run. Emits 6 tables + a meta.json
-# under analysis/paper_tables/; every number in the paper must come from
-# this artifact at a given source_commit.
-paper-tables:
+# Reproducible paper-table surface (see docs/paper_claims.md §4).
+# Requires `make derived` to have been run. The core generator emits
+# Tables 1-6; the jurisdiction prerequisite emits Table 7. Every
+# number in the paper must come from this artifact at a given
+# source_commit.
+paper-tables: jurisdiction
 	$(PYTHON) scripts/build_paper_tables.py
 
 paper-check: derived paper-tables
@@ -148,8 +171,8 @@ test:
 
 # Umbrella target: rebuild every derived artifact (dataset.meta.json must
 # land first so downstream scripts read the latest version/cutoff).
-derived: dataset event-metrics layer-observability archetypes
-	@echo "[derived] all three derived artifacts rebuilt under $(DERIVED_DIR)/"
+derived: dataset event-metrics layer-observability archetypes admission-sensitivity jurisdiction
+	@echo "[derived] all derived artifacts rebuilt under $(DERIVED_DIR)/"
 
 # ---- Static site + framework ----
 render-site:
@@ -190,6 +213,21 @@ ooni-scan:
 usdt-scan:
 	$(PYTHON) scripts/batch_usdtbanlist_check.py
 
+# Multi-repo operator-compliance git-history census (see
+# analysis/operator_census/README.md). Clones candidate public
+# operator repos to sources/operator_census/ (gitignored) and
+# extracts commits touching filter-list substrates.
+operator-census:
+	$(PYTHON) scripts/scan_operator_census.py
+
+# Inter-rater reliability: stratified blind sampler + Cohen's κ.
+# Current output lives under analysis/inter_rater/.
+irr-sample:
+	$(PYTHON) scripts/build_irr_sample.py
+
+irr-kappa:
+	$(PYTHON) scripts/compute_irr_kappa.py
+
 # Usage: make capture URL=https://example.com OUT=sources/http_captures/foo/primary
 capture:
 	@if [ -z "$(URL)" ] || [ -z "$(OUT)" ]; then echo 'error: set URL=<url> OUT=<output-dir>' >&2; exit 1; fi
@@ -203,8 +241,16 @@ check-network: verify-citations freshness
 
 check-all: check check-network
 
-# Full rebuild of all derived artifacts (after an event-YAML change)
-regenerate: dataset event-metrics layer-observability archetypes paper-tables status review staleness render-site render-evidence-all
+# Full rebuild of all derived artifacts (after an event-YAML change).
+# Order matters: dataset.meta.json must land first so downstream
+# scripts read the latest version/cutoff. Admission-sensitivity and
+# jurisdiction emit derived/ + analysis/paper_tables/ artifacts that
+# docs/paper_claims.md cites — they belong in the regenerate chain
+# so the reproduction path stays consistent with the paper claims.
+regenerate: dataset event-metrics layer-observability archetypes \
+            admission-sensitivity jurisdiction \
+            paper-tables status review staleness \
+            render-site render-evidence-all
 	@echo "[regenerate] all derived artifacts rebuilt"
 
 clean:

@@ -11,3 +11,16 @@ site/
 # and the OpenSanctions feed). Kept local for analysis; not versioned.
 sources/ofac_sdn_diffs/current/sdn.xml
 sources/ofac_sdn_diffs/opensanctions/us_ofac_sdn.ftm.json
+
+# Operator-compliance census: clones are re-fetchable from their upstream
+# GitHub URLs (candidates.yaml pins the list). Only the candidates list
+# and derived artifacts (analysis/operator_census/*) are versioned.
+sources/operator_census/*/
+!sources/operator_census/candidates.yaml
+
+# Census commits.json is regenerable from `make operator-census` and
+# can balloon if --emit-all-commits is used (e.g. MetaMask's 204k
+# commits → ~80MB). The signal-only emit is small (~10KB) but still
+# regenerable; keep findings.md (human-facing) under version control,
+# not the structured JSON.
+analysis/operator_census/commits.json

@@ -1,0 +1,164 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Candidate operator repositories for the multi-repo filter-list census.
+#
+# Each entry: a public operator's GitHub repo + a target file (or
+# glob) that, if present, is the operator's sanctions / blocklist /
+# filter-list substrate. The scanner (scripts/scan_operator_census.py)
+# walks each candidate's git history for commits touching the target
+# file and extracts {sha, committer_iso, subject, added, removed}.
+#
+# Selection rule: the repo must be (a) public, (b) operated by a
+# party that actually interacts with transactions on behalf of users
+# (relay / builder / RPC / wallet / frontend), and (c) maintain a
+# file whose contents plausibly affect what transactions or content
+# the operator will relay / index / display.
+#
+# "filter_file" is the primary substrate. "extra_patterns" captures
+# additional files where compliance logic may live (e.g. regex lists
+# adjacent to the primary file).
+#
+# v0.1 focus: confirmed repos with a specific filter-file path; the
+# long tail of builder/relay repos where the filter-file is unknown
+# or embedded in config loaded at runtime remains an open-work item.
+
+census_version: 0.1
+cutoff_date: 2026-04-24
+
+candidates:
+  # -----------------------------------------------------------------
+  # 1. Baseline (already the paper's anchor case)
+  # -----------------------------------------------------------------
+  - operator: flashbots
+    repo: flashbots/rpc-endpoint
+    role: public_rpc_endpoint
+    filter_file: server/ofacblacklist.go
+    notes: >-
+      Baseline case. Added Tornado pool addresses 2h 50m after 2022-08-08
+      SDN (PR #90, commit 92ab6b1f). Deleted entire 132-address map 11
+      days after 2025-03-21 OFAC delisting (PR #173, commit 1e9c29c).
+      See analysis/evidence-chains/tornado-cash-ofac-{2022,delisting-2025}.md.
+    known_channel: true
+
+  # -----------------------------------------------------------------
+  # 2. Flashbots relay / builder substrates (check-if-present)
+  # -----------------------------------------------------------------
+  - operator: flashbots
+    repo: flashbots/mev-boost-relay
+    role: mev_boost_relay
+    filter_file: null  # no single canonical compliance file; scanner uses keyword sweep
+    extra_patterns:
+      - "**/ofac*"
+      - "**/sanctions*"
+      - "**/blacklist*"
+      - "**/censor*"
+    notes: >-
+      MEV-Boost relay reference implementation. Compliance status of
+      the Flashbots-operated relay was a contested 2022-2023 topic
+      (post-OFAC sanctions; "Flashbots Protect" vs "Flashbots
+      Protect++"). Census asks whether the relay software itself
+      ships with a filter substrate.
+
+  - operator: flashbots
+    repo: flashbots/rbuilder
+    role: block_builder
+    filter_file: null
+    extra_patterns:
+      - "**/ofac*"
+      - "**/sanctions*"
+      - "**/blacklist*"
+      - "**/filter*"
+    notes: >-
+      Successor to flashbots/builder. A builder, not a relay — if
+      this ships a compliance filter, it is a stronger finding than
+      the relay layer.
+
+  - operator: flashbots
+    repo: flashbots/builder
+    role: block_builder_deprecated
+    filter_file: null
+    extra_patterns:
+      - "**/ofac*"
+      - "**/sanctions*"
+      - "**/blacklist*"
+    notes: >-
+      Deprecated predecessor to rbuilder. History matters because
+      the 2022-2023 compliance debate happened here.
+
+  # -----------------------------------------------------------------
+  # 3. Wallet / frontend operators (public blocklist substrates)
+  # -----------------------------------------------------------------
+  - operator: metamask
+    repo: MetaMask/eth-phishing-detect
+    role: wallet_blocklist
+    filter_file: src/config.json
+    notes: >-
+      Consensys-operated phishing blocklist consumed by the MetaMask
+      extension. Not OFAC-keyed; tracks phishing domains and token
+      scams. Included as a control — if filter-list maintenance
+      timing looks similar to Flashbots' OFAC pattern, that
+      strengthens the "public operator git-history as measurement
+      substrate" framing even when the trigger is not OFAC.
+    known_channel: false
+    substrate_type: phishing_blocklist
+
+  - operator: trust_wallet
+    repo: trustwallet/assets
+    role: wallet_token_index
+    filter_file: null
+    extra_patterns:
+      - "**/blocklist*"
+      - "**/denylist*"
+      - "**/blacklist*"
+    notes: >-
+      Public token-asset registry consumed by Trust Wallet. Changes
+      to which tokens are shown in-wallet are a frontend-layer
+      censorship surface.
+
+  - operator: uniswap
+    repo: Uniswap/token-lists
+    role: frontend_token_list_schema
+    filter_file: null
+    extra_patterns:
+      - "**/tokenlist*"
+      - "**/banned*"
+      - "**/blocklist*"
+    notes: >-
+      Schema repo — the token lists themselves are distributed by
+      individual list-issuers. Included for provenance; the primary
+      targets are the token-list issuer repos.
+
+  # -----------------------------------------------------------------
+  # 4. Community-maintained evidence substrates (cross-check)
+  # -----------------------------------------------------------------
+  - operator: community
+    repo: ethereum-lists/tokens
+    role: community_token_registry
+    filter_file: null
+    extra_patterns:
+      - "**/deprecated*"
+      - "**/blacklist*"
+    notes: >-
+      Community registry of ETH-chain tokens. Deprecations and
+      delistings track wallet / explorer UX decisions.
+    substrate_type: community_registry
+
+# -----------------------------------------------------------------
+# Explicitly out of scope (v0.1) — tracked as open work
+# -----------------------------------------------------------------
+open_work:
+  - operator: bloXroute
+    reason: public repos are infrastructure-only (bxextensions, etc.); compliance logic is server-side and not in source control
+  - operator: eden_network
+    reason: eden-geth is a fork of go-ethereum; need targeted scan for policy delta
+  - operator: titan_builder
+    reason: no public source repo for builder logic
+  - operator: beaverbuild
+    reason: no public source repo
+  - operator: coinbase_wallet
+    reason: blocklists are server-side; no public filter-list repo
+  - operator: opensea
+    reason: banned-collections maintained in API; no public git substrate
+  - operator: circle_usdc
+    reason: on-chain blacklist via USDC contract calls (already tracked as asset_onchain observations)
+  - operator: chainflip
+    reason: need targeted scan of governance repo
