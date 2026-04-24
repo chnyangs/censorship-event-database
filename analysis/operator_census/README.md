@@ -1,9 +1,9 @@
 # Operator-compliance source-control census (v0.1)
 
-> Addresses the P1 reviewer pivot: "scale the git-history-of-operator
-> repos methodology from n=1 to a multi-repo census" (see
-> `analysis/publication-quality-review-2026-04-24.md` and the
-> 2026-04-24 follow-on review).
+> Addresses the P1 reviewer pivot from the 2026-04-24 multi-agent
+> review (recorded in [`../../CHANGELOG.md`](../../CHANGELOG.md)):
+> "scale the git-history-of-operator-repos methodology from n=1 to
+> a multi-repo census".
 
 ## What this is
 

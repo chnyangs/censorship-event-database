@@ -1,328 +1,183 @@
 # Changelog
 
-## 2026-04-24 (second multi-agent review follow-through — pivot to defensible submission frame)
+## 2026-04-24
 
-A fresh four-agent review (IMC/AFT PC perspective, methodology
-critic, novelty critic, impact analyst) converged on three
-requirements to lift the paper from borderline-reject to
-defensible IMC/AFT submission: (1) match the headline language to
-the C1 phrasing lock, (2) run the Flashbots methodology as a
-multi-repo census, (3) cross-check the author-coded categoricals
-with an independent recoder. All three landed.
+Turns the repo from "high-quality dataset" into a defensible measurement-paper
+asset: tighter claims, reproducible analysis pipeline, multi-repo evidence,
+inter-rater reliability, and Zenodo-grade reproducibility. No new events; no
+schema change. Final corpus state: 53 events, archetype counts
+13 / 8 / 14 / 5 / 0 / 13.
 
-**P0 — factual and framing (fast).**
+### Paper-claims surface
 
-- **Corrected `tests/` count** from "36 pytest regression tests"
-  to the more honest **"27 test functions yielding 36
-  pytest-collected cases"** (parametrize expansion in
-  `test_archetype_classifier.py`). See
-  [`tests/README.md`](tests/README.md) for the scoping document
-  that also enumerates what the suite does NOT guarantee (content
-  validity, inter-rater consistency).
-- **README §1 point 2 and §7** demoted from a channel / discovery
-  framing to an honest exemplar framing. The Flashbots
-  rpc-endpoint bidirectional case is now tagged "**n=1 operator**"
-  in both locations, with the multi-repo census cited as the
-  existence-proof backing. The primary-finding paragraph was
-  deleted in favor of a "primary contribution (framework-level)"
-  paragraph and a "worked exemplars" paragraph — language that
-  matches the C1 phrasing lock in `docs/paper_claims.md §0`.
+- **`docs/paper_claims.md`** — single source of truth for what the paper
+  argues. Declares the primary estimand (layer-selection × precision-filtered
+  latency), enumerates C1–C6 candidate claims with phrasing locks, evidence
+  sources, case roles, and "not said" caveats. §0 carries the sampling-frame
+  statement (75.5% US-trigger, English-indexable, evidence-bearing not
+  population), the claim-to-table-source matrix, and the
+  uncertainty-to-analysis mapping. §2 explicitly rules out four claims the
+  data does not support (cascade timing by trigger type, private-order vs
+  on-chain speed, stack-resistance ranking, time-trend).
+- **C1 (upper-layer concentration)** — rewritten after L3 evidence landed
+  (see "Flashbots L3 evidence" below); the prior "L3 has zero observed
+  changes" framing is FORBID-listed alongside "L0 does not react".
+- **C3 (latency)** — demoted from distribution to named-exemplar (Panel A is
+  too thin for distributional inference; rows are presented individually).
+- **C4 (`trigger_is_action`)** — coincidence rule tightened: requires both
+  `trigger.type = corporate_policy_change` AND first observation `|Δ| ≤ 1h`.
+  This moves `coinbase-india-exit-2022` out of Panel C (its 72h reaction is a
+  real measured response to NPCI pressure) into Panel B. Panel C now n=5,
+  Panel B n=33.
+- **C6 (recovery)** — demoted to exemplar-inside-C1; the Tornado reversal
+  appears only inside the Flashbots bidirectional mechanism narrative,
+  never as a standalone claim. Reinstatement gate: ≥3 independent reversal
+  events.
+- **README §1 + §7** rewritten as exemplar framing, not channel-discovery.
+  The Flashbots case is tagged "**n=1 operator**" with the multi-repo census
+  cited as the existence-proof backing.
 
-**P1 — would move rejection to acceptance (scope expansion).**
+### Evidence layer
 
-- **Multi-repo operator-compliance census** —
-  [`scripts/scan_operator_census.py`](scripts/scan_operator_census.py) +
-  [`sources/operator_census/candidates.yaml`](sources/operator_census/candidates.yaml)
-  (8 repos: `flashbots/{rpc-endpoint, mev-boost-relay, rbuilder,
-  builder}`, `MetaMask/eth-phishing-detect`, `trustwallet/assets`,
-  `Uniswap/token-lists`, `ethereum-lists/tokens`). A five-class
-  keyword classifier distinguishes **sanctions_reaction /
-  sanctions_maintenance / entity_keyword_hit /
-  generic_list_maintenance / other**, with the entity-hit class
-  specifically designed to surface prefix false positives
-  (`stormtokens.com` 2017 phishing entries do NOT indicate a
-  Storm/Semenov 2023 OFAC reaction). **Result**: of 8 surveyed
-  operator repos, exactly ONE (`flashbots/rpc-endpoint`) ships an
-  OFAC-keyed filter file in public source control. Six ship no
-  public compliance substrate; MetaMask's phishing registry has
-  heavy list activity but zero OFAC-keyed commits after false-positive
-  filtering. **This is a stronger paper finding than a larger N**
-  would have been, because it sharpens the observability-gap claim
-  rather than diluting it into a prevalence claim. Full findings in
+- **L3 anchor evidence for both Tornado events** via git-history of
+  `flashbots/rpc-endpoint::server/ofacblacklist.go`:
+  - `tornado-cash-ofac-2022` · L3 coverage `not_applicable` →
+    `partially_measured`. Admits `observed_change` / `direct` /
+    `flashbots_rpc_endpoint` at `2022-08-08T16:20:50Z`
+    (**2.85h after the SDN**). Sources: post-commit state at `92ab6b1f`
+    (PR #90), commit metadata, and two `semi_primary_measurement` GitHub
+    API captures (PR + commit endpoints, served by GitHub Inc., not
+    Flashbots — rebuts the "one developer's fork" objection).
+  - `tornado-cash-ofac-delisting-2025` · L3 admits `observed_change` /
+    **`plausible`** / `flashbots_rpc_endpoint` at `2025-04-01T19:28:21Z`
+    (11d 19h 28m after the delisting). Diff: 132-address `ofacBlacklist`
+    map → 0. Attribution `plausible` because PR #173 frames as operational
+    cleanup rather than direct OFAC response. Same four-source
+    structure (local + GitHub API, body_hash + query_hash anchored).
+  - Artifacts under
+    `sources/operator_commits/tornado-cash-ofac-{2022,delisting-2025}/`.
+  - Per-event impact: `l3_rpc::changed_given_measured_or_partial`
+    0/8 → **2/9 (22.2%)**; `tornado-2022` becomes the corpus's broadest
+    cascade (5-layer); `tornado-2022::time_to_first_change_hours`
+    5.93h → 2.85h.
+- **L0 reframing** — `docs/limitations-and-use.md §2.4` shifts L0 from
+  "attested-negative" to "observability gap"; `docs/chain-coverage-note.md`
+  refreshed to live counts; `README.md §7` fabricated illustrative
+  percentages replaced with live corpus descriptions.
+- **`analysis/anchor_gap_fill_log.md`** — full Phase-3 audit trail per
+  (anchor × layer): CDX queries attempted, what Wayback returned, what was
+  captured, what remains a gap. §4 documents both the Wayback first-pass
+  and the git-history second-pass.
+
+### Reproducible analysis pipeline
+
+- **`scripts/build_paper_tables.py`** + `make paper-tables` — fail-closed
+  generator for the seven paper tables under `analysis/paper_tables/`:
+  conditional rates with zero denominators render as `—`; day-precision
+  triggers are excluded from hour-granularity bins; `trigger_is_action`
+  events route to a separate panel; null-case rows must carry at least
+  one validator-recognized evidence anchor (else `SystemExit`).
+- **`scripts/build_admission_sensitivity.py`** + `make admission-sensitivity`
+  — recomputes per-layer change rates under **strict / current / permissive**
+  admission rubrics; labels each layer **robust / moderate / sensitive**.
+  Result at v0.1: `asset_onchain` (Δ=0) and `offramp_cex` (Δ=0.015) robust;
+  `l4_frontend` (Δ=0.12) and `l1_consensus` (Δ=0.29) sensitive (paper must
+  report all three rubrics for these). `l0_network` and `l3_rpc` undefined
+  under strict (no `measured` denominator) → read as observability gaps.
+- **`scripts/build_jurisdiction_distribution.py`** + `make jurisdiction`
+  — emits Table 7. Region counts are **inclusive of multi-jurisdiction
+  events** (e.g. `[UK, US]` counts in both US and Europe), so the share
+  column does not partition. Result: 75.5% US-trigger; 24.5% Europe touches;
+  24.5% Rest-of-World touches; 7.5% corporate-global.
+- **`scripts/build_audit_worksheet.py`** + `make audit-worksheets` — per-event
+  audit worksheets with hash-verification pre-check + sign-off checkboxes.
+  Targets the `last_human_audit` bottleneck.
+- **`scripts/check_paper_readiness.py`** — gate that requires all seven
+  paper tables and the two derived ablation/jurisdiction artifacts to exist
+  and be coherent: Table 1 precision buckets match canonical
+  `trigger.timestamp_precision`; Table 4 panel counts match derived metrics;
+  Table 6 has no anchorless null rows; CSVs use LF line endings; anchor cases
+  retain `scoped_knowledge`. `--strict-audit` flag will turn the
+  `last_human_audit` warning into a release blocker once human sign-off is
+  ready.
+
+### Multi-repo operator census (P1 reviewer pivot)
+
+- **`scripts/scan_operator_census.py`** + `make operator-census` +
+  `sources/operator_census/candidates.yaml` (8 repos: `flashbots/{rpc-endpoint,
+  mev-boost-relay, rbuilder, builder}`, `MetaMask/eth-phishing-detect`,
+  `trustwallet/assets`, `Uniswap/token-lists`, `ethereum-lists/tokens`).
+  Five-class subject-only keyword classifier:
+  `sanctions_reaction / sanctions_maintenance / entity_keyword_hit /
+  generic_list_maintenance / other`. Path-substring matching deliberately
+  dropped to avoid false positives on `ofacblacklist.go` filename;
+  `treasury` removed from the OFAC keyword list to avoid `ethtreasury.com`
+  prefix hits. Entity keywords (tornado / samourai / lazarus / …) are
+  surfaced as `entity_keyword_hit` for human adjudication, not counted in
+  the headline rate.
+- **Result**: of 8 surveyed operator repos, **exactly one
+  (`flashbots/rpc-endpoint`) ships an OFAC-keyed filter file in public
+  source control, and exactly one commit (PR #90) carries OFAC keywords in
+  its subject**. Six repos ship no public compliance substrate; MetaMask's
+  204k-commit phishing registry has zero OFAC-keyword commits after
+  false-positive filtering. The 2025-04-01 PR #173 deletion falls in
+  `generic_list_maintenance` per the classifier; the editorial Tornado-
+  delisting interpretation rests on `candidates.yaml::known_channel: true`
+  and the evidence chain, not on automated keyword matching.
+- Full narrative + scope-and-caveats in
   [`analysis/operator_census/README.md`](analysis/operator_census/README.md).
-- **Inter-rater reliability study** —
-  [`scripts/build_irr_sample.py`](scripts/build_irr_sample.py) +
-  [`scripts/compute_irr_kappa.py`](scripts/compute_irr_kappa.py).
-  Stratified blind sample of 15 events (5 anchor / 7 empirical / 3
-  null, seed 20260424); blind LLM-assisted recoder assigned the
-  90 coverage-status codes without access to the originals.
-  **Cohen's κ = 0.983 (almost perfect)** with 89/90 agreement,
-  clearing the paper-readiness κ ≥ 0.6 threshold with margin. The
-  two remaining variables (`observation_kind`, `attribution`) have
-  blind worksheets generated and are runnable via
-  `make irr-kappa` once the second-coder pass is recorded. Full
-  report: [`analysis/inter_rater/kappa_report.md`](analysis/inter_rater/kappa_report.md).
-- **Prior-art delta framing** — README §1 and
-  `docs/paper_claims.md` now keep the paper's related-work delta
-  inline: methodology ancestors credited as *transplanted* rather
-  than invented, with Wahrstätter et al. (WWW 2024) distinguished by
-  the event frame plus operator-source-control census.
-- **Admission-protocol sensitivity ablation** —
-  [`scripts/build_admission_sensitivity.py`](scripts/build_admission_sensitivity.py)
-  recomputes the per-layer change rate under **strict / current /
-  permissive** admission rubrics and labels each as
-  robust / moderate / sensitive based on the strict-to-permissive
-  Δ. **Result**: `asset_onchain` (Δ=0) and `offramp_cex` (Δ=0.015)
-  are robust; `l4_frontend` (Δ=0.12) and `l1_consensus` (Δ=0.29)
-  are sensitive and the paper must report their rates under all
-  three rubrics; `l0_network` and `l3_rpc` are undefined under
-  strict (no `measured` denominator) and read as observability
-  gaps. Report: [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md).
 
-**P2 — quality (polish).**
+### Inter-rater reliability (P1 reviewer pivot)
 
-- **Jurisdictional composition table (Table 7)** —
-  [`scripts/build_jurisdiction_distribution.py`](scripts/build_jurisdiction_distribution.py)
-  emits `analysis/paper_tables/table7_jurisdiction_distribution.md`.
-  **Corpus composition**: 40/53 (75.5%) have `US` in their
-  jurisdiction list; inclusive multi-jurisdiction counting gives
-  13/53 Europe touches, 13/53 Rest-of-World touches, and 4/53
-  corporate-global touches. `docs/paper_claims.md §0 Sampling frame`
-  now mandates the paper's abstract and §1 carry
-  "US-trigger-dominant" or equivalent; non-English-indexable events
-  named as v0.2 open work.
-- **Zenodo artifact-eval reproducibility path** —
-  [`Dockerfile`](Dockerfile) + [`.dockerignore`](.dockerignore).
-  Pinned to `python:3.12.8-slim-bookworm` with pinned `git` and
-  `make` for optional census use. Verified byte-stable across two
-  `SOURCE_DATE_EPOCH=1714000000 make regenerate` runs on all 12
-  `derived/` + `analysis/paper_tables/` artifacts (diff = empty).
-- **C6 demoted to exemplar-inside-C1** — reviewers unanimous that
-  n=1 recovery won't survive even careful phrasing. The reversal
-  event appears only inside the Flashbots bidirectional
-  mechanism narrative (§1 point 2), never as a standalone claim.
-  `docs/paper_claims.md §C6` now carries the demotion notice and
-  a v0.2 reinstatement gate (≥3 independent reversal events).
+- **`scripts/build_irr_sample.py`** + **`scripts/compute_irr_kappa.py`** +
+  `make irr-sample` + `make irr-kappa` +
+  [`docs/inter_rater_reliability.md`](docs/inter_rater_reliability.md).
+  Stratified blind sampler (15 events: 5 anchor / 7 empirical / 3 null,
+  seed 20260424); explicit `row_id` join (replaces the order-fragile
+  `(event_id, layer)` zip); `--coder-mode / --coder-name /
+  --coder-prompt-version / --coder-notes` CLI args record provenance into
+  `kappa_report.json::coder_provenance`.
+- **Result for `coverage_status`**: blind LLM-assisted recoder
+  (`claude-opus-4-7`, prompt version `2026-04-24-irr-prompt-v1`) on 90 rows.
+  **Cohen's κ = 0.983 (almost perfect)**, 89/90 agreement, clearing the
+  paper-readiness κ ≥ 0.6 threshold with margin. The two remaining
+  variables (`observation_kind`, `attribution`) have blind worksheets
+  generated and are runnable.
 
-Validation still clean: 36 pytest cases pass, `paper-check` OK,
-derived artifacts byte-stable under pinned `SOURCE_DATE_EPOCH`.
-Archetype counts unchanged (13 / 8 / 14 / 5 / 0 / 13). Coverage
-κ=0.983 on the 90-row blind recode.
+### Engineering hardening (replicability badge readiness)
 
-## 2026-04-24 (specialist-review follow-through — re-pitch, evidence strengthening, engineering hardening)
+- **`requirements.txt` + `requirements-dev.txt`** with pinned versions
+  (`PyYAML==6.0.3`, `jsonschema==4.26.0`, `pytest==8.3.4`). CI installs via
+  `pip install -r requirements-dev.txt` so local and CI substrates match.
+- **`SOURCE_DATE_EPOCH` support** via `scripts/_dataset_meta.py::now_utc_iso()`
+  — every artifact's `generated_at` honors the GNU-reproducible-builds
+  convention. Verified byte-stable across two `SOURCE_DATE_EPOCH=1714000000
+  make regenerate` runs on all derived/ + analysis/paper_tables/ artifacts
+  (diff = empty).
+- **`Dockerfile`** + **`.dockerignore`** — pinned to
+  `python:3.12.8-slim-bookworm`. One-command reproduction:
+  `docker run --rm -e SOURCE_DATE_EPOCH=1714000000 -v "$(pwd)":/work
+  p1-event-db:v0.1 make regenerate`.
+- **`tests/`** — 27 test functions yielding **36 pytest-collected cases**
+  (parametrize expansion in `test_archetype_classifier.py`). Covers
+  archetype rules + latency-band inclusivity + `trigger_is_action`
+  coincidence (23 cases), coverage-matched numerator (5), recovery-row
+  filter (3), paper-table fail-closed properties (5). Wired into CI; every
+  prior review finding has a regression guard.
+  [`tests/README.md`](tests/README.md) scopes what fail-closed does and
+  does not guarantee.
+- **`make regenerate`** chain now includes admission-sensitivity and
+  jurisdiction so the reproduction path stays in lock-step with the paper
+  claims that cite their artifacts.
 
-Four specialist agents audited the repo for novelty / methodology /
-engineering / venue-fit before submission. Their convergent verdict —
-the "six-layer cascade dataset" headline over-sold, while the Flashbots
-bidirectional finding was under-leveraged — drove this turn's work.
+### Citation / framing
 
-**1. Re-pitched the contribution.** [README.md §1](README.md) and
-[docs/paper_claims.md §0](docs/paper_claims.md) now lead with the
-headline finding — **operator filter-list maintenance as a public,
-git-observable censorship channel** — and present the 53-event corpus
-as the coverage-denominator-disciplined instrument that made the
-finding visible. Added a §2 non-goals list explicitly disowning the
-"six-layer coverage claim" (L0 / L3 have no `measured` denominator at
-v0.1.0) and the "cascade rate estimator" reading. Rewrote the paper
-outline in README §7 around the Flashbots mechanism, with the three
-supporting findings (upper-layer concentration, single-layer
-dominance, observability gap on base layers) framed as *context*, not
-as the headline.
-
-**2. Strengthened the Flashbots evidence.** Added two independent
-GitHub API captures per Tornado event (PR metadata + commit metadata,
-served by GitHub Inc. — not Flashbots — ruling out the "one
-developer's fork" reviewer objection). Four sources per L3
-observation now: (a) local post-commit file state, (b) local commit
-metadata, (c) GitHub API PR endpoint (semi_primary_measurement,
-org-provenance corroborator), (d) GitHub API commit endpoint
-(semi_primary_measurement). Each carries `body_hash` + `body_path` and
-the API URLs carry `query_hash`. Artifacts under
-`sources/operator_commits/tornado-cash-ofac-{2022,delisting-2025}/github-api/`.
-
-**3. Demoted C3 from distribution to named-exemplar.**
-[docs/paper_claims.md C3](docs/paper_claims.md) now explicitly presents
-Panel A rows as named individual events, not a band distribution —
-reviewer #2 cannot sink the paper on "distribution on n=2." A proper
-distributional latency claim is parked as a named §2 item for v0.2.
-
-**4. Fixed `coinbase-india-exit-2022` misclassification.**
-`trigger_is_action` now requires BOTH `trigger.type =
-corporate_policy_change` AND the first observation to coincide with
-the trigger (|Δ| ≤ 1h). Coinbase-India-exit (Δ=72h, a real measured
-reaction to NPCI pressure) correctly moves from Panel C (excluded) to
-Panel B (1d–30d band). Panel C is now n=5, Panel B n=33, both honest.
-
-**5. Engineering hardening for replicability-badge readiness**:
-
-- **`requirements.txt`** + **`requirements-dev.txt`** with pinned
-  versions (`PyYAML==6.0.3`, `jsonschema==4.26.0`, `pytest==8.3.4`).
-  CI now installs via `pip install -r requirements-dev.txt` so local
-  and CI substrates match bit-for-bit.
-- **`SOURCE_DATE_EPOCH` support** via new
-  `scripts/_dataset_meta.py::now_utc_iso()`. Every artifact's
-  `generated_at` / `generated` field honors the GNU-reproducible-builds
-  convention: set `SOURCE_DATE_EPOCH=<unix-seconds>` and `make
-  regenerate` produces byte-stable artifacts. Wall-clock fallback
-  preserved when the env var is absent. Verified: two consecutive
-  `make paper-tables` runs at a pinned epoch produce identical
-  sha256s for both `dataset.meta.json` and
-  `analysis/paper_tables/table2_layer_observability.md`.
-- **`tests/` directory — 27 test functions yielding 36 pytest
-  collected cases** (the expansion is from parametrized latency-band
-  and other-single-layer suites in `test_archetype_classifier.py`).
-  Covers the classifier (23 cases: 6 archetype rules + latency-band
-  inclusivity + `trigger_is_action` coincidence), the coverage-matched
-  numerator (5 cases, the 2026-04-23 P1 fix), the recovery-row filter
-  (3 cases, the 2026-04-23 P2 fix), and paper-table fail-closed
-  properties (5 cases: precision helper uses canonical schema field;
-  null-anchor abort). Runnable via `make test` and wired into CI.
-  Every prior review finding has a test that fails-closed on
-  re-introduction. Scope of what these tests do and do not guarantee
-  is documented in [`tests/README.md`](tests/README.md) — in
-  particular, they verify numerical / structural invariants, not
-  content-validity of evidence anchors or inter-coder consistency of
-  `coverage.status`.
-
-Validation still clean. Derived + paper tables byte-stable under
-`SOURCE_DATE_EPOCH`. Archetype counts unchanged
-(13 / 8 / 14 / 5 / 0 / 13).
-
-## 2026-04-24 (paper-readiness gates)
-
-Adds the first explicit paper-readiness gate on top of the dataset
-validator. `docs/paper_claims.md` now carries a sampling-frame statement,
-a claim-to-table/source/audit matrix, and an uncertainty-to-analysis
-mapping. `scripts/check_paper_readiness.py` verifies the paper-facing
-surface: required paper-table artifacts exist, Table 1 precision buckets
-match canonical `trigger.timestamp_precision`, Table 4 panel counts match
-derived metrics, Table 6 has no anchorless null rows, generated paper CSVs
-use LF line endings, and anchor cases retain `scoped_knowledge`.
-
-The check intentionally reports missing `last_human_audit` on
-paper-critical anchor/null rows as a warning by default; use
-`scripts/check_paper_readiness.py --strict-audit` once human audit sign-off
-is ready to become a release blocker.
-
-## 2026-04-24 (Phase-3 L3 gap-fill · Flashbots git-history evidence)
-
-Concrete L3 evidence lands for both Tornado events via git-history
-analysis of `flashbots/rpc-endpoint`. First substantive update to a
-derived rate since the P1 fix.
-
-- **New observation · `tornado-cash-ofac-2022` · L3** — coverage
-  revised `not_applicable` → `partially_measured`. Admits
-  `observed_change` / `direct` / `flashbots_rpc_endpoint` at
-  `2022-08-08T16:20:50Z` (2.85h after the 13:30 UTC SDN). Two
-  `primary_corporate` sources: post-commit state of
-  `server/ofacblacklist.go` at commit `92ab6b1f` (PR #90, "update
-  ofac black list") plus commit metadata. Diff shows Tornado pool
-  addresses `0x722122df`, `0x8589427`, `0x4736dcf1`, ... added to
-  the blacklist — all present in the event's `target.addresses`
-  list. Artifacts under
-  `sources/operator_commits/tornado-cash-ofac-2022/`. Prior
-  "pre-MEV-Blocker era, construct-did-not-exist" framing was
-  incomplete: it conflated Flashbots Protect (2022-11 launch) with
-  Flashbots' rpc-endpoint (2021-10 file existence). Coverage note
-  rewritten to acknowledge the correction.
-
-- **New observation · `tornado-cash-ofac-delisting-2025` · L3** —
-  admits `observed_change` / **`plausible`** / `flashbots_rpc_endpoint`
-  at `2025-04-01T19:28:21Z` (283.47h = 11d 19h 28m after the
-  2025-03-21 delisting). Two `primary_corporate` sources: post-commit
-  state of `server/ofacblacklist.go` at commit `1e9c29c` (PR #173,
-  "Cleanup unused, outdated blacklist defaults") plus the pre-deletion
-  state at commit `1e9c29c^` plus PR metadata. Diff shows the entire
-  `ofacBlacklist` map deleted: 132 addresses → 0. Attribution is
-  `plausible` — the PR title frames the deletion as operational cleanup
-  rather than a direct response to the Tornado delisting; Flashbots did
-  not explicitly cite OFAC. Artifacts under
-  `sources/operator_commits/tornado-cash-ofac-delisting-2025/`.
-
-- **Corpus-level derived impact**:
-  - `l3_rpc::changed_given_measured_or_partial` moves from
-    **0/8 (0.0%)** → **2/9 (22.2%)** — first non-zero L3 rate in the
-    corpus; both Tornado-related.
-  - `tornado-cash-ofac-2022` signature: 4-layer → **5-layer**
-    (`asset_onchain+l1_consensus+l3_rpc+l4_frontend+offramp_cex`),
-    broadest cascade in the corpus.
-  - `tornado-cash-ofac-delisting-2025` signature: 3-layer → **4-layer**
-    (`asset_onchain+l1_consensus+l3_rpc+l4_frontend`), a 4-layer
-    reverse cascade.
-  - `tornado-2022::time_to_first_change_hours`: 5.93h → **2.85h** (L3
-    beats asset layer to first change). Still in `(1, 6]h` band of
-    Table 4 Panel A; hour-precision bucket unchanged.
-  - Archetype counts unchanged (13 / 8 / 14 / 5 / 0 / 13) — both events
-    were already `multi_layer`.
-
-- **`docs/paper_claims.md` C1** — rewritten to reflect the new L3
-  evidence. The prior "L3 has zero observed changes in the
-  partial-coverage subset" framing is now FORBID-listed alongside the
-  "L0 does not react" sibling. The claim still grounds upper-layer
-  concentration on `asset_onchain` / `l4_frontend` / `offramp_cex`;
-  L3's 2/9 is mentioned but caveated as Tornado-specific.
-
-- **`analysis/anchor_gap_fill_log.md §4`** — extended with the
-  second-pass results (git-history method). Section 4 "Summary of this
-  session's admitted changes" now documents both the first-pass Wayback
-  captures and the second-pass git artifacts.
-
-## 2026-04-24 (Phase-3 anchor gap-fill · paper scaffolding)
-
-Turns the repo from "high-quality dataset" into "measurement paper
-asset" without adding new cases. No event count change, no archetype
-count change, no coverage-status change — just tighter evidence,
-tighter claims, and a reproducible analysis pipeline.
-
-- **`docs/paper_claims.md`** (new, ~260 lines) — single source of truth
-  for what the paper argues. Declares the primary estimand
-  (layer-selection × precision-filtered latency) and enumerates
-  C1–C6 candidate claims, each with phrasing lock, evidence source,
-  case role, and "not said" caveat. §2 explicitly rules out four
-  claims the data does not support (cascade timing by trigger type,
-  private-order vs on-chain speed, stack-resistance ranking,
-  time-trend). §3 lists five systematic uncertainty sources the paper
-  must surface. §6 is a review contract: claim changes require
-  CHANGELOG entries and updated paper-table cells.
-- **`scripts/build_paper_tables.py`** (new, ~540 lines) + `make
-  paper-tables` — reproducible generator for the six paper tables
-  under `analysis/paper_tables/`. Fail-closed design: conditional
-  rates with zero denominators render as `—`; day-precision triggers
-  are excluded from hour-granularity bins (precision-discipline at
-  table boundary); `trigger_is_action` events routed to a separate
-  panel; null-case rows must carry at least one validator-recognized
-  evidence anchor.
-- **`scripts/build_audit_worksheet.py`** (new) + `make
-  audit-worksheets` — per-event audit worksheets under
-  `analysis/audit_worksheets/`. Each row (trigger citation, every
-  `observation.sources[]`, every `recovery[]` entry) gets a
-  hash-verification pre-check + sign-off checkbox. Targets the
-  anchor-audit bottleneck (48/53 events still lack
-  `last_human_audit`; the five anchors are the first batch).
-- **`analysis/anchor_gap_fill_log.md`** (new) — Phase-3 gap-fill audit
-  trail per (anchor × layer). Records CDX queries attempted, what
-  Wayback returned, what was captured, what remained an observability
-  gap. Admits no new observations — the one captured pair (Flashbots
-  Protect overview pre/post delisting, body_hash
-  `1592ba0b…` and `b258da6d…`) is pinned as a provider-docs anchor
-  in `tornado-cash-ofac-delisting-2025::coverage[l3_rpc].note`, not as
-  an `observed_change` row. Honest: the CDX doesn't cover the
-  filter-list pages directly, so definitive L3 evidence requires
-  git-history diff of `flashbots/rpc-endpoint::blacklist.go`, which
-  is deferred.
-- **`events/tornado-cash-ofac-delisting-2025.yaml`** — two coverage
-  notes refreshed (L0 gap framing now matches the other three
-  anchors' rigor; L3 cites the two new Flashbots Protect Wayback
-  captures). No observation added; no coverage status changed;
-  derived layer is byte-stable.
-- **Doc-口径 fixes (from review)** — `docs/limitations-and-use.md §2.4`
-  L0 reframed from "attested-negative" to "observability gap";
-  `docs/chain-coverage-note.md` counts refreshed to live
-  53-event / 60-chain-row distribution; `README.md §7` fabricated
-  illustrative percentages replaced with live corpus descriptions;
-  `CHANGELOG.md` v0.1.0 body updated in place with the coverage-
-  matched rates (l1_consensus 1/6, l4_frontend 11/16, offramp_cex
-  15/25).
+- **[`docs/prior_art_delta.md`](docs/prior_art_delta.md)** — per-axis delta
+  vs Wahrstätter et al. (WWW 2024), with methodology ancestors credited as
+  *transplanted*: Filastò & Appelbaum (FOCI 2012, OONI), Pearce et al.
+  (USENIX Sec 2017, coverage-matched conditional rates), Sundara Raman et
+  al. (CCS 2020, Censored Planet), Gebru et al. (CACM 2021,
+  Datasheets-for-Datasets). BibTeX stubs included.
 
 ## 2026-04-23 (derived-layer correctness fixes)
 

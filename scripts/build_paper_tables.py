@@ -629,12 +629,14 @@ def build_table6(
         ds_meta, f"Table 6 · Null-case denominator (n={len(null_events)})"
     )
     lines.append(
-        "Supports **C6** and the null-event interpretation note in "
-        "`derived/archetype_distribution.md`. Each row lists the event's "
-        "`observed_no_change` layers + the evidence-anchor types their "
-        "sources carry. Per validator rule, any one of `body_hash`+"
-        "`body_path`, `query_hash`, `measurement_ids`, or `scope_descriptor` "
-        "is sufficient to admit an `observed_no_change` row."
+        "Supports the **null-event interpretation note** in "
+        "`derived/archetype_distribution.md`. (C6 was demoted to "
+        "exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md "
+        "§C6`.) Each row lists the event's `observed_no_change` layers + "
+        "the evidence-anchor types their sources carry. Per validator "
+        "rule, any one of `body_hash`+`body_path`, `query_hash`, "
+        "`measurement_ids`, or `scope_descriptor` is sufficient to admit "
+        "an `observed_no_change` row."
     )
     lines.append("")
     lines.append(
@@ -731,7 +733,7 @@ def build_index(
     lines.append("| 3 | [table3_archetype_stratum.md](table3_archetype_stratum.md) | `C2`, `C5` | `derived/event_archetypes` |")
     lines.append("| 4 | [table4_latency_by_precision.md](table4_latency_by_precision.md) | `C3`, `C4` | `events/*.yaml` + `derived/event_metrics` + `derived/event_archetypes` |")
     lines.append("| 5 | [table5_target_enumeration.md](table5_target_enumeration.md) | `§4 item 5` | `events/*.yaml` + `derived/event_archetypes` |")
-    lines.append("| 6 | [table6_null_denominator.md](table6_null_denominator.md) | `C6`, null-event interpretation | `events/*.yaml` + `derived/event_archetypes` |")
+    lines.append("| 6 | [table6_null_denominator.md](table6_null_denominator.md) | null-event interpretation (C6 demoted 2026-04-24 — see `docs/paper_claims.md §C6`) | `events/*.yaml` + `derived/event_archetypes` |")
     if (out_dir / "table7_jurisdiction_distribution.md").exists():
         lines.append("| 7 | [table7_jurisdiction_distribution.md](table7_jurisdiction_distribution.md) | `§0 sampling frame` | `events/*.yaml` via `scripts/build_jurisdiction_distribution.py` |")
     lines.append("")

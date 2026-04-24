@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-04-24T09:48:20Z`
+Generated at: `2026-04-24T10:11:02Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `2026-04-21T01:42:36.787155Z`.
 

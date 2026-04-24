@@ -1,8 +1,8 @@
 # Table 6 · Null-case denominator (n=13)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `dd67577` · generated `2026-04-24T09:59:02Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `573838c` · generated `2024-04-24T23:06:40Z`
 
-Supports **C6** and the null-event interpretation note in `derived/archetype_distribution.md`. Each row lists the event's `observed_no_change` layers + the evidence-anchor types their sources carry. Per validator rule, any one of `body_hash`+`body_path`, `query_hash`, `measurement_ids`, or `scope_descriptor` is sufficient to admit an `observed_no_change` row.
+Supports the **null-event interpretation note** in `derived/archetype_distribution.md`. (C6 was demoted to exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md §C6`.) Each row lists the event's `observed_no_change` layers + the evidence-anchor types their sources carry. Per validator rule, any one of `body_hash`+`body_path`, `query_hash`, `measurement_ids`, or `scope_descriptor` is sufficient to admit an `observed_no_change` row.
 
 | event_id | stratum | observed_no_change layers | evidence anchors present |
 | --- | --- | --- | --- |
