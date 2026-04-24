@@ -27,6 +27,7 @@ COMPARE_OUT ?= -
     validate validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset \
     event-metrics layer-observability archetypes derived \
+    audit-worksheets \
     render-site render-evidence render-evidence-all compare \
     ooni-scan usdt-scan capture \
     check check-network check-all \
@@ -53,6 +54,7 @@ help:
 	    'make layer-observability   # coverage-aware per-layer observability table (denominator-honest)' \
 	    'make archetypes            # rule-based archetype classifier + archetype_distribution.md' \
 	    'make derived               # all three derived artifacts in one shot' \
+	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    '' \
 	    '### Static site + framework outputs' \
 	    'make render-site           # render events/*.yaml → $(SITE_DIR)/' \
@@ -113,6 +115,16 @@ layer-observability:
 
 archetypes:
 	$(PYTHON) scripts/assign_archetypes.py --out-dir $(DERIVED_DIR)
+
+# Per-event audit worksheets for human sign-off (default: anchor cases).
+# Usage:
+#   make audit-worksheets                 # all anchor_case events
+#   make audit-worksheets SLUG=<slug>     # single event
+#   make audit-worksheets TIERS=anchor_case,null_case
+audit-worksheets:
+	$(PYTHON) scripts/build_audit_worksheet.py \
+	    $(if $(SLUG),--slug $(SLUG)) \
+	    $(if $(TIERS),--tiers $(TIERS))
 
 # Umbrella target: rebuild every derived artifact (dataset.meta.json must
 # land first so downstream scripts read the latest version/cutoff).

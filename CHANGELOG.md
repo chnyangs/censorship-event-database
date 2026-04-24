@@ -66,12 +66,19 @@ discipline.
   - `l0_network` — 0 / 22 applicable measured; `changed_given_measured`
     is **null** (undefined denominator). Pure observability gap.
   - `l1_consensus` — 6 measured + 1 partial; `changed_given_measured` =
-    33%. The two L1 changes in the corpus are both Tornado-related.
+    1/6 = 16.7%; `changed_given_measured_or_partial` = 2/7 = 28.6%.
+    Both L1 changes in the corpus are Tornado-related.
   - `l3_rpc` — 0 measured + 8 partial; `changed_given_measured_or_partial`
     = 0/8. Weak denominator, weak claim.
-  - `l4_frontend` — 16 measured; **changed_given_measured = 81%**.
-  - `asset_onchain` — 17 measured; **changed_given_measured = 100%**.
-  - `offramp_cex` — 25 measured; `changed_given_measured` = 64%.
+  - `l4_frontend` — 16 measured; **`changed_given_measured` = 11/16 =
+    68.75%**.
+  - `asset_onchain` — 17 measured; **`changed_given_measured` =
+    17/17 = 100%**.
+  - `offramp_cex` — 25 measured; `changed_given_measured` = 15/25 =
+    60%.
+  - All conditional rates are **coverage-matched**: the numerator counts
+    only the subset of `observed_change` events whose coverage status is
+    in the same bucket as the denominator (see the P1 fix entry above).
 - **`derived/event_archetypes.{csv,json,meta.json}`** +
   **`derived/archetype_distribution.md`** — rule-based
   deterministic classifier (no clustering). Six classes, priority-ordered:
