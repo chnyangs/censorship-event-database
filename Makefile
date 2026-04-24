@@ -27,7 +27,7 @@ COMPARE_OUT ?= -
     validate validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset \
     event-metrics layer-observability archetypes derived \
-    audit-worksheets \
+    audit-worksheets paper-tables \
     render-site render-evidence render-evidence-all compare \
     ooni-scan usdt-scan capture \
     check check-network check-all \
@@ -55,6 +55,7 @@ help:
 	    'make archetypes            # rule-based archetype classifier + archetype_distribution.md' \
 	    'make derived               # all three derived artifacts in one shot' \
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
+	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
 	    '' \
 	    '### Static site + framework outputs' \
 	    'make render-site           # render events/*.yaml → $(SITE_DIR)/' \
@@ -126,6 +127,13 @@ audit-worksheets:
 	    $(if $(SLUG),--slug $(SLUG)) \
 	    $(if $(TIERS),--tiers $(TIERS))
 
+# Reproducible paper-table generator (see docs/paper_claims.md §4).
+# Requires `make derived` to have been run. Emits 6 tables + a meta.json
+# under analysis/paper_tables/; every number in the paper must come from
+# this artifact at a given source_commit.
+paper-tables:
+	$(PYTHON) scripts/build_paper_tables.py
+
 # Umbrella target: rebuild every derived artifact (dataset.meta.json must
 # land first so downstream scripts read the latest version/cutoff).
 derived: dataset event-metrics layer-observability archetypes
@@ -184,7 +192,7 @@ check-network: verify-citations freshness
 check-all: check check-network
 
 # Full rebuild of all derived artifacts (after an event-YAML change)
-regenerate: dataset event-metrics layer-observability archetypes status review staleness render-site render-evidence-all
+regenerate: dataset event-metrics layer-observability archetypes paper-tables status review staleness render-site render-evidence-all
 	@echo "[regenerate] all derived artifacts rebuilt"
 
 clean:

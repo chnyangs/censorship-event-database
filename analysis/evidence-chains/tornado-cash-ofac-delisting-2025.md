@@ -1,8 +1,8 @@
 # Evidence chain — `tornado-cash-ofac-delisting-2025`
 
-**Status**: `admitted` · **Stratum**: `S2_ofac_removal` · **Shape**: `cascade` (3 changed layer(s): `asset_onchain`, `l1_consensus`, `l4_frontend`) · **Tier**: `anchor_case`
+**Status**: `admitted` · **Stratum**: `S2_ofac_removal` · **Shape**: `cascade` (4 changed layer(s): `asset_onchain`, `l1_consensus`, `l3_rpc`, `l4_frontend`) · **Tier**: `anchor_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:36Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `229adc4` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T03:16:27Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -118,6 +118,37 @@
   - body_path: `sources/http_captures/tornado-cash-ofac-delisting-2025/backfill-1.3/usdtbanlist.com__address-0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936__a06f6feca5.html`
   > Third-party cross-check showing the same address was USDC-unbanned on 2025-03-22 with the matching Etherscan transaction
 
+### l3_rpc · attribution: `plausible` · Δt = 283.47h
+
+**Event label**: `ofac_blacklist_deletion`
+
+**Timestamp**: `2025-04-01 19:28:21+00:00` (precision: `second`)
+
+**Sources**:
+
+- **`primary_corporate`**
+  - URL: <https://github.com/flashbots/rpc-endpoint/commit/1e9c29c5d3896bdc661805f4995b4d65834db6e4>
+  - body_hash: `sha256:429579b63e4b00b580aa4588af966e0762a4d1b6eb88984888289c3d689638c3`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-delisting-2025/ofacblacklist-at-1e9c29c.go`
+  > Post-commit state of server/ofacblacklist.go at commit 1e9c29c:
+> file reduced to a 205-byte stub with zero addresses. Diff
+> removes the `ofacBlacklist` map (135 lines deleted, 0 added;
+> `rg '"0x[0-9a-f]{40}"' count = 0`). Pre-deletion state (at
+> commit 1e9c29c^) preserved locally at
+> sources/operator_commits/tornado-cash-ofac-delisting-2025/ofacblacklist-pre-1e9c29c.go
+> (body_hash sha256:9f609132996f37febf1de1283a44b34b0e77fb80324dfc747231dfb16281c54a,
+> 132 addresses including Tornado pools).
+- **`primary_corporate`**
+  - URL: <https://github.com/flashbots/rpc-endpoint/pull/173>
+  - body_hash: `sha256:75c7c402e89b2f0ec46fe8baac4e6f9b64023c2f62580e5424eeaa10349393d3`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-delisting-2025/commit-1e9c29c.meta.txt`
+  > Commit metadata: title "Cleanup unused and unmaintained
+> blacklist file (#173)", PR title "Cleanup unused, outdated
+> blacklist defaults", author Chris Hager (metachris), merged
+> 2025-04-01T19:28:21Z UTC (11 days 19 hours 28 minutes after
+> OFAC delisted Tornado Cash on 2025-03-21). Full diff at
+> sources/operator_commits/tornado-cash-ofac-delisting-2025/commit-1e9c29c.diff.
+
 ### l1_consensus · attribution: `plausible` · Δt = 0h
 
 **Event label**: `censoring_relay_share_dropped_post_delisting`
@@ -186,12 +217,12 @@
 
 ## 5. Honest coverage gaps
 
-- **l0_network** (`not_measured`): Reverse-cascade network effects have not been queried against Censored Planet / OONI and are plausibly sparse; no measurement artifact is attached so the layer is explicitly unmeasured
+- **l0_network** (`not_measured`): L0 coverage is an explicit measurement gap, framed to match the
 - **offramp_cex** (`not_measured`): Chain-analytics anchors pinned 2026-04-22 as primary_corporate
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `6857971`).
+1. Clone the repository at tag `v0.1.0` (commit `229adc4`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

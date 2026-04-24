@@ -1,6 +1,6 @@
 # Archetype distribution report
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `8cadf3a` · generated `2026-04-24T00:27:53Z` (events: 53)
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `229adc4` · generated `2026-04-24T03:16:25Z` (events: 53)
 
 ## 1. Classification rules (deterministic, priority-ordered)
 
@@ -39,8 +39,8 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 | --- | ---: | --- |
 | `asset_onchain+l4_frontend` | 2 | `chatex-ofac-2021`, `cryptex-ofac-2024` |
 | `l4_frontend+offramp_cex` | 1 | `sec-v-binance-2023` |
-| `asset_onchain+l1_consensus+l4_frontend+offramp_cex` | 1 | `tornado-cash-ofac-2022` |
-| `asset_onchain+l1_consensus+l4_frontend` | 1 | `tornado-cash-ofac-delisting-2025` |
+| `asset_onchain+l1_consensus+l3_rpc+l4_frontend+offramp_cex` | 1 | `tornado-cash-ofac-2022` |
+| `asset_onchain+l1_consensus+l3_rpc+l4_frontend` | 1 | `tornado-cash-ofac-delisting-2025` |
 
 ### 2b. Latency regime
 
@@ -96,8 +96,8 @@ Up to 5 events per class, selected by admission tier then slug.
 - `chatex-ofac-2021` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l4_frontend` · latency `acute` (t=28.2h)
 - `cryptex-ofac-2024` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l4_frontend` · latency `acute` (t=3.6h)
 - `sec-v-binance-2023` · tier `anchor_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend+offramp_cex` · latency `delayed` (t=96.0h)
-- `tornado-cash-ofac-2022` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l1_consensus+l4_frontend+offramp_cex` · latency `acute` (t=5.9h)
-- `tornado-cash-ofac-delisting-2025` · tier `anchor_case` · stratum `S2_ofac_removal` · signature `asset_onchain+l1_consensus+l4_frontend` · latency `synchronous` (t=0.0h)
+- `tornado-cash-ofac-2022` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l1_consensus+l3_rpc+l4_frontend+offramp_cex` · latency `acute` (t=2.9h)
+- `tornado-cash-ofac-delisting-2025` · tier `anchor_case` · stratum `S2_ofac_removal` · signature `asset_onchain+l1_consensus+l3_rpc+l4_frontend` · latency `synchronous` (t=0.0h)
 
 ### `other_single_layer`  (0 events)
 

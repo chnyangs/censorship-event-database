@@ -119,25 +119,27 @@ coverage:
       `partially_measured` (post-Merge subset only) rather than `measured`
       across the full window.
   - layer: l3_rpc
-    status: not_applicable
+    status: partially_measured
+    provider_scope: flashbots_rpc_endpoint_only
     note: |
-      Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-compliance-adjacent
-      public Ethereum RPC substrate (Flashbots Protect launched 2022-11,
-      MEV-Blocker launched 2023-03-27) did not exist at event time. Same
-      construct-did-not-exist reasoning as L1 consensus coverage for
-      pre-Merge events. not_applicable rather than not_measured.
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
+      Revised 2026-04-24. Previous `not_applicable` framing was built on
+      the assumption that OFAC-compliance-adjacent public Ethereum RPC
+      substrate post-dated the event (Flashbots Protect launched 2022-11,
+      MEV-Blocker launched 2023-03-27). That framing was incomplete:
+      flashbots/rpc-endpoint (the service whose public RPC later became
+      Flashbots Protect) existed at event time and carried an in-process
+      OFAC blacklist at `server/ofacblacklist.go` (file creation 2021-10-07,
+      commit 8d2c732). Git-history analysis of that file across the
+      2022-08-08 SDN yields one primary_corporate observation (see
+      observations below). Coverage is `partially_measured` because only
+      the flashbots/rpc-endpoint provider was checked; Infura's
+      contemporaneous OFAC-screening policy statement (published
+      2022-08-12) is NOT yet pinned as a Wayback anchor and remains
+      a follow-up. Ecosystem anchors pinned 2026-04-22 (MEV-Blocker
+      and Flashbots Protect docs at body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
+      and sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282)
+      establish the L3 measurement substrate for post-launch events but
+      are not event-local for 2022-08-08; see analysis/anchor_gap_fill_log.md §2.2.
   - layer: l4_frontend
     status: measured
     scope:
@@ -205,6 +207,52 @@ observations:
         body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
         body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
         note: Independent ecosystem ranking page (operated by Flashbots) that tracks per-relay OFAC-compliance over time; independent of Wahrstätter's pipeline and serves as the second admission-grade source for this observation.
+  - layer: l3_rpc
+    actor: flashbots_rpc_endpoint
+    event: ofac_blacklist_addition_of_tornado_pool_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-08T16:20:50Z
+    precision: second
+    delta_hours: 2.85
+    sources:
+      - type: primary_corporate
+        url: https://github.com/flashbots/rpc-endpoint/commit/92ab6b1f9abfc62261f72361e8c8df48f832f2a9
+        body_hash: sha256:86c81be4b409fc14aeed31abede8f3b74e7382d128ceec678a4c151ce9a959e7
+        body_path: sources/operator_commits/tornado-cash-ofac-2022/ofacblacklist-at-92ab6b1.go
+        evidence_group_id: flashbots-ofacblacklist-2022-08-08
+        note: |
+          Post-commit state of server/ofacblacklist.go at flashbots/rpc-endpoint
+          commit 92ab6b1f (Mon 2022-08-08 16:20:50 UTC). Contains 55
+          OFAC SDN addresses including the Tornado Cash pool addresses
+          0x722122df..., 0x8589427..., 0x4736dcf1..., all of which
+          appear in this event's target.addresses list. Commit diff
+          (sha256:220a5d31560da244c79a2539f4784a394752b0985d4c444a5f61fc664cf9d4f6)
+          shows these addresses being added in the same commit; see
+          sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.diff.
+      - type: primary_corporate
+        url: https://github.com/flashbots/rpc-endpoint/pull/90
+        body_hash: sha256:0c4fafa03fe45219b1f7e6d9c6487b05982922ae4104666cba79f098009946b9
+        body_path: sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.meta.txt
+        evidence_group_id: flashbots-ofacblacklist-2022-08-08
+        note: |
+          Commit metadata: title "update ofac black list (#90)", author
+          Bhakiyaraj Kalimuthu, commit date 2022-08-08T18:20:50+02:00
+          = 2022-08-08T16:20:50Z UTC (cross-checked against GitHub PR
+          #90 merged_at). The full diff showing exactly which
+          addresses were added is preserved at
+          sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.diff.
+    note: |
+      Flashbots' rpc-endpoint service (the backend that later became
+      Flashbots Protect) carried an in-process OFAC blacklist at
+      server/ofacblacklist.go. 2h 50m after the 13:30 UTC OFAC SDN
+      designation of Tornado Cash, Flashbots merged PR #90 (commit
+      92ab6b1f at 2022-08-08 18:20:50 local +02:00 = 16:20:50 UTC)
+      adding Tornado Cash pool addresses to the blacklist. Attribution
+      is `direct`: the commit's author explicitly titled it "update
+      ofac black list" and added exactly the SDN-listed Tornado pool
+      addresses. This is the first primary_corporate L3-layer evidence
+      in the corpus for the 2022-08-08 event.
   - layer: asset_onchain
     actor: circle_usdc
     event: address_blacklisted

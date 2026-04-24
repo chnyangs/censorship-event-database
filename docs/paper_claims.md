@@ -2,9 +2,9 @@
 
 > **Status**: skeleton. Every claim below is a candidate; nothing is
 > promoted to the paper until (a) the anchor audits for its supporting
-> events are complete, and (b) the paper table generator (planned
-> `analysis/paper_tables.py`) reproduces the cited numbers from the
-> committed dataset snapshot.
+> events are complete, and (b) the paper table generator
+> (`scripts/build_paper_tables.py`, live as of 2026-04-24) reproduces
+> the cited numbers from the committed dataset snapshot.
 
 This file is the single source of truth for "what the paper actually
 argues." Each claim states:
@@ -81,15 +81,21 @@ in every table**; collapsing them is a phrasing violation.
 
 ### Timestamp-precision discipline
 
-- Trigger timestamp precision across the corpus:
-  48 events are day-precision (e.g. OFAC SDN listings publish to
-  day granularity only); 5 events are hour-precision or better.
+- Trigger timestamp precision across the corpus splits into a
+  day-precision majority (e.g. OFAC SDN listings publish to day
+  granularity only) and an hour-or-better minority. **Live counts
+  live in [Table 1](../analysis/paper_tables/table1_case_roles.md)
+  §Summary**; do not hardcode numbers in prose here.
 - **Only the hour-or-better subset may carry an hour-precision latency
   claim.** Day-precision triggers appear in per-event narratives and
   in tables marked as "≤1 day" bucketed; they are excluded from any
   hour-granularity latency distribution.
-- The planned paper-table generator filters `time_to_first_change_hours`
-  by trigger precision before emitting any hour-granularity bin.
+- The paper-table generator
+  ([`scripts/build_paper_tables.py`](../scripts/build_paper_tables.py))
+  filters `time_to_first_change_hours` by trigger precision before
+  emitting any hour-granularity bin; see
+  [Table 4](../analysis/paper_tables/table4_latency_by_precision.md)
+  Panel A vs Panel B.
 
 ## 1. Candidate claims (ranked by strength of current evidence)
 
@@ -103,14 +109,23 @@ subset of events admissible, and the phrasing lock.
 > "Across 53 admitted events, observed changes are concentrated on
 > the upper layers of the six-layer stack. Under coverage-matched
 > denominators, `asset_onchain` shows `changed_given_measured` = 17/17
-> (1.00), `l4_frontend` = 11/16 (0.6875), and `offramp_cex` = 15/25
-> (0.60). `l0_network` carries no measured denominator, and
-> `l3_rpc`'s denominator is partially-measured-only; neither supports
-> a comparable rate. This is a description of the admitted evidence
-> corpus, not of the underlying phenomenon."
+> (1.00), `l4_frontend` = 11/16 (0.69), and `offramp_cex` = 15/25
+> (0.60). `l1_consensus` shows 1/6 (0.17) measured and 2/7 (0.29)
+> measured-or-partial, both anchored on Tornado Cash events.
+> `l3_rpc` has no `measured`-coverage events, but its
+> partial-coverage subset now carries **2 observed changes
+> (`changed_given_measured_or_partial` = 2/9 = 0.22), both from
+> the Tornado forward / reverse cascade** — admitted via Flashbots
+> rpc-endpoint git-history (PR #90 adding Tornado pool addresses
+> 2022-08-08, PR #173 deleting the blacklist 2025-04-01; see
+> `analysis/anchor_gap_fill_log.md §4`). `l0_network` carries no
+> measured denominator. The claim is a description of the admitted
+> evidence corpus, not of the underlying phenomenon."
 
 - **Evidence**: `derived/layer_observability.csv`; coverage-matched
   numerator (per P1 fix, 2026-04-23).
+  `analysis/paper_tables/table2_layer_observability.md` is the
+  reader-facing re-emission.
 - **n**: 53 events across 6 layers.
 - **Case role**: all 53 (empirical + null + anchor all contribute
   coverage denominators; only observed_change rows enter the
@@ -119,10 +134,15 @@ subset of events admissible, and the phrasing lock.
   - PREFER "are concentrated", "observed changes", "coverage-matched
     conditional rate".
   - FORBID "L0 does not react", "L3 is censorship-resistant", any
-    rate built on a null denominator.
+    rate built on a null denominator, any claim of the form "L3 has
+    zero observed changes" (the 2 Tornado L3 rows added
+    2026-04-24 invalidate the earlier draft framing).
 - **Not said**: this claim does NOT assert that base layers are not
   censored. That is an observability gap. See
   `docs/chain-coverage-note.md` and `docs/limitations-and-use.md §2.4`.
+  The two L3 observations are Tornado-specific; they do NOT support a
+  general "L3 filter lists react to sanctions events" claim beyond
+  these two named cases.
 
 ### C2 · Single-layer responses dominate the admitted corpus
 
@@ -158,54 +178,68 @@ subset of events admissible, and the phrasing lock.
 
 **Claim**:
 
-> "Restricted to triggers with hour-or-better precision (n=5), the
-> first observed change at any layer occurred within the same hour
-> in K cases, within 1–30h in M cases, and beyond 30h in L cases.
-> Day-precision triggers (n=48) are reported separately in a
-> ≤1-day-bucketed latency table in the appendix; they are excluded
-> from the hour-granularity distribution."
+> "Restricted to triggers with hour-or-better precision AND at least
+> one timed `observed_change` (Table 4 Panel A), the first observed
+> change at any layer falls into hour-granularity bands as reported
+> in Panel A. Day-precision triggers with a timed `observed_change`
+> are reported separately in Panel B at ≤1d / (1d, 30d] / >30d
+> granularity — they are excluded from any hour-granularity
+> distribution. `trigger_is_action` events (Panel C) are excluded
+> from both Panel A and Panel B because their `t≈0` is a record-level
+> artifact, not a measured delta."
 
-- **Evidence**: `derived/event_metrics.csv ::
-  time_to_first_change_hours`, **filtered** by trigger precision
-  (paper-table generator responsibility; currently computed in
-  `scripts/assign_archetypes.py::latency_regime`).
-- **n**: 5 hour-precision events + 48 day-precision events (reported
-  separately).
-- **Case role**: all events with at least one `observed_change`.
+- **Evidence**:
+  [`analysis/paper_tables/table4_latency_by_precision.md`](../analysis/paper_tables/table4_latency_by_precision.md)
+  is the reader-facing source of truth; underlying data is
+  `derived/event_metrics.csv :: time_to_first_change_hours` filtered
+  by `_trigger_precision()` in
+  [`scripts/build_paper_tables.py`](../scripts/build_paper_tables.py)
+  (reads the canonical schema field `trigger.timestamp_precision`).
+- **n**: **delegated to Table 4**. Panel A / Panel B / Panel C
+  cardinalities evolve as the corpus adds events or flips precision
+  labels — hardcoding any of the three in prose is phrasing-locked
+  FORBID.
+- **Case role**: events with at least one timed `observed_change`
+  contribute; events with only `observed_no_change` or `coverage_gap`
+  rows are absent from all three panels (they live in Table 6).
 - **Phrasing lock**:
   - PREFER "first observed change", "conditional on
-    hour-or-better trigger precision".
+    hour-or-better trigger precision", "Panel A of Table 4",
+    "Panel B of Table 4".
   - FORBID any latency number expressed in hours that includes a
     day-precision trigger; "reaction time" as a scalar summary
-    across all 53 (precision-mixed).
+    across all 53 (precision-mixed); **hardcoded hour/day
+    subset counts in the prose** — delegate to Table 4.
 - **Not said**: this is NOT a decomposition by layer speed — that is
   C4 below if promoted.
-- **Dependency**: C3 needs `scripts/paper_tables.py` step 4 (latency
-  distribution with precision filter) before it can be anchored by
-  a citable number. Until then, C3 stays a candidate.
+- **Status**: Table 4 is live (post-2026-04-24). C3 can be cited
+  directly from it once the paper narrative fixes the specific
+  band-count claims it wants to make.
 
 ### C4 · Corporate-policy events are trigger-action identical
 
 **Claim**:
 
-> "Five events in the admitted corpus carry
-> `trigger.type = corporate_policy_change` and `trigger_is_action =
-> true`; the trigger timestamp and the first observed change
-> timestamp are identical in the record by construction. These five
-> events (Circle-USDC Tornado freeze 2022, three Tether freeze
-> events, Uniswap frontend delisting 2023) are reported as their own
-> category and excluded from any cross-event latency claim: their
-> `time_to_first_change_hours = 0` is a record-level artifact, not a
-> measured delay."
+> "Events carrying `trigger.type = corporate_policy_change` have
+> `trigger_is_action = true`: the corporate action IS the trigger, so
+> the trigger timestamp and the observed change co-occur in the
+> record by construction. These events are reported as their own
+> category (Table 4 Panel C) and **excluded** from any cross-event
+> latency claim — their `time_to_first_change_hours ≈ 0` is a
+> record-level artifact, not a measured delay."
 
 - **Evidence**: `derived/event_archetypes.csv :: trigger_is_action`;
-  `derived/archetype_distribution.md §4` edge-case note.
-- **n**: 5.
-- **Case role**: named; cited by event slug.
+  `analysis/paper_tables/table4_latency_by_precision.md` Panel C.
+- **n**: **delegated to Table 4 Panel C**. The specific events are
+  enumerated there so this claim stays correct as the corpus evolves.
+- **Case role**: named; cited by event slug via Table 4.
 - **Phrasing lock**:
-  - PREFER "record-level artifact", "trigger is the action itself".
+  - PREFER "record-level artifact", "trigger is the action itself",
+    "by construction".
   - FORBID "fastest cascade" (t=0 is not speed); "self-executing
-    sanctions" (editorializes beyond the record).
+    sanctions" (editorializes beyond the record); **hardcoded event
+    counts in the prose** — always delegate to Table 4 so the number
+    stays live as the corpus evolves.
 
 ### C5 · Structural claim — frontend/asset/CEX reach extends across strata
 
@@ -252,8 +286,9 @@ subset of events admissible, and the phrasing lock.
 Each item below is a claim we could imagine making and have ruled out.
 
 - **"Cascade timing is a function of trigger type"** — the
-  trigger-type × latency cross-tab at n=5 per cell is under-powered.
-  Parked for v0.2 after more hour-precision events accumulate.
+  trigger-type × latency cross-tab is under-powered: see Table 1
+  trigger-precision split + Table 4 Panel A row count. Parked for
+  v0.2 after more hour-precision events accumulate.
 - **"Private-order (CEX) responses are faster than on-chain (asset)
   responses"** — day-precision triggers and asymmetric coverage
   denominators (asset is 17 measured, cex is 25 measured) prevent a
@@ -309,33 +344,38 @@ not as a rate. See C6.
 
 ### 3.5 Trigger-is-action category is separate by construction
 
-The five `corporate_policy_change` events (see C4) are reported as a
-distinct category. Cross-event latency statements must aggregate the
-two subsets separately.
+`corporate_policy_change` events (see C4) are reported as a distinct
+category via Table 4 Panel C. Cross-event latency statements must
+aggregate the two subsets separately. Count delegated to Table 4 so
+this claim stays correct as the corpus evolves.
 
-## 4. Planned paper-table generator (prerequisite for promoting claims)
+## 4. Paper-table generator (live)
 
-`analysis/paper_tables.py` (not yet written) must produce:
+`scripts/build_paper_tables.py` produces the six tables below under
+`analysis/paper_tables/`. Run `make paper-tables` after any change to
+`events/*.yaml` or `derived/*`. Each of C1–C6 is frozen to its exact
+number by the relevant table at a given `source_commit`. Numbers not
+produced by that generator do not enter the paper.
 
-1. **Case-role table** — per-event `admission_tier` + `research_stratum`
-   + `empirical_shape`, one row per event.
-2. **Layer-observability table** — direct re-emission of
-   `derived/layer_observability.csv`, with denominator bucket
-   composition.
-3. **Changed-layer distribution** — archetype counts × stratum
-   cross-tab.
-4. **Latency distribution (precision-filtered)** — hour-bucketed
-   latency for hour-or-better-precision triggers only; day-bucketed
-   latency for day-precision triggers (separate panel).
-5. **Complete-vs-subset stratification** — for events where the target
-   is a complete entity address set vs a named subset, a side-by-side
-   summary of changed-layer counts.
-6. **Null-case denominator table** — the 13 null events with their
-   scoped `observed_no_change` window + evidence-anchor type, so the
-   denominator is auditable.
+| # | table | file | supports |
+| --- | --- | --- | --- |
+| 1 | Case roles | [`table1_case_roles.md`](../analysis/paper_tables/table1_case_roles.md) | §0 case-role convention |
+| 2 | Layer observability | [`table2_layer_observability.md`](../analysis/paper_tables/table2_layer_observability.md) | C1 |
+| 3 | Archetype × stratum | [`table3_archetype_stratum.md`](../analysis/paper_tables/table3_archetype_stratum.md) | C2, C5 |
+| 4 | Latency (precision-filtered) | [`table4_latency_by_precision.md`](../analysis/paper_tables/table4_latency_by_precision.md) | C3, C4 |
+| 5 | Target enumeration | [`table5_target_enumeration.md`](../analysis/paper_tables/table5_target_enumeration.md) | §4 complete-vs-subset |
+| 6 | Null denominator | [`table6_null_denominator.md`](../analysis/paper_tables/table6_null_denominator.md) | C6, null-event interpretation |
 
-Each of C1–C6 is frozen to its exact number by the relevant table.
-Numbers not produced by that generator do not enter the paper.
+Fail-closed properties the generator enforces:
+
+- Conditional rates with a zero denominator render as `—`, not `0`.
+- Day-precision triggers are excluded from hour-granularity bins (Table 4
+  Panel A); they appear only in Panel B's coarser day-granularity
+  bands.
+- `trigger_is_action` events (C4) are excluded from both Panel A and
+  Panel B of Table 4 and surfaced in Panel C only.
+- Every row in Table 6 must list at least one evidence anchor; a
+  `NONE` row indicates a validator regression and is a ship-blocker.
 
 ## 5. Phrasing catalog (copy-paste from `docs/limitations-and-use.md §6`)
 
@@ -345,8 +385,9 @@ Numbers not produced by that generator do not enter the paper.
   with", "plausible vs direct attribution".
 - **Forbid**: "causes censorship", "future censorship likelihood",
   "probability of enforcement", "risk score", "did not react" (when
-  layer is un-measured), "multi-layer cascade rate" (n=5),
-  "recovery rate" (n=1).
+  layer is un-measured), "multi-layer cascade rate" (under-powered
+  per Table 3 `multi_layer` row), "recovery rate" (n=1; one reversal
+  event in the corpus).
 
 ## 6. Review + sign-off
 

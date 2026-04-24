@@ -1,8 +1,8 @@
 # Evidence chain — `tornado-cash-ofac-2022`
 
-**Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `cascade` (4 changed layer(s): `asset_onchain`, `l1_consensus`, `l4_frontend`, `offramp_cex`) · **Tier**: `anchor_case`
+**Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `cascade` (5 changed layer(s): `asset_onchain`, `l1_consensus`, `l3_rpc`, `l4_frontend`, `offramp_cex`) · **Tier**: `anchor_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `6857971` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T00:21:36Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `229adc4` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-24T03:16:27Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -86,6 +86,37 @@
   - body_path: `sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html`
   > Independent ecosystem ranking page (operated by Flashbots) that tracks per-relay OFAC-compliance over time; independent of Wahrstätter's pipeline and serves as the second admission-grade source for this observation.
 
+### l3_rpc · attribution: `direct` · Δt = 2.85h
+
+**Event label**: `ofac_blacklist_addition_of_tornado_pool_addresses`
+
+**Timestamp**: `2022-08-08 16:20:50+00:00` (precision: `second`)
+
+**Sources**:
+
+- **`primary_corporate`**
+  - URL: <https://github.com/flashbots/rpc-endpoint/commit/92ab6b1f9abfc62261f72361e8c8df48f832f2a9>
+  - body_hash: `sha256:86c81be4b409fc14aeed31abede8f3b74e7382d128ceec678a4c151ce9a959e7`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-2022/ofacblacklist-at-92ab6b1.go`
+  > Post-commit state of server/ofacblacklist.go at flashbots/rpc-endpoint
+> commit 92ab6b1f (Mon 2022-08-08 16:20:50 UTC). Contains 55
+> OFAC SDN addresses including the Tornado Cash pool addresses
+> 0x722122df..., 0x8589427..., 0x4736dcf1..., all of which
+> appear in this event's target.addresses list. Commit diff
+> (sha256:220a5d31560da244c79a2539f4784a394752b0985d4c444a5f61fc664cf9d4f6)
+> shows these addresses being added in the same commit; see
+> sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.diff.
+- **`primary_corporate`**
+  - URL: <https://github.com/flashbots/rpc-endpoint/pull/90>
+  - body_hash: `sha256:0c4fafa03fe45219b1f7e6d9c6487b05982922ae4104666cba79f098009946b9`
+  - body_path: `sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.meta.txt`
+  > Commit metadata: title "update ofac black list (#90)", author
+> Bhakiyaraj Kalimuthu, commit date 2022-08-08T18:20:50+02:00
+> = 2022-08-08T16:20:50Z UTC (cross-checked against GitHub PR
+> #90 merged_at). The full diff showing exactly which
+> addresses were added is preserved at
+> sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.diff.
+
 ### asset_onchain · attribution: `direct` · Δt = 5.93h
 
 **Event label**: `address_blacklisted`
@@ -160,7 +191,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `6857971`).
+1. Clone the repository at tag `v0.1.0` (commit `229adc4`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

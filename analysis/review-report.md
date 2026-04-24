@@ -818,16 +818,14 @@ This file is the operational summary for the repo's two current priorities:
 - Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `low`
-- Case-shape completeness: `medium`
+- Case-shape completeness: `high`
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
-- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
-- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `tornado-cash-ofac-redesignation-2022`
 

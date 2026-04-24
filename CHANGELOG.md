@@ -1,5 +1,125 @@
 # Changelog
 
+## 2026-04-24 (Phase-3 L3 gap-fill · Flashbots git-history evidence)
+
+Concrete L3 evidence lands for both Tornado events via git-history
+analysis of `flashbots/rpc-endpoint`. First substantive update to a
+derived rate since the P1 fix.
+
+- **New observation · `tornado-cash-ofac-2022` · L3** — coverage
+  revised `not_applicable` → `partially_measured`. Admits
+  `observed_change` / `direct` / `flashbots_rpc_endpoint` at
+  `2022-08-08T16:20:50Z` (2.85h after the 13:30 UTC SDN). Two
+  `primary_corporate` sources: post-commit state of
+  `server/ofacblacklist.go` at commit `92ab6b1f` (PR #90, "update
+  ofac black list") plus commit metadata. Diff shows Tornado pool
+  addresses `0x722122df`, `0x8589427`, `0x4736dcf1`, ... added to
+  the blacklist — all present in the event's `target.addresses`
+  list. Artifacts under
+  `sources/operator_commits/tornado-cash-ofac-2022/`. Prior
+  "pre-MEV-Blocker era, construct-did-not-exist" framing was
+  incomplete: it conflated Flashbots Protect (2022-11 launch) with
+  Flashbots' rpc-endpoint (2021-10 file existence). Coverage note
+  rewritten to acknowledge the correction.
+
+- **New observation · `tornado-cash-ofac-delisting-2025` · L3** —
+  admits `observed_change` / **`plausible`** / `flashbots_rpc_endpoint`
+  at `2025-04-01T19:28:21Z` (283.47h = 11d 19h 28m after the
+  2025-03-21 delisting). Two `primary_corporate` sources: post-commit
+  state of `server/ofacblacklist.go` at commit `1e9c29c` (PR #173,
+  "Cleanup unused, outdated blacklist defaults") plus the pre-deletion
+  state at commit `1e9c29c^` plus PR metadata. Diff shows the entire
+  `ofacBlacklist` map deleted: 132 addresses → 0. Attribution is
+  `plausible` — the PR title frames the deletion as operational cleanup
+  rather than a direct response to the Tornado delisting; Flashbots did
+  not explicitly cite OFAC. Artifacts under
+  `sources/operator_commits/tornado-cash-ofac-delisting-2025/`.
+
+- **Corpus-level derived impact**:
+  - `l3_rpc::changed_given_measured_or_partial` moves from
+    **0/8 (0.0%)** → **2/9 (22.2%)** — first non-zero L3 rate in the
+    corpus; both Tornado-related.
+  - `tornado-cash-ofac-2022` signature: 4-layer → **5-layer**
+    (`asset_onchain+l1_consensus+l3_rpc+l4_frontend+offramp_cex`),
+    broadest cascade in the corpus.
+  - `tornado-cash-ofac-delisting-2025` signature: 3-layer → **4-layer**
+    (`asset_onchain+l1_consensus+l3_rpc+l4_frontend`), a 4-layer
+    reverse cascade.
+  - `tornado-2022::time_to_first_change_hours`: 5.93h → **2.85h** (L3
+    beats asset layer to first change). Still in `(1, 6]h` band of
+    Table 4 Panel A; hour-precision bucket unchanged.
+  - Archetype counts unchanged (13 / 8 / 14 / 5 / 0 / 13) — both events
+    were already `multi_layer`.
+
+- **`docs/paper_claims.md` C1** — rewritten to reflect the new L3
+  evidence. The prior "L3 has zero observed changes in the
+  partial-coverage subset" framing is now FORBID-listed alongside the
+  "L0 does not react" sibling. The claim still grounds upper-layer
+  concentration on `asset_onchain` / `l4_frontend` / `offramp_cex`;
+  L3's 2/9 is mentioned but caveated as Tornado-specific.
+
+- **`analysis/anchor_gap_fill_log.md §4`** — extended with the
+  second-pass results (git-history method). Section 4 "Summary of this
+  session's admitted changes" now documents both the first-pass Wayback
+  captures and the second-pass git artifacts.
+
+## 2026-04-24 (Phase-3 anchor gap-fill · paper scaffolding)
+
+Turns the repo from "high-quality dataset" into "measurement paper
+asset" without adding new cases. No event count change, no archetype
+count change, no coverage-status change — just tighter evidence,
+tighter claims, and a reproducible analysis pipeline.
+
+- **`docs/paper_claims.md`** (new, ~260 lines) — single source of truth
+  for what the paper argues. Declares the primary estimand
+  (layer-selection × precision-filtered latency) and enumerates
+  C1–C6 candidate claims, each with phrasing lock, evidence source,
+  case role, and "not said" caveat. §2 explicitly rules out four
+  claims the data does not support (cascade timing by trigger type,
+  private-order vs on-chain speed, stack-resistance ranking,
+  time-trend). §3 lists five systematic uncertainty sources the paper
+  must surface. §6 is a review contract: claim changes require
+  CHANGELOG entries and updated paper-table cells.
+- **`scripts/build_paper_tables.py`** (new, ~540 lines) + `make
+  paper-tables` — reproducible generator for the six paper tables
+  under `analysis/paper_tables/`. Fail-closed design: conditional
+  rates with zero denominators render as `—`; day-precision triggers
+  are excluded from hour-granularity bins (precision-discipline at
+  table boundary); `trigger_is_action` events routed to a separate
+  panel; null-case rows must carry at least one validator-recognized
+  evidence anchor.
+- **`scripts/build_audit_worksheet.py`** (new) + `make
+  audit-worksheets` — per-event audit worksheets under
+  `analysis/audit_worksheets/`. Each row (trigger citation, every
+  `observation.sources[]`, every `recovery[]` entry) gets a
+  hash-verification pre-check + sign-off checkbox. Targets the
+  anchor-audit bottleneck (48/53 events still lack
+  `last_human_audit`; the five anchors are the first batch).
+- **`analysis/anchor_gap_fill_log.md`** (new) — Phase-3 gap-fill audit
+  trail per (anchor × layer). Records CDX queries attempted, what
+  Wayback returned, what was captured, what remained an observability
+  gap. Admits no new observations — the one captured pair (Flashbots
+  Protect overview pre/post delisting, body_hash
+  `1592ba0b…` and `b258da6d…`) is pinned as a provider-docs anchor
+  in `tornado-cash-ofac-delisting-2025::coverage[l3_rpc].note`, not as
+  an `observed_change` row. Honest: the CDX doesn't cover the
+  filter-list pages directly, so definitive L3 evidence requires
+  git-history diff of `flashbots/rpc-endpoint::blacklist.go`, which
+  is deferred.
+- **`events/tornado-cash-ofac-delisting-2025.yaml`** — two coverage
+  notes refreshed (L0 gap framing now matches the other three
+  anchors' rigor; L3 cites the two new Flashbots Protect Wayback
+  captures). No observation added; no coverage status changed;
+  derived layer is byte-stable.
+- **Doc-口径 fixes (from review)** — `docs/limitations-and-use.md §2.4`
+  L0 reframed from "attested-negative" to "observability gap";
+  `docs/chain-coverage-note.md` counts refreshed to live
+  53-event / 60-chain-row distribution; `README.md §7` fabricated
+  illustrative percentages replaced with live corpus descriptions;
+  `CHANGELOG.md` v0.1.0 body updated in place with the coverage-
+  matched rates (l1_consensus 1/6, l4_frontend 11/16, offramp_cex
+  15/25).
+
 ## 2026-04-23 (derived-layer correctness fixes)
 
 Post-review corrections to the three derived artifacts. All three are

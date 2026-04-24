@@ -144,7 +144,20 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_measured
-    note: Reverse-cascade network effects have not been queried against Censored Planet / OONI and are plausibly sparse; no measurement artifact is attached so the layer is explicitly unmeasured
+    note: |
+      L0 coverage is an explicit measurement gap, framed to match the
+      other three anchors (chatex, cryptex, tornado-2022) where OONI
+      null artifacts are pinned. For this event (the reverse cascade),
+      OONI has NOT been queried yet — the ooni_domains.json schema
+      currently treats one domain → one slug → one window, which
+      collides with the 2022 event for tornado.cash / app.tornado.cash.
+      See `analysis/anchor_gap_fill_log.md §1.4` for the concrete
+      follow-up action (extend the schema to allow per-slug windows,
+      then run OONI for tornado.cash, app.tornado.cash,
+      classic-ui.tornado.ws, tornadosto.tech in
+      2025-02-21..2025-04-21). Absence of an L0
+      observation is NOT evidence that L0-layer reverse cascade did
+      not occur; it is an observability gap.
   - layer: l1_consensus
     status: measured
     chain: ethereum
@@ -169,11 +182,25 @@ coverage:
       L3-layer reasoning:
         mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
         docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
+      2026-04-24 Phase-3 gap-fill added two per-event Wayback-pinned
+      snapshots of the Flashbots Protect overview page bracketing the
+      delisting:
+        T-8d pre (Wayback 2025-03-13): body_hash sha256:1592ba0b485a20ed697c29f09c3031c309d362381177a97613157b138989d410 (orig last-modified 2025-03-12T21:03:49Z)
+        T+15d post (Wayback 2025-04-05): body_hash sha256:b258da6dc24ea8b8ee351803a52e9cd92ca59b579c9a6876f2dcd68b1bcdf9c9 (orig last-modified 2025-04-04T18:45:04Z)
+      Both captures under sources/http_captures/tornado-cash-ofac-delisting-2025/l3-wayback-brackets/.
+      The overview page content contains no OFAC / sanction / Tornado
+      tokens — it is a generic MEV-protection description — so these
+      snapshots serve as provider-docs-state anchors, NOT as direct
+      evidence of filter-list change. See
+      `analysis/anchor_gap_fill_log.md §2.1` for the CDX results on
+      other candidate URLs (mevblocker.io timed out; quick-start
+      replays 503'd; additional-documentation/ofac had zero snapshots;
+      blacklist.go on GitHub has zero snapshots). Definitive
+      filter-list change evidence would require a git-history diff of
+      flashbots/rpc-endpoint::blacklist.go across 2025-03-21 — deferred
+      to a follow-up session. Status stays partially_measured on the
+      strength of the existing `observed_no_change` observation for
+      MEV-Blocker; the Flashbots snapshots are anchors not observations.
   - layer: l4_frontend
     status: partially_measured
     scope:
@@ -315,6 +342,54 @@ observations:
           public Ethereum RPC substrate. Together with MEV-Blocker these
           cover the overwhelming majority of public OFAC-compliant Ethereum
           RPC traffic in the 2023-2025 period.
+  - layer: l3_rpc
+    actor: flashbots_rpc_endpoint
+    event: ofac_blacklist_deletion
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2025-04-01T19:28:21Z
+    precision: second
+    delta_hours: 283.47
+    sources:
+      - type: primary_corporate
+        url: https://github.com/flashbots/rpc-endpoint/commit/1e9c29c5d3896bdc661805f4995b4d65834db6e4
+        body_hash: sha256:429579b63e4b00b580aa4588af966e0762a4d1b6eb88984888289c3d689638c3
+        body_path: sources/operator_commits/tornado-cash-ofac-delisting-2025/ofacblacklist-at-1e9c29c.go
+        evidence_group_id: flashbots-ofacblacklist-2025-04-01
+        note: |
+          Post-commit state of server/ofacblacklist.go at commit 1e9c29c:
+          file reduced to a 205-byte stub with zero addresses. Diff
+          removes the `ofacBlacklist` map (135 lines deleted, 0 added;
+          `rg '"0x[0-9a-f]{40}"' count = 0`). Pre-deletion state (at
+          commit 1e9c29c^) preserved locally at
+          sources/operator_commits/tornado-cash-ofac-delisting-2025/ofacblacklist-pre-1e9c29c.go
+          (body_hash sha256:9f609132996f37febf1de1283a44b34b0e77fb80324dfc747231dfb16281c54a,
+          132 addresses including Tornado pools).
+      - type: primary_corporate
+        url: https://github.com/flashbots/rpc-endpoint/pull/173
+        body_hash: sha256:75c7c402e89b2f0ec46fe8baac4e6f9b64023c2f62580e5424eeaa10349393d3
+        body_path: sources/operator_commits/tornado-cash-ofac-delisting-2025/commit-1e9c29c.meta.txt
+        evidence_group_id: flashbots-ofacblacklist-2025-04-01
+        note: |
+          Commit metadata: title "Cleanup unused and unmaintained
+          blacklist file (#173)", PR title "Cleanup unused, outdated
+          blacklist defaults", author Chris Hager (metachris), merged
+          2025-04-01T19:28:21Z UTC (11 days 19 hours 28 minutes after
+          OFAC delisted Tornado Cash on 2025-03-21). Full diff at
+          sources/operator_commits/tornado-cash-ofac-delisting-2025/commit-1e9c29c.diff.
+    note: |
+      11d 19h 28m after OFAC's 2025-03-21 delisting of Tornado Cash,
+      Flashbots merged PR #173 (commit 1e9c29c, 2025-04-01 19:28:21 UTC)
+      which deleted the entire ofacBlacklist map from
+      server/ofacblacklist.go — reducing the address count from 132 to 0.
+      Attribution is `plausible`, NOT `direct`: the PR title ("Cleanup
+      unused, outdated blacklist defaults") frames the deletion as an
+      operational cleanup rather than a direct response to the Tornado
+      delisting. The timing is suggestive (11 days post-delisting) but
+      Flashbots did not explicitly cite OFAC's action as the reason.
+      A `direct` attribution would require an explicit statement from
+      Flashbots linking this deletion to the delisting event. See
+      analysis/anchor_gap_fill_log.md §2.1 for the git-history analysis.
   - layer: l1_consensus
     actor: pbs_relay_ecosystem_aggregate
     event: censoring_relay_share_dropped_post_delisting
