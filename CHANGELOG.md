@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-04-24 (paper-readiness gates)
+
+Adds the first explicit paper-readiness gate on top of the dataset
+validator. `docs/paper_claims.md` now carries a sampling-frame statement,
+a claim-to-table/source/audit matrix, and an uncertainty-to-analysis
+mapping. `scripts/check_paper_readiness.py` verifies the paper-facing
+surface: required paper-table artifacts exist, Table 1 precision buckets
+match canonical `trigger.timestamp_precision`, Table 4 panel counts match
+derived metrics, Table 6 has no anchorless null rows, generated paper CSVs
+use LF line endings, and anchor cases retain `scoped_knowledge`.
+
+The check intentionally reports missing `last_human_audit` on
+paper-critical anchor/null rows as a warning by default; use
+`scripts/check_paper_readiness.py --strict-audit` once human audit sign-off
+is ready to become a release blocker.
+
 ## 2026-04-24 (Phase-3 L3 gap-fill · Flashbots git-history evidence)
 
 Concrete L3 evidence lands for both Tornado events via git-history

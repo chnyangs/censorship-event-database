@@ -27,7 +27,7 @@ COMPARE_OUT ?= -
     validate validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset \
     event-metrics layer-observability archetypes derived \
-    audit-worksheets paper-tables \
+    audit-worksheets paper-tables paper-check \
     render-site render-evidence render-evidence-all compare \
     ooni-scan usdt-scan capture \
     check check-network check-all \
@@ -56,6 +56,7 @@ help:
 	    'make derived               # all three derived artifacts in one shot' \
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
+	    'make paper-check           # paper-facing claim/table/audit-coherence checks' \
 	    '' \
 	    '### Static site + framework outputs' \
 	    'make render-site           # render events/*.yaml → $(SITE_DIR)/' \
@@ -70,10 +71,10 @@ help:
 	    'make capture URL=<url> OUT=<dir>   # capture a single URL with body_hash' \
 	    '' \
 	    '### Omnibus' \
-	    'make check                 # validate + draft-gaps + status + review' \
+	    'make check                 # validate + reports + paper-readiness gate' \
 	    'make check-network         # verify-citations + freshness' \
 	    'make check-all             # check + check-network' \
-	    'make regenerate            # dataset + render-site + render-evidence-all + status + review' \
+	    'make regenerate            # dataset + derived + paper tables + site/evidence outputs' \
 	    'make clean                 # remove generated artifacts (site/, dataset.{json,csv}, evidence-chains/)'
 
 # ---- Validation targets ----
@@ -134,6 +135,9 @@ audit-worksheets:
 paper-tables:
 	$(PYTHON) scripts/build_paper_tables.py
 
+paper-check: derived paper-tables
+	$(PYTHON) scripts/check_paper_readiness.py
+
 # Umbrella target: rebuild every derived artifact (dataset.meta.json must
 # land first so downstream scripts read the latest version/cutoff).
 derived: dataset event-metrics layer-observability archetypes
@@ -185,7 +189,7 @@ capture:
 	$(PYTHON) scripts/capture_http_artifact.py --output-dir $(OUT) $(URL)
 
 # ---- Omnibus ----
-check: validate draft-gaps status review
+check: validate draft-gaps status review paper-check
 
 check-network: verify-citations freshness
 

@@ -97,6 +97,57 @@ in every table**; collapsing them is a phrasing violation.
   [Table 4](../analysis/paper_tables/table4_latency_by_precision.md)
   Panel A vs Panel B.
 
+### Sampling frame
+
+The v0.1 sampling frame is **publicly documented crypto censorship
+events with an identifiable legal, regulatory, state, or corporate
+trigger and at least one independently archivable evidence surface**.
+This is an evidence-bearing research frame, not a population sample.
+
+In scope:
+
+- legal / regulatory / state / corporate actions with a concrete
+  crypto target (`address_set`, `entity`, `domain`, `protocol`, or
+  equivalent);
+- events where the trigger and at least one layer-level observation can
+  be archived with `body_hash` / `body_path`, `query_hash`,
+  `measurement_ids`, or a primary on-chain identifier;
+- null cases where a scoped `observed_no_change` row has an admissible
+  evidence anchor.
+
+Out of scope:
+
+- private compliance signals unavailable to public verification;
+- rumor-only or anonymous social-media claims;
+- general crypto-market policy changes without a concrete target;
+- population prevalence claims over "all censorship events".
+
+### Claim-to-table-source matrix
+
+Every paper claim must land in this matrix before it appears in prose.
+If a claim cannot name a table, source fields, and an uncertainty
+boundary, it stays out of v0.1.
+
+| claim | reader-facing table | underlying fields | case role admitted | audit gate | uncertainty boundary |
+| --- | --- | --- | --- | --- | --- |
+| C1 upper-layer concentration | Table 2 `layer_observability` | `coverage[]`, `observations[].layer`, `observation_kind` | all 53 for denominators; changed rows for numerators | anchor rows cited by name need `last_human_audit`; aggregate table can ship with audit warning | coverage-matched rates only; no population prevalence |
+| C2 single-layer dominance | Table 3 `archetype_stratum` | `derived_archetype`, `changed_layer_count`, `research_stratum` | all 53 | exemplar rows named in text need audit | corpus archetype distribution, not clustering or population rate |
+| C3 latency | Table 4 Panels A/B/C | `trigger.timestamp_precision`, `time_to_first_change_hours`, `trigger_is_action` | timed `observed_change` rows only | any named latency exemplar needs audit | hour claims only from Panel A; day and trigger-is-action panels separate |
+| C4 trigger-is-action | Table 4 Panel C | `trigger.type`, `trigger_is_action` | `corporate_policy_change` events | named examples need audit | `t≈0` is record structure, not reaction speed |
+| C5 cross-stratum reach | Table 3 | `research_stratum`, `derived_archetype` | all 53 | named exemplars need audit | stratum is an admission frame, not jurisdiction or population weight |
+| C6 recovery insufficiency | Table 1 + Table 3 / metrics | `is_reversal_event`, `recovery[]` | reversal anchor only | `tornado-cash-ofac-delisting-2025` requires human audit before narrative use | n=1; no recovery rate |
+
+### Uncertainty-to-analysis mapping
+
+| uncertainty source | required treatment |
+| --- | --- |
+| day-level trigger timestamps | report only in Table 4 Panel B day buckets; never in hour bins |
+| `trigger_is_action` rows | isolate in Table 4 Panel C; never call them fast reactions |
+| `plausible` attribution | phrase as co-occurrence / consistency, not direct causation |
+| `not_measured` coverage | phrase as observability gap, not no reaction |
+| `target.enumeration: subset` | say "named subset" rather than protocol-wide target |
+| missing `last_human_audit` | allowed for aggregate tables with warning; blocks narrative spotlight use |
+
 ## 1. Candidate claims (ranked by strength of current evidence)
 
 Each claim below names the `derived/` artifact that feeds it, the exact

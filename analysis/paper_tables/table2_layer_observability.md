@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `229adc4` · generated `2026-04-24T03:16:25Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `930f3d6` · generated `2026-04-24T03:30:13Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 

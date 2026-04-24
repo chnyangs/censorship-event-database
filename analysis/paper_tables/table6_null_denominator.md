@@ -1,6 +1,6 @@
 # Table 6 · Null-case denominator (n=13)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `229adc4` · generated `2026-04-24T03:16:25Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `930f3d6` · generated `2026-04-24T03:30:13Z`
 
 Supports **C6** and the null-event interpretation note in `derived/archetype_distribution.md`. Each row lists the event's `observed_no_change` layers + the evidence-anchor types their sources carry. Per validator rule, any one of `body_hash`+`body_path`, `query_hash`, `measurement_ids`, or `scope_descriptor` is sufficient to admit an `observed_no_change` row.
 

@@ -24,6 +24,11 @@ points at the authoritative source of truth in the repo rather than restating it
   action (OFAC SDN, DOJ indictment, corporate policy, nation-state block, etc.)
   and one or more layer-level observations.
 - **Count at release time**: see `dataset.csv` header count + `analysis/pilot-status.json`.
+- **Sampling frame**: publicly documented crypto censorship events with an
+  identifiable legal, regulatory, state, or corporate trigger and at least one
+  independently archivable evidence surface. This is not a population sample of
+  all censorship events; it is an evidence-bearing frame for reproducible
+  measurement. See [limitations-and-use.md §1.1](limitations-and-use.md#11-sampling-frame).
 - **Per-instance fields**: governed by [../schema/event.schema.json](../schema/event.schema.json).
 - **Labels**: `research_stratum` (S1–S6 trigger family), `empirical_shape`
   (cascade / comparison / null_event), `admission_tier` (anchor / empirical /

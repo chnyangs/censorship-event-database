@@ -1,6 +1,6 @@
 # Table 3 · Archetype × research-stratum cross-tab
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `229adc4` · generated `2026-04-24T03:16:25Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `930f3d6` · generated `2026-04-24T03:30:13Z`
 
 Supports **C2** and **C5** (`docs/paper_claims.md §1`). Rows: rule-based deterministic archetypes. Columns: research strata (admission stratification, NOT jurisdiction / population weighting).
 

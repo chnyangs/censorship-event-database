@@ -19,6 +19,26 @@ retained observations support.
 Currently **53 admitted events**; every event validates under
 [`scripts/validate.py`](../scripts/validate.py) at schema version 0.2.0.
 
+### 1.1 Sampling frame
+
+The v0.1 dataset is not an attempt to enumerate every possible
+crypto-censorship event. Its sampling frame is narrower and deliberately
+auditable: **publicly documented crypto censorship events with an
+identifiable legal, regulatory, state, or corporate trigger and at least
+one independently archivable evidence surface**.
+
+Included events must have a concrete crypto target and a trigger source
+that can be archived or replayed. Layer-level claims enter the paper only
+when their source chain can be checked through local hashes, primary
+on-chain identifiers, measurement query hashes, or pinned measurement
+artifacts. This makes the corpus usable as a reproducible measurement
+asset, but row counts must not be read as population prevalence over all
+censorship events.
+
+Events are excluded or left as future work when the only evidence is
+private compliance telemetry, rumor-only social media, inaccessible paid
+KYT systems, or a broad policy change without a concrete target.
+
 ## 2. What this dataset is **not**
 
 The tools wrap the dataset and amplify its limits. Read these before
