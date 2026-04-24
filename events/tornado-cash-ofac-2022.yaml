@@ -242,6 +242,36 @@ observations:
           #90 merged_at). The full diff showing exactly which
           addresses were added is preserved at
           sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.diff.
+      - type: semi_primary_measurement
+        url: https://api.github.com/repos/flashbots/rpc-endpoint/pulls/90
+        query_hash: sha256:a05fde8d4a46cf749dc1534c95dd1c1573ec8a4c8575f801d5dfe61c338f0af6
+        body_hash: sha256:affdc83394ae6abf0c5c549716bd2ae8909800e3466b8149294d394e13fcac41
+        body_path: sources/operator_commits/tornado-cash-ofac-2022/github-api/pr-90.response.json
+        evidence_group_id: flashbots-github-api-2022-08-08
+        note: |
+          Independent GitHub API confirmation of organizational
+          provenance: `base.repo.full_name = "flashbots/rpc-endpoint"`,
+          `merged = true`, `merged_at = 2022-08-08T16:20:51Z`,
+          `merge_commit_sha = 92ab6b1f…`. Served by GitHub Inc.
+          (not Flashbots); the response is a third-party measurement
+          of the repository state that rules out the "one developer's
+          fork" alternative reading of the git-side sources above.
+      - type: semi_primary_measurement
+        url: https://api.github.com/repos/flashbots/rpc-endpoint/commits/92ab6b1f9abfc62261f72361e8c8df48f832f2a9
+        query_hash: sha256:20971b6f3e0231ef74436ce21357782de65b5938df57568cdc7dbf7428c5d0c3
+        body_hash: sha256:5ed6923bcc1c9b3ed33599e20dd5df645930c3c343ffe0e883eb6f62140c99f5
+        body_path: sources/operator_commits/tornado-cash-ofac-2022/github-api/commit.response.json
+        evidence_group_id: flashbots-github-api-2022-08-08
+        note: |
+          Independent GitHub API confirmation of commit content.
+          `sha = 92ab6b1f…`, `commit.author.date = 2022-08-08T16:20:50Z`,
+          `commit.message` expands the single-line title into five
+          sub-commit descriptions: "update ofac black list", "add more
+          address", "more ofac addresses", "convert ofac list to lower
+          case", "add ofac test" — the word "ofac" appears four times
+          in the committer's own message. This rules out the "incidental
+          cleanup that happened to include Tornado addresses"
+          alternative reading.
     note: |
       Flashbots' rpc-endpoint service (the backend that later became
       Flashbots Protect) carried an in-process OFAC blacklist at

@@ -1,5 +1,77 @@
 # Changelog
 
+## 2026-04-24 (specialist-review follow-through — re-pitch, evidence strengthening, engineering hardening)
+
+Four specialist agents audited the repo for novelty / methodology /
+engineering / venue-fit before submission. Their convergent verdict —
+the "six-layer cascade dataset" headline over-sold, while the Flashbots
+bidirectional finding was under-leveraged — drove this turn's work.
+
+**1. Re-pitched the contribution.** [README.md §1](README.md) and
+[docs/paper_claims.md §0](docs/paper_claims.md) now lead with the
+headline finding — **operator filter-list maintenance as a public,
+git-observable censorship channel** — and present the 53-event corpus
+as the coverage-denominator-disciplined instrument that made the
+finding visible. Added a §2 non-goals list explicitly disowning the
+"six-layer coverage claim" (L0 / L3 have no `measured` denominator at
+v0.1.0) and the "cascade rate estimator" reading. Rewrote the paper
+outline in README §7 around the Flashbots mechanism, with the three
+supporting findings (upper-layer concentration, single-layer
+dominance, observability gap on base layers) framed as *context*, not
+as the headline.
+
+**2. Strengthened the Flashbots evidence.** Added two independent
+GitHub API captures per Tornado event (PR metadata + commit metadata,
+served by GitHub Inc. — not Flashbots — ruling out the "one
+developer's fork" reviewer objection). Four sources per L3
+observation now: (a) local post-commit file state, (b) local commit
+metadata, (c) GitHub API PR endpoint (semi_primary_measurement,
+org-provenance corroborator), (d) GitHub API commit endpoint
+(semi_primary_measurement). Each carries `body_hash` + `body_path` and
+the API URLs carry `query_hash`. Artifacts under
+`sources/operator_commits/tornado-cash-ofac-{2022,delisting-2025}/github-api/`.
+
+**3. Demoted C3 from distribution to named-exemplar.**
+[docs/paper_claims.md C3](docs/paper_claims.md) now explicitly presents
+Panel A rows as named individual events, not a band distribution —
+reviewer #2 cannot sink the paper on "distribution on n=2." A proper
+distributional latency claim is parked as a named §2 item for v0.2.
+
+**4. Fixed `coinbase-india-exit-2022` misclassification.**
+`trigger_is_action` now requires BOTH `trigger.type =
+corporate_policy_change` AND the first observation to coincide with
+the trigger (|Δ| ≤ 1h). Coinbase-India-exit (Δ=72h, a real measured
+reaction to NPCI pressure) correctly moves from Panel C (excluded) to
+Panel B (1d–30d band). Panel C is now n=5, Panel B n=33, both honest.
+
+**5. Engineering hardening for replicability-badge readiness**:
+
+- **`requirements.txt`** + **`requirements-dev.txt`** with pinned
+  versions (`PyYAML==6.0.3`, `jsonschema==4.26.0`, `pytest==8.3.4`).
+  CI now installs via `pip install -r requirements-dev.txt` so local
+  and CI substrates match bit-for-bit.
+- **`SOURCE_DATE_EPOCH` support** via new
+  `scripts/_dataset_meta.py::now_utc_iso()`. Every artifact's
+  `generated_at` / `generated` field honors the GNU-reproducible-builds
+  convention: set `SOURCE_DATE_EPOCH=<unix-seconds>` and `make
+  regenerate` produces byte-stable artifacts. Wall-clock fallback
+  preserved when the env var is absent. Verified: two consecutive
+  `make paper-tables` runs at a pinned epoch produce identical
+  sha256s for both `dataset.meta.json` and
+  `analysis/paper_tables/table2_layer_observability.md`.
+- **`tests/` directory with 36 pytest regression tests** covering the
+  classifier (6 archetype rules + latency-band inclusivity +
+  `trigger_is_action` coincidence), the coverage-matched numerator
+  (the 2026-04-23 P1 fix), the recovery-row filter (the 2026-04-23 P2
+  fix), and paper-table fail-closed properties (precision helper uses
+  canonical schema field; null-anchor abort). Runnable via `make test`
+  and wired into CI. Every prior review finding now has a test that
+  fails-closed on re-introduction.
+
+Validation still clean. Derived + paper tables byte-stable under
+`SOURCE_DATE_EPOCH`. Archetype counts unchanged
+(13 / 8 / 14 / 5 / 0 / 13).
+
 ## 2026-04-24 (paper-readiness gates)
 
 Adds the first explicit paper-readiness gate on top of the dataset

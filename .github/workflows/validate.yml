@@ -29,8 +29,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install dependencies
-        run: pip install pyyaml jsonschema
+      - name: Install pinned dependencies
+        # requirements.txt (runtime) + requirements-dev.txt (pytest) so CI,
+        # local `make regenerate`, and Zenodo artifact-eval rebuilds all
+        # read from the same substrate.
+        run: pip install -r requirements-dev.txt
+      - name: Unit tests (classifier + coverage numerator + recovery + paper-tables fail-closed)
+        run: python3 -m pytest tests/ -v
       - name: Validator + schema-drift self-check
         run: python3 scripts/validate.py
       - name: JSON-Schema conformance (external consumer view)

@@ -15,12 +15,46 @@ strict meta.
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 import subprocess
 from datetime import date, datetime, timezone
 from typing import Any
 
 import yaml
+
+
+def now_utc_iso() -> str:
+    """Return a UTC ISO-8601 timestamp for artifact `generated_at` fields.
+
+    Honors the GNU-reproducible-builds `SOURCE_DATE_EPOCH` environment
+    variable: if set to an integer Unix-seconds value, that fixed
+    timestamp is used instead of wall-clock time. This lets
+    `make regenerate` produce byte-stable artifacts at a pinned commit
+    (set `SOURCE_DATE_EPOCH=$(git log -1 --format=%ct)` for the head
+    commit, or any other fixed value).
+
+    When the env var is absent or malformed, fall back to the current
+    wall-clock UTC time (one-second precision).
+    """
+    raw = os.environ.get("SOURCE_DATE_EPOCH")
+    if raw:
+        try:
+            epoch = int(raw.strip())
+            return (
+                datetime.fromtimestamp(epoch, tz=timezone.utc)
+                .replace(microsecond=0)
+                .isoformat()
+                .replace("+00:00", "Z")
+            )
+        except (TypeError, ValueError):
+            pass
+    return (
+        datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -87,7 +121,7 @@ def _synth() -> dict[str, Any]:
         "dataset_name": "censorship-event-database",
         "dataset_version": _read_cff_version(),
         "cutoff_date": _synth_cutoff(),
-        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "generated_at": now_utc_iso(),
         "source_commit": _git_short_sha(),
         "_source": "synthesized",
     }
@@ -118,9 +152,7 @@ def stamp_line(meta: dict[str, Any] | None = None, tool_version: str | None = No
         parts.append(f"commit `{sc}`")
     if tool_version:
         parts.append(f"tool `{tool_version}`")
-    parts.append(
-        f"generated `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}`"
-    )
+    parts.append(f"generated `{now_utc_iso()}`")
     if m.get("_source") == "synthesized":
         parts.append("_(meta synthesized — run `make dataset` for a committed snapshot)_")
     return " · ".join(parts)

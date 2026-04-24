@@ -50,6 +50,9 @@ from typing import Any
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _dataset_meta import now_utc_iso  # noqa: E402
+
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
@@ -189,7 +192,7 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
         "dataset_version": dataset_version,
         "schema_version": schema_version,
         "cutoff_date": cutoff.isoformat() if cutoff else None,
-        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "generated_at": now_utc_iso(),
         "source_commit": git_short_sha(),
         "event_count": len(events),
         "counts_by_status": counter("status"),
@@ -203,7 +206,7 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
         },
         "dataset_url": dataset_url,
         "citation_hint": (
-            f"Yang, Xiangwen. ({datetime.now(timezone.utc).year}). "
+            f"Yang, Xiangwen. ({now_utc_iso()[:4]}). "
             f"Cross-Layer Censorship Event Database (version {dataset_version}). "
             f"{dataset_url}. See CITATION.cff for canonical BibTeX / APA / DOI."
         ),

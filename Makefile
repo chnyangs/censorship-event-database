@@ -27,7 +27,7 @@ COMPARE_OUT ?= -
     validate validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset \
     event-metrics layer-observability archetypes derived \
-    audit-worksheets paper-tables paper-check \
+    audit-worksheets paper-tables paper-check test \
     render-site render-evidence render-evidence-all compare \
     ooni-scan usdt-scan capture \
     check check-network check-all \
@@ -57,6 +57,7 @@ help:
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
 	    'make paper-check           # paper-facing claim/table/audit-coherence checks' \
+	    'make test                  # pytest regression suite for classifier + numerator rules' \
 	    '' \
 	    '### Static site + framework outputs' \
 	    'make render-site           # render events/*.yaml → $(SITE_DIR)/' \
@@ -137,6 +138,13 @@ paper-tables:
 
 paper-check: derived paper-tables
 	$(PYTHON) scripts/check_paper_readiness.py
+
+# Pytest suite for classifier / coverage-numerator / recovery-filter /
+# paper-table fail-closed invariants (install with `pip install -r
+# requirements-dev.txt`). Locks the fixes from the 2026-04-23 and
+# 2026-04-24 review findings so a silent regression cannot re-enter.
+test:
+	$(PYTHON) -m pytest tests/ -v
 
 # Umbrella target: rebuild every derived artifact (dataset.meta.json must
 # land first so downstream scripts read the latest version/cutoff).

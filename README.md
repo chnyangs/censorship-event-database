@@ -4,35 +4,48 @@
 
 ## 1. Thesis
 
-**A curated, evidence-chained catalog of cross-layer crypto censorship events, with an open schema that can be adopted by other researchers. Intended as a descriptive historical record for empirical measurement research, event studies, and journalism — not as a normative compliance or legal playbook.**
+**A coverage-denominator-disciplined catalog of publicly documented crypto censorship events, instrumented to ask what operators actually do — with a worked mechanism finding on operator filter-list maintenance as a git-observable censorship channel, and a reusable admission protocol for cross-layer enforcement observation.**
 
-Major crypto censorship events (SDN listing, court order, corporate policy change) can trigger **cascades** of reactions across independent layers of the stack: network-layer blocking, consensus-layer relay filtering, RPC rejection, frontend delisting, asset-layer freezing. Prior measurement work covers individual layers well but treats them as isolated snapshots; **no existing open dataset tracks identified trigger events through a shared six-layer, precision-aware timeline with an open multi-source admission protocol**. Concretely:
+Prior measurement work sees individual layers well but does not connect identified enforcement triggers to observable operator behavior across the stack with open, auditable provenance. Among the seven explicit choices that distinguish this project:
 
-- Chainalysis / Elliptic see asset-layer freezes, but data is proprietary.
-- Wahrstätter et al. ("Blockchain Censorship", ACM WebConf 2024) formalize L0–L1 censorship — relay / builder filtering — but do not link specific events to L3–L4 or off-ramp reactions.
-- Censored Planet (CCS 2020+) sees L0 blocking but does not crypto-slice.
-- MEV coordination work (e.g. USENIX Security 2025 on sandwich-driven private routing) captures behavioral cascades, not policy-trigger cascades.
-- Journalists write narrative accounts but without structured timestamps or open provenance.
+1. **Coverage-denominator discipline.** Every conditional rate ("how often does layer X react to triggers like these?") is reported *conditional on that layer having an admission-grade denominator in the dataset* — the numerator is filtered to the same coverage subset as the denominator. Absent measurement is flagged as `—`, not encoded as `0`. This is the methodological backbone: [analysis/paper_tables/table2_layer_observability.md](analysis/paper_tables/table2_layer_observability.md) is the reader-facing instantiation.
+2. **A worked mechanism finding — operator filter-list maintenance as a public, git-observable channel.** Flashbots' [rpc-endpoint::ofacblacklist.go](https://github.com/flashbots/rpc-endpoint) adds OFAC-listed Tornado pool addresses via commit `92ab6b1f` **2h 50m** after the 2022-08-08 SDN (PR #90 "update ofac black list"), and the entire 132-address map is deleted in commit `1e9c29c` eleven days after OFAC's 2025-03-21 delisting (PR #173). Same infrastructure, bidirectional, primary-corporate, minute-precise. See [analysis/anchor_gap_fill_log.md §4](analysis/anchor_gap_fill_log.md).
+3. **Precision-aware claims.** Hour-granularity latency claims are computed only from triggers whose `timestamp_precision` is hour-or-better; day-precision triggers are reported in separate panels and never mixed.
+4. **Attribution discipline.** `direct` vs `plausible` vs `none` are reported separately in every paper table; collapsing them is a phrasing violation, not a cosmetic choice.
+5. **Null cases with evidence anchors, not prose.** An `observed_no_change` row requires at least one of `body_hash`+`body_path`, `query_hash`, `measurement_ids`, or a structured `scope_descriptor` — the null denominator is auditable at the artifact level.
+6. **Fail-closed paper-table generator.** `make paper-tables` aborts if a null case is anchorless, if a precision bucket is ambiguous, or if a rate would be emitted without a matched denominator. The generator is the single source of truth for every number in the paper.
+7. **Schema + admission protocol as a durable artifact.** Other researchers can fork the schema, run the validator, and measure events we did not cover. Layer 2 below.
 
-The contribution, relative to that prior art, is:
+Delta over prior art:
 
-1. **Event-keyed**, not state-keyed — each row is a specific OFAC / DOJ / corporate / nation-state trigger.
-2. **Six-layer**, not one — L0 network, L1 consensus, L3 RPC, L4 frontend, asset on-chain freeze, off-ramp CEX.
-3. **Precision-aware, archived, multi-source-verified** — every observation records the strongest timestamp precision supported by the source and carries primary/semi-primary sources with wayback + body-hash anchors that a reviewer can replay.
+- **Wahrstätter et al. ("Blockchain Censorship", ACM WebConf 2024)** — formalize L1 relay/builder filtering on Ethereum; the present corpus uses their data as the L1 semi-primary substrate. Delta: event-keying plus the mechanism-channel finding on `rpc-endpoint` git-history (a different operator surface than PBS relays).
+- **Censored Planet (CCS 2020+)** — global connection-tampering; not crypto-keyed. The present corpus queried OONI for anchor domains and records the null result as a measurement gap.
+- **Chainalysis / Elliptic / TRM** — asset-layer freezes under proprietary feeds, not event-keyed with open provenance. Delta: openness + admission protocol.
+- **Prior OFAC event-study papers in finance** — price/flow reactions; not stack reactions.
 
 The deliverable has two layers:
 
-- **Layer 1** — a dataset of historical events, each with precision-aware cross-layer timelines and multi-source-verified evidence chains.
-- **Layer 2** — a reusable schema, admission protocol, and six-layer cascade model that other researchers can adopt to measure events we did not cover.
+- **Layer 1** — a 53-event corpus (cutoff 2026-04-22) under a coverage-denominator discipline, with the Flashbots bidirectional case as a worked mechanism study.
+- **Layer 2** — schema (`schema/event.schema.json`), admission protocol (`scripts/validate.py`), and paper-table generator (`scripts/build_paper_tables.py`) that make the methodology forkable.
 
-Layer 2 is the more durable contribution: it lets the framework be cited even when the specific events go stale.
+Layer 2 is the more durable contribution: the framework stays citable when the specific events age.
 
-## 2. Why this is the first project to do
+## 2. Non-goals (read before citing)
 
-- **Impact certainty**: finance's event-study methodology (50+ years of precedent) directly applies. Output is naturally citable by AFT / EC / JFE / Fed staff reports.
-- **Minimal engineering risk**: mostly curation plus lightweight reproducibility plumbing (archival, validation, snapshotting), not a heavy live-measurement system.
-- **Zero legal risk**: all data is from public primary sources (SDN lists, court filings, on-chain transactions, ISP advisories).
-- **Long half-life**: a rigorous historical dataset stays citable for a decade.
+What this repository is *not*, even though a casual reader might expect it to be:
+
+- **Not a cascade rate estimator.** The corpus contains 5 `multi_layer` events under the deterministic archetype classifier; that is not a prevalence estimate for cross-layer cascades in the population. See the FORBID list in [docs/paper_claims.md §5](docs/paper_claims.md) and the survivorship discussion in §3.
+- **Not a six-layer coverage claim.** Of the six layers, `l0_network` has zero `measured` denominators and `l3_rpc` has zero `measured` denominators at v0.1.0; their conditional rates are either `—` or under partial coverage only. Upper-layer (frontend / asset / off-ramp) evidence is where the corpus actually has mass. [Table 2](analysis/paper_tables/table2_layer_observability.md) is the honest picture.
+- **Not a predictive model.** No rate from this corpus supports a claim about future enforcement. [docs/limitations-and-use.md §2.1](docs/limitations-and-use.md).
+- **Not a compliance service or risk-scoring tool.** [docs/limitations-and-use.md §2.3](docs/limitations-and-use.md).
+- **Not a general censorship prevalence statement.** The sampling frame is events with an admissible evidence surface, not a population sample. [docs/paper_claims.md §0 Sampling frame](docs/paper_claims.md).
+
+## 2.5 Why this is the right project to build now
+
+- **Operator-layer behavior is publicly git-observable for the first time.** The Flashbots bidirectional finding is the existence proof that public operator repositories carry filter-list decisions as artifacts with commit-level precision. This channel did not exist before mid-2022 and was not archived by any measurement project until this corpus.
+- **Coverage-denominator discipline is underused in adjacent dataset literature.** Freedom House press-freedom indices, ESG scores, and similar composite-rate datasets frequently mix denominators that are not measurement-matched; doing the honest version is cheap but rare.
+- **Zero legal risk.** All evidence is public primary sources (SDN lists, court filings, on-chain transactions, operator code repositories, ISP advisories).
+- **Long half-life.** The admission protocol and paper-table generator are forkable infrastructure; the corpus grows incrementally.
 
 ## 3. Scope definition
 
@@ -211,15 +224,17 @@ same dataset (event-study of regulatory cascades on crypto infrastructure).
 
 Proposed structure:
 
-1. Motivation — single-layer views are incomplete; censorship is observed as cascades.
-2. Definition — "censorship cascade" as a formal object: ordered tuple of layer-level reactions with precision-aware timestamps.
-3. Methodology — multi-source verification protocol, event admission criteria, handling ambiguous cases.
-4. Dataset — current 53-event snapshot, with descriptive statistics on cascade shape, layer concentration, and response latency.
-5. Empirical observations — e.g. "in the current admitted corpus, observed changes concentrate on frontend / asset / off-ramp layers rather than L0/L1/L3"; "35 / 53 events are single-layer responses, so deterministic archetypes are more informative than count-based clustering"; "recoverability is excluded from v0.1 because the corpus has only one reversal event."
-6. Limitations — survivorship bias in source availability, unobserved private-decision layers.
-7. Open dataset + schema.
+1. **Motivation** — prior measurement work sees layers individually; a coverage-denominator-disciplined catalog reveals *where public operator behavior is actually observable* and *where it is not*, and operator source code is an under-used substrate.
+2. **Methodology contribution** — the six-layer admission protocol, coverage-matched conditional rates, precision-aware latency filtering, attribution discipline, and fail-closed paper-table generation as a reusable measurement framework.
+3. **Mechanism finding — Flashbots rpc-endpoint** — primary case study: `ofacblacklist.go` grows by +Tornado-pool addresses in PR #90, **2h 50m** after the 2022-08-08 SDN (direct attribution via commit title "update ofac black list"), and the entire 132-entry map is deleted in PR #173, eleven days after OFAC's 2025-03-21 delisting (plausible attribution; PR title frames as operational cleanup, not policy). Bidirectional, minute-precise, primary-corporate, and visible **only** because the operator's code is public.
+4. **Dataset** — 53 events across 6 strata; coverage-matched layer observability ([Table 2](analysis/paper_tables/table2_layer_observability.md)); single-layer dominance in the admitted corpus (35 / 53); bidirectional Tornado case as sole reversal event (n=1).
+5. **Negative / observability result** — `l0_network` and `l3_rpc` have zero `measured` denominators in the admitted corpus. Under the same admission protocol anyone can fork, **public-record-visible evidence of base-layer crypto censorship is genuinely thin**, and the usual denominator-implicit reporting of "L0 shows no censorship" is unsafe. This is what the dataset makes *measurable*.
+6. **Limitations** — sampling frame is admissibility-bounded, not population; survivorship bias in the evidence substrate is structural, not fixable by adding events; hour-precision latency is supportable only on named events, not as a distribution.
+7. **Open dataset + schema + replication package** — Zenodo-minted DOI, fail-closed regeneration pipeline, per-event audit worksheets, CC-BY-4.0 data + MIT code.
 
-**Minimal viable finding for the paper**: at least one non-obvious empirical regularity about cascade shape. If the 50 events yield zero regularity, that is itself publishable (negative result on uniformity).
+**Primary finding (headline)**: operator filter-list maintenance is a public, git-observable censorship channel with minute-level precision and bidirectional response to OFAC state. Both directions of the Tornado Cash cascade on Flashbots' rpc-endpoint are archived with body_hash-verifiable commit state; this is the first dataset to pin that channel.
+
+**Secondary (supporting) findings**: (a) upper-layer concentration under coverage-matched conditioning; (b) single-layer dominance (35 / 53) in the admitted corpus; (c) observability gap on L0 / L1 / L3 as a measured feature of the public evidentiary substrate, not an artifact of curation.
 
 ## 7.5 Browsing the dataset
 

@@ -46,7 +46,7 @@ EVENTS_DIR = REPO_ROOT / "events"
 DEFAULT_OUT_DIR = REPO_ROOT / "analysis" / "audit_worksheets"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -154,7 +154,7 @@ def render_worksheet(event: dict, ds_meta: dict) -> str:
         f"Dataset snapshot: **v{ds_meta.get('dataset_version') or '?'}** · "
         f"cutoff `{ds_meta.get('cutoff_date') or 'n/a'}` · "
         f"commit `{ds_meta.get('source_commit') or 'n/a'}` · "
-        f"generated `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}`"
+        f"generated `{now_utc_iso()}`"
     )
     lines.append("")
     lines.append(

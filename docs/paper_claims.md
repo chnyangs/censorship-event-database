@@ -22,21 +22,53 @@ Changes to this file are the only legitimate way to re-aim the paper.
 
 **Dataset snapshot**: v0.1.0 · cutoff 2026-04-22 · 53 admitted events.
 
-### Primary estimand (one, not three)
+### Primary finding (headline) and primary estimand
 
-> **Among publicly observable stack layers, which ones carry detectable
-> enforcement reactions to an identified US-centric censorship trigger,
-> and with what latency distribution — conditional on that layer
-> having a measured denominator in the dataset?**
+**Headline finding**:
+
+> **Operator filter-list maintenance is a public, git-observable
+> censorship channel with minute-level precision and bidirectional
+> response to OFAC state.** Flashbots' `rpc-endpoint::ofacblacklist.go`
+> gains Tornado Cash pool addresses in PR #90 **2h 50m** after the
+> 2022-08-08 OFAC SDN (commit `92ab6b1f`, primary_corporate, direct
+> attribution); the entire 132-address blacklist is removed in PR #173
+> eleven days after OFAC's 2025-03-21 delisting (commit `1e9c29c`,
+> primary_corporate, plausible attribution — the PR frames the
+> deletion as operational cleanup rather than an explicit policy
+> response). See `analysis/anchor_gap_fill_log.md §4` for the
+> reproducibility trail.
+
+**Primary estimand (supporting)**:
+
+> **Among publicly observable stack layers *and under an
+> admission-grade evidence substrate*, which layers carry detectable
+> enforcement reactions to an identified US-centric censorship
+> trigger, and which layers' conditional rates are undefined because
+> the public evidentiary substrate does not exist?**
+
+The re-framing matters: the estimand's numerator is "observed changes
+that the admission protocol admits", and its denominator is "events
+where the layer has `measured` or `partially_measured` coverage" — NOT
+"events where the layer could hypothetically react." A layer with zero
+`measured` denominators (L0 in the current corpus) renders `—`, not
+`0`; this is a measurement contribution in its own right.
 
 Why this framing, not the alternatives:
 
-- "**Full cascade is rare — why?**" is motivating background but
-  n = 5 `multi_layer` events is too thin for a standalone paper
-  claim. Reserved as secondary framing.
+- "**Full cascade is rare — why?**" is motivating background but the
+  `multi_layer` archetype count (see Table 3) is too thin for a
+  standalone prevalence claim; furthermore, two of those events are
+  Tornado forward/reverse on the same target and are not independent.
+  Reserved as secondary framing.
 - "**Reaction speed by issuer / frontend / CEX**" is downstream of the
   primary estimand (a sub-breakdown). Primary estimand answers layer
-  *selection*; speed is a column of the same table.
+  *selection and observability*; speed is a column of the same table
+  and is under-powered in Panel A of Table 4 at the current corpus
+  size.
+- "**Six-layer cascade dataset**" (earlier framing) over-sold: two of
+  six layers have zero measured denominators at v0.1.0. The honest
+  framing is *upper-stack observability under coverage-denominator
+  discipline, with a worked mechanism case on operator source code*.
 
 ### What this paper is NOT
 
@@ -225,18 +257,22 @@ subset of events admissible, and the phrasing lock.
   and source availability bias the upper-layer observation toward
   events with public-record-visible infrastructure. See §3.3 below.
 
-### C3 · Upper-layer reaction latency (hour-precision subset)
+### C3 · Hour-precision latency exemplars (NOT a distribution)
 
 **Claim**:
 
-> "Restricted to triggers with hour-or-better precision AND at least
-> one timed `observed_change` (Table 4 Panel A), the first observed
-> change at any layer falls into hour-granularity bands as reported
-> in Panel A. Day-precision triggers with a timed `observed_change`
-> are reported separately in Panel B at ≤1d / (1d, 30d] / >30d
-> granularity — they are excluded from any hour-granularity
-> distribution. `trigger_is_action` events (Panel C) are excluded
-> from both Panel A and Panel B because their `t≈0` is a record-level
+> "Two admitted events carry hour-or-better trigger precision AND a
+> non-trigger-action observed_change, and are reported individually as
+> named exemplars: `tornado-cash-ofac-2022` (first observed change at
+> L3 within 2h 50m of the OFAC SDN, via Flashbots rpc-endpoint PR #90)
+> and `china-pboc-crypto-ban-2021` (first observed change within 24
+> hours at the off-ramp layer). These are **named rows, not a
+> distribution**; the corpus does not support a hour-precision latency
+> distribution at v0.1.0. Day-precision triggers with a timed
+> `observed_change` are reported separately in Panel B at ≤1d /
+> (1d, 30d] / >30d granularity and are never mixed into any
+> hour-granularity claim. `trigger_is_action` events (Panel C) are
+> excluded from both A and B because their `t≈0` is a record-level
 > artifact, not a measured delta."
 
 - **Evidence**:
@@ -246,26 +282,32 @@ subset of events admissible, and the phrasing lock.
   by `_trigger_precision()` in
   [`scripts/build_paper_tables.py`](../scripts/build_paper_tables.py)
   (reads the canonical schema field `trigger.timestamp_precision`).
-- **n**: **delegated to Table 4**. Panel A / Panel B / Panel C
-  cardinalities evolve as the corpus adds events or flips precision
-  labels — hardcoding any of the three in prose is phrasing-locked
-  FORBID.
+- **n**: Panel A n is delegated to Table 4. The claim explicitly
+  presents the rows as named exemplars, not a band distribution, so
+  the paper is defensible even when Panel A is very small.
 - **Case role**: events with at least one timed `observed_change`
-  contribute; events with only `observed_no_change` or `coverage_gap`
-  rows are absent from all three panels (they live in Table 6).
+  AND hour-or-better trigger precision contribute to Panel A and may
+  be cited by name; Panel B contributes only to the coarse
+  ≤1d / (1d, 30d] / >30d claim.
 - **Phrasing lock**:
-  - PREFER "first observed change", "conditional on
-    hour-or-better trigger precision", "Panel A of Table 4",
-    "Panel B of Table 4".
-  - FORBID any latency number expressed in hours that includes a
-    day-precision trigger; "reaction time" as a scalar summary
-    across all 53 (precision-mixed); **hardcoded hour/day
-    subset counts in the prose** — delegate to Table 4.
+  - PREFER "named exemplars", "individual events", "Panel A row",
+    "conditional on hour-or-better trigger precision".
+  - FORBID **"distribution"**, **"bands"**, **"histogram"**, or any
+    aggregate-statistical vocabulary applied to Panel A — the
+    claim is explicitly exemplar-level. Also FORBID any latency
+    number expressed in hours that includes a day-precision trigger;
+    "reaction time" as a scalar summary across all 53
+    (precision-mixed); hardcoded hour/day subset counts in the prose
+    (delegate to Table 4).
 - **Not said**: this is NOT a decomposition by layer speed — that is
-  C4 below if promoted.
-- **Status**: Table 4 is live (post-2026-04-24). C3 can be cited
-  directly from it once the paper narrative fixes the specific
-  band-count claims it wants to make.
+  C4 below if promoted. This is NOT a distributional latency claim:
+  at the current corpus size, Panel A has too few rows to support
+  band-conditional frequencies. The purpose is to **establish that
+  minute-precise reaction evidence exists** (the Flashbots PR #90
+  row is the sharpest case), not to argue about its prevalence.
+- **Status**: Table 4 is live. A proper distributional latency claim
+  is **parked for v0.2** pending more hour-precision triggers; see
+  §2 below.
 
 ### C4 · Corporate-policy events are trigger-action identical
 
@@ -336,6 +378,14 @@ subset of events admissible, and the phrasing lock.
 
 Each item below is a claim we could imagine making and have ruled out.
 
+- **Hour-precision latency distribution.** Panel A of Table 4 is too
+  thin (small row count at v0.1.0) to support any band / histogram /
+  frequency claim. C3 admits only named-exemplar statements. A proper
+  distributional latency claim is parked for v0.2 until the
+  hour-precision subset passes n≥10. Until then the paper can cite
+  Panel A rows individually (e.g. the Flashbots PR #90 2h 50m row)
+  but MUST NOT report "the median latency was X" or "K% of events
+  reacted within Yh."
 - **"Cascade timing is a function of trigger type"** — the
   trigger-type × latency cross-tab is under-powered: see Table 1
   trigger-precision split + Table 4 Panel A row count. Parked for

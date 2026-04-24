@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=53)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `930f3d6` · generated `2026-04-24T03:30:13Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `b7de6a2` · generated `2026-04-24T05:04:08Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -35,7 +35,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `china-pboc-crypto-ban-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `hour` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-04-21` | `—` |
 | `chipmixer-doj-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
 | `circle-usdc-tornado-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `address_set` | `subset` | 1 | `asset_only` | ✓ | · | `2026-04-22` | `—` |
-| `coinbase-india-exit-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `domain` | `complete` | 1 | `cex_only` | ✓ | · | `2026-04-22` | `—` |
+| `coinbase-india-exit-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `domain` | `complete` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `cryptex-ofac-2024` | `anchor_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 2 | `multi_layer` | · | · | `2026-04-21` | `2026-04-22` |
 | `dprk-usdt-network-ofac-2025` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
 | `eu-12th-russia-sanctions-2023` | `empirical_case` | `S6_supranational` | `comparison` | `non_us_sanctions` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |

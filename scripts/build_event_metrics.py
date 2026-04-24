@@ -65,7 +65,7 @@ DEFAULT_OUT_DIR = REPO_ROOT / "derived"
 
 # Shared dataset-identity accessor.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -339,7 +339,7 @@ def main() -> int:
     ds_meta = load_meta()
     meta = {
         "artifact": "event_metrics",
-        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "generated_at": now_utc_iso(),
         "generator": {
             "script": "scripts/build_event_metrics.py",
             "version": GENERATOR_VERSION,

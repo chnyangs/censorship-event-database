@@ -30,13 +30,17 @@ Additional derived fields per event:
   - has_recovery_signal      any recovery row with resolved=true OR resolved=false
   - is_upper_layer_only      changed ⊆ {l4_frontend, asset_onchain, offramp_cex}
   - is_base_layer_observed   changed ∩ {l0_network, l1_consensus} ≠ ∅
-  - trigger_is_action        true when trigger.type is `corporate_policy_change`.
-      Useful qualifier on `latency_regime: synchronous` rows: for these
-      events, `trigger.timestamp` and the timestamp of the observed_change
-      observation are identical in the record, so t=0 is a record-level
-      artifact rather than a measured delta. Paper claims about cascade
-      latency should report rows with `trigger_is_action=false`
-      separately from those with `trigger_is_action=true`.
+  - trigger_is_action        true when BOTH (a) trigger.type is
+      `corporate_policy_change` AND (b) the first observed_change
+      timestamp coincides with the trigger timestamp (|delta| ≤ 1h).
+      A corporate_policy_change event where the observation is genuinely
+      later (e.g. corporate retreat 3 days after an initial corporate
+      launch, prompted by external pressure) does NOT carry the flag —
+      its delta_hours is a real measurement, not a record-level
+      artifact, and it should enter the latency analysis via Panel A/B
+      of Table 4 rather than being silenced in Panel C. Paper claims
+      about cascade latency should report rows with `trigger_is_action
+      = false` separately from those with `trigger_is_action = true`.
 
 Decoupled on purpose: this script does NOT mutate event_metrics.json.
 Downstream consumers wanting joined data should join on `event_id`.
@@ -83,7 +87,7 @@ EVENTS_DIR = REPO_ROOT / "events"
 DEFAULT_OUT_DIR = REPO_ROOT / "derived"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -153,6 +157,13 @@ def latency_regime(time_to_first_change_h: float | None) -> str:
 
 
 TRIGGER_IS_ACTION_TYPES = {"corporate_policy_change"}
+# Coincidence tolerance: how close the first observed_change must be to the
+# trigger timestamp for `trigger_is_action` to fire. Set to 1h so that minute-
+# precision corporate-policy-change events (Circle, Tether, Uniswap) still
+# trigger the flag even when the source-of-truth timestamps are logged to
+# slightly different seconds, while day-level retreats like Coinbase's
+# India exit (delta = 72h) are correctly classified as measured reactions.
+TRIGGER_IS_ACTION_MAX_DELTA_H = 1.0
 
 
 def derive_event(event: dict) -> dict[str, Any]:
@@ -199,7 +210,11 @@ def derive_event(event: dict) -> dict[str, Any]:
         "has_recovery_signal": has_recovery_signal,
         "is_upper_layer_only": bool(changed) and changed.issubset(UPPER_LAYERS),
         "is_base_layer_observed": bool(changed.intersection(BASE_LAYERS)),
-        "trigger_is_action": trigger_type in TRIGGER_IS_ACTION_TYPES,
+        "trigger_is_action": (
+            trigger_type in TRIGGER_IS_ACTION_TYPES
+            and time_to_first is not None
+            and abs(time_to_first) <= TRIGGER_IS_ACTION_MAX_DELTA_H
+        ),
     }
 
 
@@ -249,7 +264,7 @@ def render_report(
         f"Dataset snapshot: **v{ds_meta.get('dataset_version') or '?'}** · "
         f"cutoff `{ds_meta.get('cutoff_date') or 'n/a'}` · "
         f"commit `{ds_meta.get('source_commit') or 'n/a'}` · "
-        f"generated `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}` "
+        f"generated `{now_utc_iso()}` "
         f"(events: {len(rows)})"
     )
     lines.append("")
@@ -514,7 +529,7 @@ def main() -> int:
     ds_meta = load_meta()
     meta = {
         "artifact": "event_archetypes",
-        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "generated_at": now_utc_iso(),
         "generator": {
             "script": "scripts/assign_archetypes.py",
             "version": GENERATOR_VERSION,

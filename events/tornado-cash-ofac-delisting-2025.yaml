@@ -377,6 +377,32 @@ observations:
           2025-04-01T19:28:21Z UTC (11 days 19 hours 28 minutes after
           OFAC delisted Tornado Cash on 2025-03-21). Full diff at
           sources/operator_commits/tornado-cash-ofac-delisting-2025/commit-1e9c29c.diff.
+      - type: semi_primary_measurement
+        url: https://api.github.com/repos/flashbots/rpc-endpoint/pulls/173
+        query_hash: sha256:5a01c59078a9137610ec1917d28a9754fda034ec614f0b1d7e6852f04efb82cb
+        body_hash: sha256:a800191f0391c2304542a60647bc3a0ca2db76a60fbc636d83d7bdfcd9bef9e3
+        body_path: sources/operator_commits/tornado-cash-ofac-delisting-2025/github-api/pr-173.response.json
+        evidence_group_id: flashbots-github-api-2025-04-01
+        note: |
+          Independent GitHub API confirmation of organizational
+          provenance: `base.repo.full_name = "flashbots/rpc-endpoint"`,
+          `merged = true`, `merged_at = 2025-04-01T19:28:21Z`,
+          `merge_commit_sha = 1e9c29c…`. Served by GitHub Inc.
+          (not Flashbots); rules out fork / unofficial-commit readings.
+      - type: semi_primary_measurement
+        url: https://api.github.com/repos/flashbots/rpc-endpoint/commits/1e9c29c5d3896bdc661805f4995b4d65834db6e4
+        query_hash: sha256:8838b67bc0e15b10fbbb7c8aebedcdcf55b1635659ef54f21fe9f3cf4e41c19d
+        body_hash: sha256:63d666d38777830bd3c2962df0b96d6966c0e464de78bf0df82b2a5c653315bb
+        body_path: sources/operator_commits/tornado-cash-ofac-delisting-2025/github-api/commit.response.json
+        evidence_group_id: flashbots-github-api-2025-04-01
+        note: |
+          Independent GitHub API commit confirmation:
+          `sha = 1e9c29c…`, `commit.author.date = 2025-04-01T19:28:21Z`.
+          The commit message and PR title both frame the deletion as
+          operational cleanup ("Cleanup unused and unmaintained
+          blacklist file"), NOT as an explicit policy response to the
+          Tornado delisting — this is why the observation's attribution
+          stays `plausible` rather than `direct`.
     note: |
       11d 19h 28m after OFAC's 2025-03-21 delisting of Tornado Cash,
       Flashbots merged PR #173 (commit 1e9c29c, 2025-04-01 19:28:21 UTC)

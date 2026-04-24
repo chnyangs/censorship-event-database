@@ -55,7 +55,7 @@ DEFAULT_OUT_DIR = REPO_ROOT / "analysis" / "paper_tables"
 GENERATOR_VERSION = "0.1.0"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
 
 
 LAYER_ORDER = [
@@ -163,7 +163,7 @@ def _snapshot_header(ds_meta: dict, title: str) -> list[str]:
         f"Dataset snapshot: **v{ds_meta.get('dataset_version') or '?'}** · "
         f"cutoff `{ds_meta.get('cutoff_date') or 'n/a'}` · "
         f"commit `{ds_meta.get('source_commit') or 'n/a'}` · "
-        f"generated `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}`",
+        f"generated `{now_utc_iso()}`",
         "",
     ]
 
@@ -769,7 +769,7 @@ def main() -> int:
 
     meta = {
         "artifact": "paper_tables",
-        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "generated_at": now_utc_iso(),
         "generator": {
             "script": "scripts/build_paper_tables.py",
             "version": GENERATOR_VERSION,
