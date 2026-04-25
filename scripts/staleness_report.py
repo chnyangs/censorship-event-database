@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -34,6 +35,9 @@ CANDIDATE_DIR = REPO_ROOT / "candidate_triggers"
 ANALYSIS_DIR = REPO_ROOT / "analysis"
 STALENESS_JSON = ANALYSIS_DIR / "staleness.json"
 STALENESS_MD = ANALYSIS_DIR / "staleness.md"
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _dataset_meta import now_utc_iso, source_date_epoch_is_set, today_utc_date  # noqa: E402
 
 RED_THRESHOLD_DAYS = 90
 
@@ -66,6 +70,8 @@ def parse_date(value: Any) -> date | None:
 
 
 def most_recent_candidate_mtime() -> datetime | None:
+    if source_date_epoch_is_set():
+        return None
     if not CANDIDATE_DIR.is_dir():
         return None
     newest: datetime | None = None
@@ -139,7 +145,7 @@ def build_report(today: date) -> dict[str, Any]:
 
     last_agent_run = most_recent_candidate_mtime()
     return {
-        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "generated_at": now_utc_iso(),
         "red_threshold_days": RED_THRESHOLD_DAYS,
         "flag_legend": {
             "ok": "within the red threshold",
@@ -231,7 +237,7 @@ def render_markdown(report: dict[str, Any]) -> str:
 def main() -> int:
     args = parse_args()
     ANALYSIS_DIR.mkdir(parents=True, exist_ok=True)
-    report = build_report(date.today())
+    report = build_report(today_utc_date())
     Path(args.json_out).write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     Path(args.md_out).write_text(render_markdown(report))
     print(f"Wrote staleness report to {args.json_out} and {args.md_out}")

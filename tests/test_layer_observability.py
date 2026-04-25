@@ -25,6 +25,22 @@ def _event(slug: str, cov_status: str, kinds: list[str]) -> dict:
     }
 
 
+def _event_with_action(slug: str, cov_status: str, action_id: str) -> dict:
+    layer = "asset_onchain"
+    return {
+        "id": slug,
+        "coverage": [{"layer": layer, "status": cov_status}],
+        "observations": [
+            {
+                "layer": layer,
+                "observation_kind": "observed_change",
+                "attribution": "direct",
+                "action_id": action_id,
+            }
+        ],
+    }
+
+
 def test_measured_changed_contributes_to_both_numerators():
     events = [_event("a", "measured", ["observed_change"])]
     row = compute_row("l4_frontend", events)
@@ -92,6 +108,17 @@ def test_not_applicable_excluded_from_applicable_count():
     row = compute_row("l4_frontend", events)
     assert row["not_applicable_count"] == 1
     assert row["applicable_event_count"] == 1      # excludes not_applicable
+
+
+def test_duplicate_action_ids_are_deduped_separately_from_event_counts():
+    events = [
+        _event_with_action("ofac-event", "measured", "shared-tx"),
+        _event_with_action("issuer-event", "measured", "shared-tx"),
+    ]
+    row = compute_row("asset_onchain", events)
+    assert row["changed_under_measured_count"] == 2
+    assert row["changed_unique_action_count"] == 1
+    assert row["duplicated_changed_action_count"] == 1
 
 
 # Simple tolerant equality to avoid a full pytest-approx import dance.

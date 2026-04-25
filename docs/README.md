@@ -14,10 +14,9 @@ Reference documentation for the Cross-Layer Censorship Event Study Database. Alr
 
 | Topic | Doc |
 | --- | --- |
-| Single source of truth for what the paper argues (claims C1–C6, phrasing locks, claim-to-table-source matrix, sampling frame) | [`paper_claims.md`](paper_claims.md) |
-| Per-axis delta vs Wahrstätter et al. (WWW 2024); methodology ancestors transplanted (OONI, Pearce, Censored Planet, Datasheets-for-Datasets) | [`prior_art_delta.md`](prior_art_delta.md) |
-| Inter-rater reliability protocol + κ thresholds + provenance modes | [`inter_rater_reliability.md`](inter_rater_reliability.md) |
-| One-command Zenodo artifact-eval reproduction (Docker + `SOURCE_DATE_EPOCH`) | [`reproducibility.md`](reproducibility.md) |
+| Single source of truth for what the paper argues (claims C1–C6, phrasing locks, claim-to-table-source matrix, sampling frame, prior-art delta, IRR κ-floor language) | [`paper_claims.md`](paper_claims.md) |
+| Inter-rater reliability protocol — runnable via `make irr-sample` / `make irr-kappa`; report at `analysis/inter_rater/kappa_report.md` | (script-only; see [`paper_claims.md §0`](paper_claims.md) "κ-floor language") |
+| One-command Zenodo artifact-eval reproduction (Docker + `SOURCE_DATE_EPOCH`) | top-level [`Dockerfile`](../Dockerfile) + [`docs/releasing.md`](releasing.md) |
 | What the dataset cannot say (predictive use, prevalence claims, compliance scoring) | [`limitations-and-use.md`](limitations-and-use.md) |
 | Citation formats + Zenodo DOI integration | [`citing.md`](citing.md), [`releasing.md`](releasing.md) |
 

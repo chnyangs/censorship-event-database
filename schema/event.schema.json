@@ -524,6 +524,14 @@
           "type": "string",
           "description": "Specific target address this observation speaks to, when the enclosing event's target is an address_set with multiple entries. Informational."
         },
+        "action_id": {
+          "type": "string",
+          "description": "Stable cross-event identifier for the underlying physical action this observation records. Use the same action_id when two event records intentionally cite the same transaction, commit, takedown, or policy action."
+        },
+        "duplicate_of_action_id": {
+          "type": "string",
+          "description": "When this row is a scoped duplicate of a physical action already recorded in another event, point to that canonical action_id. The observation remains valid for its event-level trigger analysis but can be deduplicated for physical-action counts."
+        },
         "window": {
           "type": "array",
           "minItems": 2,

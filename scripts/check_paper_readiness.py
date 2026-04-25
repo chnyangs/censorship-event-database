@@ -15,7 +15,9 @@ import csv
 import json
 import pathlib
 import re
+import subprocess
 import sys
+from datetime import datetime
 from typing import Any
 
 import yaml
@@ -26,6 +28,8 @@ EVENTS_DIR = REPO_ROOT / "events"
 PAPER_TABLES_DIR = REPO_ROOT / "analysis" / "paper_tables"
 DERIVED_DIR = REPO_ROOT / "derived"
 PAPER_CLAIMS = REPO_ROOT / "docs" / "paper_claims.md"
+DATASET_META = REPO_ROOT / "dataset.meta.json"
+IRR_REPORT = REPO_ROOT / "analysis" / "inter_rater" / "kappa_report.json"
 
 HOUR_PRECISION_VALUES = {"second", "minute", "hour"}
 DAY_PRECISION_VALUES = {"day", "date"}
@@ -118,6 +122,36 @@ def has_crlf(path: pathlib.Path) -> bool:
     return b"\r\n" in path.read_bytes()
 
 
+def git_head_short() -> str:
+    proc = subprocess.run(
+        ["git", "rev-parse", "--short=7", "HEAD"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=5,
+    )
+    return proc.stdout.strip() if proc.returncode == 0 else ""
+
+
+def parse_iso_date_or_datetime(value: Any) -> datetime | None:
+    if not value:
+        return None
+    try:
+        text = str(value)
+        if len(text) == 10:
+            text = text + "T00:00:00Z"
+        return datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def kappa_value(report: dict[str, Any], variable: str) -> float | None:
+    variables = report.get("variables") or {}
+    value = (variables.get(variable) or {}).get("kappa")
+    return value if isinstance(value, (int, float)) else None
+
+
 def main() -> int:
     args = parse_args()
     events_dir = pathlib.Path(args.events_dir)
@@ -130,6 +164,25 @@ def main() -> int:
 
     events = load_events(events_dir)
     events_by_id = {event["id"]: event for event in events}
+    head = git_head_short()
+
+    try:
+        dataset_meta = load_json(DATASET_META)
+        if head and dataset_meta.get("source_commit") != head:
+            errors.append(
+                f"dataset.meta.json source_commit={dataset_meta.get('source_commit')} "
+                f"but HEAD={head}; run `make dataset` before citing paper artifacts"
+            )
+        generated = parse_iso_date_or_datetime(dataset_meta.get("generated_at"))
+        cutoff = parse_iso_date_or_datetime(dataset_meta.get("cutoff_date"))
+        if generated and cutoff and generated < cutoff:
+            errors.append(
+                f"dataset.meta.json generated_at={dataset_meta.get('generated_at')} "
+                f"predates cutoff_date={dataset_meta.get('cutoff_date')}; "
+                "use SOURCE_DATE_EPOCH at or after the dataset cutoff"
+            )
+    except FileNotFoundError:
+        errors.append("missing dataset.meta.json — run `make dataset`")
 
     for rel in REQUIRED_TABLES:
         path = paper_tables_dir / rel
@@ -151,6 +204,19 @@ def main() -> int:
                 f"paper table event_count={table_meta.get('event_count')} "
                 f"but events/*.yaml count={len(events)}"
             )
+        snapshot = table_meta.get("dataset_snapshot") or {}
+        if head and snapshot.get("source_commit") != head:
+            errors.append(
+                f"analysis/paper_tables/.meta.json source_commit={snapshot.get('source_commit')} "
+                f"but HEAD={head}; run `make paper-tables` after `make dataset`"
+            )
+        generated = parse_iso_date_or_datetime(table_meta.get("generated_at"))
+        cutoff = parse_iso_date_or_datetime(snapshot.get("cutoff_date"))
+        if generated and cutoff and generated < cutoff:
+            errors.append(
+                f"analysis/paper_tables/.meta.json generated_at={table_meta.get('generated_at')} "
+                f"predates cutoff_date={snapshot.get('cutoff_date')}"
+            )
     except FileNotFoundError:
         pass
 
@@ -165,6 +231,11 @@ def main() -> int:
             if not event:
                 errors.append(f"table1 has unknown event_id={row.get('event_id')}")
                 continue
+            if row.get("admission_tier") != event.get("admission_tier"):
+                errors.append(
+                    f"{event['id']}: table1 admission_tier={row.get('admission_tier')} "
+                    f"but event YAML has {event.get('admission_tier')}"
+                )
             expected = canonical_precision_bucket(event)
             if row.get("trigger_precision_bucket") != expected:
                 errors.append(
@@ -270,21 +341,54 @@ def main() -> int:
             "anchor cases missing scoped_knowledge: " + ", ".join(anchor_missing_scoped)
         )
 
-    paper_critical = [
+    unaudited_anchors = [
         event["id"]
         for event in events
-        if event.get("admission_tier") in {"anchor_case", "null_case"}
+        if event.get("admission_tier") == "anchor_case"
         and not event.get("last_human_audit")
     ]
-    if paper_critical:
+    if unaudited_anchors:
         msg = (
-            f"{len(paper_critical)} paper-critical anchor/null cases lack "
-            "last_human_audit: " + ", ".join(paper_critical)
+            f"{len(unaudited_anchors)} paper-spotlight anchor cases lack "
+            "last_human_audit: " + ", ".join(unaudited_anchors)
         )
         if args.strict_audit:
             errors.append(msg)
         else:
             warnings.append(msg)
+
+    unaudited_nulls = [
+        event["id"]
+        for event in events
+        if event.get("admission_tier") == "null_case"
+        and not event.get("last_human_audit")
+    ]
+    if unaudited_nulls:
+        warnings.append(
+            f"{len(unaudited_nulls)} null denominator cases lack last_human_audit "
+            "(allowed for aggregate/null tables; not eligible for narrative spotlight): "
+            + ", ".join(unaudited_nulls)
+        )
+
+    try:
+        irr = load_json(IRR_REPORT)
+        coverage_kappa = kappa_value(irr, "coverage_status")
+        if coverage_kappa is None or coverage_kappa < 0.6:
+            errors.append(
+                "coverage_status κ is missing or below 0.6; C1 coverage-matched "
+                "rates are not paper-ready"
+            )
+        for variable in ("observation_kind", "attribution"):
+            value = kappa_value(irr, variable)
+            if value is None:
+                warnings.append(
+                    f"{variable} κ is missing; claims depending on {variable} "
+                    "must remain parked/descriptive"
+                )
+            elif value < 0.6:
+                errors.append(f"{variable} κ={value} is below 0.6")
+    except FileNotFoundError:
+        errors.append("missing analysis/inter_rater/kappa_report.json — run `make irr-kappa`")
 
     for warning in warnings:
         print(f"WARN: {warning}")

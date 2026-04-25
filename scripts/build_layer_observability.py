@@ -74,12 +74,33 @@ def load_events(events_dir: pathlib.Path) -> list[dict]:
     return out
 
 
+def _observation_action_id(event_id: str, obs_idx: int, obs: dict) -> str:
+    """Stable physical-action id for action-level dedupe.
+
+    Most rows do not need an explicit action_id because the event record is the
+    unit of analysis. When two events intentionally cite the same physical
+    transaction/commit/action, they share action_id in YAML and collapse in the
+    unique-action counters below.
+    """
+    action_id = obs.get("action_id")
+    if isinstance(action_id, str) and action_id.strip():
+        return action_id.strip()
+    return (
+        f"{event_id}:{obs_idx}:{obs.get('layer')}:{obs.get('actor')}:"
+        f"{obs.get('event')}"
+    )
+
+
 def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
     total = len(events)
     cov_status = collections.Counter()
     changed_events: list[str] = []
     changed_under_measured: list[str] = []
     changed_under_measured_or_partial: list[str] = []
+    changed_action_ids: set[str] = set()
+    changed_under_measured_action_ids: set[str] = set()
+    changed_under_measured_or_partial_action_ids: set[str] = set()
+    changed_action_row_count = 0
     no_change_events: list[str] = []
     gap_events: list[str] = []
 
@@ -96,14 +117,25 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
         cov_status[status or "missing"] += 1
 
         # observation composition on this layer
-        kinds_here = {
-            obs.get("observation_kind")
-            for obs in e.get("observations") or []
+        obs_here = [
+            (idx, obs)
+            for idx, obs in enumerate(e.get("observations") or [])
             if isinstance(obs, dict) and obs.get("layer") == layer
-        }
+        ]
+        kinds_here = {obs.get("observation_kind") for _, obs in obs_here}
         is_changed = "observed_change" in kinds_here
         if is_changed:
             changed_events.append(slug)
+            for obs_idx, obs in obs_here:
+                if obs.get("observation_kind") != "observed_change":
+                    continue
+                action_id = _observation_action_id(slug, obs_idx, obs)
+                changed_action_row_count += 1
+                changed_action_ids.add(action_id)
+                if status == "measured":
+                    changed_under_measured_action_ids.add(action_id)
+                if status in ("measured", "partially_measured"):
+                    changed_under_measured_or_partial_action_ids.add(action_id)
             if status == "measured":
                 changed_under_measured.append(slug)
             if status in ("measured", "partially_measured"):
@@ -142,6 +174,10 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
         "changed_count": changed_n,
         "changed_under_measured_count": changed_m,
         "changed_under_measured_or_partial_count": changed_mp,
+        "changed_unique_action_count": len(changed_action_ids),
+        "changed_unique_under_measured_action_count": len(changed_under_measured_action_ids),
+        "changed_unique_under_measured_or_partial_action_count": len(changed_under_measured_or_partial_action_ids),
+        "duplicated_changed_action_count": changed_action_row_count - len(changed_action_ids),
         "no_change_count": len(no_change_events),
         "coverage_gap_count": len(gap_events),
         "changed_given_measured": safe_ratio(changed_m, measured),
@@ -151,6 +187,9 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
         "changed_event_ids": sorted(changed_events),
         "changed_under_measured_event_ids": sorted(changed_under_measured),
         "changed_under_measured_or_partial_event_ids": sorted(changed_under_measured_or_partial),
+        "changed_action_ids": sorted(changed_action_ids),
+        "changed_under_measured_action_ids": sorted(changed_under_measured_action_ids),
+        "changed_under_measured_or_partial_action_ids": sorted(changed_under_measured_or_partial_action_ids),
         "no_change_event_ids": sorted(no_change_events),
         "coverage_gap_event_ids": sorted(gap_events),
     }
@@ -168,6 +207,10 @@ CSV_COLUMNS = [
     "changed_count",
     "changed_under_measured_count",
     "changed_under_measured_or_partial_count",
+    "changed_unique_action_count",
+    "changed_unique_under_measured_action_count",
+    "changed_unique_under_measured_or_partial_action_count",
+    "duplicated_changed_action_count",
     "no_change_count",
     "coverage_gap_count",
     "changed_given_measured",

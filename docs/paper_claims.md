@@ -26,9 +26,9 @@ Changes to this file are the only legitimate way to re-aim the paper.
 
 **Headline finding**:
 
-> **Operator filter-list maintenance is a public, git-observable
-> censorship channel with minute-level precision and bidirectional
-> response to OFAC state.** Flashbots' `rpc-endpoint::ofacblacklist.go`
+> **Operator filter-list maintenance is a real but structurally narrow
+> public-git observability substrate.** Flashbots'
+> `rpc-endpoint::ofacblacklist.go`
 > gains Tornado Cash pool addresses in PR #90 **2h 50m** after the
 > 2022-08-08 OFAC SDN (commit `92ab6b1f`, primary_corporate, direct
 > attribution); the entire 132-address blacklist is removed in PR #173
@@ -36,7 +36,9 @@ Changes to this file are the only legitimate way to re-aim the paper.
 > primary_corporate, plausible attribution — the PR frames the
 > deletion as operational cleanup rather than an explicit policy
 > response). See `analysis/anchor_gap_fill_log.md §4` for the
-> reproducibility trail.
+> reproducibility trail. The finding is an existence proof on one
+> public RPC repo plus an observability-gap result from the broader
+> census, not a population claim about operator behavior.
 
 **Primary estimand (supporting)**:
 
@@ -86,13 +88,13 @@ Each event carries `admission_tier`:
 
 | role | purpose in paper | current n |
 | --- | --- | --- |
-| `anchor_case` | hand-audited exemplars; figures + narrative spotlight | 5 |
-| `empirical_case` | aggregate-count contributors (distributions, tables) | 35 |
-| `null_case` | denominator for "we looked and observed no change" | 13 |
+| `anchor_case` | hand-audited exemplars; figures + narrative spotlight | see Table 1 |
+| `empirical_case` | aggregate-count contributors (distributions, tables) | see Table 1 |
+| `null_case` | denominator for "we looked and observed no change" | see Table 1 |
 
 A claim may NOT cite an `empirical_case` for a narrative spotlight
 role, nor a `null_case` for a "changed-layer" count. The paper-table
-generator (planned) will enforce this at emission time.
+generator is live and emits the case-role surface in Table 1.
 
 ### Attribution discipline
 
@@ -108,8 +110,10 @@ The dataset records each `observed_change` with
   not support any causal statement; it supports only
   "within the scoped window and sources, no change was observed".
 
-**Plausible and direct observations are reported in separate columns
-in every table**; collapsing them is a phrasing violation.
+**Plausible and direct observations are not collapsed into a causal
+claim.** Tables may aggregate row counts, but paper prose must preserve
+the distinction. Attribution-dependent comparative claims remain
+parked until `attribution` κ clears the reliability gate.
 
 ### Timestamp-precision discipline
 
@@ -184,10 +188,10 @@ boundary, it stays out of v0.1.
 | claim | reader-facing table | underlying fields | case role admitted | audit gate | uncertainty boundary |
 | --- | --- | --- | --- | --- | --- |
 | C1 upper-layer concentration | Table 2 `layer_observability` | `coverage[]`, `observations[].layer`, `observation_kind` | all 53 for denominators; changed rows for numerators | anchor rows cited by name need `last_human_audit`; aggregate table can ship with audit warning | coverage-matched rates only; no population prevalence |
-| C2 single-layer dominance | Table 3 `archetype_stratum` | `derived_archetype`, `changed_layer_count`, `research_stratum` | all 53 | exemplar rows named in text need audit | corpus archetype distribution, not clustering or population rate |
+| C2 single-layer dominance | Table 3 `archetype_stratum` | `derived_archetype`, `changed_layer_count`, `research_stratum` | all 53 | parked until `observation_kind` κ ≥ 0.6 | corpus archetype distribution, not clustering or population rate |
 | C3 latency | Table 4 Panels A/B/C | `trigger.timestamp_precision`, `time_to_first_change_hours`, `trigger_is_action` | timed `observed_change` rows only | any named latency exemplar needs audit | hour claims only from Panel A; day and trigger-is-action panels separate |
 | C4 trigger-is-action | Table 4 Panel C | `trigger.type`, `trigger_is_action` | `corporate_policy_change` events | named examples need audit | `t≈0` is record structure, not reaction speed |
-| C5 cross-stratum reach | Table 3 | `research_stratum`, `derived_archetype` | all 53 | named exemplars need audit | stratum is an admission frame, not jurisdiction or population weight |
+| C5 cross-stratum reach | Table 3 | `research_stratum`, `derived_archetype` | all 53 | descriptive until `observation_kind` κ ≥ 0.6 | stratum is an admission frame, not jurisdiction or population weight |
 | ~~C6 recovery insufficiency~~ **[DEMOTED to exemplar-inside-C1; see §C6 below]** | — | — | — | — | reversal appears only as a narrative exemplar inside the Flashbots bidirectional mechanism finding, never as a standalone claim |
 
 ### Uncertainty-to-analysis mapping
@@ -218,11 +222,13 @@ Every conditional rate in the paper has a corresponding κ floor:
 - C1 depends on `coverage.status` — current κ = 0.983 (n=90 rows,
   15 events, LLM-assisted blind recode, 2026-04-24,
   `analysis/inter_rater/kappa_report.md`).
-- C2 depends on `observation_kind` — κ pending (blind worksheet
-  generated; re-run via `make irr-kappa` after filling
-  `analysis/inter_rater/observation_kind_blind.csv`).
-- C3 / phrasing-lock discipline depends on `attribution` — κ
-  pending.
+- C2's single-layer dominance row uses `observation_kind`; because
+  `observation_kind` κ is still pending, C2 is a **descriptive table
+  surface only**, not a promoted central claim.
+- Attribution-sensitive comparative phrasing depends on `attribution`;
+  because `attribution` κ is still pending, direct/plausible wording
+  is allowed only at named-row/audit level, not as a corpus-level
+  comparative rate.
 
 Paper §3 must not report a conditional rate whose underlying
 variable is below κ ≥ 0.6 (substantial). The protocol is implemented
@@ -283,9 +289,9 @@ subset of events admissible, and the phrasing lock.
   general "L3 filter lists react to sanctions events" claim beyond
   these two named cases.
 
-### C2 · Single-layer responses dominate the admitted corpus
+### C2 · [PARKED] Single-layer response description pending `observation_kind` κ
 
-**Claim**:
+**Descriptive table text (not a promoted paper claim until κ ≥ 0.6):**
 
 > "Of 53 admitted events, 35 (66%) show observed changes at exactly
 > one layer, 5 (9%) show observed changes at two or more layers, and
@@ -312,6 +318,10 @@ subset of events admissible, and the phrasing lock.
   corpus does NOT mean they are rare in the population; survivorship
   and source availability bias the upper-layer observation toward
   events with public-record-visible infrastructure. See §3.3 below.
+- **Promotion gate**: requires `observation_kind` κ ≥ 0.6 in
+  `analysis/inter_rater/kappa_report.md`. Until then, Table 3 may be
+  shown as descriptive QA output but C2 must not be used as a central
+  result.
 
 ### C3 · Hour-precision latency exemplars (NOT a distribution)
 
@@ -391,6 +401,11 @@ subset of events admissible, and the phrasing lock.
     stays live as the corpus evolves.
 
 ### C5 · Structural claim — frontend/asset/CEX reach extends across strata
+
+**Status**: descriptive until the `observation_kind` IRR gate clears,
+because the archetype assignment is a deterministic function of
+`observed_change` rows. It can guide tables and discussion but should
+not be written as an inferential central result in v0.1.
 
 **Claim**:
 
@@ -536,10 +551,10 @@ produced by this reproducible surface do not enter the paper.
 | --- | --- | --- | --- |
 | 1 | Case roles | [`table1_case_roles.md`](../analysis/paper_tables/table1_case_roles.md) | §0 case-role convention |
 | 2 | Layer observability | [`table2_layer_observability.md`](../analysis/paper_tables/table2_layer_observability.md) | C1 |
-| 3 | Archetype × stratum | [`table3_archetype_stratum.md`](../analysis/paper_tables/table3_archetype_stratum.md) | C2, C5 |
+| 3 | Archetype × stratum | [`table3_archetype_stratum.md`](../analysis/paper_tables/table3_archetype_stratum.md) | parked C2 / descriptive C5 pending `observation_kind` κ |
 | 4 | Latency (precision-filtered) | [`table4_latency_by_precision.md`](../analysis/paper_tables/table4_latency_by_precision.md) | C3, C4 |
 | 5 | Target enumeration | [`table5_target_enumeration.md`](../analysis/paper_tables/table5_target_enumeration.md) | §4 complete-vs-subset |
-| 6 | Null denominator | [`table6_null_denominator.md`](../analysis/paper_tables/table6_null_denominator.md) | C6, null-event interpretation |
+| 6 | Null denominator | [`table6_null_denominator.md`](../analysis/paper_tables/table6_null_denominator.md) | null-event interpretation (C6 demoted 2026-04-24, see §C6 below) |
 | 7 | Jurisdictional composition | [`table7_jurisdiction_distribution.md`](../analysis/paper_tables/table7_jurisdiction_distribution.md) | §0 sampling frame |
 
 Fail-closed properties the generator enforces:

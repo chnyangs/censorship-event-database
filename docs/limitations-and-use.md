@@ -8,7 +8,7 @@ asserting that you have read and agreed to what follows.
 
 ## 1. What this dataset is
 
-A stratified-complete catalog of **publicly documented crypto censorship
+A stratified admitted catalog of **publicly documented crypto censorship
 events** from 2017-07-26 (BTC-e seizure) through 2025-11-19 (Russian
 cybercrime infrastructure SDN). Each event YAML captures: a trigger with
 primary-source citations (sha256 `body_hash`); a concrete target
@@ -26,6 +26,11 @@ crypto-censorship event. Its sampling frame is narrower and deliberately
 auditable: **publicly documented crypto censorship events with an
 identifiable legal, regulatory, state, or corporate trigger and at least
 one independently archivable evidence surface**.
+
+"Admitted" is the operative completeness boundary: included rows satisfy
+the schema, source, and evidence-chain gates for this release. The corpus
+does not claim a closed-world exclusion ledger for all events matching a
+stratum.
 
 Included events must have a concrete crypto target and a trigger source
 that can be archived or replayed. Layer-level claims enter the paper only

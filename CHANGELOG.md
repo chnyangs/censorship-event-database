@@ -130,10 +130,9 @@ schema change. Final corpus state: 53 events, archetype counts
 ### Inter-rater reliability (P1 reviewer pivot)
 
 - **`scripts/build_irr_sample.py`** + **`scripts/compute_irr_kappa.py`** +
-  `make irr-sample` + `make irr-kappa` +
-  [`docs/inter_rater_reliability.md`](docs/inter_rater_reliability.md).
-  Stratified blind sampler (15 events: 5 anchor / 7 empirical / 3 null,
-  seed 20260424); explicit `row_id` join (replaces the order-fragile
+  `make irr-sample` + `make irr-kappa`. Stratified blind sampler
+  (15 events: 5 anchor / 7 empirical / 3 null, seed 20260424); explicit
+  `row_id` join (replaces the order-fragile
   `(event_id, layer)` zip); `--coder-mode / --coder-name /
   --coder-prompt-version / --coder-notes` CLI args record provenance into
   `kappa_report.json::coder_provenance`.
@@ -172,12 +171,13 @@ schema change. Final corpus state: 53 events, archetype counts
 
 ### Citation / framing
 
-- **[`docs/prior_art_delta.md`](docs/prior_art_delta.md)** — per-axis delta
-  vs Wahrstätter et al. (WWW 2024), with methodology ancestors credited as
-  *transplanted*: Filastò & Appelbaum (FOCI 2012, OONI), Pearce et al.
+- **Prior-art delta** kept inline in [`README.md §1`](README.md) and
+  [`docs/paper_claims.md §0`](docs/paper_claims.md): per-axis delta vs
+  Wahrstätter et al. (WWW 2024); methodology ancestors credited as
+  *transplanted* — Filastò & Appelbaum (FOCI 2012, OONI), Pearce et al.
   (USENIX Sec 2017, coverage-matched conditional rates), Sundara Raman et
   al. (CCS 2020, Censored Planet), Gebru et al. (CACM 2021,
-  Datasheets-for-Datasets). BibTeX stubs included.
+  Datasheets-for-Datasets).
 
 ## 2026-04-23 (derived-layer correctness fixes)
 

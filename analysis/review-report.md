@@ -13,7 +13,7 @@ This file is the operational summary for the repo's two current priorities:
 - Scope-limited release-ready cases: `53`
 - Working drafts: `0`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 35, 'paper_anchor': 5, 'null_control': 13}`
+- Paper-use roles: `{'aggregate_datapoint': 38, 'paper_anchor': 2, 'null_control': 13}`
 - Draft priority order: `none`
 
 ## Cases
@@ -144,7 +144,7 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `release_ready_scoped`
-- Paper-use role: `paper_anchor`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
@@ -613,7 +613,7 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `release_ready_scoped`
-- Paper-use role: `paper_anchor`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
 - Attribution reliability: `high`
@@ -813,7 +813,7 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `release_ready_scoped`
-- Paper-use role: `paper_anchor`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `medium`
 - Attribution reliability: `medium`

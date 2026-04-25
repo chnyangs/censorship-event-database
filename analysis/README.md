@@ -38,4 +38,4 @@ make irr-kappa     # only after analysis/inter_rater/<var>_blind.csv recodes are
 make operator-census   # only when the public RPC/builder/wallet repos may have changed
 ```
 
-Set `SOURCE_DATE_EPOCH=<unix-seconds>` before `make regenerate` for byte-stable artifacts (see [`../docs/reproducibility.md`](../docs/reproducibility.md)).
+Set `SOURCE_DATE_EPOCH=<unix-seconds>` before `make regenerate` for byte-stable artifacts; reproduction via the pinned [`Dockerfile`](../Dockerfile) at the repo root.

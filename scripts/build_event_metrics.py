@@ -103,6 +103,16 @@ def _obs_delta_h(obs: dict, trigger_ts: datetime | None) -> float | None:
     return hours_between(parse_ts(obs.get("timestamp")), trigger_ts)
 
 
+def _observation_action_id(slug: str, obs_idx: int, obs: dict) -> str:
+    action_id = obs.get("action_id")
+    if isinstance(action_id, str) and action_id.strip():
+        return action_id.strip()
+    return (
+        f"{slug}:{obs_idx}:{obs.get('layer')}:{obs.get('actor')}:"
+        f"{obs.get('event')}"
+    )
+
+
 def compute_event_metrics(event: dict) -> dict[str, Any]:
     slug = event.get("id", "unknown")
     trigger = event.get("trigger") or {}
@@ -134,8 +144,10 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
     plausible_layers: set[str] = set()
     per_layer_first_delta: dict[str, float] = {}
     deltas: list[float] = []
+    changed_action_ids: list[str] = []
+    duplicate_of_action_ids: list[str] = []
 
-    for obs in observations:
+    for obs_idx, obs in enumerate(observations):
         if not isinstance(obs, dict):
             continue
         layer = obs.get("layer")
@@ -145,6 +157,10 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
             continue
         if kind == "observed_change":
             changed_layers.add(layer)
+            changed_action_ids.append(_observation_action_id(slug, obs_idx, obs))
+            dup = obs.get("duplicate_of_action_id")
+            if isinstance(dup, str) and dup.strip():
+                duplicate_of_action_ids.append(dup.strip())
             if attr == "direct":
                 direct_layers.add(layer)
             elif attr == "plausible":
@@ -277,6 +293,9 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
         "primary_onchain_source_count": prim_onchain,
         "semi_primary_source_count": semi,
         "supporting_source_count": supporting,
+        "changed_action_count": len(changed_action_ids),
+        "changed_unique_action_count": len(set(changed_action_ids)),
+        "duplicate_of_action_ids": sorted(set(duplicate_of_action_ids)),
 
         "has_large_target_set": has_large_target,
         "is_reversal_event": is_reversal,
@@ -296,6 +315,7 @@ CSV_COLUMNS = [
     "recovery_rate", "mean_resolved_hours",
     "coverage_measured_count", "coverage_partial_count", "coverage_gap_count",
     "primary_source_count", "semi_primary_source_count", "primary_onchain_source_count",
+    "changed_action_count", "changed_unique_action_count",
     "has_large_target_set", "is_reversal_event", "target_is_privacy_tool",
 ]
 

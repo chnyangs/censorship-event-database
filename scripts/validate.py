@@ -409,6 +409,21 @@ class EventValidator:
             )
         if not isinstance(trigger.get("citation"), list) or not trigger["citation"]:
             result.error("trigger.citation must be a non-empty list.")
+        else:
+            archived = False
+            for idx, citation in enumerate(trigger.get("citation") or []):
+                if self._citation_has_archive_anchor(citation):
+                    archived = True
+                elif isinstance(citation, dict) and citation.get("url"):
+                    result.warn(
+                        f"trigger.citation[{idx}] has url but no archive anchor "
+                        "(wayback, body_hash+body_path, query_hash, or measurement_ids)."
+                    )
+            if not archived:
+                result.error(
+                    "trigger.citation must include at least one archived/replayable citation "
+                    "(wayback, body_hash+body_path, query_hash, or measurement_ids)."
+                )
 
     def _validate_target(self, target: Any, result: ValidationResult) -> None:
         if not isinstance(target, dict):
@@ -496,6 +511,11 @@ class EventValidator:
                 )
             if "timestamp" in obs and not parse_iso8601(str(obs["timestamp"])):
                 result.error(f"observations[{idx}].timestamp must be ISO-8601 date-time.")
+            if obs.get("duplicate_of_action_id") and not obs.get("action_id"):
+                result.error(
+                    f"observations[{idx}].duplicate_of_action_id requires action_id "
+                    "so downstream action-level deduplication can join the row."
+                )
             if "precision" in obs and obs["precision"] not in self.precision_levels:
                 result.error(
                     f"observations[{idx}].precision must be one of {sorted(self.precision_levels)}"
@@ -802,6 +822,25 @@ class EventValidator:
                 f"{label}.type={source_type} requires at least one of wayback or body_hash+body_path "
                 f"so the archived artifact can be located."
             )
+
+    def _citation_has_archive_anchor(self, citation: Any) -> bool:
+        """Return True when a trigger/recovery citation is replayable.
+
+        Trigger citations may be richer or looser than observation sources, but
+        at least one trigger citation for an admitted event must be auditable
+        without trusting the live URL. Strings are live URL pointers only; they
+        do not satisfy the archive requirement.
+        """
+        if not isinstance(citation, dict):
+            return False
+        if citation.get("type") == "primary_onchain":
+            return bool(citation.get("tx_hash"))
+        has_wayback = isinstance(citation.get("wayback"), str) and citation.get("wayback").strip()
+        has_body_artifact = bool(citation.get("body_hash")) and bool(citation.get("body_path"))
+        has_query_hash = isinstance(citation.get("query_hash"), str) and citation.get("query_hash").strip()
+        measurement_ids = citation.get("measurement_ids")
+        has_measurement_ids = isinstance(measurement_ids, list) and len(measurement_ids) > 0
+        return bool(has_wayback or has_body_artifact or has_query_hash or has_measurement_ids)
 
     def _validate_body_hash(
         self,

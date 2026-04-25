@@ -7,6 +7,15 @@ on:
       - 'schema/**'
       - 'scripts/**'
       - 'templates/**'
+      - 'tests/**'
+      - 'docs/**'
+      - 'analysis/paper_tables/**'
+      - 'analysis/inter_rater/**'
+      - 'derived/**'
+      - 'Makefile'
+      - 'Dockerfile'
+      - 'requirements*.txt'
+      - 'dataset.meta.json'
       - '.github/workflows/validate.yml'
   push:
     branches: [main]
@@ -15,6 +24,15 @@ on:
       - 'schema/**'
       - 'scripts/**'
       - 'templates/**'
+      - 'tests/**'
+      - 'docs/**'
+      - 'analysis/paper_tables/**'
+      - 'analysis/inter_rater/**'
+      - 'derived/**'
+      - 'Makefile'
+      - 'Dockerfile'
+      - 'requirements*.txt'
+      - 'dataset.meta.json'
       - '.github/workflows/validate.yml'
   workflow_dispatch:
 
@@ -86,3 +104,24 @@ jobs:
         run: python3 scripts/draft_gap_report.py
       - name: Dataset build (JSON + CSV)
         run: python3 scripts/build_dataset.py
+
+      # The paper-reproduction path. CI must exercise the same chain
+      # an artifact-eval reviewer follows (`make regenerate` →
+      # `make paper-check`) and prove byte-stability under
+      # `SOURCE_DATE_EPOCH`, so a green badge is evidence that paper-cited
+      # tables actually regenerate, not just that pytest passes.
+      - name: Regenerate derived + paper tables (pinned epoch)
+        run: |
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          make regenerate
+      - name: Paper-readiness gate
+        run: make paper-check
+      - name: Byte-stability round-trip (regenerate twice, hashes must match)
+        run: |
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          sha256sum analysis/paper_tables/*.md analysis/evidence-chains/*.md derived/*.md derived/*.csv \
+              | sort > /tmp/h1.txt
+          make regenerate
+          sha256sum analysis/paper_tables/*.md analysis/evidence-chains/*.md derived/*.md derived/*.csv \
+              | sort > /tmp/h2.txt
+          diff /tmp/h1.txt /tmp/h2.txt

@@ -1,6 +1,6 @@
 # Archetype distribution report
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `573838c` · generated `2024-04-24T23:06:40Z` (events: 53)
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `c81d8bb` · generated `2026-04-24T10:12:43Z` (events: 53)
 
 ## 1. Classification rules (deterministic, priority-ordered)
 
@@ -93,11 +93,11 @@ Up to 5 events per class, selected by admission tier then slug.
 
 ### `multi_layer`  (5 events)
 
-- `chatex-ofac-2021` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l4_frontend` · latency `acute` (t=28.2h)
 - `cryptex-ofac-2024` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l4_frontend` · latency `acute` (t=3.6h)
-- `sec-v-binance-2023` · tier `anchor_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend+offramp_cex` · latency `delayed` (t=96.0h)
 - `tornado-cash-ofac-2022` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l1_consensus+l3_rpc+l4_frontend+offramp_cex` · latency `acute` (t=2.9h)
-- `tornado-cash-ofac-delisting-2025` · tier `anchor_case` · stratum `S2_ofac_removal` · signature `asset_onchain+l1_consensus+l3_rpc+l4_frontend` · latency `synchronous` (t=0.0h)
+- `chatex-ofac-2021` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l4_frontend` · latency `acute` (t=28.2h)
+- `sec-v-binance-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend+offramp_cex` · latency `delayed` (t=96.0h)
+- `tornado-cash-ofac-delisting-2025` · tier `empirical_case` · stratum `S2_ofac_removal` · signature `asset_onchain+l1_consensus+l3_rpc+l4_frontend` · latency `synchronous` (t=0.0h)
 
 ### `other_single_layer`  (0 events)
 

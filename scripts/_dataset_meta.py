@@ -24,6 +24,32 @@ from typing import Any
 import yaml
 
 
+def source_date_epoch() -> int | None:
+    raw = os.environ.get("SOURCE_DATE_EPOCH")
+    if raw:
+        try:
+            return int(raw.strip())
+        except (TypeError, ValueError):
+            pass
+    return None
+
+
+def source_date_epoch_is_set() -> bool:
+    return source_date_epoch() is not None
+
+
+def now_utc_datetime() -> datetime:
+    """Return deterministic UTC now when SOURCE_DATE_EPOCH is set."""
+    epoch = source_date_epoch()
+    if epoch is not None:
+        return datetime.fromtimestamp(epoch, tz=timezone.utc).replace(microsecond=0)
+    return datetime.now(timezone.utc).replace(microsecond=0)
+
+
+def today_utc_date() -> date:
+    return now_utc_datetime().date()
+
+
 def now_utc_iso() -> str:
     """Return a UTC ISO-8601 timestamp for artifact `generated_at` fields.
 
@@ -32,29 +58,9 @@ def now_utc_iso() -> str:
     timestamp is used instead of wall-clock time. This lets
     `make regenerate` produce byte-stable artifacts at a pinned commit
     (set `SOURCE_DATE_EPOCH=$(git log -1 --format=%ct)` for the head
-    commit, or any other fixed value).
-
-    When the env var is absent or malformed, fall back to the current
-    wall-clock UTC time (one-second precision).
+    commit).
     """
-    raw = os.environ.get("SOURCE_DATE_EPOCH")
-    if raw:
-        try:
-            epoch = int(raw.strip())
-            return (
-                datetime.fromtimestamp(epoch, tz=timezone.utc)
-                .replace(microsecond=0)
-                .isoformat()
-                .replace("+00:00", "Z")
-            )
-        except (TypeError, ValueError):
-            pass
-    return (
-        datetime.now(timezone.utc)
-        .replace(microsecond=0)
-        .isoformat()
-        .replace("+00:00", "Z")
-    )
+    return now_utc_datetime().isoformat().replace("+00:00", "Z")
 
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent

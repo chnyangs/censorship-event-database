@@ -1,8 +1,8 @@
 # Table 3 · Archetype × research-stratum cross-tab
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `573838c` · generated `2024-04-24T23:06:40Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `c81d8bb` · generated `2026-04-24T10:12:43Z`
 
-Supports **C2** and **C5** (`docs/paper_claims.md §1`). Rows: rule-based deterministic archetypes. Columns: research strata (admission stratification, NOT jurisdiction / population weighting).
+Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). Rows: rule-based deterministic archetypes. Columns: research strata (admission stratification, NOT jurisdiction / population weighting). Promotion from descriptive table to paper claim requires `observation_kind` κ ≥ 0.6.
 
 | archetype \ stratum | S1_ofac_sdn | S2_ofac_removal | S3_doj_sec_cftc_fiod | S4_nation_state | S5_corporate | S6_supranational | total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |

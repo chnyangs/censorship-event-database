@@ -83,7 +83,7 @@ help:
 	    'make check-network         # verify-citations + freshness' \
 	    'make check-all             # check + check-network' \
 	    'make regenerate            # dataset + derived + paper tables + site/evidence outputs' \
-	    'make clean                 # remove generated artifacts (site/, dataset.{json,csv}, evidence-chains/)'
+	    'make clean                 # remove untracked generated artifacts (site/, dataset.{json,csv})'
 
 # ---- Validation targets ----
 validate:
@@ -160,7 +160,7 @@ paper-tables: jurisdiction
 	$(PYTHON) scripts/build_paper_tables.py
 
 paper-check: derived paper-tables
-	$(PYTHON) scripts/check_paper_readiness.py
+	$(PYTHON) scripts/check_paper_readiness.py --strict-audit
 
 # Pytest suite for classifier / coverage-numerator / recovery-filter /
 # paper-table fail-closed invariants (install with `pip install -r
@@ -250,11 +250,10 @@ check-all: check check-network
 regenerate: dataset event-metrics layer-observability archetypes \
             admission-sensitivity jurisdiction \
             paper-tables status review staleness \
-            render-site render-evidence-all
-	@echo "[regenerate] all derived artifacts rebuilt"
+            render-site render-evidence-all paper-check
+	@echo "[regenerate] all derived artifacts rebuilt and gated"
 
 clean:
 	rm -rf $(SITE_DIR)
-	rm -f $(DATASET_JSON) $(DATASET_CSV) $(DATASET_META)
-	rm -rf $(EVIDENCE_DIR) $(DERIVED_DIR)
-	@echo "[clean] removed site/, dataset.{json,csv,meta.json}, evidence-chains/, derived/"
+	rm -f $(DATASET_JSON) $(DATASET_CSV)
+	@echo "[clean] removed untracked site/ and dataset.{json,csv}; tracked research artifacts are preserved"

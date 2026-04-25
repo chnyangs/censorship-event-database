@@ -30,7 +30,7 @@ import pathlib
 import re
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import Any
 
 import yaml
@@ -43,7 +43,7 @@ SITE_DIR = REPO_ROOT / "site"
 
 # Shared dataset-identity accessor (see scripts/_dataset_meta.py).
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta  # noqa: E402
+from _dataset_meta import load_meta, now_utc_datetime  # noqa: E402
 
 # Canonical layer ordering used everywhere a cascade is shown.
 LAYER_ORDER = [
@@ -1336,6 +1336,7 @@ def render_event_page(event: dict, all_events: list[dict], meta: dict | None = N
     meta = meta or load_meta()
     dv = meta.get("dataset_version") or "unknown"
     cutoff = meta.get("cutoff_date") or "n/a"
+    generated_stamp = now_utc_datetime().strftime("%Y-%m-%d %H:%M UTC")
     slug = event.get("id", "unknown")
     title = titleify(slug)
     shape = event.get("empirical_shape") or ""
@@ -1464,7 +1465,7 @@ def render_event_page(event: dict, all_events: list[dict], meta: dict | None = N
   {render_prev_next(slug, ordered)}
 
   <footer class="site-footer">
-    <div>Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} from <code>events/{escape(slug)}.yaml</code> · dataset v{escape(dv)} · cutoff {escape(cutoff)}. See <a href="../docs/citing.md">how to cite</a>.</div>
+    <div>Generated {generated_stamp} from <code>events/{escape(slug)}.yaml</code> · dataset v{escape(dv)} · cutoff {escape(cutoff)}. See <a href="../docs/citing.md">how to cite</a>.</div>
     <div><a href="../raw/{escape(slug)}.yaml">Raw YAML</a> · <a href="../index.html">All events</a></div>
   </footer>
 </main>
@@ -1542,6 +1543,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
     dv = meta.get("dataset_version") or "unknown"
     cutoff = meta.get("cutoff_date") or "n/a"
     commit = meta.get("source_commit") or ""
+    generated_stamp = now_utc_datetime().strftime("%Y-%m-%d %H:%M UTC")
     shape_counts: collections.Counter = collections.Counter(
         e.get("empirical_shape") for e in events
     )
@@ -1768,7 +1770,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
   <p>This release is <strong>version {escape(dv)}</strong>, cutoff <code>{escape(cutoff)}</code>{f' (source commit <code>{escape(commit)}</code>)' if commit else ''}. Machine-readable metadata: <a href="CITATION.cff">CITATION.cff</a> · <a href="dataset.meta.json">dataset.meta.json</a>. Citation templates in <a href="docs/citing.md">docs/citing.md</a>. Once the first tagged release is made, Zenodo mints a DOI you can pin against.</p>
 
   <footer class="site-footer">
-    <div>Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} · {len(events)} events · v{escape(dv)} · cutoff {escape(cutoff)}</div>
+    <div>Generated {generated_stamp} · {len(events)} events · v{escape(dv)} · cutoff {escape(cutoff)}</div>
     <div><a href="raw/">raw YAMLs</a> · <a href="https://github.com/chnyangs/censorship-event-database">GitHub</a></div>
   </footer>
 </main>

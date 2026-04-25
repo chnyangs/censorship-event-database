@@ -22,9 +22,7 @@ from __future__ import annotations
 
 import argparse
 import pathlib
-import subprocess
 import sys
-from datetime import datetime, timezone
 from typing import Any
 
 import yaml
@@ -39,7 +37,7 @@ DEFAULT_OUT_DIR = REPO_ROOT / "analysis" / "evidence-chains"
 # synthesized dict so this script keeps working on a fresh checkout that
 # hasn't yet run `make dataset`).
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
 
 
 def load_event(slug: str) -> dict:
@@ -110,7 +108,7 @@ def render_event_evidence_chain(event: dict, meta: dict) -> str:
                + f" · **Schema**: `{schema_v}` · "
                f"**Event last_verified**: `{last_verified}` · "
                f"**Tool version**: `{TOOL_VERSION}` · "
-               f"**Generated**: `{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}`")
+               f"**Generated**: `{now_utc_iso()}`")
     out.append("")
     out.append("> ⚠️ **This output is auditable evidence, not advice.** "
                "Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) "

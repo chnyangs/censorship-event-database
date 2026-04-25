@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=53)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `573838c` · generated `2024-04-24T23:06:40Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `c81d8bb` · generated `2026-04-24T10:12:43Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -8,8 +8,8 @@ Supports `docs/paper_claims.md §0` (case-role convention). Each event's admissi
 
 | admission_tier | count |
 | --- | ---: |
-| `anchor_case` | 5 |
-| `empirical_case` | 35 |
+| `anchor_case` | 2 |
+| `empirical_case` | 38 |
 | `null_case` | 13 |
 | **total** | **53** |
 
@@ -31,7 +31,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `btc-e-doj-2017` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
 | `canada-convoy-freeze-2022` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `cftc-v-ooki-dao-2022` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `complete` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
-| `chatex-ofac-2021` | `anchor_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 2 | `multi_layer` | · | · | `2026-04-22` | `—` |
+| `chatex-ofac-2021` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 2 | `multi_layer` | · | · | `2026-04-22` | `—` |
 | `china-pboc-crypto-ban-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `hour` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-04-21` | `—` |
 | `chipmixer-doj-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
 | `circle-usdc-tornado-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `address_set` | `subset` | 1 | `asset_only` | ✓ | · | `2026-04-22` | `—` |
@@ -60,7 +60,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `russian-cyber-theft-ofac-2020` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
 | `russian-cybercrime-infra-ofac-2025` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `—` |
 | `samourai-doj-2024` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
-| `sec-v-binance-2023` | `anchor_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-04-22` | `—` |
+| `sec-v-binance-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-04-22` | `—` |
 | `sec-v-coinbase-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `sec-v-uniswap-wells-notice-2024` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `sec_action` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `—` |
 | `semenov-ofac-2023` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-21` | `2026-04-22` |
@@ -72,7 +72,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `tether-dprk-precommit-freeze-2025` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `address_set` | `subset` | 1 | `asset_only` | ✓ | · | `2026-04-22` | `—` |
 | `tether-retroactive-sweep-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `address_set` | `subset` | 1 | `asset_only` | ✓ | · | `2026-04-22` | `2026-04-22` |
 | `tornado-cash-ofac-2022` | `anchor_case` | `S1_ofac_sdn` | `cascade` | `ofac_sdn_designation` | `hour` | `address_set` | `complete` | 5 | `multi_layer` | · | · | `2026-04-21` | `2026-04-22` |
-| `tornado-cash-ofac-delisting-2025` | `anchor_case` | `S2_ofac_removal` | `cascade` | `ofac_sdn_removal` | `day` | `address_set` | `complete` | 4 | `multi_layer` | · | ✓ | `2026-04-21` | `—` |
+| `tornado-cash-ofac-delisting-2025` | `empirical_case` | `S2_ofac_removal` | `cascade` | `ofac_sdn_removal` | `day` | `address_set` | `complete` | 4 | `multi_layer` | · | ✓ | `2026-04-21` | `—` |
 | `tornado-cash-ofac-redesignation-2022` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-21` | `2026-04-22` |
 | `turkey-cbrt-crypto-ban-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `uniswap-frontend-delisting-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-04-22` | `—` |

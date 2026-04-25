@@ -180,8 +180,9 @@ def _write_derived(by_country, by_region, by_actor, by_us,
     (out_dir / "jurisdiction_distribution.md").write_text("\n".join(md) + "\n")
 
 
-def _write_paper_table(by_country, by_region, by_us, total: int) -> None:
-    PAPER_TABLES_DIR.mkdir(parents=True, exist_ok=True)
+def _write_paper_table(by_country, by_region, by_us, total: int,
+                       paper_tables_dir: pathlib.Path = PAPER_TABLES_DIR) -> None:
+    paper_tables_dir.mkdir(parents=True, exist_ok=True)
     us = by_us.get("US", 0)
     non_us = by_us.get("non-US", 0)
     unspec = by_us.get("Unspecified", 0)
@@ -252,23 +253,28 @@ def _write_paper_table(by_country, by_region, by_us, total: int) -> None:
         "100% — they sum higher because of multi-jurisdiction events.",
         "",
     ]
-    (PAPER_TABLES_DIR / "table7_jurisdiction_distribution.md").write_text(
+    (paper_tables_dir / "table7_jurisdiction_distribution.md").write_text(
         "\n".join(md))
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out-dir", default=str(DEFAULT_DERIVED_DIR))
+    parser.add_argument("--out-dir", default=str(DEFAULT_DERIVED_DIR),
+                        help="Where derived/jurisdiction_distribution.{csv,md} go.")
+    parser.add_argument("--paper-tables-dir", default=str(PAPER_TABLES_DIR),
+                        help="Where Table 7 goes (default: analysis/paper_tables).")
     args = parser.parse_args()
 
     events = _load_events()
     by_country, by_region, by_actor, by_us = _classify(events)
     out_dir = pathlib.Path(args.out_dir)
+    paper_tables_dir = pathlib.Path(args.paper_tables_dir)
     _write_derived(by_country, by_region, by_actor, by_us,
                    out_dir, len(events))
-    _write_paper_table(by_country, by_region, by_us, len(events))
+    _write_paper_table(by_country, by_region, by_us, len(events),
+                       paper_tables_dir=paper_tables_dir)
     print(f"[jurisdiction] wrote {out_dir}/jurisdiction_distribution.{{csv,md}} "
-          f"and {PAPER_TABLES_DIR}/table7_jurisdiction_distribution.md",
+          f"and {paper_tables_dir}/table7_jurisdiction_distribution.md",
           file=sys.stderr)
     return 0
 

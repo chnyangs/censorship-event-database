@@ -8,7 +8,10 @@
 ## What this is
 
 A reproducible scan of **8 publicly-maintained operator repositories**
-for OFAC-keyed compliance activity visible in git history. The scan
+for OFAC-keyed compliance activity visible in git history. Path discovery
+uses both the current checkout and historical `git log --all --name-only`
+paths, so deleted or renamed files matching the configured patterns are
+included. The scan
 inputs are pinned in
 [`sources/operator_census/candidates.yaml`](../../sources/operator_census/candidates.yaml);
 the scanner is
@@ -30,12 +33,13 @@ python3 scripts/scan_operator_census.py --only flashbots/rpc-endpoint
 | Class | Count | Interpretation |
 | --- | ---: | --- |
 | Repos surveyed | 8 | Flashbots × 4, wallet/frontend × 3, community × 1 |
-| Repos with an OFAC-keyed filter file in git | **1** | `flashbots/rpc-endpoint` — the single known case (file naming convention identifies it; per-commit classification is independent) |
-| Repos that ship **no** public compliance substrate | 6 | `flashbots/{mev-boost-relay, rbuilder, builder}`, `trustwallet/assets`, `Uniswap/token-lists` (schema only), `ethereum-lists/tokens` |
-| Repos with heavy list activity but **non-OFAC** purpose | 1 | `MetaMask/eth-phishing-detect` — 204,341 commits on a phishing registry; **0 OFAC-keyword reactions, 0 OFAC-maintenance commits, 8 entity-hits all phishing-related** under subject-only classification |
+| Repos with OFAC-named current or historical files | **2** | `flashbots/rpc-endpoint` and deprecated `flashbots/builder`; only `rpc-endpoint` carries an OFAC-keyword reaction commit |
+| Repos with no matching public compliance substrate under the configured current-or-historical path patterns | 3 | `flashbots/mev-boost-relay`, `flashbots/rbuilder`, `ethereum-lists/tokens` |
+| Repos with list/filter substrates but **no OFAC-keyword reaction** | 4 | `flashbots/builder` (deprecated generic maintenance), `MetaMask/eth-phishing-detect` (phishing), `trustwallet/assets` (denylist files), `Uniswap/token-lists` (schema files) |
+| Repos with heavy list activity but **non-OFAC** purpose | 2 | `MetaMask/eth-phishing-detect` and `trustwallet/assets`; **0 OFAC-keyword reactions, 0 OFAC-maintenance commits** under subject-only classification |
 | OFAC-keyword reaction commits across entire corpus | **1** | The Flashbots 2022-08-08 PR #90 commit (subject literally contains "ofac") |
 
-## The single genuinely OFAC-keyed substrate
+## The single OFAC-keyword reaction substrate
 
 `flashbots/rpc-endpoint::server/ofacblacklist.go`. Full commit history
 (5 commits across 3.5 years, 2021-10 → 2025-04). The classifier uses
@@ -72,20 +76,18 @@ anywhere else in the surveyed population.
 
 ## The structural finding
 
-**Public source control captures compliance decisions on exactly
-one surveyed operator's substrate (Flashbots' public RPC endpoint),
-and not on any of the other seven.** The Flashbots relay, builder,
-and rbuilder implementations — which were at the center of the
-2022-2023 PBS-censorship debate — ship with no public compliance
-filter. Trust Wallet's asset index, Uniswap's token-list schema, and
-the community-maintained Ethereum token list likewise do not.
-MetaMask's `eth-phishing-detect` is the only repo with heavy
-list-maintenance activity, but that activity is structurally
-distinct from OFAC compliance: it is a phishing / scam / impersonator
-registry, and after the four-class classifier filters out prefix
-false positives ("stormtoken.com" 2017 entries do not indicate a
-Storm/Semenov OFAC reaction, which happened in 2023), exactly zero
-commits carry OFAC state-action language.
+**Public source control captures an explicit OFAC-keyword reaction on
+exactly one surveyed operator substrate under the configured v0.1 path
+patterns (Flashbots' public RPC endpoint).** Historical path scanning
+also finds a deprecated Flashbots builder `ofac_blacklist.json` and
+Trust Wallet denylist substrates; neither produces an OFAC-keyword
+reaction commit under subject-only classification. MetaMask's
+`eth-phishing-detect` and Trust Wallet's denylist activity are heavy
+list-maintenance streams, but structurally distinct from OFAC
+compliance in this classifier. After the four-class classifier filters
+out prefix false positives ("stormtoken.com" 2017 entries do not
+indicate a Storm/Semenov OFAC reaction, which happened in 2023),
+exactly one commit carries OFAC state-action language.
 
 The paper's defensible claim from this census is therefore:
 
@@ -93,10 +95,12 @@ The paper's defensible claim from this census is therefore:
 > as a crypto-censorship measurement channel is structurally narrow:
 > of 8 surveyed operator repositories spanning relay / builder /
 > public RPC / wallet / frontend-schema roles, only `flashbots/rpc-endpoint`
-> exposes sanctions-linked filter-list edits in public source
-> control. The channel is real, reproducible, and minute-precise
-> where it exists, but it is not a population-wide substrate; most
-> operator compliance decisions live server-side, not in git.**
+> exposes an OFAC-keyword reaction commit tied to an admitted event.
+> Historical scans surface additional generic or deprecated list
+> substrates, but not additional sanctions-reaction commits. The channel
+> is real, reproducible, and minute-precise where it exists, but it is
+> not a population-wide substrate; most operator compliance decisions
+> appear outside public git or outside the configured v0.1 patterns.**
 
 This is a *stronger* finding for the paper than a larger N of
 OFAC-keyed operator repositories would be, because it sharpens the
@@ -119,6 +123,10 @@ implementations).
   ambiguous cases for human review. The paper rate (OFAC-reaction)
   is built on the narrow state-action keyword set; the ambiguous
   classes are reported separately.
+- **Negative results are pattern-scoped**. The scanner now includes
+  deleted and renamed historical paths, but it still cannot see private
+  repos, server-side configuration, or public files whose names do not
+  match the candidate's v0.1 compliance patterns.
 - **`clone_status = ok, files = 0`** is a substantive result: the
   repository is publicly accessible but contains no file matching
   the compliance-file patterns in `candidates.yaml`. This is the
@@ -137,11 +145,11 @@ implementations).
   be derived from the surveyed operator population.
 - **Refines the observability gap in README §1 point 5**: the gap is
   not just "L0/L1/L3 have thin measured denominators at v0.1"; it is
-  "the only operator-substrate rate visible via public source
-  control is the single-repo rate on `flashbots/rpc-endpoint`, and
-  the other seven surveyed repos place zero compliance artifacts in
-  public git." This is a measurement finding about the medium, not
-  just the corpus.
+  "the only sanctions-reaction commit tied to an admitted event is
+  the single-repo rate on `flashbots/rpc-endpoint`; historical scans
+  surface additional generic/deprecated list substrates but no
+  additional OFAC-keyword reaction commits." This is a measurement
+  finding about the medium, not just the corpus.
 - **Does not change C2 / C3 / C4 numbers** — the census does not
   admit new events; it corroborates the existing admissions.
 
@@ -160,8 +168,8 @@ A defensible v0.2 pivot would admit:
    schema points to, not the schema repo itself).
 
 Each expansion increases candidate count; if the v0.1 pattern holds
-(n=1 operator in public git across ~8 surveyed repos), then the
-structural measurement claim strengthens. If v0.2 surfaces more
-OFAC-keyed repos, the paper can upgrade from existence-proof to a
-mini-census-distribution — but that upgrade is future work, not
-v0.1 material.
+(n=1 admitted OFAC-keyword reaction commit across ~8 surveyed repos),
+then the structural measurement claim strengthens. If v0.2 surfaces
+more OFAC-keyed repos or admitted reaction commits, the paper can
+upgrade from existence-proof to a mini-census-distribution — but that
+upgrade is future work, not v0.1 material.

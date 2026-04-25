@@ -173,12 +173,14 @@ def _write_csv(path: pathlib.Path, rows: list[dict]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", default="analysis/inter_rater")
+    parser.add_argument("--out-dir", "--out", dest="out_dir",
+                        default="analysis/inter_rater",
+                        help="Output dir (alias `--out` retained for back-compat).")
     parser.add_argument("--n-events", type=int, default=15)
     parser.add_argument("--seed", type=int, default=20260424)
     args = parser.parse_args()
 
-    out_dir = REPO_ROOT / args.out
+    out_dir = REPO_ROOT / args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
 
     events = _load_events()

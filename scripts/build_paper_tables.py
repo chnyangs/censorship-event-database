@@ -309,16 +309,19 @@ def build_table2(
     lines.append("")
     lines.append(
         "| layer | applicable | measured | partial | not_measured | not_applicable | "
-        "changed (measured) | changed (partial) | changed/measured | changed/measured+partial |"
+        "changed events (measured) | changed events (partial) | unique changed actions | "
+        "duplicate action rows | changed/measured | changed/measured+partial |"
     )
     lines.append(
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"
     )
     for row in layer_rows:
         measured = row["measured_count"]
         partial = row["partially_measured_count"]
         changed_m = row["changed_under_measured_count"]
         changed_mp = row["changed_under_measured_or_partial_count"]
+        unique_actions = row.get("changed_unique_action_count", row.get("changed_count", 0))
+        duplicate_actions = row.get("duplicated_changed_action_count", 0)
         # The partial-coverage-changed count on its own (not cumulative)
         changed_partial_only = changed_mp - changed_m
         lines.append(
@@ -327,12 +330,21 @@ def build_table2(
             f"{measured} | {partial} | "
             f"{row['not_measured_count']} | {row['not_applicable_count']} | "
             f"{changed_m} | {changed_partial_only} | "
+            f"{unique_actions} | {duplicate_actions} | "
             f"{_rate(changed_m, measured)} | {_rate(changed_mp, measured + partial)} |"
         )
     lines.append("")
     lines.append(
         "A rate of `—` indicates a zero denominator; it is an "
         "**observability gap**, not an attested negative."
+    )
+    lines.append(
+        "`unique changed actions` deduplicates physical actions that are "
+        "intentionally linked across event records via `observations[].action_id` "
+        "(for example, the Circle USDC Tornado blacklist transaction appears in "
+        "both the OFAC-triggered event and the issuer-action event). Event-rate "
+        "columns remain event-record denominators; action counts are reported "
+        "separately so the two units are not conflated."
     )
     lines.append("")
     _write_md(out_dir / "table2_layer_observability.md", lines)
@@ -349,10 +361,12 @@ def build_table3(
         ds_meta, "Table 3 · Archetype × research-stratum cross-tab"
     )
     lines.append(
-        "Supports **C2** and **C5** (`docs/paper_claims.md §1`). "
+        "Descriptive support for parked **C2** and **C5** "
+        "(`docs/paper_claims.md §1`). "
         "Rows: rule-based deterministic archetypes. Columns: research "
         "strata (admission stratification, NOT jurisdiction / population "
-        "weighting)."
+        "weighting). Promotion from descriptive table to paper claim "
+        "requires `observation_kind` κ ≥ 0.6."
     )
     lines.append("")
     xtab: dict[tuple[str, str], int] = collections.Counter(
@@ -730,7 +744,7 @@ def build_index(
     lines.append("| --- | --- | --- | --- |")
     lines.append("| 1 | [table1_case_roles.md](table1_case_roles.md) | `§0 case roles` | `events/*.yaml` + `derived/event_metrics` + `derived/event_archetypes` |")
     lines.append("| 2 | [table2_layer_observability.md](table2_layer_observability.md) | `C1` | `derived/layer_observability` |")
-    lines.append("| 3 | [table3_archetype_stratum.md](table3_archetype_stratum.md) | `C2`, `C5` | `derived/event_archetypes` |")
+    lines.append("| 3 | [table3_archetype_stratum.md](table3_archetype_stratum.md) | parked `C2`, descriptive `C5` pending `observation_kind` κ | `derived/event_archetypes` |")
     lines.append("| 4 | [table4_latency_by_precision.md](table4_latency_by_precision.md) | `C3`, `C4` | `events/*.yaml` + `derived/event_metrics` + `derived/event_archetypes` |")
     lines.append("| 5 | [table5_target_enumeration.md](table5_target_enumeration.md) | `§4 item 5` | `events/*.yaml` + `derived/event_archetypes` |")
     lines.append("| 6 | [table6_null_denominator.md](table6_null_denominator.md) | null-event interpretation (C6 demoted 2026-04-24 — see `docs/paper_claims.md §C6`) | `events/*.yaml` + `derived/event_archetypes` |")

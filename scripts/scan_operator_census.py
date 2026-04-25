@@ -7,7 +7,8 @@ For each candidate in `sources/operator_census/candidates.yaml`:
 1. Clone (shallow, blobless) the repo into
    `sources/operator_census/<org__repo>/`.
 2. Identify compliance-related files via (a) `filter_file` if set,
-   else (b) `extra_patterns` glob sweep over the full tree.
+   else (b) `extra_patterns` over both current-tree and historical
+   `git log --all --name-only` paths.
 3. For each identified file, extract every commit touching it
    (`git log --follow --date=iso-strict`).
 4. For each commit, classify it via subject-line + path keywords
@@ -171,23 +172,57 @@ def _clone_repo(repo: str, dest: pathlib.Path, blobless: bool = True) -> str:
     return "clone_failed"
 
 
+def _historical_paths(clone_dir: pathlib.Path) -> set[str]:
+    """Return every path ever mentioned by git history.
+
+    A current-tree glob is insufficient for negative claims: a compliance file
+    could have existed historically and then been deleted or renamed. This
+    path inventory is metadata-only and works on blobless clones.
+    """
+    proc = _run(
+        ["git", "log", "--all", "--name-only", "--pretty=format:"],
+        cwd=clone_dir,
+    )
+    paths: set[str] = set()
+    for line in proc.stdout.splitlines():
+        path = line.strip()
+        if path:
+            paths.add(path)
+    return paths
+
+
+def _path_has_history(clone_dir: pathlib.Path, path: str) -> bool:
+    proc = _run(
+        ["git", "log", "--all", "--max-count=1", "--", path],
+        cwd=clone_dir,
+    )
+    return bool(proc.stdout.strip())
+
+
 def _match_files(clone_dir: pathlib.Path,
                  filter_file: Optional[str],
                  extra_patterns: list[str]) -> list[str]:
-    """Return paths (repo-relative) matching the candidate's filter definition."""
+    """Return historical paths matching the candidate's filter definition."""
     paths: set[str] = set()
     if filter_file:
         abs_path = clone_dir / filter_file
-        if abs_path.exists():
+        if abs_path.exists() or _path_has_history(clone_dir, filter_file):
             paths.add(filter_file)
     if extra_patterns:
-        for p in clone_dir.rglob("*"):
-            if not p.is_file() or ".git" in p.parts:
-                continue
-            rel = str(p.relative_to(clone_dir))
+        historical = _historical_paths(clone_dir)
+        current = {
+            str(p.relative_to(clone_dir))
+            for p in clone_dir.rglob("*")
+            if p.is_file() and ".git" not in p.parts
+        }
+        for rel in historical | current:
+            name = pathlib.PurePosixPath(rel).name
             for pat in extra_patterns:
-                if fnmatch.fnmatch(rel, pat) or fnmatch.fnmatch(
-                        p.name, pat.lstrip("**/")):
+                # `pat.removeprefix("**/")` (NOT `lstrip` — lstrip strips
+                # the character set {*, /} so e.g. "*.json" → ".json",
+                # silently breaking the basename fallback).
+                base_pat = pat.removeprefix("**/")
+                if fnmatch.fnmatch(rel, pat) or fnmatch.fnmatch(name, base_pat):
                     paths.add(rel)
                     break
     return sorted(paths)
@@ -400,6 +435,11 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
         "no OFAC or entity tie (dominates phishing-scam registries). "
         "First/last-OFAC bounds the OFAC-keyed window.",
         "",
+        "Path discovery scans both the current checkout and historical "
+        "`git log --all --name-only` output, so deleted or renamed files "
+        "matching the configured patterns are included in the candidate "
+        "path set.",
+        "",
         "| operator | repo | role | clone | files | commits | OFAC-rxn | OFAC-maint | Entity-hit | Generic-list | first-OFAC | last-OFAC |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
@@ -471,6 +511,10 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
         "but uses different subject words could also slip to `other`. "
         "The raw JSON emits the full (subject, path, +/-) tuple so an "
         "auditor can re-classify.",
+        "- **Negative results are scoped to the configured path patterns** "
+        "in `candidates.yaml`. The scanner now includes historical deleted "
+        "and renamed paths, but it still cannot see private repos or public "
+        "files whose names do not match the candidate's compliance patterns.",
         "- **Clone status `not_found`** means the repo URL did not "
         "exist or was made private since the candidate was listed. "
         "**`skipped`** means the scanner was asked to not clone "
