@@ -138,10 +138,14 @@ schema change. Final corpus state: 53 events, archetype counts
   `kappa_report.json::coder_provenance`.
 - **Result for `coverage_status`**: blind LLM-assisted recoder
   (`claude-opus-4-7`, prompt version `2026-04-24-irr-prompt-v1`) on 90 rows.
-  **Cohen's κ = 0.983 (almost perfect)**, 89/90 agreement, clearing the
-  paper-readiness κ ≥ 0.6 threshold with margin. The two remaining
-  variables (`observation_kind`, `attribution`) have blind worksheets
-  generated and are runnable.
+  Cohen's κ = 0.983, 89/90 agreement. **Cite as "self-consistency check,
+  single-coder LLM-assisted recode"** — under
+  `llm_assisted_blinded` provenance the gold and recode share schema
+  access and likely systematic biases, so the Landis & Koch "almost
+  perfect" *scale label* does not promote to an inter-rater reliability
+  claim. An `independent_human` pass is open work for v0.2. The two
+  remaining variables (`observation_kind`, `attribution`) have blind
+  worksheets generated and are runnable.
 
 ### Engineering hardening (replicability badge readiness)
 

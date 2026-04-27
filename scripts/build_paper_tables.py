@@ -347,6 +347,30 @@ def build_table2(
         "separately so the two units are not conflated."
     )
     lines.append("")
+    lines.append(
+        "**Sensitivity reporting**. The two `current`-rubric rates flagged "
+        "as **sensitive** in [`derived/admission_sensitivity.md`](../../derived/admission_sensitivity.md) "
+        "(`l4_frontend` Δ=0.12, `l1_consensus` Δ=0.29) must be cited "
+        "alongside their strict and permissive recomputations:"
+    )
+    lines.append("")
+    lines.append(
+        "- **`l4_frontend`**: 9/16 (0.56) strict · 11/16 (0.69) current · "
+        "13/19 (0.68) permissive."
+    )
+    lines.append(
+        "- **`l1_consensus`**: 0/6 (0.00) strict · 1/6 (0.17) current · "
+        "2/7 (0.29) permissive."
+    )
+    lines.append(
+        "- `offramp_cex` (Δ=0.015) and `asset_onchain` (Δ=0) are robust; "
+        "`offramp_cex` is reported under the `current` rubric only. "
+        "`asset_onchain`'s 17/17 is **not reported as a rate** at v0.1 — "
+        "the admission rubric requires the change as the admission anchor, "
+        "so the ratio is structurally circular (see "
+        "[`docs/paper_claims.md §C1` 'Not said'](../../docs/paper_claims.md))."
+    )
+    lines.append("")
     _write_md(out_dir / "table2_layer_observability.md", lines)
 
 

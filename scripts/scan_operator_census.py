@@ -120,6 +120,12 @@ class Commit:
     added_lines: int
     removed_lines: int
     classification: str  # sanctions_reaction / list_maintenance / cleanup / other
+    # True iff the commit touches a candidate's `filter_file` and
+    # that candidate has `known_channel: true` in candidates.yaml.
+    # Surfaces bookend edits whose subjects don't carry OFAC keywords
+    # (file creation, file deletion / cleanup) so the headline census
+    # number cannot accidentally miss them.
+    is_known_channel_substrate_edit: bool = False
 
 
 @dataclass
@@ -128,12 +134,33 @@ class RepoFinding:
     operator: str
     role: str
     clone_status: str  # ok / not_found / clone_failed / skipped
+    # Repo tiering (used for the headline framing — see findings.md
+    # "Tiered census" section). Distinct from `clone_status`, which
+    # only reports whether the clone succeeded.
+    #   - confirmed_filter_file: candidate has `filter_file` set AND
+    #     the file exists on disk.
+    #   - glob_swept_zero: candidate has `extra_patterns` and the
+    #     glob sweep returned zero compliance-named files.
+    #   - schema_or_index_only: candidate's matched files are
+    #     schemas / token-list indices, not an operative blocklist
+    #     (currently set manually via `candidates.yaml::repo_tier`
+    #     when the maintainer has audited the matched paths).
+    repo_tier: str
+    known_channel: bool       # mirrors candidates.yaml::known_channel
     matched_files: list[str]
     commit_count: int
     sanctions_reaction_count: int
     sanctions_maintenance_count: int
     entity_keyword_hit_count: int
     generic_list_maintenance_count: int
+    # Commits touching a `known_channel: true` repo's `filter_file`
+    # regardless of subject keyword. PR #173 (the Tornado-delisting
+    # blacklist deletion) is the load-bearing example: its subject
+    # ("Cleanup unused and unmaintained blacklist file") carries no
+    # OFAC keyword, but the file it touches is the substrate the
+    # paper builds C1 on. Counted separately so the "1 OFAC-keyword
+    # commit" headline does not accidentally exclude bookend events.
+    known_channel_substrate_edit_count: int
     first_commit_iso: Optional[str]
     last_commit_iso: Optional[str]
     first_sanctions_commit_iso: Optional[str]
@@ -312,24 +339,46 @@ def _scan_one(candidate: dict, clone_root: pathlib.Path,
         status = "ok" if (clone_dir / ".git").exists() else "skipped"
     else:
         status = _clone_repo(repo, clone_dir)
+    declared_filter_file = candidate.get("filter_file")
+    known_channel = bool(candidate.get("known_channel"))
     finding = RepoFinding(
         repo=repo, operator=candidate["operator"],
         role=candidate["role"], clone_status=status,
+        repo_tier="unknown", known_channel=known_channel,
         matched_files=[], commit_count=0,
         sanctions_reaction_count=0,
         sanctions_maintenance_count=0,
         entity_keyword_hit_count=0,
         generic_list_maintenance_count=0,
+        known_channel_substrate_edit_count=0,
         first_commit_iso=None, last_commit_iso=None,
         first_sanctions_commit_iso=None, last_sanctions_commit_iso=None,
         notes=candidate.get("notes", "").strip(),
     )
     if status not in ("ok",) or not clone_dir.exists():
+        finding.repo_tier = "clone_failed"
         return finding
     finding.matched_files = _match_files(
-        clone_dir, candidate.get("filter_file"),
+        clone_dir, declared_filter_file,
         candidate.get("extra_patterns") or [],
     )
+    # Repo-tier assignment. The declared filter_file existing on disk
+    # is the strongest tier; a glob sweep that found zero files is
+    # the modal "structurally absent" finding; a glob sweep that
+    # found schema/index files (no operative blocklist) is signaled
+    # by `candidates.yaml::repo_tier` if the maintainer pre-tagged it.
+    pre_tagged_tier = candidate.get("repo_tier")
+    if pre_tagged_tier:
+        finding.repo_tier = pre_tagged_tier
+    elif declared_filter_file and (clone_dir / declared_filter_file).exists():
+        finding.repo_tier = "confirmed_filter_file"
+    elif finding.matched_files:
+        # Glob sweep returned files, but no `filter_file` was declared
+        # — caller couldn't promise the matches are operative
+        # blocklists. Keep them in the output but tier separately.
+        finding.repo_tier = "glob_swept_matched"
+    else:
+        finding.repo_tier = "glob_swept_zero"
     all_commits: list[Commit] = []
     for f in finding.matched_files:
         all_commits.extend(_extract_commits(clone_dir, repo, f))
@@ -343,6 +392,15 @@ def _scan_one(candidate: dict, clone_root: pathlib.Path,
         seen.add(k)
         uniq.append(c)
     uniq.sort(key=lambda c: c.committer_iso or "")
+    # Mark known-channel substrate edits: every commit on a
+    # known_channel: true repo's filter_file qualifies, regardless of
+    # subject keyword. PR #173 (the Tornado-delisting blacklist
+    # deletion) lands here because its subject does not name OFAC.
+    for c in uniq:
+        c.is_known_channel_substrate_edit = bool(
+            known_channel and declared_filter_file
+            and c.path == declared_filter_file
+        )
     finding.commits = uniq
     finding.commit_count = len(uniq)
     finding.sanctions_reaction_count = sum(
@@ -353,6 +411,8 @@ def _scan_one(candidate: dict, clone_root: pathlib.Path,
         1 for c in uniq if c.classification == "entity_keyword_hit")
     finding.generic_list_maintenance_count = sum(
         1 for c in uniq if c.classification == "generic_list_maintenance")
+    finding.known_channel_substrate_edit_count = sum(
+        1 for c in uniq if c.is_known_channel_substrate_edit)
     if uniq:
         finding.first_commit_iso = uniq[0].committer_iso
         finding.last_commit_iso = uniq[-1].committer_iso
@@ -411,6 +471,61 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
         "(requires network for initial clone; subsequent runs reuse "
         "local clones under `sources/operator_census/<org>__<repo>/`).",
         "",
+        "## Tiered census (headline)",
+        "",
+        "**A bare \"X / 8 repos\" rate is not interpretable** — the 8 "
+        "candidates span structurally different surfaces (operator "
+        "compliance file, glob-swept repo with no compliance file, "
+        "schema-only registry). The honest framing tiers them:",
+        "",
+        "| tier | repos | what it means |",
+        "| --- | ---: | --- |",
+    ]
+    tier_buckets: dict[str, list[RepoFinding]] = {}
+    for f in findings:
+        tier_buckets.setdefault(f.repo_tier, []).append(f)
+    tier_blurb = {
+        "confirmed_filter_file":
+            "the candidate names a `filter_file` and that file exists "
+            "on disk — operative compliance substrate",
+        "glob_swept_matched":
+            "no `filter_file` declared; glob sweep returned files but "
+            "their operative role is not pre-confirmed",
+        "schema_or_index_only":
+            "matched files are schemas / token-list indices, not an "
+            "operative blocklist (pre-tagged in candidates.yaml)",
+        "glob_swept_zero":
+            "no compliance-named file on disk — structurally absent "
+            "in public source control",
+        "clone_failed": "clone could not be made / repo unreachable",
+        "unknown": "tier not yet assigned",
+    }
+    for tier in ("confirmed_filter_file", "glob_swept_matched",
+                 "schema_or_index_only", "glob_swept_zero",
+                 "clone_failed", "unknown"):
+        repos = tier_buckets.get(tier, [])
+        if not repos:
+            continue
+        names = ", ".join(f"`{f.repo}`" for f in repos)
+        lines.append(
+            f"| `{tier}` | {len(repos)} | {tier_blurb[tier]} — {names} |"
+        )
+    lines.extend([
+        "",
+        "**Headline number**: known-channel substrate edits "
+        f"= **{sum(f.known_channel_substrate_edit_count for f in findings)}** "
+        "across "
+        f"**{sum(1 for f in findings if f.known_channel)}** "
+        "candidate(s) flagged `known_channel: true` in "
+        "`candidates.yaml`. OFAC-keyword commits "
+        f"= **{sum(f.sanctions_reaction_count for f in findings)}** "
+        "(narrow: subject explicitly names ofac / sdn / sanction / "
+        "designate). The two are reported separately because PR #173 "
+        "(the canonical 2025-04-01 Tornado-delisting deletion) lands "
+        "in the substrate-edit count but not the OFAC-keyword count: "
+        "its subject reads \"Cleanup unused and unmaintained blacklist "
+        "file\" and carries no OFAC keyword.",
+        "",
         "## Summary",
         "",
         "Columns: *OFAC-rxn* = commits whose **subject** carries a "
@@ -418,37 +533,35 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
         "Path is not consulted — earlier versions matched the path "
         "and inflated counts on `server/ofacblacklist.go` for every "
         "commit including pure refactors and Docker updates. "
-        "*OFAC-maint* = OFAC-rxn plus a cleanup verb. The 2025-04-01 "
-        "Flashbots PR #173 (\"Cleanup unused and unmaintained "
-        "blacklist file\") falls in *Generic-list*, not OFAC-maint, "
-        "because its subject names \"blacklist\" but no OFAC keyword; "
-        "the editorial interpretation that this commit is the post-"
-        "OFAC-delisting cleanup is documented in "
-        "`analysis/evidence-chains/tornado-cash-ofac-delisting-2025.md`, "
-        "not in this automated classifier. *Entity-hit* = commits "
-        "that name a designated entity (tornado / samourai / lazarus "
-        "/ ...) without state-action language; requires human "
-        "adjudication because phishing registries produce prefix "
-        "false positives (e.g. \"stormtoken.com\" in 2017 long "
-        "pre-dates the Storm/Semenov OFAC designation). "
+        "*OFAC-maint* = OFAC-rxn plus a cleanup verb. *KC-edit* = "
+        "**known-channel substrate edit**: any commit on a "
+        "`known_channel: true` candidate's `filter_file`, regardless "
+        "of subject keyword. PR #173 lives here, even though the "
+        "OFAC-keyword classifier does not see it. *Entity-hit* = "
+        "commits that name a designated entity (tornado / samourai / "
+        "lazarus / ...) without state-action language; requires "
+        "human adjudication because phishing registries produce "
+        "prefix false positives (e.g. \"stormtoken.com\" in 2017 "
+        "long pre-dates the Storm/Semenov OFAC designation). "
         "*Generic-list* = blacklist/blocklist/denylist activity with "
         "no OFAC or entity tie (dominates phishing-scam registries). "
-        "First/last-OFAC bounds the OFAC-keyed window.",
+        "First/last-OFAC bounds the OFAC-keyword commit window.",
         "",
         "Path discovery scans both the current checkout and historical "
         "`git log --all --name-only` output, so deleted or renamed files "
         "matching the configured patterns are included in the candidate "
         "path set.",
         "",
-        "| operator | repo | role | clone | files | commits | OFAC-rxn | OFAC-maint | Entity-hit | Generic-list | first-OFAC | last-OFAC |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-    ]
+        "| operator | repo | tier | clone | files | commits | OFAC-rxn | OFAC-maint | KC-edit | Entity-hit | Generic-list | first-OFAC | last-OFAC |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ])
     for f in findings:
         lines.append(
-            f"| {f.operator} | `{f.repo}` | {f.role} | {f.clone_status} | "
+            f"| {f.operator} | `{f.repo}` | {f.repo_tier} | {f.clone_status} | "
             f"{len(f.matched_files)} | {f.commit_count} | "
             f"{f.sanctions_reaction_count} | "
             f"{f.sanctions_maintenance_count} | "
+            f"{f.known_channel_substrate_edit_count} | "
             f"{f.entity_keyword_hit_count} | "
             f"{f.generic_list_maintenance_count} | "
             f"{(f.first_sanctions_commit_iso or '—')[:10]} | "
@@ -464,6 +577,8 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
             f"### `{f.repo}` — {f.role}",
             "",
             f"- **Operator**: {f.operator}",
+            f"- **Repo tier**: `{f.repo_tier}`"
+            f"{' (known_channel: true)' if f.known_channel else ''}",
             f"- **Clone status**: {f.clone_status}",
             f"- **Matched files** (n={len(f.matched_files)}):",
         ])
@@ -473,25 +588,51 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
             lines.append("")
             lines.append(f"**Notes**: {f.notes}")
         if f.commits:
-            sanc = [c for c in f.commits if c.classification in (
-                "sanctions_reaction", "sanctions_maintenance")]
-            if sanc:
-                lines.extend([
-                    "",
-                    f"**OFAC-keyed commits** "
-                    f"(reactions={f.sanctions_reaction_count}, "
-                    f"maintenance={f.sanctions_maintenance_count}):",
-                    "",
-                    "| date | sha | path | class | subject |",
-                    "| --- | --- | --- | --- | --- |",
-                ])
-                for c in sanc:
-                    subj = c.subject.replace("|", "\\|")[:120]
-                    lines.append(
-                        f"| {c.committer_iso[:10]} | `{c.sha[:8]}` | "
-                        f"`{c.path}` | "
-                        f"{c.classification} | {subj} |"
-                    )
+            # For known_channel repos, emit ALL commits on the
+            # filter_file (the substrate-edit ledger). PR #173 lands
+            # here even though the OFAC-keyword classifier does not
+            # see it.
+            if f.known_channel:
+                kc = [c for c in f.commits if c.is_known_channel_substrate_edit]
+                if kc:
+                    lines.extend([
+                        "",
+                        f"**Known-channel substrate edits** "
+                        f"(every commit on the declared `filter_file`, "
+                        f"n={len(kc)}). Bookend events (file creation, "
+                        "deletion) appear here even when their subjects "
+                        "do not name OFAC.",
+                        "",
+                        "| date | sha | path | classification | subject |",
+                        "| --- | --- | --- | --- | --- |",
+                    ])
+                    for c in kc:
+                        subj = c.subject.replace("|", "\\|")[:120]
+                        lines.append(
+                            f"| {c.committer_iso[:10]} | `{c.sha[:8]}` | "
+                            f"`{c.path}` | "
+                            f"{c.classification} | {subj} |"
+                        )
+            else:
+                sanc = [c for c in f.commits if c.classification in (
+                    "sanctions_reaction", "sanctions_maintenance")]
+                if sanc:
+                    lines.extend([
+                        "",
+                        f"**OFAC-keyword commits** "
+                        f"(reactions={f.sanctions_reaction_count}, "
+                        f"maintenance={f.sanctions_maintenance_count}):",
+                        "",
+                        "| date | sha | path | class | subject |",
+                        "| --- | --- | --- | --- | --- |",
+                    ])
+                    for c in sanc:
+                        subj = c.subject.replace("|", "\\|")[:120]
+                        lines.append(
+                            f"| {c.committer_iso[:10]} | `{c.sha[:8]}` | "
+                            f"`{c.path}` | "
+                            f"{c.classification} | {subj} |"
+                        )
             if f.generic_list_maintenance_count > 0:
                 lines.append("")
                 lines.append(

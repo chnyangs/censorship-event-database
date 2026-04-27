@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=53)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `c81d8bb` · generated `2026-04-24T10:12:43Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `5d38fae` · generated `2026-04-25T09:22:35Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 

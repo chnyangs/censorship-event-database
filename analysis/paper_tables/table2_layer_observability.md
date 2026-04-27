@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `c81d8bb` · generated `2026-04-24T10:12:43Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `5d38fae` · generated `2026-04-25T09:22:35Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -17,3 +17,9 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 
 A rate of `—` indicates a zero denominator; it is an **observability gap**, not an attested negative.
 `unique changed actions` deduplicates physical actions that are intentionally linked across event records via `observations[].action_id` (for example, the Circle USDC Tornado blacklist transaction appears in both the OFAC-triggered event and the issuer-action event). Event-rate columns remain event-record denominators; action counts are reported separately so the two units are not conflated.
+
+**Sensitivity reporting**. The two `current`-rubric rates flagged as **sensitive** in [`derived/admission_sensitivity.md`](../../derived/admission_sensitivity.md) (`l4_frontend` Δ=0.12, `l1_consensus` Δ=0.29) must be cited alongside their strict and permissive recomputations:
+
+- **`l4_frontend`**: 9/16 (0.56) strict · 11/16 (0.69) current · 13/19 (0.68) permissive.
+- **`l1_consensus`**: 0/6 (0.00) strict · 1/6 (0.17) current · 2/7 (0.29) permissive.
+- `offramp_cex` (Δ=0.015) and `asset_onchain` (Δ=0) are robust; `offramp_cex` is reported under the `current` rubric only. `asset_onchain`'s 17/17 is **not reported as a rate** at v0.1 — the admission rubric requires the change as the admission anchor, so the ratio is structurally circular (see [`docs/paper_claims.md §C1` 'Not said'](../../docs/paper_claims.md)).

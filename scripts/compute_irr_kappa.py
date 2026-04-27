@@ -242,19 +242,40 @@ def main() -> int:
         "Cohen's κ thresholds (Landis & Koch 1977 — still the most "
         "cited convention despite known limitations with skewed "
         "marginals): < 0.2 slight, 0.2–0.4 fair, 0.4–0.6 moderate, "
-        "0.6–0.8 substantial, > 0.8 almost perfect.",
+        "0.6–0.8 substantial, > 0.8 almost perfect on the Landis & "
+        "Koch scale.",
         "",
-        "**Paper-readiness threshold** for this project: κ ≥ 0.6 on "
-        "all three variables. A variable below 0.6 blocks the "
-        "coverage-matched rate claim that depends on it (C1 for "
-        "coverage_status, C2 for observation_kind, attribution-tier "
-        "phrasing lock for attribution).",
+        "**What this κ does and does not establish — read before "
+        "citing.** Under the Landis & Koch scale, κ ≥ 0.8 is labeled "
+        "*almost perfect agreement*. That label applies to **inter-coder "
+        "agreement under the protocol's coder-provenance mode** (see "
+        "`coder_provenance.mode` above). It does NOT establish *inter-"
+        "rater reliability* in the audited-research sense unless that "
+        "mode is `independent_human` and the second coder is "
+        "demonstrably blind to the gold coder's reasoning.",
         "",
-        "**Honest labeling**: the second coder in this artifact may be "
-        "the same author as the gold coder (self-recode) or an "
-        "LLM-assisted recoder. The report emits whichever is run. "
-        "The protocol is encoded in `scripts/build_irr_sample.py` "
-        "and `scripts/compute_irr_kappa.py`.",
+        "- `independent_human`: the published κ is a reliability "
+        "  estimate; cite as such.",
+        "- `llm_assisted_blinded`: the published κ is a "
+        "  **self-consistency check** — the recoder is from the same "
+        "  model family / training distribution as a likely "
+        "  author-assist substrate, and the gold and recode share "
+        "  systematic biases. Cite as `self-consistency, single-coder "
+        "  LLM-assisted recode` and treat the κ floor as a *lower bound* "
+        "  on consistency, not a reliability estimate.",
+        "- `author_self_recode_60d_gap`: similar caveat (residual "
+        "  recall risk); cite the gap length explicitly.",
+        "- `unspecified`: do not cite the κ in the paper.",
+        "",
+        "**Paper-readiness threshold** for this project: a `current` "
+        "rubric C1 rate that depends on a variable with κ < 0.6 (under "
+        "the strictest available provenance mode) is blocked. C1 "
+        "depends on `coverage_status`; C2 (PARKED v0.1) depends on "
+        "`observation_kind`; the attribution-tier phrasing lock depends "
+        "on `attribution`. Variables with no `independent_human` pass "
+        "are the largest open validity threat for the v0.1 paper and "
+        "are tracked in `docs/paper_claims.md §0` "
+        "('Reliability discipline').",
         "",
     ])
 

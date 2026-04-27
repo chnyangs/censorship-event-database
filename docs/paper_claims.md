@@ -207,33 +207,97 @@ boundary, it stays out of v0.1.
 
 ### Prior-art delta (required for §2 of the paper)
 
-The paper's §2 Related Work must credit the methodology ancestors
-(OONI / Pearce et al. 2017 / Censored Planet /
-Datasheets-for-Datasets) as transplanted, not invented. Reviewer
-pushback of the form "the six-layer cascade is a repackaging" is
-addressed by the operator-substrate delta: Wahrstätter et al. infer
-L1 filtering from block content; this work adds a cross-layer event
-frame and a multi-repo git-history census that Wahrstätter did not do.
+#### Methodology ancestors (transplanted, not invented)
+
+| ancestor | year / venue | what it established | how this project uses it |
+| --- | --- | --- | --- |
+| Filastò & Appelbaum, "OONI: Open Observatory of Network Interference" | 2012 · FOCI | Public, auditable, probe-based network-censorship measurement with per-measurement metadata. | `scripts/ooni_batch_query.py` queries the OONI Explorer API. Coverage denominators for `l0_network` are OONI-derived. |
+| Pearce et al., "Global Measurement of DNS Manipulation" | 2017 · USENIX Sec | Coverage-matched conditional-rate reporting: rates are reported only over measured vantages; nulls-vs-unmeasured are distinguished. | Transplanted as the project's **coverage-denominator discipline** (`§0 Sampling frame`). Every conditional rate in Table 2 is conditional on the layer's denominator being `measured` or `measured_or_partial`. |
+| Sundara Raman et al., "Censored Planet" | 2020 · CCS | Global longitudinal connection-tampering observatory; per-jurisdiction coverage tracking; explicit denominator accounting. | Consumed as a semi-primary source for L0 events (`docs/methodology.md §4.1`). Coverage-availability window (2018+) drives the `not_available_pre_2018` status for L0 on older events. |
+| Gebru et al., "Datasheets for Datasets" | 2021 · CACM | Dataset documentation template covering motivation, composition, collection, recommended uses, distribution, maintenance. | `docs/datasheet.md` is the templated intake page. |
+| Heimbach & Wattenhofer / Kelkar et al. on PBS as a censorship surface | 2022+ · AFT/IMC | Formal framing of proposer-builder separation as a censorship attack surface. | Motivates the L1-consensus layer definition; Wahrstätter et al. 2024 is the measured-data side of the same phenomenon. |
+
+#### Concurrent / closest-prior crypto-censorship work — per-axis delta
+
+The single closest paper is Wahrstätter, Ernstberger, Yaish et al.,
+**"Blockchain Censorship" (ACM WebConf 2024)**. The paper's §2 must
+lift this table rather than write a new one.
+
+| axis | Wahrstätter et al. (WWW 2024) | this project |
+| --- | --- | --- |
+| **Layer coverage** | L1 relay / builder filtering on Ethereum post-Merge (PBS). | Six-layer span: L0 network, L1 consensus, L3 RPC, L4 frontend, asset_onchain, offramp_cex. |
+| **Unit of observation** | Block / transaction (millions per window). | Event (n=53 admitted) plus, in v0.1, a paired census surface — 8 operator repos with substrate-edit ledger ([`analysis/operator_census/`](../analysis/operator_census/)) — and a fail-closed paper-table generator. |
+| **Trigger model** | Implicit (OFAC SDN list as a static block-time filter). | Explicit `trigger.*` with timestamp precision, actor, jurisdiction; precision-aware latency panels separate hour-grade from day-grade. |
+| **Coverage discipline** | Per-relay prevalence; denominators are blocks, not events. | Coverage-matched conditional rates over events with `measured / partially_measured / not_measured / not_applicable` as distinct states; rate emission aborts on denominator mismatch (`scripts/build_paper_tables.py` fail-closed). Three-rubric strict/current/permissive ablation reports sensitivity per layer. |
+| **Operator substrate** | Not examined as a first-class measurement channel; relay filtering is inferred from block content, not from operator source code. | `analysis/operator_census/` surveys 8 public operator repositories for git-history OFAC edits and **tiers them into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3)**. Reports two parallel headline numbers: 5 known-channel substrate edits across 1 confirmed-substrate repo (the wide ledger), and 1 OFAC-keyword-subject commit across the entire corpus (the narrow keyword classifier). Treats public git-history of operator compliance as a measurable substrate with minute-level precision where it exists. |
+| **Recovery / reversal** | Not addressed (the paper's cutoff predates OFAC's 2025-03-21 Tornado delisting). | Demoted to exemplar-inside-C1 (n=1; not a standalone claim — see §C6). Visible inside the substrate-edit ledger as PR #173 (2025-04-01 deletion). |
+| **Reproducibility** | Data + code published. | Pinned `requirements*.txt`, `SOURCE_DATE_EPOCH` byte-stable artifacts, fail-closed paper-table generator, 36-case pytest regression suite, blind inter-rater reliability sampler + κ calculator (with provenance taxonomy), CI gate that exercises the reproduction path (`make regenerate` + `make paper-check` + byte-stability round-trip). |
+| **Inter-rater reliability** | Not reported (their measurement is programmatic over block data, so κ on author labels is not the applicable check). | `coverage_status` self-consistency κ = 0.983 on 90 rows × 15 events under `llm_assisted_blinded` provenance (`analysis/inter_rater/kappa_report.md`). Cited as self-consistency, not as inter-rater reliability; an `independent_human` pass is open work for v0.2. |
+
+The clean framing for the paper: **Wahrstätter et al. is an
+intra-L1 measurement census; this project is a cross-layer event
+corpus where L1 numbers come from Wahrstätter as a semi-primary
+input, plus a separately-reported operator-source-control
+substrate the block-level frame does not address.** This work does
+not compete at the L1-prevalence question.
+
+#### Other crypto-censorship prior art (cited briefly)
+
+- **Nadler & Schär, "Sanctions and the MEV Supply Chain" / Tornado-Cash effects** (2023+): economic / flow-level analysis. Cited as motivation, not overlap.
+- **Daian et al., "Flash Boys 2.0"** (2020 · S&P): MEV-as-censorship-surface concept; cited for framing.
+- **Piet & Jadliwala / Arnbak-style work on dApp frontend geoblocking** (2023-2024 · PETS): orthogonal substrate; gives vocabulary, not numerical overlap.
+- **Chainalysis / Elliptic / TRM compliance reports**: asset-layer freeze reporting under proprietary feeds. Not event-keyed; this project's `asset_onchain` rows come from on-chain logs directly.
+- **Censorship.pics (Wahrstätter) / mevwatch / relayscan.io**: live dashboards consumed as semi-primary inputs; credited in `docs/methodology.md §4.2`.
+- **Informal blog posts on `ofacblacklist.go`** (Amadeo / Pestritto, 2022-2023): not peer-reviewed. This work's contribution is the reproducible audit + multi-repo census + admission-grade anchoring of the same finding.
+
+#### Self-honest gaps
+
+The paper's §2 must also acknowledge what this work does NOT
+advance relative to prior art:
+
+- Not a replacement for Wahrstätter et al.'s L1 census — their block-level prevalence is what gives this project's L1 numerator meaning.
+- Not a replacement for Chainalysis / TRM at the compliance-tool level — this project says nothing about address-clustering accuracy.
+- Not a generalization of OONI's methodology to a new domain — this project consumes OONI; it does not extend its probe infrastructure.
+- Not a discovery of operator-layer censorship as a phenomenon — that is well-documented informally. v0.1 adds a **reproducible measurement frame**, a **tiered substrate census**, and an **admission protocol** that places the phenomenon in a coverage-discipline context.
 
 ### Reliability discipline (required for §3 of the paper)
 
-Every conditional rate in the paper has a corresponding κ floor:
+Every conditional rate in the paper has a corresponding κ floor.
+**Read the provenance mode before citing the κ value as
+"reliability"** — the same number is a reliability estimate under
+`independent_human` provenance and a *self-consistency check* under
+`llm_assisted_blinded` (see
+`scripts/compute_irr_kappa.py::main` and the provenance taxonomy in
+the kappa report's "Interpretation" section).
 
-- C1 depends on `coverage.status` — current κ = 0.983 (n=90 rows,
-  15 events, LLM-assisted blind recode, 2026-04-24,
-  `analysis/inter_rater/kappa_report.md`).
-- C2's single-layer dominance row uses `observation_kind`; because
-  `observation_kind` κ is still pending, C2 is a **descriptive table
-  surface only**, not a promoted central claim.
-- Attribution-sensitive comparative phrasing depends on `attribution`;
-  because `attribution` κ is still pending, direct/plausible wording
-  is allowed only at named-row/audit level, not as a corpus-level
-  comparative rate.
+Current state (v0.1):
 
-Paper §3 must not report a conditional rate whose underlying
-variable is below κ ≥ 0.6 (substantial). The protocol is implemented
-by `scripts/build_irr_sample.py` and `scripts/compute_irr_kappa.py`;
-the current report is `analysis/inter_rater/kappa_report.md`.
+- **`coverage.status`**: κ = 0.983 (n=90, 15 events) under
+  `llm_assisted_blinded` provenance (recoder
+  `claude-opus-4-7 (general-purpose subagent)`,
+  prompt version `2026-04-24-irr-prompt-v1`). **Cite as
+  "self-consistency check, single-coder LLM-assisted recode"**, not
+  as inter-rater reliability. The Landis & Koch *almost-perfect*
+  label applies on the scale, but the substantive claim is bounded
+  by provenance: gold and recode share schema access and likely
+  systematic biases, so the κ is a lower bound on coder consistency,
+  not an independent reliability estimate. An `independent_human`
+  pass is open work for v0.2.
+- **`observation_kind`** and **`attribution`**: κ pending (blind
+  worksheets generated; not yet recoded). C2 is therefore a
+  **descriptive table surface only**, not a promoted central claim;
+  attribution-sensitive comparative phrasing is allowed only at
+  named-row/audit level.
+
+**Phrasing lock for the paper**: when citing the coverage_status κ,
+use "self-consistency check (LLM-assisted blinded recode), n=90,
+κ=0.983" or equivalent; do **not** use bare "almost perfect inter-
+rater agreement" without naming the provenance mode. The paper's
+§3 must not report a conditional rate whose underlying variable
+sits below κ ≥ 0.6 under any pass. Protocol + provenance taxonomy
+implemented in `scripts/build_irr_sample.py` and
+`scripts/compute_irr_kappa.py`; live report at
+`analysis/inter_rater/kappa_report.md`.
 
 ## 1. Candidate claims (ranked by strength of current evidence)
 
@@ -246,48 +310,79 @@ subset of events admissible, and the phrasing lock.
 
 > "Across 53 admitted events, observed changes are concentrated on
 > the upper layers of the six-layer stack. Under coverage-matched
-> denominators, `asset_onchain` shows `changed_given_measured` = 17/17
-> (1.00), `l4_frontend` = 11/16 (0.69), and `offramp_cex` = 15/25
-> (0.60). `l1_consensus` shows 1/6 (0.17) measured and 2/7 (0.29)
-> measured-or-partial, both anchored on Tornado Cash events.
-> `l3_rpc` has no `measured`-coverage events, but its
-> partial-coverage subset now carries **2 observed changes
-> (`changed_given_measured_or_partial` = 2/9 = 0.22), both from
-> the Tornado forward / reverse cascade** — admitted via Flashbots
-> rpc-endpoint git-history (PR #90 adding Tornado pool addresses
-> 2022-08-08, PR #173 deleting the blacklist 2025-04-01; see
-> `analysis/anchor_gap_fill_log.md §4`). `l0_network` carries no
-> measured denominator. The claim is a description of the admitted
-> evidence corpus, not of the underlying phenomenon."
+> denominators reported across three admission rubrics
+> (strict / current / permissive — see `derived/admission_sensitivity.md`):
+>
+> - `l4_frontend` = **9/16 (0.56) strict, 11/16 (0.69) current,
+>   13/19 (0.68) permissive** — sensitivity Δ=0.12; the rate moves
+>   meaningfully under rubric, so all three are reported.
+> - `offramp_cex` = **15/25 (0.60) strict, 15/25 (0.60) current,
+>   16/26 (0.62) permissive** — robust (Δ=0.015).
+> - `l1_consensus` = **0/6 (0.00) strict, 1/6 (0.17) current,
+>   2/7 (0.29) permissive** — sensitivity Δ=0.29; both
+>   measured-or-partial change rows are anchored on Tornado Cash
+>   events.
+> - `l3_rpc` has **no `measured`-coverage events** in the corpus;
+>   its partial-coverage subset carries 2 observed changes
+>   (`changed_given_measured_or_partial` = 2/9 = 0.22), both
+>   admitted via Flashbots `rpc-endpoint` git-history (PR #90 adding
+>   Tornado pool addresses 2022-08-08, PR #173 deleting the
+>   blacklist 2025-04-01; see [`analysis/anchor_gap_fill_log.md §4`](../analysis/anchor_gap_fill_log.md)).
+> - `l0_network` carries no `measured` denominator.
+> - `asset_onchain` is **NOT reported as a rate** at v0.1: see the
+>   structural-circularity note in 'Not said' below.
+>
+> The claim is a description of the admitted evidence corpus, not of
+> the underlying phenomenon."
 
-- **Evidence**: `derived/layer_observability.csv`; coverage-matched
-  numerator (per P1 fix, 2026-04-23).
-  `analysis/paper_tables/table2_layer_observability.md` is the
-  reader-facing re-emission.
-- **Admission sensitivity**: recomputed under three rubrics in
-  `derived/admission_sensitivity.md`. `asset_onchain` (Δ=0) and
-  `offramp_cex` (Δ=0.015) are robust; `l4_frontend` (Δ=0.12) and
-  `l1_consensus` (Δ=0.29) are sensitive and the paper must report
-  their rates under all three rubrics. `l0_network` and `l3_rpc`
-  are undefined under strict (no `measured` denominator) and the
-  paper reads their numbers as observability gaps.
+- **Evidence**: `derived/layer_observability.csv` (per-rubric
+  numerators) + `derived/admission_sensitivity.csv` (three-rubric
+  recomputation). `analysis/paper_tables/table2_layer_observability.md`
+  is the reader-facing re-emission and **must carry all three rubrics
+  for `l4_frontend` and `l1_consensus`** in its emitted prose.
 - **n**: 53 events across 6 layers.
 - **Case role**: all 53 (empirical + null + anchor all contribute
   coverage denominators; only observed_change rows enter the
   numerator).
 - **Phrasing lock**:
-  - PREFER "are concentrated", "observed changes", "coverage-matched
-    conditional rate".
-  - FORBID "L0 does not react", "L3 is censorship-resistant", any
-    rate built on a null denominator, any claim of the form "L3 has
-    zero observed changes" (the 2 Tornado L3 rows added
-    2026-04-24 invalidate the earlier draft framing).
-- **Not said**: this claim does NOT assert that base layers are not
-  censored. That is an observability gap. See
-  `docs/chain-coverage-note.md` and `docs/limitations-and-use.md §2.4`.
-  The two L3 observations are Tornado-specific; they do NOT support a
-  general "L3 filter lists react to sanctions events" claim beyond
-  these two named cases.
+  - PREFER "are concentrated", "observed changes",
+    "coverage-matched conditional rate", "across the three admission
+    rubrics" (whenever a sensitive layer's rate is cited).
+  - FORBID:
+    - "L0 does not react", "L3 is censorship-resistant" — rates
+      built on a null denominator.
+    - "L3 has zero observed changes" — the 2 Tornado L3 rows added
+      2026-04-24 invalidate that earlier framing.
+    - **citing `l4_frontend` or `l1_consensus` rate without naming
+      the rubric** (so "L4 = 0.69" without "current rubric" or
+      "11/16 (0.69)" is forbidden — these are the
+      sensitive-to-rubric layers per
+      `derived/admission_sensitivity.md`).
+    - **any `asset_onchain` rate** at v0.1 (see "Not said" below).
+- **Not said**:
+  - **`asset_onchain` rate is structurally circular at v0.1 and
+    therefore retracted.** Every event admitted to
+    `asset_onchain.status = measured` (n=17) carries an
+    `observed_change` row by construction of the admission rubric:
+    Etherscan-recorded `Blacklisted(...)` log on the target address
+    is *itself* the evidence that admits the layer as `measured`.
+    No event with `measured` coverage and no observed change exists
+    in the corpus, so 17/17 = 1.00 is a property of the rubric, not
+    a measurement. v0.1 keeps the **descriptive observation**
+    ("among 17 events admitted with `asset_onchain.measured`,
+    every one carries an Etherscan-anchored issuer blacklist tx
+    matching at least one SDN-listed address") but **does not
+    report a rate**. Reinstatement requires admitting events under
+    a coverage rubric that does not require the change as the
+    admission anchor — e.g. `partially_measured` for events whose
+    SDN addresses were checked against Circle/Tether and produced
+    no hit. Tracked as v0.2 open work.
+  - This claim does NOT assert that base layers are not censored.
+    That is an observability gap. See `docs/chain-coverage-note.md`
+    and `docs/limitations-and-use.md §2.4`.
+  - The two L3 observations are Tornado-specific; they do NOT
+    support a general "L3 filter lists react to sanctions events"
+    claim beyond these two named cases.
 
 ### C2 · [PARKED] Single-layer response description pending `observation_kind` κ
 
