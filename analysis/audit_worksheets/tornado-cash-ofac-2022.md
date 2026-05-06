@@ -1,6 +1,6 @@
 # Audit worksheet — `tornado-cash-ofac-2022`
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `8cadf3a` · generated `2026-04-24T00:30:31Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `b99dfaf` · generated `2026-04-27T11:03:02Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S1_ofac_sdn`
@@ -59,7 +59,26 @@ Audit checks:
 - [ ] The cited evidence rules out the observed change being caused by an unrelated ecosystem-level shift (especially for `direct` attribution).
 - [ ] NOTE: _free-form audit note (if the row was revised)_
 
-### 3.2 · `asset_onchain` · actor=`circle_usdc` · event=`address_blacklisted`
+### 3.2 · `l3_rpc` · actor=`flashbots_rpc_endpoint` · event=`ofac_blacklist_addition_of_tornado_pool_addresses`
+
+- **observation_kind**: `observed_change`
+- **attribution**: `direct`
+- **timestamp**: `2022-08-08 16:20:50+00:00` · precision=`second` · delta_hours=`2.85`
+- **sources** (4):
+  - [ ] src[0]: type=`primary_corporate` · url=<https://github.com/flashbots/rpc-endpoint/commit/92ab6b1f9abfc62261f72361e8c8df48f832f2a9> · body_hash=`sha256:86c81be4…59e7` · body_path=`sources/operator_commits/tornado-cash-ofac-2022/ofacblacklist-at-92ab6b1.go`  · hash_check=`ok`
+  - [ ] src[1]: type=`primary_corporate` · url=<https://github.com/flashbots/rpc-endpoint/pull/90> · body_hash=`sha256:0c4fafa0…46b9` · body_path=`sources/operator_commits/tornado-cash-ofac-2022/commit-92ab6b1.meta.txt`  · hash_check=`ok`
+  - [ ] src[2]: type=`semi_primary_measurement` · url=<https://api.github.com/repos/flashbots/rpc-endpoint/pulls/90> · body_hash=`sha256:affdc833…ac41` · body_path=`sources/operator_commits/tornado-cash-ofac-2022/github-api/pr-90.response.json` · query_hash=`sha256:a05fde8d…0af6`  · hash_check=`ok`
+  - [ ] src[3]: type=`semi_primary_measurement` · url=<https://api.github.com/repos/flashbots/rpc-endpoint/commits/92ab6b1f9abfc62261f72361e8c8df48f832f2a9> · body_hash=`sha256:5ed6923b…99f5` · body_path=`sources/operator_commits/tornado-cash-ofac-2022/github-api/commit.response.json` · query_hash=`sha256:20971b6f…d0c3`  · hash_check=`ok`
+- **note (first line)**: Flashbots' rpc-endpoint service (the backend that later became
+
+Audit checks:
+- [ ] Passage in each cited source supports `observed_change` for this layer.
+- [ ] Attribution `direct` is not over-stated (`direct` requires primary_* source corroborating the causal link).
+- [ ] Timestamp precision is sufficient for any `delta_hours` downstream claim (day-precision → NO hour claim).
+- [ ] The cited evidence rules out the observed change being caused by an unrelated ecosystem-level shift (especially for `direct` attribution).
+- [ ] NOTE: _free-form audit note (if the row was revised)_
+
+### 3.3 · `asset_onchain` · actor=`circle_usdc` · event=`address_blacklisted`
 
 - **observation_kind**: `observed_change`
 - **attribution**: `direct`
@@ -76,15 +95,14 @@ Audit checks:
 - [ ] The cited evidence rules out the observed change being caused by an unrelated ecosystem-level shift (especially for `direct` attribution).
 - [ ] NOTE: _free-form audit note (if the row was revised)_
 
-### 3.3 · `l4_frontend` · actor=`frontend:tornado_cash_ui` · event=`ui_unavailable`
+### 3.4 · `l4_frontend` · actor=`frontend:tornado_cash_ui` · event=`ui_unavailable`
 
 - **observation_kind**: `observed_change`
 - **attribution**: `plausible`
 - **timestamp**: `2022-08-09 12:00:00+00:00` · precision=`hour` · delta_hours=`22.5`
-- **sources** (3):
-  - [ ] src[0]: type=`semi_primary_wayback`  · hash_check=`—`
-  - [ ] src[1]: type=`semi_primary_measurement` · url=<https://github.com/tornadocash> · wayback=<https://web.archive.org/web/20260421105622/https://github.com/tornadocash> · body_hash=`sha256:c79b19d9…1c57` · body_path=`sources/http_captures/tornado-cash-ofac-2022/backfill-1.3/github.com__tornadocash__7f33190afd.html`  · hash_check=`ok`
-  - [ ] src[2]: type=`semi_primary_measurement` · url=<https://github.com/tornadocash/tornado-core> · wayback=<https://web.archive.org/web/20260421105714/https://github.com/tornadocash/tornado-core> · body_hash=`sha256:90361734…8209` · body_path=`sources/http_captures/tornado-cash-ofac-2022/backfill-1.3/github.com__tornadocash-tornado-core__9430a15343.html`  · hash_check=`ok`
+- **sources** (2):
+  - [ ] src[0]: type=`semi_primary_measurement` · url=<https://github.com/tornadocash> · wayback=<https://web.archive.org/web/20260421105622/https://github.com/tornadocash> · body_hash=`sha256:c79b19d9…1c57` · body_path=`sources/http_captures/tornado-cash-ofac-2022/backfill-1.3/github.com__tornadocash__7f33190afd.html`  · hash_check=`ok`
+  - [ ] src[1]: type=`semi_primary_measurement` · url=<https://github.com/tornadocash/tornado-core> · wayback=<https://web.archive.org/web/20260421105714/https://github.com/tornadocash/tornado-core> · body_hash=`sha256:90361734…8209` · body_path=`sources/http_captures/tornado-cash-ofac-2022/backfill-1.3/github.com__tornadocash-tornado-core__9430a15343.html`  · hash_check=`ok`
 
 Audit checks:
 - [ ] Passage in each cited source supports `observed_change` for this layer.
@@ -93,7 +111,7 @@ Audit checks:
 - [ ] The cited evidence rules out the observed change being caused by an unrelated ecosystem-level shift (especially for `direct` attribution).
 - [ ] NOTE: _free-form audit note (if the row was revised)_
 
-### 3.4 · `offramp_cex` · actor=`exchange:dydx` · event=`accounts_flagged_and_close_only_mode`
+### 3.5 · `offramp_cex` · actor=`exchange:dydx` · event=`accounts_flagged_and_close_only_mode`
 
 - **observation_kind**: `observed_change`
 - **attribution**: `direct`

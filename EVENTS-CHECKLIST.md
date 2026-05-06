@@ -10,16 +10,17 @@ This dataset aims to be **stratified-complete within each stratum**, not a cherr
 | --- | --- | --- | --- | --- | --- |
 | S1. OFAC SDN designations (crypto-related) 2018–2025 | Original designations with ≥ 1 digital-asset address on the SDN list | 25–35 | **27 (complete)** | 0 | 27 |
 | S2. OFAC SDN removals (crypto-related) 2018–2025 | Delistings of earlier crypto-designated entities or addresses | 3–6 | ≈ 1–3 (small) | 0 | 1 |
-| S3. DOJ / CFTC / SEC crypto enforcement 2017–2025 | Federal criminal or civil action with material on-chain effect | 8–12 | ≈ 12 | 0 | 12 |
+| S3. DOJ / CFTC / SEC crypto enforcement 2017–2025 | Federal criminal or civil action with material on-chain effect | 8–12 | ≈ 12 | 2 | 10 |
 | S4. Nation-state infrastructure bans | Named policy directive that alters L0 / off-ramp access | 3–5 | ≥ 8 confirmed | 0 | 6 |
 | S5. Corporate policy (non-OFAC) | Issuer / exchange / frontend unilateral decisions | 5–8 | representative (open) | 0 | 6 |
 | S6. Supranational actions | EU / UN / G7-level sanctions or unified crypto-regulatory frameworks | 2–4 | 2 confirmed | 0 | 2 |
-| **Total** | | **46–70** | | **0 drafts** | **53 admitted** |
+| **Total** | | **46–70** | | **2 drafts** | **51 admitted** |
 
 As of the current `v0.1.0` snapshot (cutoff `2026-04-22`):
-**53 / 53 admitted, 0 drafts**.
+**51 / 53 admitted, 2 drafts**. The two draft records are retained repair
+queue candidates, not paper-facing admitted events.
 
-Schema bumped to 0.2.0 (reviewer Actions 1–4 applied): `event_class` replaced by three orthogonal fields — `research_stratum` (sampling-frame stratum), `empirical_shape` (cascade / comparison / null_event based on observed_change layer count), `admission_tier` (anchor_case / empirical_case / null_case based on strong-attribution layer count). `follow_on_reaction` added for `attribution: unknown` observations that should not count toward cross-case statistics. See [docs/methodology.md §3.2](docs/methodology.md#L95). Tier distribution: **5 anchor_case, 35 empirical_case, 13 null_case**. See `dataset.meta.json`, `CHANGELOG.md`, event YAMLs under `events/`, and the chain-distribution structural finding in `docs/chain-coverage-note.md`.
+Schema bumped to 0.2.0 (reviewer Actions 1–4 applied): `event_class` replaced by three orthogonal fields — `research_stratum` (sampling-frame stratum), `empirical_shape` (cascade / comparison / null_event based on observed_change layer count), `admission_tier` (anchor_case / empirical_case / null_case based on strong-attribution layer count). `follow_on_reaction` added for `attribution: unknown` observations that should not count toward cross-case statistics. See [docs/methodology.md §3.2](docs/methodology.md#L95). Admitted-only tier distribution: **2 anchor_case, 36 empirical_case, 13 null_case**; the two additional YAML records are draft null_case repair candidates. See `dataset.meta.json`, `CHANGELOG.md`, event YAMLs under `events/`, and the chain-distribution structural finding in `docs/chain-coverage-note.md`.
 
 The paper's "20 events minimum" milestone has been cleared (2.65×). Strata that cannot be exhaustively enumerated (S5 in particular) are declared `scope: representative` in the paper rather than claimed complete.
 
@@ -110,7 +111,7 @@ Stratum is naturally small; most designated entities are never removed.
 
 ## Stratum 3 — DOJ / CFTC / SEC crypto enforcement with on-chain effect
 
-**12 / ≈ 12 admitted.**
+**10 / ≈ 12 admitted; 2 draft repair candidates.**
 
 - [x] **BTC-e seizure** — 2017-07-26. Earliest crypto enforcement in dataset. ← [`events/btc-e-doj-2017.yaml`](events/btc-e-doj-2017.yaml)
 - [x] **Hydra Market DOJ companion** — 2022-04-05. ← [`events/hydra-doj-2022.yaml`](events/hydra-doj-2022.yaml)
@@ -118,8 +119,8 @@ Stratum is naturally small; most designated entities are never removed.
 - [x] **CFTC v. Ooki DAO** — 2022-09-22. First CFTC-against-DAO enforcement; default judgment 2023-06-08. ← [`events/cftc-v-ooki-dao-2022.yaml`](events/cftc-v-ooki-dao-2022.yaml)
 - [x] **Bitzlato** — 2023-01-18. ← [`events/bitzlato-doj-2023.yaml`](events/bitzlato-doj-2023.yaml)
 - [x] **ChipMixer** — 2023-03-15 (DOJ + Europol). ← [`events/chipmixer-doj-2023.yaml`](events/chipmixer-doj-2023.yaml)
-- [x] **SEC v. Binance** — 2023-06-05. First SEC civil enforcement event; Binance.US fiat rail collapse within 4d. ← [`events/sec-v-binance-2023.yaml`](events/sec-v-binance-2023.yaml)
-- [x] **SEC v. Coinbase** — 2023-06-06. Companion SEC action; paired-comparison with Binance. ← [`events/sec-v-coinbase-2023.yaml`](events/sec-v-coinbase-2023.yaml)
+- [~] **SEC v. Binance** — 2023-06-05. Draft repair candidate: legal trigger pinned, but no admitted Binance.US platform / banking-rail observation until direct artifacts are attached. ← [`events/sec-v-binance-2023.yaml`](events/sec-v-binance-2023.yaml)
+- [~] **SEC v. Coinbase** — 2023-06-06. Draft repair candidate: legal trigger pinned, but no admitted same-day frontend / staking / off-ramp observation until platform artifacts are attached. ← [`events/sec-v-coinbase-2023.yaml`](events/sec-v-coinbase-2023.yaml)
 - [x] **Storm + Semenov DOJ indictment** — 2023-08-23. ← [`events/storm-semenov-doj-2023.yaml`](events/storm-semenov-doj-2023.yaml)
 - [x] **Binance 4-framework settlement** — 2023-11-21 ($4.3B DOJ + FinCEN + OFAC + CFTC). ← [`events/binance-4framework-2023.yaml`](events/binance-4framework-2023.yaml)
 - [x] **SEC Wells notice v. Uniswap Labs** — 2024-04-10 (dropped 2025-02-25). Lowest-intensity SEC regulatory-pressure event. ← [`events/sec-v-uniswap-wells-notice-2024.yaml`](events/sec-v-uniswap-wells-notice-2024.yaml)
@@ -189,7 +190,7 @@ Stratum is naturally small; most designated entities are never removed.
 
 ### Current state (2026-04-23)
 
-- **53 admitted, 0 drafts.** Full dataset validates via `scripts/validate.py`.
+- **51 admitted, 2 drafts.** Full YAML snapshot validates via `scripts/validate.py`; paper-facing derived tables filter to admitted events.
 - **All 2026-Q2 adversarial audit outcomes applied** (5 re_scoped + 1 escalation resolved).
 - **L0 / L3 / offramp_cex substrate pinned** (documented measurement-gap findings rather than fabricated data).
 - **Chain-distribution structural finding** written to [`docs/chain-coverage-note.md`](docs/chain-coverage-note.md).
@@ -254,5 +255,6 @@ The bootstrap sequence (2026-04-21 → 2026-04-22) that took the dataset from 6 
 
 Bootstrap subtotal: **49 admitted / 0 drafts** — the point at which the
 initial stratified corpus first exceeded the paper's 20-event gate.
-Subsequent schema / coverage / stratum updates raised the live snapshot
-to **53 admitted / 0 drafts**.
+Subsequent schema / coverage / stratum updates expanded the YAML snapshot;
+later adversarial review demoted the Binance/Coinbase SEC pair to draft repair
+candidates, leaving the current paper-facing surface at **51 admitted / 2 drafts**.

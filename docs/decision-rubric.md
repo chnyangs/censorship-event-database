@@ -10,7 +10,7 @@ surfaces which historical patterns the situation most resembles.
 > not assign probabilities. Read
 > [`docs/limitations-and-use.md`](limitations-and-use.md) first.
 > If you use this rubric's output in a brief, memo, or risk model, the
-> responsibility for that use is yours — the dataset is 53 events and
+> responsibility for that use is yours — the admitted dataset is 51 events and
 > will never be large enough to support automated decisions.
 
 ---
@@ -43,11 +43,12 @@ surfaces which historical patterns the situation most resembles.
 
 **Pattern call-outs:**
 
-- **SEC civil actions** split on whether an asset-freeze motion is
-  included. Binance (2023-06-05, motion included) → fiat-rail collapse
-  within 4 days. Coinbase (2023-06-06, no motion) → staking suspended
-  but platform operational. Uniswap Wells notice (2024-04, no formal
-  filing) → no L4 cascade at all.
+- **SEC civil actions** are repair-queue candidates unless platform,
+  banking-rail, or frontend artifacts are pinned directly. Binance
+  (2023-06-05) and Coinbase (2023-06-06) remain draft candidates after
+  the legal-source-only review; the admitted SEC contrast at v0.1 is
+  narrow: Uniswap Wells notice (2024-04, no formal filing) → no L4
+  cascade in the scoped window.
 - **DOJ indictments paired with same-day domain seizure** (Bitzlato,
   ChipMixer, Samourai, Cryptex, BTC-e) consistently produce `measured`
   L4 observed_change within the same day.
@@ -195,8 +196,7 @@ historical pattern class the situation most resembles:
 | **Individual-wallet (null L4, fast asset)** | `semenov-ofac-2023`, `lockbit-affiliates-ofac-2024` | asset only |
 | **Individual-BTC-only (null catalog)** | `lazarus-laundering-ofac-2020`, `matveev-ofac-2023`, `iran-ransomware-ofac-2018` | offramp_cex null only |
 | **Entity-only (null)** | `lazarus-entity-ofac-2019`, `sichuan-silence-ofac-2024` | offramp_cex null only |
-| **SEC high-intensity** | `sec-v-binance-2023` | L4 (fiat-rail suspension) + offramp |
-| **SEC medium-intensity** | `sec-v-coinbase-2023` | offramp (staking suspended) |
+| **SEC formal-complaint candidates** | `sec-v-binance-2023`, `sec-v-coinbase-2023` (draft repair queue) | no admitted layer claim until platform / rail artifacts are pinned |
 | **SEC low-intensity (null)** | `sec-v-uniswap-wells-notice-2024` | none |
 | **Nation-state central bank** | `india-rbi-crypto-ban-2018`, `china-pboc-crypto-ban-2021`, `turkey-cbrt-crypto-ban-2021`, `nigeria-cbn-crypto-ban-2021` | offramp_cex only, via bank-rail severance |
 | **Nation-state emergency freeze** | `canada-convoy-freeze-2022` | offramp_cex + private-RCMP channel |
@@ -217,7 +217,7 @@ applies at all:
    The dataset has zero events on these chains; no historical pattern
    applies. See [`docs/chain-coverage-note.md`](chain-coverage-note.md).
 2. **The trigger involves a non-US, non-EU, non-G7 jurisdiction**.
-   The dataset has only 53 events; many nation-state slots have a
+   The admitted dataset has only 51 events; many nation-state slots have a
    single precedent or none. Do not extrapolate.
 3. **The top comparable case from `find_comparable_cases.py` has a
    match score below 40% of max**. That is the structural-novelty

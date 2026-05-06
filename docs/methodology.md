@@ -156,7 +156,10 @@ A layer is "stable" when: no new relevant state transition in that layer for 14 
 Two-reviewer sign-off required. Reviewers check:
 
 - All observations satisfy the source rule (§5).
-- All sources have Wayback hashes recorded.
+- All admission-grade web observation sources have a replayable archive
+  anchor (`wayback` or `body_hash` + `body_path`). Supplemental trigger
+  citations may include live URL pointers only when at least one trigger
+  citation is archived.
 - Timestamps are internally consistent (no claim of a reaction before trigger unless the pre-window explicitly flags it).
 - Coverage statuses are explicit for every tracked layer.
 - No observation conflates a measured change with a causal attribution claim.
@@ -208,7 +211,7 @@ Procedure:
 2. Collect user-reported rejections: require the report to include a **tx hash or RPC call hash** that we can independently replay. Replay against the provider; if rejection is reproduced, report is admissible.
 3. Admission: one primary provider-controlled source (ToS change, docs diff, status page, or replayed rejection) plus either a second primary provider-controlled source or an independent semi-primary measurement artifact. A news article or forum post may corroborate but does not satisfy the threshold.
 
-**Known failure mode**: private API paths (enterprise RPC, WalletConnect internals) are invisible. The dataset explicitly flags these as `l3_rpc_coverage: public_only`.
+**Known failure mode**: private API paths (enterprise RPC, WalletConnect internals) are invisible. The dataset explicitly flags these as `l3_rpc_coverage: public_only`. A provider landing page, general filter-list documentation, or public-RPC substrate snapshot establishes that an L3 measurement substrate exists, but it does **not** by itself count as event-specific `partially_measured` coverage or support `observed_no_change`; the event still needs a bracketing provider artifact, replayable rejection, or target-specific filter-list diff.
 
 ### 4.4 L4 — frontend delisting / geofence
 
@@ -264,7 +267,7 @@ The rule from the README, formalized:
 
 ## 6. Archival protocol
 
-Every web-based source gets archived at the moment of admission. The event YAML stores the Wayback hash inline.
+Every admission-grade web observation source gets archived at the moment of admission. The event YAML stores a Wayback URL or a local `body_hash` + `body_path` replay artifact. Trigger citations follow the same rule for at least one primary trigger source; additional trigger URLs may remain as live pointers when an archived trigger anchor is already present.
 
 ```text
 for each source.url where source.type in {primary_corporate, primary_legal,
@@ -278,7 +281,7 @@ for each source.url where source.type in {primary_corporate, primary_legal,
        - compute sha256 and record in YAML
 ```
 
-On-chain sources get a redundant snapshot: the JSON-RPC response is stored under `sources/onchain_receipts/<event_id>/<tx_hash>.json`. This insulates us from chain reorgs at the far edge of finality and from archive node changes.
+On-chain sources record a validated 64-hex transaction hash and, when available, a positive block number. A redundant JSON-RPC receipt under `sources/onchain_receipts/<event_id>/<tx_hash>.json` is preferred for release artifacts, but older v0.1 rows may rely on the tx hash plus issuer/tracker body hashes until receipt backfill is complete.
 
 OFAC SDN diffs are archived separately: use Treasury's Sanctions List Service archive for 2022+ and store local snapshots under `sources/ofac_sdn_diffs/YYYY-MM-DD.xml.gz`. This gives us our own working corpus rather than relying on future URL stability.
 

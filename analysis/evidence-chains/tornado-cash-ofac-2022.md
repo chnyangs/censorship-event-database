@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `cascade` (5 changed layer(s): `asset_onchain`, `l1_consensus`, `l3_rpc`, `l4_frontend`, `offramp_cex`) · **Tier**: `anchor_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `5d38fae` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-25T09:22:35Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `b99dfaf` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-27T11:03:02Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -174,8 +174,6 @@
 
 **Sources**:
 
-- **`semi_primary_wayback`**
-  > Wayback snapshots showing transition from accessible to unavailable for tornado.cash
 - **`semi_primary_measurement`**
   - URL: <https://github.com/tornadocash>
   - Wayback: <https://web.archive.org/web/20260421105622/https://github.com/tornadocash>
@@ -215,7 +213,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `5d38fae`).
+1. Clone the repository at tag `v0.1.0` (commit `b99dfaf`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

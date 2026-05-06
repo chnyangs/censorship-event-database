@@ -8,20 +8,21 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `53`
-- Release-ready cases: `53`
+- Release-ready cases: `7`
+- Admitted but release-blocked cases: `44`
 - Fully complete release-ready cases: `0`
-- Scope-limited release-ready cases: `53`
+- Scope-limited release-ready cases: `7`
 - Working drafts: `0`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 38, 'paper_anchor': 2, 'null_control': 13}`
-- Draft priority order: `none`
+- Paper-use roles: `{'aggregate_datapoint': 36, 'paper_anchor': 2, 'null_control': 13, 'appendix_only': 2}`
+- Draft priority order: `sec-v-binance-2023, sec-v-coinbase-2023`
 
 ## Cases
 
 ### `aeza-group-ofac-2025`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -40,7 +41,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `binance-4framework-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -58,7 +59,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `bitzlato-doj-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -74,7 +75,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `blender-ofac-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -92,7 +93,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `btc-e-doj-2017`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -111,7 +112,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `canada-convoy-freeze-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -127,7 +128,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `cftc-v-ooki-dao-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -143,7 +144,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `chatex-ofac-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -157,7 +158,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `china-pboc-crypto-ban-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -173,7 +174,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `chipmixer-doj-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -218,7 +219,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `cryptex-ofac-2024`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `paper_anchor`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -247,7 +248,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `eu-12th-russia-sanctions-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -263,7 +264,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `eu-mica-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -279,7 +280,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `funnull-cdn-ofac-2025`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -298,7 +299,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `garantex-ofac-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -314,7 +315,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `grinex-garantex-successor-ofac-2025`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -330,7 +331,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `hydra-doj-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -348,7 +349,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `hydra-ofac-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -364,7 +365,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `india-rbi-crypto-ban-2018`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -382,7 +383,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `iran-ransomware-ofac-2018`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -400,7 +401,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `irgc-ransomware-ofac-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -415,7 +416,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `korea-travel-rule-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -431,7 +432,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `lazarus-entity-ofac-2019`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -449,7 +450,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `lazarus-laundering-ofac-2020`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -464,22 +465,23 @@ This file is the operational summary for the repo's two current priorities:
 ### `lockbit-affiliates-ofac-2024`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `medium`
+- Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: One layer remains explicitly unmeasured.
+- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Next action: Either measure the remaining layer or document why it is out of scope.
+- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
+- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `lockbit-leader-ofac-2024`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -494,7 +496,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `matveev-ofac-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -514,7 +516,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `nigeria-cbn-crypto-ban-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -530,7 +532,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `pertsev-nl-arrest-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -578,7 +580,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `russian-cybercrime-infra-ofac-2025`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -593,7 +595,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `samourai-doj-2024`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -611,38 +613,50 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `sec-v-binance-2023`
 
-- Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Status: `draft`
+- Readiness: `needs_re_scoping`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `high`
-- Coverage completeness: `high`
-- Case-shape completeness: `high`
+- Attribution reliability: `low`
+- Coverage completeness: `low`
+- Case-shape completeness: `low`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
+- Note: null_event has no observations attached (neither observed_change nor observed_no_change).
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Blocker: The file does not currently retain a stable changed-layer claim.
+- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
+- Blocker: null_event requires at least one observation with admission-grade sources.
 - Next action: Pin down the target set more concretely in the event file.
+- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 
 ### `sec-v-coinbase-2023`
 
-- Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Status: `draft`
+- Readiness: `needs_re_scoping`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `high`
-- Coverage completeness: `high`
-- Case-shape completeness: `medium`
+- Attribution reliability: `low`
+- Coverage completeness: `low`
+- Case-shape completeness: `low`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
+- Note: null_event has no observations attached (neither observed_change nor observed_no_change).
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Blocker: The file does not currently retain a stable changed-layer claim.
+- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
+- Blocker: null_event requires at least one observation with admission-grade sources.
 - Next action: Pin down the target set more concretely in the event file.
-- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 
 ### `sec-v-uniswap-wells-notice-2024`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -660,7 +674,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `semenov-ofac-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -676,7 +690,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `sichuan-silence-ofac-2024`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -696,7 +710,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `sinbad-ofac-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -714,7 +728,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `storm-semenov-doj-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -732,7 +746,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `suex-ofac-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -748,7 +762,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `tether-doj-pig-butchering-freeze-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -779,7 +793,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `tether-retroactive-sweep-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -812,7 +826,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `tornado-cash-ofac-delisting-2025`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `medium`
@@ -830,7 +844,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `tornado-cash-ofac-redesignation-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
@@ -846,7 +860,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `turkey-cbrt-crypto-ban-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -862,7 +876,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `uniswap-frontend-delisting-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
@@ -878,7 +892,7 @@ This file is the operational summary for the repo's two current priorities:
 ### `zservers-ofac-2025`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`

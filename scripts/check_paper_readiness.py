@@ -91,7 +91,9 @@ def load_events(events_dir: pathlib.Path) -> list[dict[str, Any]]:
     for path in sorted(events_dir.glob("*.yaml")):
         if path.name == "TEMPLATE.yaml" or path.name.startswith("_"):
             continue
-        events.append(yaml.safe_load(path.read_text()))
+        event = yaml.safe_load(path.read_text())
+        if isinstance(event, dict) and event.get("status") == "admitted":
+            events.append(event)
     return events
 
 
@@ -202,7 +204,7 @@ def main() -> int:
         if table_meta.get("event_count") != len(events):
             errors.append(
                 f"paper table event_count={table_meta.get('event_count')} "
-                f"but events/*.yaml count={len(events)}"
+                f"but admitted event count={len(events)}"
             )
         snapshot = table_meta.get("dataset_snapshot") or {}
         if head and snapshot.get("source_commit") != head:
@@ -224,7 +226,8 @@ def main() -> int:
         table1_rows = read_csv(paper_tables_dir / "table1_case_roles.csv")
         if len(table1_rows) != len(events):
             errors.append(
-                f"table1_case_roles.csv has {len(table1_rows)} rows; expected {len(events)}"
+                f"table1_case_roles.csv has {len(table1_rows)} rows; "
+                f"expected {len(events)} admitted events"
             )
         for row in table1_rows:
             event = events_by_id.get(row.get("event_id", ""))

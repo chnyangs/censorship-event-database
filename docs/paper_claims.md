@@ -20,7 +20,7 @@ Changes to this file are the only legitimate way to re-aim the paper.
 
 ## 0. Framing and estimand
 
-**Dataset snapshot**: v0.1.0 · cutoff 2026-04-22 · 53 admitted events.
+**Dataset snapshot**: v0.1.0 · cutoff 2026-04-22 · 53 YAML records, 51 admitted events.
 
 ### Primary finding (headline) and primary estimand
 
@@ -141,12 +141,12 @@ state, or corporate trigger and at least one independently
 archivable evidence surface**. This is an evidence-bearing research
 frame, not a population sample.
 
-**Jurisdictional composition (v0.1)**: 40/53 events
-(**75.5%**) carry `US` in their `jurisdiction` list. Region
+**Jurisdictional composition (v0.1)**: 38/51 admitted events
+(**74.5%**) carry `US` in their `jurisdiction` list. Region
 membership is **inclusive of multi-jurisdiction events** so the
-shares do not sum to 100%: 13/53 (24.5%) touch Europe (UK / EU /
-DE / NL / PL / PT / CH / IS), 13/53 (24.5%) touch Rest-of-World
-(RU / CN / IN / KR / NG / TR / AU / CA), 4/53 (7.5%) are
+shares do not sum to 100%: 13/51 (25.5%) touch Europe (UK / EU /
+DE / NL / PL / PT / CH / IS), 13/51 (25.5%) touch Rest-of-World
+(RU / CN / IN / KR / NG / TR / AU / CA), 4/51 (7.8%) are
 corporate-global with no jurisdiction. See
 [`analysis/paper_tables/table7_jurisdiction_distribution.md`](../analysis/paper_tables/table7_jurisdiction_distribution.md)
 for the inclusive-counting caveat (column sum exceeds corpus
@@ -187,11 +187,11 @@ boundary, it stays out of v0.1.
 
 | claim | reader-facing table | underlying fields | case role admitted | audit gate | uncertainty boundary |
 | --- | --- | --- | --- | --- | --- |
-| C1 upper-layer concentration | Table 2 `layer_observability` | `coverage[]`, `observations[].layer`, `observation_kind` | all 53 for denominators; changed rows for numerators | anchor rows cited by name need `last_human_audit`; aggregate table can ship with audit warning | coverage-matched rates only; no population prevalence |
-| C2 single-layer dominance | Table 3 `archetype_stratum` | `derived_archetype`, `changed_layer_count`, `research_stratum` | all 53 | parked until `observation_kind` κ ≥ 0.6 | corpus archetype distribution, not clustering or population rate |
+| C1 upper-layer concentration | Table 2 `layer_observability` | `coverage[]`, `observations[].layer`, `observation_kind` | all 51 admitted events for denominators; changed rows for numerators | anchor rows cited by name need `last_human_audit`; aggregate table remains descriptive until `observation_kind` κ ≥ 0.6 | coverage-matched rates only; no population prevalence; substrate-existence rows do not count as L3 coverage |
+| C2 single-layer dominance | Table 3 `archetype_stratum` | `derived_archetype`, `changed_layer_count`, `research_stratum` | all 51 admitted events | parked until `observation_kind` κ ≥ 0.6 | corpus archetype distribution, not clustering or population rate |
 | C3 latency | Table 4 Panels A/B/C | `trigger.timestamp_precision`, `time_to_first_change_hours`, `trigger_is_action` | timed `observed_change` rows only | any named latency exemplar needs audit | hour claims only from Panel A; day and trigger-is-action panels separate |
 | C4 trigger-is-action | Table 4 Panel C | `trigger.type`, `trigger_is_action` | `corporate_policy_change` events | named examples need audit | `t≈0` is record structure, not reaction speed |
-| C5 cross-stratum reach | Table 3 | `research_stratum`, `derived_archetype` | all 53 | descriptive until `observation_kind` κ ≥ 0.6 | stratum is an admission frame, not jurisdiction or population weight |
+| C5 cross-stratum reach | Table 3 | `research_stratum`, `derived_archetype` | all 51 admitted events | descriptive until `observation_kind` κ ≥ 0.6 | stratum is an admission frame, not jurisdiction or population weight |
 | ~~C6 recovery insufficiency~~ **[DEMOTED to exemplar-inside-C1; see §C6 below]** | — | — | — | — | reversal appears only as a narrative exemplar inside the Flashbots bidirectional mechanism finding, never as a standalone claim |
 
 ### Uncertainty-to-analysis mapping
@@ -226,12 +226,12 @@ lift this table rather than write a new one.
 | axis | Wahrstätter et al. (WWW 2024) | this project |
 | --- | --- | --- |
 | **Layer coverage** | L1 relay / builder filtering on Ethereum post-Merge (PBS). | Six-layer span: L0 network, L1 consensus, L3 RPC, L4 frontend, asset_onchain, offramp_cex. |
-| **Unit of observation** | Block / transaction (millions per window). | Event (n=53 admitted) plus, in v0.1, a paired census surface — 8 operator repos with substrate-edit ledger ([`analysis/operator_census/`](../analysis/operator_census/)) — and a fail-closed paper-table generator. |
+| **Unit of observation** | Block / transaction (millions per window). | Event (n=51 admitted; 53 YAML records including 2 draft repair candidates) plus, in v0.1, a paired census surface — 8 operator repos with substrate-edit ledger ([`analysis/operator_census/`](../analysis/operator_census/)) — and a fail-closed paper-table generator. |
 | **Trigger model** | Implicit (OFAC SDN list as a static block-time filter). | Explicit `trigger.*` with timestamp precision, actor, jurisdiction; precision-aware latency panels separate hour-grade from day-grade. |
 | **Coverage discipline** | Per-relay prevalence; denominators are blocks, not events. | Coverage-matched conditional rates over events with `measured / partially_measured / not_measured / not_applicable` as distinct states; rate emission aborts on denominator mismatch (`scripts/build_paper_tables.py` fail-closed). Three-rubric strict/current/permissive ablation reports sensitivity per layer. |
 | **Operator substrate** | Not examined as a first-class measurement channel; relay filtering is inferred from block content, not from operator source code. | `analysis/operator_census/` surveys 8 public operator repositories for git-history OFAC edits and **tiers them into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3)**. Reports two parallel headline numbers: 5 known-channel substrate edits across 1 confirmed-substrate repo (the wide ledger), and 1 OFAC-keyword-subject commit across the entire corpus (the narrow keyword classifier). Treats public git-history of operator compliance as a measurable substrate with minute-level precision where it exists. |
 | **Recovery / reversal** | Not addressed (the paper's cutoff predates OFAC's 2025-03-21 Tornado delisting). | Demoted to exemplar-inside-C1 (n=1; not a standalone claim — see §C6). Visible inside the substrate-edit ledger as PR #173 (2025-04-01 deletion). |
-| **Reproducibility** | Data + code published. | Pinned `requirements*.txt`, `SOURCE_DATE_EPOCH` byte-stable artifacts, fail-closed paper-table generator, 36-case pytest regression suite, blind inter-rater reliability sampler + κ calculator (with provenance taxonomy), CI gate that exercises the reproduction path (`make regenerate` + `make paper-check` + byte-stability round-trip). |
+| **Reproducibility** | Data + code published. | Pinned `requirements*.txt`, `SOURCE_DATE_EPOCH` byte-stable artifacts, fail-closed paper-table generator, pytest regression suite, blind inter-rater reliability sampler + κ calculator (with provenance taxonomy), CI gate that exercises the reproduction path (`make regenerate` + `make paper-check` + byte-stability round-trip). |
 | **Inter-rater reliability** | Not reported (their measurement is programmatic over block data, so κ on author labels is not the applicable check). | `coverage_status` self-consistency κ = 0.983 on 90 rows × 15 events under `llm_assisted_blinded` provenance (`analysis/inter_rater/kappa_report.md`). Cited as self-consistency, not as inter-rater reliability; an `independent_human` pass is open work for v0.2. |
 
 The clean framing for the paper: **Wahrstätter et al. is an
@@ -272,26 +272,24 @@ the kappa report's "Interpretation" section).
 
 Current state (v0.1):
 
-- **`coverage.status`**: κ = 0.983 (n=90, 15 events) under
-  `llm_assisted_blinded` provenance (recoder
-  `claude-opus-4-7 (general-purpose subagent)`,
-  prompt version `2026-04-24-irr-prompt-v1`). **Cite as
-  "self-consistency check, single-coder LLM-assisted recode"**, not
-  as inter-rater reliability. The Landis & Koch *almost-perfect*
-  label applies on the scale, but the substantive claim is bounded
-  by provenance: gold and recode share schema access and likely
-  systematic biases, so the κ is a lower bound on coder consistency,
-  not an independent reliability estimate. An `independent_human`
-  pass is open work for v0.2.
-- **`observation_kind`** and **`attribution`**: κ pending (blind
-  worksheets generated; not yet recoded). C2 is therefore a
-  **descriptive table surface only**, not a promoted central claim;
-  attribution-sensitive comparative phrasing is allowed only at
-  named-row/audit level.
+- **`coverage.status`**: κ = 1.0 (n=90 rows, 15 events) under
+  `llm_assisted_blinded` provenance.
+- **`observation_kind`**: κ = 1.0 (n=25 rows, 15-event blind sample)
+  under `llm_assisted_blinded` provenance.
+- **`attribution`**: κ = 1.0 (n=20 rows, changed-observation blind
+  sample) under `llm_assisted_blinded` provenance.
 
-**Phrasing lock for the paper**: when citing the coverage_status κ,
-use "self-consistency check (LLM-assisted blinded recode), n=90,
-κ=0.983" or equivalent; do **not** use bare "almost perfect inter-
+All three must be cited as a **self-consistency check,
+single-coder LLM-assisted blinded recode**, not as independent-human
+inter-rater reliability. The Landis & Koch *almost-perfect* label
+applies on the scale, but the substantive claim is bounded by
+provenance: gold and recode may share systematic biases, so the κ is
+a consistency floor, not an independent reliability estimate. An
+`independent_human` pass remains open work for v0.2.
+
+**Phrasing lock for the paper**: when citing κ, use
+"self-consistency check (LLM-assisted blinded recode), n=90/25/20,
+κ=1.0" or equivalent; do **not** use bare "almost perfect inter-
 rater agreement" without naming the provenance mode. The paper's
 §3 must not report a conditional rate whose underlying variable
 sits below κ ≥ 0.6 under any pass. Protocol + provenance taxonomy
@@ -308,26 +306,25 @@ subset of events admissible, and the phrasing lock.
 
 **Claim (phrasing-locked)**:
 
-> "Across 53 admitted events, observed changes are concentrated on
+> "Across 51 admitted events, observed changes are concentrated on
 > the upper layers of the six-layer stack. Under coverage-matched
 > denominators reported across three admission rubrics
 > (strict / current / permissive — see `derived/admission_sensitivity.md`):
 >
-> - `l4_frontend` = **9/16 (0.56) strict, 11/16 (0.69) current,
->   13/19 (0.68) permissive** — sensitivity Δ=0.12; the rate moves
+> - `l4_frontend` = **8/14 (0.57) strict, 10/14 (0.71) current,
+>   12/17 (0.71) permissive** — sensitivity Δ=0.13; the rate moves
 >   meaningfully under rubric, so all three are reported.
-> - `offramp_cex` = **15/25 (0.60) strict, 15/25 (0.60) current,
->   16/26 (0.62) permissive** — robust (Δ=0.015).
+> - `offramp_cex` = **13/23 (0.57) strict, 13/23 (0.57) current,
+>   14/24 (0.58) permissive** — robust (Δ=0.018).
 > - `l1_consensus` = **0/6 (0.00) strict, 1/6 (0.17) current,
 >   2/7 (0.29) permissive** — sensitivity Δ=0.29; both
 >   measured-or-partial change rows are anchored on Tornado Cash
 >   events.
 > - `l3_rpc` has **no `measured`-coverage events** in the corpus;
->   its partial-coverage subset carries 2 observed changes
->   (`changed_given_measured_or_partial` = 2/9 = 0.22), both
->   admitted via Flashbots `rpc-endpoint` git-history (PR #90 adding
->   Tornado pool addresses 2022-08-08, PR #173 deleting the
->   blacklist 2025-04-01; see [`analysis/anchor_gap_fill_log.md §4`](../analysis/anchor_gap_fill_log.md)).
+>   it carries two named Flashbots `rpc-endpoint` git-history
+>   observations (PR #90 adding Tornado pool addresses 2022-08-08,
+>   PR #173 deleting the blacklist 2025-04-01), but emits **no L3
+>   conditional rate**.
 > - `l0_network` carries no `measured` denominator.
 > - `asset_onchain` is **NOT reported as a rate** at v0.1: see the
 >   structural-circularity note in 'Not said' below.
@@ -340,8 +337,8 @@ subset of events admissible, and the phrasing lock.
   recomputation). `analysis/paper_tables/table2_layer_observability.md`
   is the reader-facing re-emission and **must carry all three rubrics
   for `l4_frontend` and `l1_consensus`** in its emitted prose.
-- **n**: 53 events across 6 layers.
-- **Case role**: all 53 (empirical + null + anchor all contribute
+- **n**: 51 admitted events across 6 layers.
+- **Case role**: all 51 admitted events (empirical + null + anchor all contribute
   coverage denominators; only observed_change rows enter the
   numerator).
 - **Phrasing lock**:
@@ -354,8 +351,8 @@ subset of events admissible, and the phrasing lock.
     - "L3 has zero observed changes" — the 2 Tornado L3 rows added
       2026-04-24 invalidate that earlier framing.
     - **citing `l4_frontend` or `l1_consensus` rate without naming
-      the rubric** (so "L4 = 0.69" without "current rubric" or
-      "11/16 (0.69)" is forbidden — these are the
+      the rubric** (so "L4 = 0.71" without "current rubric" or
+      "10/14 (0.71)" is forbidden — these are the
       sensitive-to-rubric layers per
       `derived/admission_sensitivity.md`).
     - **any `asset_onchain` rate** at v0.1 (see "Not said" below).
@@ -388,11 +385,11 @@ subset of events admissible, and the phrasing lock.
 
 **Descriptive table text (not a promoted paper claim until κ ≥ 0.6):**
 
-> "Of 53 admitted events, 35 (66%) show observed changes at exactly
-> one layer, 5 (9%) show observed changes at two or more layers, and
+> "Of 51 admitted events, 34 (67%) show observed changes at exactly
+> one layer, 4 (8%) show observed changes at two or more layers, and
 > 13 (25%) show no observed change at any layer in their scoped
 > window. Single-layer responses dominate the publicly-observable
-> record, with `cex_only` (n=14), `asset_only` (n=13), and
+> record, with `cex_only` (n=13), `asset_only` (n=13), and
 > `frontend_only` (n=8) being the three dominant single-layer
 > archetypes. Zero events land in the `other_single_layer` safety
 > class (L0-only / L1-only / L3-only), reinforcing the upper-layer
@@ -400,8 +397,8 @@ subset of events admissible, and the phrasing lock.
 
 - **Evidence**: `derived/event_archetypes.csv` +
   `derived/archetype_distribution.md` §2.
-- **n**: 53 events.
-- **Case role**: all 53. Null cases are 13/13 of the `null_event`
+- **n**: 51 admitted events.
+- **Case role**: all 51 admitted events. Null cases are 13/13 of the `null_event`
   archetype by construction.
 - **Phrasing lock**:
   - PREFER "admitted corpus", "observed changes at", "rule-based
@@ -457,7 +454,7 @@ subset of events admissible, and the phrasing lock.
     aggregate-statistical vocabulary applied to Panel A — the
     claim is explicitly exemplar-level. Also FORBID any latency
     number expressed in hours that includes a day-precision trigger;
-    "reaction time" as a scalar summary across all 53
+    "reaction time" as a scalar summary across the admitted corpus
     (precision-mixed); hardcoded hour/day subset counts in the prose
     (delegate to Table 4).
 - **Not said**: this is NOT a decomposition by layer speed — that is
@@ -506,13 +503,13 @@ not be written as an inferential central result in v0.1.
 
 > "The dominant single-layer archetypes (asset_only, frontend_only,
 > cex_only) appear across multiple research strata: asset_only is
-> present in S1 (10) and S5 (3); cex_only in S1 (1), S3 (3), S4 (6),
+> present in S1 (10) and S5 (3); cex_only in S1 (1), S3 (2), S4 (6),
 > S5 (2), S6 (2); frontend_only in S1 (2), S3 (5), S5 (1). The
 > upper-layer reach is not a single-stratum artifact."
 
 - **Evidence**: `derived/event_archetypes.json` cross-tabulated with
   `research_stratum`.
-- **n**: 53 events.
+- **n**: 51 admitted events.
 - **Case role**: empirical + anchor + null jointly contribute.
 - **Phrasing lock**:
   - PREFER "present across multiple strata",
@@ -574,7 +571,7 @@ Each item below is a claim we could imagine making and have ruled out.
   v0.2 after more hour-precision events accumulate.
 - **"Private-order (CEX) responses are faster than on-chain (asset)
   responses"** — day-precision triggers and asymmetric coverage
-  denominators (asset is 17 measured, cex is 25 measured) prevent a
+  denominators (asset is 17 measured, cex is 23 measured) prevent a
   defensible comparison. Parked for v0.2 after precision-aware
   latency tables land.
 - **"Stack X is more censorship-resistant than Stack Y"** — the
@@ -590,8 +587,9 @@ Each item below is a claim we could imagine making and have ruled out.
 
 ### 3.1 Sampling: stratum weights are not population weights
 
-The 53 events are stratum-complete relative to the admission protocol,
-not population-weighted. A reader should not read row counts as
+The 51 admitted events are stratum-complete relative to the admission
+protocol, with 2 additional YAML records retained as draft repair
+candidates. A reader should not read row counts as
 prevalence estimates over "all censorship events". Stratum identifiers
 (`S1_ofac_sdn`, `S2_ofac_removal`, `S3_doj_sec_cftc_fiod`,
 `S4_nation_state`, `S5_corporate`, `S6_supranational`) must be

@@ -170,21 +170,13 @@ coverage:
       observation below; the baseline (pre-event 14-day mean 65.96% ± 5.31) and post-event plateau
       (post-event 14-day mean 73.48% ± 2.23) show the redesignation did not produce a step change.
   - layer: l3_rpc
-    status: partially_measured
+    status: not_measured
     provider_scope: public_only
     note: |
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
+      No event-specific RPC-provider rejection, docs/status change, or
+      filter-list snapshot is pinned for the 2022-11-08 redesignation.
+      Flashbots Protect substrate snapshots are background context only
+      and are not counted as L3 measured coverage.
       Same RPC-provider gap as tornado-cash-ofac-2022; the 2022-11 MEV-Blocker / OFAC-compliant RPC
       lists are not currently pinned to a first-party artifact. Attaching one would unblock a
       defensible RPC-layer observation for the 60 net-new addresses.
@@ -250,7 +242,6 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0x5b4c60abaf4807eba903877835a301d08d8e51f6fd89f1c69657659f90e18f70
         tx_hash: "0x5b4c60abaf4807eba903877835a301d08d8e51f6fd89f1c69657659f90e18f70"
-        block: 0
         note: |
           Tether USDT addBlackList tx for Tornado Cash pool address 0x905b63Fff465B9fFBF41DeA908CEb12478ec7601
           at 2023-12-09 05:18 UTC. Part of Tether's 2023-12-09 retroactive sweep of historical
@@ -304,46 +295,6 @@ observations:
           Relayscan (Flashbots-operated) dashboard independently tracks per-relay OFAC compliance
           over time; its historical curve is consistent with Wahrstätter's plateau, serving as a
           second admission-grade source for the observed_no_change claim.
-  - layer: l3_rpc
-    actor: flashbots_protect_rpc_provider
-    event: flashbots_protect_in_effect_no_step_change_attributable_to_this_event
-    observation_kind: observed_no_change
-    attribution: none
-    timestamp: 2022-11-08T00:00:00Z
-    precision: day
-    delta_hours: 0
-    window:
-      - 2022-11-08T00:00:00Z
-      - 2022-11-08T23:59:59Z
-    sources:
-      - type: primary_corporate
-        url: https://web.archive.org/web/20221222111307/https://protect.flashbots.net/
-        wayback: https://web.archive.org/web/20221222111307/https://protect.flashbots.net/
-        body_hash: sha256:9d1177026d363b7599bdbfa4f66c2b33b5da7944283071b4d31ed8f31194257b
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20230101000000-https-protect.flashbots.net__a49e4f491d.html
-        scope_descriptor:
-          providers: [flashbots_protect]
-          time_window:
-            - 2022-11-08T00:00:00Z
-            - 2022-11-08T23:59:59Z
-          addresses_cohort: this_event_sdn_addresses
-        note: |
-          Flashbots Protect landing-page Wayback snapshot (2022-12-22)
-          bracketing the event date 2022-11-08. Flashbots Protect (launched 2022-11)
-          is the earliest major OFAC-compliance-adjacent public Ethereum RPC substrate.
-          MEV-Blocker did not exist yet (launched 2023-03-27), so Flashbots Protect
-          is the sole L3 anchor in this pre-MEV-Blocker window. Snapshot documents the
-          provider + OFAC-aware routing was in effect; no per-transaction filter-list
-          receipt is published.
-      - type: primary_corporate
-        url: https://web.archive.org/web/20230326063621/https://docs.flashbots.net/flashbots-protect/overview
-        wayback: https://web.archive.org/web/20230326063621/https://docs.flashbots.net/flashbots-protect/overview
-        body_hash: sha256:38c0a61cb1a6c766ef72565562b37b3ccb65d581ed6915e9c74d70ee2fe511df
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20230215000000-https-docs.flashbots.net-flashbots-protect-overview__12a715a422.html
-        note: |
-          Second Flashbots Protect Wayback anchor (2023-03-26)
-          — post-event docs snapshot, independent archival anchor. The docs.flashbots.net
-          overview page describes OFAC-compliance behavior of the Protect RPC endpoint.
 analysis_notes: |
   comparison documenting the 2022-11-08 OFAC redesignation of Tornado Cash under
   DPRK-related authorities (simultaneously removing the original 2022-08-08 Cyber-related

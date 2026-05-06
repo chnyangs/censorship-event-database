@@ -1,6 +1,6 @@
 # Audit worksheet — `cryptex-ofac-2024`
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `8cadf3a` · generated `2026-04-24T00:30:31Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `b99dfaf` · generated `2026-04-27T11:03:02Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S1_ofac_sdn`
@@ -112,24 +112,6 @@ Audit checks:
 - **sources** (2):
   - [ ] src[0]: type=`semi_primary_measurement` · url=<https://raw.githubusercontent.com/nerolation/censorship.pics/main/data/relay_censorship_share.csv> · body_hash=`sha256:45c1db9c…4567` · body_path=`sources/l1_datasets/tornado-cash-ofac-2022/relay_censorship_share.csv` · query_hash=`sha256:e147ceb6…fef2` · scope_descriptor=(2 keys)  · hash_check=`ok`
   - [ ] src[1]: type=`semi_primary_measurement` · url=<https://www.relayscan.io> · wayback=<https://web.archive.org/web/20260421114750/https://www.relayscan.io/> · body_hash=`sha256:dc39f559…a827` · body_path=`sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html`  · hash_check=`ok`
-
-Audit checks:
-- [ ] Passage in each cited source supports `observed_no_change` for this layer.
-- [ ] Attribution `none` is not over-stated (`direct` requires primary_* source corroborating the causal link).
-- [ ] Timestamp precision is sufficient for any `delta_hours` downstream claim (day-precision → NO hour claim).
-- [ ] `observed_no_change` is bounded by a `window` and at least one falsifiable evidence anchor (query_hash / measurement_ids / body_hash+body_path / scope_descriptor).
-- [ ] `attribution` is `none` (no causal claim under null observation).
-- [ ] NOTE: _free-form audit note (if the row was revised)_
-
-### 3.6 · `l3_rpc` · actor=`mev_blocker_rpc_provider` · event=`mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event`
-
-- **observation_kind**: `observed_no_change`
-- **attribution**: `none`
-- **timestamp**: `2024-09-26 00:00:00+00:00` · precision=`day` · delta_hours=`0`
-- **window**: `2024-09-26 00:00:00+00:00` → `2024-09-26 23:59:59+00:00`
-- **sources** (2):
-  - [ ] src[0]: type=`primary_corporate` · url=<https://web.archive.org/web/20240130093338/https://mevblocker.io/> · wayback=<https://web.archive.org/web/20240130093338/https://mevblocker.io/> · body_hash=`sha256:25c4585c…284a` · body_path=`sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20240130093338-https-mevblocker.io__9ddac997cc.html` · scope_descriptor=(3 keys)  · hash_check=`ok`
-  - [ ] src[1]: type=`primary_corporate` · url=<https://docs.flashbots.net/flashbots-protect/quick-start> · body_hash=`sha256:b937ed96…7282` · body_path=`sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html`  · hash_check=`ok`
 
 Audit checks:
 - [ ] Passage in each cited source supports `observed_no_change` for this layer.

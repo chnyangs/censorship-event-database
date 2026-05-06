@@ -84,7 +84,9 @@ def _load_events() -> list[dict]:
     for f in sorted(EVENTS_DIR.glob("*.yaml")):
         if f.name == "TEMPLATE.yaml" or f.name.startswith("_"):
             continue
-        events.append(yaml.safe_load(f.read_text()))
+        event = yaml.safe_load(f.read_text())
+        if isinstance(event, dict) and event.get("status") == "admitted":
+            events.append(event)
     return events
 
 
@@ -144,6 +146,28 @@ def _compute_all(events: list[dict]) -> list[dict[str, Any]]:
             row[f"{rubric_name}_num"] = r["numerator"]
             row[f"{rubric_name}_den"] = r["denominator"]
             row[f"{rubric_name}_rate"] = r["rate"]
+        if (
+            layer == "l3_rpc"
+            and results["strict"]["denominator"] == 0
+            and results["current"]["denominator"] == 0
+            and results["permissive"]["denominator"] > 0
+        ):
+            # L3 has only named Flashbots git-history observations in v0.1.
+            # Keep the counts, but suppress the permissive-only conditional rate.
+            row["permissive_rate"] = None
+            row["strict_permissive_delta"] = None
+            row["sensitivity"] = "undefined"
+            rows.append(row)
+            continue
+        if layer == "asset_onchain":
+            # Retain numerator/denominator counts, but do not classify the
+            # structurally circular 17/17 asset anchor as a paper rate.
+            for rubric_name in RUBRICS:
+                row[f"{rubric_name}_rate"] = None
+            row["strict_permissive_delta"] = None
+            row["sensitivity"] = "retracted_structural"
+            rows.append(row)
+            continue
         # Sensitivity: strict → permissive delta on rate.
         strict_r = results["strict"]["rate"]
         perm_r = results["permissive"]["rate"]
@@ -211,15 +235,19 @@ def _write_md(rows: list[dict[str, Any]], path: pathlib.Path,
         "| --- | --- | --- | --- | --- | --- |",
     ]
     for r in rows:
-        def cell(n: int, d: int, rate) -> str:
+        def cell(layer: str, n: int, d: int, rate) -> str:
             if d == 0:
                 return "— / 0 = —"
+            if layer == "l3_rpc" and rate is None:
+                return f"{n} named observations = no rate"
+            if layer == "asset_onchain" and rate is None:
+                return f"{n}/{d} = retracted"
             return f"{n}/{d} = {rate:.3f}" if rate is not None else f"{n}/{d} = —"
         md.append(
             f"| `{r['layer']}` | "
-            f"{cell(r['strict_num'], r['strict_den'], r['strict_rate'])} | "
-            f"{cell(r['current_num'], r['current_den'], r['current_rate'])} | "
-            f"{cell(r['permissive_num'], r['permissive_den'], r['permissive_rate'])} | "
+            f"{cell(r['layer'], r['strict_num'], r['strict_den'], r['strict_rate'])} | "
+            f"{cell(r['layer'], r['current_num'], r['current_den'], r['current_rate'])} | "
+            f"{cell(r['layer'], r['permissive_num'], r['permissive_den'], r['permissive_rate'])} | "
             f"{r['strict_permissive_delta'] if r['strict_permissive_delta'] is not None else '—'} | "
             f"**{r['sensitivity']}** |"
         )
@@ -240,6 +268,11 @@ def _write_md(rows: list[dict[str, Any]], path: pathlib.Path,
         "`l0_network` and `l3_rpc` cases at v0.1). For those layers "
         "the paper should phrase the rate as an observability gap, "
         "not a conditional rate.",
+        "- For `l3_rpc`, the permissive counts are retained only as "
+        "two named Flashbots git-history observations; the rate is "
+        "suppressed because the layer has no measured denominator.",
+        "- For `asset_onchain`, counts are retained but rates are retracted "
+        "because measured admission requires an asset-layer change anchor.",
         "",
         "This ablation is the reviewer-facing answer to "
         "\"can you inflate changed_given_measured by labeling events "

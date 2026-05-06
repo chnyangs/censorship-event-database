@@ -1,8 +1,9 @@
 # tests/ — regression guards and their scope
 
-27 test functions yielding **36 pytest-collected cases** (the
+65 test functions yielding **74 pytest-collected cases** (the
 expansion is from parametrized latency-band and safety-class suites),
-locking the invariants fixed during the 2026-04-23 and 2026-04-24
+locking the invariants fixed during the 2026-04-23, 2026-04-24, and
+2026-05-06
 reviews. Runnable via `make test`; wired into CI
 (`.github/workflows/validate.yml`) so a silent regression cannot
 re-enter main.
@@ -12,16 +13,22 @@ re-enter main.
 | File | Functions | Cases | What it locks |
 | --- | --- | --- | --- |
 | `test_archetype_classifier.py` | 14 | 23 | 6 archetype rules + priority ordering; latency-regime band inclusivity (parametrized across 8 boundary values); `trigger_is_action` coincidence rule (requires `corporate_policy_change` AND `\|Δt\| ≤ 1h`) |
-| `test_layer_observability.py` | 5 | 5 | Coverage-matched numerator: `changed_under_measured / measured` (the 2026-04-23 P1 fix — old formula mixed denominators) |
+| `test_layer_observability.py` | 8 | 8 | Coverage-matched numerator: `changed_under_measured / measured`; L3 partial-only rows and structurally circular asset rows are named/descriptive observations, not conditional rates |
 | `test_event_metrics_recovery.py` | 3 | 3 | Recovery rows on layers NOT in `changed_layers` are ignored (the 2026-04-23 P2 fix — prevents tally inflation) |
-| `test_paper_tables_fail_closed.py` | 5 | 5 | Precision helper prefers canonical `trigger.timestamp_precision`; day-precision triggers never enter Panel A; anchorless null cases cause `SystemExit` (ship-blocker per `docs/paper_claims.md §4`) |
+| `test_paper_tables_fail_closed.py` | 9 | 9 | Precision helper prefers canonical `trigger.timestamp_precision`; day-precision triggers never enter Panel A; anchorless null cases cause `SystemExit`; L3/asset rate suppression reaches paper/sensitivity tables |
+| `test_render_evidence_chain.py` | 2 | 2 | Related draft events render as status text, not dead links; evidence-chain cleanup refuses existing unmarked output directories |
+| `test_render_site_safety.py` | 8 | 8 | Static-site rendering refuses destructive output directories, `.git`, symlinked outputs, and existing unmarked directories; raw YAML export publishes admitted records only |
+| `test_repro_source_date_epoch.py` | 1 | 1 | Non-git Docker/source-archive reproduction can derive a deterministic fallback epoch from committed metadata |
+| `test_schema_fail_closed.py` | 10 | 10 | JSON Schema rejects validator-critical bypass shapes for schema-only consumers |
+| `test_staleness_report.py` | 1 | 1 | Staleness report honors `SOURCE_DATE_EPOCH` so regenerate remains byte-stable |
+| `test_validate_source_rules.py` | 9 | 9 | On-chain tx hashes / block anchors, trigger/source Wayback URL validation, nonblank measurement IDs, note-only semi-primary source loopholes, `observed_change`/`attribution:none`, and unknown provider scopes fail closed |
 
-When citing the count in prose, **prefer "36 pytest cases (27 test
+When citing the count in prose, **prefer "74 pytest cases (65 test
 functions)"**. `grep -c '^def test_' tests/*.py` gives the function
 count; `pytest --collect-only -q` gives the collected-case count.
 
 Every prior review finding has a test that fails-closed on
-re-introduction. The suite runs in under 0.5s and is gatekept by CI.
+re-introduction. The suite runs in about 1s and is gatekept by CI.
 
 ## What's NOT covered — and what "fail-closed" does not mean
 
@@ -52,16 +59,15 @@ pytest:
 - **Citation reachability / Wayback drift.** This is checked by
   `make verify-citations` / `make freshness`, not by pytest — those
   targets run in CI on a separate cadence.
-- **Paper-table byte-stability under `SOURCE_DATE_EPOCH`.** Verified
-  ad-hoc (see CHANGELOG 2026-04-24 §5) but not yet asserted by a
-  pytest round-trip. Adding this is tracked in the open-work list.
+- **Paper-table byte-stability under `SOURCE_DATE_EPOCH`.** Asserted by
+  CI's `make regenerate` byte-stability round-trip, not by pytest.
 - **Prose / README / paper-claims phrasing-lock enforcement.**
   `scripts/check_paper_readiness.py` covers the paper-facing table
   layer; README / paper-claims prose is not automatically checked.
 
-The phrase "fail-closed" in this repo means: if any of the 27 tested
-invariants is violated, `make test` exits non-zero and CI blocks the
-merge. It does **not** mean that every review finding is automated;
+The phrase "fail-closed" in this repo means: if any tested invariant is
+violated, `make test` exits non-zero and CI blocks the merge. It does
+**not** mean that every review finding is automated;
 the review process itself (audit worksheets, quarterly adversarial
 audits per `docs/audit-protocol.md`) is the layer that catches
 content-validity issues.

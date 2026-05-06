@@ -100,7 +100,31 @@
       "type": "array",
       "minItems": 1,
       "items": {
-        "type": "string"
+        "type": "string",
+        "enum": [
+          "AU",
+          "CA",
+          "CH",
+          "CN",
+          "DE",
+          "EU",
+          "IN",
+          "IR",
+          "IS",
+          "JP",
+          "KR",
+          "NG",
+          "NL",
+          "PL",
+          "PT",
+          "RU",
+          "SG",
+          "TR",
+          "UK",
+          "UN",
+          "US",
+          "corporate_global"
+        ]
       }
     },
     "coverage": {
@@ -159,6 +183,11 @@
     }
   },
   "$defs": {
+    "http_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://[^/?#\\s]+\\S*$"
+    },
     "citation": {
       "description": "Flexible citation object. Validator logic should enforce stronger source-level rules.",
       "anyOf": [
@@ -173,12 +202,10 @@
               "type": "string"
             },
             "url": {
-              "type": "string",
-              "format": "uri"
+              "$ref": "#/$defs/http_url"
             },
             "wayback": {
-              "type": "string",
-              "format": "uri"
+              "$ref": "#/$defs/http_url"
             },
             "label": {
               "type": "string"
@@ -196,6 +223,54 @@
       "required": [
         "type"
       ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {"type": {"const": "primary_onchain"}},
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["tx_hash"]
+          }
+        },
+        {
+          "if": {
+            "properties": {"type": {"const": "semi_primary_measurement"}},
+            "required": ["type"]
+          },
+          "then": {
+            "anyOf": [
+              {"required": ["wayback"]},
+              {"required": ["query_hash"]},
+              {"required": ["measurement_ids"]},
+              {"required": ["body_hash", "body_path"]}
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "primary_legal",
+                  "primary_corporate",
+                  "semi_primary_wayback",
+                  "supporting_journalism",
+                  "supporting_community",
+                  "supporting_tracker"
+                ]
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "anyOf": [
+              {"required": ["wayback"]},
+              {"required": ["body_hash", "body_path"]}
+            ]
+          }
+        }
+      ],
       "properties": {
         "type": {
           "type": "string",
@@ -211,39 +286,43 @@
           ]
         },
         "url": {
-          "type": "string",
-          "format": "uri"
+          "$ref": "#/$defs/http_url"
         },
         "wayback": {
-          "type": "string",
-          "format": "uri"
+          "$ref": "#/$defs/http_url"
         },
         "note": {
           "type": "string"
         },
         "tx_hash": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^(0x)?[0-9a-fA-F]{64}$"
         },
         "block": {
-          "type": [
-            "integer",
-            "string"
+          "oneOf": [
+            {"type": "integer", "minimum": 1},
+            {"type": "string", "pattern": "^[1-9][0-9]*$"}
           ]
         },
         "query_hash": {
-          "type": "string"
+          "type": "string",
+          "pattern": "\\S"
         },
         "body_hash": {
-          "type": "string"
+          "type": "string",
+          "pattern": "\\S"
         },
         "body_path": {
           "type": "string",
+          "pattern": "\\S",
           "description": "Relative path (from repo root) to the local archived body this body_hash refers to."
         },
         "measurement_ids": {
           "type": "array",
+          "minItems": 1,
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": "\\S"
           }
         },
         "scope_descriptor": {
@@ -434,6 +513,7 @@
         "provider_scope": {
           "type": "string",
           "enum": [
+            "flashbots_rpc_endpoint_only",
             "public_only",
             "public_and_enterprise",
             "unknown"
@@ -447,6 +527,25 @@
     "observation": {
       "type": "object",
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {"observation_kind": {"const": "observed_change"}},
+            "required": ["observation_kind"]
+          },
+          "then": {
+            "properties": {
+              "attribution": {
+                "enum": [
+                  "direct",
+                  "plausible",
+                  "unknown"
+                ]
+              }
+            }
+          }
+        }
+      ],
       "required": [
         "layer",
         "actor",
@@ -531,6 +630,10 @@
         "duplicate_of_action_id": {
           "type": "string",
           "description": "When this row is a scoped duplicate of a physical action already recorded in another event, point to that canonical action_id. The observation remains valid for its event-level trigger analysis but can be deduplicated for physical-action counts."
+        },
+        "note": {
+          "type": "string",
+          "description": "Optional observation-level interpretation note. Source-specific excerpts belong under sources[].note."
         },
         "window": {
           "type": "array",

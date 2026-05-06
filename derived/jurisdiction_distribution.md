@@ -1,23 +1,23 @@
 # Jurisdictional distribution (derived)
 
-Generated: `2026-04-25T09:22:35Z`. Corpus: n = 53 events.
+Generated: `2026-04-27T11:03:02Z`. Corpus: n = 51 events.
 
 ## By region
 
 | region | events touching | share of corpus |
 | --- | ---: | ---: |
-| US | 40 | 75.5% |
-| Europe (EU+UK+CH+non-bloc) | 13 | 24.5% |
-| Rest of World | 13 | 24.5% |
-| Corporate (no jurisdiction) | 4 | 7.5% |
-| **CORPUS TOTAL** | **53** | — |
-_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (70) ≥ corpus total (53). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
+| US | 38 | 74.5% |
+| Europe (EU+UK+CH+non-bloc) | 13 | 25.5% |
+| Rest of World | 13 | 25.5% |
+| Corporate (no jurisdiction) | 4 | 7.8% |
+| **CORPUS TOTAL** | **51** | — |
+_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (68) ≥ corpus total (51). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
 
 ## By country / bloc
 
 | jurisdiction code | events |
 | --- | ---: |
-| `US` | 40 |
+| `US` | 38 |
 | `UK` | 5 |
 | `EU` | 5 |
 | `DE` | 4 |
@@ -41,7 +41,6 @@ _Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in 
 | actor | events |
 | --- | ---: |
 | `US_OFAC` | 27 |
-| `US_SEC` | 3 |
 | `tether_usdt_issuer` | 3 |
 | `US_DOJ` | 2 |
 | `EU_Council` | 2 |
@@ -55,3 +54,4 @@ _Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in 
 | `circle_usdc_issuer` | 1 |
 | `coinbase_inc` | 1 |
 | `IN_RBI` | 1 |
+| `KR_FSC` | 1 |

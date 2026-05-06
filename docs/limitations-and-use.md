@@ -16,8 +16,9 @@ primary-source citations (sha256 `body_hash`); a concrete target
 with admission-grade evidence; and an explicit `scoped_claim` that the
 retained observations support.
 
-Currently **53 admitted events**; every event validates under
-[`scripts/validate.py`](../scripts/validate.py) at schema version 0.2.0.
+Currently **51 admitted events** plus **2 draft repair candidates**;
+every event validates under [`scripts/validate.py`](../scripts/validate.py)
+at schema version 0.2.0. Paper-facing tables use admitted events only.
 
 ### 1.1 Sampling frame
 
@@ -51,7 +52,7 @@ using any output for anything consequential.
 
 ### 2.1 Not a predictive model
 
-With 53 events across 6 research strata × 6 cascade layers × multiple
+With 51 admitted events across 6 research strata × 6 cascade layers × multiple
 time windows, **the statistical power for causal inference is low**. We
 publish descriptive patterns ("across N historical OFAC mixer
 designations, the canonical frontend was taken down within 48 hours in

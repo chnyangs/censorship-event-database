@@ -39,6 +39,7 @@ Interpret `review_report.py` output conservatively:
 
 - `release_ready_complete` — publishable and broadly complete at intended scope.
 - `release_ready_scoped` — publishable but only with an explicitly narrow claim.
+- `admitted_scope_blocked` — admitted to the corpus, but not release-publishable until listed blockers are resolved.
 - `candidate_for_admission` — no low scores, no gap markers, but still `draft`.
 - `working_draft` — empirical shape visible, core artifacts or attributions missing.
 - `needs_re_scoping` — current file cannot represent a stable case shape.
@@ -57,18 +58,19 @@ Every item must be true at the moment of promotion:
 6. `review_report.py` does not rate `observation_reliability` or `attribution_reliability` as `low`.
 7. If `release_ready_scoped`, `analysis_notes` states the narrow empirical claim in plain language.
 8. Any current-state web claim relied on for admission has a local capture bundle or equivalent archival artifact.
+9. If `review_report.py` returns `admitted_scope_blocked`, do not publish the case as release-ready; use it only in repair queues or explicitly marked appendices until blockers clear.
 
 ## 5. Release posture
 
 - In-repo: mix of `admitted` and `draft` is fine.
-- Release artifacts: `admitted` only by default.
+- Release artifacts: `admitted` only by default, excluding `admitted_scope_blocked` unless the release explicitly marks them as blocked/non-claim rows.
 - Paper inclusion: state the inclusion rule explicitly (e.g. "cascade_event only, primary-onchain corroboration required").
 
 ## 6. Adversarial quarterly audit
 
 Once the agent-assisted infrastructure is active (scripts/watchers/ + agent_draft_event.py + staleness_report.py are committed; cron scheduling is a separate deployment step), every quarter:
 
-1. Pick 5 admitted events from the most recent quarter, biased toward `release_ready_scoped`.
+1. Pick 5 admitted events from the most recent quarter, biased toward `admitted_scope_blocked` and `release_ready_scoped`.
 2. Try to find reasons to roll back, re-classify, or downgrade attribution.
 3. Record the outcome in `CHANGELOG.md` as `YYYY-QN audit: N reviewed, N rolled back, N re-scoped, N escalated`.
 

@@ -254,7 +254,9 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
     ]
 
     if event.get("status") == "admitted":
-        if all(
+        if blockers:
+            overall_readiness = "admitted_scope_blocked"
+        elif all(
             score == "high"
             for score in (
                 trigger_reliability,
@@ -345,6 +347,9 @@ def build_report(events: list[dict[str, Any]]) -> dict[str, Any]:
             for case in cases
             if case["overall_readiness"] in {"release_ready_complete", "release_ready_scoped"}
         ],
+        "admitted_scope_blocked_cases": [
+            case["id"] for case in cases if case["overall_readiness"] == "admitted_scope_blocked"
+        ],
         "release_ready_complete_cases": [
             case["id"] for case in cases if case["overall_readiness"] == "release_ready_complete"
         ],
@@ -396,6 +401,7 @@ def render_markdown(report: dict[str, Any]) -> str:
         "",
         f"- Event count: `{process['event_count']}`",
         f"- Release-ready cases: `{len(process['release_ready_cases'])}`",
+        f"- Admitted but release-blocked cases: `{len(process['admitted_scope_blocked_cases'])}`",
         f"- Fully complete release-ready cases: `{len(process['release_ready_complete_cases'])}`",
         f"- Scope-limited release-ready cases: `{len(process['release_ready_scoped_cases'])}`",
         f"- Working drafts: `{len(process['working_drafts'])}`",

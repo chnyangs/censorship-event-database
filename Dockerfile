@@ -15,12 +15,12 @@
 # Run the fail-closed test suite:
 #   docker run --rm p1-event-db:v0.1 make test
 #
-# Run a one-shot paper-readiness check:
+# Run a one-shot paper-readiness check. In source archives without `.git`,
+# Make falls back to the committed dataset.meta.json generated_at epoch.
 #   docker run --rm -v "$(pwd)":/work p1-event-db:v0.1 make paper-check
 #
 # Pinning strategy: the base image is pinned by both tag and sha256
-# digest (set the digest below at release-tag time; until then the
-# tag alone is used, with a comment naming the build-time digest).
+# digest for linux/amd64, matching GitHub Actions artifact-eval CI.
 # Third-party Python deps pinned in `requirements*.txt`. Debian apt
 # packages are intentionally NOT version-pinned: Debian rotates point
 # releases out of the apt index in months, which breaks
@@ -29,11 +29,7 @@
 # receipts file at build time so the reproduced versions are
 # auditable without locking the rebuild to a specific point release.
 
-# When tagging a Zenodo release, set the digest below by replacing the
-# tag-only `python:3.12.8-slim-bookworm` with the
-# `python:3.12.8-slim-bookworm@sha256:<digest>` form (see
-# https://hub.docker.com/_/python for the digest of the desired tag).
-FROM python:3.12.8-slim-bookworm
+FROM --platform=linux/amd64 python:3.12.8-slim-bookworm@sha256:8859bd6ca943079262c27e38b7119cdacede77c463139a15651dd340087a6cc9
 
 # `git` is only used by the optional operator-census scanner;
 # `make` drives the build targets. Both are unpinned by version on

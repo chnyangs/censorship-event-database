@@ -5,7 +5,7 @@ Layer B of the framework: given a proposed action (or a current event as a
 reference), find the top-N most similar historical events in the dataset.
 
 **CASE-BASED RETRIEVAL — NOT A PREDICTIVE MODEL.** See
-`docs/limitations-and-use.md` §2.1. With 53 events, the tool returns
+`docs/limitations-and-use.md` §2.1. With the admitted event corpus, the tool returns
 comparable precedents for human expert judgment, not probability forecasts.
 
 Similarity is a transparent weighted sum of discrete matches — not a
@@ -85,7 +85,12 @@ def git_hash() -> str:
 
 
 def load_events() -> dict[str, dict]:
-    return {f.stem: yaml.safe_load(f.read_text()) for f in EVENTS_DIR.glob("*.yaml")}
+    events: dict[str, dict] = {}
+    for f in EVENTS_DIR.glob("*.yaml"):
+        event = yaml.safe_load(f.read_text())
+        if isinstance(event, dict) and event.get("status") == "admitted":
+            events[f.stem] = event
+    return events
 
 
 def query_from_event(event: dict) -> dict:
@@ -327,7 +332,7 @@ def render_report(
                "frontend determines L4 cascade shape). Read the divergence "
                "factors for each ranked case.")
     out.append("2. **The tool reports what historically happened; it does not "
-               "forecast what will happen.** With 53 events, some structural "
+               f"forecast what will happen.** With {len(all_events)} admitted events, some structural "
                "slots contain only 1–2 precedents. Any statistical claim "
                "derived downstream must report sample size.")
     out.append("3. **If all top candidates have score < 40% of max, the query "

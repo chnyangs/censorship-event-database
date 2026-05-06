@@ -95,24 +95,13 @@ coverage:
       wallet on a single chain — individual-wallet sanctions of a non-protocol target are not
       expected to move the aggregate relay share.
   - layer: l3_rpc
-    status: partially_measured
+    status: not_measured
     provider_scope: public_only
     note: |
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
-      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot bracketing 2024-09-26 is
-      attached. This row should be interpreted as substrate coverage rather than an event-specific
-      RPC measurement.
+      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot,
+      provider docs/status change, or replayable rejection bracketing
+      2024-09-26 is attached. Public RPC substrate snapshots are treated
+      as background context, not event-specific L3 measurement coverage.
   - layer: l4_frontend
     status: measured
     scope:
@@ -188,7 +177,6 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0x55c457da2bac2555c666e9948baaa4a5ba66d730033b3684a4aa3c21a964b815
         tx_hash: "0x55c457da2bac2555c666e9948baaa4a5ba66d730033b3684a4aa3c21a964b815"
-        block: 0
         note: |
           Tether USDT blacklist transaction for Cryptex ETH address 0x0931cA... executed
           2024-09-26 03:37 UTC — same day as OFAC designation, preceding the 16:05 UTC
@@ -216,7 +204,6 @@ observations:
       - type: primary_onchain
         url: https://tronscan.org/#/transaction/dad0d1dabad6f1727c6ebb3961053f66dd2add3b78def6360e5c2a2a6121cad9
         tx_hash: "dad0d1dabad6f1727c6ebb3961053f66dd2add3b78def6360e5c2a2a6121cad9"
-        block: 0
         note: Tether USDT-TRC20 addBlackList transaction on TRON for address TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr, executed 2024-09-26 03:35 UTC. 2 minutes before the ETH USDT freeze (03:37 UTC); batch action across chains.
       - type: primary_corporate
         url: https://usdtbanlist.com/address/TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr
@@ -236,7 +223,6 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da
         tx_hash: "0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da"
-        block: 0
         note: |
           Circle USDC blacklist transaction for Cryptex ETH address executed 2024-09-27
           03:00 UTC — 27 hours after OFAC designation. Full 64-char tx hash extracted
@@ -282,50 +268,6 @@ observations:
         body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
         body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
         note: Relayscan independent dashboard consistent with Wahrstätter's plateau — second source for the observed_no_change claim.
-
-  - layer: l3_rpc
-    actor: mev_blocker_rpc_provider
-    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
-    observation_kind: observed_no_change
-    attribution: none
-    timestamp: 2024-09-26T00:00:00Z
-    precision: day
-    delta_hours: 0
-    window:
-      - 2024-09-26T00:00:00Z
-      - 2024-09-26T23:59:59Z
-    sources:
-      - type: primary_corporate
-        url: https://web.archive.org/web/20240130093338/https://mevblocker.io/
-        wayback: https://web.archive.org/web/20240130093338/https://mevblocker.io/
-        body_hash: sha256:25c4585c911220a0ae2ccc659e48077b48837344fa85d5a225f6d14cdfe5284a
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20240130093338-https-mevblocker.io__9ddac997cc.html
-        scope_descriptor:
-          providers: [mev_blocker, flashbots_protect]
-          time_window:
-            - 2024-09-26T00:00:00Z
-            - 2024-09-26T23:59:59Z
-          addresses_cohort: this_event_sdn_addresses
-        note: |
-          MEV-Blocker landing-page Wayback snapshot (2024-01-30) closest to
-          event date 2024-09-26. MEV-Blocker (launched 2023-03-27) filters
-          OFAC-SDN-listed addresses from the RPC substrate it serves. The
-          snapshot documents that MEV-Blocker was in effect as a public
-          OFAC-compliant RPC provider bracketing this event. No per-transaction
-          receipt of filter-list application is published; the observation
-          is the presence of the provider + filter-list at event time, not
-          a step change attributable to this specific designation.
-      - type: primary_corporate
-        url: https://docs.flashbots.net/flashbots-protect/quick-start
-        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
-        note: |
-          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
-          (launched 2022-11) is the second major OFAC-compliance-adjacent
-          public Ethereum RPC substrate. Together with MEV-Blocker these
-          cover the overwhelming majority of public OFAC-compliant Ethereum
-          RPC traffic in the 2023-2025 period.
-
 analysis_notes: |
   comparison documenting the 2024-09-26 coordinated action against the Russian
   virtual-currency exchange Cryptex (OFAC SDN designation) and co-occurring US Secret Service

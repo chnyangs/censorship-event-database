@@ -127,15 +127,15 @@ they've been through admission review. Examples that stay within scope:
 - **Cascade-shape claim** — "cross-layer reactions were observed on at
   least three layers within 72 hours." Backed by the per-layer observation
   tallies. Safe when restated in layer-count terms.
-- **Distribution claim** — "among 53 curated events, 38 satisfy the
+- **Distribution claim** — "among 51 admitted events, 36 satisfy the
   `comparison` shape (1–2 observed-change layers) and only 2 satisfy the
   `cascade` shape (≥3)." Safe *if* you carry the dataset version + cutoff
-  so readers understand which 53 you counted.
+  so readers understand which admitted release slice you counted.
 
 What the data does **not** support:
 
 - **Probabilistic forecasts** about future events of the same trigger type.
-  With 53 events across 6 strata, the per-cell sample is too small.
+  With 51 admitted events across 6 strata, the per-cell sample is too small.
 - **Individualised covered-party determinations.** The dataset records
   what happened to listed targets; it does not opine on whether a
   particular future action falls under a regulator's authority.

@@ -82,21 +82,13 @@ coverage:
       so aggregate L1 response would not be expected to move even if the
       classifier were active.
   - layer: l3_rpc
-    status: partially_measured
+    status: not_measured
     provider_scope: public_only
     note: |
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
+      No pinned RPC-provider rejection, docs/status change, or
+      event-specific filter-list snapshot is attached for this designation.
+      General MEV-Blocker / Flashbots Protect substrate snapshots are not
+      counted as event-specific L3 measurement coverage.
   - layer: l4_frontend
     status: not_measured
     scope: [funnull.io, funnull.com, funnull.app, funnull.buzz]
@@ -137,7 +129,6 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0x820504809ed1b810498c28dc2fc5fbeb1d753bb5b655ebe83d98cd999c96d2d7
         tx_hash: "0x820504809ed1b810498c28dc2fc5fbeb1d753bb5b655ebe83d98cd999c96d2d7"
-        block: 0
         note: USDC Blacklisted() tx for Funnull ETH address 0xd5ED34b5... at 2025-05-29 07:47 UTC — same day as OFAC designation.
       - type: primary_corporate
         url: https://usdtbanlist.com/address/0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510
@@ -156,56 +147,12 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0xd0d30630d1588780f0eda7647a884fb97aed7c5957833599b4754a212280f282
         tx_hash: "0xd0d30630d1588780f0eda7647a884fb97aed7c5957833599b4754a212280f282"
-        block: 0
         note: Tether USDT addBlackList tx for ETH address at 2025-05-29 10:15 UTC. Paired with TRON freeze of 4c0606f5... at 2025-05-29 22:12 UTC.
       - type: primary_corporate
         url: https://usdtbanlist.com/address/TNmRfnSUXZoWWzxcDDbf95eGQYXt1mJDt8
         body_hash: sha256:8e1729352a755bc5c63efc300f58068bed63e03aa533c507ab7acb408266e9d2
         body_path: sources/http_captures/funnull-cdn-ofac-2025/asset-layer-check/usdtbanlist.com__address-TNmRfnSUXZoWWzxcDDbf95eGQYXt1mJDt8.html
         note: Tron-address archival anchor for the cross-chain Tether action.
-
-  - layer: l3_rpc
-    actor: mev_blocker_rpc_provider
-    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
-    observation_kind: observed_no_change
-    attribution: none
-    timestamp: 2025-05-29T00:00:00Z
-    precision: day
-    delta_hours: 0
-    window:
-      - 2025-05-29T00:00:00Z
-      - 2025-05-29T23:59:59Z
-    sources:
-      - type: primary_corporate
-        url: https://web.archive.org/web/20250111000329/https://mevblocker.io/
-        wayback: https://web.archive.org/web/20250111000329/https://mevblocker.io/
-        body_hash: sha256:0d2b4d7e23011413f484943f6b9e1a28f4cf613f047e7e31d9c4daec7941bda3
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20250601000000-mevblocker.io__8282802587.html
-        scope_descriptor:
-          providers: [mev_blocker, flashbots_protect]
-          time_window:
-            - 2025-05-29T00:00:00Z
-            - 2025-05-29T23:59:59Z
-          addresses_cohort: this_event_sdn_addresses
-        note: |
-          MEV-Blocker landing-page Wayback snapshot (2025-01-11) closest to
-          event date 2025-05-29. MEV-Blocker (launched 2023-03-27) filters
-          OFAC-SDN-listed addresses from the RPC substrate it serves. The
-          snapshot documents that MEV-Blocker was in effect as a public
-          OFAC-compliant RPC provider bracketing this event. No per-transaction
-          receipt of filter-list application is published; the observation
-          is the presence of the provider + filter-list at event time, not
-          a step change attributable to this specific designation.
-      - type: primary_corporate
-        url: https://docs.flashbots.net/flashbots-protect/quick-start
-        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
-        note: |
-          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
-          (launched 2022-11) is the second major OFAC-compliance-adjacent
-          public Ethereum RPC substrate. Together with MEV-Blocker these
-          cover the overwhelming majority of public OFAC-compliant Ethereum
-          RPC traffic in the 2023-2025 period.
   - layer: l1_consensus
     actor: pbs_relay_ecosystem_aggregate
     event: censoring_share_already_zero_post_tornado_delisting_null_shape

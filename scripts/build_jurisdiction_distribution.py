@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 """Jurisdictional distribution of the admitted corpus.
 
-Addresses the reviewer finding that the 53-event corpus is
+Addresses the reviewer finding that the admitted corpus is
 US/EU-dominant and English-indexable; the paper's honest rebrand
 requires exposing this distribution in a table rather than
 soft-pedaling it in prose.
@@ -49,7 +49,7 @@ def _load_events() -> list[dict]:
         if p.name == "TEMPLATE.yaml" or p.name.startswith("_"):
             continue
         e = yaml.safe_load(p.read_text())
-        if isinstance(e, dict):
+        if isinstance(e, dict) and e.get("status") == "admitted":
             events.append(e)
     return events
 

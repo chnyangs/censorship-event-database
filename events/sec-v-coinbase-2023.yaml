@@ -1,9 +1,9 @@
 id: sec-v-coinbase-2023
 schema_version: 0.2.0
-status: admitted
+status: draft
 research_stratum: S3_doj_sec_cftc_fiod
-empirical_shape: comparison
-admission_tier: empirical_case
+empirical_shape: null_event
+admission_tier: null_case
 origin: human_authored
 version: "0.1"
 created_at: 2026-04-22T10:45:00Z
@@ -63,96 +63,32 @@ coverage:
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: measured
+    status: not_measured
     scope: [coinbase.com]
     note: |
-      Coinbase.com remained operational — paper-worthy non-takedown.
-      Contrast to Binance.US's fiat-rail collapse following the 2023-06-05
-      SEC action: Coinbase's stronger compliance posture + absence of
-      commingling / asset-freeze charges meant no L4 takedown. Attached
-      below as observed_no_change (the SEC action did NOT produce L4
-      disruption at Coinbase).
+      The SEC filing does not establish an L4 no-change observation. A
+      retained null claim would require a Wayback/frontend/platform artifact
+      showing Coinbase.com state across the scoped window. Until then, this
+      remains unmeasured.
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: measured
+    status: not_measured
     note: |
-      Coinbase suspended staking service for US customers 2023-06-06 (same
-      day as SEC action). Contrasts with Binance.US's post-SEC fiat-rail
-      collapse: Coinbase's staking-only restriction, not fiat-rail
-      suspension. Attached below as observed_change direct attribution.
+      No admission-grade same-day off-ramp or staking-service state transition
+      is retained. The SEC complaint named Coinbase Stake, but the event file
+      does not carry a platform-side primary artifact showing a 2023-06-06
+      service suspension. No Coinbase operational contrast is retained as an
+      admitted observation until a platform-side artifact is attached.
 
-observations:
-  - layer: l4_frontend
-    actor: frontend:coinbase_com
-    event: canonical_frontend_remained_operational_through_sec_action
-    observation_kind: observed_no_change
-    attribution: none
-    timestamp: 2023-06-06T00:00:00Z
-    precision: day
-    delta_hours: 0
-    window:
-      - 2023-06-06T00:00:00Z
-      - 2023-06-20T23:59:59Z
-    sources:
-      - type: primary_legal
-        url: https://www.sec.gov/newsroom/press-releases/2023-102
-        body_hash: sha256:63c2b4104f2509b022f0154b51f5a2444139d54d1292b3b35d06b7dbe6abc747
-        body_path: sources/http_captures/sec-v-coinbase-2023/primary/www.sec.gov__news-press-release-2023-102__783dc1be7f.html
-        scope_descriptor:
-          providers: [coinbase_com]
-          time_window:
-            - 2023-06-06T00:00:00Z
-            - 2023-06-20T23:59:59Z
-          addresses_cohort: coinbase_us_customer_base
-        note: |
-          SEC action sought no asset-freeze against Coinbase (unlike Binance
-          2023-06-05). Coinbase.com remained operational; US customers could
-          continue trading. Non-takedown is the paper-relevant observation —
-          SEC civil action does not uniformly produce L4 cascade.
-      - type: primary_legal
-        url: https://www.sec.gov/newsroom/press-releases/2023-102
-        body_hash: sha256:63c2b4104f2509b022f0154b51f5a2444139d54d1292b3b35d06b7dbe6abc747
-        body_path: sources/http_captures/sec-v-coinbase-2023/primary/www.sec.gov__news-press-release-2023-102__783dc1be7f.html
-        note: |
-          Second anchor to same SEC filing; confirms no asset-freeze relief
-          was requested (contrast with 2023-06-05 Binance filing).
-  - layer: offramp_cex
-    actor: exchange:coinbase
-    event: coinbase_staking_suspended_for_us_customers_same_day
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2023-06-06T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_legal
-        url: https://www.sec.gov/newsroom/press-releases/2023-102
-        body_hash: sha256:63c2b4104f2509b022f0154b51f5a2444139d54d1292b3b35d06b7dbe6abc747
-        body_path: sources/http_captures/sec-v-coinbase-2023/primary/www.sec.gov__news-press-release-2023-102__783dc1be7f.html
-        note: |
-          SEC charged Coinbase Stake as unregistered security; Coinbase
-          suspended the staking service for US customers same day. Direct
-          attribution: SEC filing explicitly named staking as the
-          securities-registration violation.
-      - type: primary_legal
-        url: https://www.sec.gov/newsroom/press-releases/2023-102
-        body_hash: sha256:63c2b4104f2509b022f0154b51f5a2444139d54d1292b3b35d06b7dbe6abc747
-        body_path: sources/http_captures/sec-v-coinbase-2023/primary/www.sec.gov__news-press-release-2023-102__783dc1be7f.html
-        note: |
-          Second reference — SEC complaint identifies the 13 named securities
-          (SOL, ADA, MATIC, etc.); Coinbase continued listing them on US
-          platform despite SEC position, creating an asymmetric stance vs
-          Binance.US's more accommodating fiat-rail suspension.
-
+observations: []
 analysis_notes: |
-  comparison — companion SEC civil action to SEC v. Binance
-  (2023-06-05), filed one day apart. Paper-relevant paired comparison:
-  despite similar securities-law exposure, outcomes diverged — Binance.US
-  fiat-rails collapsed; Coinbase.com remained operational. The difference
-  reflects asset-freeze-motion inclusion in the Binance filing and absence
-  from the Coinbase filing, which demonstrates that SEC-level enforcement
-  intensity is a gradient rather than binary.
+  draft comparison candidate — companion SEC civil action to SEC v. Binance
+  (2023-06-05), filed one day apart. Retained as a draft comparison
+  candidate only. The SEC filing establishes the legal trigger and the absence
+  of an asset-freeze request, but this file does not yet carry an
+  admission-grade frontend/platform artifact proving Coinbase.com no-change
+  over the scoped window.
 
   The 13 named tokens (SOL, ADA, MATIC, FIL, SAND, AXS, CHZ, FLOW, ICP,
   NEAR, VGX, DASH, NEXO) include Solana + Polygon + Cardano — this is the
@@ -161,21 +97,13 @@ analysis_notes: |
   for on-chain addresses). Partially offsets the Solana/Polygon
   representation gap in `docs/chain-coverage-note.md`.
 
-  Coinbase staking was later resumed post-Coinbase-win on partial motion
-  to dismiss 2024-03-27; case continues.
-
-scoped_claim: |
-  "SEC v. Coinbase (2023-06-06) paired with SEC v. Binance (2023-06-05)
-  constitutes the SEC crypto-enforcement opening. Divergent cascade
-  outcomes — Coinbase.com remained operational while Binance.US fiat-rails
-  collapsed — track with the asset-freeze-motion inclusion asymmetry
-  between the two filings. First mention of Solana and Polygon tokens at
-  enforcement-event level in the dataset."
+  Earlier drafts asserted a same-day Coinbase staking suspension. That row has
+  been removed because the retained sources establish the SEC charge but not a
+  platform-side state transition on 2023-06-06.
 
 tags:
   - sec_enforcement
   - securities_law
   - exchange_civil_action
   - coinbase
-  - staking_restriction
   - solana_polygon_named

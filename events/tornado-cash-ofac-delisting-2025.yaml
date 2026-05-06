@@ -301,48 +301,6 @@ observations:
         body_path: sources/http_captures/tornado-cash-ofac-delisting-2025/backfill-1.3/usdtbanlist.com__address-0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936__a06f6feca5.html
         note: Third-party cross-check showing the same address was USDC-unbanned on 2025-03-22 with the matching Etherscan transaction
   - layer: l3_rpc
-    actor: mev_blocker_rpc_provider
-    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
-    observation_kind: observed_no_change
-    attribution: none
-    timestamp: 2025-03-21T00:00:00Z
-    precision: day
-    delta_hours: 0
-    window:
-      - 2025-03-21T00:00:00Z
-      - 2025-03-21T23:59:59Z
-    sources:
-      - type: primary_corporate
-        url: https://web.archive.org/web/20250111000329/https://mevblocker.io/
-        wayback: https://web.archive.org/web/20250111000329/https://mevblocker.io/
-        body_hash: sha256:0d2b4d7e23011413f484943f6b9e1a28f4cf613f047e7e31d9c4daec7941bda3
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20250601000000-mevblocker.io__8282802587.html
-        scope_descriptor:
-          providers: [mev_blocker, flashbots_protect]
-          time_window:
-            - 2025-03-21T00:00:00Z
-            - 2025-03-21T23:59:59Z
-          addresses_cohort: this_event_sdn_addresses
-        note: |
-          MEV-Blocker landing-page Wayback snapshot (2025-01-11) closest to
-          event date 2025-03-21. MEV-Blocker (launched 2023-03-27) filters
-          OFAC-SDN-listed addresses from the RPC substrate it serves. The
-          snapshot documents that MEV-Blocker was in effect as a public
-          OFAC-compliant RPC provider bracketing this event. No per-transaction
-          receipt of filter-list application is published; the observation
-          is the presence of the provider + filter-list at event time, not
-          a step change attributable to this specific designation.
-      - type: primary_corporate
-        url: https://docs.flashbots.net/flashbots-protect/quick-start
-        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
-        note: |
-          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
-          (launched 2022-11) is the second major OFAC-compliance-adjacent
-          public Ethereum RPC substrate. Together with MEV-Blocker these
-          cover the overwhelming majority of public OFAC-compliant Ethereum
-          RPC traffic in the 2023-2025 period.
-  - layer: l3_rpc
     actor: flashbots_rpc_endpoint
     event: ofac_blacklist_deletion
     observation_kind: observed_change
@@ -508,14 +466,15 @@ scoped_knowledge: |
   relay share.
 
   What did not change or could not be measured: L0 is not measured and
-  off-ramp rollback is not measured. L3 has public-provider substrate evidence
-  but no event-specific rollback receipt, so it remains an observed-no-change /
-  no-step-change row rather than a recovery claim.
+  off-ramp rollback is not measured. L3 has one retained Flashbots
+  public-provider repository change, but attribution remains plausible because
+  the PR frames the deletion as cleanup rather than explicitly naming the OFAC
+  delisting.
 
   Attribution: the frontend and asset rows are direct because the frontend diff
-  and on-chain unblacklist are primary artifacts. The L1 consensus row remains
-  plausible because it is based on measurement data keyed to the Tornado address
-  set without a primary relay-operator policy statement.
+  and on-chain unblacklist are primary artifacts. The L3 and L1 rows remain
+  plausible because neither carries a primary operator statement explicitly
+  linking the change to the delisting event.
 
   Comparative value: this is the only reverse-cascade anchor. It should be
   reported as n=1 and used to show asymmetry: removal from a sanctions list did

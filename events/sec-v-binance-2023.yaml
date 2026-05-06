@@ -1,9 +1,9 @@
 id: sec-v-binance-2023
 schema_version: 0.2.0
-status: admitted
+status: draft
 research_stratum: S3_doj_sec_cftc_fiod
-empirical_shape: comparison
-admission_tier: empirical_case
+empirical_shape: null_event
+admission_tier: null_case
 origin: human_authored
 version: "0.1"
 created_at: 2026-04-22T10:30:00Z
@@ -66,115 +66,60 @@ coverage:
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: measured
+    status: not_measured
     scope: [binance.us]
     note: |
-      Following the 2023-06-05 SEC charges + asset-freeze motion, Binance.US
-      suspended USD deposits and closed fiat onramps (2023-06-09 announcement).
-      Canonical binance.us frontend remained reachable but progressively lost
-      fiat-rail functionality. Attached below as observed_change with direct
-      attribution to SEC asset-freeze proceedings.
+      No admission-grade L4 frontend diff is retained. The Binance.US
+      disruption is represented at `offramp_cex`, where USD fiat-rail
+      functionality changed. Do not count the same fiat-rail shock as a
+      frontend delisting/geofence without a UI, Wayback, or platform-diff
+      artifact.
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: measured
+    status: not_measured
     note: |
-      Binance.US fiat rails suspended; US customer base shrank 90%+ through
-      2023-Q3. SEC-driven offramp_cex disruption.
+      SEC emergency-relief filings make this a plausible off-ramp hypothesis,
+      but the file does not yet carry the Binance.US/platform/banking-rail
+      artifact required by methodology §4.6. Do not count this as measured
+      off-ramp coverage until that artifact is pinned.
 
-observations:
-  - layer: l4_frontend
-    actor: frontend:binance_us
-    event: binance_us_suspended_usd_fiat_rails_within_4d
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2023-06-09T00:00:00Z
-    precision: day
-    delta_hours: 96.0
-    sources:
-      - type: primary_legal
-        url: https://www.sec.gov/newsroom/press-releases/2023-101-sec-files-13-charges-against-binance-entities-founder-changpeng-zhao
-        body_hash: sha256:f1aeedd40346f555c3f35fd5efe781d1d1e2cbe3751c8f1e79f49481ca826665
-        body_path: sources/http_captures/sec-v-binance-2023/primary/www.sec.gov__news-press-release-2023-101__a38c3e222c.html
-        note: |
-          SEC charges include asset-freeze motion against BAM Trading Services;
-          the motion was the proximate cause of Binance.US suspending USD
-          deposits/withdrawals on 2023-06-09. Direct attribution: the SEC
-          filing explicitly named the fiat-rail asset-freeze as the requested
-          relief.
-  - layer: offramp_cex
-    actor: exchange:binance_us
-    event: binance_us_offramp_crippled_post_sec_freeze
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2023-06-09T00:00:00Z
-    precision: day
-    delta_hours: 96.0
-    sources:
-      - type: primary_legal
-        url: https://www.sec.gov/newsroom/press-releases/2023-101-sec-files-13-charges-against-binance-entities-founder-changpeng-zhao
-        body_hash: sha256:f1aeedd40346f555c3f35fd5efe781d1d1e2cbe3751c8f1e79f49481ca826665
-        body_path: sources/http_captures/sec-v-binance-2023/primary/www.sec.gov__news-press-release-2023-101__a38c3e222c.html
-        scope_descriptor:
-          providers: [binance_us]
-          time_window:
-            - 2023-06-05T00:00:00Z
-            - 2023-09-05T23:59:59Z
-          addresses_cohort: binance_us_customer_base
-        note: |
-          Binance.US fiat onramp functionally collapsed post-SEC action. US
-          customer trading volume fell 90%+ through Q3 2023. Direct SEC
-          securities-law cascade at the offramp layer.
-      - type: primary_legal
-        url: https://www.sec.gov/newsroom/press-releases/2023-101-sec-files-13-charges-against-binance-entities-founder-changpeng-zhao
-        body_hash: sha256:f1aeedd40346f555c3f35fd5efe781d1d1e2cbe3751c8f1e79f49481ca826665
-        body_path: sources/http_captures/sec-v-binance-2023/primary/www.sec.gov__news-press-release-2023-101__a38c3e222c.html
-        note: |
-          Second reference to the SEC filing — the asset-freeze motion +
-          13 charges document defines both the trigger and the mandated
-          compliance outcome.
+observations: []
 
 analysis_notes: |
   comparison — first SEC civil-enforcement event in the dataset.
   Paper-relevant structural distinction: SEC operates on the
   securities-law axis (token-offering / exchange-registration) whereas
   OFAC operates on the sanctions axis. The 2023-06-05 Binance case
-  produced a concrete L4 + offramp cascade via asset-freeze proceedings
-  even without any SDN listing. Pairs with `sec-v-coinbase-2023` (next day)
-  for the SEC-pair comparison.
+  is retained as a draft comparison candidate, not an admitted layer
+  observation. The SEC filing establishes the trigger and emergency-relief
+  theory, but the file does not yet carry Binance.US/platform/banking-rail
+  evidence for the reported 2023-06-09 fiat-rail suspension. Earlier drafts
+  double-counted this as L4 frontend impact; that claim has been removed.
 
   Relationship to `binance-4framework-2023` (2023-11-21): the SEC case is
   the civil-enforcement predecessor; the 11-21 settlement resolved DOJ /
   FinCEN / OFAC / CFTC charges. The SEC case itself continues separately
   and was partially settled in 2024-06 (BUSD securities-status dropped).
 
-scoped_claim: |
-  "SEC v. Binance (2023-06-05) was the first SEC civil-enforcement event in
-  the dataset targeting a major crypto exchange; the asset-freeze motion
-  produced a direct L4 + offramp cascade at Binance.US within 4 days
-  (2023-06-09 fiat-rail suspension). Demonstrates securities-law
-  enforcement as a distinct censorship-cascade trigger from OFAC SDN."
-
 scoped_knowledge: |
-  What changed: Binance.US lost USD fiat-rail functionality within four days
-  of the SEC action, producing paired L4 frontend and off-ramp observations.
-  The two rows intentionally describe the same operational shock from two
-  surfaces: user-facing platform functionality and exchange/off-ramp access.
+  What changed: no layer observation is admitted in this draft. The case is a
+  candidate SEC high-intensity comparison because the SEC filing sought
+  emergency relief against Binance.US/BAM entities, but the operational
+  fiat-rail response is not pinned to an admission-grade off-ramp source.
 
   What did not change or could not be measured: the event has no address set,
   no asset issuer primitive, and no L1/L3 mechanism. The global Binance.com
   platform is not treated as the measured frontend; the scoped claim is
   Binance.US.
 
-  Attribution: attribution is direct because the SEC filing and freeze motion
-  name the Binance.US/BAM target and requested relief. The current evidence is
-  legal-primary rather than a second platform screenshot, so the case should be
-  cited as an SEC-relief-to-fiat-rail case, not as a UI diff case.
+  Attribution: not coded. The SEC filing and emergency-relief motion name the
+  Binance.US/BAM target and requested relief, but this is not enough under
+  methodology §4.6 to admit an off-ramp state transition.
 
-  Comparative value: this is the core SEC high-intensity exemplar. It contrasts
-  with `sec-v-coinbase-2023`, where the SEC action produced a narrower staking
-  suspension, and with `sec-v-uniswap-wells-notice-2024`, which remains a null
-  case.
+  Comparative value: this is a repair-queue SEC high-intensity candidate. Do
+  not cite it in paper tables until a primary corporate or independently
+  observable platform artifact is attached.
 
 tags:
   - sec_enforcement

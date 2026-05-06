@@ -19,16 +19,20 @@ hash — and reach the same verdict.
 
 ## Scope
 
-Anchors (n=5): `chatex-ofac-2021`, `cryptex-ofac-2024`,
+Original Phase-3 anchors (n=5): `chatex-ofac-2021`, `cryptex-ofac-2024`,
 `sec-v-binance-2023`, `tornado-cash-ofac-2022`,
-`tornado-cash-ofac-delisting-2025`.
+`tornado-cash-ofac-delisting-2025`. Current admitted paper-facing anchor
+worksheets are narrower: `cryptex-ofac-2024` and
+`tornado-cash-ofac-2022`. `sec-v-binance-2023` is retained only as a draft
+repair candidate after source-support review.
 
 Target layers for this phase (per the Phase-3 roadmap):
 
 - L3 RPC filter-list pre/post snapshots for `tornado-cash-ofac-2022` and
   `tornado-cash-ofac-delisting-2025`.
 - Off-ramp or frontend direct artifacts for `cryptex-ofac-2024`,
-  `chatex-ofac-2021`, `sec-v-binance-2023`.
+  `chatex-ofac-2021`, and the draft repair candidate
+  `sec-v-binance-2023`.
 - L0 network via OONI/Censored Planet for a few high-value domains;
   everything else explicitly marked `measurement gap`.
 
@@ -213,14 +217,14 @@ discipline.
   handled addresses tied to Cryptex).
 - TODO: same pattern as 3.1.
 
-### 3.3 `sec-v-binance-2023` · offramp_cex — **already `measured` with direct observation**
+### 3.3 `sec-v-binance-2023` · offramp_cex — **demoted to draft repair candidate**
 
-- Current state: coverage `measured`, `observed_change`/`direct`/
-  `exchange:binance_us`. Already strong; additional artifacts could
-  corroborate but are not critical.
-- TODO: optional — pin a Wayback snapshot of Binance.US's 2023-06-05
-  announcement of the ecosystem shutdown in the existing observation's
-  sources list.
+- Current state after 2026-05-06 review: coverage `not_measured`,
+  `observations: []`, `status: draft`. The SEC legal trigger is pinned, but
+  legal-source-only evidence is not enough to admit a Binance.US
+  platform / banking-rail state transition.
+- TODO: attach primary corporate, banking-rail, or independently observable
+  platform artifacts before any L4/off-ramp claim is admitted.
 
 ### 3.4 `tornado-cash-ofac-2022` · offramp_cex — **already `partially_measured` with direct observation**
 
@@ -291,12 +295,13 @@ Event-YAML edits:
 | `tornado-cash-ofac-delisting-2025` | new L3 observation: `observed_change` / `plausible` / `flashbots_rpc_endpoint` / `ofac_blacklist_deletion` at `2025-04-01T19:28:21Z` (delta 283.47h). | changed_layer_count 3 → 4; signature becomes `asset_onchain+l1_consensus+l3_rpc+l4_frontend`; changed(partial) on l3_rpc: 0 → 2 |
 | `tornado-cash-ofac-delisting-2025` | L0 + L3 coverage notes refreshed (first pass) plus L3 note extended to reference the new observation (second pass). | No coverage status change. |
 
-Corpus-level impact: layer_observability
-`l3_rpc::changed_given_measured_or_partial` moves from 0/8 (0.00) to
-**2/9 (22.2%)** — a shift that changes the C1 phrasing from "L3 has
-zero observed changes in the partial-coverage subset" to "L3 has 2
-observed changes (both Tornado-related) on a 9-event partial-measure
-denominator." Archetype counts unchanged (13/8/14/5/0/13).
+Corpus-level impact: layer_observability counts retain two named Flashbots
+partial L3 observations. Current paper-facing tables deliberately suppress an
+L3 conditional rate because `l3_rpc` has no measured denominator. Earlier
+draft language that reported `l3_rpc::changed_given_measured_or_partial` as a
+rate is superseded: the C1 phrasing is now "two named Tornado-related
+Flashbots observations; no L3 conditional rate." Archetype counts are derived
+from admitted events only and should be read from `derived/archetype_distribution.md`.
 
 ## 5. Phrasing updates required in paper_claims.md
 

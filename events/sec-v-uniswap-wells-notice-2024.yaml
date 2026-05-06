@@ -43,8 +43,9 @@ trigger:
         Uniswap Wells notice (Wells notices are pre-enforcement private
         correspondence, not announced publicly by the SEC). The absence of
         an SEC press release is itself the paper-worthy signal distinguishing
-        this event from the 2023-06-05/06 SEC v. Binance/Coinbase formal
-        filings.
+        this pre-enforcement event from formal SEC complaint files. The
+        Binance/Coinbase complaint files remain draft repair candidates until
+        platform or rail artifacts are pinned directly.
   timestamp_sources:
     - type: primary_corporate
       note: Day-level timing per Uniswap Labs blog disclosure.
@@ -81,8 +82,9 @@ coverage:
       app.uniswap.org remained operational throughout the Wells-notice period
       (2024-04-10 → 2025-02-25 drop). No frontend takedown, no enforced
       restriction from the notice itself. Attached below as observed_no_change
-      — the Wells notice did NOT produce an L4 cascade, distinguishing it
-      from the formal-complaint events (Binance 2023-06-05).
+      — the Wells notice did NOT produce an L4 cascade in the scoped window.
+      Formal SEC complaint cases are not used as admitted contrast rows unless
+      platform or rail artifacts are pinned directly.
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
@@ -115,10 +117,10 @@ observations:
           Uniswap Labs publicly committed to continuing operations during the
           Wells-notice period. app.uniswap.org frontend remained operational;
           Uniswap Labs pursued litigation-readiness rather than compliance
-          remediation. Paper-worthy contrast to the Binance.US fiat-rail
-          collapse triggered by the formal SEC complaint (2023-06-05): Wells
-          notice alone does NOT produce L4 cascade; formal complaint (especially
-          one bundled with asset-freeze motion) does.
+          remediation. Paper-worthy claim is limited to this event: Wells notice
+          alone did not produce an L4 cascade in the scoped window. Formal SEC
+          complaint contrasts remain repair-queue hypotheses until platform or
+          rail artifacts are pinned directly.
       - type: primary_legal
         url: https://www.sec.gov/newsroom/press-releases
         body_hash: sha256:0723d2cb0d308353d4a0584a49bedf28fe6c0ebe9179d2b758c5651fabb2374a
@@ -136,14 +138,11 @@ analysis_notes: |
   no mandated compliance remediation. The matter was formally dropped on
   2025-02-25 under the new SEC administration, with no final adjudication.
 
-  Paper-relevant as the low-intensity end of the SEC-enforcement-intensity
-  gradient:
-    - lowest: Wells notice only → no L4 cascade (THIS EVENT)
-    - medium: formal complaint without asset-freeze motion → limited cascade (Coinbase 2023-06-06)
-    - highest: formal complaint WITH asset-freeze motion → full L4 cascade (Binance 2023-06-05)
-
-  This three-tier comparison is a structural finding the dataset now supports
-  directly via three paired SEC events.
+  Paper-relevant only as a scoped low-intensity SEC null case: Wells notice
+  only → no L4 cascade in the observed frontend window. The adjacent SEC
+  formal-complaint cases are retained as draft repair candidates, not admitted
+  intensity-gradient endpoints, until platform or banking-rail artifacts are
+  pinned directly.
 
 scoped_claim: |
   "SEC Wells notice against Uniswap Labs (disclosed 2024-04-10, dropped
@@ -157,4 +156,4 @@ tags:
   - wells_notice
   - pre_enforcement_signal
   - uniswap_labs
-  - sec_intensity_gradient
+  - sec_repair_queue_contrast

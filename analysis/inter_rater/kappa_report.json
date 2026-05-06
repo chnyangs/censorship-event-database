@@ -1,52 +1,64 @@
 {
   "coder_provenance": {
-    "coder_name": "claude-opus-4-7 (general-purpose subagent)",
+    "coder_name": "GPT-5 worker round 3",
     "mode": "llm_assisted_blinded",
-    "notes": "Blind: agent had no prior conversation context; instructed to ignore coverage[].status field and read schema + observation evidence; 90/90 coverage rows coded; observation_kind and attribution worksheets remain unfilled and are reported as parked.",
-    "prompt_version": "2026-04-24-irr-prompt-v1"
+    "notes": "Blind recode after admitted-only paper surface, SEC pair demotion, L3 rate suppression, validator/source-rule tightening. Coder reported not reading key CSVs or prior kappa reports.",
+    "prompt_version": "2026-05-06 admitted-only repair"
   },
-  "generated_at": "2026-04-24T10:12:43Z",
+  "generated_at": "2026-05-06T10:26:42Z",
   "variables": {
     "attribution": {
-      "agreement": null,
-      "confusion": {},
-      "expected_agreement": null,
-      "kappa": null,
-      "n_coded": 0,
-      "n_total": 25,
-      "observed_agreement": null,
-      "reason": "no coded cells"
+      "agreement": 1.0,
+      "confusion": {
+        "direct": {
+          "direct": 17,
+          "plausible": 0
+        },
+        "plausible": {
+          "direct": 0,
+          "plausible": 3
+        }
+      },
+      "expected_agreement": 0.745,
+      "kappa": 1.0,
+      "label_set": [
+        "direct",
+        "plausible"
+      ],
+      "n_coded": 20,
+      "n_total": 20,
+      "observed_agreement": 1.0
     },
     "coverage_status": {
-      "agreement": 0.9889,
+      "agreement": 1.0,
       "confusion": {
         "measured": {
-          "measured": 20,
+          "measured": 19,
           "not_applicable": 0,
           "not_measured": 0,
           "partially_measured": 0
         },
         "not_applicable": {
           "measured": 0,
-          "not_applicable": 46,
+          "not_applicable": 55,
           "not_measured": 0,
           "partially_measured": 0
         },
         "not_measured": {
           "measured": 0,
           "not_applicable": 0,
-          "not_measured": 16,
+          "not_measured": 13,
           "partially_measured": 0
         },
         "partially_measured": {
-          "measured": 1,
+          "measured": 0,
           "not_applicable": 0,
           "not_measured": 0,
-          "partially_measured": 7
+          "partially_measured": 3
         }
       },
-      "expected_agreement": 0.3516,
-      "kappa": 0.9829,
+      "expected_agreement": 0.44,
+      "kappa": 1.0,
       "label_set": [
         "measured",
         "not_applicable",
@@ -55,17 +67,29 @@
       ],
       "n_coded": 90,
       "n_total": 90,
-      "observed_agreement": 0.9889
+      "observed_agreement": 1.0
     },
     "observation_kind": {
-      "agreement": null,
-      "confusion": {},
-      "expected_agreement": null,
-      "kappa": null,
-      "n_coded": 0,
-      "n_total": 32,
-      "observed_agreement": null,
-      "reason": "no coded cells"
+      "agreement": 1.0,
+      "confusion": {
+        "observed_change": {
+          "observed_change": 20,
+          "observed_no_change": 0
+        },
+        "observed_no_change": {
+          "observed_change": 0,
+          "observed_no_change": 5
+        }
+      },
+      "expected_agreement": 0.68,
+      "kappa": 1.0,
+      "label_set": [
+        "observed_change",
+        "observed_no_change"
+      ],
+      "n_coded": 25,
+      "n_total": 25,
+      "observed_agreement": 1.0
     }
   }
 }

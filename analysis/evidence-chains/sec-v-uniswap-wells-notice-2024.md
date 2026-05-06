@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `5d38fae` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-25T09:22:35Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `b99dfaf` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-04-27T11:03:02Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -43,8 +43,9 @@
 > Uniswap Wells notice (Wells notices are pre-enforcement private
 > correspondence, not announced publicly by the SEC). The absence of
 > an SEC press release is itself the paper-worthy signal distinguishing
-> this event from the 2023-06-05/06 SEC v. Binance/Coinbase formal
-> filings.
+> this pre-enforcement event from formal SEC complaint files. The
+> Binance/Coinbase complaint files remain draft repair candidates until
+> platform or rail artifacts are pinned directly.
 
 ## 2. Target
 
@@ -79,10 +80,10 @@
   > Uniswap Labs publicly committed to continuing operations during the
 > Wells-notice period. app.uniswap.org frontend remained operational;
 > Uniswap Labs pursued litigation-readiness rather than compliance
-> remediation. Paper-worthy contrast to the Binance.US fiat-rail
-> collapse triggered by the formal SEC complaint (2023-06-05): Wells
-> notice alone does NOT produce L4 cascade; formal complaint (especially
-> one bundled with asset-freeze motion) does.
+> remediation. Paper-worthy claim is limited to this event: Wells notice
+> alone did not produce an L4 cascade in the scoped window. Formal SEC
+> complaint contrasts remain repair-queue hypotheses until platform or
+> rail artifacts are pinned directly.
 - **`primary_legal`**
   - URL: <https://www.sec.gov/newsroom/press-releases>
   - body_hash: `sha256:0723d2cb0d308353d4a0584a49bedf28fe6c0ebe9179d2b758c5651fabb2374a`
@@ -98,13 +99,13 @@
 
 ## 7. Related events
 
-- [`sec-v-binance-2023`](./sec-v-binance-2023.md)
-- [`sec-v-coinbase-2023`](./sec-v-coinbase-2023.md)
+- `sec-v-binance-2023` (draft; no rendered admitted-chain link)
+- `sec-v-coinbase-2023` (draft; no rendered admitted-chain link)
 - [`uniswap-frontend-delisting-2023`](./uniswap-frontend-delisting-2023.md)
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `5d38fae`).
+1. Clone the repository at tag `v0.1.0` (commit `b99dfaf`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

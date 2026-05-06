@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 import urllib.error
 import urllib.parse
@@ -30,6 +31,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 VOCAB_PATH = REPO_ROOT / "schema" / "controlled_vocab.yaml"
 SCHEMA_PATH = REPO_ROOT / "schema" / "event.schema.json"
 EVENTS_DIR = REPO_ROOT / "events"
+TX_HASH_RE = re.compile(r"^(0x)?[0-9a-fA-F]{64}$")
 
 
 def parse_args() -> argparse.Namespace:
@@ -101,6 +103,14 @@ def source_is_supporting(source_type: str) -> bool:
     return source_type.startswith("supporting_")
 
 
+def measurement_ids_are_valid(value: Any) -> bool:
+    return (
+        isinstance(value, list)
+        and len(value) > 0
+        and all(isinstance(item, str) and item.strip() for item in value)
+    )
+
+
 def iter_citation_like_urls(event: dict[str, Any]) -> list[tuple[str, str]]:
     urls: list[tuple[str, str]] = []
 
@@ -161,6 +171,7 @@ class EventValidator:
         self.vocab = vocab
         self.layers = set(vocab["layers"])
         self.source_types = set(vocab["source_types"])
+        self.provider_scopes = set(vocab.get("provider_scopes", []))
         self.coverage_statuses = set(vocab["coverage_statuses"])
         self.observation_kinds = set(vocab["observation_kinds"])
         self.attribution_levels = set(vocab["attribution_levels"])
@@ -270,6 +281,15 @@ class EventValidator:
         jurisdictions = event.get("jurisdiction")
         if not isinstance(jurisdictions, list) or not jurisdictions:
             result.error("jurisdiction must be a non-empty list.")
+        else:
+            known_jurisdictions = set(self.vocab.get("jurisdictions") or [])
+            if known_jurisdictions:
+                for idx, jurisdiction in enumerate(jurisdictions):
+                    if jurisdiction not in known_jurisdictions:
+                        result.error(
+                            f"jurisdiction[{idx}] must be one of {sorted(known_jurisdictions)} "
+                            f"(got {jurisdiction!r}). Add new values to schema/controlled_vocab.yaml first."
+                        )
 
         origin = event.get("origin")
         if origin is not None and self.origins and origin not in self.origins:
@@ -411,14 +431,24 @@ class EventValidator:
             result.error("trigger.citation must be a non-empty list.")
         else:
             archived = False
-            for idx, citation in enumerate(trigger.get("citation") or []):
+            for citation in trigger.get("citation") or []:
+                if isinstance(citation, dict):
+                    for url_key in ("url", "wayback"):
+                        value = citation.get(url_key)
+                        if value is not None and not (
+                            isinstance(value, str) and is_url(value)
+                        ):
+                            result.error(f"trigger.citation.{url_key} must be a valid URL.")
+                    if (
+                        "measurement_ids" in citation
+                        and not measurement_ids_are_valid(citation.get("measurement_ids"))
+                    ):
+                        result.error(
+                            "trigger.citation.measurement_ids must be a non-empty list "
+                            "of non-blank strings."
+                        )
                 if self._citation_has_archive_anchor(citation):
                     archived = True
-                elif isinstance(citation, dict) and citation.get("url"):
-                    result.warn(
-                        f"trigger.citation[{idx}] has url but no archive anchor "
-                        "(wayback, body_hash+body_path, query_hash, or measurement_ids)."
-                    )
             if not archived:
                 result.error(
                     "trigger.citation must include at least one archived/replayable citation "
@@ -455,6 +485,12 @@ class EventValidator:
             if status not in self.coverage_statuses:
                 result.error(
                     f"coverage[{idx}].status must be one of {sorted(self.coverage_statuses)}"
+                )
+            provider_scope = entry.get("provider_scope")
+            if provider_scope is not None and provider_scope not in self.provider_scopes:
+                result.error(
+                    f"coverage[{idx}].provider_scope must be one of "
+                    f"{sorted(self.provider_scopes)} (got {provider_scope!r})."
                 )
             if layer in seen_layers:
                 result.error(f"coverage contains duplicate layer entry: {layer}")
@@ -552,6 +588,12 @@ class EventValidator:
 
             if kind == "observed_change":
                 changed_layers.add(str(layer))
+                if attribution == "none":
+                    result.error(
+                        f"observations[{idx}] observed_change should use attribution="
+                        "'direct', 'plausible', or 'unknown'; use observed_no_change "
+                        "when no state transition is coded."
+                    )
                 if "timestamp" not in obs and "timestamp_range" not in obs:
                     result.error(
                         f"observations[{idx}] observed_change requires timestamp or timestamp_range."
@@ -570,7 +612,7 @@ class EventValidator:
                             continue
                         has_query_hash = isinstance(src.get("query_hash"), str) and src.get("query_hash").strip()
                         mids = src.get("measurement_ids")
-                        has_mids = isinstance(mids, list) and len(mids) > 0
+                        has_mids = measurement_ids_are_valid(mids)
                         has_body = bool(src.get("body_hash")) and bool(src.get("body_path"))
                         has_scope = isinstance(src.get("scope_descriptor"), dict) and len(src.get("scope_descriptor")) > 0
                         if not (has_query_hash or has_mids or has_body or has_scope):
@@ -725,6 +767,14 @@ class EventValidator:
                     f"observations[{idx}].sources[{source_idx}].type must be one of {sorted(self.source_types)}"
                 )
                 continue
+            if (
+                "measurement_ids" in source
+                and not measurement_ids_are_valid(source.get("measurement_ids"))
+            ):
+                result.error(
+                    f"observations[{idx}].sources[{source_idx}].measurement_ids "
+                    "must be a non-empty list of non-blank strings."
+                )
             if source_is_primary(source_type):
                 primary_count += 1
             if source_type == "primary_onchain":
@@ -744,6 +794,8 @@ class EventValidator:
                         f"observations[{idx}].sources[{source_idx}].{url_key} must be a valid URL."
                     )
 
+            if source_type == "primary_onchain":
+                self._validate_primary_onchain(idx, source_idx, source, result)
             self._validate_body_hash(idx, source_idx, source, result)
             self._validate_archival_anchor(idx, source_idx, source, result)
 
@@ -791,7 +843,7 @@ class EventValidator:
         """Enforce methodology §6: every admission-grade web source must be reproducibly archived.
 
         Anchor requirements by source type:
-        - primary_onchain: exempt (tx_hash + block are self-anchoring)
+        - primary_onchain: exempt (tx_hash is self-anchoring; block is validated when present)
         - semi_primary_measurement: one of {wayback, body_hash+body_path, query_hash, measurement_ids}
         - all other types: one of {wayback, body_hash+body_path}
         Enforced only when the source has a url (i.e. the source is web-based).
@@ -799,17 +851,16 @@ class EventValidator:
         source_type = source.get("type")
         if source_type == "primary_onchain":
             return
-        if "url" not in source:
-            return
 
         label = f"observations[{idx}].sources[{source_idx}]"
         has_wayback = isinstance(source.get("wayback"), str) and source.get("wayback").strip()
         has_body_artifact = bool(source.get("body_hash")) and bool(source.get("body_path"))
+        has_url = isinstance(source.get("url"), str) and source.get("url").strip()
 
         if source_type == "semi_primary_measurement":
             has_query_hash = isinstance(source.get("query_hash"), str) and source.get("query_hash").strip()
             measurement_ids = source.get("measurement_ids")
-            has_measurement_ids = isinstance(measurement_ids, list) and len(measurement_ids) > 0
+            has_measurement_ids = measurement_ids_are_valid(measurement_ids)
             if not (has_wayback or has_body_artifact or has_query_hash or has_measurement_ids):
                 result.error(
                     f"{label}.type=semi_primary_measurement requires at least one of "
@@ -817,11 +868,44 @@ class EventValidator:
                 )
             return
 
+        if not has_url and not (has_wayback or has_body_artifact):
+            result.error(
+                f"{label}.type={source_type} has no replayable source pointer. "
+                "Free-form notes alone cannot satisfy an admission threshold."
+            )
+            return
+
         if not (has_wayback or has_body_artifact):
             result.error(
                 f"{label}.type={source_type} requires at least one of wayback or body_hash+body_path "
                 f"so the archived artifact can be located."
             )
+
+    def _validate_primary_onchain(
+        self,
+        idx: int,
+        source_idx: int,
+        source: dict[str, Any],
+        result: ValidationResult,
+    ) -> None:
+        label = f"observations[{idx}].sources[{source_idx}]"
+        tx_hash = source.get("tx_hash")
+        if not isinstance(tx_hash, str) or not TX_HASH_RE.match(tx_hash.strip()):
+            result.error(
+                f"{label}.type=primary_onchain requires tx_hash as 64 hex characters "
+                "(with optional 0x prefix)."
+            )
+
+        block = source.get("block")
+        if block is None:
+            return
+        try:
+            block_number = int(str(block), 10)
+        except (TypeError, ValueError):
+            result.error(f"{label}.block must be a positive integer when present.")
+            return
+        if block_number <= 0:
+            result.error(f"{label}.block must be a positive integer when present; 0 is not a real block anchor.")
 
     def _citation_has_archive_anchor(self, citation: Any) -> bool:
         """Return True when a trigger/recovery citation is replayable.
@@ -835,11 +919,11 @@ class EventValidator:
             return False
         if citation.get("type") == "primary_onchain":
             return bool(citation.get("tx_hash"))
-        has_wayback = isinstance(citation.get("wayback"), str) and citation.get("wayback").strip()
+        has_wayback = isinstance(citation.get("wayback"), str) and is_url(citation["wayback"])
         has_body_artifact = bool(citation.get("body_hash")) and bool(citation.get("body_path"))
         has_query_hash = isinstance(citation.get("query_hash"), str) and citation.get("query_hash").strip()
         measurement_ids = citation.get("measurement_ids")
-        has_measurement_ids = isinstance(measurement_ids, list) and len(measurement_ids) > 0
+        has_measurement_ids = measurement_ids_are_valid(measurement_ids)
         return bool(has_wayback or has_body_artifact or has_query_hash or has_measurement_ids)
 
     def _validate_body_hash(

@@ -11,7 +11,7 @@ Quarterly discipline that keeps the dataset from quietly drifting. Without this 
 
 Pick **five** admitted events from the most recent quarter. Selection bias:
 
-1. Prefer events with `release_ready_scoped` over `release_ready_complete`.
+1. Prefer events with `admitted_scope_blocked`, then `release_ready_scoped`, over `release_ready_complete`.
 2. Prefer events where any score in [`review_report.py`](../scripts/review_report.py) is `medium`.
 3. Prefer events whose `origin` is `agent_draft → human_reviewed` over `human_authored`.
 4. Include at least one event where `attribution: direct` appears on any changed layer.

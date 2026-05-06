@@ -100,6 +100,34 @@ def test_zero_denominator_renders_as_none():
     assert row["changed_given_measured_or_partial"] is None
 
 
+def test_l3_partial_only_counts_do_not_emit_conditional_rate():
+    events = [{
+        "id": "flashbots-pr90",
+        "coverage": [{"layer": "l3_rpc", "status": "partially_measured"}],
+        "observations": [{
+            "layer": "l3_rpc",
+            "observation_kind": "observed_change",
+            "attribution": "direct",
+        }],
+    }]
+    row = compute_row("l3_rpc", events)
+    assert row["measured_count"] == 0
+    assert row["partially_measured_count"] == 1
+    assert row["changed_under_measured_or_partial_count"] == 1
+    assert row["changed_given_measured_or_partial"] is None
+    assert row["changed_given_applicable"] is None
+
+
+def test_asset_onchain_counts_do_not_emit_structural_rate():
+    events = [_event_with_action("issuer-freeze", "measured", "freeze-tx")]
+    row = compute_row("asset_onchain", events)
+    assert row["changed_under_measured_count"] == 1
+    assert row["measured_count"] == 1
+    assert row["changed_given_measured"] is None
+    assert row["changed_given_measured_or_partial"] is None
+    assert row["changed_given_applicable"] is None
+
+
 def test_not_applicable_excluded_from_applicable_count():
     events = [
         _event("a",  "measured", ["observed_change"]),

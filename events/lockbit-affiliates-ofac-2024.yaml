@@ -77,21 +77,13 @@ coverage:
       event day 48.75%, post 50.39% ± 1.47. Small downward movement but within 2 sd of pre-mean;
       null shape.
   - layer: l3_rpc
-    status: partially_measured
+    status: not_measured
     provider_scope: public_only
     note: |
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
+      No pinned RPC-provider rejection, docs/status change, or
+      event-specific filter-list snapshot is attached for this individual
+      designation. General public-provider substrate snapshots are not
+      counted as event-specific L3 measurement coverage.
   - layer: l4_frontend
     status: not_applicable
   - layer: asset_onchain
@@ -129,7 +121,6 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0x11311fbe5e82aadecdd456fb5c09b46c2dca5474793aa8c4c9a2d8a48806c774
         tx_hash: "0x11311fbe5e82aadecdd456fb5c09b46c2dca5474793aa8c4c9a2d8a48806c774"
-        block: 0
         note: USDC Blacklisted() tx for KONDRATIEV's ETH address 0xf370... at 2024-02-21 00:19 UTC.
       - type: primary_corporate
         url: https://usdtbanlist.com/address/0xf3701f445b6bdafedbca97d1e477357839e4120d
@@ -178,50 +169,6 @@ observations:
         body_hash: sha256:dc39f55922c657cd3caf22cdd77287f707ddec63ec0510091532f5fadc7aa827
         body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
         note: Relayscan independent dashboard — second source for the null claim.
-
-  - layer: l3_rpc
-    actor: mev_blocker_rpc_provider
-    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
-    observation_kind: observed_no_change
-    attribution: none
-    timestamp: 2024-02-20T00:00:00Z
-    precision: day
-    delta_hours: 0
-    window:
-      - 2024-02-20T00:00:00Z
-      - 2024-02-20T23:59:59Z
-    sources:
-      - type: primary_corporate
-        url: https://web.archive.org/web/20240130093338/https://mevblocker.io/
-        wayback: https://web.archive.org/web/20240130093338/https://mevblocker.io/
-        body_hash: sha256:25c4585c911220a0ae2ccc659e48077b48837344fa85d5a225f6d14cdfe5284a
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20240130093338-https-mevblocker.io__9ddac997cc.html
-        scope_descriptor:
-          providers: [mev_blocker, flashbots_protect]
-          time_window:
-            - 2024-02-20T00:00:00Z
-            - 2024-02-20T23:59:59Z
-          addresses_cohort: this_event_sdn_addresses
-        note: |
-          MEV-Blocker landing-page Wayback snapshot (2024-01-30) closest to
-          event date 2024-02-20. MEV-Blocker (launched 2023-03-27) filters
-          OFAC-SDN-listed addresses from the RPC substrate it serves. The
-          snapshot documents that MEV-Blocker was in effect as a public
-          OFAC-compliant RPC provider bracketing this event. No per-transaction
-          receipt of filter-list application is published; the observation
-          is the presence of the provider + filter-list at event time, not
-          a step change attributable to this specific designation.
-      - type: primary_corporate
-        url: https://docs.flashbots.net/flashbots-protect/quick-start
-        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
-        note: |
-          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
-          (launched 2022-11) is the second major OFAC-compliance-adjacent
-          public Ethereum RPC substrate. Together with MEV-Blocker these
-          cover the overwhelming majority of public OFAC-compliant Ethereum
-          RPC traffic in the 2023-2025 period.
-
 analysis_notes: |
   comparison documenting the LockBit ransomware-affiliate individual designations
   on 2024-02-20, part of Operation Cronos international takedown. Two Russian nationals, each

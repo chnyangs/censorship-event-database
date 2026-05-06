@@ -18,8 +18,14 @@ Preferred workflow:
 3. Reference the resulting local bundle in the relevant event's `analysis_notes`
    or source notes.
 
-Each bundle should contain:
+Each bundle produced by `scripts/capture_http_artifact.py` should contain:
 
 - one body file per URL
 - one metadata JSON per URL
 - one `manifest.json` describing the capture set
+
+Older machine-generated scanner imports, especially `asset-layer-check/`
+captures created from usdtbanlist batch scans, may contain only the body files.
+Those rows remain replayable when the event YAML records both `body_hash` and
+`body_path`; the YAML hash is the admission anchor. New manual captures should
+use the full bundle workflow above.

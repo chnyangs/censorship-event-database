@@ -17,11 +17,10 @@ reporting the denominator a reader would need to evaluate it:
     partially_measured coverage
 
 The Paper claim this artifact enables:
-    "Across 53 admitted events, observed_change entries are concentrated
-     on L4 frontend, asset_onchain, and offramp_cex. L0 and L3 show
-     zero changes, but with {not_measured: X / applicable: Y} denominators
-     — this is an observability gap in the evidence corpus, not proof
-     of absence of censorship at those layers."
+    "Across the admitted corpus, observed_change entries are concentrated
+     on L4 frontend, asset_onchain, and offramp_cex. L0 and L3 have no
+     measured denominators — this is an observability gap in the evidence
+     corpus, not proof of absence of censorship at those layers."
 
 Output (under derived/):
   - layer_observability.csv    one row per layer
@@ -70,7 +69,9 @@ def load_events(events_dir: pathlib.Path) -> list[dict]:
     for f in sorted(events_dir.glob("*.yaml")):
         if f.name == "TEMPLATE.yaml" or f.name.startswith("_"):
             continue
-        out.append(yaml.safe_load(f.read_text()))
+        event = yaml.safe_load(f.read_text())
+        if isinstance(event, dict) and event.get("status") == "admitted":
+            out.append(event)
     return out
 
 
@@ -162,6 +163,20 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
     # denominator inflates the ratio (see P1 in the 2026-04-23 review).
     changed_m = len(changed_under_measured)
     changed_mp = len(changed_under_measured_or_partial)
+    measured_rate = safe_ratio(changed_m, measured)
+    measured_or_partial_rate = safe_ratio(changed_mp, measured + partial)
+    applicable_rate = safe_ratio(changed_n, applicable)
+    if layer == "l3_rpc" and measured == 0 and partial > 0:
+        # Partial-only L3 rows are named Flashbots git-history observations,
+        # not a generalizable conditional rate.
+        measured_or_partial_rate = None
+        applicable_rate = None
+    if layer == "asset_onchain":
+        # The admission rule requires the asset change as the measured anchor,
+        # so asset rates are structurally circular in v0.1.
+        measured_rate = None
+        measured_or_partial_rate = None
+        applicable_rate = None
     return {
         "layer": layer,
         "total_events": total,
@@ -180,9 +195,9 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
         "duplicated_changed_action_count": changed_action_row_count - len(changed_action_ids),
         "no_change_count": len(no_change_events),
         "coverage_gap_count": len(gap_events),
-        "changed_given_measured": safe_ratio(changed_m, measured),
-        "changed_given_measured_or_partial": safe_ratio(changed_mp, measured + partial),
-        "changed_given_applicable": safe_ratio(changed_n, applicable),
+        "changed_given_measured": measured_rate,
+        "changed_given_measured_or_partial": measured_or_partial_rate,
+        "changed_given_applicable": applicable_rate,
         # event lists for drilldown (JSON only)
         "changed_event_ids": sorted(changed_events),
         "changed_under_measured_event_ids": sorted(changed_under_measured),
@@ -274,6 +289,12 @@ def main() -> int:
             "only the subset of observed_change events whose coverage status",
             "is in the same bucket as the denominator. Mixing partially_measured",
             "rows into a measured-only denominator would inflate the ratio.",
+            "`l3_rpc` is an exception at v0.1: partial-only named Flashbots",
+            "git-history observations are counted, but the measured+partial",
+            "and applicable rates are suppressed because there is no measured denominator.",
+            "`asset_onchain` rate columns are suppressed because the admission",
+            "rule requires the asset-layer change as the measured anchor, making",
+            "the rate structurally circular.",
             "Bare `changed_count` without a denominator is meaningful only",
             "in combination with the coverage composition.",
             "A layer with changed_count = 0 and not_measured_count large is",

@@ -5,7 +5,7 @@ representation.
 
 ## Observation
 
-As of dataset snapshot `v0.1.0` (cutoff `2026-04-22`), across **53
+As of dataset snapshot `v0.1.0` (cutoff `2026-04-22`), across **51
 admitted events**, target-chain distribution is:
 
 ```

@@ -19,7 +19,8 @@ import tempfile
 import pytest
 import yaml
 
-from build_paper_tables import _trigger_precision
+from build_admission_sensitivity import _compute_all
+from build_paper_tables import _trigger_precision, build_table2
 
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -94,3 +95,77 @@ def test_build_paper_tables_aborts_on_anchorless_null(corpus_with_anchorless_nul
     )
     assert "iran-ransomware-ofac-2018" in result.stderr
     assert "ABORT" in result.stderr
+
+
+def test_table2_suppresses_l3_partial_only_rate(tmp_path):
+    rows = [{
+        "layer": "l3_rpc",
+        "applicable_event_count": 9,
+        "measured_count": 0,
+        "partially_measured_count": 2,
+        "not_measured_count": 7,
+        "not_applicable_count": 42,
+        "changed_under_measured_count": 0,
+        "changed_under_measured_or_partial_count": 2,
+        "changed_unique_action_count": 2,
+        "duplicated_changed_action_count": 0,
+    }]
+    build_table2(rows, tmp_path, {}, [])
+    rendered = (tmp_path / "table2_layer_observability.md").read_text()
+    assert "named-only; no rate" in rendered
+    assert "`l3_rpc` has no measured denominator" in rendered
+    assert "2/2" not in rendered
+
+
+def test_admission_sensitivity_suppresses_l3_partial_only_rate():
+    events = [{
+        "status": "admitted",
+        "coverage": [{"layer": "l3_rpc", "status": "partially_measured"}],
+        "observations": [{
+            "layer": "l3_rpc",
+            "observation_kind": "observed_change",
+            "attribution": "direct",
+        }],
+    }]
+    row = next(r for r in _compute_all(events) if r["layer"] == "l3_rpc")
+    assert row["permissive_num"] == 1
+    assert row["permissive_den"] == 1
+    assert row["permissive_rate"] is None
+    assert row["sensitivity"] == "undefined"
+
+
+def test_table2_suppresses_asset_onchain_structural_rate(tmp_path):
+    rows = [{
+        "layer": "asset_onchain",
+        "applicable_event_count": 23,
+        "measured_count": 17,
+        "partially_measured_count": 0,
+        "not_measured_count": 6,
+        "not_applicable_count": 28,
+        "changed_under_measured_count": 17,
+        "changed_under_measured_or_partial_count": 17,
+        "changed_unique_action_count": 20,
+        "duplicated_changed_action_count": 1,
+    }]
+    build_table2(rows, tmp_path, {}, [])
+    rendered = (tmp_path / "table2_layer_observability.md").read_text()
+    assert "retracted; no rate" in rendered
+    assert "17/17" not in rendered
+
+
+def test_admission_sensitivity_retracts_asset_onchain_rate():
+    events = [{
+        "status": "admitted",
+        "coverage": [{"layer": "asset_onchain", "status": "measured"}],
+        "observations": [{
+            "layer": "asset_onchain",
+            "observation_kind": "observed_change",
+            "attribution": "direct",
+        }],
+    }]
+    row = next(r for r in _compute_all(events) if r["layer"] == "asset_onchain")
+    assert row["strict_num"] == 1
+    assert row["strict_den"] == 1
+    assert row["strict_rate"] is None
+    assert row["permissive_rate"] is None
+    assert row["sensitivity"] == "retracted_structural"

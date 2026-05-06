@@ -97,7 +97,9 @@ def _load_events(events_dir: pathlib.Path) -> list[dict]:
     for f in sorted(events_dir.glob("*.yaml")):
         if f.name == "TEMPLATE.yaml" or f.name.startswith("_"):
             continue
-        out.append(yaml.safe_load(f.read_text()))
+        event = yaml.safe_load(f.read_text())
+        if isinstance(event, dict) and event.get("status") == "admitted":
+            out.append(event)
     return out
 
 
@@ -111,12 +113,36 @@ def _load_derived(derived_dir: pathlib.Path, name: str) -> Any:
     return json.loads(path.read_text())
 
 
+def _load_optional_csv(derived_dir: pathlib.Path, name: str) -> list[dict[str, str]]:
+    path = derived_dir / f"{name}.csv"
+    if not path.exists():
+        return []
+    with path.open(newline="") as f:
+        return list(csv.DictReader(f))
+
+
 def _rate(num: int, denom: int) -> str:
     """Render 'num/denom = pct' with denominator always present."""
     if denom <= 0:
         return "—"
     pct = 100.0 * num / denom
     return f"{num}/{denom} ({pct:.1f}%)"
+
+
+def _csv_int(row: dict[str, str], key: str) -> int:
+    value = row.get(key)
+    return int(value) if value not in (None, "") else 0
+
+
+def _rubric_rate(row: dict[str, str], rubric: str) -> str:
+    num = _csv_int(row, f"{rubric}_num")
+    den = _csv_int(row, f"{rubric}_den")
+    if den <= 0:
+        return "—"
+    rate = row.get(f"{rubric}_rate")
+    if rate in (None, ""):
+        return f"{num}/{den} (rate suppressed)"
+    return f"{num}/{den} ({float(rate):.2f})"
 
 
 def _trigger_precision(event: dict) -> str:
@@ -291,6 +317,7 @@ def build_table2(
     layer_rows: list[dict],
     out_dir: pathlib.Path,
     ds_meta: dict,
+    sensitivity_rows: list[dict[str, str]] | None = None,
 ) -> None:
     lines = _snapshot_header(
         ds_meta, "Table 2 · Layer observability (denominator-honest)"
@@ -324,6 +351,13 @@ def build_table2(
         duplicate_actions = row.get("duplicated_changed_action_count", 0)
         # The partial-coverage-changed count on its own (not cumulative)
         changed_partial_only = changed_mp - changed_m
+        broad_rate = _rate(changed_mp, measured + partial)
+        if row["layer"] == "l3_rpc" and measured == 0 and partial > 0:
+            broad_rate = "named-only; no rate"
+        measured_rate = _rate(changed_m, measured)
+        if row["layer"] == "asset_onchain":
+            measured_rate = "retracted; no rate"
+            broad_rate = "retracted; no rate"
         lines.append(
             f"| `{row['layer']}` | "
             f"{row['applicable_event_count']} | "
@@ -331,7 +365,7 @@ def build_table2(
             f"{row['not_measured_count']} | {row['not_applicable_count']} | "
             f"{changed_m} | {changed_partial_only} | "
             f"{unique_actions} | {duplicate_actions} | "
-            f"{_rate(changed_m, measured)} | {_rate(changed_mp, measured + partial)} |"
+            f"{measured_rate} | {broad_rate} |"
         )
     lines.append("")
     lines.append(
@@ -348,28 +382,51 @@ def build_table2(
     )
     lines.append("")
     lines.append(
-        "**Sensitivity reporting**. The two `current`-rubric rates flagged "
-        "as **sensitive** in [`derived/admission_sensitivity.md`](../../derived/admission_sensitivity.md) "
-        "(`l4_frontend` Δ=0.12, `l1_consensus` Δ=0.29) must be cited "
-        "alongside their strict and permissive recomputations:"
-    )
-    lines.append("")
-    lines.append(
-        "- **`l4_frontend`**: 9/16 (0.56) strict · 11/16 (0.69) current · "
-        "13/19 (0.68) permissive."
+        "`l3_rpc` has no measured denominator in this release. Its two "
+        "partial rows are named Flashbots git-history observations only; "
+        "do not cite them as an L3 conditional rate."
     )
     lines.append(
-        "- **`l1_consensus`**: 0/6 (0.00) strict · 1/6 (0.17) current · "
-        "2/7 (0.29) permissive."
-    )
-    lines.append(
-        "- `offramp_cex` (Δ=0.015) and `asset_onchain` (Δ=0) are robust; "
-        "`offramp_cex` is reported under the `current` rubric only. "
-        "`asset_onchain`'s 17/17 is **not reported as a rate** at v0.1 — "
+        "`asset_onchain` remains **not reported as a rate** at v0.1 — "
         "the admission rubric requires the change as the admission anchor, "
         "so the ratio is structurally circular (see "
         "[`docs/paper_claims.md §C1` 'Not said'](../../docs/paper_claims.md))."
     )
+    sensitivity_by_layer = {r.get("layer"): r for r in (sensitivity_rows or [])}
+    sensitive = [
+        sensitivity_by_layer[layer]
+        for layer in LAYER_ORDER
+        if sensitivity_by_layer.get(layer, {}).get("sensitivity") == "sensitive"
+    ]
+    moderate = [
+        sensitivity_by_layer[layer]
+        for layer in LAYER_ORDER
+        if sensitivity_by_layer.get(layer, {}).get("sensitivity") == "moderate"
+    ]
+    if sensitive or moderate:
+        lines.append("")
+        lines.append(
+            "**Sensitivity reporting**. Rates flagged in "
+            "[`derived/admission_sensitivity.md`](../../derived/admission_sensitivity.md) "
+            "must carry their strict/current/permissive context when cited:"
+        )
+        lines.append("")
+    for row in sensitive:
+        delta = row.get("strict_permissive_delta") or "—"
+        lines.append(
+            f"- **`{row['layer']}`** sensitive (Δ={delta}): "
+            f"{_rubric_rate(row, 'strict')} strict · "
+            f"{_rubric_rate(row, 'current')} current · "
+            f"{_rubric_rate(row, 'permissive')} permissive."
+        )
+    for row in moderate:
+        delta = row.get("strict_permissive_delta") or "—"
+        lines.append(
+            f"- **`{row['layer']}`** moderate (Δ={delta}): "
+            f"{_rubric_rate(row, 'strict')} strict · "
+            f"{_rubric_rate(row, 'current')} current · "
+            f"{_rubric_rate(row, 'permissive')} permissive."
+        )
     lines.append("")
     _write_md(out_dir / "table2_layer_observability.md", lines)
 
@@ -798,13 +855,14 @@ def main() -> int:
     metrics = _load_derived(derived_dir, "event_metrics")
     archetypes = _load_derived(derived_dir, "event_archetypes")
     layer_obs = _load_derived(derived_dir, "layer_observability")
+    sensitivity = _load_optional_csv(derived_dir, "admission_sensitivity")
     metrics_by_id = {r["event_id"]: r for r in metrics}
     archetypes_by_id = {r["event_id"]: r for r in archetypes}
 
     ds_meta = load_meta()
 
     build_table1(events, metrics_by_id, archetypes_by_id, out_dir, ds_meta)
-    build_table2(layer_obs, out_dir, ds_meta)
+    build_table2(layer_obs, out_dir, ds_meta, sensitivity)
     build_table3(archetypes, out_dir, ds_meta)
     build_table4(events, metrics_by_id, archetypes_by_id, out_dir, ds_meta)
     build_table5(events, metrics_by_id, archetypes_by_id, out_dir, ds_meta)

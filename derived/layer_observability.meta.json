@@ -26,9 +26,9 @@
     "cutoff_date": "2026-04-22",
     "dataset_version": "0.1.0",
     "schema_version": "0.2.0",
-    "source_commit": "5d38fae"
+    "source_commit": "b99dfaf"
   },
-  "generated_at": "2026-04-25T09:22:35Z",
+  "generated_at": "2026-04-27T11:03:02Z",
   "generator": {
     "python": "3.14.4",
     "script": "scripts/build_layer_observability.py",
@@ -41,11 +41,17 @@
     "only the subset of observed_change events whose coverage status",
     "is in the same bucket as the denominator. Mixing partially_measured",
     "rows into a measured-only denominator would inflate the ratio.",
+    "`l3_rpc` is an exception at v0.1: partial-only named Flashbots",
+    "git-history observations are counted, but the measured+partial",
+    "and applicable rates are suppressed because there is no measured denominator.",
+    "`asset_onchain` rate columns are suppressed because the admission",
+    "rule requires the asset-layer change as the measured anchor, making",
+    "the rate structurally circular.",
     "Bare `changed_count` without a denominator is meaningful only",
     "in combination with the coverage composition.",
     "A layer with changed_count = 0 and not_measured_count large is",
     "an observability gap \u2014 NOT evidence that censorship does not",
     "occur at that layer."
   ],
-  "total_events": 53
+  "total_events": 51
 }

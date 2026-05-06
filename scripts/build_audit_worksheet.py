@@ -368,7 +368,9 @@ def main() -> int:
     for f in sorted(events_dir.glob("*.yaml")):
         if f.name == "TEMPLATE.yaml" or f.name.startswith("_"):
             continue
-        events.append(yaml.safe_load(f.read_text()))
+        event = yaml.safe_load(f.read_text())
+        if isinstance(event, dict) and event.get("status") == "admitted":
+            events.append(event)
 
     if args.slug:
         selected = [e for e in events if e.get("id") == args.slug]
@@ -381,6 +383,11 @@ def main() -> int:
         return 1
 
     ds_meta = load_meta()
+    selected_slugs = {str(e.get("id")) for e in selected if e.get("id")}
+    if not args.slug and out_dir.resolve() == DEFAULT_OUT_DIR.resolve():
+        for stale in out_dir.glob("*.md"):
+            if stale.stem not in selected_slugs:
+                stale.unlink()
     for e in selected:
         slug = e.get("id") or "unknown"
         out_path = out_dir / f"{slug}.md"

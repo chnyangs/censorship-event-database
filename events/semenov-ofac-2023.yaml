@@ -84,24 +84,13 @@ coverage:
       as observation: pre-event 14d mean 38.45% ± 0.96, event-day 37.03%, post-event 14d mean
       39.57% ± 1.27. Null shape: the individual designation did not shift relay OFAC-compliance.
   - layer: l3_rpc
-    status: partially_measured
+    status: not_measured
     provider_scope: public_only
     note: |
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
-      No first-party RPC-filter-list snapshot bracketing 2023-08-23 is attached; this should not be
-      read as an event-specific L3 measurement until pinned MEV-Blocker / Chainsaw / other
-      OFAC-compliant RPC provider filter lists are available.
+      No first-party RPC-filter-list snapshot, provider docs/status
+      change, or replayable rejection bracketing 2023-08-23 is attached.
+      Public RPC substrate snapshots are treated as background context,
+      not event-specific L3 measurement coverage.
   - layer: l4_frontend
     status: not_measured
     scope:
@@ -157,7 +146,6 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0xe5e3264f0cb5558f2011b65ed231656870ad217e55eff924193860753091448a
         tx_hash: "0xe5e3264f0cb5558f2011b65ed231656870ad217e55eff924193860753091448a"
-        block: 0
         note: USDC Blacklisted() tx for Semenov address 0xdcbEfFBECc... at 2023-08-24 00:16 UTC. First of an 8-address Circle batch executed over 00:16-00:20 UTC on the day after OFAC designation.
       - type: primary_corporate
         url: https://usdtbanlist.com/address/0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93
@@ -181,7 +169,6 @@ observations:
       - type: primary_onchain
         url: https://etherscan.io/tx/0x5a826f6c6231138d84f9d5bd020417a21b246bc1c3891331377f289e6dd89577
         tx_hash: "0x5a826f6c6231138d84f9d5bd020417a21b246bc1c3891331377f289e6dd89577"
-        block: 0
         note: Tether USDT addBlackList tx for Semenov address 0x6be0ae71... at 2023-12-09 04:37 UTC. Part of Tether's 2023-12-09 retroactive sweep (see tether-retroactive-sweep-2023); all 8 Semenov addresses in that sweep.
       - type: primary_corporate
         url: https://usdtbanlist.com/address/0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93
@@ -230,50 +217,6 @@ observations:
         note: |
           Relayscan (Flashbots-operated) independent dashboard consistent with the Wahrstätter
           plateau — second source for the observed_no_change claim.
-
-  - layer: l3_rpc
-    actor: mev_blocker_rpc_provider
-    event: mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event
-    observation_kind: observed_no_change
-    attribution: none
-    timestamp: 2023-08-23T00:00:00Z
-    precision: day
-    delta_hours: 0
-    window:
-      - 2023-08-23T00:00:00Z
-      - 2023-08-23T23:59:59Z
-    sources:
-      - type: primary_corporate
-        url: https://web.archive.org/web/20230330192344/https://mevblocker.io/
-        wayback: https://web.archive.org/web/20230330192344/https://mevblocker.io/
-        body_hash: sha256:fe655af5ce72a5a7608347825552a519008effb2102987df525aeac9aa8a73af
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20230330192344-https-mevblocker.io__108a4c0809.html
-        scope_descriptor:
-          providers: [mev_blocker, flashbots_protect]
-          time_window:
-            - 2023-08-23T00:00:00Z
-            - 2023-08-23T23:59:59Z
-          addresses_cohort: this_event_sdn_addresses
-        note: |
-          MEV-Blocker landing-page Wayback snapshot (2023-03-30) closest to
-          event date 2023-08-23. MEV-Blocker (launched 2023-03-27) filters
-          OFAC-SDN-listed addresses from the RPC substrate it serves. The
-          snapshot documents that MEV-Blocker was in effect as a public
-          OFAC-compliant RPC provider bracketing this event. No per-transaction
-          receipt of filter-list application is published; the observation
-          is the presence of the provider + filter-list at event time, not
-          a step change attributable to this specific designation.
-      - type: primary_corporate
-        url: https://docs.flashbots.net/flashbots-protect/quick-start
-        body_hash: sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-        body_path: sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html
-        note: |
-          Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
-          (launched 2022-11) is the second major OFAC-compliance-adjacent
-          public Ethereum RPC substrate. Together with MEV-Blocker these
-          cover the overwhelming majority of public OFAC-compliant Ethereum
-          RPC traffic in the 2023-2025 period.
-
 analysis_notes: |
   comparison documenting the 2023-08-23 OFAC individual designation of Roman Semenov
   (Tornado Cash co-founder), co-occurring with the DOJ SDNY indictment of Semenov + Storm. The

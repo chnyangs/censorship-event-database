@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S2_ofac_removal` · **Shape**: `cascade` (4 changed layer(s): `asset_onchain`, `l1_consensus`, `l3_rpc`, `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `5d38fae` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-25T09:22:35Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `b99dfaf` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-27T11:03:02Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -204,37 +204,6 @@
 > observed_change claim. Corroborates the post-delisting drop
 > signal in the independent relay-monitoring pipeline.
 
-## 4. No-change observations (where applicable)
-
-### l3_rpc — `mev_blocker_filter_list_in_effect_no_step_change_attributable_to_this_event`
-
-**Window**: `2025-03-21 00:00:00+00:00` → `2025-03-21 23:59:59+00:00`
-
-**Sources**:
-
-- **`primary_corporate`**
-  - URL: <https://web.archive.org/web/20250111000329/https://mevblocker.io/>
-  - Wayback: <https://web.archive.org/web/20250111000329/https://mevblocker.io/>
-  - body_hash: `sha256:0d2b4d7e23011413f484943f6b9e1a28f4cf613f047e7e31d9c4daec7941bda3`
-  - body_path: `sources/http_captures/_shared/l3-rpc-filter-list/web.archive.org__web-20250601000000-mevblocker.io__8282802587.html`
-  > MEV-Blocker landing-page Wayback snapshot (2025-01-11) closest to
-> event date 2025-03-21. MEV-Blocker (launched 2023-03-27) filters
-> OFAC-SDN-listed addresses from the RPC substrate it serves. The
-> snapshot documents that MEV-Blocker was in effect as a public
-> OFAC-compliant RPC provider bracketing this event. No per-transaction
-> receipt of filter-list application is published; the observation
-> is the presence of the provider + filter-list at event time, not
-> a step change attributable to this specific designation.
-- **`primary_corporate`**
-  - URL: <https://docs.flashbots.net/flashbots-protect/quick-start>
-  - body_hash: `sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282`
-  - body_path: `sources/http_captures/_shared/l3-rpc-filter-list/docs.flashbots.net__flashbots-protect-quick-start__362faba1ef.html`
-  > Second L3 anchor: Flashbots Protect documentation. Flashbots Protect
-> (launched 2022-11) is the second major OFAC-compliance-adjacent
-> public Ethereum RPC substrate. Together with MEV-Blocker these
-> cover the overwhelming majority of public OFAC-compliant Ethereum
-> RPC traffic in the 2023-2025 period.
-
 ## 5. Honest coverage gaps
 
 - **l0_network** (`not_measured`): L0 coverage is an explicit measurement gap, framed to match the
@@ -242,7 +211,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `5d38fae`).
+1. Clone the repository at tag `v0.1.0` (commit `b99dfaf`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

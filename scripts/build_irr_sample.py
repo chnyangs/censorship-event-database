@@ -46,6 +46,8 @@ def _load_events() -> list[dict]:
         e = yaml.safe_load(p.read_text())
         if not isinstance(e, dict):
             continue
+        if e.get("status") != "admitted":
+            continue
         e["_path"] = str(p.relative_to(REPO_ROOT))
         events.append(e)
     return events

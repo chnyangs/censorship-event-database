@@ -1,6 +1,9 @@
 PYTHON      ?= python3
 EVENTS      ?= events/*.yaml
 TIMEOUT     ?= 10
+REPRO_GIT_SOURCE_DATE_EPOCH ?= $(shell git log -1 --format=%ct 2>/dev/null)
+REPRO_META_SOURCE_DATE_EPOCH ?= $(shell $(PYTHON) scripts/repro_source_date_epoch.py 2>/dev/null)
+REPRO_SOURCE_DATE_EPOCH ?= $(or $(REPRO_GIT_SOURCE_DATE_EPOCH),$(REPRO_META_SOURCE_DATE_EPOCH))
 
 # ---- Artifact paths ----
 DATASET_JSON    ?= dataset.json
@@ -24,7 +27,7 @@ COMPARE_OUT ?= -
 .DEFAULT_GOAL := help
 
 .PHONY: help \
-    validate validate-citations validate-archives verify-citations freshness \
+    validate schema-check validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset \
     event-metrics layer-observability archetypes \
     admission-sensitivity jurisdiction derived \
@@ -39,6 +42,7 @@ help:
 	@printf '%s\n' \
 	    '### Validation' \
 	    'make validate              # schema / field consistency checks for $(EVENTS)' \
+	    'make schema-check          # JSON Schema validation for $(EVENTS)' \
 	    'make validate-citations    # validate + lightweight citation reachability' \
 	    'make validate-archives     # validate + local body-hash / wayback checks' \
 	    'make verify-citations      # citation URL reachability sweep for $(EVENTS)' \
@@ -65,7 +69,7 @@ help:
 	    '' \
 	    '### Static site + framework outputs' \
 	    'make render-site           # render events/*.yaml → $(SITE_DIR)/' \
-	    'make render-evidence-all   # framework A: render 53 evidence chains → $(EVIDENCE_DIR)/' \
+	    'make render-evidence-all   # framework A: render admitted evidence chains → $(EVIDENCE_DIR)/' \
 	    'make render-evidence SLUG=<slug>   # framework A: render a single event to stdout' \
 	    'make compare LIKE=<slug> TOP=5     # framework B: find top-N comparable cases' \
 	    '                                   # (or: make compare TRIGGER_TYPE=... ACTOR=...)' \
@@ -79,7 +83,7 @@ help:
 	    'make capture URL=<url> OUT=<dir>   # capture a single URL with body_hash' \
 	    '' \
 	    '### Omnibus' \
-	    'make check                 # validate + reports + paper-readiness gate' \
+	    'make check                 # test + validate + reports + paper-readiness gate' \
 	    'make check-network         # verify-citations + freshness' \
 	    'make check-all             # check + check-network' \
 	    'make regenerate            # dataset + derived + paper tables + site/evidence outputs' \
@@ -88,6 +92,9 @@ help:
 # ---- Validation targets ----
 validate:
 	$(PYTHON) scripts/validate.py $(EVENTS)
+
+schema-check:
+	$(PYTHON) scripts/validate_json_schema.py $(EVENTS)
 
 validate-citations:
 	$(PYTHON) scripts/validate.py --check-citations --timeout $(TIMEOUT) $(EVENTS)
@@ -152,14 +159,17 @@ audit-worksheets:
 	    $(if $(TIERS),--tiers $(TIERS))
 
 # Reproducible paper-table surface (see docs/paper_claims.md §4).
-# Requires `make derived` to have been run. The core generator emits
-# Tables 1-6; the jurisdiction prerequisite emits Table 7. Every
+# Rebuilds the full derived layer first so Tables 1-6 cannot silently
+# consume stale metrics/archetypes after an event-YAML edit. Every
 # number in the paper must come from this artifact at a given
 # source_commit.
-paper-tables: jurisdiction
+ifndef SOURCE_DATE_EPOCH
+paper-tables paper-check: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+endif
+paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
 
-paper-check: derived paper-tables
+paper-check: paper-tables
 	$(PYTHON) scripts/check_paper_readiness.py --strict-audit
 
 # Pytest suite for classifier / coverage-numerator / recovery-filter /
@@ -235,7 +245,10 @@ capture:
 	$(PYTHON) scripts/capture_http_artifact.py --output-dir $(OUT) $(URL)
 
 # ---- Omnibus ----
-check: validate draft-gaps status review paper-check
+ifndef SOURCE_DATE_EPOCH
+check: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+endif
+check: test validate schema-check draft-gaps status review staleness paper-check
 
 check-network: verify-citations freshness
 
@@ -247,10 +260,13 @@ check-all: check check-network
 # jurisdiction emit derived/ + analysis/paper_tables/ artifacts that
 # docs/paper_claims.md cites — they belong in the regenerate chain
 # so the reproduction path stays consistent with the paper claims.
+ifndef SOURCE_DATE_EPOCH
+regenerate: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+endif
 regenerate: dataset event-metrics layer-observability archetypes \
             admission-sensitivity jurisdiction \
             paper-tables status review staleness \
-            render-site render-evidence-all paper-check
+            render-site render-evidence-all audit-worksheets paper-check
 	@echo "[regenerate] all derived artifacts rebuilt and gated"
 
 clean:

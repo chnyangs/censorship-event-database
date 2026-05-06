@@ -340,7 +340,9 @@ def main() -> int:
     for f in sorted(events_dir.glob("*.yaml")):
         if f.name == "TEMPLATE.yaml" or f.name.startswith("_"):
             continue
-        events.append(yaml.safe_load(f.read_text()))
+        event = yaml.safe_load(f.read_text())
+        if isinstance(event, dict) and event.get("status") == "admitted":
+            events.append(event)
 
     metrics = [compute_event_metrics(e) for e in events]
 
