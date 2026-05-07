@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.1.0 · cutoff `2026-05-06` · commit `947f18f` · generated `2026-05-06T10:56:34Z`
+Dataset snapshot: v0.1.0 · cutoff `2026-05-06` · commit `312d297` · generated `2026-05-07T00:01:49Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 

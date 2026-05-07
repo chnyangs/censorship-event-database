@@ -1,6 +1,6 @@
 # Paper-tables index
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `947f18f` · generated `2026-05-06T10:56:34Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `312d297` · generated `2026-05-07T00:01:49Z`
 
 These tables are the reproducible surface for every number in the paper. Each table links to the specific `docs/paper_claims.md` claim(s) it supports and to the `derived/` artifact it reads from. Re-run with `make paper-tables` from a clean checkout; the output under this directory should match the paper's figures byte-for-byte at a given `source_commit`.
 

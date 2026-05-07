@@ -144,7 +144,8 @@ STATIC_CSS = """\
   --shadow-sm: 0 1px 2px rgba(15,20,35,.06);
   --shadow: 0 4px 14px rgba(15,20,35,.08);
 
-  --font-body: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --font-body: "Aptos", "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -221,7 +222,10 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 12% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 34rem),
+    radial-gradient(circle at 92% 5%, color-mix(in srgb, var(--layer-asset_onchain) 12%, transparent), transparent 30rem),
+    var(--bg);
   color: var(--text);
   line-height: 1.55;
   font-size: 16px;
@@ -249,7 +253,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
 }
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
   border-bottom: 1px solid var(--border);
   backdrop-filter: saturate(1.3) blur(10px);
 }
@@ -278,6 +282,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
 .theme-toggle:hover { background: var(--bg-alt); }
 
 h1 {
+  font-family: var(--font-display);
   font-size: 1.9rem; letter-spacing: -0.02em; margin: 1.6rem 0 0.4rem;
   line-height: 1.2;
 }
@@ -289,7 +294,187 @@ h3 { font-size: 1.03rem; margin: 1.4rem 0 0.4rem; }
 .meta { color: var(--text-muted); font-size: 0.88rem; }
 .muted { color: var(--text-muted); }
 
-/* ------------------------------------------------------------- index hero */
+/* ------------------------------------------------------------- dashboard */
+.dashboard-hero {
+  display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .75fr);
+  gap: 1rem; align-items: stretch;
+  margin-top: 1.4rem;
+}
+.hero-copy, .snapshot-panel, .signal-card, .artifact-card, .layer-card, .filter-drawer {
+  background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.hero-copy {
+  padding: 1.7rem 1.8rem;
+  min-height: 360px;
+  position: relative; overflow: hidden;
+}
+.hero-copy::after {
+  content: ""; position: absolute; inset: auto -8% -40% 42%;
+  height: 220px; border-radius: 999px;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--layer-l4_frontend) 22%, transparent),
+    color-mix(in srgb, var(--layer-asset_onchain) 24%, transparent),
+    color-mix(in srgb, var(--layer-offramp_cex) 20%, transparent));
+  filter: blur(10px); opacity: .8; pointer-events: none;
+}
+.hero-copy > * { position: relative; z-index: 1; }
+.hero-kicker {
+  display: inline-flex; gap: .45rem; align-items: center;
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em;
+  font-size: .76rem; font-weight: 700;
+}
+.hero-kicker::before {
+  content: ""; width: 34px; height: 2px; background: var(--accent);
+  border-radius: 2px;
+}
+.dashboard-hero h1 {
+  font-size: clamp(2.1rem, 6vw, 4.8rem);
+  max-width: 12ch;
+  margin: .75rem 0 .9rem;
+  line-height: .95;
+}
+.hero-lede {
+  font-size: 1.04rem; color: var(--text-muted); max-width: 66ch;
+}
+.hero-actions { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.2rem; }
+.button {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px; padding: .62rem .95rem;
+  border: 1px solid var(--border-strong);
+  background: var(--text); color: var(--bg);
+  font-weight: 700; font-size: .88rem;
+}
+.button:hover { text-decoration: none; opacity: .9; color: var(--bg); }
+.button.secondary { background: var(--bg-card); color: var(--text); }
+.button.secondary:hover { color: var(--text); border-color: var(--text-muted); }
+.snapshot-panel {
+  padding: 1rem;
+  display: grid; gap: .75rem;
+  align-content: start;
+}
+.snapshot-head {
+  padding: .9rem; border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--bg-alt), var(--bg-card));
+  border: 1px solid var(--border);
+}
+.snapshot-head .label, .status-line .label, .artifact-card .label {
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: .07em;
+  font-size: .72rem; font-weight: 700;
+}
+.snapshot-head .version {
+  font-family: var(--font-display);
+  font-size: 2.1rem; line-height: 1; margin-top: .25rem;
+}
+.status-line {
+  display: grid; grid-template-columns: 1fr auto; gap: .5rem;
+  align-items: center; padding: .72rem .8rem;
+  border-radius: var(--radius); border: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+.status-line strong { font-size: .93rem; }
+.status-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ok-fg); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok-fg) 14%, transparent);
+}
+.status-dot.warn {
+  background: var(--warn-fg); box-shadow: 0 0 0 4px color-mix(in srgb, var(--warn-fg) 16%, transparent);
+}
+.status-dot.info {
+  background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.section-heading {
+  display: flex; justify-content: space-between; align-items: end; gap: 1rem;
+  margin: 2rem 0 .8rem;
+}
+.section-heading h2 { margin: 0; border: 0; padding: 0; }
+.section-heading p { margin: 0; max-width: 62ch; }
+.signal-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .85rem; margin: 1rem 0 1.4rem;
+}
+.signal-card {
+  padding: 1rem;
+  position: relative; overflow: hidden;
+}
+.signal-card::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 4px;
+  background: var(--accent);
+}
+.signal-card.warn::before { background: var(--warn-fg); }
+.signal-card.risk::before { background: var(--bad-fg); }
+.signal-number {
+  font-family: var(--font-display);
+  font-size: 2.25rem; line-height: 1;
+  letter-spacing: -.04em;
+}
+.signal-label { color: var(--text-muted); font-size: .86rem; margin-top: .25rem; }
+.layer-board {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: .7rem;
+}
+.layer-card {
+  padding: .9rem;
+  border-top: 4px solid var(--layer-color);
+}
+.layer-card h3 {
+  margin: 0 0 .55rem;
+  font-size: .9rem; font-family: var(--font-mono); color: var(--text);
+}
+.layer-metrics {
+  display: grid; gap: .35rem; font-size: .82rem; color: var(--text-muted);
+}
+.layer-metrics strong { color: var(--text); font-variant-numeric: tabular-nums; }
+.layer-meter {
+  height: 7px; border-radius: 999px; background: var(--bg-sunken);
+  overflow: hidden; margin-top: .7rem;
+}
+.layer-meter span {
+  display: block; height: 100%; width: var(--pct);
+  background: var(--layer-color); border-radius: inherit;
+}
+.artifact-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .85rem;
+}
+.artifact-card {
+  padding: 1rem; display: flex; flex-direction: column; gap: .55rem;
+  min-height: 150px;
+}
+.artifact-card h3 { margin: 0; font-size: 1rem; }
+.artifact-card p { margin: 0; color: var(--text-muted); font-size: .88rem; }
+.artifact-card a.stretch {
+  margin-top: auto; font-weight: 700; font-size: .85rem;
+}
+.boundary-note {
+  margin: 1rem 0; padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--warn-fg) 36%, var(--border));
+  border-left: 5px solid var(--warn-fg);
+  background: color-mix(in srgb, var(--warn-bg) 24%, var(--bg-card));
+  border-radius: var(--radius);
+}
+.boundary-note strong { color: var(--text); }
+.filter-drawer {
+  margin: .8rem 0 1rem;
+  overflow: clip;
+}
+.filter-drawer summary {
+  list-style: none; cursor: pointer;
+  padding: .9rem 1rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.filter-drawer summary::-webkit-details-marker { display: none; }
+.filter-drawer summary .title { font-weight: 700; }
+.filter-drawer summary .hint { color: var(--text-muted); font-size: .85rem; }
+.filter-drawer[open] summary { border-bottom: 1px solid var(--border); }
+.filter-drawer .filter-bar {
+  position: static; top: auto; margin: 0; padding: .85rem 1rem;
+  border: 0; background: transparent;
+}
+
+/* ------------------------------------------------------------- legacy hero */
 .hero {
   margin-top: 1.6rem; padding: 1.6rem 1.8rem 1.2rem;
   background: linear-gradient(180deg, var(--bg-alt), transparent);
@@ -410,7 +595,7 @@ table.events {
   width: 100%; border-collapse: collapse; font-size: 0.92rem;
 }
 table.events thead th {
-  position: sticky; top: calc(54px + 96px); z-index: 10;
+  position: sticky; top: 54px; z-index: 10;
   background: var(--bg-alt); color: var(--text);
   text-align: left; font-weight: 600; font-size: 0.84rem;
   letter-spacing: 0.02em;
@@ -719,18 +904,29 @@ footer.site-footer {
 }
 
 /* ----------------------------------------- responsive tweaks */
+@media (max-width: 1050px) {
+  .signal-grid, .artifact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .layer-board { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 @media (max-width: 700px) {
   .site-header-inner { padding: 8px 0.8rem; }
-  .header-link { display: none; }
+  .header-link.optional { display: none; }
   .page { padding: 0 0.8rem 3rem; }
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.1rem; }
+  .dashboard-hero { grid-template-columns: 1fr; }
+  .hero-copy { min-height: 0; padding: 1.25rem; }
+  .dashboard-hero h1 { font-size: 2.45rem; max-width: 14ch; }
+  .section-heading { display: block; }
+  .signal-grid, .artifact-grid { grid-template-columns: 1fr; }
+  .layer-board { grid-template-columns: repeat(2, 1fr); }
   .hero { padding: 1.1rem 1.1rem 0.9rem; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 0.55rem; }
   .stat-card { padding: 10px 12px; }
   .stat-number { font-size: 1.4rem; }
   .filter-bar { top: 48px; }
-  table.events thead th { top: calc(48px + 120px); font-size: 0.75rem; padding: 6px 8px; }
+  table.events thead th { top: 48px; font-size: 0.75rem; padding: 6px 8px; }
   table.events tbody td { padding: 8px 8px; }
   table.events .col-hide-mobile { display: none; }
   .kv-list { grid-template-columns: 1fr; }
@@ -738,7 +934,7 @@ footer.site-footer {
 }
 
 @media print {
-  .site-header, .filter-bar, .theme-toggle, .prev-next { display: none !important; }
+  .site-header, .filter-bar, .filter-drawer, .theme-toggle, .prev-next { display: none !important; }
   body { background: #fff; color: #000; }
   .section-card { break-inside: avoid; }
 }
@@ -1539,6 +1735,125 @@ def chip_group(label: str, facet: str, values: list[tuple[str, int]]) -> str:
     )
 
 
+def render_signal_cards(events: list[dict], shape_counts: collections.Counter, tier_counts: collections.Counter) -> str:
+    """Top-level dashboard KPIs. These intentionally mix corpus counts with
+    provenance/readiness status so users see the dataset boundary before the
+    event table."""
+    return f"""
+  <div class="signal-grid" aria-label="Corpus signals">
+    <article class="signal-card">
+      <div class="signal-number">{len(events)}</div>
+      <div class="signal-label">admitted YAML records in the current corpus</div>
+    </article>
+    <article class="signal-card">
+      <div class="signal-number">{shape_counts.get('cascade', 0)}</div>
+      <div class="signal-label">multi-layer cascade cases; most evidence remains single-layer or null</div>
+    </article>
+    <article class="signal-card warn">
+      <div class="signal-number">{shape_counts.get('null_event', 0)}</div>
+      <div class="signal-label">null cases require public-evidence denominator language</div>
+    </article>
+    <article class="signal-card risk">
+      <div class="signal-number">{tier_counts.get('anchor_case', 0)}</div>
+      <div class="signal-label">anchor cases are narrative-ready only with human audit provenance</div>
+    </article>
+  </div>"""
+
+
+def render_layer_board(events: list[dict]) -> str:
+    coverage: dict[str, collections.Counter] = {
+        layer: collections.Counter() for layer in LAYER_ORDER
+    }
+    changed: collections.Counter = collections.Counter()
+    no_change: collections.Counter = collections.Counter()
+    for event in events:
+        for row in event.get("coverage") or []:
+            if isinstance(row, dict) and row.get("layer") in coverage:
+                coverage[row["layer"]][row.get("status") or "unknown"] += 1
+        for layer in changed_layers(event):
+            changed[layer] += 1
+        for layer in no_change_layers(event):
+            no_change[layer] += 1
+
+    cards = []
+    total = len(events) or 1
+    for layer in LAYER_ORDER:
+        cov = coverage[layer]
+        measured = cov.get("measured", 0)
+        partial = cov.get("partially_measured", 0)
+        denominator = measured + partial
+        pct = 100.0 * denominator / total
+        cards.append(
+            f'<article class="layer-card" style="--layer-color: var(--layer-{layer})">'
+            f'<h3>{escape(LAYER_SHORT[layer])} · {escape(LAYER_LABEL[layer])}</h3>'
+            '<div class="layer-metrics">'
+            f'<span><strong>{changed.get(layer, 0)}</strong> observed changes</span>'
+            f'<span><strong>{no_change.get(layer, 0)}</strong> observed no-change rows</span>'
+            f'<span><strong>{denominator}</strong> measured or partial coverage rows</span>'
+            '</div>'
+            f'<div class="layer-meter" title="{denominator}/{total} measured or partial">'
+            f'<span style="--pct:{pct:.1f}%"></span></div>'
+            '</article>'
+        )
+    return '<div class="layer-board">' + "".join(cards) + "</div>"
+
+
+def render_artifact_cards() -> str:
+    cards = [
+        (
+            "Measurement protocol",
+            "Admission rules, coverage semantics, and denominator discipline.",
+            "docs/methodology.md",
+        ),
+        (
+            "Claim map",
+            "Which paper claims are live, parked, or forbidden.",
+            "docs/paper_claims.md",
+        ),
+        (
+            "Paper tables",
+            "Reproducible tables generated from YAML and derived panels.",
+            "analysis/paper_tables/README.md",
+        ),
+        (
+            "Coverage matrix",
+            "Event by layer denominator eligibility and rate-reportability.",
+            "derived/coverage_matrix.md",
+        ),
+        (
+            "Trigger registry",
+            "Sampling-frame and pre-admission trigger accounting.",
+            "analysis/trigger_registry/trigger_registry.md",
+        ),
+        (
+            "Source manifest",
+            "SHA-256 inventory for local source artifacts.",
+            "sources/source_manifest.md",
+        ),
+        (
+            "LLM expert audit",
+            "Multi-expert pre-audit; not human provenance.",
+            "analysis/llm_expert_audit/README.md",
+        ),
+        (
+            "Human audit queue",
+            "Open human-only blockers for strict submission mode.",
+            "human-audit.md",
+        ),
+    ]
+    html_cards = []
+    for title, desc, href in cards:
+        html_cards.append(
+            '<article class="artifact-card">'
+            '<div class="label">artifact</div>'
+            f'<h3>{escape(title)}</h3>'
+            f'<p>{escape(desc)}</p>'
+            f'<a class="stretch" href="{escape(href)}">Open artifact</a>'
+            '</article>'
+        )
+    return '<div class="artifact-grid">' + "".join(html_cards) + "</div>"
+
+
 def render_index(events: list[dict], meta: dict | None = None) -> str:
     meta = meta or load_meta()
     dv = meta.get("dataset_version") or "unknown"
@@ -1660,75 +1975,100 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
   <div class="site-header-inner">
     <div class="brand"><a href="./index.html">Chain Censorship Events</a><span class="brand-tag">database</span></div>
     <div class="header-spacer"></div>
+    <a class="header-link optional" href="#layers">Layers</a>
+    <a class="header-link optional" href="#artifacts">Artifacts</a>
+    <a class="header-link optional" href="#events">Events</a>
     <a class="header-link" href="https://github.com/chnyangs/censorship-event-database" rel="noopener">GitHub</a>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀ light</button>
   </div>
 </header>
 
 <main class="page">
-  <section class="hero">
-    <h1>Cross-Layer Censorship Events</h1>
-    <p class="hero-lede">
-      Curated catalog of crypto censorship events (OFAC SDN, DOJ, SEC/CFTC,
-      nation-state, corporate) tracked across six independent layers — network,
-      consensus, RPC, frontend, asset on-chain, and off-ramp CEX — with
-      precision-aware timelines and primary-source evidence. Every event is
-      admitted under a documented multi-source protocol and published as YAML
-      with sha256 <code>body_hash</code> archival anchors.
-    </p>
-    <div class="hero-chips">
-      <a href="#shape=cascade">cascade events</a>
-      <a href="#tier=anchor_case">anchor cases</a>
-      <a href="#stratum=S1_ofac_sdn">OFAC SDN</a>
-      <a href="#stratum=S4_nation_state">nation-state</a>
-      <a href="#year=2022">2022</a>
-      <a href="#year=2025">2025</a>
+  <section class="dashboard-hero" id="overview">
+    <div class="hero-copy">
+      <div class="hero-kicker">Measurement protocol plus reproducible corpus</div>
+      <h1>Cross-layer censorship events.</h1>
+      <p class="hero-lede">
+        A curated event database that links legal, regulatory, state, and corporate
+        triggers to observed reactions across L0 network, L1 consensus, L3 RPC,
+        frontend, asset on-chain, and off-ramp CEX layers. The dashboard is a
+        navigation surface for the measurement artifacts, not a prevalence claim
+        about all censorship events.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="#events">Browse the corpus</a>
+        <a class="button secondary" href="docs/paper_claims.md">Read claim boundaries</a>
+        <a class="button secondary" href="analysis/llm_expert_audit/README.md">LLM audit notes</a>
+      </div>
     </div>
+    <aside class="snapshot-panel" aria-label="Dataset snapshot">
+      <div class="snapshot-head">
+        <div class="label">dataset snapshot</div>
+        <div class="version">v{escape(dv)}</div>
+        <div class="meta">cutoff <code>{escape(cutoff)}</code>{f' · commit <code>{escape(commit)}</code>' if commit else ''}</div>
+      </div>
+      <div class="status-line"><span><span class="label">machine gate</span><br><strong><code>make paper-check</code> gate</strong></span><span class="status-dot info"></span></div>
+      <div class="status-line"><span><span class="label">reliability</span><br><strong>LLM self-consistency only</strong></span><span class="status-dot warn"></span></div>
+      <div class="status-line"><span><span class="label">human audit</span><br><strong>strict submission pending</strong></span><span class="status-dot warn"></span></div>
+    </aside>
   </section>
 
-  <div class="stat-grid">
-    <div class="stat-card">
-      <div class="stat-number">{len(events)}</div>
-      <div class="stat-label">admitted events</div>
-    </div>
-    <div class="stat-card shape-cascade">
-      <div class="stat-number">{shape_counts.get('cascade', 0)}</div>
-      <div class="stat-label">cascade (≥3 layers)</div>
-    </div>
-    <div class="stat-card shape-comparison">
-      <div class="stat-number">{shape_counts.get('comparison', 0)}</div>
-      <div class="stat-label">comparison (1–2 layers)</div>
-    </div>
-    <div class="stat-card shape-null_event">
-      <div class="stat-number">{shape_counts.get('null_event', 0)}</div>
-      <div class="stat-label">null_event (0 layers)</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">{tier_counts.get('anchor_case', 0)}</div>
-      <div class="stat-label">anchor cases</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">{tier_counts.get('empirical_case', 0)}</div>
-      <div class="stat-label">empirical cases</div>
+  {render_signal_cards(events, shape_counts, tier_counts)}
+
+  <section class="boundary-note">
+    <strong>Interpretation boundary.</strong>
+    Off-ramp CEX null rows are public-evidence disclosure nulls, not proof that
+    no private exchange action occurred. L0/L3 gaps are denominator gaps unless
+    a measurement substrate is explicitly present. Current kappa is LLM-assisted
+    self-consistency, not independent-human IRR.
+  </section>
+
+  <div class="section-heading" id="layers">
+    <div>
+      <h2>Layer Observability</h2>
+      <p class="meta">Each layer card separates observed changes, observed no-change rows, and the measured/partial coverage denominator.</p>
     </div>
   </div>
+  {render_layer_board(events)}
 
-  <h2>Distribution</h2>
+  <div class="section-heading">
+    <div>
+      <h2>Corpus Distribution</h2>
+      <p class="meta">Frame shape and source availability at a glance. Counts describe this admitted corpus, not the external population.</p>
+    </div>
+  </div>
   {render_distribution_cards(events)}
 
-  <h2>Events</h2>
-  <div class="filter-bar" role="region" aria-label="Filters">
-    <div class="filter-row">
-      <label class="filter-search">
-        <span class="visually-hidden" style="display:none">Search</span>
-        <input id="filter-search" type="search" placeholder="Search slug, trigger, actor, jurisdiction…" autocomplete="off">
-      </label>
-      <button id="filter-reset" class="chip-reset" type="button">Reset filters</button>
-      <span id="result-count" class="result-count">{len(events)} / {len(events)} events</span>
+  <div class="section-heading" id="artifacts">
+    <div>
+      <h2>Artifact Map</h2>
+      <p class="meta">Start here when reviewing methodology, paper claims, denominators, source hashes, or audit status.</p>
     </div>
-    <div class="filter-row">{shape_chips}{tier_chips}</div>
-    <div class="filter-row">{stratum_chips}{year_chips}{chain_chips}</div>
   </div>
+  {render_artifact_cards()}
+
+  <div class="section-heading" id="events">
+    <div>
+      <h2>Event Explorer</h2>
+      <p class="meta">Search and filter the {len(events)} admitted records. Filter state is encoded in the URL hash for shareable views.</p>
+    </div>
+    <span id="result-count" class="result-count">{len(events)} / {len(events)} events</span>
+  </div>
+
+  <details class="filter-drawer" open>
+    <summary><span class="title">Filters</span><span class="hint">shape, tier, stratum, year, chain, and text search</span></summary>
+    <div class="filter-bar" role="region" aria-label="Filters">
+      <div class="filter-row">
+        <label class="filter-search">
+          <span class="visually-hidden" style="display:none">Search</span>
+          <input id="filter-search" type="search" placeholder="Search slug, trigger, actor, jurisdiction…" autocomplete="off">
+        </label>
+        <button id="filter-reset" class="chip-reset" type="button">Reset filters</button>
+      </div>
+      <div class="filter-row">{shape_chips}{tier_chips}</div>
+      <div class="filter-row">{stratum_chips}{year_chips}{chain_chips}</div>
+    </div>
+  </details>
 
   <div class="table-wrap">
     <table class="events" id="events-table">
@@ -1813,6 +2153,41 @@ def copy_docs_tree(docs_dir: pathlib.Path, site_dir: pathlib.Path) -> int:
         shutil.copy2(src, target)
         n += 1
     return n
+
+
+def copy_dashboard_artifacts(site_dir: pathlib.Path) -> int:
+    """Publish the dashboard's linked research artifacts.
+
+    The site is static, so links in the artifact map must resolve after deploy.
+    Keep this whitelist tight: copy the review-facing summaries and manifests,
+    not every local source capture or bulky analysis output.
+    """
+    copied = 0
+    file_globs = [
+        "human-audit.md",
+        "analysis/llm_expert_audit/*.md",
+        "analysis/paper_tables/*",
+        "analysis/trigger_registry/*",
+        "derived/*.md",
+        "derived/*.csv",
+        "derived/*.json",
+        "derived/*.meta.json",
+        "sources/source_manifest.*",
+    ]
+    seen: set[pathlib.Path] = set()
+    for pattern in file_globs:
+        for src in sorted(REPO_ROOT.glob(pattern)):
+            if not src.is_file():
+                continue
+            if src in seen:
+                continue
+            seen.add(src)
+            rel = src.relative_to(REPO_ROOT)
+            dest = site_dir / rel
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dest)
+            copied += 1
+    return copied
 
 
 def copy_meta(site_dir: pathlib.Path) -> None:
@@ -1908,11 +2283,13 @@ def main() -> int:
     (site_dir / "index.html").write_text(render_index(events, meta))
     copy_yaml_raw(events_dir, site_dir)
     n_docs = copy_docs_tree(DOCS_DIR, site_dir)
+    n_artifacts = copy_dashboard_artifacts(site_dir)
     copy_meta(site_dir)
 
     print(
         f"[render_site] wrote {site_dir}/index.html + {len(events)} per-event pages + "
-        f"raw/ + docs/ ({n_docs} files) + CITATION.cff + dataset.meta.json"
+        f"raw/ + docs/ ({n_docs} files) + dashboard artifacts ({n_artifacts} files) "
+        "+ CITATION.cff + dataset.meta.json"
     )
     return 0
 
