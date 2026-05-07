@@ -1,0 +1,59 @@
+id: ofac-recent-action-20240926
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2024-09-26T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20240926
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20240926.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Russia-related Designations; Cyber-related Designation | Office of Foreign
+    Assets Control
+  title_listing: Russia-related Designations; Cyber-related Designation
+  total_crypto_addresses: 4
+  addresses_by_token:
+    XBT: 1
+    ETH: 1
+    LTC: 1
+    TRX: 1
+  addresses:
+  - token: ETH
+    address: '0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7'
+  - token: LTC
+    address: M8yFL6SFC6TreATegTyuSYkDfDRbisdpT3
+  - token: TRX
+    address: TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr
+  - token: XBT
+    address: 13JtX4h7G5ZuNK5mFudKGq9DHLvvMFuNuz
+  entity_keyword_hits:
+  - cryptex
+  cache_present: true
+promoted_event_id:
+- cryptex-ofac-2024
+target:
+  kind: address_set
+  chains:
+  - ethereum
+  - litecoin
+  - tron
+  - bitcoin
+  addresses:
+  - '0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7'
+  - M8yFL6SFC6TreATegTyuSYkDfDRbisdpT3
+  - TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr
+  - 13JtX4h7G5ZuNK5mFudKGq9DHLvvMFuNuz
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: cryptex-ofac-2024'

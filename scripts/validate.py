@@ -431,7 +431,7 @@ class EventValidator:
             result.error("trigger.citation must be a non-empty list.")
         else:
             archived = False
-            for citation in trigger.get("citation") or []:
+            for citation_idx, citation in enumerate(trigger.get("citation") or []):
                 if isinstance(citation, dict):
                     for url_key in ("url", "wayback"):
                         value = citation.get(url_key)
@@ -447,6 +447,11 @@ class EventValidator:
                             "trigger.citation.measurement_ids must be a non-empty list "
                             "of non-blank strings."
                         )
+                    self._validate_body_hash_for_label(
+                        f"trigger.citation[{citation_idx}]",
+                        citation,
+                        result,
+                    )
                 if self._citation_has_archive_anchor(citation):
                     archived = True
             if not archived:
@@ -933,12 +938,20 @@ class EventValidator:
         source: dict[str, Any],
         result: ValidationResult,
     ) -> None:
+        label = f"observations[{idx}].sources[{source_idx}]"
+        self._validate_body_hash_for_label(label, source, result)
+
+    def _validate_body_hash_for_label(
+        self,
+        label: str,
+        source: dict[str, Any],
+        result: ValidationResult,
+    ) -> None:
         """Verify that a body_hash claim is backed by a real local file."""
         body_hash_raw = source.get("body_hash")
         body_path_raw = source.get("body_path")
         if body_hash_raw is None and body_path_raw is None:
             return
-        label = f"observations[{idx}].sources[{source_idx}]"
 
         if body_hash_raw is not None and body_path_raw is None:
             result.error(
@@ -1002,6 +1015,24 @@ class EventValidator:
                 result.error(f"recovery[{idx}].layer must be one of {sorted(self.layers)}")
             if "resolved_timestamp" in entry and not parse_iso8601(str(entry["resolved_timestamp"])):
                 result.error(f"recovery[{idx}].resolved_timestamp must be ISO-8601 date-time.")
+            for key in ("citation", "citations", "sources"):
+                citations = entry.get(key)
+                if citations is None:
+                    continue
+                if isinstance(citations, dict):
+                    citations = [citations]
+                if not isinstance(citations, list):
+                    result.error(f"recovery[{idx}].{key} must be a mapping or list when present.")
+                    continue
+                for citation_idx, citation in enumerate(citations):
+                    if not isinstance(citation, dict):
+                        result.error(f"recovery[{idx}].{key}[{citation_idx}] must be a mapping.")
+                        continue
+                    self._validate_body_hash_for_label(
+                        f"recovery[{idx}].{key}[{citation_idx}]",
+                        citation,
+                        result,
+                    )
 
     def _validate_release_readiness(self, event: dict[str, Any], result: ValidationResult) -> None:
         status = event.get("status")

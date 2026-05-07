@@ -1,0 +1,47 @@
+id: ofac-recent-action-20181128
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2018-11-28T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20181128
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20181128.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: "\u200BCyber-related Designations; Publication of New Cyber-related\
+    \ FAQs | Office of Foreign Assets Control"
+  title_listing: "\u200BCyber-related Designations; Publication of New Cyber-related\
+    \ FAQs"
+  total_crypto_addresses: 2
+  addresses_by_token:
+    XBT: 2
+  addresses:
+  - token: XBT
+    address: 149w62rY42aZBox8fGcmqNsXUzSStKeq8C
+  - token: XBT
+    address: 1AjZPMsnmpdK2Rv9KQNfMurTXinscVro9V
+  entity_keyword_hits: []
+  cache_present: true
+promoted_event_id:
+- iran-ransomware-ofac-2018
+target:
+  kind: address_set
+  chains:
+  - bitcoin
+  addresses:
+  - 149w62rY42aZBox8fGcmqNsXUzSStKeq8C
+  - 1AjZPMsnmpdK2Rv9KQNfMurTXinscVro9V
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: iran-ransomware-ofac-2018'

@@ -83,8 +83,10 @@ and `l4_frontend` together account for most observed cascade activity.
 
 ### 4.2 Asset-control family (fine-grained)
 
-This is the second highest-information family — `asset_onchain` shows
-the highest measured conditional change rate (100% of measured events).
+This is a high-information architectural family because freezeable-asset
+dependency is mechanically relevant to asset-layer enforcement. Do not
+quote a conditional `asset_onchain` rate from v0.1: paper-facing tables
+retract that rate as structurally circular for freezeable targets.
 
 | Feature | Type | Notes |
 | --- | --- | --- |
@@ -98,8 +100,10 @@ the highest measured conditional change rate (100% of measured events).
 
 ### 4.3 Off-ramp and access family (fine-grained)
 
-Covers `offramp_cex` (64% conditional change when measured) and the L3
-RPC access surface.
+Covers `offramp_cex` and the L3 RPC access surface. Any off-ramp rate
+must be read from the current paper tables with its denominator and
+admission-rubric sensitivity; do not copy standalone percentages into
+this static feature schema.
 
 | Feature | Type | Notes |
 | --- | --- | --- |

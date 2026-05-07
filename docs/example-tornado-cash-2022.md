@@ -2,7 +2,7 @@
 
 End-to-end walkthrough of the methodology (see [methodology.md](methodology.md)) on the canonical pilot event. After working through this document you can reproduce the `events/tornado-cash-ofac-2022.yaml` entry exactly and have a playbook for every future event.
 
-> **Reading note**: URLs marked `[real]` are stable data sources verified to exist and return the expected shape. URLs marked `[illustrative]` are representative patterns — run the preceding step first to get the exact URL. Any hash / tx / block number in this doc is a **placeholder** (written as `<…>`) unless explicitly marked `[confirmed]`; replace with the value you observe when running the query.
+> **Reading note**: URLs marked `[real]` are stable data sources verified to exist and return the intended response shape. URLs marked `[illustrative]` are template patterns — run the preceding step first to get the exact URL. Any hash / tx / block number in this doc is a **placeholder** (written as `<…>`) unless explicitly marked `[confirmed]`; replace with the value you observe when running the query.
 
 ---
 
@@ -131,7 +131,7 @@ Open the observation window: `[2022-08-07T13:30Z, 2022-10-03T13:30Z]` (trigger �
 
 ### 3.1 Asset layer — the easy one first
 
-USDC is issued by Circle and is the most likely asset-layer actor. USDC's proxy address on Ethereum is **`0xA0b86991c6218b36c1d19d4a2e9EB0cE3606eB48`** [confirmed]. Its blacklist method emits the event:
+USDC is issued by Circle and is an asset-layer actor to test in this worked example. USDC's proxy address on Ethereum is **`0xA0b86991c6218b36c1d19d4a2e9EB0cE3606eB48`** [confirmed]. Its blacklist method emits the event:
 
 ```
 Blacklisted(address indexed _account)
@@ -181,7 +181,7 @@ Filter locally with `jq` for blacklisted addresses in `target.addresses`. For To
 
 **Single primary_onchain source is admissible at this layer** (per methodology §5). Corporate source is added for redundancy.
 
-Repeat the same query against USDT (`0xdAC17F958D2ee523a2206206994597C13D831ec7` [confirmed]; blacklist method emits `AddedBlackList(address)` event, different topic). USDT took ~0 actions on Tornado — record a null observation for completeness:
+Repeat the same scoped query against USDT (`0xdAC17F958D2ee523a2206206994597C13D831ec7` [confirmed]; blacklist method emits `AddedBlackList(address)` event, different topic). If the target-address/window scan returns no matching admin events, record an anchored `observed_no_change` row for that exact scope:
 
 ```yaml
 - layer: asset_onchain
@@ -326,7 +326,7 @@ This is the **highest-precision layer** (commit timestamps are minute-accurate, 
 
 ### 3.5 L0 — country-level blocking
 
-Expectation going in: L0 reactions are rare for US-origin triggers affecting a US-targeted protocol — US itself does not ISP-block. The relevant L0 question is whether **non-US** jurisdictions responded.
+Scoping note: the relevant L0 question is not a global no-blocking claim; it is whether the selected non-US probe/window/domain cells return measurements for this event.
 
 Two data sources:
 
@@ -349,28 +349,20 @@ curl "https://api.ooni.io/api/v1/measurements?domain=tornado.cash&since=2022-08-
   > raw/ooni-tornado.json                                 # [real]
 ```
 
-For each country with anomaly counts > threshold, first decide whether there is an observed reachability change, then decide attribution:
+For each query cell, first decide whether a measurement denominator exists.
+If OONI/CP returns no rows for the selected domain/window/country cell, record
+coverage only; do not create an `observed_no_change` row:
 
 ```yaml
 - layer: l0_network
-  country: IR
-  actor: isp_aggregate
-  event: reachability_dropped
-  observation_kind: observed_change
-  attribution: plausible
-  earliest_detected: 2022-08-20T00:00:00Z   # from CP and OONI earliest anomaly date
-  precision: day
-  sources:
-    - type: semi_primary_measurement
-      platform: censored_planet
-      query_hash: sha256:...
-      rows_count: 17
-    - type: semi_primary_measurement
-      platform: ooni
-      measurement_ids: [ooni_id_1, ooni_id_2, ...]
+  status: not_measured
+  provider_scope: public_measurement_archive
+  note: OONI query returned no measurements for the selected domain/window; no L0 rate or no-blocking claim is reportable.
 ```
 
-For Tornado Cash specifically, the L0 section may come back mostly empty — that **can** be a finding, but only where coverage is explicit. Record `coverage` separately so the paper can distinguish "layer was checked and had no reaction" from "layer was not checked."
+Only if the query returns measurement rows should you create an L0
+observation, and then the denominator must be scoped to the returned
+countries, domains, and time window.
 
 ### 3.6 Off-ramp — CEX reactions
 
@@ -440,7 +432,7 @@ observations:
   # ~5-8 l1_consensus entries (one per relay)
   # ~3 l3_rpc entries (Infura, Alchemy, maybe QuickNode)
   # ~3 l4_frontend entries (tornado.cash takedown, Uniswap token-list, GitHub org)
-  # ~N l0_network entries (one per CP-scanned country; most null)
+  # l0_network coverage only unless public measurement rows exist
   # ~3-5 offramp_cex entries (dYdX, Aave, Binance, etc.)
 
 recovery:
@@ -454,8 +446,9 @@ recovery:
 
 analysis_notes: |
   Canonical cross-layer cascade. Primary wave completed within 8h across
-  asset, L3, and L4 layers. L0 reactions appeared later (week 2) and only
-  in specific non-US jurisdictions. This event is the benchmark for the
+  asset, L3, and L4 layers. L0 remains an observability gap in the
+  current OONI-derived artifact: archived query windows returned no
+  measurement denominator. This event is the benchmark for the
   "US-privacy-tool designation" cascade shape.
 
 tags: [sanctions, privacy_tool, stablecoin_freeze, us_doj_concurrent]
@@ -467,7 +460,7 @@ last_verified: 2026-04-21
 
 ## Step 6 — real-time analog
 
-For a 2026 event, everything above runs automatically. The watchers (§8.1 in methodology) post a stub; observation engine daily reruns §3.1–§3.6 against fresh data until stabilization. The only manual step is **trigger triage** (§8.2) and **admission review** (§3.4).
+For a 2026 event, the same workflow can be assisted by watchers (§8.1 in methodology), but production cron is not assumed here. Watchers may post a stub and collection scripts may be rerun during the observation window; trigger triage, evidence interpretation, and admission review remain manual responsibilities.
 
 Concretely, for the stablecoin blacklist layer (§3.1), the daily watch is an `eth_subscribe` on the `Blacklisted` topic filtered to the USDC proxy, rather than a one-shot `getLogs`. For L4 frontend, a daily `cdx` call on each target domain captures new snapshots.
 
@@ -504,7 +497,7 @@ Concretely, for the stablecoin blacklist layer (§3.1), the daily watch is an `e
 - [ ] §3.2 Per-relay policy observations (≥ 5 relays).
 - [ ] §3.3 Infura + Alchemy RPC observations, both ToS-and-reproduction verified.
 - [ ] §3.4 tornado.cash frontend takedown + Uniswap default-token-list diff + GitHub org takedown.
-- [ ] §3.5 Censored Planet + OONI L0 per-country results, including null-observations.
+- [ ] §3.5 Censored Planet + OONI L0 query cells recorded as coverage; add observations only where a measurement denominator exists.
 - [ ] §3.6 dYdX, Aave, Binance, Circle-corporate-statement.
 - [ ] §4 `validate.py` + `verify_citations.py` both green.
 - [ ] Event YAML committed to `events/tornado-cash-ofac-2022.yaml`.

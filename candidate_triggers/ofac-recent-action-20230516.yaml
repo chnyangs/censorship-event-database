@@ -1,0 +1,30 @@
+id: ofac-recent-action-20230516
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2023-05-16T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20230516
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20230516.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: entity_mentions_no_addrs
+  page_title: Cyber-related Designation | Office of Foreign Assets Control
+  title_listing: Cyber-related Designation
+  total_crypto_addresses: 0
+  addresses_by_token: {}
+  addresses: []
+  entity_keyword_hits:
+  - ransomware
+  cache_present: true
+promoted_event_id:
+- matveev-ofac-2023
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: matveev-ofac-2023'

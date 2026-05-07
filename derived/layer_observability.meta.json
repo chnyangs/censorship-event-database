@@ -23,14 +23,14 @@
     "changed_given_applicable"
   ],
   "dataset_snapshot": {
-    "cutoff_date": "2026-04-22",
+    "cutoff_date": "2026-05-06",
     "dataset_version": "0.1.0",
     "schema_version": "0.2.0",
-    "source_commit": "b99dfaf"
+    "source_commit": "947f18f"
   },
-  "generated_at": "2026-04-27T11:03:02Z",
+  "generated_at": "2026-05-06T10:56:34Z",
   "generator": {
-    "python": "3.14.4",
+    "python": "3.12",
     "script": "scripts/build_layer_observability.py",
     "version": "0.1.0"
   },
@@ -47,11 +47,14 @@
     "`asset_onchain` rate columns are suppressed because the admission",
     "rule requires the asset-layer change as the measured anchor, making",
     "the rate structurally circular.",
+    "`changed_given_applicable` is legacy compatibility only and is",
+    "suppressed whenever any applicable row is `not_measured`; otherwise",
+    "the denominator would treat observability gaps as no-change rows.",
     "Bare `changed_count` without a denominator is meaningful only",
     "in combination with the coverage composition.",
     "A layer with changed_count = 0 and not_measured_count large is",
     "an observability gap \u2014 NOT evidence that censorship does not",
     "occur at that layer."
   ],
-  "total_events": 51
+  "total_events": 53
 }

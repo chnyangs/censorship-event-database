@@ -60,7 +60,6 @@ import collections
 import csv
 import json
 import pathlib
-import platform
 import sys
 from datetime import datetime, timezone
 from typing import Any
@@ -87,7 +86,7 @@ EVENTS_DIR = REPO_ROOT / "events"
 DEFAULT_OUT_DIR = REPO_ROOT / "derived"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso, reproducible_python  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -535,7 +534,7 @@ def main() -> int:
         "generator": {
             "script": "scripts/assign_archetypes.py",
             "version": GENERATOR_VERSION,
-            "python": platform.python_version(),
+            "python": reproducible_python(),
         },
         "dataset_snapshot": {
             "dataset_version": ds_meta.get("dataset_version"),

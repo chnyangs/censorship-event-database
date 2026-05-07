@@ -20,7 +20,12 @@ import pytest
 import yaml
 
 from build_admission_sensitivity import _compute_all
-from build_paper_tables import _trigger_precision, build_table2
+from build_paper_tables import (
+    _trigger_precision,
+    build_table2,
+    day_interval_band,
+    day_precision_latency_interval,
+)
 
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -52,6 +57,15 @@ def test_precision_midnight_timestamp_heuristic_is_day(capsys):
     assert _trigger_precision(e) == "day"
     captured = capsys.readouterr()
     assert "warning" in captured.err
+
+
+def test_day_precision_latency_interval_marks_boundary_ambiguity():
+    lower, upper = day_precision_latency_interval(25.0)
+
+    assert (lower, upper) == (1.0, 25.0)
+    assert day_interval_band(lower, upper) == "ambiguous_boundary"
+    assert day_interval_band(*day_precision_latency_interval(20.0)) == "≤1d"
+    assert day_interval_band(*day_precision_latency_interval(800.0)) == ">30d"
 
 
 # ---------- fail-closed abort on anchorless null ----------

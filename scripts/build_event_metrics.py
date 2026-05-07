@@ -24,7 +24,6 @@ import collections
 import csv
 import json
 import pathlib
-import platform
 import sys
 from datetime import datetime, timezone
 from typing import Any
@@ -57,7 +56,7 @@ PRIVACY_TOOL_PROTOCOLS = {
 }
 
 LARGE_TARGET_THRESHOLD = 20
-GENERATOR_VERSION = "0.1.0"
+GENERATOR_VERSION = "0.1.1"
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
@@ -65,7 +64,7 @@ DEFAULT_OUT_DIR = REPO_ROOT / "derived"
 
 # Shared dataset-identity accessor.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso, reproducible_python  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -133,8 +132,11 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
         cov_by_status[c.get("status") or "unknown"] += 1
         cov_by_layer[c.get("layer")] = c.get("status")
 
-    applicable_count = sum(
+    non_na_layer_count = sum(
         1 for st in cov_by_layer.values() if st and st != "not_applicable"
+    )
+    coverage_denominator_layer_count = sum(
+        1 for st in cov_by_layer.values() if st in ("measured", "partially_measured")
     )
 
     # ---- observation tallies ----
@@ -183,8 +185,22 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
     )
 
     changed_count = len(changed_layers)
+    coverage_matched_changed_layers = {
+        layer
+        for layer in changed_layers
+        if cov_by_layer.get(layer) in ("measured", "partially_measured")
+    }
+    coverage_matched_changed_count = len(coverage_matched_changed_layers)
     cascade_breadth = (
-        changed_count / applicable_count if applicable_count else None
+        coverage_matched_changed_count / coverage_denominator_layer_count
+        if coverage_denominator_layer_count
+        else None
+    )
+    has_unmeasured_layers = cov_by_status.get("not_measured", 0) > 0
+    non_na_cascade_breadth = (
+        None
+        if has_unmeasured_layers
+        else changed_count / non_na_layer_count if non_na_layer_count else None
     )
 
     # ---- recovery ----
@@ -267,9 +283,13 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
         "admission_tier": event.get("admission_tier"),
         "status": event.get("status"),
 
-        "applicable_layer_count": applicable_count,
+        "applicable_layer_count": coverage_denominator_layer_count,
+        "coverage_denominator_layer_count": coverage_denominator_layer_count,
+        "non_na_layer_count": non_na_layer_count,
         "changed_layer_count": changed_count,
+        "coverage_matched_changed_layer_count": coverage_matched_changed_count,
         "cascade_breadth": cascade_breadth,
+        "non_na_cascade_breadth": non_na_cascade_breadth,
 
         "time_to_first_change_hours": time_to_first,
         "time_to_last_change_hours": time_to_last,
@@ -308,7 +328,9 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
 CSV_COLUMNS = [
     "event_id",
     "research_stratum", "empirical_shape", "admission_tier",
-    "applicable_layer_count", "changed_layer_count", "cascade_breadth",
+    "applicable_layer_count", "coverage_denominator_layer_count", "non_na_layer_count",
+    "changed_layer_count", "coverage_matched_changed_layer_count",
+    "cascade_breadth", "non_na_cascade_breadth",
     "time_to_first_change_hours", "time_to_last_change_hours", "cascade_span_hours",
     "direct_attribution_layer_count", "plausible_attribution_layer_count",
     "recovered_layer_count", "unrecovered_layer_count", "recovery_unknown_layer_count",
@@ -365,7 +387,7 @@ def main() -> int:
         "generator": {
             "script": "scripts/build_event_metrics.py",
             "version": GENERATOR_VERSION,
-            "python": platform.python_version(),
+            "python": reproducible_python(),
         },
         "dataset_snapshot": {
             "dataset_version": ds_meta.get("dataset_version"),
@@ -379,7 +401,12 @@ def main() -> int:
             "Derived metrics. Evidence layer (events/*.yaml) is the source of "
             "truth; this artifact is a pure function of it. Regenerate with "
             "`make event-metrics`. Archetype / signature / latency-regime "
-            "labels live in derived/event_archetypes.json (join on event_id)."
+            "labels live in derived/event_archetypes.json (join on event_id). "
+            "`cascade_breadth` is coverage-matched: changed layers only count "
+            "when their coverage is measured or partially_measured. "
+            "`non_na_cascade_breadth` is retained only for legacy descriptive "
+            "comparison when no non-NA layer has status not_measured; otherwise "
+            "it is blank to avoid treating unmeasured layers as zeros."
         ),
     }
     (out_dir / "event_metrics.meta.json").write_text(

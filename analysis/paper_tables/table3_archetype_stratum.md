@@ -1,6 +1,6 @@
 # Table 3 · Archetype × research-stratum cross-tab
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `b99dfaf` · generated `2026-04-27T11:03:02Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `947f18f` · generated `2026-05-06T10:56:34Z`
 
 Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). Rows: rule-based deterministic archetypes. Columns: research strata (admission stratification, NOT jurisdiction / population weighting). Promotion from descriptive table to paper claim requires `observation_kind` κ ≥ 0.6.
 
@@ -8,10 +8,10 @@ Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). R
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `asset_only` | 10 | 0 | 0 | 0 | 3 | 0 | 13 |
 | `frontend_only` | 2 | 0 | 5 | 0 | 1 | 0 | 8 |
-| `cex_only` | 1 | 0 | 2 | 6 | 2 | 2 | 13 |
+| `cex_only` | 1 | 0 | 4 | 6 | 2 | 2 | 15 |
 | `multi_layer` | 3 | 1 | 0 | 0 | 0 | 0 | 4 |
 | `other_single_layer` | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `null_event` | 10 | 0 | 3 | 0 | 0 | 0 | 13 |
-| **total** | **26** | **1** | **10** | **6** | **6** | **2** | **51** |
+| **total** | **26** | **1** | **12** | **6** | **6** | **2** | **53** |
 
 A non-empty cell is a descriptive statement about the admitted corpus, not a prevalence estimate. Strata are NOT equal-weighted and are NOT a population sample.

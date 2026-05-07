@@ -4,20 +4,31 @@
 
 ## 1. Thesis
 
-**Public source-control history of crypto operators is a measurable censorship substrate. We instrument it as such — with a tiered substrate census across 8 operator repositories (1 confirmed-filter-file substrate, 6 structurally-absent or schema-only, paired with a 51-admitted-event corpus plus 2 draft repair candidates), a fail-closed paper-table generator, and a forkable admission protocol — and show that public-git-observability of compliance edits is structurally narrow but reproducible at minute-level precision where it exists.**
+**Cross-layer crypto-censorship measurement needs explicit denominators, not implicit zeros. This repository provides a six-artifact measurement protocol, a 53-admitted-event corpus, a fail-closed paper-table generator, and a forkable admission protocol that connect legal / policy triggers to observable stack-layer reactions only where a replayable public evidence substrate exists. Public operator source-control history is one worked mechanism channel: real, structurally narrow, and minute-precise where it exists.**
 
 Two parallel surfaces, designed to be cited together:
 
 - **The substrate census** (n=8 operator repos, [`analysis/operator_census/`](analysis/operator_census/)) reports both an *existence proof* (5 substrate edits across 3.5 years on `flashbots/rpc-endpoint::ofacblacklist.go`, including the canonical 2022-08-08 PR #90 *update* and the 2025-04-01 PR #173 *deletion* — bidirectional, primary-corporate, minute-precise) and a *bounded negative result* (6 of the other 7 surveyed repos ship no operative compliance file in public git, or are schema-only).
-- **The 53-record corpus snapshot** (`events/*.yaml`, cutoff 2026-04-22) currently contains 51 admitted events plus 2 draft repair candidates. Paper-facing tables use admitted events only and answer "for events admitted under a public-evidence rubric, where do reactions land?" under three admission rubrics (strict / current / permissive — see [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md)).
+- **The 53-record corpus snapshot** (`events/*.yaml`, cutoff 2026-05-06) currently contains 53 admitted events and no working drafts. Paper-facing tables use admitted events only and answer "for events admitted under a public-evidence rubric, where do reactions land?" under three admission rubrics (strict / current / permissive — see [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md)).
+
+The measurement protocol is implemented as six reproducible artifacts:
+
+| Artifact | Path | Why it exists |
+| --- | --- | --- |
+| Trigger registry | [`analysis/trigger_registry/trigger_registry.md`](analysis/trigger_registry/trigger_registry.md) | pre-admission selection surface; exposes v0.2 candidate/admitted gaps instead of hiding them |
+| Event corpus | [`events/`](events/) | trigger, coverage, observation, source, and status records |
+| Coverage matrix | [`derived/coverage_matrix.md`](derived/coverage_matrix.md) | explicit event-by-layer denominator eligibility |
+| Evidence chains | [`analysis/evidence-chains/`](analysis/evidence-chains/) | claim -> observation -> source -> archive/hash -> limitation |
+| Paper-table generator | [`scripts/build_paper_tables.py`](scripts/build_paper_tables.py) | admitted-only fail-closed paper numbers |
+| Audit/sensitivity package | [`analysis/audit_worksheets/`](analysis/audit_worksheets/), [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md), [`analysis/inter_rater/kappa_report.md`](analysis/inter_rater/kappa_report.md), [`analysis/staleness.md`](analysis/staleness.md) | audit, rubric sensitivity, recoding consistency, and freshness gates |
 
 Among the seven explicit choices that distinguish this project:
 
-1. **Coverage-denominator discipline.** Every conditional rate ("how often does layer X react to triggers like these?") is reported *conditional on that layer having an admission-grade denominator in the dataset* — the numerator is filtered to the same coverage subset as the denominator. Absent measurement is flagged as `—`, not encoded as `0`. This is the methodological backbone: [analysis/paper_tables/table2_layer_observability.md](analysis/paper_tables/table2_layer_observability.md) is the reader-facing instantiation, with strict / current / permissive recomputation for sensitive layers.
+1. **Coverage-denominator discipline.** Every conditional rate ("within measured rows, what share of layer X changed?") is reported *conditional on that layer having an admission-grade denominator in the dataset* — the numerator is filtered to the same coverage subset as the denominator. Absent measurement is flagged as `—`, not encoded as `0`. This is the methodological backbone: [analysis/paper_tables/table2_layer_observability.md](analysis/paper_tables/table2_layer_observability.md) is the reader-facing instantiation, with strict / current / permissive recomputation for sensitive layers.
 2. **The substrate census as a first-class measurement** (existence proof + bounded negative result). [`analysis/operator_census/README.md`](analysis/operator_census/README.md) tiers 8 candidate operator repositories into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3), and reports two parallel headline numbers: **5 known-channel substrate edits** across the 1 `known_channel: true` candidate, and **1 OFAC-keyword-subject commit** under the narrow keyword classifier. The two ledgers answer different questions on purpose. PR #90 (2022-08-08, +Tornado pool addresses, 2h 50m post-SDN) and PR #173 (2025-04-01, deletion of the 132-address map, 11d post-delisting) are the bookend events; both live in the substrate-edit ledger, only PR #90 lives in the OFAC-keyword ledger. This is an **existence proof** for the channel and a **bounded negative result** for its prevalence in public git — **not** a population claim about operator behavior. See [`analysis/anchor_gap_fill_log.md §4`](analysis/anchor_gap_fill_log.md) for the per-anchor reproducibility trail.
 3. **Precision-aware claims.** Hour-granularity latency claims are computed only from triggers whose `timestamp_precision` is hour-or-better; day-precision triggers are reported in separate panels and never mixed.
 4. **Attribution discipline.** `direct` vs `plausible` vs `none` are reported separately in every paper table; collapsing them is a phrasing violation, not a cosmetic choice.
-5. **Null cases with evidence anchors, not prose.** An `observed_no_change` row requires at least one of `body_hash`+`body_path`, `query_hash`, `measurement_ids`, or a structured `scope_descriptor` — the null denominator is auditable at the artifact level.
+5. **Null cases with evidence anchors, not prose.** An `observed_no_change` row requires at least one of `body_hash`+`body_path`, `query_hash`, or `measurement_ids`; a structured `scope_descriptor` can define the covered scope but is not itself a replayable evidence anchor.
 6. **Fail-closed paper-table generator + admission-sensitivity ablation.** `make paper-tables` aborts if a null case is anchorless, if a precision bucket is ambiguous, or if a rate would be emitted without a matched denominator. `make admission-sensitivity` recomputes per-layer rates under three rubrics; `l4_frontend` (Δ=0.13) and `l1_consensus` (Δ=0.29) are flagged sensitive and the paper reports all three rubrics. `l3_rpc` has named Flashbots partial observations but no emitted conditional rate. `asset_onchain` is structurally circular at v0.1 (the admission rubric requires the change as the admission anchor) and **its rate is retracted** in favor of a descriptive observation — see [`docs/paper_claims.md §C1`](docs/paper_claims.md) "Not said".
 7. **Schema + admission protocol as a durable artifact.** Other researchers can fork the schema, run the validator, and measure events we did not cover. Layer 2 below.
 
@@ -30,8 +41,8 @@ Delta over prior art:
 
 The deliverable has two layers:
 
-- **Layer 1** — a 51-admitted-event corpus (cutoff 2026-04-22; 53 YAML records total) under a coverage-denominator discipline, with the Flashbots bidirectional case as a worked mechanism study.
-- **Layer 2** — schema (`schema/event.schema.json`), admission protocol (`scripts/validate.py`), and paper-table generator (`scripts/build_paper_tables.py`) that make the methodology forkable.
+- **Layer 1** — a 53-admitted-event corpus (cutoff 2026-05-06; 53 YAML records total) under a coverage-denominator discipline, with the Flashbots bidirectional case as a worked mechanism study.
+- **Layer 2** — sampling frame (`sampling/frame.yaml`), trigger registry (`analysis/trigger_registry/`), schema (`schema/event.schema.json`), admission protocol (`scripts/validate.py`), coverage matrix (`derived/coverage_matrix.*`), L0 OONI denominator summary (`derived/l0_coverage_summary.*`), and paper-table generator (`scripts/build_paper_tables.py`) that make the methodology forkable.
 
 Layer 2 is the more durable contribution: the framework stays citable when the specific events age.
 
@@ -115,9 +126,9 @@ jurisdiction: [US]
 
 coverage:
   - layer: l0_network
-    status: partially_measured
-    scope: [IR, RU, DE, US]
-    note: OONI coverage sparse outside listed jurisdictions
+    status: not_measured
+    scope: [OONI public web-connectivity query windows]
+    note: archived OONI queries returned no measurement denominator
   - layer: l1_consensus
     status: measured
     chain: ethereum
@@ -161,8 +172,9 @@ recovery:
 
 analysis_notes: |
   Primary cascade completed within 5 hours across 3 layers.
-  No L0 layer reaction observed (crypto networks were not
-  nationally blocked anywhere as direct response).
+  L0 remains an observability gap in this snapshot; archived OONI
+  query windows returned no denominator and cannot support a
+  no-blocking claim.
   Significant because...
 
 tags: [sanctions, privacy_tool, stablecoin_freeze]
@@ -180,9 +192,25 @@ These are chosen to exercise the schema and verify multi-source discipline works
 
 If the schema survives these 5 without modification, proceed to scale. If not, fix schema first.
 
-## 6. Candidate events for full dataset (20-50 target)
+## 6. v0.2 expansion frame (more cases without losing denominator discipline)
 
-Grouped by trigger type. Exact selection refined after pilots.
+Expansion is governed by [`sampling/frame.yaml`](sampling/frame.yaml), not
+by ad hoc additions. The v0.2 target is **150-250 distinct in-frame
+triggers** and **80-120 admitted events**. Current gaps are generated by
+`make trigger-registry` under
+[`analysis/trigger_registry/trigger_registry.md`](analysis/trigger_registry/trigger_registry.md).
+Draft/rejected/screened/deferred trigger stubs remain in the registry so
+selection decisions are visible, but target gaps exclude promoted
+duplicates and extractor-screened rows.
+
+The first systematic backfill is the OFAC recent-actions sweep:
+`make ofac-recent-action-candidates` materializes the cached triage file
+under `sources/ofac_sdn_diffs/opensanctions/` into 73 registry stubs
+(`candidate`, `promoted_to_event`, or `screened_no_extractor_target`).
+This expands the audit surface without changing the admitted-event count
+or satisfying the S1 in-frame quota by itself.
+
+Grouped by trigger type, the expansion backlog should prioritize:
 
 ### OFAC SDN actions
 
@@ -229,10 +257,10 @@ same dataset (event-study of regulatory cascades on crypto infrastructure).
 
 Proposed structure:
 
-1. **Motivation** — prior measurement work sees individual stack layers well but does not connect identified enforcement triggers to observable operator behavior across the stack with open, auditable provenance. The substrate of interest — public source-control history of crypto operators — has been informally noted but never instrumented at the population level. We treat it as one.
-2. **Methodology contribution (the framework)** — six-layer admission protocol; coverage-matched conditional rates (transplanted from Pearce et al. 2017 / OONI / Censored Planet, credited as such); three-rubric admission-sensitivity ablation (`derived/admission_sensitivity.md`); precision-aware latency filtering; attribution discipline; fail-closed paper-table generation that aborts on anchorless nulls or denominator mismatch; substrate census methodology with `repo_tier` + `known_channel` + subject-only keyword classification.
+1. **Motivation** — prior measurement work sees individual stack layers well but does not connect identified enforcement triggers to observable operator behavior across the stack with open, auditable provenance. The substrate of interest — public source-control history of crypto operators — has been informally noted but not treated as a bounded, reproducible measurement channel. We treat it as one under explicit coverage limits.
+2. **Methodology contribution (the framework)** — pre-declared sampling frame; trigger registry; six-layer admission protocol; event-by-layer coverage matrix; L0 OONI denominator summary that separates no measurements from no blocking; coverage-matched conditional rates (transplanted from Pearce et al. 2017 / OONI / Censored Planet, credited as such); three-rubric admission-sensitivity ablation (`derived/admission_sensitivity.md`); precision-aware latency filtering; attribution discipline; fail-closed paper-table generation that aborts on anchorless nulls or denominator mismatch; substrate census methodology with `repo_tier` + `known_channel` + subject-only keyword classification.
 3. **Substrate census (a measurable channel + a bounded negative result)** — [`analysis/operator_census/`](analysis/operator_census/). 8 candidate operator repositories, tiered into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3). Two parallel headline numbers: **5 known-channel substrate edits** across the 1 `known_channel: true` candidate (the wide ledger; bookend events PR #90 and PR #173 both visible), and **1 OFAC-keyword commit** across the entire corpus (the narrow ledger). The two ledgers are reported separately on purpose. The Flashbots PR #90 (2022-08-08, `+Tornado pool addresses` 2h 50m post-SDN, direct attribution) and PR #173 (2025-04-01, deletion of the 132-address map 11d post-OFAC-delisting, plausible attribution — frames as operational cleanup) anchor the existence proof; the 6 surveyed repos with no compliance file (or schema-only) are the bounded negative result that says *"this substrate is real but rare in public git"*.
-4. **51 admitted events + coverage-discipline (the dataset)** — 53 YAML records across 6 strata, of which 51 are admitted and 2 are draft repair candidates; coverage-matched layer observability ([Table 2](analysis/paper_tables/table2_layer_observability.md)) under three rubrics for sensitive layers; single-layer dominance in the admitted corpus (34 / 51) is descriptive rather than population-inferential; the Tornado reversal (PR #173) appears only inside §3's substrate-edit ledger, not as a standalone recovery claim.
+4. **53 admitted events + coverage-discipline (the dataset)** — 53 YAML records across 6 strata, all admitted under the v0.1 protocol; coverage-matched layer observability ([Table 2](analysis/paper_tables/table2_layer_observability.md)) under three rubrics for sensitive layers; single-layer dominance in the changed-event subset (36 / 40 changed events) is descriptive rather than population-inferential; the Tornado reversal (PR #173) appears only inside §3's substrate-edit ledger, not as a standalone recovery-rate claim.
 5. **Negative / observability result** — `l0_network` and `l3_rpc` have zero `measured` denominators in the admitted corpus; `l3_rpc` keeps two named Flashbots git-history observations without emitting a conditional rate; `asset_onchain`'s 17/17 = 1.00 is structurally circular and **its rate is retracted** at v0.1 (kept as a descriptive observation; reinstatement requires a coverage rubric that does not require the change as the admission anchor). Under the same admission protocol anyone can fork, **public-record-visible evidence of base-layer crypto censorship is genuinely thin**, and the usual denominator-implicit reporting of "L0 shows no censorship" is unsafe. This is what the dataset + substrate census jointly make *measurable*.
 6. **Limitations and scope boundary** — sampling frame is admissibility-bounded, English-indexable, and US/EU-trigger-dominant; survivorship bias in the evidence substrate is structural; hour-precision latency is supportable only on named events, not as a distribution; the substrate census is bounded to the candidates list and excludes private repos / server-side compliance. κ for `coverage_status`, `observation_kind`, and `attribution` is currently a *self-consistency check* (LLM-assisted blinded recode under same-family provenance), not an `independent_human` reliability estimate; an independent-human pass is v0.2 open work.
 7. **Open dataset + schema + replication package** — Zenodo-minted DOI, fail-closed regeneration pipeline gated by `make paper-check`, byte-stable artifacts under `SOURCE_DATE_EPOCH`, per-event audit worksheets, CC-BY-4.0 data + MIT code, CI exercises the full reproduction path.
@@ -243,7 +271,7 @@ Proposed structure:
 
 - (existence proof) the Flashbots `rpc-endpoint::ofacblacklist.go` bidirectional case — 5 known-channel substrate edits across 3.5 years, including PR #90 and PR #173, body-hash-verifiable;
 - (bounded negative result) 6 of 7 other surveyed operator repos ship no operative compliance file in public git, or are schema-only — the substrate is real but rare in public source control;
-- (upper-layer concentration under coverage-matched conditioning, with three-rubric reporting for sensitive layers) C1 — the asset_onchain rate is retracted at v0.1 (structural circularity); L4 frontend and L1 consensus are reported strict / current / permissive; L3 RPC carries two named Flashbots partial observations from the Tornado bookend events but no conditional rate; L0 has no measured denominator;
+- (upper-stack admissible-evidence concentration under coverage-matched conditioning, with three-rubric reporting for sensitive layers) C1 — this is a statement about public measurement substrates, not layer reaction propensity; the asset_onchain rate is retracted at v0.1 (structural circularity); L4 frontend and L1 consensus are reported strict / current / permissive; L3 RPC carries two named Flashbots partial observations from the Tornado bookend events but no conditional rate; L0 has no measured denominator;
 - (observability gap on base layers as a measured feature, not an artifact of curation).
 
 **What this paper explicitly does not claim**: that operator-layer filter-list maintenance is the dominant crypto-censorship mechanism in the wild; that the six-layer split captures the population; that the rate figures estimate a population prevalence; that the Tornado bookend events alone establish a generalizable operator channel; that the κ figures establish inter-rater reliability under independent-human provenance. See [docs/paper_claims.md §0 "What this paper is NOT"](docs/paper_claims.md).
@@ -258,6 +286,8 @@ Three surfaces for reading the catalog:
 - **Datasheet** — [docs/datasheet.md](docs/datasheet.md) follows Gebru et al.'s "Datasheets for Datasets" template and is the single-page intake point for external consumers (motivation, composition, admission protocol, biases, distribution).
 - **Citation** — [`CITATION.cff`](CITATION.cff) is the canonical machine-readable record (GitHub renders a "Cite this repository" button from it; Zenodo reads it on each tagged release to mint a DOI). [docs/citing.md](docs/citing.md) holds BibTeX / APA / Chicago templates and the release cadence. [docs/releasing.md](docs/releasing.md) documents the Zenodo ↔ GitHub integration (one-time setup, then tag-to-DOI on every release).
 - **Stable metadata** — [`dataset.meta.json`](dataset.meta.json) is emitted on every `make dataset` run and pins version, cutoff date, schema, commit, and per-facet counts. This is the file downstream pipelines / site / evidence-chain / comparable-case reports read to stamp their output with a consistent snapshot identity.
+- **Trigger registry** — [`analysis/trigger_registry/trigger_registry.md`](analysis/trigger_registry/trigger_registry.md) shows every YAML event plus candidate/rejected trigger stubs and v0.2 expansion gaps.
+- **Coverage matrix** — [`derived/coverage_matrix.md`](derived/coverage_matrix.md) is the event-by-layer denominator eligibility surface behind Table 2.
 - **License** — two licenses, one per artifact class. The dataset + docs are **CC-BY-4.0** ([`LICENSE`](LICENSE)); the code is **MIT** ([`LICENSE-CODE`](LICENSE-CODE)). Full split + rationale in [`NOTICE`](NOTICE) and [`docs/limitations-and-use.md §6`](docs/limitations-and-use.md).
 
 Three framework tools are built on the dataset (see [docs/limitations-and-use.md](docs/limitations-and-use.md) before using any output):
@@ -273,12 +303,16 @@ All common operations are wired into the `Makefile` — run `make help` for the 
 ```text
 p1-event-db/
   README.md                    # this file
-  schema/
-    event.schema.json          # JSON Schema for validation
-    controlled_vocab.yaml      # enum of trigger types, layers, source types
-  events/
-    tornado-cash-ofac-2022.yaml
-    ...
+	  schema/
+	    event.schema.json          # JSON Schema for validation
+	    controlled_vocab.yaml      # enum of trigger types, layers, source types
+	  sampling/
+	    frame.yaml                 # pre-declared sampling frame + v0.2 quotas
+	  candidate_triggers/
+	    README.md                  # pre-admission trigger-stub workflow
+	  events/
+	    tornado-cash-ofac-2022.yaml
+	    ...
   templates/
     event.yaml                # starter event template
   sources/
@@ -291,16 +325,20 @@ p1-event-db/
     verify_citations.py        # URL reachability and archive freshness checks
     build_dataset.py           # emit unified JSON / CSV release
     freshness_check.py         # alert if a source link 404s
-    capture_http_artifact.py   # save local bundles for current-state web evidence
-    draft_gap_report.py        # summarize unresolved evidence gaps in draft events
+	    capture_http_artifact.py   # save local bundles for current-state web evidence
+	    build_trigger_registry.py  # pre-admission selection surface
+	    build_coverage_matrix.py   # event×layer denominator eligibility
+	    draft_gap_report.py        # summarize unresolved evidence gaps in draft events
     status_report.py           # emit machine-readable pilot status summary
     review_report.py           # score process robustness and case readiness
     render_site.py             # render events/*.yaml → static HTML site under site/
     ooni_batch_query.py        # systematic OONI Explorer API query for L0 substrate
+    build_l0_coverage_summary.py # denominator-aware L0 query summary
     batch_usdtbanlist_check.py # asset-layer batch scan via usdtbanlist.com
   Makefile                    # unified QA / dataset build entrypoints
-  analysis/
-    paper/                     # TeX + figure notebooks
+	  analysis/
+	    trigger_registry/          # generated registry CSV/JSON/MD
+	    paper/                     # TeX + figure notebooks
     pilot-status.md            # human-readable pilot readiness notes
     review-report.md           # human-readable robustness / case review output
     descriptives.ipynb
@@ -316,11 +354,11 @@ p1-event-db/
 
 | Month | Milestone | Decision gate |
 | --- | --- | --- |
-| 1 | Schema frozen after 5 pilot events. JSON-Schema validator works. | If schema still under revision at month 1 end → shrink scope before proceeding. |
-| 2 | 12 events complete with full multi-source verification. | If verification is taking >1 week per event → loosen to semi-primary or drop events that can't be verified. |
-| 3 | 20 events done. First descriptive statistics. | If no non-trivial regularities visible at 20 events → reassess methodology paper angle. |
-| 4 | Paper draft v1. Optional: extend to 30-50 events. | Submit to AFT if deadline fits; else target IMC. |
-| 5 | Submit paper. Release v1 dataset publicly. | Observatory-integration question revisited. |
+| 1 | v0.1 protocol frozen: schema, validator, trigger registry, coverage matrix, paper-table generator. | If `make check` or `make trigger-registry` fails, do not add cases. |
+| 2 | Expand registry to 150-250 trigger rows under `sampling/frame.yaml` by adding systematic backfills beyond OFAC. | If candidate gaps remain concentrated in one stratum, keep paper framing US-trigger-dominant and descriptive. |
+| 3 | Promote 80-120 admitted events with archived evidence chains. | If L0/L3 denominators remain absent, report observability gaps, not zero rates. |
+| 4 | Rebuild asset independent denominator and L0/RPC targeted measurement slices. | Only reinstate asset/L3 rates after denominator source exists outside positive-change admission. |
+| 5 | Independent-human IRR pass and paper submission package. | If independent-human κ fails, keep attribution-sensitive claims parked. |
 
 ## 10. Quality standards (non-negotiable)
 
@@ -346,7 +384,7 @@ Agent-assisted ingestion (drafts, captures, Wayback submissions) is permitted; a
 ## 11. Explicit non-goals
 
 - **Not a dashboard**. No live UI. Static site generation from dataset is optional and low priority.
-- **Not a real-time observatory product**. Lightweight trigger watchers are allowed for archival completeness, but published events are admitted only after the cascade stabilizes (typically 2-8 weeks post-trigger).
+- **Not a real-time observatory product**. Lightweight trigger watchers are allowed for archival coverage, but published events are admitted only after the cascade stabilizes under an explicit observation window.
 - **Not a sanctions compliance tool, and not a prescriptive playbook**. The dataset is a **descriptive historical record with open provenance** — what happened, when, and with what evidence. It is **not** a normative statement about how future events should be handled, not a compliance determination, not legal advice, and not an expert opinion on covered-party status. Lawyers, regulators, compliance teams, and journalists may cite specific cascade timelines as factual evidence in their own work; the project takes no position on the legal or policy conclusions they draw. The distinction matters because it keeps the project in the role of archivist / witness rather than expert witness, and prevents adversarial use of the dataset's edge cases against the methodology itself.
 - **Not a Chainalysis replacement**. The edge is rigorous cross-layer timelines with open provenance, not asset-flow analytics.
 - **Scope does not expand to active probing infrastructure.** This repo may run passive watchers, archival jobs, and replayable verification scripts, but not a bespoke internet-scale measurement platform. Those belong to main line 2 if at all.

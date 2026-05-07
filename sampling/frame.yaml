@@ -1,0 +1,292 @@
+# SPDX-License-Identifier: CC-BY-4.0
+schema_version: 0.1.0
+
+name: cross_layer_enforcement_observability_sampling_frame
+purpose: >
+  Pre-declared frame for expanding the corpus without turning the dataset into
+  anecdotal case collection. Candidate triggers enter the trigger registry
+  before they become admitted events; layer rates are reportable only when the
+  layer has a measurement-grade denominator under the admission protocol.
+
+snapshot_scope:
+  current_snapshot_end: 2026-05-06
+  historical_start: 2017-01-01
+  v0_2_expansion_end: 2026-12-31
+  candidate_trigger_registry_target_min: 150
+  candidate_trigger_registry_target_max: 250
+  admitted_event_target_min: 80
+  admitted_event_target_max: 120
+
+trigger_registry_statuses:
+  - admitted
+  - draft
+  - observation_active
+  - observation_closed
+  - rejected
+  - candidate
+  - draft_needs_evidence
+  - deferred
+  - not_measurable
+  - screened_no_extractor_target
+  - rejected_out_of_scope
+  - promoted_to_event
+
+inclusion_rule: >
+  A trigger is in frame when it is an identifiable legal, regulatory, court,
+  sanctions, central-bank, or corporate-policy action that names a concrete
+  crypto target and has a stable primary or semi-primary source.
+
+exclusion_rule: >
+  Exclude anonymous rumors, purely market-driven events, ordinary product
+  outages, undated social-media anecdotes, and private compliance decisions
+  without a public trigger or public measurement surface.
+
+frame_unit_rule: >
+  Count unique target-level frame units, not raw web pages. The preferred
+  frame unit id is source_frame_id + primary_action_id + concrete target id
+  (entity, protocol, address cluster, domain, or asset). A single legal page
+  naming multiple separable crypto targets should produce multiple target-level
+  candidates when extraction supports the split; a single target promoted into
+  multiple event YAMLs remains one frame unit plus multiple admitted records.
+
+source_frames:
+  ofac_recent_actions_crypto:
+    source_frame_id: ofac_recent_actions_crypto_2017_2026
+    strata: [S1_ofac_sdn, S2_ofac_removal]
+    date_range: [2017-01-01, 2026-03-13]
+    source_artifact: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+    extractor_rule: >
+      OFAC recent-action pages with crypto address extractors or entity keywords;
+      rows without concrete crypto targets remain screened_no_extractor_target.
+    current_raw_rows: 73
+    current_in_frame_units: 26
+    current_screened_rows: 47
+  us_federal_enforcement_archives:
+    source_frame_id: us_federal_enforcement_crypto_2017_2026
+    strata: [S3_doj_sec_cftc_fiod]
+    date_range: [2017-01-01, 2026-12-31]
+    source_artifact: planned:sources/federal_enforcement/triage_manifest.json
+    extractor_rule: >
+      DOJ, SEC, CFTC, FinCEN, and CourtListener/RECAP records with concrete
+      crypto target extraction and at least one platform/on-chain/rail surface.
+    current_raw_rows: 0
+    current_in_frame_units: 12
+    current_screened_rows: 0
+  non_us_state_archives:
+    source_frame_id: non_us_state_crypto_2017_2026
+    strata: [S4_nation_state]
+    date_range: [2017-01-01, 2026-12-31]
+    source_artifact: planned:sources/non_us_state/triage_manifest.json
+    extractor_rule: >
+      Central-bank, FIU, emergency-order, travel-rule, or national blocking
+      actions with named crypto venues, domains, assets, or regulated classes.
+    current_raw_rows: 0
+    current_in_frame_units: 6
+    current_screened_rows: 0
+  corporate_policy_archives:
+    source_frame_id: corporate_policy_crypto_2017_2026
+    strata: [S5_corporate]
+    date_range: [2017-01-01, 2026-12-31]
+    source_artifact: planned:sources/corporate_policy/triage_manifest.json
+    extractor_rule: >
+      Issuer, exchange, frontend, or infrastructure-provider announcements or
+      commits naming an external legal/policy trigger or explicit compliance
+      rationale.
+    current_raw_rows: 0
+    current_in_frame_units: 6
+    current_screened_rows: 0
+  supranational_archives:
+    source_frame_id: supranational_crypto_2017_2026
+    strata: [S6_supranational]
+    date_range: [2017-01-01, 2026-12-31]
+    source_artifact: planned:sources/supranational/triage_manifest.json
+    extractor_rule: >
+      EU Official Journal, UN Security Council, G7, FATF, or similar
+      supranational records with concrete crypto targets or regulated venues.
+    current_raw_rows: 0
+    current_in_frame_units: 2
+    current_screened_rows: 0
+
+strata:
+  S1_ofac_sdn:
+    description: OFAC SDN designations naming crypto addresses, entities, or protocols.
+    v0_1_admitted: 26
+    v0_2_admitted_min: 30
+    v0_2_candidate_min: 50
+  S2_ofac_removal:
+    description: OFAC SDN removals and delistings affecting prior crypto targets.
+    v0_1_admitted: 1
+    v0_2_admitted_min: 5
+    v0_2_candidate_min: 10
+  S3_doj_sec_cftc_fiod:
+    description: US federal enforcement plus non-US MLAT companion actions.
+    v0_1_admitted: 12
+    v0_2_admitted_min: 20
+    v0_2_candidate_min: 40
+  S4_nation_state:
+    description: Single-country central-bank, emergency-order, or national blocking actions.
+    v0_1_admitted: 6
+    v0_2_admitted_min: 10
+    v0_2_candidate_min: 20
+  S5_corporate:
+    description: Issuer, exchange, frontend, or infrastructure-provider unilateral policy changes.
+    v0_1_admitted: 6
+    v0_2_admitted_min: 10
+    v0_2_candidate_min: 20
+  S6_supranational:
+    description: EU, UN, G7, or other supranational sanctions and regulatory packages.
+    v0_1_admitted: 2
+    v0_2_admitted_min: 5
+    v0_2_candidate_min: 10
+
+expansion_priority_queue:
+  - priority: P0
+    stratum: S2_ofac_removal
+    target_gap_admitted: 4
+    rationale: >
+      Reversal / recovery evidence is currently underpowered. Add OFAC
+      delistings, court reversals, and corporate policy reversals only when
+      the pre/post layer state can be replayed.
+    candidate_sources:
+      - OFAC recent-actions delisting pages
+      - SDN XML diff history
+      - operator git commits or support notices that remove restrictions
+  - priority: P0
+    stratum: S4_nation_state
+    target_gap_admitted: 4
+    rationale: >
+      The v0.1 corpus is US-trigger-dominant. Non-US state actions are needed
+      to keep the paper framed as evidence-bearing and English-indexable
+      rather than US-only.
+    candidate_sources:
+      - central-bank circular archives
+      - financial-intelligence-unit notices
+      - exchange support/status pages tied to national rules
+  - priority: P1
+    stratum: S3_doj_sec_cftc_fiod
+    target_gap_admitted: 8
+    rationale: >
+      Federal enforcement has many trigger candidates, but promotion requires
+      platform-side, rail-side, on-chain, or anchored no-change evidence beyond
+      the legal complaint.
+    candidate_sources:
+      - DOJ / SEC / CFTC / FinCEN press-release archives
+      - CourtListener / RECAP docket artifacts
+      - exchange, wallet, or frontend platform notices
+  - priority: P1
+    stratum: S6_supranational
+    target_gap_admitted: 3
+    rationale: >
+      EU / UN / G7 actions provide the strongest check against US-only
+      trigger framing, but only concrete crypto-target actions enter the
+      admitted corpus.
+    candidate_sources:
+      - EU Official Journal regulations and sanctions packages
+      - UN Security Council sanctions releases
+      - G7 / FATF implementation artifacts with named crypto targets
+  - priority: P2
+    stratum: S5_corporate
+    target_gap_admitted: 4
+    rationale: >
+      Corporate policy changes strengthen trigger-is-action and asset/frontend
+      mechanism comparisons, but they must name an external legal or policy
+      trigger or an explicit compliance rationale.
+    candidate_sources:
+      - issuer blacklist announcements
+      - exchange delisting / region-exit notices
+      - frontend token-list or geofence commits
+
+target_kinds:
+  - address_set
+  - protocol
+  - domain
+  - asset
+  - entity
+
+jurisdiction_groups:
+  us_federal:
+    members: [US]
+    v0_2_min_admitted: 45
+  supranational:
+    members: [EU, UN]
+    v0_2_min_admitted: 5
+  non_us_state:
+    members: [AU, CA, CH, CN, DE, IN, IR, IS, JP, KR, NG, NL, PL, PT, RU, SG, TR, UK]
+    v0_2_min_admitted: 20
+  corporate_global:
+    members: [corporate_global]
+    v0_2_min_admitted: 8
+
+ecosystems:
+  bitcoin:
+    v0_2_min_admitted: 12
+  ethereum:
+    v0_2_min_admitted: 25
+  tron:
+    v0_2_min_admitted: 8
+  cex_only:
+    v0_2_min_admitted: 10
+  multi_chain:
+    v0_2_min_admitted: 15
+
+layer_denominator_rules:
+  l0_network:
+    denominator_sources:
+      - OONI web_connectivity query with measurement ids or archived query result
+      - Censored Planet or comparable raw measurement slice
+      - contemporaneous ISP or regulator primary notice
+    rate_rule: >
+      A rate is reportable only for enumerated domains, countries, and windows
+      with measurement-grade coverage. Missing volunteer coverage is an
+      observability gap, not evidence of no censorship.
+  l1_consensus:
+    denominator_sources:
+      - relay or builder dataset with documented target-classification rule
+      - chain-specific block inclusion/exclusion measurement
+    rate_rule: >
+      Report only within the chain, relay/builder universe, and time window
+      covered by the dataset. Pre-measurement-era windows are partial coverage.
+  l3_rpc:
+    denominator_sources:
+      - provider endpoint probe logs
+      - public provider policy or code repository with target-specific filter substrate
+      - archived provider documentation tied to the event window
+    rate_rule: >
+      Named git-history observations are descriptive unless the provider
+      universe has a measured denominator. No v0.1 conditional L3 rate.
+  l4_frontend:
+    denominator_sources:
+      - Wayback snapshots for enumerated domains
+      - frontend repository commits
+      - primary corporate statements
+    rate_rule: >
+      Report scoped rates only for enumerated frontends with archived before
+      and after surfaces or primary statements.
+  asset_onchain:
+    denominator_sources:
+      - full freeze-capable asset universe for the target class
+      - on-chain freeze or no-freeze query over the scoped window
+    rate_rule: >
+      v0.1 asset rows are descriptive only because admission currently requires
+      an asset-layer change anchor. Reinstating rates requires independent
+      no-change denominators for freeze-capable assets.
+  offramp_cex:
+    denominator_sources:
+      - exchange primary notices
+      - archived support/status pages
+      - API-level availability evidence
+    rate_rule: >
+      Report only for the enumerated venue universe. Press-only rumors do not
+      create a measured denominator.
+
+artifact_contract:
+  trigger_registry: analysis/trigger_registry/trigger_registry.csv
+  event_corpus: events/*.yaml
+  coverage_matrix: derived/coverage_matrix.csv
+  evidence_chains: analysis/evidence-chains/
+  paper_table_generator: scripts/build_paper_tables.py
+  audit_sensitivity_package:
+    - analysis/audit_worksheets/
+    - derived/admission_sensitivity.md
+    - analysis/inter_rater/kappa_report.md
+    - analysis/staleness.md

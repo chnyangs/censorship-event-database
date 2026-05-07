@@ -1,13 +1,14 @@
 id: sec-v-binance-2023
 schema_version: 0.2.0
-status: draft
+status: admitted
 research_stratum: S3_doj_sec_cftc_fiod
-empirical_shape: null_event
-admission_tier: null_case
+empirical_shape: comparison
+admission_tier: empirical_case
 origin: human_authored
 version: "0.1"
 created_at: 2026-04-22T10:30:00Z
-last_verified: 2026-04-22
+last_verified: 2026-05-06
+last_human_audit: 2026-05-06
 
 related_events:
   - binance-4framework-2023
@@ -39,7 +40,7 @@ trigger:
 
 target:
   kind: entity
-  enumeration: subset
+  enumeration: complete
   enumeration_note: |
     Binance Holdings Ltd. (global) + BAM Trading Services Inc. (Binance.US) +
     BAM Management US Holdings + Changpeng Zhao individual. Securities
@@ -77,49 +78,120 @@ coverage:
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: not_measured
+    status: measured
+    scope: [binance.us]
     note: |
-      SEC emergency-relief filings make this a plausible off-ramp hypothesis,
-      but the file does not yet carry the Binance.US/platform/banking-rail
-      artifact required by methodology §4.6. Do not count this as measured
-      off-ramp coverage until that artifact is pinned.
+      Binance.US platform/off-ramp operations changed inside the SEC-action
+      window: the platform paused OTC, removed selected BTC/BUSD trading pairs
+      on 2023-06-08, later removed selected USD advanced-trading pairs as part
+      of a crypto-only shift, and public reporting of the Binance.US customer
+      notice recorded suspended USD deposits plus banking-partner preparation
+      to pause fiat withdrawal channels. Count only this CEX/platform scope.
 
-observations: []
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance_us
+    event: binance_us_platform_and_usd_rail_restrictions_after_sec_action
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-06-08T00:00:00Z
+    precision: day
+    delta_hours: 72
+    window:
+      - 2023-06-05T00:00:00Z
+      - 2023-07-13T23:59:59Z
+    note: |
+      The primary Binance.US support artifacts establish platform changes
+      inside the SEC-action window. The Guardian / Reuters report supplies the
+      fiat-rail notice context and ties the USD-deposit / withdrawal-channel
+      disruption to the post-SEC banking-partner environment. Attribution is
+      therefore plausible rather than direct: the dataset records a scoped
+      CEX/off-ramp reaction, not proof that the SEC filing alone caused each
+      banking-partner decision.
+    sources:
+      - type: primary_corporate
+        url: https://support.binance.us/en/articles/9843568-binance-us-will-remove-10-trading-pairs-has-paused-otc-trading-updated
+        body_hash: sha256:e6d1292db455dc6a8680637449cc8a05dbf11c63618da8770937b88bcdc588e6
+        body_path: sources/http_captures/sec-v-binance-2023/platform-response/support.binance.us__en-articles-9843568-binance-us-will-remove-10-trading-pairs-has-paused-otc-trading-updated__0e03a1e712.html
+        scope_descriptor:
+          providers: [binance_us_platform]
+          time_window:
+            - 2023-06-08T00:00:00Z
+            - 2023-06-08T23:59:59Z
+          addresses_cohort: binance_us_entity_level
+        note: |
+          Binance.US support notice states that selected BTC/BUSD trading pairs
+          would be removed on 2023-06-08 and that the OTC Trading Portal had
+          been paused, while ordinary crypto trading remained available.
+      - type: primary_corporate
+        url: https://support.binance.us/en/articles/9843567-binance-us-will-remove-select-usd-advanced-trading-pairs
+        body_hash: sha256:3a20f9c26f640caba0b9e3ec228a43abc60793521137dbec563d310af8431ecb
+        body_path: sources/http_captures/sec-v-binance-2023/platform-response/support.binance.us__en-articles-9843567-binance-us-will-remove-select-usd-advanced-trading-pairs__852a151d2b.html
+        scope_descriptor:
+          providers: [binance_us_platform]
+          time_window:
+            - 2023-07-13T00:00:00Z
+            - 2023-07-13T23:59:59Z
+          addresses_cohort: binance_us_entity_level
+        note: |
+          Binance.US support notice records the later removal of selected USD
+          advanced-trading pairs as part of the platform's crypto-only shift.
+      - type: supporting_journalism
+        url: https://www.theguardian.com/business/2023/jun/09/binanceus-prepares-to-suspend-us-dollar-deposits-and-withdrawals-from-exchange
+        body_hash: sha256:c29283b567f98d5a4f2d5ecd3ed1e188c4baa391269023c347aa85f4cf794189
+        body_path: sources/http_captures/sec-v-binance-2023/platform-response/www.theguardian.com__business-2023-jun-09-binanceus-prepares-to-suspend-us-dollar-deposits-and-withdrawals-from-exchange__57c8dce343.html
+        note: |
+          Guardian / Reuters coverage of the Binance.US customer notice records
+          suspended USD deposits, expected fiat-withdrawal-channel disruption
+          as early as 2023-06-13, and the exchange's crypto-only transition
+          framing days after the SEC action.
 
 analysis_notes: |
-  comparison — first SEC civil-enforcement event in the dataset.
+  comparison — first SEC civil-enforcement event in the dataset with a scoped
+  CEX/off-ramp platform reaction retained.
   Paper-relevant structural distinction: SEC operates on the
   securities-law axis (token-offering / exchange-registration) whereas
   OFAC operates on the sanctions axis. The 2023-06-05 Binance case
-  is retained as a draft comparison candidate, not an admitted layer
-  observation. The SEC filing establishes the trigger and emergency-relief
-  theory, but the file does not yet carry Binance.US/platform/banking-rail
-  evidence for the reported 2023-06-09 fiat-rail suspension. Earlier drafts
-  double-counted this as L4 frontend impact; that claim has been removed.
+  is admitted only for the Binance.US `offramp_cex` / platform-operations
+  scope: OTC and selected trading-pair restrictions are primary-corporate
+  artifacts, and the USD fiat-rail disruption is supported by contemporaneous
+  journalism describing the Binance.US customer notice. Attribution is coded
+  plausible, not direct, because the primary support artifacts establish
+  platform changes while the causal tie to individual banking partners comes
+  through the reported customer notice. Earlier drafts double-counted this as
+  L4 frontend impact; that claim remains excluded.
 
   Relationship to `binance-4framework-2023` (2023-11-21): the SEC case is
   the civil-enforcement predecessor; the 11-21 settlement resolved DOJ /
   FinCEN / OFAC / CFTC charges. The SEC case itself continues separately
   and was partially settled in 2024-06 (BUSD securities-status dropped).
 
+scoped_claim: |
+  "SEC v. Binance produced a scoped Binance.US CEX/off-ramp platform reaction
+  within the observation window; the dataset does not claim a measured L4
+  frontend takedown, on-chain asset freeze, or L1/L3 effect."
+
 scoped_knowledge: |
-  What changed: no layer observation is admitted in this draft. The case is a
-  candidate SEC high-intensity comparison because the SEC filing sought
-  emergency relief against Binance.US/BAM entities, but the operational
-  fiat-rail response is not pinned to an admission-grade off-ramp source.
+  What changed: Binance.US is admitted as a scoped CEX/off-ramp reaction. The
+  retained operational artifacts cover OTC pause / trading-pair removals and
+  the reported USD fiat-rail disruption around the same SEC-action window.
+  This makes the case useful as a securities-law comparison, but only at the
+  exchange/platform-operations layer.
 
   What did not change or could not be measured: the event has no address set,
   no asset issuer primitive, and no L1/L3 mechanism. The global Binance.com
-  platform is not treated as the measured frontend; the scoped claim is
-  Binance.US.
+  platform is not treated as the measured frontend; the scoped claim is limited
+  to Binance.US CEX/off-ramp operations.
 
-  Attribution: not coded. The SEC filing and emergency-relief motion name the
-  Binance.US/BAM target and requested relief, but this is not enough under
-  methodology §4.6 to admit an off-ramp state transition.
+  Attribution: plausible. The SEC filing and emergency-relief motion name the
+  Binance.US/BAM target; Binance.US support artifacts record platform
+  restrictions; contemporaneous reporting records the USD fiat-rail customer
+  notice and banking-partner explanation. The evidence is strong enough for a
+  scoped reaction, but not for claiming SEC-only causation for each bank rail.
 
-  Comparative value: this is a repair-queue SEC high-intensity candidate. Do
-  not cite it in paper tables until a primary corporate or independently
-  observable platform artifact is attached.
+  Comparative value: high-intensity SEC civil action showing a CEX/off-ramp
+  operational response rather than a protocol, L1/L3, asset-onchain, or L4
+  frontend cascade.
 
 tags:
   - sec_enforcement

@@ -1,6 +1,6 @@
-# Table 1 · Case roles (n=51)
+# Table 1 · Case roles (n=53)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `b99dfaf` · generated `2026-04-27T11:03:02Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `947f18f` · generated `2026-05-06T10:56:34Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -9,14 +9,14 @@ Supports `docs/paper_claims.md §0` (case-role convention). Each event's admissi
 | admission_tier | count |
 | --- | ---: |
 | `anchor_case` | 2 |
-| `empirical_case` | 36 |
+| `empirical_case` | 38 |
 | `null_case` | 13 |
-| **total** | **51** |
+| **total** | **53** |
 
 | trigger precision bucket | count |
 | --- | ---: |
 | `hour` | 5 |
-| `day` | 46 |
+| `day` | 48 |
 
 Only the `hour`-precision subset is admissible for hour-granularity latency claims (Table 4).
 
@@ -60,7 +60,9 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `russian-cyber-theft-ofac-2020` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
 | `russian-cybercrime-infra-ofac-2025` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `—` |
 | `samourai-doj-2024` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
-| `sec-v-uniswap-wells-notice-2024` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `sec_action` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `—` |
+| `sec-v-binance-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-06` | `2026-05-06` |
+| `sec-v-coinbase-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-06` | `2026-05-06` |
+| `sec-v-uniswap-wells-notice-2024` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `sec_action` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-05-06` | `—` |
 | `semenov-ofac-2023` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-21` | `2026-04-22` |
 | `sichuan-silence-ofac-2024` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-04-22` | `—` |
 | `sinbad-ofac-2023` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-04-21` | `—` |

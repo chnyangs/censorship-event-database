@@ -86,3 +86,57 @@ def test_recovery_sum_never_exceeds_changed_layer_count():
         + m["recovery_unknown_layer_count"]
     )
     assert total == m["changed_layer_count"]
+
+
+def test_cascade_breadth_is_coverage_matched():
+    event = {
+        "id": "breadth-synth",
+        "trigger": {"type": "ofac_sdn_designation", "timestamp": "2024-01-01T00:00:00Z"},
+        "target": {"kind": "entity"},
+        "coverage": [
+            {"layer": "l0_network", "status": "not_measured"},
+            {"layer": "l4_frontend", "status": "measured"},
+            {"layer": "offramp_cex", "status": "not_applicable"},
+        ],
+        "observations": [
+            {
+                "layer": "l4_frontend",
+                "observation_kind": "observed_change",
+                "attribution": "direct",
+                "timestamp": "2024-01-01T01:00:00Z",
+            }
+        ],
+    }
+    m = compute_event_metrics(event)
+    assert m["coverage_denominator_layer_count"] == 1
+    assert m["non_na_layer_count"] == 2
+    assert m["applicable_layer_count"] == 1
+    assert m["coverage_matched_changed_layer_count"] == 1
+    assert m["cascade_breadth"] == 1.0
+    assert m["non_na_cascade_breadth"] is None
+
+
+def test_unmeasured_changed_layer_does_not_enter_coverage_matched_breadth():
+    event = {
+        "id": "unmeasured-change-synth",
+        "trigger": {"type": "ofac_sdn_designation", "timestamp": "2024-01-01T00:00:00Z"},
+        "target": {"kind": "entity"},
+        "coverage": [
+            {"layer": "l0_network", "status": "not_measured"},
+            {"layer": "l4_frontend", "status": "measured"},
+        ],
+        "observations": [
+            {
+                "layer": "l0_network",
+                "observation_kind": "observed_change",
+                "attribution": "plausible",
+                "timestamp": "2024-01-01T01:00:00Z",
+            }
+        ],
+    }
+    m = compute_event_metrics(event)
+    assert m["changed_layer_count"] == 1
+    assert m["coverage_matched_changed_layer_count"] == 0
+    assert m["coverage_denominator_layer_count"] == 1
+    assert m["cascade_breadth"] == 0.0
+    assert m["non_na_cascade_breadth"] is None

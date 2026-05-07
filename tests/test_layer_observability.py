@@ -98,6 +98,19 @@ def test_zero_denominator_renders_as_none():
     assert row["partially_measured_count"] == 0
     assert row["changed_given_measured"] is None
     assert row["changed_given_measured_or_partial"] is None
+    assert row["changed_given_applicable"] is None
+
+
+def test_applicable_rate_suppressed_when_not_measured_rows_present():
+    events = [
+        _event("measured-change", "measured", ["observed_change"]),
+        _event("unmeasured-gap", "not_measured", []),
+    ]
+    row = compute_row("l4_frontend", events)
+    assert row["applicable_event_count"] == 2
+    assert row["changed_given_measured"] == 1.0
+    assert row["changed_given_measured_or_partial"] == 1.0
+    assert row["changed_given_applicable"] is None
 
 
 def test_l3_partial_only_counts_do_not_emit_conditional_rate():

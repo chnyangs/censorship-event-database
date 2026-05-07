@@ -7,6 +7,8 @@ Every tagged release produces:
 1. A **GitHub Release** with auto-generated source archives.
 2. A **Zenodo deposit** with a DOI (via the Zenodo ↔ GitHub integration).
 3. A refreshed `dataset.meta.json` + `dataset.{json,csv}` pinned to the tag.
+4. A refreshed `sources/source_manifest.{csv,json,md}` with SHA-256 hashes
+   for local source artifacts included in the release surface.
 
 Current version lives in [`CITATION.cff`](../CITATION.cff) under the `version:`
 key. `scripts/build_dataset.py` reads that file and bakes the value into
@@ -45,14 +47,23 @@ NEW_VERSION=0.1.1
 sed -i '' "s/^version:.*/version: \"${NEW_VERSION}\"/" CITATION.cff
 sed -i '' "s/^date-released:.*/date-released: \"$(date -u +%Y-%m-%d)\"/" CITATION.cff
 
-# 3. Regenerate dataset artifacts so dataset.meta.json picks up the version.
+# 3. Regenerate dataset artifacts so dataset.meta.json and source_manifest
+#    pick up the version.
 make regenerate
 
-# 4. CHANGELOG entry summarising what's in this version.
+# 4. Run release gates. The strict reliability gate requires an
+#    independent-human IRR report; omit only for non-release working snapshots.
+python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability
+
+# 5. CHANGELOG entry summarising what's in this version.
 $EDITOR CHANGELOG.md
 
-# 5. Commit, tag, push. GitHub Release + Zenodo DOI both fire off the tag.
-git add CITATION.cff CHANGELOG.md dataset.json dataset.csv dataset.meta.json
+# 6. Commit, tag, push. GitHub Release + Zenodo DOI both fire off the tag.
+git add CITATION.cff CHANGELOG.md dataset.json dataset.csv dataset.meta.json \
+  derived/ analysis/paper_tables/ analysis/evidence-chains/ site/ \
+  sources/source_manifest.* sources/http_captures/ sources/l0_datasets/ \
+  docs/ scripts/ tests/ sampling/ candidate_triggers/ events/
+git status --short   # review the exact release surface before committing
 git commit -m "release: v${NEW_VERSION}"
 git tag -a "v${NEW_VERSION}" -m "Release v${NEW_VERSION}"
 git push origin main "v${NEW_VERSION}"
@@ -84,6 +95,9 @@ After the push:
 - **Don't release with a schema_version mismatch across events.** The
   generator raises `SystemExit` if events disagree on `schema_version`; fix
   the drift first.
+- **Don't release when `CITATION.cff::date-released` predates
+  `dataset.meta.json::cutoff_date`.** The release metadata must describe the
+  snapshot it is publishing, not an earlier working draft.
 
 ## Releases vs daily working commits
 

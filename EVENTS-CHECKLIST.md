@@ -4,15 +4,15 @@ Working TODO list for event admission. Tracks which candidate events exist in ea
 
 ## Strata and target coverage
 
-This dataset aims to be **stratified-complete within each stratum**, not a cherry-picked sample. The target size per stratum drives the paper's statistical claims.
+This checklist tracks a **selection-transparent admitted evidence corpus**, not a stratum-complete population sample. The target size per stratum drives expansion work and paper scope limits, not prevalence claims.
 
 | Stratum | Description | Target N | Universe | Drafted | Admitted |
 | --- | --- | --- | --- | --- | --- |
-| S1. OFAC SDN designations (crypto-related) 2018–2025 | Original designations with ≥ 1 digital-asset address on the SDN list | 25–35 | **27 (complete)** | 0 | 27 |
+| S1. OFAC SDN designations (crypto-related) 2018–2025 | Original designations with ≥ 1 digital-asset address on the SDN list | 25–35 | **27 identified (26 admitted + 1 candidate update)** | 0 | 26 |
 | S2. OFAC SDN removals (crypto-related) 2018–2025 | Delistings of earlier crypto-designated entities or addresses | 3–6 | ≈ 1–3 (small) | 0 | 1 |
 | S3. DOJ / CFTC / SEC crypto enforcement 2017–2025 | Federal criminal or civil action with material on-chain effect | 8–12 | ≈ 12 | 2 | 10 |
 | S4. Nation-state infrastructure bans | Named policy directive that alters L0 / off-ramp access | 3–5 | ≥ 8 confirmed | 0 | 6 |
-| S5. Corporate policy (non-OFAC) | Issuer / exchange / frontend unilateral decisions | 5–8 | representative (open) | 0 | 6 |
+| S5. Corporate policy (non-OFAC) | Issuer / exchange / frontend unilateral decisions | 5–8 | purposefully selected (open-ended) | 0 | 6 |
 | S6. Supranational actions | EU / UN / G7-level sanctions or unified crypto-regulatory frameworks | 2–4 | 2 confirmed | 0 | 2 |
 | **Total** | | **46–70** | | **2 drafts** | **51 admitted** |
 
@@ -22,7 +22,7 @@ queue candidates, not paper-facing admitted events.
 
 Schema bumped to 0.2.0 (reviewer Actions 1–4 applied): `event_class` replaced by three orthogonal fields — `research_stratum` (sampling-frame stratum), `empirical_shape` (cascade / comparison / null_event based on observed_change layer count), `admission_tier` (anchor_case / empirical_case / null_case based on strong-attribution layer count). `follow_on_reaction` added for `attribution: unknown` observations that should not count toward cross-case statistics. See [docs/methodology.md §3.2](docs/methodology.md#L95). Admitted-only tier distribution: **2 anchor_case, 36 empirical_case, 13 null_case**; the two additional YAML records are draft null_case repair candidates. See `dataset.meta.json`, `CHANGELOG.md`, event YAMLs under `events/`, and the chain-distribution structural finding in `docs/chain-coverage-note.md`.
 
-The paper's "20 events minimum" milestone has been cleared (2.65×). Strata that cannot be exhaustively enumerated (S5 in particular) are declared `scope: representative` in the paper rather than claimed complete.
+The paper's "20 events minimum" milestone has been cleared (2.65×). Strata that cannot be exhaustively enumerated (S5 in particular) are declared `scope: purposefully selected/open-ended` in the paper rather than claimed complete or used for prevalence estimates.
 
 ## Legend
 
@@ -31,13 +31,13 @@ The paper's "20 events minimum" milestone has been cleared (2.65×). Strata that
 - `[ ]` — candidate identified but not yet added
 - `[?]` — needs verification of date / URL / scope before admission
 
-Each candidate shows the expected primary source in a compact form. "OFAC RA YYYYMMDD" = `ofac.treasury.gov/recent-actions/YYYYMMDD`.
+Each candidate shows the planned primary-source anchor in a compact form. "OFAC RA YYYYMMDD" = `ofac.treasury.gov/recent-actions/YYYYMMDD`.
 
 ---
 
 ## Stratum 1 — OFAC SDN designations (crypto-related)
 
-**27 / 27 admitted.** Enumeration authoritative as of 2026-04-21 (see `sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json`). Per-date counts show `tokens{...}=N`.
+**26 / 27 admitted.** Enumeration is generated from `sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json` and the trigger registry. The residual item is the 2024-01-11 Chatex SDN entry update, currently retained as `candidate_triggers/ofac-recent-action-20240111.yaml` rather than paper-facing admitted evidence. Per-date counts show `tokens{...}=N`.
 
 ### 2018
 
@@ -92,7 +92,7 @@ Each candidate shows the expected primary source in a compact form. "OFAC RA YYY
 
 ### S1 remaining work
 
-Only residual item: the 2024-01-11 Chatex entry-update is not modelled. Low priority — the 30 added addresses are already captured within the 2021-11-08 Chatex event's parent enumeration for research purposes.
+Only residual item: the 2024-01-11 Chatex entry-update is not modelled. It should either be promoted as a separate update event with per-layer evidence, or explicitly linked as a duplicate/update to `chatex-ofac-2021.yaml`. Until then S1 is **not** complete.
 
 ---
 
@@ -105,7 +105,8 @@ Only residual item: the 2024-01-11 Chatex entry-update is not modelled. Low prio
 - [ ] **Chatex delisting** `[?]` — verify.
 - [ ] **Any 2024–2025 mixer delistings** `[?]` — SDN XML diff year-over-year to surface any.
 
-Stratum is naturally small; most designated entities are never removed.
+This stratum is currently small in the admitted corpus; expansion requires
+explicit SDN XML diff tooling rather than inference from designation rows.
 
 ---
 
@@ -155,7 +156,7 @@ Stratum is naturally small; most designated entities are never removed.
 
 ## Stratum 5 — Corporate policy changes (non-OFAC triggered)
 
-**6 admitted.** Cannot be exhaustively enumerated; `scope: representative` in the paper.
+**6 admitted.** Cannot be exhaustively enumerated; `scope: purposefully selected/open-ended` in the paper.
 
 ### Stablecoin issuer unilateral actions
 
@@ -227,7 +228,7 @@ These items are candidates deferred for later session work — each represents a
 
 ### Dependencies per stratum
 
-- **S1**: ✓ complete (27/27).
+- **S1**: not complete (26/27 admitted; Chatex 2024 update remains candidate-only).
 - **S2**: blocked on SDN XML year-over-year diff tooling — not currently prioritized.
 - **S3**: DOJ / CFTC / SEC press-release archival via PACER + justice.gov scraping. Next-session work.
 - **S4**: multi-language primary-source archival (RU/JP original texts); non-trivial.
@@ -235,10 +236,10 @@ These items are candidates deferred for later session work — each represents a
 
 ### Verification flags
 
-- S1: all `[?]` resolved.
+- S1: no `[?]` uncertainty remains, but one `[ ]` Chatex update is still unpromoted.
 - S3: 2 `[?]` remaining (Uniswap Wells notice scope; LocalBitcoins year).
 - S4: 1 `[?]` (Russia directive choice); 2 new candidates still `[ ]`.
-- S5: representative scope; `[?]` resolved during admission.
+- S5: purposefully selected/open-ended scope; `[?]` resolved during admission.
 
 ---
 
@@ -246,7 +247,7 @@ These items are candidates deferred for later session work — each represents a
 
 The bootstrap sequence (2026-04-21 → 2026-04-22) that took the dataset from 6 admitted → 49 admitted:
 
-1. **S1 triage pass** (2026-04-21): scraped 308-page OFAC Recent Actions archive, keyword-matched 73 candidate dates, confirmed 27-event S1 universe.
+1. **S1 triage pass** (2026-04-21): scraped 308-page OFAC Recent Actions archive, keyword-matched 73 candidate dates, and identified 27 S1 in-frame trigger rows, of which 26 are admitted and the 2024-01-11 Chatex update remains candidate-only.
 2. **Overnight batch 1** (2026-04-21 → 2026-04-22 AM): 17 new drafts added + asset-layer scan via `scripts/batch_usdtbanlist_check.py`.
 3. **Admission wave** (2026-04-22 AM): 15 drafts → admitted via primary_onchain tx-hash extraction + validator rule relaxations.
 4. **Final wave** (2026-04-22 mid-day): 14 remaining drafts admitted via int-parsed-YAML fix + state_block_event observed_no_change admissibility.

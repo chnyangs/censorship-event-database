@@ -9,13 +9,13 @@ This file is the operational summary for the repo's two current priorities:
 
 - Event count: `53`
 - Release-ready cases: `7`
-- Admitted but release-blocked cases: `44`
+- Admitted but release-blocked cases: `46`
 - Fully complete release-ready cases: `0`
 - Scope-limited release-ready cases: `7`
 - Working drafts: `0`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 36, 'paper_anchor': 2, 'null_control': 13, 'appendix_only': 2}`
-- Draft priority order: `sec-v-binance-2023, sec-v-coinbase-2023`
+- Paper-use roles: `{'aggregate_datapoint': 38, 'paper_anchor': 2, 'null_control': 13}`
+- Draft priority order: `none`
 
 ## Cases
 
@@ -613,45 +613,43 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `sec-v-binance-2023`
 
-- Status: `draft`
-- Readiness: `needs_re_scoping`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
-- Coverage completeness: `low`
-- Case-shape completeness: `low`
+- Attribution reliability: `medium`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
-- Note: null_event has no observations attached (neither observed_change nor observed_no_change).
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Blocker: null_event requires at least one observation with admission-grade sources.
 - Next action: Pin down the target set more concretely in the event file.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Either measure the remaining layer or document why it is out of scope.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `sec-v-coinbase-2023`
 
-- Status: `draft`
-- Readiness: `needs_re_scoping`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
-- Coverage completeness: `low`
-- Case-shape completeness: `low`
+- Attribution reliability: `medium`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
-- Note: null_event has no observations attached (neither observed_change nor observed_no_change).
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Blocker: null_event requires at least one observation with admission-grade sources.
 - Next action: Pin down the target set more concretely in the event file.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Either measure the remaining layer or document why it is out of scope.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `sec-v-uniswap-wells-notice-2024`
 

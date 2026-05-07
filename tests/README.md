@@ -1,6 +1,6 @@
 # tests/ — regression guards and their scope
 
-65 test functions yielding **74 pytest-collected cases** (the
+94 test functions yielding **103 pytest-collected cases** (the
 expansion is from parametrized latency-band and safety-class suites),
 locking the invariants fixed during the 2026-04-23, 2026-04-24, and
 2026-05-06
@@ -13,17 +13,25 @@ re-enter main.
 | File | Functions | Cases | What it locks |
 | --- | --- | --- | --- |
 | `test_archetype_classifier.py` | 14 | 23 | 6 archetype rules + priority ordering; latency-regime band inclusivity (parametrized across 8 boundary values); `trigger_is_action` coincidence rule (requires `corporate_policy_change` AND `\|Δt\| ≤ 1h`) |
-| `test_layer_observability.py` | 8 | 8 | Coverage-matched numerator: `changed_under_measured / measured`; L3 partial-only rows and structurally circular asset rows are named/descriptive observations, not conditional rates |
-| `test_event_metrics_recovery.py` | 3 | 3 | Recovery rows on layers NOT in `changed_layers` are ignored (the 2026-04-23 P2 fix — prevents tally inflation) |
-| `test_paper_tables_fail_closed.py` | 9 | 9 | Precision helper prefers canonical `trigger.timestamp_precision`; day-precision triggers never enter Panel A; anchorless null cases cause `SystemExit`; L3/asset rate suppression reaches paper/sensitivity tables |
+| `test_coverage_matrix.py` | 3 | 3 | Event-by-layer denominator matrix emits exactly one row per tracked layer and keeps L3/asset rows out of conditional-rate denominators |
+| `test_layer_observability.py` | 9 | 9 | Coverage-matched numerator: `changed_under_measured / measured`; L3 partial-only rows, L0 applicable-rate suppression, and structurally circular asset rows are named/descriptive observations, not conditional rates |
+| `test_l0_coverage_summary.py` | 3 | 3 | OONI zero-result windows stay observability gaps, non-empty OONI rows expose denominator fields, and L0-applicable-but-unqueried events are surfaced |
+| `test_l0_query_metadata_backfill.py` | 1 | 1 | Legacy OONI artifacts are backfilled with query-cell metadata, query hashes, pagination status, and updated body hashes |
+| `test_l3_provider_census.py` | 1 | 1 | L3 provider/event census emits named partial and observability-gap rows without creating rate-eligible provider denominators |
+| `test_event_metrics_recovery.py` | 5 | 5 | Recovery rows on layers NOT in `changed_layers` are ignored and cascade breadth is coverage-matched rather than not-measured-as-negative |
+| `test_ofac_recent_action_backfill.py` | 3 | 3 | OFAC recent-actions triage materializes promoted, candidate, and screened trigger stubs without changing admitted-event counts or creating cross-directory duplicates |
+| `test_ooni_batch_query.py` | 2 | 2 | OONI ingestion normalizes domain/window/probe/url cells and emits query-hash-safe output names |
+| `test_paper_tables_fail_closed.py` | 10 | 10 | Precision helper prefers canonical `trigger.timestamp_precision`; day-precision triggers never enter Panel A; day intervals mark boundary ambiguity; anchorless null cases cause `SystemExit`; L3/asset rate suppression reaches paper/sensitivity tables |
 | `test_render_evidence_chain.py` | 2 | 2 | Related draft events render as status text, not dead links; evidence-chain cleanup refuses existing unmarked output directories |
 | `test_render_site_safety.py` | 8 | 8 | Static-site rendering refuses destructive output directories, `.git`, symlinked outputs, and existing unmarked directories; raw YAML export publishes admitted records only |
-| `test_repro_source_date_epoch.py` | 1 | 1 | Non-git Docker/source-archive reproduction can derive a deterministic fallback epoch from committed metadata |
+| `test_repro_source_date_epoch.py` | 4 | 4 | Non-git Docker/source-archive reproduction can derive a deterministic fallback epoch from committed metadata; generated metadata uses checkout-independent paths, source-input hashes, and a declared Python ABI rather than local patch versions |
 | `test_schema_fail_closed.py` | 10 | 10 | JSON Schema rejects validator-critical bypass shapes for schema-only consumers |
+| `test_source_manifest.py` | 3 | 3 | Release source manifest excludes recursive outputs/refetchable clones, hashes event source artifacts deterministically, and paper-readiness re-hashes manifest rows against current files |
 | `test_staleness_report.py` | 1 | 1 | Staleness report honors `SOURCE_DATE_EPOCH` so regenerate remains byte-stable |
-| `test_validate_source_rules.py` | 9 | 9 | On-chain tx hashes / block anchors, trigger/source Wayback URL validation, nonblank measurement IDs, note-only semi-primary source loopholes, `observed_change`/`attribution:none`, and unknown provider scopes fail closed |
+| `test_trigger_registry.py` | 4 | 4 | Trigger registry includes event/candidate rows under the declared sampling frame, preserves and validates promoted-event links, and rejects unknown registry statuses |
+| `test_validate_source_rules.py` | 11 | 11 | On-chain tx hashes / block anchors, trigger/source Wayback URL validation, trigger/recovery citation body-hash verification, nonblank measurement IDs, note-only semi-primary source loopholes, `observed_change`/`attribution:none`, and unknown provider scopes fail closed |
 
-When citing the count in prose, **prefer "74 pytest cases (65 test
+When citing the count in prose, **prefer "103 pytest cases (94 test
 functions)"**. `grep -c '^def test_' tests/*.py` gives the function
 count; `pytest --collect-only -q` gives the collected-case count.
 
@@ -38,8 +46,8 @@ the YAML corpus. Specifically, none of the following are automated by
 pytest:
 
 - **Content-validity of evidence anchors.** `body_hash` / `query_hash` /
-  `measurement_ids` / `scope_descriptor` existence is enforced by
-  `scripts/validate.py`; what the anchor *actually shows* is not. A
+  `measurement_ids` existence is enforced by `scripts/validate.py`;
+  what the anchor *actually shows* is not. A
   Wayback snapshot whose `body_hash` resolves can still be misread
   by the coder.
 - **Inter-coder consistency of `coverage.status`.** `measured` vs

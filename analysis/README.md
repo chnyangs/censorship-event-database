@@ -9,11 +9,12 @@ the paper / reviewers / contributors actually look at.
 
 | Path | What's there | Regenerate with |
 | --- | --- | --- |
+| [`trigger_registry/`](trigger_registry/) | Pre-admission trigger registry and v0.2 expansion gaps under the declared sampling frame | `make trigger-registry` |
 | [`paper_tables/`](paper_tables/) | The seven paper tables (Tables 1–7) — every number the paper cites comes from here | `make paper-tables` |
-| [`evidence-chains/`](evidence-chains/) | One evidence chain per event (53 files): claim → observations → sources (body_hash) → honest gaps | `make render-evidence-all` |
+| [`evidence-chains/`](evidence-chains/) | One evidence chain per admitted event (51 files): claim → observations → sources (body_hash) → honest gaps | `make render-evidence-all` |
 | [`audit_worksheets/`](audit_worksheets/) | Per-event audit worksheets with hash-verification pre-check + sign-off checkboxes (default: anchor cases) | `make audit-worksheets` |
 | [`operator_census/`](operator_census/) | Multi-repo git-history scan of operator compliance: 8-repo census, 1 OFAC-keyed substrate found (`flashbots/rpc-endpoint`) | `make operator-census` |
-| [`inter_rater/`](inter_rater/) | Cohen's κ infrastructure: stratified blind sample (15 events) + κ report. Coverage-status κ = 0.983 at v0.1. | `make irr-sample` then `make irr-kappa` |
+| [`inter_rater/`](inter_rater/) | Cohen's κ infrastructure: stratified blind sample + κ report. Current values are LLM-assisted self-consistency, not independent-human IRR. | `make irr-sample` then `make irr-kappa` |
 
 ## Top-level files
 
@@ -24,6 +25,10 @@ the paper / reviewers / contributors actually look at.
 | [`review-report.md`](review-report.md) | 5-dimension readiness scoring for every event | `make review` |
 | [`staleness.md`](staleness.md) | Per-citation freshness / 404 sweep | `make staleness` |
 
+L0 OONI query denominator summaries live under
+[`../derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md)
+and regenerate via `make l0-coverage-summary`.
+
 ## What this directory is NOT
 
 - Not the place for raw collection logic — that lives under `../scripts/` and `../sources/`.
@@ -33,6 +38,7 @@ the paper / reviewers / contributors actually look at.
 ## Reproducing the entire surface
 
 ```bash
+make ofac-recent-action-candidates  # only materializes missing OFAC backfill stubs
 make regenerate    # rebuilds dataset, derived/, paper_tables/, evidence-chains/, site/
 make irr-kappa     # only after analysis/inter_rater/<var>_blind.csv recodes are filled
 make operator-census   # only when the public RPC/builder/wallet repos may have changed

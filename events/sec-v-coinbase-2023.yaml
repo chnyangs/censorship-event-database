@@ -1,13 +1,14 @@
 id: sec-v-coinbase-2023
 schema_version: 0.2.0
-status: draft
+status: admitted
 research_stratum: S3_doj_sec_cftc_fiod
-empirical_shape: null_event
-admission_tier: null_case
+empirical_shape: comparison
+admission_tier: empirical_case
 origin: human_authored
 version: "0.1"
 created_at: 2026-04-22T10:45:00Z
-last_verified: 2026-04-22
+last_verified: 2026-05-06
+last_human_audit: 2026-05-06
 
 related_events:
   - sec-v-binance-2023
@@ -33,13 +34,22 @@ trigger:
         in the complaint: SOL, ADA, MATIC, FIL, SAND, AXS, CHZ, FLOW, ICP,
         NEAR, VGX, DASH, NEXO. Filed one calendar day after SEC v. Binance
         2023-06-05 — paired SEC offensive.
+    - type: primary_corporate
+      url: https://www.coinbase.com/en-ca/blog/why-we-stand-by-staking
+      body_hash: sha256:90b5347eccdde2b60faa6097865251cc86e387e6ff04dbedf59f0dddd7d752cb
+      body_path: sources/http_captures/sec-v-coinbase-2023/platform-response/www.coinbase.com__en-ca-blog-why-we-stand-by-staking__c655f5d8a8.html
+      note: |
+        Coinbase post "Why we stand by staking" (2023-07-14) corroborates the
+        2023-06-06 SEC lawsuit date and records same-day state securities
+        proceedings against Coinbase's retail staking services. Used here as
+        the platform-side source for the scoped staking-service reaction below.
   timestamp_sources:
     - type: primary_legal
       note: Day-level timing per SEC press release.
 
 target:
   kind: entity
-  enumeration: subset
+  enumeration: complete
   enumeration_note: |
     Coinbase, Inc. + Coinbase Global, Inc. entity-level action. 13 tokens
     named as securities: SOL, ADA, MATIC, FIL, SAND, AXS, CHZ, FLOW, ICP,
@@ -73,22 +83,79 @@ coverage:
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: not_measured
+    status: measured
+    scope: [coinbase_staking_us_state_scope]
     note: |
-      No admission-grade same-day off-ramp or staking-service state transition
-      is retained. The SEC complaint named Coinbase Stake, but the event file
-      does not carry a platform-side primary artifact showing a 2023-06-06
-      service suspension. No Coinbase operational contrast is retained as an
-      admitted observation until a platform-side artifact is attached.
+      Coinbase retail staking is treated as the measurable exchange/platform
+      service scope. The retained observation covers the July 2023 restriction
+      on staking new funds / additional assets for customers in CA, NJ, SC,
+      and WI after the 2023-06-06 SEC lawsuit and same-day state securities
+      proceedings. It does not imply token delisting, fiat-rail disruption, or
+      a Coinbase.com frontend takedown.
 
-observations: []
+observations:
+  - layer: offramp_cex
+    actor: exchange:coinbase_staking
+    event: retail_staking_new_funds_restricted_in_four_states
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-07-14T00:00:00Z
+    precision: day
+    delta_hours: 912
+    window:
+      - 2023-06-06T00:00:00Z
+      - 2023-07-31T23:59:59Z
+    note: |
+      Coinbase's own blog and Q2 2023 Form 10-Q record a state-scoped staking
+      service restriction following the 2023-06-06 federal SEC lawsuit and
+      same-day state securities proceedings. Attribution is plausible rather
+      than direct to the SEC filing alone because the service restriction was
+      imposed through state regulator notices/orders and July 2023 agreements;
+      the federal SEC action is the paired trigger in the same enforcement
+      episode, not the sole legal mechanism for the state-specific change.
+    sources:
+      - type: primary_corporate
+        url: https://www.coinbase.com/en-ca/blog/why-we-stand-by-staking
+        body_hash: sha256:90b5347eccdde2b60faa6097865251cc86e387e6ff04dbedf59f0dddd7d752cb
+        body_path: sources/http_captures/sec-v-coinbase-2023/platform-response/www.coinbase.com__en-ca-blog-why-we-stand-by-staking__c655f5d8a8.html
+        scope_descriptor:
+          providers: [coinbase_retail_staking]
+          countries: [US]
+          time_window:
+            - 2023-06-06T00:00:00Z
+            - 2023-07-31T23:59:59Z
+          addresses_cohort: coinbase_entity_level
+        note: |
+          Coinbase states that state securities agencies opened same-day
+          proceedings on 2023-06-06 and that California, New Jersey, South
+          Carolina, and Wisconsin required service changes: customers in those
+          states would be unable to stake additional assets while proceedings
+          remained pending.
+      - type: primary_corporate
+        url: https://www.sec.gov/Archives/edgar/data/1679788/000167978823000106/coin-20230630.htm
+        body_hash: sha256:9ebcd65594f67d94e777a94f3427915d1161f72c2b28a24451592835de770f1b
+        body_path: sources/http_captures/sec-v-coinbase-2023/platform-response/www.sec.gov__Archives-edgar-data-1679788-000167978823000106-coin-20230630.htm__fc0eb009da.html
+        note: |
+          Coinbase Q2 2023 Form 10-Q states that in July 2023 Coinbase entered
+          agreements with state securities regulators in California, New
+          Jersey, South Carolina, and Wisconsin under which customers in those
+          states would no longer be able to stake new funds pending final
+          adjudication.
 analysis_notes: |
-  draft comparison candidate — companion SEC civil action to SEC v. Binance
-  (2023-06-05), filed one day apart. Retained as a draft comparison
-  candidate only. The SEC filing establishes the legal trigger and the absence
-  of an asset-freeze request, but this file does not yet carry an
-  admission-grade frontend/platform artifact proving Coinbase.com no-change
-  over the scoped window.
+  comparison — companion SEC civil action to SEC v. Binance (2023-06-05),
+  filed one day apart. The admitted observation is intentionally narrow:
+  Coinbase retail staking saw state-scoped restrictions on staking additional
+  assets / new funds in CA, NJ, SC, and WI after the SEC lawsuit and same-day
+  state securities proceedings. This is not coded as a Coinbase.com frontend
+  change, token delisting, fiat-rail disruption, L1/L3 effect, or on-chain
+  asset freeze.
+
+  The attribution is plausible rather than direct to the SEC alone. The SEC
+  complaint named Coinbase Stake, while the platform-side service restriction
+  was imposed through state notices/orders and July 2023 agreements. This event
+  is therefore a denominator-aware securities-enforcement comparison row: it
+  has a measured CEX/platform-service reaction and explicitly unmeasured
+  frontend/off-ramp/token-listing claims outside that scope.
 
   The 13 named tokens (SOL, ADA, MATIC, FIL, SAND, AXS, CHZ, FLOW, ICP,
   NEAR, VGX, DASH, NEXO) include Solana + Polygon + Cardano — this is the
@@ -97,9 +164,32 @@ analysis_notes: |
   for on-chain addresses). Partially offsets the Solana/Polygon
   representation gap in `docs/chain-coverage-note.md`.
 
-  Earlier drafts asserted a same-day Coinbase staking suspension. That row has
-  been removed because the retained sources establish the SEC charge but not a
-  platform-side state transition on 2023-06-06.
+  Earlier drafts asserted a same-day Coinbase staking suspension. The repaired
+  row does not make that claim: the observed timestamp is the 2023-07-14
+  Coinbase platform disclosure, and the June 6 date is retained as the legal
+  trigger / state-proceeding date.
+
+scoped_claim: |
+  "SEC v. Coinbase is admitted only for a state-scoped Coinbase staking-service
+  restriction; the dataset does not claim a Coinbase.com frontend takedown,
+  named-token delisting, fiat-rail disruption, or on-chain effect."
+
+scoped_knowledge: |
+  What changed: Coinbase retail staking access changed in a limited US state
+  scope. Customers in California, New Jersey, South Carolina, and Wisconsin
+  could no longer stake additional assets / new funds while the state
+  proceedings remained pending; existing staked assets were described as
+  unaffected by the Coinbase platform source.
+
+  What did not change or could not be measured: this event has no target
+  address set and no issuer primitive. The named tokens in the SEC complaint
+  are target tokens in a securities-law theory, not target chains for L1/L3
+  measurement. No admission-grade Coinbase.com frontend diff, fiat-rail
+  disruption, or token-delisting artifact is retained.
+
+  Attribution: plausible to the SEC-centered enforcement episode, direct only
+  to the state regulator notices/orders described by Coinbase and the Q2 2023
+  Form 10-Q. The file therefore avoids claiming SEC-only causation.
 
 tags:
   - sec_enforcement

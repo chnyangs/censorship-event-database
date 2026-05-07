@@ -1,0 +1,50 @@
+id: ofac-recent-action-20231129
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2023-11-29T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20231129
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20231129.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Counter Terrorism Designations; Iran-related Designations; Cyber-related
+    Designation; North Korea Designation | Office of Foreign Assets Control
+  title_listing: Counter Terrorism Designations; Iran-related Designations; Cyber-related
+    Designation; North Korea Designation
+  total_crypto_addresses: 2
+  addresses_by_token:
+    XBT: 2
+  addresses:
+  - token: XBT
+    address: 1JHdQHkBZiim1cb4hyUh2PbzEbbg6z2TrF
+  - token: XBT
+    address: bc1qq7p0es3dv5hcynjjf40f2xjjr6qp5py47d2f6n847vduuq9gvnyq7y9ecd
+  entity_keyword_hits:
+  - sinbad.io
+  - 'sinbad '
+  - mixer
+  cache_present: true
+promoted_event_id:
+- sinbad-ofac-2023
+target:
+  kind: address_set
+  chains:
+  - bitcoin
+  addresses:
+  - 1JHdQHkBZiim1cb4hyUh2PbzEbbg6z2TrF
+  - bc1qq7p0es3dv5hcynjjf40f2xjjr6qp5py47d2f6n847vduuq9gvnyq7y9ecd
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: sinbad-ofac-2023'

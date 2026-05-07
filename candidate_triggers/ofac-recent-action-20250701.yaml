@@ -1,0 +1,44 @@
+id: ofac-recent-action-20250701
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2025-07-01T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20250701
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20250701.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designations; CAATSA - Russia-related Designations; Russia-related
+    Designation Update and Removal | Office of Foreign Assets Control
+  title_listing: Cyber-related Designations; CAATSA - Russia-related Designations;
+    Russia-related Designation Update and Removal
+  total_crypto_addresses: 1
+  addresses_by_token:
+    TRX: 1
+  addresses:
+  - token: TRX
+    address: TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F
+  entity_keyword_hits: []
+  cache_present: true
+promoted_event_id:
+- aeza-group-ofac-2025
+target:
+  kind: address_set
+  chains:
+  - tron
+  addresses:
+  - TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: aeza-group-ofac-2025'

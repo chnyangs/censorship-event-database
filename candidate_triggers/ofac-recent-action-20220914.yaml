@@ -1,0 +1,59 @@
+id: ofac-recent-action-20220914
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2022-09-14T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20220914
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20220914.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designations; Iran-related Designations | Office of Foreign
+    Assets Control
+  title_listing: Cyber-related Designations; Iran-related Designations
+  total_crypto_addresses: 6
+  addresses_by_token:
+    XBT: 6
+  addresses:
+  - token: XBT
+    address: 1H939dom7i4WDLCKyGbXUp3fs9CSTNRzgL
+  - token: XBT
+    address: bc1q3y5v2khlyvemcz042wl98dzflywr8ghglqws6s
+  - token: XBT
+    address: bc1q9lvynkfpaw330uhqmunzdz6gmafsvapv7y3zty
+  - token: XBT
+    address: bc1qpaly5nm7pfka9v92d6qvl4fc2l9xzee8a6ys3s
+  - token: XBT
+    address: bc1qsxf77cvwcd6jv6j8d8j3uhh4g0xqw4meswmwuc
+  - token: XBT
+    address: bc1qx3e2axj3wsfn0ndtvlwmkghmmgm4583nqg8ngk
+  entity_keyword_hits:
+  - ransomware
+  cache_present: true
+promoted_event_id:
+- irgc-ransomware-ofac-2022
+target:
+  kind: address_set
+  chains:
+  - bitcoin
+  addresses:
+  - 1H939dom7i4WDLCKyGbXUp3fs9CSTNRzgL
+  - bc1q3y5v2khlyvemcz042wl98dzflywr8ghglqws6s
+  - bc1q9lvynkfpaw330uhqmunzdz6gmafsvapv7y3zty
+  - bc1qpaly5nm7pfka9v92d6qvl4fc2l9xzee8a6ys3s
+  - bc1qsxf77cvwcd6jv6j8d8j3uhh4g0xqw4meswmwuc
+  - bc1qx3e2axj3wsfn0ndtvlwmkghmmgm4583nqg8ngk
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: irgc-ransomware-ofac-2022'

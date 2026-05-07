@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-04-22` · **Source commit**: `b99dfaf` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-04-27T11:03:02Z`
+**Dataset version**: `0.1.0` · **Dataset cutoff**: `2026-05-06` · **Source commit**: `947f18f` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-05-06T10:56:34Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -75,7 +75,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.1.0` (commit `b99dfaf`).
+1. Clone the repository at tag `v0.1.0` (commit `947f18f`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

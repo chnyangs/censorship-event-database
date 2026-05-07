@@ -1,6 +1,6 @@
 # Archetype distribution report
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `b99dfaf` · generated `2026-04-27T11:03:02Z` (events: 51)
+Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `947f18f` · generated `2026-05-06T10:56:34Z` (events: 53)
 
 ## 1. Classification rules (deterministic, priority-ordered)
 
@@ -25,13 +25,13 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 
 | Archetype | Count | % |
 | --- | ---: | ---: |
-| `asset_only` | 13 | 25.5% |
-| `frontend_only` | 8 | 15.7% |
-| `cex_only` | 13 | 25.5% |
-| `multi_layer` | 4 | 7.8% |
+| `asset_only` | 13 | 24.5% |
+| `frontend_only` | 8 | 15.1% |
+| `cex_only` | 15 | 28.3% |
+| `multi_layer` | 4 | 7.5% |
 | `other_single_layer` | 0 | 0.0% |
-| `null_event` | 13 | 25.5% |
-| **total** | **51** | **100.0%** |
+| `null_event` | 13 | 24.5% |
+| **total** | **53** | **100.0%** |
 
 ### 2a. `multi_layer` signatures
 
@@ -45,11 +45,11 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 
 | Regime | Count | % |
 | --- | ---: | ---: |
-| `synchronous` | 16 | 31.4% |
-| `acute` | 12 | 23.5% |
-| `delayed` | 5 | 9.8% |
-| `lagged` | 5 | 9.8% |
-| `none` | 13 | 25.5% |
+| `synchronous` | 16 | 30.2% |
+| `acute` | 12 | 22.6% |
+| `delayed` | 6 | 11.3% |
+| `lagged` | 6 | 11.3% |
+| `none` | 13 | 24.5% |
 
 ### 2c. Archetype × latency cross-tab
 
@@ -57,7 +57,7 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `asset_only` | 3 | 5 | 2 | 3 | 0 | 13 |
 | `frontend_only` | 4 | 2 | 1 | 1 | 0 | 8 |
-| `cex_only` | 8 | 2 | 2 | 1 | 0 | 13 |
+| `cex_only` | 8 | 2 | 3 | 2 | 0 | 15 |
 | `multi_layer` | 1 | 3 | 0 | 0 | 0 | 4 |
 | `other_single_layer` | 0 | 0 | 0 | 0 | 0 | 0 |
 | `null_event` | 0 | 0 | 0 | 0 | 13 | 13 |
@@ -82,7 +82,7 @@ Up to 5 events per class, selected by admission tier then slug.
 - `chipmixer-doj-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend` · latency `acute` (t=17.1h)
 - `hydra-doj-2022` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 
-### `cex_only`  (13 events)
+### `cex_only`  (15 events)
 
 - `binance-4framework-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `bitzlato-doj-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
@@ -116,7 +116,7 @@ _No events in this class in the current corpus._
 - `null_event` count is 13. Each such event carries at least one `observed_no_change` row whose source supplies a falsifiable evidence anchor — per validator rule, any one of `query_hash`, `measurement_ids`, `body_hash`+`body_path`, or a structured `scope_descriptor` is sufficient (not all four, and not necessarily `scope_descriptor`). Reading the null-event count as 'censorship did not happen' still requires checking the per-layer coverage composition in `derived/layer_observability.csv` — absence of observation is NOT absence of phenomenon.
 - `multi_layer` contains 4 events across 3 distinct signature(s). If signature diversity is low, claims about 'multi-layer cascade heterogeneity' should carry that caveat explicitly.
 - `synchronous` (≤1h) bucket: 16 events. **5 have `trigger_is_action=true`** (all `corporate_policy_change` — trigger.timestamp and observed_change.timestamp are identical in the record, so t=0 is a record-level artifact, not a measured delta): `circle-usdc-tornado-2022`, `tether-doj-pig-butchering-freeze-2023`, `tether-dprk-precommit-freeze-2025`, `tether-retroactive-sweep-2023`, `uniswap-frontend-delisting-2023`. The remaining 11 carry distinct external triggers and observed a change within 1h. When reporting latency distributions, aggregate the two subsets separately rather than collapsing them into a single 'synchronous' count.
-- `lagged` (>30d) bucket: 5 events spanning 3 stratum/strata (S1_ofac_sdn, S3_doj_sec_cftc_fiod, S4_nation_state). The group is heterogeneous in trigger type; consumers citing these events should enumerate them individually rather than treat the bucket as a single mechanism. Events: `cftc-v-ooki-dao-2022`, `india-rbi-crypto-ban-2018`, `russia-election-interference-ofac-2020`, `russian-cyber-theft-ofac-2020`, `tornado-cash-ofac-redesignation-2022`.
+- `lagged` (>30d) bucket: 6 events spanning 3 stratum/strata (S1_ofac_sdn, S3_doj_sec_cftc_fiod, S4_nation_state). The group is heterogeneous in trigger type; consumers citing these events should enumerate them individually rather than treat the bucket as a single mechanism. Events: `cftc-v-ooki-dao-2022`, `india-rbi-crypto-ban-2018`, `russia-election-interference-ofac-2020`, `russian-cyber-theft-ofac-2020`, `sec-v-coinbase-2023`, `tornado-cash-ofac-redesignation-2022`.
 
 ## 5. Hand-eyeball checklist
 

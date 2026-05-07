@@ -1,0 +1,89 @@
+id: ofac-recent-action-20200916
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2020-09-16T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20200916
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20200916.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designations | Office of Foreign Assets Control
+  title_listing: Cyber-related Designations
+  total_crypto_addresses: 12
+  addresses_by_token:
+    XBT: 4
+    ETH: 2
+    XMR: 1
+    LTC: 1
+    ZEC: 1
+    DASH: 1
+    BTG: 1
+    ETC: 1
+  addresses:
+  - token: BTG
+    address: GPwg61XoHqQPNmAucFACuQ5H9sGCDv9TpS
+  - token: DASH
+    address: XnPFsRWTaSgiVauosEwQ6dEitGYXgwznz2
+  - token: ETC
+    address: '0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b'
+  - token: ETH
+    address: '0x7F367cC41522cE07553e823bf3be79A889DEbe1B'
+  - token: ETH
+    address: '0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b'
+  - token: LTC
+    address: LNwgtMxcKUQ51dw7bQL1yPQjBVZh6QEqsd
+  - token: XBT
+    address: 1DDA93oZPn7wte2eR1ABwcFoxUFxkKMwCf
+  - token: XBT
+    address: 1Kys8fqDen8NGFUJ6AFcXfFW5qquuTH4eh
+  - token: XBT
+    address: 1Q6saNmqKkyFB9mFR68Ck8F7Dp7dTopF2W
+  - token: XBT
+    address: 1Q9UAQbcDezmyouFrzt94t4dSMxgsUfW1X
+  - token: XMR
+    address: 5be5543ff73456ab9f2d207887e2af87322c651ea1a873c5b25b7ffae456c320
+  - token: ZEC
+    address: t1g7wowvQ8gn2v8jrU1biyJ26sieNqNsBJy
+  entity_keyword_hits: []
+  cache_present: true
+promoted_event_id:
+- russian-cyber-theft-ofac-2020
+target:
+  kind: address_set
+  chains:
+  - bitcoin_gold
+  - dash
+  - ethereum_classic
+  - ethereum
+  - litecoin
+  - bitcoin
+  - monero
+  - zcash
+  addresses:
+  - GPwg61XoHqQPNmAucFACuQ5H9sGCDv9TpS
+  - XnPFsRWTaSgiVauosEwQ6dEitGYXgwznz2
+  - '0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b'
+  - '0x7F367cC41522cE07553e823bf3be79A889DEbe1B'
+  - '0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b'
+  - LNwgtMxcKUQ51dw7bQL1yPQjBVZh6QEqsd
+  - 1DDA93oZPn7wte2eR1ABwcFoxUFxkKMwCf
+  - 1Kys8fqDen8NGFUJ6AFcXfFW5qquuTH4eh
+  - 1Q6saNmqKkyFB9mFR68Ck8F7Dp7dTopF2W
+  - 1Q9UAQbcDezmyouFrzt94t4dSMxgsUfW1X
+  - 5be5543ff73456ab9f2d207887e2af87322c651ea1a873c5b25b7ffae456c320
+  - t1g7wowvQ8gn2v8jrU1biyJ26sieNqNsBJy
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: russian-cyber-theft-ofac-2020'

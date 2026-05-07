@@ -67,6 +67,26 @@ REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 META_PATH = REPO_ROOT / "dataset.meta.json"
 CITATION_CFF = REPO_ROOT / "CITATION.cff"
 EVENTS_DIR = REPO_ROOT / "events"
+REPRODUCIBLE_PYTHON_ABI = "3.12"
+
+
+def reproducible_python() -> str:
+    """Return the declared Python ABI for byte-stable generated metadata.
+
+    Generated artifacts are expected to reproduce in the pinned Docker/CI
+    runtime. Recording the local patch version would make sidecars differ
+    across developer machines without changing any research result.
+    """
+    return (os.environ.get("REPRODUCIBLE_PYTHON_ABI") or REPRODUCIBLE_PYTHON_ABI).strip()
+
+
+def repo_relative_path(path: pathlib.Path, repo_root: pathlib.Path = REPO_ROOT) -> str:
+    """Render repo-local paths without embedding checkout-specific prefixes."""
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(repo_root.resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def _read_cff_version() -> str:

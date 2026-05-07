@@ -16,9 +16,9 @@ primary-source citations (sha256 `body_hash`); a concrete target
 with admission-grade evidence; and an explicit `scoped_claim` that the
 retained observations support.
 
-Currently **51 admitted events** plus **2 draft repair candidates**;
-every event validates under [`scripts/validate.py`](../scripts/validate.py)
-at schema version 0.2.0. Paper-facing tables use admitted events only.
+Currently **53 admitted events** and no working drafts; every event validates
+under [`scripts/validate.py`](../scripts/validate.py) at schema version
+0.2.0. Paper-facing tables use admitted events only.
 
 ### 1.1 Sampling frame
 
@@ -28,10 +28,13 @@ auditable: **publicly documented crypto censorship events with an
 identifiable legal, regulatory, state, or corporate trigger and at least
 one independently archivable evidence surface**.
 
-"Admitted" is the operative completeness boundary: included rows satisfy
-the schema, source, and evidence-chain gates for this release. The corpus
-does not claim a closed-world exclusion ledger for all events matching a
-stratum.
+"Admitted" is the paper-count boundary: included rows satisfy the schema,
+source, and evidence-chain gates for this release. Selection transparency
+is handled separately by the trigger registry
+([`analysis/trigger_registry/trigger_registry.md`](../analysis/trigger_registry/trigger_registry.md))
+under the declared expansion frame
+([`sampling/frame.yaml`](../sampling/frame.yaml)). Registry gaps are
+backlog, not results.
 
 Included events must have a concrete crypto target and a trigger source
 that can be archived or replayed. Layer-level claims enter the paper only
@@ -40,6 +43,12 @@ on-chain identifiers, measurement query hashes, or pinned measurement
 artifacts. This makes the corpus usable as a reproducible measurement
 asset, but row counts must not be read as population prevalence over all
 censorship events.
+
+Layer-rate denominators are visible in
+[`derived/coverage_matrix.md`](../derived/coverage_matrix.md). Rows marked
+as `observability_gap`, `named_partial_only_no_conditional_rate`, or
+`descriptive_only_structural_circularity_v0_1` cannot support conditional
+rates.
 
 Events are excluded or left as future work when the only evidence is
 private compliance telemetry, rumor-only social media, inaccessible paid
@@ -52,7 +61,7 @@ using any output for anything consequential.
 
 ### 2.1 Not a predictive model
 
-With 51 admitted events across 6 research strata × 6 cascade layers × multiple
+With 53 admitted events across 6 research strata × 6 cascade layers × multiple
 time windows, **the statistical power for causal inference is low**. We
 publish descriptive patterns ("across N historical OFAC mixer
 designations, the canonical frontend was taken down within 48 hours in
@@ -92,13 +101,15 @@ and in each event's `coverage[].note` fields. Key structural gaps:
   corpus, `l0_network` is therefore an **observability gap**, not an
   attested-negative layer: `derived/layer_observability.*` currently
   shows no measured denominator and no admitted `observed_change` or
-  `observed_no_change` rows at L0. Any L0 discussion in downstream tools
-  must be framed as "not measured here", not as evidence that network-
-  layer reactions did not occur.
+  `observed_no_change` rows at L0, while
+  [`derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md)
+  records all 23 query windows as `no_ooni_measurements`. Any L0
+  discussion in downstream tools must be framed as "not measured here",
+  not as evidence that network-layer reactions did not occur.
 - **Solana / Polygon / BNB Chain**: no events in the dataset target
-  addresses on these chains. This reflects the actual BTC/ETH/TRON
-  dominance of OFAC SDN practice, not a sampling omission — but
-  downstream claims should not be extrapolated to those chains.
+  addresses on these chains. This is an observed feature of the current
+  admitted corpus and source frame, not proof of complete chain-level
+  absence; downstream claims should not be extrapolated to those chains.
 - **Private compliance signals**: issuer internal intelligence, CEX
   KYT flags, and law-enforcement private channels are outside scope.
   Events coded `observed_no_change` at `offramp_cex` record the
@@ -147,7 +158,7 @@ methodology remains interoperable**.
 ### 3.3 Secondary: Legal & policy analysis
 
 For amicus briefs, expert reports, regulatory-comment letters, or
-policy white papers. The expected usage pattern is: identify
+policy white papers. The supported workflow is: identify
 comparable historical events via `find_comparable_cases.py`; read the
 full event YAMLs; independently verify the primary sources via the
 published `body_hash`; then *your own expert* assembles the argument.

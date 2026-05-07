@@ -17,6 +17,8 @@ DATASET_META    ?= dataset.meta.json
 DERIVED_DIR     ?= derived
 SITE_DIR        ?= site
 EVIDENCE_DIR    ?= analysis/evidence-chains
+TRIGGER_REGISTRY_DIR ?= analysis/trigger_registry
+SOURCE_MANIFEST_PREFIX ?= sources/source_manifest
 
 # ---- Framework Layer B (case-based retrieval) inputs ----
 # Override when querying: make compare LIKE=sinbad-ofac-2023 TOP=5
@@ -28,12 +30,12 @@ COMPARE_OUT ?= -
 
 .PHONY: help \
     validate schema-check validate-citations validate-archives verify-citations freshness \
-    draft-gaps status review staleness dataset \
-    event-metrics layer-observability archetypes \
+    draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry source-manifest \
+    event-metrics layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
     admission-sensitivity jurisdiction derived \
     audit-worksheets paper-tables paper-check test \
     render-site render-evidence render-evidence-all compare \
-    ooni-scan usdt-scan operator-census capture \
+    ooni-scan l0-query-metadata usdt-scan operator-census capture \
     irr-sample irr-kappa \
     check check-network check-all \
     regenerate clean
@@ -54,14 +56,20 @@ help:
 	    'make review                # write $(REVIEW_JSON) + $(REVIEW_MD)' \
 	    'make staleness             # write $(STALENESS_JSON) + $(STALENESS_MD)' \
 	    'make dataset               # rebuild $(DATASET_JSON) + $(DATASET_CSV) + $(DATASET_META)' \
+	    'make ofac-recent-action-candidates # materialize OFAC backfill stubs from cached triage' \
+	    'make trigger-registry      # pre-admission trigger registry + sampling-frame gaps' \
+	    'make source-manifest       # hash manifest for local source artifacts under sources/' \
 	    '' \
 	    '### Derived research layer (→ $(DERIVED_DIR)/)' \
 	    'make event-metrics         # per-event metrics panel (cascade breadth/speed/source strength)' \
 	    'make layer-observability   # coverage-aware per-layer observability table (denominator-honest)' \
 	    'make archetypes            # rule-based archetype classifier + archetype_distribution.md' \
+	    'make coverage-matrix       # explicit event×layer denominator eligibility surface' \
+	    'make l0-coverage-summary   # denominator-aware OONI query summary for L0 artifacts' \
+	    'make l3-provider-census    # L3 provider/event denominator census; no v0.1 rate' \
 	    'make admission-sensitivity # strict/current/permissive admission-rubric ablation' \
 	    'make jurisdiction          # jurisdictional composition of the admitted corpus (Table 7)' \
-	    'make derived               # all three derived artifacts in one shot' \
+	    'make derived               # all derived research artifacts in one shot' \
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
 	    'make paper-check           # paper-facing claim/table/audit-coherence checks' \
@@ -76,6 +84,7 @@ help:
 	    '' \
 	    '### Data collection (targeted)' \
 	    'make ooni-scan             # OONI Explorer batch query for L0 substrate' \
+	    'make l0-query-metadata     # backfill query-cell metadata into legacy OONI artifacts' \
 	    'make usdt-scan             # usdtbanlist.com batch scan across all events' \
 	    'make operator-census       # multi-repo git-history scan of operator compliance' \
 	    'make irr-sample            # stratified blind sample for inter-rater reliability' \
@@ -124,6 +133,18 @@ staleness:
 dataset:
 	$(PYTHON) scripts/build_dataset.py --json-out $(DATASET_JSON) --csv-out $(DATASET_CSV) --meta-out $(DATASET_META)
 
+ofac-recent-action-candidates:
+	$(PYTHON) scripts/materialize_ofac_recent_action_candidates.py
+
+trigger-registry: dataset
+	$(PYTHON) scripts/build_trigger_registry.py --out-dir $(TRIGGER_REGISTRY_DIR)
+
+source-manifest: dataset
+	$(PYTHON) scripts/build_source_manifest.py --out-prefix $(SOURCE_MANIFEST_PREFIX)
+
+l3-provider-census:
+	$(PYTHON) scripts/build_l3_provider_census.py --out-dir $(DERIVED_DIR)
+
 event-metrics:
 	$(PYTHON) scripts/build_event_metrics.py --out-dir $(DERIVED_DIR)
 
@@ -132,6 +153,12 @@ layer-observability:
 
 archetypes:
 	$(PYTHON) scripts/assign_archetypes.py --out-dir $(DERIVED_DIR)
+
+coverage-matrix: dataset
+	$(PYTHON) scripts/build_coverage_matrix.py --out-dir $(DERIVED_DIR)
+
+l0-coverage-summary:
+	$(PYTHON) scripts/build_l0_coverage_summary.py --out-dir $(DERIVED_DIR)
 
 # Admission-protocol sensitivity ablation: recomputes the per-layer
 # change rate under strict/current/permissive admission rubrics and
@@ -164,12 +191,12 @@ audit-worksheets:
 # number in the paper must come from this artifact at a given
 # source_commit.
 ifndef SOURCE_DATE_EPOCH
-paper-tables paper-check: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+paper-tables paper-check source-manifest: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
 
-paper-check: paper-tables
+paper-check: trigger-registry source-manifest paper-tables
 	$(PYTHON) scripts/check_paper_readiness.py --strict-audit
 
 # Pytest suite for classifier / coverage-numerator / recovery-filter /
@@ -181,7 +208,10 @@ test:
 
 # Umbrella target: rebuild every derived artifact (dataset.meta.json must
 # land first so downstream scripts read the latest version/cutoff).
-derived: dataset event-metrics layer-observability archetypes admission-sensitivity jurisdiction
+ifndef SOURCE_DATE_EPOCH
+derived coverage-matrix trigger-registry: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+endif
+derived: dataset event-metrics layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census admission-sensitivity jurisdiction
 	@echo "[derived] all derived artifacts rebuilt under $(DERIVED_DIR)/"
 
 # ---- Static site + framework ----
@@ -220,6 +250,9 @@ compare:
 ooni-scan:
 	$(PYTHON) scripts/ooni_batch_query.py --domains-file scripts/ooni_domains.json
 
+l0-query-metadata:
+	$(PYTHON) scripts/backfill_l0_query_metadata.py
+
 usdt-scan:
 	$(PYTHON) scripts/batch_usdtbanlist_check.py
 
@@ -248,7 +281,7 @@ capture:
 ifndef SOURCE_DATE_EPOCH
 check: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
-check: test validate schema-check draft-gaps status review staleness paper-check
+check: test validate schema-check draft-gaps status review staleness trigger-registry source-manifest paper-check
 
 check-network: verify-citations freshness
 
@@ -263,7 +296,7 @@ check-all: check check-network
 ifndef SOURCE_DATE_EPOCH
 regenerate: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
-regenerate: dataset event-metrics layer-observability archetypes \
+regenerate: validate schema-check dataset trigger-registry source-manifest event-metrics layer-observability archetypes coverage-matrix \
             admission-sensitivity jurisdiction \
             paper-tables status review staleness \
             render-site render-evidence-all audit-worksheets paper-check

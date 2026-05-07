@@ -15,8 +15,8 @@ panel. Consumers read the rubric as a vector / radar, never as a rank.
 Inputs:
 - **Stack features** (architectural facts, v0.1 per-stack snapshot) —
   see [`stack-features-schema.md`](stack-features-schema.md)
-- **Archetype frequencies** (how often each layer-pattern cascade has
-  been observed in the evidence corpus) — see
+- **Archetype counts** (admitted-corpus counts for each observed
+  layer-pattern class) — see
   `derived/event_archetypes.*` and `derived/layer_observability.*`
 - **Coverage denominators** (what we've measured vs what's an
   observability gap) — see `derived/layer_observability.*`
@@ -29,7 +29,7 @@ Output:
 
 Three reasons, in decreasing order of importance:
 
-1. **Sample size**. 51 admitted events across 5–6 archetypes; many
+1. **Sample size**. 53 admitted events across 5–6 archetypes; many
    archetype × stack-type cells will have n < 5. Numeric scores invite
    downstream arithmetic (averaging, ratio-taking) that the cells do
    not support.
@@ -99,9 +99,10 @@ primary_asset_admin_scope."
 - `medium` = one of the three
 - `low` = none
 
-The layer-observability data (100% conditional change on measured
-asset layers) means *any* freeze-capable dependency in the stack should
-be taken seriously — this heuristic is deliberately conservative.
+The paper-facing layer tables retract a conditional `asset_onchain` rate
+because asset rows are structurally circular for freezeable targets.
+Treat freeze-capable dependency as an architectural exposure flag, not
+as a measured prevalence or conditional-change estimate.
 
 ### C. Off-ramp Enforcement Exposure
 
@@ -124,8 +125,8 @@ multi-layer archetype frequency and `cex_exit_dependency`."
 ### D. Coordination Surface Density
 
 **Claim form**: "Stack X exhibits *level* cross-layer coordination
-potential — how many upper-layer choke points *co-exist* and could be
-triggered by a single action."
+potential — how many upper-layer choke points *co-exist* and resemble
+multi-layer patterns already observed in the admitted corpus."
 
 **This is the only dimension that reads the *multi_layer* signature
 distribution directly**. Not a simple count of features — a measure of

@@ -1,6 +1,6 @@
 # Audit worksheet — `cryptex-ofac-2024`
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-04-22` · commit `b99dfaf` · generated `2026-04-27T11:03:02Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `947f18f` · generated `2026-05-06T10:56:34Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S1_ofac_sdn`

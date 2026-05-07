@@ -1,0 +1,45 @@
+id: ofac-recent-action-20251119
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2025-11-19T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20251119
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20251119.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designations; CAATSA - Russia-related Designations; Issuance
+    of Russia-related Frequently Asked Question | Office of Foreign Assets Control
+  title_listing: Cyber-related Designations; CAATSA - Russia-related Designations;
+    Issuance of Russia-related Frequently Asked Question
+  total_crypto_addresses: 1
+  addresses_by_token:
+    XBT: 1
+  addresses:
+  - token: XBT
+    address: 18dLDAWi8LmrHbEq3QzDJb9SLxCf4uimXB
+  entity_keyword_hits:
+  - ransomware
+  cache_present: true
+promoted_event_id:
+- russian-cybercrime-infra-ofac-2025
+target:
+  kind: address_set
+  chains:
+  - bitcoin
+  addresses:
+  - 18dLDAWi8LmrHbEq3QzDJb9SLxCf4uimXB
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: russian-cybercrime-infra-ofac-2025'

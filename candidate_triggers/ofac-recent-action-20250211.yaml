@@ -1,0 +1,52 @@
+id: ofac-recent-action-20250211
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2025-02-11T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20250211
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20250211.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designations | Office of Foreign Assets Control
+  title_listing: Cyber-related Designations
+  total_crypto_addresses: 4
+  addresses_by_token:
+    XBT: 4
+  addresses:
+  - token: XBT
+    address: 1Gekw8ACSs37oXcc5XQHvoux3iKoVFtpF4
+  - token: XBT
+    address: 1M5N4sJ1NHb4fviLVZA5MZLKhLZqU4CPZz
+  - token: XBT
+    address: 3FfRvC3kSo2SxiQe5e7SSuNdegwgq8iusL
+  - token: XBT
+    address: bc1q4yzd2rjmshm8ucrwy6dzj5rna20j0zlf8hf8vz
+  entity_keyword_hits:
+  - ransomware
+  cache_present: true
+promoted_event_id:
+- zservers-ofac-2025
+target:
+  kind: address_set
+  chains:
+  - bitcoin
+  addresses:
+  - 1Gekw8ACSs37oXcc5XQHvoux3iKoVFtpF4
+  - 1M5N4sJ1NHb4fviLVZA5MZLKhLZqU4CPZz
+  - 3FfRvC3kSo2SxiQe5e7SSuNdegwgq8iusL
+  - bc1q4yzd2rjmshm8ucrwy6dzj5rna20j0zlf8hf8vz
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: zservers-ofac-2025'

@@ -6,8 +6,12 @@
     "empirical_shape",
     "admission_tier",
     "applicable_layer_count",
+    "coverage_denominator_layer_count",
+    "non_na_layer_count",
     "changed_layer_count",
+    "coverage_matched_changed_layer_count",
     "cascade_breadth",
+    "non_na_cascade_breadth",
     "time_to_first_change_hours",
     "time_to_last_change_hours",
     "cascade_span_hours",
@@ -31,17 +35,17 @@
     "target_is_privacy_tool"
   ],
   "dataset_snapshot": {
-    "cutoff_date": "2026-04-22",
+    "cutoff_date": "2026-05-06",
     "dataset_version": "0.1.0",
     "schema_version": "0.2.0",
-    "source_commit": "b99dfaf"
+    "source_commit": "947f18f"
   },
-  "event_count": 51,
-  "generated_at": "2026-04-27T11:03:02Z",
+  "event_count": 53,
+  "generated_at": "2026-05-06T10:56:34Z",
   "generator": {
-    "python": "3.14.4",
+    "python": "3.12",
     "script": "scripts/build_event_metrics.py",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
-  "notes": "Derived metrics. Evidence layer (events/*.yaml) is the source of truth; this artifact is a pure function of it. Regenerate with `make event-metrics`. Archetype / signature / latency-regime labels live in derived/event_archetypes.json (join on event_id)."
+  "notes": "Derived metrics. Evidence layer (events/*.yaml) is the source of truth; this artifact is a pure function of it. Regenerate with `make event-metrics`. Archetype / signature / latency-regime labels live in derived/event_archetypes.json (join on event_id). `cascade_breadth` is coverage-matched: changed layers only count when their coverage is measured or partially_measured. `non_na_cascade_breadth` is retained only for legacy descriptive comparison when no non-NA layer has status not_measured; otherwise it is blank to avoid treating unmeasured layers as zeros."
 }

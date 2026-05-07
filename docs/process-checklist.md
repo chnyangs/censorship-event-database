@@ -11,17 +11,20 @@ See [methodology §3](methodology.md) for full criteria. Quick reference:
 | `draft` | any trigger source placeholder, missing admission-grade evidence, or incomplete coverage | evidence upgraded, or case re-scoped to `rejected` |
 | `observation_active` | trigger is primary and archived; target is concrete; reviewer accepted | stabilization reached, or 12-month hard cap |
 | `observation_closed` | window closed and all touched layers stable (or hard cap hit) | promoted to `admitted`, sent back to `draft`, or marked `rejected` |
-| `admitted` | release-grade: no placeholders, no `coverage_gap` observations, source rule satisfied, coverage explicit for all layers, ≥ 1 `observed_change`, validator passes | normally terminal; retracted only under the correction protocol ([methodology §8.5](methodology.md)) |
+| `admitted` | release-grade: no placeholders, no `coverage_gap` observations, source rule satisfied, coverage explicit for all layers, at least one admission-grade `observed_change` or anchored `observed_no_change`, validator passes | normally terminal; retracted only under the correction protocol ([methodology §8.5](methodology.md)) |
 | `rejected` | trigger real but target ambiguous, attribution undefensible, or evidence too weak | terminal |
 
 ## 2. Event construction — step-by-step
 
-1. Create stub from `templates/event.yaml` or `python3 scripts/new_event.py <slug>`.
-2. Fill `trigger`, `target`, `jurisdiction`.
-3. Fill `coverage[]` for **all six layers** before adding any interpretive claim. Speculative work stays in coverage notes, not in observations.
-4. Add only `observations[]` entries that are already evidence-backed per [methodology §5](methodology.md).
-5. For any current-state web evidence, capture a local bundle: `python3 scripts/capture_http_artifact.py --output-dir sources/http_captures/<slug>/... <url...>`.
-6. QA loop (§3 below).
+1. Create or update a trigger stub under `candidate_triggers/` so the
+   pre-admission registry records the selection decision.
+2. Create event YAML from `templates/event.yaml` or
+   `python3 scripts/new_event.py <slug>` when the trigger is promoted.
+3. Fill `trigger`, `target`, `jurisdiction`.
+4. Fill `coverage[]` for **all six layers** before adding any interpretive claim. Speculative work stays in coverage notes, not in observations.
+5. Add only `observations[]` entries that are already evidence-backed per [methodology §5](methodology.md).
+6. For any current-state web evidence, capture a local bundle: `python3 scripts/capture_http_artifact.py --output-dir sources/http_captures/<slug>/... <url...>`.
+7. QA loop (§3 below).
 
 ## 3. QA command sequence
 
@@ -33,6 +36,8 @@ make verify-citations EVENTS=events/<slug>.yaml  # when network is available
 make draft-gaps
 make status
 make review
+make trigger-registry
+make coverage-matrix
 ```
 
 Interpret `review_report.py` output conservatively:
@@ -53,12 +58,13 @@ Every item must be true at the moment of promotion:
 1. All URLs and artifact references are concrete.
 2. No note contains `placeholder`, `replace`, `need`, `still needs`, or similar TODO language.
 3. Every `observed_change` has admission-grade sources ([methodology §5](methodology.md)).
-4. Any layer without enough evidence is expressed as `coverage` only, not as a weak observation.
-5. `analysis_notes` describes the event actually present in the file, not the intended future version.
-6. `review_report.py` does not rate `observation_reliability` or `attribution_reliability` as `low`.
-7. If `release_ready_scoped`, `analysis_notes` states the narrow empirical claim in plain language.
-8. Any current-state web claim relied on for admission has a local capture bundle or equivalent archival artifact.
-9. If `review_report.py` returns `admitted_scope_blocked`, do not publish the case as release-ready; use it only in repair queues or explicitly marked appendices until blockers clear.
+4. If the event is a `null_case`, it has at least one `observed_no_change` row with an explicit measured or partially measured scope and one replayable evidence anchor (`body_hash`+`body_path`, `query_hash`, or `measurement_ids`). A `scope_descriptor` can define the covered scope, but it is not by itself a replayable evidence anchor.
+5. Any layer without enough evidence is expressed as `coverage` only, not as a weak observation.
+6. `analysis_notes` describes the event actually present in the file, not the intended future version.
+7. `review_report.py` does not rate `observation_reliability` or `attribution_reliability` as `low`.
+8. If `release_ready_scoped`, `analysis_notes` states the narrow empirical claim in plain language.
+9. Any current-state web claim relied on for admission has a local capture bundle or equivalent archival artifact.
+10. If `review_report.py` returns `admitted_scope_blocked`, do not publish the case as release-ready; use it only in repair queues or explicitly marked appendices until blockers clear.
 
 ## 5. Release posture
 

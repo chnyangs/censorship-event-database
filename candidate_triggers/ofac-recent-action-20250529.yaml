@@ -1,0 +1,47 @@
+id: ofac-recent-action-20250529
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2025-05-29T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20250529
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20250529.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designations | Office of Foreign Assets Control
+  title_listing: Cyber-related Designations
+  total_crypto_addresses: 2
+  addresses_by_token:
+    ETH: 1
+    TRX: 1
+  addresses:
+  - token: ETH
+    address: '0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510'
+  - token: TRX
+    address: TNmRfnSUXZoWWzxcDDbf95eGQYXt1mJDt8
+  entity_keyword_hits: []
+  cache_present: true
+promoted_event_id:
+- funnull-cdn-ofac-2025
+target:
+  kind: address_set
+  chains:
+  - ethereum
+  - tron
+  addresses:
+  - '0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510'
+  - TNmRfnSUXZoWWzxcDDbf95eGQYXt1mJDt8
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: funnull-cdn-ofac-2025'

@@ -28,7 +28,11 @@ points at the authoritative source of truth in the repo rather than restating it
   identifiable legal, regulatory, state, or corporate trigger and at least one
   independently archivable evidence surface. This is not a population sample of
   all censorship events; it is an evidence-bearing frame for reproducible
-  measurement. See [limitations-and-use.md §1.1](limitations-and-use.md#11-sampling-frame).
+  measurement. The declared expansion frame lives in
+  [../sampling/frame.yaml](../sampling/frame.yaml), and the generated
+  trigger registry lives in
+  [../analysis/trigger_registry/trigger_registry.md](../analysis/trigger_registry/trigger_registry.md).
+  See [limitations-and-use.md §1.1](limitations-and-use.md#11-sampling-frame).
 - **Per-instance fields**: governed by [../schema/event.schema.json](../schema/event.schema.json).
 - **Labels**: `research_stratum` (S1–S6 trigger family), `empirical_shape`
   (cascade / comparison / null_event), `admission_tier` (anchor / empirical /
@@ -37,7 +41,9 @@ points at the authoritative source of truth in the repo rather than restating it
   deliberately included to avoid survivorship bias.
 - **Missingness**: every layer is explicitly accounted for — `measured` /
   `partially_measured` / `not_measured` / `not_applicable`. Missing fields are
-  a validation error, not a silent gap (README §10.5).
+  a validation error, not a silent gap (README §10.5). The generated
+  [coverage matrix](../derived/coverage_matrix.md) is the event-by-layer
+  denominator surface.
 
 ## 3. Collection process
 
@@ -45,6 +51,11 @@ points at the authoritative source of truth in the repo rather than restating it
   court PACER filings, exchange press releases, and on-chain receipts; semi-
   primary from published measurement datasets (Wahrstätter / relayscan CSVs,
   OONI Explorer, Censored Planet) and Wayback snapshots.
+- **Pre-admission backfills**: OFAC recent-actions triage is materialized
+  into `candidate_triggers/` by
+  `scripts/materialize_ofac_recent_action_candidates.py`; promoted rows link
+  back to existing event YAMLs, while rejected rows remain visible for
+  selection transparency.
 - **Admission protocol**: one `primary_*` source OR two independent
   `semi_primary_*` sources per layer-level observation. `supporting_*` never
   satisfies admission alone. `asset_onchain` accepts one `primary_onchain`.
@@ -62,6 +73,11 @@ points at the authoritative source of truth in the repo rather than restating it
 
 - YAML files are the ground truth. `build_dataset.py` emits the JSON and CSV
   release artifacts deterministically from those YAMLs.
+- `build_trigger_registry.py` emits the pre-admission selection surface from
+  `events/*.yaml` plus `candidate_triggers/*.yaml`.
+- `build_coverage_matrix.py` emits one row per event-layer pair and labels
+  whether the row can support a conditional rate, a sensitivity-only partial
+  denominator, or only an observability-gap/descriptive statement.
 - Timestamps stored in UTC ISO-8601; `precision` enum documents the claimed
   granularity (`second`–`week`); the validator ensures `delta_hours` matches
   the trigger-to-observation gap within the stated tolerance.
@@ -111,7 +127,7 @@ Example citation form (footnote-safe):
 > (`circle_usdc address_blacklisted`, `attribution: direct`, source
 > `primary_onchain` tx `0xa613…dd9`, `body_hash sha256:3696…65` [^1]).
 >
-> [^1]: Cross-Layer Censorship Event Database v0.1.0, cutoff 2026-04-22,
+> [^1]: Cross-Layer Censorship Event Database v0.1.0, cutoff 2026-05-06,
 >       event `tornado-cash-ofac-2022`, observation
 >       `asset_onchain/circle_usdc/address_blacklisted`. See
 >       [CITATION.cff](../CITATION.cff) for the canonical citation record.
@@ -127,7 +143,7 @@ they've been through admission review. Examples that stay within scope:
 - **Cascade-shape claim** — "cross-layer reactions were observed on at
   least three layers within 72 hours." Backed by the per-layer observation
   tallies. Safe when restated in layer-count terms.
-- **Distribution claim** — "among 51 admitted events, 36 satisfy the
+- **Distribution claim** — "among 53 admitted events, 38 satisfy the
   `comparison` shape (1–2 observed-change layers) and only 2 satisfy the
   `cascade` shape (≥3)." Safe *if* you carry the dataset version + cutoff
   so readers understand which admitted release slice you counted.
@@ -135,7 +151,7 @@ they've been through admission review. Examples that stay within scope:
 What the data does **not** support:
 
 - **Probabilistic forecasts** about future events of the same trigger type.
-  With 51 admitted events across 6 strata, the per-cell sample is too small.
+  With 53 admitted events across 6 strata, the per-cell sample is too small.
 - **Individualised covered-party determinations.** The dataset records
   what happened to listed targets; it does not opine on whether a
   particular future action falls under a regulator's authority.

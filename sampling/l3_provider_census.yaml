@@ -1,0 +1,193 @@
+# SPDX-License-Identifier: CC-BY-4.0
+schema_version: 0.1.0
+
+name: v0_1_l3_rpc_provider_denominator_census
+purpose: >
+  Provider/event-window surface used to explain why v0.1 L3 RPC observations
+  remain named partial evidence rather than a measured provider-universe rate.
+
+event_windows:
+  tornado-cash-ofac-2022:
+    trigger_date: 2022-08-08
+    window_start: 2022-08-07
+    window_end: 2022-10-03
+    target: Tornado Cash pool addresses designated by OFAC.
+  tornado-cash-ofac-delisting-2025:
+    trigger_date: 2025-03-21
+    window_start: 2025-03-20
+    window_end: 2025-05-16
+    target: Tornado Cash pool addresses removed from OFAC SDN.
+
+providers:
+  - provider_id: flashbots_rpc_endpoint
+    provider_name: Flashbots RPC endpoint / Protect
+    surface_type: public_git_filter_file
+    public_endpoint: https://rpc.flashbots.net
+    public_replay_possible: partial_git_history
+    docs_surface:
+      - sources/http_captures/_shared/l3-rpc-filter-list/manifest.json
+    git_filter_file: flashbots/rpc-endpoint::server/ofacblacklist.go
+    event_windows:
+      tornado-cash-ofac-2022:
+        docs_bracketed: true
+        git_filter_file: true
+        event_specific_artifact: true
+        artifact_ref: analysis/operator_census/README.md
+        denominator_class: named_partial_only_no_conditional_rate
+        rate_eligible: false
+        denominator_reason: >
+          Target-specific public-git substrate exists, but v0.1 does not
+          enumerate and probe the public RPC provider universe.
+      tornado-cash-ofac-delisting-2025:
+        docs_bracketed: true
+        git_filter_file: true
+        event_specific_artifact: true
+        artifact_ref: analysis/operator_census/README.md
+        denominator_class: named_partial_only_no_conditional_rate
+        rate_eligible: false
+        denominator_reason: >
+          Target-specific public-git deletion exists, but v0.1 does not
+          enumerate and probe the public RPC provider universe.
+
+  - provider_id: mev_blocker
+    provider_name: MEV Blocker
+    surface_type: archived_public_docs
+    public_endpoint: https://rpc.mevblocker.io
+    public_replay_possible: docs_only
+    docs_surface:
+      - sources/http_captures/_shared/l3-rpc-filter-list/manifest.json
+    event_windows:
+      tornado-cash-ofac-2022:
+        docs_bracketed: true
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: sources/http_captures/_shared/l3-rpc-filter-list/manifest.json
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Archived documentation establishes a public RPC-like substrate, but
+          no event-specific rejection, filter-list diff, or before/after probe
+          set exists in v0.1.
+      tornado-cash-ofac-delisting-2025:
+        docs_bracketed: true
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: sources/http_captures/_shared/l3-rpc-filter-list/manifest.json
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Archived documentation establishes a public RPC-like substrate, but
+          no event-specific rejection, filter-list diff, or before/after probe
+          set exists in v0.1.
+
+  - provider_id: infura
+    provider_name: Infura
+    surface_type: provider_docs_tos_status
+    public_endpoint: https://mainnet.infura.io
+    public_replay_possible: requires_api_key
+    docs_surface: []
+    event_windows:
+      tornado-cash-ofac-2022:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider is in the future measurement frame, but v0.1 has no
+          archived event-window probe or target-specific provider artifact.
+      tornado-cash-ofac-delisting-2025:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider is in the future measurement frame, but v0.1 has no
+          archived event-window probe or target-specific provider artifact.
+
+  - provider_id: alchemy
+    provider_name: Alchemy
+    surface_type: provider_docs_tos_status
+    public_endpoint: https://eth-mainnet.g.alchemy.com
+    public_replay_possible: requires_api_key
+    docs_surface: []
+    event_windows:
+      tornado-cash-ofac-2022:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider is in the future measurement frame, but v0.1 has no
+          archived event-window probe or target-specific provider artifact.
+      tornado-cash-ofac-delisting-2025:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider is in the future measurement frame, but v0.1 has no
+          archived event-window probe or target-specific provider artifact.
+
+  - provider_id: quicknode
+    provider_name: QuickNode
+    surface_type: provider_docs_tos_status
+    public_endpoint: https://docs.quicknode.com
+    public_replay_possible: requires_account
+    docs_surface: []
+    event_windows:
+      tornado-cash-ofac-2022:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider is in the future measurement frame, but v0.1 has no
+          archived event-window probe or target-specific provider artifact.
+      tornado-cash-ofac-delisting-2025:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider is in the future measurement frame, but v0.1 has no
+          archived event-window probe or target-specific provider artifact.
+
+  - provider_id: public_rpc_long_tail
+    provider_name: Ankr / Chainstack / Pocket / GetBlock / BlastAPI class
+    surface_type: listed_future_provider_class
+    public_endpoint: multiple
+    public_replay_possible: mixed_public_private
+    docs_surface: []
+    event_windows:
+      tornado-cash-ofac-2022:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider class is named in the future frame, but v0.1 has no
+          endpoint-level event-window probe universe.
+      tornado-cash-ofac-delisting-2025:
+        docs_bracketed: false
+        git_filter_file: false
+        event_specific_artifact: false
+        artifact_ref: docs/data-sources.md
+        denominator_class: observability_gap
+        rate_eligible: false
+        denominator_reason: >
+          Provider class is named in the future frame, but v0.1 has no
+          endpoint-level event-window probe universe.

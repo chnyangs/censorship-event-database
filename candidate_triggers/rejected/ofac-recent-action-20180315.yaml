@@ -1,0 +1,32 @@
+id: ofac-recent-action-20180315
+registry_status: screened_no_extractor_target
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2018-03-15T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20180315
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20180315.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: no_crypto_content
+  page_title: CAATSA - Russia-related Designations; Cyber-related Designations and
+    Designations Updates; Russia/Ukraine-related Designations Updates; Issuance of
+    Cyber-related General License 1A; Updated FAQs | Office of Foreign Assets Control
+  title_listing: CAATSA - Russia-related Designations; Cyber-related Designations
+    and Designations Updates; Russia/Ukraine-related Designations Updates; Issuance
+    of Cyber-related General License 1A; Updated FAQs
+  total_crypto_addresses: 0
+  addresses_by_token: {}
+  addresses: []
+  entity_keyword_hits: []
+  cache_present: true
+rejection_reason: OFAC recent-action sweep row did not expose a concrete crypto target
+  under the current keyword/address extractor.
+triage_notes: Systematic OFAC backfill retained for selection transparency, but not
+  counted as an in-frame trigger because the extractor found no concrete crypto target.

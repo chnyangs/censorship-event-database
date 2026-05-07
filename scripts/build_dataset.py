@@ -28,7 +28,7 @@ dataset.meta.json schema (stable, do not break without a CHANGELOG entry):
     "generator": {
       "script":  "scripts/build_dataset.py",
       "version": "1.0.0",
-      "python":  "3.12.x"
+      "python":  "3.12"
     },
     "citation_hint":
       "Yang X. (2026). Cross-Layer Censorship Event Database (version 0.1.0). [DOI placeholder]. https://github.com/chnyangs/censorship-event-database"
@@ -40,8 +40,8 @@ from __future__ import annotations
 import argparse
 import collections
 import csv
+import hashlib
 import json
-import platform
 import subprocess
 import sys
 from datetime import date, datetime, timezone
@@ -51,7 +51,7 @@ from typing import Any
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _dataset_meta import now_utc_iso  # noqa: E402
+from _dataset_meta import now_utc_iso, reproducible_python  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -61,6 +61,19 @@ CITATION_CFF = REPO_ROOT / "CITATION.cff"
 GENERATOR_VERSION = "1.0.0"
 DATASET_NAME = "censorship-event-database"
 DATASET_URL = "https://github.com/chnyangs/censorship-event-database"
+SOURCE_INPUT_GLOBS = [
+    "CITATION.cff",
+    "Makefile",
+    "candidate_triggers/**/*.yaml",
+    "docs/**/*.md",
+    "events/*.yaml",
+    "sampling/*.yaml",
+    "schema/*.json",
+    "schema/*.yaml",
+    "scripts/*.py",
+    "sources/operator_census/candidates.yaml",
+    "sources/l0_datasets/_summary.json",
+]
 
 
 def parse_args() -> argparse.Namespace:
@@ -140,6 +153,67 @@ def git_short_sha() -> str:
     return ""
 
 
+def git_full_sha() -> str:
+    """Best-effort full sha. Returns '' in environments without git."""
+    try:
+        out = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=REPO_ROOT, capture_output=True, text=True, timeout=5, check=False,
+        )
+        if out.returncode == 0:
+            return out.stdout.strip()
+    except (FileNotFoundError, subprocess.SubprocessError):
+        pass
+    return ""
+
+
+def git_source_tree_dirty() -> bool | None:
+    """Return whether source inputs differ from git HEAD when git is available."""
+    pathspecs = [path.relative_to(REPO_ROOT).as_posix() for path in source_input_paths()]
+    if not pathspecs:
+        return None
+    try:
+        out = subprocess.run(
+            ["git", "status", "--porcelain", "--untracked-files=all", "--"]
+            + pathspecs,
+            cwd=REPO_ROOT, capture_output=True, text=True, timeout=10, check=False,
+        )
+        if out.returncode == 0:
+            return bool(out.stdout.strip())
+    except (FileNotFoundError, subprocess.SubprocessError):
+        pass
+    return None
+
+
+def source_input_paths() -> list[Path]:
+    """Return deterministic source inputs used to build research artifacts.
+
+    This is intentionally narrower than the full repository: generated
+    artifacts under `derived/`, `analysis/`, `dataset.*`, and `site/` are
+    outputs, not inputs. The resulting hash lets a dirty working tree still
+    be reproducible if the source-input hash is recorded and unchanged.
+    """
+    paths: set[Path] = set()
+    for pattern in SOURCE_INPUT_GLOBS:
+        for path in REPO_ROOT.glob(pattern):
+            if path.is_file():
+                paths.add(path)
+    return sorted(paths, key=lambda p: p.relative_to(REPO_ROOT).as_posix())
+
+
+def source_input_hash() -> tuple[str, int]:
+    digest = hashlib.sha256()
+    paths = source_input_paths()
+    for path in paths:
+        rel = path.relative_to(REPO_ROOT).as_posix()
+        content = path.read_bytes()
+        digest.update(rel.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(hashlib.sha256(content).hexdigest().encode("ascii"))
+        digest.update(b"\n")
+    return "sha256:" + digest.hexdigest(), len(paths)
+
+
 def parse_date_value(value: Any) -> date | None:
     if value is None:
         return None
@@ -187,6 +261,7 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
 
     dataset_version = read_cff_version()
     dataset_url = DATASET_URL
+    input_hash, input_count = source_input_hash()
     meta = {
         "dataset_name": DATASET_NAME,
         "dataset_version": dataset_version,
@@ -194,6 +269,10 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
         "cutoff_date": cutoff.isoformat() if cutoff else None,
         "generated_at": now_utc_iso(),
         "source_commit": git_short_sha(),
+        "source_commit_full": git_full_sha(),
+        "source_tree_dirty": git_source_tree_dirty(),
+        "source_input_hash": input_hash,
+        "source_input_file_count": input_count,
         "event_count": len(events),
         "counts_by_status": counter("status"),
         "counts_by_stratum": counter("research_stratum"),
@@ -202,7 +281,7 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
         "generator": {
             "script": "scripts/build_dataset.py",
             "version": GENERATOR_VERSION,
-            "python": platform.python_version(),
+            "python": reproducible_python(),
         },
         "dataset_url": dataset_url,
         "citation_hint": (

@@ -22,6 +22,55 @@ ADMISSION REVIEW  → event published in release vN
 
 Historical events run through the same pipeline with the window already closed. Watchers are allowed to capture new triggers and preserve sources early, but publication still happens only after stabilization and review.
 
+### 1.1 Sampling frame and trigger registry
+
+Case expansion is not ad hoc. The pre-declared frame lives in
+[`sampling/frame.yaml`](../sampling/frame.yaml), and the generated
+registry lives in
+[`analysis/trigger_registry/trigger_registry.md`](../analysis/trigger_registry/trigger_registry.md).
+
+The registry is a pre-admission surface:
+
+1. Every `events/*.yaml` record appears in the registry with its current
+   lifecycle status (`admitted`, `draft`, `rejected`, etc.).
+2. Watcher or backfill jobs add new candidates under
+   `candidate_triggers/*.yaml` before promotion to `events/`.
+3. Rejected or out-of-scope triggers remain under
+   `candidate_triggers/rejected/*.yaml` so selection decisions are
+   auditable.
+4. `make trigger-registry` recomputes current counts and the v0.2
+   expansion gaps declared in the sampling frame.
+
+The first committed historical backfill is the OFAC recent-actions sweep:
+`scripts/materialize_ofac_recent_action_candidates.py` converts the cached
+triage artifact at
+`sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json`
+into candidate, promoted, and screened stubs. Rows already represented by
+event YAMLs are marked `promoted_to_event`; rows without a concrete crypto
+target are retained as `screened_no_extractor_target` and excluded from
+distinct in-frame trigger gaps.
+
+The registry does not feed paper counts directly. Paper-facing tables
+remain admitted-only. The registry answers a different question: which
+triggers were considered, deferred, rejected, or still missing evidence.
+
+### 1.2 Six-artifact reproducibility contract
+
+The project addresses the research gap through six live artifacts:
+
+| artifact | path | contract |
+| --- | --- | --- |
+| Trigger registry | `analysis/trigger_registry/` | selection transparency and v0.2 expansion gaps |
+| Event corpus | `events/*.yaml` | source-of-truth trigger, coverage, observation, and source records |
+| Coverage matrix | `derived/coverage_matrix.*`, `derived/l0_coverage_summary.*` | one event-layer row per tracked layer, plus L0 OONI query denominators |
+| Evidence chains | `analysis/evidence-chains/` | claim -> observation -> source -> archive/hash -> limitation |
+| Paper tables | `analysis/paper_tables/` | admitted-only paper numbers from a fail-closed generator |
+| Audit/sensitivity | `analysis/audit_worksheets/`, `derived/admission_sensitivity.*`, `analysis/inter_rater/`, `analysis/staleness.*` | human audit, rubric sensitivity, recoding consistency, and freshness gates |
+
+Any new claim must name which artifact supports it. If the supporting
+artifact is absent or stale, `make check` should fail before the paper
+surface changes.
+
 ## 2. Controlled vocabulary
 
 Used in every YAML field. Centralized in `schema/controlled_vocab.yaml`.
@@ -124,8 +173,8 @@ shape). Per 2026-Q2 reviewer feedback, that field was split into three:
   - `null_event` — 0 observed_change layers. Admitted on the basis of
     `observed_no_change` with admission-grade sources (foreign-operator
     mixer domain survives an OFAC action, individual-level BTC
-    designation produces no measurable public cascade). Catalog-
-    completeness entries, not analysis anchors.
+    designation produces no measurable public cascade). Anchored
+    denominator controls, not cascade-analysis anchors.
 
 - **`admission_tier`** — paper-use quality stratification:
   - `anchor_case` — ≥ 2 observed_change layers with attribution ∈
@@ -133,7 +182,7 @@ shape). Per 2026-Q2 reviewer feedback, that field was split into three:
   - `empirical_case` — ≥ 1 strong-attribution observed_change layer.
     Valid datapoint for aggregate statistics.
   - `null_case` — 0 strong-attribution observed_change layers.
-    Catalog entry; do not cite as a cascade exemplar.
+    Anchored denominator control; do not cite as a cascade exemplar.
 
 The paper's main cascade timing statistics are computed on
 `empirical_shape == cascade` events; anchor_case events carry most of the
@@ -173,11 +222,18 @@ Every procedure below is a recipe: input = trigger + target + time window, outpu
 
 **Primary instruments**: Censored Planet BigQuery (weekly snapshots since 2018), OONI public API (volunteer probes).
 
+**v0.1 execution note**: the committed denominator audit is OONI-only.
+`derived/l0_coverage_summary.*` summarizes archived OONI query cells and
+currently finds no measurement rows for the queried event/domain windows.
+Censored Planet ingestion remains a v0.2 expansion task; until it lands, the
+paper may report only an OONI denominator gap, not a completed CP + OONI
+cross-check.
+
 Procedure:
 
 1. Resolve target to a set of **crypto-relevant domains**: official site, RPC endpoints, block explorer, mixer UI, wallet app backend, CDN endpoints listed in frontend `<script>` tags.
-2. Query Censored Planet for each domain × jurisdiction × (window start .. window end). Extract reachability state transitions.
-3. Cross-check with OONI `web_connectivity` measurements from the same jurisdiction.
+2. Query Censored Planet for each domain × jurisdiction × (window start .. window end). Extract reachability state transitions. At v0.1 this step is specified but not yet ingested into committed derived artifacts.
+3. Cross-check with OONI `web_connectivity` measurements from the same jurisdiction. At v0.1 the OONI query artifact is the only committed L0 denominator audit.
 4. First decide whether there is an **observed reachability change**. That requires either:
    - both CP and OONI showing a transition within ±24h, or
    - one primary-legal source (e.g. ISP notice, government directive) documenting the block.
@@ -187,6 +243,18 @@ Procedure:
    - `unknown` otherwise.
 
 **Known failure mode**: CP snapshots are 2×/week and OONI is volunteer-driven. Events smaller than 3 days may not be sampled, and anomalous OONI measurements can include false positives. Mark sparse cases as `coverage: partially_measured` and use `observation_kind: coverage_gap` when no defensible claim can be made.
+
+`scripts/build_l0_coverage_summary.py` is the local denominator guard for
+archived OONI queries. It emits `derived/l0_coverage_summary.*` and labels
+zero-result query windows as `no_ooni_measurements`, never as
+`observed_no_change`.
+
+`scripts/ooni_batch_query.py` normalizes OONI intake to query cells:
+`{event_id, domain, input_url, probe_cc, since, until}`. The legacy
+domain mapping is still accepted, but new measurement campaigns should use
+the list-of-records form with explicit HTTP/HTTPS variants and probe
+countries. Output filenames include a query hash so repeated domain/event
+windows cannot overwrite each other.
 
 ### 4.2 L1 — consensus-layer filtering
 
@@ -293,13 +361,13 @@ This is the initial dataset build. Estimated 3 months of work.
 
 Work **backward from trigger**, not forward from effects. For the pilot period 2017–2025:
 
-1. **OFAC SDN history**: use Treasury's Sanctions List Service archive for 2022+ and a combination of OpenSanctions + Wayback for older periods. Diff consecutive snapshots to enumerate every designation and removal event. Filter for designations mentioning crypto keywords (`virtual currency`, `digital asset`, known address patterns like `0x[0-9a-f]{40}`). Expected yield: 40–80 crypto-relevant SDN events in the 8-year window.
-2. **DOJ press release archive**: scrape `justice.gov/news` with keyword filters (`cryptocurrency`, `virtual currency`, `mixer`, `blockchain`). Manual review to drop cases where DOJ action did not actually touch on-chain state. Expected yield: 20–40 events.
+1. **OFAC SDN history**: use Treasury's Sanctions List Service archive for 2022+ and a combination of OpenSanctions + Wayback for older periods. Diff consecutive snapshots to enumerate every designation and removal event. Filter for designations mentioning crypto keywords (`virtual currency`, `digital asset`, known address patterns like `0x[0-9a-f]{40}`). Planning range: 40–80 crypto-relevant SDN candidates in the 8-year window.
+2. **DOJ press release archive**: scrape `justice.gov/news` with keyword filters (`cryptocurrency`, `virtual currency`, `mixer`, `blockchain`). Manual review to drop cases where DOJ action did not actually touch on-chain state. Planning range: 20–40 candidates.
 3. **Court docket search**: query CourtListener / RECAP for federal filings involving the known target entities surfaced by steps 1–2. Also search for standalone civil freeze orders. This step is additive — most triggers originate from OFAC or DOJ, courts are secondary.
 4. **Non-US regulator events**: EU Official Journal (sanctions regulations), UK OFSI consolidated list, selected Chinese / Russian regulatory announcements via established translation sources.
 5. **Corporate policy changes**: Uniswap / OpenSea / Circle / Tether / Binance announcement archives, working back in time via Wayback. Only admit corporate events with a traceable external legal trigger or an explicit policy statement.
 
-**Output of this phase**: a triage spreadsheet of ~150 candidate triggers. Expect to drop 30–50% as schema-unfit.
+**Output of this phase**: a triage spreadsheet of ~150 candidate triggers. The screened-out share is recorded explicitly rather than inferred from a target percentage.
 
 ### 7.2 Cascade reconstruction phase
 
@@ -308,15 +376,19 @@ For each admitted trigger, run the §4 per-layer procedures with the time window
 - Censored Planet BQ and OONI both have broad historical data back to 2018 and 2012 respectively, but both require explicit coverage accounting before a null claim is made.
 - Wahrstätter's MEV data starts late 2022 (post-PBS). Triggers before this have **no L1 observations possible** — record as `l1_consensus: { coverage: not_available_pre_2022 }`.
 - Wayback snapshot coverage varies; some frontends have dense coverage (Uniswap), some sparse (Tornado Cash UI went through multiple domains). Use repo history where available.
-- On-chain data is always fully available.
+- Positive on-chain receipts are high-integrity once a transaction is known,
+  but no-change denominators are not automatically complete. A rate-eligible
+  asset-layer denominator requires a predeclared issuer × chain × target-window
+  scan that can count both freezes and non-freezes; v0.1 has not completed
+  that independent denominator, so asset-layer rates remain retracted.
 
 ### 7.3 Prioritization order
 
-Do not backfill chronologically. Prioritize by **expected cascade depth**:
+Do not backfill chronologically. Prioritize by **anticipated measurement surface**:
 
 1. Pilot-five (README §5) — proves the pipeline.
-2. Events where ≥ 3 layers are expected to have reacted (Tornado Cash family, China 2021, major mixer designations).
-3. Events where ≥ 2 layers are expected.
+2. Events where prior evidence suggests ≥ 3 layers may have measurable artifacts (Tornado Cash family, China 2021, major mixer designations).
+3. Events where prior evidence suggests ≥ 2 layers may have measurable artifacts.
 4. Single-layer events (mostly asset-only freezes) — useful as comparison cases, but analyzed separately from cascade timing claims.
 
 This ordering lets us stop at any point with a publishable dataset, rather than stopping mid-coverage.

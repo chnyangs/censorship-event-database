@@ -14,7 +14,8 @@ reporting the denominator a reader would need to evaluate it:
   - changed_given_measured — change rate conditioned on the layer being
     flagged as measured
   - changed_given_measured_or_partial — broader denominator including
-    partially_measured coverage
+    partially_measured coverage. The legacy `changed_given_applicable`
+    field is emitted only when no applicable row is `not_measured`.
 
 The Paper claim this artifact enables:
     "Across the admitted corpus, observed_change entries are concentrated
@@ -35,7 +36,6 @@ import collections
 import csv
 import json
 import pathlib
-import platform
 import sys
 from datetime import datetime, timezone
 from typing import Any
@@ -54,7 +54,7 @@ EVENTS_DIR = REPO_ROOT / "events"
 DEFAULT_OUT_DIR = REPO_ROOT / "derived"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso, reproducible_python  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -165,7 +165,11 @@ def compute_row(layer: str, events: list[dict]) -> dict[str, Any]:
     changed_mp = len(changed_under_measured_or_partial)
     measured_rate = safe_ratio(changed_m, measured)
     measured_or_partial_rate = safe_ratio(changed_mp, measured + partial)
-    applicable_rate = safe_ratio(changed_n, applicable)
+    # This legacy convenience ratio is safe only when all applicable rows
+    # have at least partial measurement coverage. If `not_measured` rows
+    # are present, treating them as non-changing denominator rows would
+    # convert observability gaps into false negatives.
+    applicable_rate = None if not_measured > 0 else safe_ratio(changed_n, applicable)
     if layer == "l3_rpc" and measured == 0 and partial > 0:
         # Partial-only L3 rows are named Flashbots git-history observations,
         # not a generalizable conditional rate.
@@ -272,7 +276,7 @@ def main() -> int:
         "generator": {
             "script": "scripts/build_layer_observability.py",
             "version": GENERATOR_VERSION,
-            "python": platform.python_version(),
+            "python": reproducible_python(),
         },
         "dataset_snapshot": {
             "dataset_version": ds_meta.get("dataset_version"),
@@ -295,6 +299,9 @@ def main() -> int:
             "`asset_onchain` rate columns are suppressed because the admission",
             "rule requires the asset-layer change as the measured anchor, making",
             "the rate structurally circular.",
+            "`changed_given_applicable` is legacy compatibility only and is",
+            "suppressed whenever any applicable row is `not_measured`; otherwise",
+            "the denominator would treat observability gaps as no-change rows.",
             "Bare `changed_count` without a denominator is meaningful only",
             "in combination with the coverage composition.",
             "A layer with changed_count = 0 and not_measured_count large is",

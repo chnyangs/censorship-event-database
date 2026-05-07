@@ -1,0 +1,72 @@
+id: ofac-recent-action-20240220
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2024-02-20T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20240220
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20240220.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designations | Office of Foreign Assets Control
+  title_listing: Cyber-related Designations
+  total_crypto_addresses: 10
+  addresses_by_token:
+    XBT: 9
+    ETH: 1
+  addresses:
+  - token: ETH
+    address: '0xf3701f445b6bdafedbca97d1e477357839e4120d'
+  - token: XBT
+    address: 15cRqR3TXS1JehBGWERuxFE8NhWZzfoeeU
+  - token: XBT
+    address: 18gaXypKj9M23S2zT9qZfL9iPbLFM372Q5
+  - token: XBT
+    address: 1A7SKE2dQtezLktCY8peLsdAtkqxV9r1dC
+  - token: XBT
+    address: 32pTjxTNi7snk8sodrgfmdKao3DEn1nVJM
+  - token: XBT
+    address: bc1q5jqgm7nvrhaw2rh2vk0dk8e4gg5g373g0vz07r
+  - token: XBT
+    address: bc1q8ew45w2agdffrnwp6adt2gqrc9n4mkev9ns29c
+  - token: XBT
+    address: bc1qagp0gy58v8hqvw4p2wsphcxg067rrppp45hexr
+  - token: XBT
+    address: bc1qn6segn8km4nfdp9vueu6msfjsaxaqgun9h60n9
+  - token: XBT
+    address: bc1qx9upga7f09tsetqf78wa3qrmcjar58mkwz6ng6
+  entity_keyword_hits:
+  - ransomware
+  cache_present: true
+promoted_event_id:
+- lockbit-affiliates-ofac-2024
+target:
+  kind: address_set
+  chains:
+  - ethereum
+  - bitcoin
+  addresses:
+  - '0xf3701f445b6bdafedbca97d1e477357839e4120d'
+  - 15cRqR3TXS1JehBGWERuxFE8NhWZzfoeeU
+  - 18gaXypKj9M23S2zT9qZfL9iPbLFM372Q5
+  - 1A7SKE2dQtezLktCY8peLsdAtkqxV9r1dC
+  - 32pTjxTNi7snk8sodrgfmdKao3DEn1nVJM
+  - bc1q5jqgm7nvrhaw2rh2vk0dk8e4gg5g373g0vz07r
+  - bc1q8ew45w2agdffrnwp6adt2gqrc9n4mkev9ns29c
+  - bc1qagp0gy58v8hqvw4p2wsphcxg067rrppp45hexr
+  - bc1qn6segn8km4nfdp9vueu6msfjsaxaqgun9h60n9
+  - bc1qx9upga7f09tsetqf78wa3qrmcjar58mkwz6ng6
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: lockbit-affiliates-ofac-2024'

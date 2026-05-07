@@ -41,7 +41,6 @@ import collections
 import csv
 import json
 import pathlib
-import platform
 import sys
 from datetime import datetime, timezone
 from typing import Any
@@ -57,7 +56,7 @@ DEFAULT_OUT_DIR = REPO_ROOT / "analysis" / "paper_tables"
 GENERATOR_VERSION = "0.1.0"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _dataset_meta import load_meta, now_utc_iso  # noqa: E402
+from _dataset_meta import load_meta, now_utc_iso, reproducible_python  # noqa: E402
 
 
 LAYER_ORDER = [
@@ -481,7 +480,7 @@ def build_table3(
     _write_md(out_dir / "table3_archetype_stratum.md", lines)
 
 
-# ---------- Table 4: latency distribution (precision-filtered) ----------
+# ---------- Table 4: latency evidence surface (precision-filtered) ----------
 
 LATENCY_BANDS_HOUR = [
     ("t=0", lambda h: h == 0.0),
@@ -491,6 +490,28 @@ LATENCY_BANDS_HOUR = [
     ("(24, 168]h (≤1w)", lambda h: 24 < h <= 168),
     (">168h (>1w)", lambda h: h > 168),
 ]
+
+
+def day_precision_latency_interval(hours_since_midnight_trigger: float) -> tuple[float, float]:
+    """Return conservative latency bounds for a day-precision trigger.
+
+    A day-precision trigger is known only to fall within the UTC day whose
+    midnight timestamp is encoded in the YAML. If an observation is H hours
+    after that midnight, true latency is in [max(0, H-24), H].
+    """
+    upper = float(hours_since_midnight_trigger)
+    lower = max(0.0, upper - 24.0)
+    return lower, upper
+
+
+def day_interval_band(lower: float, upper: float) -> str:
+    if upper <= 24:
+        return "≤1d"
+    if lower > 24 and upper <= 720:
+        return "(1d, 30d]"
+    if lower > 720:
+        return ">30d"
+    return "ambiguous_boundary"
 
 
 def build_table4(
@@ -521,7 +542,15 @@ def build_table4(
             "trigger_is_action": arch.get("trigger_is_action"),
             "changed_layer_count": met.get("changed_layer_count"),
             "trigger_precision_bucket": bucket,
+            "latency_lower_bound_hours": "",
+            "latency_upper_bound_hours": "",
+            "day_interval_band": "",
         }
+        if bucket != "hour":
+            lower, upper = day_precision_latency_interval(float(t_first))
+            row["latency_lower_bound_hours"] = lower
+            row["latency_upper_bound_hours"] = upper
+            row["day_interval_band"] = day_interval_band(lower, upper)
         if arch.get("trigger_is_action"):
             excluded_trigger_is_action.append(row)
             continue
@@ -538,6 +567,8 @@ def build_table4(
         "derived_archetype", "time_to_first_change_hours",
         "trigger_is_action", "changed_layer_count",
         "trigger_precision_bucket",
+        "latency_lower_bound_hours", "latency_upper_bound_hours",
+        "day_interval_band",
     ]
     with csv_path.open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields, lineterminator="\n")
@@ -547,7 +578,7 @@ def build_table4(
 
     # Markdown
     lines = _snapshot_header(
-        ds_meta, "Table 4 · Latency distribution (precision-filtered)"
+        ds_meta, "Table 4 · Latency evidence surface (precision-filtered)"
     )
     lines.append(
         "Supports **C3** (`docs/paper_claims.md §1`). "
@@ -585,23 +616,23 @@ def build_table4(
     lines.append("")
     lines.append(
         "Day-precision triggers cannot support hour-granularity latency "
-        "claims. The event's `time_to_first_change_hours` is reported "
-        "rounded down to a ≤1-day or >1-day classifier, not a scalar "
-        "hour value. Per-event hour values in the CSV dump are "
-        "**record-level artifacts** (timestamp arithmetic) and must "
-        "not enter any hour-bucketed paper claim."
+        "claims. The event's `time_to_first_change_hours` is converted into "
+        "a conservative interval `[max(0, H-24), H]`; rows crossing a day-band "
+        "boundary are reported as `ambiguous_boundary`. Per-event hour values "
+        "in the CSV dump are **record-level artifacts** (timestamp arithmetic) "
+        "and must not enter any hour-bucketed paper claim."
     )
     lines.append("")
     if not day_rows:
         lines.append("_No day-precision triggers with a timed observed_change._")
     else:
-        # Coarser bands for day-precision triggers.
-        le1d = [r for r in day_rows if r["time_to_first_change_hours"] is not None and r["time_to_first_change_hours"] <= 24]
-        d2_30 = [r for r in day_rows if r["time_to_first_change_hours"] is not None and 24 < r["time_to_first_change_hours"] <= 720]
-        gt30 = [r for r in day_rows if r["time_to_first_change_hours"] is not None and r["time_to_first_change_hours"] > 720]
-        lines.append("| day-granularity band | count | events |")
+        by_band = collections.defaultdict(list)
+        for row in day_rows:
+            by_band[row["day_interval_band"]].append(row)
+        lines.append("| day-granularity interval band | count | events |")
         lines.append("| --- | ---: | --- |")
-        for label, subset in (("≤1d", le1d), ("(1d, 30d]", d2_30), (">30d", gt30)):
+        for label in ("≤1d", "(1d, 30d]", ">30d", "ambiguous_boundary"):
+            subset = by_band.get(label, [])
             evs = ", ".join(f"`{r['event_id']}`" for r in sorted(subset, key=lambda x: x["event_id"])) or "—"
             lines.append(f"| {label} | {len(subset)} | {evs} |")
         lines.append(f"| **total** | **{len(day_rows)}** | |")
@@ -706,7 +737,6 @@ NULL_EVIDENCE_KINDS = [
     ("body_hash+body_path", lambda s: bool(s.get("body_hash")) and bool(s.get("body_path"))),
     ("query_hash", lambda s: bool(s.get("query_hash"))),
     ("measurement_ids", lambda s: isinstance(s.get("measurement_ids"), list) and bool(s.get("measurement_ids"))),
-    ("scope_descriptor", lambda s: isinstance(s.get("scope_descriptor"), dict) and bool(s.get("scope_descriptor"))),
 ]
 
 
@@ -729,9 +759,10 @@ def build_table6(
         "exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md "
         "§C6`.) Each row lists the event's `observed_no_change` layers + "
         "the evidence-anchor types their sources carry. Per validator "
-        "rule, any one of `body_hash`+`body_path`, `query_hash`, "
-        "`measurement_ids`, or `scope_descriptor` is sufficient to admit "
-        "an `observed_no_change` row."
+        "rule, `scope_descriptor` defines the covered scope but is not an "
+        "evidence anchor by itself; each `observed_no_change` row needs at "
+        "least one replayable artifact such as `body_hash`+`body_path`, "
+        "`query_hash`, or `measurement_ids`."
     )
     lines.append("")
     lines.append(
@@ -774,7 +805,8 @@ def build_table6(
     lines.append("")
     lines.append(
         "`evidence_anchors_present = NONE` indicates a validator regression "
-        "(admission rules require at least one of the four anchor types). "
+        "(admission rules require at least one replayable artifact; "
+        "`scope_descriptor` alone is insufficient). "
         "The generator aborts with a non-zero exit when any row is anchorless, "
         "so a NONE row can never reach `analysis/paper_tables/`."
     )
@@ -789,7 +821,7 @@ def build_table6(
             "validator-recognized evidence anchor: "
             + ", ".join(anchorless)
             + ". Fix the event YAMLs (add body_hash+body_path, query_hash, "
-            "measurement_ids, or scope_descriptor on at least one "
+            "or measurement_ids on at least one "
             "observed_no_change source) before regenerating paper tables."
         )
 
@@ -875,7 +907,7 @@ def main() -> int:
         "generator": {
             "script": "scripts/build_paper_tables.py",
             "version": GENERATOR_VERSION,
-            "python": platform.python_version(),
+            "python": reproducible_python(),
         },
         "dataset_snapshot": {
             "dataset_version": ds_meta.get("dataset_version"),

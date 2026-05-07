@@ -70,7 +70,7 @@ When:
 When:
 
 - the event's main claim depends on unresolved evidence
-- or the event class would likely change after more collection
+- or the event class could change after more collection
 
 ## 5. Current practical rule
 

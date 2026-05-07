@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import yaml
 
+import validate
 from validate import EventValidator, ValidationResult, VOCAB_PATH
 
 
@@ -124,6 +125,64 @@ def test_trigger_archive_anchor_rejects_invalid_wayback_url():
     )
 
     assert any("wayback must be a valid URL" in error for error in result.errors)
+
+
+def test_trigger_citation_body_hash_is_verified(monkeypatch, tmp_path):
+    repo = tmp_path / "repo"
+    body = repo / "sources" / "http_captures" / "event" / "trigger.html"
+    body.parent.mkdir(parents=True)
+    body.write_text("actual body")
+    monkeypatch.setattr(validate, "REPO_ROOT", repo)
+    result = _result()
+
+    _validator()._validate_trigger(
+        {
+            "type": "sec_action",
+            "actor": "US_SEC",
+            "timestamp": "2024-01-01T00:00:00Z",
+            "timestamp_precision": "day",
+            "citation": [
+                {
+                    "type": "primary_legal",
+                    "url": "https://example.com/sec",
+                    "body_hash": "sha256:" + "0" * 64,
+                    "body_path": "sources/http_captures/event/trigger.html",
+                }
+            ],
+        },
+        result,
+    )
+
+    assert any("trigger.citation[0].body_hash does not match" in error for error in result.errors)
+
+
+def test_recovery_citation_body_hash_is_verified(monkeypatch, tmp_path):
+    repo = tmp_path / "repo"
+    body = repo / "sources" / "http_captures" / "event" / "recovery.html"
+    body.parent.mkdir(parents=True)
+    body.write_text("actual recovery body")
+    monkeypatch.setattr(validate, "REPO_ROOT", repo)
+    result = _result()
+
+    _validator()._validate_recovery(
+        [
+            {
+                "layer": "l4_frontend",
+                "resolved_timestamp": "2024-01-02T00:00:00Z",
+                "citation": [
+                    {
+                        "type": "primary_corporate",
+                        "url": "https://example.com/recovery",
+                        "body_hash": "sha256:" + "0" * 64,
+                        "body_path": "sources/http_captures/event/recovery.html",
+                    }
+                ],
+            }
+        ],
+        result,
+    )
+
+    assert any("recovery[0].citation[0].body_hash does not match" in error for error in result.errors)
 
 
 def test_observation_source_rejects_invalid_wayback_url():

@@ -10,7 +10,7 @@ surfaces which historical patterns the situation most resembles.
 > not assign probabilities. Read
 > [`docs/limitations-and-use.md`](limitations-and-use.md) first.
 > If you use this rubric's output in a brief, memo, or risk model, the
-> responsibility for that use is yours — the admitted dataset is 51 events and
+> responsibility for that use is yours — the admitted dataset is 53 events and
 > will never be large enough to support automated decisions.
 
 ---
@@ -34,7 +34,7 @@ surfaces which historical patterns the situation most resembles.
 ### 1.1 What kind of actor is taking the action?
 
 - `US_OFAC` → Stratum S1 (SDN designation) or S2 (delisting)
-- `US_DOJ` / `US_DOJ_SDNY` / `US_DOJ_EDPA` / etc. → S3, typically with seizure warrant
+- `US_DOJ` / `US_DOJ_SDNY` / `US_DOJ_EDPA` / etc. → S3; admitted examples include seizure-warrant cases
 - `US_SEC` → S3, civil-enforcement axis
 - `US_CFTC` → S3, commodities axis
 - `EU_Council` → S6, either sanctions or regulatory framework
@@ -50,12 +50,12 @@ surfaces which historical patterns the situation most resembles.
   narrow: Uniswap Wells notice (2024-04, no formal filing) → no L4
   cascade in the scoped window.
 - **DOJ indictments paired with same-day domain seizure** (Bitzlato,
-  ChipMixer, Samourai, Cryptex, BTC-e) consistently produce `measured`
-  L4 observed_change within the same day.
+  ChipMixer, Samourai, Cryptex, BTC-e) are the admitted precedents for
+  same-day `measured` L4 observed_change rows.
 - **EU regulatory frameworks** (MiCA) vs **EU sanctions packages**
   (12th Russia package) have structurally different observables: the
-  former produces phased CASP-compliance rollout, the latter produces
-  account-class closure within ~90 days.
+  admitted examples record phased CASP-compliance rollout for MiCA and
+  account-class closure within ~90 days for the 12th Russia package.
 
 ### 1.2 Does the action enumerate specific on-chain addresses?
 
@@ -74,22 +74,22 @@ surfaces which historical patterns the situation most resembles.
 ### 1.3 What is the target actor type?
 
 - `mixer_service` (Blender, Tornado, Sinbad, ChipMixer, Samourai):
-  historically the protocol remains on-chain even when the frontend is
-  taken down. Expect frontend/protocol decoupling.
+  admitted examples separate protocol availability from frontend
+  availability. Record frontend/protocol decoupling as a comparison cue.
 - `exchange` (SUEX, Chatex, Cryptex, Garantex, Grinex, BTC-e):
   canonical domain is a primary cascade target. Foreign-operated
-  exchanges (Garantex, Sinbad, Grinex) tend to keep the domain up;
-  US-compliance-adjacent infrastructure is where cascade happens.
+  exchange examples in the corpus retain public-domain artifacts; US
+  seizure examples carry different L4 evidence.
 - `individual` (Semenov, Pertsev, Storm, LockBit affiliates, Matveev):
-  L4 cascade is typically absent; asset-layer issuer action is the
-  observable signal (but only if the individual holds stablecoin
-  balances — Lazarus-BTC individuals have no asset-layer cascade).
-- `hosting_provider` (Aeza, Zservers, Funnull): hybrid behavior —
-  infrastructure customers may move but the provider itself often
-  persists.
+  admitted examples in this branch lack a public L4 artifact; asset-layer issuer
+  action is visible only when the individual target holds a freezeable
+  stablecoin balance. Lazarus-BTC examples have no asset-layer primitive.
+- `hosting_provider` (Aeza, Zservers, Funnull): admitted examples show
+  hybrid behavior: customer-facing infrastructure may move while the
+  provider entity remains observable.
 - `state_sponsored_cyber_group` / `entity` (Lazarus 2019, Sichuan
-  Silence): entity-level designation with no on-chain targets produces
-  negligible measurable cascade.
+  Silence): admitted entity-level designations with no on-chain targets
+  have negligible public cascade evidence in this corpus.
 
 ---
 
@@ -102,24 +102,24 @@ surfaces which historical patterns the situation most resembles.
   adjacent observable.
 - Ethereum (incl. USDC/USDT on ETH) → Circle + Tether blacklist
   actions are observable via `usdtbanlist.com` tracker and Etherscan
-  tx hashes. Circle typically responds within hours of OFAC
-  designation; Tether historically responds slowly or retroactively.
-- TRON (USDT-TRC20) → Tether is the only issuer of consequence; action
-  pattern is similar to ETH-USDT but without Circle reflex.
-- Litecoin / Dash / ZEC / BTG etc. → historically no asset-layer
-  action; chain-diverse designations (Russia-election 2020) produce
-  null cascade on the minor-chain addresses.
+  tx hashes in admitted examples. Use recorded event deltas as
+  comparison evidence, not as a forecast.
+- TRON (USDT-TRC20) → Tether is the relevant issuer in the admitted
+  examples; compare against ETH-USDT rows without importing Circle
+  behavior.
+- Litecoin / Dash / ZEC / BTG etc. → admitted chain-diverse designations
+  record no asset-layer freeze primitive on those minor-chain addresses.
 
 ### 2.2 Is there a canonical domain / frontend owned by a US-jurisdiction
 entity (or US-compliance-adjacent infrastructure)?
 
-- **Yes, US-jurisdiction**: L4 takedown is likely within 24–48h
-  (Tornado tornado.cash ~22h via compliance-driven CDN drop; dYdX
-  within 34h; Cryptex same-day USSS seizure).
-- **Yes, foreign operator + foreign infrastructure**: L4 cascade
-  typically *absent* in the short term (Sinbad sinbad.io remained
-  reachable 10+ days post-event; SUEX suex.io remained up; Grinex
-  remained up pre-Tether-freeze).
+- **Yes, US-jurisdiction**: compare against admitted L4 timing examples
+  such as Tornado `tornado.cash` (~22h via compliance-driven CDN drop),
+  dYdX (~34h), and Cryptex (same-day USSS seizure).
+- **Yes, foreign operator + foreign infrastructure**: compare against
+  admitted persistence examples such as Sinbad `sinbad.io` reachable
+  10+ days post-event, SUEX `suex.io` remaining up, and Grinex remaining
+  up before the Tether freeze.
 - **No canonical domain** (individual designations, hosting providers
   with no customer-facing site): L4 is `not_applicable`.
 
@@ -138,24 +138,23 @@ independent execution?
 
 ---
 
-## Part 3 — Issuer-compliance expectations (for stablecoin-holding targets)
+## Part 3 — Issuer-compliance comparison cues (for stablecoin-holding targets)
 
 ### 3.1 Is USDC involved?
 
-Circle has a historically-fast compliance clock: the 2022-08-08 Circle
-blacklist action against Tornado Cash addresses fired at 2022-08-08
-19:25 UTC, ~6 hours after OFAC designation. Individual-designation
-batches (Semenov 2023, LockBit 2024, Cryptex 2024, Funnull 2025,
-Grinex 2025) have all seen same-day or next-day Circle action for
-addresses that hold USDC. Expect hours-to-days delta_hours.
+In admitted examples, Circle actions can be compared by recorded
+`delta_hours`: the 2022-08-08 Circle blacklist action against Tornado
+Cash addresses fired at 2022-08-08 19:25 UTC, ~6 hours after OFAC
+designation; Semenov 2023, LockBit 2024, Cryptex 2024, Funnull 2025,
+and Grinex 2025 are same-day or next-day Circle rows for enumerated
+addresses that held USDC.
 
 ### 3.2 Is USDT involved?
 
-Tether's compliance clock is multi-modal:
+Tether examples in the admitted corpus are multi-modal:
 
-- **Fast / OFAC-reactive** (post-2024): Cryptex 2024-09-26 03:37 UTC,
-  Funnull 2025-05-29 10:15 UTC, Grinex 2025-08-14 21:15 UTC — Tether
-  now often freezes within hours.
+- **Fast / OFAC-reactive admitted examples**: Cryptex 2024-09-26 03:37 UTC,
+  Funnull 2025-05-29 10:15 UTC, Grinex 2025-08-14 21:15 UTC.
 - **Retroactive** (pre-2024 targets): SUEX 2021 / Chatex 2021 / Russia-
   election 2020 / Russian-cyber-theft 2020 addresses were all frozen
   by Tether in a single 2023-12-09 04:34–05:36 UTC batch — 2–3 years
@@ -173,37 +172,38 @@ trigger. Do not assume OFAC is the only trigger.
 ### 3.3 Is the target a smart-contract address (protocol pool) or an
 individual-wallet address?
 
-- **Individual wallets**: issuer compliance rate is ~100% for USDC-
-  holding addresses. Expected.
+- **Individual wallets**: in admitted asset-freeze examples, issuer action
+  appears when the target is an enumerated wallet holding a freezeable
+  asset. Treat this as a corpus-scoped pattern, not an issuer-wide
+  compliance-rate estimate.
 - **Smart-contract pool addresses** (Tornado redesignation cohort,
-  Uniswap pools): historically ~1 of 92 Tornado pool addresses has
-  been Tether-blacklisted. Structural asymmetry — issuers are
-  reluctant to freeze protocol-level contracts. Do not expect
-  asset-layer cascade on protocol addresses.
+  Uniswap pools): current admitted cases show structural asymmetry between
+  wallet-level freezes and protocol-contract addresses. Treat this as an
+  illustrative mechanism, not a prevalence estimate over all pool contracts.
 
 ---
 
-## Part 4 — Cross-layer expectations summary
+## Part 4 — Cross-layer comparison summary
 
 Given the answers above, use this reference table to identify which
 historical pattern class the situation most resembles:
 
-| Pattern class | Example events | Expected observable layers |
+| Pattern class | Example events | Observed layers in admitted precedents |
 |---|---|---|
 | **US-protocol cascade** (3+ layers, anchor) | `tornado-cash-ofac-2022`, `tornado-cash-ofac-delisting-2025` | L1 + L4 + asset + offramp |
 | **US-exchange seizure** | `cryptex-ofac-2024`, `bitzlato-doj-2023`, `samourai-doj-2024` | L4 (USSS banner) + asset |
 | **Foreign-operator persistence (null)** | `sinbad-ofac-2023`, `suex-ofac-2021`, `grinex-garantex-successor-ofac-2025` (partial) | asset only; L4 remains up |
 | **Individual-wallet (null L4, fast asset)** | `semenov-ofac-2023`, `lockbit-affiliates-ofac-2024` | asset only |
-| **Individual-BTC-only (null catalog)** | `lazarus-laundering-ofac-2020`, `matveev-ofac-2023`, `iran-ransomware-ofac-2018` | offramp_cex null only |
+| **Individual-BTC-only (anchored null control)** | `lazarus-laundering-ofac-2020`, `matveev-ofac-2023`, `iran-ransomware-ofac-2018` | offramp_cex null only |
 | **Entity-only (null)** | `lazarus-entity-ofac-2019`, `sichuan-silence-ofac-2024` | offramp_cex null only |
-| **SEC formal-complaint candidates** | `sec-v-binance-2023`, `sec-v-coinbase-2023` (draft repair queue) | no admitted layer claim until platform / rail artifacts are pinned |
+| **SEC formal-complaint comparisons** | `sec-v-binance-2023`, `sec-v-coinbase-2023` | admitted only for scoped CEX/platform-service reactions; no L4, asset, L1/L3, or token-delisting claim |
 | **SEC low-intensity (null)** | `sec-v-uniswap-wells-notice-2024` | none |
 | **Nation-state central bank** | `india-rbi-crypto-ban-2018`, `china-pboc-crypto-ban-2021`, `turkey-cbrt-crypto-ban-2021`, `nigeria-cbn-crypto-ban-2021` | offramp_cex only, via bank-rail severance |
 | **Nation-state emergency freeze** | `canada-convoy-freeze-2022` | offramp_cex + private-RCMP channel |
 | **EU supranational regulatory** | `eu-mica-2023` | offramp_cex (CASP compliance phased) |
 | **EU supranational sanctions** | `eu-12th-russia-sanctions-2023` | offramp_cex (class closure within 90d) |
-| **Corporate issuer policy (OFAC-reactive)** | `circle-usdc-tornado-2022` | asset only, fast clock |
-| **Corporate issuer policy (non-OFAC)** | `tether-doj-pig-butchering-freeze-2023`, `tether-retroactive-sweep-2023`, `tether-dprk-precommit-freeze-2025` | asset only, various clocks |
+| **Corporate issuer policy (OFAC-reactive)** | `circle-usdc-tornado-2022` | asset only |
+| **Corporate issuer policy (non-OFAC)** | `tether-doj-pig-butchering-freeze-2023`, `tether-retroactive-sweep-2023`, `tether-dprk-precommit-freeze-2025` | asset only |
 | **Frontend-only restriction** | `uniswap-frontend-delisting-2023`, `cftc-v-ooki-dao-2022` | L4 only; protocol persists |
 
 ---
@@ -217,7 +217,7 @@ applies at all:
    The dataset has zero events on these chains; no historical pattern
    applies. See [`docs/chain-coverage-note.md`](chain-coverage-note.md).
 2. **The trigger involves a non-US, non-EU, non-G7 jurisdiction**.
-   The admitted dataset has only 51 events; many nation-state slots have a
+   The admitted dataset has only 53 events; many nation-state slots have a
    single precedent or none. Do not extrapolate.
 3. **The top comparable case from `find_comparable_cases.py` has a
    match score below 40% of max**. That is the structural-novelty

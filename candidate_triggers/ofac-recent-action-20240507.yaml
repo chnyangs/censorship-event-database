@@ -1,0 +1,43 @@
+id: ofac-recent-action-20240507
+registry_status: promoted_to_event
+research_stratum: S1_ofac_sdn
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: '2024-05-07T00:00:00Z'
+  timestamp_precision: day
+  citation:
+  - type: primary_legal
+    url: https://ofac.treasury.gov/recent-actions/20240507
+jurisdiction:
+- US
+source_artifacts:
+- sources/ofac_sdn_diffs/recent_actions_cache/20240507.html
+extraction:
+  source: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+  triage_status: addresses_present
+  page_title: Cyber-related Designation | Office of Foreign Assets Control
+  title_listing: Cyber-related Designation
+  total_crypto_addresses: 1
+  addresses_by_token:
+    XBT: 1
+  addresses:
+  - token: XBT
+    address: bc1qvhnfknw852ephxyc5hm4q520zmvf9maphetc9z
+  entity_keyword_hits:
+  - ransomware
+  cache_present: true
+promoted_event_id:
+- lockbit-leader-ofac-2024
+target:
+  kind: address_set
+  chains:
+  - bitcoin
+  addresses:
+  - bc1qvhnfknw852ephxyc5hm4q520zmvf9maphetc9z
+expected_layers:
+- asset_onchain
+- offramp_cex
+- l4_frontend
+triage_notes: 'Systematic OFAC backfill row is already represented by promoted event
+  YAML: lockbit-leader-ofac-2024'
