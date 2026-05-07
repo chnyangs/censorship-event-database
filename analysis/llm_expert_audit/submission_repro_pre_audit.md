@@ -34,7 +34,7 @@ Do not use before a real human pass:
 Command:
 
 ```sh
-python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability
+python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 ```
 
 Current hard blockers:
@@ -67,4 +67,3 @@ Not safe to cite before Human-Expert-Audit:
 - `asset_onchain` as a rate.
 - L0/L3 zero denominators as zero reactions.
 - C2/C5-style central claims that require independent-human `observation_kind` reliability.
-

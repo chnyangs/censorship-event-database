@@ -113,6 +113,11 @@ def parse_args() -> argparse.Namespace:
         help="fail if paper-critical events are missing last_human_audit",
     )
     parser.add_argument(
+        "--strict-null-audit",
+        action="store_true",
+        help="fail if null-denominator cases are missing last_human_audit",
+    )
+    parser.add_argument(
         "--strict-repro",
         action="store_true",
         help="fail if release reproducibility metadata indicates a dirty source tree",
@@ -675,11 +680,15 @@ def main() -> int:
         and not event.get("last_human_audit")
     ]
     if unaudited_nulls:
-        warnings.append(
+        msg = (
             f"{len(unaudited_nulls)} null denominator cases lack last_human_audit "
-            "(allowed for aggregate/null tables; not eligible for narrative spotlight): "
+            "(allowed for working snapshots; blocked by --strict-null-audit): "
             + ", ".join(unaudited_nulls)
         )
+        if args.strict_null_audit:
+            errors.append(msg)
+        else:
+            warnings.append(msg)
 
     try:
         irr = load_json(IRR_REPORT)

@@ -24,6 +24,8 @@ from __future__ import annotations
 
 import argparse
 import collections
+import csv
+import hashlib
 import html
 import json
 import pathlib
@@ -80,6 +82,32 @@ ACRONYMS = {
 # Timeline maximum window (hours). Observations beyond this are flagged off-axis.
 TIMELINE_MAX_HOURS = 168.0   # 7 days — covers most cascades
 TIMELINE_TICKS = [0, 6, 12, 24, 48, 72, 168]
+
+# Human-audit work queue. Keep this list aligned with human-audit.md and the
+# null-case LLM pre-audit. These are the cases auditors can review through the
+# static Human Audit Console; the console only generates records/templates and
+# does not stamp last_human_audit automatically.
+NULL_DENOMINATOR_AUDIT_CASES = [
+    "iran-ransomware-ofac-2018",
+    "irgc-ransomware-ofac-2022",
+    "lazarus-entity-ofac-2019",
+    "lazarus-laundering-ofac-2020",
+    "lockbit-leader-ofac-2024",
+    "matveev-ofac-2023",
+    "pertsev-nl-arrest-2022",
+    "russian-cybercrime-infra-ofac-2025",
+    "sec-v-uniswap-wells-notice-2024",
+    "sichuan-silence-ofac-2024",
+    "sinbad-ofac-2023",
+    "storm-semenov-doj-2023",
+    "zservers-ofac-2025",
+]
+
+NULL_AUDIT_PRESTATUS = {
+    "iran-ransomware-ofac-2018": ("pass_pre_audit", "Compare pre/post Enexchanger Wayback redirect-shell snapshots before narrative use."),
+    "sinbad-ofac-2023": ("pass_pre_audit", "Compare event-day and +10 day sinbad.io Wayback snapshots before narrative use."),
+    "sec-v-uniswap-wells-notice-2024": ("fail_pre_audit", "Highest risk: current anchors do not replay app.uniswap.org operational uptime across the full Wells-notice window."),
+}
 
 
 # ---------------------------------------------------------------------------
@@ -472,6 +500,118 @@ h3 { font-size: 1.03rem; margin: 1.4rem 0 0.4rem; }
 .filter-drawer .filter-bar {
   position: static; top: auto; margin: 0; padding: .85rem 1rem;
   border: 0; background: transparent;
+}
+
+/* ------------------------------------------------------------- audit console */
+.audit-console {
+  display: grid; gap: 1rem;
+  margin-top: 1rem;
+}
+.audit-panel {
+  background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+}
+.audit-panel.priority-high {
+  border-color: color-mix(in srgb, var(--bad-fg) 36%, var(--border));
+  border-left: 5px solid var(--bad-fg);
+}
+.audit-panel.priority-warn {
+  border-left: 5px solid var(--warn-fg);
+}
+.audit-panel h3 {
+  margin-top: 0;
+}
+.audit-grid {
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(320px, 1.1fr);
+  gap: 1rem;
+}
+.audit-links, .audit-paths {
+  display: grid; gap: .35rem;
+  margin: .7rem 0;
+}
+.audit-links a, .audit-paths a, .audit-paths code {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.audit-form {
+  display: grid; gap: .7rem;
+}
+.audit-form label {
+  display: grid; gap: .25rem;
+  color: var(--text-muted);
+  font-size: .84rem;
+}
+.audit-form input, .audit-form select, .audit-form textarea {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: .55rem .65rem;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.audit-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.audit-checks {
+  display: grid; gap: .35rem;
+  padding: .65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+}
+.audit-checks label {
+  display: flex; align-items: start; gap: .45rem;
+  color: var(--text);
+  font-size: .86rem;
+}
+.audit-checks input {
+  width: auto; margin-top: .2rem;
+}
+.audit-error {
+  margin: .65rem 0;
+  padding: .6rem .75rem;
+  border: 1px solid var(--bad);
+  border-radius: var(--radius);
+  color: var(--bad);
+  background: color-mix(in oklab, var(--bad) 8%, var(--bg));
+  font-size: .88rem;
+}
+.audit-error[hidden] {
+  display: none;
+}
+.audit-output-wrap {
+  display: none;
+  margin-top: .8rem;
+}
+.audit-output-wrap.visible {
+  display: block;
+}
+.audit-output {
+  min-height: 180px;
+  font-family: var(--font-mono);
+  font-size: .82rem;
+}
+.audit-result-actions {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  margin-top: .5rem;
+}
+.audit-note {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  padding: .7rem .8rem;
+}
+.audit-task-list {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .7rem;
+}
+.audit-task-list .audit-panel {
+  min-height: 150px;
 }
 
 /* ------------------------------------------------------------- legacy hero */
@@ -907,6 +1047,8 @@ footer.site-footer {
 @media (max-width: 1050px) {
   .signal-grid, .artifact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .layer-board { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .audit-grid { grid-template-columns: 1fr; }
+  .audit-task-list { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 700px) {
@@ -921,6 +1063,7 @@ footer.site-footer {
   .section-heading { display: block; }
   .signal-grid, .artifact-grid { grid-template-columns: 1fr; }
   .layer-board { grid-template-columns: repeat(2, 1fr); }
+  .audit-panel { padding: .85rem; }
   .hero { padding: 1.1rem 1.1rem 0.9rem; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 0.55rem; }
   .stat-card { padding: 10px 12px; }
@@ -967,6 +1110,142 @@ STATIC_JS = """\
       setLabel();
     });
   }
+
+  // ----------------------- human audit console -----------------------
+  function setupAuditConsole() {
+    const forms = document.querySelectorAll('.audit-form[data-audit-type]');
+    if (!forms.length) return;
+    const today = new Date().toISOString().slice(0, 10);
+    const randomSuffix = () => {
+      const bytes = new Uint8Array(4);
+      if (globalThis.crypto && globalThis.crypto.getRandomValues) {
+        globalThis.crypto.getRandomValues(bytes);
+        return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+      }
+      return Math.floor(Math.random() * 0xffffffff).toString(16).padStart(8, '0');
+    };
+    const approvalDecision = (auditType, decision) => (
+      (auditType === 'null_denominator' && decision === 'pass') ||
+      (auditType === 'release_signoff' && decision.startsWith('approve_')) ||
+      (auditType === 'independent_human_irr' && decision === 'complete_ready_for_kappa')
+    );
+    forms.forEach(form => {
+      const dateInput = form.querySelector('input[name="audit_date"]');
+      if (dateInput && !dateInput.value) dateInput.value = today;
+      form.addEventListener('submit', ev => {
+        ev.preventDefault();
+        const data = new FormData(form);
+        const auditType = form.dataset.auditType || 'unknown';
+        const eventId = form.dataset.eventId || null;
+        const taskId = form.dataset.taskId || eventId || auditType;
+        const decision = data.get('decision') || '';
+        const reviewed = JSON.parse(form.dataset.reviewedArtifacts || '[]');
+        const checks = {};
+        form.querySelectorAll('input[type="checkbox"][data-check]').forEach(cb => {
+          checks[cb.dataset.check] = cb.checked;
+        });
+        const missingChecks = Object.entries(checks)
+          .filter(([, checked]) => !checked)
+          .map(([name]) => name);
+        const error = form.querySelector('.audit-error');
+        if (error) {
+          error.hidden = true;
+          error.textContent = '';
+        }
+        if (approvalDecision(auditType, decision) && missingChecks.length) {
+          if (error) {
+            error.textContent = 'Pass/approve decisions require all checklist items. Missing: ' + missingChecks.join(', ');
+            error.hidden = false;
+          }
+          return;
+        }
+        const generatedAt = new Date().toISOString();
+        const auditDate = data.get('audit_date') || today;
+        const compactStamp = generatedAt.replace(/[-:.TZ]/g, '').slice(0, 14);
+        const record = {
+          audit_id: ['audit', auditType, taskId, auditDate, compactStamp, randomSuffix()].filter(Boolean).join('__'),
+          audit_type: auditType,
+          event_id: eventId,
+          task_id: taskId,
+          snapshot: globalThis.AUDIT_SNAPSHOT || {},
+          auditor: {
+            name: data.get('auditor_name') || '',
+            affiliation: data.get('auditor_affiliation') || '',
+            email: data.get('auditor_email') || '',
+            independence_statement: data.get('independence_statement') || ''
+          },
+          reviewed_artifacts: reviewed,
+          decision,
+          checks,
+          rationale: data.get('rationale') || '',
+          limitations: data.get('limitations') || '',
+          supporting_materials: data.get('supporting_materials') || '',
+          audit_date: auditDate,
+          attestation: data.get('attestation') || '',
+          generated_by: 'static Human Audit Console',
+          generated_at: generatedAt
+        };
+        let patch = '';
+        if (auditType === 'null_denominator' && eventId) {
+          if (decision === 'pass') {
+            patch = [
+              '',
+              '# Suggested YAML patch fragment. Apply only after maintainer review.',
+              '# File: events/' + eventId + '.yaml',
+              'last_human_audit: ' + record.audit_date
+            ].join('\\n');
+          } else {
+            patch = [
+              '',
+              '# No last_human_audit stamp should be applied for this decision.',
+              '# Maintainer action: re-scope, exclude, or request more evidence for events/' + eventId + '.yaml'
+            ].join('\\n');
+          }
+        } else if (auditType === 'independent_human_irr') {
+          patch = [
+            '',
+            '# Expected maintainer action after accepting this record:',
+            '# - place the independent recode output under analysis/inter_rater/',
+            '# - run make irr-kappa,',
+            '# - set coder_provenance.mode to independent_human only if the recode was truly independent.'
+          ].join('\\n');
+        } else if (auditType === 'release_signoff') {
+          patch = [
+            '',
+            '# Expected maintainer action after accepting this record:',
+            '# - update CITATION.cff version/date,',
+            '# - regenerate artifacts from a clean intended source tree,',
+            '# - run the strict submission gate.'
+          ].join('\\n');
+        }
+        record.maintainer_patch_template = patch.trim();
+        const outputText = JSON.stringify(record, null, 2);
+        const output = form.parentElement.querySelector('.audit-output');
+        const wrap = form.parentElement.querySelector('.audit-output-wrap');
+        if (output) {
+          output.value = outputText;
+          output.focus();
+          output.select();
+        }
+        if (wrap) wrap.classList.add('visible');
+      });
+    });
+    document.querySelectorAll('[data-copy-audit-output]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const target = document.getElementById(btn.dataset.copyAuditOutput);
+        if (!target) return;
+        target.select();
+        try {
+          await navigator.clipboard.writeText(target.value);
+          btn.textContent = 'Copied';
+          setTimeout(() => { btn.textContent = 'Copy output'; }, 1200);
+        } catch (_) {
+          document.execCommand('copy');
+        }
+      });
+    });
+  }
+  setupAuditConsole();
 
   // --------------------------- index filters ---------------------------
   const table = document.getElementById('events-table');
@@ -1529,6 +1808,558 @@ def render_prev_next(slug: str, ordered_slugs: list[str]) -> str:
     return f'<nav class="prev-next" aria-label="Sibling events">{left}{right}</nav>'
 
 
+def collect_replay_artifacts(value: Any) -> list[dict[str, str]]:
+    artifacts: list[dict[str, str]] = []
+
+    def walk(obj: Any) -> None:
+        if isinstance(obj, dict):
+            body_path = obj.get("body_path")
+            if body_path:
+                artifacts.append({
+                    "path": str(body_path),
+                    "sha256": str(obj.get("body_hash") or obj.get("query_hash") or ""),
+                    "type": str(obj.get("type") or "body_path"),
+                })
+            measurement_ids = obj.get("measurement_ids")
+            if measurement_ids:
+                artifacts.append({
+                    "path": "measurement_ids:" + ",".join(str(x) for x in measurement_ids),
+                    "sha256": "",
+                    "type": "measurement_ids",
+                })
+            for child in obj.values():
+                walk(child)
+        elif isinstance(obj, list):
+            for item in obj:
+                walk(item)
+
+    walk(value)
+    seen: set[tuple[str, str]] = set()
+    out: list[dict[str, str]] = []
+    for item in artifacts:
+        key = (item.get("path", ""), item.get("sha256", ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(item)
+    return out
+
+
+def artifact_link(path: str, label: str | None = None) -> str:
+    label = label or path
+    if path.startswith("measurement_ids:"):
+        return f"<code>{escape(path)}</code>"
+    return f'<a href="{escape(path)}"><code>{escape(label)}</code></a>'
+
+
+def sha256_file(path: pathlib.Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def site_artifact_record(site_dir: pathlib.Path, path: str, artifact_type: str) -> dict[str, str]:
+    sha = ""
+    if not path.startswith("measurement_ids:"):
+        target = site_dir / path
+        if target.is_file():
+            sha = sha256_file(target)
+    return {"path": path, "sha256": sha, "type": artifact_type}
+
+
+def audit_snapshot(meta: dict, package_kind: str) -> dict[str, Any]:
+    return {
+        "dataset_version": meta.get("dataset_version") or "unknown",
+        "cutoff_date": meta.get("cutoff_date") or "n/a",
+        "source_commit": meta.get("source_commit") or "",
+        "source_commit_full": meta.get("source_commit_full") or "",
+        "source_input_hash": meta.get("source_input_hash") or "",
+        "source_tree_dirty": bool(meta.get("source_tree_dirty")),
+        "package_kind": package_kind,
+    }
+
+
+def audit_snapshot_script(meta: dict, package_kind: str) -> str:
+    payload = json.dumps(audit_snapshot(meta, package_kind), sort_keys=True)
+    return f"<script>window.AUDIT_SNAPSHOT = {payload};</script>"
+
+
+def render_audit_form(
+    *,
+    audit_type: str,
+    task_id: str,
+    event_id: str | None,
+    reviewed_artifacts: list[dict[str, str]],
+    output_id: str,
+    decision_options: list[tuple[str, str]],
+    checklist: list[tuple[str, str]],
+) -> str:
+    options = "".join(
+        f'<option value="{escape(value)}">{escape(label)}</option>'
+        for value, label in decision_options
+    )
+    checks = "".join(
+        '<label>'
+        f'<input type="checkbox" name="{escape(name)}" data-check="{escape(name)}">'
+        f'<span>{escape(label)}</span>'
+        '</label>'
+        for name, label in checklist
+    )
+    reviewed_json = escape(json.dumps(reviewed_artifacts, separators=(",", ":")))
+    event_attr = f' data-event-id="{escape(event_id)}"' if event_id else ""
+    return f"""
+      <form class="audit-form" data-audit-type="{escape(audit_type)}" data-task-id="{escape(task_id)}"{event_attr} data-reviewed-artifacts="{reviewed_json}">
+        <div class="audit-grid">
+          <div>
+            <label>Auditor name
+              <input name="auditor_name" autocomplete="name" required>
+            </label>
+            <label>Affiliation
+              <input name="auditor_affiliation" autocomplete="organization">
+            </label>
+            <label>Email / contact
+              <input name="auditor_email" type="email" autocomplete="email">
+            </label>
+            <label>Audit date
+              <input name="audit_date" type="date" required>
+            </label>
+            <label>Independence statement
+              <textarea name="independence_statement" required placeholder="State whether you are independent of the original coding / LLM pre-audit and what materials you did or did not use."></textarea>
+            </label>
+          </div>
+          <div>
+            <label>Decision
+              <select name="decision" required>
+                <option value="">Select decision</option>
+                {options}
+              </select>
+            </label>
+            <div class="audit-checks" role="group" aria-label="Audit checks">
+              {checks}
+            </div>
+            <label>Rationale
+              <textarea name="rationale" required placeholder="Explain the evidence basis for this decision."></textarea>
+            </label>
+            <label>Limitations / follow-up
+              <textarea name="limitations" placeholder="State remaining uncertainty, re-scope needs, or evidence gaps."></textarea>
+            </label>
+            <label>Supporting materials / returned files
+              <textarea name="supporting_materials" placeholder="List completed worksheet filenames, command logs, hashes, or external files returned with this audit record."></textarea>
+            </label>
+            <label>Attestation
+              <textarea name="attestation" required placeholder="Example: I reviewed the linked artifacts and this record reflects my independent judgment."></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="audit-error" hidden></div>
+        <button class="button" type="submit">Generate audit record</button>
+      </form>
+      <div class="audit-output-wrap">
+        <label>Generated JSON / patch template
+          <textarea id="{escape(output_id)}" class="audit-output" readonly></textarea>
+        </label>
+        <div class="audit-result-actions">
+          <button class="button secondary" type="button" data-copy-audit-output="{escape(output_id)}">Copy output</button>
+        </div>
+      </div>
+    """
+
+
+def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict | None = None) -> str:
+    meta = meta or load_meta()
+    dv = meta.get("dataset_version") or "unknown"
+    cutoff = meta.get("cutoff_date") or "n/a"
+    commit = meta.get("source_commit") or ""
+    generated_stamp = now_utc_datetime().strftime("%Y-%m-%d %H:%M UTC")
+    by_id = {e.get("id"): e for e in events if e.get("id")}
+
+    artifact = lambda path, typ: site_artifact_record(site_dir, path, typ)
+    standard_docs = [
+        artifact("docs/methodology.md", "methodology"),
+        artifact("docs/l0-l3-denominator-appendix.md", "denominator_appendix"),
+        artifact("docs/paper_claims.md", "claim_lock"),
+        artifact("human-audit.md", "human_audit_queue"),
+        artifact("analysis/llm_expert_audit/null_case_pre_audit.md", "llm_triage_not_conclusion"),
+    ]
+
+    null_cards = []
+    for slug in NULL_DENOMINATOR_AUDIT_CASES:
+        event = by_id.get(slug) or {}
+        title = titleify(slug)
+        status, note = NULL_AUDIT_PRESTATUS.get(
+            slug,
+            ("needs_human_attention", "Human must confirm that the observed_no_change anchor supports the coded scope and time window."),
+        )
+        priority_cls = " priority-high" if status == "fail_pre_audit" else (" priority-warn" if status == "needs_human_attention" else "")
+        no_change_obs = [
+            o for o in (event.get("observations") or [])
+            if isinstance(o, dict) and o.get("observation_kind") == "observed_no_change"
+        ]
+        obs_lines = []
+        for obs in no_change_obs:
+            window = obs.get("window") or []
+            window_s = " -> ".join(str(x) for x in window) if isinstance(window, list) else str(window or "")
+            obs_lines.append(
+                f'<li><code>{escape(obs.get("layer") or "unknown")}</code> · '
+                f'{escape(obs.get("actor") or "unknown actor")} · '
+                f'{escape(obs.get("event") or "observed_no_change")} '
+                f'<span class="muted">{escape(window_s)}</span></li>'
+            )
+        replay = collect_replay_artifacts(event)
+        reviewed = [
+            artifact(f"raw/{slug}.yaml", "event_yaml"),
+            artifact(f"events/{slug}.html", "rendered_event_page"),
+            artifact(f"analysis/evidence-chains/{slug}.md", "evidence_chain"),
+            *standard_docs,
+            *replay,
+        ]
+        source_links = "".join(
+            f'<div>{artifact_link(a["path"])}</div>' for a in replay
+        ) or '<div class="muted">No replay artifact path found in event YAML.</div>'
+        out_id = f"audit-output-{slug}"
+        null_cards.append(f"""
+        <article class="audit-panel{priority_cls}" id="audit-{escape(slug)}">
+          <h3>{escape(title)}</h3>
+          <p class="meta"><code>{escape(slug)}</code> · LLM pre-audit: <code>{escape(status)}</code></p>
+          <p>{escape(note)}</p>
+          <div class="audit-links">
+            <a href="events/{escape(slug)}.html">Rendered event page</a>
+            <a href="raw/{escape(slug)}.yaml">Raw YAML</a>
+            <a href="analysis/evidence-chains/{escape(slug)}.md">Evidence chain</a>
+            <a href="analysis/llm_expert_audit/null_case_pre_audit.md">LLM pre-audit triage</a>
+          </div>
+          <div class="audit-note">
+            <strong>Observed no-change rows to audit</strong>
+            <ul>{''.join(obs_lines) if obs_lines else '<li class="muted">No observed_no_change row found.</li>'}</ul>
+          </div>
+          <details>
+            <summary>Replay artifact paths from YAML</summary>
+            <div class="audit-paths">{source_links}</div>
+          </details>
+          {render_audit_form(
+              audit_type="null_denominator",
+              task_id=slug,
+              event_id=slug,
+              reviewed_artifacts=reviewed,
+              output_id=out_id,
+              decision_options=[
+                  ("pass", "pass - anchor supports coded null scope"),
+                  ("rescope", "re-scope - claim/window/layer must narrow"),
+                  ("exclude", "exclude - remove from stronger null use"),
+                  ("needs_more_evidence", "needs more evidence"),
+              ],
+              checklist=[
+                  ("evidence_anchor_confirmed", "Replayable evidence anchor inspected, not just scope_descriptor"),
+                  ("scope_confirmed", "Coded scope matches the artifact"),
+                  ("time_window_confirmed", "No-change window is supported"),
+                  ("denominator_language_confirmed", "Null is phrased as public-evidence denominator only"),
+              ],
+          )}
+        </article>
+        """)
+
+    release_reviewed = [
+        artifact("docs/a-class-submission-readiness.md", "readiness_plan"),
+        artifact("analysis/a_class_submission_gap_report.md", "gap_report"),
+        artifact("human-audit.md", "human_audit_queue"),
+        artifact("docs/releasing.md", "release_protocol"),
+        artifact("CITATION.cff", "citation_metadata"),
+        artifact("dataset.meta.json", "dataset_metadata"),
+        artifact("analysis/paper_tables/README.md", "paper_tables"),
+        artifact("sources/source_manifest.md", "source_manifest"),
+    ]
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Human Audit Console for the Chain Censorship Events Database.">
+  <title>Human Audit Console — Chain Censorship Events</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand"><a href="./index.html">Chain Censorship Events</a><span class="brand-tag">audit console</span></div>
+    <div class="header-spacer"></div>
+    <a class="header-link optional" href="h1_irr_packet/index.html">IRR packet</a>
+    <a class="header-link optional" href="#h2-null-cases">Null cases</a>
+    <a class="header-link optional" href="#h3-release">Release</a>
+    <a class="header-link" href="./index.html">Dashboard</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀ light</button>
+  </div>
+</header>
+
+<main class="page">
+  <section class="dashboard-hero">
+    <div class="hero-copy">
+      <div class="hero-kicker">Human audit workflow</div>
+      <h1>Audit console.</h1>
+      <p class="hero-lede">
+        Use this page for H2 null-denominator decisions and H3 release sign-off.
+        H1 independent IRR uses a separate blank-workbook packet to preserve
+        blinding. The forms generate structured JSON and patch templates only;
+        maintainers must review and merge any YAML changes.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="#h2-null-cases">Start null-case audit</a>
+        <a class="button secondary" href="human-audit.md">Read human queue</a>
+        <a class="button secondary" href="analysis/a_class_submission_gap_report.md">Current gap report</a>
+      </div>
+    </div>
+    <aside class="snapshot-panel" aria-label="Audit snapshot">
+      <div class="snapshot-head">
+        <div class="label">dataset snapshot</div>
+        <div class="version">v{escape(dv)}</div>
+        <div class="meta">cutoff <code>{escape(cutoff)}</code>{f' · commit <code>{escape(commit)}</code>' if commit else ''}</div>
+      </div>
+      <div class="status-line"><span><span class="label">H1</span><br><strong>independent-human IRR pending</strong></span><span class="status-dot warn"></span></div>
+      <div class="status-line"><span><span class="label">H2</span><br><strong>{len(NULL_DENOMINATOR_AUDIT_CASES)} null cases pending</strong></span><span class="status-dot warn"></span></div>
+      <div class="status-line"><span><span class="label">H3</span><br><strong>release sign-off pending</strong></span><span class="status-dot warn"></span></div>
+    </aside>
+  </section>
+
+  <section class="boundary-note">
+    <strong>Do not treat this as direct database editing.</strong>
+    A generated record is audit input. It becomes dataset provenance only after
+    maintainer review, source-tree update, and the strict gate pass.
+  </section>
+
+  <div class="audit-task-list">
+    <article class="audit-panel"><h3>H1 · Independent IRR</h3><p>Use the separate H1-only packet. Do not send this full console to IRR coders.</p><a href="h1_irr_packet/index.html">Open H1-only packet</a></article>
+    <article class="audit-panel"><h3>H2 · Null denominators</h3><p>Review 13 observed-no-change cases and decide pass/re-scope/exclude.</p><a href="#h2-null-cases">Open H2 cards</a></article>
+    <article class="audit-panel"><h3>H3 · Release sign-off</h3><p>Confirm version/date, clean tree, strict gate, and release authority.</p><a href="#h3-release">Open H3 form</a></article>
+  </div>
+
+  <section class="audit-console" id="h1-irr">
+    <article class="audit-panel priority-warn">
+      <h2>H1 · Independent-Human IRR Pass</h2>
+      <p><strong>Distribution boundary:</strong> do not send this full dashboard/site bundle to the independent IRR coder. It contains raw YAML, rendered event pages, and LLM pre-audit material that would contaminate blinding.</p>
+      <p>Send only the separate H1 packet folder, which contains blank human recode worksheets plus rubric/methodology material.</p>
+      <div class="audit-links">
+        <a href="h1_irr_packet/index.html">H1-only packet index</a>
+        <a href="h1_irr_packet/coverage_status_human_blank.csv">coverage_status blank worksheet</a>
+        <a href="h1_irr_packet/observation_kind_human_blank.csv">observation_kind blank worksheet</a>
+        <a href="h1_irr_packet/attribution_human_blank.csv">attribution blank worksheet</a>
+      </div>
+    </article>
+  </section>
+
+  <div class="section-heading" id="h2-null-cases">
+    <div>
+      <h2>H2 · Null-Case Denominator Audit</h2>
+      <p class="meta">Each card generates a standalone audit record. Send different cards to different auditors if needed.</p>
+    </div>
+  </div>
+  <section class="audit-console">
+    {''.join(null_cards)}
+  </section>
+
+  <section class="audit-console" id="h3-release">
+    <article class="audit-panel priority-warn">
+      <h2>H3 · Formal Release / Submission Sign-Off</h2>
+      <p>Use this after H1/H2 records have landed. This record documents release authority; it does not replace the strict gate.</p>
+      <div class="audit-links">
+        <a href="docs/a-class-submission-readiness.md">A-class readiness plan</a>
+        <a href="analysis/a_class_submission_gap_report.md">A-class gap report</a>
+        <a href="human-audit.md">human audit queue</a>
+        <a href="docs/releasing.md">release protocol</a>
+        <a href="CITATION.cff">CITATION.cff</a>
+        <a href="dataset.meta.json">dataset.meta.json</a>
+      </div>
+      {render_audit_form(
+          audit_type="release_signoff",
+          task_id="h3_release_signoff",
+          event_id=None,
+          reviewed_artifacts=release_reviewed,
+          output_id="audit-output-h3-release",
+          decision_options=[
+              ("approve_submission_snapshot", "approve submission snapshot"),
+              ("approve_tagged_release", "approve tagged release"),
+              ("block_release", "block release"),
+              ("needs_more_work", "needs more work"),
+          ],
+          checklist=[
+              ("citation_date_valid", "CITATION date is on or after dataset cutoff"),
+              ("clean_source_tree_confirmed", "Clean intended source tree confirmed"),
+              ("strict_gate_run", "Strict gate command run and reviewed"),
+              ("known_limitations_listed", "Known limitations listed in release/submission notes"),
+          ],
+      )}
+    </article>
+  </section>
+
+  <footer class="site-footer">
+    <div>Generated {generated_stamp} · audit console · dataset v{escape(dv)} · cutoff {escape(cutoff)}</div>
+    <div><a href="index.html">Dashboard</a> · <a href="human-audit.md">Human audit queue</a></div>
+  </footer>
+</main>
+
+{audit_snapshot_script(meta, "h2_h3_audit_console")}
+<script src="site.js"></script>
+</body>
+</html>"""
+
+
+def write_blank_recode_csv(src: pathlib.Path, dest: pathlib.Path) -> None:
+    with src.open(newline="") as fh:
+        reader = csv.DictReader(fh)
+        rows = list(reader)
+        fieldnames = reader.fieldnames or []
+    for row in rows:
+        if "recode_value" in row:
+            row["recode_value"] = ""
+        if "recoder_comment" in row:
+            row["recoder_comment"] = ""
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    with dest.open("w", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def render_h1_irr_packet_index(packet_dir: pathlib.Path, meta: dict) -> str:
+    artifact = lambda path, typ: site_artifact_record(packet_dir, path, typ)
+    reviewed = [
+        artifact("coverage_status_human_blank.csv", "blank_human_worksheet"),
+        artifact("observation_kind_human_blank.csv", "blank_human_worksheet"),
+        artifact("attribution_human_blank.csv", "blank_human_worksheet"),
+        artifact("sample_manifest.csv", "sample_manifest"),
+        artifact("meta.yaml", "sampling_metadata"),
+        artifact("docs/methodology.md", "methodology"),
+        artifact("docs/case-review-rubric.md", "rubric"),
+    ]
+    generated_stamp = now_utc_datetime().strftime("%Y-%m-%d %H:%M UTC")
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="H1-only independent human IRR packet for the Chain Censorship Events Database.">
+  <title>H1 IRR Packet — Chain Censorship Events</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="page">
+  <section class="dashboard-hero">
+    <div class="hero-copy">
+      <div class="hero-kicker">H1-only distribution packet</div>
+      <h1>Independent IRR packet.</h1>
+      <p class="hero-lede">
+        This folder is intentionally isolated from the dashboard, raw YAML,
+        event pages, answer keys, kappa reports, and LLM pre-audit notes. Send
+        this packet only to the independent human coder.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="coverage_status_human_blank.csv">coverage_status worksheet</a>
+        <a class="button secondary" href="observation_kind_human_blank.csv">observation_kind worksheet</a>
+        <a class="button secondary" href="attribution_human_blank.csv">attribution worksheet</a>
+      </div>
+    </div>
+    <aside class="snapshot-panel" aria-label="IRR packet snapshot">
+      <div class="snapshot-head">
+        <div class="label">dataset snapshot</div>
+        <div class="version">v{escape(meta.get("dataset_version") or "unknown")}</div>
+        <div class="meta">cutoff <code>{escape(meta.get("cutoff_date") or "n/a")}</code></div>
+      </div>
+      <div class="status-line"><span><span class="label">scope</span><br><strong>blank recode only</strong></span><span class="status-dot warn"></span></div>
+      <div class="status-line"><span><span class="label">forbidden</span><br><strong>no dashboard / labels / LLM notes</strong></span><span class="status-dot bad"></span></div>
+    </aside>
+  </section>
+
+  <section class="boundary-note">
+    <strong>Blinding boundary.</strong>
+    Do not supplement this packet with the full <code>site/</code> directory,
+    raw event YAML, rendered event pages, existing recode answers, kappa reports,
+    or LLM pre-audit rationale.
+  </section>
+
+  <section class="audit-console">
+    <article class="audit-panel">
+      <h2>Materials</h2>
+      <div class="audit-links">
+        <a href="coverage_status_human_blank.csv">coverage_status blank worksheet</a>
+        <a href="observation_kind_human_blank.csv">observation_kind blank worksheet</a>
+        <a href="attribution_human_blank.csv">attribution blank worksheet</a>
+        <a href="sample_manifest.csv">sample manifest</a>
+        <a href="meta.yaml">sampling metadata</a>
+        <a href="docs/methodology.md">methodology</a>
+        <a href="docs/case-review-rubric.md">case-review rubric</a>
+      </div>
+      <p class="meta">Return the completed worksheet files together with the generated JSON below. List returned filenames and hashes in “Supporting materials / returned files”.</p>
+    </article>
+
+    <article class="audit-panel priority-warn">
+      <h2>Generate H1 Audit Record</h2>
+      {render_audit_form(
+          audit_type="independent_human_irr",
+          task_id="h1_independent_human_irr",
+          event_id=None,
+          reviewed_artifacts=reviewed,
+          output_id="audit-output-h1-irr",
+          decision_options=[
+              ("complete_ready_for_kappa", "complete - ready for kappa recomputation"),
+              ("needs_recode_revision", "needs recode revision"),
+              ("invalid_not_independent", "invalid - independence/blinding failed"),
+          ],
+          checklist=[
+              ("blinded_materials_only", "Coder received only this H1 packet"),
+              ("independent_coder", "Coder is independent of original labels and LLM pre-audit"),
+              ("coverage_status_recoded", "coverage_status recoded"),
+              ("observation_kind_recoded", "observation_kind recoded"),
+              ("attribution_recoded", "attribution recoded"),
+          ],
+      )}
+    </article>
+  </section>
+
+  <footer class="site-footer">
+    <div>Generated {generated_stamp} · H1-only IRR packet</div>
+  </footer>
+</main>
+
+{audit_snapshot_script(meta, "h1_irr_packet")}
+<script src="site.js"></script>
+</body>
+</html>"""
+
+
+def write_h1_irr_packet(site_dir: pathlib.Path, meta: dict) -> int:
+    packet_dir = site_dir / "h1_irr_packet"
+    packet_dir.mkdir(parents=True, exist_ok=True)
+    (packet_dir / "styles.css").write_text(STATIC_CSS)
+    (packet_dir / "site.js").write_text(STATIC_JS)
+
+    worksheet_map = {
+        "coverage_status_blind.csv": "coverage_status_human_blank.csv",
+        "observation_kind_blind.csv": "observation_kind_human_blank.csv",
+        "attribution_blind.csv": "attribution_human_blank.csv",
+    }
+    copied = 2
+    for src_name, dest_name in worksheet_map.items():
+        write_blank_recode_csv(
+            REPO_ROOT / "analysis" / "inter_rater" / src_name,
+            packet_dir / dest_name,
+        )
+        copied += 1
+    for src_rel, dest_rel in (
+        ("analysis/inter_rater/sample_manifest.csv", "sample_manifest.csv"),
+        ("analysis/inter_rater/meta.yaml", "meta.yaml"),
+        ("docs/methodology.md", "docs/methodology.md"),
+        ("docs/case-review-rubric.md", "docs/case-review-rubric.md"),
+    ):
+        src = REPO_ROOT / src_rel
+        dest = packet_dir / dest_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dest)
+        copied += 1
+    (packet_dir / "index.html").write_text(render_h1_irr_packet_index(packet_dir, meta))
+    return copied + 1
+
+
 def render_event_page(event: dict, all_events: list[dict], meta: dict | None = None) -> str:
     meta = meta or load_meta()
     dv = meta.get("dataset_version") or "unknown"
@@ -1821,6 +2652,16 @@ def render_artifact_cards() -> str:
             "analysis/a_class_submission_gap_report.md",
         ),
         (
+            "Human audit console",
+            "H2/H3 forms for collecting human audit records and patch templates.",
+            "audit.html",
+        ),
+        (
+            "H1 IRR packet",
+            "Separate blank-workbook packet for independent-human recoding.",
+            "h1_irr_packet/index.html",
+        ),
+        (
             "Paper tables",
             "Reproducible tables generated from YAML and derived panels.",
             "analysis/paper_tables/README.md",
@@ -1988,6 +2829,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
     <a class="header-link optional" href="#layers">Layers</a>
     <a class="header-link optional" href="#artifacts">Artifacts</a>
     <a class="header-link optional" href="#events">Events</a>
+    <a class="header-link optional" href="audit.html">Audit</a>
     <a class="header-link" href="https://github.com/chnyangs/censorship-event-database" rel="noopener">GitHub</a>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀ light</button>
   </div>
@@ -2008,6 +2850,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
       <div class="hero-actions">
         <a class="button" href="#events">Browse the corpus</a>
         <a class="button secondary" href="docs/paper_claims.md">Read claim boundaries</a>
+        <a class="button secondary" href="audit.html">Human audit console</a>
         <a class="button secondary" href="analysis/llm_expert_audit/README.md">LLM audit notes</a>
       </div>
     </div>
@@ -2176,6 +3019,8 @@ def copy_dashboard_artifacts(site_dir: pathlib.Path) -> int:
     file_globs = [
         "human-audit.md",
         "analysis/a_class_submission_gap_report.md",
+        "analysis/evidence-chains/*.md",
+        "analysis/audit_worksheets/*.md",
         "analysis/llm_expert_audit/*.md",
         "analysis/paper_tables/*",
         "analysis/trigger_registry/*",
@@ -2198,6 +3043,26 @@ def copy_dashboard_artifacts(site_dir: pathlib.Path) -> int:
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dest)
             copied += 1
+
+    # Include only the source captures needed by the null-case audit console,
+    # not the full sources/ tree.
+    for slug in NULL_DENOMINATOR_AUDIT_CASES:
+        for base_rel in (
+            pathlib.Path("sources/http_captures") / slug,
+            pathlib.Path("sources/l0_datasets") / slug,
+        ):
+            base = REPO_ROOT / base_rel
+            if not base.is_dir():
+                continue
+            for src in sorted(base.rglob("*")):
+                if not src.is_file() or src in seen:
+                    continue
+                seen.add(src)
+                rel = src.relative_to(REPO_ROOT)
+                dest = site_dir / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dest)
+                copied += 1
     return copied
 
 
@@ -2291,16 +3156,19 @@ def main() -> int:
         slug = e.get("id", "unknown")
         (site_dir / "events" / f"{slug}.html").write_text(render_event_page(e, events, meta))
 
-    (site_dir / "index.html").write_text(render_index(events, meta))
     copy_yaml_raw(events_dir, site_dir)
     n_docs = copy_docs_tree(DOCS_DIR, site_dir)
     n_artifacts = copy_dashboard_artifacts(site_dir)
     copy_meta(site_dir)
+    n_irr = write_h1_irr_packet(site_dir, meta)
+
+    (site_dir / "index.html").write_text(render_index(events, meta))
+    (site_dir / "audit.html").write_text(render_audit_console(events, site_dir, meta))
 
     print(
         f"[render_site] wrote {site_dir}/index.html + {len(events)} per-event pages + "
         f"raw/ + docs/ ({n_docs} files) + dashboard artifacts ({n_artifacts} files) "
-        "+ CITATION.cff + dataset.meta.json"
+        f"+ H1 IRR packet ({n_irr} files) + CITATION.cff + dataset.meta.json"
     )
     return 0
 

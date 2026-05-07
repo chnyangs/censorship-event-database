@@ -53,7 +53,7 @@ make regenerate
 
 # 4. Run release gates. The strict reliability gate requires an
 #    independent-human IRR report; omit only for non-release working snapshots.
-python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability
+python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 
 # 5. CHANGELOG entry summarising what's in this version.
 $EDITOR CHANGELOG.md

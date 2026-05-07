@@ -60,7 +60,7 @@ Acceptance gate:
 ```sh
 make check
 python3 scripts/validate.py --check-archives events/*.yaml
-python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability
+python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 ```
 
 Do not satisfy this phase by relabeling LLM outputs as human work.
@@ -193,7 +193,7 @@ Acceptance gate:
 make regenerate
 make check
 make render-site
-python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability
+python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 ```
 
 The final strict gate requires a clean committed source tree; running it
@@ -219,4 +219,3 @@ Do not submit if any are true:
 - 53 admitted events are presented as representative population coverage;
 - L0/L3 missing denominators are written as zeros;
 - the artifact cannot reproduce from a clean checkout.
-

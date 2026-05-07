@@ -30,8 +30,11 @@ Required action:
 
 1. Select an independent coder who did not produce the gold labels or the
    agent-assisted recode.
-2. Give the coder the blinded worksheet package and rubric, not the existing
-   coded answers or rationale.
+2. Give the coder only the H1 packet generated at
+   `site/h1_irr_packet/` (or an equivalent folder containing only blank
+   worksheets, rubric, methodology, and sample metadata), not the full
+   dashboard/site bundle, raw event YAML, rendered event pages, existing coded
+   answers, kappa reports, LLM rationale, or null-case pre-audit notes.
 3. Recode at least the variables that support paper-facing claims:
    `coverage_status`, `observation_kind`, and `attribution`.
 4. Recompute κ with `make irr-kappa`.
@@ -75,7 +78,10 @@ examples or stronger denominator evidence:
 
 Per-event audit procedure:
 
-1. Run `python3 scripts/validate.py --check-archives events/<event-id>.yaml`.
+1. Maintainer pre-flight: run
+   `python3 scripts/validate.py --check-archives events/<event-id>.yaml`
+   before distributing the static packet. Static H2 auditors are not expected
+   to run repository commands unless they receive a full checkout/container.
 2. Open the event YAML and its rendered evidence chain under
    `analysis/evidence-chains/<event-id>.md`.
 3. Inspect the local artifact referenced by `body_hash` + `body_path`,
@@ -108,7 +114,7 @@ Required action:
 5. Run the strict gate:
 
 ```sh
-python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability
+python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 ```
 
 Acceptance criteria:

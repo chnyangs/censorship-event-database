@@ -54,7 +54,7 @@ Remaining warnings:
 make regenerate
 make check
 make render-site
-python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability
+python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 ```
 
 ## Current Submission Judgment
@@ -67,4 +67,3 @@ If the human items pass and the paper keeps the current denominator-aware
 framing, the project is a plausible A-class measurement/data-paper submission.
 If the paper overclaims population prevalence, L0/L3 rates, or independent IRR,
 the same artifact surface becomes high-risk.
-

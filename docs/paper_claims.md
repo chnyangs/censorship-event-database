@@ -5,7 +5,7 @@
 > gate. The current working snapshot is not strict-submission-ready until the
 > Human-Expert-Audit items in [`../human-audit.md`](../human-audit.md) are
 > completed and
-> `python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability`
+> `python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability`
 > passes from a clean intended source tree.
 
 This file is the single source of truth for "what the paper actually
