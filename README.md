@@ -383,7 +383,9 @@ Agent-assisted ingestion (drafts, captures, Wayback submissions) is permitted; a
 
 ## 11. Explicit non-goals
 
-- **Not a dashboard**. No live UI. Static site generation from dataset is optional and low priority.
+- **Not a real-time dashboard product**. The static site is a navigational
+  research dashboard for the frozen artifact surface; it is not a live
+  observatory or monitoring UI.
 - **Not a real-time observatory product**. Lightweight trigger watchers are allowed for archival coverage, but published events are admitted only after the cascade stabilizes under an explicit observation window.
 - **Not a sanctions compliance tool, and not a prescriptive playbook**. The dataset is a **descriptive historical record with open provenance** — what happened, when, and with what evidence. It is **not** a normative statement about how future events should be handled, not a compliance determination, not legal advice, and not an expert opinion on covered-party status. Lawyers, regulators, compliance teams, and journalists may cite specific cascade timelines as factual evidence in their own work; the project takes no position on the legal or policy conclusions they draw. The distinction matters because it keeps the project in the role of archivist / witness rather than expert witness, and prevents adversarial use of the dataset's edge cases against the methodology itself.
 - **Not a Chainalysis replacement**. The edge is rigorous cross-layer timelines with open provenance, not asset-flow analytics.

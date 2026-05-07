@@ -132,3 +132,20 @@ Forbidden:
   measured.
 - "Public RPC providers generally censor / do not censor" because v0.1
   has no complete provider census.
+
+## A-Class Submission Gate
+
+This appendix is sufficient for an A-class submission only if it is cited
+next to the primary result, not buried as an afterthought. Reviewers should
+be able to trace every L0/L3 `—` in Table 2 to the generated artifacts above.
+
+Before submission:
+
+- rerun `make paper-tables` after any event or coverage edit;
+- verify that `analysis/paper_tables/table2_layer_observability.md` still
+  reports `l0_network` as `—` / `—` and `l3_rpc` as `—` /
+  `named-only; no rate`;
+- remove or rewrite any prose that converts an observability gap into a
+  no-change finding;
+- keep the Flashbots rows as mechanism evidence only unless a provider
+  universe with event-window probes is added.

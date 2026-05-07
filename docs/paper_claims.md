@@ -1,10 +1,12 @@
-# Paper claims · v0.1 skeleton
+# Paper claims · v0.1 A-class submission lock
 
-> **Status**: skeleton. Every claim below is a candidate; nothing is
-> promoted to the paper until (a) the anchor audits for its supporting
-> events are signed off, and (b) the paper table generator
-> (`scripts/build_paper_tables.py`, live as of 2026-04-24) reproduces
-> the cited numbers from the committed dataset snapshot.
+> **Status**: submission-lock draft. Every promoted claim below must stay
+> bounded by its table source, case-role scope, denominator class, and audit
+> gate. The current working snapshot is not strict-submission-ready until the
+> Human-Expert-Audit items in [`../human-audit.md`](../human-audit.md) are
+> completed and
+> `python3 scripts/check_paper_readiness.py --strict-audit --strict-repro --strict-reliability`
+> passes from a clean intended source tree.
 
 This file is the single source of truth for "what the paper actually
 argues." Each claim states:

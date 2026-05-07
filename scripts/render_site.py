@@ -1811,6 +1811,16 @@ def render_artifact_cards() -> str:
             "docs/paper_claims.md",
         ),
         (
+            "A-class readiness",
+            "Submission-focused gates, blockers, and go/no-go criteria.",
+            "docs/a-class-submission-readiness.md",
+        ),
+        (
+            "A-class gap report",
+            "Current machine/human blockers for the submission package.",
+            "analysis/a_class_submission_gap_report.md",
+        ),
+        (
             "Paper tables",
             "Reproducible tables generated from YAML and derived panels.",
             "analysis/paper_tables/README.md",
@@ -2165,6 +2175,7 @@ def copy_dashboard_artifacts(site_dir: pathlib.Path) -> int:
     copied = 0
     file_globs = [
         "human-audit.md",
+        "analysis/a_class_submission_gap_report.md",
         "analysis/llm_expert_audit/*.md",
         "analysis/paper_tables/*",
         "analysis/trigger_registry/*",

@@ -20,7 +20,7 @@ complete any item in this file.
 
 | ID | Blocker | Why human | Blocks |
 | --- | --- | --- | --- |
-| H1 | Independent-human IRR pass | Current `analysis/inter_rater/kappa_report.*` uses `llm_assisted_blinded`; it can support self-consistency only, not independent reliability. | `--strict-reliability`, A/A+ submission reliability claims |
+| H1 | Independent-human IRR pass | Current `analysis/inter_rater/kappa_report.*` uses `llm_assisted_blinded`; it can support self-consistency only, not independent reliability. | `--strict-reliability`, A-class/A+ submission reliability claims |
 | H2 | Null-case denominator audit for 13 events | A human must confirm that each null case's `observed_no_change` evidence anchor actually supports the coded scope and denominator statement. | Narrative spotlight use of these null cases; stronger denominator-validity claims |
 | H3 | Formal release/submission sign-off | A human must decide the release version/date, confirm the working tree is clean after commit, and authorize tag/DOI publication. | `--strict-repro`, tagged release, archival DOI, camera-ready artifact package |
 
