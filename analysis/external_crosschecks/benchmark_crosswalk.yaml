@@ -1,0 +1,167 @@
+schema_version: 0.1.0
+status: reviewer_facing_crosscheck_plan
+updated: 2026-05-07
+purpose: >
+  Map adjacent censorship / sanctions / takedown measurement work to the
+  cross-layer event database. These benchmarks are used for external
+  validity checks and denominator discipline; they do not replace the
+  event YAML corpus or its admission rules.
+benchmarks:
+  - id: ooni
+    name: OONI Explorer / OONI open measurements
+    primary_urls:
+      - https://explorer.ooni.org/
+      - https://ooni.org/
+    benchmark_type: open_network_measurement_dataset
+    mapped_layers:
+      - l0_network
+      - l4_frontend
+    what_it_can_validate:
+      - Country / ASN / test-name measurement availability around a trigger window.
+      - Whether a domain-level L0 claim has public web_connectivity measurements.
+      - Whether the project should record no measurements rather than no blocking.
+    what_it_cannot_validate:
+      - L1 relay behavior, RPC policy, asset freezes, or CEX actions.
+      - Corporate intent or legal causality behind a reachable/unreachable result.
+      - Global prevalence for events outside OONI's tested domains and probes.
+    denominator_crosscheck:
+      required_fields:
+        - query_scope_country
+        - query_scope_asn_or_network
+        - test_name
+        - measurement_count
+        - anomaly_or_confirmed_blocking_status
+      fail_closed_rule: >
+        If measurement_count is zero, encode the layer as a measurement gap,
+        not observed_no_change.
+    integration_actions:
+      - Backfill OONI query metadata into L0 rows where an event target has a domain.
+      - Compare T-14/T+14 windows for anchor cases before promoting L0/L4 narrative claims.
+      - Keep OONI-derived rows denominator-conditional in coverage_matrix and l0_coverage_summary.
+
+  - id: censored_planet
+    name: Censored Planet Observatory
+    primary_urls:
+      - https://docs.censoredplanet.org/index.html
+      - https://censoredplanet.org/censoredplanet
+    benchmark_type: longitudinal_remote_network_measurement_platform
+    mapped_layers:
+      - l0_network
+      - l4_frontend
+    what_it_can_validate:
+      - Longitudinal reachability baselines across TCP/IP, DNS, and HTTP(S)-style protocols.
+      - Whether a post-trigger network anomaly is distinguishable from an older baseline.
+      - Whether sparse volunteer-measurement gaps can be crosschecked with remote vantage data.
+    what_it_cannot_validate:
+      - Application-level delisting when the domain remains reachable.
+      - Chain-layer, RPC-layer, asset-layer, or exchange-layer responses.
+      - Direct legal attribution for a detected network anomaly.
+    denominator_crosscheck:
+      required_fields:
+        - protocol
+        - vantage_scope
+        - baseline_window
+        - event_window
+        - false_positive_notes
+      fail_closed_rule: >
+        A network anomaly is not a legal-trigger response unless the event YAML
+        states the temporal window, protocol, target domain, and attribution limit.
+    integration_actions:
+      - Use Censored Planet as a baseline sanity check for L0/L4 cases with public domains.
+      - Record baseline continuity notes in evidence chains for promoted L0 claims.
+      - Park cases where the benchmark can only show generic reachability drift.
+
+  - id: tornado_cash_event_studies
+    name: Tornado Cash sanctions event-study literature
+    primary_urls:
+      - https://www.snb.ch/en/publications/research/working-papers/2024/working_paper_2024_09
+      - https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4930935
+    benchmark_type: single_case_regulation_event_study
+    mapped_layers:
+      - l1_consensus
+      - asset_onchain
+      - l4_frontend
+    what_it_can_validate:
+      - Whether Tornado-family observations align with external findings on transaction volume, user diversity, and settlement-layer cooperation.
+      - Whether immediate shock, persistence, and recovery windows are framed separately.
+      - Whether the paper's claims stay narrower than economic or flow-level event-study claims.
+    what_it_cannot_validate:
+      - Non-Tornado legal triggers or cross-case prevalence.
+      - RPC/frontend/CEX reactions that the event-study paper does not measure directly.
+      - The open-corpus admission status of each non-Tornado event.
+    denominator_crosscheck:
+      required_fields:
+        - event_window
+        - recovery_window
+        - metric_family
+        - same_or_different_unit_of_observation
+      fail_closed_rule: >
+        Do not use Tornado event-study metrics as a substitute denominator for
+        non-Tornado events or for layers outside the paper's measured variables.
+    integration_actions:
+      - Add a Tornado-family sanity-check paragraph in the evidence chain or paper discussion.
+      - Keep transaction-flow recovery separate from stack-layer reaction coding.
+      - Use discrepancies as prompts for human audit rather than automatic recoding.
+
+  - id: mev_watch
+    name: MEV Watch / OFAC-compliant relay-block monitoring
+    primary_urls:
+      - https://www.mevwatch.info/
+    benchmark_type: l1_relay_block_monitor
+    mapped_layers:
+      - l1_consensus
+    what_it_can_validate:
+      - Directional trends in OFAC-compliant mev-boost relay share after the Merge.
+      - Whether an L1 claim should be expressed as relay/block-policy exposure rather than event-specific transaction censorship.
+      - Whether relay-level evidence is available for Tornado-family L1 checks.
+    what_it_cannot_validate:
+      - Whether any particular sanctioned transaction was censored in a specific slot.
+      - Pre-Merge events or non-Ethereum networks.
+      - RPC, frontend, asset, or CEX behavior.
+    denominator_crosscheck:
+      required_fields:
+        - block_window
+        - relay_set
+        - denominator_blocks
+        - all_blocks_or_mev_boost_blocks
+      fail_closed_rule: >
+        Do not emit an L1 conditional event rate when the evidence only supports
+        aggregate relay-policy exposure.
+    integration_actions:
+      - Use MEV Watch as a sanity check for L1 Tornado-family observations.
+      - Preserve the current project distinction between named partial observations and measured denominators.
+      - Reconcile MEV Watch windows with Wahrstätter-derived rows before promoting L1 claims.
+
+  - id: compliance_transparency_sources
+    name: Chainalysis sanctions reporting and Lumen-style transparency databases
+    primary_urls:
+      - https://www.chainalysis.com/blog/tornado-cash-ofac-designation-sanctions/
+      - https://www.chainalysis.com/blog/ofac-sanctions/
+      - https://lumendatabase.org/pages/about?ResourceID=31
+      - https://lumendatabase.org/pages/lumen-notice-basics
+    benchmark_type: compliance_intelligence_and_notice_transparency
+    mapped_layers:
+      - asset_onchain
+      - offramp_cex
+      - l4_frontend
+    what_it_can_validate:
+      - Entity and identifier normalization for sanctioned services, wallet addresses, domains, and legal actors.
+      - Transparency-design patterns for notice/request provenance, redaction boundaries, and source limitations.
+      - Candidate discovery for events that still require replayable public evidence.
+    what_it_cannot_validate:
+      - Proprietary labels or risk scores that cannot be replayed from public artifacts.
+      - Private CEX decisions or off-chain compliance actions not disclosed publicly.
+      - Direct denominator counts for the cross-layer corpus.
+    denominator_crosscheck:
+      required_fields:
+        - entity_identifier_type
+        - source_publicness
+        - replayable_artifact_path
+        - redaction_or_proprietary_limit
+      fail_closed_rule: >
+        Compliance reports may support discovery or context, but cannot be the
+        sole admission anchor unless the cited claim is public and replayable.
+    integration_actions:
+      - Add entity-resolution checks for legal actor, target, address, domain, and exchange names.
+      - Treat proprietary intelligence as supporting evidence only.
+      - Reuse Lumen-style redaction/source-limit language in audit and release notes where applicable.

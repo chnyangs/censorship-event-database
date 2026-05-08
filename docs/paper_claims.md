@@ -148,6 +148,29 @@ implemented as six artifacts that must be cited together:
 | Paper-table generator | [`scripts/build_paper_tables.py`](../scripts/build_paper_tables.py) | admitted-only, fail-closed table surface for paper-facing numbers |
 | Audit and sensitivity package | [`analysis/audit_worksheets/`](../analysis/audit_worksheets/), [`derived/admission_sensitivity.md`](../derived/admission_sensitivity.md), [`analysis/inter_rater/kappa_report.md`](../analysis/inter_rater/kappa_report.md), [`analysis/staleness.md`](../analysis/staleness.md) | human-audit, rubric sensitivity, recoding consistency, and freshness gates |
 
+### External benchmark crosscheck, not a seventh artifact
+
+The paper may cite
+[`analysis/external_crosschecks/`](../analysis/external_crosschecks/)
+as an external-validity layer. It is deliberately outside the
+six-artifact measurement protocol: external benchmarks can sanity-check
+denominator scope, baseline ambiguity, entity normalization, and
+claim wording, but they do **not** create an event denominator or satisfy
+admission without replayable local evidence.
+
+| benchmark family | what the paper borrows | what it cannot do |
+| --- | --- | --- |
+| OONI / OONI Explorer | L0 query scope, measurement-count discipline, anomaly-vs-blocking distinction | turn zero public measurements into observed no-change |
+| Censored Planet | longitudinal reachability-baseline logic and false-positive controls | establish legal attribution or application-layer delisting by itself |
+| Tornado Cash sanctions event-study literature | pre/post windowing, persistence/recovery framing, external sanity checks for Tornado-family anchor cases | provide cross-case or cross-layer denominators outside the measured variables |
+| MEV Watch / relay dashboards | L1 relay-policy exposure sanity checks for Tornado-family observations | prove event-specific transaction censorship or cover non-L1 layers |
+| Chainalysis-style compliance reporting / Lumen-style transparency databases | entity normalization, notice provenance, redaction and proprietary-source caveats | serve as sole admission anchors when the underlying claim is not public and replayable |
+
+Paper phrasing lock: "we crosscheck against adjacent measurement
+benchmarks" is allowed; "external benchmarks validate the corpus" is too
+strong unless the named layer, denominator, and replayable artifact are
+identified.
+
 ### Trigger registry
 
 The trigger registry is the selection-bias guard. It currently contains
@@ -283,6 +306,23 @@ not compete at the L1-prevalence question.
 - **Chainalysis / Elliptic / TRM compliance reports**: asset-layer freeze reporting under proprietary feeds. Not event-keyed; this project's `asset_onchain` rows come from on-chain logs directly.
 - **Censorship.pics (Wahrstätter) / mevwatch / relayscan.io**: live dashboards consumed as semi-primary inputs; credited in `docs/methodology.md §4.2`.
 - **Informal blog posts on `ofacblacklist.go`** (Amadeo / Pestritto, 2022-2023): not peer-reviewed. This work's contribution is the reproducible audit + multi-repo census + admission-grade anchoring of the same finding.
+
+#### External benchmark crosswalk paragraph (required for §2 or §6)
+
+The paper should include the following compact paragraph, either at the
+end of Related Work or at the start of Threats to Validity:
+
+> We use adjacent measurement systems as external crosschecks rather than
+> as substitute evidence. OONI and Censored Planet provide the model for
+> L0 denominator accounting and baseline reachability checks; Tornado Cash
+> event-study work and MEV Watch provide sanity checks for Tornado-family
+> event windows and L1 relay-policy exposure; Chainalysis-style compliance
+> reports and Lumen-style transparency databases inform entity
+> normalization and source-limit language. None of these benchmarks creates
+> a denominator for an unmeasured layer or replaces the corpus admission
+> rule that every event-level claim must be tied to replayable public
+> evidence. The live crosswalk is
+> `analysis/external_crosschecks/benchmark_crosswalk.yaml`.
 
 #### Self-honest gaps
 
@@ -672,6 +712,25 @@ not as a rate. See C6.
 category via Table 4 Panel C. Cross-event latency statements must
 aggregate the two subsets separately. Count delegated to Table 4 so
 this claim stays correct as the corpus evolves.
+
+### 3.6 External benchmarks are validity checks, not denominators
+
+The external benchmark crosswalk must be surfaced as a threat-to-validity
+control, not as an extra data source that strengthens every claim. In
+paper prose:
+
+- OONI / Censored Planet may justify L0 denominator wording only for the
+  specific queried domain, vantage, and window.
+- Tornado Cash event-study work may sanity-check the anchor-case window,
+  but cannot generalize the 53-event corpus.
+- MEV Watch may sanity-check L1 relay exposure, but cannot support RPC,
+  frontend, asset, or CEX claims.
+- Chainalysis / Elliptic / TRM / Lumen-style sources may inform entity
+  normalization and source limitations, but proprietary or redacted
+  claims remain supporting context only.
+
+If a sentence implies that an external benchmark validates an unmeasured
+layer, the sentence is forbidden.
 
 ## 4. Paper-table generator (live)
 

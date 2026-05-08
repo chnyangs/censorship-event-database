@@ -22,6 +22,17 @@ The measurement protocol is implemented as six reproducible artifacts:
 | Paper-table generator | [`scripts/build_paper_tables.py`](scripts/build_paper_tables.py) | admitted-only fail-closed paper numbers |
 | Audit/sensitivity package | [`analysis/audit_worksheets/`](analysis/audit_worksheets/), [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md), [`analysis/inter_rater/kappa_report.md`](analysis/inter_rater/kappa_report.md), [`analysis/staleness.md`](analysis/staleness.md) | audit, rubric sensitivity, recoding consistency, and freshness gates |
 
+Draft manuscript wrapper: [`docs/paper.md`](docs/paper.md). The manuscript
+is generated from the claim lock and paper tables; if it conflicts with
+[`docs/paper_claims.md`](docs/paper_claims.md), the claim lock controls.
+
+External validity is tracked separately in
+[`analysis/external_crosschecks/`](analysis/external_crosschecks/). That
+crosswalk maps OONI, Censored Planet, Tornado Cash event-study work, MEV Watch,
+and compliance/transparency sources to the project layers, with explicit
+"what it validates / what it cannot validate / how the denominator differs"
+rules. It is a crosscheck layer, not a seventh admission artifact.
+
 Among the seven explicit choices that distinguish this project:
 
 1. **Coverage-denominator discipline.** Every conditional rate ("within measured rows, what share of layer X changed?") is reported *conditional on that layer having an admission-grade denominator in the dataset* — the numerator is filtered to the same coverage subset as the denominator. Absent measurement is flagged as `—`, not encoded as `0`. This is the methodological backbone: [analysis/paper_tables/table2_layer_observability.md](analysis/paper_tables/table2_layer_observability.md) is the reader-facing instantiation, with strict / current / permissive recomputation for sensitive layers.

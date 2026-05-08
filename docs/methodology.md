@@ -67,6 +67,14 @@ The project addresses the research gap through six live artifacts:
 | Paper tables | `analysis/paper_tables/` | admitted-only paper numbers from a fail-closed generator |
 | Audit/sensitivity | `analysis/audit_worksheets/`, `derived/admission_sensitivity.*`, `analysis/inter_rater/`, `analysis/staleness.*` | human audit, rubric sensitivity, recoding consistency, and freshness gates |
 
+External benchmark checks live in
+`analysis/external_crosschecks/benchmark_crosswalk.yaml`. They are deliberately
+outside the six-artifact contract: OONI, Censored Planet, Tornado Cash
+event-study work, MEV Watch, and compliance/transparency sources are used to
+crosscheck denominator scope, baseline ambiguity, entity normalization, and
+claim wording. They do not create an event denominator or satisfy admission
+without replayable local evidence.
+
 Any new claim must name which artifact supports it. If the supporting
 artifact is absent or stale, `make check` should fail before the paper
 surface changes.

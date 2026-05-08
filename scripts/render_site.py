@@ -2642,6 +2642,11 @@ def render_artifact_cards() -> str:
             "docs/paper_claims.md",
         ),
         (
+            "Draft paper",
+            "Manuscript wrapper generated from the claim lock and paper tables.",
+            "docs/paper.md",
+        ),
+        (
             "A-class readiness",
             "Submission-focused gates, blockers, and go/no-go criteria.",
             "docs/a-class-submission-readiness.md",
@@ -2650,6 +2655,11 @@ def render_artifact_cards() -> str:
             "A-class gap report",
             "Current machine/human blockers for the submission package.",
             "analysis/a_class_submission_gap_report.md",
+        ),
+        (
+            "External benchmark crosswalk",
+            "How adjacent measurement work is used for denominator and validity checks.",
+            "analysis/external_crosschecks/README.md",
         ),
         (
             "Human audit console",
@@ -3019,6 +3029,7 @@ def copy_dashboard_artifacts(site_dir: pathlib.Path) -> int:
     file_globs = [
         "human-audit.md",
         "analysis/a_class_submission_gap_report.md",
+        "analysis/external_crosschecks/*",
         "analysis/evidence-chains/*.md",
         "analysis/audit_worksheets/*.md",
         "analysis/llm_expert_audit/*.md",

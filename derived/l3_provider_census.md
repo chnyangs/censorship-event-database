@@ -1,6 +1,6 @@
 # L3 RPC provider denominator census
 
-Dataset snapshot: v0.1.0 · cutoff `2026-05-06` · commit `038d4d4` · generated `2026-05-07T02:37:57Z`
+Dataset snapshot: v0.1.0 · cutoff `2026-05-06` · commit `b117153` · generated `2026-05-07T05:00:22Z`
 
 This census is a denominator audit, not a provider-rate result. It records which provider/event-window cells have replayable public artifacts and whether any cell is rate-eligible.
 

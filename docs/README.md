@@ -15,6 +15,7 @@ Reference documentation for the Cross-Layer Censorship Event Study Database. Alr
 | Topic | Doc |
 | --- | --- |
 | Single source of truth for what the paper argues (claims C1–C6, phrasing locks, claim-to-table-source matrix, sampling frame, prior-art delta, IRR κ-floor language) | [`paper_claims.md`](paper_claims.md) |
+| Draft manuscript wrapper generated from the claim lock and paper tables | [`paper.md`](paper.md) |
 | A-class submission readiness plan, go/no-go criteria, and phase gates | [`a-class-submission-readiness.md`](a-class-submission-readiness.md) |
 | Current A-class submission gap report generated from the live artifact state | [`../analysis/a_class_submission_gap_report.md`](../analysis/a_class_submission_gap_report.md) |
 | Longer A/A+ upgrade execution plan and expansion targets | [`top-venue-upgrade-plan.md`](top-venue-upgrade-plan.md) |
@@ -23,6 +24,7 @@ Reference documentation for the Cross-Layer Censorship Event Study Database. Alr
 | L0 OONI query denominator surface | [`../derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md) |
 | L3 provider/event denominator census | [`../derived/l3_provider_census.md`](../derived/l3_provider_census.md) |
 | L0/L3 zero-denominator appendix and phrasing locks | [`l0-l3-denominator-appendix.md`](l0-l3-denominator-appendix.md) |
+| External benchmark crosswalk for OONI / Censored Planet / Tornado studies / MEV Watch / compliance-transparency sources | [`../analysis/external_crosschecks/README.md`](../analysis/external_crosschecks/README.md) |
 | Local source artifact hash manifest | [`../sources/source_manifest.md`](../sources/source_manifest.md) |
 | Inter-rater reliability protocol — runnable via `make irr-sample` / `make irr-kappa`; report at `analysis/inter_rater/kappa_report.md` | (script-only; see [`paper_claims.md §0`](paper_claims.md) "κ-floor language") |
 | One-command Zenodo artifact-eval reproduction (Docker + `SOURCE_DATE_EPOCH`) | top-level [`Dockerfile`](../Dockerfile) + [`docs/releasing.md`](releasing.md) |
