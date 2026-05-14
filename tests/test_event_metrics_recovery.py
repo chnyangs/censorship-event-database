@@ -140,3 +140,47 @@ def test_unmeasured_changed_layer_does_not_enter_coverage_matched_breadth():
     assert m["coverage_denominator_layer_count"] == 1
     assert m["cascade_breadth"] == 0.0
     assert m["non_na_cascade_breadth"] is None
+
+
+def test_event_metrics_exposes_trigger_is_action_for_latency_consumers():
+    event = {
+        "id": "corporate-action-synth",
+        "trigger": {
+            "type": "corporate_policy_change",
+            "timestamp": "2024-01-01T00:00:00Z",
+        },
+        "target": {"kind": "entity"},
+        "coverage": [{"layer": "asset_onchain", "status": "measured"}],
+        "observations": [
+            {
+                "layer": "asset_onchain",
+                "observation_kind": "observed_change",
+                "attribution": "direct",
+                "timestamp": "2024-01-01T00:30:00Z",
+            }
+        ],
+    }
+    m = compute_event_metrics(event)
+    assert m["trigger_is_action"] is True
+
+
+def test_event_metrics_keeps_late_corporate_action_as_measured_latency():
+    event = {
+        "id": "late-corporate-action-synth",
+        "trigger": {
+            "type": "corporate_policy_change",
+            "timestamp": "2024-01-01T00:00:00Z",
+        },
+        "target": {"kind": "entity"},
+        "coverage": [{"layer": "offramp_cex", "status": "measured"}],
+        "observations": [
+            {
+                "layer": "offramp_cex",
+                "observation_kind": "observed_change",
+                "attribution": "direct",
+                "timestamp": "2024-01-03T00:00:00Z",
+            }
+        ],
+    }
+    m = compute_event_metrics(event)
+    assert m["trigger_is_action"] is False

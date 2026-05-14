@@ -212,6 +212,15 @@
             },
             "note": {
               "type": "string"
+            },
+            "evidence_use": {
+              "type": "string",
+              "enum": [
+                "admission_anchor",
+                "contextual_unarchived",
+                "non_admission"
+              ],
+              "description": "How this citation may be used. Unarchived citations must be contextual_unarchived or non_admission and cannot support paper claims."
             }
           }
         }
@@ -521,6 +530,53 @@
         },
         "note": {
           "type": "string"
+        },
+        "denominator_artifact": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Structured denominator evidence for measured or partially_measured coverage. Use a replayable anchor such as body_hash+body_path, query_hash, measurement_ids, wayback, or tx_hash.",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "$ref": "#/$defs/http_url"
+            },
+            "wayback": {
+              "$ref": "#/$defs/http_url"
+            },
+            "query_hash": {
+              "type": "string",
+              "pattern": "\\S"
+            },
+            "body_hash": {
+              "type": "string",
+              "pattern": "\\S"
+            },
+            "body_path": {
+              "type": "string",
+              "pattern": "\\S"
+            },
+            "measurement_ids": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "\\S"
+              }
+            },
+            "tx_hash": {
+              "type": "string",
+              "pattern": "^(0x)?[0-9a-fA-F]{64}$"
+            },
+            "scope_descriptor": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "note": {
+              "type": "string"
+            }
+          }
         }
       }
     },

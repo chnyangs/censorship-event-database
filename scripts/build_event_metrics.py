@@ -57,6 +57,8 @@ PRIVACY_TOOL_PROTOCOLS = {
 
 LARGE_TARGET_THRESHOLD = 20
 GENERATOR_VERSION = "0.1.1"
+TRIGGER_IS_ACTION_TYPES = {"corporate_policy_change"}
+TRIGGER_IS_ACTION_MAX_DELTA_H = 1.0
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
@@ -258,6 +260,11 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
     has_large_target = len(addresses) >= LARGE_TARGET_THRESHOLD
     is_reversal = str(trigger.get("type") or "") == "ofac_sdn_removal"
     is_privacy = protocol in PRIVACY_TOOL_PROTOCOLS
+    trigger_is_action = (
+        str(trigger.get("type") or "") in TRIGGER_IS_ACTION_TYPES
+        and time_to_first is not None
+        and abs(time_to_first) <= TRIGGER_IS_ACTION_MAX_DELTA_H
+    )
 
     # ---- per-layer enforcement (JSON only — CSV stays flat-readable) ----
     per_layer = {}
@@ -319,6 +326,7 @@ def compute_event_metrics(event: dict) -> dict[str, Any]:
 
         "has_large_target_set": has_large_target,
         "is_reversal_event": is_reversal,
+        "trigger_is_action": trigger_is_action,
         "target_is_privacy_tool": is_privacy,
 
         "per_layer": per_layer,
@@ -338,7 +346,8 @@ CSV_COLUMNS = [
     "coverage_measured_count", "coverage_partial_count", "coverage_gap_count",
     "primary_source_count", "semi_primary_source_count", "primary_onchain_source_count",
     "changed_action_count", "changed_unique_action_count",
-    "has_large_target_set", "is_reversal_event", "target_is_privacy_tool",
+    "has_large_target_set", "is_reversal_event", "trigger_is_action",
+    "target_is_privacy_tool",
 ]
 
 
@@ -406,7 +415,10 @@ def main() -> int:
             "when their coverage is measured or partially_measured. "
             "`non_na_cascade_breadth` is retained only for legacy descriptive "
             "comparison when no non-NA layer has status not_measured; otherwise "
-            "it is blank to avoid treating unmeasured layers as zeros."
+            "it is blank to avoid treating unmeasured layers as zeros. "
+            "`trigger_is_action` is included directly here so downstream "
+            "latency consumers can exclude record-definition t≈0 corporate "
+            "policy rows without joining against event_archetypes."
         ),
     }
     (out_dir / "event_metrics.meta.json").write_text(

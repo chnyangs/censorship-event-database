@@ -11,7 +11,10 @@ on:
       - 'docs/**'
       - 'analysis/paper_tables/**'
       - 'analysis/inter_rater/**'
+      - 'analysis/operator_census/**'
       - 'derived/**'
+      - 'sources/external_retrieval_receipts.yaml'
+      - 'sources/source_manifest.*'
       - 'Makefile'
       - 'Dockerfile'
       - 'requirements*.txt'
@@ -19,6 +22,7 @@ on:
       - '.github/workflows/validate.yml'
   push:
     branches: [main]
+    tags: ['v*']
     paths:
       - 'events/**'
       - 'schema/**'
@@ -28,7 +32,12 @@ on:
       - 'docs/**'
       - 'analysis/paper_tables/**'
       - 'analysis/inter_rater/**'
+      - 'analysis/operator_census/**'
       - 'derived/**'
+      - 'sources/external_retrieval_receipts.yaml'
+      - 'sources/source_manifest.*'
+      - 'dataset.json'
+      - 'dataset.csv'
       - 'Makefile'
       - 'Dockerfile'
       - 'requirements*.txt'
@@ -116,12 +125,40 @@ jobs:
           make regenerate
       - name: Paper-readiness gate
         run: make paper-check
+      - name: Generated artifact drift gate
+        run: |
+          git diff --exit-code
+          test -z "$(git status --short --untracked-files=all)"
       - name: Byte-stability round-trip (regenerate twice, hashes must match)
         run: |
           export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
-          sha256sum analysis/paper_tables/*.md analysis/evidence-chains/*.md derived/*.md derived/*.csv \
+          sha256sum dataset.json dataset.csv dataset.meta.json sources/source_manifest.* analysis/paper_tables/*.md analysis/evidence-chains/*.md derived/*.md derived/*.csv \
               | sort > /tmp/h1.txt
           make regenerate
-          sha256sum analysis/paper_tables/*.md analysis/evidence-chains/*.md derived/*.md derived/*.csv \
+          sha256sum dataset.json dataset.csv dataset.meta.json sources/source_manifest.* analysis/paper_tables/*.md analysis/evidence-chains/*.md derived/*.md derived/*.csv \
               | sort > /tmp/h2.txt
           diff /tmp/h1.txt /tmp/h2.txt
+
+  release-strict:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Regenerate from tag source
+        run: |
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          make regenerate
+      - name: Strict release gate
+        run: |
+          python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
+          git diff --exit-code
+          test -z "$(git status --short --untracked-files=all)"
+      - name: Docker artifact-eval path
+        run: |
+          docker build -t censorship-event-database-artifact .
+          docker run --rm censorship-event-database-artifact make regenerate

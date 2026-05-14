@@ -1,6 +1,6 @@
 # Operator-compliance git-history census
 
-Generated: `2026-04-26T09:39:00Z` · scanner `scripts/scan_operator_census.py` · candidates `sources/operator_census/candidates.yaml`.
+Generated: `2026-05-08T02:57:52Z` · scanner `scripts/scan_operator_census.py` · candidates `sources/operator_census/candidates.yaml`.
 
 Reproduction: `python3 scripts/scan_operator_census.py` (requires network for initial clone; subsequent runs reuse local clones under `sources/operator_census/<org>__<repo>/`).
 
@@ -41,8 +41,15 @@ Path discovery scans both the current checkout and historical `git log --all --n
 - **Operator**: flashbots
 - **Repo tier**: `confirmed_filter_file` (known_channel: true)
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/flashbots/rpc-endpoint.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `main`
+- **HEAD SHA**: `a7e8aa9beb22eb89bde8d60b87d3adbf6739b572`
+- **Scan patterns**: `server/ofacblacklist.go`
 - **Matched files** (n=1):
     - `server/ofacblacklist.go`
+- **Matched current paths** (n=1): `server/ofacblacklist.go`
+- **Matched historical paths** (n=1): `server/ofacblacklist.go`
 
 **Notes**: Baseline case. Added Tornado pool addresses 2h 50m after 2022-08-08 SDN (PR #90, commit 92ab6b1f). Deleted entire 132-address map 11 days after 2025-03-21 OFAC delisting (PR #173, commit 1e9c29c). See analysis/evidence-chains/tornado-cash-ofac-{2022,delisting-2025}.md.
 
@@ -56,14 +63,21 @@ Path discovery scans both the current checkout and historical `git log --all --n
 | 2022-11-10 | `93bb16a8` | `server/ofacblacklist.go` | other | update docker |
 | 2025-04-01 | `1e9c29c5` | `server/ofacblacklist.go` | generic_list_maintenance | Cleanup unused and unmaintained blacklist file (#173) |
 
-_Generic list-maintenance commits (phishing / abuse / scam registry activity, no OFAC keyword): 1. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
+_Generic list-maintenance commits (generic blacklist / blocklist / cleanup vocabulary, no OFAC keyword): 1. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
 
 ### `flashbots/mev-boost-relay` — mev_boost_relay
 
 - **Operator**: flashbots
 - **Repo tier**: `glob_swept_zero`
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/flashbots/mev-boost-relay.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `main`
+- **HEAD SHA**: `31fda11c06df0a646a457e6e84f7c618be873156`
+- **Scan patterns**: `**/ofac*`, `**/sanctions*`, `**/blacklist*`, `**/censor*`
 - **Matched files** (n=0):
+- **Matched current paths** (n=0): none
+- **Matched historical paths** (n=0): none
 
 **Notes**: MEV-Boost relay reference implementation. Compliance status of the Flashbots-operated relay was a contested 2022-2023 topic (post-OFAC sanctions; "Flashbots Protect" vs "Flashbots Protect++"). Census asks whether the relay software itself ships with a filter substrate.
 
@@ -72,7 +86,14 @@ _Generic list-maintenance commits (phishing / abuse / scam registry activity, no
 - **Operator**: flashbots
 - **Repo tier**: `glob_swept_zero`
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/flashbots/rbuilder.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `develop`
+- **HEAD SHA**: `c3301ef0f6ea182d03517309bdf679547a67be7d`
+- **Scan patterns**: `**/ofac*`, `**/sanctions*`, `**/blacklist*`, `**/filter*`
 - **Matched files** (n=0):
+- **Matched current paths** (n=0): none
+- **Matched historical paths** (n=0): none
 
 **Notes**: Successor to flashbots/builder. A builder, not a relay — if this ships a compliance filter, it is a stronger finding than the relay layer.
 
@@ -81,30 +102,49 @@ _Generic list-maintenance commits (phishing / abuse / scam registry activity, no
 - **Operator**: flashbots
 - **Repo tier**: `glob_swept_matched`
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/flashbots/builder.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `main`
+- **HEAD SHA**: `a742641e24df68bc2fc476199b012b0abce40ffe`
+- **Scan patterns**: `**/ofac*`, `**/sanctions*`, `**/blacklist*`
 - **Matched files** (n=1):
     - `ofac_blacklist.json`
+- **Matched current paths** (n=0): none
+- **Matched historical paths** (n=1): `ofac_blacklist.json`
 
 **Notes**: Deprecated predecessor to rbuilder. History matters because the 2022-2023 compliance debate happened here.
 
-_Generic list-maintenance commits (phishing / abuse / scam registry activity, no OFAC keyword): 1. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
+_Generic list-maintenance commits (generic blacklist / blocklist / cleanup vocabulary, no OFAC keyword): 1. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
 
 ### `MetaMask/eth-phishing-detect` — wallet_blocklist
 
 - **Operator**: metamask
 - **Repo tier**: `confirmed_filter_file`
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/MetaMask/eth-phishing-detect.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `main`
+- **HEAD SHA**: `6acdac52eef871f4549fb3d7bf2da0d89834cee9`
+- **Scan patterns**: `src/config.json`
 - **Matched files** (n=1):
     - `src/config.json`
+- **Matched current paths** (n=1): `src/config.json`
+- **Matched historical paths** (n=1): `src/config.json`
 
 **Notes**: Consensys-operated phishing blocklist consumed by the MetaMask extension. Not OFAC-keyed; tracks phishing domains and token scams. Included as a control — if filter-list maintenance timing looks similar to Flashbots' OFAC pattern, that strengthens the "public operator git-history as measurement substrate" framing even when the trigger is not OFAC.
 
-_Generic list-maintenance commits (phishing / abuse / scam registry activity, no OFAC keyword): 1450. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
+_Generic list-maintenance commits (generic blacklist / blocklist / cleanup vocabulary, no OFAC keyword): 1450. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
 
 ### `trustwallet/assets` — wallet_token_index
 
 - **Operator**: trust_wallet
 - **Repo tier**: `glob_swept_matched`
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/trustwallet/assets.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `master`
+- **HEAD SHA**: `a3785ec0fc71d435d9a73e15885637c0291a825e`
+- **Scan patterns**: `**/blocklist*`, `**/denylist*`, `**/blacklist*`
 - **Matched files** (n=48):
     - `blockchains/arbitrum/denylist.json`
     - `blockchains/avalanchec/denylist.json`
@@ -154,20 +194,29 @@ _Generic list-maintenance commits (phishing / abuse / scam registry activity, no
     - `blockchains/xdai/denylist.json`
     - `blockchains/xdc/blacklist.json`
     - `blockchains/xdc/denylist.json`
+- **Matched current paths** (n=0): none
+- **Matched historical paths** (n=48): `blockchains/arbitrum/denylist.json`, `blockchains/avalanchec/denylist.json`, `blockchains/binance/blacklist.json`, `blockchains/binance/denylist.json`, `blockchains/bnb/blacklist.json`, `blockchains/bsc/denylist.json`, `blockchains/callisto/blacklist.json`, `blockchains/callisto/denylist.json`, `blockchains/classic/blacklist.json`, `blockchains/classic/denylist.json`, `blockchains/eos/blacklist.json`, `blockchains/eos/denylist.json`, `blockchains/ethereum/blacklist.json`, `blockchains/ethereum/denylist.json`, `blockchains/fantom/denylist.json`, `blockchains/gochain/blacklist.json`, `blockchains/gochain/denylist.json`, `blockchains/heco/denylist.json`, `blockchains/neo/blacklist.json`, `blockchains/neo/denylist.json`, `blockchains/nuls/blacklist.json`, `blockchains/nuls/denylist.json`, `blockchains/ontology/blacklist.json`, `blockchains/ontology/denylist.json`, `blockchains/optimism/denylist.json`, `blockchains/poa/blacklist.json`, `blockchains/poa/denylist.json`, `blockchains/polygon/denylist.json`, `blockchains/smartchain/denylist.json`, `blockchains/solana/denylist.json`, `blockchains/terra/blacklist.json`, `blockchains/terra/denylist.json`, `blockchains/theta/blacklist.json`, `blockchains/theta/denylist.json`, `blockchains/thundertoken/blacklist.json`, `blockchains/thundertoken/denylist.json`, `blockchains/tomochain/blacklist.json`, `blockchains/tomochain/denylist.json`, `blockchains/tron/blacklist.json`, `blockchains/tron/denylist.json`, `blockchains/vechain/blacklist.json`, `blockchains/vechain/denylist.json`, `blockchains/wanchain/blacklist.json`, `blockchains/wanchain/denylist.json`, `blockchains/xdai/blacklist.json`, `blockchains/xdai/denylist.json`, `blockchains/xdc/blacklist.json`, `blockchains/xdc/denylist.json`
 
 **Notes**: Public token-asset registry consumed by Trust Wallet. Changes to which tokens are shown in-wallet are a frontend-layer censorship surface.
 
-_Generic list-maintenance commits (phishing / abuse / scam registry activity, no OFAC keyword): 62. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
+_Generic list-maintenance commits (generic blacklist / blocklist / cleanup vocabulary, no OFAC keyword): 62. Not tabulated individually — regenerate with `--emit-all-commits` for the full local stream._
 
 ### `Uniswap/token-lists` — frontend_token_list_schema
 
 - **Operator**: uniswap
 - **Repo tier**: `schema_or_index_only`
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/Uniswap/token-lists.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `main`
+- **HEAD SHA**: `01705f94a307270b6c0fe5f55c7e66f7b92373cc`
+- **Scan patterns**: `**/tokenlist*`, `**/banned*`, `**/blocklist*`
 - **Matched files** (n=3):
     - `src/tokenlist.schema.json`
     - `test/__snapshots__/tokenlist.schema.test.ts.snap`
     - `test/tokenlist.schema.test.ts`
+- **Matched current paths** (n=3): `src/tokenlist.schema.json`, `test/__snapshots__/tokenlist.schema.test.ts.snap`, `test/tokenlist.schema.test.ts`
+- **Matched historical paths** (n=3): `src/tokenlist.schema.json`, `test/__snapshots__/tokenlist.schema.test.ts.snap`, `test/tokenlist.schema.test.ts`
 
 **Notes**: Schema repo — the token lists themselves are distributed by individual list-issuers. Included for provenance; the primary targets are the token-list issuer repos. Pre-tagged `schema_or_index_only` so the headline census denominator does not treat its matched-files count (3 schema fixtures) as a comparable substrate to the confirmed-filter-file repos.
 
@@ -176,7 +225,14 @@ _Generic list-maintenance commits (phishing / abuse / scam registry activity, no
 - **Operator**: community
 - **Repo tier**: `glob_swept_zero`
 - **Clone status**: ok
+- **Remote URL**: `https://github.com/ethereum-lists/tokens.git`
+- **Clone checked at**: `2026-05-08T02:57:52Z`
+- **Default branch**: `master`
+- **HEAD SHA**: `55622d80c18cc5cabaa8cb9a4c4214daaa9cf05e`
+- **Scan patterns**: `**/deprecated*`, `**/blacklist*`
 - **Matched files** (n=0):
+- **Matched current paths** (n=0): none
+- **Matched historical paths** (n=0): none
 
 **Notes**: Community registry of ETH-chain tokens. Deprecations and delistings track wallet / explorer UX decisions.
 

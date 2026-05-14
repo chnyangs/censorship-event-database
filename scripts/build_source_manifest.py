@@ -137,8 +137,9 @@ def build_meta(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "row_count": len(rows),
         "total_bytes": sum(int(row["bytes"]) for row in rows),
         "excluded_policy": {
-            "operator_census_clones": "re-fetchable from sources/operator_census/candidates.yaml",
+            "operator_census_clones": "re-fetchable from sources/operator_census/candidates.yaml; compact receipts live in analysis/operator_census/commits.json",
             "large_upstream_dumps": "excluded per .gitignore and regenerated/fetched separately",
+            "retrieval_receipts": "sources/external_retrieval_receipts.yaml documents excluded upstream inputs",
             "self_outputs": "source_manifest.* files excluded to avoid recursive hashes",
         },
     }
@@ -162,7 +163,8 @@ def build_markdown(rows: list[dict[str, Any]], meta: dict[str, Any]) -> str:
         "This manifest lists local source artifacts included in the release "
         "reproduction surface and records their SHA-256 hashes. Re-fetchable "
         "operator-census repository clones and large upstream dumps excluded "
-        "by `.gitignore` are intentionally not listed.",
+        "by `.gitignore` are intentionally not listed; their retrieval policy "
+        "is recorded in `sources/external_retrieval_receipts.yaml`.",
         "",
         f"- Files: {meta['row_count']}",
         f"- Total bytes: {meta['total_bytes']}",
@@ -191,10 +193,13 @@ def build_markdown(rows: list[dict[str, Any]], meta: dict[str, Any]) -> str:
             "## Exclusions",
             "",
             "- `sources/operator_census/*/` clones are re-fetchable from "
-            "`sources/operator_census/candidates.yaml` and are not release inputs.",
+            "`sources/operator_census/candidates.yaml` and are not release inputs. "
+            "`analysis/operator_census/commits.json` is the compact tracked receipt.",
             "- `sources/ofac_sdn_diffs/current/sdn.xml` and "
             "`sources/ofac_sdn_diffs/opensanctions/us_ofac_sdn.ftm.json` are "
             "large upstream dumps excluded by `.gitignore`.",
+            "- `sources/external_retrieval_receipts.yaml` records the retrieval "
+            "contract for excluded upstream inputs.",
             "- `source_manifest.*` outputs are excluded from their own input set.",
         ]
     )

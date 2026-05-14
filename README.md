@@ -2,13 +2,15 @@
 
 > Main line 1 of the chain-censorship-measurement research program. See [../docs/3-TODOs.md](../docs/3-TODOs.md) for the overall portfolio rationale.
 
+> **Status as of 2026-05-14**: working snapshot, not strict release/submission artifact. `validate`, tests, and working-snapshot paper checks are intended to pass, but the full release gate remains blocked until independent-human IRR, null-case human audit, and human release metadata sign-off are complete. Do not cite this snapshot as strict-release-ready.
+
 ## 1. Thesis
 
 **Cross-layer crypto-censorship measurement needs explicit denominators, not implicit zeros. This repository provides a six-artifact measurement protocol, a 53-admitted-event corpus, a fail-closed paper-table generator, and a forkable admission protocol that connect legal / policy triggers to observable stack-layer reactions only where a replayable public evidence substrate exists. Public operator source-control history is one worked mechanism channel: real, structurally narrow, and minute-precise where it exists.**
 
 Two parallel surfaces, designed to be cited together:
 
-- **The substrate census** (n=8 operator repos, [`analysis/operator_census/`](analysis/operator_census/)) reports both an *existence proof* (5 substrate edits across 3.5 years on `flashbots/rpc-endpoint::ofacblacklist.go`, including the canonical 2022-08-08 PR #90 *update* and the 2025-04-01 PR #173 *deletion* — bidirectional, primary-corporate, minute-precise) and a *bounded negative result* (6 of the other 7 surveyed repos ship no operative compliance file in public git, or are schema-only).
+- **The substrate census** (8-repo v0.1 public-source-control scan, [`analysis/operator_census/`](analysis/operator_census/)) reports both an *existence proof* (5 substrate edits across 3.5 years on `flashbots/rpc-endpoint::ofacblacklist.go`, including the canonical 2022-08-08 PR #90 *update* and the 2025-04-01 PR #173 *deletion* — bidirectional, primary-corporate, minute-precise) and a *bounded negative result* scoped to the scanned public repos/patterns (6 of the other 7 surveyed repos ship no operative compliance file in public git, or are schema-only).
 - **The 53-record corpus snapshot** (`events/*.yaml`, cutoff 2026-05-06) currently contains 53 admitted events and no working drafts. Paper-facing tables use admitted events only and answer "for events admitted under a public-evidence rubric, where do reactions land?" under three admission rubrics (strict / current / permissive — see [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md)).
 
 The measurement protocol is implemented as six reproducible artifacts:
@@ -31,12 +33,13 @@ External validity is tracked separately in
 crosswalk maps OONI, Censored Planet, Tornado Cash event-study work, MEV Watch,
 and compliance/transparency sources to the project layers, with explicit
 "what it validates / what it cannot validate / how the denominator differs"
-rules. It is a crosscheck layer, not a seventh admission artifact.
+rules plus an execution-status ledger. It is a crosscheck layer, not a seventh
+admission artifact.
 
 Among the seven explicit choices that distinguish this project:
 
 1. **Coverage-denominator discipline.** Every conditional rate ("within measured rows, what share of layer X changed?") is reported *conditional on that layer having an admission-grade denominator in the dataset* — the numerator is filtered to the same coverage subset as the denominator. Absent measurement is flagged as `—`, not encoded as `0`. This is the methodological backbone: [analysis/paper_tables/table2_layer_observability.md](analysis/paper_tables/table2_layer_observability.md) is the reader-facing instantiation, with strict / current / permissive recomputation for sensitive layers.
-2. **The substrate census as a first-class measurement** (existence proof + bounded negative result). [`analysis/operator_census/README.md`](analysis/operator_census/README.md) tiers 8 candidate operator repositories into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3), and reports two parallel headline numbers: **5 known-channel substrate edits** across the 1 `known_channel: true` candidate, and **1 OFAC-keyword-subject commit** under the narrow keyword classifier. The two ledgers answer different questions on purpose. PR #90 (2022-08-08, +Tornado pool addresses, 2h 50m post-SDN) and PR #173 (2025-04-01, deletion of the 132-address map, 11d post-delisting) are the bookend events; both live in the substrate-edit ledger, only PR #90 lives in the OFAC-keyword ledger. This is an **existence proof** for the channel and a **bounded negative result** for its prevalence in public git — **not** a population claim about operator behavior. See [`analysis/anchor_gap_fill_log.md §4`](analysis/anchor_gap_fill_log.md) for the per-anchor reproducibility trail.
+2. **The substrate census as a first-class measurement** (existence proof + bounded negative result). [`analysis/operator_census/README.md`](analysis/operator_census/README.md) tiers the 8-repo v0.1 public-source-control scan into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3), and reports two parallel headline numbers: **5 known-channel substrate edits** across the 1 `known_channel: true` candidate, and **1 OFAC-keyword-subject commit** under the narrow keyword classifier. The two ledgers answer different questions on purpose. PR #90 (2022-08-08, +Tornado pool addresses, 2h 50m post-SDN) and PR #173 (2025-04-01, deletion of the 132-address map, 11d post-delisting) are the bookend events; both live in the substrate-edit ledger, only PR #90 lives in the OFAC-keyword ledger. This is an **existence proof** for the channel and a **bounded negative result** within the scanned public repos/patterns — **not** a population claim about operator behavior. See [`analysis/anchor_gap_fill_log.md §4`](analysis/anchor_gap_fill_log.md) for the per-anchor reproducibility trail.
 3. **Precision-aware claims.** Hour-granularity latency claims are computed only from triggers whose `timestamp_precision` is hour-or-better; day-precision triggers are reported in separate panels and never mixed.
 4. **Attribution discipline.** `direct` vs `plausible` vs `none` are reported separately in every paper table; collapsing them is a phrasing violation, not a cosmetic choice.
 5. **Null cases with evidence anchors, not prose.** An `observed_no_change` row requires at least one of `body_hash`+`body_path`, `query_hash`, or `measurement_ids`; a structured `scope_descriptor` can define the covered scope but is not itself a replayable evidence anchor.
@@ -53,7 +56,7 @@ Delta over prior art:
 The deliverable has two layers:
 
 - **Layer 1** — a 53-admitted-event corpus (cutoff 2026-05-06; 53 YAML records total) under a coverage-denominator discipline, with the Flashbots bidirectional case as a worked mechanism study.
-- **Layer 2** — sampling frame (`sampling/frame.yaml`), trigger registry (`analysis/trigger_registry/`), schema (`schema/event.schema.json`), admission protocol (`scripts/validate.py`), coverage matrix (`derived/coverage_matrix.*`), L0 OONI denominator summary (`derived/l0_coverage_summary.*`), and paper-table generator (`scripts/build_paper_tables.py`) that make the methodology forkable.
+- **Layer 2** — sampling frame (`sampling/frame.yaml`), trigger registry (`analysis/trigger_registry/`), public validation contract (JSON Schema in `schema/event.schema.json` plus admission checks in `scripts/validate.py`), coverage matrix (`derived/coverage_matrix.*`), L0 OONI denominator summary (`derived/l0_coverage_summary.*`), and paper-table generator (`scripts/build_paper_tables.py`) that make the methodology forkable.
 
 Layer 2 is the more durable contribution: the framework stays citable when the specific events age.
 
@@ -191,17 +194,15 @@ analysis_notes: |
 tags: [sanctions, privacy_tool, stablecoin_freeze]
 ```
 
-## 5. Pilot events (first 5)
+## 5. Current Snapshot Status
 
-These are chosen to exercise the schema and verify multi-source discipline works:
+The pilot phase is complete. The repo now carries a 53-admitted-event working snapshot with no draft event YAMLs, generated paper tables, and an explicit human-audit queue.
 
-1. **Tornado Cash OFAC designation (2022-08-08)** — canonical cross-layer cascade, 4+ layers touched.
-2. **Tornado Cash OFAC delisting (2025-03-21)** — the reverse cascade; tests whether recovery is measurable.
-3. **Bitzlato DOJ action (2023-01-18)** — different actor type (DOJ not OFAC), different target type (exchange not protocol).
-4. **Garantex sanctions (2022-04-05)** — RU-targeted, tests jurisdiction axis and whether EU/US cascades diverge.
-5. **USDC Iran-address freeze (pick a specific documented case)** — single-layer comparison case to test non-cascade events and null coverage handling.
+Release/submission readiness is intentionally stricter than working-snapshot validity:
 
-If the schema survives these 5 without modification, proceed to scale. If not, fix schema first.
+- Working snapshot: `make check` and `make paper-check` are intended to validate the current artifact surface without mutating paper outputs.
+- Release/submission snapshot: `python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability` must pass from a clean intended source tree.
+- Human gates cannot be substituted by agents: independent-human IRR, H2 null-case audit, and H3 release sign-off are tracked in [`human-audit.md`](human-audit.md).
 
 ## 6. v0.2 expansion frame (more cases without losing denominator discipline)
 
@@ -270,7 +271,7 @@ Proposed structure:
 
 1. **Motivation** — prior measurement work sees individual stack layers well but does not connect identified enforcement triggers to observable operator behavior across the stack with open, auditable provenance. The substrate of interest — public source-control history of crypto operators — has been informally noted but not treated as a bounded, reproducible measurement channel. We treat it as one under explicit coverage limits.
 2. **Methodology contribution (the framework)** — pre-declared sampling frame; trigger registry; six-layer admission protocol; event-by-layer coverage matrix; L0 OONI denominator summary that separates no measurements from no blocking; coverage-matched conditional rates (transplanted from Pearce et al. 2017 / OONI / Censored Planet, credited as such); three-rubric admission-sensitivity ablation (`derived/admission_sensitivity.md`); precision-aware latency filtering; attribution discipline; fail-closed paper-table generation that aborts on anchorless nulls or denominator mismatch; substrate census methodology with `repo_tier` + `known_channel` + subject-only keyword classification.
-3. **Substrate census (a measurable channel + a bounded negative result)** — [`analysis/operator_census/`](analysis/operator_census/). 8 candidate operator repositories, tiered into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3). Two parallel headline numbers: **5 known-channel substrate edits** across the 1 `known_channel: true` candidate (the wide ledger; bookend events PR #90 and PR #173 both visible), and **1 OFAC-keyword commit** across the entire corpus (the narrow ledger). The two ledgers are reported separately on purpose. The Flashbots PR #90 (2022-08-08, `+Tornado pool addresses` 2h 50m post-SDN, direct attribution) and PR #173 (2025-04-01, deletion of the 132-address map 11d post-OFAC-delisting, plausible attribution — frames as operational cleanup) anchor the existence proof; the 6 surveyed repos with no compliance file (or schema-only) are the bounded negative result that says *"this substrate is real but rare in public git"*.
+3. **Substrate census (a measurable channel + a bounded negative result)** — [`analysis/operator_census/`](analysis/operator_census/). The 8-repo v0.1 public-source-control scan is tiered into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3). Two parallel headline numbers: **5 known-channel substrate edits** across the 1 `known_channel: true` candidate (the wide ledger; bookend events PR #90 and PR #173 both visible), and **1 OFAC-keyword commit** across the scanned repos (the narrow ledger). The two ledgers are reported separately on purpose. The Flashbots PR #90 (2022-08-08, `+Tornado pool addresses` 2h 50m post-SDN, direct attribution) and PR #173 (2025-04-01, deletion of the 132-address map 11d post-OFAC-delisting, plausible attribution — frames as operational cleanup) anchor the existence proof; the 6 surveyed repos with no compliance file (or schema-only) are the bounded negative result that says *"this substrate is real but rare in the scanned public source-control frame"*.
 4. **53 admitted events + coverage-discipline (the dataset)** — 53 YAML records across 6 strata, all admitted under the v0.1 protocol; coverage-matched layer observability ([Table 2](analysis/paper_tables/table2_layer_observability.md)) under three rubrics for sensitive layers; single-layer dominance in the changed-event subset (36 / 40 changed events) is descriptive rather than population-inferential; the Tornado reversal (PR #173) appears only inside §3's substrate-edit ledger, not as a standalone recovery-rate claim.
 5. **Negative / observability result** — `l0_network` and `l3_rpc` have zero `measured` denominators in the admitted corpus; `l3_rpc` keeps two named Flashbots git-history observations without emitting a conditional rate; `asset_onchain`'s 17/17 = 1.00 is structurally circular and **its rate is retracted** at v0.1 (kept as a descriptive observation; reinstatement requires a coverage rubric that does not require the change as the admission anchor). Under the same admission protocol anyone can fork, **public-record-visible evidence of base-layer crypto censorship is genuinely thin**, and the usual denominator-implicit reporting of "L0 shows no censorship" is unsafe. This is what the dataset + substrate census jointly make *measurable*.
 6. **Limitations and scope boundary** — sampling frame is admissibility-bounded, English-indexable, and US/EU-trigger-dominant; survivorship bias in the evidence substrate is structural; hour-precision latency is supportable only on named events, not as a distribution; the substrate census is bounded to the candidates list and excludes private repos / server-side compliance. κ for `coverage_status`, `observation_kind`, and `attribution` is currently a *self-consistency check* (LLM-assisted blinded recode under same-family provenance), not an `independent_human` reliability estimate; an independent-human pass is v0.2 open work.
@@ -281,7 +282,7 @@ Proposed structure:
 **Substantive findings** (paper §3–§5):
 
 - (existence proof) the Flashbots `rpc-endpoint::ofacblacklist.go` bidirectional case — 5 known-channel substrate edits across 3.5 years, including PR #90 and PR #173, body-hash-verifiable;
-- (bounded negative result) 6 of 7 other surveyed operator repos ship no operative compliance file in public git, or are schema-only — the substrate is real but rare in public source control;
+- (bounded negative result) 6 of 7 other surveyed repos in the 8-repo v0.1 public-source-control scan ship no operative compliance file in public git, or are schema-only — the substrate is real but rare in the scanned public source-control frame;
 - (upper-stack admissible-evidence concentration under coverage-matched conditioning, with three-rubric reporting for sensitive layers) C1 — this is a statement about public measurement substrates, not layer reaction propensity; the asset_onchain rate is retracted at v0.1 (structural circularity); L4 frontend and L1 consensus are reported strict / current / permissive; L3 RPC carries two named Flashbots partial observations from the Tornado bookend events but no conditional rate; L0 has no measured denominator;
 - (observability gap on base layers as a measured feature, not an artifact of curation).
 
@@ -315,7 +316,7 @@ All common operations are wired into the `Makefile` — run `make help` for the 
 p1-event-db/
   README.md                    # this file
 	  schema/
-	    event.schema.json          # JSON Schema for validation
+	    event.schema.json          # JSON Schema half of the validation contract
 	    controlled_vocab.yaml      # enum of trigger types, layers, source types
 	  sampling/
 	    frame.yaml                 # pre-declared sampling frame + v0.2 quotas
@@ -332,7 +333,7 @@ p1-event-db/
     onchain_receipts/          # tx / block JSON snapshots
     ofac_sdn_diffs/            # daily SDN XML diffs
   scripts/
-    validate.py                # schema validation + citation check
+    validate.py                # admission-rule validation + citation check
     verify_citations.py        # URL reachability and archive freshness checks
     build_dataset.py           # emit unified JSON / CSV release
     freshness_check.py         # alert if a source link 404s
@@ -413,17 +414,14 @@ Agent-assisted ingestion (drafts, captures, Wayback submissions) is permitted; a
 
 ### Key risks
 
-- **Verification bottleneck** — if multi-source discipline takes longer than estimated, the 20-event target slips. Mitigation: month-2 gate explicitly asks this question.
-- **Null regularity** — the 20-50 events may not yield a striking pattern. Mitigation: paper angle can pivot to "cascade heterogeneity" as a negative-result contribution.
+- **Verification bottleneck** — if human audit and multi-source discipline take longer than expected, strict release/submission slips. Mitigation: publish only working-snapshot language until H1/H2/H3 clear.
+- **Null regularity** — the admitted events may not yield a striking pattern. Mitigation: paper angle stays denominator-aware observability rather than prevalence.
 - **New cascading event during project** — a 2026 cascade could be captured in real-time as a case study, enriching the paper.
 
-## 13. Immediate next actions
+## 13. Immediate Hardening Backlog
 
-1. Replace placeholder notes in the pilot drafts with concrete archived artifacts, receipts, and query hashes.
-2. Promote the strongest 1-2 pilot events from `draft` to admission-ready status.
-3. Decide citation-archival tooling (Wayback direct API vs a local WARC store).
-4. Use `scripts/draft_gap_report.py` to drive evidence collection across pilots.
-5. Use `scripts/status_report.py` to keep admitted-vs-draft pilot readiness visible as the dataset evolves.
-6. Use `scripts/review_report.py` to keep process robustness and case-design quality explicit as the pilots evolve.
-7. Treat `release_ready_scoped` cases as publishable only for the narrow empirical claim already supported by artifacts; treat `admitted_scope_blocked` cases as corpus records, not release-ready claims.
-8. For live web evidence, create and retain a local bundle with `scripts/capture_http_artifact.py` before relying on the claim.
+1. Complete H1 independent-human IRR using `make irr-packet` and `make irr-kappa`; keep current LLM-assisted κ phrased as self-consistency only.
+2. Complete H2 null-case audits before using null cases as named narrative evidence or stronger denominator claims.
+3. Complete H3 release sign-off: update `CITATION.cff`, regenerate from a clean intended tree, and run the full strict gate.
+4. Keep operator-census language fixed to the 8-repo v0.1 public-source-control scan; do not promote it to an operator-population census.
+5. Expand v0.2 only after denominator artifacts and claim locks are stable: S2 reversals, S4 non-US state, S3 federal enforcement, then S6/S5.

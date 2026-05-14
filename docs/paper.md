@@ -5,6 +5,8 @@
 > [`analysis/paper_tables/`](../analysis/paper_tables/). If this draft and
 > `paper_claims.md` disagree, `paper_claims.md` wins.
 
+> **Status as of 2026-05-14**: working snapshot, not strict release/submission artifact. The draft may describe the current corpus and working gates, but independent-human IRR, H2 null-case audit, and H3 release sign-off remain blockers for strict submission claims.
+
 ## Abstract
 
 Legal, regulatory, state, and corporate actions against crypto targets can
@@ -75,7 +77,7 @@ The paper makes four contributions:
 3. **A cross-layer observability result.** Upper-stack layers have the
    strongest public evidence surface; L0 and L3 denominator gaps remain
    explicit rather than silently converted into zeros.
-4. **A public operator-source-control mechanism case.** A multi-repo census
+4. **A public operator-source-control mechanism case.** An 8-repo v0.1 public-source-control scan
    shows that git-history compliance substrates are real but structurally
    narrow in the v0.1 public-repo frame.
 
@@ -184,14 +186,14 @@ claims about the named subset, not the entire protocol or ecosystem.
 Table 2 is the central result. It reports layer-level coverage and
 coverage-matched rates:
 
-| Layer | Measured | Partial | Not measured | Reported interpretation |
-| --- | ---: | ---: | ---: | --- |
-| L0 network | 0 | 0 | 22 | No conditional rate; public measurements are absent in the queried cells. |
-| L1 consensus | 6 | 1 | 1 | Sensitive rate: 1/6 measured and 2/7 measured+partial. |
-| L3 RPC | 0 | 2 | 7 | Named Flashbots partial observations only; no conditional rate. |
-| L4 frontend | 14 | 3 | 10 | 10/14 measured and 12/17 measured+partial. |
-| Asset on-chain | 17 | 0 | 6 | Rate retracted because the admission rule is structurally circular. |
-| Off-ramp CEX | 25 | 1 | 21 | 15/25 measured and 16/26 measured+partial. |
+| Layer | Measured | Partial | Not measured | Strict | Current | Permissive | Reported interpretation |
+| --- | ---: | ---: | ---: | --- | --- | --- | --- |
+| L0 network | 0 | 0 | 22 | — / 0 = — | — / 0 = — | — / 0 = — | No conditional rate; public measurements are absent in the queried cells. |
+| L1 consensus | 6 | 1 | 1 | 0/6 = 0.000 | 1/6 = 0.167 | 2/7 = 0.286 | Sensitive; cite all three rubrics or name the exact one. |
+| L3 RPC | 0 | 2 | 7 | — / 0 = — | — / 0 = — | 2 named observations, no rate | Named Flashbots partial observations only; no conditional rate. |
+| L4 frontend | 14 | 3 | 10 | 8/14 = 0.571 | 10/14 = 0.714 | 12/17 = 0.706 | Sensitive; cite all three rubrics or name the exact one. |
+| Asset on-chain | 17 | 0 | 6 | retracted | retracted | retracted | Rate retracted because the admission rule is structurally circular. |
+| Off-ramp CEX | 25 | 1 | 21 | 13/25 = 0.520 | 15/25 = 0.600 | 16/26 = 0.615 | Moderate sensitivity; quote with denominator and rubric context. |
 
 The most important result is not that every upper layer "reacts more". The
 defensible result is that public evidence is concentrated in upper-stack
@@ -256,7 +258,7 @@ days after the 2025-03-21 OFAC delisting. This bidirectional bookend shows
 that public operator source control can sometimes capture compliance
 decisions with minute-level precision.
 
-The multi-repo operator census bounds that finding. It scans 8 public
+The operator-source-control scan bounds that finding. It scans 8 public
 operator repositories and tiers them into confirmed filter files, glob-swept
 matches, schema/index-only repos, and glob-zero repos. Only one known-channel
 substrate carries the canonical OFAC filter-list edits. The correct claim is

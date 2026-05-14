@@ -31,12 +31,12 @@ COMPARE_OUT ?= -
 .PHONY: help \
     validate schema-check validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry source-manifest \
-    event-metrics layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
+    event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
     admission-sensitivity jurisdiction derived \
-    audit-worksheets paper-tables paper-check test \
+    audit-worksheets paper-tables paper-check paper-regenerate-check test \
     render-site render-evidence render-evidence-all compare \
     ooni-scan l0-query-metadata usdt-scan operator-census capture \
-    irr-sample irr-kappa \
+    irr-sample irr-packet irr-kappa \
     check check-network check-all \
     regenerate clean
 
@@ -62,6 +62,7 @@ help:
 	    '' \
 	    '### Derived research layer (→ $(DERIVED_DIR)/)' \
 	    'make event-metrics         # per-event metrics panel (cascade breadth/speed/source strength)' \
+	    'make action-registry       # corpus-level physical-action dedupe registry' \
 	    'make layer-observability   # coverage-aware per-layer observability table (denominator-honest)' \
 	    'make archetypes            # rule-based archetype classifier + archetype_distribution.md' \
 	    'make coverage-matrix       # explicit event×layer denominator eligibility surface' \
@@ -72,7 +73,8 @@ help:
 	    'make derived               # all derived research artifacts in one shot' \
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
-	    'make paper-check           # paper-facing claim/table/audit-coherence checks' \
+	    'make paper-check           # non-mutating paper-facing claim/table/audit-coherence checks' \
+	    'make paper-regenerate-check # rebuild paper dependencies, then run paper-check' \
 	    'make test                  # pytest regression suite for classifier + numerator rules' \
 	    '' \
 	    '### Static site + framework outputs' \
@@ -88,6 +90,7 @@ help:
 	    'make usdt-scan             # usdtbanlist.com batch scan across all events' \
 	    'make operator-census       # multi-repo git-history scan of operator compliance' \
 	    'make irr-sample            # stratified blind sample for inter-rater reliability' \
+	    'make irr-packet            # blank independent-human IRR packet under site/h1_irr_packet/' \
 	    'make irr-kappa             # compute Cohen'"'"'s κ on filled-in blind worksheets' \
 	    'make capture URL=<url> OUT=<dir>   # capture a single URL with body_hash' \
 	    '' \
@@ -96,7 +99,7 @@ help:
 	    'make check-network         # verify-citations + freshness' \
 	    'make check-all             # check + check-network' \
 	    'make regenerate            # dataset + derived + paper tables + site/evidence outputs' \
-	    'make clean                 # remove untracked generated artifacts (site/, dataset.{json,csv})'
+	    'make clean                 # remove untracked generated site artifacts'
 
 # ---- Validation targets ----
 validate:
@@ -148,6 +151,9 @@ l3-provider-census:
 event-metrics:
 	$(PYTHON) scripts/build_event_metrics.py --out-dir $(DERIVED_DIR)
 
+action-registry:
+	$(PYTHON) scripts/build_action_registry.py --out-dir $(DERIVED_DIR)
+
 layer-observability:
 	$(PYTHON) scripts/build_layer_observability.py --out-dir $(DERIVED_DIR)
 
@@ -191,13 +197,15 @@ audit-worksheets:
 # number in the paper must come from this artifact at a given
 # source_commit.
 ifndef SOURCE_DATE_EPOCH
-paper-tables paper-check source-manifest: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+paper-tables paper-regenerate-check source-manifest: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
 
-paper-check: trigger-registry source-manifest paper-tables
+paper-check:
 	$(PYTHON) scripts/check_paper_readiness.py --strict-audit
+
+paper-regenerate-check: trigger-registry source-manifest paper-tables paper-check
 
 # Pytest suite for classifier / coverage-numerator / recovery-filter /
 # paper-table fail-closed invariants (install with `pip install -r
@@ -211,7 +219,7 @@ test:
 ifndef SOURCE_DATE_EPOCH
 derived coverage-matrix trigger-registry: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
-derived: dataset event-metrics layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census admission-sensitivity jurisdiction
+derived: dataset event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census admission-sensitivity jurisdiction
 	@echo "[derived] all derived artifacts rebuilt under $(DERIVED_DIR)/"
 
 # ---- Static site + framework ----
@@ -268,6 +276,9 @@ operator-census:
 irr-sample:
 	$(PYTHON) scripts/build_irr_sample.py
 
+irr-packet:
+	$(PYTHON) scripts/build_irr_packet.py
+
 irr-kappa:
 	$(PYTHON) scripts/compute_irr_kappa.py
 
@@ -296,13 +307,12 @@ check-all: check check-network
 ifndef SOURCE_DATE_EPOCH
 regenerate: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
-regenerate: validate schema-check dataset trigger-registry source-manifest event-metrics layer-observability archetypes coverage-matrix \
+regenerate: validate schema-check dataset trigger-registry source-manifest event-metrics action-registry layer-observability archetypes coverage-matrix \
             admission-sensitivity jurisdiction \
             paper-tables status review staleness \
-            render-site render-evidence-all audit-worksheets paper-check
+            render-site irr-packet render-evidence-all audit-worksheets paper-check
 	@echo "[regenerate] all derived artifacts rebuilt and gated"
 
 clean:
 	rm -rf $(SITE_DIR)
-	rm -f $(DATASET_JSON) $(DATASET_CSV)
-	@echo "[clean] removed untracked site/ and dataset.{json,csv}; tracked research artifacts are preserved"
+	@echo "[clean] removed untracked site/ artifacts; tracked research artifacts are preserved"

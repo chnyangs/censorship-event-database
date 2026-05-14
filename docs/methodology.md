@@ -79,6 +79,13 @@ Any new claim must name which artifact supports it. If the supporting
 artifact is absent or stale, `make check` should fail before the paper
 surface changes.
 
+The public validation contract is **JSON Schema + `scripts/validate.py`**.
+The JSON Schema defines portable structure and enums; `scripts/validate.py`
+enforces admission semantics that JSON Schema cannot express cleanly, including
+source-threshold logic, replayable null anchors, cross-event action-dedupe
+references, and coverage-denominator anchors. Passing JSON Schema alone is not
+an admission-grade validation.
+
 ## 2. Controlled vocabulary
 
 Used in every YAML field. Centralized in `schema/controlled_vocab.yaml`.
@@ -138,6 +145,11 @@ Every layer record distinguishes the factual observation from the causal claim:
 
 `observed_change` means a state transition was seen. `attribution` answers whether that transition can be tied to the trigger, rather than merely occurring in the same window.
 
+`unknown` is reserved for an observed transition whose linkage to the named
+trigger is unresolved. It may document a state transition in evidence chains
+or cross-event anchors, but it must not enter strong-attribution numerators or
+causal prose. Use `none` for `observed_no_change` and `coverage_gap` rows.
+
 ## 3. Event lifecycle in detail
 
 ### 3.1 Admissibility criteria for the trigger
@@ -145,7 +157,7 @@ Every layer record distinguishes the factual observation from the causal claim:
 A candidate trigger must satisfy all of:
 
 1. Identifiable actor with legal or policy authority (no anonymous Twitter rumors).
-2. Machine-checkable primary source at a stable URL (archived to Wayback at discovery time).
+2. Machine-checkable primary source at a stable URL (archived to Wayback or captured locally at discovery time).
 3. Concrete target: address set, protocol contract, domain, asset, or entity.
 4. Datable with an explicit precision level. Hour-level or better is required for intraday cascade timing claims; day-level legal or corporate sources may be admitted only when the event records `timestamp_precision: day` and downstream analysis treats the uncertainty explicitly.
 
@@ -216,9 +228,17 @@ Two-reviewer sign-off required. Reviewers check:
 - All admission-grade web observation sources have a replayable archive
   anchor (`wayback` or `body_hash` + `body_path`). Supplemental trigger
   citations may include live URL pointers only when at least one trigger
-  citation is archived.
+  citation is archived; set `trigger.citation[].evidence_use:
+  contextual_unarchived` or `non_admission` for citations that are context
+  rather than admission anchors.
 - Timestamps are internally consistent (no claim of a reaction before trigger unless the pre-window explicitly flags it).
 - Coverage statuses are explicit for every tracked layer.
+- Any `coverage[]` row in `measured` or `partially_measured` status has a
+  structured denominator artifact on the row itself (`denominator_artifact`)
+  or at least one same-layer observation source with a replayable anchor
+  (`body_hash` + `body_path`, `query_hash`, `measurement_ids`, `wayback`, or
+  primary on-chain id). A `scope_descriptor` explains scope but does not count
+  as evidence by itself.
 - No observation conflates a measured change with a causal attribution claim.
 - The schema validator passes.
 

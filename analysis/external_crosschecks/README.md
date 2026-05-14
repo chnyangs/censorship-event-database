@@ -1,6 +1,8 @@
 # External Benchmark Crosswalk
 
-Status as of 2026-05-07: reviewer-facing crosscheck plan.
+Status as of 2026-05-14: reviewer-facing crosscheck plan plus execution
+ledger. The plan lives in `benchmark_crosswalk.yaml`; executed/not-executed
+status lives in [`crosscheck_status.md`](crosscheck_status.md).
 
 This artifact records how adjacent censorship, sanctions, and transparency
 measurement work should be used to sanity-check the corpus. It is not an
@@ -9,7 +11,8 @@ measurement protocol. Its job is to make external validity checks explicit:
 what each benchmark can validate, what it cannot validate, and how its
 denominator differs from this event-level database.
 
-Machine-readable source: [`benchmark_crosswalk.yaml`](benchmark_crosswalk.yaml).
+Machine-readable plan source: [`benchmark_crosswalk.yaml`](benchmark_crosswalk.yaml).
+Execution status: [`crosscheck_status.md`](crosscheck_status.md).
 
 ## Crosswalk
 

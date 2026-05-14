@@ -8,7 +8,7 @@ asserting that you have read and agreed to what follows.
 
 ## 1. What this dataset is
 
-A stratified admitted catalog of **publicly documented crypto censorship
+A coverage-denominator-disciplined admitted catalog of **publicly documented crypto censorship
 events** from 2017-07-26 (BTC-e seizure) through 2025-11-19 (Russian
 cybercrime infrastructure SDN). Each event YAML captures: a trigger with
 primary-source citations (sha256 `body_hash`); a concrete target
@@ -16,9 +16,10 @@ primary-source citations (sha256 `body_hash`); a concrete target
 with admission-grade evidence; and an explicit `scoped_claim` that the
 retained observations support.
 
-Currently **53 admitted events** and no working drafts; every event validates
+Current working snapshot: **53 admitted events** and no working drafts; every event validates
 under [`scripts/validate.py`](../scripts/validate.py) at schema version
-0.2.0. Paper-facing tables use admitted events only.
+0.2.0. Paper-facing tables use admitted events only. This is not a strict
+release/submission artifact until the full human/release gate passes.
 
 ### 1.1 Sampling frame
 

@@ -3,18 +3,18 @@
 > Addresses the P1 reviewer pivot from the 2026-04-24 multi-agent
 > review (recorded in [`../../CHANGELOG.md`](../../CHANGELOG.md)):
 > "scale the git-history-of-operator-repos methodology from n=1 to
-> a multi-repo census".
+> an explicitly scoped public-source-control scan".
 
 ## What this is
 
-A reproducible scan of **8 publicly-maintained operator repositories**
+A reproducible **8-repo v0.1 public-source-control scan**
 for OFAC-keyed compliance activity visible in git history. The scan
 inputs are pinned in
 [`sources/operator_census/candidates.yaml`](../../sources/operator_census/candidates.yaml);
 the scanner is
 [`scripts/scan_operator_census.py`](../../scripts/scan_operator_census.py);
-the local structured output is `commits.json` (gitignored because it
-is regenerable and can become large with `--emit-all-commits`); the
+the local structured output is `commits.json` (tracked in compact
+signal-only form; do not commit `--emit-all-commits` full streams); the
 human-facing table is [`findings.md`](findings.md).
 
 Reproduce:
@@ -25,7 +25,7 @@ python3 scripts/scan_operator_census.py --no-clone  # offline; uses existing clo
 python3 scripts/scan_operator_census.py --only flashbots/rpc-endpoint
 ```
 
-## Headline (v0.1 corpus cutoff 2026-04-26)
+## Headline (v0.1 scan cutoff 2026-04-26)
 
 A bare "X commits over Y repos" rate is **not interpretable** because
 the 8 candidates span structurally different surfaces. The honest
@@ -57,7 +57,7 @@ the new builder, and the deprecated builder all sit in
   keyword. **PR #173 (2025-04-01, "Cleanup unused and unmaintained
   blacklist file" — the canonical Tornado-delisting deletion) is
   in this count**, along with the 2021-10-07 file-creation commit.
-- **OFAC-keyword commits = 1** across the entire 8-repo corpus.
+- **OFAC-keyword commits = 1** across the scanned 8-repo v0.1 public-source-control frame.
   This is the narrow count: subject must explicitly name
   `ofac` / `sdn` / `sanction` / `designate`. The single hit is
   Flashbots PR #90 (2022-08-08, "update ofac black list").
@@ -88,8 +88,8 @@ PR #90 (2022-08-08) and PR #173 (2025-04-01) anchor the paper's L3
 evidence in
 [`tornado-cash-ofac-2022`](../evidence-chains/tornado-cash-ofac-2022.md)
 and [`tornado-cash-ofac-delisting-2025`](../evidence-chains/tornado-cash-ofac-delisting-2025.md).
-The census confirms the manual audit and locates no additional
-OFAC-keyword commits anywhere else in the surveyed population.
+The scan confirms the manual audit and locates no additional
+OFAC-keyword commits anywhere else in the scanned public-source-control frame.
 
 ## The structural finding
 
@@ -114,11 +114,11 @@ The paper's defensible claim from this census is therefore:
 
 > **Under v0.1 of the paper's public-repo sampling frame,
 > git-history as a crypto-censorship measurement channel is
-> structurally narrow: of 8 surveyed operator repositories, 1
+> structurally narrow: of 8 surveyed public repositories, 1
 > (`flashbots/rpc-endpoint`) carries an operative OFAC filter
-> file in public source control; 5 know-channel substrate edits
+> file in public source control; 5 known-channel substrate edits
 > are visible across 3.5 years on that one substrate; 6 of the
-> other 7 surveyed repos are either glob-zero (no compliance file
+> other 7 scanned repos are either glob-zero (no compliance file
 > in public git) or schema-only. Most operator compliance
 > decisions live server-side, not in git.**
 
@@ -134,6 +134,10 @@ relay/builder implementations).
 - **The census is English-repository-indexed and US-operator-dominant**
   by construction of the candidates list. Russian, Chinese, Iranian,
   and other non-US-aligned operator substrates are not surveyed.
+- **Negative claims are scoped to the recorded repo HEADs and scan
+  patterns.** `findings.md` and `commits.json` record remote URL, clone
+  checked time, default branch, HEAD SHA, scan patterns, matched current
+  paths, and matched historical paths for each candidate.
 - **Classification is keyword-based**, not semantic. The five
   classes (`sanctions_reaction`, `sanctions_maintenance`,
   `entity_keyword_hit`, `generic_list_maintenance`, `other`) plus
@@ -160,14 +164,14 @@ relay/builder implementations).
 - **Supports C1 (upper-layer concentration)**: the L3 numerator
   rows admitted in Tables 2/6 are the two Flashbots
   `ofacblacklist.go` substrate edits (PR #90 and PR #173). The
-  census confirms no other admitted L3 observations can be
-  derived from the surveyed operator population.
+  scan confirms no other admitted L3 observations can be derived from the
+  scanned public-source-control frame.
 - **Refines the observability gap in README §1 point 5**: not
   just "L0/L1/L3 have thin measured denominators at v0.1" but
   "the only operator-substrate rate visible via public source
-  control sits on 1 of 8 surveyed repos, in a single tier, and
+  control sits on 1 of 8 scanned public repos, in a single tier, and
   the substrate-edit ledger across 3.5 years is 5 commits".
-- **Does not change C2 / C3 / C4 numbers** — the census does not
+- **Does not change C2 / C3 / C4 numbers** — the scan does not
   admit new events; it corroborates the existing admissions and
   bounds the substrate.
 

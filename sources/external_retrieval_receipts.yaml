@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Retrieval receipts for upstream inputs that are not committed verbatim.
+
+schema_version: 0.1
+generated_policy_date: 2026-05-14
+
+receipts:
+  - id: operator_census_public_git_clones
+    upstream_kind: git_repositories
+    selector: sources/operator_census/candidates.yaml
+    release_artifact: analysis/operator_census/commits.json
+    local_storage: sources/operator_census/<org>__<repo>/
+    local_storage_policy: excluded_from_release
+    receipt_policy: >-
+      The compact tracked receipt records repo, remote_url, clone_checked_at,
+      default_branch, HEAD SHA, scan patterns, matched current paths, matched
+      historical paths, and emitted signal commits. The full local clones are
+      re-fetchable from candidates.yaml and are not committed.
+    reproduction_command: python3 scripts/scan_operator_census.py
+  - id: opensanctions_ofac_ftm_dump
+    upstream_kind: large_upstream_dump
+    upstream_url: https://data.opensanctions.org/datasets/latest/us_ofac_sdn/entities.ftm.json
+    local_storage: sources/ofac_sdn_diffs/opensanctions/us_ofac_sdn.ftm.json
+    local_storage_policy: excluded_from_release
+    release_artifact: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+    receipt_policy: >-
+      The large FTM dump is excluded; the committed triage artifact and
+      generated candidate trigger stubs are the replayable release surface for
+      the v0.1 OFAC recent-actions sweep.
+  - id: ofac_current_sdn_xml
+    upstream_kind: large_current_feed
+    upstream_url: https://www.treasury.gov/ofac/downloads/sdn.xml
+    local_storage: sources/ofac_sdn_diffs/current/sdn.xml
+    local_storage_policy: excluded_from_release
+    release_artifact: sources/ofac_sdn_diffs/
+    receipt_policy: >-
+      Current live SDN XML is not a stable release artifact. Event-level OFAC
+      trigger evidence must use archived URLs, local body hashes, or committed
+      diff/triage artifacts rather than the mutable live feed.

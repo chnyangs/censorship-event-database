@@ -30,15 +30,16 @@ Required action:
 
 1. Select an independent coder who did not produce the gold labels or the
    agent-assisted recode.
-2. Give the coder only the H1 packet generated at
+2. Generate the blank packet with `make irr-packet`.
+3. Give the coder only the H1 packet generated at
    `site/h1_irr_packet/` (or an equivalent folder containing only blank
    worksheets, rubric, methodology, and sample metadata), not the full
    dashboard/site bundle, raw event YAML, rendered event pages, existing coded
    answers, kappa reports, LLM rationale, or null-case pre-audit notes.
-3. Recode at least the variables that support paper-facing claims:
+4. Recode at least the variables that support paper-facing claims:
    `coverage_status`, `observation_kind`, and `attribution`.
-4. Recompute κ with `make irr-kappa`.
-5. Update `analysis/inter_rater/kappa_report.json` so
+5. Recompute κ with `make irr-kappa`.
+6. Update `analysis/inter_rater/kappa_report.json` so
    `coder_provenance.mode` is `independent_human` only if the pass was truly
    independent and blinded.
 

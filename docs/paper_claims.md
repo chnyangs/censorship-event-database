@@ -98,14 +98,18 @@ generator is live and emits the case-role surface in Table 1.
 
 ### Attribution discipline
 
-The dataset records each `observed_change` with
-`attribution ∈ {direct, plausible, none}`. In any paper claim:
+The dataset records attribution with
+`attribution ∈ {direct, plausible, unknown, none}`. In any paper claim:
 
 - `direct` observations may support a causal statement ("trigger X
   produced observation Y").
 - `plausible` observations may support a co-occurrence statement
   ("observation Y occurred within the event window; attribution is
   consistent with X but not uniquely supported").
+- `unknown` observations may document that a state transition was observed,
+  but trigger linkage is unresolved. They are excluded from strong-attribution
+  numerators, narrative causal claims, and any prose that implies the named
+  trigger caused the transition.
 - `none` (applies to `observed_no_change` and `coverage_gap` rows) may
   not support any causal statement; it supports only
   "within the scoped window and sources, no change was observed".
@@ -148,6 +152,11 @@ implemented as six artifacts that must be cited together:
 | Paper-table generator | [`scripts/build_paper_tables.py`](../scripts/build_paper_tables.py) | admitted-only, fail-closed table surface for paper-facing numbers |
 | Audit and sensitivity package | [`analysis/audit_worksheets/`](../analysis/audit_worksheets/), [`derived/admission_sensitivity.md`](../derived/admission_sensitivity.md), [`analysis/inter_rater/kappa_report.md`](../analysis/inter_rater/kappa_report.md), [`analysis/staleness.md`](../analysis/staleness.md) | human-audit, rubric sensitivity, recoding consistency, and freshness gates |
 
+Public validation is a two-part contract: JSON Schema (`schema/event.schema.json`)
+plus admission/semantic checks in `scripts/validate.py`. A JSON-Schema-only pass
+does not establish replayable evidence anchors, denominator validity,
+cross-event action dedupe integrity, or attribution/source-rule compliance.
+
 ### External benchmark crosscheck, not a seventh artifact
 
 The paper may cite
@@ -157,6 +166,9 @@ six-artifact measurement protocol: external benchmarks can sanity-check
 denominator scope, baseline ambiguity, entity normalization, and
 claim wording, but they do **not** create an event denominator or satisfy
 admission without replayable local evidence.
+Use [`analysis/external_crosschecks/crosscheck_status.md`](../analysis/external_crosschecks/crosscheck_status.md)
+to distinguish planned checks from completed checks before citing a benchmark
+as executed.
 
 | benchmark family | what the paper borrows | what it cannot do |
 | --- | --- | --- |
@@ -286,7 +298,7 @@ lift this table rather than write a new one.
 | **Unit of observation** | Block / transaction (millions per window). | Event (n=53 admitted YAML records) plus, in v0.1, a paired census surface — 8 operator repos with substrate-edit ledger ([`analysis/operator_census/`](../analysis/operator_census/)) — and a fail-closed paper-table generator. |
 | **Trigger model** | Implicit (OFAC SDN list as a static block-time filter). | Explicit `trigger.*` with timestamp precision, actor, jurisdiction; precision-aware latency panels separate hour-grade from day-grade. |
 | **Coverage discipline** | Per-relay prevalence; denominators are blocks, not events. | Coverage-matched conditional rates over events with `measured / partially_measured / not_measured / not_applicable` as distinct states; rate emission aborts on denominator mismatch (`scripts/build_paper_tables.py` fail-closed). Three-rubric strict/current/permissive ablation reports sensitivity per layer. |
-| **Operator substrate** | Not examined as a first-class measurement channel; relay filtering is inferred from block content, not from operator source code. | `analysis/operator_census/` surveys 8 public operator repositories for git-history OFAC edits and **tiers them into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3)**. Reports two parallel headline numbers: 5 known-channel substrate edits across 1 confirmed-substrate repo (the wide ledger), and 1 OFAC-keyword-subject commit across the entire corpus (the narrow keyword classifier). Treats public git-history of operator compliance as a measurable substrate with minute-level precision where it exists. |
+| **Operator substrate** | Not examined as a first-class measurement channel; relay filtering is inferred from block content, not from operator source code. | `analysis/operator_census/` runs an 8-repo v0.1 public-source-control scan for git-history OFAC edits and **tiers the scanned repos into `confirmed_filter_file` (n=2) / `glob_swept_matched` (n=2) / `schema_or_index_only` (n=1) / `glob_swept_zero` (n=3)**. Reports two parallel headline numbers: 5 known-channel substrate edits across 1 confirmed-substrate repo (the wide ledger), and 1 OFAC-keyword-subject commit across the scanned frame (the narrow keyword classifier). Treats public git-history of operator compliance as a measurable substrate with minute-level precision where it exists. |
 | **Recovery / reversal** | Not addressed (the paper's cutoff predates OFAC's 2025-03-21 Tornado delisting). | Demoted to exemplar-inside-C1 (n=1; not a standalone claim — see §C6). Visible inside the substrate-edit ledger as PR #173 (2025-04-01 deletion). |
 | **Reproducibility** | Data + code published. | Pinned `requirements*.txt`, `SOURCE_DATE_EPOCH` byte-stable artifacts, fail-closed paper-table generator, pytest regression suite, blind inter-rater reliability sampler + κ calculator (with provenance taxonomy), CI gate that exercises the reproduction path (`make regenerate` + `make paper-check` + byte-stability round-trip). |
 | **Inter-rater reliability** | Not reported (their measurement is programmatic over block data, so κ on author labels is not the applicable check). | `coverage_status`, `observation_kind`, and `attribution` self-consistency κ = 1.0 under `llm_assisted_blinded` provenance (`analysis/inter_rater/kappa_report.md`). Cited as self-consistency, not as inter-rater reliability; an `independent_human` pass is open work for v0.2. |
@@ -305,7 +317,7 @@ not compete at the L1-prevalence question.
 - **Piet & Jadliwala / Arnbak-style work on dApp frontend geoblocking** (2023-2024 · PETS): orthogonal substrate; gives vocabulary, not numerical overlap.
 - **Chainalysis / Elliptic / TRM compliance reports**: asset-layer freeze reporting under proprietary feeds. Not event-keyed; this project's `asset_onchain` rows come from on-chain logs directly.
 - **Censorship.pics (Wahrstätter) / mevwatch / relayscan.io**: live dashboards consumed as semi-primary inputs; credited in `docs/methodology.md §4.2`.
-- **Informal blog posts on `ofacblacklist.go`** (Amadeo / Pestritto, 2022-2023): not peer-reviewed. This work's contribution is the reproducible audit + multi-repo census + admission-grade anchoring of the same finding.
+- **Informal blog posts on `ofacblacklist.go`** (Amadeo / Pestritto, 2022-2023): not peer-reviewed. This work's contribution is the reproducible audit + 8-repo public-source-control scan + admission-grade anchoring of the same finding.
 
 #### External benchmark crosswalk paragraph (required for §2 or §6)
 

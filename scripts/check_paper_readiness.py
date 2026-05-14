@@ -32,6 +32,8 @@ PAPER_TABLES_DIR = REPO_ROOT / "analysis" / "paper_tables"
 DERIVED_DIR = REPO_ROOT / "derived"
 PAPER_CLAIMS = REPO_ROOT / "docs" / "paper_claims.md"
 DATASET_META = REPO_ROOT / "dataset.meta.json"
+DATASET_JSON = REPO_ROOT / "dataset.json"
+DATASET_CSV = REPO_ROOT / "dataset.csv"
 CITATION_CFF = REPO_ROOT / "CITATION.cff"
 IRR_REPORT = REPO_ROOT / "analysis" / "inter_rater" / "kappa_report.json"
 TRIGGER_REGISTRY_DIR = REPO_ROOT / "analysis" / "trigger_registry"
@@ -62,6 +64,10 @@ REQUIRED_DERIVED = [
     "admission_sensitivity.md",
     "admission_sensitivity.csv",
     "admission_sensitivity.meta.json",
+    "action_registry.md",
+    "action_registry.csv",
+    "action_registry.json",
+    "action_registry.meta.json",
     "coverage_matrix.md",
     "coverage_matrix.csv",
     "coverage_matrix.json",
@@ -406,6 +412,10 @@ def main() -> int:
             )
     except FileNotFoundError:
         errors.append("missing dataset.meta.json — run `make dataset`")
+
+    for path in (DATASET_JSON, DATASET_CSV):
+        if not path.exists():
+            errors.append(f"missing tracked release dataset artifact: {path.name} — run `make dataset`")
 
     for rel in REQUIRED_TABLES:
         path = paper_tables_dir / rel

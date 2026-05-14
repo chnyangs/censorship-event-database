@@ -13,9 +13,8 @@ For each candidate in `sources/operator_census/candidates.yaml`:
    (`git log --follow --date=iso-strict`).
 4. For each commit, classify it via subject-line + path keywords
    into {sanctions_reaction, list_maintenance, cleanup, other}.
-5. Emit `analysis/operator_census/commits.json` (ignored,
-   regenerable structured output) + `analysis/operator_census/findings.md`
-   (per-repo summary table).
+5. Emit `analysis/operator_census/commits.json` (tracked compact receipt)
+   + `analysis/operator_census/findings.md` (per-repo summary table).
 
 This is the multi-repo scale-up of the single-repo Flashbots audit
 documented in `analysis/anchor_gap_fill_log.md §4`. Findings here do
@@ -134,6 +133,13 @@ class RepoFinding:
     operator: str
     role: str
     clone_status: str  # ok / not_found / clone_failed / skipped
+    remote_url: str
+    clone_checked_at: str
+    head_sha: Optional[str]
+    default_branch: Optional[str]
+    scan_patterns: list[str]
+    matched_current_paths: list[str]
+    matched_historical_paths: list[str]
     # Repo tiering (used for the headline framing — see findings.md
     # "Tiered census" section). Distinct from `clone_status`, which
     # only reports whether the clone succeeded.
@@ -173,6 +179,11 @@ def _run(cmd: list[str], cwd: pathlib.Path | None = None,
          check: bool = False) -> subprocess.CompletedProcess:
     return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
                           check=check)
+
+
+def _git_stdout(clone_dir: pathlib.Path, args: list[str]) -> str:
+    proc = _run(["git", *args], cwd=clone_dir)
+    return proc.stdout.strip() if proc.returncode == 0 else ""
 
 
 def _slug_of(repo: str) -> str:
@@ -226,22 +237,34 @@ def _path_has_history(clone_dir: pathlib.Path, path: str) -> bool:
     return bool(proc.stdout.strip())
 
 
-def _match_files(clone_dir: pathlib.Path,
-                 filter_file: Optional[str],
-                 extra_patterns: list[str]) -> list[str]:
-    """Return historical paths matching the candidate's filter definition."""
+def _current_paths(clone_dir: pathlib.Path) -> set[str]:
+    return {
+        str(p.relative_to(clone_dir))
+        for p in clone_dir.rglob("*")
+        if p.is_file() and ".git" not in p.parts
+    }
+
+
+def _match_files(
+    clone_dir: pathlib.Path,
+    filter_file: Optional[str],
+    extra_patterns: list[str],
+) -> tuple[list[str], list[str], list[str]]:
+    """Return union/current/history matches for a candidate filter definition."""
     paths: set[str] = set()
+    current_matches: set[str] = set()
+    historical_matches: set[str] = set()
     if filter_file:
         abs_path = clone_dir / filter_file
-        if abs_path.exists() or _path_has_history(clone_dir, filter_file):
+        if abs_path.exists():
             paths.add(filter_file)
+            current_matches.add(filter_file)
+        if _path_has_history(clone_dir, filter_file):
+            paths.add(filter_file)
+            historical_matches.add(filter_file)
     if extra_patterns:
         historical = _historical_paths(clone_dir)
-        current = {
-            str(p.relative_to(clone_dir))
-            for p in clone_dir.rglob("*")
-            if p.is_file() and ".git" not in p.parts
-        }
+        current = _current_paths(clone_dir)
         for rel in historical | current:
             name = pathlib.PurePosixPath(rel).name
             for pat in extra_patterns:
@@ -251,8 +274,28 @@ def _match_files(clone_dir: pathlib.Path,
                 base_pat = pat.removeprefix("**/")
                 if fnmatch.fnmatch(rel, pat) or fnmatch.fnmatch(name, base_pat):
                     paths.add(rel)
+                    if rel in current:
+                        current_matches.add(rel)
+                    if rel in historical:
+                        historical_matches.add(rel)
                     break
-    return sorted(paths)
+    return sorted(paths), sorted(current_matches), sorted(historical_matches)
+
+
+def _repo_provenance(clone_dir: pathlib.Path, fallback_repo: str) -> dict[str, Optional[str]]:
+    remote_url = _git_stdout(clone_dir, ["remote", "get-url", "origin"]) or (
+        f"https://github.com/{fallback_repo}.git"
+    )
+    default_ref = _git_stdout(clone_dir, ["symbolic-ref", "--quiet", "--short", "refs/remotes/origin/HEAD"])
+    default_branch = default_ref.removeprefix("origin/") if default_ref else (
+        _git_stdout(clone_dir, ["branch", "--show-current"]) or None
+    )
+    head_sha = _git_stdout(clone_dir, ["rev-parse", "HEAD"]) or None
+    return {
+        "remote_url": remote_url,
+        "default_branch": default_branch,
+        "head_sha": head_sha,
+    }
 
 
 def _extract_commits(clone_dir: pathlib.Path,
@@ -340,10 +383,19 @@ def _scan_one(candidate: dict, clone_root: pathlib.Path,
     else:
         status = _clone_repo(repo, clone_dir)
     declared_filter_file = candidate.get("filter_file")
+    extra_patterns = candidate.get("extra_patterns") or []
+    scan_patterns = ([declared_filter_file] if declared_filter_file else []) + extra_patterns
     known_channel = bool(candidate.get("known_channel"))
     finding = RepoFinding(
         repo=repo, operator=candidate["operator"],
         role=candidate["role"], clone_status=status,
+        remote_url=f"https://github.com/{repo}.git",
+        clone_checked_at=now_utc_iso(),
+        head_sha=None,
+        default_branch=None,
+        scan_patterns=scan_patterns,
+        matched_current_paths=[],
+        matched_historical_paths=[],
         repo_tier="unknown", known_channel=known_channel,
         matched_files=[], commit_count=0,
         sanctions_reaction_count=0,
@@ -358,10 +410,18 @@ def _scan_one(candidate: dict, clone_root: pathlib.Path,
     if status not in ("ok",) or not clone_dir.exists():
         finding.repo_tier = "clone_failed"
         return finding
-    finding.matched_files = _match_files(
-        clone_dir, declared_filter_file,
-        candidate.get("extra_patterns") or [],
+    provenance = _repo_provenance(clone_dir, repo)
+    finding.remote_url = provenance["remote_url"] or finding.remote_url
+    finding.default_branch = provenance["default_branch"]
+    finding.head_sha = provenance["head_sha"]
+    matched_files, current_matches, historical_matches = _match_files(
+        clone_dir,
+        declared_filter_file,
+        extra_patterns,
     )
+    finding.matched_files = matched_files
+    finding.matched_current_paths = current_matches
+    finding.matched_historical_paths = historical_matches
     # Repo-tier assignment. The declared filter_file existing on disk
     # is the strongest tier; a glob sweep that found zero files is
     # the modal "structurally absent" finding; a glob sweep that
@@ -452,7 +512,7 @@ def _emit_json(findings: list[RepoFinding], out_path: pathlib.Path,
         return meta
     payload = {
         "generated_at": now_utc_iso(),
-        "scanner_version": "0.2",
+        "scanner_version": "0.3",
         "candidate_count": len(findings),
         "commits_filter": "all" if emit_all else "signal_classes_only",
         "findings": [serialize(f) for f in findings],
@@ -573,6 +633,7 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
         "",
     ])
     for f in findings:
+        scan_patterns = ", ".join(f"`{p}`" for p in f.scan_patterns) or "`<none>`"
         lines.extend([
             f"### `{f.repo}` — {f.role}",
             "",
@@ -580,10 +641,23 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
             f"- **Repo tier**: `{f.repo_tier}`"
             f"{' (known_channel: true)' if f.known_channel else ''}",
             f"- **Clone status**: {f.clone_status}",
+            f"- **Remote URL**: `{f.remote_url}`",
+            f"- **Clone checked at**: `{f.clone_checked_at}`",
+            f"- **Default branch**: `{f.default_branch or 'unknown'}`",
+            f"- **HEAD SHA**: `{f.head_sha or 'unknown'}`",
+            f"- **Scan patterns**: {scan_patterns}",
             f"- **Matched files** (n={len(f.matched_files)}):",
         ])
         for mf in f.matched_files:
             lines.append(f"    - `{mf}`")
+        lines.append(
+            f"- **Matched current paths** (n={len(f.matched_current_paths)}): "
+            + (", ".join(f"`{p}`" for p in f.matched_current_paths) or "none")
+        )
+        lines.append(
+            f"- **Matched historical paths** (n={len(f.matched_historical_paths)}): "
+            + (", ".join(f"`{p}`" for p in f.matched_historical_paths) or "none")
+        )
         if f.notes:
             lines.append("")
             lines.append(f"**Notes**: {f.notes}")
@@ -636,8 +710,8 @@ def _emit_markdown(findings: list[RepoFinding], out_path: pathlib.Path) -> None:
             if f.generic_list_maintenance_count > 0:
                 lines.append("")
                 lines.append(
-                    f"_Generic list-maintenance commits (phishing / abuse / "
-                    f"scam registry activity, no OFAC keyword): "
+                    f"_Generic list-maintenance commits (generic blacklist / "
+                    f"blocklist / cleanup vocabulary, no OFAC keyword): "
                     f"{f.generic_list_maintenance_count}. Not tabulated "
                     f"individually — regenerate with "
                     f"`--emit-all-commits` for the full local stream._"

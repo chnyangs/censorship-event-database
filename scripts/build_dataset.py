@@ -62,14 +62,18 @@ GENERATOR_VERSION = "1.0.0"
 DATASET_NAME = "censorship-event-database"
 DATASET_URL = "https://github.com/chnyangs/censorship-event-database"
 SOURCE_INPUT_GLOBS = [
+    ".zenodo.json",
     "CITATION.cff",
     "Makefile",
+    "README.md",
     "candidate_triggers/**/*.yaml",
     "docs/**/*.md",
     "events/*.yaml",
+    "human-audit.md",
     "sampling/*.yaml",
     "schema/*.json",
     "schema/*.yaml",
+    "sources/external_retrieval_receipts.yaml",
     "scripts/*.py",
     "sources/operator_census/candidates.yaml",
     "sources/l0_datasets/_summary.json",

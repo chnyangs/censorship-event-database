@@ -5,6 +5,8 @@ A-class measurement / data paper. It deliberately narrows the ambition from
 "A* full empirical census" to a defensible paper about a denominator-aware
 measurement protocol and reproducible cross-layer event corpus.
 
+> **Status update 2026-05-14**: current repo state should be treated as a working snapshot, not a strict release/submission artifact. Do not mark this plan complete until independent-human IRR, H2 null-case audit, and H3 release metadata/sign-off are complete and the full strict gate passes from a clean intended source tree.
+
 ## Submission Thesis
 
 The paper should make one primary claim:
@@ -35,7 +37,7 @@ The paper must not claim:
 | L0 denominator | 0 measured denominators | report observability gap only |
 | L3 denominator | 2 named partial Flashbots rows, 0 measured denominators | mechanism exemplar only; no provider rate |
 | Reliability | LLM-assisted blinded recode only | self-consistency, not independent-human IRR |
-| Artifact gate | `make check` / working-snapshot `paper-check` pass | strict submission gate still blocked until human/release items are complete |
+| Artifact gate | `make check` / non-mutating working-snapshot `make paper-check` pass | strict submission gate still blocked until human/release items are complete |
 
 ## Phase A0 - Strict Submission Gate
 
@@ -46,6 +48,8 @@ Required work:
 
 - Complete independent-human IRR for `coverage_status`,
   `observation_kind`, and `attribution`.
+- Generate the H1 blank packet with `make irr-packet`; distribute only
+  `site/h1_irr_packet/`, not key files or LLM audit notes.
 - Complete the 13 null-case denominator audits listed in
   [`../human-audit.md`](../human-audit.md), or exclude unaudited null cases
   from any stronger narrative/null-denominator claims.

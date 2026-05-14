@@ -6,7 +6,7 @@ Every tagged release produces:
 
 1. A **GitHub Release** with auto-generated source archives.
 2. A **Zenodo deposit** with a DOI (via the Zenodo ↔ GitHub integration).
-3. A refreshed `dataset.meta.json` + `dataset.{json,csv}` pinned to the tag.
+3. Tracked, refreshed `dataset.meta.json` + `dataset.{json,csv}` pinned to the tag.
 4. A refreshed `sources/source_manifest.{csv,json,md}` with SHA-256 hashes
    for local source artifacts included in the release surface.
 
@@ -47,8 +47,9 @@ NEW_VERSION=0.1.1
 sed -i '' "s/^version:.*/version: \"${NEW_VERSION}\"/" CITATION.cff
 sed -i '' "s/^date-released:.*/date-released: \"$(date -u +%Y-%m-%d)\"/" CITATION.cff
 
-# 3. Regenerate dataset artifacts so dataset.meta.json and source_manifest
-#    pick up the version.
+# 3. Regenerate dataset artifacts so dataset.meta.json, dataset.{json,csv},
+#    source_manifest, paper tables, action registry, and site outputs pick up
+#    the version. This target mutates generated artifacts by design.
 make regenerate
 
 # 4. Run release gates. The strict reliability gate requires an
@@ -60,8 +61,10 @@ $EDITOR CHANGELOG.md
 
 # 6. Commit, tag, push. GitHub Release + Zenodo DOI both fire off the tag.
 git add CITATION.cff CHANGELOG.md dataset.json dataset.csv dataset.meta.json \
-  derived/ analysis/paper_tables/ analysis/evidence-chains/ site/ \
+  derived/ analysis/paper_tables/ analysis/evidence-chains/ \
+  analysis/operator_census/commits.json site/ \
   sources/source_manifest.* sources/http_captures/ sources/l0_datasets/ \
+  sources/external_retrieval_receipts.yaml \
   docs/ scripts/ tests/ sampling/ candidate_triggers/ events/
 git status --short   # review the exact release surface before committing
 git commit -m "release: v${NEW_VERSION}"
@@ -92,6 +95,11 @@ After the push:
   release a patch version instead.
 - **Don't edit `dataset.meta.json` by hand.** It's regenerated from
   `events/*.yaml` + `CITATION.cff`. Regenerate via `make dataset`.
+- **Don't drop `dataset.json` or `dataset.csv` from the tag.** They are a
+  tracked release surface, not separate GitHub Release-only assets.
+- **Don't use `make paper-check` as a regeneration step.** It is intentionally
+  non-mutating. Use `make regenerate` or `make paper-regenerate-check` when
+  outputs need to be rebuilt before checking.
 - **Don't release with a schema_version mismatch across events.** The
   generator raises `SystemExit` if events disagree on `schema_version`; fix
   the drift first.

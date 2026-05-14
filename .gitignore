@@ -1,8 +1,6 @@
 __pycache__/
 *.pyc
 .DS_Store
-dataset.json
-dataset.csv
 output/
 tmp/
 site/
@@ -18,11 +16,8 @@ sources/ofac_sdn_diffs/opensanctions/us_ofac_sdn.ftm.json
 sources/operator_census/*/
 !sources/operator_census/candidates.yaml
 
-# Census commits.json is regenerable from `make operator-census` and
-# can balloon if --emit-all-commits is used (e.g. MetaMask's 204k
-# commits → ~80MB). The signal-only emit is small (~10KB) but still
-# regenerable; keep findings.md (human-facing) under version control,
-# not the structured JSON.
-analysis/operator_census/commits.json
+# The signal-only operator census JSON is part of the release surface.
+# Do not commit `--emit-all-commits` output; keep large full streams local
+# under output/ or tmp/ if needed.
 
 .claude/

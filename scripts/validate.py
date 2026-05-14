@@ -452,6 +452,18 @@ class EventValidator:
                         citation,
                         result,
                     )
+                    if (
+                        not self._citation_has_archive_anchor(citation)
+                        and citation.get("evidence_use") not in {
+                            "contextual_unarchived",
+                            "non_admission",
+                        }
+                    ):
+                        result.warn(
+                            f"trigger.citation[{citation_idx}] has no replayable archive anchor; "
+                            "mark it evidence_use=contextual_unarchived/non_admission or archive it "
+                            "before using it in paper claims."
+                        )
                 if self._citation_has_archive_anchor(citation):
                     archived = True
             if not archived:
@@ -501,6 +513,15 @@ class EventValidator:
                 result.error(f"coverage contains duplicate layer entry: {layer}")
             if isinstance(layer, str):
                 seen_layers.add(layer)
+            denominator_artifact = entry.get("denominator_artifact")
+            if denominator_artifact is not None and not isinstance(denominator_artifact, dict):
+                result.error(f"coverage[{idx}].denominator_artifact must be a mapping when present.")
+            if isinstance(denominator_artifact, dict):
+                self._validate_denominator_artifact(
+                    f"coverage[{idx}].denominator_artifact",
+                    denominator_artifact,
+                    result,
+                )
 
         missing = self.layers - seen_layers
         for layer in sorted(missing):
@@ -611,22 +632,17 @@ class EventValidator:
                     result.error(
                         f"observations[{idx}] observed_no_change should use attribution='none'."
                     )
-                if isinstance(sources, list):
-                    for src_idx, src in enumerate(sources):
-                        if not isinstance(src, dict):
-                            continue
-                        has_query_hash = isinstance(src.get("query_hash"), str) and src.get("query_hash").strip()
-                        mids = src.get("measurement_ids")
-                        has_mids = measurement_ids_are_valid(mids)
-                        has_body = bool(src.get("body_hash")) and bool(src.get("body_path"))
-                        has_scope = isinstance(src.get("scope_descriptor"), dict) and len(src.get("scope_descriptor")) > 0
-                        if not (has_query_hash or has_mids or has_body or has_scope):
-                            result.error(
-                                f"observations[{idx}].sources[{src_idx}] supports an observed_no_change "
-                                "claim but has no falsifiable evidence anchor (need query_hash, "
-                                "measurement_ids, body_hash+body_path, or a structured scope_descriptor). "
-                                "Free-form notes alone are insufficient for null claims."
-                            )
+                has_null_anchor = any(
+                    isinstance(src, dict) and self._source_has_replayable_anchor(src)
+                    for src in (sources or [])
+                )
+                if not has_null_anchor:
+                    result.error(
+                        f"observations[{idx}] observed_no_change has no falsifiable "
+                        "evidence anchor (need query_hash, measurement_ids, wayback, "
+                        "body_hash+body_path, or a primary on-chain id). A structured "
+                        "scope_descriptor defines scope but is not a replayable anchor."
+                    )
             if kind == "coverage_gap" and attribution not in {"unknown", "none"}:
                 result.error(
                     f"observations[{idx}] coverage_gap should use attribution 'unknown' or 'none'."
@@ -681,6 +697,80 @@ class EventValidator:
                     f"coverage[{layer}].status={status} requires at least one observation "
                     f"on that layer (observed_change, observed_no_change, or coverage_gap). "
                     "Either add an observation or set status to not_measured / not_applicable."
+                )
+        self._validate_coverage_denominator_anchors(event, result)
+
+    def _validate_denominator_artifact(
+        self,
+        label: str,
+        artifact: dict[str, Any],
+        result: ValidationResult,
+    ) -> None:
+        if (
+            "measurement_ids" in artifact
+            and not measurement_ids_are_valid(artifact.get("measurement_ids"))
+        ):
+            result.error(f"{label}.measurement_ids must be a non-empty list of non-blank strings.")
+        self._validate_body_hash_for_label(label, artifact, result)
+        if "url" in artifact and not is_url(str(artifact["url"])):
+            result.error(f"{label}.url must be a valid URL.")
+        if "wayback" in artifact and not is_url(str(artifact["wayback"])):
+            result.error(f"{label}.wayback must be a valid URL.")
+
+    def _source_has_replayable_anchor(self, source: dict[str, Any]) -> bool:
+        if source.get("type") == "primary_onchain" and source.get("tx_hash"):
+            return True
+        if source.get("wayback"):
+            return True
+        if source.get("body_hash") and source.get("body_path"):
+            return True
+        if source.get("query_hash"):
+            return True
+        if measurement_ids_are_valid(source.get("measurement_ids")):
+            return True
+        return False
+
+    def _coverage_entry_has_denominator_artifact(self, entry: dict[str, Any]) -> bool:
+        artifact = entry.get("denominator_artifact")
+        if not isinstance(artifact, dict):
+            return False
+        return (
+            bool(artifact.get("wayback"))
+            or bool(artifact.get("query_hash"))
+            or bool(artifact.get("body_hash") and artifact.get("body_path"))
+            or measurement_ids_are_valid(artifact.get("measurement_ids"))
+            or bool(artifact.get("tx_hash"))
+        )
+
+    def _validate_coverage_denominator_anchors(
+        self,
+        event: dict[str, Any],
+        result: ValidationResult,
+    ) -> None:
+        observations_by_layer: dict[str, list[dict[str, Any]]] = {}
+        for obs in event.get("observations") or []:
+            if isinstance(obs, dict) and isinstance(obs.get("layer"), str):
+                observations_by_layer.setdefault(obs["layer"], []).append(obs)
+
+        for idx, entry in enumerate(event.get("coverage") or []):
+            if not isinstance(entry, dict):
+                continue
+            status = entry.get("status")
+            layer = entry.get("layer")
+            if status not in {"measured", "partially_measured"} or not isinstance(layer, str):
+                continue
+            has_entry_anchor = self._coverage_entry_has_denominator_artifact(entry)
+            has_observation_anchor = any(
+                isinstance(src, dict) and self._source_has_replayable_anchor(src)
+                for obs in observations_by_layer.get(layer, [])
+                for src in (obs.get("sources") or [])
+            )
+            if not (has_entry_anchor or has_observation_anchor):
+                result.error(
+                    f"coverage[{idx}] layer={layer} status={status} has no structured "
+                    "denominator artifact and no same-layer observation source with a "
+                    "replayable anchor. Add coverage[].denominator_artifact or an anchored "
+                    "observation source before this row can enter a conditional-rate denominator."
                 )
 
     def _validate_time_range(self, value: Any, label: str, result: ValidationResult) -> None:
@@ -1236,6 +1326,46 @@ def check_vocab_schema_consistency(vocab: dict, schema: dict) -> list[str]:
     return errors
 
 
+def _observation_action_id(event_id: str, obs_idx: int, obs: dict[str, Any]) -> str:
+    action_id = obs.get("action_id")
+    if isinstance(action_id, str) and action_id.strip():
+        return action_id.strip()
+    return (
+        f"{event_id}:{obs_idx}:{obs.get('layer')}:{obs.get('actor')}:"
+        f"{obs.get('event')}"
+    )
+
+
+def check_action_id_references(
+    events_by_path: dict[Path, dict[str, Any]],
+) -> dict[Path, list[str]]:
+    """Validate cross-event physical-action dedupe references."""
+    canonical_action_ids: set[str] = set()
+    duplicate_rows: list[tuple[Path, int, str]] = []
+    for path, event in events_by_path.items():
+        event_id = str(event.get("id") or path.stem)
+        for obs_idx, obs in enumerate(event.get("observations") or []):
+            if not isinstance(obs, dict):
+                continue
+            if obs.get("observation_kind") != "observed_change":
+                continue
+            action_id = _observation_action_id(event_id, obs_idx, obs)
+            duplicate_of = obs.get("duplicate_of_action_id")
+            if isinstance(duplicate_of, str) and duplicate_of.strip():
+                duplicate_rows.append((path, obs_idx, duplicate_of.strip()))
+            else:
+                canonical_action_ids.add(action_id)
+
+    errors: dict[Path, list[str]] = {path: [] for path in events_by_path}
+    for path, obs_idx, duplicate_of in duplicate_rows:
+        if duplicate_of not in canonical_action_ids:
+            errors[path].append(
+                f"observations[{obs_idx}].duplicate_of_action_id={duplicate_of!r} "
+                "does not resolve to a canonical observed_change action_id in the validated corpus."
+            )
+    return errors
+
+
 def main() -> int:
     args = parse_args()
     vocab = load_yaml(VOCAB_PATH)
@@ -1253,9 +1383,23 @@ def main() -> int:
         print("No event YAML files found.", file=sys.stderr)
         return 1
 
-    all_ok = True
+    events_by_path: dict[Path, dict[str, Any]] = {}
     for path in paths:
         event = load_yaml(path)
+        if isinstance(event, dict):
+            events_by_path[path] = event
+
+    all_event_paths = set(discover_paths([]))
+    validates_full_event_corpus = set(paths) == all_event_paths
+    action_reference_errors = (
+        check_action_id_references(events_by_path)
+        if validates_full_event_corpus
+        else {path: [] for path in events_by_path}
+    )
+
+    all_ok = True
+    for path in paths:
+        event = events_by_path.get(path) or load_yaml(path)
         result = validator.validate_event(
             path=path,
             event=event,
@@ -1263,6 +1407,8 @@ def main() -> int:
             check_archives=args.check_archives,
             timeout=args.timeout,
         )
+        for error in action_reference_errors.get(path, []):
+            result.error(error)
         status = "OK" if result.ok else "FAIL"
         print(f"[{status}] {path}")
         for warning in result.warnings:
