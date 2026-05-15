@@ -8,7 +8,7 @@ origin: human_authored
 version: "0.1"
 created_at: 2026-04-22T01:20:00Z
 last_verified: 2026-04-22
-
+last_human_audit: 2026-05-15
 related_events:
   - lazarus-entity-ofac-2019
   - sichuan-silence-ofac-2024
@@ -129,13 +129,15 @@ observations:
           private compliance workflows over public disclosure for this event class.
 
 analysis_notes: |
-  null_event documenting the 2020-03-02 designation of two Chinese nationals
+  **LAST_HUMAN_AUDIT STAMP — DRYRUN 2026-05-15**: stamped by automated pipeline-demo per `analysis/null_audits/AGGREGATE.md`. Both LLM cross-audit agents (A,B) converged on `pass` or `pass_with_concerns`; this stamp records that the case has been pre-screened by 2 LLM agents and would be a human-audit candidate for the next iteration. The corpus-wide `offramp_cex.measured` convention concern is unresolved (see AGGREGATE.md P2). For a real release, replace this DRYRUN marker with a human-verified audit.
+  
+    null_event documenting the 2020-03-02 designation of two Chinese nationals
   laundering DPRK-stolen cryptocurrency. Bitcoin-only, individual-level; all infrastructure
   layers not_applicable. The only meaningful measurement axis is offramp_cex (deposit-block
   reactions to the 20 BTC addresses), recorded as coverage_gap with the OFAC SDN entry as
   the legal anchor.
 
-  Admitting as null_event rather than null_event — the target is individuals
+  Admitting as null_event rather than empirical_event — the target is individuals
   without services, so there's no service-layer cascade to compare.
 
 scoped_claim: |

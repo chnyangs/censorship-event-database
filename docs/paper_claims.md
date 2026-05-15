@@ -356,32 +356,59 @@ Every conditional rate in the paper has a corresponding κ floor.
 `scripts/compute_irr_kappa.py::main` and the provenance taxonomy in
 the kappa report's "Interpretation" section).
 
-Current state (v0.1):
+Current state (v0.1; 2026-04-26 update — 3-agent consensus pass landed):
 
-- **`coverage.status`**: κ = 1.0 (n=90 rows, 15 events) under
-  `llm_assisted_blinded` provenance.
-- **`observation_kind`**: κ = 1.0 (n=25 rows, 15-event blind sample)
-  under `llm_assisted_blinded` provenance.
-- **`attribution`**: κ = 1.0 (n=20 rows, changed-observation blind
-  sample) under `llm_assisted_blinded` provenance.
+- **`coverage.status`**: Cohen κ = 1.0 vs gold (n=90, 15 events)
+  under `llm_assisted_blinded` provenance (single-agent recode,
+  not the 3-agent pass). No 3-agent rerun this round; agent
+  budget went to the two previously-unrun variables.
+- **`observation_kind`**: Cohen κ = 1.0 vs gold, **Fleiss κ = 1.0
+  across 3 blind LLM agents** (n=25). Observed agreement 100% on
+  all three agents AND vs gold. Provenance:
+  `llm_assisted_consensus_3x`. This is the highest-confidence
+  variable in the v0.1 IRR pass; C2 (single-layer dominance) can
+  be lifted from PARKED to PROMOTABLE on this result.
+- **`attribution`**: Cohen κ = 0.583 vs gold (moderate, **below
+  the 0.6 paper-readiness threshold**); **Fleiss κ = 0.683
+  across the 3 blind LLM agents** (n=20). Observed agreement
+  17/20 (85%). All 3 disagreement rows are `asset_onchain`
+  stablecoin freezes on SDN-listed addresses
+  (`cryptex-ofac-2024`, `semenov-ofac-2023` × 2) where the gold
+  codes `direct` (the on-chain freeze tx itself is the named-link
+  evidence) and the consensus codes `plausible` (no operator
+  press release explicitly names the SDN target). Both readings
+  are defensible from the codebook — this is a **codebook
+  ambiguity, not a coding error**, and it is the v0.1 IRR pass's
+  load-bearing finding.
 
-All three must be cited as a **self-consistency check,
-single-coder LLM-assisted blinded recode**, not as independent-human
-inter-rater reliability. The Landis & Koch *almost-perfect* label
-applies on the scale, but the substantive claim is bounded by
-provenance: gold and recode may share systematic biases, so the κ is
-a consistency floor, not an independent reliability estimate. An
-`independent_human` pass remains open work for v0.2.
+Cohen κ vs gold and Fleiss κ across the 3 agents are reported
+side-by-side because they answer different questions. Cohen κ asks
+"do blind LLM coders match the author's gold coding?"; Fleiss κ
+asks "do three blind LLM coders agree with each other?". An
+`independent_human` pass remains open work for v0.2 — it is the
+test the published IRR cannot yet pass and the largest validity
+gap surfaced by this pass.
 
-**Phrasing lock for the paper**: when citing κ, use
-"self-consistency check (LLM-assisted blinded recode), n=90/25/20,
-κ=1.0" or equivalent; do **not** use bare "almost perfect inter-
-rater agreement" without naming the provenance mode. The paper's
-§3 must not report a conditional rate whose underlying variable
-sits below κ ≥ 0.6 under any pass. Protocol + provenance taxonomy
-implemented in `scripts/build_irr_sample.py` and
-`scripts/compute_irr_kappa.py`; live report at
-`analysis/inter_rater/kappa_report.md`.
+**Phrasing lock for the paper**:
+
+- When citing the `observation_kind` result: "Fleiss κ = 1.0
+  across 3 blind LLM coders (`llm_assisted_consensus_3x`),
+  Cohen κ = 1.0 vs gold" — cite both.
+- When citing the `attribution` result: "moderate inter-coder
+  agreement under the v0.1 codebook (Fleiss κ = 0.68, Cohen κ
+  = 0.58); the 3 disagreement rows are stablecoin freezes on
+  SDN-listed addresses where the `direct` / `plausible` line is
+  underspecified" — name the disagreement cluster.
+- **Forbidden**: bare "almost perfect inter-rater agreement"
+  without naming the provenance mode; treating κ as
+  inter-rater-reliability under `llm_assisted_*` provenance;
+  reporting a corpus-level "direct vs plausible" rate while
+  attribution κ < 0.6.
+
+Protocol + provenance taxonomy in `scripts/build_irr_sample.py`
+and `scripts/compute_irr_kappa.py`; live report at
+`analysis/inter_rater/kappa_report.md`; per-agent codings
+preserved at `analysis/inter_rater/agent_outputs/`.
 
 ## 1. Candidate claims (ranked by strength of current evidence)
 

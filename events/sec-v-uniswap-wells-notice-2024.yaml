@@ -1,6 +1,6 @@
 id: sec-v-uniswap-wells-notice-2024
 schema_version: 0.2.0
-status: admitted
+status: rejected
 research_stratum: S3_doj_sec_cftc_fiod
 empirical_shape: null_event
 admission_tier: null_case
@@ -133,6 +133,20 @@ observations:
           event in the dataset.
 
 analysis_notes: |
+  **STATUS: REJECTED 2026-05-15** (dryrun pipeline demo of the human
+  gates per `analysis/null_audits/AGGREGATE.md` P0; both audit agents
+  flagged this case as `needs_human_review` with high confidence).
+  Rationale: the Wells notice is a pre-enforcement procedural staff
+  letter that was later **withdrawn 2025-02-25** without any formal
+  SEC complaint being filed; the L4 substrate (Uniswap blog +
+  SEC-newsroom-absence index) does not directly measure
+  `app.uniswap.org` operational uptime over the 10½-month window.
+  The agent-recommended resolution was one of three: withdraw from
+  the null-set / tighten the L4 substrate / reframe the trigger as
+  the 2025-02-25 SEC drop. This dryrun chose option 1 — withdrawal
+  via `status: rejected` — to demonstrate the downgrade flow. A
+  real release decision should reconsider this on review.
+
   null_event — **lowest-enforcement-intensity SEC event in the dataset**.
   Wells notice is a pre-enforcement signal (staff intent to recommend), not
   a formal enforcement action. No SEC complaint filing, no court proceedings,

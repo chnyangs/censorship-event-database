@@ -1,6 +1,6 @@
 # Table 4 · Latency evidence surface (precision-filtered)
 
-Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `5b59b99` · generated `2026-05-08T02:57:52Z`
+Dataset snapshot: **v0.1.0** · cutoff `2026-05-06` · commit `5b8d353` · generated `2026-05-14T11:24:13Z`
 
 Supports **C3** (`docs/paper_claims.md §1`). Only triggers with hour-or-better precision contribute to the hour-granularity panel; day-precision triggers are reported separately. `trigger_is_action` events (C4) are excluded from both panels and surfaced in Panel C — their t≈0 is a record-level artifact, not a measured delta.
 

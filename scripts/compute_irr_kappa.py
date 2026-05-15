@@ -87,6 +87,106 @@ def _join_blind_key(blind: list[dict], key: list[dict]) -> list[tuple[str, str, 
     return pairs
 
 
+def _fleiss_kappa(per_row_votes: list[list[str]]) -> dict:
+    """Fleiss' κ across n_raters on each row.
+
+    `per_row_votes[i]` = list of labels the n_raters assigned to row i.
+    Rows where any rater produced an empty string are dropped from the
+    coded set. Returns kappa + observed/expected agreement + label set.
+    """
+    coded = [v for v in per_row_votes if all(x and x.strip() for x in v)]
+    if not coded:
+        return {"fleiss_kappa": None, "p_bar": None, "pe_bar": None,
+                "n_coded_rows": 0, "n_total_rows": len(per_row_votes),
+                "n_raters": (len(per_row_votes[0]) if per_row_votes else 0),
+                "reason": "no fully-coded rows"}
+    n_raters = len(coded[0])
+    if any(len(v) != n_raters for v in coded):
+        return {"fleiss_kappa": None, "reason": "inconsistent rater counts",
+                "n_coded_rows": len(coded), "n_total_rows": len(per_row_votes)}
+    labels = sorted({label for row in coded for label in row})
+    n_rows = len(coded)
+    # P_j = proportion of all assignments to label j
+    total_assignments = n_rows * n_raters
+    label_counts = {lbl: 0 for lbl in labels}
+    for row in coded:
+        for lbl in row:
+            label_counts[lbl] += 1
+    p_j = {lbl: label_counts[lbl] / total_assignments for lbl in labels}
+    # P_i = agreement among raters on row i
+    # P_i = (1 / (n*(n-1))) * (sum_j(n_ij^2) - n)
+    p_i_values = []
+    for row in coded:
+        counts: dict[str, int] = {}
+        for lbl in row:
+            counts[lbl] = counts.get(lbl, 0) + 1
+        s = sum(c * c for c in counts.values())
+        if n_raters <= 1:
+            p_i = 1.0
+        else:
+            p_i = (s - n_raters) / (n_raters * (n_raters - 1))
+        p_i_values.append(p_i)
+    p_bar = sum(p_i_values) / n_rows
+    pe_bar = sum(v * v for v in p_j.values())
+    if pe_bar >= 1.0:
+        fleiss_kappa = 1.0
+    else:
+        fleiss_kappa = (p_bar - pe_bar) / (1 - pe_bar)
+    return {
+        "fleiss_kappa": round(fleiss_kappa, 4),
+        "p_bar": round(p_bar, 4),
+        "pe_bar": round(pe_bar, 4),
+        "n_coded_rows": n_rows,
+        "n_total_rows": len(per_row_votes),
+        "n_raters": n_raters,
+        "label_set": labels,
+    }
+
+
+def _load_agent_csvs(base_dir: pathlib.Path, variable: str) -> list[list[dict]]:
+    """Load any per-agent CSVs matching `{variable}_agent_*.csv` from
+    `base_dir/agent_outputs/`. Each CSV must have `row_id` and
+    `recode_value` columns. Returns list of agent recode-lists.
+    """
+    agent_dir = base_dir / "agent_outputs"
+    if not agent_dir.exists():
+        return []
+    csvs = sorted(agent_dir.glob(f"{variable}_agent_*.csv"))
+    out = []
+    for p in csvs:
+        with p.open() as f:
+            out.append(list(csv.DictReader(f)))
+    return out
+
+
+def _majority_vote(agent_csvs: list[list[dict]]) -> dict[str, tuple[str, list[str]]]:
+    """For each row_id, return (winning_label, all_votes).
+    Ties → '' (empty string, surfaced for human review).
+    """
+    if not agent_csvs:
+        return {}
+    by_row: dict[str, list[str]] = {}
+    for agent_rows in agent_csvs:
+        for r in agent_rows:
+            rid = str(r.get("row_id", ""))
+            v = (r.get("recode_value") or "").strip()
+            by_row.setdefault(rid, []).append(v)
+    out: dict[str, tuple[str, list[str]]] = {}
+    for rid, votes in by_row.items():
+        if any(v == "" for v in votes):
+            out[rid] = ("", votes)
+            continue
+        counts: dict[str, int] = {}
+        for v in votes:
+            counts[v] = counts.get(v, 0) + 1
+        top = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
+        if len(top) > 1 and top[0][1] == top[1][1]:
+            out[rid] = ("", votes)  # tie → surface
+        else:
+            out[rid] = (top[0][0], votes)
+    return out
+
+
 def _cohens_kappa(pairs: list[tuple[str, str, str, str]]) -> dict:
     coded = [(a, b) for _, _, a, b in pairs if a and b]
     if not coded:
@@ -159,10 +259,19 @@ def main() -> int:
                         default="coverage_status,observation_kind,attribution")
     parser.add_argument("--coder-mode",
                         choices=("independent_human", "llm_assisted_blinded",
+                                 "llm_assisted_consensus_3x",
+                                 "independent_human_dryrun_llm_simulated",
                                  "author_self_recode_60d_gap", "unspecified"),
                         default="unspecified",
                         help="Provenance class of the second coder. "
-                             "Recorded under coder_provenance.mode in JSON.")
+                             "`llm_assisted_consensus_3x` = 3 blind LLM "
+                             "agents voted majority into the master "
+                             "recode_value column; the report adds Fleiss' "
+                             "κ across the 3 agents alongside Cohen's κ "
+                             "vs the gold. Still NOT independent-human "
+                             "reliability — three same-distribution LLMs "
+                             "share biases. Recorded under "
+                             "coder_provenance.mode in JSON.")
     parser.add_argument("--coder-name", default="",
                         help="Recoder name or model id "
                              "(e.g. \"claude-opus-4-7\" or \"J. Smith\").")
@@ -204,19 +313,59 @@ def main() -> int:
         f"- **Prompt / rubric version**: `{cp['prompt_version'] or '—'}`",
         f"- **Notes**: {cp['notes'] or '—'}",
         "",
-        "| variable | n coded / n total | observed agreement | Cohen's κ | label |",
-        "| --- | --- | --- | --- | --- |",
+        "| variable | n coded / n total | observed agreement | Cohen's κ (vs gold) | Fleiss' κ (across LLM agents) | label |",
+        "| --- | --- | --- | --- | --- | --- |",
     ]
     for var in vars_list:
+        # 3-agent aggregation: if `agent_outputs/{var}_agent_*.csv`
+        # exist, majority-vote them into the master blind CSV and also
+        # compute Fleiss' κ across the n_agents votes.
+        agent_csvs = _load_agent_csvs(base, var)
+        agent_fleiss: dict | None = None
+        if agent_csvs and len(agent_csvs) >= 2:
+            agent_fleiss = _fleiss_kappa([
+                [(r.get("recode_value") or "").strip()
+                 for r in agent_rows]
+                for agent_rows in zip(*[list(c) for c in
+                                        # align by row_id
+                                        [sorted(c, key=lambda r: int(r["row_id"]))
+                                         for c in agent_csvs]])
+            ])
+            # majority-vote → master blind CSV
+            master_path = base / f"{var}_blind.csv"
+            master_rows = _load_csv(master_path)
+            votes = _majority_vote(agent_csvs)
+            for r in master_rows:
+                rid = str(r.get("row_id", ""))
+                winner, all_votes = votes.get(rid, ("", []))
+                r["recode_value"] = winner
+                r["recoder_comment"] = (
+                    f"3-agent votes={','.join(all_votes)}"
+                    + (" [TIE — flagged for human]" if winner == "" and all_votes else "")
+                ).strip()
+            if master_rows:
+                with master_path.open("w", newline="") as f:
+                    w = csv.DictWriter(f, fieldnames=list(master_rows[0].keys()))
+                    w.writeheader()
+                    w.writerows(master_rows)
         blind = _load_csv(base / f"{var}_blind.csv")
         key = _load_csv(base / f"{var}_key.csv")
         pairs = _join_blind_key(blind, key)
         res = _cohens_kappa(pairs)
+        if agent_fleiss is not None:
+            res["fleiss_across_agents"] = agent_fleiss
+            res["n_agents"] = agent_fleiss.get("n_raters")
         report_json["variables"][var] = res
+        fleiss_str = (
+            f"{agent_fleiss['fleiss_kappa']} ({agent_fleiss['n_raters']}r)"
+            if agent_fleiss and agent_fleiss.get("fleiss_kappa") is not None
+            else "—"
+        )
         md.append(
             f"| `{var}` | {res['n_coded']} / {res['n_total']} | "
             f"{res['observed_agreement'] if res['observed_agreement'] is not None else '—'} | "
             f"{res['kappa'] if res['kappa'] is not None else '—'} | "
+            f"{fleiss_str} | "
             f"{_interpret(res['kappa'])} |"
         )
     md.append("")
