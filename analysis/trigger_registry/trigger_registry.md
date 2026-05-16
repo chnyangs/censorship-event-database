@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.2.0-rc-dryrun-9 · cutoff `2026-05-16` · commit `397819d` · generated `2026-05-23T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-10 · cutoff `2026-05-16` · commit `36d266a` · generated `2026-05-24T00:00:00Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 
@@ -44,8 +44,8 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `S1_ofac_sdn` | 32 | 26 | 30 | 4 | 35 | 9 | 50 | 18 |
 | `S2_ofac_removal` | 1 | 1 | 5 | 4 | 10 | 9 | 10 | 9 |
-| `S3_doj_sec_cftc_fiod` | 55 | 42 | 20 | 0 | 30 | 0 | 40 | 0 |
-| `S4_nation_state` | 35 | 18 | 10 | 0 | 20 | 2 | 20 | 0 |
+| `S3_doj_sec_cftc_fiod` | 52 | 42 | 20 | 0 | 30 | 0 | 40 | 0 |
+| `S4_nation_state` | 38 | 18 | 10 | 0 | 20 | 2 | 20 | 0 |
 | `S5_corporate` | 33 | 11 | 10 | 0 | 15 | 4 | 20 | 0 |
 | `S6_supranational` | 10 | 7 | 5 | 0 | 10 | 3 | 10 | 0 |
 

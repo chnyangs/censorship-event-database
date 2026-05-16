@@ -1,6 +1,6 @@
 # Monthly Discovery Ledger
 
-Dataset snapshot: v0.2.0-rc-dryrun-9 · cutoff `2026-05-16` · generated `2026-05-23T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-10 · cutoff `2026-05-16` · generated `2026-05-24T00:00:00Z`
 
 This ledger covers every declared source frame for every month from `sampling/frame.yaml::snapshot_scope.historical_start` through the dataset cutoff. A `pending` row means the month has not yet been triaged; it is not evidence that no candidate exists.
 

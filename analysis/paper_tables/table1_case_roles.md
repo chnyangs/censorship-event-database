@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=105)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-9** · cutoff `2026-05-16` · commit `397819d` · generated `2026-05-23T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-10** · cutoff `2026-05-16` · commit `36d266a` · generated `2026-05-24T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -74,7 +74,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `infura-alchemy-tornado-rpc-block-2022` | `anchor_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `address_set` | `subset` | 2 | `multi_layer` | ✓ | · | `2026-05-16` | `2026-05-16` |
 | `iran-ransomware-ofac-2018` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `2026-05-15` |
 | `irgc-ransomware-ofac-2022` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `2026-05-15` |
-| `japan-fsa-coincheck-orders-2018` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
+| `japan-fsa-coincheck-orders-2018` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `korea-fsc-ico-ban-2017` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `korea-travel-rule-2022` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `kraken-sec-staking-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
