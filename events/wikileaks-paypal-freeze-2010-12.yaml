@@ -1,0 +1,317 @@
+id: wikileaks-paypal-freeze-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-visa-europe-suspension-2010-12
+  - wikileaks-mastercard-suspension-2010-12
+  - wikileaks-bank-of-america-block-2010-12
+  - wikileaks-western-union-interdiction-2010-12
+  - wikileaks-postfinance-account-closure-2010-12
+  - wikileaks-amazon-aws-eviction-2010-12
+  - wikileaks-everydns-domain-termination-2010-12
+  - datacell-v-valitor-iceland-district-court-2012-07
+
+trigger:
+  type: corporate_policy_change
+  actor: PAYPAL_OPERATOR
+  timestamp: 2010-12-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/
+      wayback: https://web.archive.org/web/2010/https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/
+      evidence_use: contextual_unarchived
+      note: |
+        PayPal blog post 2010-12-04 ("Why PayPal restricted WikiLeaks
+        account"). PayPal stated that the WikiLeaks account had been
+        permanently restricted for violation of PayPal's Acceptable Use
+        Policy "which states that our payment service cannot be used for
+        any activities that encourage, promote, facilitate or instruct
+        others to engage in illegal activity." The blog item is the
+        corporate-statement anchor for the freeze action; the technical
+        platform action (donate-button stopped collecting funds for
+        Wau-Holland-Stiftung -> WikiLeaks routing) was effective the same
+        day. DRYRUN: wayback wildcard pointer in lieu of pinned-timestamp
+        snapshot; evidence_use=contextual_unarchived because no
+        body_hash+body_path pair has been captured into
+        sources/http_captures/wikileaks-paypal-freeze-2010-12/ in this
+        session.
+    - type: supporting_journalism
+      url: https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html
+      wayback: https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNN 2010-12-04 coverage ("WikiLeaks loses PayPal revenue
+        service"). Independent confirmation of the trigger date and the
+        platform-action scope: WikiLeaks donation account permanently
+        restricted, donate button stopped collecting for the
+        Wau-Holland-Stiftung pass-through to WikiLeaks.
+    - type: supporting_journalism
+      url: https://www.bloomberg.com/news/articles/2010-12-04/paypal-restricts-wikileaks-account-as-website-comes-under-global-scrutity
+      wayback: https://web.archive.org/web/2010/https://www.bloomberg.com/news/articles/2010-12-04/paypal-restricts-wikileaks-account-as-website-comes-under-global-scrutity
+      evidence_use: contextual_unarchived
+      note: |
+        Bloomberg 2010-12-04 coverage ("PayPal Cuts WikiLeaks' Access to
+        Funds Amid Global Scrutiny"). Second independent journalism
+        confirmation of the 2010-12-04 freeze date and platform action.
+    - type: supporting_journalism
+      url: https://techcrunch.com/2010/12/08/paypal-wikileaks/
+      wayback: https://web.archive.org/web/2010/https://techcrunch.com/2010/12/08/paypal-wikileaks/
+      evidence_use: contextual_unarchived
+      note: |
+        TechCrunch 2010-12-08 coverage of PayPal VP Osama Bedier's Le Web
+        Paris conference admission that PayPal's freeze decision was
+        influenced by a US State Department determination that
+        WikiLeaks' activities were illegal under US law (the State
+        Department letter, dated 2010-11-27, was sent to WikiLeaks
+        rather than to PayPal; Bedier clarified PayPal was not directly
+        contacted by any government agency). The Bedier admission is the
+        single most-cited corporate-statement anchor in the academic
+        literature on the 2010 WikiLeaks payment-rail blockade.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision. PayPal blog post and the CNN / Bloomberg /
+        Al Jazeera / CBS / TechCrunch coverage cluster all date the
+        permanent restriction of the WikiLeaks PayPal account to
+        2010-12-04 (Friday). The Bedier Le Web Paris admission (per
+        TechCrunch / The Guardian) was made 2010-12-08, four days after
+        the freeze action.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    WikiLeaks donation pass-through PayPal account, registered to the
+    Wau-Holland-Stiftung (a German non-profit foundation that operated
+    as the legal/financial pass-through for WikiLeaks donations during
+    2010). Subset because the enumerated target is the single PayPal
+    merchant account used by WikiLeaks for donation collection; the
+    broader exclusion class is any future or alternate PayPal merchant
+    account that WikiLeaks (or a successor pass-through) might attempt
+    to open, given PayPal's stated Acceptable Use Policy basis for the
+    permanent restriction.
+  entity: WikiLeaks / Wau-Holland-Stiftung PayPal merchant account
+  actor_name: WikiLeaks (donation pass-through via Wau-Holland-Stiftung)
+  actor_type: media_publisher_donation_pass_through
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Pre-Bitcoin event (Bitcoin genesis 2009-01-03; in 2010 Bitcoin had
+      not yet been adopted by WikiLeaks for donations - the WikiLeaks
+      Bitcoin donation address was published on 2011-06-14). No
+      blockchain-network reachability question applies in 2010.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain consensus layer exists in scope for this 2010
+      payment-processor freeze; the affected payment rail is PayPal,
+      not an L1 blockchain.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No blockchain RPC layer in scope for this 2010 payment-processor
+      freeze.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The wikileaks.org website remained reachable on 2010-12-04 (the
+      everydns DNS termination was 2010-12-03, the amazon AWS eviction
+      was 2010-12-01, and wikileaks.org re-emerged on alternate
+      hosting). The l4_frontend cascade-axis observations belong to the
+      sibling EveryDNS / Amazon AWS events, not this PayPal-rail event.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Pre-Bitcoin event; no on-chain asset-level censorship primitive
+      applies. WikiLeaks did not yet accept Bitcoin donations in
+      2010-12.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [paypal_merchant_account]
+    note: |
+      offramp_cex is the closest schema analog for a pre-Bitcoin
+      payment-processor freeze: PayPal acted as the fiat
+      donation-collection rail (the conceptual analog of a centralized
+      exchange offramp for on-chain assets in the post-Bitcoin era).
+      The merchant account was permanently restricted on 2010-12-04;
+      donation flow to the Wau-Holland-Stiftung pass-through was cut
+      off the same day. attribution=direct observed_change attached
+      below; replayable PayPal-blog and journalism-archive snapshots
+      deferred to human audit (DRYRUN: wayback wildcard pointers
+      only).
+    denominator_artifact:
+      type: contextual_unarchived
+      wayback: https://web.archive.org/web/2010/https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/
+      note: |
+        Denominator anchor is the PayPal corporate blog post itself
+        (wayback wildcard pointer). Single-account scope; the
+        partially_measured status reflects that the freeze is
+        well-attested via multiple corporate + journalism sources but
+        the underlying PayPal internal-policy-determination paper trail
+        is not public.
+
+observations:
+  - layer: offramp_cex
+    actor: paypal_operator
+    event: paypal_permanently_restricted_wikileaks_donation_merchant_account
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2010-12-04T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_corporate
+        url: https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/
+        wayback: https://web.archive.org/web/2010/https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [paypal]
+          time_window:
+            - 2010-12-04T00:00:00Z
+            - 2010-12-31T23:59:59Z
+        note: |
+          PayPal corporate blog post 2010-12-04 ("Why PayPal
+          restricted WikiLeaks account") is the corporate-statement
+          anchor for the freeze. attribution=direct because the
+          observed change (permanent merchant-account restriction) is
+          self-attested by the actor in the same corporate statement
+          that records the action. DRYRUN: wayback wildcard pointer
+          in lieu of pinned-timestamp snapshot.
+      - type: supporting_journalism
+        url: https://techcrunch.com/2010/12/08/paypal-wikileaks/
+        wayback: https://web.archive.org/web/2010/https://techcrunch.com/2010/12/08/paypal-wikileaks/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [paypal]
+          time_window:
+            - 2010-12-08T00:00:00Z
+            - 2010-12-31T23:59:59Z
+        note: |
+          TechCrunch 2010-12-08 coverage of PayPal VP Osama Bedier's
+          Le Web Paris conference admission: the State Department had
+          determined WikiLeaks' activities to be illegal under US law
+          (via a 2010-11-27 letter to WikiLeaks itself, not to
+          PayPal), and that determination informed PayPal's
+          Acceptable-Use-Policy enforcement decision. This is the
+          single most-cited corporate-statement anchor in academic
+          literature on the 2010 WikiLeaks payment-rail blockade.
+      - type: supporting_journalism
+        url: https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html
+        wayback: https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [paypal]
+          time_window:
+            - 2010-12-04T00:00:00Z
+            - 2010-12-05T23:59:59Z
+        note: |
+          CNN 2010-12-04 coverage. Independent journalism confirmation
+          of the trigger date and platform action scope.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash; human review required
+  to elevate to admitted status.
+
+  Pre-Bitcoin baseline event. Bitcoin's genesis block was 2009-01-03;
+  WikiLeaks first published a Bitcoin donation address on 2011-06-14
+  (i.e. ~6 months after this 2010-12-04 PayPal freeze). At the
+  trigger date there was no blockchain-asset substrate for WikiLeaks
+  donations, so the l0_network, l1_consensus, l3_rpc, and
+  asset_onchain cascade axes are all not_applicable. The single
+  observed_change layer is offramp_cex, which is the closest schema
+  analog for a pre-Bitcoin payment-processor freeze (PayPal acting as
+  the fiat donation-collection rail, conceptually analogous to a
+  centralized-exchange offramp in the post-Bitcoin era).
+
+  comparison shape: 1 observed_change layer (offramp_cex
+  load-bearing, attribution=direct via PayPal's own corporate blog
+  post + Bedier's Le Web admission). admission_tier=empirical_case
+  (>=1 strong-attribution observed_change layer).
+
+  temporal_tier=discovery_only_2008_2012 + analysis_use=
+  discovery_ledger_only: this event predates the 2017+ comparable
+  analysis window. It enters the discovery ledger as part of the
+  pre-Bitcoin baseline cluster of WikiLeaks payment-rail blockade
+  events (PayPal, Visa Europe, Mastercard, Bank of America, Western
+  Union, PostFinance, plus the parallel infrastructure-rail events
+  Amazon AWS and EveryDNS, and the downstream
+  Datacell-v-Valitor 2012 Iceland District Court ruling). The 2010
+  WikiLeaks blockade is the single most-cited pre-Bitcoin
+  corporate-payment-rail censorship event in academic literature and
+  serves as the conceptual anchor for the post-Bitcoin
+  offramp_cex / payment-rail cascade pattern documented elsewhere in
+  the dataset.
+
+  Schema-actor handling: the user spec proposed
+  actor=PAYPAL_OPERATOR (corporate). The schema does not constrain
+  trigger.actor to an enumerated set (it is a free-form string), so
+  PAYPAL_OPERATOR is accepted as-is and no controlled_vocab.yaml
+  addition is required. The actor/type coherence check in the
+  validator only fires for US-agency substrings (US_SEC, US_CFTC,
+  US_FINCEN, US_DOJ, US_OFAC, EU_COUNCIL); PAYPAL_OPERATOR does not
+  match any of those, so no coherence-rule conflict arises.
+
+  DRYRUN caveats: all citations carry wayback wildcard pointers
+  (web/2010/...) and evidence_use=contextual_unarchived. For
+  non-DRYRUN release, capture body_hash + body_path for: (1) PayPal
+  corporate blog post 2010-12-04, (2) CNN 2010-12-04 coverage, (3)
+  Bloomberg 2010-12-04 coverage, (4) TechCrunch 2010-12-08 Bedier
+  admission coverage. The Guardian 2010-12-08 Bedier coverage
+  (referenced in the user spec) and Wired 2010-12-04 coverage are
+  also candidate archive captures for the non-DRYRUN pass.
+
+  Related WikiLeaks blockade events (cross-referenced in
+  related_events) form the conceptual cluster: Visa Europe
+  suspension, Mastercard suspension, Bank of America block, Western
+  Union interdiction, PostFinance account closure, Amazon AWS
+  eviction, EveryDNS domain termination, and the
+  Datacell-v-Valitor 2012-07 Iceland District Court ruling (the
+  legal-pushback follow-on). The PayPal action is the first in the
+  payment-rail blockade sequence (2010-12-04), preceded only by the
+  Amazon AWS eviction (2010-12-01) and the EveryDNS termination
+  (2010-12-03) on the infrastructure side.
+
+scoped_claim: |
+  "On 2010-12-04, PayPal permanently restricted the WikiLeaks
+  donation merchant account (registered to the Wau-Holland-Stiftung
+  pass-through), citing its Acceptable Use Policy prohibition on
+  facilitating activities determined illegal. PayPal VP Osama Bedier
+  subsequently (2010-12-08, Le Web Paris) acknowledged that a US
+  State Department determination that WikiLeaks' activities were
+  illegal under US law informed the decision. The freeze is the
+  pre-Bitcoin conceptual analog of an offramp_cex / payment-rail
+  closure (the only observed cascade axis in 2010 in the absence of
+  any blockchain-asset substrate for WikiLeaks donations).
+  Observational axis at offramp_cex (load-bearing,
+  attribution=direct via PayPal's own corporate statement).
+  Admission-anchor-grade promotion pending pinned archive captures."
+
+tags:
+  - corporate_policy_change
+  - wikileaks
+  - paypal
+  - payment_rail_censorship
+  - pre_bitcoin_baseline
+  - offramp_cex
+  - s5_corporate
+  - discovery_ledger_only
+  - dryrun_2026_05_16

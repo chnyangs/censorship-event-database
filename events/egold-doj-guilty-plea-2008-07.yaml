@@ -1,0 +1,273 @@
+id: egold-doj-guilty-plea-2008-07
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - fincen-virtual-currency-msb-guidance-2013
+  - shrem-faiella-bitcoin-exchange-2014
+  - coin-mx-doj-murgio-2015
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_DC
+  timestamp: 2008-07-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html
+      wayback: https://web.archive.org/web/2008/https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ Criminal Division press release #08-635 (2008-07-21):
+        "Digital Currency Business E-Gold Pleads Guilty to Money
+        Laundering and Illegal Money Transmitting Charges." Records
+        that Dr. Douglas Jackson (51, of Melbourne FL), principal
+        director of e-Gold and CEO of Gold & Silver Reserve Inc.,
+        pleaded guilty in the US District Court for the District of
+        Columbia to (i) conspiracy to engage in money laundering
+        (18 USC s 1956(h)) and (ii) operation of an unlicensed money
+        transmitting business (18 USC s 1960(b)(1)(A), (B), and (C)).
+        E-Gold Ltd. and corporate affiliate Gold & Silver Reserve Inc.
+        each pleaded guilty to the same two conspiracy counts. The
+        other two senior directors (Barry Downey of Baltimore; Reid
+        Jackson of Melbourne FL) each pleaded guilty to felony
+        violations of DC law for operating a money transmitting
+        business without a license. Charges originated from a federal
+        grand jury indictment returned 2007-04-24; sentencing was set
+        for 2008-11-20. evidence_use=contextual_unarchived because no
+        body_hash has been independently captured in this DRYRUN
+        authoring pass; the justice.gov/archive page remains publicly
+        accessible and a 2008 Wayback bracketing is straightforward
+        in follow-up human-audit. Provisional year-prefix wayback
+        anchor pending re-pin.
+    - type: primary_legal
+      url: https://www.secretservice.gov/press/releases/2008/07/us-secret-service-led-investigation-digital-currency-business-e-gold-pleads
+      evidence_use: contextual_unarchived
+      note: |
+        US Secret Service press release (2008-07-21): "In U.S. Secret
+        Service-Led Investigation, Digital Currency Business E-Gold
+        Pleads Guilty to Money Laundering and Illegal Money
+        Transmitting Charges." Documents USSS lead-agency role in the
+        e-Gold investigation alongside IRS-CI and DOJ Criminal
+        Division. Retained as contextual_unarchived corroborating
+        pointer; the DOJ #08-635 release above is the load-bearing
+        trigger anchor.
+    - type: primary_corporate
+      url: https://legalupdate.e-gold.com/2008/07/plea-agreement-as-to-douglas-l-jackson-20080721.html
+      evidence_use: contextual_unarchived
+      note: |
+        e-Gold company legal-update page (2008-07-21) publishing the
+        plea agreement text as to Douglas L. Jackson under 18 USC
+        ss 1956(h) and 1960(b)(1)(A), (B), and (C). Primary-corporate
+        confirmation from the defendant company of the same guilty
+        plea recorded in the DOJ press release. evidence_use=
+        contextual_unarchived for this DRYRUN authoring pass.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2008-07-21 DOJ press release and
+        the contemporaneously dated e-Gold legal-update plea posting.
+        No intra-day timestamp is necessary for the trigger event.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named corporate defendants e-Gold Ltd. (operator of the e-gold
+    digital-gold-account ledger) and Gold & Silver Reserve Inc. (its
+    US affiliate handling fiat-side exchange of the e-gold unit),
+    plus three named individual directors who entered guilty pleas:
+    Dr. Douglas Jackson (principal director / CEO), Barry Downey, and
+    Reid Jackson. e-Gold was a centralized digital-gold-account
+    ledger (gold-grams as the unit of account; no blockchain, no
+    decentralized consensus); therefore no on-chain addresses are
+    enumerated. Marked subset because the plea targets the named
+    defendants and the e-Gold corporate vehicle rather than an
+    enumerated complete set of e-Gold account holders. canonical_
+    domains lists the e-gold.com operational frontend.
+  actor_type: digital_currency_administrator_msb
+  actor_name: e-Gold Ltd. + Gold & Silver Reserve Inc. + Douglas Jackson
+  canonical_domains:
+    - e-gold.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2008-07-21 plea did not invoke any ISP / DNS / network-
+      layer block of e-gold.com. Public-web L0 instruments
+      (Censored Planet, OONI) do not apply to a 2008 corporate
+      enforcement event; the platform wind-down that followed was
+      the corporate consequence of conviction, not a network-layer
+      action.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      e-Gold was a centralized digital-gold-account ledger (gold-
+      grams as the unit of account, administered by e-Gold Ltd.);
+      there is no blockchain and no decentralized consensus layer.
+      Out of scope; consensus-layer filtering surfaces did not
+      exist for any chain in 2008.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC provider surface is implicated. e-Gold was a
+      centralized web-account ledger pre-dating any RPC-mediated
+      crypto infrastructure by ~3 years (Bitcoin genesis 2009-01).
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No DOJ-attributed L4 seizure or takedown banner on e-gold.com
+      is documented for 2008-07-21. The e-Gold legal-update page
+      published the plea text; the operational e-gold.com account
+      surface remained accessible at that date and the platform
+      wind-down (cessation of new account creation and effective
+      shutdown of the gold-grams transfer service) proceeded as a
+      post-conviction corporate decision through 2008-2009, not as
+      a frontend seizure event. Recording the post-conviction
+      wind-down page state as observed_change at L4 would conflate
+      a corporate wind-down with a DOJ-ordered frontend takedown,
+      so L4 is not coded here.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      e-Gold's "gold-grams" was an off-chain ledger entry
+      administered by e-Gold Ltd., not a blockchain token. No
+      asset-layer freeze instrument exists to attach.
+  - layer: offramp_cex
+    status: measured
+    scope: [e_gold]
+    note: |
+      Load-bearing layer. e-Gold operated as a centralized digital-
+      currency administrator and exchanger (Gold & Silver Reserve
+      Inc. handling the fiat-to-gold-grams conversion side). The
+      guilty plea is the legally definitive end-state that ended
+      e-Gold's MSB-regulated service operations; the platform's
+      gold-grams transfer service ceased and the corporate entity
+      did not resume normal operations. Coverage status is `measured`
+      because the platform's wind-down is publicly attested in the
+      DOJ release and contemporaneous trade press, even though this
+      DRYRUN row does not pin per-quarter Wayback-frontend snapshots.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:e_gold
+    event: egold_ceases_operations_following_corporate_and_ceo_guilty_plea
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2008-07-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html
+        wayback: https://web.archive.org/web/2008/https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html
+        scope_descriptor:
+          providers: [e_gold]
+          time_window:
+            - 2008-07-21T00:00:00Z
+            - 2009-12-31T23:59:59Z
+        note: |
+          DOJ #08-635 press release recording e-Gold Ltd. + Gold &
+          Silver Reserve Inc. + Douglas Jackson guilty pleas to
+          conspiracy to engage in money laundering (18 USC s 1956(h))
+          and operation of an unlicensed money transmitting business
+          (18 USC s 1960). The convictions ended e-Gold's MSB-
+          regulated service operations; the gold-grams transfer
+          service did not resume normal operations following the
+          plea and sentencing (2008-11-20). attribution=plausible
+          (not direct) because the DOJ release does not itself order
+          a corporate shutdown; the platform wind-down is the
+          downstream corporate consequence of the conviction with
+          strong temporal coincidence. evidence_use=contextual_
+          unarchived for this DRYRUN authoring pass.
+      - type: primary_corporate
+        url: https://legalupdate.e-gold.com/2008/07/plea-agreement-as-to-douglas-l-jackson-20080721.html
+        wayback: https://web.archive.org/web/2008/https://legalupdate.e-gold.com/2008/07/plea-agreement-as-to-douglas-l-jackson-20080721.html
+        scope_descriptor:
+          providers: [e_gold]
+          time_window:
+            - 2008-07-21T00:00:00Z
+            - 2009-12-31T23:59:59Z
+        note: |
+          e-Gold company legal-update plea-agreement posting (2008-
+          07-21) confirming the Douglas L. Jackson guilty plea under
+          18 USC ss 1956(h) and 1960(b)(1)(A), (B), and (C).
+          Primary-corporate self-attestation by the defendant
+          company that the plea occurred and that the corporate
+          governance of e-Gold was effectively terminated. Retained
+          as a supporting anchor for the offramp_cex shutdown
+          observation. evidence_use=contextual_unarchived.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase E discovery-tier
+  authoring): new discovery_only_2008_2012 event for the 2008-07-21
+  DOJ DC guilty plea by e-Gold Ltd., Gold & Silver Reserve Inc., and
+  Douglas Jackson. Authored by LLM agent without personally
+  verifying Wayback/body_hash; origin=agent_draft and status=draft
+  per validator constraint (agent_draft incompatible with admitted).
+  Real release must replace this DRYRUN marker with a human-verified
+  audit after pinning real archive anchors (the wayback URLs here
+  are 2008 wildcard pointers, not pinned snapshot timestamps).
+
+  comparison shape: 1 observed_change layer (offramp_cex, e-Gold
+  service operations cessation following corporate + CEO guilty
+  pleas). The 2008-07-21 plea in US District Court for the District
+  of Columbia to operating an unlicensed money transmitter (18 USC
+  s 1960) and conspiring to engage in money laundering (18 USC
+  s 1956(h)) is the foundational pre-Bitcoin digital-currency
+  takedown — it predates FinCEN FIN-2013-G001 by ~5 years and
+  establishes the BSA / MSB / 18-USC-1960 enforcement template
+  later applied across the 2013-2016 historical-baseline tier
+  (Shrem/Faiella 2014, Murgio/Coin.mx 2015) and continuing into the
+  2017+ comparable-analysis era. attribution=plausible because the
+  DOJ release does not itself order a corporate shutdown; the wind-
+  down is the corporate consequence of conviction. L0/L1/L3/L4 and
+  asset_onchain are all not_applicable: e-Gold was a centralized
+  digital-gold-account ledger (gold-grams off-chain), pre-dating any
+  blockchain by ~6 months, and no DOJ-attributed frontend seizure
+  is documented for e-gold.com on 2008-07-21. Admission tier
+  empirical_case (1 strong-attribution observed_change layer).
+
+  Discovery-tier-only by construction: temporal_tier=
+  discovery_only_2008_2012 and analysis_use=discovery_ledger_only.
+  This row carries no comparable-analysis denominator weight; its
+  purpose is to anchor the 2008+ pre-Bitcoin DOJ MSB enforcement
+  predicate for the FinCEN-2013-G001 → Shrem-2014 → Coin.mx-2015
+  → BTC-e-2017 lineage already in corpus.
+
+scoped_claim: |
+  "The 2008-07-21 DOJ guilty plea by e-Gold Ltd., Gold & Silver
+  Reserve Inc., and Douglas Jackson (in US District Court for the
+  District of Columbia) on conspiracy to engage in money laundering
+  (18 USC s 1956(h)) and operation of an unlicensed money
+  transmitting business (18 USC s 1960) produced an offramp_cex
+  cascade (e-Gold's digital-gold-account service operations ceased
+  and did not resume). The row claims only this single-layer
+  offramp shutdown observation with attribution=plausible; no
+  L0/L1/L3/L4/asset-onchain effects are coded. Discovery-tier only:
+  no comparable-analysis use."
+
+tags:
+  - doj_enforcement
+  - guilty_plea
+  - unlicensed_money_transmitter
+  - money_laundering
+  - 18_usc_1960
+  - 18_usc_1956
+  - e_gold
+  - pre_bitcoin_digital_currency
+  - discovery_ledger
+  - offramp_shutdown

@@ -1,0 +1,259 @@
+id: wikileaks-amazon-aws-eviction-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-everydns-domain-termination-2010-12
+  - apple-india-crypto-exchange-removal-2024-01
+
+trigger:
+  type: corporate_policy_change
+  actor: AMAZON_AWS_OPERATOR
+  timestamp: 2010-12-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://aws.amazon.com/message/65348/
+      wayback: https://web.archive.org/web/2010/https://aws.amazon.com/message/65348/
+      evidence_use: contextual_unarchived
+      note: |
+        Amazon Web Services public message "WikiLeaks" (2010-12-02) stating
+        WikiLeaks violated AWS terms of service ("you represent and warrant
+        that you own or otherwise control all of the rights to the content
+        ... that use of the content you supply does not violate this policy
+        and will not cause injury to any person or entity"). The same
+        statement denies that government inquiry or DDoS prompted the
+        decision. Wayback wildcard pointer (web/2010/) in lieu of pinned
+        snapshot; evidence_use=contextual_unarchived because no
+        body_hash+body_path pair has been captured in this session.
+    - type: supporting_journalism
+      url: https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html
+      wayback: https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNN 2010-12-01 reporting that Amazon dropped WikiLeaks after
+        Senator Joe Lieberman's office contacted Amazon. Quotes Lieberman:
+        "This morning Amazon informed my staff that it has ceased to host
+        the WikiLeaks website." Wayback wildcard pointer in lieu of pinned
+        snapshot.
+    - type: supporting_journalism
+      url: https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/
+      wayback: https://web.archive.org/web/2010/https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/
+      evidence_use: contextual_unarchived
+      note: |
+        The Register 2010-12-01 reporting that WikiLeaks vanished from
+        Amazon US EC2 hosting on the afternoon of 2010-12-01 following the
+        Lieberman press release. Confirms the 2010-11-30 → 2010-12-01
+        AWS-hosting window (WikiLeaks had migrated to AWS on Sunday
+        2010-11-28/29 after DDoS against its Swedish infrastructure).
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. Lieberman press release issued 2010-12-01;
+        Amazon's own corporate statement followed 2010-12-02. WikiLeaks
+        loss of AWS reachability reported by The Register and CNN on
+        2010-12-01 afternoon US-time. Exact AWS account-termination
+        timestamp not publicly disclosed; day-level precision matches
+        the reporting cluster.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Single-target entity: WikiLeaks (wikileaks.org). WikiLeaks had migrated
+    to Amazon EC2 / S3 hosting on or about 2010-11-28/29 after DDoS attacks
+    against its self-hosted infrastructure (PRQ in Sweden). AWS terminated
+    the WikiLeaks account approximately 2 days later on 2010-12-01.
+    enumeration=subset because the specific AWS account identifiers and
+    affected S3 buckets / EC2 instance IDs are not publicly enumerated.
+  entity: wikileaks
+  actor_type: publisher_hosted_on_cloud
+  actor_name: WikiLeaks (Sunshine Press)
+  chains: []
+  canonical_domains:
+    - wikileaks.org
+    - cablegate.wikileaks.org
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      ISP-level reachability of wikileaks.org is not the censorship axis
+      recorded here; the relevant L0 axes (PayPal/Visa/Mastercard/Bank of
+      America financial-rail blockade; EveryDNS/EasyDNS authoritative DNS
+      termination) are sibling events. This event records only the cloud-
+      hosting eviction axis.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [amazon_aws_us_east]
+    note: |
+      Amazon Web Services terminated WikiLeaks' cloud hosting on
+      2010-12-01, approximately 2 days after WikiLeaks had migrated to
+      AWS (2010-11-29 → 2010-12-01). AWS's 2010-12-02 corporate statement
+      cites terms-of-service violation; press reporting on 2010-12-01
+      attributes the timing to pressure from Senator Joe Lieberman's
+      office (chair, Senate Homeland Security Committee). This is the
+      foundational pre-modern L4-frontend / cloud-hosting censorship
+      precedent in the corpus; conceptual ancestor of 2022 Apple/Google
+      app-store removals and Cloudflare gateway events.
+      Replayable AWS account-termination snapshots not pinned;
+      contextual_unarchived sourcing via the AWS corporate statement and
+      press coverage in this draft.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l4_frontend
+    actor: cloud_host:amazon_aws
+    event: wikileaks_account_terminated_from_amazon_aws_ec2_s3_hosting
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2010-12-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_corporate
+        url: https://aws.amazon.com/message/65348/
+        wayback: https://web.archive.org/web/2010/https://aws.amazon.com/message/65348/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [amazon_aws]
+          countries: [US]
+          time_window:
+            - 2010-12-01T00:00:00Z
+            - 2010-12-02T23:59:59Z
+        note: |
+          Amazon Web Services official statement "WikiLeaks" (2010-12-02)
+          confirming the WikiLeaks account was terminated for terms-of-
+          service violations: "AWS does not pre-screen its customers, but
+          it does have terms of service that must be followed. WikiLeaks
+          was not following them." AWS explicitly denies that government
+          inquiry or DDoS prompted the termination. Attribution annotated
+          plausible because Senator Lieberman's office publicly took
+          credit for prompting the action while AWS denies political
+          pressure; no internal AWS communication has been disclosed
+          that would harden the attribution to direct. No archived
+          AWS account-termination internal record pinned in this
+          session.
+      - type: supporting_journalism
+        url: https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html
+        wayback: https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [amazon_aws]
+          countries: [US]
+          time_window:
+            - 2010-12-01T00:00:00Z
+            - 2010-12-02T23:59:59Z
+        note: |
+          CNN 2010-12-01 reporting that Amazon dropped WikiLeaks after
+          contact from Senator Joe Lieberman's office. Quotes
+          Lieberman's press statement: "This morning Amazon informed my
+          staff that it has ceased to host the WikiLeaks website."
+      - type: supporting_journalism
+        url: https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/
+        wayback: https://web.archive.org/web/2010/https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [amazon_aws]
+          countries: [US]
+          time_window:
+            - 2010-12-01T00:00:00Z
+            - 2010-12-02T23:59:59Z
+        note: |
+          The Register 2010-12-01 contemporaneous reporting that
+          WikiLeaks vanished from Amazon EC2 hosting on the afternoon
+          of 2010-12-01. Establishes the ~2-day AWS-hosting window
+          (2010-11-29/30 migration after DDoS against PRQ → 2010-12-01
+          AWS termination).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash; human review required
+  to elevate to admitted status.
+
+  Foundational L4-frontend / cloud-hosting censorship precedent in the
+  corpus. Amazon Web Services terminated WikiLeaks' EC2 / S3 hosting on
+  2010-12-01 approximately 2 days after WikiLeaks had migrated to AWS
+  (2010-11-29) to escape DDoS attacks against its self-hosted Swedish
+  infrastructure. The action followed a press release the same morning
+  from Senator Joe Lieberman (chair, Senate Homeland Security and
+  Governmental Affairs Committee) announcing that Amazon had "informed
+  my staff" of the termination. AWS's own corporate statement
+  (2010-12-02) denied political pressure and grounded the termination
+  in terms-of-service violations (content the customer does not "own or
+  otherwise control all of the rights to" plus injury-risk).
+
+  Conceptual ancestor of 2022 Apple/Google App Store removals
+  (apple-india-crypto-exchange-removal-2024-01,
+  google-play-india-crypto-exchange-removal-2024-01) and Cloudflare
+  gateway eviction events
+  (cloudflare-ethereum-gateway-tornado-block-2022-08): a corporate
+  intermediary withdraws hosting / distribution access in response to
+  political pressure, with the intermediary publicly grounding the
+  decision in its own TOS / acceptable-use policy rather than in any
+  legal compulsion. Pre-modern because the censorship target was
+  publication infrastructure, not a crypto frontend; recorded under
+  discovery_only_2008_2012 / discovery_ledger_only so that early-period
+  precedent is preserved without entering the 2017+ comparable
+  denominator.
+
+  Attribution annotated plausible (not direct) because:
+    1. AWS denies that the Lieberman contact caused the termination.
+    2. No internal AWS communication has been disclosed publicly that
+       would resolve the conflict between Lieberman's public credit-
+       claim and AWS's TOS-violation framing.
+    3. The 2-day hosting window and same-morning timing with the
+       Lieberman press release are strong circumstantial evidence but
+       not direct documentary proof of causation.
+
+  Related sibling axes recorded as separate events:
+    - wikileaks-everydns-domain-termination-2010-12 (DNS authoritative
+      provider termination; sibling L0 / DNS axis).
+    - PayPal / Visa / Mastercard / Bank of America financial-rail
+      blockade (sibling offramp axis; not recorded in this session).
+    - apple-india-crypto-exchange-removal-2024-01 (modern descendant
+      via related_events cross-reference; corporate intermediary
+      withdrawing distribution access under political pressure).
+
+scoped_claim: |
+  "On 2010-12-01, Amazon Web Services terminated WikiLeaks' EC2 / S3
+  cloud-hosting account approximately 2 days after WikiLeaks had
+  migrated to AWS to escape DDoS against its self-hosted infrastructure,
+  following same-morning public pressure from Senator Joe Lieberman's
+  office. AWS publicly grounded the termination in TOS violation and
+  denied that the Lieberman contact prompted the decision.
+  Observational axis at l4_frontend (cloud-hosting eviction).
+  Discovery-only precedent for the corporate-intermediary censorship
+  pattern; not eligible for the 2017+ comparable denominator."
+
+tags:
+  - corporate_policy_change
+  - amazon_aws
+  - wikileaks
+  - cloud_hosting_eviction
+  - l4_frontend
+  - s5_corporate
+  - discovery_only_2008_2012
+  - foundational_precedent
+  - dryrun_2026_05_16

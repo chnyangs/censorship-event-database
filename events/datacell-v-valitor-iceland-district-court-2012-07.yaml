@@ -1,0 +1,407 @@
+id: datacell-v-valitor-iceland-district-court-2012-07
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-visa-europe-suspension-2010-12
+  - wikileaks-paypal-freeze-2010-12
+  - wikileaks-mastercard-suspension-2010-12
+
+trigger:
+  type: court_civil_order
+  actor: IS_REYKJAVIK_DISTRICT_COURT
+  timestamp: 2012-07-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-
+      wayback: https://web.archive.org/web/2012/https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-
+      evidence_use: contextual_unarchived
+      note: |
+        Bloomberg 2012-07-12 coverage ("Iceland Court Orders Valitor to
+        Process WikiLeaks Donations"). Independent journalism anchor for
+        the ruling date and the order's substantive content: the
+        Reykjavik District Court directed Valitor (the Visa/Mastercard
+        sub-processor in Iceland) to reopen the DataCell merchant
+        gateway used for WikiLeaks donation collection, within fourteen
+        days, on pain of daily fines (originally claimed at ISK 1M/day,
+        reduced by the court to ISK 800,000/day for each day non-
+        compliance persists). DRYRUN: wayback wildcard pointer in lieu
+        of a pinned-timestamp snapshot; evidence_use=contextual_unarchived
+        because no body_hash+body_path pair has been captured into
+        sources/http_captures/ in this session.
+    - type: supporting_journalism
+      url: https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/
+      wayback: https://web.archive.org/web/2012/https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/
+      evidence_use: contextual_unarchived
+      note: |
+        Reykjavik Grapevine 2012-07-13 coverage ("DataCell Wins Case
+        Against Valitor"). Icelandic local-press anchor confirming the
+        2012-07-12 ruling, the 14-day compliance window, and the
+        ISK 800,000/day daily-fine figure (down from the ISK 1,000,000/day
+        prayer for relief). Also confirms Valitor was ordered to pay
+        DataCell's litigation costs of ISK 1,500,000. evidence_use=
+        contextual_unarchived; body_hash capture deferred to human audit.
+    - type: supporting_journalism
+      url: https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks
+      wayback: https://web.archive.org/web/2012/https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks
+      evidence_use: contextual_unarchived
+      note: |
+        Reporters Without Borders (RSF) coverage of the 2012-07-12
+        Reykjavik District Court ruling, framing the decision as the
+        first judicial order requiring a card-network sub-processor
+        to lift a WikiLeaks-related payment block. RSF analysis treats
+        the ruling as a counter-censorship precedent at the
+        payment-rail layer. evidence_use=contextual_unarchived;
+        body_hash capture deferred to human audit.
+    - type: supporting_journalism
+      url: https://www.computerworld.com/article/1417186/wikileaks-donations-via-visa-and-mastercard-may-resume-icelandic-court-rules.html
+      wayback: https://web.archive.org/web/2012/https://www.computerworld.com/article/1417186/wikileaks-donations-via-visa-and-mastercard-may-resume-icelandic-court-rules.html
+      evidence_use: contextual_unarchived
+      note: |
+        Computerworld 2012-07 coverage ("Wikileaks donations via Visa
+        and MasterCard may resume, Icelandic court rules"). Independent
+        English-language journalism confirmation of the ruling and its
+        operational effect: WikiLeaks donations via Visa/Mastercard could
+        again be processed through the DataCell merchant gateway in
+        Iceland. evidence_use=contextual_unarchived; body_hash capture
+        deferred to human audit.
+    - type: supporting_community
+      url: https://wikileaks.org/Wikileaks-has-launched-a-case.html
+      wayback: https://web.archive.org/web/2012/https://wikileaks.org/Wikileaks-has-launched-a-case.html
+      evidence_use: contextual_unarchived
+      note: |
+        WikiLeaks press release announcing the launch of the DataCell
+        case against Valitor (the predecessor procedural step to the
+        2012-07-12 ruling). Provides the counter-censorship-litigation
+        framing the case was filed under: WikiLeaks/DataCell alleged
+        that Valitor's December-2010 closure of the donation gateway
+        violated the Visa merchant-services contract and Icelandic
+        contract law. evidence_use=contextual_unarchived; body_hash
+        capture deferred to human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. Bloomberg, Reykjavik Grapevine, RSF,
+        Computerworld, and Slashdot all date the Reykjavik District
+        Court ruling to 2012-07-12 (Thursday). The Reykjavik Grapevine
+        coverage carries a 2012-07-13 publish date but reports the
+        ruling as having been issued the prior day.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the Valitor-DataCell merchant-services relationship: the
+    Visa/Mastercard card-network sub-processor (Valitor hf., the
+    Iceland sub-processor formerly trading as Visa Iceland) and the
+    DataCell ehf. merchant account used to collect WikiLeaks donations
+    over Visa/Mastercard card rails. The court order operates on this
+    specific bilateral merchant agreement; subset because the
+    enumerated target is the single DataCell merchant account /
+    merchant-services contract rather than the broader class of
+    WikiLeaks-aligned merchants worldwide. The ruling is jurisdictional
+    to Iceland and does not bind other card-network sub-processors in
+    other countries.
+  entity: Valitor hf. (Iceland Visa/Mastercard sub-processor) - DataCell ehf. merchant agreement
+  actor_name: Valitor hf. / DataCell ehf.
+  actor_type: payment_processor_merchant_agreement
+
+jurisdiction: [IS]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Pre-Bitcoin-era WikiLeaks donations event; the action operates on
+      Visa/Mastercard card-network payment rails in Iceland, not on
+      blockchain network reachability. l0_network not_applicable on
+      construct-not-in-scope grounds (matches sibling
+      wikileaks-paypal-freeze-2010-12 treatment).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain consensus layer in scope; payment rail at issue is
+      Visa/Mastercard, not an L1 blockchain. not_applicable on
+      construct-not-in-scope grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No blockchain RPC layer in scope. The MEV-Boost / Flashbots
+      Protect public-RPC compliance substrate did not exist in 2012;
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The court order operates on the Valitor-DataCell card-network
+      merchant agreement; the wikileaks.org donation-page Visa/Mastercard
+      option is downstream UI consequent on the merchant-services
+      contract surface and is not a separately measured L4-frontend
+      action in this authoring pass. The single load-bearing cascade
+      axis is offramp_cex (card-network merchant gateway restoration),
+      so l4_frontend not_applicable to avoid double-counting the same
+      physical action.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Pre-WikiLeaks-Bitcoin-donation event in operational terms; even
+      after WikiLeaks announced a Bitcoin donation address in 2011-06,
+      the 2012-07-12 Reykjavik District Court ruling operates on the
+      Valitor-DataCell card-payment merchant agreement and not on any
+      blockchain asset. not_applicable on construct-not-in-scope
+      grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - valitor_datacell_merchant_agreement
+    note: |
+      offramp_cex is the closest schema analog for a pre-Bitcoin
+      payment-processor merchant-gateway restoration order: Valitor
+      acts as the Visa/Mastercard sub-processor (the fiat
+      payment-collection rail), conceptually analogous to a
+      centralized-exchange offramp in the post-Bitcoin era. The court
+      order directs Valitor to restore the DataCell merchant gateway
+      within 14 days on pain of daily fines (ISK 800,000/day). This
+      is a court-ordered counter-censorship event: the cascade surface
+      at offramp_cex moves in the *restoration* direction (recovery
+      from the 2010-12 WikiLeaks blockade), not in the
+      censorship-imposition direction. partially_measured because the
+      ruling is well-attested via the multi-source journalism cluster
+      but the actual gateway-restoration timeline and subsequent
+      appeal dynamic require pinning during human audit.
+    denominator_artifact:
+      type: contextual_unarchived
+      wayback: https://web.archive.org/web/2012/https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/
+      note: |
+        Denominator anchor is the Reykjavik Grapevine 2012-07-13
+        court-ruling coverage (wayback wildcard pointer), corroborated
+        by the Bloomberg/RSF/Computerworld coverage cluster. Single
+        merchant-agreement scope.
+
+observations:
+  - layer: offramp_cex
+    actor: is_reykjavik_district_court
+    event: court_ordered_restoration_of_valitor_datacell_merchant_gateway_for_wikileaks_donations
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2012-07-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IS
+    sources:
+      - type: supporting_journalism
+        url: https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-
+        wayback: https://web.archive.org/web/2012/https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [valitor, datacell]
+          countries: [IS]
+          time_window:
+            - 2012-07-12T00:00:00Z
+            - 2012-07-26T23:59:59Z
+        note: |
+          Bloomberg 2012-07-12 coverage records the Reykjavik District
+          Court ruling itself: Valitor ordered to process WikiLeaks
+          donations via the DataCell merchant gateway, 14-day
+          compliance window, daily-fine sanction of ISK 800,000/day.
+          attribution=direct because the observed change (court-ordered
+          restoration of the merchant gateway) is self-attested in the
+          ruling text reported by Bloomberg the day of the decision.
+          observation_kind=observed_change because this is a *recovery*
+          / counter-censorship event: the order moves the offramp_cex
+          cascade surface from blocked (post-2010-12 Visa Europe
+          suspension) back toward open. DRYRUN: wayback wildcard
+          pointer in lieu of pinned-timestamp snapshot.
+      - type: supporting_journalism
+        url: https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/
+        wayback: https://web.archive.org/web/2012/https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [valitor, datacell]
+          countries: [IS]
+          time_window:
+            - 2012-07-12T00:00:00Z
+            - 2012-07-26T23:59:59Z
+        note: |
+          Reykjavik Grapevine 2012-07-13 coverage corroborates the
+          ruling date, the 14-day compliance window, and the
+          ISK 800,000/day daily-fine figure (court reduced DataCell's
+          claimed ISK 1,000,000/day prayer to ISK 800,000/day). Also
+          records the ISK 1,500,000 litigation-costs award to DataCell.
+          Independent local-press confirmation of the court-ordered
+          restoration.
+      - type: supporting_journalism
+        url: https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks
+        wayback: https://web.archive.org/web/2012/https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [valitor, datacell]
+          countries: [IS]
+          time_window:
+            - 2012-07-12T00:00:00Z
+            - 2012-07-26T23:59:59Z
+        note: |
+          RSF coverage characterising the 2012-07-12 ruling as the
+          first judicial finding worldwide that a card-network
+          WikiLeaks payment blockade was unlawful at the merchant-
+          services contract layer. RSF analysis treats the decision
+          as a counter-censorship precedent.
+
+analysis_notes: |
+  NEW EVENT AUTHORED - DRYRUN 2026-05-16 (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash snapshots; human
+  review required to elevate to admitted status.
+
+  Structural distinction: this event is structurally distinct from
+  the December 2010 WikiLeaks payment-rail blockade events
+  (wikileaks-visa-europe-suspension-2010-12,
+  wikileaks-paypal-freeze-2010-12,
+  wikileaks-mastercard-suspension-2010-12). Those were
+  censorship-imposing trigger events at the corporate-policy /
+  card-network layer. The 2012-07-12 Reykjavik District Court
+  ruling is a court-ordered *counter-censorship* (recovery /
+  restoration) event: the cascade surface at offramp_cex moves in
+  the restoration direction, away from the 2010-12 blockade.
+  Honest coding treats this as a follow-on judicial intervention
+  with offramp_cex partially_measured documenting the court-ordered
+  restoration outcome.
+
+  Stratum coding: schema-validator mapping forces
+  trigger.type=court_civil_order to research_stratum=
+  S3_doj_sec_cftc_fiod (the controlled-vocab stratum the validator
+  uses for court-civil-order triggers regardless of whether the
+  venue is a US federal court or a non-US national / sub-sovereign
+  court). The substantive trigger here is a sub-sovereign Icelandic
+  judicial action (Reykjavik District Court, the trial-court level
+  of the Icelandic judiciary) — functionally jurisdictional even
+  when at the district-court rather than supreme-court level. The
+  Icelandic Supreme Court subsequently (2013-04-24) upheld the
+  district-court order in Valitor's appeal; that 2013 supreme-court
+  affirmance is a candidate sibling event for future authoring but
+  is not authored in this pass.
+
+  Layer coverage: l0_network, l1_consensus, l3_rpc, l4_frontend,
+  and asset_onchain are all not_applicable. l1/l3/asset_onchain on
+  construct-not-in-scope (or construct-did-not-exist) grounds,
+  matching the pre-Bitcoin-era treatment of the sibling
+  WikiLeaks-blockade events. l0_network not_applicable because the
+  action operates on Visa/Mastercard card rails in Iceland, not on
+  blockchain network reachability. l4_frontend not_applicable to
+  avoid double-counting: the wikileaks.org donation-page
+  Visa/Mastercard option is downstream UI consequent on the
+  merchant-services contract surface and is not a separately
+  measured L4 frontend action in this pass. The single load-bearing
+  cascade axis is offramp_cex (the closest schema analog for a
+  card-network merchant-gateway-restoration order).
+
+  empirical_shape=comparison: 1 observed_change layer
+  (offramp_cex). The cascade surface is single-axis from the
+  schema's perspective.
+
+  temporal_tier=discovery_only_2008_2012 + analysis_use=
+  discovery_ledger_only: the trigger date 2012-07-12 falls in the
+  pre-2013 discovery window. This event enters the discovery
+  ledger as the legal-pushback / counter-censorship anchor of the
+  2010-12 WikiLeaks payment-rail blockade cluster.
+
+  admission_tier=empirical_case: the offramp_cex observed_change
+  row carries attribution=direct (the court order self-attests the
+  restoration mandate), but only one observed_change layer is
+  load-bearing, so the case does not reach anchor_case threshold.
+  All citations are evidence_use=contextual_unarchived (DRYRUN
+  wayback wildcard pointers), so the case does not yet support
+  paper-grade admission-anchor claims; promotion to admitted
+  status requires pinned body_hash+body_path archive captures
+  during human audit.
+
+  Schema-actor handling: actor=IS_REYKJAVIK_DISTRICT_COURT is a
+  free-form string accepted by the schema; the validator
+  actor-coherence check only fires on US-agency substrings, so no
+  controlled_vocab.yaml addition is required.
+
+  Downstream trajectory: Valitor appealed; the Icelandic Supreme
+  Court affirmed the district-court order on 2013-04-24. A broader
+  damages settlement between WikiLeaks/DataCell and Valitor was
+  eventually reached in 2019-07. Both are candidate sibling events
+  for future authoring (recovery row or follow-on litigation
+  rows), but are not authored in this pass to keep scope minimal.
+
+  DRYRUN caveats: all citations carry wayback wildcard pointers
+  (web/2012/...) and evidence_use=contextual_unarchived. For
+  non-DRYRUN release, capture body_hash + body_path for: (1)
+  Bloomberg 2012-07-12 court-ruling coverage, (2) Reykjavik
+  Grapevine 2012-07-13 coverage, (3) RSF court-ruling coverage,
+  (4) Computerworld court-ruling coverage, (5) WikiLeaks press
+  release on the case launch. The canonical primary instrument
+  is the Reykjavik District Court ruling text itself (case
+  E-2997/2011, decision delivered 2012-07-12); pinning that
+  primary-legal anchor via the Icelandic court rulings registry
+  is the strongest path to admission-anchor strength.
+
+scoped_claim: |
+  "On 2012-07-12, the Reykjavik District Court (Iceland)
+  ordered Valitor hf. (the Iceland Visa/Mastercard sub-processor)
+  to restore the DataCell ehf. merchant gateway used to collect
+  WikiLeaks donations over Visa/Mastercard card rails within
+  14 days, on pain of daily fines of ISK 800,000 for each day of
+  non-compliance. The ruling is the first judicial finding
+  worldwide that a card-network WikiLeaks payment blockade was
+  unlawful at the merchant-services contract layer, and constitutes
+  a court-ordered counter-censorship (recovery / restoration) event
+  at the offramp_cex cascade axis. The cascade surface moves in the
+  restoration direction, away from the 2010-12 WikiLeaks
+  payment-rail blockade. Observational axis at offramp_cex
+  (load-bearing, attribution=direct via the court order self-
+  attesting the restoration mandate). Admission-anchor-grade
+  promotion pending pinned archive captures."
+
+scoped_knowledge: |
+  The 2012-07-12 Reykjavik District Court ruling is the
+  pre-Bitcoin-era anchor case for court-ordered counter-
+  censorship at the payment-rail layer. It demonstrates that
+  even in the pre-blockchain financial-rail context, judicial
+  intervention is capable of reversing a corporate / card-
+  network censorship action at the merchant-services contract
+  layer — provided the target operator (DataCell) is
+  jurisdictionally co-located with a card-network sub-processor
+  (Valitor in Iceland) whose merchant agreement is governed by
+  enforceable national contract law. The Icelandic Supreme Court
+  subsequently affirmed the district-court order on 2013-04-24,
+  and a broader damages settlement was reached in 2019-07
+  (~7 years downstream). The case is the conceptual ancestor of
+  later judicial-intervention recovery dynamics that may apply
+  to blockchain-asset / centralized-exchange contexts: where a
+  national court has personal jurisdiction over a payment
+  intermediary and the underlying merchant agreement is
+  governed by enforceable national contract law, a court order
+  is in principle capable of restoring the payment / off-ramp
+  surface. The ruling has been frequently cited in the academic
+  and civil-society literature on financial-censorship counter-
+  measures (RSF, EDRi, European Parliament parliamentary
+  questions) as the foundational court-ordered restoration
+  precedent.
+
+tags:
+  - court_civil_order
+  - iceland
+  - reykjavik_district_court
+  - valitor
+  - datacell
+  - wikileaks
+  - counter_censorship
+  - payment_rail_restoration
+  - offramp_cex
+  - s3_doj_sec_cftc_fiod
+  - discovery_ledger_only
+  - dryrun_2026_05_16

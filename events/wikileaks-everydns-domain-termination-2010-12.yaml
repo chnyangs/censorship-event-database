@@ -1,0 +1,361 @@
+id: wikileaks-everydns-domain-termination-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-amazon-aws-eviction-2010-12
+
+trigger:
+  type: corporate_policy_change
+  actor: EVERYDNS_OPERATOR
+  timestamp: 2010-12-02T22:00:00Z
+  timestamp_precision: hour
+  citation:
+    - type: primary_corporate
+      url: http://everydns.com/
+      wayback: https://web.archive.org/web/2010/http://everydns.com/
+      evidence_use: contextual_unarchived
+      note: |
+        EveryDNS public statement of 2010-12-02 terminating free DNS
+        service for wikileaks.org within 24 hours of notice, citing the
+        EveryDNS Terms of Service clause that "Member shall not
+        interfere with another Member's use and enjoyment of the
+        Service or another entity's use and enjoyment of similar
+        services." EveryDNS cited DDoS attacks against the wikileaks.org
+        DNS records that "threatened the stability of EveryDNS.net's
+        infrastructure" supporting ~500,000 other domains. The
+        termination took effect at 2010-12-02 ~22:00 EST (per the
+        EveryDNS statement specifying a 24-hour notice ending 22:00 EST
+        on 2010-12-02). DRYRUN: pinned Wayback snapshot and body_hash
+        for the EveryDNS statement page are deferred to the human-audit
+        pass; marked evidence_use=contextual_unarchived per validator
+        policy for unarchived sources.
+    - type: supporting_journalism
+      url: https://www.theregister.com/2010/12/03/wikileaks_loses_dns/
+      wayback: https://web.archive.org/web/2010/https://www.theregister.com/2010/12/03/wikileaks_loses_dns/
+      evidence_use: contextual_unarchived
+      note: |
+        The Register contemporaneous coverage (2010-12-03) "Wikileaks'
+        DNS pulls plug, citing collateral DDoS damage" naming EveryDNS
+        as the terminating DNS provider, the TOS clause invoked, and
+        the ~22:00 EST 2010-12-02 cutoff. Triangulation source for
+        actor (EveryDNS), mechanism (DNS service termination at the
+        authoritative free-DNS provider for wikileaks.org), and
+        hour-level timing. DRYRUN: pinned Wayback snapshot deferred to
+        human audit.
+    - type: supporting_journalism
+      url: https://thenextweb.com/news/wikileaks-is-reportedly-down-worldwide-as-dns-services-pulled
+      wayback: https://web.archive.org/web/2010/https://thenextweb.com/news/wikileaks-is-reportedly-down-worldwide-as-dns-services-pulled
+      evidence_use: contextual_unarchived
+      note: |
+        The Next Web contemporaneous coverage (2010-12-02/03) reporting
+        the worldwide unreachability of wikileaks.org following the
+        EveryDNS termination, and WikiLeaks' own Twitter
+        acknowledgment that the domain had been "killed by U.S.
+        EveryDNS.net after claimed mass attacks." Independent
+        confirmation of the public visibility and effect of the DNS
+        termination. DRYRUN: pinned Wayback snapshot deferred to
+        human audit.
+    - type: supporting_journalism
+      url: https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/
+      wayback: https://web.archive.org/web/2010/https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/
+      evidence_use: contextual_unarchived
+      note: |
+        The Next Web follow-up (2010-12-03) documenting that wikileaks.org
+        was relocated to wikileaks.ch (Swiss Pirate Party-hosted) and
+        other mirrors within ~24 hours of the EveryDNS termination.
+        Establishes the L4-frontend / domain-takedown effect and the
+        immediate mirror-network response. DRYRUN: pinned Wayback
+        snapshot deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Hour-level precision per the EveryDNS statement specifying a
+        24-hour notice ending 22:00 EST on 2010-12-02 (= 2010-12-03
+        03:00 UTC, but conventionally the termination cutoff is
+        recorded as 2010-12-02 ~22:00 local US Eastern, which falls
+        within the 2010-12-02 calendar day in the original source
+        framing). UTC normalization: 2010-12-03T03:00:00Z; this draft
+        records 2010-12-02T22:00:00Z as a same-day approximation
+        consistent with the contemporaneous press framing; the precise
+        UTC-vs-local conversion is to be re-pinned during human audit.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the wikileaks.org domain (DNS authoritative-
+    service relationship at EveryDNS), terminated 2010-12-02. Subset
+    enumeration because the EveryDNS action removed authoritative DNS
+    for the wikileaks.org domain only (the WikiLeaks organizational
+    entity hosted content across multiple infrastructure providers in
+    2010-11/12; this row captures the DNS-provider termination
+    specifically, sibling to the Amazon AWS eviction recorded under
+    wikileaks-amazon-aws-eviction-2010-12).
+  actor_type: media_publisher
+  actor_name: WikiLeaks (wikileaks.org domain)
+  canonical_domains:
+    - wikileaks.org
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No ISP-level or backbone-level packet block invoked by the
+      EveryDNS action; the termination is exclusively at the
+      authoritative-DNS layer, which is treated here as L4 frontend
+      (domain-resolution / domain-takedown surface). L0 not engaged.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Construct-did-not-exist. WikiLeaks 2010 has no blockchain
+      consensus surface; this is a pre-crypto-cascade DNS-termination
+      precedent.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Construct-did-not-exist. JSON-RPC / MEV-relay provider compliance
+      substrate is a 2022+ phenomenon.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - wikileaks.org
+    provider_scope: unknown
+    note: |
+      Load-bearing layer for this event. EveryDNS (then the dominant
+      free-DNS provider, ~500k domains) terminated authoritative DNS
+      for wikileaks.org effective ~22:00 EST 2010-12-02 under its TOS
+      clause prohibiting service use that interferes with other
+      members' use; cited cause was DDoS traffic against the
+      wikileaks.org records that "threatened the stability of
+      EveryDNS.net's infrastructure." Effect: worldwide DNS
+      unreachability of wikileaks.org within ~24 hours, forcing
+      WikiLeaks to relocate to wikileaks.ch (Swiss Pirate Party
+      hosting) and a global mirror network. Treated as L4 frontend
+      (domain-resolution / domain-takedown layer) — conceptual
+      ancestor of the 2024 India FIU domain-blocking and 2022
+      Cloudflare gateway-termination events.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Construct-did-not-exist. No on-chain asset surface in 2010
+      WikiLeaks infrastructure (Bitcoin donations began 2011-06).
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Construct-did-not-exist. CEX off-ramp surface is post-2013.
+      The sibling 2010-12 payment-rail severance events (PayPal,
+      Visa, Mastercard, Bank of America "WikiLeaks blockade") are a
+      separate event family and are tracked outside this corpus's
+      crypto-cascade frame; they are conceptual but not validator-
+      relevant L-layer rows here.
+
+observations:
+  - layer: l4_frontend
+    actor: dns_provider:everydns
+    event: everydns_terminated_authoritative_dns_for_wikileaks_org_under_tos
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2010-12-02T22:00:00Z
+    precision: hour
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: http://everydns.com/
+        wayback: https://web.archive.org/web/2010/http://everydns.com/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - wikileaks.org
+          providers:
+            - everydns
+          time_window:
+            - 2010-12-02T00:00:00Z
+            - 2010-12-03T23:59:59Z
+        note: |
+          EveryDNS's own 2010-12-02 public statement is the canonical
+          corporate-policy source for this L4 (DNS-layer) termination.
+          The DNS-provider operator names: (a) the action
+          (authoritative-DNS termination for wikileaks.org), (b) the
+          TOS clause invoked (interference-with-other-members'-use),
+          and (c) the proximate cause (DDoS traffic against the
+          wikileaks.org records). attribution=direct because the
+          source is the operator naming the action. DRYRUN: pinned
+          Wayback snapshot and body_hash for the EveryDNS statement
+          page are deferred to the human-audit pass; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: supporting_journalism
+        url: https://www.theregister.com/2010/12/03/wikileaks_loses_dns/
+        wayback: https://web.archive.org/web/2010/https://www.theregister.com/2010/12/03/wikileaks_loses_dns/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - wikileaks.org
+          providers:
+            - everydns
+          time_window:
+            - 2010-12-02T00:00:00Z
+            - 2010-12-03T23:59:59Z
+        note: |
+          The Register contemporaneous coverage (2010-12-03) of the
+          EveryDNS termination, retained for hour-level timing
+          triangulation and independent confirmation of the TOS
+          clause / DDoS rationale. DRYRUN: pinned Wayback snapshot
+          deferred to human audit.
+      - type: supporting_journalism
+        url: https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/
+        wayback: https://web.archive.org/web/2010/https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/
+        evidence_use: contextual_unarchived
+        note: |
+          The Next Web follow-up documenting the immediate mirror-
+          network response — wikileaks.org relocated to wikileaks.ch
+          (Swiss Pirate Party hosting) and a global mirror network
+          within ~24 hours. Confirms the effect of the EveryDNS
+          termination at the domain-resolution layer and the
+          subsequent multi-jurisdictional domain-mirroring response.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: true
+    resolved_timestamp: 2010-12-03T00:00:00Z
+    note: |
+      WikiLeaks restored worldwide reachability within ~24 hours of
+      the EveryDNS termination by relocating wikileaks.org to
+      wikileaks.ch (Swiss Pirate Party-hosted, Switch-registered) and
+      establishing a global mirror network of >1,000 domain mirrors
+      over the following days. Recovery is at the WikiLeaks-actor
+      level (the EveryDNS authoritative-DNS relationship itself was
+      not restored); the operational L4-frontend reachability of the
+      WikiLeaks content was substantively recovered via the Swiss
+      domain and mirror network.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (discovery_only_2008_2012
+  tier; lean run): authored by LLM agent without personally verifying
+  Wayback/body_hash; origin=agent_draft per validator policy. Real
+  release must replace this DRYRUN marker with a human-verified audit
+  after pinning real archive anchors and promote origin to
+  human_reviewed.
+
+  Foundational L4-frontend / DNS-layer censorship precedent. The
+  2010-12-02 EveryDNS termination of authoritative DNS for
+  wikileaks.org is the conceptual ancestor of the 2024 India FIU
+  domain-blocking action and the 2022 Cloudflare gateway-termination
+  pattern: a corporate intermediary (DNS provider, in this case the
+  dominant free-DNS provider serving ~500k domains) invokes its TOS
+  to terminate the resolution / publication relationship for a
+  pressure-targeted client, citing DDoS / collateral-damage rather
+  than direct legal compulsion. The DNS termination took effect ~22:00
+  EST 2010-12-02 (24 hours after EveryDNS notice) and produced
+  worldwide DNS unreachability of wikileaks.org until the relocation
+  to wikileaks.ch (Swiss Pirate Party-hosted) the following day.
+
+  Discovery tier rationale: events 2008-2012 belong to the
+  discovery_only_2008_2012 temporal tier per the 2008+ tiered frame
+  in sampling/frame.yaml. analysis_use=discovery_ledger_only excludes
+  this row from the 2017+ comparable-analysis denominator and from
+  the 2013-2016 historical-baseline cohort; it is retained for
+  discovery / cross-temporal-anchor purposes only. The 2010-12-02
+  EveryDNS termination predates the existence of any blockchain
+  censorship surface (Bitcoin genesis 2009-01-03; Ethereum Merge
+  2022-09-15; PBS relay-censorship 2022+) and is therefore by
+  construction outside the corpus's comparable analysis frame.
+
+  Empirical shape: comparison (1 observed_change layer — L4 frontend
+  load-bearing, attribution=direct). Admission tier: empirical_case
+  (≥1 observed_change layer with direct attribution from the DNS
+  provider's own statement). Stratum coding: S5_corporate. EveryDNS
+  was not legally compelled by US authorities to terminate; the
+  action was a unilateral corporate-TOS decision by the DNS provider
+  in response to DDoS traffic, which makes this the canonical
+  S5_corporate pre-2017 anchor — the corporate-intermediary
+  "infrastructure provider exercising contractual termination under
+  TOS pressure" precedent that the 2022-2024 Cloudflare / India FIU
+  events extend.
+
+  Cross-event reference: this event is the sibling DNS-layer row to
+  wikileaks-amazon-aws-eviction-2010-12 (Amazon AWS eviction of
+  WikiLeaks 2010-12-01, the prior-day hosting-provider termination).
+  Together the Amazon-then-EveryDNS sequence constitutes the
+  canonical 2010-12 "WikiLeaks intermediary cascade" — a hosting-
+  layer termination on 2010-12-01 followed by a DNS-layer
+  termination on 2010-12-02, both invoked under corporate TOS in
+  response to political and DDoS pressure, with no direct US-
+  government legal order in either case. This pair is the
+  foundational pre-crypto reference for the 2022+ DeFi-frontend /
+  gateway-termination cascade pattern.
+
+  L0/L1/L3/asset_onchain/offramp_cex are all marked not_applicable on
+  construct-did-not-exist grounds (no blockchain censorship surface in
+  2010), consistent with the validator policy and the discovery-tier
+  framing.
+
+  DRYRUN caveats: all four citations (EveryDNS corporate statement +
+  three contemporaneous journalism) carry 2010-calendar-folder
+  Wayback pointers rather than pinned snapshots; pinned snapshot
+  timestamps and body_hash captures are deferred to the human-audit
+  pass. For non-DRYRUN release, capture body_hash + body_path for:
+  (1) the EveryDNS public statement of 2010-12-02 (the everydns.com
+  homepage snapshot in the Wayback CDX); (2) The Register and The
+  Next Web article permalinks; optionally (3) the Wired / Guardian /
+  Reuters 2010-12-02-03 coverage for additional triangulation. Marked
+  evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+scoped_claim: |
+  EveryDNS terminated authoritative DNS service for wikileaks.org at
+  ~22:00 EST 2010-12-02 under its TOS clause prohibiting service use
+  that interferes with other members', citing DDoS traffic against
+  the wikileaks.org records; the termination produced worldwide DNS
+  unreachability of wikileaks.org until the relocation to
+  wikileaks.ch the following day. The L4-frontend layer carries the
+  load-bearing direct-attribution observation; this is the
+  foundational pre-crypto DNS-layer corporate-intermediary censorship
+  precedent in the corpus.
+
+scoped_knowledge: |
+  This event is the canonical pre-crypto S5_corporate DNS-layer
+  censorship precedent. EveryDNS (then the dominant free-DNS
+  provider, serving ~500k domains) invoked a TOS interference clause
+  to terminate authoritative DNS for wikileaks.org on 2010-12-02 in
+  response to DDoS traffic against the wikileaks.org records. The
+  proximate trigger was infrastructure-stability pressure, not direct
+  US-government legal compulsion, which is what makes this row an
+  S5_corporate (corporate policy) rather than an S3 (DoJ) or S1
+  (OFAC) case. The conceptual analog in the modern corpus is the
+  2022+ pattern of corporate-intermediary terminations under
+  TOS / AUP at the gateway, frontend, and domain-resolution layers
+  (Cloudflare gateway terminations, frontend operator delistings,
+  India FIU domain-blocking). The 2010-12-02 EveryDNS action is the
+  ancestor of all three: a corporate intermediary at the
+  domain-resolution layer terminating service under TOS in response
+  to pressure that the intermediary itself frames as
+  infrastructure-stability rather than legal compulsion. Paired with
+  the sibling wikileaks-amazon-aws-eviction-2010-12 (hosting-layer
+  termination 2010-12-01), the two events constitute the
+  foundational pre-crypto reference cascade for the cross-layer
+  intermediary-termination pattern this corpus documents at the
+  cryptocurrency layers in the 2017+ comparable cohort.
+
+tags:
+  - corporate_policy_change
+  - dns_termination
+  - wikileaks
+  - everydns
+  - domain_takedown
+  - frontend_restriction
+  - foundational_precedent
+  - discovery_anchor
+  - dryrun_2026_05_16

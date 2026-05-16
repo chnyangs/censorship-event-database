@@ -1,0 +1,347 @@
+id: wikileaks-mastercard-suspension-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-paypal-freeze-2010-12
+  - wikileaks-visa-europe-suspension-2010-12
+  - wikileaks-bank-of-america-block-2010-12
+  - wikileaks-western-union-interdiction-2010-12
+  - wikileaks-postfinance-account-closure-2010-12
+  - datacell-v-valitor-iceland-district-court-2012-07
+
+trigger:
+  type: corporate_policy_change
+  actor: MASTERCARD_OPERATOR
+  timestamp: 2010-12-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.mastercard.com/
+      wayback: https://web.archive.org/web/2010/https://www.mastercard.com/
+      evidence_use: contextual_unarchived
+      note: |
+        MasterCard Worldwide stated on 2010-12-06 that it was "in the
+        process of working to suspend the acceptance of MasterCard
+        cards on WikiLeaks until the situation is resolved" and that
+        "MasterCard rules prohibit customers from directly or indirectly
+        engaging in or facilitating any action that is illegal."
+        Spokesman Chris Monteiro delivered the statement to multiple
+        press outlets (Reuters, CNN Money, NPR, CBC, BBC, Guardian,
+        France 24) on 2010-12-06 / 2010-12-07. The card-network
+        processing suspension took effect within hours and severed the
+        MasterCard-branded credit-card donation channel for WikiLeaks
+        donations routed through the DataCell ehf merchant gateway in
+        Iceland. MasterCard never issued a standalone press release on
+        the mastercard.com newsroom; the statement exists only as a
+        spokesman quotation circulated to journalists. Marked
+        evidence_use=contextual_unarchived because no specific
+        body_hash+body_path or pinned Wayback snapshot of the
+        spokesman quotation surface was captured during this authoring
+        pass; the live mastercard.com root URL remains the operator
+        domain and Wayback bracketing of the 2010-12 newsroom window
+        is the natural anchor for follow-up human-audit pinning.
+        Provisional Wayback anchor uses Wayback Machine year-prefix
+        lookup.
+    - type: supporting_journalism
+      url: https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm
+      wayback: https://web.archive.org/web/2010/https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm
+      evidence_use: contextual_unarchived
+      note: |
+        CNN Money 2010-12-08 reporting on the MasterCard / Visa
+        WikiLeaks suspension and the Operation Payback DDoS
+        retaliation against mastercard.com. Carries the MasterCard
+        spokesman statement quotation ("MasterCard rules prohibit
+        customers from directly or indirectly engaging in or
+        facilitating any action that is illegal") and reports on the
+        same-week Anonymous-affiliated DDoS campaign that took down
+        mastercard.com on 2010-12-08. Marked
+        evidence_use=contextual_unarchived pending Wayback re-pin and
+        body_hash capture during human audit.
+    - type: supporting_journalism
+      url: https://wikileaks.org/Banking-Blockade.html
+      wayback: https://web.archive.org/web/2011/https://wikileaks.org/Banking-Blockade.html
+      evidence_use: contextual_unarchived
+      note: |
+        WikiLeaks "Banking Blockade" archive page enumerates the
+        2010-12 financial-intermediary actions including the
+        MasterCard processing suspension. Used as the canonical
+        operator-self-description anchor for the blockade timeline
+        even though the page is operator-authored. Marked
+        evidence_use=contextual_unarchived pending pinned-snapshot
+        re-pin during human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision per contemporaneous Reuters / CNN Money /
+        CBC / NPR / France 24 reporting that places the MasterCard
+        spokesman statement on 2010-12-06 (with broader press uptake
+        2010-12-07). MasterCard never published a timestamped press
+        release on the mastercard.com newsroom; the public record
+        carries day-level rather than intra-day precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the WikiLeaks donations-acceptance surface across the
+    MasterCard card-network processing rail. Concretely, MasterCard-
+    branded credit/debit-card donations routed through the DataCell
+    ehf merchant gateway in Iceland (which had set up card-network
+    acquiring under a 2010-10 services contract to process WikiLeaks
+    donations) were severed when MasterCard suspended acceptance.
+    Marked enumeration=subset rather than complete because the
+    operator-public statement names "WikiLeaks" as the target without
+    enumerating downstream merchant-of-record entities (e.g. Sunshine
+    Press Productions ehf., DataCell ehf., the Wau-Holland-Stiftung
+    affiliate accounts) and because the broader WikiLeaks donations-
+    infrastructure umbrella is not exhaustively listed in the
+    statement. No on-chain addresses are enumerated (pre-Bitcoin
+    baseline: WikiLeaks did not begin accepting Bitcoin donations
+    until 2011-06). canonical_domains lists the operator-attacked
+    donation-acceptance domain (wikileaks.org); chains is empty
+    because no L1 chain primitive is engaged by a card-network
+    operator policy change in 2010.
+  protocol: null
+  actor_type: card_network_payment_operator
+  actor_name: MasterCard Worldwide
+  chains: []
+  canonical_domains:
+    - wikileaks.org
+
+jurisdiction:
+  - US
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The MasterCard processing suspension is an operator-policy
+      action at the card-network rail. It does not direct ISP-level
+      blocking, DNS interference, or BGP-layer manipulation against
+      wikileaks.org reachability. The contemporaneous DNS-resolver
+      termination of wikileaks.org by EveryDNS on 2010-12-02 is a
+      separate event (sibling case in the same blockade cluster) and
+      is not double-counted here. not_applicable on
+      construct-out-of-scope grounds for the trigger.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Pre-Bitcoin baseline. Bitcoin mainnet launched 2009-01-03 but
+      WikiLeaks did not begin accepting Bitcoin donations until
+      2011-06; in 2010-12 there is no chain-consensus primitive that
+      a card-network operator-policy change could engage.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Pre-Bitcoin baseline (2010-12). The L3 RPC / public-RPC
+      compliance substrate that this dataset measures (Flashbots
+      Protect, MEV-Blocker, Infura/Alchemy compliance filters)
+      post-dates this event by ≥ 8 years. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The MasterCard suspension did not require takedown of the
+      WikiLeaks frontend or geofencing of any visitor cohort at the
+      public-web layer. The contemporaneous wikileaks.org L4 /
+      infrastructure pressures (EveryDNS DNS-service termination
+      2010-12-02, Amazon AWS hosting eviction 2010-12-01) are
+      separate sibling events; no L4 frontend diff is reconstructed
+      for the MasterCard row.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Pre-Bitcoin baseline for WikiLeaks donations. No stablecoin
+      issuer-side blacklist / freeze admin path is engaged by a
+      2010-12 card-network operator-policy change. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - mastercard_card_network_wikileaks_donation_processing
+    note: |
+      Load-bearing layer for this event: an operator-policy change at
+      a card-network payment rail. MasterCard Worldwide suspended
+      acceptance of MasterCard-branded card donations to WikiLeaks
+      effective 2010-12-06, severing the credit/debit-card donation
+      channel that had been routed through the DataCell ehf merchant
+      gateway in Iceland. This is treated as the offramp_cex layer
+      analogue for the pre-Bitcoin baseline: a centralized payment
+      operator unilaterally terminating the off-ramp / on-ramp
+      surface used to fund a target entity. Attached below as
+      observation_kind=observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: payment_operator:mastercard_worldwide
+    event: mastercard_suspended_card_network_processing_of_wikileaks_donations
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2010-12-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.mastercard.com/
+        wayback: https://web.archive.org/web/2010/https://www.mastercard.com/
+        evidence_use: contextual_unarchived
+        note: |
+          MasterCard Worldwide spokesman Chris Monteiro statement,
+          delivered to press 2010-12-06: "MasterCard is in the
+          process of working to suspend the acceptance of MasterCard
+          cards on WikiLeaks until the situation is resolved …
+          MasterCard rules prohibit customers from directly or
+          indirectly engaging in or facilitating any action that is
+          illegal." attribution=direct because the operator itself
+          declares the policy change; the statement is the operative
+          act of severance. The MasterCard newsroom has no
+          contemporaneous standalone press release, so the operator-
+          domain root is used as the canonical operator anchor.
+          Marked evidence_use=contextual_unarchived because the
+          spokesman quotation surface was not pinned to a specific
+          Wayback snapshot or body_hash+body_path during this
+          authoring pass.
+      - type: supporting_journalism
+        url: https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm
+        wayback: https://web.archive.org/web/2010/https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm
+        evidence_use: contextual_unarchived
+        note: |
+          CNN Money 2010-12-08 carries the MasterCard spokesman
+          statement and reports the operational effect (acceptance
+          suspended; mastercard.com itself subsequently DDoSed by
+          Operation Payback on 2010-12-08 in retaliation). Used as
+          contemporaneous third-party corroboration of the operator
+          statement. Marked evidence_use=contextual_unarchived
+          pending Wayback re-pin and body_hash capture during human
+          audit.
+      - type: supporting_journalism
+        url: https://www.france24.com/en/20101209-hackers-attack-mastercard-visa-support-wikileaks
+        wayback: https://web.archive.org/web/2010/https://www.france24.com/en/20101209-hackers-attack-mastercard-visa-support-wikileaks
+        evidence_use: contextual_unarchived
+        note: |
+          France 24 2010-12-09 reporting that cross-references the
+          MasterCard processing suspension and the Visa Europe leg
+          (sibling event wikileaks-visa-europe-suspension-2010-12)
+          and frames the Operation Payback DDoS as third-party
+          retaliation against the card-network operators. Marked
+          evidence_use=contextual_unarchived pending Wayback re-pin
+          and body_hash capture during human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase E pre-Bitcoin
+  baseline discovery pass per
+  sources/pre_bitcoin_baseline_2008_2012/triage_manifest.json
+  candidate `wikileaks-mastercard-suspension-2010-12`): drafted by
+  LLM agent without personally pinning Wayback snapshots or
+  computing body_hash artifacts for the MasterCard spokesman
+  statement surface or the CNN Money / France 24 coverage. status
+  remains `draft` and origin remains `agent_draft` per validator
+  rule (agent_draft is only valid at status=draft). Real release
+  requires (a) human audit to replace this DRYRUN marker, (b) a
+  pinned Wayback snapshot or local body_hash+body_path archive of
+  the MasterCard newsroom / spokesman-quotation surface as
+  circulated to press on 2010-12-06/07, and (c) Wayback re-pin of
+  the CNN Money and France 24 articles cited as supporting
+  journalism.
+
+  comparison shape: 1 observed_change layer (offramp_cex). L0 /
+  L1 / L3 / L4 / asset_onchain are all not_applicable. The
+  not_applicable codings are construct-grounded rather than
+  data-grounded: in 2010-12 WikiLeaks did not yet accept Bitcoin
+  donations (Bitcoin acceptance began 2011-06), so chain-consensus,
+  RPC-compliance, and stablecoin-issuer-freeze primitives have no
+  measured construct against which to record a change; the
+  contemporaneous L0 / L4 pressures on wikileaks.org (EveryDNS
+  termination 2010-12-02, Amazon AWS eviction 2010-12-01, Operation
+  Payback DDoS against mastercard.com 2010-12-08) are sibling
+  events or third-party reactions and are explicitly not
+  double-counted in the MasterCard row.
+
+  Discovery-only placement: this row is part of the 2008-2012
+  pre-Bitcoin baseline tier and is admitted to the discovery ledger
+  only. It is explicitly out of scope for the 2017+ comparable
+  denominator (per temporal_tier=discovery_only_2008_2012 +
+  analysis_use=discovery_ledger_only). The row documents the
+  card-network operator-policy mechanism of payment-rail
+  censorship as it appeared a year before Bitcoin emerged as a
+  donations-channel substitute — a foundational comparator for
+  later chain-censorship cascades but not itself a chain event.
+
+  Sibling-event cluster (the "WikiLeaks Banking Blockade"):
+  paypal-freeze-2010-12 (2010-12-04, PayPal AUP termination of the
+  Wau-Holland-Stiftung donations account), visa-europe-suspension
+  2010-12 (2010-12-07, Visa Europe via acquirer Teller / Korta
+  terminated DataCell ehf merchant agreement, the Visa leg of the
+  card-network blockade and the direct predicate of the later
+  DataCell v. Valitor Iceland District Court 2012-07 litigation),
+  bank-of-america-block-2010-12 (2010-12-18, sole US-domiciled
+  commercial bank action in the blockade), western-union-
+  interdiction-2010-12 (2010-12-21, WU added WikiLeaks to its
+  internal Interdiction List), postfinance-account-closure-2010-12
+  (2010-12-06, Swiss Post PostFinance closed the Julian Assange
+  Defence Fund account), and the downstream judicial endpoint
+  datacell-v-valitor-iceland-district-court-2012-07. MasterCard is
+  treated as one of the two card-network legs of the blockade
+  (companion to Visa Europe).
+
+  Third-party reaction note (NOT counted toward observations):
+  Operation Payback (Anonymous-affiliated DDoS coalition) launched
+  a coordinated DDoS attack against mastercard.com on 2010-12-08
+  in retaliation for the MasterCard processing suspension. This is
+  a third-party reaction with attribution=unknown to the MasterCard
+  trigger and is captured in `follow_on_reaction` semantics per
+  schema 0.2.0; it is not double-counted as a coverage_gap or
+  observed_change in this row. The Anonymous DDoS reaction
+  illustrates a cascade-shape secondary effect but is informational
+  only for this event's empirical_shape accounting.
+
+follow_on_reaction:
+  - kind: third_party_ddos_retaliation
+    actor: anonymous_operation_payback
+    timestamp: 2010-12-08T00:00:00Z
+    precision: day
+    target: mastercard.com
+    attribution: unknown
+    note: |
+      Operation Payback (Anonymous-affiliated DDoS coalition)
+      launched a coordinated distributed-denial-of-service attack
+      against mastercard.com on 2010-12-08 in retaliation for the
+      MasterCard processing suspension. Captured here as a
+      cross-event follow-on reaction with attribution=unknown
+      per reviewer Action 4 (schema 0.2.0). Does NOT count toward
+      this event's empirical_shape or admission_tier accounting;
+      tracked for cross-event-anchor purposes only.
+
+scoped_claim: |
+  "MasterCard Worldwide announced on 2010-12-06 that it was suspending
+  acceptance of MasterCard-branded cards for WikiLeaks donations on
+  the grounds that its rules prohibit customers from facilitating
+  illegal action, severing the card-network donation channel routed
+  through the DataCell ehf merchant gateway; the row is registered as
+  a single-layer offramp_cex operator-policy-change observation in
+  the discovery-only 2008-2012 tier and does not assert ISP-level
+  network blocking, L1 consensus engagement, RPC-compliance
+  filtering, asset-onchain freezing, or L4 frontend takedown by the
+  card-network operator."
+
+tags:
+  - corporate_payment_blockade
+  - card_network_operator_policy
+  - wikileaks_banking_blockade
+  - pre_bitcoin_baseline
+  - discovery_only
+  - operator_state_change
+  - offramp_cex_layer
+  - mastercard

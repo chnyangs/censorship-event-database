@@ -1,0 +1,280 @@
+id: wikileaks-postfinance-account-closure-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-paypal-freeze-2010-12
+  - wikileaks-mastercard-suspension-2010-12
+  - wikileaks-visa-europe-suspension-2010-12
+
+trigger:
+  type: corporate_policy_change
+  actor: SWISSPOST_POSTFINANCE_OPERATOR
+  timestamp: 2010-12-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html
+      wayback: https://web.archive.org/web/2010/https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html
+      evidence_use: contextual_unarchived
+      note: |
+        PostFinance (Swiss Post's retail-banking arm) press statement
+        dated 2010-12-06 announcing closure of the customer account held
+        in the name of "Assange Julian Paul, Geneve" — the account
+        WikiLeaks had publicly advertised as the destination for the
+        "Julian Assange and other WikiLeaks Staff Defence Fund." The
+        bank's stated rationale: the customer "provided false information
+        regarding his place of residence during the account opening
+        process" and could not produce proof of Swiss residency,
+        therefore did not meet PostFinance's customer-relationship
+        criteria. PostFinance added that there would be "no criminal
+        consequences" for the alleged residency misrepresentation,
+        signalling that the closure was a unilateral corporate
+        policy/diligence decision rather than a criminal-referral or
+        regulator-directed action. DRYRUN: wayback wildcard
+        (web/2010/) pointer in lieu of a pinned-timestamp snapshot;
+        evidence_use=contextual_unarchived because no body_hash+body_path
+        capture of the PostFinance media-archive page has been pinned
+        into sources/http_captures/ in this drafting session.
+    - type: supporting_journalism
+      url: https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question
+      wayback: https://web.archive.org/web/2010/https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question
+      evidence_use: contextual_unarchived
+      note: |
+        Bloomberg 2010-12-06 coverage ("WikiLeaks Founder's Swisspost
+        Account Closed on Residency Question") confirming the closure
+        date, the PostFinance "false residency information" rationale,
+        and the broader-blockade interpretation context. Independent
+        same-day pin on the day-level trigger timestamp.
+    - type: supporting_journalism
+      url: https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account
+      wayback: https://web.archive.org/web/2010/https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account
+      evidence_use: contextual_unarchived
+      note: |
+        Al Jazeera 2010-12-06 coverage independently reporting the
+        PostFinance closure of Assange's defence-fund account on
+        residency-verification grounds and situating the action within
+        the contemporaneous PayPal / MasterCard / Visa Europe blockade
+        cluster.
+    - type: supporting_journalism
+      url: https://www.france24.com/en/20101206-swiss-bank-closes-assange-account-accuses-lying-wikileaks-paypal-post
+      wayback: https://web.archive.org/web/2010/https://www.france24.com/en/20101206-swiss-bank-closes-assange-account-accuses-lying-wikileaks-paypal-post
+      evidence_use: contextual_unarchived
+      note: |
+        France 24 2010-12-06 coverage: "Swiss bank closes Assange's
+        account, accuses him of lying." Additional independent-pin same
+        day; names the WikiLeaks-advertised account ("Assange Julian
+        Paul, Geneve") and the PostFinance "false residence information"
+        statement.
+    - type: supporting_journalism
+      url: https://www.swissinfo.ch/eng/wikileaks-supporters-attack-postfinance-site/28971816
+      wayback: https://web.archive.org/web/2010/https://www.swissinfo.ch/eng/wikileaks-supporters-attack-postfinance-site/28971816
+      evidence_use: contextual_unarchived
+      note: |
+        SWI swissinfo.ch (Swiss public-broadcaster English service) 2010
+        coverage of the PostFinance closure and the same-day
+        Operation-Payback DDoS retaliation against postfinance.ch.
+        Swiss-jurisdiction-local journalism pin.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision (2010-12-06). PostFinance's same-day media
+        statement and the Bloomberg / Al Jazeera / France 24 / swissinfo
+        coverage cluster all pin the closure announcement and effective
+        date to 2010-12-06. AP-quoted PostFinance spokesman said the
+        account "was closed Monday afternoon" (2010-12-06 was a Monday).
+        No sub-day press-release timestamp survives in archived form.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Subset: the single PostFinance customer account registered as
+    "Assange Julian Paul, Geneve" — the account WikiLeaks had publicly
+    advertised on wikileaks.org as the donation destination for the
+    "Julian Assange and other WikiLeaks Staff Defence Fund." This is a
+    single named-account closure, not a class-wide WikiLeaks-supporter
+    PostFinance customer sweep. Other PostFinance customer relationships
+    held by WikiLeaks supporters or staff outside this named account are
+    not enumerated here (no contemporaneous evidence of class-wide
+    closure beyond the single defence-fund account).
+  entity: assange_julian_paul_postfinance_defence_fund_account
+  actor_type: bank_customer_account
+  actor_name: PostFinance customer account "Assange Julian Paul, Geneve" (Julian Assange / WikiLeaks Defence Fund)
+
+jurisdiction: [CH]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      This is a Swiss-bank customer-account closure event; no
+      domain-level / ISP-level reachability question is at issue for the
+      trigger action itself. (Operation Payback's same-day DDoS against
+      postfinance.ch is documented in the triage manifest as a
+      third-party retaliation, not part of this event's enumeration.)
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No L4 chain-frontend surface at issue: PostFinance's action is a
+      bank-account-relationship termination in Swiss fiat banking,
+      pre-dating the cryptocurrency-frontend layer in the dataset's
+      cascade model.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Swiss-bank account closure at the fiat-banking offramp layer:
+      PostFinance terminated the customer relationship for the
+      WikiLeaks-advertised defence-fund account, blocking the
+      Swiss-IBAN donation rail that WikiLeaks had been promoting on
+      wikileaks.org. Load-bearing observed_change attached below.
+      Replayable bank-side artifact pinning (account-status records,
+      pinned PostFinance media-archive snapshot) deferred to human
+      audit; trigger and effect are nonetheless directly attested in
+      the same-day PostFinance press statement and the Bloomberg / Al
+      Jazeera / France 24 / swissinfo coverage cluster.
+
+observations:
+  - layer: offramp_cex
+    actor: bank:postfinance_swiss_post
+    event: postfinance_closes_assange_wikileaks_defence_fund_account_citing_residency_verification_failure
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2010-12-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: CH
+    sources:
+      - type: primary_corporate
+        url: https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html
+        wayback: https://web.archive.org/web/2010/https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [CH]
+          providers: [postfinance]
+          time_window:
+            - 2010-12-06T00:00:00Z
+            - 2010-12-31T23:59:59Z
+        note: |
+          PostFinance same-day media statement is the corporate-statement
+          anchor for the closure: the bank itself announces termination
+          of the "Assange Julian Paul, Geneve" customer relationship on
+          stated grounds of false residency information / failure to
+          meet customer-relationship criteria. attribution=direct: the
+          observed change (account termination) is the action stated by
+          the actor itself in a primary-corporate communication. DRYRUN:
+          wayback wildcard pointer in lieu of pinned-timestamp snapshot.
+      - type: supporting_journalism
+        url: https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question
+        wayback: https://web.archive.org/web/2010/https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question
+        evidence_use: contextual_unarchived
+        note: |
+          Bloomberg same-day independent pin on the closure date, the
+          PostFinance rationale, and the broader-blockade interpretation.
+      - type: supporting_journalism
+        url: https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account
+        wayback: https://web.archive.org/web/2010/https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account
+        evidence_use: contextual_unarchived
+        note: |
+          Al Jazeera same-day independent pin situating the PostFinance
+          closure within the PayPal / MasterCard / Visa Europe blockade
+          cluster.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this drafting session). Authored by LLM
+  agent without personally verifying Wayback/body_hash; human review
+  required to elevate to admitted status.
+
+  Temporal tier: discovery_only_2008_2012 (analysis_use=
+  discovery_ledger_only — the controlled-vocab spelling of the
+  user-instruction's "discovery_only" shorthand). The event predates
+  the 2017+ comparable-analysis tier and the 2013+ historical-baseline
+  tier; it is admitted to the discovery ledger only, not to the
+  comparable-denominator corpus.
+
+  comparison shape: exactly 1 observed_change layer at offramp_cex
+  (load-bearing, attribution=direct, source-anchored on the PostFinance
+  same-day media statement plus same-day Bloomberg / Al Jazeera /
+  France 24 / swissinfo coverage). All other layers (l0_network,
+  l1_consensus, l3_rpc, l4_frontend, asset_onchain) are
+  not_applicable: this is a fiat-banking customer-account closure
+  pre-dating any chain-layer cascade surface in the dataset's model.
+
+  Sibling-event structure (the WikiLeaks 2010-12 corporate-financial
+  blockade cluster): this event is the only Swiss-state-postal-banking
+  leg of the blockade. Sibling enumeration (per triage manifest
+  sources/pre_bitcoin_baseline_2008_2012/triage_manifest.md):
+
+  1. **wikileaks-paypal-freeze-2010-12** (2010-12-04, P0,
+     PAYPAL_OPERATOR) — payment-processor leg; State-Department-cited
+     rationale (per PayPal VP Osama Bedier, LeWeb 2010-12-08).
+  2. **wikileaks-mastercard-suspension-2010-12** (2010-12-06, P0,
+     MASTERCARD_OPERATOR) — card-network leg; same-day as the present
+     PostFinance event.
+  3. **wikileaks-visa-europe-suspension-2010-12** (2010-12-07, P0,
+     VISA_EUROPE_OPERATOR) — Visa Europe / DataCell-Valitor leg.
+
+  Paper-relevant axis: PostFinance is the only European-state-postal-
+  banking leg of the WikiLeaks blockade. It is structurally distinct
+  from the US-card-network legs (MasterCard, Visa Europe) and the
+  US-payment-processor leg (PayPal) because (a) the rationale cited
+  was not a State-Department referral or sanctions/AML hook but a
+  customer-residency-verification failure, and (b) PostFinance is a
+  Swiss-state-owned retail-banking entity, putting the closure
+  squarely within Swiss-jurisdiction corporate-policy authority rather
+  than US-jurisdiction processor authority. Useful pre-Bitcoin
+  baseline precedent for later European-jurisdiction bank-account
+  closures of crypto-adjacent customers under "due diligence" framings.
+
+  DRYRUN caveats: all citations carry wayback wildcard pointers and
+  evidence_use=contextual_unarchived because no body_hash+body_path
+  captures have been pinned in this drafting session. For non-DRYRUN
+  release, capture body_hash + body_path for: (1) the PostFinance
+  2010-12-06 media-archive page, (2) the Bloomberg 2010-12-06 article,
+  (3) the Al Jazeera 2010-12-06 article, (4) the France 24 2010-12-06
+  article, (5) the swissinfo.ch PostFinance-DDoS coverage. Marked
+  evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+scoped_claim: |
+  "On 2010-12-06, PostFinance (Swiss Post's retail-banking arm)
+  terminated the customer account registered as 'Assange Julian Paul,
+  Geneve' — the account WikiLeaks had publicly advertised as the
+  destination for the 'Julian Assange and other WikiLeaks Staff
+  Defence Fund' — citing residency-verification failure under
+  customer-relationship criteria. One observed_change at offramp_cex
+  (load-bearing, attribution=direct, anchored on the PostFinance
+  same-day media statement plus same-day Bloomberg / Al Jazeera /
+  France 24 / swissinfo coverage). Discovery-ledger-only per
+  temporal_tier=discovery_only_2008_2012."
+
+tags:
+  - corporate_policy_change
+  - wikileaks
+  - assange
+  - postfinance
+  - swiss_post
+  - financial_blockade
+  - offramp_cex
+  - bank_account_closure
+  - swiss_banking
+  - s5_corporate
+  - discovery_only_2008_2012
+  - dryrun_2026_05_16

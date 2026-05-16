@@ -1,0 +1,401 @@
+id: wikileaks-visa-europe-suspension-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-paypal-freeze-2010-12
+  - wikileaks-mastercard-suspension-2010-12
+  - datacell-v-valitor-iceland-district-court-2012-07
+
+trigger:
+  type: corporate_policy_change
+  actor: VISA_EUROPE_OPERATOR
+  timestamp: 2010-12-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
+      wayback: https://web.archive.org/web/2010/https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase E S5
+        corporate-card-network discovery; lean run): authored by LLM
+        agent without personally verifying Wayback/body_hash;
+        origin=agent_draft and status=draft pending human review.
+        Real release must replace this DRYRUN marker with a
+        human-verified audit after pinning real archive anchors.
+
+        Visa Europe press statement of 2010-12-07 announcing the
+        suspension of WikiLeaks-related card donations pending an
+        investigation of whether the WikiLeaks website
+        "contravenes Visa operating rules". The statement is the
+        canonical corporate-statement anchor for the card-network
+        side of the WikiLeaks 2010-12 financial blockade. The
+        downstream operational effect was the termination, on
+        2010-12-07, of the DataCell ehf merchant agreement carried
+        by Visa Europe's Iceland-territory acquirer Teller A/S
+        (Danish acquirer, agent Korta in Iceland; Teller was the
+        Visa-licensed processor for DataCell's payment gateway under
+        a services agreement dated 2010-10-18). The Visa-Iceland
+        processor Valitor hf only entered the picture later: in
+        June 2011 DataCell signed a fresh acquirer agreement with
+        Valitor, briefly reopened the gateway, and Valitor
+        terminated again — that termination is the substantive
+        trigger of the 2012 Reykjavík District Court case
+        (E-561/2012, datacell-v-valitor-iceland-district-court-
+        2012-07). DRYRUN: pinned Wayback timestamp and body_hash
+        capture for the visaeurope.com PDF deferred to human audit.
+    - type: supporting_journalism
+      url: https://www.reuters.com/article/idUSTRE6B65T420101207
+      wayback: https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6B65T420101207
+      evidence_use: contextual_unarchived
+      note: |
+        Reuters dispatch of 2010-12-07 reporting Visa Europe's
+        suspension of WikiLeaks donations pending investigation,
+        and the corresponding cutoff of donations routed through
+        DataCell ehf via the Visa card network. Independent
+        contemporaneous journalism corroborating the corporate
+        statement. DRYRUN: Wayback anchor unverified.
+    - type: supporting_journalism
+      url: https://www.bbc.co.uk/news/world-us-canada-11935539
+      wayback: https://web.archive.org/web/2010/https://www.bbc.co.uk/news/world-us-canada-11935539
+      evidence_use: contextual_unarchived
+      note: |
+        BBC News (2010-12-07/08) "Wikileaks: Visa, Mastercard move
+        to block payments" — independent contemporaneous coverage
+        placing the Visa Europe action at 2010-12-07 alongside
+        MasterCard Europe and against the backdrop of the
+        PayPal freeze (2010-12-03/04) and the post-2010-11-28
+        Cablegate publication. DRYRUN: Wayback anchor unverified.
+    - type: supporting_journalism
+      url: https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back
+      wayback: https://web.archive.org/web/2010/https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back
+      evidence_use: contextual_unarchived
+      note: |
+        The Guardian (2010-12-07) coverage of the Visa Europe and
+        MasterCard Europe card-network suspensions targeting
+        WikiLeaks donations via DataCell. Names the Iceland-based
+        acquirer relationship and the Cablegate context. DRYRUN:
+        Wayback anchor unverified.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision. The Visa Europe press statement and
+        the contemporaneous Reuters / BBC / Guardian reports place
+        the suspension at 2010-12-07. The press statement itself
+        does not publish an intra-day timestamp, and the downstream
+        Teller-side termination of the DataCell merchant agreement
+        is recorded at day-level in DataCell's later EU competition
+        complaint and the 2012 court filings.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: DataCell ehf, the Iceland-based payment
+    services company processing card donations to WikiLeaks under
+    a 2010-10-18 services agreement with Teller A/S (Danish
+    Visa-licensed acquirer, agent Korta in Iceland). The Visa
+    Europe announcement names "WikiLeaks" as the subject of the
+    suspension; the merchant agreement actually terminated on
+    2010-12-07 was DataCell's, because DataCell — not WikiLeaks
+    itself — held the card-network merchant relationship. The
+    suspension is scoped to the Visa Europe operating territory
+    (EU/EEA + EFTA) via the Teller-Korta acquirer chain; Visa Inc
+    (US territory) is a separate corporate entity not the actor
+    of this event row. enumeration=subset because the suspension
+    affects this specific merchant relationship rather than a
+    broader Visa-wide WikiLeaks-class enumeration.
+  entity: DataCell_ehf
+  actor_type: payment_services_merchant
+  actor_name: DataCell ehf (Iceland-based card-donation processor for WikiLeaks)
+  chains: []
+  canonical_domains:
+    - wikileaks.org
+    - datacell.com
+
+jurisdiction:
+  - EU
+  - IS
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Visa Europe's card-network compliance action does not
+      implicate ISP-level domain blocking, DNS interference, or
+      network-layer action against wikileaks.org or datacell.com.
+      not_applicable on construct-not-engaged grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The Ethereum Merge / PBS relay-filter primitive that the L1
+      consensus layer measures is ~12 years downstream of 2010-12
+      (2022-09-15). not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 RPC layer measures did not
+      exist in 2010-12; the Ethereum mainnet itself launched
+      2015-07-30. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Visa Europe's compliance action operates at the card-network
+      acquirer/issuer layer, not at the WikiLeaks website frontend
+      or any DataCell-hosted donation page. The DataCell donation
+      page remained reachable; the failure mode is downstream at
+      authorization. not_applicable on construct-not-engaged
+      grounds at the L4 frontend definition used here (DApp UI /
+      website operator overlay).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token-contract-level freeze or blacklist; the action is a
+      fiat card-network suspension. The Ethereum mainnet did not
+      exist; Bitcoin existed (since 2009-01-03) but no asset-issuer
+      admin path is engaged. not_applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [visa_europe_acquirer_chain, teller_korta_iceland]
+    denominator_artifact:
+      type: primary_corporate
+      url: https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
+      wayback: https://web.archive.org/web/2010/https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
+      scope_descriptor:
+        countries: [EU, IS]
+        providers: [visa_europe, teller_korta]
+        time_window:
+          - 2010-12-07T00:00:00Z
+          - 2011-06-30T00:00:00Z
+      note: |
+        Denominator anchor for the offramp_cex card-network
+        suspension: the Visa Europe corporate statement is the
+        canonical operator declaration. The cascade surface here
+        is the card-network acquirer/issuer rail (the closest
+        2010-era analogue of the offramp_cex layer for fiat-on/
+        off-ramping) — DataCell's ability to convert card-network
+        debits into fiat credits to WikiLeaks' account was
+        terminated when Teller (under Visa Europe instruction)
+        cut the merchant agreement. partially_measured because
+        the scope is bounded (Visa Europe territory, Teller-Korta
+        acquirer chain, ~6-month window before the brief Valitor
+        reopening of June 2011) but the public-record search is
+        not exhaustive of every EU/EEA Visa acquirer that may have
+        carried a WikiLeaks-class merchant. DRYRUN: Wayback anchor
+        unverified.
+    note: |
+      Load-bearing layer for this event. On 2010-12-07 Visa Europe
+      publicly suspended acceptance of WikiLeaks-class donations
+      pending an investigation, and Visa-licensed acquirer Teller
+      A/S (Danish; agent Korta in Iceland) terminated the DataCell
+      ehf merchant agreement the same day on Visa Europe's
+      instruction. The Visa Inc (US) side is a separate corporate
+      entity and is not the actor here. The card-network rail is
+      treated as the offramp_cex analogue for the 2010 fiat
+      payments cascade (no crypto-exchange existed at scale yet;
+      Mt. Gox launched 2010-07-17 but was not on the WikiLeaks
+      donation path).
+
+observations:
+  - layer: offramp_cex
+    actor: card_network:visa_europe_via_teller_korta
+    event: visa_europe_suspended_wikileaks_donations_and_teller_terminated_datacell_merchant_agreement
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2010-12-07T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
+        wayback: https://web.archive.org/web/2010/https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [EU, IS]
+          providers: [visa_europe, teller_korta]
+          time_window:
+            - 2010-12-07T00:00:00Z
+            - 2011-06-30T00:00:00Z
+        note: |
+          Visa Europe's own corporate statement of 2010-12-07
+          announcing the suspension of WikiLeaks-class donations
+          pending an investigation of whether the WikiLeaks
+          website contravenes Visa operating rules. The downstream
+          operational effect on the same day was Teller A/S
+          terminating the DataCell ehf merchant agreement under
+          Visa Europe instruction. observation_kind=observed_change
+          at offramp_cex (card-network acquirer rail).
+          attribution=direct because the source is the operator
+          itself naming the action. DRYRUN: pinned Wayback snapshot
+          and body_hash capture for the visaeurope.com PDF deferred
+          to human audit.
+      - type: supporting_journalism
+        url: https://www.reuters.com/article/idUSTRE6B65T420101207
+        wayback: https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6B65T420101207
+        evidence_use: contextual_unarchived
+        note: |
+          Reuters (2010-12-07) places the Visa Europe action at
+          this day and corroborates the cutoff of WikiLeaks
+          donations via the DataCell-Teller acquirer chain.
+          Independent contemporaneous journalism source. DRYRUN:
+          Wayback anchor unverified.
+      - type: supporting_journalism
+        url: https://www.bbc.co.uk/news/world-us-canada-11935539
+        wayback: https://web.archive.org/web/2010/https://www.bbc.co.uk/news/world-us-canada-11935539
+        evidence_use: contextual_unarchived
+        note: |
+          BBC (2010-12-07/08) "Wikileaks: Visa, Mastercard move
+          to block payments" — independent corroboration of the
+          Visa Europe card-network suspension placed at 2010-12-07
+          alongside MasterCard Europe. DRYRUN: Wayback anchor
+          unverified.
+      - type: supporting_journalism
+        url: https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back
+        wayback: https://web.archive.org/web/2010/https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back
+        evidence_use: contextual_unarchived
+        note: |
+          The Guardian (2010-12-07) confirms the Visa Europe
+          suspension and the DataCell-Teller-Korta acquirer chain
+          context. DRYRUN: Wayback anchor unverified.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase E S5
+  corporate-card-network discovery; lean run): authored by LLM
+  agent without personally verifying Wayback/body_hash;
+  origin=agent_draft and status=draft pending human review.
+  Real release must replace this DRYRUN marker with a
+  human-verified audit after pinning real archive anchors.
+
+  comparison — S5 corporate-policy card-network suspension by
+  Visa Europe (with downstream Teller A/S compliance terminating
+  the DataCell ehf merchant agreement carried via Korta in
+  Iceland), effective 2010-12-07. The Visa Europe statement is
+  the card-network sibling of the same-week PayPal account
+  freeze (related: wikileaks-paypal-freeze-2010-12) and the
+  MasterCard Europe suspension (related:
+  wikileaks-mastercard-suspension-2010-12), all converging in
+  the 2010-12 WikiLeaks financial blockade following the
+  Cablegate publication of 2010-11-28. The DataCell-Teller
+  termination on 2010-12-07 is the direct upstream trigger of
+  the 2012 Reykjavík District Court case E-561/2012 (related:
+  datacell-v-valitor-iceland-district-court-2012-07), although
+  the named defendant in that case is Valitor hf (which signed
+  a fresh acquirer agreement with DataCell in June 2011, briefly
+  reopened the gateway, then terminated again — that 2011
+  termination is the specific act litigated in 2012).
+
+  empirical_shape=comparison (1 observed_change layer:
+  offramp_cex with attribution=direct via the Visa Europe
+  corporate statement and Reuters/BBC/Guardian contemporaneous
+  journalism); admission_tier=empirical_case (1 strong-attrib
+  observed_change layer satisfies the ≥1 requirement). The
+  card-network rail is treated as the offramp_cex analogue for
+  the 2010 fiat-payments cascade.
+
+  Why discovery_only_2008_2012 / discovery_ledger_only:
+  2010-12 belongs to the pre-2013 discovery-only tier per
+  sampling/frame.yaml. analysis_use=discovery_ledger_only
+  excludes this row from both the historical-baseline and the
+  2017+ comparable-analysis denominators. The event is retained
+  as a discovery-ledger case-study anchor for the dataset's
+  origins of corporate-actor financial-infrastructure censorship.
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable:
+  the action is a card-network acquirer-rail suspension; it
+  does not engage ISP-level blocking, any L1 consensus or L3
+  RPC primitive (Ethereum mainnet launched 2015-07-30, MEV-Boost
+  launched 2022-09-15), any L4 frontend operator overlay (the
+  DataCell donation page itself remained reachable; the failure
+  was downstream at card authorization), or any asset-issuer
+  admin path (no stablecoin/token freeze surface engaged in
+  2010-12). The L0/L1/L3/L4/asset_onchain not_applicable
+  treatment matches the sibling 2010-12 PayPal account-freeze
+  event's expected coverage shape.
+
+  DRYRUN caveats: the Visa Europe press-statement PDF
+  (visaeurope.com), Reuters dispatch, BBC News article, and
+  Guardian article all carry 2010-calendar-folder Wayback
+  pointers rather than pinned snapshots; pinned snapshot
+  timestamps and body_hash captures are deferred to the
+  human-audit pass. For non-DRYRUN release, capture body_hash +
+  body_path for: (1) the visaeurope.com PDF as preserved in
+  archive.org; (2) the Reuters / BBC / Guardian permalinks;
+  optionally (3) DataCell's 2011-07-01 public statement and
+  the 2012-09-19 EU competition complaint anchor on
+  publicintelligence.net. Marked
+  evidence_use=contextual_unarchived on all citations to flag
+  the unarchived state per validator policy.
+
+scoped_claim: |
+  On 2010-12-07 Visa Europe publicly suspended acceptance of
+  WikiLeaks-related card donations pending an investigation of
+  whether the WikiLeaks website contravened Visa operating
+  rules, and Visa-licensed acquirer Teller A/S (Danish, with
+  agent Korta in Iceland) terminated the DataCell ehf merchant
+  agreement that had carried WikiLeaks donations under a
+  services agreement dated 2010-10-18. The cascade surface is
+  the card-network acquirer rail (offramp_cex layer analogue
+  for the 2010 fiat payments stack); attribution is direct via
+  Visa Europe's own corporate statement and corroborating
+  Reuters / BBC / Guardian contemporaneous journalism.
+
+scoped_knowledge: |
+  This event is one of the earliest documented cases in the
+  dataset of a non-state-actor corporate compliance decision
+  cutting financial-infrastructure access on the basis of a
+  publisher's content. Three structural features make it
+  paper-relevant despite the pre-comparable-corpus date:
+
+  (a) The action is voluntary corporate policy, not a US
+  government enforcement action. No OFAC SDN designation
+  named WikiLeaks; no DOJ indictment or seizure order was
+  outstanding against WikiLeaks at 2010-12-07. Visa Europe's
+  stated rationale — investigation of whether the WikiLeaks
+  website "contravenes Visa operating rules" — is a
+  contractual / terms-of-service framing, not a legal-
+  compulsion framing.
+
+  (b) The action operates through a multi-tier acquirer chain:
+  Visa Europe (card network) → Teller A/S (Danish acquirer) →
+  Korta (Icelandic agent) → DataCell ehf (merchant). The
+  downstream merchant termination is the operational outcome,
+  but the upstream Visa Europe statement is what binds the
+  intermediate processors. The 2012 Reykjavík District Court
+  case is brought against Valitor hf, the post-Teller Iceland
+  processor, but the chain-of-causation reaches back to Visa
+  Europe's 2010-12-07 statement.
+
+  (c) The 2010-12 blockade is the empirical seed of the later
+  EU-competition-complaint thread (DataCell's 2011-08 / 2012-09
+  Article 101 / 102 EU competition complaint, the European
+  Parliament question E-007868/2013, and the resulting
+  Reykjavík District Court ruling in DataCell's favour on
+  2012-07-12). Treated as discovery_ledger_only because it
+  pre-dates the comparable-analysis corpus, but it is a
+  foundational anchor for the dataset's S5 corporate stratum.
+
+tags:
+  - corporate_policy_change
+  - card_network_suspension
+  - wikileaks
+  - visa_europe
+  - teller
+  - korta
+  - datacell
+  - financial_blockade
+  - offramp_cex
+  - discovery_ledger
+  - 2010_12_wikileaks_blockade

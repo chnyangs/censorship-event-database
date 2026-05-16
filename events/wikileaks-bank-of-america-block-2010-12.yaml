@@ -1,0 +1,398 @@
+# DRYRUN preamble (Phase E):
+# - status: draft (origin: agent_draft, no human audit yet)
+# - research_stratum: S5_corporate (Bank of America acted on its own
+#   stated internal payments policy; not a US-government order)
+# - empirical_shape: comparison (1 observed_change layer anchored at
+#   offramp_cex: US-bank refusal to process any WikiLeaks-bound payments)
+# - admission_tier: empirical_case (pending human audit)
+# - temporal_tier: discovery_only_2008_2012; analysis_use: discovery_ledger_only
+#   (event is pre-Bitcoin-cascade-substrate; payment-rail-WikiLeaks nexus
+#   per Phase E.1 scoping rule #2; excluded from the 2017+ comparable corpus)
+# - trigger.type: corporate_policy_change
+# - target.kind: entity; target.enumeration: subset (target is WikiLeaks
+#   and its donation-collection vehicles; subset because BofA stated its
+#   refusal in terms of "reasonable belief that WikiLeaks may be engaged
+#   in activities" rather than enumerating specific named accounts)
+# - jurisdiction: [US] (Bank of America is a US federally chartered bank)
+# - related_events: paypal/visa-europe/mastercard/western-union 2010-12
+#   sibling-event banking-blockade cluster
+# - evidence_use: contextual_unarchived (sources cited but not Wayback-pinned
+#   in this draft; human audit will harden into admission_anchor evidence)
+# - L0/L1/L3/L4/asset_onchain not_applicable: 2010-12 predates the entire
+#   Ethereum-era cascade substrate; Bitcoin existed (genesis 2009-01-03)
+#   but no L1/L3 PBS measurement primitive, no Ethereum frontends, and no
+#   asset-issuer freeze admin path. The cascade surface is exclusively at
+#   offramp_cex (US-bank-rail refusal).
+
+id: wikileaks-bank-of-america-block-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-paypal-freeze-2010-12
+  - wikileaks-visa-europe-suspension-2010-12
+  - wikileaks-mastercard-suspension-2010-12
+  - wikileaks-western-union-interdiction-2010-12
+
+trigger:
+  type: corporate_policy_change
+  actor: BANK_OF_AMERICA_OPERATOR
+  timestamp: 2010-12-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://newsroom.bankofamerica.com/
+      wayback: https://web.archive.org/web/2010/https://newsroom.bankofamerica.com/
+      evidence_use: contextual_unarchived
+      note: |
+        Bank of America public statement of 2010-12-18 announcing that
+        the bank "will not process any transactions of any type that we
+        have reason to believe are intended for WikiLeaks". The
+        statement is widely quoted in contemporaneous wire copy
+        (Reuters / AP) and direct corporate-newsroom dissemination
+        was the bofa.com / newsroom.bankofamerica.com surface. The
+        canonical sentence reads (as reported by Reuters and quoted in
+        downstream coverage): "This decision is based upon our
+        reasonable belief that WikiLeaks may be engaged in activities
+        that are, among other things, inconsistent with our internal
+        policies for processing payments." Specific Wayback snapshot
+        pin requires re-pinning in human audit; the bofa.com newsroom
+        domain anchor is contextual_unarchived in this authoring pass.
+    - type: supporting_journalism
+      url: https://www.reuters.com/article/idUSTRE6BH0NQ/
+      wayback: https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6BH0NQ/
+      evidence_use: contextual_unarchived
+      note: |
+        Reuters wire copy of 2010-12-18 carrying the canonical Bank of
+        America statement quote on the refusal to process any
+        WikiLeaks-intended transactions. This wire is the originating
+        public source of the "inconsistent with our internal policies"
+        sentence reproduced across all downstream coverage (NBC News,
+        CBS News, Al Jazeera, France 24, Huffington Post, 6abc). URL
+        is the standard Reuters idUS identifier shape; specific
+        Wayback snapshot timestamp requires re-pinning in human audit.
+    - type: supporting_journalism
+      url: https://www.nbcnews.com/id/wbna40728284
+      wayback: https://web.archive.org/web/2010/https://www.nbcnews.com/id/wbna40728284
+      evidence_use: contextual_unarchived
+      note: |
+        NBC News / msnbc.com 2010-12-18 syndication titled "Bank of
+        America cuts off WikiLeaks payments". Carries the canonical
+        Bank of America statement quote and frames the announcement
+        as the addition of Bank of America to the existing
+        PayPal/Mastercard/Visa Europe/Western Union banking-blockade
+        cluster against WikiLeaks. Specific Wayback snapshot
+        timestamp requires re-pinning in human audit.
+    - type: supporting_journalism
+      url: https://www.aljazeera.com/economy/2010/12/18/bank-of-america-cuts-off-wikileaks
+      wayback: https://web.archive.org/web/2010/https://www.aljazeera.com/economy/2010/12/18/bank-of-america-cuts-off-wikileaks
+      evidence_use: contextual_unarchived
+      note: |
+        Al Jazeera 2010-12-18 article titled "Bank of America cuts
+        off WikiLeaks" reporting the same-day announcement with the
+        canonical statement quote and cross-referencing the prior
+        actions by PayPal, Mastercard, and Visa Europe. Specific
+        Wayback snapshot timestamp requires re-pinning in human audit.
+    - type: supporting_journalism
+      url: https://www.cbsnews.com/news/bank-of-america-to-block-donations-to-wikileaks/
+      wayback: https://web.archive.org/web/2010/https://www.cbsnews.com/news/bank-of-america-to-block-donations-to-wikileaks/
+      evidence_use: contextual_unarchived
+      note: |
+        CBS News 2010-12-18 article "Bank of America to Block
+        Donations to WikiLeaks" reproducing the canonical bank
+        statement and confirming the corporate-policy framing.
+        Specific Wayback snapshot timestamp requires re-pinning in
+        human audit.
+    - type: supporting_community
+      url: https://wikileaks.org/Banking-Blockade.html
+      wayback: https://web.archive.org/web/2011/https://wikileaks.org/Banking-Blockade.html
+      evidence_use: contextual_unarchived
+      note: |
+        WikiLeaks "Banking Blockade" page listing the December 2010
+        refusals by Bank of America, PayPal, Mastercard, Visa Europe,
+        and Western Union as the constituent actions of the
+        coordinated "banking blockade" against WikiLeaks. Self-
+        reported by the target organization but corroborated by the
+        individual primary-corporate / supporting-journalism sources
+        for each constituent action. Specific Wayback snapshot
+        timestamp requires re-pinning in human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Bank of America public statement carries a Saturday 2010-12-18
+        date in all wire copy (Reuters, AP, NBC, CBS, Al Jazeera,
+        France 24). Day-level precision is appropriate because the
+        bank did not publish intra-day issuance timing for this
+        corporate-policy statement; Reuters wire timestamp is
+        2010-12-18 (intra-day not preserved in the visible record).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is WikiLeaks and its donation-collection vehicles, i.e.
+    any payee or transaction that Bank of America has "reason to
+    believe" is intended for WikiLeaks. enumeration=subset because
+    the bank's stated criterion is belief-based rather than an
+    enumerated account list; no specific WikiLeaks-controlled BofA
+    account number is named in the public statement. No specific
+    domain anchor is identified for the target, so canonical_domains
+    is empty.
+  protocol: null
+  actor_type: publisher_donation_recipient
+  actor_name: WikiLeaks
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2010-12-18 Bank of America statement does not direct
+      ISP-level domain blocking, DNS interference, or network-layer
+      action. The cascade surface is the US-bank payment rail, not
+      the network layer.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      L1 PBS relay-filter substrate did not exist in 2010-12.
+      Ethereum itself launched 2015-07-30 and the Merge / MEV-Boost
+      relay surface arrived 2022-09-15. not_applicable on construct-
+      did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate did not exist in 2010. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Bank of America statement is a US-bank-rail refusal; it
+      does not require frontend changes at any crypto exchange or
+      service. No L4 frontend surface is in scope. Bitcoin's first
+      block was 2009-01-03 and there were no general-purpose smart-
+      contract dApp frontends in 2010-12.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin-issuer admin path or asset-level freeze primitive
+      existed in 2010-12; USDT was first issued ~2014-10 and
+      issuer-side freeze admin actions arose later. not_applicable
+      on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Bank of America publicly stated its refusal to process any
+      transactions believed to be intended for WikiLeaks. This is a
+      direct off-ramp-rail observation: the bank is the off-ramp
+      rail for WikiLeaks USD donations. The coverage scope is the
+      public corporate statement of 2010-12-18 as carried by Reuters
+      wire copy and reproduced across NBC, CBS, Al Jazeera, France 24,
+      and Huffington Post syndications, plus the WikiLeaks Banking
+      Blockade page. Measured because the corporate statement
+      itself is the observable; no underlying transaction-level
+      enumeration is required for the policy-change observation.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        providers:
+          - bank_of_america
+        countries: [US]
+        time_window:
+          - 2010-12-18T00:00:00Z
+          - 2011-12-18T00:00:00Z
+      note: |
+        Coverage scope: Bank of America's stated payment-policy
+        posture toward WikiLeaks-intended transactions, in force from
+        the 2010-12-18 announcement onward and never formally
+        rescinded in the public record during the 12 months following.
+        Human audit will pin the bofa.com / newsroom.bankofamerica.com
+        and Reuters wire snapshots as the replayable denominator
+        anchor for this off-ramp-rail observation.
+
+observations:
+  - layer: offramp_cex
+    actor: bank:bank_of_america
+    event: bofa_refuses_to_process_wikileaks_intended_transactions
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2010-12-18T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_corporate
+        url: https://newsroom.bankofamerica.com/
+        wayback: https://web.archive.org/web/2010/https://newsroom.bankofamerica.com/
+        evidence_use: contextual_unarchived
+        note: |
+          Bank of America public statement of 2010-12-18 is the
+          direct off-ramp-rail observation: the bank declares it
+          "will not process any transactions of any type that we
+          have reason to believe are intended for WikiLeaks". The
+          stated rationale is the bank's "reasonable belief that
+          WikiLeaks may be engaged in activities that are, among
+          other things, inconsistent with our internal policies for
+          processing payments". attribution=direct because the
+          corporate statement is itself the policy action; Bank of
+          America is the US-bank rail and its statement is the
+          off-ramp-rail closure for WikiLeaks USD donations.
+          Specific Wayback snapshot timestamp requires re-pinning
+          in human audit.
+      - type: supporting_journalism
+        url: https://www.reuters.com/article/idUSTRE6BH0NQ/
+        wayback: https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6BH0NQ/
+        evidence_use: contextual_unarchived
+        note: |
+          Reuters wire copy of 2010-12-18 carrying the canonical
+          Bank of America statement quote. Reuters is the
+          originating public source of the "inconsistent with our
+          internal policies" sentence reproduced across downstream
+          coverage. Specific Wayback snapshot timestamp requires
+          re-pinning in human audit.
+      - type: supporting_journalism
+        url: https://www.nbcnews.com/id/wbna40728284
+        wayback: https://web.archive.org/web/2010/https://www.nbcnews.com/id/wbna40728284
+        evidence_use: contextual_unarchived
+        note: |
+          NBC News 2010-12-18 syndication "Bank of America cuts
+          off WikiLeaks payments" reproducing the canonical
+          corporate statement. Cross-confirms the same-day
+          announcement. Specific Wayback snapshot timestamp
+          requires re-pinning in human audit.
+      - type: supporting_community
+        url: https://wikileaks.org/Banking-Blockade.html
+        wayback: https://web.archive.org/web/2011/https://wikileaks.org/Banking-Blockade.html
+        evidence_use: contextual_unarchived
+        note: |
+          WikiLeaks Banking Blockade page listing Bank of America's
+          2010-12-18 refusal as the fifth constituent action of the
+          coordinated December 2010 "banking blockade" alongside
+          PayPal, Mastercard, Visa Europe, and Western Union.
+          Target self-report; corroborated by the corporate /
+          journalism anchors above. Specific Wayback snapshot
+          timestamp requires re-pinning in human audit.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — agent_draft 2026-05-16. Phase E
+  discovery-only contextual case for the 2010-12-18 Bank of America
+  public statement announcing the bank's refusal to process any
+  transactions believed to be intended for WikiLeaks. Authored at
+  status=draft pending human audit of (i) the bofa.com /
+  newsroom.bankofamerica.com URL reachability and Wayback snapshot
+  pinning, (ii) the Reuters idUS wire snapshot pin, and (iii) any
+  bofa.com IR-page or press-release archive containing the original
+  statement that may exist but was not located in this authoring
+  pass.
+
+  Significance: Bank of America's 2010-12-18 announcement was the
+  fifth and final constituent action of the December 2010
+  "banking blockade" against WikiLeaks (after PayPal 2010-12-04,
+  PostFinance 2010-12-06, Mastercard 2010-12-06/07, Visa Europe
+  2010-12-07, Western Union 2010-12-18, and Bank of America 2010-12-18).
+  It is the only US-bank rail action in the cluster; the others are
+  payment-network (Mastercard / Visa) or money-transmitter (Western
+  Union / PayPal) actors. The Bank of America action is the
+  cleanest example in the cluster of a corporate-policy-change
+  trigger phrased as an internal-policy interpretation rather than
+  a US-government-directed compliance action. Phase E.1 scoping
+  rule #2 (payment-rail-Bitcoin nexus) admits this event because
+  the same banking-blockade dynamic became the proximate motivator
+  for early-Bitcoin donation-routing experiments (Bitcoin
+  donations to WikiLeaks were first publicly proposed in late
+  2010 and became material in 2011).
+
+  Why discovery_only_2008_2012 / discovery_ledger_only: the event
+  falls in the 2008-2012 pre-Bitcoin-cascade-substrate temporal
+  tier per sampling/frame.yaml. analysis_use=discovery_ledger_only
+  excludes this row from the 2017+ comparable-analysis denominator.
+  The event is retained as contextual discovery-ledger material
+  rather than as a denominator row because (a) it predates the
+  Ethereum-era cascade substrate and (b) the cascade surface is
+  exclusively at offramp_cex with no on-chain measurable receipt.
+
+  Why empirical_case rather than anchor_case: only 1 observed_change
+  layer is anchored (offramp_cex). anchor_case requires >=2
+  observed_change layers; the L0/L1/L3/L4/asset_onchain layers are
+  all not_applicable on construct-did-not-exist grounds, so the
+  event cannot reach anchor_case strength regardless of evidence
+  hardening. empirical_shape=comparison reflects the 1-observed-
+  change-layer count.
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: 2010-12 predates
+  the entire Ethereum-era cascade substrate. Bitcoin existed (genesis
+  2009-01-03) but had no measured exchange-side L4 frontend universe
+  in 2010-12, no L1 PBS relay primitive (Ethereum Merge 2022-09-15),
+  no L3 RPC-compliance primitive (Flashbots Protect 2022-11), and
+  no asset-issuer freeze admin path (USDT 2014-10 onward). The
+  cascade surface is exclusively at offramp_cex (US-bank-rail
+  refusal).
+
+  Recovery: no recovery row is authored in this pass. Bank of
+  America never formally rescinded the policy in the public record;
+  WikiLeaks's later donation infrastructure (Bitcoin donations from
+  2011-06, Wau Holland Foundation routing for fiat, plus subsequent
+  litigation including Datacell ehf. v. Visa Europe / Valitor in
+  Iceland) operated around the US-bank rail rather than restoring
+  it. A recovery event covering the eventual unfreezing of any
+  specific WikiLeaks-adjacent account by Bank of America would
+  require human-audit-grade evidence not located in this pass.
+
+scoped_claim: |
+  Bank of America's public statement of 2010-12-18 announcing that
+  the bank "will not process any transactions of any type that we
+  have reason to believe are intended for WikiLeaks", citing
+  internal-payment-policy interpretation regarding WikiLeaks
+  activities deemed "inconsistent with our internal policies for
+  processing payments", constitutes a discovery-ledger corporate-
+  policy-change event documenting US-bank-rail off-ramp closure
+  against WikiLeaks. Fifth and final constituent action of the
+  December 2010 "banking blockade" cluster.
+
+scoped_knowledge: |
+  This event is the US-bank-rail constituent of the December 2010
+  "banking blockade" cluster against WikiLeaks. The cluster is
+  significant in the broader censorship-event-database arc because
+  it is the canonical pre-Bitcoin demonstration of coordinated
+  off-ramp closure against a publisher target by private-sector
+  payment infrastructure, acting on stated internal-policy grounds
+  rather than under formal government order. The cluster is widely
+  cited as a proximate motivator for early Bitcoin adoption among
+  publishers and as a precedent for subsequent banking-blockade-
+  style actions (e.g. Operation Choke Point 2013-2017 against
+  lawful-but-disfavored industries; later crypto-rail refusals).
+  The Bank of America action in particular is the cleanest example
+  in the cluster of a corporate-policy-change trigger phrased
+  purely as internal-policy interpretation. The off-ramp_cex
+  observed_change is the single anchored cascade-surface row;
+  L0/L1/L3/L4/asset_onchain are all not_applicable on construct-
+  did-not-exist grounds because 2010-12 predates the entire
+  Ethereum-era cascade substrate. Sibling events
+  wikileaks-paypal-freeze-2010-12, wikileaks-visa-europe-suspension-
+  2010-12, wikileaks-mastercard-suspension-2010-12, and
+  wikileaks-western-union-interdiction-2010-12 carry the parallel
+  payment-network and money-transmitter actions; together the five
+  events form the complete December 2010 banking-blockade cluster.
+
+tags:
+  - corporate_policy_change
+  - bank_of_america
+  - wikileaks
+  - banking_blockade
+  - offramp_cex
+  - us_bank_rail
+  - discovery_ledger
+  - pre_bitcoin_cascade_substrate

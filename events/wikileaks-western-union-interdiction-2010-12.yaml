@@ -1,0 +1,338 @@
+id: wikileaks-western-union-interdiction-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - wikileaks-paypal-freeze-2010-12
+  - wikileaks-mastercard-suspension-2010-12
+  - wikileaks-visa-europe-suspension-2010-12
+  - wikileaks-bank-of-america-block-2010-12
+
+trigger:
+  type: corporate_policy_change
+  actor: WESTERN_UNION_OPERATOR
+  timestamp: 2010-12-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_community
+      url: https://wikileaks.org/Banking-Blockade.html
+      wayback: https://web.archive.org/web/2012/https://wikileaks.org/Banking-Blockade.html
+      evidence_use: contextual_unarchived
+      note: |
+        WikiLeaks "Banking Blockade" support-campaign page enumerates
+        the financial intermediaries that cut off WikiLeaks donation
+        rails in December 2010. The enumeration names Bank of America,
+        VISA, MasterCard, PayPal, and Western Union, and dates the
+        Western Union action to 2010-12-21 as an addition of WikiLeaks
+        to a Western Union "Interdiction List". This is a counter-
+        party statement issued by WikiLeaks (the donee), not a
+        corporate press release issued by Western Union itself, and
+        no primary Western Union corporate disclosure of the action
+        was located in this authoring pass. Marked
+        evidence_use=contextual_unarchived because (a) the body_hash+
+        body_path archival capture was not pinned in this authoring
+        pass and (b) the source is the affected party rather than the
+        acting party. The citation is the strongest publicly accessible
+        anchor for the 2010-12-21 date and is retained here as the
+        coverage_gap anchor for the WU leg of the blockade. Provisional
+        year-prefix wayback anchor pending re-pin.
+    - type: supporting_journalism
+      url: https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business
+      wayback: https://web.archive.org/web/2012/https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business
+      evidence_use: contextual_unarchived
+      note: |
+        Christian Science Monitor wire piece dated 2011-10-24
+        summarising the WikiLeaks financial blockade and the
+        enumerated intermediary set (Bank of America, VISA,
+        MasterCard, PayPal, Western Union). The piece references the
+        2010-12 trigger window and the ~95%-revenue-loss claim
+        WikiLeaks made at the time. Used here as a contemporaneous
+        secondary anchor for the WU leg of the blockade, since no
+        primary Western Union corporate disclosure was located in
+        this authoring pass. evidence_use=contextual_unarchived;
+        Wayback snapshot pinning required in human-audit pass.
+  timestamp_sources:
+    - type: supporting_community
+      note: |
+        Day-level precision per the 2010-12-21 date stated on the
+        WikiLeaks Banking Blockade page. No intra-day timestamp is
+        published in any source located in this authoring pass, and
+        no Western Union primary corporate disclosure of the
+        Interdiction-List addition was located.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the WikiLeaks donation-receipt funnel via the Western
+    Union money-transfer rail. WikiLeaks (and affiliated legal-
+    defense / publishing entities such as the Wau Holland Foundation
+    that channelled donations to WikiLeaks in 2010-2011) is the
+    single named donee whose Western Union receipt capability was
+    cut. enumeration=subset because the public record does not
+    enumerate the specific WikiLeaks-affiliated receiving accounts
+    or counterparties named on the Western Union "Interdiction List";
+    only the donee-side identity (WikiLeaks) is identified.
+  actor_name: WikiLeaks (donation funnel)
+  actor_type: publishing_organization
+  canonical_domains:
+    - wikileaks.org
+
+jurisdiction:
+  - US
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2010-12-21 Western Union Interdiction-List addition is a
+      money-transfer-rail receipt block at the corporate-policy
+      layer. It does not direct ISP-level domain blocking or DNS
+      interference against wikileaks.org. not_applicable on
+      construct-out-of-scope grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Ethereum proof-of-work consensus in 2010-12 (and the post-Merge
+      PBS relay-filter primitive that the L1 layer was constructed to
+      measure) did not exist. Bitcoin existed but has no protocol-
+      level relay-filter primitive. not_applicable on construct-did-
+      not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2010 (Flashbots Protect launched 2022-11; MEV-Blocker
+      launched 2023-03-27). not_applicable on construct-did-not-
+      exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Western Union Interdiction-List action is a back-end
+      money-transfer-receipt-eligibility decision and does not
+      require frontend takedown or geo-blocking of wikileaks.org.
+      not_applicable on construct-out-of-scope grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Stablecoin issuer admin-key freeze primitives did not exist in
+      2010 (USDT first issued ~2014-10); WikiLeaks first accepted
+      bitcoin donations in 2011-06, ~6 months after the WU action.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - western_union_money_transfer_rail
+    note: |
+      The substantive corporate-policy effect of the 2010-12-21
+      Western Union Interdiction-List addition is to cut the
+      WikiLeaks donation-receipt rail through Western Union money
+      transfers. However, no primary Western Union corporate
+      disclosure of the action was located in this authoring pass;
+      the action is documented via the counterparty (WikiLeaks
+      Banking Blockade page) and secondary journalism (CSMonitor
+      2011-10-24). Marked not_measured because the cascade is
+      attested via counterparty statement rather than primary
+      acting-party disclosure; the corresponding observation row
+      below records this as a coverage_gap with attribution=
+      unknown. This is the weakest-sourced leg of the WikiLeaks
+      December-2010 financial blockade; the PayPal, MasterCard,
+      VISA Europe, and Bank of America legs each carry primary
+      corporate disclosures, while the WU leg does not.
+
+observations:
+  - layer: offramp_cex
+    actor: western_union
+    event: wikileaks_added_to_western_union_interdiction_list
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2010-12-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_community
+        url: https://wikileaks.org/Banking-Blockade.html
+        wayback: https://web.archive.org/web/2012/https://wikileaks.org/Banking-Blockade.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - western_union
+          countries:
+            - US
+          time_window:
+            - 2010-12-21T00:00:00Z
+            - 2012-07-18T23:59:59Z
+        note: |
+          WikiLeaks Banking Blockade page is the strongest publicly
+          accessible anchor for the 2010-12-21 Western Union
+          Interdiction-List addition that this authoring pass located.
+          observation_kind=coverage_gap with attribution=unknown
+          honestly represents the absence of a primary Western Union
+          corporate disclosure of the action. The cascade is real but
+          the primary acting-party evidence is missing from the public
+          record located in this authoring pass; the counterparty-
+          statement anchor cannot bear admission weight. Provisional
+          year-prefix wayback anchor pending re-pin.
+      - type: supporting_journalism
+        url: https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business
+        wayback: https://web.archive.org/web/2012/https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - western_union
+          countries:
+            - US
+          time_window:
+            - 2010-12-21T00:00:00Z
+            - 2012-07-18T23:59:59Z
+        note: |
+          CSMonitor wire piece 2011-10-24 corroborates the WU leg of
+          the financial blockade and the WikiLeaks revenue-loss
+          claim. Secondary journalism anchor only; does not substitute
+          for the missing primary Western Union corporate disclosure.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase E of the 2026-05-16
+  staged-release plan, discovery_only_2008_2012 tier fill, WikiLeaks
+  December-2010 financial-blockade family.
+
+  The 2010-12 WikiLeaks financial blockade consisted of five legs
+  enumerated by the WikiLeaks Banking Blockade support-campaign page:
+  Bank of America (2010-12-18), PayPal (2010-12-04), MasterCard
+  (2010-12-07), VISA Europe (2010-12-07), and Western Union
+  (2010-12-21 addition to the Western Union Interdiction List).
+  This event records the Western Union leg.
+
+  Why null_event / null_case / coverage_gap with attribution=unknown:
+  this is the weakest-sourced leg of the blockade in the public
+  record located in this authoring pass. The PayPal, MasterCard,
+  VISA Europe, and Bank of America legs each carry primary corporate
+  disclosures (PayPal blog post, MasterCard wire statement, VISA
+  Europe press release, Bank of America press statement). The
+  Western Union leg is documented via the counterparty (WikiLeaks
+  itself, in its Banking Blockade support page) and contemporaneous
+  journalism (CSMonitor 2011-10-24, Forbes / Guardian coverage of
+  the blockade enumeration), but no primary Western Union corporate
+  press release explicitly announcing the addition of WikiLeaks to
+  the Interdiction List was located. Coding honestly: the cascade
+  is real but the primary acting-party evidence is missing, so the
+  load-bearing observation row is observation_kind=coverage_gap
+  with attribution=unknown, and the event admits at null_case /
+  null_event strength. Fabricating a primary URL or upgrading
+  attribution beyond what the public record supports would be
+  dishonest; the honest call is to record the gap.
+
+  Why discovery_only_2008_2012 tier: 2010 belongs to the pre-2013
+  discovery-only tier per sampling/frame.yaml. analysis_use=
+  discovery_ledger_only excludes this row from the 2017+ comparable-
+  analysis denominator and from the 2013-2016 historical-baseline
+  denominator. The event is retained as discovery-ledger material:
+  a pre-crypto-era corporate-policy money-transfer-rail closure
+  that produced the cross-rail cascade pattern later observable in
+  the comparable era. (The brief specified analysis_use=
+  discovery_only; the canonical schema enum is discovery_ledger_only
+  per sampling/frame.yaml. Used the canonical enum.)
+
+  Why offramp_cex coverage status=not_measured: Western Union is a
+  money-transfer operator rather than a crypto-asset CEX, but the
+  offramp_cex layer is the closest taxonomic match for a regulated
+  fiat money-transfer rail closure. The layer is marked not_measured
+  rather than partially_measured because no primary Western Union
+  disclosure was located and the WU leg is therefore not exchange-
+  side observable at primary-source strength. L0/L1/L3/L4/
+  asset_onchain are not_applicable on construct-did-not-exist or
+  construct-out-of-scope grounds.
+
+  Why related_events lists the four sibling WikiLeaks blockade
+  events: those events are companion records for the PayPal,
+  MasterCard, VISA Europe, and Bank of America legs of the same
+  2010-12 blockade, authored in the same staged-release pass.
+  Together they constitute the WikiLeaks-2010-12 cascade family
+  in the discovery-only tier.
+
+  Schema-enum surprises encountered during authoring:
+  - analysis_use has no discovery_only enum; the canonical
+    schema enum is discovery_ledger_only per sampling/frame.yaml.
+    Used discovery_ledger_only.
+  - observation_kind has no missing_primary_source enum; the
+    closest match is coverage_gap with attribution=unknown, which
+    is exactly the documented-but-weak-primary-source posture.
+    coverage_gap is only retained on status=draft per the validator
+    (line 1222); the event is explicitly draft and stays so until
+    either (a) a primary Western Union corporate disclosure is
+    located in a human-audit pass and the row is upgraded to
+    observed_change, or (b) the event is retired in favor of the
+    four sibling blockade events that already carry primary
+    corporate disclosures.
+
+  status remains draft until a human review decides whether to:
+  (1) upgrade to empirical_case with observed_change if a primary
+      Western Union corporate disclosure is located in human audit
+      (e.g. via a Western Union 2010-12 press release or a 2011
+      WU shareholder filing referencing the Interdiction-List
+      practice), or
+  (2) retain at null_case as a coverage_gap discovery-ledger row,
+      with the four sibling blockade events carrying the cascade-
+      family load-bearing function.
+
+  Origin=agent_draft and status=draft per the agent-authoring
+  convention.
+
+scoped_claim: |
+  Western Union added WikiLeaks to its money-transfer "Interdiction
+  List" on 2010-12-21, blocking WikiLeaks from receiving donations
+  through the Western Union rail as one of five legs of the
+  December-2010 financial blockade. observation_kind=coverage_gap
+  with attribution=unknown because no primary Western Union
+  corporate disclosure was located in this authoring pass; the
+  action is attested only via counterparty statement (WikiLeaks
+  Banking Blockade page) and contemporaneous journalism. Discovery-
+  ledger tier; not used in main statistical denominators.
+
+scoped_knowledge: |
+  This event sits in the discovery_only_2008_2012 tier as one of
+  five legs of the 2010-12 WikiLeaks financial blockade. The cross-
+  rail cascade pattern that the blockade exhibits — sequential cuts
+  by PayPal, MasterCard, VISA Europe, Bank of America, and Western
+  Union over a two-week window in response to WikiLeaks' publication
+  of US diplomatic cables — is a pre-crypto-era instance of the
+  same cascade-of-corporate-policy-actions shape that the
+  comparable-tier corpus documents in the crypto-asset off-ramp
+  layer (e.g. multi-exchange delistings, multi-issuer freezes).
+  The WU leg is the weakest-sourced of the five legs: the four
+  card / bank / payment-processor legs each carry primary corporate
+  disclosures, while the Western Union leg is attested only by
+  counterparty statement (WikiLeaks Banking Blockade page) and
+  contemporaneous journalism. Coding the WU leg honestly as
+  coverage_gap with attribution=unknown — rather than fabricating
+  a primary URL or upgrading attribution — preserves the cascade-
+  family completeness in the discovery ledger while accurately
+  representing the evidence-strength asymmetry across legs. The
+  ~6-month gap between the WU action (2010-12-21) and WikiLeaks'
+  first acceptance of bitcoin donations (2011-06) is a candidate
+  recovery anchor for the family-level cascade but is not authored
+  as a separate recovery row in this event because the recovery
+  spans the family rather than the WU leg in isolation.
+
+tags:
+  - discovery_only_2008_2012
+  - corporate_policy_change
+  - western_union
+  - wikileaks
+  - financial_blockade
+  - banking_blockade
+  - offramp_money_transfer_rail
+  - missing_primary_source
+  - dryrun_2026_05_16
+  - phase_e_2026_05_16
