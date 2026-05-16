@@ -1,0 +1,218 @@
+id: ofac-hamas-irgc-virtual-currency-network-2024-01
+schema_version: 0.2.0
+status: draft
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - ofac-hamas-buy-cash-msb-2023-10
+  - irgc-ransomware-ofac-2022
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-01-22T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2036
+      wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2036
+      evidence_use: contextual_unarchived
+      note: |
+        Treasury press release JY2036 "U.S., UK, and Australia Target
+        Additional Hamas Financial Networks and Facilitators of Virtual
+        Currency Transfers" (2024-01-22). Second major post-Oct 7
+        sanctions package; targets Iran-Hamas financial linkages.
+        Designates Gaza-based Shamlakh-family financial facilitators
+        (Zuhair, Ahmed, Alaa, Imad) and money-changing entity
+        Al-Markaziya, plus a Hamas/IRGC-QF joint virtual-currency
+        procurement sub-network with specific wallet designations on
+        the OFAC SDN list. Wayback timestamp not yet pinned (DRYRUN);
+        human audit must replace with a specific snapshot.
+    - type: supporting_tracker
+      url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
+      wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
+      evidence_use: contextual_unarchived
+      note: |
+        Chainalysis post-action analysis tracing the IRGC-connected
+        wallet cluster and on-chain stablecoin pipeline referenced by
+        the 2024-01-22 Treasury action. Used here as contextual
+        substrate for the asset_onchain reasoning; per-event slice not
+        yet pinned with a body_hash.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per Treasury press release JY2036.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Entity-level designation of the joint Hamas / IRGC-QF virtual-currency
+    procurement network announced 2024-01-22. The package names Gaza-based
+    Shamlakh-family financial facilitators and the Al-Markaziya money-
+    changing entity, plus specific digital-currency wallet designations
+    appended to the SDN entries. `subset` rather than `complete` because
+    the full SDN-page address enumeration has not yet been transcribed
+    into this draft (deferred to human audit; the brief calls out the
+    presence of specific wallet designations without enumerating them).
+  protocol: hamas_irgc_qf_vcn
+  actor_type: terrorism_financing_network
+  actor_name: Hamas / IRGC-QF joint virtual-currency procurement network
+  chains:
+    - tron
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Designation targets an off-chain financial-facilitation network with
+      no associated public web domains in scope; no L0 OONI / Censored
+      Planet probe slice attached.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: tron
+    note: TRON has no PBS / relay analogue.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: tron
+  - layer: l4_frontend
+    status: not_applicable
+    note: No consumer-facing crypto-service frontend designated.
+  - layer: asset_onchain
+    status: partially_measured
+    chain: tron
+    note: |
+      Brief asserts specific wallet designations with concurrent Tether
+      USDT freezes on TRC-20 addresses linked to the designation set.
+      Per-address tx_hash anchors (Tronscan addBlackList) and a
+      usdtbanlist.com per-address archive are deferred to human audit;
+      observation row records the asset-layer event in aggregate.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      Substrate-level chain-analytics anchor (Chainalysis post-action
+      analysis) referenced under trigger.citation defines the search
+      substrate for a 14-day post-designation public-CEX-disclosure
+      scan supporting the observed_no_change row below. Per-event CEX
+      policy-statement or KYT-record slice not yet pinned with a
+      body_hash (DRYRUN).
+    denominator_artifact:
+      type: supporting_tracker
+      url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
+      wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
+      scope_descriptor:
+        providers: [counterparty_cex_aggregate]
+        time_window:
+          - "2024-01-22T00:00:00Z"
+          - "2024-02-05T23:59:59Z"
+      note: |
+        Substrate anchor for the 14-day post-designation
+        public-CEX-disclosure scan. Wayback timestamp not yet pinned
+        (DRYRUN).
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_usdt_tron_freezes_on_designated_wallets
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-01-22T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy2036
+        wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2036
+        evidence_use: contextual_unarchived
+        note: |
+          Treasury press release foregrounds Tether-issuer freezes on
+          TRC-20 USDT held by the designated joint Hamas / IRGC-QF
+          virtual-currency procurement sub-network as part of the
+          2024-01-22 action. Per-address tx_hash / usdtbanlist.com
+          archival anchors deferred to human audit. Wayback timestamp
+          not yet pinned (DRYRUN); human audit must replace with a
+          specific snapshot.
+      - type: supporting_tracker
+        url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
+        wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
+        evidence_use: contextual_unarchived
+        note: |
+          Chainalysis on-chain tracing of the IRGC-connected wallet
+          cluster and stablecoin pipeline. Wayback timestamp not yet
+          pinned (DRYRUN).
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-01-22T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-01-22T00:00:00Z
+      - 2024-02-05T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy2036
+        wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2036
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - "2024-01-22T00:00:00Z"
+            - "2024-02-05T23:59:59Z"
+        note: |
+          No public CEX policy statement specifically referencing the
+          2024-01-22 Hamas / IRGC-QF virtual-currency procurement
+          designations was identified in the 14-day post-designation
+          window. Records absence of public disclosure; private
+          chain-analytics KYT flagging is out of scope for this row.
+
+analysis_notes: |
+  **DRYRUN PREAMBLE — Phase F 2026-05-16**: authored by LLM agent
+  (origin=agent_draft, status=draft) without personally verifying
+  Wayback / body_hash anchors for the Treasury press release JY2036 or
+  the Chainalysis post-action analysis. Per-address wallet enumeration
+  and Tronscan / usdtbanlist.com per-address artifacts are deferred to
+  human audit. Real release must pin per-permalink snapshots, transcribe
+  the SDN-page wallet enumeration, and pass a human adversarial audit
+  before promotion to status=admitted / origin=human_reviewed.
+
+  Comparison documenting the 2024-01-22 OFAC SDN designation of a joint
+  Hamas / IRGC-QF virtual-currency procurement sub-network. This is the
+  second major post-Oct 7 sanctions package targeting Hamas financial
+  infrastructure (paired with the 2023-10 Hamas Buy Cash MSB
+  designation, recorded in `ofac-hamas-buy-cash-msb-2023-10`, and
+  contrasted against the 2022-09-14 IRGC ransomware designation
+  recorded in `irgc-ransomware-ofac-2022`). Empirical shape is
+  `comparison` because the cascade carries one observed_change layer
+  (asset_onchain, Tether USDT-TRC20 freezes referenced by the press
+  release itself) plus an observed_no_change row at offramp_cex.
+
+scoped_claim: |
+  "The 2024-01-22 OFAC SDN designation of the joint Hamas / IRGC-QF
+  virtual-currency procurement sub-network attached specific wallet
+  designations with concurrent Tether USDT-TRC20 issuer freezes on the
+  designated addresses (asset-layer cascade), with no public CEX
+  policy-statement cascade documented in the 14-day post-designation
+  window."
+
+tags:
+  - sanctions
+  - iran_related
+  - hamas
+  - irgc_affiliated
+  - terrorism_financing
+  - stablecoin_freeze
+  - draft_admission_pending

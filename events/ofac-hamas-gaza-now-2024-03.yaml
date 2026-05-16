@@ -1,0 +1,303 @@
+id: ofac-hamas-gaza-now-2024-03
+schema_version: 0.2.0
+status: draft
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - ofac-hamas-buy-cash-msb-2023-10
+  - ofac-hamas-irgc-virtual-currency-network-2024-01
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-03-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2213
+      wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2213
+      evidence_use: contextual_unarchived
+      note: |
+        US Treasury press release jy2213 "Treasury Sanctions Hamas-Aligned
+        Terrorist Fundraising Network" (2024-03-27). Joint US OFAC + UK OFSI
+        action designating Gaza Now (a Gaza-based pro-Hamas news / social-
+        media brand exploited as a crypto donation funnel after the 2023-10-07
+        attack), its founder Mustafa Ayash, and two London-based companies
+        (Al-Qureshi Executives Ltd and Aakhirah Limited) plus their director
+        Aozma Sultana, who functioned as the UK-side fundraising-promotion
+        and value-transfer rail. OFAC added to the SDN List eight digital-
+        currency addresses controlled by Gaza Now: 1 BTC (empty), 2 ETH
+        (combined balance >~USD 2,690), and 5 USDT addresses (combined
+        balance >~USD 10,350, of which only 2 were funded at designation
+        time). Designation made pursuant to Executive Order 13224 (as
+        amended) for material support to Hamas. DRYRUN: pinned snapshot
+        timestamp and body_hash capture for the press release permalink
+        deferred to non-DRYRUN release.
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240327
+      wayback: https://web.archive.org/web/2024/https://ofac.treasury.gov/recent-actions/20240327
+      evidence_use: contextual_unarchived
+      note: |
+        OFAC Recent Actions page for 2024-03-27 listing the Counter Terrorism
+        Designations under [SDGT] tag (Gaza Now entity entry + Mustafa Ayash
+        + Al-Qureshi Executives Ltd + Aakhirah Limited + Aozma Sultana) and
+        the 8 attached digital-currency addresses. DRYRUN: pinned snapshot
+        timestamp + body_hash for the recent-actions permalink deferred to
+        the human-audit pass; enumerated address list to be transcribed
+        from the pinned snapshot.
+    - type: supporting_journalism
+      url: https://www.chainalysis.com/blog/ofac-ofsi-gaza-now-sanctions/
+      wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-ofsi-gaza-now-sanctions/
+      evidence_use: contextual_unarchived
+      note: |
+        Chainalysis post-action analysis "U.S. Sanctions Gaza Now, Others for
+        Hamas Crypto Fundraising" (2024-03). Substrate anchor naming the
+        joint US/UK action, the cohort composition (8 digital-currency
+        addresses spanning BTC / ETH / USDT), and the cross-rail fundraising
+        pattern (Gaza Now solicits donations via the news brand; Al-Qureshi
+        Executives / Aakhirah Limited route value via UK-side MSB / commerce
+        shells). Cited here as contextual substrate; per-event chain-analytics
+        report-slice naming the specific SDN addresses deferred.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2024/03/27/us-uk-issue-joint-sanctions-of-hamas-aligned-gaza-now
+      wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/03/27/us-uk-issue-joint-sanctions-of-hamas-aligned-gaza-now
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2024-03-27 same-day coverage corroborating the joint US OFAC
+        + UK OFSI designation and the inclusion of crypto wallets in the SDN
+        action.
+    - type: supporting_journalism
+      url: https://www.elliptic.co/blog/crypto-regulatory-affairs-the-us-treasurys-intense-week-of-crypto-related-sanctions-actions
+      wayback: https://web.archive.org/web/2024/https://www.elliptic.co/blog/crypto-regulatory-affairs-the-us-treasurys-intense-week-of-crypto-related-sanctions-actions
+      evidence_use: contextual_unarchived
+      note: |
+        Elliptic crypto-regulatory-affairs 2024-03 brief contextualising the
+        Gaza Now designation inside a multi-action week of OFAC crypto-
+        sanctions activity and confirming the per-cohort balance breakdown
+        (1 empty BTC + 2 funded ETH + 5 USDT of which 2 funded).
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per Treasury press release jy2213 dated 2024-03-27.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Gaza Now (Gaza-based pro-Hamas social-media news brand operated by
+    Mustafa Ayash) is treated as the entity-level cascade target. The
+    March 27, 2024 SDN action enumerates: (1) the Gaza Now entity itself,
+    (2) Mustafa Ayash (founder / director, individual), (3) Al-Qureshi
+    Executives Ltd (London-based UK company, fundraising / value-transfer
+    facilitator), (4) Aakhirah Limited (London-based UK company, sibling
+    facilitator), (5) Aozma Sultana (UK individual, director of #3 and #4).
+    Eight digital-currency addresses were attached to the Gaza Now SDN
+    entry: 1 BTC (empty at designation), 2 ETH (combined >~USD 2,690), 5
+    USDT (combined >~USD 10,350; 2 funded, 3 empty). subset enumeration
+    because the address list is asserted from secondary substrate
+    (Chainalysis / Elliptic / CoinDesk reporting) pending pinned
+    transcription from the OFAC recent-actions permalink during human
+    audit; this stub therefore does not enumerate the specific BTC / ETH /
+    USDT strings inline. Third major post-Oct-7 OFAC action targeting
+    Hamas crypto fundraising, after the 2023-10 Buy Cash Money Transfer
+    designation (`ofac-hamas-buy-cash-msb-2023-10`) and the 2024-01 IRGC
+    virtual-currency-network designation
+    (`ofac-hamas-irgc-virtual-currency-network-2024-01`).
+  protocol: gaza_now_fundraising_brand
+  actor_type: media_brand_fundraising_network
+  actor_name: Gaza Now (Hamas-aligned media / crypto fundraising network)
+  chains:
+    - bitcoin
+    - ethereum
+    - tron
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Gaza Now is a Telegram / social-media fundraising brand, not a
+      consumer-facing crypto service with its own DNS-anchored frontend
+      reachable via standard L0 / OONI probe slices. No L0 network-layer
+      reachability claim is asserted.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Per Wahrstätter PBS-OFAC-compliance analyses, relay-level filtering
+      keys on Ethereum address-set membership rather than on the entity
+      identity of the underlying SDN designee. The 2 Gaza Now ETH addresses
+      enter the address-set substrate consumed by OFAC-compliant relays,
+      but this event is recorded at the entity / asset-layer level and
+      does not pin a separate L1 measurement slice.
+  - layer: l3_rpc
+    status: not_measured
+    provider_scope: public_only
+    note: |
+      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot
+      bracketing 2024-03-27 is attached. The 2 Gaza Now ETH addresses
+      would be expected to propagate into address-keyed RPC filter lists
+      via the same OFAC SDN feed consumed elsewhere in the dataset, but
+      this stub does not pin a per-event RPC filter-list slice.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No canonical web frontend is associated with Gaza Now's donation
+      flow (operated via Telegram channels and social-media brand pages).
+      L4 frontend takedown coverage does not apply.
+  - layer: asset_onchain
+    status: partially_measured
+    chain: ethereum
+    scope:
+      - gaza_now_eth_address_cohort_2
+      - gaza_now_usdt_address_cohort_5
+    note: |
+      Load-bearing axis. 8 digital-currency addresses attached to the
+      Gaza Now SDN entry: 1 BTC, 2 ETH, 5 USDT. The 2 ETH addresses are
+      expected to be in scope for Circle USDC + Tether ERC-20 blacklist
+      sweeps; the 5 USDT addresses (TRC-20 / ERC-20 mix per Chainalysis
+      and Elliptic reporting) are the natural Tether-issuer-freeze
+      cohort. partially_measured pending a usdtbanlist.com sweep over
+      the enumerated address set + per-issuer freeze-tx anchors; Elliptic
+      had already reported $9K of USDT frozen by Tether in the weeks
+      after 2023-10-07 (pre-designation, not part of the cascade).
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Chainalysis post-action analysis (linked under trigger.citation) is
+      the natural substrate for offramp_cex deplatforming reasoning.
+      Status remains not_measured because per-event chain-analytics
+      report slices (naming specific SDN addresses / KYT-flag records /
+      exchange-side cohort freezes) are not yet pinned. Elliptic
+      reported pre-designation that ~USD 2,000 of incoming Gaza Now
+      crypto was already frozen by mainstream exchanges in 2023-10;
+      whether the 2024-03-27 SDN designation triggered fresh exchange-
+      side cohort freezes beyond that baseline is the empirical question
+      to be answered by a per-event Chainalysis / TRM / Elliptic slice
+      pinned during human audit.
+
+observations:
+  - layer: asset_onchain
+    actor: ofac_sdn_address_set
+    event: gaza_now_8_crypto_addresses_added_to_sdn_list
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-03-27T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy2213
+        wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2213
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [ofac_sdn_list]
+          time_window:
+            - 2024-03-27T00:00:00Z
+            - 2024-03-27T23:59:59Z
+          addresses_cohort: gaza_now_8_addresses_btc_eth_usdt
+        note: |
+          Treasury press release jy2213 enumerates the Gaza Now SDN
+          designation and attached digital-currency address cohort
+          (1 BTC empty + 2 ETH + 5 USDT). attribution=direct because
+          the address-set addition is the regulatory action itself
+          (state-issued SDN listing), not a downstream cascade
+          response. DRYRUN: pinned snapshot timestamp + body_hash for
+          this permalink deferred to human audit; the address-level
+          transcription will be sourced from the OFAC recent-actions
+          permalink for 2024-03-27.
+      - type: supporting_journalism
+        url: https://www.chainalysis.com/blog/ofac-ofsi-gaza-now-sanctions/
+        wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-ofsi-gaza-now-sanctions/
+        evidence_use: contextual_unarchived
+        note: |
+          Chainalysis post-action analysis confirms the 8-address cohort
+          breakdown (1 BTC / 2 ETH / 5 USDT) and the funded vs empty
+          status (2 ETH funded with >~USD 2,690; 2 of 5 USDT funded
+          with >~USD 10,350 combined).
+
+analysis_notes: |
+  **DRYRUN PREAMBLE — Phase F 2026-05-16**: authored by LLM agent
+  (origin=agent_draft, status=draft) without personally verifying Wayback /
+  body_hash anchors. Real release must pin per-permalink snapshots and a
+  human adversarial audit pass before promotion to status=admitted /
+  origin=human_reviewed.
+
+  Comparison documenting the 2024-03-27 joint US OFAC + UK OFSI designation
+  of Gaza Now, a Gaza-based pro-Hamas news / social-media brand operated
+  by Mustafa Ayash and exploited as a crypto donation funnel after the
+  2023-10-07 attack on Israel. Designation pursuant to Executive Order
+  13224 (as amended) for material support to Hamas. The action also
+  designated two London-based UK companies (Al-Qureshi Executives Ltd
+  and Aakhirah Limited) and their director Aozma Sultana, who functioned
+  as the UK-side fundraising-promotion and value-transfer rail.
+
+  Third major post-Oct-7 OFAC sanctions action targeting Hamas crypto
+  fundraising in this stratum:
+    1. 2023-10 — Buy Cash Money & Money Transfer Co. MSB designation
+       (`ofac-hamas-buy-cash-msb-2023-10`)
+    2. 2024-01 — IRGC / Hamas virtual-currency-network designation
+       (`ofac-hamas-irgc-virtual-currency-network-2024-01`)
+    3. 2024-03 — Gaza Now news-brand / crypto-fundraising-funnel
+       designation (this event)
+  Together these form a tight cohort suitable for paper-level comparison
+  of how the SDN-address-set + offramp_cex cascade responds across
+  different Hamas-fundraising surface types (cash MSB → IRGC virtual-
+  currency intermediary → news-brand donation funnel).
+
+  Address-cohort summary (per Chainalysis / Elliptic substrate; pending
+  pinned transcription from OFAC recent-actions permalink):
+    * 1 BTC address (empty at designation)
+    * 2 ETH addresses (combined balance >~USD 2,690 at designation)
+    * 5 USDT addresses (combined balance >~USD 10,350 at designation;
+      only 2 of 5 funded). Tether-USDT-on-TRON was the dominant rail
+      for terrorist-financing flows in 2023 per Chainalysis sector
+      reporting.
+
+  Pre-designation baseline (per Elliptic 2023-10 reporting): ~USD 21K
+  of crypto received by Gaza Now in the weeks after 2023-10-07, of which
+  ~USD 2K was frozen by mainstream exchange deposit-address filtering
+  and ~USD 9K of USDT was frozen by Tether issuer action. These freezes
+  are pre-designation and recorded under observations[] only as
+  attribution=plausible for cascade-context completeness; the empirical
+  question for the human-audit pass is whether the 2024-03-27 SDN action
+  triggered fresh cohort freezes beyond that baseline.
+
+  DRYRUN caveats: for non-DRYRUN release, capture body_hash + body_path
+  for: (1) Treasury press release jy2213 permalink,
+  (2) OFAC recent-actions/20240327 permalink (the address-level
+  transcription source), (3) Chainalysis post-action analysis,
+  (4) Elliptic crypto-regulatory-affairs brief, (5) CoinDesk same-day
+  coverage. Pin a usdtbanlist.com sweep for the 5 USDT addresses + an
+  on-chain freeze-tx anchor for any Circle USDC / Tether ETH-side
+  blacklist actions on the 2 ETH addresses. All citations are marked
+  evidence_use=contextual_unarchived per validator policy until pinned.
+
+scoped_claim: |
+  "OFAC's 2024-03-27 SDN designation of Gaza Now (a Gaza-based pro-Hamas
+  news / social-media brand exploited as a crypto donation funnel) added
+  8 digital-currency addresses (1 BTC empty + 2 ETH + 5 USDT, ~USD 13K
+  combined funded balance) to the SDN list as part of a joint US OFAC +
+  UK OFSI action under EO 13224. Cascade evaluation conditional on
+  pinned post-event usdtbanlist.com and Chainalysis slice anchors."
+
+tags:
+  - sanctions
+  - hamas
+  - terrorist_financing
+  - crypto_fundraising
+  - news_brand_donation_funnel
+  - joint_us_uk_action
+  - eo_13224
+  - sdgt
+  - tether_freeze_candidate
+  - dryrun_2026_05_16
+  - agent_draft

@@ -1,0 +1,305 @@
+id: japan-fsa-dmm-bitcoin-order-2024-09
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - japan-fsa-coincheck-orders-2018
+  - japan-fsa-zaif-orders-2018-09
+
+trigger:
+  type: nation_state_block
+  actor: JP_FSA
+  timestamp: 2024-09-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsa.go.jp/news/r6/sonota/
+      wayback: https://web.archive.org/web/2024/https://www.fsa.go.jp/news/r6/sonota/
+      evidence_use: contextual_unarchived
+      note: |
+        Japan Financial Services Agency (金融庁 / FSA) press-release index for
+        Reiwa-6 (2024) "sonota" (その他 / "other") notices. On 2024-09-26 the
+        FSA issued a 業務改善命令 (gyomu-kaizen-meirei / business-improvement
+        order) under the Payment Services Act (資金決済法) against DMM Bitcoin
+        Co., Ltd. following the 2024-05-31 private-key theft of approximately
+        4,502.9 BTC (~USD 305-482M at hack-window prices; reported variously as
+        ~USD 305M, ~USD 308M, ~USD 320M depending on outlet and price window)
+        from DMM Bitcoin custody — the largest single-exchange crypto theft of
+        2024 worldwide. The FSA order required DMM Bitcoin to (1) submit by
+        2024-10-28 a remediation plan addressing the absence of decentralised
+        controls over private-key management, (2) clarify the
+        cause-and-responsibility chain (including the Ginco vendor-side
+        compromise), (3) strengthen governance over outsourced wallet-system
+        providers, and (4) restore customer-protection confidence. The hack
+        vector — later attributed by FBI/NPA/DC3 to DPRK-linked TraderTraitor
+        actors — compromised an employee of Ginco Inc., a Tokyo-based
+        wallet-software vendor managing DMM's signing infrastructure, via a
+        LinkedIn-staged malicious Python "pre-employment test" delivered to a
+        Ginco engineer in 2024-03 and subsequent stolen-session-cookie pivot
+        in 2024-05 used to manipulate a legitimate DMM transaction. The FSA
+        order is the regulatory cascade-trigger; the downstream operator-state
+        change is DMM Bitcoin's announced 2024-12 wind-down and migration of
+        customer accounts/assets to SBI VC Trade. DRYRUN promotion: real
+        anchor is an FSA press-release index folder pointer; pinned snapshot
+        timestamp and body_hash capture for the specific 2024-09-26 release
+        permalink deferred to non-DRYRUN release. Marked
+        evidence_use=contextual_unarchived to flag the unarchived state per
+        validator policy.
+    - type: supporting_journalism
+      url: https://www.regulationasia.com/japan-fsa-issues-business-improvement-order-on-dmm-bitcoin/
+      wayback: https://web.archive.org/web/2024/https://www.regulationasia.com/japan-fsa-issues-business-improvement-order-on-dmm-bitcoin/
+      evidence_use: contextual_unarchived
+      note: |
+        Regulation Asia 2024-09 coverage of the FSA business-improvement
+        order: confirms the 2024-10-28 plan-submission deadline and the FSA's
+        specific criticism of inadequate decentralisation of private-key
+        controls at DMM Bitcoin.
+    - type: supporting_journalism
+      url: https://securityaffairs.com/172290/hacking/dmm-bitcoin-308m-theft-linked-north-korea.html
+      wayback: https://web.archive.org/web/2024/https://securityaffairs.com/172290/hacking/dmm-bitcoin-308m-theft-linked-north-korea.html
+      evidence_use: contextual_unarchived
+      note: |
+        Security Affairs 2024-12 coverage of the joint FBI/NPA/DC3 attribution
+        statement linking the DMM Bitcoin theft to DPRK TraderTraitor via the
+        Ginco vendor compromise (LinkedIn pre-employment-test pivot,
+        2024-03 → 2024-05 session-cookie theft → DMM transaction
+        manipulation). Used here as contextual attribution evidence for the
+        hack vector underlying the FSA's order.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per FSA press release dated 2024-09-26 issuing the
+        business-improvement order; trigger timestamp anchors on the FSA
+        supervisory action rather than the 2024-05-31 hack itself (the hack
+        is the precipitating event; the trigger is the nation-state
+        regulatory action).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    DMM Bitcoin Co., Ltd. (株式会社DMM Bitcoin) — a Tokyo-based registered
+    crypto-asset exchange subsidiary of DMM.com Group, treated at the
+    entity-level as the named addressee of the FSA's 2024-09-26
+    business-improvement order. Downstream operational effect: DMM Bitcoin
+    announced 2024-12 wind-down and migration of customer accounts and
+    custodied assets to SBI VC Trade Co., Ltd. (a registered VASP subsidiary
+    of SBI Holdings). Ginco Inc. — the upstream wallet-software vendor whose
+    employee compromise was the proximate hack vector — is referenced in the
+    enumeration_note as the supply-chain origin of the breach but is not the
+    addressee of the FSA's order (Ginco is referenced separately in 2024-10
+    FSA system-provider registration-rule discussions, which are a distinct
+    downstream policy thread tracked as informational only).
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: DMM Bitcoin Co., Ltd.
+  chains:
+    - bitcoin
+  canonical_domains:
+    - bitcoin.dmm.com
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      FSA supervisory orders do not target the DMM Bitcoin frontend
+      (bitcoin.dmm.com) as a takedown action; the website remained reachable
+      throughout the remediation and wind-down period to communicate
+      customer-asset-migration status to SBI VC Trade.
+  - layer: asset_onchain
+    status: partially_measured
+    chain: bitcoin
+    scope:
+      - dmm_bitcoin_hot_wallet_outflow_2024_05_31
+    note: |
+      ~4,502.9 BTC private-key compromise on 2024-05-31 (the precipitating
+      event behind the FSA order). Stolen-funds flow was traced on-chain by
+      Chainalysis, Elliptic, MerkleScience, and ZachXBT; subsequent
+      Bitcoin→Bitcoin-CashShuffle/HuionePay laundering paths are documented
+      in 2024-Q4 attribution reports. No state-issued asset-layer freeze
+      primitive applies (the on-chain trail is private-sector tracing, not an
+      OFAC-style address designation). partially_measured pending pinned
+      anchors for the stolen-funds tx-hash cluster and the Chainalysis/
+      Elliptic/MerkleScience attribution publications.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - dmm_bitcoin_jpy_and_crypto_withdrawal_rail
+      - dmm_bitcoin_to_sbi_vc_trade_migration
+    note: |
+      Load-bearing observation. FSA's 2024-09-26 業務改善命令
+      (business-improvement order) compelled DMM Bitcoin's remediation
+      regime, which culminated in the 2024-12 announced wind-down and
+      migration of customer accounts and custodied assets to SBI VC Trade.
+      Direct attribution: DMM Bitcoin's operator-state change (announced
+      wind-down + migration) is the corporate-side compliance with the FSA
+      supervisory directives. partially_measured pending pinned anchors for
+      (1) the FSA's 2024-09-26 business-improvement-order release page,
+      (2) DMM Bitcoin's customer-notice announcement of the SBI VC Trade
+      migration, (3) SBI VC Trade's intake-announcement page.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:dmm_bitcoin
+    event: dmm_bitcoin_winddown_and_asset_migration_to_sbi_vc_trade_per_fsa_order
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.fsa.go.jp/news/r6/sonota/
+        wayback: https://web.archive.org/web/2024/https://www.fsa.go.jp/news/r6/sonota/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [dmm_bitcoin]
+          time_window:
+            - 2024-09-26T00:00:00Z
+            - 2024-12-31T23:59:59Z
+          addresses_cohort: dmm_bitcoin_jp_customer_accounts
+        note: |
+          FSA's 2024-09-26 業務改善命令 (business-improvement order) is the
+          legal instrument that compelled the customer-protection /
+          remediation regime at DMM Bitcoin, culminating in the
+          2024-12 announced wind-down and migration of customer
+          accounts/assets to SBI VC Trade. attribution=direct because the
+          operator-state change (wind-down + migration) is the regulatory
+          compliance with the FSA supervisory directive, not a downstream
+          cascade. DRYRUN: Wayback anchor is an FSA press-index folder
+          pointer at fsa.go.jp/news/r6/sonota; pinned snapshot timestamp
+          and body_hash capture for the specific 2024-09-26 release
+          permalink deferred to human audit.
+      - type: primary_corporate
+        url: https://bitcoin.dmm.com/news
+        wayback: https://web.archive.org/web/2024/https://bitcoin.dmm.com/news
+        evidence_use: contextual_unarchived
+        note: |
+          DMM Bitcoin's own customer-notice news index page is the
+          corporate-side primary anchor for the chain of remediation,
+          wind-down, and SBI VC Trade migration announcements. DRYRUN:
+          pinned snapshot timestamps and body_hash captures for each
+          specific announcement permalink deferred to human audit.
+      - type: supporting_journalism
+        url: https://coinpedia.org/news/bitcoin-exchange-dmm-shut-down-following-320m-hack-transfers-assets-to-sbi-vc-trade/
+        wayback: https://web.archive.org/web/2024/https://coinpedia.org/news/bitcoin-exchange-dmm-shut-down-following-320m-hack-transfers-assets-to-sbi-vc-trade/
+        evidence_use: contextual_unarchived
+        note: |
+          Coinpedia 2024-12 coverage corroborating the DMM Bitcoin wind-down
+          and customer-asset migration to SBI VC Trade.
+  - layer: asset_onchain
+    actor: dprk_tradertraitor_via_ginco_vendor_compromise
+    event: dmm_bitcoin_4502_btc_private_key_theft_2024_05_31
+    observation_kind: observed_change
+    attribution: unknown
+    timestamp: 2024-05-31T00:00:00Z
+    precision: day
+    delta_hours: -2832
+    note: |
+      Precipitating event upstream of (not caused by) the FSA's 2024-09-26
+      business-improvement order. attribution=unknown because the on-chain
+      compromise is the trigger for the regulatory action rather than a
+      cascade-downstream observation of it; coded here for asset_onchain
+      context only.
+    sources:
+      - type: supporting_journalism
+        url: https://securityaffairs.com/172290/hacking/dmm-bitcoin-308m-theft-linked-north-korea.html
+        wayback: https://web.archive.org/web/2024/https://securityaffairs.com/172290/hacking/dmm-bitcoin-308m-theft-linked-north-korea.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [dmm_bitcoin, ginco]
+          time_window:
+            - 2024-03-01T00:00:00Z
+            - 2024-05-31T23:59:59Z
+        note: |
+          Security Affairs 2024-12 coverage of the joint FBI/NPA/DC3
+          attribution statement linking the DMM Bitcoin theft to DPRK
+          TraderTraitor via the Ginco vendor compromise. Attribution to
+          FSA-trigger coded as unknown because the on-chain compromise is
+          the precipitating event upstream of the FSA's regulatory action,
+          not a cascade-downstream observation of it; the FBI/NPA/DC3 joint
+          attribution provides government-level confirmation of the threat-
+          actor identity behind the underlying hack.
+      - type: supporting_journalism
+        url: https://www.onesafe.io/blog/dmm-bitcoin-hack-lessons-crypto-security
+        wayback: https://web.archive.org/web/2024/https://www.onesafe.io/blog/dmm-bitcoin-hack-lessons-crypto-security
+        evidence_use: contextual_unarchived
+        note: |
+          OneSafe 2024 incident-analysis post documenting the ~4,502.9 BTC
+          (~USD 305-482M depending on outlet and price window) theft and the
+          Ginco vendor-supply-chain attack vector.
+
+analysis_notes: |
+  **DRYRUN PREAMBLE — Phase F 2026-05-16**: authored by LLM agent
+  (origin=agent_draft, status=draft) without personally verifying Wayback/
+  body_hash anchors. Real release must pin per-permalink snapshots and a
+  human adversarial audit pass before promotion to status=admitted /
+  origin=human_reviewed.
+
+  Comparison documenting Japan's 2024-09-26 FSA 業務改善命令 (business-
+  improvement order) against DMM Bitcoin Co., Ltd. following the 2024-05-31
+  private-key theft of ~4,502.9 BTC (~USD 305-482M) — the largest
+  single-exchange crypto theft of 2024 worldwide. Hack vector attributed by
+  FBI/NPA/DC3 to DPRK-linked TraderTraitor actors via a LinkedIn-staged
+  malicious-Python compromise of a Ginco Inc. wallet-software engineer
+  (2024-03) and a subsequent session-cookie pivot used to manipulate a
+  legitimate DMM signing transaction (2024-05).
+
+  Paper-relevant contrast vs Coincheck 2018-01
+  (japan-fsa-coincheck-orders-2018) and Zaif 2018-09
+  (japan-fsa-zaif-orders-2018-09): all three are JP FSA Payment-Services-Act
+  business-improvement orders triggered by exchange-side hot-wallet/
+  private-key compromises. The 2018 Coincheck cascade produced a ~5-month
+  customer-withdrawal freeze with eventual Monex Group acquisition; the
+  2024 DMM Bitcoin cascade produced no extended customer-withdrawal freeze
+  but instead an announced corporate wind-down and asset migration to a
+  sibling registered VASP (SBI VC Trade). The 2024 case is also notable
+  for foregrounding outsourced-wallet-vendor (Ginco) supply-chain risk,
+  which catalysed FSA's 2024-Q4 consultation on a new registration regime
+  for crypto-system service providers — a class-wide policy thread that
+  the 2018 cases did not produce. Both cohorts share the offramp_cex
+  load-bearing axis with asset_onchain context.
+
+  DRYRUN caveats: trigger primary citation (FSA press-release index) is
+  asserted with a 2024-calendar-folder Wayback pointer; pinned snapshot
+  timestamp and body_hash capture for the specific 2024-09-26
+  業務改善命令 release permalink are deferred to the human-audit pass. For
+  non-DRYRUN release, capture body_hash + body_path for: (1) the FSA's
+  2024-09-26 business-improvement-order release page, (2) DMM Bitcoin's
+  customer-notice page announcing the SBI VC Trade migration, (3) SBI VC
+  Trade's intake-announcement page, (4) Chainalysis/Elliptic/MerkleScience
+  on-chain attribution publications for the ~4,502.9 BTC stolen-funds
+  cluster, (5) the FBI/NPA/DC3 joint TraderTraitor attribution statement.
+  Marked evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+tags:
+  - nation_state_block
+  - japan
+  - fsa
+  - dmm_bitcoin
+  - ginco
+  - dprk_tradertraitor
+  - private_key_theft
+  - offramp_cex_winddown
+  - sbi_vc_trade_migration
+  - payment_services_act
+  - dryrun_2026_05_16
+  - agent_draft

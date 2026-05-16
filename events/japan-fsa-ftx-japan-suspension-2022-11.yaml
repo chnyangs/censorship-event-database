@@ -1,0 +1,346 @@
+id: japan-fsa-ftx-japan-suspension-2022-11
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - ftx-bankman-fried-doj-2022
+  - japan-fsa-coincheck-orders-2018
+
+trigger:
+  type: sec_action
+  actor: JP_FSA_KANTO_LFB
+  timestamp: 2022-11-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
+      wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
+      evidence_use: contextual_unarchived
+      note: |
+        Japan Financial Services Agency (金融庁 / FSA) press release dated
+        2022-11-10 titled "FTX Japan株式会社に対する行政処分について"
+        (Administrative Disposition Against FTX Japan KK). On 2022-11-10 the
+        Kanto Local Finance Bureau (関東財務局), acting under delegated FSA
+        authority, issued against FTX Japan KK (a registered Japanese crypto-
+        asset exchange service provider and Type-I Financial Instruments
+        Business Operator):
+          (1) a 業務停止命令 (gyomu-teishi-meirei / business-suspension order)
+              under the Payment Services Act (資金決済法 / PSA) and the
+              Financial Instruments and Exchange Act (金融商品取引法 / FIEA),
+              suspending crypto-asset exchange services and new customer-
+              asset acceptance from 2022-11-10 through 2022-12-09 (~30 days);
+          (2) a 業務改善命令 (gyomu-kaizen-meirei / business-improvement
+              order) under the PSA and FIEA, requiring FTX Japan to (a)
+              identify the status of customers and customer assets, (b)
+              strive to protect customer assets, and (c) communicate
+              appropriately with customers regarding asset-protection; with
+              a written business-improvement-plan due 2022-11-16 and
+              monthly progress reports thereafter;
+          (3) a 資産の国内保有命令 (shisan-no-kokunai-hoyu-meirei /
+              order to retain assets domestically) under FIEA preventing
+              FTX Japan from transferring customer-segregated assets out
+              of Japan to the US FTX Trading Ltd. estate.
+        The orders were precipitated by FTX Japan's 2022-11-09 unilateral
+        halt of customer asset withdrawals (citing parent-company policy
+        following the US FTX.com liquidity crisis) while continuing to
+        accept new deposits and execute crypto trades — a structural
+        mismatch that the regulator determined violated Japanese customer-
+        protection rules. Trigger lands one day before the US parent's
+        2022-11-11 Chapter 11 filing (Case 22-11068, D. Del.), making this
+        the cleanest cross-border parent-cascade case in the corpus where
+        Japanese customer-asset-segregation rules (the PSA-mandated
+        分別管理 / trust-based separation regime and the FIEA-mandated
+        Japan-domestic-retention) forced FTX Japan to refund Japanese
+        customers ahead of US estate proceedings rather than have those
+        assets pooled into the global Chapter 11 estate. DRYRUN: Wayback
+        anchor is a wildcard pointer to 2022; pinned snapshot timestamp +
+        body_hash capture for the specific 2022-11-10 FSA release
+        permalink deferred to human audit.
+    - type: primary_legal
+      url: https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
+      wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
+      evidence_use: contextual_unarchived
+      note: |
+        FSA English-language version of the 2022-11-10 release titled
+        "Administrative Actions against FTX Japan, Inc." Documents the
+        identical business-suspension order, business-improvement order,
+        and asset-domestic-retention order issued by the Kanto Local
+        Finance Bureau under the PSA and FIEA. English-language anchor
+        retained for accessibility and cross-checks against the Japanese-
+        language primary. DRYRUN: Wayback anchor is a wildcard pointer;
+        pinned snapshot timestamp + body_hash capture deferred to human
+        audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the FSA press release dated 2022-11-10
+        announcing the Kanto Local Finance Bureau's business-suspension
+        order, business-improvement order, and order to retain assets
+        domestically against FTX Japan KK. Suspension period explicitly
+        stated as 2022-11-10 through 2022-12-09 in the release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    FTX Japan KK (FTX Japan株式会社) — the Japanese subsidiary of FTX
+    Trading Ltd., headquartered in Minato-ku, Tokyo. As of 2022-11-10
+    FTX Japan was a registered crypto-asset exchange service provider
+    (暗号資産交換業者) under the Payment Services Act (Kanto Local
+    Finance Bureau registration No. 00004) and a Type-I Financial
+    Instruments Business Operator (第一種金融商品取引業者) under the
+    Financial Instruments and Exchange Act, acquired by FTX Trading
+    Ltd. in 2022-02 via purchase of Liquid Group (the former Liquid
+    Japan / Quoine Corporation entity). The target slice is the single
+    Japanese subsidiary; sibling Liquid Global (the non-Japan Liquid
+    operations) and the US/international FTX entities are out of scope
+    for this row. Load-bearing observation is the Japan-jurisdiction
+    offramp_cex withdrawal-rail freeze followed by the
+    Japanese-customer asset refund channel via the Liquid Japan web
+    platform (the structural counterfactual to the US Chapter 11
+    estate pooling).
+  actor_type: regulated_crypto_service_provider
+  actor_name: FTX Japan KK
+  chains: []
+  canonical_domains:
+    - ftxjp.co
+    - liquid.com
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Kanto LFB orders do not target the FTX Japan web frontend
+      (ftxjp.co / the post-migration Liquid Japan portal) as a takedown;
+      the customer-facing site remained reachable throughout the
+      suspension window to communicate withdrawal-status updates and
+      eventually serve as the refund interface. No frontend-disable
+      observation is coded.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN-style asset-layer freeze primitive applies; the FIEA
+      domestic-asset-retention order acts on the corporate custodian
+      (FTX Japan KK) under Japanese trust law rather than blacklisting
+      on-chain addresses at the issuer level. No asset_onchain
+      observation is coded.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - ftx_japan_jpy_and_crypto_withdrawal_rail
+    note: |
+      Load-bearing observation. The 2022-11-10 Kanto LFB business-
+      suspension order combined with the asset-domestic-retention order
+      compelled FTX Japan to (a) freeze crypto-asset and JPY withdrawals
+      across the 2022-11-09 to 2023-02-20 window and (b) retain
+      customer-segregated assets in Japan rather than transfer them to
+      the US Chapter 11 estate. Direct attribution: the withdrawal-rail
+      freeze and JP-domestic-retention are the operator-side compliance
+      with the Kanto LFB orders. Recovery is documented separately via
+      the 2023-02-21 customer-asset refund channel through the Liquid
+      Japan web platform. partially_measured pending pinned anchors for
+      (1) the FSA's 2022-11-10 release permalink, (2) FTX Japan's
+      customer notice page, and (3) the 2023-02-20 Liquid Japan refund-
+      channel announcement.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:ftx_japan
+    event: ftx_japan_withdrawal_rail_frozen_and_assets_held_domestically_per_kanto_lfb_orders
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-11-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2022-11-09T00:00:00Z
+      - 2023-02-20T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
+        wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [ftx_japan]
+          countries: [JP]
+          time_window:
+            - 2022-11-10T00:00:00Z
+            - 2022-12-09T23:59:59Z
+        note: |
+          FSA 2022-11-10 Japanese-language release: Kanto LFB issued the
+          業務停止命令 (PSA + FIEA) suspending crypto-asset exchange
+          services from 2022-11-10 to 2022-12-09, the 業務改善命令
+          (PSA + FIEA) requiring a written business-improvement plan by
+          2022-11-16, and the 資産の国内保有命令 (FIEA) compelling
+          domestic retention of customer-segregated assets. The
+          operator-state change (withdrawal-rail freeze + JP-domestic
+          asset retention) is the direct compliance with these orders.
+          Cleanest cross-border parent-cascade case in the corpus:
+          Japanese customer-segregation rules forced FTX Japan to
+          refund Japanese customers ahead of the US Chapter 11 estate
+          pooling. DRYRUN: pinned snapshot timestamp + body_hash
+          capture deferred to human audit.
+      - type: primary_legal
+        url: https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
+        wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
+        evidence_use: contextual_unarchived
+        note: |
+          FSA English-language version "Administrative Actions against
+          FTX Japan, Inc." corroborates the Japanese-language primary
+          and is retained as the accessibility anchor. DRYRUN: pinned
+          snapshot timestamp + body_hash capture deferred to human
+          audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2022/11/10/ftx-japan-ordered-by-regulator-to-suspend-operations-following-withdrawal-halt
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/11/10/ftx-japan-ordered-by-regulator-to-suspend-operations-following-withdrawal-halt
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk (2022-11-10): "FTX Japan to Go Into 'Close-Only' Mode
+          Following Regulator's Order to Suspend Operations." Documents
+          the 2022-11-09 withdrawal halt and the 2022-11-10 Kanto LFB
+          response in English-language journalism, useful as the
+          interpretive bridge between the Japanese-language FSA primary
+          and the international FTX collapse narrative. DRYRUN: pinned
+          snapshot timestamp + body_hash capture deferred to human
+          audit.
+
+recovery:
+  - layer: offramp_cex
+    resolved: true
+    resolved_timestamp: 2023-02-21T03:00:00Z
+    citation:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2023/02/20/ftx-japan-customers-can-begin-withdrawing-fiat-crypto-on-feb-21
+        wayback: https://web.archive.org/web/2023/https://www.coindesk.com/policy/2023/02/20/ftx-japan-customers-can-begin-withdrawing-fiat-crypto-on-feb-21
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk (2023-02-20): "FTX Japan Customers Can Begin
+          Withdrawing Fiat, Crypto on Feb. 21." Withdrawals resumed at
+          12:00 JST on 2023-02-21 (~03:00 UTC) via the Liquid Japan
+          web platform; FTX Japan customers were required to transfer
+          balances to a Liquid Japan account before withdrawal. The
+          refund channel was authorised under the FIEA domestic-
+          asset-retention regime and operated independent of the US
+          Chapter 11 estate distribution process, fulfilling the
+          structural counterfactual that distinguishes this row from
+          the US FTX collapse.
+    note: |
+      Recovery is partial in the corporate-continuity sense (FTX Japan
+      was sold by the US estate in 2023 and wound down) but complete in
+      the customer-asset-rail sense: Japanese customers received their
+      JPY and crypto balances back in full via the Liquid Japan
+      platform starting 2023-02-21, in contrast to the US FTX.com /
+      FTX.US customers who remained in Chapter 11 distribution
+      proceedings for years.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F new-event draft;
+  cross-border parent-cascade discovery): authored by LLM agent without
+  personally verifying Wayback/body_hash; origin=agent_draft + status=draft
+  per validator constraints. Real release must promote to
+  origin=human_reviewed after pinning real archive anchors during human
+  audit.
+
+  Comparison documenting Japan's 2022-11-10 Kanto Local Finance Bureau
+  business-suspension order, business-improvement order, and order to
+  retain assets domestically against FTX Japan KK, issued one day before
+  the US parent's 2022-11-11 Chapter 11 filing. The cleanest cross-border
+  parent-cascade case in the corpus: Japanese customer-asset-segregation
+  rules under the Payment Services Act (分別管理 trust-based separation)
+  combined with the FIEA-mandated domestic-asset-retention order forced
+  FTX Japan to refund Japanese customers via the Liquid Japan platform
+  starting 2023-02-21, ahead of and independent of the US Chapter 11
+  estate distribution. The structural counterfactual is what makes this
+  row analytically load-bearing: the same parent corporate collapse
+  produced (in the US) a years-long Chapter 11 customer-asset freeze and
+  (in Japan) a ~3.5-month regulator-supervised refund cycle.
+
+  Paper-relevant contrast vs FTX Bankman-Fried DOJ
+  (ftx-bankman-fried-doj-2022): same parent collapse, opposite jurisdiction
+  outcome. US row: offramp_cex freeze with attribution=plausible to the
+  2022-12-13 federal trigger because the Chapter 11 instrument did the
+  proximate freezing; recovery is bankruptcy-estate distribution years
+  later. JP row: offramp_cex freeze with attribution=direct to the
+  2022-11-10 Kanto LFB orders because the Japanese regulator overrode
+  the parent-company policy via supervisory directive; recovery is the
+  2023-02-21 Liquid Japan refund channel ~3.5 months after the trigger.
+  Demonstrates that the same parent-collapse shock can produce sharply
+  different customer-outcome cascades when jurisdictional asset-
+  segregation regimes diverge.
+
+  Paper-relevant contrast vs Japan FSA Coincheck Orders
+  (japan-fsa-coincheck-orders-2018): both are Kanto LFB / FSA supervisory
+  cascades targeting registered Japanese VASPs with combined business-
+  suspension + business-improvement orders. Coincheck case (2018):
+  trigger was a domestic security failure (NEM hack), ~5-month
+  withdrawal freeze, single-entity supervision under PSA only. FTX
+  Japan case (2022): trigger was a cross-border parent-company failure
+  (US FTX collapse), ~3.5-month freeze, dual-statute (PSA + FIEA)
+  supervision plus the asset-domestic-retention order that has no
+  parallel in the Coincheck cascade. Together the two events
+  demonstrate that the Japan FSA supervisory cascade is reusable across
+  both endogenous (Coincheck-style) and exogenous (FTX Japan-style)
+  shocks, with the FIEA domestic-retention add-on as the
+  cross-border-specific instrument.
+
+  DRYRUN caveats: trigger primary citation (FSA 2022-11-10 release) and
+  recovery citation (CoinDesk 2023-02-20) are asserted with wildcard
+  Wayback pointers; pinned snapshot timestamps + body_hash captures for
+  each specific permalink are deferred to the human-audit pass. For
+  non-DRYRUN release, capture body_hash + body_path for: (1) the FSA's
+  2022-11-10 Japanese-language release at fsa.go.jp/news/r4/sonota/
+  20221110/20221110.html, (2) the FSA's English-language version at
+  fsa.go.jp/en/news/2022/20221111/20221110.html, (3) FTX Japan's
+  2022-11-09 withdrawal-halt customer notice, (4) the 2023-02-20
+  Liquid Japan refund-channel announcement, and (5) the Kanto LFB
+  page at lfb.mof.go.jp/kantou/. Marked evidence_use=
+  contextual_unarchived on all citations to flag the unarchived state
+  per validator policy.
+
+scoped_claim: |
+  "Japan's 2022-11-10 Kanto Local Finance Bureau business-suspension
+  order, business-improvement order, and order to retain assets
+  domestically against FTX Japan KK (issued one day before the US
+  parent's 2022-11-11 Chapter 11 filing) directly compelled the
+  FTX Japan operator-state change of customer-withdrawal-rail freeze
+  (both crypto-asset and JPY fiat withdrawals) and Japan-domestic
+  retention of customer-segregated assets across the 2022-11-09 to
+  2023-02-20 window, with recovery via the 2023-02-21 customer-asset
+  refund channel through the Liquid Japan web platform. The row does
+  not claim frontend-disable, ISP/DNS-level connectivity blocking,
+  on-chain asset-layer freeze, or class-wide Japanese VASP-cohort
+  suspension — only the single-entity FTX-Japan-cohort offramp_cex
+  load-bearing axis under the Payment Services Act and Financial
+  Instruments and Exchange Act supervisory regime."
+
+tags:
+  - regulatory_enforcement
+  - japan
+  - fsa
+  - kanto_lfb
+  - ftx_japan
+  - ftx
+  - cross_border_parent_cascade
+  - offramp_cex_freeze
+  - asset_segregation
+  - payment_services_act
+  - financial_instruments_and_exchange_act
+  - dryrun_2026_05_16
+  - phase_f_2026_05_16

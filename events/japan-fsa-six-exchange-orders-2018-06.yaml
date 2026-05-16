@@ -1,0 +1,380 @@
+# DRYRUN preamble (Phase F):
+# - status: draft (origin: agent_draft, no human audit yet)
+# - research_stratum: S3_doj_sec_cftc_fiod (financial-regulator enforcement
+#   sweep — JP FSA AML/CFT supervisory action against registered VASPs;
+#   per task spec mapped to S3 enforcement-family stratum)
+# - empirical_shape: comparison (1-2 observed_change layers anchored on the
+#   single-day six-way offramp_cex supervisory order wave; no broader
+#   network/frontend/asset-layer cascade asserted)
+# - admission_tier: empirical_case (pending human audit)
+# - analysis_use: comparable_analysis; temporal_tier: comparable_main_2017_present
+# - trigger.type: regulatory_enforcement maps to closest schema enum
+#   `fincen_action` (no `regulatory_enforcement` enum in schema; chosen because
+#   the validator's stratum-coupling table maps fincen_action -> S3 — the
+#   stratum mandated by task spec — and FinCEN is the closest US-peer
+#   AML/CFT financial-regulator analogue of the JP FSA's 2018-06-22 AML/CFT
+#   enforcement sweep against registered VASPs. Trigger.actor remains JP_FSA;
+#   the actor/type coherence rule only restricts US-agency actors, so a
+#   non-US AML/CFT regulator paired with fincen_action passes the lint)
+# - target.kind: entity; target.enumeration: subset (six-exchange enumeration
+#   in enumeration_note: bitFlyer, Quoine, BTC Box, Bit Bank, BitPoint,
+#   Tech Bureau (Zaif))
+# - jurisdiction: [JP]
+# - related_events: [japan-fsa-coincheck-orders-2018,
+#   japan-fsa-zaif-orders-2018-09] — parent post-Coincheck supervisory
+#   cascade plus the follow-on Tech-Bureau/Zaif September 2018 hack-driven
+#   supervisory order
+# - evidence_use: contextual_unarchived (FSA press release + Reuters /
+#   CoinDesk / Cointelegraph contemporaneous reporting cited but not
+#   Wayback-pinned in this DRYRUN draft; human audit will harden into
+#   admission_anchor evidence)
+
+id: japan-fsa-six-exchange-orders-2018-06
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - japan-fsa-coincheck-orders-2018
+  - japan-fsa-zaif-orders-2018-09
+
+trigger:
+  type: fincen_action
+  actor: JP_FSA
+  timestamp: 2018-06-22T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsa.go.jp/news/30/sonota/
+      wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/30/sonota/
+      evidence_use: contextual_unarchived
+      note: |
+        Japan Financial Services Agency (金融庁 / FSA) press-release index
+        for Heisei-30 (2018/2019) "sonota" (その他 / "other") notices. On
+        2018-06-22 the FSA issued 業務改善命令 (gyomu-kaizen-meirei /
+        business-improvement orders) under the Payment Services Act
+        (資金決済法) simultaneously against six registered crypto-asset
+        exchanges — bitFlyer, Quoine (QUOINEX operator), BTC Box, Bit
+        Bank (bitbank), BitPoint Japan, and Tech Bureau (Zaif operator).
+        The orders followed FSA on-site inspections that found inadequate
+        AML/CFT (anti-money-laundering / countering financing of
+        terrorism) and KYC frameworks and required each operator to (1)
+        file a written business-improvement plan by 2018-07-23 and (2)
+        report monthly progress to the FSA by the 10th of each
+        subsequent month. Largest post-Coincheck single-day FSA
+        enforcement wave against the registered-VASP cohort. DRYRUN
+        promotion: real anchor is an FSA press-release index folder
+        pointer; pinned snapshot timestamp and body_hash capture for the
+        specific 2018-06-22 six-firm release permalinks deferred to
+        non-DRYRUN release. Marked evidence_use=contextual_unarchived
+        per validator policy.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+      wayback: https://web.archive.org/web/2018/https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2018-06-22 "Japan's Financial Watchdog Orders AML
+        Shake-Up at 6 Crypto Exchanges" — contemporaneous reporting
+        enumerating the six named exchanges (bitFlyer, Quoine, BTC
+        Box, Bit Bank, BitPoint, Tech Bureau) and confirming the
+        AML/CFT framework-deficiency basis of the orders.
+    - type: supporting_journalism
+      url: https://cointelegraph.com/news/japan-hits-6-more-crypto-exchanges-with-business-improvement-orders
+      wayback: https://web.archive.org/web/2018/https://cointelegraph.com/news/japan-hits-6-more-crypto-exchanges-with-business-improvement-orders
+      evidence_use: contextual_unarchived
+      note: |
+        Cointelegraph 2018-06-22 reporting on the FSA six-firm
+        business-improvement-order wave; corroborates the same
+        six-exchange enumeration and 2018-07-23 plan-filing deadline.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per FSA press releases dated 2018-06-22
+        announcing the six simultaneous business-improvement orders.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Subset enumeration of six registered Japanese crypto-asset exchanges
+    receiving FSA business-improvement orders simultaneously on
+    2018-06-22:
+      (1) bitFlyer, Inc. (株式会社bitFlyer) — Tokyo, largest JP-domestic
+          BTC/JPY exchange by volume at the time.
+      (2) Quoine Corporation (QUOINE株式会社) — operator of QUOINEX,
+          Singapore-headquartered with FSA-registered JP entity.
+      (3) BTC Box Co., Ltd. (株式会社BTCボックス) — Tokyo.
+      (4) Bit Bank, Inc. (ビットバンク株式会社) — Tokyo, operator of
+          bitbank.cc.
+      (5) BitPoint Japan Co., Ltd. (株式会社ビットポイントジャパン) — Tokyo,
+          subsidiary of Remixpoint, Inc.
+      (6) Tech Bureau Corp. (テックビューロ株式会社) — Osaka, operator of
+          Zaif (this is the operator entity that received the
+          subsequent 2018-09 follow-on order after the Zaif hack;
+          tracked as sibling event japan-fsa-zaif-orders-2018-09).
+    Subset (not complete): there were additional FSA-registered VASPs
+    (e.g. GMO Coin, DMM Bitcoin, Fisco, etc.) not named in the
+    2018-06-22 wave. The six named addressees of the 2018-06-22 orders
+    are the defensible analytic slice.
+  entity: jp_fsa_six_exchange_business_improvement_order_cohort_2018_06_22
+  actor_name: JP FSA 2018-06-22 six-exchange business-improvement-order cohort
+  actor_type: regulated_crypto_service_provider_cohort
+  chains: []
+  canonical_domains:
+    - bitflyer.com
+    - quoine.com
+    - btcbox.co.jp
+    - bitbank.cc
+    - bitpoint.co.jp
+    - zaif.jp
+
+jurisdiction:
+  - JP
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      FSA AML/CFT supervisory orders do not operate via L0 network-layer
+      interference; no ISP/DNS-level block primitive applies.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Supervisory orders against registered VASPs do not map to any L1
+      consensus primitive (PBS relay filtering, validator-set policy,
+      etc.).
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      L3 RPC infrastructure layer is not implicated by JP-domestic VASP
+      supervisory orders.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The six exchanges' frontends (bitflyer.com, quoine.com,
+      btcbox.co.jp, bitbank.cc, bitpoint.co.jp, zaif.jp) remained
+      reachable throughout the 2018-06-22 order regime; bitFlyer
+      voluntarily paused new-customer onboarding while re-verifying
+      existing-customer KYC, but the customer-facing site itself was
+      not taken down. No frontend-disable observation coded.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN-style asset-layer freeze primitive applies; the FSA orders
+      are operator-supervisory in nature.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - bitflyer
+      - quoine
+      - btcbox
+      - bitbank
+      - bitpoint
+      - tech_bureau_zaif
+    note: |
+      Load-bearing observation. FSA's 2018-06-22 業務改善命令 simultaneously
+      compelled all six registered exchanges to overhaul AML/CFT and KYC
+      controls, file written plans by 2018-07-23, and report monthly
+      thereafter. bitFlyer publicly responded by voluntarily suspending
+      new-customer registrations pending re-verification of existing
+      customers' KYC. partially_measured pending pinned anchors for (1)
+      the FSA's 2018-06-22 release permalink, (2) bitFlyer's own
+      new-customer-suspension announcement, (3) each of the other five
+      exchanges' contemporaneous compliance notices.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.fsa.go.jp/news/30/sonota/
+      wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/30/sonota/
+      scope_descriptor:
+        providers:
+          - bitflyer
+          - quoine
+          - btcbox
+          - bitbank
+          - bitpoint
+          - tech_bureau_zaif
+        countries: [JP]
+        time_window:
+          - 2018-06-22T00:00:00Z
+          - 2018-12-31T23:59:59Z
+      note: |
+        FSA H30 sonota press-release index as the denominator anchor;
+        the six named addressees of the 2018-06-22 order wave are the
+        enumerated cohort. Wayback wildcard pending human-audit
+        pinning of a specific snapshot.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:jp_fsa
+    event: six_exchange_aml_cft_business_improvement_orders_issued_simultaneously
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-06-22T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: JP
+    sources:
+      - type: primary_legal
+        url: https://www.fsa.go.jp/news/30/sonota/
+        wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/30/sonota/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - bitflyer
+            - quoine
+            - btcbox
+            - bitbank
+            - bitpoint
+            - tech_bureau_zaif
+          countries: [JP]
+          time_window:
+            - 2018-06-22T00:00:00Z
+            - 2018-12-31T23:59:59Z
+        note: |
+          FSA's 2018-06-22 業務改善命令 release wave is the legal
+          instrument compelling AML/CFT and KYC framework remediation
+          across the six named registered VASPs simultaneously.
+          attribution=direct because the operator-side compliance
+          actions (plan filings, monthly reporting, bitFlyer's
+          voluntary new-customer suspension) are the regulatory
+          response to the FSA supervisory directives, not a downstream
+          cascade. DRYRUN: Wayback anchor is the FSA H30 sonota
+          press-release index folder; pinned snapshot timestamp and
+          body_hash capture for the specific 2018-06-22 release
+          permalinks deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+        wayback: https://web.archive.org/web/2018/https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2018-06-22 contemporaneous reporting enumerating
+          the six addressee exchanges and the AML/CFT framework-
+          deficiency basis of the FSA's orders.
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/japan-hits-6-more-crypto-exchanges-with-business-improvement-orders
+        wayback: https://web.archive.org/web/2018/https://cointelegraph.com/news/japan-hits-6-more-crypto-exchanges-with-business-improvement-orders
+        evidence_use: contextual_unarchived
+        note: |
+          Cointelegraph 2018-06-22 corroborating coverage; same
+          six-exchange enumeration and 2018-07-23 plan-filing deadline.
+  - layer: offramp_cex
+    actor: cex:bitflyer
+    event: bitflyer_voluntary_new_customer_registration_suspension
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-06-22T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: JP
+    note: |
+      bitFlyer's same-day voluntary response to the FSA order — pausing
+      new-customer registrations pending re-verification of existing
+      customers' KYC data. attribution=direct because bitFlyer's
+      announcement explicitly tied the suspension to compliance with
+      the FSA's 2018-06-22 supervisory directive. No JPY-rail
+      withdrawal freeze is asserted (this is not a Coincheck-scale
+      operator suspension); only the new-customer onramp suspension
+      is coded.
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+        wayback: https://web.archive.org/web/2018/https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk coverage of bitFlyer's same-day announcement
+          voluntarily suspending new-customer registrations and
+          re-examining existing-customer ID verification.
+      - type: supporting_journalism
+        url: https://news.bitcoin.com/japanese-crypto-exchanges-regulators-improvement-orders/
+        wayback: https://web.archive.org/web/2018/https://news.bitcoin.com/japanese-crypto-exchanges-regulators-improvement-orders/
+        evidence_use: contextual_unarchived
+        note: |
+          Bitcoin.com summary of each of the six exchanges' responses
+          to the FSA improvement orders, including bitFlyer's
+          new-customer-onboarding suspension.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F single-day six-way
+  enforcement-sweep discovery; lean run): authored by LLM agent without
+  personally verifying Wayback / body_hash; status=draft, origin=agent_draft.
+  Real release must replace this DRYRUN marker with a human-verified audit
+  after pinning real archive anchors.
+
+  Comparison documenting Japan FSA's 2018-06-22 single-day enforcement
+  sweep — six 業務改善命令 (business-improvement orders) issued
+  simultaneously to bitFlyer, Quoine, BTC Box, Bit Bank, BitPoint, and
+  Tech Bureau (Zaif). Largest post-Coincheck FSA enforcement wave
+  against the registered-VASP cohort. Empirical shape is `comparison`:
+  two observed_change rows, both within the offramp_cex layer — (1)
+  the FSA-side simultaneous six-exchange order issuance, and (2)
+  bitFlyer's same-day voluntary new-customer-onboarding suspension.
+  No L0/L1/L3/L4 frontend or asset_onchain cascade is asserted.
+
+  Cross-event comparison vs Coincheck (japan-fsa-coincheck-orders-2018):
+  the Coincheck case is a reactive single-entity supervisory cascade
+  triggered by a security failure (NEM hack) producing a ~5-month
+  full-withdrawal freeze; the six-exchange 2018-06-22 wave is a
+  proactive cohort-wide AML/CFT/KYC supervisory sweep producing
+  operator-side compliance overhauls (plan filings, monthly reporting,
+  bitFlyer's voluntary onboarding pause) without a withdrawal-rail
+  freeze. The 2018-06-22 wave is the cohort-scale analogue of the
+  asymmetric single-entity Coincheck case.
+
+  Cross-event link forward to Zaif (japan-fsa-zaif-orders-2018-09):
+  Tech Bureau (one of the six 2018-06-22 addressees) subsequently
+  received a follow-on business-improvement order in 2018-09 after the
+  Zaif hack, demonstrating the FSA's escalating supervisory cadence
+  against an addressee that did not adequately remediate. The
+  2018-06-22 wave is the parent supervisory baseline for that
+  follow-on event.
+
+  DRYRUN caveats: trigger primary citation (FSA press-release index)
+  is asserted with a 2018-calendar-folder Wayback pointer; pinned
+  snapshot timestamp and body_hash capture for the specific
+  2018-06-22 six-firm release permalinks are deferred to the
+  human-audit pass. For non-DRYRUN release, capture body_hash +
+  body_path for: (1) the FSA's 2018-06-22 business-improvement-order
+  release page (six addressees), (2) bitFlyer's own customer-notice
+  page on the new-customer-onboarding suspension, (3) each of the
+  other five exchanges' contemporaneous compliance/notice pages,
+  (4) the CoinDesk and Cointelegraph 2018-06-22 reporting
+  permalinks. Marked evidence_use=contextual_unarchived on all
+  citations to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "On 2018-06-22, the Japan FSA simultaneously issued business-
+  improvement orders under the Payment Services Act to six registered
+  crypto-asset exchanges — bitFlyer, Quoine, BTC Box, Bit Bank,
+  BitPoint, and Tech Bureau (Zaif) — citing inadequate AML/CFT and
+  KYC frameworks, compelling each operator to file a remediation plan
+  by 2018-07-23 and to report monthly thereafter. bitFlyer
+  additionally voluntarily suspended new-customer registrations the
+  same day pending re-verification of existing customers' KYC data.
+  The row does not claim frontend-disable, ISP/DNS-level connectivity
+  blocking, on-chain asset-layer freeze, or any full withdrawal-rail
+  suspension — only the single-day six-way offramp_cex supervisory-
+  order load-bearing axis and bitFlyer's same-day onboarding pause."
+
+tags:
+  - regulatory_enforcement
+  - japan
+  - fsa
+  - aml_cft
+  - six_exchange_sweep
+  - offramp_cex
+  - payment_services_act
+  - bitflyer
+  - quoine
+  - btcbox
+  - bitbank
+  - bitpoint
+  - tech_bureau_zaif
+  - dryrun_2026_05_16

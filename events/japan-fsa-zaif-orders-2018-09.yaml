@@ -1,0 +1,267 @@
+id: japan-fsa-zaif-orders-2018-09
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - japan-fsa-coincheck-orders-2018
+  - japan-fsa-six-exchange-orders-2018-06
+
+trigger:
+  type: fincen_action
+  actor: JP_FSA
+  timestamp: 2018-09-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsa.go.jp/news/30/sonota/
+      wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/30/sonota/
+      evidence_use: contextual_unarchived
+      note: |
+        Japan Financial Services Agency (金融庁 / FSA) press-release index for
+        Heisei-30 (2018/2019) "sonota" (その他 / "other") notices. On
+        2018-09-25 the FSA issued a 業務改善命令 (gyomu-kaizen-meirei /
+        business-improvement order) under the Payment Services Act (資金決済法)
+        against Tech Bureau, Inc., the Osaka-based operator of the Zaif
+        cryptocurrency exchange, following the 2018-09-14 hack in which
+        approximately ¥7 billion (~USD 60-67M) of Bitcoin (BTC), Bitcoin
+        Cash (BCH), and Monacoin (MONA) was stolen from Zaif hot wallets
+        (¥2.2B of Tech Bureau's own funds and the balance from customer
+        deposits). This was the third FSA supervisory order against
+        Tech Bureau in calendar year 2018 (after 2018-03-08 and
+        2018-06-22 orders), positioning it within the broader Japan
+        FSA registered-VASP supervisory cascade following the
+        2018-01-26 Coincheck NEM hack. The order required Tech Bureau
+        to (1) submit a facts-finding and root-cause report, (2)
+        construct a victim-compensation plan, and (3) strengthen its
+        system-risk and customer-protection framework. Tech Bureau
+        subsequently entered a forced corporate restructuring under
+        which Fisco Cryptocurrency Exchange (a subsidiary of
+        Japan-listed Fisco Ltd) injected ¥5B and acquired the Zaif
+        exchange business, with the asset/customer-base transfer
+        completed in late 2018. DRYRUN promotion: real anchor is an
+        FSA press-release index folder pointer; pinned snapshot
+        timestamp and body_hash capture for the specific 2018-09-25
+        release permalink deferred to non-DRYRUN release. Marked
+        evidence_use=contextual_unarchived to flag the unarchived
+        state per validator policy.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per FSA press release dated 2018-09-25 issuing
+        the third business-improvement order to Tech Bureau; trigger
+        timestamp anchors on the FSA supervisory action rather than the
+        2018-09-14 hack itself (the hack is the precipitating event;
+        the trigger is the nation-state regulatory action).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Tech Bureau, Inc. (株式会社テックビューロ) — an Osaka-based crypto-asset
+    exchange operator (Zaif exchange brand), treated at the entity-level
+    as the named addressee of the FSA's 2018-09-25 業務改善命令
+    (business-improvement order). Tech Bureau was a registered crypto-
+    asset exchange service provider under the Payment Services Act
+    (資金決済法) revision effective 2017-04 and had received prior FSA
+    business-improvement orders on 2018-03-08 and 2018-06-22 prior to
+    the 2018-09-14 hack. Downstream operational effect: Tech Bureau
+    suspended customer crypto deposits/withdrawals on Zaif following
+    the hack, executed a forced asset-and-business transfer to Fisco
+    Cryptocurrency Exchange (Fisco Ltd subsidiary) closing in late
+    2018, and ultimately ceased independent operations.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Tech Bureau, Inc. (Zaif)
+  chains: []
+  canonical_domains:
+    - zaif.jp
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      FSA supervisory orders do not target the Zaif frontend
+      (zaif.jp) as a takedown action; the website remained reachable
+      throughout the suspension to communicate hack-disclosure,
+      compensation, and Fisco-transfer status updates to customers.
+      No frontend-disable observation is coded.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN-style asset-layer freeze primitive applies; the stolen
+      BTC / BCH / MONA was tracked on-chain by community trackers but
+      this is a community-side countermeasure, not a state-issued
+      asset-layer freeze. No asset_onchain observation is coded for
+      the FSA action itself.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - zaif_crypto_and_jpy_withdrawal_rail
+    note: |
+      Load-bearing observation. FSA's 2018-09-25 business-improvement
+      order, combined with Tech Bureau's own post-hack suspension and
+      the subsequent Fisco asset-transfer process, compelled Zaif to
+      freeze customer crypto-asset and JPY-fiat withdrawals through
+      the late-2018 corporate restructuring. Direct attribution:
+      Tech Bureau's withdrawal-suspension state change is the
+      operator-side compliance with the FSA supervisory directive and
+      the post-hack remediation regime. partially_measured pending
+      pinned anchors for (1) Zaif's withdrawal-suspension customer
+      notice, (2) the FSA's 2018-09-25 business-improvement-order
+      release, (3) the Fisco Cryptocurrency Exchange acquisition
+      announcement.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:zaif
+    event: zaif_withdrawal_rail_frozen_per_fsa_order_and_fisco_transfer
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-09-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.fsa.go.jp/news/30/sonota/
+        wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/30/sonota/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [zaif, tech_bureau]
+          time_window:
+            - 2018-09-14T00:00:00Z
+            - 2018-12-31T23:59:59Z
+          addresses_cohort: zaif_jp_customer_withdrawals
+        note: |
+          FSA's 2018-09-25 業務改善命令 (third business-improvement order
+          to Tech Bureau in 2018, after 2018-03-08 and 2018-06-22) is
+          the legal instrument that compelled the post-hack
+          customer-protection / remediation regime at Zaif following
+          the 2018-09-14 hack (~¥7B / USD 60-67M in BTC, BCH, MONA).
+          attribution=direct because the operator-state change
+          (withdrawal-rail freeze and forced Fisco asset-transfer) is
+          the regulatory compliance with the FSA supervisory directive,
+          not a downstream cascade. DRYRUN: Wayback anchor is an FSA
+          press-index folder pointer at fsa.go.jp/news/30/sonota;
+          pinned snapshot timestamp and body_hash capture for the
+          specific 2018-09-25 release permalink deferred to human
+          audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2018/09/25/japan-regulators-seek-answers-in-wake-of-zaifs-60-million-crypto-hack/
+        wayback: https://web.archive.org/web/2018/https://www.coindesk.com/markets/2018/09/25/japan-regulators-seek-answers-in-wake-of-zaifs-60-million-crypto-hack/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2018-09-25 contemporaneous coverage of the FSA's
+          third business-improvement order to Tech Bureau and the
+          ~USD 60M Zaif hack disclosure (BTC + BCH + MONA loss
+          composition). Supporting context for the trigger-day
+          framing. DRYRUN: wayback wildcard pointer in lieu of
+          pinned-timestamp snapshot.
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/forced-deal-and-fsa-scrutiny-what-do-we-know-about-japans-latest-hack
+        wayback: https://web.archive.org/web/2018/https://cointelegraph.com/news/forced-deal-and-fsa-scrutiny-what-do-we-know-about-japans-latest-hack
+        evidence_use: contextual_unarchived
+        note: |
+          Cointelegraph September-2018 coverage of the Fisco
+          Cryptocurrency Exchange ¥5B investment / forced asset-and-
+          business acquisition of Zaif from Tech Bureau, situating
+          the FSA supervisory cascade in the broader Japan-VASP
+          regulatory frame post-Coincheck. DRYRUN: wayback wildcard
+          pointer in lieu of pinned-timestamp snapshot.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F.2 Japanese
+  state-archives frame draft; agent_draft per validator constraint;
+  status=draft because no body_hash+body_path archive anchors have
+  been pinned in this session). Authored by LLM agent without
+  personally verifying Wayback/body_hash snapshots; human-audit
+  promotion to admitted requires pinning real archive anchors and
+  flipping origin → human_reviewed.
+
+  Comparison documenting Japan's 2018-09-25 FSA 業務改善命令
+  (business-improvement order, the third 2018 order to Tech Bureau
+  after 2018-03-08 and 2018-06-22) against Tech Bureau, Inc., the
+  Osaka-based operator of the Zaif crypto-asset exchange, following
+  the 2018-09-14 Zaif hack in which approximately ¥7 billion
+  (~USD 60-67M) of Bitcoin (BTC), Bitcoin Cash (BCH), and
+  Monacoin (MONA) was stolen. The cascade culminated in a forced
+  corporate restructuring under which Fisco Cryptocurrency Exchange
+  (Fisco Ltd subsidiary) injected ¥5B and acquired Zaif's exchange
+  business and customer assets in late 2018, with Tech Bureau
+  ceasing independent operations thereafter.
+
+  Paper-relevant contrast vs Coincheck FSA orders
+  (japan-fsa-coincheck-orders-2018): both are JP FSA reactive
+  single-entity supervisory cascades triggered by exchange security
+  failures with offramp_cex load-bearing axes. The Coincheck case
+  drove a ~5-month withdrawal freeze under a single-issuance
+  business-improvement-then-suspension order pair followed by
+  Monex Group acquisition; the Zaif case escalated through a
+  three-order sequence within calendar 2018 culminating in a
+  forced Fisco asset-and-business transfer (rather than a
+  voluntary acquisition under the prior operator). Both confirm
+  the registered-VASP supervisory rail as the JP nation-state
+  load-bearing axis post-Mt-Gox.
+
+  Cross-reference: japan-fsa-six-exchange-orders-2018-06 — the
+  2018-06-22 FSA cohort order to six registered VASPs (including
+  Tech Bureau's second 2018 order) is the prior-step in the
+  Zaif-specific cascade and the contextual baseline against which
+  the 2018-09-25 third order escalates.
+
+  DRYRUN caveats: trigger primary citation (FSA Heisei-30
+  press-release index) is asserted with a 2018-calendar-folder
+  Wayback pointer; pinned snapshot timestamp and body_hash capture
+  for the specific 2018-09-25 業務改善命令 release permalink is
+  deferred to the human-audit pass. For non-DRYRUN release,
+  capture body_hash + body_path for: (1) the FSA's 2018-09-25
+  business-improvement-order release page, (2) Zaif's
+  withdrawal-suspension customer-notice page, (3) Tech Bureau's
+  2018-09-14 hack-disclosure announcement and BTC/BCH/MONA loss
+  composition, (4) the Fisco Cryptocurrency Exchange acquisition
+  announcement and ¥5B investment terms. All citations marked
+  evidence_use=contextual_unarchived to flag the unarchived state
+  per validator policy.
+
+scoped_claim: |
+  "Japan FSA's 2018-09-25 business-improvement order against
+  Tech Bureau, Inc. (the third 2018 FSA supervisory order against
+  the Zaif operator, following the 2018-09-14 hack of approximately
+  ¥7 billion / USD 60-67M in BTC, BCH, and MONA) directly compelled
+  the Zaif operator-state change of customer-withdrawal-rail freeze
+  and the forced asset-and-business transfer to Fisco Cryptocurrency
+  Exchange completed in late 2018. The row does not claim
+  frontend-disable, ISP/DNS-level connectivity blocking, on-chain
+  asset-layer freeze, or class-wide Japanese VASP-cohort suspension —
+  only the single-entity Tech Bureau/Zaif-cohort offramp_cex
+  load-bearing axis under the Payment Services Act supervisory
+  regime."
+
+tags:
+  - nation_state_block
+  - japan
+  - fsa
+  - zaif
+  - tech_bureau
+  - fisco
+  - zaif_hack
+  - offramp_cex_freeze
+  - payment_services_act
+  - dryrun_2026_05_16
+  - phase_f

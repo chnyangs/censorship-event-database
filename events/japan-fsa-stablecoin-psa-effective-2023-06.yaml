@@ -1,0 +1,359 @@
+# DRYRUN preamble (Phase F):
+# - status: draft (origin: agent_draft, no human audit yet)
+# - research_stratum: S4_nation_state (JP_FSA is the Japanese national
+#   financial regulator administering the Payment Services Act; the
+#   authoring brief suggested S3, but the schema/validator restrict
+#   S3_doj_sec_cftc_fiod to US DOJ/SEC/CFTC/FinCEN/court_civil_order
+#   trigger types — JP_FSA is a non-US national regulator and the only
+#   schema-valid mapping is nation_state_block + S4_nation_state, which
+#   also matches the sibling japan-fsa-coincheck-orders-2018 event)
+# - empirical_shape: null_event (regulatory-framework activation; no
+#   specific stablecoin delisting or issuer-side cascade observed and
+#   anchored in this draft — pre-existing JP exchange behavior was
+#   already "no foreign stablecoin listing", so the PSA amendment
+#   formalizes the regime rather than triggering an observable change.
+#   The 2023-06-01 framework activation is coded as observed_no_change
+#   on offramp_cex with a coverage_gap on asset_onchain pending
+#   downstream EPIESP-registration / issuer-licence events)
+# - admission_tier: null_case (0 strong-attribution observed_change
+#   layers; honest coding of an L4 cascade that has not yet materialized
+#   as a measurable downstream change in this DRYRUN pass)
+# - analysis_use: comparable_analysis; temporal_tier: comparable_main_2017_present
+# - trigger.type: nation_state_block (PSA amendment is a national-level
+#   regulatory action establishing the EPI licensing regime over
+#   stablecoin issuance and intermediation within JP jurisdiction)
+# - target.kind: entity; target.enumeration: subset (class-level
+#   restriction to JP-jurisdiction stablecoin issuers; only banks, fund
+#   transfer service providers, and trust companies/banks qualify as
+#   licensed EPI issuers, plus EPIESP-registered intermediaries)
+# - jurisdiction: [JP]
+# - related_events: [eu-mica-2023, hongkong-hkma-stablecoins-ordinance-2025]
+#   (sibling stablecoin issuer regulatory frameworks; JP is the first
+#   industrial-democracy stablecoin issuer regime, with EU MiCA following
+#   on the same 2023-06 timeline and HK HKMA following in 2025)
+# - evidence_use: contextual_unarchived (FSA + secondary legal-explainer
+#   sources cited but not Wayback-pinned with body_hash in this draft;
+#   human audit will harden pinned anchors before admission promotion)
+
+id: japan-fsa-stablecoin-psa-effective-2023-06
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - eu-mica-2023
+  - hongkong-hkma-stablecoins-ordinance-2025
+
+trigger:
+  type: nation_state_block
+  actor: JP_FSA
+  timestamp: 2023-06-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
+      wayback: https://web.archive.org/web/2023/https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
+      evidence_use: contextual_unarchived
+      note: |
+        Japan Financial Services Agency (金融庁 / FSA) Weekly Review No.540
+        (English edition), dated 2023-06-08, which covers the week of the
+        2023-06-01 commencement of the Amendment Act to the Payment
+        Services Act (資金決済に関する法律 / Shikin Kessai ni Kansuru
+        Hōritsu). The Amendment Bill was submitted to the Diet on
+        2022-03-04, enacted 2022-06-03, and commenced operation on
+        2023-06-01. It introduces the "electronic payment instrument"
+        (電子決済手段 / EPI) category corresponding to fiat-referenced
+        stablecoins, restricts EPI issuance to (a) licensed banks, (b)
+        fund transfer service providers (資金移動業者), and (c) trust
+        companies / trust banks (信託会社・信託銀行) in Japan, and
+        introduces a separate Electronic Payment Instrument Exchange
+        Service Provider (EPIESP / 電子決済手段等取引業者) registration
+        regime for stablecoin intermediaries (buy/sell/custody/transfer).
+        First major industrial-democracy stablecoin issuer regime
+        globally. DRYRUN: Wayback pointer is a 2023-calendar-folder
+        wildcard; pinned snapshot timestamp and body_hash capture for
+        the specific FSA Weekly Review No.540 permalink, plus the FSA's
+        Japanese-language press notice for the 2023-06-01 commencement,
+        deferred to non-DRYRUN release.
+    - type: supporting_journalism
+      url: https://cryptoforinnovation.org/policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework/
+      wayback: https://web.archive.org/web/2023/https://cryptoforinnovation.org/policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework/
+      evidence_use: contextual_unarchived
+      note: |
+        Crypto Council for Innovation policy brief "Summary of Japanese
+        FSA Crypto Asset and Stablecoins Framework" describing the
+        2023-06-01 commencement of the Payment Services Act Amendment
+        Act and the EPI licensing regime. Companion explainer anchor
+        documenting the three-issuer-class restriction (banks, fund
+        transfer service providers, trust companies/banks), the EPIESP
+        registration regime for intermediaries, and the foreign-
+        stablecoin treatment (domestic EPIESPs may intermediate foreign-
+        issued stablecoins subject to JP-side reserve-backing
+        requirements). DRYRUN: wildcard Wayback pointer; pinned snapshot
+        timestamp and body_hash deferred to human audit.
+    - type: supporting_journalism
+      url: https://news.bitcoin.com/japan-stablecoin-regulation-explained-psa-rules-jpy-coins-and-bank-issuers/
+      wayback: https://web.archive.org/web/2023/https://news.bitcoin.com/japan-stablecoin-regulation-explained-psa-rules-jpy-coins-and-bank-issuers/
+      evidence_use: contextual_unarchived
+      note: |
+        Bitcoin.com News explainer "Japan Stablecoin Regulation Explained:
+        PSA Rules, JPY Coins and Bank Issuers" covering the 2023-06-01
+        EPI regime commencement and the three eligible-issuer classes.
+        Secondary explainer anchor for the issuer-restriction framing.
+        DRYRUN: wildcard Wayback pointer; pinned snapshot deferred.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level commencement. The Bill for Partial Amendment to the
+        Payment Services Act was submitted to the Diet on 2022-03-04,
+        approved 2022-06-03, and the EPI/stablecoin provisions commenced
+        operation on 2023-06-01. Trigger timestamp anchors on the
+        commencement date rather than the 2022-06-03 enactment date,
+        because the regulatory regime (EPI issuance restriction +
+        EPIESP registration requirement) takes legal effect on
+        2023-06-01.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level subset enumeration: (a) all JP-jurisdiction stablecoin
+    issuers, restricted under the PSA Amendment to licensed banks, fund
+    transfer service providers (資金移動業者), and trust companies /
+    trust banks (信託会社・信託銀行); and (b) all JP-resident-facing
+    stablecoin intermediaries (buy/sell/custody/transfer operations),
+    which must register as Electronic Payment Instrument Exchange
+    Service Providers (EPIESP / 電子決済手段等取引業者). Foreign-issued
+    stablecoins (e.g. USDT, USDC, DAI) are not directly issuer-licensed
+    by JP but may only be intermediated to JP residents through a
+    domestic EPIESP that holds a JP-side reserve equal to the
+    intermediated stablecoin balance. Address-level enumeration is not
+    applicable — this is sector-wide stablecoin issuance-and-intermediation
+    licensing.
+  protocol: null
+  actor_type: stablecoin_issuer_and_intermediary_licensing_regime
+  actor_name: JP-jurisdiction stablecoin issuer + EPIESP intermediary ecosystem (FSA-licensed)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      EPI/EPIESP licensing is a financial-regulatory action; it does not
+      operate via L0 network-layer interference. JP does not run a
+      mainland-style network filter against unlicensed stablecoin
+      frontends.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Stablecoin issuer/intermediary licensing does not map to Ethereum
+      PBS relay filtering or any other L1 consensus primitive.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      EPI regime does not constrain RPC routing or operator selection;
+      no L3 observation applies.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      EPI regime does not require frontend-takedown of unlicensed
+      stablecoin issuer or intermediary websites; the regulatory
+      perimeter is the legal-business-conduct gate, not the web layer.
+  - layer: asset_onchain
+    status: not_measured
+    scope: [jp_epi_issuer_class]
+    note: |
+      Stablecoin issuance licensing constrains who may legally issue an
+      EPI to JP residents. Pre-existing foreign-issued stablecoins
+      (USDT, USDC, DAI) remain in circulation on public chains globally;
+      the JP regime does not impose on-chain freeze, blacklist, or
+      issuer-side address-blacklist requirements at the protocol level.
+      No coordinated JP-issued EPI launch was observed in the
+      2023-06-01 → 2023-12 window pinned at admission-anchor quality;
+      first FSA-approved bank-consortium JPY-stablecoin work (e.g.
+      Progmat Coin, MUFG-backed) is documented as forward-looking
+      rather than as a discrete 2023-06 cascade event. Coded
+      not_measured rather than partially_measured because no
+      observation is anchored in this DRYRUN pass.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [jp_registered_vasp_stablecoin_listings, jp_epiesp_registration_class]
+    note: |
+      Load-bearing axis for null_event coding. Pre-existing JP-registered
+      VASP behavior (as of 2022-11): none of the 31 FSA-registered
+      exchanges (incl. bitFlyer, Coincheck) listed USDT/USDC for JPY
+      pairs. The 2023-06-01 PSA Amendment Act formalizes the
+      intermediary regime (EPIESP) under which such listings could
+      occur, but no immediate post-2023-06-01 delisting cascade is
+      documented — the regime is enabling-with-restrictions rather than
+      cliff-edge prohibitive. Downstream USDC launch (SBI VC Trade,
+      bitFlyer, Binance Japan) materialized in late 2024/2025 under the
+      EPIESP regime, but those are forward-looking cascade events that
+      will be coded as separate downstream events when authored.
+      partially_measured pending pinned anchors for (1) FSA EPIESP
+      registration roster, (2) JP-registered-VASP stablecoin-listing
+      status snapshots across the 2023-06-01 commencement window.
+
+observations:
+  - layer: offramp_cex
+    actor: jp_registered_vasp_cohort
+    event: psa_amendment_act_epi_regime_commenced_no_immediate_listing_cascade
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-06-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-06-01T00:00:00Z
+      - 2023-12-31T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
+        wayback: https://web.archive.org/web/2023/https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [jp_registered_vasp_cohort, jp_epi_issuer_class]
+          countries: [JP]
+          time_window:
+            - 2023-06-01T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          PSA Amendment Act commences operation 2023-06-01. From this
+          date, EPI issuance to JP residents is restricted to licensed
+          banks, fund transfer service providers, and trust companies/
+          banks; intermediation requires EPIESP registration.
+          observation_kind=observed_no_change with attribution=none
+          because the regime activation does not by itself produce a
+          measurable JP-VASP stablecoin-listing delta in the
+          2023-06-01 → 2023-12 window — pre-existing JP exchanges
+          were not listing USDT/USDC, so there is no observable
+          delisting cascade, and no JP-issued EPI was launched at the
+          commencement date. DRYRUN: Wayback wildcard pointer; pinned
+          snapshot timestamp and body_hash for the specific FSA Weekly
+          Review permalink and the FSA Japanese-language commencement
+          notice deferred to human audit.
+      - type: supporting_journalism
+        url: https://cryptoforinnovation.org/policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework/
+        wayback: https://web.archive.org/web/2023/https://cryptoforinnovation.org/policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [jp_registered_vasp_cohort]
+          countries: [JP]
+          time_window:
+            - 2023-06-01T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          Companion policy-brief anchor describing the regime's
+          enabling-with-restrictions character: registered JP VASPs may
+          intermediate foreign-issued stablecoins post-2023-06-01 under
+          the EPIESP regime subject to JP-side reserve backing, rather
+          than the regime imposing immediate delisting. Supports the
+          observed_no_change coding for the 2023-06-01 → 2023-12 window.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F agent_draft
+  preamble): authored by LLM agent without personally verifying
+  Wayback/body_hash archives; origin=agent_draft + status=draft per
+  validator constraint. Real release will require human review
+  (origin→human_reviewed) plus pinned body_hash+body_path anchors
+  for the FSA Weekly Review No.540 permalink, the FSA Japanese-language
+  commencement notice, and the Crypto Council for Innovation /
+  Bitcoin.com News explainer pages before any admission promotion.
+
+  null_event documenting the 2023-06-01 commencement of the Japan
+  Payment Services Act Amendment Act establishing the Electronic
+  Payment Instrument (EPI / 電子決済手段) regulatory regime for
+  fiat-referenced stablecoins. First major industrial-democracy
+  stablecoin issuer regime globally — predating EU MiCA's stablecoin
+  provisions (effective 2024-06-30) and the HK HKMA Stablecoins
+  Ordinance (effective 2025-08-01). Structurally distinct from the
+  EU and HK regimes in three ways: (1) JP restricts EPI issuance to a
+  closed list of three pre-existing licensed entity classes (banks,
+  fund transfer service providers, trust companies/banks) rather than
+  creating a new stablecoin-issuer licence category; (2) JP separates
+  issuer regulation from intermediary regulation via the parallel
+  EPIESP registration regime; (3) JP's foreign-stablecoin treatment
+  permits intermediation by domestic EPIESPs subject to JP-side
+  reserve backing equal to intermediated balances, rather than the
+  EU MiCA equivalence-passport model or the HK extraterritorial
+  HKD-peg coverage.
+
+  Coded null_event / null_case because (a) no JP-issued EPI was
+  launched at the 2023-06-01 commencement date, (b) pre-existing
+  JP-registered-VASP behavior (no USDT/USDC listings as of 2022-11)
+  produces no observable post-commencement delisting cascade, and
+  (c) downstream USDC-on-JP-CEX events (SBI VC Trade 2024, bitFlyer/
+  Binance Japan 2025) are forward-looking cascade events that will
+  be authored as separate downstream events. This event captures the
+  regulatory-framework trigger; downstream EPIESP-registration and
+  EPI-issuer-licence events are expected separate rows.
+
+  Paper-relevant contrast vs eu-mica-2023: both 2023-06 stablecoin
+  regulatory-framework triggers, but JP commences on 2023-06-01 with
+  the issuer/intermediary regime live whereas EU MiCA OJ-publishes on
+  2023-06-09 with stablecoin provisions deferred to 2024-06-30 and
+  full CASP licensing to 2024-12-30. JP is therefore the first
+  industrial-democracy stablecoin issuer regime to take legal effect.
+
+  Paper-relevant contrast vs hongkong-hkma-stablecoins-ordinance-2025:
+  HK creates a new HKMA-administered stablecoin-issuer licence
+  category with criminal penalties (HK$5M + 7yr) for unlicensed
+  conduct and extraterritorial application to HKD-pegged stablecoins
+  globally; JP uses a closed list of three pre-existing licensed
+  entity classes with administrative (not criminal) supervisory
+  enforcement and territorial application limited to JP-resident-
+  facing intermediation. JP is the earlier and structurally lighter
+  regime; HK is the later and structurally heavier regime.
+
+  DRYRUN caveats: trigger primary citation is asserted with a
+  2023-calendar-folder Wayback pointer to the FSA Weekly Review No.540
+  index; pinned snapshot timestamp and body_hash capture for (1) the
+  FSA Weekly Review No.540 permalink, (2) the FSA's 2023-06-01
+  Japanese-language commencement notice (likely under
+  fsa.go.jp/news/r4/ or fsa.go.jp/policy/), (3) the Cabinet Office
+  ordinance text for EPI/EPIESP definitions, and (4) the two
+  secondary explainer pages are deferred to the human-audit pass.
+  Marked evidence_use=contextual_unarchived on all citations to flag
+  the unarchived state per validator policy.
+
+scoped_claim: |
+  "Japan's 2023-06-01 commencement of the Payment Services Act
+  Amendment Act established the Electronic Payment Instrument (EPI /
+  電子決済手段) regulatory regime for fiat-referenced stablecoins,
+  restricting EPI issuance to JP-licensed banks, fund transfer
+  service providers, and trust companies/banks, and requiring
+  Electronic Payment Instrument Exchange Service Provider (EPIESP)
+  registration for stablecoin intermediation. As the first major
+  industrial-democracy stablecoin issuer regime to take legal effect,
+  it predates EU MiCA stablecoin provisions (2024-06-30) and the
+  HK HKMA Stablecoins Ordinance (2025-08-01). The row does not claim
+  any specific 2023-06-01 issuer-side launch, JP-VASP stablecoin
+  delisting cascade, on-chain asset-layer freeze, or frontend
+  takedown; it documents the regulatory-framework trigger as a
+  null_event pending downstream EPIESP-registration and EPI-issuer-
+  licence events authored as separate rows."
+
+tags:
+  - nation_state_block
+  - japan
+  - fsa
+  - payment_services_act
+  - electronic_payment_instrument
+  - stablecoin_issuer_licensing
+  - epiesp
+  - asset_onchain
+  - offramp_cex
+  - null_event
+  - dryrun_2026_05_16
+  - agent_draft

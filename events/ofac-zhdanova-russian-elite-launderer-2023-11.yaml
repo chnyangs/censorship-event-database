@@ -1,0 +1,303 @@
+id: ofac-zhdanova-russian-elite-launderer-2023-11
+schema_version: 0.2.0
+status: draft
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - matveev-ofac-2023
+  - suex-ofac-2021
+  - garantex-ofac-2022
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-11-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20231103
+      wayback: https://web.archive.org/web/2023/https://ofac.treasury.gov/recent-actions/20231103
+      evidence_use: contextual_unarchived
+      note: |
+        OFAC Recent Actions page for 2023-11-03 ("Russia-related Designation").
+        Designation of Ekaterina ZHDANOVA (Russia-based individual) pursuant to
+        Executive Order 14024 for operating in the financial services sector of
+        the Russian Federation economy by laundering and moving funds using
+        digital assets on behalf of Russian elites and ransomware actors
+        (including the Ryuk gang). Per post-action analysis (Chainalysis,
+        Elliptic, secondary reporting), three Bitcoin (XBT) digital-currency
+        addresses were attached to the Zhdanova SDN entry. DRYRUN: per-address
+        verbatim extraction and pinned body_hash snapshot of the
+        recent-actions HTML deferred to non-DRYRUN release; marked
+        evidence_use=contextual_unarchived per validator policy.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2735
+      wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy2735
+      evidence_use: contextual_unarchived
+      note: |
+        Treasury press release "Treasury Designates Virtual Currency Money
+        Launderer for Russian Elites and Cybercriminals" (2023-11-03). Frames
+        Zhdanova as the first OFAC action targeting a virtual-currency-
+        specialized "concierge laundering" operator distinct from an exchange
+        (SUEX 2021, Garantex 2022) or anonymizer/mixer (Blender 2022, Tornado
+        2022, Sinbad 2023). Press release narrates: (a) March 2022 movement
+        of >USD 2.3M into Western Europe for a Russian client via fraudulent
+        investment account + real-estate purchases; (b) attempted ~USD 100M
+        movement to the UAE for a Russian oligarch; (c) laundering for Ryuk
+        ransomware affiliates with onward deposits to mainstream exchanges
+        and Garantex.
+    - type: supporting_journalism
+      url: https://www.chainalysis.com/blog/ofac-russia-crypto-money-laundering-sanctions-2023/
+      wayback: https://web.archive.org/web/2023/https://www.chainalysis.com/blog/ofac-russia-crypto-money-laundering-sanctions-2023/
+      evidence_use: contextual_unarchived
+      note: |
+        Chainalysis post-action analysis (2023-11) of the Zhdanova
+        designation: documents on-chain flow pattern of ransomware funds
+        routed to Zhdanova-controlled wallet then forwarded to deposit
+        addresses at mainstream exchanges and to Garantex. Used here as
+        contextual on-chain narrative for the cascade structure; per-tx-hash
+        anchors deferred to non-DRYRUN release.
+    - type: supporting_journalism
+      url: https://www.elliptic.co/blog/ofac-sanctions-russian-national-for-facilitating-sanctions-evasion
+      wayback: https://web.archive.org/web/2023/https://www.elliptic.co/blog/ofac-sanctions-russian-national-for-facilitating-sanctions-evasion
+      evidence_use: contextual_unarchived
+      note: |
+        Elliptic post-action analysis (2023-11) of the Zhdanova designation.
+        Independent chain-analytics framing of the concierge-laundering
+        cluster and counterparty linkage to Garantex.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per OFAC Recent Actions page dated 2023-11-03 and
+        matching Treasury press release jy2735 of the same date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Individual designation of Ekaterina Zhdanova, a Russia-based natural
+    person operating as a virtual-currency-specialized "concierge laundering"
+    operator for Russian elites and ransomware affiliates (including Ryuk).
+    Per post-action analysis, three XBT digital-currency addresses are
+    attached to the SDN entry; the per-address slice would promote
+    target.kind to address_set in a future revision. Retained here as
+    target.kind=entity / enumeration=subset to flag that the verbatim
+    address extraction from the SDN XML / recent-actions page is deferred to
+    non-DRYRUN release.
+  protocol: null
+  actor_type: individual
+  actor_name: Ekaterina Zhdanova
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Zhdanova is an individual-level concierge launderer with no canonical
+      service-frontend to take down (in contrast to SUEX/Garantex exchanges
+      or Sinbad/Blender mixers, which carry canonical_domains). L4 layer is
+      structurally inapplicable.
+  - layer: asset_onchain
+    status: partially_measured
+    chain: bitcoin
+    scope:
+      - zhdanova_xbt_sdn_address_cluster
+    note: |
+      Three XBT addresses attached to the Zhdanova SDN entry per
+      post-action Chainalysis / Elliptic narrative. No US-state-issued
+      asset-layer freeze primitive applies to native Bitcoin (no Circle /
+      Tether equivalent freeze on XBT-native UTXOs). The asset-layer cascade
+      observable is private-sector chain-analytics flagging of the
+      Zhdanova-cluster addresses (Chainalysis, Elliptic) rather than an
+      on-chain freeze tx. partially_measured pending pinned per-address
+      anchors and per-cluster chain-analytics report snapshots.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - mainstream_cex_aggregate
+      - garantex
+    note: |
+      Load-bearing observation. Per Treasury press release and post-action
+      chain-analytics narrative, Zhdanova routed ransomware-affiliate funds
+      through deposit addresses at mainstream centralized exchanges and at
+      Garantex (itself OFAC-designated 2022-04-05). Post-designation, KYT /
+      sanctions-screening providers (Chainalysis, TRM, Elliptic) would have
+      flagged the three SDN-listed XBT addresses for downstream CEX
+      compliance teams. partially_measured pending pinned per-event
+      chain-analytics tagging artifacts and pinned counterparty-CEX policy
+      statements (typically absent for individual-level designations, cf.
+      matveev-ofac-2023 null-event reference case).
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: kyt_flagging_of_zhdanova_xbt_sdn_addresses_at_mainstream_cex_and_garantex_counterparties
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-11-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-11-03T00:00:00Z
+      - 2023-11-17T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy2735
+        wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy2735
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mainstream_cex_aggregate, garantex]
+          time_window:
+            - 2023-11-03T00:00:00Z
+            - 2023-11-17T23:59:59Z
+          addresses_cohort: zhdanova_xbt_sdn_cluster
+        note: |
+          Treasury press release names mainstream centralized exchanges and
+          Garantex as the counterparty offramps used by Zhdanova for
+          ransomware-affiliate deposit flow. attribution=plausible because
+          KYT flagging at counterparty CEXes is the standard post-SDN
+          chain-analytics cascade but no public per-exchange policy
+          statement referencing Zhdanova is pinned for this DRYRUN.
+      - type: supporting_journalism
+        url: https://www.chainalysis.com/blog/ofac-russia-crypto-money-laundering-sanctions-2023/
+        wayback: https://web.archive.org/web/2023/https://www.chainalysis.com/blog/ofac-russia-crypto-money-laundering-sanctions-2023/
+        evidence_use: contextual_unarchived
+        note: |
+          Chainalysis post-action narrative documents the on-chain flow from
+          Zhdanova-controlled wallets to deposit addresses at mainstream
+          exchanges and Garantex, which is the substrate for downstream KYT
+          flagging at counterparty CEXes.
+      - type: supporting_journalism
+        url: https://www.elliptic.co/blog/ofac-sanctions-russian-national-for-facilitating-sanctions-evasion
+        wayback: https://web.archive.org/web/2023/https://www.elliptic.co/blog/ofac-sanctions-russian-national-for-facilitating-sanctions-evasion
+        evidence_use: contextual_unarchived
+        note: |
+          Elliptic independent chain-analytics post-action coverage of the
+          Zhdanova cluster and counterparty linkage to Garantex.
+  - layer: asset_onchain
+    actor: chain_analytics_ecosystem
+    event: zhdanova_xbt_sdn_cluster_tagged_by_chain_analytics_providers
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-11-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-11-03T00:00:00Z
+      - 2023-11-17T23:59:59Z
+    sources:
+      - type: supporting_journalism
+        url: https://www.chainalysis.com/blog/ofac-russia-crypto-money-laundering-sanctions-2023/
+        wayback: https://web.archive.org/web/2023/https://www.chainalysis.com/blog/ofac-russia-crypto-money-laundering-sanctions-2023/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [chainalysis, elliptic]
+          time_window:
+            - 2023-11-03T00:00:00Z
+            - 2023-11-17T23:59:59Z
+          addresses_cohort: zhdanova_xbt_sdn_cluster
+        note: |
+          Chainalysis published a post-action analysis on the day of the
+          Zhdanova designation, documenting the on-chain
+          concierge-laundering cluster. attribution=plausible because the
+          chain-analytics provider tagging of SDN-listed addresses is the
+          standard cascade primitive for asset_onchain layer on native
+          Bitcoin (no Circle/Tether freeze primitive exists for native XBT
+          UTXOs). Per-tx-hash anchors deferred to non-DRYRUN release.
+      - type: supporting_journalism
+        url: https://www.elliptic.co/blog/ofac-sanctions-russian-national-for-facilitating-sanctions-evasion
+        wayback: https://web.archive.org/web/2023/https://www.elliptic.co/blog/ofac-sanctions-russian-national-for-facilitating-sanctions-evasion
+        evidence_use: contextual_unarchived
+        note: |
+          Elliptic independent chain-analytics provider post-action analysis
+          of the Zhdanova cluster. Together with the Chainalysis post these
+          two independent providers constitute the post-designation
+          tagging-cascade primitive for the asset_onchain layer.
+
+analysis_notes: |
+  **DRYRUN PREAMBLE — Phase F 2026-05-16**: authored by LLM agent
+  (origin=agent_draft, status=draft) without personally verifying Wayback /
+  body_hash anchors. Real release must pin per-permalink snapshots and a
+  human adversarial audit pass before promotion to status=admitted /
+  origin=human_reviewed.
+
+  Comparison documenting OFAC's 2023-11-03 SDN designation of Ekaterina
+  Zhdanova, a Russia-based individual "concierge laundering" operator
+  specialized in virtual-currency movement on behalf of Russian elites and
+  ransomware affiliates (including Ryuk). Notable as the **first OFAC
+  action targeting a virtual-currency-specialized concierge launderer**
+  (individual-level) — distinct from the prior exchange designations
+  (SUEX 2021-09-21, Garantex 2022-04-05) and the mixer/anonymizer
+  designations (Blender 2022-05-06, Tornado 2022-08-08, Sinbad 2023-11-29
+  three weeks later).
+
+  Cascade structure: layers limited to offramp_cex + asset_onchain by
+  construction. L4 is not_applicable (no canonical service frontend exists
+  for an individual concierge launderer, in contrast to SUEX's suex.io or
+  Garantex's garantex.org). L0/L1/L3 are not_applicable. The two attributed
+  observations are private-sector chain-analytics tagging (Chainalysis,
+  Elliptic) and KYT-flagging at counterparty mainstream CEXes + Garantex —
+  both attribution=plausible because no per-exchange policy statement or
+  per-tx-hash freeze artifact is pinned for this DRYRUN.
+
+  Paper-relevant contrast vs matveev-ofac-2023 (Russian ransomware
+  individual, null_event with zero observed cascade) and vs suex-ofac-2021 /
+  garantex-ofac-2022 (Russian exchange-level designations with foreign
+  frontend persistence): Zhdanova sits between the individual-null and
+  exchange-cascade reference cases. Unlike Matveev (a ransomware
+  affiliate proper), Zhdanova is named as a financial-services-sector
+  facilitator with a documented on-chain wallet cluster, which gives her
+  designation an asset_onchain handle that the Matveev designation lacks
+  on the recent-actions page.
+
+  DRYRUN caveats: for non-DRYRUN release, capture body_hash + body_path
+  for (1) the OFAC 2023-11-03 recent-actions HTML page with verbatim
+  per-address extraction of the three XBT digital-currency addresses,
+  (2) the Treasury jy2735 press release permalink, (3) the Chainalysis
+  post-action blog permalink, (4) the Elliptic post-action blog
+  permalink, and (5) per-tx-hash anchors for the ransomware-affiliate →
+  Zhdanova-wallet → exchange-deposit flow narrated in the Chainalysis
+  post. Marked evidence_use=contextual_unarchived on all citations to
+  flag the unarchived state per validator policy. Cross-reference the
+  three XBT addresses against usdtbanlist.com (expected: no hits, native
+  Bitcoin, no Circle/Tether freeze primitive) and against the SDN XML for
+  redundant verification.
+
+scoped_claim: |
+  "OFAC designation of Ekaterina Zhdanova on 2023-11-03 — the first OFAC
+  action targeting a virtual-currency-specialized concierge-laundering
+  operator (rather than an exchange or anonymizer) — produced
+  plausible-attribution cascade at the asset_onchain (chain-analytics
+  tagging) and offramp_cex (KYT flagging at counterparty mainstream CEXes
+  and at Garantex) layers; L0/L1/L3/L4 layers are structurally
+  not_applicable for an individual-level designation with no canonical
+  service frontend."
+
+tags:
+  - sanctions
+  - individual_designation
+  - concierge_laundering
+  - russia_related
+  - ryuk_ransomware
+  - garantex_counterparty
+  - first_concierge_launderer_designation
+  - dryrun_2026_05_16
+  - agent_draft
