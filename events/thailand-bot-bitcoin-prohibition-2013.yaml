@@ -1,0 +1,368 @@
+id: thailand-bot-bitcoin-prohibition-2013
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - china-pboc-crypto-ban-2013-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: TH_BOT
+  timestamp: 2013-07-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
+      wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous reporting dated 2013-07-29 documenting
+        Bitcoin Co. Ltd's posted statement that the Bank of Thailand
+        (BOT) had held a meeting earlier that day, at which senior
+        members of the BOT Foreign Exchange Administration and Policy
+        Department advised that — due to lack of existing applicable
+        laws, capital controls, and the multi-facet nature of Bitcoin —
+        Bitcoin-related activities (purchase / sale of bitcoins,
+        purchase / sale of goods or services in bitcoins, sending or
+        receiving bitcoins from outside the country) were illegal in
+        Thailand. The BOT statement was verbal / informal and was not
+        issued as a published regulation; Bitcoin Co. Ltd had originally
+        approached the BOT seeking clearance for its bitcoin-exchange
+        business and was advised to suspend trading. Evidence
+        contextual_unarchived: no published BOT primary instrument was
+        captured in this authoring pass and the verbal nature of the BOT
+        statement means the load-bearing primary anchor is the
+        contemporaneous Bitcoin Co. Ltd corporate statement reproduced
+        in CoinDesk reporting. Specific Wayback snapshot timestamp
+        requires re-pinning during human audit.
+    - type: supporting_journalism
+      url: https://www.bangkokpost.com/business/362222/bitcoin-declared-illegal-in-thailand
+      wayback: https://web.archive.org/web/2013/https://www.bangkokpost.com/business/362222/bitcoin-declared-illegal-in-thailand
+      evidence_use: contextual_unarchived
+      note: |
+        Bangkok Post 2013-07 contemporaneous coverage titled "Virtual
+        currency Bitcoin banned" documenting the BOT's informal
+        prohibition and the Bitcoin Co. Ltd operational suspension.
+        Domestic Thai-press corroboration of the CoinDesk anchor.
+        Marked evidence_use=contextual_unarchived pending Wayback
+        snapshot re-pin during human audit.
+    - type: supporting_journalism
+      url: https://reason.com/2013/07/31/thailands-central-bank-outlaws-bitcoin-t/
+      wayback: https://web.archive.org/web/2013/https://reason.com/2013/07/31/thailands-central-bank-outlaws-bitcoin-t/
+      evidence_use: contextual_unarchived
+      note: |
+        Reason magazine 2013-07-31 secondary commentary noting that the
+        BOT prohibition was an informal verbal advisement rather than a
+        published regulation, and that the BOT lacks the constitutional
+        authority to outlaw Bitcoin outright. Useful for documenting
+        the contemporaneous English-language framing of the BOT action
+        as administrative-advisement rather than statutory ban.
+        Marked evidence_use=contextual_unarchived pending Wayback
+        re-pin during human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision per Bitcoin Co. Ltd's 2013-07-29 corporate
+        statement reporting the BOT meeting held earlier that same day.
+        Contemporaneous CoinDesk and Bangkok Post reporting agree on
+        the 2013-07-29 meeting date. The BOT advisement was verbal and
+        carries no intra-day timestamp in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Bitcoin Co. Ltd, a Thailand-incorporated Bitcoin exchange that had
+    formally approached the Bank of Thailand seeking clearance for its
+    bitcoin-exchange business. The BOT's 2013-07-29 verbal advisement
+    directly addressed Bitcoin Co. Ltd's planned operations; Bitcoin
+    Co. Ltd suspended its exchange services in compliance. Contemporary
+    Thai bitcoin-trading activity at Bahtcoin and Coinmill is reported
+    to have continued in the immediate aftermath, so the named target
+    enumeration is the Bitcoin Co. Ltd entity rather than the entire
+    class of Thai bitcoin exchanges. Subset (not complete) per codebook
+    §7: the BOT advisement was framed as broadly applicable to bitcoin
+    activity in Thailand but operational compliance was concentrated at
+    the one entity that had sought clearance.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Bitcoin Co. Ltd (Thailand)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - TH
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The BOT 2013-07-29 verbal advisement does not direct ISP-level
+      domain blocking or DNS interference; it is an administrative
+      verbal communication to a single exchange operator, not a
+      network-layer block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2013-07 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC compliance
+      substrate did not exist in 2013. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - bitcoin.co.th
+    note: |
+      Bitcoin Co. Ltd's customer-facing site (bitcoin.co.th) posted the
+      2013-07-29 suspension statement on its frontend, but a Wayback
+      snapshot pinning the specific suspension-notice page has not been
+      captured in this authoring pass. The frontend remained reachable
+      (the notice was served by the operator itself, not a takedown);
+      no operator-frontend-disable observation is coded. Status remains
+      not_measured pending a follow-on Wayback-capture pass.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The BOT advisement does not engage a stablecoin-issuer
+      admin path (USDT first issued ~2014-10). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - bitcoin_co_ltd_thailand
+    note: |
+      Load-bearing observation. Bitcoin Co. Ltd suspended its bitcoin-
+      exchange services on 2013-07-29 in direct compliance with the
+      BOT Foreign Exchange Administration and Policy Department's
+      verbal advisement that bitcoin trading was illegal under Thai
+      law. The suspension lasted from 2013-07-29 through 2014-02-15
+      (~6.5 months), at which point the BOT issued a clarification
+      letter (dated 2014-01-31, acted on 2014-02-15) that bitcoin
+      trading was outside its regulatory scope, and Bitcoin Co. Ltd
+      resumed operations. partially_measured because the corporate
+      suspension notice is the load-bearing operator-side anchor but
+      the underlying BOT verbal advisement was not published as a
+      primary legal instrument; the Wayback snapshot for the Bitcoin
+      Co. Ltd suspension page has not been pinned in this pass.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:bitcoin_co_ltd_th
+    event: bitcoin_co_ltd_thailand_exchange_services_suspended_per_bot_advisement
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2013-07-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: TH
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
+        wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [bitcoin_co_ltd_th]
+          countries: [TH]
+          time_window:
+            - 2013-07-29T00:00:00Z
+            - 2014-02-15T23:59:59Z
+        note: |
+          CoinDesk 2013-07-29 article reproducing Bitcoin Co. Ltd's
+          corporate statement that the operator had no choice but to
+          suspend operations following the BOT Foreign Exchange
+          Administration and Policy Department verbal advisement.
+          attribution=direct under codebook §1.4-analogous reasoning:
+          the operator publicly cites the BOT advisement as the cause
+          of its suspension, and the BOT advisement explicitly named
+          Bitcoin Co. Ltd's planned exchange business as the addressee.
+          DRYRUN: Wayback snapshot timestamp deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.bangkokpost.com/business/362222/bitcoin-declared-illegal-in-thailand
+        wayback: https://web.archive.org/web/2013/https://www.bangkokpost.com/business/362222/bitcoin-declared-illegal-in-thailand
+        evidence_use: contextual_unarchived
+        note: |
+          Bangkok Post domestic-press corroboration of the Bitcoin Co.
+          Ltd suspension and the BOT advisement. DRYRUN: Wayback
+          snapshot timestamp deferred to human audit.
+
+recovery:
+  - layer: offramp_cex
+    resolved: true
+    resolved_timestamp: 2014-02-15T00:00:00Z
+    citation:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2014/02/17/thai-bitcoin-exchange-reopens-but-legal-standing-still-unclear/
+        wayback: https://web.archive.org/web/2014/https://www.coindesk.com/markets/2014/02/17/thai-bitcoin-exchange-reopens-but-legal-standing-still-unclear/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2014-02-17 reporting that Bitcoin Co. Ltd received a
+          BOT clarification letter dated 2014-01-31 stating that
+          bitcoin trading fell outside the BOT's regulatory scope, and
+          resumed exchange services on 2014-02-15. The reversal was
+          framed by the BOT not as a regulatory change but as a
+          clarification that bitcoin was never within its statutory
+          scope under the Exchange Control Act B.E. 2485 (1942). The
+          BOT released follow-up statements within days suggesting the
+          operator had "interpreted the letter to serve its own
+          interests"; legal ambiguity persisted through 2014.
+    note: |
+      Partial reversal: Bitcoin Co. Ltd resumed services 2014-02-15
+      after the BOT clarification letter (dated 2014-01-31). The BOT
+      framed the action as a scope-clarification rather than a
+      regulatory change; subsequent 2014-02 / 2014-03 BOT statements
+      reintroduced ambiguity about whether exchanges were "still
+      illegal," and the broader Thai regulatory frame for crypto did
+      not stabilize until subsequent SEC-Thailand and BOT actions in
+      the 2017-2018 window. Recovery is recorded for the offramp_cex
+      operator state only; the underlying legal ambiguity is documented
+      in analysis_notes.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Phase E pre-Bitcoin-baseline
+  follow-on / Phase B historical-baseline 2013-2016 admit-pass: foundational
+  pre-2017 non-US central-bank action against Bitcoin. Authored by LLM agent
+  in this pass at origin=agent_draft and status=draft per the task brief;
+  human review required to (i) re-pin Wayback snapshots for the CoinDesk and
+  Bangkok Post anchors, (ii) verify the corporate-source Bitcoin Co. Ltd
+  suspension-notice text (the corporate statement is reproduced in CoinDesk
+  rather than captured as a primary_corporate anchor in this pass), and
+  (iii) decide whether to upgrade to origin=human_reviewed.
+
+  Substantive findings:
+  - 2013-07-29 Bank of Thailand (BOT) Foreign Exchange Administration and
+    Policy Department held a meeting with Bitcoin Co. Ltd (a Thailand-
+    incorporated bitcoin exchange that had voluntarily approached the BOT
+    seeking clearance to operate).
+  - BOT verbally advised that, due to (a) lack of existing applicable
+    Thai laws covering bitcoin, (b) capital controls under the Exchange
+    Control Act B.E. 2485 (1942) which gives the BOT competent-officer
+    authority over foreign-exchange transactions, and (c) the multi-facet
+    nature of bitcoin straddling currency, commodity, and payment
+    functions, the following bitcoin activities were illegal in
+    Thailand: purchase or sale of bitcoins; purchase or sale of goods or
+    services for bitcoins; sending or receiving bitcoins across the
+    Thai border.
+  - BOT did not publish a written regulation; the advisement was
+    verbal. Bitcoin Co. Ltd posted a public statement on its website
+    the same day announcing suspension of operations.
+  - The suspension lasted approximately 6.5 months until 2014-02-15,
+    when Bitcoin Co. Ltd resumed services following a BOT clarification
+    letter (dated 2014-01-31) stating that bitcoin trading fell outside
+    the BOT's regulatory scope. BOT subsequently introduced ambiguity
+    by suggesting the operator had over-interpreted the clarification.
+
+  Why trigger.type=regulatory_enforcement: per codebook §5.1, the BOT
+  advisement is a non-US national-regulator administrative action
+  (specifically an informal verbal directive under the Exchange Control
+  Act framework), not a network-layer or ISP-level block. This matches
+  the 2026-05-17 codebook addition formalizing regulatory_enforcement
+  as the canonical trigger type for non-US national-regulator
+  administrative enforcement actions distinct from nation_state_block
+  (which is reserved for ISP/DNS/payment-rail blocks).
+
+  Why temporal_tier=historical_baseline_2013_2016 and
+  analysis_use=historical_baseline: per codebook §6 and the project's
+  2008+ tiered frame, events in the 2013-2016 window belong to the
+  historical-baseline tier and excluded from the 2017+ comparable-
+  analysis denominator. Canonical form per §6 — alias
+  "contextual_baseline" is NOT accepted by the validator.
+
+  Why empirical_shape=comparison: per codebook §3, only the offramp_cex
+  layer carries an observed_change row in this event (one
+  observed_change → comparison, not cascade). L0/L1/L3/asset_onchain
+  are not_applicable on construct-did-not-exist or scope-mismatch
+  grounds; L4 frontend is not_measured pending Wayback capture of the
+  Bitcoin Co. Ltd 2013-07 suspension-notice page.
+
+  Why admission_tier=empirical_case: per codebook §4, exactly one
+  strong-attribution (direct) observed_change row exists at
+  offramp_cex; this admits the event at empirical_case, below the
+  ≥ 2 strong-attribution rows that would be required for anchor_case.
+
+  Why attribution=direct on the offramp_cex observation: under
+  codebook §1.2-§1.5 logic adapted to a non-US regulatory enforcement
+  trigger: (i) the BOT advisement directly named Bitcoin Co. Ltd's
+  proposed bitcoin-exchange business as the subject of the meeting
+  and the addressee of the verbal advisement, and (ii) the operator's
+  public same-day suspension statement explicitly cites the BOT
+  advisement as the cause. Both prongs of the direct-attribution test
+  hold; the only conservatism the LLM applied is to keep the event at
+  empirical_case rather than anchor_case given the single observation
+  row.
+
+  Why related_events=[china-pboc-crypto-ban-2013-12]: the Thailand
+  BOT 2013-07-29 advisement and the China PBOC 2013-12-05 Notice
+  2013/289 form the two foundational pre-2017 non-US central-bank
+  actions against Bitcoin in the dataset. Both are Asia-jurisdiction
+  central-bank administrative actions establishing the early-2010s
+  banking-rail-severance pattern that the comparable-analysis corpus
+  (2017+) inherits.
+
+  Cross-event contrast: PBOC 2013-12-05 is a published joint five-
+  ministry notice and is coded as trigger.type=nation_state_block
+  given the breadth of its directive to PRC financial institutions
+  and payment service providers (banking-rail prohibition at class
+  level); the Thailand BOT 2013-07-29 advisement is a verbal single-
+  entity directive and is coded as trigger.type=regulatory_enforcement
+  under the codebook §5.1 distinction between class-wide payment-rail
+  blocks and administrative non-US-regulator actions. The pair is the
+  canonical 2013 Asia-jurisdiction central-bank-vs-bitcoin comparison
+  in the historical-baseline tier.
+
+scoped_claim: |
+  On 2013-07-29 the Bank of Thailand Foreign Exchange Administration and
+  Policy Department issued a verbal administrative advisement to Bitcoin
+  Co. Ltd that bitcoin trading was illegal under Thai law given the
+  Exchange Control Act B.E. 2485 framework; Bitcoin Co. Ltd suspended
+  operations the same day and resumed approximately 6.5 months later
+  (2014-02-15) following a BOT clarification letter. The offramp_cex
+  layer carries the single direct-attribution observed_change row;
+  L0/L1/L3/asset_onchain are not_applicable on construct or scope
+  grounds and L4 frontend is not_measured pending Wayback capture.
+
+scoped_knowledge: |
+  This event is one of the two foundational pre-2017 non-US central-bank
+  actions against Bitcoin in the dataset (paired with PBOC 2013-12-05
+  five-ministry Notice 2013/289). It is also the earliest dataset event
+  to use the trigger.type=regulatory_enforcement codebook category
+  (formalized 2026-05-17): the BOT advisement is administrative and
+  verbal rather than a published regulation or a network-layer block,
+  and Thailand lacked at the time a statutory crypto-asset framework
+  the BOT could enforce directly. The 6.5-month suspension and partial
+  recovery in 2014-02 illustrate the early-2010s pattern of
+  jurisdiction-specific regulatory ambiguity rather than durable
+  prohibition. The empirical-shape=comparison classification reflects
+  the construct-did-not-exist limits on cross-layer measurability in
+  2013 (Bitcoin-only chain surface, no asset-issuer admin layer, no
+  L1/L3 relay layer) and the policy scope itself (single-entity verbal
+  advisement, not a network or payment-rail block). Within the
+  historical-baseline tier the event is best understood as a
+  comparison-pair member with PBOC 2013-12-05: same calendar year,
+  same Asia-region central-bank actor type, opposite instrument
+  shapes (verbal single-entity advisement vs published class-wide
+  joint ministry notice).
+
+tags:
+  - regulatory_enforcement
+  - thailand
+  - bot
+  - historical_baseline
+  - bitcoin_only
+  - banking_rail_severance
+  - pre_2017_non_us_central_bank

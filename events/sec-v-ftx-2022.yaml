@@ -1,0 +1,230 @@
+id: sec-v-ftx-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - ftx-bankman-fried-doj-2022
+  - cftc-v-ftx-2022
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2022-12-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2022-219
+      wayback: https://web.archive.org/web/2022/https://www.sec.gov/news/press-release/2022-219
+      evidence_use: contextual_unarchived
+      note: |
+        SEC press release 2022-219 (2022-12-13): "SEC Charges Samuel
+        Bankman-Fried with Defrauding Investors in Crypto Asset Trading
+        Platform FTX." Same-day civil complaint filed in SDNY (Case No.
+        1:22-cv-10501) alleging Bankman-Fried orchestrated a multi-year
+        scheme to defraud FTX equity investors of more than $1.8B while
+        diverting customer funds to Alameda Research and providing Alameda
+        with a virtually unlimited line of credit funded by FTX customer
+        deposits. Charges securities fraud against Bankman-Fried in his
+        capacity as CEO/co-founder of FTX Trading Ltd. Wayback wildcard
+        pointer in lieu of pinned-timestamp snapshot;
+        evidence_use=contextual_unarchived pending human-audit re-pin.
+    - type: primary_legal
+      url: https://www.sec.gov/files/litigation/complaints/2022/comp-pr2022-219.pdf
+      wayback: https://web.archive.org/web/2022/https://www.sec.gov/files/litigation/complaints/2022/comp-pr2022-219.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        SEC civil complaint document (Case 1:22-cv-10501, filed 12/13/22,
+        SDNY). 28-page complaint enumerating the securities-fraud counts
+        against Bankman-Fried. Wayback wildcard pointer in lieu of
+        pinned-timestamp snapshot; evidence_use=contextual_unarchived
+        pending human-audit re-pin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2022-12-13 SEC press release 2022-219
+        and the same-day SDNY complaint filing (Case 1:22-cv-10501). Filed
+        in parallel with the DOJ SDNY criminal indictment (unsealed
+        2022-12-13) and the CFTC civil complaint (press release 8638-22,
+        same date).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Samuel Bankman-Fried (individual defendant in the SEC civil complaint,
+    Case 1:22-cv-10501, SDNY) and FTX Trading Ltd. (the operator of the
+    FTX.com international exchange, referenced as the corporate vehicle
+    through which the alleged securities-fraud scheme was executed). The
+    target slice does not enumerate Alameda Research LLC (named in the
+    parallel CFTC complaint but central to the SEC complaint as the
+    diversion destination for FTX customer funds) or the dozens of
+    additional FTX-affiliated entities in the Delaware Chapter 11
+    schedules. Parallel-agency sibling row to ftx-bankman-fried-doj-2022
+    (DOJ criminal) and cftc-v-ftx-2022 (CFTC civil); same physical
+    defendants, distinct statutory authority (federal securities laws vs.
+    federal criminal code vs. Commodity Exchange Act).
+  actor_type: exchange_sec_action
+  actor_name: Samuel Bankman-Fried / FTX Trading Ltd.
+  chains: []
+  canonical_domains:
+    - ftx.com
+    - ftx.us
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer (L0) reachability primitive is engaged by the SEC
+      civil securities-fraud complaint. not_applicable on substrate-mismatch
+      grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      No L1 validator-set or PBS-relay primitive engaged. not_applicable on
+      substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC provider filter-list change attaches to an SEC
+      civil-fraud complaint against an individual defendant and a
+      bankrupt CEX. not_applicable on substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The FTX.com and FTX.US frontend surfaces were already locked into
+      Chapter 11 notice mode as of the 2022-11-11 bankruptcy filing,
+      approximately one month before this 2022-12-13 SEC trigger. The SEC
+      civil complaint did not itself produce any incremental frontend
+      change beyond what the prior Chapter 11 process had already
+      effected. not_applicable for this row on substrate-mismatch grounds;
+      the bankruptcy-cascading frontend state is captured under the
+      sibling ftx-bankman-fried-doj-2022 row's L4 not_measured slot.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin-issuer freeze or OFAC SDN-list address designation
+      primitive engaged at this trigger. not_applicable on
+      substrate-mismatch grounds.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - ftx_com_global_withdrawals
+      - ftx_us_customer_withdrawals
+    note: |
+      The FTX.com and FTX.US offramp was already administratively frozen
+      via the 2022-11-11 voluntary Chapter 11 filing in the District of
+      Delaware (Case No. 22-11068), approximately one month before this
+      2022-12-13 SEC civil-fraud trigger. The SEC complaint did not
+      produce a new offramp shutdown — the platform was already collapsed
+      and customer-asset withdrawals already suspended. The offramp_cex
+      observation attributable to the broader 2022-12-13 multi-agency
+      action is recorded under the sibling ftx-bankman-fried-doj-2022
+      row (attribution=plausible to the DOJ trigger; the proximate cause
+      of the offramp freeze is the corporate Chapter 11 instrument). This
+      row is the parallel-agency null_event sibling — no new cascade
+      attributable to the SEC complaint specifically. Coverage left
+      not_measured rather than not_applicable to preserve the
+      observation_no_change row that anchors the null_event admission
+      shape.
+
+observations: []
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (origin=agent_draft; codebook
+  §8 DRYRUN preamble required). Authored by LLM agent without personally
+  verifying Wayback/body_hash anchors; the SEC press-release URL slug
+  (2022-219) and SDNY complaint PDF URL are stable and routinely captured
+  by Wayback in 2022-2023. Pinned snapshot timestamps + body_hashes to be
+  re-anchored during human audit before any citation may serve as an
+  admission anchor in its own right.
+
+  This row is the parallel-agency SEC sibling to the existing
+  ftx-bankman-fried-doj-2022 row (DOJ SDNY criminal indictment) and the
+  cftc-v-ftx-2022 row (CFTC civil enforcement complaint). All three were
+  filed on the same day (2022-12-13) and target the same physical
+  defendants — Samuel Bankman-Fried, FTX Trading Ltd., and Alameda
+  Research LLC — but rest on distinct statutory authority:
+  (a) DOJ criminal indictment under wire-fraud / securities-fraud /
+  campaign-finance statutes (eight-count, unsealed 2022-12-13);
+  (b) SEC civil complaint under federal securities laws (this row,
+  Case 1:22-cv-10501, SDNY); and (c) CFTC civil complaint under the
+  Commodity Exchange Act for fraud in connection with digital-asset
+  commodities.
+
+  Empirical-shape coding: null_event (codebook §3) because the SEC
+  trigger does not produce any new observed_change layer attributable
+  specifically to the SEC complaint. The FTX.com / FTX.US offramp was
+  already frozen by the 2022-11-11 voluntary Chapter 11 filing
+  approximately one month earlier, and the offramp_cex observed_change
+  observation is already booked under the sibling DOJ row with
+  attribution=plausible to the broader 2022-12-13 multi-agency trigger.
+  Admission-tier coding: null_case (codebook §4) — zero strong-attribution
+  observed_change layers attributable to this trigger; the row functions
+  as a denominator-control sibling documenting that parallel-agency civil
+  enforcement on top of a pre-collapsed platform produces no incremental
+  cross-layer cascade.
+
+  Codebook §1 attribution decision rule applied: §1.2-§1.5 do not engage
+  here because no observed_change row is being coded. The single
+  observed_no_change row uses attribution=none per the codebook §1.1
+  canonical definition reserving `none` for observed_no_change and
+  coverage_gap rows.
+
+  Codebook §5 trigger-type / stratum mapping: trigger.type=sec_action
+  permits research_stratum=S3_doj_sec_cftc_fiod per §5.2.
+
+  Codebook §7 target-enumeration: kind=entity / enumeration=subset with
+  enumeration_note documenting the class-level rationale that
+  Bankman-Fried and FTX Trading Ltd. are the load-bearing defendants in
+  the SEC complaint specifically, with Alameda Research deferred to the
+  CFTC sibling row.
+
+  Sibling positioning rationale: the three 2022-12-13 multi-agency rows
+  are intentionally distinct events rather than a single row because
+  (a) each rests on independent statutory authority (federal securities
+  laws vs. federal criminal code vs. Commodity Exchange Act); (b) the
+  research_stratum S3 cluster benefits from explicit SEC- and
+  CFTC-specific denominator-control rows for the comparable_analysis
+  corpus; and (c) the null_event empirical shape of the SEC and CFTC
+  sibling rows (no new cascade beyond the bankruptcy-effected DOJ-row
+  observation) is itself an analytically informative pattern about
+  parallel-agency civil enforcement on already-collapsed offramps.
+
+scoped_claim: |
+  "The 2022-12-13 SEC civil securities-fraud complaint against Samuel
+  Bankman-Fried (Case 1:22-cv-10501, SDNY) — filed in parallel with the
+  DOJ SDNY criminal indictment and CFTC civil complaint — produced no new
+  cross-layer cascade attributable to the SEC trigger specifically. The
+  FTX.com / FTX.US offramp was already administratively frozen by the
+  2022-11-11 voluntary Chapter 11 filing approximately one month earlier,
+  and the broader 2022-12-13 multi-agency offramp_cex observation is
+  booked under the sibling ftx-bankman-fried-doj-2022 row. This row is
+  coded as empirical_shape=null_event / admission_tier=null_case to serve
+  as a denominator-control sibling documenting that parallel-agency civil
+  enforcement on top of a pre-collapsed platform produces no incremental
+  observed_change."
+
+tags:
+  - sec_enforcement
+  - sec_action
+  - multi_agency_action
+  - parallel_agency_sibling
+  - bankruptcy_offramp_freeze
+  - individual_defendant
+  - exchange_collapse
+  - ftx
+  - bankman_fried
+  - null_event
+  - dryrun_2026_05_17

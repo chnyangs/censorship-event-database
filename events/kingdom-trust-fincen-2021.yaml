@@ -1,0 +1,256 @@
+id: kingdom-trust-fincen-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+last_human_audit: 2026-05-17
+
+trigger:
+  type: fincen_action
+  actor: US_FINCEN
+  timestamp: 2023-04-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
+      wayback: https://web.archive.org/web/2023/https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
+      evidence_use: contextual_unarchived
+      note: |
+        FinCEN press release dated 2023-04-26 announcing a $1.5 million
+        civil money penalty against The Kingdom Trust Company (KTC), a
+        South Dakota-chartered trust company headquartered in Sioux Falls,
+        SD with a trust services office in Murray, KY. The slug
+        "kingdom-trust-fincen-2021" in this draft refers to the END of
+        the BSA violation period (2016-02-15 through 2021-03-15) cited
+        in the consent order, NOT the date of the enforcement action
+        itself, which falls in 2023. The trigger.timestamp is set to
+        the FinCEN announcement date 2023-04-26 to reflect the actual
+        enforcement event. Unarchived contextual reference; admission
+        would require Wayback or body_hash pinning of the FinCEN news
+        release and consent order PDF.
+    - type: primary_legal
+      url: https://www.fincen.gov/sites/default/files/enforcement_action/2023-04-27/FinCEN_KTC_ConsentOrder_FINAL_042523.pdf
+      wayback: https://web.archive.org/web/2023/https://www.fincen.gov/sites/default/files/enforcement_action/2023-04-27/FinCEN_KTC_ConsentOrder_FINAL_042523.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        FinCEN Consent Order Imposing Civil Money Penalty in the Matter
+        of The Kingdom Trust Company, signed 2023-04-25 and published
+        on the FinCEN enforcement action repository under the
+        2023-04-27 date stamp. Core findings: (i) KTC willfully violated
+        the BSA 2016-02-15 through 2021-03-15 by failing to develop and
+        implement an effective AML program for its non-conventional
+        trust-services line (account and payment processing services to
+        foreign securities firms and other businesses in Latin America);
+        (ii) KTC processed at least $4 billion in international wires
+        during the relevant period; (iii) KTC filed only four SARs
+        during the relevant period despite over 600 incidents
+        subsequently identified by FinCEN as merging the SAR-filing
+        threshold. Unarchived contextual reference.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per FinCEN press release dated 2026-04-26
+        and consent order published on the FinCEN enforcement action
+        repository under date stamp 2023-04-27. Federal-agency press
+        releases of this period do not carry intra-day publication
+        timestamps in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Single named legal entity: The Kingdom Trust Company (KTC), a South
+    Dakota-chartered trust company. The FinCEN consent order targets
+    KTC's BSA / AML compliance posture at the entity level rather than
+    enumerating specific on-chain addresses or named customers. The
+    enforcement theory rests on registration-and-AML-program failure
+    in the non-conventional trust services line (international wire
+    and payment processing for foreign securities and investment firms
+    in Latin America), NOT on KTC's separately reported self-directed
+    IRA custody business (which has historically included crypto-IRA
+    custody for Bitcoin and other digital assets via partners such as
+    BitGo Trust). Subset enumeration: the named entity is enumerated,
+    but the underlying transactions and customer set referenced in the
+    600-plus unfiled-SAR finding are not publicly enumerated in the
+    consent order.
+  protocol: null
+  actor_type: trust_company
+  actor_name: The Kingdom Trust Company
+  canonical_domains:
+    - kingdomtrust.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The FinCEN action is a BSA registration-and-AML enforcement at
+      the entity level. It does not direct ISP-level domain blocking
+      or DNS interference against kingdomtrust.com or any crypto-IRA
+      custodian. not_applicable on construct-out-of-scope grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      KTC is a trust-company custodian, not a chain operator or relay.
+      The Ethereum PBS / MEV-Boost relay-filter substrate the L1 layer
+      measures has no surface engaged by this entity-level BSA action.
+      not_applicable on construct-out-of-scope grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      KTC does not operate a public-RPC endpoint or compliance-filtered
+      RPC service. The MEV-Boost / Flashbots Protect / MEV-Blocker
+      public-RPC compliance substrate the L3 layer measures is not
+      engaged by this action. not_applicable on construct-out-of-scope
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The FinCEN consent order does not require, name, or contemplate
+      kingdomtrust.com or any crypto-IRA frontend takedown or
+      geo-blocking; the obligations attach to KTC's AML program and
+      independent-consultant SAR-lookback review at the entity level
+      rather than at the public-facing web surface. not_applicable on
+      construct-out-of-scope grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The consent order does not direct KTC to freeze, blacklist, or
+      invalidate any on-chain asset positions held in custody for IRA
+      customers. KTC's crypto-IRA custody business is held through
+      sub-custody partners (e.g. BitGo Trust) and was not the subject
+      of the BSA violation theory, which addressed international wire
+      and payment-processing services. not_applicable on construct-
+      out-of-scope grounds.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - the_kingdom_trust_company
+    note: |
+      Load-bearing layer for any possible cascade. The FinCEN consent
+      order imposes a $1.5M civil money penalty plus mandatory
+      independent-consultant SAR-lookback review and AML-program
+      remediation on KTC at the entity level. However, the violation
+      theory and remediation scope address KTC's non-conventional
+      international-wire and payment-processing services to Latin
+      American foreign customers — NOT its crypto-IRA custody business.
+      No publicly enumerated downstream effect on crypto-IRA custodial
+      offramp behaviour (account closures, customer offboarding, asset
+      delistings, withdrawal restrictions) has been captured at this
+      authoring pass. Coded as not_measured pending evidence; if a
+      replayable artifact of crypto-IRA-side custodial change tied to
+      this action is later captured, the row may be re-evaluated.
+
+observations:
+  - layer: offramp_cex
+    actor: the_kingdom_trust_company
+    event: no_strong_attribution_crypto_offramp_change_captured_for_2023_04_26_fincen_consent_order
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-04-26T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
+        wayback: https://web.archive.org/web/2023/https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - the_kingdom_trust_company
+          countries:
+            - US
+          time_window:
+            - 2023-04-26T00:00:00Z
+            - 2023-04-26T23:59:59Z
+        note: |
+          FinCEN press release pinned as contextual reference only. No
+          replayable artifact captured at this authoring pass; no
+          strong-attribution crypto-offramp observation can be admitted
+          in this draft. Coded as coverage_gap with attribution=none
+          per codebook §1.1.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Conservative null_event /
+  null_case coding per the authoring brief's fallback rule for
+  candidates lacking concrete primary URL evidence of crypto-censorship
+  cascade.
+
+  Key uncertainty surfaced:
+  1. The slug "kingdom-trust-fincen-2021" is misdated: the FinCEN
+     enforcement action against The Kingdom Trust Company was
+     announced 2023-04-26 (consent order published under FinCEN's
+     2023-04-27 date stamp), NOT 2021. The "2021" in the slug appears
+     to refer to the end of the BSA violation period (2016-02-15 to
+     2021-03-15) cited in the consent order. The trigger.timestamp
+     field reflects the actual enforcement event date (2023-04-26).
+     A follow-up pass may want to rename this event to
+     kingdom-trust-fincen-2023 for consistency with other
+     enforcement-action slugs in the corpus.
+  2. The FinCEN consent order's BSA violation theory addresses KTC's
+     non-conventional trust services line (Latin-American foreign
+     wire and payment processing), not its crypto-IRA custody
+     business. KTC is publicly known as a custodian for self-directed
+     IRAs that hold Bitcoin and other crypto assets (typically via
+     sub-custody partners such as BitGo Trust), but the consent order
+     does not engage that line of business. The crypto-censorship
+     cascade theory of admission is therefore weak: the action is a
+     traditional-finance BSA enforcement on an entity that happens to
+     also operate a crypto-adjacent custody business.
+  3. No replayable artifact (Wayback snapshot, body_hash + body_path
+     local capture, on-chain transaction hash) has been captured for
+     this authoring pass. All cited URLs are contextual_unarchived.
+     Per codebook §8 and the authoring brief's fallback rule, this
+     event is coded null_event / null_case with attribution=none in
+     the single coverage_gap observation row.
+  4. Codebook references applied: §1.1 (attribution=none on
+     coverage_gap rows); §3 (null_event = 0 observed_change layers,
+     admission would require observed_no_change with admission-grade
+     sources, which are not captured here); §4 (null_case = 0
+     strong-attribution observed_change layers); §5.1 (trigger.type
+     = fincen_action; actor = US_FINCEN); §5.2 (fincen_action permits
+     research_stratum = S3_doj_sec_cftc_fiod); §6 (temporal_tier
+     comparable_main_2017_present pairs with analysis_use
+     comparable_analysis); §7 (target.enumeration = subset because
+     the unfiled-SAR transactions and customer set are not
+     enumerated in the consent order).
+
+  Why null_event rather than rejected: the underlying FinCEN
+  enforcement action is a real, verifiable event with primary-legal
+  citations (FinCEN press release + consent order PDF), and is the
+  first FinCEN enforcement against a trust company — a structural
+  precedent for the FinCEN-as-trust-company-regulator posture that
+  may matter for future crypto-IRA / digital-asset trust company
+  enforcement. The event is retained as a null_case denominator row
+  for stratum-S3 enforcement-density analysis rather than rejected
+  outright. A human reviewer may upgrade or reject after primary
+  source pinning.
+
+scoped_claim: |
+  FinCEN's 2023-04-26 $1.5 million civil money penalty against The
+  Kingdom Trust Company is a BSA / AML enforcement action targeting
+  the entity's non-conventional trust-services line (Latin-American
+  international wire and payment processing) and does not, on the
+  public record captured in this authoring pass, engage KTC's
+  crypto-IRA custody business or produce a strong-attribution
+  crypto-censorship cascade observation. Coded as null_event /
+  null_case pending primary-source pinning and any captured
+  downstream crypto-offramp effect.
+
+related_events: []
+
+tags:
+  - fincen_enforcement
+  - bsa_aml
+  - trust_company
+  - null_case
+  - slug_misdated_pending_rename
+  - dryrun_authored

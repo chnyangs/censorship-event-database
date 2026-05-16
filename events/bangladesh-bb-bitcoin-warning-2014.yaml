@@ -1,0 +1,340 @@
+id: bangladesh-bb-bitcoin-warning-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - thailand-bot-bitcoin-prohibition-2013
+  - china-pboc-crypto-ban-2013-12
+  - bolivia-bcb-crypto-prohibition-2014
+
+trigger:
+  type: regulatory_enforcement
+  actor: BD_BB
+  timestamp: 2014-09-15T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2014/09/16/bangladesh-central-bank-cryptocurrency-use-is-a-punishable-offense
+      wayback: https://web.archive.org/web/2014/https://www.coindesk.com/markets/2014/09/16/bangladesh-central-bank-cryptocurrency-use-is-a-punishable-offense
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk report dated 2014-09-16 ("Bangladesh Central Bank:
+        Cryptocurrency Use is a 'Punishable Offense'") summarising the
+        Bangladesh Bank (BB) warning issued on or around 2014-09-15.
+        Core content: BB stated that transactions involving bitcoin
+        and other virtual currencies could constitute unauthorised
+        acts under the Foreign Exchange Regulation Act, 1947 and the
+        Money Laundering Prevention Act, 2012 and the Anti-Terrorism
+        Act, 2009, and that such activity could be punishable by up
+        to 12 years' imprisonment. The CoinDesk article is the most
+        widely cited English-language anchor for the 2014 BB warning;
+        the original BB press release was not widely reproduced in
+        the local Bangladeshi press in 2014. evidence_use=
+        contextual_unarchived; specific Wayback snapshot timestamp
+        requires re-pinning during human audit before this citation
+        may serve as an admission anchor.
+    - type: supporting_tracker
+      url: https://www.thedailystar.net/law-our-rights/law-analysis/bitcoin-legality-in-bangladesh-bank-1602583
+      wayback: https://web.archive.org/web/2020/https://www.thedailystar.net/law-our-rights/law-analysis/bitcoin-legality-in-bangladesh-bank-1602583
+      evidence_use: contextual_unarchived
+      note: |
+        The Daily Star (Bangladesh) law-analysis column "Bitcoin
+        legality in Bangladesh Bank", providing a retrospective
+        Bangladeshi-press summary of the 2014 BB warning and the
+        legal-interpretation theory underpinning it. Confirms that
+        BB framed bitcoin transactions as potentially violating the
+        Foreign Exchange Regulation Act 1947 and the AML/CFT statutes
+        (Money Laundering Prevention Act 2012, Anti-Terrorism Act
+        2009) with up-to-12-year prison exposure, but stopped short
+        of declaring bitcoin per se criminal. evidence_use=
+        contextual_unarchived; specific Wayback snapshot timestamp
+        requires re-pinning during human audit.
+    - type: supporting_journalism
+      url: https://futrlaw.org/bangladesh-bank-issues-cautionary-notice-bitcoin/
+      wayback: https://web.archive.org/web/2022/https://futrlaw.org/bangladesh-bank-issues-cautionary-notice-bitcoin/
+      evidence_use: contextual_unarchived
+      note: |
+        FutureLaw retrospective summary "Bangladesh Bank issues
+        cautionary notice against Bitcoin", corroborating the BB
+        2014 warning content (Foreign Exchange Regulation Act 1947
+        + AML/CFT prison exposure framing). Used as a corroborating
+        secondary tracker source. evidence_use=contextual_unarchived;
+        specific Wayback snapshot timestamp requires re-pinning
+        during human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        CoinDesk's 2014-09-16 report dates the BB warning to "this
+        week"; contemporaneous English-language secondary coverage
+        consistently anchors the warning to on or around 2014-09-15.
+        Day-level precision is appropriate because the BB press
+        release does not carry intra-day publication timing in the
+        public record available to this authoring pass.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the class of Bangladeshi residents and entities
+    contemplating bitcoin transactions, and by extension the
+    off-ramp / centralized-exchange surface that would serve
+    Bangladeshi-resident bitcoin purchases. The BB warning does
+    not enumerate specific exchanges or specific resident
+    counterparties; it states a legal-interpretation that applies
+    to the entire class of Bangladeshi-resident bitcoin
+    transacting parties under the Foreign Exchange Regulation
+    Act 1947 and the AML/CFT statutes. No specific exchange is
+    named as a target, so canonical_domains is empty. This
+    class-level subset framing matches the sibling iceland-cbi-
+    foreign-exchange-bitcoin-2014 treatment.
+  protocol: null
+  actor_type: regulated_resident_class
+  actor_name: Bangladesh-resident bitcoin transacting parties
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - BD
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-09-15 BB warning does not direct ISP-level domain
+      blocking or DNS interference; it is a legal-interpretation
+      notice under the existing Foreign Exchange Regulation Act
+      1947 and AML/CFT statutes. not_applicable consistent with
+      iceland-cbi-foreign-exchange-bitcoin-2014 and china-pboc-
+      crypto-ban-2013-12 sibling treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-09 has no protocol-
+      level relay-filter primitive analogous to the post-Merge
+      Ethereum PBS relay surface. The Ethereum Merge itself is
+      ~8 years downstream (2022-09-15). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not
+      exist in 2014; Flashbots Protect launched 2022-11 and
+      MEV-Blocker launched 2023-03-27. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The BB warning is a legal-interpretation notice addressed
+      to Bangladeshi residents; it does not require frontend
+      changes at any specific exchange or service. No L4 frontend
+      surface within Bangladesh is in scope.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze
+      admin method. The 2014 BB warning does not engage a
+      stablecoin-issuer admin path (USDT first issued ~2014-10;
+      chainwide admin freezes arose later). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      The BB warning is by construction an off-ramp-layer signal:
+      it tells Bangladeshi residents that bitcoin transactions
+      could violate the Foreign Exchange Regulation Act 1947 and
+      the AML/CFT statutes and carry up to 12 years' prison
+      exposure. The coverage scope for the observed_no_change row
+      below is the public record (English crypto-press, The Daily
+      Star, FutureLaw retrospective) for the 90 days following the
+      2014-09-15 warning: no specific exchange is documented as
+      having cut off Bangladeshi-resident accounts in that window,
+      and the dominant 2014 bitcoin exchanges (Bitstamp, Bitfinex,
+      LocalBitcoins) did not maintain Bangladesh-specific
+      compliance flags in the public record. Class-level
+      Bangladeshi-resident exposure to FX / AML law is real but
+      not exchange-side observable in this authoring pass.
+      partially_measured because the public-record search is
+      bounded but not exhaustive.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - BD
+        time_window:
+          - 2014-09-15T00:00:00Z
+          - 2014-12-14T00:00:00Z
+      note: |
+        Coverage scope: Bangladesh-resident off-ramp cutoffs
+        documented in the public record during the 90-day window
+        following the BB 2014-09-15 warning. No exchange-side
+        Bangladesh-specific cutoff was located in this authoring
+        pass; a human-audit pass on contemporaneous Bangladeshi
+        press (Prothom Alo, The Daily Star, The Financial Express)
+        and English crypto-press (CoinDesk, Bitcoin Magazine) is
+        the gating step for a stronger denominator anchor.
+
+observations:
+  - layer: offramp_cex
+    actor: bangladesh_resident_bitcoin_transacting_parties
+    event: no_measured_exchange_side_cutoff_of_bangladesh_residents
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2014-09-15T00:00:00Z
+    precision: day
+    window:
+      - 2014-09-15T00:00:00Z
+      - 2014-12-14T00:00:00Z
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2014/09/16/bangladesh-central-bank-cryptocurrency-use-is-a-punishable-offense
+        wayback: https://web.archive.org/web/2014/https://www.coindesk.com/markets/2014/09/16/bangladesh-central-bank-cryptocurrency-use-is-a-punishable-offense
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2014-09-16 report is the primary contemporaneous
+          English-language anchor for the BB warning. It states the
+          FX-Act and AML/CFT legal-interpretation theory and the
+          up-to-12-years prison-exposure framing, but does not name
+          any specific exchange as having implemented a Bangladesh-
+          resident cutoff in response. The observation_kind=
+          observed_no_change row records that the cascade surface
+          at offramp_cex is class-level (Bangladeshi residents as a
+          class) rather than exchange-specific in the available
+          public record. attribution=none per validator rule for
+          observed_no_change. Specific Wayback snapshot timestamp
+          requires re-pinning in human audit.
+      - type: supporting_tracker
+        url: https://www.thedailystar.net/law-our-rights/law-analysis/bitcoin-legality-in-bangladesh-bank-1602583
+        wayback: https://web.archive.org/web/2020/https://www.thedailystar.net/law-our-rights/law-analysis/bitcoin-legality-in-bangladesh-bank-1602583
+        evidence_use: contextual_unarchived
+        note: |
+          The Daily Star retrospective law-analysis column
+          corroborates that BB framed bitcoin transactions as
+          potentially violating the Foreign Exchange Regulation Act
+          1947 and the AML/CFT statutes with up-to-12-year prison
+          exposure, but stopped short of declaring bitcoin per se
+          criminal. Confirms class-level rather than exchange-
+          specific cascade surface. Specific Wayback snapshot
+          timestamp requires re-pinning in human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Historical-baseline
+  contextual case for the 2014-09-15 Bangladesh Bank (BB) warning
+  that bitcoin transactions could constitute unauthorised acts
+  under the Foreign Exchange Regulation Act 1947 and the AML/CFT
+  statutes (Money Laundering Prevention Act 2012, Anti-Terrorism
+  Act 2009), carrying up to 12 years' imprisonment. Authored at
+  status=draft / origin=agent_draft pending human audit of (i)
+  the CoinDesk and Daily Star URL reachability and Wayback
+  snapshot pinning, (ii) any direct BB press-release primary
+  source that may exist in Bangladeshi-language press but was not
+  located in this authoring pass, and (iii) any exchange-side
+  evidence of Bangladesh-resident cutoff in contemporaneous
+  press coverage.
+
+  Significance: this is a foundational 2014-era nation-state
+  warning treating bitcoin transactions as prohibited under
+  existing FX-control and AML/CFT law rather than under a
+  freshly issued crypto-specific directive. It is the direct
+  cross-jurisdiction sibling of iceland-cbi-foreign-exchange-
+  bitcoin-2014 (CBI 2014-03-19 statement) and bolivia-bcb-
+  crypto-prohibition-2014 (BCB 2014-05 prohibition), and
+  follows china-pboc-crypto-ban-2013-12 and thailand-bot-
+  bitcoin-prohibition-2013 as the earliest cluster of nation-
+  state-level bitcoin-restriction events in the dataset.
+
+  Why trigger.type=regulatory_enforcement (not nation_state_block):
+  per codebook §5.1, regulatory_enforcement is the canonical
+  trigger.type for non-US national regulator administrative
+  enforcement actions that are NOT network-layer or payment-rail
+  blocks. The BB warning does not direct ISP-level blocking or
+  payment-system severance; it states a legal-interpretation
+  position under existing FX-control and AML/CFT law. This
+  matches the codebook §5.1 carve-out distinguishing
+  regulatory_enforcement from nation_state_block.
+
+  Why temporal_tier=historical_baseline_2013_2016 +
+  analysis_use=historical_baseline: 2014 belongs to the pre-2017
+  historical-baseline tier per sampling/frame.yaml.
+  analysis_use=historical_baseline excludes this row from the
+  2017+ comparable-analysis denominator. The event is retained
+  as contextual case-study material rather than as a denominator
+  row because (a) it predates the comparable corpus and (b) the
+  cascade surface is class-level rather than exchange-specific.
+
+  Why null_event / null_case: the offramp_cex observation is
+  observation_kind=observed_no_change with attribution=none,
+  not an observed_change row. The BB warning carries
+  direct-attribution force on Bangladeshi-resident bitcoin
+  transacting behaviour as a class, but the cascade surface in
+  the available public record is not exchange-specific. Without
+  a documented exchange-side cutoff or a measured Bangladesh-
+  resident on-chain volume shift, the event admits only at
+  null_case strength and empirical_shape=null_event.
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the BB
+  warning is a legal-interpretation notice under existing
+  FX-control and AML/CFT law; it does not direct network-layer
+  blocking, L4 frontend changes, or engage any 2014-nonexistent
+  L1/L3 PBS measurement primitive or any asset-issuer admin
+  path. The L0/L1/L3/asset_onchain not_applicable treatment
+  matches the sibling Iceland 2014 / China 2013-12 / India 2018
+  / Nigeria 2021 / Turkey 2021 banking-and-FX-rail pattern.
+
+  Codebook compliance: per §6 the canonical analysis_use is
+  `historical_baseline` (not the alias `contextual_baseline`);
+  per §7 target.enumeration=subset is used with class-level
+  rationale documented in enumeration_note (not the unsupported
+  `class_level` enum value); per §1.5 no L0 observation is
+  admitted because no replayable OONI / Censored Planet /
+  Cloudflare Radar measurement was captured.
+
+scoped_claim: |
+  Bangladesh Bank's 2014-09-15 warning stated that bitcoin
+  transactions could constitute unauthorised acts under the
+  Foreign Exchange Regulation Act 1947 and the AML/CFT statutes
+  (Money Laundering Prevention Act 2012, Anti-Terrorism Act
+  2009), carrying up to 12 years' imprisonment. The cascade
+  surface is class-level on Bangladeshi residents; no exchange-
+  side Bangladesh-resident cutoff is documented in this authoring
+  pass, so offramp_cex carries an observation_kind=observed_no_change
+  row with attribution=none.
+
+scoped_knowledge: |
+  This event is part of the earliest cluster of nation-state
+  actions treating bitcoin under existing FX-control and AML/CFT
+  law rather than via freshly issued crypto-specific directives.
+  Together with iceland-cbi-foreign-exchange-bitcoin-2014 (CBI
+  FX-Act reinterpretation) and bolivia-bcb-crypto-prohibition-2014
+  (BCB unilateral prohibition), it forms the 2014 contextual
+  triad of pre-existing-law reinterpretation events, sitting
+  downstream of china-pboc-crypto-ban-2013-12 (PBOC five-ministry
+  crypto-specific notice) and thailand-bot-bitcoin-prohibition-
+  2013 (BoT advisory). The Bangladesh 2014 warning is distinctive
+  in its explicit invocation of a 12-year prison exposure under
+  the AML/CFT statutes — the most severe announced penalty in
+  the 2013-2014 cluster — but the cascade surface remains
+  class-level because no specific exchange is named and no
+  exchange-side Bangladesh-resident cutoff is documented in the
+  public record. The event is the canonical historical-baseline
+  comparison row for cross-jurisdiction analysis of pre-Bitcoin-
+  ETF-era nation-state bitcoin warnings.
+
+tags:
+  - regulatory_enforcement
+  - bangladesh
+  - bangladesh_bank
+  - foreign_exchange_regulation_act
+  - aml_cft
+  - historical_baseline
+  - contextual_case

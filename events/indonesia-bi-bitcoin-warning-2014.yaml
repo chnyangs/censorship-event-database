@@ -1,0 +1,302 @@
+id: indonesia-bi-bitcoin-warning-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - indonesia-bappebti-illegal-exchange-block-2023
+
+trigger:
+  type: regulatory_enforcement
+  actor: ID_BI
+  timestamp: 2014-02-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
+      wayback: https://web.archive.org/web/2014/https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
+      evidence_use: contextual_unarchived
+      note: |
+        Bank Indonesia (BI) Siaran Pers (press release) No. 16/6/Dkom
+        dated 2014-02-06, titled "Pernyataan Bank Indonesia Terkait
+        Bitcoin dan Virtual Currency Lainnya" (Bank Indonesia Statement
+        Regarding Bitcoin and Other Virtual Currencies). Core position
+        articulated by BI: (1) Bitcoin and other virtual currencies are
+        not currency and not a lawful payment instrument in Indonesia
+        under Law No. 7 of 2011 on Currency (Undang-Undang Mata Uang),
+        which establishes the Rupiah as the sole legal medium of
+        payment in the Republic; (2) Bitcoin and other virtual
+        currencies are not regulated by Bank Indonesia; (3) all risks
+        attaching to ownership and use of Bitcoin and other virtual
+        currencies are borne by the owner/user (citizens use at their
+        own risk). The statement is an administrative warning /
+        advisory under BI's monetary-authority remit; it does not
+        order ISP-level blocking, banking-rail prohibition, or
+        exchange-side action. The bi.go.id URL path is the canonical
+        publication anchor; specific Wayback snapshot timestamp and
+        body_hash require re-pinning in human audit before this
+        citation may serve as an admission anchor.
+    - type: supporting_journalism
+      url: https://en.antaranews.com/news/168747/bitcoin-is-not-lawfully-accepted-payment-instrument-in-indonesia-bi
+      wayback: https://web.archive.org/web/2018/https://en.antaranews.com/news/168747/bitcoin-is-not-lawfully-accepted-payment-instrument-in-indonesia-bi
+      evidence_use: contextual_unarchived
+      note: |
+        ANTARA News (Indonesian state news agency) English-language
+        report on the BI position that Bitcoin is not a lawfully
+        accepted payment instrument in Indonesia. Used as contextual
+        English-language translation anchor for the bi.go.id press
+        release. Specific Wayback snapshot timestamp requires re-pinning
+        in human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        BI press release No. 16/6/Dkom carries a 2014-02-06 publication
+        date in the dateline. Day-level precision is appropriate: BI
+        does not publish intra-day timing for siaran pers releases.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the class of Indonesian residents and Indonesian
+    businesses transacting in or contemplating use of Bitcoin and
+    other virtual currencies as a payment instrument. The BI
+    statement does not enumerate specific exchanges, specific
+    counterparties, or specific domains; it states a class-level
+    administrative position that Bitcoin/VCs are not legal tender,
+    not regulated by BI, and used at the user's own risk. No
+    specific exchange is named, so canonical_domains is empty.
+  protocol: null
+  actor_type: regulated_resident_class
+  actor_name: Indonesia-resident bitcoin/VC users
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - ID
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-02-06 BI press release does not direct ISP-level
+      domain blocking, DNS interference, or network-layer action; it
+      is an administrative warning / advisory under BI's monetary-
+      authority remit. not_applicable consistent with sibling
+      banking-/monetary-authority advisory treatments
+      (iceland-cbi-foreign-exchange-bitcoin-2014).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-02 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. The Ethereum Merge is ~8.5 years downstream
+      (2022-09-15). not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2014; Flashbots Protect launched 2022-11 and MEV-Blocker launched
+      2023-03-27. not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The BI statement is a monetary-authority warning addressed to
+      Indonesian residents/businesses; it does not require frontend
+      changes at any specific exchange. No L4 frontend surface within
+      Indonesia is in scope.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist/freeze admin
+      method. The 2014 BI statement does not engage a stablecoin-issuer
+      admin path (USDT first issued ~2014-10; chainwide admin freezes
+      arose later). not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      The BI statement is by construction an off-ramp-layer signal:
+      it tells Indonesian residents/businesses that Bitcoin is not a
+      lawful payment instrument and is used at the user's own risk.
+      The coverage scope for the observed_no_change row below is the
+      public record (English and Indonesian press, exchange status
+      pages, contemporaneous bitcoin-press coverage) for the 90 days
+      following the 2014-02-06 release: no specific exchange is
+      documented as having cut off Indonesian-resident accounts in
+      that window, and the dominant 2014 bitcoin exchanges (Bitstamp,
+      Bitfinex, Mt. Gox in its pre-collapse and collapse phases) did
+      not maintain Indonesia-specific compliance flags in the public
+      record. Class-level Indonesian-resident exposure to the BI
+      warning is real but not exchange-side observable in this
+      authoring pass. partially_measured because the public-record
+      search is bounded but not exhaustive.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - ID
+        time_window:
+          - 2014-02-06T00:00:00Z
+          - 2014-05-07T00:00:00Z
+      note: |
+        Coverage scope: Indonesia-resident off-ramp cutoffs documented
+        in the public record during the 90-day window following the BI
+        2014-02-06 press release. No exchange-side Indonesia-specific
+        cutoff was located in this authoring pass; a human-audit pass
+        on contemporaneous Indonesian press (Kompas, Detik, Tempo,
+        Bisnis Indonesia) and English crypto-press (CoinDesk, Bitcoin
+        Magazine) is the gating step for a stronger denominator anchor.
+
+observations:
+  - layer: offramp_cex
+    actor: indonesia_resident_bitcoin_users
+    event: no_measured_exchange_side_cutoff_of_indonesia_residents
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2014-02-06T00:00:00Z
+    precision: day
+    window:
+      - 2014-02-06T00:00:00Z
+      - 2014-05-07T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
+        wayback: https://web.archive.org/web/2014/https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
+        evidence_use: contextual_unarchived
+        note: |
+          BI press release No. 16/6/Dkom is the administrative
+          instrument. It states the class-level position that
+          Bitcoin/VCs are not legal tender, are not regulated by BI,
+          and that risk is borne by the user, but it does not name
+          any specific exchange as having implemented an Indonesia-
+          resident cutoff in response. The observation_kind=
+          observed_no_change row records that the cascade surface at
+          offramp_cex is class-level (Indonesian residents as a class)
+          rather than exchange-specific in the available public record.
+          attribution=none per schema convention for observed_no_change
+          rows. Specific Wayback snapshot timestamp requires re-pinning
+          in human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: agent-drafted candidate
+  documenting Bank Indonesia (BI) Siaran Pers No. 16/6/Dkom dated
+  2014-02-06, "Pernyataan Bank Indonesia Terkait Bitcoin dan Virtual
+  Currency Lainnya". BI's core position: Bitcoin and other virtual
+  currencies are not currency / not a lawful payment instrument under
+  Law No. 7 of 2011 on Currency (Rupiah as sole legal tender), are
+  not regulated by BI, and use is at the user's own risk. This is an
+  administrative warning / advisory under BI's monetary-authority
+  remit — not an ISP-level block, banking-rail prohibition, or
+  exchange-side action.
+
+  Codebook compliance: trigger.type=regulatory_enforcement per §5.1
+  (non-US national regulator administrative enforcement / advisory;
+  the action is purely administrative — a public warning — rather
+  than a network/payment-rail block, so regulatory_enforcement fits
+  rather than nation_state_block). research_stratum=S4_nation_state
+  per §5.2 mapping for regulatory_enforcement. target.kind=entity,
+  target.enumeration=subset per §7 (class-level rationale documented
+  in enumeration_note: the BI statement addresses Indonesian
+  residents/businesses as a class, with no enumerated exchanges).
+  analysis_use=historical_baseline per §6 canonical form for the
+  historical_baseline_2013_2016 temporal tier (NOT the alias
+  "contextual_baseline"). empirical_shape=null_event per §3 (0
+  observed_change layers; admission via observed_no_change row at
+  offramp_cex). admission_tier=null_case per §4 (0 strong-attribution
+  observed_change rows).
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the BI statement
+  is an administrative advisory under monetary-authority remit; it
+  does not direct network-layer blocking, L4 frontend changes, or
+  engage any 2014-nonexistent L1/L3 PBS measurement primitive or any
+  asset-issuer admin path. The L0/L1/L3/asset_onchain not_applicable
+  treatment matches the sibling iceland-cbi-foreign-exchange-bitcoin-
+  2014 and china-pboc-crypto-ban-2013-12 banking-/monetary-authority
+  advisory pattern. offramp_cex is partially_measured because the
+  90-day post-release public-record window was scanned for
+  Indonesia-specific exchange cutoffs and none were located, but the
+  scan is bounded.
+
+  Why null_event / null_case rather than empirical_case: the BI
+  advisory does not name specific exchanges; no exchange-side
+  Indonesia-resident cutoff is documented in the public record
+  within the 90-day post-release window; and the dominant 2014
+  bitcoin exchanges (Bitstamp, Bitfinex, Mt. Gox) did not maintain
+  Indonesia-specific compliance flags. The cascade surface is
+  class-level Indonesian-resident exposure, not an enumerated
+  exchange action. Per codebook §3 and §4, this admits as a
+  null_event / null_case retained for historical-baseline
+  contextual use, not for the 2017+ comparable-analysis denominator.
+
+  Predecessor / successor mapping: this 2014 BI advisory is the
+  predecessor to (a) BI's fuller 2017-12 ban via PBI Regulation
+  No. 19/12/PBI/2017 prohibiting payment-system providers and
+  financial-technology operators from processing virtual-currency
+  transactions, and (b) the 2023 BAPPEBTI / Kominfo exchange-
+  licensing-and-block regime (indonesia-bappebti-illegal-exchange-
+  block-2023) which moved bitcoin/VC market supervision to
+  BAPPEBTI's commodity-futures licensing rail. The 2014 BI position
+  established the foundational Rupiah-only legal-tender framing
+  that later regulators built atop.
+
+  DRYRUN caveats: trigger primary citation is the bi.go.id Siaran
+  Pers landing page; the specific Wayback snapshot timestamp and
+  body_hash anchors require re-pinning in human audit. Marked
+  evidence_use=contextual_unarchived on all citations per validator
+  policy.
+
+scoped_claim: |
+  Bank Indonesia's 2014-02-06 Siaran Pers No. 16/6/Dkom stated the
+  class-level administrative position that Bitcoin and other virtual
+  currencies are not legal tender in Indonesia under Law No. 7 of
+  2011 on Currency, are not regulated by Bank Indonesia, and are used
+  at the user's own risk. The advisory did not direct ISP-level
+  blocking, banking-rail prohibition, or exchange-side action; the
+  cascade surface is class-level on Indonesian residents/businesses,
+  and no exchange-side Indonesia-resident cutoff is documented in
+  the public record within the 90-day post-release window, so the
+  event admits as a historical-baseline null_event / null_case with
+  an observed_no_change row at offramp_cex.
+
+scoped_knowledge: |
+  This event is the predecessor warning shot in Indonesia's bitcoin
+  regulatory trajectory. The 2014-02-06 BI statement establishes the
+  foundational legal framing — Rupiah-as-sole-legal-tender under
+  Law No. 7 of 2011 — that BI's later 2017-12 PBI Regulation
+  No. 19/12/PBI/2017 (prohibiting payment-system operators from
+  processing VC transactions) and BAPPEBTI's 2019+ CPFAK commodity-
+  futures licensing regime (culminating in the 2023 enforcement
+  wave coordinated with Kominfo's ISP-level domain blocking of
+  unlicensed offshore exchanges, indonesia-bappebti-illegal-
+  exchange-block-2023) built atop. The 2014 advisory is a class-
+  level warning rather than an enumerated-target enforcement
+  action, so it admits as historical-baseline null_event /
+  null_case material rather than as a comparable-analysis
+  denominator row. Sibling comparison: iceland-cbi-foreign-
+  exchange-bitcoin-2014 (CBI advisory acting via FX-control law
+  reinterpretation) and china-pboc-crypto-ban-2013-12 (PBOC
+  five-ministry notice prohibiting bank services to bitcoin)
+  form, together with this Indonesia 2014 case, the earliest
+  cluster of monetary-authority advisory actions on bitcoin in
+  the dataset.
+
+tags:
+  - regulatory_enforcement
+  - indonesia
+  - bank_indonesia
+  - bi
+  - virtual_currency_advisory
+  - historical_baseline
+  - contextual_case
+  - null_event
+  - dryrun_2026_05_17

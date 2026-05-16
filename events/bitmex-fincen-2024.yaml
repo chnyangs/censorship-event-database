@@ -1,0 +1,211 @@
+id: bitmex-fincen-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: fincen_action
+  actor: US_FINCEN
+  timestamp: 2024-07-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-pleads-guilty-bank-secrecy-act-offense
+      wayback: https://web.archive.org/web/20260517000000/https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-pleads-guilty-bank-secrecy-act-offense
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ SDNY press release (2024-07-10): "Global Cryptocurrency Exchange
+        BitMEX Pleads Guilty To Bank Secrecy Act Offense." HDR Global
+        Trading Limited (operating as BitMEX) entered a corporate guilty
+        plea for willful failure to establish, implement, and maintain an
+        adequate AML program in violation of the Bank Secrecy Act from
+        2015-2020. This is the corporate-defendant resolution that
+        followed the 2020-10-01 CFTC + DOJ filings (see related event
+        bitmex-cftc-doj-2020) and the 2021-08-10 $100M CFTC + FinCEN
+        consent orders, and the 2022 individual-founder BSA plea
+        agreements. Sentencing occurred 2025-01-15 with an additional
+        $100M criminal fine.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-fined-100-million-violating-bank-secrecy-act
+      wayback: https://web.archive.org/web/20260517000000/https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-fined-100-million-violating-bank-secrecy-act
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ SDNY press release (2025-01-15): "Global Cryptocurrency
+        Exchange BitMEX Fined $100 Million For Violating The Bank
+        Secrecy Act." Sentencing judgment imposing the criminal fine
+        plus two years' corporate probation, downstream from the
+        2024-07-10 guilty plea.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per DOJ SDNY press release dated 2024-07-10 (corporate plea hearing).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    HDR Global Trading Limited (the corporate defendant entering the BSA
+    guilty plea), operating the BitMEX exchange platform. Related entities
+    in the BitMEX integrated common enterprise (100x Holding Limited, ABS
+    Global Trading Limited, Shine Effort Inc Limited, HDR Global Services
+    (Bermuda) Limited) were the co-respondents in the parent 2020-2021
+    CFTC + FinCEN resolutions. The 2024 plea is the corporate-defendant
+    resolution tail of the same enforcement chain; named individual
+    founders (Hayes, Delo, Reed, Dwyer) already pleaded individually in
+    2022 and are not new defendants in this 2024 action.
+  actor_type: exchange_settlement
+  actor_name: BitMEX (HDR Global Trading Limited)
+  chains: [bitcoin]
+  canonical_domains:
+    - bitmex.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer (DNS / ISP) blocking implicated. The 2024 corporate
+      plea is a downstream criminal-fine resolution of the 2020 enforcement
+      chain; bitmex.com remained globally reachable throughout.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin-derivatives venue; the criminal resolution targets BSA / AML
+      compliance, not block-construction or validator-level censorship.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Bitcoin-only venue with no public Ethereum RPC dependency.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [bitmex.com]
+    note: |
+      No new user-facing geo-block or KYC mandate observed in connection
+      with the 2024 corporate plea. The operative L4 cascade was captured
+      at the 2020-10-01 trigger (see bitmex-cftc-doj-2020 L4 row); the
+      2024 plea is a monetary / probationary resolution with no incremental
+      frontend reaction admitted.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level (stablecoin) freezes implicated. BitMEX's derivative
+      settlement is internal to the exchange.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [bitmex_us_users]
+    note: |
+      US-vantage retail BitMEX access was already severed in 2020 (see
+      bitmex-cftc-doj-2020 offramp_cex row). The 2024 corporate plea is a
+      monetary penalty + probation; no new rails-level restriction observed.
+      Denominator artifact is the DOJ SDNY 2024-07-10 plea announcement,
+      which describes a monetary / probationary disposition without any
+      new rails-level remediation requirement -- supporting the observed_no_change
+      claim by exhaustion of the plea-resolution text.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-pleads-guilty-bank-secrecy-act-offense
+      wayback: https://web.archive.org/web/20260517000000/https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-pleads-guilty-bank-secrecy-act-offense
+      scope_descriptor:
+        providers: [bitmex_com_offramp_cex]
+        time_window:
+          - 2024-07-10T00:00:00Z
+          - 2025-01-15T23:59:59Z
+      note: |
+        DOJ SDNY plea press release scopes the disposition to monetary
+        penalty + corporate probation, with no incremental rails-level
+        restriction enumerated. Pairs with the 2020 anchor event's
+        offramp_cex measured row.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bitmex
+    event: bitmex_us_rails_no_incremental_change_after_corporate_bsa_plea
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-07-10T00:00:00Z
+    precision: day
+    window:
+      - 2024-07-10T00:00:00Z
+      - 2025-01-15T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-pleads-guilty-bank-secrecy-act-offense
+        wayback: https://web.archive.org/web/20260517000000/https://www.justice.gov/usao-sdny/pr/global-cryptocurrency-exchange-bitmex-pleads-guilty-bank-secrecy-act-offense
+        scope_descriptor:
+          providers: [bitmex_com_offramp_cex]
+          time_window:
+            - 2024-07-10T00:00:00Z
+            - 2025-01-15T23:59:59Z
+        note: |
+          DOJ SDNY press release describes the corporate BSA plea and
+          forthcoming sentencing. No new rails-level restriction was
+          imposed: US-resident retail access was already severed in 2020;
+          the 2024 resolution is monetary and probationary. observed_no_change
+          row anchors the null-event status of this downstream resolution.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- DRYRUN 2026-05-17**: 2024-07-10 corporate guilty
+  plea by HDR Global Trading Limited (BitMEX) to a Bank Secrecy Act offense
+  (willful failure to maintain an adequate AML program 2015-2020), with
+  sentencing 2025-01-15 imposing an additional $100M criminal fine plus
+  two years' corporate probation.
+
+  TRIGGER FRAMING NOTE: Per author instruction, trigger.type=fincen_action
+  and actor=US_FINCEN are coded. The 2024-07-10 plea is technically a
+  DOJ SDNY criminal disposition; it is the corporate-defendant tail of
+  the same enforcement chain that began with the 2020-10-01 CFTC + DOJ
+  filings and the 2021-08-10 FinCEN consent assessment (the FinCEN civil
+  money penalty was issued in 2021, not 2024). Both DOJ and FinCEN
+  enforcement land in stratum S3_doj_sec_cftc_fiod. Human reviewer should
+  consider recoding trigger.type=doj_indictment (or doj_seizure_order
+  equivalent for plea-disposition) if the FinCEN framing is judged
+  inaccurate; the stratum mapping is unaffected either way.
+
+  null_event RATIONALE: Distinct from the 2020 cascade (bitmex-cftc-doj-2020,
+  which captured L4 + offramp_cex direct observed_change rows), the 2024
+  corporate plea is a downstream monetary / probationary resolution with
+  no new cascade surface. US-vantage retail BitMEX access was already
+  severed in 2020 and global KYC was already enforced. No incremental
+  L4 frontend notice or offramp_cex rail change was observed in connection
+  with the 2024 plea or 2025-01-15 sentencing. Recorded as observed_no_change
+  at offramp_cex (the layer where one would most plausibly expect a
+  reaction) with attribution=none, yielding empirical_shape=null_event
+  and admission_tier=null_case -- a denominator control row for the
+  2024-vintage enforcement-driven offramp_cex stratum, paired with the
+  2020 anchor via related_events. For a real release, replace wayback URL
+  stubs with verified captures + body_hash / body_path artifacts via
+  scripts/capture_http_artifact.py, and confirm via Wayback that no
+  blog.bitmex.com or other operator-side L4 announcement was issued in
+  the 2024-07 to 2025-01 window (a confirmatory absence is what supports
+  the observed_no_change claim).
+
+scoped_claim: |
+  "The 2024-07-10 corporate BSA guilty plea by HDR Global Trading Limited
+  (BitMEX) and the resulting 2025-01-15 $100M criminal fine are downstream
+  resolutions of the 2020-10-01 enforcement chain (see
+  bitmex-cftc-doj-2020) and produced no incremental cascade in the
+  dataset: US-vantage retail access was already severed in 2020 and the
+  2024 disposition is monetary / probationary only. Recorded as a
+  null_event denominator-control row for the 2024-vintage offshore-exchange
+  enforcement stratum."
+
+related_events:
+  - bitmex-cftc-doj-2020
+
+tags:
+  - doj_enforcement
+  - fincen_enforcement
+  - exchange_enforcement
+  - bsa_violation
+  - aml_failure
+  - downstream_resolution
+  - null_event
+  - exchange_settlement

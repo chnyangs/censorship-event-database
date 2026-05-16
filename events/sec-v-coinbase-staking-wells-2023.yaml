@@ -1,0 +1,213 @@
+id: sec-v-coinbase-staking-wells-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - sec-v-coinbase-2023
+  - kraken-sec-staking-2023
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2023-03-22T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.sec.gov/Archives/edgar/data/1679788/000167978823000051/coin-20230322.htm
+      wayback: https://web.archive.org/web/20260517000000/https://www.sec.gov/Archives/edgar/data/1679788/000167978823000051/coin-20230322.htm
+      evidence_use: contextual_unarchived
+      note: |
+        Coinbase Form 8-K filed 2023-03-22 disclosing receipt of a Wells notice
+        from SEC Enforcement staff. The notice provides a preliminary
+        determination to recommend an enforcement action alleging violations of
+        federal securities laws relating to "aspects of the Company's exchange,
+        its staking service Coinbase Earn, Coinbase Prime and Coinbase Wallet."
+        Coinbase explicitly named staking among the targeted product lines.
+        Wayback URL is a DRYRUN stub for the 2026-05-17 authoring date; human
+        reviewer must re-capture before promotion.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2023/03/22/sec-warns-coinbase-its-pursuing-enforcement-action-over-securities-violations
+      wayback: https://web.archive.org/web/20260517000000/https://www.coindesk.com/policy/2023/03/22/sec-warns-coinbase-its-pursuing-enforcement-action-over-securities-violations
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk (2023-03-22) reports the Wells notice was issued the prior day
+        and corroborates that Coinbase Earn (staking) is among the named
+        products. Coinbase Chief Legal Officer Paul Grewal publicly responded
+        that Coinbase's services "are fundamentally different and are not
+        securities."
+    - type: supporting_journalism
+      url: https://decrypt.co/124262/sec-wells-notice-coinbase-enforcement-over-staking-products
+      wayback: https://web.archive.org/web/20260517000000/https://decrypt.co/124262/sec-wells-notice-coinbase-enforcement-over-staking-products
+      evidence_use: contextual_unarchived
+      note: |
+        Decrypt (2023-03-22) characterizes the Wells notice as covering
+        Coinbase's staking rewards products specifically, and reports that
+        Coinbase intended to continue offering staking pending litigation.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per Coinbase Form 8-K disclosing the Wells notice on
+        2023-03-22.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Coinbase, Inc. and Coinbase Global, Inc. staking service (Coinbase Earn).
+    Subset because the Wells notice also referenced other Coinbase product
+    lines (exchange, Prime, Wallet); this event is scoped to the staking
+    component as the precursor to the staking allegations in the June 2023
+    SEC complaint. Token-level enumeration was not part of the Wells notice
+    text disclosed in the 8-K.
+  actor_type: exchange_staking_service
+  actor_name: Coinbase Inc / Coinbase Global (Coinbase Earn)
+  chains: []
+  canonical_domains:
+    - coinbase.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [coinbase_earn_staking_us]
+    denominator_artifact:
+      type: primary_corporate
+      url: https://www.sec.gov/Archives/edgar/data/1679788/000167978823000051/coin-20230322.htm
+      wayback: https://web.archive.org/web/20260517000000/https://www.sec.gov/Archives/edgar/data/1679788/000167978823000051/coin-20230322.htm
+      scope_descriptor:
+        providers: [coinbase_earn_staking]
+        countries: [US]
+        time_window:
+          - 2023-03-22T00:00:00Z
+          - 2023-06-06T00:00:00Z
+      note: |
+        Coinbase Form 8-K (2023-03-22) is the platform-side anchor for the
+        observed_no_change null framing: Coinbase publicly disclosed the Wells
+        notice without announcing a staking service shutdown, and the sibling
+        sec-v-coinbase-2023 file confirms Coinbase Earn was still operative at
+        the June 2023 SEC complaint date. Coverage marked partially_measured
+        because the anchor establishes platform-side intent + service
+        continuation at filing-time, but does not pin a per-day product-page
+        diff across the full 2023-03-22 → 2023-06-06 window. Wayback URL is a
+        DRYRUN stub; human reviewer must re-capture before promotion.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:coinbase_earn
+    event: staking_service_continued_after_wells_notice
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-03-22T00:00:00Z
+    precision: day
+    window:
+      - 2023-03-22T00:00:00Z
+      - 2023-06-06T00:00:00Z
+    note: |
+      Coinbase publicly stated it would continue offering its staking service
+      ("Coinbase Earn") despite the Wells notice naming staking as a targeted
+      product line. The non-shutdown is observed via Coinbase's own
+      contemporaneous statements and journalism, and is corroborated by the
+      sibling event sec-v-coinbase-2023, where Coinbase Earn was still
+      operative when the SEC filed its full civil suit on 2023-06-06. This is
+      a null observation against the sibling Kraken comparator
+      (kraken-sec-staking-2023), where the SEC's staking enforcement landed as
+      a settlement with a same-day U.S. staking shutdown.
+    sources:
+      - type: primary_corporate
+        url: https://www.sec.gov/Archives/edgar/data/1679788/000167978823000051/coin-20230322.htm
+        wayback: https://web.archive.org/web/20260517000000/https://www.sec.gov/Archives/edgar/data/1679788/000167978823000051/coin-20230322.htm
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [coinbase_earn_staking]
+          countries: [US]
+          time_window:
+            - 2023-03-22T00:00:00Z
+            - 2023-06-06T00:00:00Z
+        note: |
+          Coinbase Form 8-K (2023-03-22) disclosing the Wells notice. Coinbase
+          did not announce a discontinuation of staking in the 8-K; the
+          filing characterizes the company as intending to defend its
+          products. Wayback URL is a DRYRUN stub; human reviewer must
+          re-capture before promotion.
+      - type: supporting_journalism
+        url: https://decrypt.co/124262/sec-wells-notice-coinbase-enforcement-over-staking-products
+        wayback: https://web.archive.org/web/20260517000000/https://decrypt.co/124262/sec-wells-notice-coinbase-enforcement-over-staking-products
+        evidence_use: contextual_unarchived
+        note: |
+          Decrypt (2023-03-22) reports Coinbase's stated intent to continue
+          offering staking pending litigation.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Precursor row to sec-v-coinbase-2023 (full SEC civil suit filed 2023-06-06)
+  and comparator to kraken-sec-staking-2023 (SEC staking settlement
+  2023-02-09 with same-day U.S. staking shutdown). This file captures the
+  intermediate SEC Wells notice issued to Coinbase on 2023-03-22 that
+  specifically named the Coinbase Earn staking service among the targeted
+  product lines.
+
+  Empirical shape per codebook §3: zero `observed_change` layers → null_event.
+  Admission tier per §4: zero strong-attribution `observed_change` layers →
+  null_case. The one retained observation is `observed_no_change` with
+  attribution=`none` (codebook §1.1 — `none` is reserved for
+  `observed_no_change` and `coverage_gap` rows). The user-facing framing of
+  "staking-product threat with plausible attribution" describes the
+  threat-exposure relationship (the Wells notice names Coinbase + staking
+  explicitly, and Coinbase publicly cites the Wells notice in its response);
+  the observation-row attribution must remain `none` because the row records
+  the absence of a service change, not a service change.
+
+  offramp_cex coverage is `partially_measured` rather than `measured`: the
+  Coinbase Form 8-K anchors platform-side intent + service continuation at
+  filing-time, and the sibling sec-v-coinbase-2023 file confirms Coinbase
+  Earn was still operative at the June 2023 SEC complaint date, but the
+  file does not pin a per-day product-page diff across the full
+  2023-03-22 → 2023-06-06 window.
+
+  Comparator value: alongside kraken-sec-staking-2023 (direct same-day U.S.
+  staking shutdown after SEC settlement) and sec-v-coinbase-2023
+  (state-scoped staking restriction in CA/NJ/SC/WI after the June 2023
+  filing), this Wells-notice row supplies a null-case denominator data
+  point for SEC staking enforcement against a U.S. exchange that did NOT
+  result in a same-day service-level reaction. The contrast between
+  Kraken (settled, shut down) and Coinbase (litigated, kept staking) is
+  the empirical content this row preserves for cross-event comparison.
+
+  For a real release, replace the Wayback URL stubs with verified captures
+  + body_hash / body_path artifacts via scripts/capture_http_artifact.py,
+  and flip origin to `human_reviewed` after human audit.
+
+scoped_claim: |
+  "The 2023-03-22 SEC Wells notice to Coinbase explicitly named the staking
+  service (Coinbase Earn), but Coinbase did not discontinue staking in
+  response; the dataset records this as a null SEC-staking-enforcement
+  comparator to Kraken 2023-02-09 (shutdown) and as a precursor to the
+  June 2023 Coinbase suit."
+
+tags:
+  - sec_enforcement
+  - wells_notice
+  - staking_service
+  - coinbase
+  - null_case

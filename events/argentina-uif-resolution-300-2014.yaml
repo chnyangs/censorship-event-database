@@ -1,0 +1,321 @@
+id: argentina-uif-resolution-300-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - fatf-r15-vasp-travel-rule-2019
+
+trigger:
+  type: regulatory_enforcement
+  actor: AR_UIF
+  timestamp: 2014-07-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: http://servicios.infoleg.gob.ar/infolegInternet/anexos/230000-234999/231930/norma.htm
+      wayback: https://web.archive.org/web/2015/http://servicios.infoleg.gob.ar/infolegInternet/anexos/230000-234999/231930/norma.htm
+      evidence_use: contextual_unarchived
+      note: |
+        Official text of Resolución UIF N° 300/2014 hosted on Infoleg
+        (servicios.infoleg.gob.ar), the canonical Argentine legal-
+        information database maintained by the Ministerio de Justicia.
+        Dated 2014-07-04 and signed by the UIF (Unidad de Información
+        Financiera / Financial Information Unit), the autonomous AML/CFT
+        authority created by Law 25.246. The resolution defines
+        "monedas virtuales" (virtual currencies) as digital
+        representations of value that function as a medium of exchange,
+        unit of account, and/or store of value but lack legal-tender
+        status and are not issued or guaranteed by any state, and it
+        requires obliged entities (sujetos obligados) enumerated in
+        Article 20 of Law 25.246 — banks, financial institutions,
+        exchange houses, broker-dealers, escribanos, and other
+        AML-regulated counterparties — to report all virtual-currency
+        operations to the UIF via the agency's online reporting portal.
+        The provisions took effect on 2014-08-01. Specific Wayback
+        snapshot timestamp requires re-pinning in human audit before
+        this citation may serve as an admission anchor.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2014/07/10/argentinian-money-regulator-mandates-reporting-on-bitcoin-activity
+      wayback: https://web.archive.org/web/2014/https://www.coindesk.com/markets/2014/07/10/argentinian-money-regulator-mandates-reporting-on-bitcoin-activity
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk English-language report dated 2014-07-10 titled
+        "Argentinian Money Regulator Mandates Reporting on Bitcoin
+        Activity" summarising Resolución 300/2014 for the international
+        crypto press. Used here as a translation / contextual anchor
+        on the obliged-entity reporting obligation and the
+        2014-08-01 effective date. Specific Wayback snapshot timestamp
+        requires re-pinning in human audit.
+    - type: supporting_journalism
+      url: https://www.cronista.com/finanzasmercados/LA-UIF-expande-el-control-a-las-monedas-virtuales-20140711-0044.html
+      wayback: https://web.archive.org/web/2014/https://www.cronista.com/finanzasmercados/LA-UIF-expande-el-control-a-las-monedas-virtuales-20140711-0044.html
+      evidence_use: contextual_unarchived
+      note: |
+        El Cronista (Argentine business newspaper) report dated
+        2014-07-11 titled "LA UIF expande el control a las monedas
+        virtuales", providing contemporaneous Argentine-press
+        contextual coverage of the resolution and its scope over
+        obliged entities. Specific Wayback snapshot timestamp requires
+        re-pinning in human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Resolución 300/2014 carries an issuance dateline of 2014-07-04
+        in the Infoleg official-text header. The Boletín Oficial
+        publication followed in the same week. Day-level precision is
+        appropriate because intra-day timing is not part of the public
+        record for this administrative resolution.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the class of "sujetos obligados" (obliged entities)
+    enumerated in Article 20 of Law 25.246 — Argentine banks,
+    financial institutions, exchange houses (casas de cambio),
+    broker-dealers, escribanos, and other AML-regulated counterparties
+    — when they engage in or facilitate virtual-currency operations.
+    The resolution does not enumerate specific exchanges or specific
+    obliged-entity counterparties; it imposes a class-level reporting
+    obligation on the entire Article-20 obliged-entity set in respect
+    of virtual-currency operations. No specific Argentine or foreign
+    exchange is named as the target, so canonical_domains is empty.
+  protocol: null
+  actor_type: regulated_obliged_entity_class
+  actor_name: Argentine Article-20 obliged entities (sujetos obligados)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - AR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Resolución 300/2014 imposes AML-style reporting obligations on
+      obliged entities; it does not direct ISP-level domain blocking,
+      DNS interference, or network-layer action. not_applicable
+      consistent with sibling banking-rail / AML regulatory events
+      (China 2013-12 PBOC, India RBI 2018).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-07 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface (~8 years downstream, 2022-09-15).
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2014; Flashbots Protect launched 2022-11 and MEV-Blocker
+      launched 2023-03-27. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The UIF resolution is an AML-reporting obligation addressed to
+      Article-20 obliged entities; it does not require frontend
+      changes at any specific exchange or service. No L4 frontend
+      surface is in scope.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze
+      admin method. The 2014-07 UIF resolution does not engage a
+      stablecoin-issuer admin path (USDT first issued ~2014-10;
+      chainwide admin freezes arose later). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      Resolución 300/2014 is by construction an off-ramp-layer signal:
+      it imposes STR/KYC-style reporting obligations on Argentine
+      obliged entities (including casas de cambio and broker-dealers)
+      in respect of virtual-currency operations, effective 2014-08-01.
+      The coverage scope for the observed_no_change row below is the
+      public record (Argentine and English press, exchange status
+      pages, contemporaneous crypto-press) for the 90 days following
+      the 2014-08-01 effective date: no specific exchange is
+      documented as having cut off Argentine-resident accounts in
+      that window, and the dominant 2014 bitcoin exchanges (Bitstamp,
+      Bitfinex, the surviving post-collapse Mt. Gox successors, and
+      the nascent local-market actors such as Ripio's predecessor
+      BitPagos) did not maintain Argentina-specific compliance flags
+      in the public record. Class-level Argentine obliged-entity
+      exposure to AML reporting is real but not exchange-side
+      observable in this authoring pass. partially_measured because
+      the public-record search is bounded but not exhaustive.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - AR
+        time_window:
+          - 2014-08-01T00:00:00Z
+          - 2014-10-30T00:00:00Z
+      note: |
+        Coverage scope: Argentine-resident or Argentine-obliged-entity
+        off-ramp cutoffs documented in the public record during the
+        90-day window following the 2014-08-01 effective date of
+        Resolución 300/2014. No exchange-side Argentina-specific
+        cutoff was located in this authoring pass; a human-audit
+        pass on contemporaneous Argentine press (La Nación, Clarín,
+        El Cronista, Ámbito Financiero) and English crypto-press
+        (CoinDesk, Bitcoin Magazine) is the gating step for a
+        stronger denominator anchor.
+
+observations:
+  - layer: offramp_cex
+    actor: argentine_obliged_entities
+    event: no_measured_exchange_side_cutoff_of_argentine_residents
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2014-08-01T00:00:00Z
+    precision: day
+    window:
+      - 2014-08-01T00:00:00Z
+      - 2014-10-30T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: http://servicios.infoleg.gob.ar/infolegInternet/anexos/230000-234999/231930/norma.htm
+        wayback: https://web.archive.org/web/2015/http://servicios.infoleg.gob.ar/infolegInternet/anexos/230000-234999/231930/norma.htm
+        evidence_use: contextual_unarchived
+        note: |
+          Resolución UIF 300/2014 is the legal instrument. It imposes
+          STR-style reporting obligations on Article-20 obliged entities
+          in respect of virtual-currency operations, effective
+          2014-08-01, but it does not name any specific exchange as
+          having implemented an Argentina-resident cutoff in response.
+          The observation_kind=observed_no_change row records that the
+          cascade surface at offramp_cex is class-level (Argentine
+          obliged entities as a class) rather than exchange-specific
+          in the available public record. attribution=none consistent
+          with observed_no_change rows per schema §1.1. Specific
+          Wayback snapshot timestamp requires re-pinning in human
+          audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Historical-baseline
+  contextual case for Resolución UIF N° 300/2014 issued 2014-07-04
+  by Argentina's Unidad de Información Financiera (UIF / Financial
+  Information Unit), the autonomous AML/CFT authority created by
+  Law 25.246. The resolution imposed STR/KYC-style reporting
+  obligations on Article-20 obliged entities (sujetos obligados) —
+  banks, financial institutions, casas de cambio, broker-dealers,
+  escribanos, and other AML-regulated counterparties — in respect
+  of virtual-currency operations, effective 2014-08-01. Authored at
+  status=draft pending human audit of (i) Infoleg URL reachability
+  and Wayback snapshot pinning, (ii) the CoinDesk and El Cronista
+  English/Spanish contextual anchors, and (iii) any exchange-side
+  evidence of Argentina-resident or obliged-entity-side cutoff that
+  may exist in contemporaneous press coverage but was not located
+  in this authoring pass.
+
+  Significance: this is the earliest dataset case of a non-US
+  national regulator imposing AML-style reporting obligations on
+  obliged entities specifically in respect of virtual-currency
+  operations — pre-dating the FATF June 2014 "Virtual Currencies:
+  Key Definitions and Potential AML/CFT Risks" report only by
+  ~3 weeks, and pre-dating FATF Recommendation 15's 2019 extension
+  to virtual-asset service providers (VASPs) by ~5 years. It is
+  the contextual precursor to fatf-r15-vasp-travel-rule-2019 in
+  the AML-style obliged-entity reporting lineage.
+
+  Codebook rule applied (§5.1): trigger.type=regulatory_enforcement
+  per the 2026-05-17 codebook entry for "Non-US national regulator
+  administrative enforcement". The UIF is a non-US national
+  regulator and Resolución 300/2014 is an administrative act
+  (resolution) under Law 25.246, not a nation-state ISP/DNS block
+  and not a court order, so regulatory_enforcement is the canonical
+  fit. research_stratum=S4_nation_state per §5.2 stratum-actor map.
+
+  Why historical_baseline_2013_2016 tier: 2014 belongs to the
+  pre-2017 historical-baseline tier per sampling/frame.yaml.
+  analysis_use=historical_baseline (canonical form per codebook §6)
+  excludes this row from the 2017+ comparable-analysis denominator.
+  The event is retained as contextual case-study material rather
+  than as a denominator row because (a) it predates the comparable
+  corpus and (b) the cascade surface is class-level rather than
+  exchange-specific.
+
+  Why null_case / null_event: the offramp_cex observation is
+  observation_kind=observed_no_change with attribution=none. No
+  observed_change layer carries strong attribution (direct or
+  plausible). Per codebook §3, 0 observed_change layers →
+  empirical_shape=null_event; per codebook §4, 0 strong-attribution
+  observed_change layers → admission_tier=null_case. The resolution
+  clearly carries direct-attribution force on the Article-20
+  obliged-entity class as a reporting obligation, but the cascade
+  surface in the available public record is not exchange-specific
+  and no exchange-side cutoff or measured Argentine-resident
+  on-chain volume shift is documented in this authoring pass.
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the UIF
+  resolution is an AML-reporting obligation under Law 25.246; it
+  does not direct network-layer blocking, L4 frontend changes, or
+  engage any 2014-nonexistent L1/L3 PBS measurement primitive or
+  any asset-issuer admin path. The not_applicable treatment matches
+  the sibling 2013 PBOC / 2018 RBI banking-rail / AML-rail pattern.
+
+  Post-2014 trajectory: Resolución 300/2014 was modified by
+  subsequent UIF resolutions (notably Resolución 49/2024 published
+  in the Boletín Oficial on 2024-03-25 which superseded and
+  modernised the 2014 framework in light of FATF R15 and
+  Argentina's post-2023 Ley 27.739 VASP-registry regime). Those
+  successor instruments are natural candidates for separate
+  comparable-analysis-tier events but are not authored in this
+  pass.
+
+scoped_claim: |
+  Resolución UIF N° 300/2014, issued 2014-07-04 and effective
+  2014-08-01, imposed STR/KYC-style reporting obligations on
+  Argentine Article-20 obliged entities (sujetos obligados) in
+  respect of virtual-currency operations. The cascade surface is
+  class-level on Argentine obliged entities; no exchange-side
+  Argentina-resident cutoff is documented in this authoring pass,
+  so offramp_cex carries an observation_kind=observed_no_change
+  row with attribution=none.
+
+scoped_knowledge: |
+  This event is the earliest dataset case of a non-US national
+  regulator extending AML-style reporting obligations to virtual-
+  currency operations via obliged-entity channels — pre-dating the
+  FATF June 2014 key-definitions report by ~3 weeks and the FATF
+  R15 2019 VASP travel-rule extension by ~5 years. The mechanism
+  is class-level: Resolución 300/2014 does not name specific
+  exchanges; instead it leverages the existing Article-20 obliged-
+  entity register under Law 25.246 to capture virtual-currency
+  operations within the pre-existing AML reporting pipeline. This
+  is a meaningful contrast with the China 2013-12 PBOC banking-
+  rail-severance pattern (which prohibited bank services to
+  bitcoin) and with the Iceland 2014-03 CBI FX-Act-reuse pattern
+  (which prohibited Icelandic-resident bitcoin purchases under
+  capital-controls law): the Argentine UIF chose neither
+  prohibition nor capital-controls reuse but rather AML-pipeline
+  capture, which became the dominant FATF-aligned regulatory
+  pattern globally after 2019. The 2024 supersession by Resolución
+  49/2024 is a candidate sibling event for future authoring.
+
+tags:
+  - regulatory_enforcement
+  - argentina
+  - uif
+  - aml_cft
+  - virtual_currency_reporting
+  - obliged_entities
+  - historical_baseline
+  - contextual_case
+  - pre_fatf_r15

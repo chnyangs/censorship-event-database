@@ -1,0 +1,283 @@
+id: brazil-bcb-comunicado-25306-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - indonesia-bi-bitcoin-warning-2014
+  - thailand-bot-bitcoin-prohibition-2013
+
+trigger:
+  type: regulatory_enforcement
+  actor: BR_BCB
+  timestamp: 2014-02-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Comunicado&numero=25306
+      wayback: https://web.archive.org/web/2014/https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Comunicado&numero=25306
+      evidence_use: contextual_unarchived
+      note: |
+        Banco Central do Brasil (BCB) Comunicado n° 25.306 dated
+        2014-02-19, titled "Esclarece sobre os riscos decorrentes da
+        aquisição das chamadas 'moedas virtuais' ou 'moedas
+        criptografadas' e da realização de transações com elas"
+        ("Clarifies the risks arising from the acquisition of so-
+        called 'virtual currencies' or 'encrypted currencies' and
+        from conducting transactions with them"). The communication
+        distinguishes between "moedas eletrônicas" (electronic money,
+        regulated by Law No. 12,865 of 2013-10-09 and denominated in
+        Brazilian reais) and "moedas virtuais" (virtual currencies,
+        denominated in a unit of account distinct from sovereign-
+        issued currencies). The BCB warns that virtual currencies
+        are not issued, regulated, or guaranteed by a monetary
+        authority, and that some have no entity responsible for
+        their issuance; it notes that the volume of virtual-currency
+        transactions in Brazil was still low and did not pose risks
+        to the National Financial System. The Comunicado is a
+        risk-disclosure advisory addressed to the Brazil-resident
+        virtual-currency user class; it is not a banking-rail
+        severance order, an ISP/DNS block, or an enumerated-target
+        enforcement action. Wayback wildcard anchor is provisional;
+        specific snapshot timestamp must be re-pinned during human
+        audit before this citation may carry an admission anchor in
+        its own right. Marked evidence_use=contextual_unarchived
+        pending that re-pin.
+    - type: supporting_journalism
+      url: https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105
+      wayback: https://web.archive.org/web/2014/https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105
+      evidence_use: contextual_unarchived
+      note: |
+        Diário Oficial da União (DOU) publication record for
+        2014-02-20, Seção 3, page 105, corroborating the official
+        publication of Comunicado n° 25.306 in the Brazilian federal
+        gazette one day after issuance. Used as a publication-date
+        corroborator; specific Wayback snapshot timestamp requires
+        re-pinning during human audit. Marked
+        evidence_use=contextual_unarchived.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Comunicado n° 25.306 carries a 2014-02-19 issuance date on
+        the BCB normativos register and was published in the Diário
+        Oficial da União on 2014-02-20. Day-level precision is
+        appropriate because BCB Comunicados do not carry intra-day
+        publication timing in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the BCB advisory directed at the Brazil-
+    resident virtual-currency user class (individuals and legal
+    entities acquiring or transacting in "moedas virtuais"). This
+    is a class-level advisory: the Comunicado does not name
+    specific exchanges, intermediaries, addresses, or domains.
+    enumeration=subset rather than complete because the advisory
+    addresses a population class without a fixed roster, matching
+    the sibling Russia 2014-01 CBR advisory and China 2013-12 PBOC
+    notice treatment of class-level central-bank dispositions.
+  protocol: null
+  actor_type: brazil_resident_virtual_currency_user_class
+  actor_name: Brazil-resident virtual-currency users (BCB advisory class)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - BR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Comunicado 25.306 does not direct ISP-level domain blocking
+      or DNS interference. The Comunicado is a risk-disclosure
+      advisory, not a network-layer block. L0 marked not_applicable
+      consistent with the sibling Russia 2014-01 CBR advisory and
+      China 2013-12 PBOC notice treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-02 has no protocol-
+      level relay-filter primitive analogous to the post-Merge
+      Ethereum PBS relay surface. The Ethereum Merge itself is
+      ~8.5 years downstream (2022-09-15). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2014; Flashbots Protect launched 2022-11 and MEV-Blocker
+      launched 2023-03-27. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The 2014-02-19 BCB Comunicado is a population-class advisory,
+      not a directive to take down specific frontends. No Brazilian
+      virtual-currency frontends were enumerated targets of this
+      advisory. not_applicable on scope-mismatch grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze
+      admin method. The Comunicado does not engage a stablecoin-
+      issuer admin path (USDT first issued ~2014-10; chainwide
+      admin freezes arose later). not_applicable on construct-did-
+      not-exist grounds.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      The Comunicado is a class-level risk-disclosure advisory
+      addressed to Brazil-resident virtual-currency users. It is
+      plausible that Brazilian banks or nascent crypto-exchange
+      intermediaries tightened virtual-currency-related servicing
+      in response, but no enumerated Brazilian exchange roster
+      (analogous to the 2013-12 PRC triad) has been pinned in this
+      authoring pass, and contemporaneous public measurement of
+      Brazilian off-ramp behavior in the 2014-02 window has not
+      been verified. Class-level disposition with no load-bearing
+      direct-attribution observation available. Marked not_measured
+      with a coverage_gap observation row below.
+
+observations:
+  - layer: offramp_cex
+    actor: brazil_resident_virtual_currency_offramp_class
+    event: bcb_comunicado_25306_class_level_risk_advisory
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2014-02-19T00:00:00Z
+    precision: day
+    note: |
+      Comunicado n° 25.306 plausibly shaped the willingness of
+      Brazilian credit institutions and nascent virtual-currency
+      intermediaries to service virtual-currency-related accounts,
+      but no enumerated counterfactual or class-level off-ramp
+      measurement has been pinned in this authoring pass. Recorded
+      as coverage_gap with attribution=unknown to signal a class-
+      level disposition consistent with the advisory's framing
+      (risk disclosure, distinction between moedas eletrônicas and
+      moedas virtuais, observation that virtual-currency volume in
+      Brazil did not yet pose systemic risk) without claiming a
+      measured observed_change. Validator rule constrains
+      coverage_gap rows to attribution ∈ {unknown, none}; "unknown"
+      reads as plausibly-influenced-but-not-measured here.
+    sources:
+      - type: primary_legal
+        url: https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Comunicado&numero=25306
+        wayback: https://web.archive.org/web/2014/https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Comunicado&numero=25306
+        evidence_use: contextual_unarchived
+        note: |
+          BCB Comunicado n° 25.306 dated 2014-02-19 is the legal
+          instrument. The Comunicado clarifies the risks of
+          acquiring and transacting in virtual currencies and
+          distinguishes them from electronic money regulated under
+          Law No. 12,865 of 2013-10-09. Provisional Wayback anchor;
+          specific snapshot timestamp requires human-audit
+          re-pinning.
+      - type: supporting_journalism
+        url: https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105
+        wayback: https://web.archive.org/web/2014/https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105
+        evidence_use: contextual_unarchived
+        note: |
+          Diário Oficial da União 2014-02-20 Seção 3 publication
+          record for Comunicado n° 25.306, corroborating the
+          official federal-gazette publication one day after
+          issuance. Specific Wayback snapshot timestamp requires
+          re-pinning in human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Historical-baseline
+  authoring pass for the 2014-02-19 Banco Central do Brasil
+  Comunicado n° 25.306, the foundational BCB stance on virtual
+  currencies and a precursor to the BRL stablecoin-framework era.
+  origin=agent_draft and status=draft; human re-verification of
+  (i) the bcb.gov.br normativos URL reachability and Wayback
+  snapshot pinning, (ii) the DOU 2014-02-20 publication-record
+  snapshot pinning, and (iii) any contemporaneous Brazilian off-
+  ramp class-level measurement evidence (Mercado Bitcoin, FoxBit,
+  or contemporaneous Brazilian banking-rail journalism) is
+  required before this event may be promoted to human_reviewed
+  and admitted.
+
+  Why historical_baseline tier: events 2013–2016 belong to the
+  historical_baseline_2013_2016 temporal tier per the 2008+
+  tiered frame in sampling/frame.yaml. analysis_use=historical_
+  baseline excludes this row from the 2017+ comparable-analysis
+  denominator, matching the validator's tier-vs-analysis-use
+  consistency rule.
+
+  Why empirical_shape=null_event / admission_tier=null_case: this
+  event has zero observed_change observations. The Comunicado is
+  a class-level risk-disclosure advisory, not a banking-rail
+  severance directive, and no enumerated Brazilian crypto-exchange
+  or banking counterfactual has been pinned in this authoring
+  pass. The single observation row is observation_kind=coverage_
+  gap with attribution=unknown, which does not contribute toward
+  empirical_shape or admission_tier. Treated as historical-
+  baseline context rather than admission-grade cascade evidence.
+
+  Why trigger.type=regulatory_enforcement: per codebook §5.1
+  (2026-05-17 entry), the canonical trigger.type for non-US
+  national-regulator administrative actions (excluding ISP/DNS
+  network blocks and payment-rail severance directives) is
+  regulatory_enforcement. The BCB is a non-US national regulator
+  and Comunicado 25.306 is an administrative risk-disclosure
+  advisory; this is the canonical fit. Per codebook §5.2 the
+  permitted research_stratum is S4_nation_state.
+
+  Why target.kind=entity / enumeration=subset: schema target.kind
+  enum does not include "regulatory_class"; entity is the closest
+  enum for a population-class target and matches the Russia 2014
+  / China 2013 / India 2018 sibling pattern. enumeration=subset
+  rather than complete because the advisory addresses a Brazil-
+  resident virtual-currency user class without a fixed roster
+  (codebook §7: class-level rationale documented in
+  enumeration_note).
+
+  Why all coverage layers are not_applicable except offramp_cex:
+  L0 (not_applicable) — no ISP / DNS directive in the Comunicado;
+  L1 (not_applicable) — Ethereum PBS relay primitive does not
+  exist in 2014; L3 (not_applicable) — public-RPC compliance
+  primitive (Flashbots Protect / MEV-Blocker) does not exist in
+  2014; L4 (not_applicable) — scope mismatch (advisory does not
+  target specific frontends); asset_onchain (not_applicable) —
+  bitcoin has no issuer-side admin freeze primitive and USDT did
+  not exist in 2014-02; offramp_cex (not_measured) — the
+  Comunicado is plausibly off-ramp-relevant but no enumerated
+  measurement is pinned.
+
+  Cross-temporal context: the 2014-02-19 BCB Comunicado precedes
+  Brazil's later stablecoin and crypto-asset regulatory framework
+  (Lei 14.478/2022 and BCB Resolução BCB 2025-era cross-border
+  crypto-settlement restrictions). The cross-temporal sibling
+  pair (2014 advisory → later BRL stablecoin / cross-border
+  framework) is a within-jurisdiction longitudinal anchor for the
+  Brazilian central-bank crypto-disposition trajectory. Sibling
+  cross-jurisdictional historical-baseline comparators in
+  related_events are the contemporaneous 2014-02 Bank Indonesia
+  bitcoin warning (indonesia-bi-bitcoin-warning-2014) and the
+  2013-07 Bank of Thailand bitcoin prohibition (thailand-bot-
+  bitcoin-prohibition-2013); both are class-level central-bank
+  advisories from the same regional-emerging-market 2013–2014
+  cohort.
+
+tags:
+  - regulatory_enforcement
+  - brazil
+  - bcb
+  - bitcoin
+  - virtual_currency
+  - regulatory_advisory
+  - historical_baseline
+  - class_level_advisory

@@ -1,0 +1,299 @@
+id: bolivia-bcb-crypto-prohibition-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - thailand-bot-bitcoin-prohibition-2013
+  - china-pboc-crypto-ban-2013-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: BO_BCB
+  timestamp: 2014-05-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
+      wayback: https://web.archive.org/web/2014/https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        Banco Central de Bolivia (BCB) Board Resolution No. 044/2014,
+        issued 2014-05-06, prohibiting the use within Bolivia of any
+        currency, coin, or denomination that is not issued and
+        regulated by the Bolivian state (the boliviano, BOB). The
+        resolution explicitly names "bitcoin" and a list of other
+        electronic/virtual currencies (e.g. namecoin, peercoin,
+        primecoin, feathercoin, quark) and bars their use as a means
+        of payment, store of value, or unit of account in Bolivian
+        commerce. The resolution is issued under BCB authority over
+        the national payment system and monetary stability. Bolivia's
+        2014-05 prohibition is one of the earliest explicit nation-
+        state-level bans on bitcoin and is commonly cited alongside
+        the 2013-07 Thailand Bank of Thailand verbal prohibition and
+        the 2013-12 PBOC Notice 2013/289 as one of the first three
+        nation-state crypto-prohibition actions globally. The bcb.gob.bo
+        URL path for board resolutions is publicly indexed but specific
+        Wayback snapshot timestamps for the 2014-05-06 PDF have not
+        been pinned in this authoring pass. evidence_use=
+        contextual_unarchived pending re-pin in a follow-up human-audit
+        pass. (Resolution 044/2014 was subsequently superseded by BCB
+        Board Resolution No. 082/2024 of 2024-06-26, which lifted the
+        prohibition and authorized regulated crypto transactions via
+        the Bolivian banking system; that reversal is recorded in a
+        separate event file when authored.)
+    - type: supporting_journalism
+      url: https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/
+      wayback: https://web.archive.org/web/2014/https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/
+      evidence_use: contextual_unarchived
+      note: |
+        City A.M. contemporaneous (2014-06) English-language coverage
+        of BCB Resolution 044/2014, naming the Banco Central de
+        Bolivia, the 2014-05-06 issuance date, the list of explicitly-
+        named cryptocurrencies, and the monetary-stability rationale.
+        Used here as a contextual English-language anchor on the
+        Spanish-language primary instrument. Specific Wayback snapshot
+        timestamp requires re-pin during human audit. Marked
+        evidence_use=contextual_unarchived pending that re-pin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        BCB Board Resolution No. 044/2014 carries a 2014-05-06
+        issuance date in its header. Day-level precision is
+        appropriate because the BCB board resolution does not
+        carry intra-day publication timing in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target of Resolution 044/2014 is the class of all users,
+    merchants, and intermediaries within Bolivia that might use any
+    non-state-issued currency (including but not limited to bitcoin
+    and the explicitly-named altcoins). The resolution is class-level
+    and prospective: no Bolivian crypto exchanges, payment processors,
+    or specific addresses are named or designated. Bolivia in 2014-05
+    had no domestically-operated bitcoin exchange of meaningful scale
+    in the public record, so the prohibition operates almost entirely
+    at the class / prospective level rather than against an enumerated
+    set of in-country operators. enumeration=subset per codebook §7
+    (class-level regulatory events use subset with rationale in
+    enumeration_note; class_level is not a valid enum value).
+  protocol: null
+  actor_type: regulatory_class
+  actor_name: "Bolivian users and intermediaries of non-state-issued currencies (class)"
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - BO
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      BCB Resolution 044/2014 does not direct ISP-level domain blocking
+      or DNS interference against any crypto-related host. It is a
+      monetary-authority prohibition on the use of non-state currencies,
+      not a network-layer block. not_applicable on construct-out-of-
+      scope grounds, consistent with the sibling china-pboc-crypto-ban-
+      2013-12 treatment of banking-and-monetary-rail nation-state events.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-05 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface that the L1 layer measures. The Ethereum Merge
+      itself is ~8 years downstream (2022-09-15). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2014 (Flashbots Protect launched 2022-11; MEV-Blocker
+      launched 2023-03-27). not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Resolution 044/2014 does not require, name, or contemplate any
+      crypto-related frontend takedown or geo-blocking within Bolivia.
+      The prohibition attaches to the use of non-state currencies in
+      Bolivian commerce, not to the public-facing web surface of any
+      named operator. No Bolivian crypto exchange of meaningful scale
+      existed in the 2014-05 public record. not_applicable on construct-
+      out-of-scope grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. Resolution 044/2014 does not engage a stablecoin-issuer
+      admin path (USDT first issued ~2014-10; chain-wide admin freezes
+      arose later). not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - bolivian_crypto_user_class
+    note: |
+      The substantive regulatory effect of Resolution 044/2014 is to
+      bar use of bitcoin and other non-state currencies in Bolivian
+      commerce. The cascade, however, has no clear point-in-time
+      offramp / CEX cessation in the public record because Bolivia in
+      2014-05 had no domestically-operated bitcoin exchange of
+      meaningful scale: the prohibition is prospective and class-level
+      rather than triggering an observable in-country exchange
+      shutdown. Marked not_measured because the load-bearing cascade
+      is class-level and prospective rather than a single point-in-
+      time observable CEX cessation; the corresponding observation
+      row below records this as observed_no_change with a falsifiable
+      scope window.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:bcb
+    event: bolivian_class_level_crypto_prohibition_no_observable_offramp_cascade
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2014-05-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
+        wayback: https://web.archive.org/web/2014/https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - bolivian_crypto_user_class
+          countries:
+            - BO
+          time_window:
+            - 2014-05-06T00:00:00Z
+            - 2016-12-31T23:59:59Z
+        note: |
+          BCB Resolution 044/2014 is the legal instrument. observation_
+          kind=coverage_gap with attribution=none honestly represents
+          the empirical posture: the prohibition is class-level and
+          prospective, and no domestically-operated Bolivian bitcoin
+          exchange of meaningful scale existed in 2014-05 to cease
+          operating in response. The scope_descriptor records the
+          falsifiable 2014-05-06 to 2016-12-31 window for the class-
+          level scope (Bolivian crypto-user class). coverage_gap is
+          only retained on status=draft per the validator; this event
+          stays draft until a human reviewer decides whether to admit
+          the row as observed_no_change (which would require an
+          admission-grade replayable anchor) or to retire the event
+          in favor of the planned thailand-bot-bitcoin-prohibition-
+          2013 and existing china-pboc-crypto-ban-2013-12 siblings
+          carrying the historical-baseline first-touch role. Provisional
+          year-prefix wayback anchor pending re-pin in a follow-up
+          human-audit pass.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Phase E follow-on
+  authoring pass after the 2026-05-16 pre-Bitcoin baseline 2008-2012
+  lean run. This event populates the historical_baseline_2013_2016
+  tier with one of the earliest explicit nation-state-level crypto
+  prohibitions in the global record.
+
+  BCB Board Resolution No. 044/2014 (issued 2014-05-06) prohibited
+  the use within Bolivia of any currency not issued and regulated by
+  the Bolivian state, explicitly naming bitcoin and a list of other
+  electronic/virtual currencies. Bolivia in 2014-05 is commonly cited
+  alongside Thailand 2013-07 (Bank of Thailand verbal prohibition) and
+  China 2013-12 (PBOC Notice 2013/289) as one of the first three nation-
+  state crypto-prohibition actions; among these three, the Bolivia
+  resolution is the most class-level and prospective because Bolivia
+  in 2014-05 had no domestically-operated bitcoin exchange of
+  meaningful scale.
+
+  Why null_event / null_case / observed_no_change: the prohibition is
+  class-level and prospective rather than cascade-producing. There is
+  no clear point-in-time observable cascade in the public record —
+  no Bolivian crypto exchange ceased operating because none of
+  meaningful scale existed at the time of issuance — and no
+  downstream Bolivian-domestic L0/L3/L4/asset_onchain observable
+  surfaces are engaged by the resolution. The single load-bearing
+  observation row is observed_no_change at offramp_cex with a
+  falsifiable scope_descriptor spanning 2014-05-06 to the end of
+  the historical-baseline tier (2016-12-31).
+
+  Why temporal_tier=historical_baseline_2013_2016 and analysis_use=
+  historical_baseline: events 2013-2016 belong to the
+  historical_baseline_2013_2016 tier per the project's tiered frame.
+  analysis_use=historical_baseline (the canonical form, not the
+  contextual_baseline alias that the codebook §6 explicitly rejects)
+  excludes this row from the 2017+ comparable-analysis denominator.
+
+  Why trigger.type=regulatory_enforcement: per codebook §5.1 (2026-05-17
+  update), regulatory_enforcement is the canonical trigger.type for
+  non-US national-regulator administrative actions, including central-
+  bank prohibition resolutions of this kind. nation_state_block would
+  be the alternative if Resolution 044/2014 directed ISP / payment-rail
+  network blocking, but it does not; the BCB action is administrative
+  monetary-authority prohibition rather than network-layer block.
+  S4_nation_state is the permitted stratum for regulatory_enforcement
+  per codebook §5.2.
+
+  Why target.kind=entity and enumeration=subset: per codebook §7,
+  class_level is not a valid enumeration value; class-level regulatory
+  scope is recorded as subset with the class-level rationale captured
+  in enumeration_note. target.kind=entity matches sibling treatment
+  for class-level regulatory predicates (see fincen-virtual-currency-
+  msb-guidance-2013 and china-pboc-crypto-ban-2013-12).
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the Bolivian
+  prohibition is a monetary-authority class-level instrument that does
+  not engage network blocking, frontend takedown, stablecoin admin-
+  freeze, or post-Merge L1/L3 measurement surfaces. construct-out-of-
+  scope or construct-did-not-exist reasoning applies in each case,
+  consistent with the sibling china-pboc-crypto-ban-2013-12 treatment
+  of pre-Merge nation-state banking-rail events.
+
+  Cross-event positioning: the canonical 2013-2014 first-touch nation-
+  state crypto-prohibition sibling set is Thailand 2013-07 (BoT) +
+  China 2013-12 (PBOC) + Bolivia 2014-05 (BCB). The Thailand event is
+  not yet authored as a separate YAML; this event's related_events
+  field forward-references that planned sibling alongside the already-
+  authored china-pboc-crypto-ban-2013-12.
+
+  Origin=agent_draft and status=draft per the agent-authoring
+  convention. A human reviewer must (a) re-pin the bcb.gob.bo
+  Resolution 044/2014 PDF Wayback snapshot, (b) re-pin the City A.M.
+  contemporaneous coverage Wayback snapshot, and (c) decide whether
+  observed_no_change with the falsifiable 2014-05-06 to 2016-12-31
+  scope window admits the event as null_case before promoting status
+  beyond draft.
+
+scoped_claim: |
+  Banco Central de Bolivia Board Resolution No. 044/2014 (issued
+  2014-05-06) prohibited the use within Bolivia of any currency not
+  issued and regulated by the Bolivian state, explicitly including
+  bitcoin and a list of other electronic/virtual currencies, making
+  it one of the earliest explicit nation-state-level crypto
+  prohibitions. The prohibition is class-level and prospective;
+  Bolivia in 2014-05 had no domestically-operated bitcoin exchange of
+  meaningful scale and no point-in-time offramp/CEX cessation is
+  observable. The load-bearing observation is observed_no_change at
+  offramp_cex with a falsifiable 2014-05-06 to 2016-12-31 scope
+  window. Historical-baseline tier; not used in main statistical
+  denominators.
+
+tags:
+  - historical_baseline_2013_2016
+  - bolivia
+  - bcb
+  - crypto_prohibition
+  - nation_state_prohibition
+  - class_level_regulation
+  - dryrun_2026_05_17

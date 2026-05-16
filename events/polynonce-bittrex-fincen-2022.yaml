@@ -1,0 +1,186 @@
+id: polynonce-bittrex-fincen-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - sec-v-bittrex-2023
+
+trigger:
+  type: fincen_action
+  actor: US_FINCEN
+  timestamp: 2022-10-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fincen.gov/news/news-releases/fincen-announces-29-million-enforcement-action-against-virtual-asset-service
+      evidence_use: contextual_unarchived
+      note: |
+        FinCEN press release (2022-10-11): "FinCEN Announces $29 Million
+        Enforcement Action Against Virtual Asset Service Provider Bittrex for
+        Willful Violations of the Bank Secrecy Act." Largest FinCEN crypto
+        penalty at the time and first FinCEN/OFAC parallel virtual currency
+        enforcement. FinCEN found that from Feb 2014 - Dec 2018, Bittrex
+        failed to maintain an effective AML program and failed to file SARs
+        on suspicious activity, including transactions associated with
+        sanctioned jurisdictions (Iran, Cuba, Syria, Sudan, Crimea region of
+        Ukraine). Total combined US Treasury penalty ~$53M (FinCEN $29M +
+        OFAC $24M; FinCEN credited the $24M OFAC payment against FinCEN's
+        penalty so net cash to Treasury was $29M).
+    - type: primary_legal
+      url: https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+      wayback: https://web.archive.org/web/2022/https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        Bittrex Inc. FinCEN Consent Order dated 2022-10-11. Documents
+        approximately $263 million in virtual-currency-related transactions
+        from users in Crimea, Cuba, Iran, Sudan, and Syria between March
+        2014 and December 2017 that Bittrex failed to prevent or report.
+    - type: supporting_journalism
+      url: https://www.cnbc.com/2022/10/11/crypto-company-fined-29point3-million-for-violating-multiple-us-sanctions-.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNBC (2022-10-11) contemporaneous coverage of the parallel
+        FinCEN/OFAC settlement: "Treasury fines crypto company $29.3 million
+        for violating multiple U.S. sanctions, Bank Secrecy Act."
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per FinCEN press release and Consent Order dated 2022-10-11.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Bittrex Inc. is the named entity in the FinCEN Consent Order and the OFAC
+    settlement agreement. The Treasury actions enumerate the entity (Bittrex
+    Inc.) and the five sanctioned jurisdictions whose users transacted on the
+    platform (Crimea region of Ukraine, Cuba, Iran, Sudan, Syria). Coded
+    `subset` because the underlying scope is a class of sanctioned-jurisdiction
+    users mediated through Bittrex's US offramp surface; no on-chain address
+    set or individual customer list is enumerated in the public order.
+  protocol: null
+  actor_type: exchange_aml_ofac_enforcement
+  actor_name: Bittrex Inc.
+  entity: Bittrex Inc.
+  chains: []
+  canonical_domains:
+    - bittrex.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [bittrex_us_exchange]
+    note: |
+      The FinCEN Consent Order + OFAC settlement compelled Bittrex to maintain
+      and tighten its post-2018 sanctioned-jurisdiction geoblocking controls
+      at the US-vantage exchange surface. The Consent Order itself documents
+      the Bittrex US offramp surface and the five sanctioned jurisdictions
+      (Crimea/Cuba/Iran/Sudan/Syria) at class-level scope. No replayable
+      Wayback bittrex.com geoblock diff is pinned at draft stage; the
+      Consent Order serves as the denominator anchor for the offramp-class
+      claim.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+      wayback: https://web.archive.org/web/2022/https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+      scope_descriptor:
+        providers: [bittrex_us_exchange]
+        countries: [US]
+        time_window:
+          - 2014-03-01T00:00:00Z
+          - 2022-10-11T23:59:59Z
+      note: |
+        Bittrex Inc. FinCEN Consent Order (2022-10-11) — primary legal
+        denominator anchor for the Bittrex US offramp surface and the
+        enumerated sanctioned jurisdictions. Replayable bittrex.com geoblock
+        diff capture deferred to human review.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bittrex_us
+    event: bittrex_us_post_settlement_sanctioned_jurisdiction_deplatforming
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-10-11T00:00:00Z
+    precision: day
+    country: US
+    note: |
+      Post-settlement, Bittrex agreed to remediate the AML/OFAC failures
+      enumerated in the FinCEN Consent Order — including blocking access from
+      Crimea, Cuba, Iran, Sudan, and Syria. Coded as observed_change at the
+      Bittrex US offramp_cex layer with `plausible` attribution because the
+      trigger (FinCEN Consent Order + OFAC settlement) explicitly names the
+      target entity (Bittrex Inc.) and the five sanctioned jurisdictions, but
+      the operational deplatforming was already partially in place by
+      late-2017 / 2018 per Bittrex's own remediation timeline cited in the
+      Consent Order; the 2022-10-11 settlement is the public ratification
+      anchor rather than the moment of first deplatforming.
+    sources:
+      - type: primary_legal
+        url: https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+        wayback: https://web.archive.org/web/2022/https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+        scope_descriptor:
+          providers: [bittrex_us_exchange]
+          countries: [US, IR]
+          time_window:
+            - 2014-03-01T00:00:00Z
+            - 2022-10-11T23:59:59Z
+        note: |
+          Bittrex Inc. Consent Order (2022-10-11) — primary legal anchor for
+          the AML/OFAC failures and the remediation obligations covering
+          sanctioned-jurisdiction users. Used here as contextual evidence;
+          replayable Wayback / measurement of the actual geoblocking diff at
+          bittrex.com has not been pinned at draft stage.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase F discovery; FinCEN
+  enforcement frame). Authored by LLM agent without personally verifying
+  Wayback / body_hash anchors; coded origin=agent_draft, status=draft.
+  Real release must upgrade citations to admission_anchor with body_hash +
+  body_path captures and refresh last_human_audit.
+
+  comparison — first FinCEN/OFAC parallel virtual currency enforcement and
+  the largest FinCEN crypto civil money penalty at the time ($29M FinCEN +
+  $24M OFAC = $53M combined; net $29M to Treasury after OFAC-credit). Pairs
+  with sec-v-bittrex-2023 as the prior US-Treasury enforcement leg of the
+  Bittrex compliance arc that culminated in the 2023 SEC action, US-exit, and
+  Chapter 11 filing. Codebook §1.2 / §1.4 attribution rule applied: the
+  FinCEN Consent Order names the target entity (Bittrex Inc.) and the
+  sanctioned jurisdictions, but the offramp deplatforming was already in
+  remediation before the 2022 settlement, so attribution is coded
+  `plausible` rather than `direct` per the conservative default in §8.4.
+
+scoped_claim: |
+  "FinCEN + OFAC parallel action against Bittrex (2022-10-11) is recorded
+  only for the Bittrex US offramp_cex post-settlement sanctioned-jurisdiction
+  deplatforming surface; no replayable Wayback / measurement slice of the
+  bittrex.com geoblock has been pinned at draft stage and no L0/L1/L3/L4/
+  asset_onchain effect is asserted."
+
+tags:
+  - fincen_enforcement
+  - ofac_enforcement
+  - bsa_violation
+  - exchange_civil_action
+  - bittrex
+  - sanctioned_jurisdictions
