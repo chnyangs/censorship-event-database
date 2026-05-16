@@ -1,0 +1,207 @@
+id: silk-road-doj-seizure-2013
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:40:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - alphabay-hansa-doj-2017
+  - hydra-doj-2022
+  - bitzlato-doj-2023
+  - btc-e-doj-2017
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_SDNY
+  timestamp: 2013-10-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: http://www.justice.gov/usao/nys/pressreleases/October13/SilkRoadSeizurePR.php
+      wayback: https://web.archive.org/web/20140123062431/http://www.justice.gov/usao/nys/pressreleases/October13/SilkRoadSeizurePR.php
+      body_hash: sha256:15991a51631d63b80e58e271b4ea3c0457d1f3fc073ef38344b7c5c154e5ea61
+      body_path: sources/http_captures/silk-road-doj-seizure-2013/wayback_doj_press_snapshot/web.archive.org__web-20131005034400-http-www.justice.gov-usao-nys-pressreleases-October13-SilkRoadSeizurePR.php__8bd95fcf2e.html
+      note: |
+        Wayback-replayable capture of the original 2013 SDNY press release
+        "Manhattan U.S. Attorney Announces Seizure Of Additional $28 Million
+        Worth Of Bitcoins Belonging To Ross William Ulbricht, Alleged Owner
+        And Operator Of 'Silk Road' Website." Documents the broader DOJ/FBI
+        action against Silk Road including the 2013-10-02 site/server seizure
+        and the follow-on 2013-10-25 supplemental bitcoin seizure. Original
+        justice.gov host now redirects to a modern URL; the Wayback memento
+        from 2014-01-23 is used as the admission anchor.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-seizure-additional-28-million-worth-bitcoins-belonging
+      body_hash: sha256:dfb6515605619b7582aa3a4964ad88dc2c9eefc322224c73004e641e8e17c104
+      body_path: sources/http_captures/silk-road-doj-seizure-2013/primary/www.justice.gov__usao-sdny-pr-manhattan-us-attorney-announces-seizure-additional-28-million-worth-bitcoins-belonging__53580512e8.html
+      evidence_use: contextual_unarchived
+      note: |
+        Current canonical justice.gov URL for the same press release. Live
+        capture (2026-05-16) returned a 3,062-byte AkamaiGHost bot-block stub
+        rather than the press-release body; retained as contextual_unarchived
+        pointer to the canonical URL. The Wayback memento above carries the
+        evidentiary content.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing for the 2013-10-02 takedown is established by the
+        contemporaneous DOJ press releases and complaint affidavit (SDNY
+        13 MAG 2328, FBI SA Christopher Tarbell).
+
+target:
+  kind: domain
+  enumeration: subset
+  enumeration_note: |
+    Silk Road marketplace as a Tor hidden service plus its clearnet domain.
+    canonical_domains lists silkroadmarket.org (clearnet) and the v2
+    silkroad6ownowfk.onion address as the public surface that was replaced by
+    the FBI "This Hidden Site Has Been Seized" banner. No on-chain BTC
+    addresses are enumerated at this event level; ~26,000 BTC from the site
+    plus ~144,000 BTC from Ross Ulbricht's wallet were seized in parallel
+    civil/criminal forfeiture actions documented under SDNY case 13 MAG 2328.
+  actor_type: darknet_marketplace
+  actor_name: Silk Road
+  chains: [bitcoin]
+  canonical_domains:
+    - silkroadmarket.org
+    - silkroad6ownowfk.onion
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Silk Road operated as a Tor hidden service; the 2013-10-02 takedown was
+      a domain/server seizure rather than an ISP-level reachability block.
+      Standard public-web L0 instruments (Censored Planet, OONI) do not
+      apply.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin, pre-Merge by ~9 years; consensus-layer filtering surfaces
+      tracked by this dataset (PBS relays, mev-watch / censorship.pics) did
+      not exist in 2013.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No Bitcoin RPC-provider rejection surface is implicated by the Silk
+      Road takedown. Tor-hosted marketplace + parallel BTC forfeiture, not an
+      RPC-mediated transaction-rejection event.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - silkroadmarket.org
+      - silkroad6ownowfk.onion
+    note: |
+      The FBI took control of silkroadmarket.org and the Silk Road v2 .onion
+      address on 2013-10-02, replacing the marketplace with the "This Hidden
+      Site Has Been Seized" banner. Wayback retains a 2013-10-18 snapshot of
+      silkroadmarket.org showing the marketplace surface is gone (Apache+PHP
+      origin replaced by a domain-parking landing page); the underlying
+      seizure is also described directly in the SDNY press release captured
+      via Wayback (above). attribution=direct under §5 because the seizure
+      operation is named by the primary-legal DOJ source.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin is unfreezable at the protocol layer (no issuer blacklist
+      method); the seized ~26k+~144k BTC were captured by transferring funds
+      from wallet keys recovered during the operation, which is a custody
+      transfer rather than an asset-layer freeze in this dataset's sense.
+      Tx-level seizure receipts are not retained at this event level.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The target is the marketplace itself, not a centralized exchange. No
+      CEX delisting or withdrawal freeze is implicated by the 2013-10-02
+      takedown.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:silkroadmarket_org
+    event: tor_marketplace_and_clearnet_domain_seized_by_fbi
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2013-10-02T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: http://www.justice.gov/usao/nys/pressreleases/October13/SilkRoadSeizurePR.php
+        wayback: https://web.archive.org/web/20140123062431/http://www.justice.gov/usao/nys/pressreleases/October13/SilkRoadSeizurePR.php
+        body_hash: sha256:15991a51631d63b80e58e271b4ea3c0457d1f3fc073ef38344b7c5c154e5ea61
+        body_path: sources/http_captures/silk-road-doj-seizure-2013/wayback_doj_press_snapshot/web.archive.org__web-20131005034400-http-www.justice.gov-usao-nys-pressreleases-October13-SilkRoadSeizurePR.php__8bd95fcf2e.html
+        note: |
+          SDNY press release names the seizure of the Silk Road website and
+          related server infrastructure in coordination with the FBI; the
+          seizure operation and the post-takedown FBI banner replacement of
+          silkroadmarket.org are documented in the contemporaneous record.
+      - type: semi_primary_wayback
+        url: http://silkroadmarket.org/
+        wayback: https://web.archive.org/web/20131018043042/http://silkroadmarket.org/
+        body_hash: sha256:52dbf3406dac80addb1f9b9d3235a7307cac655d05b5d1911c8db350ae4ecdb6
+        body_path: sources/http_captures/silk-road-doj-seizure-2013/wayback_seizure_banner/web.archive.org__web-20131003130000-http-silkroadmarket.org__dc22e516cd.html
+        note: |
+          Wayback snapshot of silkroadmarket.org dated 2013-10-18 (~16 days
+          after the takedown). The marketplace surface is gone; the domain
+          serves a generic landing/parking page instead of the Apache+PHP
+          marketplace shown in earlier mementos. Corroborates the L4 seizure
+          observation. The contemporaneous FBI "This Hidden Site Has Been
+          Seized" banner that briefly replaced the page is documented in the
+          DOJ primary source above; this snapshot is the closest replayable
+          post-takedown state on the public web for the clearnet domain.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 2 of 2026-05-16
+  staged-release plan, promoted from
+  candidate_triggers/silk-road-doj-seizure-2013.yaml per Agent B P0):
+  historical-baseline anchor for the 2013-10-02 DOJ/FBI Silk Road takedown.
+  Admission tier set to empirical_case (not anchor_case) because the
+  authoring agent cannot personally Wayback-verify the FBI seizure-banner
+  page beyond the captured 2013-10-18 silkroadmarket.org snapshot, which
+  shows the marketplace is gone but no longer carries the original FBI
+  banner text. The primary-legal SDNY Wayback memento (2014-01-23) is the
+  load-bearing admission anchor; the canonical justice.gov URL returned an
+  Akamai bot-block stub on live fetch and is retained as
+  contextual_unarchived. For a real release, replace this DRYRUN marker
+  after a human auditor confirms (a) a closer 2013-10-02..04 banner snapshot
+  on Wayback if one exists, and (b) the canonical SDNY URL can be re-archived
+  with the full press-release body.
+
+  comparison shape: 1 observed_change layer (L4 frontend). L0/L1/L3/asset/
+  offramp are all not_applicable because the target is a Tor-hosted darknet
+  marketplace with a Bitcoin-only chain footprint and no CEX surface. This
+  matches the structural pattern of alphabay-hansa-doj-2017 (Tor + L4 only)
+  and hydra-doj-2022 (Tor + L4 only). The Silk Road event is the earliest
+  DOJ marketplace seizure in the dataset (~3.75 years before AlphaBay,
+  ~3.8 years before BTC-e, ~8.5 years before Hydra, ~9.3 years before
+  Bitzlato) and is retained as the historical-baseline anchor for the
+  DOJ-marketplace-seizure family.
+
+scoped_claim: |
+  "The 2013-10-02 DOJ/FBI Silk Road takedown produced an immediate L4
+  frontend seizure of the clearnet domain silkroadmarket.org and the
+  silkroad6ownowfk.onion hidden service; the row claims only this single-
+  layer marketplace-domain-seizure observation and not transaction-level
+  on-chain forfeiture coding."
+
+tags:
+  - doj_seizure
+  - darknet_market
+  - tor_service
+  - historical_anchor
+  - pre_ofac_era
+  - platform_takedown

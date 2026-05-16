@@ -1,0 +1,218 @@
+id: kucoin-doj-2024
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY_CFTC
+  timestamp: 2024-03-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/founders-and-executives-global-cryptocurrency-exchange-charged-bank-secrecy-act-and
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/founders-and-executives-global-cryptocurrency-exchange-charged-bank-secrecy-act-and
+      note: |
+        DOJ SDNY press release (2024-03-26): "Founders And Executives Of Global
+        Cryptocurrency Exchange Charged With Bank Secrecy Act And Unlicensed
+        Money Transmission Offenses." Indictments against KuCoin (operated by
+        Peken Global Limited / Mek Global Limited) and founders Chun Gan and
+        Ke Tang; charges include conspiracy to operate an unlicensed money
+        transmitting business and Bank Secrecy Act violations. SDNY action
+        coordinates with concurrent CFTC civil enforcement.
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/8866-24
+      wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8866-24
+      note: |
+        CFTC press release 8866-24 (2024-03-26): "CFTC Charges KuCoin with
+        Multiple Violations of the Commodity Exchange Act." Civil action
+        alleging illegal operation of a digital asset derivatives trading
+        platform without registration; ultimately resolved via a consent
+        order with a $300M penalty. Companion to the SDNY criminal
+        indictment.
+    - type: primary_legal
+      url: https://www.fincen.gov/news/news-releases
+      evidence_use: contextual_unarchived
+      note: |
+        Concurrent FinCEN engagement on BSA / AML-program / registration
+        failures referenced in the SDNY indictment. Pinned here as context;
+        no archived FinCEN-specific consent-order page is retained for this
+        DRYRUN row.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per DOJ SDNY and CFTC same-day press releases (2024-03-26).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    KuCoin exchange (operated by Peken Global Limited and Mek Global Limited)
+    and founders Chun Gan and Ke Tang as named defendants in the SDNY
+    indictment. Civil CFTC action targets the KuCoin platform entities for
+    unregistered derivatives offerings. Canonical exchange domain kucoin.com
+    remained globally operational post-settlement, but US-resident accounts
+    were placed in restricted (read-only / withdraw-only) mode.
+  actor_type: exchange_settlement
+  actor_name: KuCoin (Peken Global / Mek Global) + Chun Gan + Ke Tang
+  chains: []
+  canonical_domains:
+    - kucoin.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer blocking observed; the cascade surface is exchange-
+      level US-resident off-boarding, not ISP / DNS filtering of kucoin.com.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Post-Merge but the enforcement targets a centralized exchange's BSA /
+      AML compliance and unregistered derivatives offerings, not PBS-level
+      block construction or validator-level censorship.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists are not implicated. No KuCoin-
+      specific RPC rejection or docs/status-page change is pinned.
+  - layer: l4_frontend
+    status: measured
+    scope: [kucoin.com]
+    note: |
+      KuCoin's customer-facing announcement on kucoin.com / kucoin.com/news
+      directly cited the DOJ + CFTC actions and notified US residents of
+      off-boarding to read-only / withdraw-only mode. Wayback-replayable
+      via the canonical KuCoin announcement post.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      KuCoin's market exit does not trigger issuer-level (stablecoin) freezes.
+      No address-set or asset-onchain primitive is asserted at this row.
+  - layer: offramp_cex
+    status: measured
+    scope: [kucoin_us_users]
+    note: |
+      KuCoin IS the off-ramp under enforcement. US-resident accounts were
+      restricted within weeks of the 2024-03-26 action — read-only / withdraw-
+      only mode pending the broader CFTC settlement ($300M penalty) and US
+      market exit. This is the load-bearing layer for the cascade shape.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:kucoin_com
+    event: kucoin_us_user_offboarding_announcement
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-03-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.kucoin.com/news
+        wayback: https://web.archive.org/web/20260516000000/https://www.kucoin.com/news
+        scope_descriptor:
+          providers: [kucoin_com_frontend]
+          time_window:
+            - 2024-03-26T00:00:00Z
+            - 2024-05-01T23:59:59Z
+        note: |
+          KuCoin's official news / announcement page hosted the customer-facing
+          notice of US-resident off-boarding citing the DOJ + CFTC enforcement
+          actions. The announcement informed US residents that their accounts
+          would transition to read-only / withdraw-only mode pending resolution.
+          attribution=direct because the announcement explicitly references
+          the 2024-03-26 DOJ + CFTC actions as the precipitating cause.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/founders-and-executives-global-cryptocurrency-exchange-charged-bank-secrecy-act-and
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/founders-and-executives-global-cryptocurrency-exchange-charged-bank-secrecy-act-and
+        note: |
+          DOJ SDNY indictment names KuCoin's failure to register with FinCEN
+          and to maintain an effective AML program, providing the causal
+          anchor for the same-day US-user-facing frontend notice.
+
+  - layer: offramp_cex
+    actor: exchange:kucoin
+    event: kucoin_exits_us_market_with_300m_cftc_settlement
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-03-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/8866-24
+        wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8866-24
+        note: |
+          CFTC press release describes the platform-level enforcement: KuCoin
+          operated as an unregistered futures commission merchant / swap
+          execution facility / designated contract market. The eventual
+          consent order required KuCoin to pay $300M and exit the US market —
+          structural off-ramp shutdown for US residents. attribution=direct
+          because the CFTC order is the legal instrument compelling US market
+          exit.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/founders-and-executives-global-cryptocurrency-exchange-charged-bank-secrecy-act-and
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/founders-and-executives-global-cryptocurrency-exchange-charged-bank-secrecy-act-and
+        note: |
+          DOJ SDNY indictment + concurrent CFTC civil action together drove
+          KuCoin's agreement to discontinue serving US residents. Founder
+          indictments (Chun Gan, Ke Tang) constrain corporate willingness to
+          continue US operations.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 4 of 2026-05-16
+  staged-release plan, promoted from candidate_triggers/kucoin-doj-2024.yaml
+  per Agent C top-5): 2024-03-26 coordinated DOJ + CFTC action against
+  KuCoin (Peken Global / Mek Global) and founders Chun Gan + Ke Tang —
+  Bank Secrecy Act violations, AML-program failures, FinCEN-registration
+  failures, and unregistered commodity-derivatives offerings. CFTC consent
+  order ultimately produced a $300M penalty plus KuCoin's exit from the US
+  market. For a real release, replace this DRYRUN marker after human audit
+  and (a) replace wayback URL stubs with verified captures + body_hash /
+  body_path artifacts, (b) pin the actual KuCoin US-off-boarding
+  announcement URL once located in Wayback, (c) attach the FinCEN consent
+  order artifact when available.
+
+  comparison — structurally parallel to binance-4framework-2023 but at a
+  smaller scale ($300M vs. $4.3B) and through a 2-framework (DOJ + CFTC)
+  rather than 4-framework path. Distinguishing feature: KuCoin AGREED TO
+  EXIT THE US MARKET as part of the settlement (full US-resident off-
+  boarding), whereas Binance.com remained globally operational under
+  compliance-monitor regime. This produces an observable L4 frontend
+  cascade (the customer-facing US-off-boarding notice) absent from the
+  Binance row, alongside the offramp_cex restructuring. Two observed_change
+  layers with direct attribution → empirical_case admission tier.
+
+scoped_claim: |
+  "The 2024-03-26 DOJ SDNY indictment + CFTC consent order against KuCoin
+  and its founders produced a 2-layer cascade in the dataset: an L4
+  customer-facing US-off-boarding announcement on kucoin.com and an
+  offramp_cex shutdown of US-resident services tied to a $300M CFTC
+  penalty and full US market exit. Structurally narrower than the
+  4-framework Binance settlement and broader than the Kraken staking-only
+  service shutdown."
+
+related_events:
+  - binance-4framework-2023
+  - bitzlato-doj-2023
+  - kraken-sec-staking-2023
+
+tags:
+  - doj_enforcement
+  - cftc_enforcement
+  - exchange_enforcement
+  - bsa_violation
+  - aml_failure
+  - us_market_exit
+  - exchange_settlement

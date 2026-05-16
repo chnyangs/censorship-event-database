@@ -1,0 +1,240 @@
+id: paxos-busd-nydfs-minting-stop-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+trigger:
+  type: corporate_policy_change
+  actor: paxos_trust
+  timestamp: 2023-02-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://paxos.com/2023/02/13/paxos-will-halt-minting-new-busd-tokens/
+      wayback: https://web.archive.org/web/20260516000000/https://paxos.com/2023/02/13/paxos-will-halt-minting-new-busd-tokens/
+      note: |
+        Paxos newsroom announcement (2023-02-13): "Paxos Will Halt Minting
+        New BUSD Tokens." Paxos explicitly states that it will end its
+        relationship with Binance for the branded BUSD stablecoin and
+        cease the issuance of new BUSD tokens, citing instructions from
+        the New York State Department of Financial Services (NYDFS). The
+        statement also references the concurrent SEC Wells notice
+        regarding BUSD. Paxos commits to continued 1:1 redemption support
+        for existing BUSD holders.
+    - type: primary_legal
+      url: https://www.dfs.ny.gov/consumers/alerts/Paxos_and_Binance
+      wayback: https://web.archive.org/web/20260516000000/https://www.dfs.ny.gov/consumers/alerts/Paxos_and_Binance
+      note: |
+        NYDFS Consumer Alert: "Paxos and Binance." NYDFS confirms that it
+        ordered Paxos Trust Company to cease issuance of BUSD as a result
+        of unresolved issues related to Paxos's oversight of its
+        relationship with Binance regarding the branded BUSD stablecoin.
+        Primary legal anchor for the corporate-policy trigger; the alert
+        also addresses redemption and consumer-protection assurances for
+        existing BUSD holders.
+  timestamp_sources:
+    - type: primary_corporate
+      note: Day-level timing per Paxos newsroom announcement (2023-02-13) and concurrent NYDFS consumer alert.
+
+target:
+  kind: asset
+  asset: paxos_issued_busd
+  actor_type: stablecoin_issuer_action
+  actor_name: Paxos Trust Company (BUSD issuer)
+  chains: [ethereum]
+  canonical_domains:
+    - paxos.com
+    - binance.com
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer blocking observed; the cascade surface is
+      issuer-level mint cessation on Ethereum mainnet, not ISP / DNS
+      filtering of paxos.com or binance.com.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Post-Merge, but the action is an issuer-level policy change at the
+      ERC-20 supply-controller layer, not a PBS / validator-level
+      censorship signal.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists are not implicated by an issuer
+      mint cessation. No BUSD-specific RPC rejection or docs/status-page
+      change is pinned.
+  - layer: l4_frontend
+    status: measured
+    scope: [paxos.com, binance.com]
+    note: |
+      Paxos.com newsroom hosted the 2023-02-13 announcement of the BUSD
+      mint-cessation policy; Binance.com USD-product surfaces subsequently
+      updated to reflect that no new BUSD would be issued. Frontend
+      observability is the announcement surface, not the load-bearing
+      cascade layer.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    scope: [busd_erc20_contract]
+    note: |
+      Load-bearing layer. BUSD ERC-20 contract
+      0x4Fabb145d64652a948d72533023f6E7A623C7C53 on Ethereum mainnet:
+      the SupplyController-bound `increaseSupply` mint function ceased
+      to be invoked after the 2023-02-21 cutoff. The cessation is
+      replayable from public Etherscan history of internal supply-
+      controller calls; no further mint events follow. Total supply
+      monotonically decreases thereafter via redemption-driven
+      `decreaseSupply` burns.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Centralized-exchange listings of BUSD persisted beyond 2023-02-13;
+      the cascade surface is the issuer's on-chain mint cessation, not
+      a CEX delisting action. Downstream CEX BUSD-pair removals (e.g.,
+      Binance's own 2023-09 BUSD-support sunset) are tracked separately
+      as distinct events.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:paxos_com
+    event: paxos_newsroom_publishes_busd_mint_halt_announcement
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-02-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://paxos.com/2023/02/13/paxos-will-halt-minting-new-busd-tokens/
+        wayback: https://web.archive.org/web/20260516000000/https://paxos.com/2023/02/13/paxos-will-halt-minting-new-busd-tokens/
+        scope_descriptor:
+          providers: [paxos_com_frontend]
+          time_window:
+            - 2023-02-13T00:00:00Z
+            - 2023-03-13T23:59:59Z
+        note: |
+          Paxos newsroom post: customer-facing announcement that the firm
+          will end the BUSD relationship with Binance and halt minting of
+          new BUSD tokens at the NYDFS's direction. attribution=plausible
+          because the announcement page itself is the change at the
+          frontend surface; the load-bearing cascade observation is the
+          on-chain mint cessation, not the announcement page.
+      - type: primary_legal
+        url: https://www.dfs.ny.gov/consumers/alerts/Paxos_and_Binance
+        wayback: https://web.archive.org/web/20260516000000/https://www.dfs.ny.gov/consumers/alerts/Paxos_and_Binance
+        note: |
+          NYDFS Consumer Alert pinned at dfs.ny.gov mirrors and confirms
+          the Paxos announcement at the regulator-facing surface.
+
+  - layer: asset_onchain
+    actor: paxos_busd_supply_controller
+    event: busd_increasesupply_mint_cessation_after_2023_02_21
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-02-21T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_corporate
+        url: https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
+        wayback: https://web.archive.org/web/20260516000000/https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
+        scope_descriptor:
+          providers: [ethereum_mainnet_etherscan]
+          time_window:
+            - 2023-02-13T00:00:00Z
+            - 2024-02-13T23:59:59Z
+        note: |
+          Etherscan contract page for the BUSD ERC-20 token
+          (0x4Fabb145d64652a948d72533023f6E7A623C7C53). The contract
+          exposes a SupplyController-bound `increaseSupply(uint256)` mint
+          function that, prior to 2023-02-21, was called periodically by
+          the Paxos supply controller to mint new BUSD against off-chain
+          USD reserves. After the 2023-02-21 cutoff, no further
+          `increaseSupply` calls are observed in the contract's event
+          history; total supply monotonically declines thereafter via
+          redemption-driven `decreaseSupply` burns. attribution=direct
+          because Paxos's 2023-02-13 NYDFS-directed announcement
+          explicitly commits to ending new BUSD issuance, and the
+          on-chain mint-event absence is the literal execution of that
+          commitment.
+      - type: primary_corporate
+        url: https://paxos.com/2023/02/13/paxos-will-halt-minting-new-busd-tokens/
+        wayback: https://web.archive.org/web/20260516000000/https://paxos.com/2023/02/13/paxos-will-halt-minting-new-busd-tokens/
+        note: |
+          Paxos newsroom announcement is the corporate-policy anchor that
+          the on-chain `increaseSupply` cessation realizes. The
+          announcement explicitly cites NYDFS instructions and commits to
+          ceasing new BUSD issuance while preserving 1:1 redemption for
+          existing holders — directly consistent with the observed
+          post-2023-02-21 supply-only-decreases pattern.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 4 of 2026-05-16
+  staged-release plan, promoted from
+  candidate_triggers/paxos-busd-nydfs-minting-stop-2023.yaml per Agent C
+  #2 top-5 promotion sprint): 2023-02-13 NYDFS-directed Paxos Trust
+  cessation of BUSD minting. Paxos's newsroom announcement explicitly
+  cites NYDFS instructions and the concurrent SEC Wells notice on BUSD;
+  the issuer-side action realizes as observable on-chain mint cessation
+  on the BUSD ERC-20 contract
+  0x4Fabb145d64652a948d72533023f6E7A623C7C53. The SupplyController-
+  bound `increaseSupply` function is unused after 2023-02-21, with
+  total supply monotonically decreasing thereafter via redemption-driven
+  `decreaseSupply` burns. For a real release, replace this DRYRUN marker
+  after human audit and (a) flip origin to `human_reviewed`, (b) replace
+  wayback URL stubs with verified captures plus body_hash / body_path
+  artifacts for the Paxos newsroom post, NYDFS consumer alert, and
+  Etherscan contract page, (c) pin a primary_onchain source with the
+  tx_hash of the final pre-2023-02-21 `increaseSupply` call to anchor
+  the asset_onchain observation under the admitted-tier strict rule, and
+  (d) consider promoting status=draft → admitted at that point.
+
+  comparison — S5 corporate-policy-change event documenting a regulator-
+  directed issuer mint cessation at the ERC-20 supply-controller layer.
+  Pairs with circle-usdc-tornado-2022 and tether-retroactive-sweep-2023
+  in the stablecoin-issuer-action thread: where Circle (2022-08-08) and
+  Tether (2023-12-09) executed address-level blacklist actions in
+  response to OFAC SDN designations, the Paxos BUSD case is a different
+  shape — the issuer ceases the entire mint function rather than
+  blacklisting specific addresses, and the trigger is a state-regulator
+  (NYDFS) directive rather than a federal sanctions action. The pair
+  anchors the cross-issuer comparison axis: address-set freeze (Circle,
+  Tether) vs. supply-function shutdown (Paxos), and OFAC-driven (Circle,
+  Tether) vs. NYDFS-driven (Paxos). The asset_onchain layer is the
+  load-bearing surface in all three; frontend / off-ramp observations
+  are secondary surfaces.
+
+scoped_claim: |
+  "The 2023-02-13 NYDFS-directed Paxos cessation of BUSD minting realizes
+  as an on-chain ERC-20 SupplyController shutdown on the BUSD contract
+  (0x4Fabb145d64652a948d72533023f6E7A623C7C53): the `increaseSupply`
+  mint function ceases to be invoked after the 2023-02-21 cutoff, and
+  total BUSD supply decreases monotonically thereafter via redemption-
+  driven `decreaseSupply` burns. Coded as an S5 stablecoin-issuer
+  supply-function shutdown with NYDFS as the proximate regulator,
+  distinct from the OFAC-driven address-set freezes of Circle USDC
+  (2022-08-08) and Tether USDT (2023-12-09)."
+
+related_events:
+  - circle-usdc-tornado-2022
+  - tether-retroactive-sweep-2023
+
+tags:
+  - corporate_policy_change
+  - stablecoin_freeze
+  - paxos_busd
+  - nydfs
+  - mint_cessation
+  - supply_controller_shutdown

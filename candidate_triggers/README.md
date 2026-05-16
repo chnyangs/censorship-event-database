@@ -18,7 +18,9 @@ counts until promoted to `events/*.yaml` and validated.
 
 This directory is no longer optional for v0.2 expansion: new cases should
 enter here first so selection decisions remain visible under the declared
-sampling frame in `sampling/frame.yaml`.
+sampling frame in `sampling/frame.yaml`. The current frame is open-ended from
+2008 onward; 120 admitted-quality events is a progress milestone, not a stop
+rule. See `docs/final-collection-protocol.md`.
 
 ## Minimal stub
 
@@ -26,6 +28,8 @@ sampling frame in `sampling/frame.yaml`.
 id: 2026-example-trigger
 registry_status: candidate  # candidate | draft_needs_evidence | deferred | not_measurable | screened_no_extractor_target
 research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
 source_frame_id: ofac_recent_actions_crypto_2017_2026
 trigger:
   type: ofac_sdn_designation

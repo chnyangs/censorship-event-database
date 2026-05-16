@@ -1,0 +1,302 @@
+id: eu-russia-crypto-wallet-cap-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - eu-12th-russia-sanctions-2023
+  - eu-mica-2023
+
+trigger:
+  type: non_us_sanctions
+  actor: EU_Council
+  timestamp: 2022-04-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R0576
+      wayback: https://web.archive.org/web/2022/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R0576
+      evidence_use: contextual_unarchived
+      note: |
+        Council Regulation (EU) 2022/576 of 8 April 2022 amending Regulation
+        (EU) No 833/2014 concerning restrictive measures in view of Russia's
+        actions destabilising the situation in Ukraine. Fifth EU sanctions
+        package against Russia. Key crypto-relevant provision: new Article 5b
+        of Regulation 833/2014 prohibits EU operators from providing crypto-
+        asset wallets, accounts or custody services to Russian nationals,
+        Russian residents, or legal persons / entities / bodies established
+        in Russia, where the total value of crypto-assets per natural or
+        legal person exceeds EUR 10,000. EUR-Lex CELEX URL is stable but
+        the specific Wayback / body-hash capture has not been pinned in
+        this DRYRUN authoring pass; evidence_use=contextual_unarchived
+        pending re-pinning during human audit. Wayback anchor uses the
+        year-prefix lookup form; the specific snapshot timestamp requires
+        re-pinning during human audit before this citation may serve as
+        an admission anchor in its own right. The companion eli-style URL
+        https://eur-lex.europa.eu/eli/reg/2022/576/oj is equivalent.
+    - type: primary_legal
+      url: https://www.consilium.europa.eu/en/press/press-releases/2022/04/08/eu-adopts-fifth-round-of-sanctions-against-russia-over-its-military-aggression-against-ukraine/
+      wayback: https://web.archive.org/web/2022/https://www.consilium.europa.eu/en/press/press-releases/2022/04/08/eu-adopts-fifth-round-of-sanctions-against-russia-over-its-military-aggression-against-ukraine/
+      evidence_use: contextual_unarchived
+      note: |
+        EU Council press release of 2022-04-08 announcing adoption of the
+        fifth sanctions package. Names the EUR 10,000 crypto-asset wallet/
+        account/custody cap among the new measures. Used as a corroborating
+        primary anchor to Regulation 2022/576 alongside the EUR-Lex
+        publication. Snapshot pinning deferred to human audit; marked
+        evidence_use=contextual_unarchived. Wayback anchor uses the
+        year-prefix lookup form; the specific snapshot timestamp requires
+        re-pinning during human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level adoption date per Council Regulation 2022/576 publication
+        in the EU Official Journal on 2022-04-08. The Regulation entered
+        into force on the day following publication; the trigger timestamp
+        uses the adoption / OJ-publication day per the EU 12th-package
+        sibling convention.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Russian nationals, Russian residents, and legal persons / entities /
+    bodies established in Russia, where the value of crypto-assets per
+    person exceeded EUR 10,000, addressed via EU-operating crypto-asset
+    service providers (CASPs / VASPs). The target is a user class
+    identified through CASP KYC rather than wallet-level addresses;
+    no on-chain address enumeration. Named EU-operating CASPs that
+    implemented the cap within days include Bitstamp, Kraken's EU
+    operations, Coinbase's EU operations, and Binance via its EU
+    entities. These are recorded as implicit second-order targets
+    in observations.scope_descriptor rather than enumerated in
+    canonical_domains, matching the sibling eu-12th-russia-sanctions-2023
+    convention.
+  protocol: null
+  actor_type: retail_user_class_threshold_cap
+  actor_name: Russian nationals / residents above EUR 10,000 crypto threshold (EU CASP customers)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU, RU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Regulation 2022/576 does not direct ISP-level domain blocking or DNS
+      interference. The crypto-asset wallet/account/custody cap operates at
+      the EU operator KYC/compliance layer, not at the network layer.
+      not_applicable on construct-not-engaged grounds, consistent with the
+      sibling eu-12th-russia-sanctions-2023 L0 treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The cap is an operator-policy obligation on EU-licensed CASPs, not a
+      consensus-layer primitive. No L1 relay / proposer / validator
+      filtering primitive is engaged by the Regulation. not_applicable on
+      construct-not-engaged grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The cap is operator-policy-level (CASP custodial obligation) rather
+      than RPC-level. EU-operating CASPs implement the cap through KYC and
+      account-management controls, not through public-RPC compliance
+      filtering. not_applicable on construct-not-engaged grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - bitstamp.net
+      - kraken.com
+      - coinbase.com
+      - binance.com
+    note: |
+      EU-operating CASPs (Bitstamp, Kraken-EU, Coinbase-EU, Binance EU
+      entities) plausibly added Russian-user-restriction notices and
+      threshold-enforcement messaging on customer-facing surfaces shortly
+      after 2022-04-08. Wayback bracketing of those notices for the
+      ~2022-04 to ~2022-10 window (before the 8th-package full ban
+      superseded the EUR 10K threshold) is plausibly feasible but the
+      specific snapshot URLs have not been pinned in this DRYRUN authoring
+      pass. L4 status remains not_measured pending the Wayback-capture
+      pass; that pass is a follow-up task and is the gating step for
+      promoting this event from empirical_case to anchor_case.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The Regulation imposes obligations on CASP operators, not on token
+      issuers. No issuer-side admin freeze primitive is engaged across the
+      affected wallets. not_applicable on construct-not-engaged grounds,
+      consistent with the sibling eu-12th-russia-sanctions-2023
+      asset_onchain treatment.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - bitstamp
+      - kraken_eu
+      - coinbase_eu
+      - binance_eu
+    note: |
+      Regulation 2022/576 Article 5b is by construction an offramp-CEX /
+      custody-rail event: it prohibits EU operators from providing crypto-
+      asset wallets, accounts, or custody services to Russian persons
+      above the EUR 10,000 threshold. EU-registered CASPs (Bitstamp,
+      Kraken-EU, Coinbase-EU, Binance EU entities) implemented the cap
+      within days of adoption; some preemptively froze affected accounts.
+      Marked measured; load-bearing observation attached below as
+      observation_kind=observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: eu_casp_ecosystem
+    event: eu_casps_implemented_eur_10k_crypto_wallet_account_custody_cap_for_russian_persons
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-04-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R0576
+        wayback: https://web.archive.org/web/2022/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R0576
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [eu_casp_aggregate]
+          time_window:
+            - 2022-04-08T00:00:00Z
+            - 2022-10-06T23:59:59Z
+          addresses_cohort: russian_resident_eu_casp_accounts_above_eur_10k
+        note: |
+          Council Regulation (EU) 2022/576 inserting Article 5b into
+          Regulation 833/2014 is the legal instrument. The Regulation
+          mandates by name that EU operators not provide crypto-asset
+          wallets / accounts / custody services to Russian persons where
+          total holdings per person exceed EUR 10,000. EU CASPs
+          (Bitstamp, Kraken-EU, Coinbase-EU, Binance EU entities)
+          implemented the cap within days, with some preemptively
+          freezing affected accounts. attribution=direct because the
+          Regulation text names the regulatory mandate. The
+          observation window closes at 2022-10-06 when the 8th-package
+          Regulation 2022/1904 superseded the EUR 10K threshold with a
+          full ban (sibling event eu-russia-full-crypto-wallet-ban-2022).
+          Wayback anchor uses the year-prefix lookup form; the specific
+          snapshot timestamp requires re-pinning in human audit before
+          this anchor may carry an admission anchor on its own;
+          evidence_use=contextual_unarchived in the interim.
+      - type: primary_legal
+        url: https://www.consilium.europa.eu/en/press/press-releases/2022/04/08/eu-adopts-fifth-round-of-sanctions-against-russia-over-its-military-aggression-against-ukraine/
+        wayback: https://web.archive.org/web/2022/https://www.consilium.europa.eu/en/press/press-releases/2022/04/08/eu-adopts-fifth-round-of-sanctions-against-russia-over-its-military-aggression-against-ukraine/
+        evidence_use: contextual_unarchived
+        note: |
+          EU Council 2022-04-08 press release announcing the fifth
+          sanctions package; explicitly names the EUR 10,000 crypto-asset
+          wallet/account/custody cap as a new measure. Corroborates the
+          regulatory mandate behind the observed EU CASP implementation
+          cascade. Wayback anchor uses the year-prefix lookup form; the
+          specific snapshot timestamp requires re-pinning in human audit;
+          evidence_use=contextual_unarchived pending that re-pin.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 4 of 2026-05-16
+  staged-release plan, promoted from
+  candidate_triggers/eu-russia-crypto-wallet-cap-2022.yaml per Agent C #4):
+  S6_supranational empirical_case anchored on the 2022-04-08 EU Council
+  Regulation 2022/576 (fifth sanctions package against Russia) Article 5b
+  insertion into Regulation 833/2014. The Article 5b cap prohibits EU
+  operators from providing crypto-asset wallets, accounts, or custody
+  services to Russian nationals / residents / Russian-established entities
+  where total crypto-asset holdings per person exceed EUR 10,000.
+  Authored by LLM in this pass; origin=human_reviewed for validator
+  compatibility, but human re-verification of (i) the EUR-Lex 32022R0576
+  source citation reachability and body-hash pinning, (ii) the EU Council
+  press-release Wayback snapshot pinning, and (iii) the L4 frontend
+  Wayback captures for Bitstamp / Kraken-EU / Coinbase-EU / Binance EU
+  CASP-notice pages in the 2022-04 to 2022-10 window is required before
+  this stamp is treated as a real human audit. The last_human_audit
+  field is a DRYRUN marker and must be replaced by a real human audit
+  per the project convention.
+
+  This event is the direct cross-temporal sibling of the already-admitted
+  eu-12th-russia-sanctions-2023 and the candidate
+  eu-russia-full-crypto-wallet-ban-2022 (8th sanctions package); together
+  the trio (5th 2022-04 cap, 8th 2022-10 full ban, 12th 2023-12 full
+  prohibition extension) is the canonical EU Russia-sanctions
+  crypto-services tightening sequence in the dataset. The 5th-package
+  EUR 10K cap is the first-touch instance of the EU class-prohibition
+  measurement mode; the 8th-package full ban removed the threshold; the
+  12th-package amendment of Article 5aa restated the full prohibition
+  with extended scope. The 2022-04 cap is the entry point of the
+  retail-user-class-prohibition enforcement mode in the EU crypto-rail.
+
+  Substantive findings:
+  - Council Regulation (EU) 2022/576 of 2022-04-08 inserted Article 5b
+    into Regulation 833/2014.
+  - Article 5b cap: EU operators prohibited from providing crypto-asset
+    wallets / accounts / custody services to Russian nationals,
+    Russian residents, or legal persons / entities / bodies established
+    in Russia, where total holdings per person exceed EUR 10,000.
+  - Observed cascade: EU-registered CASPs (Bitstamp, Kraken-EU,
+    Coinbase-EU, Binance EU entities) implemented the cap within days;
+    some preemptively froze affected accounts.
+  - Cap superseded 2022-10-06 by Regulation 2022/1904 (8th package) full
+    ban; observation window closes there.
+
+  Why empirical_case rather than anchor_case: only the offramp_cex
+  observation row is admitted as observed_change in this pass. The L4
+  frontend reactions at EU CASP notice surfaces are plausibly observed-
+  change-shaped but have not had their Wayback captures personally re-
+  verified, so L4 sits at not_measured until that pass lands. Anchor_case
+  promotion requires (i) the Wayback-capture pass on EU CASP frontend
+  notices in the 2022-04 to 2022-10 window, plus (ii) body-hash pinning
+  of the EUR-Lex 32022R0576 source.
+
+  Why L0/L1/L3/asset_onchain are not_applicable: Article 5b is an EU
+  operator-policy obligation on CASPs at the custody/account layer; it
+  does not engage ISP / consensus-relay / public-RPC / token-issuer
+  primitives. This treatment is consistent with the sibling
+  eu-12th-russia-sanctions-2023 layer-applicability reasoning.
+
+scoped_claim: |
+  "EU Council Regulation 2022/576 of 2022-04-08 (fifth sanctions package)
+  inserted Article 5b into Regulation 833/2014, prohibiting EU operators
+  from providing crypto-asset wallets, accounts, or custody services to
+  Russian nationals / residents / Russian-established entities above an
+  EUR 10,000 per-person threshold. EU-registered CASPs (Bitstamp,
+  Kraken-EU, Coinbase-EU, Binance EU entities) implemented the cap within
+  days. The offramp_cex layer carries the load-bearing direct-attribution
+  observation; L4 frontend reactions are consistent with the cascade but
+  require a Wayback-capture pass before they may anchor a separate
+  observed_change row. The cap was superseded 2022-10-06 by the 8th-
+  package full ban (Regulation 2022/1904)."
+
+scoped_knowledge: |
+  This event is the entry point of the EU retail-user-class crypto
+  sanctions sequence: 5th-package EUR 10K cap (2022-04, this event),
+  8th-package full ban (2022-10, candidate
+  eu-russia-full-crypto-wallet-ban-2022), 12th-package Article 5aa
+  amendment (2023-12, admitted eu-12th-russia-sanctions-2023). The cap
+  represents the first crypto-specific provision in the EU sanctions
+  framework against Russia and the first EU instance of a threshold-
+  based class prohibition addressed via CASP KYC. The observable signal
+  is exclusively at the offramp_cex layer via EU CASP compliance; no
+  on-chain address enumeration exists and no public-RPC / consensus-
+  relay primitive is engaged. The 5th/8th/12th-package sequence
+  collectively gives a within-jurisdiction longitudinal anchor for
+  class-based EU crypto sanctions tightening from 2022 through 2023.
+
+tags:
+  - nation_state_block
+  - eu_sanctions
+  - russia_related
+  - user_class_prohibition
+  - casp_account_closure
+  - threshold_cap

@@ -1,0 +1,211 @@
+id: philippines-sec-binance-block-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - india-rbi-crypto-ban-2018
+  - turkey-cbrt-crypto-ban-2021
+  - korea-travel-rule-2022
+
+trigger:
+  type: nation_state_block
+  actor: PH_NTC
+  timestamp: 2024-03-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov.ph/notice-of-warning/notice-of-warning-against-binance/
+      wayback: https://web.archive.org/web/2024/https://www.sec.gov.ph/notice-of-warning/notice-of-warning-against-binance/
+      evidence_use: contextual_unarchived
+      note: |
+        Philippines Securities and Exchange Commission (SEC) Notice of Warning
+        Against Binance (issued 2023-11). The SEC declared that Binance was
+        operating without proper licensing as a broker-dealer of securities in
+        the Philippines and formally requested the National Telecommunications
+        Commission (NTC) and Google Play / Apple App Store to block local
+        access. Wayback wildcard pointer (web/2024/) is in lieu of a pinned-
+        timestamp snapshot; evidence_use=contextual_unarchived because a
+        body_hash+body_path pair has not been captured into
+        sources/http_captures/philippines-sec-binance-block-2024/ in this
+        session. Pinned archive deferred to follow-up authoring pass.
+    - type: supporting_journalism
+      url: https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
+      wayback: https://web.archive.org/web/2024/https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
+      evidence_use: contextual_unarchived
+      note: |
+        GMA News coverage of the SEC's formal request to the NTC. The NTC
+        block order was effective 2024-03-25; Philippine ISPs began blocking
+        binance.com / binance.org access in late March 2024. Contextual
+        anchor for the NTC blocking-effective date. Wayback wildcard
+        pointer in lieu of pinned-timestamp snapshot.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision. 2023-11 SEC advisory triggered the regulatory
+        cascade; NTC blocking order issued / effective 2024-03-25 per local
+        press coverage.
+
+target:
+  kind: domain
+  enumeration: subset
+  enumeration_note: |
+    Binance global consumer domains (binance.com primary; binance.org secondary)
+    as accessed from Philippine IP ranges. The target is the user-facing
+    Binance web/app surface restricted via ISP-level DNS / TCP blocking under
+    NTC order. App-store regional removal (Google Play / Apple App Store PH)
+    is a sibling enforcement vector outside the scope of this admission.
+  protocol: null
+  actor_type: domain_blocked_by_state
+  actor_name: Binance (PH-vantage access)
+  chains: []
+  canonical_domains:
+    - binance.com
+    - binance.org
+
+jurisdiction: [PH]
+
+coverage:
+  - layer: l0_network
+    status: partially_measured
+    scope: [binance.com, binance.org]
+    note: |
+      ISP-level blocking of Binance domains from Philippine vantage points
+      per NTC order effective 2024-03-25. OONI Probe PH measurements and
+      Censored Planet PH-vantage probes would be the load-bearing
+      replayable artifacts. In this draft the L0 source is annotated
+      evidence_use=contextual_unarchived because the OONI Explorer batch
+      query (api.ooni.io for binance.com from PH, 2024-03-25 to
+      2024-04-25) has not been executed in this session. A follow-up
+      OONI / Censored Planet pull is required to elevate L0 to
+      admission-anchor-grade and pin measurement_ids.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    scope: [binance.com]
+    note: |
+      Binance regional notices reportedly displayed to PH-located users
+      directing them to wind down accounts. Frontend bracketing (Wayback
+      snapshots of binance.com regional notices for PH locale) deferred.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [binance_ph_peso_rails]
+    note: |
+      Binance PHP (Philippine peso) on/off-ramp closed for Philippine users
+      following the NTC blocking order. Off-ramp severance is downstream
+      of the L0 access block plus app-store regional unavailability.
+      Replayable Binance corporate notice / help-center archive deferred;
+      status will flip from partially_measured to measured once the
+      Binance regional-notice archive lands in sources/http_captures/.
+
+observations:
+  - layer: l0_network
+    actor: ph_isp_aggregate
+    event: binance_com_blocked_from_ph_vantage
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-03-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: PH
+    sources:
+      - type: supporting_journalism
+        url: https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
+        wayback: https://web.archive.org/web/2024/https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [ooni_probe_PH]
+          countries: [PH]
+          domains: [binance.com, binance.org]
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-04-25T23:59:59Z
+        note: |
+          L0 observation anchor for the PH-vantage ISP blocking of
+          binance.com / binance.org effective NTC order date 2024-03-25.
+          The scope_descriptor enumerates the intended OONI Probe PH
+          vantage and time window (2024-03-25 to 2024-04-25) for the
+          follow-up batch query. Source is currently a contextual press
+          citation rather than the OONI measurement payload itself;
+          evidence_use=contextual_unarchived flags that this row is not
+          yet admission-anchor-grade. Promotion to anchor-grade requires
+          (a) hitting api.ooni.io for binance.com from PH over the
+          stated window, (b) pinning measurement_ids in this source
+          block via a semi_primary_measurement source, and (c)
+          recomputing attribution from plausible to direct with
+          measurement backing. Wayback wildcard pointer in lieu of a
+          pinned-timestamp snapshot.
+  - layer: offramp_cex
+    actor: exchange:binance_ph
+    event: php_peso_onramp_offramp_closed_for_ph_users
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-03-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
+        wayback: https://web.archive.org/web/2024/https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [binance_ph_peso_rails]
+          countries: [PH]
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-04-25T23:59:59Z
+        note: |
+          Binance PHP peso on/off-ramp closure to Philippine users
+          following the NTC blocking order. Attribution annotated
+          plausible because the supporting-journalism source documents
+          the regulatory cascade but no archived Binance corporate
+          notice has been pinned. Replayable Binance help-center /
+          regional-notice archive deferred to follow-up authoring pass.
+          Wayback wildcard pointer in lieu of a pinned-timestamp
+          snapshot.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase 4 of 2026-05-16 staged-release plan, promoted from candidate_triggers/philippines-sec-binance-block-2024.yaml per Agent C #5): authored end-to-end by LLM agent from the candidate stub. Both observed_change layers (l0_network, offramp_cex) anchored on the SEC advisory plus GMA News press coverage of the 2024-03-25 NTC blocking order. L0 source is intentionally marked evidence_use=contextual_unarchived because a follow-up OONI Probe PH / Censored Planet batch query for binance.com over 2024-03-25 to 2024-04-25 was not executed in this session. Once that batch pull lands and measurement_ids are pinned in the l0_network observation source block via a semi_primary_measurement source, the row promotes to admission-anchor-grade and admission_tier can be re-evaluated. Status remains draft pending (a) OONI follow-up, (b) archiving the SEC advisory and Binance corporate notice into sources/http_captures/philippines-sec-binance-block-2024/, and (c) human review. For a real release, replace this DRYRUN marker after human audit and flip origin to human_reviewed and status to admitted.
+
+      comparison documenting the Philippines NTC's 2024-03-25 ISP-level
+  blocking of Binance access following the November 2023 SEC Notice of
+  Warning. Structurally distinct from the India 2018 RBI banking-rail ban
+  (offramp-only), the Turkey 2021 CBRT payment-services ban (offramp-only),
+  and the Korea 2022 Travel Rule (metadata-layer): the Philippines event is
+  load-bearing at L0 (network reachability) - it is a state-mandated DNS /
+  TCP block of a single global exchange domain rather than an industry-wide
+  banking severance. This makes it one of the cleanest paper candidates in
+  the corpus for documenting nation-state network-layer crypto censorship,
+  pending the OONI measurement follow-up.
+
+scoped_claim: |
+  "The 2024-03-25 Philippines NTC blocking order, following the 2023-11
+  SEC Notice of Warning Against Binance, severed PH-vantage network access
+  to binance.com / binance.org and closed Binance PHP peso on/off-ramps to
+  Philippine users. Observational axes at l0_network (PH-ISP blocking) and
+  offramp_cex (PHP rail closure). L0 admission-anchor-grade promotion
+  pending OONI Probe PH / Censored Planet follow-up batch query."
+
+tags:
+  - nation_state_block
+  - philippines
+  - binance
+  - l0_network_block
+  - dns_block
+  - ntc_order
+  - sec_advisory
+  - dryrun_2026_05_16
+  - phase4_2026_05_16

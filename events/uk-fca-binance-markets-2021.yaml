@@ -1,0 +1,223 @@
+id: uk-fca-binance-markets-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_authored
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - turkey-cbrt-crypto-ban-2021
+  - india-rbi-crypto-ban-2018
+  - nigeria-cbn-crypto-ban-2021
+  - china-pboc-crypto-ban-2021
+  - binance-4framework-2023
+
+trigger:
+  type: nation_state_block
+  actor: UK_FCA
+  timestamp: 2021-06-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fca.org.uk/news/news-stories/binance-markets-limited
+      wayback: https://web.archive.org/web/20210626155014/https://www.fca.org.uk/news/news-stories/binance-markets-limited
+      evidence_use: contextual_unarchived
+      note: |
+        UK Financial Conduct Authority (FCA) consumer warning "Binance Markets
+        Limited" dated 2021-06-26. States that "Binance Markets Limited is not
+        permitted to undertake any regulated activity in the UK." Companion
+        statement to the FCA's supervisory notice imposing requirements on
+        Binance Markets Ltd (the UK FCA-registered Binance entity). DRYRUN
+        promotion: replayable Wayback URL is asserted in the FCA news feed;
+        body-hash capture deferred to a follow-on pass before non-DRYRUN
+        release. Marked contextual_unarchived to flag the unarchived state
+        explicitly.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        FCA consumer-warning news item is dated 2021-06-26 (Saturday). The
+        supervisory notice itself (Annex A first-supervisory-notice to BML)
+        was dated 2021-06-25 and published 2021-06-26. Day-level precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance Markets Limited (the UK-FCA-registered entity of the Binance group)
+    and, by cascade, UK retail customers of the global binance.com platform.
+    The FCA notice targets a single legal entity (BML) but its operational
+    effect is on the UK Binance customer base via downstream bank payment-rail
+    cutoffs. Target treated as entity-level at the Binance-UK cohort.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Binance Markets Limited (UK)
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [UK]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: FCA action is a regulatory-licensing notice, not a DNS / connectivity action.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [binance.com]
+    note: |
+      Binance posted UK-specific notices on binance.com/en in the days
+      after 2021-06-26 (geo-fenced messages clarifying that BML was a
+      separate legal entity, and subsequent UK-customer-facing service
+      restrictions over the following months). plausible-attribution
+      observation attached. L4 is not the load-bearing layer for this
+      event; the bank-payment-rail cascade at offramp_cex is the
+      paper-worthy signal. partially_measured pending pinned Wayback
+      bracket of binance.com/en UK-geo banners.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - barclays_uk
+      - santander_uk
+      - faster_payments_to_binance
+    note: |
+      Within the week following the FCA 2021-06-26 notice, UK retail banks
+      (Barclays announced 2021-07-05; Santander 2021-07-13; others followed
+      through July-August 2021) blocked card and Faster Payments transfers
+      to Binance. UK retail users of binance.com lost GBP on/off-ramp
+      access. Attached as observed_change with direct attribution -- the
+      banks publicly cited the FCA notice as the trigger for the
+      payment-rail block.
+
+observations:
+  - layer: offramp_cex
+    actor: uk_retail_banking_ecosystem
+    event: gbp_payment_rails_to_binance_severed_class_wide
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-07-05T00:00:00Z
+    precision: day
+    delta_hours: 216
+    window:
+      - 2021-06-26T00:00:00Z
+      - 2021-08-31T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.fca.org.uk/news/news-stories/binance-markets-limited
+        wayback: https://web.archive.org/web/20210626155014/https://www.fca.org.uk/news/news-stories/binance-markets-limited
+        evidence_use: contextual_unarchived
+        note: |
+          FCA consumer warning is the regulatory anchor. The notice itself
+          does not legally compel UK banks to block payment rails, but
+          contemporaneous bank statements (Barclays 2021-07-05) cited the
+          FCA warning as the reason for the block. attribution=direct at
+          the FCA-warning-as-trigger level; bank responses are the
+          immediate cascade.
+      - type: supporting_journalism
+        url: https://www.ft.com/content/27e91a07-6b35-4e62-a9c4-1bf4d2cf5fff
+        wayback: https://web.archive.org/web/20210706153500/https://www.ft.com/content/27e91a07-6b35-4e62-a9c4-1bf4d2cf5fff
+        evidence_use: contextual_unarchived
+        note: |
+          Financial Times "Barclays blocks UK card payments to Binance
+          cryptocurrency exchange" (2021-07-05). Documents the first
+          major UK retail bank citing the FCA action and blocking card
+          payments to Binance. Marked contextual_unarchived for DRYRUN;
+          body-hash capture deferred.
+      - type: supporting_journalism
+        url: https://www.reuters.com/technology/santander-stops-uk-payments-binance-2021-07-13/
+        wayback: https://web.archive.org/web/20210713200000/https://www.reuters.com/technology/santander-stops-uk-payments-binance-2021-07-13/
+        evidence_use: contextual_unarchived
+        note: |
+          Reuters report (2021-07-13) on Santander UK halting payments to
+          Binance. Second major UK retail bank to act post-FCA notice;
+          confirms the class-wide payment-rail severance pattern.
+  - layer: l4_frontend
+    actor: frontend:binance_com_en_uk_geo
+    event: uk_geo_specific_restriction_banners_posted
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-06-27T00:00:00Z
+    precision: day
+    delta_hours: 24
+    sources:
+      - type: primary_corporate
+        url: https://www.binance.com/en/support/announcement/binance-markets-limited-and-the-fca-uk-2bb6f1c121f74ae0a05bbcc4dbf94135
+        wayback: https://web.archive.org/web/20210627000000*/binance.com/en/support/announcement/binance-markets-limited-and-the-fca-uk-2bb6f1c121f74ae0a05bbcc4dbf94135
+        evidence_use: contextual_unarchived
+        note: |
+          Binance UK announcement posted on binance.com/en in the days
+          after the FCA notice, clarifying that Binance Markets Limited
+          was a "separate legal entity" from binance.com and that
+          binance.com itself was not subject to the FCA notice.
+          Functional UK-customer restrictions followed in subsequent
+          months. attribution=plausible because the frontend banner is
+          a Binance-corporate response, not a regulator-mandated
+          change. DRYRUN: Wayback URL pattern asserted; pinned snapshot
+          capture deferred.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- DRYRUN 2026-05-16** (Phase 4 of 2026-05-16
+  staged-release plan, promoted from candidate_triggers/uk-fca-binance-markets-2021.yaml
+  per Agent C #3): comparison documenting the 2021-06-26 UK FCA consumer
+  warning that Binance Markets Limited "is not permitted to undertake any
+  regulated activity in the UK." Structurally distinct from the
+  India/Nigeria/Turkey/China nation-state bans: the FCA action targets a
+  single named entity (BML, the UK-registered Binance arm) rather than a
+  class-wide crypto-exchange ecosystem, but its cascade through UK retail
+  banks (Barclays 2021-07-05, Santander 2021-07-13, others) produced a
+  class-wide GBP payment-rail severance for UK Binance customers.
+
+  Paper-relevant contrast: a regulator action without direct banking-cut
+  authority (FCA does not have RBI-2018-style direct banking-prohibition
+  power over UK retail banks) still produced banking-rail severance via
+  reputational / supervisory-risk transmission. This contrasts with the
+  RBI-2018 / CBN-2021 / CBRT-2021 cases where the regulator directly
+  ordered banks to cut crypto rails.
+
+  Related concurrent batch (2021 Binance regulator wave; promotion of
+  sibling stubs in progress under the same 2026-05-16 staged-release plan):
+    - netherlands-dnb-binance-warning-2021 (2021-08-18)
+    - malaysia-sc-binance-disable-2021 (2021-07-30)
+    - singapore-mas-binance-services-2021 (2021-09-02)
+  Cross-stratum cousin: binance-4framework-2023 (US, S3) -- shows the
+  long-tail trajectory of Binance regulatory exposure that originated in
+  this 2021 multi-jurisdictional wave.
+
+  DRYRUN caveats: trigger primary citation (FCA news page) and supporting
+  press citations (FT, Reuters) are asserted with replayable Wayback URLs
+  but body-hash captures are deferred. For non-DRYRUN release, capture
+  body_hash + body_path for: (1) FCA news page, (2) FCA First Supervisory
+  Notice PDF (Annex A), (3) FT Barclays story, (4) Reuters Santander
+  story, (5) Binance UK announcement page. Marked evidence_use=
+  contextual_unarchived on all citations to flag the unarchived state per
+  validator policy.
+
+scoped_claim: |
+  "FCA consumer warning of 2021-06-26 that Binance Markets Limited is not
+  permitted to undertake regulated activity in the UK precipitated a
+  class-wide GBP payment-rail severance from major UK retail banks
+  (Barclays 2021-07-05, Santander 2021-07-13, others) to Binance over the
+  following 8 weeks. Primary observational axis is offramp_cex at the
+  UK-Binance cohort level; secondary L4-frontend response (UK-geo
+  restriction banners on binance.com/en) attached with plausible
+  attribution."
+
+tags:
+  - nation_state_block
+  - uk
+  - fca
+  - binance
+  - payment_rail_severance
+  - dryrun_2026_05_16
