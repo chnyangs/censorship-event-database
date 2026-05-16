@@ -109,36 +109,26 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: partially_measured
+    status: not_measured
     scope:
       - kazakhstan_as_level_connectivity
     note: |
-      L0 network-layer vantage substrate is well-attested: NetBlocks
-      (normalized connectivity to ~2% on 2022-01-05), IODA / Cloudflare
-      Radar (BGP/HTTP signature drop at the same hour), and OONI
-      (probe-vantage measurements from KZ are available for the January
-      2022 window per OONI Explorer, though crypto-domain-specific
-      slices not yet pinned). attribution=direct observed_change
-      attached below for the L0 shutdown itself. Status is
-      partially_measured rather than measured because per-vantage
-      replayable artifacts (NetBlocks snapshot body_hash, IODA outage
-      JSON, OONI measurement_ids) are not yet pinned in this DRYRUN
-      session; the measurement substrate is well-established (canonical
-      L0 censorship measurement platforms) but the per-event slice
-      capture is deferred to human audit.
-    denominator_artifact:
-      type: semi_primary_measurement
-      url: https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
-      wayback: https://web.archive.org/web/2022/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
-      scope_descriptor:
-        countries: [KZ]
-        time_window:
-          - 2022-01-05T00:00:00Z
-          - 2022-01-10T23:59:59Z
-      note: |
-        NetBlocks country-level connectivity index for KZ; canonical
-        replayable L0 anchor for the shutdown. DRYRUN: wayback wildcard
-        in lieu of pinned-timestamp snapshot; body_hash capture deferred.
+      L0 network-layer vantage substrate is documented (NetBlocks
+      report of normalized connectivity falling to ~2% on 2022-01-05;
+      Cloudflare Radar BGP/HTTP signature drop; Access Now timeline)
+      but coded as not_measured because no replayable
+      sources/l0_datasets/<event>/ OONI/Censored Planet measurement
+      slice has been captured in this DRYRUN session. Promotion to
+      partially_measured requires running OONI batch query for
+      crypto-relevant domains from KZ vantage 2022-01-05..2022-01-10
+      and pinning measurement_ids + body_hash. derived/l0_coverage_
+      summary.csv constraint enforces this denominator pinning
+      (kazakhstan-internet-shutdown-mining-2022-01: l0_network
+      coverage=partially_measured but derived/l0_coverage_summary.csv
+      has no measurement_denominator row → blocks paper-readiness
+      gate). Honest fix: downgrade to not_measured and remove L0
+      observed_change row; L0 cascade evidence remains documented in
+      trigger.citation block but not promoted to an observation row.
   - layer: l1_consensus
     status: partially_measured
     chain: bitcoin
@@ -194,54 +184,6 @@ coverage:
       action attaches to this event.
 
 observations:
-  - layer: l0_network
-    actor: nation_state:kz_president_tokayev
-    event: kazakhstan_nationwide_internet_shutdown_at_l0_substrate
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2022-01-05T12:00:00Z
-    precision: hour
-    delta_hours: 0
-    country: KZ
-    sources:
-      - type: semi_primary_measurement
-        url: https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
-        wayback: https://web.archive.org/web/2022/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
-        evidence_use: contextual_unarchived
-        measurement_ids:
-          - netblocks-kz-2022-01-05
-        scope_descriptor:
-          countries: [KZ]
-          time_window:
-            - 2022-01-05T00:00:00Z
-            - 2022-01-10T23:59:59Z
-        note: |
-          NetBlocks normalized country-level connectivity for KZ falls
-          to ~2% at 2022-01-05 noon UTC; the L0 observed_change anchor.
-          attribution=direct: the shutdown was ordered by Tokayev in
-          response to political unrest, explicitly named in
-          state-of-emergency decree and KZ-government public statements.
-          DRYRUN: wayback wildcard in lieu of pinned snapshot;
-          measurement_id placeholder pending NetBlocks API-stable id.
-      - type: supporting_tracker
-        url: https://blog.cloudflare.com/internet-shut-down-in-kazakhstan-amid-unrest/
-        wayback: https://web.archive.org/web/2022/https://blog.cloudflare.com/internet-shut-down-in-kazakhstan-amid-unrest/
-        evidence_use: contextual_unarchived
-        note: |
-          Cloudflare Radar vantage corroboration: HTTP request traffic
-          from KZ collapsed at the same noon-UTC 2022-01-05 timestamp,
-          with brief partial restorations during Tokayev's televised
-          speeches. Independent vantage from a non-CAIDA / non-NetBlocks
-          probe network.
-      - type: supporting_journalism
-        url: https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
-        wayback: https://web.archive.org/web/2022/https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
-        evidence_use: contextual_unarchived
-        note: |
-          Access Now timeline of the Kazakhstan internet shutdowns and
-          protests; contextualizes Tokayev's role as the actor ordering
-          the shutdown and documents the multi-day duration through
-          2022-01-10.
   - layer: l1_consensus
     actor: bitcoin_network:kazakhstan_hosted_miners
     event: bitcoin_hashrate_collapse_following_l0_shutdown
@@ -300,22 +242,6 @@ observations:
           lieu of pinned snapshot.
 
 recovery:
-  - layer: l0_network
-    resolved: true
-    resolved_timestamp: 2022-01-10T00:00:00Z
-    citation:
-      - type: supporting_journalism
-        url: https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
-        wayback: https://web.archive.org/web/2022/https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
-        evidence_use: contextual_unarchived
-        note: |
-          Access Now timeline documents the L0 shutdown lifting around
-          2022-01-10 (with brief partial restorations during the
-          shutdown window for Tokayev televised addresses). Total
-          duration ~5 days. DRYRUN: day-precision recovery anchor.
-    note: |
-      L0 internet reachability restored 2022-01-10 (approx);
-      hour-precision restoration timestamp not yet pinned.
   - layer: l1_consensus
     resolved: true
     resolved_timestamp: 2022-01-12T00:00:00Z
