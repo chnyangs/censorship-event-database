@@ -1,0 +1,269 @@
+id: coinbase-irs-john-doe-summons-2016
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T03:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - sec-v-coinbase-2023
+  - nydfs-bitlicense-2015-06
+  - silk-road-doj-seizure-2013
+
+trigger:
+  type: court_civil_order
+  actor: US_DISTRICT_COURT_ND_CAL_IRS
+  timestamp: 2016-11-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/court-authorizes-service-john-doe-summons-seeking-identities-us-taxpayers-who-have-used
+      wayback: https://web.archive.org/web/20161130232748/https://www.justice.gov/opa/pr/court-authorizes-service-john-doe-summons-seeking-identities-us-taxpayers-who-have-used
+      body_hash: sha256:56a6392a45575f333467a199dcaa15db3a743f787022d6b6648fc84d4b19e335
+      body_path: sources/http_captures/coinbase-irs-john-doe-summons-2016/primary/web.archive.org__web-20161130232748-https-www.justice.gov-opa-pr-court-authorizes-service-john-doe-summons-seeking-identities-us-taxpayers-who-have-used__4d794ca699.html
+      note: |
+        DOJ Office of Public Affairs press release dated 2016-11-30 announcing
+        that a federal court in the Northern District of California, on the
+        DOJ Tax Division's petition, authorized the IRS to serve a John Doe
+        summons on Coinbase Inc. seeking records of all U.S. taxpayers who
+        conducted convertible-virtual-currency transactions through Coinbase
+        during 2013–2015. Petition was filed in N.D. Cal. on 2016-11-17 (one
+        day before Coinbase's 2016-11-18 public petition-opposition blog
+        post, which describes it as filed "yesterday"); the court authorized
+        service on 2016-11-30. The Wayback memento from 2016-11-30 is the
+        admission anchor for the press-release text. The original Wayback
+        memento date is also the earliest available memento of this URL per
+        the Wayback Timemap, and predates the modern justice.gov redirect to
+        /archives/opa/.
+    - type: primary_legal
+      url: https://www.justice.gov/archives/opa/pr/court-authorizes-service-john-doe-summons-seeking-identities-us-taxpayers-who-have-used
+      body_hash: sha256:a513884b358ba15a001ca99fbc53366262a02904c73b7aed0eaca5cfed9a77f4
+      body_path: sources/http_captures/coinbase-irs-john-doe-summons-2016/primary/www.justice.gov__opa-pr-court-authorizes-service-john-doe-summons-seeking-identities-us-taxpayers-who-have-used__55518cad06.html
+      evidence_use: contextual_unarchived
+      note: |
+        Current canonical justice.gov URL for the same press release (after
+        the /archives/opa/ migration). Live capture (2026-05-16) returned a
+        3,082-byte AkamaiGHost bot-block stub rather than the press-release
+        body; retained as contextual_unarchived pointer to the canonical URL.
+        The Wayback memento above carries the evidentiary content. Mirrors
+        the live-stub treatment in events/silk-road-doj-seizure-2013.yaml.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision for 2016-11-17 (petition filing) derived from
+        Coinbase's 2016-11-18 "Protecting Customer Privacy" blog post which
+        states the petition was filed "yesterday," confirming the petition
+        filing date. Court-authorization date (2016-11-30) is also recorded
+        as the secondary procedural date in the DOJ press release.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Coinbase Inc., a single named US-based virtual-currency exchanger
+    headquartered in San Francisco, California. The IRS John Doe summons
+    sought records of all US users with transactions in convertible virtual
+    currency during 2013–2015. No on-chain addresses are enumerated at this
+    event level; the target is the exchange entity and its US customer
+    record set, not a cohort of crypto addresses.
+  actor_type: exchange_us_irs_tax_compliance
+  actor_name: Coinbase Inc
+  chains: [bitcoin]
+  canonical_domains:
+    - coinbase.com
+    - blog.coinbase.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A John Doe summons is a tax-records production order, not an ISP-level
+      reachability block. Standard public-web L0 instruments (Censored
+      Planet, OONI) do not apply to a tax-records summons.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin, pre-Merge by ~5.5 years; consensus-layer filtering surfaces
+      tracked by this dataset (PBS relays, mev-watch / censorship.pics) did
+      not exist in 2016 and are not implicated by a tax-records summons in
+      any case.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Hosted-RPC providers (Infura, Alchemy, QuickNode) did not yet operate
+      at meaningful scale in 2016, and a tax-records summons is not an
+      RPC-mediated transaction-rejection surface. Out of scope.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [coinbase.com]
+    note: |
+      No Coinbase.com frontend takedown or domain-state change is implicated
+      by the IRS John Doe summons. A retained L4 null claim would require a
+      Wayback/frontend artifact across the 2016-11–2018-02 summons window;
+      until that denominator is captured, this remains unmeasured rather
+      than not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin has no issuer admin-freeze surface, and the John Doe summons
+      did not invoke any on-chain freeze or seizure mechanism. Out of scope.
+  - layer: offramp_cex
+    status: measured
+    scope: [coinbase_us_customer_records]
+    note: |
+      Coinbase as a US-regulated centralized exchange is the directly named
+      target of the John Doe summons. The measurable platform-side state
+      change is Coinbase's published opposition stance, captured on
+      2016-11-18 via the company blog: Coinbase publicly committed to
+      oppose the petition in court, marking the first time a major US
+      crypto exchange publicly disclosed an IRS tax-enforcement-records
+      summons against itself. The observation is scoped to the
+      petition-opposition disclosure as captured on Wayback within one day
+      of the petition filing; it does not encode the subsequent 2017-11-28
+      narrowed production order, which is referenced in analysis_notes but
+      not separately measured here for lack of an admission-grade primary
+      capture.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:coinbase
+    event: coinbase_public_opposition_to_irs_john_doe_summons
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2016-11-18T00:00:00Z
+    precision: day
+    delta_hours: 24
+    window:
+      - 2016-11-17T00:00:00Z
+      - 2016-11-30T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://blog.coinbase.com/2016/11/18/protecting-customer-privacy/
+        wayback: https://web.archive.org/web/20161122192010/https://blog.coinbase.com/2016/11/18/protecting-customer-privacy/
+        body_hash: sha256:cf1de3e7afb33b6e935ac6c2829b91ffe53f2b35df07d4d6e63044d6e41bfeee
+        body_path: sources/http_captures/coinbase-irs-john-doe-summons-2016/platform-response/web.archive.org__web-20161122192010-https-blog.coinbase.com-2016-11-18-protecting-customer-privacy__f1d311d433.html
+        scope_descriptor:
+          providers: [coinbase]
+          countries: [US]
+          time_window:
+            - 2016-11-17T00:00:00Z
+            - 2016-11-30T23:59:59Z
+        note: |
+          Coinbase's 2016-11-18 "Protecting Customer Privacy" blog post,
+          captured by Wayback on 2016-11-22 (four days post-publication).
+          The post states: "Our customers may be aware that the U.S.
+          government filed a civil petition yesterday in federal court
+          seeking disclosure of all Coinbase U.S. customers' records over
+          a three year period." It commits Coinbase to oppose the petition
+          in court. attribution=direct because the platform itself names
+          the petition and announces the opposition stance in response.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (promoted from
+  candidate_triggers/coinbase-irs-john-doe-summons-2016.yaml per the
+  2026-05-16 staged historical-baseline expansion). Historical-baseline
+  anchor for the first major US IRS enforcement action against a US-based
+  centralized crypto exchange. Petition filed 2016-11-17 in the U.S.
+  District Court for the Northern District of California by the DOJ Tax
+  Division on behalf of the IRS; court authorization for service entered
+  2016-11-30 (the DOJ press release).
+
+  Trigger-type choice: a John Doe summons authorization is a federal civil
+  court order, not a criminal indictment or seizure order. trigger.type is
+  therefore court_civil_order (which maps to S3_doj_sec_cftc_fiod in the
+  validator's trigger-type-to-stratum map). trigger.actor is recorded as
+  US_DISTRICT_COURT_ND_CAL_IRS to credit both the issuing court and the
+  IRS as the substantive petitioning agency; the literal string "US_DOJ"
+  is deliberately avoided in the actor field because the validator's
+  actor/type-coherence rule reserves the US_DOJ actor for trigger.type ∈
+  {doj_indictment, doj_seizure_order}. The DOJ Tax Division's role as
+  the filing prosecutor on behalf of the IRS is noted in the press-release
+  citation but not in the actor literal.
+
+  Empirical shape: comparison. The cascade has exactly one observed_change
+  layer (offramp_cex: Coinbase's published petition-opposition disclosure
+  one day after the 2016-11-17 petition filing). L0/L1/L3 are not
+  applicable to a tax-records summons; L4 frontend is not_measured rather
+  than not_applicable because a future Wayback diff of coinbase.com across
+  the 2016-11–2018-02 summons-and-narrowed-order window could in principle
+  promote it. asset_onchain is not_applicable (Bitcoin has no issuer
+  admin-freeze surface). admission_tier is empirical_case (≥1
+  strong-attribution observed_change layer; Coinbase's blog post names
+  the petition directly).
+
+  Subsequent procedural history (referenced for context, not as separately
+  retained observations): on 2017-11-28 the N.D. Cal. court issued a
+  narrowed production order requiring Coinbase to produce records for
+  approximately 14,000 customers with $20,000+ transactions during
+  2013–2015 (significantly narrower than the original all-US-customers
+  scope); Coinbase notified affected customers in early 2018 and produced
+  records to the IRS in 2018. The 2017-11-29 Coinbase blog post
+  ("Coinbase Obtains Partial Victory Over IRS") describes the narrowed
+  order, but the available Wayback snapshots return Medium identity-flow
+  302 redirects rather than the article body, so the narrowed-order
+  state change is not retained here as an independently archived
+  observation. A future audit pass could attempt a new Wayback save of
+  the medium.com mirror or supplement with the underlying court order
+  (N.D. Cal. case 17-CV-1431-JSC).
+
+  Related events: sec-v-coinbase-2023 (structural sibling: federal civil
+  enforcement against Coinbase as named target entity, eight years later
+  and on securities-law theory rather than tax-records theory),
+  nydfs-bitlicense-2015-06 (structural sibling: pre-2017 state/federal
+  US regulatory pressure on US crypto exchanges, also retained as
+  historical-baseline temporal-tier evidence), and
+  silk-road-doj-seizure-2013 (earliest 2013–2016 DOJ-stratum
+  historical-baseline event; uses the same Wayback-anchor + live-stub
+  citation pattern for justice.gov press releases).
+
+scoped_claim: |
+  "The 2016-11-17 DOJ-Tax-Division petition for an IRS John Doe summons
+  against Coinbase (authorized by N.D. Cal. on 2016-11-30) is admitted
+  only for the next-day published platform petition-opposition disclosure
+  by Coinbase as a US-regulated centralized exchange; the dataset does
+  not claim any on-chain freeze, frontend takedown, fiat-rail disruption,
+  or post-2017 narrowed-order record production at this event level."
+
+scoped_knowledge: |
+  What changed: Coinbase, as the directly named target US centralized
+  exchange, publicly disclosed and committed to oppose the IRS John Doe
+  summons within one day of the 2016-11-17 petition filing. This is the
+  first publicly disclosed major IRS records-summons against a US crypto
+  exchange and the load-bearing platform-state change for the
+  offramp_cex layer.
+
+  What did not change or could not be measured: no Coinbase.com frontend
+  takedown, no US-customer fiat-rail disruption, no token delisting, and
+  no on-chain freeze surface is implicated by a tax-records summons.
+  The 2017-11-28 narrowed production order is described in the analysis
+  notes but is not separately measured here because the Coinbase blog
+  posts describing it are only available as Wayback wrappers around
+  Medium identity-flow redirects rather than as replayable article
+  bodies. The retained observation is intentionally limited to the
+  one-day petition-opposition disclosure with a strong replayable
+  Wayback anchor.
+
+  Attribution: direct from the IRS John Doe summons petition to Coinbase's
+  2016-11-18 published opposition disclosure, because Coinbase's own blog
+  post names the petition as the subject of the disclosure.
+
+tags:
+  - irs_enforcement
+  - tax_compliance
+  - john_doe_summons
+  - coinbase
+  - exchange_civil_action
+  - historical_baseline
+  - pre_2017_baseline

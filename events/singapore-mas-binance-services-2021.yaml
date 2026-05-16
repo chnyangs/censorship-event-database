@@ -1,0 +1,207 @@
+id: singapore-mas-binance-services-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - uk-fca-binance-markets-2021
+  - netherlands-dnb-binance-warning-2021
+  - malaysia-sc-binance-disable-2021
+
+trigger:
+  type: nation_state_block
+  actor: SG_MAS
+  timestamp: 2021-09-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.mas.gov.sg/news/
+      wayback: https://web.archive.org/web/20210902000000*/mas.gov.sg
+      evidence_use: contextual_unarchived
+      note: |
+        Monetary Authority of Singapore (MAS) press release dated
+        2021-09-02 placing Binance.com on the MAS Investor Alert List
+        (IAL) and warning that Binance may be in breach of the Payment
+        Services Act (PSA) by providing payment services to Singapore
+        residents without the required licence. The IAL listing is
+        Singapore's standard investor-protection mechanism flagging
+        unregulated entities soliciting Singapore residents. DRYRUN
+        promotion: real anchor (MAS press release index) asserted;
+        Wayback / body-hash capture deferred to non-DRYRUN release.
+        Marked contextual_unarchived to flag the unarchived state
+        explicitly.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        MAS press release dated 2021-09-02 (Thursday). Day-level
+        precision per the press release publication date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance.com global platform serving Singapore retail customers.
+    The MAS IAL listing targets the global Binance.com entity (no
+    Singapore-licensed Binance legal entity at the time of listing;
+    Binance Asia Services Pte Ltd, the local entity, held an
+    in-principle PSA licence application that was later withdrawn
+    2021-12). Target treated as entity-level at the Binance-SG
+    cohort.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Binance.com (SG cohort)
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [SG]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: MAS IAL listing is a regulatory / investor-alert notice, not a DNS / connectivity action.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [binance.com]
+    note: |
+      Binance announced 2021-09-05 (three days after the MAS IAL
+      listing) that it would restrict Singapore-resident user access
+      to certain product types on binance.com (futures, margin,
+      certain spot pairs, and SGD-denominated services). L4 is
+      load-bearing per stub brief alongside offramp_cex.
+      partially_measured pending pinned Wayback bracket of
+      binance.com/en SG-geo restriction banners and the 2021-09-05
+      Binance announcement page.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - binance_sg_sgd_rails
+    note: |
+      MAS IAL listing constrained Binance.com's ability to provide
+      SGD-denominated payment services to Singapore residents.
+      Cascade: Binance Asia Services Pte Ltd (the local SG entity
+      operating binance.sg) withdrew its PSA licence application in
+      2021-12, with binance.sg ultimately ceasing SG operations in
+      2022-02. SGD rails to binance.com severed at the SG-cohort
+      level. partially_measured pending pinned anchors for the
+      2021-12 licence-application withdrawal and 2022-02 binance.sg
+      operational exit.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:binance_com_en_sg_geo
+    event: sg_user_product_restrictions_announced
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-09-05T00:00:00Z
+    precision: day
+    delta_hours: 72
+    window:
+      - 2021-09-02T00:00:00Z
+      - 2021-09-30T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.mas.gov.sg/news/
+        wayback: https://web.archive.org/web/20210902000000*/mas.gov.sg
+        evidence_use: contextual_unarchived
+        note: |
+          MAS 2021-09-02 IAL listing is the regulatory anchor. Binance
+          2021-09-05 announcement to restrict Singapore-resident user
+          access to certain product types on binance.com cited the
+          MAS notice; attribution=direct at the MAS-listing-as-trigger
+          level. DRYRUN: pinned Wayback captures for the Binance
+          2021-09-05 restriction announcement deferred.
+  - layer: offramp_cex
+    actor: cex:binance_sg_cohort
+    event: sgd_rails_and_binance_sg_operational_exit
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-02-01T00:00:00Z
+    precision: day
+    delta_hours: 3648
+    window:
+      - 2021-09-02T00:00:00Z
+      - 2022-02-28T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.mas.gov.sg/news/
+        wayback: https://web.archive.org/web/20220201000000*/mas.gov.sg
+        evidence_use: contextual_unarchived
+        note: |
+          MAS 2021-09-02 IAL listing initiated a cascade culminating
+          in Binance Asia Services Pte Ltd withdrawing its PSA licence
+          application (2021-12) and binance.sg ceasing SG operations
+          (2022-02). SG retail users of binance.com lost SGD rail
+          access. DRYRUN: pinned anchors for the 2021-12 licence
+          withdrawal and 2022-02 binance.sg exit announcements
+          deferred.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/singapore-mas-binance-services-2021.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  Comparison documenting the 2021-09-02 Monetary Authority of Singapore
+  (MAS) Investor Alert List (IAL) placement of Binance.com plus the
+  associated warning that Binance may be providing payment services to
+  Singapore residents in breach of the Payment Services Act (PSA).
+  Sibling case to the 2021 global Binance regulator wave: UK FCA
+  2021-06-26, Malaysia SC 2021-07-30, Netherlands DNB 2021-08-18.
+
+  Paper-relevant contrast vs UK FCA (uk-fca-binance-markets-2021):
+  MAS used a softer instrument (IAL listing + PSA-warning) than the
+  FCA's named-subsidiary supervisory notice, but produced a faster
+  L4-frontend response (Binance announced SG-user product
+  restrictions within 3 days vs UK FCA's slower bank-cascade
+  evolution). Singapore cascade is distinct in routing through the
+  local Binance entity (Binance Asia Services Pte Ltd / binance.sg)
+  rather than through retail-bank payment-rail severance: the
+  2021-12 PSA licence-application withdrawal and 2022-02 binance.sg
+  operational exit are the offramp_cex load-bearing observations.
+  Load-bearing observational axes per stub brief: L4 frontend
+  (Binance SG-user product restrictions) and offramp_cex (SGD rails).
+
+  DRYRUN caveats: trigger primary citation (MAS press release index)
+  is asserted without pinned Wayback / body-hash capture. For non-
+  DRYRUN release, capture body_hash + body_path for: (1) MAS 2021-
+  09-02 IAL listing press release, (2) Binance 2021-09-05 SG-user
+  restriction announcement, (3) Binance Asia Services 2021-12 PSA
+  licence-application withdrawal notice, (4) binance.sg 2022-02
+  operational-exit announcement. Marked evidence_use=
+  contextual_unarchived on all citations to flag the unarchived
+  state per validator policy.
+
+scoped_claim: |
+  "MAS Investor Alert List placement of Binance.com on 2021-09-02
+  plus the accompanying Payment Services Act warning precipitated
+  a fast L4-frontend response (Binance announced SG-user product
+  restrictions 2021-09-05, three days later) and a slow-cascade
+  offramp severance routing through the local Binance entity
+  (Binance Asia Services withdrew its PSA licence application
+  2021-12; binance.sg ceased SG operations 2022-02). Load-bearing
+  observational axes are L4 frontend (Binance SG-user product
+  restrictions) and offramp_cex (SGD rails) at the Binance-SG
+  cohort level."
+
+tags:
+  - nation_state_block
+  - sg
+  - mas
+  - binance
+  - investor_alert_list
+  - psa_warning
+  - dryrun_2026_05_16

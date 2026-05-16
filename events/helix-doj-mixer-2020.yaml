@@ -1,0 +1,229 @@
+id: helix-doj-mixer-2020
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_DC
+  timestamp: 2020-02-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/ohio-resident-charged-operating-darknet-based-bitcoin-mixer-laundered-over-300-million
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/ohio-resident-charged-operating-darknet-based-bitcoin-mixer-laundered-over-300-million
+      note: |
+        DOJ Office of Public Affairs press release announcing the 2020-02-11
+        indictment (unsealed 2020-02-13) of Larry Dean Harmon, of Akron, Ohio,
+        for operating Helix, a darknet-based Bitcoin mixer that laundered over
+        $300M in BTC between 2014 and 2017. Charges: conspiracy to launder
+        monetary instruments, operating an unlicensed money transmitting
+        business, and conducting money transmission without a DC license.
+        Filed in the US District Court for the District of Columbia (DDC).
+        IRS-CI and FBI Cyber Division co-investigators; FinCEN parallel CMP
+        action against Harmon announced 2020-10-19 ($60M assessment).
+        Helix infrastructure had already gone dark in late 2017 prior to this
+        operator-state indictment.
+    - type: primary_legal
+      url: https://www.fincen.gov/news/news-releases/fincen-announces-60-million-civil-money-penalty-against-larry-dean-harmon
+      evidence_use: contextual_unarchived
+      note: |
+        Companion FinCEN $60M civil-money-penalty announcement (2020-10-19)
+        against Harmon for BSA / money-transmitter-registration violations
+        operating Helix and Coin Ninja. Pinned for context; not retained as
+        an admission anchor in this DRYRUN row.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level via the DOJ press release. The indictment itself was filed
+        2020-02-11 in DDC and unsealed 2020-02-13 on Harmon's arrest;
+        trigger.timestamp is set to the filing date per the brief.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Larry Dean Harmon as named operator + the Helix Bitcoin mixer service
+    (and the affiliated Coin Ninja / Grams search infrastructure). Helix
+    operated 2014-2017 and was already taken offline before this 2020
+    indictment of the operator. No SDN-style enumerated address set is
+    attached at this event level; the indictment names specific BTC
+    counterparty flows but does not publish a discrete watchlist of mixer
+    addresses in the OFAC SDN style.
+  protocol: helix_mixer
+  actor_type: mixer_service
+  actor_name: Helix / Coin Ninja (operated by Larry Dean Harmon)
+  chains: [bitcoin]
+  canonical_domains:
+    - grams7enufi7jmdl.onion
+    - helix.grams7enufi7jmdl.onion
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Helix was a Tor-hosted darknet service; no public canonical-domain
+      reachability measurement applies. OONI probe coverage of .onion
+      services is not maintained.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+  - layer: l4_frontend
+    status: measured
+    scope: [helix_tor_service]
+    note: |
+      Helix's frontend (the Tor-hosted mixer UI under grams7enufi7jmdl.onion)
+      had already been shut down by the operator in late 2017. The 2020-02-11
+      DDC indictment of Harmon forecloses any operator-led restoration: the
+      mixer-frontend's terminal state is now juridically anchored by the
+      criminal indictment of the only person with operator keys. The
+      observation is therefore an indictment-anchored finality on a
+      previously-self-shuttered frontend, not a same-day seizure-banner
+      substitution (cf. ChipMixer 2023, Samourai 2024). attribution=direct
+      because the DOJ release explicitly names Harmon as the sole operator
+      and the mixer as the indicted business.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native; no issuer-level freeze primitive. The indictment traces
+      individual BTC flows but does not assert an address-set freeze.
+  - layer: offramp_cex
+    status: measured
+    scope: [helix_mixer_operator_state]
+    note: |
+      The load-bearing layer for this row: the indictment converts Helix's
+      operator from "in operation / dormant" to "criminally indicted and
+      arrested" — a mixer-operator-state transition. Helix is the offramp /
+      laundering venue under enforcement; the operator's arrest plus the
+      parallel FinCEN $60M civil money penalty (2020-10-19) anchor the
+      state change. attribution=direct via the DOJ + FinCEN primary-legal
+      sources.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:helix_tor_service
+    event: helix_mixer_frontend_finality_anchored_by_operator_indictment
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-02-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/ohio-resident-charged-operating-darknet-based-bitcoin-mixer-laundered-over-300-million
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/ohio-resident-charged-operating-darknet-based-bitcoin-mixer-laundered-over-300-million
+        note: |
+          DOJ press release explicitly names Harmon as the sole operator of
+          Helix and confirms the service's 2014-2017 operating window. The
+          indictment of the operator post-self-shutdown converts the
+          frontend's terminal state into a juridically-anchored finality:
+          there is no operator who can restore the .onion service after this
+          arrest. attribution=direct because the DOJ release is the primary
+          legal instrument naming both the operator and the service.
+
+  - layer: offramp_cex
+    actor: mixer:helix_coin_ninja
+    event: helix_operator_indicted_and_arrested_mixer_state_terminal
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-02-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/ohio-resident-charged-operating-darknet-based-bitcoin-mixer-laundered-over-300-million
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/ohio-resident-charged-operating-darknet-based-bitcoin-mixer-laundered-over-300-million
+        scope_descriptor:
+          providers: [helix_mixer]
+          time_window:
+            - 2014-01-01T00:00:00Z
+            - 2017-12-31T23:59:59Z
+        note: |
+          DOJ describes Helix's $300M+ BTC laundering operating window
+          (2014-2017) and indicts Harmon as the operator. The mixer-operator
+          state transitions from "shut down by operator / latent" to
+          "criminally indicted with operator under arrest" — a structural
+          off-ramp / venue-layer transition analogous to bitzlato-doj-2023
+          but with the mixer already self-dark. attribution=direct via the
+          DOJ primary-legal anchor.
+      - type: primary_legal
+        url: https://www.fincen.gov/news/news-releases/fincen-announces-60-million-civil-money-penalty-against-larry-dean-harmon
+        wayback: https://web.archive.org/web/20260516000000/https://www.fincen.gov/news/news-releases/fincen-announces-60-million-civil-money-penalty-against-larry-dean-harmon
+        note: |
+          Companion FinCEN $60M civil money penalty (2020-10-19) for BSA /
+          money-transmitter-registration violations. Pinned as contextual
+          corroboration of the same operator-state transition. DRYRUN
+          wayback stub; replace with a verified capture + body_hash /
+          body_path artifact during real human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (promoted from
+  candidate_triggers/helix-doj-mixer-2020.yaml per Phase 4 of the staged
+  release plan; promotion driven by Helix's role as the missing
+  pre-ChipMixer / pre-Samourai operator-indictment anchor for the Bitcoin-
+  mixer enforcement comparison set). For a real release, replace this
+  DRYRUN marker after human audit and (a) replace the wayback URL stub on
+  the DOJ press release with a verified capture + body_hash / body_path
+  artifact, (b) attach a captured FinCEN $60M CMP page once located in
+  Wayback, (c) consider adding the 2021-08-18 federal conspiracy guilty
+  plea and 2025-03 sentencing as related follow-on observations once
+  artifacts are pinned.
+
+  comparison — Helix is the structural pre-quel to chipmixer-doj-2023 and
+  samourai-doj-2024: a Bitcoin-mixer operator indicted by DOJ, but with
+  the unusual feature that the mixer infrastructure had already been
+  voluntarily wound down by the operator in 2017, three years before the
+  criminal indictment. The l4_frontend observation is therefore an
+  indictment-anchored finality on an already-dark service rather than a
+  same-day seizure banner; the load-bearing offramp_cex observation is the
+  mixer-operator-state transition (operator indicted + arrested + parallel
+  FinCEN $60M CMP). Two observed_change layers with direct attribution →
+  empirical_case admission tier with comparison shape.
+
+  Distinguishing structural feature vs. chipmixer-doj-2023 (joint US +
+  4 European + Europol same-day takedown) and samourai-doj-2024 (joint US +
+  Europol + Portugal + Iceland same-day takedown): Helix is a single-
+  jurisdiction (US-only, DDC) operator-state indictment without
+  international coordination, because the mixer infrastructure was already
+  dark before the indictment and there was no live foreign-hosted
+  infrastructure to seize. This makes Helix the cleanest "operator-state
+  only" reference point in the mixer-indictment comparison set.
+
+scoped_claim: |
+  "The 2020-02-11 DOJ DDC indictment of Larry Dean Harmon for operating the
+  Helix Bitcoin mixer (2014-2017, $300M+ laundered) produced a 2-layer
+  comparison-shape cascade in the dataset: an l4_frontend finality on the
+  already-self-shuttered helix .onion service and an offramp_cex mixer-
+  operator-state transition anchored by the indictment + parallel 2020-10-19
+  FinCEN $60M civil money penalty. Distinct from chipmixer-doj-2023 and
+  samourai-doj-2024 in that the mixer was already dark at indictment time
+  and the enforcement was single-jurisdiction (US-only)."
+
+related_events:
+  - chipmixer-doj-2023
+  - samourai-doj-2024
+  - hydra-doj-2022
+  - bitzlato-doj-2023
+
+tags:
+  - doj_indictment
+  - bitcoin_mixer
+  - mixer_operator_state
+  - fincen_cmp_companion
+  - single_jurisdiction_us
+  - post_shutdown_indictment

@@ -1,0 +1,229 @@
+id: malaysia-sc-binance-disable-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - uk-fca-binance-markets-2021
+  - singapore-mas-binance-services-2021
+  - netherlands-dnb-binance-warning-2021
+
+trigger:
+  type: nation_state_block
+  actor: MY_SC
+  timestamp: 2021-07-30T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sc.com.my/resources/media/media-release
+      wayback: https://web.archive.org/web/2021/https://www.sc.com.my/resources/media/media-release
+      evidence_use: contextual_unarchived
+      note: |
+        Malaysia Securities Commission (SC) public reprimand and enforcement
+        action dated 2021-07-30 against Binance for illegally operating a
+        Recognized Market without registration in Malaysia. The SC ordered
+        Binance to (1) disable the Binance website (binance.com) for
+        Malaysian users, (2) disable the Binance mobile applications
+        (Binance iOS and Android apps) in Malaysia, (3) cease circulation of
+        marketing/promotional content directed at Malaysian investors, and
+        (4) restrict access to the Binance Telegram group for Malaysian
+        users. Binance had been on the SC's Investor Alert List since
+        2020-07. DRYRUN promotion: real anchor (SC press-release index)
+        asserted with a 2021-calendar-folder Wayback pointer; pinned
+        snapshot timestamp and body_hash capture deferred to non-DRYRUN
+        release. Marked evidence_use=contextual_unarchived to flag the
+        unarchived state explicitly per validator policy.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per SC press release dated 2021-07-30 (Friday).
+        The disable order takes effect on publication; the 14-business-day
+        compliance window for app/website disablement and Telegram-group
+        restriction begins from the publication date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance group entities (binance.com global platform and Binance iOS /
+    Android mobile applications) serving Malaysian retail customers, and
+    (by cascade) the Malaysian retail customer cohort of binance.com.
+    SC order names Binance as addressee of the disable-for-Malaysian-users
+    directive; operational effect is on Malaysian retail users of the
+    Binance website, mobile apps, and Telegram channel. Treated as
+    entity-level at the Binance-Malaysia cohort.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Binance Holdings Ltd. (MY cohort)
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [MY]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      SC enforcement action is a regulator-directed disable order targeting
+      Binance's own website / mobile apps for Malaysian users, not an ISP /
+      DNS / network-level block. No L0 measurement of Malaysian ISP-level
+      reachability to binance.com is retained in this file.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [binance.com]
+    note: |
+      SC order directly compels Binance to disable the binance.com website
+      and Binance mobile apps for Malaysian users. Load-bearing observation
+      attached below at attribution=direct (Binance compliance with a
+      regulator-mandated disable is the operator-state change the SC order
+      compels). partially_measured pending pinned Wayback bracket of
+      binance.com/en MY-geo banners / app-store removal evidence for
+      Binance iOS/Android apps in the Malaysian Apple App Store / Google
+      Play storefront.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - binance_malaysia_myr_rail
+    note: |
+      SC order's disable-for-Malaysian-users directive severs the
+      Binance-MY frontend rail through which Malaysian retail customers
+      accessed MYR on/off-ramp functionality (P2P MYR-to-crypto rails and
+      Binance-MY card/bank deposit channels). Cascade observation attached
+      below; partially_measured pending pinned anchors for Binance-MY
+      MYR-rail withdrawal flows and any subsequent Malaysian-bank rail
+      restrictions citing the SC action.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:binance_com_my_geo_and_mobile_apps
+    event: binance_my_website_and_apps_disabled_per_sc_order
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-07-30T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sc.com.my/resources/media/media-release
+        wayback: https://web.archive.org/web/2021/https://www.sc.com.my/resources/media/media-release
+        evidence_use: contextual_unarchived
+        note: |
+          SC press release is the legal instrument naming Binance as
+          addressee of the disable-for-Malaysian-users directive
+          (website + iOS/Android apps + Telegram group). attribution=
+          direct because the SC order itself compels the operator-state
+          change (disablement of the Malaysian-facing Binance frontend
+          surface) within the 14-business-day compliance window from the
+          publication date. DRYRUN: Wayback anchor is a 2021-calendar-
+          folder pointer at sc.com.my/resources/media/media-release;
+          pinned snapshot timestamp and body_hash capture deferred to
+          human audit.
+  - layer: offramp_cex
+    actor: cex:binance_malaysia_cohort
+    event: binance_my_myr_rail_severance_cascade
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-07-30T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sc.com.my/resources/media/media-release
+        wayback: https://web.archive.org/web/2021/https://www.sc.com.my/resources/media/media-release
+        evidence_use: contextual_unarchived
+        note: |
+          SC disable order cascades into MYR-rail severance at the
+          Binance-MY cohort because the disabled frontend surface
+          (website + mobile apps) is the access path through which
+          Malaysian retail customers used Binance's P2P MYR-to-crypto
+          rails and card/bank deposit channels. attribution=plausible
+          because the offramp severance is a downstream consequence of
+          the frontend disablement rather than a direct SC-mandated
+          banking-rail action (SC has no direct banking-prohibition
+          authority over Malaysian retail banks; the cascade is via
+          Binance compliance with the frontend disable rather than via
+          a Malaysia-Bank-Negara-style directive to banks). DRYRUN:
+          pinned anchors for the Binance-MY MYR-rail withdrawal flow
+          deferred to human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/malaysia-sc-binance-disable-2021.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  Comparison documenting the 2021-07-30 Malaysia Securities Commission
+  (SC) public reprimand and enforcement action ordering Binance to
+  disable its website and mobile applications for Malaysian users.
+  Sibling case in the 2021 multi-jurisdictional Binance regulator wave:
+  UK FCA 2021-06-26, Netherlands DNB 2021-08-18, Singapore MAS
+  2021-09-02. Binance had already been on the SC's Investor Alert List
+  since 2020-07.
+
+  Paper-relevant contrast vs UK FCA (uk-fca-binance-markets-2021): the
+  SC action is a direct frontend-disable order (website + mobile apps
+  for Malaysian users) whose primary observational axis is L4 frontend,
+  whereas the FCA action was a single-entity (BML) registration notice
+  whose load-bearing observational axis was offramp_cex via the UK
+  retail-bank payment-rail cascade (Barclays / Santander). Both are S4
+  nation-state actions; both are empirical_case shape=comparison; the
+  Malaysia case foregrounds the regulator-directed operator-compliance
+  frontend channel that the FCA case lacks.
+
+  Contrast vs Netherlands DNB (netherlands-dnb-binance-warning-2021):
+  the SC order is harder-edged (explicit disable directive with a
+  compliance deadline) than the DNB warning (Wwft-registration warning
+  whose enforcement cascaded into a 2022-04 fine and a 2022-07 Binance
+  NL exit). Both share the L4-frontend load-bearing axis but the SC
+  timeline is compressed (disable within 14 business days of 2021-07-30)
+  vs the DNB slow-cascade (warning 2021-08 → fine 2022-04 → exit
+  2022-07).
+
+  DRYRUN caveats: trigger primary citation (SC press-release index) is
+  asserted with a 2021-calendar-folder Wayback pointer; pinned snapshot
+  timestamp and body_hash capture are deferred to the human-audit pass.
+  For non-DRYRUN release, capture body_hash + body_path for: (1) the
+  specific SC press item permalink for the 2021-07-30 reprimand /
+  enforcement action against Binance, (2) the SC Investor Alert List
+  page showing Binance's 2020-07 inclusion, (3) any contemporaneous
+  binance.com/en MY-geo restriction banner or Binance corporate
+  announcement page acknowledging the SC order, (4) Apple App Store /
+  Google Play storefront snapshots showing Binance app removal for
+  Malaysian users if recoverable. Marked evidence_use=
+  contextual_unarchived on all citations to flag the unarchived state
+  per validator policy.
+
+scoped_claim: |
+  "Malaysia SC enforcement order of 2021-07-30 directly compelled Binance
+  to disable its website (binance.com) and mobile applications (iOS /
+  Android) for Malaysian users within a 14-business-day compliance
+  window, producing a regulator-mandated operator-state change at the
+  Binance Malaysian-customer cohort (L4 frontend load-bearing) with
+  cascading severance of the Binance-MY MYR on/off-ramp rail
+  (offramp_cex, attribution=plausible because the rail severance is
+  downstream of the frontend disable rather than a direct
+  banking-prohibition directive). The row does not claim ISP / DNS-level
+  connectivity blocking, on-chain asset freeze, or class-wide Malaysian
+  banking-rail severance."
+
+tags:
+  - nation_state_block
+  - malaysia
+  - sc
+  - binance
+  - frontend_disable
+  - dryrun_2026_05_16

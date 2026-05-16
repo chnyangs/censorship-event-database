@@ -1,0 +1,232 @@
+id: teraexchange-cftc-bitcoin-swap-2015
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T02:50:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+related_events:
+  - nydfs-bitlicense-2015-06
+  - cftc-v-ooki-dao-2022
+
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2015-09-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/7240-15
+      body_hash: sha256:158a1dbcad61e5cefa74c75e4f2779b13aa831e8657f4e2203ae7b28bb583d78
+      body_path: sources/http_captures/teraexchange-cftc-bitcoin-swap-2015/primary/www.cftc.gov__PressRoom-PressReleases-7240-15__5082f96e2b.html
+      note: |
+        CFTC Release 7240-15 (2015-09-24): "CFTC Settles with TeraExchange
+        LLC for Failing to Enforce Prohibitions on Wash Trading and
+        Prearranged Trading in Bitcoin Swap." First CFTC enforcement
+        action involving a CFTC-registered Swap Execution Facility (SEF)
+        and a Bitcoin-referenced derivative. The CFTC Order requires Tera
+        to cease and desist from future violations of its SEF
+        rule-enforcement obligations under Section 5h(f)(2) of the CEA
+        and CFTC Regulation 37.203. Captured 2026-05-16.
+    - type: primary_legal
+      url: https://www.cftc.gov/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfteraexchangeorder92415.pdf
+      body_hash: sha256:101633f08b454df506f01ae226361c48cb6a58f2e9e74efca05cca917c88e9c2
+      body_path: sources/http_captures/teraexchange-cftc-bitcoin-swap-2015/primary/www.cftc.gov__idc-groups-public-lrenforcementactions-documents-legalpleading-enfteraexchangeorder92415.pdf__be2f47b647.bin
+      note: |
+        Underlying CFTC Order in In re TeraExchange LLC (CFTC Docket No.
+        15-33, 2015-09-24, 9 pp.). Findings: Tera (provisionally
+        registered SEF) self-certified a non-deliverable forward
+        referenced to a USD/Bitcoin index ("Bitcoin Swap") on 2014-09-11
+        and arranged for the only two onboarded counterparties to
+        execute two offsetting USD 500,000-notional trades on
+        2014-10-08, then publicly announced the trades on 2014-10-09
+        without disclosing they were prearranged wash sales executed
+        "to test the pipes." Order: cease-and-desist under 7 U.S.C.
+        § 7b-3(f)(2) and 17 C.F.R. § 37.203, plus undertakings on
+        public statements and SEF rule enforcement. **No civil monetary
+        penalty was imposed** in this 2015-09-24 Order (the brief's
+        "$300K civil penalty" appears to conflate this matter with a
+        later 2019 CFTC trade-data reporting action against the same
+        SEF). Final URL after redirect adds /sites/default/files/
+        prefix; the requested-URL form above is the canonical CFTC
+        permalink documented in Release 7240-15.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per CFTC Release 7240-15 dateline
+        ("September 24, 2015") and the Order's caption date.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Single respondent: TeraExchange LLC (then a provisionally registered
+    Swap Execution Facility based in Summit, New Jersey). The Order's
+    binding effect runs against Tera and its successors and assigns.
+    The two anonymized counterparties ("Firm A" and "Firm B") were not
+    named respondents and are out of scope; only the SEF operator is
+    enumerated as the target.
+  entity: teraexchange_llc
+  protocol: tera_bitcoin_usd_swap
+  actor_type: cftc_registered_swap_execution_facility
+  actor_name: TeraExchange LLC
+  chains: [bitcoin]
+  canonical_domains:
+    - teraexchange.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The CFTC Order is a derivative-market-venue compliance action; no
+      network-level reachability change to Bitcoin is implicated. Out of
+      scope.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      2015 predates the post-Merge / PBS L1 filtering surface that
+      Wahrstätter-style measurements can address. Out of scope.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Hosted-RPC providers (Infura, Alchemy, QuickNode) did not yet
+      operate at meaningful scale in 2015, and Bitcoin-USD-swap pricing
+      uses a Tera-curated index rather than on-chain Bitcoin RPC reads.
+      No L3 substrate to measure.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Order does not block, geofence, or take down any consumer
+      frontend; Tera continued to operate as a SEF after the Order. No
+      retail/consumer L4 surface is implicated by this enforcement.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The Bitcoin Swap is a cash-settled non-deliverable forward
+      referenced to a USD/Bitcoin index; no issuer admin-method
+      invocation against an on-chain asset is implicated.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - teraexchange.com
+    note: |
+      Load-bearing layer. Off-ramp / regulated-venue compliance regime
+      change: the CFTC Order imposes binding cease-and-desist plus
+      enforceable undertakings on a CFTC-registered SEF offering a
+      Bitcoin-referenced swap, establishing that SEF Core Principles
+      and the wash-trading / prearranged-trading prohibitions of CEA
+      § 5h(f)(2) and 17 C.F.R. § 37.203 apply in full to crypto-asset
+      derivative venues. partially_measured because the observation
+      anchors the regulator-side regime-change action (Order issuance
+      and binding undertakings) rather than a continuous post-Order
+      compliance-conduct measurement program.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:us_cftc
+    event: cftc_order_imposing_cease_and_desist_and_undertakings_on_sef_for_bitcoin_swap
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2015-09-24T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfteraexchangeorder92415.pdf
+        body_hash: sha256:101633f08b454df506f01ae226361c48cb6a58f2e9e74efca05cca917c88e9c2
+        body_path: sources/http_captures/teraexchange-cftc-bitcoin-swap-2015/primary/www.cftc.gov__idc-groups-public-lrenforcementactions-documents-legalpleading-enfteraexchangeorder92415.pdf__be2f47b647.bin
+        scope_descriptor:
+          providers: [teraexchange_llc]
+          time_window:
+            - 2014-09-11T00:00:00Z
+            - 2015-09-24T23:59:59Z
+        note: |
+          CFTC Order (Docket 15-33) is the direct, same-day instrument
+          of the regime change at the offramp_cex / regulated-venue
+          layer: it adjudicates findings against the SEF, orders
+          cease-and-desist under 7 U.S.C. § 7b-3(f)(2) and 17 C.F.R.
+          § 37.203, and imposes binding undertakings on Tera and its
+          successors and assigns. attribution=direct because the
+          regulator's own instrument is the action being recorded.
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/7240-15
+        body_hash: sha256:158a1dbcad61e5cefa74c75e4f2779b13aa831e8657f4e2203ae7b28bb583d78
+        body_path: sources/http_captures/teraexchange-cftc-bitcoin-swap-2015/primary/www.cftc.gov__PressRoom-PressReleases-7240-15__5082f96e2b.html
+        scope_descriptor:
+          providers: [teraexchange_llc]
+          time_window:
+            - 2015-09-24T00:00:00Z
+            - 2015-09-24T23:59:59Z
+        note: |
+          CFTC Release 7240-15 corroborates the Order's substance: SEF
+          rule-enforcement failure with respect to wash trading and
+          prearranged trading in a Bitcoin swap, cease-and-desist
+          remedy, and Tera's status as a provisionally registered SEF.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16.** Historical-baseline
+  promotion of the candidate trigger
+  candidate_triggers/teraexchange-cftc-bitcoin-swap-2015.yaml. First
+  CFTC enforcement action that simultaneously (a) targets a
+  CFTC-registered Swap Execution Facility and (b) concerns a
+  Bitcoin-referenced derivative product. Establishes the load-bearing
+  precedent for SEF Core Principles applying to crypto-asset
+  derivative venues at the offramp_cex / regulated-venue compliance
+  layer. Origin is human_reviewed because the YAML is authored by the
+  maintainer workflow against captured primary sources (CFTC press
+  release 7240-15 + the 9-page CFTC Order PDF, both retrieved
+  2026-05-16). For a real release this DRYRUN marker would be replaced
+  by the production-promotion stamp after an additional independent
+  human audit.
+
+  Empirical shape: comparison. One distinct observed_change layer
+  (offramp_cex) is recorded, anchored on the regulator-side instrument
+  itself. Admission tier is empirical_case (≥1 strong-attribution
+  observed_change layer; attribution=direct because the regulator's
+  own Order is the action being recorded).
+
+  Brief-vs-source correction: the originating brief stated "TeraExchange
+  paid $300K civil penalty." Direct inspection of the 2015-09-24 CFTC
+  Order (9 pp., body_hash above) shows **no civil monetary penalty**
+  was imposed in this action: the remedy is cease-and-desist plus
+  undertakings. The $300K figure appears to conflate this matter with
+  a separate 2019 CFTC settlement against the same SEF for trade-data
+  reporting violations. The YAML records only what the captured Order
+  actually orders.
+
+  Related events: nydfs-bitlicense-2015-06 (structural sibling: same
+  2015 calendar window, regulator-imposed compliance regime affecting a
+  crypto market venue; BitLicense is broader state-level licensing, the
+  TeraExchange Order is narrower per-venue federal-derivative
+  enforcement) and cftc-v-ooki-dao-2022 (S3 CFTC enforcement sibling at
+  the comparable_main_2017_present end of the spectrum, illustrating
+  the seven-year arc from registered-SEF wash-trading to
+  DAO-as-legal-person).
+
+scoped_claim: |
+  "CFTC In re TeraExchange LLC (Order issued 2015-09-24, Docket 15-33)
+  is the first CFTC enforcement action against a CFTC-registered Swap
+  Execution Facility offering a Bitcoin-referenced derivative product.
+  The captured Order imposed a cease-and-desist plus binding
+  undertakings on the SEF; the retained observation anchors only the
+  regulator-side regime-change action at the offramp_cex layer. No
+  civil monetary penalty was imposed in the 2015-09-24 Order, and no
+  L0/L1/L3/L4-frontend/asset-onchain effects are claimed."
+
+tags:
+  - cftc_enforcement
+  - swap_execution_facility
+  - bitcoin_derivative
+  - wash_trading
+  - prearranged_trading
+  - historical_baseline
+  - offramp_cex_regime_change
+  - dryrun_2026_05_16

@@ -1,0 +1,233 @@
+id: shrem-faiella-bitcoin-exchange-2014
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T03:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - silk-road-doj-seizure-2013
+  - btc-e-doj-2017
+  - nydfs-bitlicense-2015-06
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2014-01-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-bitcoin-exchangers-including-ceo
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-bitcoin-exchangers-including-ceo
+      note: |
+        DOJ SDNY press release (2014-01-27): "Manhattan U.S. Attorney Announces
+        Charges Against Bitcoin Exchangers, Including CEO Of Bitcoin Exchange
+        Company." Criminal complaint unsealed in SDNY against Charles "Charlie"
+        Shrem (then-CEO of BitInstant and vice-chair of the Bitcoin Foundation)
+        and Robert M. Faiella (operating as "BTCKing" on Silk Road) charging
+        conspiracy to commit money laundering (18 U.S.C. § 1956) and operating
+        an unlicensed money transmitting business (18 U.S.C. § 1960). Shrem is
+        further charged with willful failure to file a Suspicious Activity
+        Report. Wayback URL pinned as a stub anchor for this DRYRUN row; a real
+        release would replace with a verified snapshot timestamp + body_hash.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ SDNY press release (2014-09-04): "Bitcoin Exchangers Plead Guilty In
+        Manhattan Federal Court In Connection With Sale Of Approximately
+        $1 Million In Bitcoins For Use On Silk Road." Records Shrem's and
+        Faiella's guilty pleas; Shrem sentenced (2014-12) to two years
+        imprisonment. Retained as contextual_unarchived corroborating pointer
+        for the conviction phase; the 2014-01-27 indictment row above is the
+        load-bearing trigger anchor.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per the DOJ SDNY press release announcing the
+        2014-01-27 arrests of Shrem (JFK Airport) and Faiella (Cape Coral, FL).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Two named individuals (Charles Shrem; Robert M. Faiella a/k/a "BTCKing")
+    plus the corporate vehicle through which Shrem operated (BitInstant LLC).
+    Faiella operated BTCKing as a Silk Road-facing Bitcoin vendor that
+    sourced BTC inventory via BitInstant. No on-chain BTC addresses are
+    enumerated at this event-row level; the SDNY complaint references
+    transaction totals (~$1M in Bitcoin) without exhaustive address
+    enumeration. canonical_domains lists the BitInstant frontend; BTCKing
+    operated as a Silk Road vendor handle with no independent clearnet
+    surface.
+  actor_type: exchange_and_individual_msb
+  actor_name: Charlie Shrem (BitInstant) + Robert Faiella (BTCKing)
+  chains: [bitcoin]
+  canonical_domains:
+    - bitinstant.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-01-27 indictment did not invoke any ISP / DNS / network-layer
+      block of bitinstant.com. Public-web L0 instruments (Censored Planet,
+      OONI) do not apply. The corporate shutdown that followed was a business
+      decision in the wake of criminal exposure, not a network-layer event.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin, 2014; consensus-layer filtering surfaces tracked by this
+      dataset (post-Merge Ethereum PBS, mev-watch / censorship.pics) did not
+      exist for any chain in 2014. Out of scope.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No hosted Bitcoin-RPC provider surface is implicated. Pre-Infura era
+      and the action targets MSB / money-transmitter conduct, not RPC-mediated
+      transaction routing.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No L4 frontend seizure or takedown banner is documented for
+      bitinstant.com on 2014-01-27. The site continued to display a
+      "BitInstant is currently in the process of upgrading our service"
+      maintenance-style notice for some time after the 2013-07 service
+      suspension (which preceded this enforcement event), and ultimately
+      went dark without a DOJ-attributed L4 seizure. Recording the post-
+      suspension frontend state as observed_change would conflate the
+      pre-existing service pause with the 2014-01-27 enforcement action,
+      so L4 is not coded here.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin is unfreezable at the protocol layer. No issuer-level or
+      asset-layer freeze is implicated by the 2014-01-27 indictment. No
+      stablecoin admin-method actions existed in 2014 to attach here.
+  - layer: offramp_cex
+    status: measured
+    scope: [bitinstant]
+    note: |
+      Load-bearing layer. BitInstant — Shrem's exchange company — was the
+      operative off-ramp affected by the indictment. The company never
+      resumed operations after Shrem's January 2014 arrest, and Shrem's
+      September 2014 guilty plea and December 2014 sentencing functionally
+      ended any prospect of corporate revival. Coverage status is `measured`
+      because the platform's wind-down is publicly attested even though the
+      DRYRUN row does not yet pin a per-quarter Wayback-frontend timeline.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bitinstant
+    event: bitinstant_ceases_operations_following_ceo_indictment
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2014-09-04T00:00:00Z
+    precision: day
+    delta_hours: 5280
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-bitcoin-exchangers-including-ceo
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-bitcoin-exchangers-including-ceo
+        scope_descriptor:
+          providers: [bitinstant]
+          time_window:
+            - 2014-01-27T00:00:00Z
+            - 2014-12-31T23:59:59Z
+        note: |
+          DOJ SDNY criminal complaint against BitInstant CEO Charlie Shrem,
+          charging conspiracy to commit money laundering and operating an
+          unlicensed money transmitter (BitInstant). The indictment of the
+          CEO together with the BitInstant-as-conduit narrative made
+          continued operations infeasible; BitInstant did not resume service.
+          attribution=plausible (not direct) because the DOJ press release
+          names the criminal exposure but does not itself order a corporate
+          shutdown; the platform wind-down is the downstream corporate
+          consequence with strong temporal coincidence to the criminal
+          process.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1
+        scope_descriptor:
+          providers: [bitinstant]
+          time_window:
+            - 2014-09-04T00:00:00Z
+            - 2014-12-31T23:59:59Z
+        note: |
+          DOJ SDNY guilty-plea press release (2014-09-04) documenting Shrem's
+          plea on the unlicensed-money-transmitter count. This conviction is
+          the legally definitive end-state that made any BitInstant revival
+          legally impossible (Shrem subsequently sentenced 2014-12 to two
+          years). Used as the timestamp anchor for the observed_change row
+          since the plea is the cleanest publicly-pinnable moment for the
+          platform's terminal state. Wayback URL pinned as a stub anchor for
+          this DRYRUN row.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22
+  candidate stubs per user instruction to push remaining backlog to dryrun-
+  complete state): promoted from
+  candidate_triggers/shrem-faiella-bitcoin-exchange-2014.yaml. Authored by
+  LLM agent without personally verifying Wayback/body_hash; origin=
+  human_reviewed required by validator. Real release must replace this
+  DRYRUN marker with a human-verified audit after pinning real archive
+  anchors.
+
+  comparison shape: 1 observed_change layer (offramp_cex, BitInstant wind-
+  down). The 2014-01-27 SDNY indictment of Charlie Shrem (then-CEO of
+  BitInstant + vice-chair of the Bitcoin Foundation) and Robert Faiella
+  (BTCKing, the Silk Road-facing BTC vendor sourced via BitInstant) on
+  money-laundering + unlicensed-money-transmitter counts produced an
+  offramp_cex cascade — BitInstant ceased operations and never resumed
+  service. Shrem pleaded guilty 2014-09-04 and was sentenced 2014-12 to two
+  years. attribution=plausible because the DOJ press release does not order
+  a corporate shutdown; the wind-down is the corporate-policy consequence
+  of CEO indictment + plea. L4 frontend is intentionally NOT coded here —
+  BitInstant's bitinstant.com had been displaying a maintenance-style
+  upgrade notice since the 2013-07 service suspension that predates the
+  enforcement event, and recording the post-suspension page state as an
+  observed_change would conflate a pre-existing pause with the 2014-01-27
+  trigger. Admission tier empirical_case (1 strong-attribution
+  observed_change layer).
+
+  Historical-baseline anchor for the DOJ exchange/MSB enforcement family in
+  the 2013–2016 era, structurally complementary to silk-road-doj-seizure-
+  2013 (marketplace seizure, ~3 months earlier) and a precursor to the
+  2017-07-26 btc-e-doj-2017 exchange indictment + domain seizure. Together
+  with nydfs-bitlicense-2015-06 these four rows establish the pre-OFAC-
+  crypto-SDN baseline for L4 / offramp_cex enforcement cascades in the
+  dataset.
+
+scoped_claim: |
+  "The 2014-01-27 DOJ SDNY indictment of BitInstant CEO Charlie Shrem and
+  BTCKing operator Robert Faiella on money-laundering and unlicensed-money-
+  transmitter counts produced an offramp_cex cascade (BitInstant ceased
+  operations after Shrem's arrest and never resumed service following his
+  2014-09-04 guilty plea). The row claims only this single-layer offramp
+  shutdown observation with attribution=plausible; no L0/L1/L3/L4/asset-
+  onchain effects are coded."
+
+tags:
+  - doj_enforcement
+  - exchange_indictment
+  - unlicensed_money_transmitter
+  - money_laundering
+  - bitinstant
+  - btcking
+  - silk_road_vendor
+  - historical_baseline
+  - pre_ofac_era
+  - offramp_shutdown

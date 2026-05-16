@@ -1,6 +1,6 @@
 # Archetype distribution report
 
-Dataset snapshot: **v0.2.0-rc-dryrun-2** · cutoff `2026-05-16` · commit `f8dc941` · generated `2026-05-16T12:00:00Z` (events: 62)
+Dataset snapshot: **v0.2.0-rc-dryrun-2** · cutoff `2026-05-16` · commit `c6bc9d9` · generated `2026-05-18T10:40:00Z` (events: 83)
 
 ## 1. Classification rules (deterministic, priority-ordered)
 
@@ -25,19 +25,19 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 
 | Archetype | Count | % |
 | --- | ---: | ---: |
-| `asset_only` | 13 | 21.0% |
-| `frontend_only` | 11 | 17.7% |
-| `cex_only` | 19 | 30.6% |
-| `multi_layer` | 7 | 11.3% |
+| `asset_only` | 13 | 15.7% |
+| `frontend_only` | 12 | 14.5% |
+| `cex_only` | 28 | 33.7% |
+| `multi_layer` | 18 | 21.7% |
 | `other_single_layer` | 0 | 0.0% |
-| `null_event` | 12 | 19.4% |
-| **total** | **62** | **100.0%** |
+| `null_event` | 12 | 14.5% |
+| **total** | **83** | **100.0%** |
 
 ### 2a. `multi_layer` signatures
 
 | Signature | Count | Events |
 | --- | ---: | --- |
-| `l4_frontend+offramp_cex` | 3 | `kucoin-doj-2024`, `sec-beaxy-platform-shutdown-2023`, `uk-fca-binance-markets-2021` |
+| `l4_frontend+offramp_cex` | 14 | `belgium-fsma-binance-cease-2023`, `binance-russia-exit-commex-2023`, `bitmex-cftc-doj-2020`, `canada-csa-binance-withdrawal-2023`, `helix-doj-mixer-2020`, `india-fiu-offshore-vda-block-2023`, `kucoin-doj-2024`, `malaysia-sc-binance-disable-2021`, `netherlands-dnb-binance-warning-2021`, `sec-beaxy-platform-shutdown-2023`, `sec-burnside-bitcoin-stock-exchange-2014`, `sec-voorhees-satoshidice-2014`, `singapore-mas-binance-services-2021`, `uk-fca-binance-markets-2021` |
 | `asset_onchain+l4_frontend` | 2 | `chatex-ofac-2021`, `cryptex-ofac-2024` |
 | `asset_onchain+l1_consensus+l3_rpc+l4_frontend+offramp_cex` | 1 | `tornado-cash-ofac-2022` |
 | `asset_onchain+l1_consensus+l3_rpc+l4_frontend` | 1 | `tornado-cash-ofac-delisting-2025` |
@@ -46,20 +46,20 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 
 | Regime | Count | % |
 | --- | ---: | ---: |
-| `synchronous` | 23 | 37.1% |
-| `acute` | 14 | 22.6% |
-| `delayed` | 7 | 11.3% |
-| `lagged` | 6 | 9.7% |
-| `none` | 12 | 19.4% |
+| `synchronous` | 38 | 45.8% |
+| `acute` | 15 | 18.1% |
+| `delayed` | 9 | 10.8% |
+| `lagged` | 9 | 10.8% |
+| `none` | 12 | 14.5% |
 
 ### 2c. Archetype × latency cross-tab
 
 | archetype \ latency | synchronous | acute | delayed | lagged | none | total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `asset_only` | 3 | 5 | 2 | 3 | 0 | 13 |
-| `frontend_only` | 6 | 3 | 1 | 1 | 0 | 11 |
-| `cex_only` | 11 | 2 | 4 | 2 | 0 | 19 |
-| `multi_layer` | 3 | 4 | 0 | 0 | 0 | 7 |
+| `frontend_only` | 7 | 3 | 1 | 1 | 0 | 12 |
+| `cex_only` | 18 | 3 | 4 | 3 | 0 | 28 |
+| `multi_layer` | 10 | 4 | 2 | 2 | 0 | 18 |
 | `other_single_layer` | 0 | 0 | 0 | 0 | 0 | 0 |
 | `null_event` | 0 | 0 | 0 | 0 | 12 | 12 |
 
@@ -75,7 +75,7 @@ Up to 5 events per class, selected by admission tier then slug.
 - `funnull-cdn-ofac-2025` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain` · latency `acute` (t=7.8h)
 - `grinex-garantex-successor-ofac-2025` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain` · latency `acute` (t=21.2h)
 
-### `frontend_only`  (11 events)
+### `frontend_only`  (12 events)
 
 - `alphabay-hansa-doj-2017` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 - `blender-ofac-2022` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `l4_frontend` · latency `delayed` (t=251.6h)
@@ -83,21 +83,21 @@ Up to 5 events per class, selected by admission tier then slug.
 - `cftc-v-ooki-dao-2022` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend` · latency `lagged` (t=6192.0h)
 - `chipmixer-doj-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend` · latency `acute` (t=17.1h)
 
-### `cex_only`  (19 events)
+### `cex_only`  (28 events)
 
 - `binance-4framework-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
+- `bitfinex-cftc-retail-commodity-2016` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `bitzlato-doj-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `blockfi-sec-lending-2022` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `canada-convoy-freeze-2022` · tier `empirical_case` · stratum `S4_nation_state` · signature `offramp_cex` · latency `acute` (t=24.0h)
-- `china-pboc-crypto-ban-2013-12` · tier `empirical_case` · stratum `S4_nation_state` · signature `offramp_cex` · latency `delayed` (t=312.0h)
 
-### `multi_layer`  (7 events)
+### `multi_layer`  (18 events)
 
 - `cryptex-ofac-2024` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l4_frontend` · latency `acute` (t=3.6h)
 - `tornado-cash-ofac-2022` · tier `anchor_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l1_consensus+l3_rpc+l4_frontend+offramp_cex` · latency `acute` (t=2.9h)
-- `chatex-ofac-2021` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain+l4_frontend` · latency `acute` (t=28.2h)
-- `kucoin-doj-2024` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend+offramp_cex` · latency `synchronous` (t=0.0h)
-- `sec-beaxy-platform-shutdown-2023` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend+offramp_cex` · latency `synchronous` (t=0.0h)
+- `belgium-fsma-binance-cease-2023` · tier `empirical_case` · stratum `S4_nation_state` · signature `l4_frontend+offramp_cex` · latency `synchronous` (t=0.0h)
+- `binance-russia-exit-commex-2023` · tier `empirical_case` · stratum `S5_corporate` · signature `l4_frontend+offramp_cex` · latency `synchronous` (t=0.0h)
+- `bitmex-cftc-doj-2020` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend+offramp_cex` · latency `synchronous` (t=0.0h)
 
 ### `other_single_layer`  (0 events)
 
@@ -116,9 +116,9 @@ _No events in this class in the current corpus._
 - `tornado-cash-ofac-delisting-2025` is the dataset's sole reversal event. Archetype `multi_layer` is assigned by the same rule as forward events (changed-layer set); direction is NOT encoded in the archetype. Consumers drawing recovery claims from this row should carry n=1 explicitly.
 - `other_single_layer` is empty in this snapshot (no L0/L1/L3-only singleton). The class remains defined so future data with a L0/L1/L3 singleton does not silently mis-classify.
 - `null_event` count is 12. Each such event carries at least one `observed_no_change` row whose source supplies a falsifiable evidence anchor — per validator rule, any one of `query_hash`, `measurement_ids`, `body_hash`+`body_path`, or a structured `scope_descriptor` is sufficient (not all four, and not necessarily `scope_descriptor`). Reading the null-event count as 'censorship did not happen' still requires checking the per-layer coverage composition in `derived/layer_observability.csv` — absence of observation is NOT absence of phenomenon.
-- `multi_layer` contains 7 events across 4 distinct signature(s). If signature diversity is low, claims about 'multi-layer cascade heterogeneity' should carry that caveat explicitly.
-- `synchronous` (≤1h) bucket: 23 events. **5 have `trigger_is_action=true`** (all `corporate_policy_change` — trigger.timestamp and observed_change.timestamp are identical in the record, so t=0 is a record-level artifact, not a measured delta): `circle-usdc-tornado-2022`, `tether-doj-pig-butchering-freeze-2023`, `tether-dprk-precommit-freeze-2025`, `tether-retroactive-sweep-2023`, `uniswap-frontend-delisting-2023`. The remaining 18 carry distinct external triggers and observed a change within 1h. When reporting latency distributions, aggregate the two subsets separately rather than collapsing them into a single 'synchronous' count.
-- `lagged` (>30d) bucket: 6 events spanning 3 stratum/strata (S1_ofac_sdn, S3_doj_sec_cftc_fiod, S4_nation_state). The group is heterogeneous in trigger type; consumers citing these events should enumerate them individually rather than treat the bucket as a single mechanism. Events: `cftc-v-ooki-dao-2022`, `india-rbi-crypto-ban-2018`, `russia-election-interference-ofac-2020`, `russian-cyber-theft-ofac-2020`, `sec-v-coinbase-2023`, `tornado-cash-ofac-redesignation-2022`.
+- `multi_layer` contains 18 events across 4 distinct signature(s). If signature diversity is low, claims about 'multi-layer cascade heterogeneity' should carry that caveat explicitly.
+- `synchronous` (≤1h) bucket: 38 events. **7 have `trigger_is_action=true`** (all `corporate_policy_change` — trigger.timestamp and observed_change.timestamp are identical in the record, so t=0 is a record-level artifact, not a measured delta): `binance-russia-exit-commex-2023`, `circle-usdc-tornado-2022`, `okx-privacy-token-delist-2024`, `tether-doj-pig-butchering-freeze-2023`, `tether-dprk-precommit-freeze-2025`, `tether-retroactive-sweep-2023`, `uniswap-frontend-delisting-2023`. The remaining 31 carry distinct external triggers and observed a change within 1h. When reporting latency distributions, aggregate the two subsets separately rather than collapsing them into a single 'synchronous' count.
+- `lagged` (>30d) bucket: 9 events spanning 3 stratum/strata (S1_ofac_sdn, S3_doj_sec_cftc_fiod, S4_nation_state). The group is heterogeneous in trigger type; consumers citing these events should enumerate them individually rather than treat the bucket as a single mechanism. Events: `canada-csa-binance-withdrawal-2023`, `cftc-v-ooki-dao-2022`, `india-rbi-crypto-ban-2018`, `netherlands-dnb-binance-warning-2021`, `russia-election-interference-ofac-2020`, `russian-cyber-theft-ofac-2020`, `sec-v-coinbase-2023`, `shrem-faiella-bitcoin-exchange-2014`, `tornado-cash-ofac-redesignation-2022`.
 
 ## 5. Hand-eyeball checklist
 

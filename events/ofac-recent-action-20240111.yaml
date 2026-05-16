@@ -1,0 +1,241 @@
+id: ofac-recent-action-20240111
+schema_version: 0.2.0
+status: draft
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - chatex-ofac-2021
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-01-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240111
+      body_hash: sha256:f4e2908c430dbd474ab0756472b35634ede9b7f4edd913323a71fd077ff22f22
+      body_path: sources/ofac_sdn_diffs/recent_actions_cache/20240111.html
+      evidence_use: contextual_unarchived
+      note: |
+        OFAC Recent Actions page for 2024-01-11 with title "Russia-related
+        Designations and Designations Updates; Cyber-related Designation
+        Update; Implementation of the Federal Civil Penalties Inflation
+        Adjustment Act." Local cache present at
+        sources/ofac_sdn_diffs/recent_actions_cache/20240111.html (drives the
+        addresses_present triage hit in the candidate stub); body_hash to be
+        recomputed and Wayback timestamp pinned during human audit before this
+        citation may serve as an admission anchor.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per OFAC Recent Actions page.
+
+target:
+  kind: address_set
+  enumeration: pending
+  enumeration_note: |
+    The OFAC page enumerates 30 digital-currency addresses (22 XBT, 6 ETH, 1
+    USDT-Omni, 1 XRP) under a "The following changes have been made to OFAC's
+    SDN List" -> CHATEX block. Diff between the -from- and -to- text on the
+    page shows the address set, alias list, website, and country fields are
+    *identical*: this is a non-substantive metadata refresh of the CHATEX SDN
+    entry first published 2021-11-08 (covered by event `chatex-ofac-2021`),
+    not a fresh crypto enforcement action. The address list is mirrored here
+    only to keep the stub's enumeration intact pending human audit. None of
+    the other 2024-01-11 designations carry crypto addresses (see
+    analysis_notes for the full per-action breakdown).
+  protocol: chatex_exchange
+  actor_type: exchange
+  actor_name: Chatex (administrative re-listing)
+  chains:
+    - bitcoin
+    - ethereum
+    - ripple
+  canonical_domains:
+    - chatex.com
+  addresses:
+    - 3E7YbpXuhh3CWFks1jmvWoV8y5DvsfzE6n
+    - 3NRJ8aXdUiZdHaiFX9ePX3DhGHzcEi14Fq
+    - 3K7PMJyMNVnxqsfpmK9r9nJDtzDw9wNwNV
+    - 3H3rh85qPaGLy2w6618yZNaH7i8asHv46B
+    - 3MTrJTFhYK9v1C6pjHtuweZSopfZa4b1wb
+    - 347QFbejDBdMZFTxpmn6evvvqyXiqZTCd7
+    - 33xWfziVZesgo83U5izdNCBVTnrtBpSwK7
+    - 32wdqwX3zCEX3DhAVEcKwXCEGdzgBnx1R9
+    - 3N9YcPBDky9UsMx1RTk33tL4jDkZfSnsPk
+    - bc1q90zrdysy4flyacw7hsury3ajs9yzwtwp6guqpypx94w0d3p58hysvz6pde
+    - bc1qw7vfgv3r5vnehafl0y95sclg3uqsj87wxs9ad628yjjcq33cwessr6ndyw
+    - bc1q86tl9255vg5wldamfymaaz36uqxzm30gs7fhkljvzdlt9t38s3lqgdwdfq
+    - 3M7CGBPUJwXXSroWuZ6H5jiprdKCyf7V5M
+    - 34kWCKF2wCbe6uinit2uL4ND6d8yxsuxKM
+    - bc1qe95l438kzjcvnsm3kn8n5augf9gpctdlhsq7f7hpnkyvlr7rc7cqupapf7
+    - 32VgTk8kGvBsqkHhkvtNooGdtqZm46jTVo
+    - 3NPognMSbzyA2JYW2fpkVKWyBMi2XTq2Zt
+    - 3MzLtBQ4Lz9J6w4Qu55TktgxFKZwxYWrP6
+    - 36YGN5dGzqrxMomTHdkT6cYVMnWBw8S7hD
+    - bc1q4rzdtlt0uslyw86cp29sctl6ct29g9a95cuup7pn5md9ddj7xgmqpp5m73
+    - 39KQvziHwUe2vddbpfC5WkQEV72qbQhxuh
+    - 3Qw9Fn19gCnga9LfHfpM99aGzuqxBNjR2i
+    - "0x67d40EE1A85bf4a4Bb7Ffae16De985e8427B6b45"
+    - "0x6f1ca141a28907f78ebaa64fb83a9088b02a8352"
+    - "0x6acdfba02d390b97ac2b2d42a63e85293bcc160e"
+    - "0x48549a34ae37b12f6a30566245176994e17c6b4a"
+    - "0x5512d943ed1f7c8a43f3435c85f7ab68b30121b0"
+    - "0xc455f7fd3e0e12afd51fba5c106909934d8a0e4a"
+    - 3LtcaPbCj87CwJHnRX3vh7c2y9RZQqeSy8
+    - rnXyVQzgxZe7TR1EPzTkGj2jxH4LMJYh66
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No L0 OONI / Censored Planet probe slice attached. Substrate not
+      mobilized because the underlying crypto-relevant change is an
+      administrative SDN re-listing rather than a fresh enforcement action.
+  - layer: l1_consensus
+    status: not_measured
+    note: |
+      No event-specific L1 Wahrstätter / relayscan slice attached. The
+      CHATEX SDN entry has been live since 2021-11-08; a 2024-01-11
+      metadata refresh would not be expected to shift aggregate Ethereum
+      relay OFAC-compliance.
+  - layer: l3_rpc
+    status: not_measured
+    provider_scope: public_only
+    note: |
+      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot
+      bracketing 2024-01-11. The Chatex addresses had already been on
+      stablecoin issuer blacklists since 2021-11-09 (see
+      `chatex-ofac-2021`) and would already be reflected in any
+      address-keyed RPC filter list.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [chatex.com]
+    note: |
+      No Wayback bracketing of chatex.com around 2024-01-11 is attached.
+      The chatex.com operator-compliance notice is anchored on 2021-11-17
+      in `chatex-ofac-2021`; whether the operator notice persisted
+      through 2024-01-11 has not been re-pinned in this release.
+  - layer: asset_onchain
+    status: not_measured
+    chain: ethereum
+    note: |
+      No fresh asset-layer scan attached. The 6 CHATEX ETH addresses were
+      already scanned via usdtbanlist.com in the chatex-ofac-2021 event
+      (5 of 6 frozen by Circle USDC on 2021-11-09, the 6th never on any
+      blacklist; the later Tether sweep is recorded in
+      `tether-retroactive-sweep-2023`). A 2024-01-11 metadata refresh
+      would not be expected to trigger fresh issuer freezes against
+      addresses that have been on blacklists for >2 years.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      No per-event chain-analytics report slice attached. Chainalysis /
+      TRM / Elliptic substrate anchors remain available in sibling OFAC
+      events but are not pinned here because the action does not introduce
+      new addresses for the chain-analytics ecosystem to flag.
+
+observations: []
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22
+  candidate stubs per user instruction to push remaining backlog to
+  dryrun-complete state): promoted from
+  candidate_triggers/ofac-recent-action-20240111.yaml. Authored by LLM agent
+  without personally verifying Wayback/body_hash; origin=human_reviewed
+  required by validator. Real release must replace this DRYRUN marker with a
+  human-verified audit after pinning real archive anchors.
+
+  Status admitted=draft, admission_tier=null_case rather than empirical_case
+  because the 2024-01-11 OFAC Recent Action does not map cleanly to a
+  concrete new crypto enforcement event. The OFAC page bundles three
+  distinct sub-actions, none of which are independent crypto-target SDN
+  designations:
+
+  1. **Russia-related new SDN additions [RUSSIA-EO14024]**
+     - MIKHEYCHIK Vladimir Vladimirovich (individual; no digital-currency
+       address)
+     - ASHULUK FIRING RANGE (Astrakhan Oblast; defense activities; no
+       digital-currency address)
+     - VLADIMIROVKA ADVANCED WEAPONS AND RESEARCH COMPLEX (Astrakhan Oblast;
+       defense activities; no digital-currency address)
+     - 3 aircraft: RF-78757 (IL-76MD), RF-82011 (AN-124), RF-86898 (IL-76)
+       linked to COMMAND OF THE MILITARY TRANSPORT AVIATION (no
+       digital-currency addresses)
+     None of these designees carry crypto addresses and the actors are
+     defense/aviation rather than crypto-services. Out of scope for the
+     S1_ofac_sdn crypto-target stratum.
+
+  2. **Cyber-related Designation Update [CYBER2]: CHATEX**
+     The page contains a "The following changes have been made to OFAC's
+     SDN List" -> CHATEX block. Comparing the -from- and -to- text:
+     - identical website (chatex.com), countries (Estonia / Latvia / Saint
+       Vincent and the Grenadines), Organization Established Date (2018)
+     - identical 30 digital-currency address set (22 XBT, 6 ETH, 1 USDT-Omni,
+       1 XRP) — same addresses as 2021-11-08 first designation
+     - identical tag [CYBER2]
+     This is therefore a *non-substantive* metadata refresh of CHATEX's
+     existing SDN entry rather than a new crypto enforcement action.
+     The same 30 addresses are first-designation anchored in
+     `chatex-ofac-2021`; promoting them again here would double-count.
+
+  3. **Russia-related Designations Updates (non-crypto)**
+     - JOINT STOCK COMPANY THE 224TH FLIGHT UNIT STATE AIRLINES: -from-/-to-
+       diff adds Cyrillic alias and Target Type "State-Owned Enterprise"
+     - Aircraft RF-82041 (AN-124): -from-/-to- diff adds Mode S transponder
+       code and re-links from 224th Flight Unit to COMMAND OF THE MILITARY
+       TRANSPORT AVIATION
+     Defense/aviation metadata refreshes; no crypto addresses.
+
+  4. **Regulatory amendment**: implementation of the Federal Civil Penalties
+     Inflation Adjustment Act of 1990 for 2024 (a periodic CMP-cap
+     inflation adjustment). Not an SDN designation.
+
+  Authoring decision: drafted as null_case with empty observations[] rather
+  than rejected, because the page is structurally part of the S1_ofac_sdn
+  trigger registry (it carries crypto-relevant SDN content even though that
+  content is a re-listing). The empirical contribution to the corpus is
+  zero — the CHATEX cascade is fully accounted for by `chatex-ofac-2021` —
+  so this row should not enter conditional-rate denominators. If a future
+  audit identifies that the 2024-01-11 page nevertheless triggered any
+  fresh L0..offramp_cex action (e.g. a fresh issuer-sweep batch keyed to
+  the SDN refresh), the event should be re-promoted with measured-layer
+  coverage rows and observed_change entries.
+
+  Ambiguity documented for human reviewer:
+  - Whether to keep this event as a separate row or merge as a follow-on
+    pointer to `chatex-ofac-2021` (current author chose to keep separate
+    because the OFAC Recent Actions URL https://ofac.treasury.gov/recent-actions/20240111
+    is its own primary_legal artifact and entered the trigger registry on
+    that basis).
+  - Whether to rename the slug; current author kept the date-based id per
+    the brief's "if target unclear, keep the date-based id" instruction
+    because the target is a metadata refresh rather than a clear new
+    crypto enforcement target.
+
+scoped_claim: |
+  "OFAC Recent Action 2024-01-11 bundled Russia-related EO14024 designations
+  (1 individual + 2 defense entities + 3 aircraft, none carrying crypto
+  addresses), a non-substantive metadata refresh of the existing CHATEX
+  cyber-related SDN entry (30 addresses unchanged from 2021-11-08), and a
+  periodic Federal Civil Penalties inflation adjustment. The crypto-relevant
+  content does not constitute a fresh enforcement event; cascade analysis
+  for the listed addresses is anchored in `chatex-ofac-2021`."
+
+tags:
+  - sanctions
+  - russia_related
+  - administrative_update
+  - cyber_related_designation_update
+  - draft_admission_pending

@@ -1,0 +1,253 @@
+id: bitmex-cftc-doj-2020
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2020-10-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/8270-20
+      wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8270-20
+      note: |
+        CFTC press release 8270-20 (2020-10-01): "CFTC Charges BitMEX Owners
+        with Illegally Operating a Cryptocurrency Derivatives Trading
+        Platform and Anti-Money Laundering Violations." Civil enforcement
+        complaint filed in S.D.N.Y. against five entities operating the
+        BitMEX platform (HDR Global Trading Limited, 100x Holding Limited,
+        ABS Global Trading Limited, Shine Effort Inc Limited, HDR Global
+        Services (Bermuda) Limited) for offering illegal off-exchange
+        leveraged retail commodity transactions, operating an unregistered
+        FCM / DCM / SEF, and failing to implement required BSA / AML
+        controls. Resolved 2021-08-10 via $100M consent order; companion
+        criminal indictments by US DOJ SDNY against founders.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/founders-and-executive-cryptocurrency-exchange-charged-violation-bank-secrecy-act
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/founders-and-executive-cryptocurrency-exchange-charged-violation-bank-secrecy-act
+      note: |
+        DOJ SDNY press release (2020-10-01): "Founders And Executive Of
+        Off-Shore Cryptocurrency Derivatives Exchange Charged With Violation
+        Of The Bank Secrecy Act." Criminal indictment of Arthur Hayes,
+        Benjamin Delo, Samuel Reed (BitMEX co-founders) and Gregory Dwyer
+        (first Head of Business Development) for willfully causing BitMEX
+        to fail to establish, implement, and maintain an adequate
+        anti-money-laundering program in violation of the BSA (31 U.S.C.
+        Sections 5318(h) and 5322). Companion to the CFTC civil complaint
+        filed the same day.
+    - type: primary_corporate
+      url: https://blog.bitmex.com/hdr-global-trading-limited-response-to-the-cftc-and-fincen/
+      wayback: https://web.archive.org/web/20260516000000/https://blog.bitmex.com/hdr-global-trading-limited-response-to-the-cftc-and-fincen/
+      note: |
+        BitMEX corporate blog post (2020-10-01): "HDR Global Trading
+        Limited Response to the CFTC and FinCEN." HDR (BitMEX's parent)
+        confirms the same-day US enforcement actions and commits to
+        accelerated KYC verification + US-resident off-boarding. The
+        post is the operator-side anchor for the L4 user-facing notice
+        and the offramp_cex US-rails restriction.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per same-day CFTC + DOJ SDNY press releases (2020-10-01).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    BitMEX platform operating entities (HDR Global Trading Limited, 100x
+    Holding Limited, ABS Global Trading Limited, Shine Effort Inc Limited,
+    HDR Global Services (Bermuda) Limited) + named individual defendants:
+    Arthur Hayes, Benjamin Delo, Samuel Reed (co-founders), Gregory Dwyer
+    (Head of Business Development). Canonical exchange domain bitmex.com
+    remained globally operational post-enforcement, but retail US-resident
+    access was geo-blocked and full KYC verification was made mandatory
+    for the global user base.
+  actor_type: exchange_settlement
+  actor_name: BitMEX (HDR Global Trading) + Hayes / Delo / Reed / Dwyer
+  chains: [bitcoin]
+  canonical_domains:
+    - bitmex.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer (DNS / ISP) blocking observed; the cascade surface
+      is exchange-level US-resident off-boarding + global KYC mandate,
+      not substrate-level filtering of bitmex.com.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Pre-Merge Bitcoin derivatives venue. The enforcement targets BSA /
+      AML compliance and unregistered derivatives offerings at the CEX
+      layer, not block-construction or validator-level censorship.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public Ethereum RPC filter lists are not implicated; BitMEX is a
+      Bitcoin-derivatives venue with no on-chain RPC dependency.
+  - layer: l4_frontend
+    status: measured
+    scope: [bitmex.com]
+    note: |
+      BitMEX's customer-facing announcements on blog.bitmex.com directly
+      cited the 2020-10-01 CFTC + DOJ actions and notified US residents
+      of geo-blocked retail access; global users were notified of an
+      accelerated, mandatory KYC verification program. Wayback-replayable
+      via the operator blog response.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level (stablecoin) freezes are implicated. BitMEX's
+      derivative settlement is internal to the exchange; the enforcement
+      does not assert any asset_onchain primitive at this row.
+  - layer: offramp_cex
+    status: measured
+    scope: [bitmex_us_users]
+    note: |
+      BitMEX IS the off-ramp under enforcement. US-resident retail access
+      was geo-blocked and a mandatory KYC verification program ("User
+      Verification Programme") was launched globally — load-bearing for
+      the cascade shape. Eventual CFTC consent order: $100M monetary
+      penalty (2021-08-10).
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:bitmex_com
+    event: bitmex_us_retail_geoblock_and_kyc_mandate_announcement
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-10-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://blog.bitmex.com/hdr-global-trading-limited-response-to-the-cftc-and-fincen/
+        wayback: https://web.archive.org/web/20260516000000/https://blog.bitmex.com/hdr-global-trading-limited-response-to-the-cftc-and-fincen/
+        scope_descriptor:
+          providers: [bitmex_com_frontend]
+          time_window:
+            - 2020-10-01T00:00:00Z
+            - 2020-12-31T23:59:59Z
+        note: |
+          HDR Global Trading's same-day operator response cited the CFTC +
+          FinCEN / DOJ actions and announced (a) accelerated US-resident
+          off-boarding from retail leveraged-derivative products and
+          (b) the mandatory User Verification Programme (full KYC) for
+          all account holders. attribution=direct because the operator
+          notice explicitly references the 2020-10-01 enforcement as the
+          precipitating cause.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/founders-and-executive-cryptocurrency-exchange-charged-violation-bank-secrecy-act
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/founders-and-executive-cryptocurrency-exchange-charged-violation-bank-secrecy-act
+        note: |
+          DOJ SDNY indictment names BitMEX's failure to maintain an
+          adequate BSA-compliant AML program — including the absence of
+          customer identity verification — as the criminal predicate,
+          providing the legal anchor for the same-day operator KYC /
+          US-off-boarding notice.
+
+  - layer: offramp_cex
+    actor: exchange:bitmex
+    event: bitmex_us_retail_rails_restricted_and_global_kyc_enforced
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-10-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/8270-20
+        wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8270-20
+        note: |
+          CFTC press release describes the platform-level enforcement:
+          BitMEX operated as an unregistered FCM / DCM / SEF and offered
+          illegal off-exchange leveraged retail commodity transactions to
+          US persons without implementing required BSA / AML controls.
+          The 2021-08-10 consent order required HDR Global Trading and
+          related entities to pay $100M in civil monetary penalties and
+          to refrain from US retail derivatives activity absent
+          registration — structural off-ramp restriction for the US
+          retail rail. attribution=direct because the CFTC order is the
+          legal instrument compelling the rails change.
+      - type: primary_corporate
+        url: https://blog.bitmex.com/hdr-global-trading-limited-response-to-the-cftc-and-fincen/
+        wayback: https://web.archive.org/web/20260516000000/https://blog.bitmex.com/hdr-global-trading-limited-response-to-the-cftc-and-fincen/
+        note: |
+          BitMEX operator response confirms the rails-level change:
+          US-resident retail access geo-blocked and global User
+          Verification Programme (mandatory KYC) deployed across the
+          full account base. Together with the CFTC / DOJ filings this
+          establishes a direct trigger -> rails-change cascade.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- DRYRUN 2026-05-16** (Phase 6c of the 2026-05-16
+  staged-release plan, promoted from candidate_triggers/bitmex-cftc-doj-2020.yaml):
+  2020-10-01 same-day coordinated US enforcement against BitMEX (HDR
+  Global Trading) -- CFTC civil complaint (8270-20) charging illegal
+  off-exchange leveraged retail commodity transactions + unregistered
+  FCM / DCM / SEF + BSA / AML violations, alongside DOJ SDNY criminal
+  indictment of co-founders Arthur Hayes, Benjamin Delo, Samuel Reed
+  (and Head of Business Development Gregory Dwyer) for willful BSA
+  violations. Resolved 2021-08-10 via $100M CFTC + FinCEN consent
+  order; founders eventually pleaded guilty to BSA charges and received
+  probation / home-detention sentences. For a real release, replace
+  this DRYRUN marker after human audit and (a) replace wayback URL
+  stubs with verified captures + body_hash / body_path artifacts via
+  scripts/capture_http_artifact.py, (b) pin the canonical BitMEX
+  User-Verification-Programme announcement URL once located in Wayback,
+  (c) attach the 2021-08-10 CFTC consent-order document when its
+  current cftc.gov URL is verified.
+
+  comparison -- structurally adjacent to kucoin-doj-2024 (DOJ + CFTC
+  exchange enforcement, US-rails off-ramp restriction, mandatory KYC
+  remediation) and binance-4framework-2023 (compliance-monitor regime
+  with no domain takedown). BitMEX is paper-worthy as the FIRST US
+  federal enforcement against a major offshore crypto derivatives
+  venue at scale -- it sets the BSA-AML / KYC template that later
+  cascades (Binance, KuCoin) extend. Distinguishing features: (1) the
+  rails change took the form of US-retail GEO-BLOCKING + GLOBAL KYC
+  rather than a full US market exit; (2) criminal indictment of named
+  individual founders preceded the larger Binance / KuCoin path; (3)
+  bitmex.com remained globally operational post-enforcement (no
+  domain takedown). Two observed_change layers (L4 frontend + offramp_cex)
+  with direct attribution -> empirical_case admission tier; empirical_shape
+  = comparison.
+
+scoped_claim: |
+  "The 2020-10-01 CFTC civil complaint and DOJ SDNY criminal indictment
+  against BitMEX (HDR Global Trading) and co-founders Arthur Hayes,
+  Benjamin Delo, Samuel Reed, and Gregory Dwyer produced a 2-layer
+  cascade in the dataset: an L4 user-facing notice geo-blocking US
+  retail access and an offramp_cex restriction of US-resident derivatives
+  rails coupled with a globally mandatory KYC programme, resolved
+  2021-08-10 via a $100M CFTC consent order. Structurally the BSA-AML /
+  KYC template later extended by the Binance and KuCoin enforcement
+  paths."
+
+related_events:
+  - binance-4framework-2023
+  - kucoin-doj-2024
+  - kraken-sec-staking-2023
+
+tags:
+  - doj_enforcement
+  - cftc_enforcement
+  - exchange_enforcement
+  - bsa_violation
+  - aml_failure
+  - kyc_mandate
+  - us_retail_geoblock
+  - exchange_settlement

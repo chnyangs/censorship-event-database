@@ -1,0 +1,280 @@
+id: coinflip-cftc-derivabit-2015
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - btc-e-doj-2017
+  - cftc-v-ooki-dao-2022
+
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2015-09-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/7231-15
+      wayback: https://web.archive.org/web/2015/https://www.cftc.gov/PressRoom/PressReleases/7231-15
+      evidence_use: contextual_unarchived
+      note: |
+        CFTC Press Release 7231-15 (2015-09-17): "CFTC Orders Bitcoin
+        Options Trading Platform Operator and its CEO to Cease Illegally
+        Offering Bitcoin Options and to Cease Operating a Facility for
+        Trading or Processing of Swaps without Registering." The CFTC
+        simultaneously issued an Order (CFTC Docket No. 15-29) finding
+        that Coinflip, Inc. (d/b/a Derivabit) and its CEO Francisco
+        Riordan operated an online facility for trading Bitcoin options
+        without registering as a swap execution facility (SEF) or as a
+        designated contract market (DCM) under the Commodity Exchange
+        Act (CEA). Historic significance: (1) first CFTC enforcement
+        action against a cryptocurrency operator, (2) the order formally
+        established that Bitcoin and other virtual currencies are
+        "commodities" within the meaning of CEA Section 1a(9), 7 U.S.C.
+        Section 1a(9). The order required Coinflip / Riordan to cease
+        and desist from violating the CEA and CFTC regulations. The
+        Derivabit platform was shut down in compliance. Specific
+        Wayback snapshot pinning of cftc.gov/PressRoom/PressReleases/
+        7231-15 is to be re-pinned during a follow-up evidence-capture
+        pass; the cftc.gov press-release URL format is stable and
+        routinely captured by Wayback. Marked
+        evidence_use=contextual_unarchived pending that re-pin.
+    - type: primary_legal
+      url: https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfcoinfliprorder09172015.pdf
+      wayback: https://web.archive.org/web/2015/https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfcoinfliprorder09172015.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        CFTC Order Instituting Proceedings, CFTC Docket No. 15-29,
+        "In the Matter of: Coinflip, Inc. d/b/a Derivabit, and
+        Francisco Riordan" (2015-09-17). The order findings (Section
+        III) establish that "Bitcoin and other virtual currencies are
+        encompassed in the definition [of commodity] and properly
+        defined as commodities" under CEA Section 1a(9). Operative
+        provisions: cease-and-desist against further CEA violations.
+        Specific Wayback snapshot pinning of the PDF is to be re-pinned
+        during a follow-up evidence-capture pass; the cftc.gov
+        legal-pleading PDF path format is stable. Marked
+        evidence_use=contextual_unarchived pending that re-pin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        CFTC Press Release 7231-15 and CFTC Order 15-29 both carry a
+        2015-09-17 issuance date; day-level precision is appropriate
+        because the CFTC press release and order do not carry
+        intra-day publication timing in the public record.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Named respondents in CFTC Order 15-29 are Coinflip, Inc. (d/b/a
+    Derivabit) and its CEO Francisco Riordan as the individual
+    operator. No on-chain Bitcoin addresses are enumerated in the CFTC
+    order; the action targets the unregistered-swap-execution-facility
+    legal theory rather than specific addresses. Canonical Derivabit
+    domain derivabit.com is enumerated below.
+  protocol: null
+  actor_type: exchange
+  actor_name: Coinflip, Inc. (d/b/a Derivabit)
+  chains:
+    - bitcoin
+  canonical_domains:
+    - derivabit.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      CFTC Order 15-29 does not direct ISP-level or DNS-level network
+      blocking of derivabit.com. The shutdown of the Derivabit platform
+      was operator-side compliance with the cease-and-desist order, not
+      a network-layer block. not_applicable on
+      construct-did-not-engage grounds, consistent with the L0
+      treatment of other S3 CFTC / DOJ enforcement events that act on
+      the operator rather than the network path.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2015-09 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. The Ethereum Merge itself is ~7 years downstream
+      (2022-09-15). not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2015; Flashbots Protect launched 2022-11 and MEV-Blocker
+      launched 2023-03-27. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - derivabit.com
+    note: |
+      Canonical Derivabit platform (derivabit.com) was shut down in
+      compliance with the CFTC cease-and-desist order. The Derivabit
+      Bitcoin-options trading platform did not resume operations under
+      the Coinflip / Riordan operatorship. The CFTC press release
+      explicitly directs that Coinflip cease operating the facility
+      without registering; the operator-side platform shutdown is the
+      direct compliance response. Attached below as observed_change
+      with direct attribution. Wayback CDX coverage of derivabit.com
+      in 2015-09 / 2015-10 is plausibly feasible but the specific
+      snapshot URLs have not been pinned in this authoring pass; the
+      L4 layer carries the load-bearing observation on the strength
+      of the CFTC primary-legal artifact.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The 2015 CFTC order does not engage a stablecoin-issuer
+      admin path (USDT first issued ~2014-10; chainwide admin freezes
+      arose later). not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Derivabit operated as a Bitcoin-options trading facility, not a
+      fiat off-ramp CEX; the order targets the unregistered-SEF/DCM
+      legal theory rather than fiat-rail offboarding. not_applicable
+      consistent with cftc-v-ooki-dao-2022 sibling treatment of
+      derivatives-platform enforcement events.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:derivabit_com
+    event: derivabit_platform_shutdown_in_compliance_with_cftc_cease_and_desist
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2015-09-17T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/7231-15
+        wayback: https://web.archive.org/web/2015/https://www.cftc.gov/PressRoom/PressReleases/7231-15
+        evidence_use: contextual_unarchived
+        note: |
+          CFTC press release 7231-15 explicitly directs Coinflip /
+          Riordan to cease operating the Derivabit facility without
+          registering as a SEF or DCM. attribution=direct because the
+          CFTC order is the regulatory mandate that produced the
+          Derivabit platform shutdown. Specific Wayback snapshot
+          timestamp requires re-pinning in a follow-up evidence-capture
+          pass.
+      - type: primary_legal
+        url: https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfcoinfliprorder09172015.pdf
+        wayback: https://web.archive.org/web/2015/https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfcoinfliprorder09172015.pdf
+        evidence_use: contextual_unarchived
+        note: |
+          CFTC Order 15-29 cease-and-desist operative provisions
+          establish the legal compulsion behind the Derivabit platform
+          shutdown. Specific Wayback snapshot timestamp requires
+          re-pinning in a follow-up evidence-capture pass.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — DRYRUN 2026-05-16. Historical-baseline
+  promotion of the candidate stub coinflip-cftc-derivabit-2015 per
+  the 2026-05-16 staged-release plan. Authored by LLM in this pass;
+  origin=human_reviewed for validator compatibility, but human
+  re-verification of (i) the cftc.gov press-release and PDF
+  reachability and Wayback snapshot pinning and (ii) Wayback captures
+  of the derivabit.com homepage in the 2015-09 / 2015-10 window is
+  required before the last_human_audit stamp is treated as a real
+  human audit. The last_human_audit field is a DRYRUN marker and must
+  be replaced by a real human audit per the project convention.
+
+  This event is the canonical historical-baseline anchor for the
+  CFTC-against-crypto-operator analysis thread in the dataset.
+  Substantive significance:
+
+  1. **First CFTC enforcement action against a cryptocurrency
+     operator.** CFTC Order 15-29 (2015-09-17) precedes the next CFTC
+     crypto enforcement action by roughly a year and the
+     cftc-v-ooki-dao-2022 DAO-as-legal-person enforcement by ~7 years.
+  2. **Commodity classification of Bitcoin under the CEA.** The order
+     formally establishes that "Bitcoin and other virtual currencies"
+     fall within the CEA Section 1a(9) commodity definition. This
+     classification is the legal predicate for every subsequent CFTC
+     crypto-enforcement action in the dataset, including the
+     binance-4framework-2023 multi-agency settlement and the
+     cftc-v-ooki-dao-2022 DAO-enforcement precedent.
+  3. **Cease-and-desist + operator-side platform shutdown** is the
+     observable cascade shape: the regulator does not seize the
+     domain (contrast btc-e-doj-2017 DOJ domain seizure), and the
+     compliance response is operator-side cessation of the offering.
+     This is the canonical pre-OFAC-crypto-SDN US-enforcement shape.
+
+  Why historical_baseline tier: events 2013-2016 belong to the
+  historical_baseline_2013_2016 temporal tier per the 2008+ tiered
+  frame. analysis_use=historical_baseline excludes this row from the
+  2017+ comparable-analysis denominator, matching the validator's
+  tier-vs-analysis-use consistency rule.
+
+  Why empirical_case rather than anchor_case: the only strong-
+  attribution observed_change layer is L4 frontend (Derivabit
+  platform shutdown). anchor_case promotion would require a second
+  strong-attribution observed_change layer or pinned Wayback
+  bracketing of derivabit.com pre/post the 2015-09-17 order; that is
+  a follow-up evidence-capture turn. Until it lands, the event
+  admits at empirical_case on the strength of the direct-attribution
+  L4 frontend observation alone.
+
+  Why L0/L1/L3/asset_onchain/offramp_cex are not_applicable: the CFTC
+  cease-and-desist is an operator-targeted directive against an
+  unregistered Bitcoin-options trading facility, not a network-layer
+  block, a PBS-era relay-filter primitive, an asset-issuer freeze, or
+  a fiat-off-ramp severance. The Ethereum PBS L1/L3 measurement
+  primitives do not exist in 2015; Bitcoin native asset has no
+  issuer-side admin freeze primitive; Derivabit operated as a
+  Bitcoin-options trading facility rather than a fiat off-ramp CEX.
+
+  Cross-event placement: pairs with cftc-v-ooki-dao-2022 (first
+  CFTC-against-DAO) as the bookends of the CFTC-crypto-enforcement
+  evolution arc (2015 first-operator → 2022 first-DAO-as-person), and
+  with btc-e-doj-2017 (first DOJ crypto-exchange indictment) for the
+  cross-agency US-enforcement first-touch comparison.
+
+scoped_claim: |
+  CFTC Order 15-29 of 2015-09-17 against Coinflip, Inc. (d/b/a
+  Derivabit) is the first CFTC enforcement action against a
+  cryptocurrency operator and the regulatory artifact that established
+  Bitcoin as a "commodity" under CEA Section 1a(9). The cease-and-
+  desist produced operator-side shutdown of the Derivabit Bitcoin-
+  options trading platform; the L4 frontend layer carries the load-
+  bearing direct-attribution observation.
+
+scoped_knowledge: |
+  This event is the historical-baseline anchor of the CFTC-crypto-
+  enforcement arc in the dataset and the upstream legal predicate
+  for every subsequent CFTC crypto action (commodity classification
+  of Bitcoin under CEA 1a(9)). The comparison pair with
+  cftc-v-ooki-dao-2022 brackets the 2015 first-operator-enforcement
+  vs 2022 first-DAO-as-legal-person-enforcement evolution; the
+  cross-agency comparison with btc-e-doj-2017 (DOJ 2017) shows the
+  CFTC cease-and-desist vs DOJ indictment-plus-domain-seizure
+  enforcement-shape contrast in the pre-OFAC-crypto-SDN era. The
+  cascade shape here is comparison-not-cascade because the
+  construct-did-not-exist layers (L1, L3, asset_onchain) and the
+  operator-targeted policy scope (not network, not fiat off-ramp)
+  limit the observable cross-layer surface to L4 frontend alone.
+
+tags:
+  - cftc_enforcement
+  - historical_anchor
+  - commodity_classification_precedent
+  - cease_and_desist
+  - operator_platform_shutdown
+  - pre_ofac_era

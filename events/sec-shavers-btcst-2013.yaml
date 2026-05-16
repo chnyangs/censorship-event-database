@@ -1,0 +1,210 @@
+id: sec-shavers-btcst-2013
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - btc-e-doj-2017
+  - silk-road-doj-seizure-2013
+  - blockfi-sec-lending-2022
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2013-07-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf
+      wayback: https://web.archive.org/web/2013/https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        SEC civil complaint filed 2013-07-23 in the U.S. District Court for the
+        Eastern District of Texas, Sherman Division, against Trendon T. Shavers
+        and Bitcoin Savings and Trust (BTCST). The complaint alleges Shavers
+        operated a Bitcoin-denominated Ponzi scheme from approximately 2011
+        through 2012, soliciting investors via the Bitcoin Forum under the alias
+        "pirateat40" and promising up to 7% weekly interest on Bitcoin deposits.
+        BTCST raised approximately 700,000 BTC in investor funds before
+        collapsing in August 2012. Marked evidence_use=contextual_unarchived
+        because the authoring LLM agent did not personally pin a Wayback snapshot
+        timestamp or compute a body_hash for the PDF; the SEC litigation-PDF URL
+        format is stable and routinely captured by Wayback, but the specific
+        snapshot timestamp is to be re-pinned during human audit before this
+        citation may serve as an admission anchor in its own right. Provisional
+        Wayback anchor uses Wayback Machine year-prefix lookup.
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2013-132
+      wayback: https://web.archive.org/web/2013/https://www.sec.gov/news/press-release/2013-132
+      evidence_use: contextual_unarchived
+      note: |
+        SEC press release 2013-132 ("SEC Charges Texas Man With Running
+        Bitcoin-Denominated Ponzi Scheme") announcing the civil complaint
+        against Trendon T. Shavers and Bitcoin Savings and Trust. Names the
+        E.D. Tex. venue, the 7%/week promised return structure, and the
+        approximately 700,000 BTC raised. First major SEC enforcement action
+        against a Bitcoin-denominated investment scheme. Marked
+        evidence_use=contextual_unarchived pending a human-audit Wayback re-pin
+        and body_hash capture. Provisional Wayback anchor uses Wayback Machine
+        year-prefix lookup.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per the 2013-07-23 SEC press release and the
+        contemporaneous filing date stamped on the E.D. Tex. civil complaint.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Bitcoin Savings and Trust (BTCST) entity plus Trendon T. Shavers
+    individual (alias "pirateat40"). No on-chain BTC addresses are
+    enumerated at this event level; the ~700,000 BTC raised across the
+    2011-2012 scheme period is referenced in the complaint but specific
+    deposit/withdrawal cluster addresses are not pinned here. BTCST was
+    operated as an unregistered investment scheme advertised on the
+    Bitcoin Forum (bitcointalk.org); it had no public canonical exchange
+    domain in the conventional sense, so canonical_domains is empty.
+  actor_type: bitcoin_denominated_investment_scheme
+  actor_name: Bitcoin Savings and Trust (BTCST) / Trendon T. Shavers
+  chains: [bitcoin]
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      BTCST was promoted through forum posts on the Bitcoin Forum
+      (bitcointalk.org) rather than via a canonical operator-controlled
+      website. No ISP-level reachability question attaches to the
+      2013-07-23 SEC civil filing; standard public-web L0 instruments
+      (Censored Planet, OONI) do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2013 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. The Ethereum Merge itself is ~9 years downstream
+      (2022-09-15). not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC compliance
+      substrate that the L3 layer measures did not exist in 2013;
+      Flashbots Protect launched 2022-11. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      BTCST had no operator-controlled canonical frontend domain to seize
+      or take down; the scheme operated through bitcointalk.org forum
+      posts under the "pirateat40" alias and direct BTC deposits. No L4
+      surface attaches to the 2013-07-23 SEC civil filing.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The SEC civil complaint does not engage a stablecoin-issuer
+      admin path. not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - bitcoin_savings_and_trust
+    note: |
+      BTCST is the load-bearing layer for this event: an operator-state
+      change at a Bitcoin-denominated investment scheme treated by this
+      dataset as an offramp-class entity (centralized custodian of
+      depositor BTC offering nominal yield, structurally analogous to
+      crypto-lending platforms tracked elsewhere in the offramp_cex
+      column). The 2013-07-23 SEC civil filing alleging Ponzi operation,
+      coupled with the subsequent court-ordered asset freeze and
+      receivership, ended BTCST as an operating entity. Marked measured;
+      load-bearing observation attached below as
+      observation_kind=observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: investment_scheme:bitcoin_savings_and_trust
+    event: sec_civil_complaint_filed_against_btcst_operator
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2013-07-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf
+        wayback: https://web.archive.org/web/2013/https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf
+        evidence_use: contextual_unarchived
+        note: |
+          SEC civil complaint (E.D. Tex.) is the legal instrument naming
+          Trendon T. Shavers and Bitcoin Savings and Trust as defendants
+          and seeking injunctive relief, disgorgement, and civil
+          penalties for the alleged Bitcoin-denominated Ponzi scheme.
+          attribution=direct because the SEC complaint names the
+          operator-state change (cessation as an operating investment
+          scheme) and the court order to freeze BTCST assets followed
+          directly from this filing. Provisional Wayback anchor; specific
+          snapshot timestamp requires human-audit re-pinning.
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2013-132
+        wayback: https://web.archive.org/web/2013/https://www.sec.gov/news/press-release/2013-132
+        evidence_use: contextual_unarchived
+        note: |
+          SEC press release 2013-132 corroborates the complaint filing
+          and characterizes the action as the first major SEC enforcement
+          against a Bitcoin-denominated investment scheme. Marked
+          evidence_use=contextual_unarchived pending Wayback re-pin.
+          Provisional Wayback anchor uses year-prefix lookup.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/sec-shavers-btcst-2013.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/asset_onchain
+  are all not_applicable because BTCST had no operator-controlled frontend or
+  ISP-level reachability surface, the Bitcoin protocol layers tracked by this
+  dataset did not exist in their measured forms in 2013, and Bitcoin native
+  asset has no issuer-side freeze primitive. The single load-bearing
+  observation is the operator-state change at the BTCST scheme triggered by
+  the 2013-07-23 SEC civil filing, attribution=direct via the primary-legal
+  SEC complaint and press release.
+
+  Historical-baseline placement: this is the earliest SEC enforcement action
+  against a Bitcoin-denominated investment scheme in the dataset, predating
+  the 2017-07-26 BTC-e DOJ indictment (the first crypto-exchange enforcement
+  event in the comparable corpus) by ~4 years. Establishes the pre-OFAC,
+  pre-comparable-corpus baseline for SEC-rooted offramp-class enforcement.
+  Cross-temporal sibling of the 2022-02-14 BlockFi SEC lending-product
+  settlement (blockfi-sec-lending-2022): both events code an offramp_cex
+  operator/product restriction triggered by an SEC action, separated by
+  ~8.5 years and bracketing the SEC's escalating posture toward
+  centralized crypto-yield products.
+
+scoped_claim: |
+  "The 2013-07-23 SEC civil complaint against Trendon T. Shavers and Bitcoin
+  Savings and Trust ended BTCST as an operating Bitcoin-denominated investment
+  scheme via subsequent court-ordered asset freeze and receivership; the row
+  claims only this single-layer offramp_cex operator-state-change observation
+  and does not assert frontend, network, RPC, or on-chain asset effects."
+
+tags:
+  - sec_enforcement
+  - bitcoin_denominated_scheme
+  - ponzi_scheme
+  - historical_anchor
+  - pre_ofac_era
+  - centralized_platform_restriction

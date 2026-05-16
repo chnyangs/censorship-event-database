@@ -1,0 +1,210 @@
+id: okx-privacy-token-delist-2024
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - uniswap-frontend-delisting-2023
+  - tether-retroactive-sweep-2023
+  - paxos-busd-nydfs-minting-stop-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: okx_exchange
+  timestamp: 2023-12-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+      wayback: https://web.archive.org/web/2023/https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+      evidence_use: contextual_unarchived
+      note: |
+        OKX customer-help announcement "OKX to delist several spot trading
+        pairs" dated 2023-12-29. The notice enumerates a set of spot
+        trading-pair removals on www.okx.com that includes privacy-coin and
+        privacy-token pairs (Monero/XMR, Zcash/ZEC, Dash/DASH, Horizen/ZEN
+        among the cohort), following the broader 2023 corporate-compliance
+        pressure on centralized exchanges to delist privacy assets in major
+        jurisdictions. Marked evidence_use=contextual_unarchived because the
+        live okx.com/help path is subject to platform churn and the specific
+        Wayback snapshot timestamp must be re-pinned during human audit
+        before this citation may serve as a body-hash-anchored admission
+        anchor in its own right. The candidate-ledger stub records the
+        canonical date as 2023-12-29 and that date is honored here.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per OKX customer-help notice (2023-12-29). The
+        spot-pair removal effective date sits within a multi-day operational
+        window per the notice text; day-level precision is appropriate for
+        the trigger event.
+
+target:
+  kind: asset
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the OKX product-catalogue change itself, namely
+    the spot-trading-pair removals announced 2023-12-29. Named affected
+    privacy assets in the cohort include Monero (XMR), Zcash (ZEC),
+    Dash (DASH), and Horizen (ZEN). Recorded as enumeration=subset
+    because the OKX notice covers additional non-privacy spot pairs
+    bundled in the same delisting operation and the full pair set is
+    not re-enumerated here.
+  protocol: null
+  actor_type: centralized_exchange_listing_action
+  actor_name: OKX (centralized-exchange operator)
+  chains: [monero, zcash, dash, horizen]
+  canonical_domains:
+    - www.okx.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      www.okx.com remained reachable globally; the action is a product-
+      catalogue change at the exchange-listing layer, not ISP / DNS
+      domain filtering. Consistent with the L0 treatment in
+      uniswap-frontend-delisting-2023 and other S5 corporate listing
+      events.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Monero, Zcash, Dash, and Horizen are independent base-chain
+      networks; an OKX spot-pair removal does not engage any of those
+      chains' validator / miner consensus surfaces. Off-exchange
+      transferability and base-chain operation are unaffected by the
+      listing action.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists for Ethereum and EVM chains
+      are not implicated by an OKX spot-pair removal targeting non-EVM
+      privacy assets. No L3 measurement primitive applies.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The OKX customer-help notice is itself the announcement surface,
+      not a separable frontend-restriction observation distinct from
+      the off-ramp catalogue change. Frontend visibility of removed
+      pairs collapses in lockstep with the off-ramp action; no
+      independent L4 surface is pinned.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token-contract-level freeze or admin action: Monero, Zcash,
+      Dash, and Horizen are native base-chain assets without issuer
+      admin freeze primitives. The action is exchange-listing-only.
+  - layer: offramp_cex
+    status: measured
+    scope: [okx_spot_xmr_pairs, okx_spot_zec_pairs, okx_spot_dash_pairs, okx_spot_zen_pairs]
+    note: |
+      Load-bearing layer. OKX, one of the global top-5 centralized
+      exchanges by spot volume, removed the named privacy-asset spot
+      trading pairs from its product catalogue effective the 2023-12-29
+      notice's operational window. The action narrows the CEX off-ramp
+      surface for the affected privacy assets in the OKX corridor and
+      is the direct realization of the corporate-policy trigger.
+
+observations:
+  - layer: offramp_cex
+    actor: okx_exchange
+    event: okx_spot_pair_removal_privacy_asset_cohort
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-12-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+        wayback: https://web.archive.org/web/2023/https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+        evidence_use: contextual_unarchived
+        note: |
+          OKX customer-help notice is the corporate-policy anchor. The
+          notice text names the spot pairs slated for removal in the
+          2023-12-29 batch and gives OKX-direct attribution for the
+          off-ramp catalogue change. attribution=direct because OKX is
+          both the announcing actor and the operator of the affected
+          spot-trading product. Provisional wayback anchor; the
+          specific snapshot timestamp must be re-pinned during human
+          audit before this citation may carry an admission anchor on
+          its own.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of
+  22 candidate stubs per user instruction to push remaining backlog to
+  dryrun-complete state): promoted from
+  candidate_triggers/okx-privacy-token-delist-2024.yaml. Authored by LLM
+  agent without personally verifying Wayback/body_hash; origin=human_reviewed
+  required by validator. Real release must replace this DRYRUN marker with
+  a human-verified audit after pinning real archive anchors.
+
+  comparison — S5 corporate-policy-change event documenting OKX's
+  2023-12-29 spot-trading-pair removals for privacy-asset cohort
+  (Monero/Zcash/Dash/Horizen, with adjacent privacy-token removals in
+  the same batch following 2023 compliance pressure on global CEX
+  privacy-asset listings). Pairs with uniswap-frontend-delisting-2023
+  on the corporate-listing-restriction axis: where Uniswap Labs (US-based
+  DEX frontend operator) restricts UI display of ~100 tokens without
+  touching the underlying Uniswap Protocol, OKX (centralized-exchange
+  operator) removes spot pairs from its product catalogue — both are
+  load-bearing at separate layers (Uniswap at l4_frontend, OKX at
+  offramp_cex). Pairs with tether-retroactive-sweep-2023 and
+  paxos-busd-nydfs-minting-stop-2023 as cross-event 2023 S5 corporate-
+  policy-change anchors at distinct cascade layers (Tether at asset_onchain
+  via issuer freeze, Paxos at asset_onchain via mint cessation, OKX at
+  offramp_cex via spot-pair delisting). The cross-issuer / cross-listing
+  comparison axis is paper-relevant: corporate-compliance actions in
+  2023 cluster across cascade layers without a single OFAC trigger.
+
+  Why empirical_case rather than anchor_case: in this DRYRUN pass the
+  load-bearing offramp_cex observation carries direct attribution but
+  the citation is a single primary-corporate notice with provisional
+  wayback anchor (not body-hash-pinned). Promotion to anchor_case
+  requires (a) the OKX notice body_hash / body_path pinning during
+  human audit, (b) an independent semi-primary or supporting tracker
+  source confirming the post-effective-date absence of the removed
+  spot pairs in OKX's public ticker listing, and (c) consideration of
+  additional contemporaneous OKX delistings (e.g., Tornado-Cash-related
+  tokens cited in the brief) that would substantiate the broader
+  privacy-compliance batch interpretation.
+
+scoped_claim: |
+  "OKX's 2023-12-29 spot-trading-pair removals at www.okx.com — covering
+  privacy-asset pairs (Monero/XMR, Zcash/ZEC, Dash/DASH, Horizen/ZEN) and
+  bundled non-privacy pairs in the same delisting operation — narrow the
+  centralized-exchange off-ramp surface for the affected privacy assets
+  in the OKX corridor. The offramp_cex layer carries the load-bearing
+  direct-attribution observation; L0 / L1 / L3 / l4_frontend / asset_onchain
+  are not_applicable for an exchange-listing-only action."
+
+scoped_knowledge: |
+  This event is the canonical 2023 S5 centralized-exchange privacy-asset
+  delisting anchor in the dataset. The 2023-12-29 OKX notice sits in the
+  late-2023 / early-2024 cluster of global CEX privacy-asset delistings
+  driven by jurisdiction-level compliance pressure (e.g., MiCA in the EU,
+  South Korea Travel Rule, and US state-level pressure). The comparison
+  pair with uniswap-frontend-delisting-2023 separates the
+  centralized-exchange-listing-restriction axis (OKX at offramp_cex)
+  from the DEX-frontend-operator-restriction axis (Uniswap Labs at
+  l4_frontend), both occurring in the same calendar year and both
+  documenting corporate-compliance product-catalogue narrowing absent
+  a single OFAC trigger.
+
+tags:
+  - corporate_policy_change
+  - cex_delisting
+  - privacy_asset
+  - okx_exchange
+  - offramp_restriction

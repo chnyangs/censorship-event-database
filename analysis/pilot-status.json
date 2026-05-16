@@ -1,18 +1,23 @@
 {
   "admission_tier_counts": {
     "anchor_case": 2,
-    "empirical_case": 50,
-    "null_case": 13
+    "empirical_case": 71,
+    "null_case": 14
   },
   "admitted_ids": [
     "aeza-group-ofac-2025",
     "alphabay-hansa-doj-2017",
+    "belgium-fsma-binance-cease-2023",
     "binance-4framework-2023",
+    "binance-russia-exit-commex-2023",
+    "bitfinex-cftc-retail-commodity-2016",
+    "bitmex-cftc-doj-2020",
     "bitzlato-doj-2023",
     "blender-ofac-2022",
     "blockfi-sec-lending-2022",
     "btc-e-doj-2017",
     "canada-convoy-freeze-2022",
+    "canada-csa-binance-withdrawal-2023",
     "cftc-v-ooki-dao-2022",
     "chatex-ofac-2021",
     "china-pboc-crypto-ban-2013-12",
@@ -20,16 +25,21 @@
     "chipmixer-doj-2023",
     "circle-usdc-tornado-2022",
     "coinbase-india-exit-2022",
+    "coinbase-irs-john-doe-summons-2016",
+    "coinflip-cftc-derivabit-2015",
     "cryptex-ofac-2024",
     "dprk-usdt-network-ofac-2025",
     "eu-12th-russia-sanctions-2023",
     "eu-mica-2023",
     "eu-russia-crypto-wallet-cap-2022",
+    "eu-russia-full-crypto-wallet-ban-2022",
     "funnull-cdn-ofac-2025",
     "garantex-ofac-2022",
     "grinex-garantex-successor-ofac-2025",
+    "helix-doj-mixer-2020",
     "hydra-doj-2022",
     "hydra-ofac-2022",
+    "india-fiu-offshore-vda-block-2023",
     "india-rbi-crypto-ban-2018",
     "iran-ransomware-ofac-2018",
     "irgc-ransomware-ofac-2022",
@@ -40,23 +50,34 @@
     "lazarus-laundering-ofac-2020",
     "lockbit-affiliates-ofac-2024",
     "lockbit-leader-ofac-2024",
+    "malaysia-sc-binance-disable-2021",
     "matveev-ofac-2023",
+    "netherlands-dnb-binance-warning-2021",
     "nigeria-cbn-crypto-ban-2021",
     "nydfs-bitlicense-2015-06",
+    "okx-privacy-token-delist-2024",
     "pertsev-nl-arrest-2022",
+    "powell-unlicensed-bitcoin-exchange-2014",
+    "ripple-fincen-xrp-2015",
     "russia-election-interference-ofac-2020",
     "russian-cyber-theft-ofac-2020",
     "russian-cybercrime-infra-ofac-2025",
     "samourai-doj-2024",
     "sec-beaxy-platform-shutdown-2023",
+    "sec-burnside-bitcoin-stock-exchange-2014",
+    "sec-shavers-btcst-2013",
     "sec-v-binance-2023",
     "sec-v-coinbase-2023",
+    "sec-voorhees-satoshidice-2014",
     "semenov-ofac-2023",
+    "shrem-faiella-bitcoin-exchange-2014",
     "sichuan-silence-ofac-2024",
     "silk-road-doj-seizure-2013",
     "sinbad-ofac-2023",
+    "singapore-mas-binance-services-2021",
     "storm-semenov-doj-2023",
     "suex-ofac-2021",
+    "teraexchange-cftc-bitcoin-swap-2015",
     "tether-doj-pig-butchering-freeze-2023",
     "tether-dprk-precommit-freeze-2025",
     "tether-retroactive-sweep-2023",
@@ -69,19 +90,19 @@
     "zservers-ofac-2025"
   ],
   "changed_layer_histogram": {
-    "0": 13,
-    "1": 44,
-    "2": 6,
+    "0": 14,
+    "1": 54,
+    "2": 17,
     "4": 1,
     "5": 1
   },
   "drafts_with_gaps": [],
   "empirical_shape_counts": {
     "cascade": 2,
-    "comparison": 50,
-    "null_event": 13
+    "comparison": 71,
+    "null_event": 14
   },
-  "event_count": 65,
+  "event_count": 87,
   "events": [
     {
       "admission_tier": "empirical_case",
@@ -113,6 +134,21 @@
     },
     {
       "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "belgium-fsma-binance-cease-2023",
+      "path": "events/belgium-fsma-binance-cease-2023.yaml",
+      "research_stratum": "S4_nation_state",
+      "status": "admitted",
+      "trigger_type": "nation_state_block"
+    },
+    {
+      "admission_tier": "empirical_case",
       "changed_layer_count": 1,
       "changed_layers": [
         "offramp_cex"
@@ -121,6 +157,50 @@
       "gap_marker_count": 0,
       "id": "binance-4framework-2023",
       "path": "events/binance-4framework-2023.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "doj_indictment"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "binance-russia-exit-commex-2023",
+      "path": "events/binance-russia-exit-commex-2023.yaml",
+      "research_stratum": "S5_corporate",
+      "status": "admitted",
+      "trigger_type": "corporate_policy_change"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "bitfinex-cftc-retail-commodity-2016",
+      "path": "events/bitfinex-cftc-retail-commodity-2016.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "cftc_action"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "bitmex-cftc-doj-2020",
+      "path": "events/bitmex-cftc-doj-2020.yaml",
       "research_stratum": "S3_doj_sec_cftc_fiod",
       "status": "admitted",
       "trigger_type": "doj_indictment"
@@ -191,6 +271,21 @@
       "gap_marker_count": 0,
       "id": "canada-convoy-freeze-2022",
       "path": "events/canada-convoy-freeze-2022.yaml",
+      "research_stratum": "S4_nation_state",
+      "status": "admitted",
+      "trigger_type": "nation_state_block"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "canada-csa-binance-withdrawal-2023",
+      "path": "events/canada-csa-binance-withdrawal-2023.yaml",
       "research_stratum": "S4_nation_state",
       "status": "admitted",
       "trigger_type": "nation_state_block"
@@ -295,6 +390,34 @@
       "trigger_type": "corporate_policy_change"
     },
     {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "coinbase-irs-john-doe-summons-2016",
+      "path": "events/coinbase-irs-john-doe-summons-2016.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "court_civil_order"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "l4_frontend"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "coinflip-cftc-derivabit-2015",
+      "path": "events/coinflip-cftc-derivabit-2015.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "cftc_action"
+    },
+    {
       "admission_tier": "anchor_case",
       "changed_layer_count": 2,
       "changed_layers": [
@@ -369,6 +492,20 @@
       "admission_tier": "empirical_case",
       "changed_layer_count": 1,
       "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "eu-russia-full-crypto-wallet-ban-2022",
+      "path": "events/eu-russia-full-crypto-wallet-ban-2022.yaml",
+      "research_stratum": "S6_supranational",
+      "status": "admitted",
+      "trigger_type": "non_us_sanctions"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
         "asset_onchain"
       ],
       "empirical_shape": "comparison",
@@ -409,6 +546,21 @@
     },
     {
       "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "helix-doj-mixer-2020",
+      "path": "events/helix-doj-mixer-2020.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "doj_indictment"
+    },
+    {
+      "admission_tier": "empirical_case",
       "changed_layer_count": 1,
       "changed_layers": [
         "l4_frontend"
@@ -434,6 +586,21 @@
       "research_stratum": "S1_ofac_sdn",
       "status": "admitted",
       "trigger_type": "ofac_sdn_designation"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "india-fiu-offshore-vda-block-2023",
+      "path": "events/india-fiu-offshore-vda-block-2023.yaml",
+      "research_stratum": "S4_nation_state",
+      "status": "admitted",
+      "trigger_type": "nation_state_block"
     },
     {
       "admission_tier": "empirical_case",
@@ -567,6 +734,21 @@
       "trigger_type": "ofac_sdn_designation"
     },
     {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "malaysia-sc-binance-disable-2021",
+      "path": "events/malaysia-sc-binance-disable-2021.yaml",
+      "research_stratum": "S4_nation_state",
+      "status": "admitted",
+      "trigger_type": "nation_state_block"
+    },
+    {
       "admission_tier": "null_case",
       "changed_layer_count": 0,
       "changed_layers": [],
@@ -577,6 +759,21 @@
       "research_stratum": "S1_ofac_sdn",
       "status": "admitted",
       "trigger_type": "ofac_sdn_designation"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "netherlands-dnb-binance-warning-2021",
+      "path": "events/netherlands-dnb-binance-warning-2021.yaml",
+      "research_stratum": "S4_nation_state",
+      "status": "admitted",
+      "trigger_type": "nation_state_block"
     },
     {
       "admission_tier": "empirical_case",
@@ -605,6 +802,32 @@
       "research_stratum": "S3_doj_sec_cftc_fiod",
       "status": "admitted",
       "trigger_type": "court_civil_order"
+    },
+    {
+      "admission_tier": "null_case",
+      "changed_layer_count": 0,
+      "changed_layers": [],
+      "empirical_shape": "null_event",
+      "gap_marker_count": 0,
+      "id": "ofac-recent-action-20240111",
+      "path": "events/ofac-recent-action-20240111.yaml",
+      "research_stratum": "S1_ofac_sdn",
+      "status": "draft",
+      "trigger_type": "ofac_sdn_designation"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "okx-privacy-token-delist-2024",
+      "path": "events/okx-privacy-token-delist-2024.yaml",
+      "research_stratum": "S5_corporate",
+      "status": "admitted",
+      "trigger_type": "corporate_policy_change"
     },
     {
       "admission_tier": "empirical_case",
@@ -646,6 +869,34 @@
       "research_stratum": "S4_nation_state",
       "status": "draft",
       "trigger_type": "nation_state_block"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "powell-unlicensed-bitcoin-exchange-2014",
+      "path": "events/powell-unlicensed-bitcoin-exchange-2014.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "doj_indictment"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "ripple-fincen-xrp-2015",
+      "path": "events/ripple-fincen-xrp-2015.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "fincen_action"
     },
     {
       "admission_tier": "empirical_case",
@@ -718,6 +969,35 @@
     },
     {
       "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "sec-burnside-bitcoin-stock-exchange-2014",
+      "path": "events/sec-burnside-bitcoin-stock-exchange-2014.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "sec_action"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "sec-shavers-btcst-2013",
+      "path": "events/sec-shavers-btcst-2013.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "sec_action"
+    },
+    {
+      "admission_tier": "empirical_case",
       "changed_layer_count": 1,
       "changed_layers": [
         "offramp_cex"
@@ -758,6 +1038,21 @@
     },
     {
       "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "sec-voorhees-satoshidice-2014",
+      "path": "events/sec-voorhees-satoshidice-2014.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "sec_action"
+    },
+    {
+      "admission_tier": "empirical_case",
       "changed_layer_count": 1,
       "changed_layers": [
         "asset_onchain"
@@ -769,6 +1064,20 @@
       "research_stratum": "S1_ofac_sdn",
       "status": "admitted",
       "trigger_type": "ofac_sdn_designation"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "shrem-faiella-bitcoin-exchange-2014",
+      "path": "events/shrem-faiella-bitcoin-exchange-2014.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "doj_indictment"
     },
     {
       "admission_tier": "null_case",
@@ -809,6 +1118,21 @@
       "trigger_type": "ofac_sdn_designation"
     },
     {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 2,
+      "changed_layers": [
+        "l4_frontend",
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "singapore-mas-binance-services-2021",
+      "path": "events/singapore-mas-binance-services-2021.yaml",
+      "research_stratum": "S4_nation_state",
+      "status": "admitted",
+      "trigger_type": "nation_state_block"
+    },
+    {
       "admission_tier": "null_case",
       "changed_layer_count": 0,
       "changed_layers": [],
@@ -833,6 +1157,20 @@
       "research_stratum": "S1_ofac_sdn",
       "status": "admitted",
       "trigger_type": "ofac_sdn_designation"
+    },
+    {
+      "admission_tier": "empirical_case",
+      "changed_layer_count": 1,
+      "changed_layers": [
+        "offramp_cex"
+      ],
+      "empirical_shape": "comparison",
+      "gap_marker_count": 0,
+      "id": "teraexchange-cftc-bitcoin-swap-2015",
+      "path": "events/teraexchange-cftc-bitcoin-swap-2015.yaml",
+      "research_stratum": "S3_doj_sec_cftc_fiod",
+      "status": "admitted",
+      "trigger_type": "cftc_action"
     },
     {
       "admission_tier": "empirical_case",
@@ -982,16 +1320,16 @@
     }
   ],
   "research_stratum_counts": {
-    "S1_ofac_sdn": 26,
+    "S1_ofac_sdn": 27,
     "S2_ofac_removal": 1,
-    "S3_doj_sec_cftc_fiod": 19,
-    "S4_nation_state": 9,
-    "S5_corporate": 7,
-    "S6_supranational": 3
+    "S3_doj_sec_cftc_fiod": 31,
+    "S4_nation_state": 15,
+    "S5_corporate": 9,
+    "S6_supranational": 4
   },
   "status_counts": {
-    "admitted": 62,
-    "draft": 2,
+    "admitted": 83,
+    "draft": 3,
     "rejected": 1
   }
 }

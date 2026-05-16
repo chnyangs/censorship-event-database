@@ -1,0 +1,190 @@
+id: netherlands-dnb-binance-warning-2021
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - uk-fca-binance-markets-2021
+  - singapore-mas-binance-services-2021
+  - malaysia-sc-binance-disable-2021
+
+trigger:
+  type: nation_state_block
+  actor: NL_DNB
+  timestamp: 2021-08-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.dnb.nl/en/
+      wayback: https://web.archive.org/web/20210818000000*/dnb.nl
+      evidence_use: contextual_unarchived
+      note: |
+        De Nederlandsche Bank (DNB) public warning dated 2021-08-18 that
+        Binance was offering crypto services in the Netherlands without
+        the legally-required registration as a custodian / crypto-service
+        provider under the Dutch Anti-Money Laundering and Anti-Terrorist
+        Financing Act (Wwft). DRYRUN promotion: real anchor (DNB press
+        release index) asserted with Wayback URL pattern; body-hash
+        capture deferred to non-DRYRUN release. Marked
+        contextual_unarchived to flag the unarchived state explicitly.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        DNB press release dated 2021-08-18 (Wednesday). Day-level
+        precision per the press release publication date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance Holdings Ltd. / Binance.com cohort serving Dutch retail
+    customers. DNB warning targets the global Binance entity (no
+    Dutch-registered Binance legal entity existed at the time of the
+    warning) and, by cascade, Dutch retail customers of binance.com.
+    Target treated as entity-level at the Binance-NL cohort.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Binance Holdings Ltd. (NL cohort)
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [NL]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: DNB action is a regulatory / registration notice, not a DNS / connectivity action.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [binance.com]
+    note: |
+      Binance posted NL-user-facing notices on binance.com/en in the
+      months following the DNB warning, ultimately culminating in
+      withdrawal of NL operations announced 2022-07 (NL users notified
+      to withdraw funds, trading restrictions imposed). L4 is load-
+      bearing alongside offramp_cex per stub brief. partially_measured
+      pending pinned Wayback bracket of binance.com/en NL-geo banners
+      and 2022-07 withdrawal-notice page.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - binance_nl_user_rail
+    note: |
+      DNB warning constrained Binance's ability to onboard new Dutch
+      retail customers and offer regulated crypto custody services.
+      Cascade: Binance fined EUR 3.3M by DNB in 2022-04 for the
+      2020-05 through 2022-?? unregistered-operation period, and
+      Binance announced withdrawal of NL operations 2022-07
+      (NL-user offboarding, trading-pair restrictions, ultimate
+      service exit). partially_measured pending pinned anchors for
+      the 2022-04 fine and 2022-07 withdrawal notice.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:binance_com_en_nl_geo
+    event: nl_user_facing_notices_and_2022_07_withdrawal
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-07-01T00:00:00Z
+    precision: day
+    delta_hours: 7608
+    window:
+      - 2021-08-18T00:00:00Z
+      - 2022-07-31T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.dnb.nl/en/
+        wayback: https://web.archive.org/web/20210818000000*/dnb.nl
+        evidence_use: contextual_unarchived
+        note: |
+          DNB 2021-08-18 warning is the regulatory anchor. Binance NL
+          withdrawal announced 2022-07 cited DNB registration
+          requirements; attribution=direct at the DNB-warning-as-
+          trigger level. DRYRUN: pinned Wayback captures for the
+          Binance 2022-07 withdrawal notice deferred; body-hash
+          capture deferred.
+  - layer: offramp_cex
+    actor: binance_nl_cohort
+    event: nl_user_rail_restrictions_and_eventual_exit
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-07-01T00:00:00Z
+    precision: day
+    delta_hours: 7608
+    window:
+      - 2021-08-18T00:00:00Z
+      - 2022-07-31T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.dnb.nl/en/
+        wayback: https://web.archive.org/web/20220401000000*/dnb.nl
+        evidence_use: contextual_unarchived
+        note: |
+          DNB 2022-04 fine (EUR 3.3M) and Binance 2022-07 NL-exit
+          announcement evidence the cascade from the 2021-08-18
+          warning. NL retail users of binance.com lost native rail
+          access. DRYRUN: pinned Wayback captures for the 2022-04
+          fine decision and 2022-07 withdrawal notice deferred;
+          body-hash capture deferred.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/netherlands-dnb-binance-warning-2021.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  Comparison documenting the 2021-08-18 De Nederlandsche Bank (DNB)
+  public warning that Binance was offering crypto services in the
+  Netherlands without the legally-required registration under the
+  Dutch Wwft (Anti-Money Laundering and Anti-Terrorist Financing Act).
+  Sibling case to the 2021 global Binance regulator wave: UK FCA
+  2021-06-26, Malaysia SC 2021-07-30, Singapore MAS 2021-09-02.
+
+  Paper-relevant contrast vs UK FCA (uk-fca-binance-markets-2021):
+  DNB warning targets the global Binance entity directly (no NL-
+  registered Binance legal entity at the time) rather than a UK-style
+  named-subsidiary action. Cascade is slower and entity-level rather
+  than UK-style class-wide payment-rail severance: DNB EUR 3.3M fine
+  2022-04, Binance NL withdrawal 2022-07. Load-bearing observational
+  axes per stub brief: L4 frontend (Binance NL-user notices) and
+  offramp_cex (NL-user rail restrictions).
+
+  DRYRUN caveats: trigger primary citation (DNB press release index)
+  is asserted without pinned Wayback / body-hash capture. For non-
+  DRYRUN release, capture body_hash + body_path for: (1) DNB 2021-
+  08-18 warning page, (2) DNB 2022-04 fine decision, (3) Binance NL
+  2022-07 withdrawal announcement. Marked evidence_use=
+  contextual_unarchived on all citations to flag the unarchived
+  state per validator policy.
+
+scoped_claim: |
+  "DNB public warning of 2021-08-18 that Binance was offering crypto
+  services in the Netherlands without legally-required Wwft
+  registration precipitated a slow-cascade NL-cohort offramp
+  severance, culminating in a DNB EUR 3.3M fine (2022-04) and
+  Binance's announced withdrawal of NL operations (2022-07).
+  Load-bearing observational axes are L4 frontend (NL-user notices
+  on binance.com) and offramp_cex (NL-user rail restrictions) at
+  the Binance-NL cohort level."
+
+tags:
+  - nation_state_block
+  - nl
+  - dnb
+  - binance
+  - registration_warning
+  - dryrun_2026_05_16

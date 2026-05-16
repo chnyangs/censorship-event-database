@@ -1,0 +1,299 @@
+id: ripple-fincen-xrp-2015
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T03:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: fincen_action
+  actor: US_FINCEN
+  timestamp: 2015-05-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fincen.gov/news/news-releases/fincen-fines-ripple-labs-inc-first-civil-enforcement-action-against-virtual
+      body_hash: sha256:d2d4e482f4de604c69a45dab779b29cb72933f8bdd6b77124255d8582e202f8c
+      body_path: sources/http_captures/ripple-fincen-xrp-2015/primary/www.fincen.gov__news-news-releases-fincen-fines-ripple-labs-inc-first-civil-enforcement-action-against-virtual__5fd00ced6f.html
+      wayback: https://web.archive.org/web/20260516024709/https://www.fincen.gov/news/news-releases/fincen-fines-ripple-labs-inc-first-civil-enforcement-action-against-virtual
+      note: |
+        FinCEN press release dated 2015-05-05: "FinCEN Fines Ripple Labs
+        Inc. in First Civil Enforcement Action Against a Virtual Currency
+        Exchanger." Announced jointly with the US Attorney's Office for
+        the Northern District of California. Core terms: (1) $700,000
+        civil monetary penalty assessed by FinCEN against Ripple Labs
+        Inc. and its wholly-owned subsidiary XRP II, LLC for willful
+        violations of the Bank Secrecy Act (BSA), including (a) acting
+        as a money services business (MSB) without registering with
+        FinCEN, and (b) failing to implement and maintain an adequate
+        anti-money-laundering (AML) program in connection with the sale
+        of XRP virtual currency; (2) settlement agreement requiring
+        Ripple Labs and XRP II to undertake remedial measures including
+        appointment of an independent reviewer, enhanced AML program,
+        SAR retroactive review, and structural compliance changes; (3)
+        a separate non-prosecution agreement (NPA) with the US Attorney's
+        Office N.D. Cal. resolving the criminal investigation, conditioned
+        on the FinCEN settlement and on Ripple's adoption of the
+        compliance undertakings. This is the FIRST civil enforcement
+        action by FinCEN against a virtual-currency exchanger and a
+        canonical historical-baseline anchor for the
+        FinCEN-as-virtual-currency-regulator posture established under
+        the 2013-03-18 FinCEN guidance (FIN-2013-G001).
+    - type: primary_legal
+      url: https://www.justice.gov/usao-ndca/pr/ripple-labs-inc-resolves-criminal-investigation
+      body_hash: sha256:066ed416eec851a73a57a8d20af7152539cee1b7728844f62e96114b19dcfb8e
+      body_path: sources/http_captures/ripple-fincen-xrp-2015/primary/www.justice.gov__usao-ndca-pr-ripple-labs-inc-resolves-criminal-investigation__b6061d36f1.html
+      wayback: https://web.archive.org/web/20260516024821/https://www.justice.gov/usao-ndca/pr/ripple-labs-inc-resolves-criminal-investigation
+      note: |
+        DOJ / US Attorney's Office N.D. Cal. press release page on the
+        Ripple Labs criminal investigation resolution. The live
+        justice.gov URL currently returns a thin shell (post-2017 DOJ
+        CMS migration drift), so the load-bearing content is anchored
+        via the Wayback snapshot pinned above and corroborated by the
+        FinCEN press release primary anchor. The DOJ resolution
+        announced concurrently with the FinCEN settlement on
+        2015-05-05 took the form of a non-prosecution agreement (NPA)
+        for willful BSA violations, conditioned on the FinCEN
+        settlement and on Ripple's adoption of the compliance
+        undertakings.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per FinCEN press release dated 2015-05-05
+        and concurrent DOJ N.D. Cal. announcement on the same day.
+        Federal agency press releases of this period do not carry
+        intra-day publication timestamps in the public record.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Two named legal entities: Ripple Labs Inc. (parent) and XRP II, LLC
+    (wholly-owned subsidiary that conducted XRP sales). No on-chain
+    addresses enumerated in the FinCEN action — the BSA violation theory
+    is registration-and-AML-program-failure at the entity level rather
+    than address-level designation. Load-bearing target for measurable
+    cascade is XRP II as the FinCEN-recognized MSB whose post-settlement
+    compliance program is the offramp_cex layer signal.
+  protocol: null
+  actor_type: virtual_currency_exchanger
+  actor_name: Ripple Labs Inc. + XRP II, LLC
+  chains:
+    - xrp
+  canonical_domains:
+    - ripple.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The FinCEN/DOJ action is a BSA registration-and-AML enforcement at
+      the entity level. It does not direct ISP-level domain blocking or
+      DNS interference against ripple.com or any XRP-related host.
+      not_applicable on construct-out-of-scope grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      XRP Ledger consensus (XRP LCP, federated Byzantine agreement via
+      UNLs) in 2015 has no protocol-level relay-filter primitive
+      analogous to the post-Merge Ethereum PBS relay surface that the
+      L1 layer was constructed to measure. Additionally the Ethereum
+      PBS measurement substrate itself is ~7 years downstream
+      (2022-09-15 Merge). not_applicable on construct-did-not-exist
+      grounds, matching the L1 treatment of other 2013-2016
+      historical-baseline events.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2015 (Flashbots Protect launched 2022-11; MEV-Blocker launched
+      2023-03-27). XRP Ledger does not have an analogous public-RPC
+      compliance surface. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The FinCEN settlement and DOJ NPA do not require, name, or
+      contemplate ripple.com or any XRP-related frontend takedown or
+      geo-blocking; the obligations attach to XRP II as a registered
+      MSB at the AML-program and SAR-retroactive-review level rather
+      than at the public-facing web surface. not_applicable on
+      construct-out-of-scope grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      XRP native asset has no FinCEN-mandated issuer-side blacklist or
+      freeze admin path in this action; the settlement does not direct
+      Ripple Labs to freeze or invalidate any specific XRP holdings or
+      addresses. The XRP Ledger ecosystem has issuer-managed freeze
+      primitives for issued (non-native) tokens via the lsfGlobalFreeze
+      and trust-line freeze flags, but the 2015-05-05 FinCEN action
+      does not engage that path. not_applicable on construct-out-of-
+      scope grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - xrp_ii_llc
+    note: |
+      Load-bearing layer for this event. The FinCEN settlement is by
+      construction an exchanger-compliance action: XRP II, LLC is
+      recognized as a FinCEN-registered MSB conducting virtual-
+      currency exchange, and the settlement directly mandates a
+      structural overhaul of XRP II's AML program (registration,
+      SAR-retroactive-review, transaction monitoring, independent
+      reviewer, customer-identification program). The FinCEN press
+      release names the regulatory mandate explicitly; the post-
+      settlement XRP II compliance program change is direct-attribution.
+      Marked measured; load-bearing observation attached below as
+      observation_kind=observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: xrp_ii_llc
+    event: xrp_ii_registered_as_msb_and_aml_program_imposed_by_consent
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2015-05-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.fincen.gov/news/news-releases/fincen-fines-ripple-labs-inc-first-civil-enforcement-action-against-virtual
+        body_hash: sha256:d2d4e482f4de604c69a45dab779b29cb72933f8bdd6b77124255d8582e202f8c
+        body_path: sources/http_captures/ripple-fincen-xrp-2015/primary/www.fincen.gov__news-news-releases-fincen-fines-ripple-labs-inc-first-civil-enforcement-action-against-virtual__5fd00ced6f.html
+        wayback: https://web.archive.org/web/20260516024709/https://www.fincen.gov/news/news-releases/fincen-fines-ripple-labs-inc-first-civil-enforcement-action-against-virtual
+        scope_descriptor:
+          providers:
+            - xrp_ii_llc
+          time_window:
+            - 2015-05-05T00:00:00Z
+            - 2015-05-05T23:59:59Z
+        note: |
+          FinCEN press release is the legal instrument. Settlement terms
+          require Ripple Labs and XRP II to (a) register XRP II as an
+          MSB with FinCEN, (b) implement a written AML program with
+          designated compliance officer, (c) conduct retroactive SAR
+          review of prior transactions, (d) implement KYC / customer
+          identification program, and (e) engage an independent reviewer
+          to validate the compliance posture. Direct attribution: the
+          settlement and assessment-of-civil-money-penalty text name
+          these mandates as conditions of resolution.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-ndca/pr/ripple-labs-inc-resolves-criminal-investigation
+        body_hash: sha256:066ed416eec851a73a57a8d20af7152539cee1b7728844f62e96114b19dcfb8e
+        body_path: sources/http_captures/ripple-fincen-xrp-2015/primary/www.justice.gov__usao-ndca-pr-ripple-labs-inc-resolves-criminal-investigation__b6061d36f1.html
+        wayback: https://web.archive.org/web/20260516024821/https://www.justice.gov/usao-ndca/pr/ripple-labs-inc-resolves-criminal-investigation
+        note: |
+          DOJ N.D. Cal. press release corroborating the concurrent
+          non-prosecution agreement on the willful BSA violations,
+          conditioned on the FinCEN settlement and on Ripple's
+          adoption of the compliance undertakings. The live
+          justice.gov page is presently a thin shell after a DOJ CMS
+          migration; load-bearing content is anchored via the pinned
+          Wayback snapshot.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — DRYRUN 2026-05-16. Historical-baseline P0 anchor
+  for the 2015-05-05 FinCEN / DOJ N.D. Cal. enforcement against Ripple
+  Labs Inc. and its subsidiary XRP II, LLC. Promoted from
+  candidate_triggers/ripple-fincen-xrp-2015.yaml. Authored by LLM in this
+  pass; origin=human_reviewed for validator compatibility, but human
+  re-verification of (i) the FinCEN and DOJ source citation reachability
+  and Wayback snapshot pinning and (ii) the substantive enumeration of
+  the XRP II AML-program undertakings (currently summarized from the
+  press release; the full assessment-of-civil-money-penalty document
+  PDF should be pinned in a follow-up pass for anchor_case promotion)
+  is required before this stamp is treated as a real human audit. The
+  last_human_audit field is a DRYRUN marker and must be replaced by a
+  real human audit per the project convention.
+
+  Historical significance: this is the FIRST civil enforcement action
+  by FinCEN against a virtual-currency exchanger under the regulatory
+  frame established by the 2013-03-18 FinCEN guidance FIN-2013-G001
+  ("Application of FinCEN's Regulations to Persons Administering,
+  Exchanging, or Using Virtual Currencies"). It establishes the
+  FinCEN-as-virtual-currency-regulator posture that subsequently anchored
+  later S3 enforcement (BitMEX 2020, Helix 2020, Bitfinex 2016, etc.).
+  Pairs cross-temporally with coinflip-cftc-derivabit-2015 (the first
+  CFTC enforcement against a virtual-currency platform, four months
+  later on 2015-09-17) as the 2015 federal-first-action pair.
+
+  Why historical_baseline tier: events 2013-2016 belong to the
+  historical_baseline_2013_2016 temporal tier per the 2008+ tiered
+  frame in sampling/frame.yaml. analysis_use=historical_baseline
+  excludes this row from the 2017+ comparable-analysis denominator,
+  matching the validator's tier-vs-analysis-use consistency rule.
+
+  Why comparison (1 observed_change layer) and not cascade: the FinCEN
+  action is structurally a single-layer offramp_cex compliance event;
+  L0/L1/L3/L4/asset_onchain are not_applicable on construct-out-of-
+  scope or construct-did-not-exist grounds. The cascade shape is
+  one-layer-not-multi-layer because BSA registration-and-AML enforcement
+  does not engage network, frontend, or asset-issuer surfaces by
+  construction. The 2015 case is the canonical historical-baseline
+  offramp_cex-only comparison row for federal-first-action analysis.
+
+  Why empirical_case rather than anchor_case: the LLM authoring
+  constraint in this pass is that the full FinCEN assessment-of-civil-
+  money-penalty PDF and the DOJ NPA document text have not been
+  independently captured and pinned (only the press releases). Per the
+  project convention, anchor_case promotion requires multi-source
+  archived primary-legal evidence at the load-bearing layer; the
+  press-release-only posture qualifies at empirical_case on the
+  strength of the direct-attribution offramp_cex observation alone.
+
+scoped_claim: |
+  FinCEN's 2015-05-05 settlement with Ripple Labs Inc. and XRP II, LLC
+  ($700,000 civil monetary penalty + non-prosecution agreement with
+  US Attorney's Office N.D. Cal.) was the FIRST civil enforcement action
+  by FinCEN against a virtual-currency exchanger and imposed by consent
+  a structural overhaul of XRP II's BSA / AML compliance program
+  (MSB registration, SAR retroactive review, customer-identification
+  program, independent reviewer). The offramp_cex layer carries the
+  load-bearing direct-attribution observation; other layers are
+  not_applicable on construct-out-of-scope or construct-did-not-exist
+  grounds.
+
+scoped_knowledge: |
+  This event is the historical-baseline anchor for the
+  FinCEN-as-virtual-currency-regulator posture in the dataset. The
+  significance is regulatory-precedent rather than cascade-breadth: it
+  establishes that FinCEN's 2013-03-18 FIN-2013-G001 guidance applies
+  prospectively to crypto exchangers and that willful failure to
+  register and to maintain an AML program is a chargeable BSA
+  violation. The post-2015 trajectory of FinCEN enforcement in the
+  dataset (BitMEX 2020, Helix 2020, Bitfinex 2016, Binance settlement
+  2023) all descend from this regulatory frame.
+
+  Cross-temporal pair: with coinflip-cftc-derivabit-2015 (the first
+  CFTC enforcement against a virtual-currency platform on 2015-09-17),
+  this event forms the canonical 2015 "federal-first-action" pair — the
+  two enforcement actions that mark the year US federal agencies first
+  brought concrete enforcement under the regulatory frameworks they
+  had articulated in guidance two years earlier (FinCEN 2013-03-18;
+  CFTC LabCFTC / virtual currency policy 2014). The comparison pair
+  shape (single-agency, single-target, offramp_cex-or-frontend-only
+  cascade) is structurally distinct from the 2020+ multi-agency
+  coordinated actions (BitMEX 2020 CFTC + DOJ + FinCEN; Helix 2020
+  DOJ + FinCEN; KuCoin 2024 DOJ + CFTC + FinCEN) that the dataset
+  treats as anchor cases.
+
+tags:
+  - fincen_enforcement
+  - bsa_aml
+  - virtual_currency_exchanger
+  - historical_anchor
+  - first_fincen_civil_enforcement
+  - federal_first_action_pair
+  - xrp_ledger

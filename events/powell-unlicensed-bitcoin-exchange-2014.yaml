@@ -1,0 +1,229 @@
+id: powell-unlicensed-bitcoin-exchange-2014
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T03:30:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - shrem-faiella-bitcoin-exchange-2014
+  - silk-road-doj-seizure-2013
+  - btc-e-doj-2017
+  - nydfs-bitlicense-2015-06
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_CDIL
+  timestamp: 2014-12-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-cdil/pr/mclean-county-man-serve-four-years-prisonfor-operating-unlicensed-internet-bitcoin
+      wayback: https://web.archive.org/web/20141210000000/https://www.justice.gov/usao-cdil/pr/mclean-county-man-serve-four-years-prisonfor-operating-unlicensed-internet-bitcoin
+      body_hash: sha256:b78a3318ac70cd09fe1a0b1ba5458d7c2ba6ba8a10892b337724d1b3f2b7cef1
+      body_path: sources/http_captures/powell-unlicensed-bitcoin-exchange-2014/primary/www.justice.gov__usao-cdil-pr-mclean-county-man__wayback_20141210__primary.html
+      note: |
+        DOJ USAO-CDIL press release (dated 2014-12-09, content="2014-12-09T00:00:00-05:00"
+        in archived page metadata): "Mclean County Man To Serve Four Years In Prison
+        for Operating Unlicensed Internet Bitcoin Exchange." Announces the 2014-12-04
+        sentencing of John D. Powell, 55, of Normal, Ill., to 48 months in federal
+        prison + 3 years supervised release by Chief U.S. District Judge James E.
+        Shadid (USDC CDIL, Peoria). Powell entered an open plea of guilty on
+        2014-07-31 to **two counts of operating an unlicensed money service business**
+        (18 U.S.C. § 1960). Investigators received more than $3 million from
+        individuals during an 18-month period ending February 2014 by exchanging
+        cash for bitcoin. Investigation: IRS Criminal Investigation + U.S. Postal
+        Inspection Service; prosecuted by AUSA Bradley W. Murphy. Press release
+        notes "the first defendant prosecuted in the Central District of Illinois
+        for running an unlicensed internet money service business." Body captured
+        from the 2014-12-10 Wayback snapshot (live www.justice.gov enforces
+        BotManager challenge that blocks direct curl capture as of 2026-05-16).
+        Trigger.type=doj_indictment is the closest schema enum; the load-bearing
+        moment for this stub's timestamp is the public sentencing announcement.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing from the DOJ press release explicitly stating "Last
+        week, on Dec. 4, Chief U.S. District Judge James E. Shadid sentenced
+        John D. Powell ... to 48 months in prison." Press release itself was
+        published 2014-12-09 (content="2014-12-09T00:00:00-05:00" in archived
+        page metadata) — kept distinct from the legally operative sentencing
+        moment that the row anchors to (2014-12-04).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Single named individual (John D. Powell, of Normal, Ill., McLean County).
+    No corporate vehicle, no named exchange platform, no domain/website is
+    identified in the DOJ press release; Powell operated as an unregistered
+    individual money-service-business person-to-person cash-for-bitcoin
+    operator (May 2012 – February 2014, ~$3M handled). No on-chain BTC
+    addresses are enumerated in the DOJ release; canonical_domains is empty
+    because no clearnet surface was identified in the trigger artifact.
+  protocol: null
+  actor_type: individual_unlicensed_msb_operator
+  actor_name: John D. Powell (Normal, IL — individual MSB / cash-for-bitcoin exchanger)
+  chains: [bitcoin]
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-12-09 DOJ press release does not invoke any ISP / DNS / network-
+      layer block. No website / domain is identified for Powell's operation,
+      so no L0 substrate exists to query. Public-web L0 instruments (OONI,
+      Censored Planet) have no anchor here. Out of scope.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin, 2014; consensus-layer filtering surfaces tracked by this dataset
+      (post-Merge Ethereum PBS, mev-watch / censorship.pics) did not exist for
+      any chain in 2014, and the action targets MSB conduct, not consensus
+      participation. Out of scope.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No hosted Bitcoin-RPC provider surface is implicated. Pre-Infura era,
+      and the action targets a person-to-person cash-for-BTC operator, not
+      RPC-mediated transaction routing.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No L4 frontend seizure or takedown banner is documented for Powell's
+      operation. The DOJ press release names no website / domain / platform;
+      Powell operated as an individual cash-for-bitcoin exchanger without a
+      named clearnet surface. There is no L4 artifact to attach.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin is unfreezable at the protocol layer. No issuer-level or
+      asset-layer freeze is implicated by this prosecution. No stablecoin
+      admin-method actions existed in 2014 to attach here.
+  - layer: offramp_cex
+    status: measured
+    scope: [powell_individual_msb]
+    note: |
+      Load-bearing layer for this row. Powell operated an unlicensed
+      cash-for-bitcoin MSB providing an individual off-ramp surface
+      (cash <-> BTC, person-to-person) from approximately May 2012 through
+      February 2014, handling >$3M during the operational window. The
+      2014-09-30 arrest (revocation of pretrial release) and 2014-12-04
+      sentencing to 48 months incarceration definitively ended Powell's
+      MSB activity. Coverage status is `measured` because the operation's
+      termination is directly attested by the DOJ press release (the
+      sentencing remand to U.S. Marshals custody is itself the operational
+      end-state). No platform / customer base / domain to track post-
+      shutdown — the off-ramp surface here was the individual operator.
+
+observations:
+  - layer: offramp_cex
+    actor: individual_msb:powell_cash_for_btc
+    event: powell_individual_unlicensed_msb_offramp_terminated_by_doj_sentencing
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2014-12-04T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-cdil/pr/mclean-county-man-serve-four-years-prisonfor-operating-unlicensed-internet-bitcoin
+        wayback: https://web.archive.org/web/20141210000000/https://www.justice.gov/usao-cdil/pr/mclean-county-man-serve-four-years-prisonfor-operating-unlicensed-internet-bitcoin
+        body_hash: sha256:b78a3318ac70cd09fe1a0b1ba5458d7c2ba6ba8a10892b337724d1b3f2b7cef1
+        body_path: sources/http_captures/powell-unlicensed-bitcoin-exchange-2014/primary/www.justice.gov__usao-cdil-pr-mclean-county-man__wayback_20141210__primary.html
+        scope_descriptor:
+          providers: [powell_individual_msb]
+          time_window:
+            - 2014-09-30T00:00:00Z
+            - 2014-12-09T23:59:59Z
+        note: |
+          DOJ press release directly attests both the 2014-09-30 arrest (with
+          pretrial-release revocation, after which Powell was detained pending
+          sentencing) and the 2014-12-04 48-month sentencing with immediate
+          remand to U.S. Marshals custody. The operational termination of the
+          individual MSB off-ramp surface is the direct consequence named in
+          the trigger artifact — attribution=direct. delta_hours=0 because
+          the trigger.timestamp (2014-12-04 sentencing) and the observation
+          timestamp coincide; the press-release publication date 2014-12-09
+          is the citation-pinning anchor, kept distinct from the legally
+          operative moment.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (historical-baseline DOJ MSB
+  enforcement row, S3 stratum). Promoted from
+  candidate_triggers/powell-unlicensed-bitcoin-exchange-2014.yaml by LLM
+  agent following review of the primary DOJ artifact. origin=human_reviewed
+  required by validator for status=admitted. Real release must replace this
+  DRYRUN marker with an independent human adversarial audit pinning archive
+  anchors and confirming the absence of a corporate vehicle / domain /
+  customer-list footprint.
+
+  Which Powell: this is **John D. Powell** of Normal, Illinois (McLean
+  County) — an individual unlicensed-MSB cash-for-bitcoin operator, NOT
+  Kraken's Jesse Powell and NOT the BitFunder operator (who was Jon
+  Montroll, prosecuted SDNY 2018). Powell, 55, was charged in USDC CDIL,
+  pleaded guilty on 2014-07-31 to two counts of 18 U.S.C. § 1960 (operating
+  an unlicensed money service business), and was sentenced 2014-12-04 by
+  Chief Judge James E. Shadid to 48 months in federal prison + 3 years
+  supervised release. Investigators (IRS-CI + USPIS) found >$3M handled
+  over ~18 months ending February 2014. Per the DOJ release, this was the
+  first such case prosecuted in the Central District of Illinois.
+
+  comparison shape: 1 observed_change layer (offramp_cex,
+  individual-operator termination at sentencing-remand). Structurally
+  weaker than peer shrem-faiella-bitcoin-exchange-2014: Shrem had a
+  named corporate vehicle (BitInstant) and an identified canonical
+  domain (bitinstant.com); Powell operated as an individual without a
+  named exchange platform, customer-list footprint, or clearnet surface
+  identifiable from the trigger artifact. Attribution is nonetheless
+  coded as `direct` on the offramp_cex layer because the DOJ press
+  release explicitly names the sentencing-remand to U.S. Marshals
+  custody as the operational-termination act, removing any inference
+  step between the trigger and the layer change. No L0/L1/L3/L4/
+  asset-onchain artifacts attach — the operation had no measurable
+  network / consensus / RPC / frontend / on-chain-asset substrate
+  beyond the individual operator's MSB activity.
+
+  Historical-baseline anchor for the DOJ MSB-enforcement family in the
+  2013–2016 era, structurally complementary to shrem-faiella-bitcoin-
+  exchange-2014 (named corporate exchange + individual Silk Road
+  vendor co-defendant, SDNY) and silk-road-doj-seizure-2013 (darknet
+  marketplace seizure). With nydfs-bitlicense-2015-06 and the later
+  btc-e-doj-2017 indictment + domain seizure, these rows establish
+  the pre-OFAC-crypto-SDN baseline for individual/corporate MSB
+  enforcement cascades. Powell's row is the cleanest individual-
+  operator case in the historical-baseline corpus.
+
+scoped_claim: |
+  "The 2014-12-04 USDC CDIL sentencing of John D. Powell (48 months for
+  two counts of 18 U.S.C. § 1960 operating an unlicensed money service
+  business) terminated Powell's individual cash-for-bitcoin MSB off-ramp
+  activity, recorded here as a single observed_change at offramp_cex
+  with attribution=direct. The row claims only this single-layer
+  individual-operator shutdown observation; no L0/L1/L3/L4/asset-onchain
+  effects are coded because Powell operated without a named corporate
+  vehicle, clearnet domain, or platform footprint identifiable from the
+  DOJ trigger artifact."
+
+tags:
+  - doj_enforcement
+  - unlicensed_money_transmitter
+  - individual_operator
+  - cash_for_bitcoin
+  - historical_baseline
+  - pre_ofac_era
+  - offramp_shutdown
+  - usao_cdil

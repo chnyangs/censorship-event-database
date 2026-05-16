@@ -1,0 +1,235 @@
+id: bitfinex-cftc-retail-commodity-2016
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - nydfs-bitlicense-2015-06
+  - coinflip-cftc-derivabit-2015
+  - cftc-v-ooki-dao-2022
+
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2016-06-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/7380-16
+      wayback: https://web.archive.org/web/2016/https://www.cftc.gov/PressRoom/PressReleases/7380-16
+      evidence_use: contextual_unarchived
+      note: |
+        CFTC press release 7380-16 (2016-06-02): "CFTC Orders Bitcoin
+        Exchange Bitfinex to Pay $75,000 for Offering Illegal Off-Exchange
+        Financed Retail Commodity Transactions and Failing to Register as
+        a Futures Commission Merchant." Announces simultaneous filing and
+        settlement of CFTC administrative action against BFXNA Inc.
+        d/b/a Bitfinex (Hong Kong-based crypto exchange operator). Order
+        imposes $75,000 civil monetary penalty and cease-and-desist;
+        Bitfinex required to discontinue its operating margin-trading
+        pool model (in which Bitfinex held margin collateral in a single
+        omnibus pool) and move to an actual-delivery margin model within
+        28 days. Marked evidence_use=contextual_unarchived because the
+        authoring LLM agent did not personally pin a Wayback snapshot
+        timestamp or compute a body_hash for the press release; the CFTC
+        press-release URL format is stable and routinely captured by
+        Wayback, but the specific snapshot timestamp is to be re-pinned
+        during human audit before this citation may serve as an admission
+        anchor in its own right. Provisional Wayback anchor uses Wayback
+        Machine year-prefix lookup.
+    - type: primary_legal
+      url: https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf
+      wayback: https://web.archive.org/web/2016/https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        CFTC order In the Matter of BFXNA Inc. d/b/a Bitfinex,
+        CFTC Docket No. 16-19, dated 2016-06-02. Findings: from
+        approximately April 2013 through at least February 2016 Bitfinex
+        operated an online platform for exchanging and trading
+        cryptocurrencies, including Bitcoin, and offered financed retail
+        commodity transactions in Bitcoin to U.S. customers without
+        registering as a Futures Commission Merchant (FCM) as required
+        by the Commodity Exchange Act. Bitfinex's financed-margin
+        product was found to violate CEA Section 4(a) (off-exchange
+        retail commodity transactions not resulting in actual delivery
+        within 28 days) and Section 4d (operating without FCM
+        registration). Order requires the $75,000 civil penalty, a
+        cease-and-desist, and prospective changes to Bitfinex's
+        margin-trading product to satisfy the 28-day actual-delivery
+        exception. Marked evidence_use=contextual_unarchived pending
+        Wayback re-pin and body_hash capture during human audit.
+        Provisional Wayback anchor uses Wayback Machine year-prefix
+        lookup.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per the 2016-06-02 CFTC press release and the
+        order-date stamp on CFTC Docket No. 16-19.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    BFXNA Inc. d/b/a Bitfinex (the entity named in CFTC Docket No.
+    16-19), the operator of the Bitfinex.com cryptocurrency trading
+    platform. The row enumerates only the BFXNA Inc. corporate entity
+    and its financed-margin retail commodity product line; it does not
+    enumerate individual Bitfinex customer accounts or specific
+    on-chain BTC addresses tied to the platform's margin pool. The
+    Bitfinex domain (bitfinex.com) is the canonical operator-controlled
+    frontend.
+  actor_type: crypto_exchange_operator
+  actor_name: BFXNA Inc. d/b/a Bitfinex
+  chains: [bitcoin]
+  canonical_domains:
+    - bitfinex.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The CFTC order is a U.S. federal administrative enforcement
+      action, not a network-level block of bitfinex.com. ISP
+      reachability of U.S. or non-U.S. users to bitfinex.com was not
+      altered by the 2016-06-02 order; the operator-state change is
+      at the financed-margin product level, not the L0 reachability
+      layer.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2016 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface; the Ethereum Merge itself is ~6 years downstream.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2016; Flashbots Protect launched 2022-11. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The CFTC order did not require shutdown of the bitfinex.com
+      frontend or geofencing of U.S. visitors at the public-web layer;
+      the required remedial action was confined to the operator's
+      financed-margin product (recoded under offramp_cex). No
+      independent L4 frontend diff is reconstructed for this event.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The CFTC order does not engage a stablecoin-issuer admin
+      path. not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - bitfinex_margin_trading_product
+    note: |
+      Load-bearing layer for this event: an operator-state change at
+      the Bitfinex centralized exchange's financed-margin product line.
+      The 2016-06-02 CFTC order required Bitfinex to discontinue its
+      operating margin-trading pool (omnibus collateral pool) model
+      and to transition to an actual-delivery margin model within
+      28 days, satisfying the CEA Section 2(c)(2)(D) actual-delivery
+      exception for retail commodity transactions. This is a
+      regulator-compelled product/operator-state change at an
+      offramp_cex venue, attached below as
+      observation_kind=observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bitfinex
+    event: cftc_ordered_bitfinex_margin_trading_product_change_to_actual_delivery_model
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2016-06-02T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/7380-16
+        wayback: https://web.archive.org/web/2016/https://www.cftc.gov/PressRoom/PressReleases/7380-16
+        evidence_use: contextual_unarchived
+        note: |
+          CFTC press release 7380-16 announces the order requiring
+          Bitfinex to pay a $75,000 civil penalty, cease and desist
+          from CEA violations, and modify its margin-trading product
+          so that financed retail commodity transactions result in
+          actual delivery within 28 days. attribution=direct because
+          the CFTC order itself mandates the operator-state change to
+          Bitfinex's financed-margin product line. Provisional Wayback
+          anchor uses Wayback Machine year-prefix lookup.
+      - type: primary_legal
+        url: https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf
+        wayback: https://web.archive.org/web/2016/https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf
+        evidence_use: contextual_unarchived
+        note: |
+          CFTC order In the Matter of BFXNA Inc. d/b/a Bitfinex,
+          Docket No. 16-19. Findings of fact describe Bitfinex's
+          operating margin-trading pool model and the regulator-
+          required transition to an actual-delivery model. Marked
+          evidence_use=contextual_unarchived pending Wayback re-pin.
+          Provisional Wayback anchor uses Wayback Machine year-prefix
+          lookup.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/bitfinex-cftc-retail-commodity-2016.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/
+  asset_onchain are all not_applicable because the CFTC order did not
+  alter ISP-level reachability of bitfinex.com, the Bitcoin protocol
+  layers tracked by this dataset did not exist in their measured forms
+  in 2016, the order did not require frontend takedown or geofencing,
+  and Bitcoin native asset has no issuer-side freeze primitive. The
+  single load-bearing observation is the regulator-compelled
+  operator-state change at Bitfinex's financed-margin product line,
+  attribution=direct via the CFTC press release and Docket No. 16-19
+  order.
+
+  Historical-baseline placement: this is the first CFTC administrative
+  enforcement action against a centralized cryptocurrency exchange in
+  the dataset, following the 2015-09-17 Coinflip/Derivabit order
+  (coinflip-cftc-derivabit-2015) which established Bitcoin as a
+  "commodity" under the CEA but targeted a derivatives-style platform
+  rather than a spot/margin exchange. The 2016-06-02 Bitfinex order
+  extends CFTC reach to the spot-exchange margin product surface and
+  is a structural sibling of the later 2020-10-01 BitMEX CFTC/DOJ
+  enforcement (bitmex-cftc-doj-2020) at much larger scale. Also
+  related to the 2015-06-24 NYDFS BitLicense cascade
+  (nydfs-bitlicense-2015-06) as a contemporaneous U.S.-regulatory
+  pressure point on Bitfinex's U.S.-user product surface, and to
+  cftc-v-ooki-dao-2022 as the modern endpoint of CFTC retail-commodity
+  reach against crypto trading venues.
+
+scoped_claim: |
+  "The 2016-06-02 CFTC order In re BFXNA Inc. d/b/a Bitfinex
+  (Docket No. 16-19) required Bitfinex to pay a $75,000 civil penalty
+  and to discontinue its operating margin-trading pool model in favor
+  of an actual-delivery margin model within 28 days, registered here
+  as a single-layer offramp_cex operator-state-change observation; the
+  row does not assert frontend takedown, ISP-level network blocking,
+  or on-chain asset effects."
+
+tags:
+  - cftc_enforcement
+  - margin_trading
+  - retail_commodity
+  - bitcoin_exchange
+  - historical_baseline
+  - centralized_platform_restriction
+  - pre_ofac_era
