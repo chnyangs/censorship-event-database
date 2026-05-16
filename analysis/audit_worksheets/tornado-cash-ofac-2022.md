@@ -1,6 +1,6 @@
 # Audit worksheet — `tornado-cash-ofac-2022`
 
-Dataset snapshot: **v0.2.0-rc-dryrun-6** · cutoff `2026-05-16` · commit `5ba37ad` · generated `2026-05-20T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-7** · cutoff `2026-05-16` · commit `5e28a89` · generated `2026-05-21T00:00:00Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S1_ofac_sdn`

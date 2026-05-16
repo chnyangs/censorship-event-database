@@ -1,11 +1,11 @@
 # Source Artifact Manifest
 
-Dataset snapshot: v0.2.0-rc-dryrun-6 · cutoff `2026-05-16` · commit `5ba37ad` · generated `2026-05-20T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-7 · cutoff `2026-05-16` · commit `5e28a89` · generated `2026-05-21T00:00:00Z`
 
 This manifest lists local source artifacts included in the release reproduction surface and records their SHA-256 hashes. Re-fetchable operator-census repository clones and large upstream dumps excluded by `.gitignore` are intentionally not listed; their retrieval policy is recorded in `sources/external_retrieval_receipts.yaml`.
 
-- Files: 893
-- Total bytes: 54315713
+- Files: 895
+- Total bytes: 54347116
 
 ## By Artifact Family
 
@@ -14,6 +14,7 @@ This manifest lists local source artifacts included in the release reproduction 
 | `README.md` | 1 |
 | `archived_htmls` | 2 |
 | `asset_layer_scan` | 17 |
+| `china_russia_cis_frames` | 2 |
 | `corporate_policy` | 2 |
 | `defi_wallet_appstore_l3l4` | 2 |
 | `external_retrieval_receipts.yaml` | 1 |
@@ -38,8 +39,8 @@ This manifest lists local source artifacts included in the release reproduction 
 | `diff` | 3 |
 | `go` | 3 |
 | `html` | 555 |
-| `json` | 305 |
-| `md` | 9 |
+| `json` | 306 |
+| `md` | 10 |
 | `py` | 1 |
 | `txt` | 2 |
 | `yaml` | 2 |
