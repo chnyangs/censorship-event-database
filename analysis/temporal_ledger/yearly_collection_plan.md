@@ -1,16 +1,16 @@
 # Yearly Collection Plan
 
-Dataset snapshot: v0.2.0-rc-dryrun-7 · cutoff `2026-05-16` · generated `2026-05-21T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-8 · cutoff `2026-05-16` · generated `2026-05-22T00:00:00Z`
 
 This is the year-level control surface for the 2008+ tiered frame. It is derived from the monthly discovery ledger and trigger registry; it is not a paper denominator.
 
 | year | tier | source-frame months | candidate-found months | pending months | registry rows | in-frame triggers | admitted | observation_closed | candidates | screened | next action |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| 2008 | `discovery_only_2008_2012` | 72 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
+| 2008 | `discovery_only_2008_2012` | 72 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
 | 2009 | `discovery_only_2008_2012` | 72 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
-| 2010 | `discovery_only_2008_2012` | 72 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
+| 2010 | `discovery_only_2008_2012` | 72 | 1 | 0 | 8 | 8 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
 | 2011 | `discovery_only_2008_2012` | 72 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
-| 2012 | `discovery_only_2008_2012` | 72 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
+| 2012 | `discovery_only_2008_2012` | 72 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | 0 | resolve source-unavailable receipts |
 | 2013 | `historical_baseline_2013_2016` | 72 | 6 | 16 | 9 | 7 | 3 | 0 | 0 | 0 | triage pending source-frame months |
 | 2014 | `historical_baseline_2013_2016` | 72 | 9 | 35 | 12 | 9 | 4 | 0 | 0 | 0 | triage pending source-frame months |
 | 2015 | `historical_baseline_2013_2016` | 72 | 8 | 56 | 12 | 8 | 4 | 0 | 0 | 2 | triage pending source-frame months |

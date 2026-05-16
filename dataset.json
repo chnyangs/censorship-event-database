@@ -6818,6 +6818,218 @@
     "version": "0.1"
   },
   {
+    "_source_file": "datacell-v-valitor-iceland-district-court-2012-07.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "NEW EVENT AUTHORED - DRYRUN 2026-05-16 (agent_draft per user\ninstruction; status=draft because no body_hash+body_path archive\nanchors have been pinned in this session). Authored by LLM agent\nwithout personally verifying Wayback/body_hash snapshots; human\nreview required to elevate to admitted status.\n\nStructural distinction: this event is structurally distinct from\nthe December 2010 WikiLeaks payment-rail blockade events\n(wikileaks-visa-europe-suspension-2010-12,\nwikileaks-paypal-freeze-2010-12,\nwikileaks-mastercard-suspension-2010-12). Those were\ncensorship-imposing trigger events at the corporate-policy /\ncard-network layer. The 2012-07-12 Reykjavik District Court\nruling is a court-ordered *counter-censorship* (recovery /\nrestoration) event: the cascade surface at offramp_cex moves in\nthe restoration direction, away from the 2010-12 blockade.\nHonest coding treats this as a follow-on judicial intervention\nwith offramp_cex partially_measured documenting the court-ordered\nrestoration outcome.\n\nStratum coding: schema-validator mapping forces\ntrigger.type=court_civil_order to research_stratum=\nS3_doj_sec_cftc_fiod (the controlled-vocab stratum the validator\nuses for court-civil-order triggers regardless of whether the\nvenue is a US federal court or a non-US national / sub-sovereign\ncourt). The substantive trigger here is a sub-sovereign Icelandic\njudicial action (Reykjavik District Court, the trial-court level\nof the Icelandic judiciary) \u2014 functionally jurisdictional even\nwhen at the district-court rather than supreme-court level. The\nIcelandic Supreme Court subsequently (2013-04-24) upheld the\ndistrict-court order in Valitor's appeal; that 2013 supreme-court\naffirmance is a candidate sibling event for future authoring but\nis not authored in this pass.\n\nLayer coverage: l0_network, l1_consensus, l3_rpc, l4_frontend,\nand asset_onchain are all not_applicable. l1/l3/asset_onchain on\nconstruct-not-in-scope (or construct-did-not-exist) grounds,\nmatching the pre-Bitcoin-era treatment of the sibling\nWikiLeaks-blockade events. l0_network not_applicable because the\naction operates on Visa/Mastercard card rails in Iceland, not on\nblockchain network reachability. l4_frontend not_applicable to\navoid double-counting: the wikileaks.org donation-page\nVisa/Mastercard option is downstream UI consequent on the\nmerchant-services contract surface and is not a separately\nmeasured L4 frontend action in this pass. The single load-bearing\ncascade axis is offramp_cex (the closest schema analog for a\ncard-network merchant-gateway-restoration order).\n\nempirical_shape=comparison: 1 observed_change layer\n(offramp_cex). The cascade surface is single-axis from the\nschema's perspective.\n\ntemporal_tier=discovery_only_2008_2012 + analysis_use=\ndiscovery_ledger_only: the trigger date 2012-07-12 falls in the\npre-2013 discovery window. This event enters the discovery\nledger as the legal-pushback / counter-censorship anchor of the\n2010-12 WikiLeaks payment-rail blockade cluster.\n\nadmission_tier=empirical_case: the offramp_cex observed_change\nrow carries attribution=direct (the court order self-attests the\nrestoration mandate), but only one observed_change layer is\nload-bearing, so the case does not reach anchor_case threshold.\nAll citations are evidence_use=contextual_unarchived (DRYRUN\nwayback wildcard pointers), so the case does not yet support\npaper-grade admission-anchor claims; promotion to admitted\nstatus requires pinned body_hash+body_path archive captures\nduring human audit.\n\nSchema-actor handling: actor=IS_REYKJAVIK_DISTRICT_COURT is a\nfree-form string accepted by the schema; the validator\nactor-coherence check only fires on US-agency substrings, so no\ncontrolled_vocab.yaml addition is required.\n\nDownstream trajectory: Valitor appealed; the Icelandic Supreme\nCourt affirmed the district-court order on 2013-04-24. A broader\ndamages settlement between WikiLeaks/DataCell and Valitor was\neventually reached in 2019-07. Both are candidate sibling events\nfor future authoring (recovery row or follow-on litigation\nrows), but are not authored in this pass to keep scope minimal.\n\nDRYRUN caveats: all citations carry wayback wildcard pointers\n(web/2012/...) and evidence_use=contextual_unarchived. For\nnon-DRYRUN release, capture body_hash + body_path for: (1)\nBloomberg 2012-07-12 court-ruling coverage, (2) Reykjavik\nGrapevine 2012-07-13 coverage, (3) RSF court-ruling coverage,\n(4) Computerworld court-ruling coverage, (5) WikiLeaks press\nrelease on the case launch. The canonical primary instrument\nis the Reykjavik District Court ruling text itself (case\nE-2997/2011, decision delivered 2012-07-12); pinning that\nprimary-legal anchor via the Icelandic court rulings registry\nis the strongest path to admission-anchor strength.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "Pre-Bitcoin-era WikiLeaks donations event; the action operates on\nVisa/Mastercard card-network payment rails in Iceland, not on\nblockchain network reachability. l0_network not_applicable on\nconstruct-not-in-scope grounds (matches sibling\nwikileaks-paypal-freeze-2010-12 treatment).\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "No blockchain consensus layer in scope; payment rail at issue is\nVisa/Mastercard, not an L1 blockchain. not_applicable on\nconstruct-not-in-scope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "No blockchain RPC layer in scope. The MEV-Boost / Flashbots\nProtect public-RPC compliance substrate did not exist in 2012;\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The court order operates on the Valitor-DataCell card-network\nmerchant agreement; the wikileaks.org donation-page Visa/Mastercard\noption is downstream UI consequent on the merchant-services\ncontract surface and is not a separately measured L4-frontend\naction in this authoring pass. The single load-bearing cascade\naxis is offramp_cex (card-network merchant gateway restoration),\nso l4_frontend not_applicable to avoid double-counting the same\nphysical action.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Pre-WikiLeaks-Bitcoin-donation event in operational terms; even\nafter WikiLeaks announced a Bitcoin donation address in 2011-06,\nthe 2012-07-12 Reykjavik District Court ruling operates on the\nValitor-DataCell card-payment merchant agreement and not on any\nblockchain asset. not_applicable on construct-not-in-scope\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "denominator_artifact": {
+          "note": "Denominator anchor is the Reykjavik Grapevine 2012-07-13\ncourt-ruling coverage (wayback wildcard pointer), corroborated\nby the Bloomberg/RSF/Computerworld coverage cluster. Single\nmerchant-agreement scope.\n",
+          "type": "contextual_unarchived",
+          "wayback": "https://web.archive.org/web/2012/https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/"
+        },
+        "layer": "offramp_cex",
+        "note": "offramp_cex is the closest schema analog for a pre-Bitcoin\npayment-processor merchant-gateway restoration order: Valitor\nacts as the Visa/Mastercard sub-processor (the fiat\npayment-collection rail), conceptually analogous to a\ncentralized-exchange offramp in the post-Bitcoin era. The court\norder directs Valitor to restore the DataCell merchant gateway\nwithin 14 days on pain of daily fines (ISK 800,000/day). This\nis a court-ordered counter-censorship event: the cascade surface\nat offramp_cex moves in the *restoration* direction (recovery\nfrom the 2010-12 WikiLeaks blockade), not in the\ncensorship-imposition direction. partially_measured because the\nruling is well-attested via the multi-source journalism cluster\nbut the actual gateway-restoration timeline and subsequent\nappeal dynamic require pinning during human audit.\n",
+        "scope": [
+          "valitor_datacell_merchant_agreement"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "datacell-v-valitor-iceland-district-court-2012-07",
+    "jurisdiction": [
+      "IS"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "is_reykjavik_district_court",
+        "attribution": "direct",
+        "country": "IS",
+        "delta_hours": 0,
+        "event": "court_ordered_restoration_of_valitor_datacell_merchant_gateway_for_wikileaks_donations",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Bloomberg 2012-07-12 coverage records the Reykjavik District\nCourt ruling itself: Valitor ordered to process WikiLeaks\ndonations via the DataCell merchant gateway, 14-day\ncompliance window, daily-fine sanction of ISK 800,000/day.\nattribution=direct because the observed change (court-ordered\nrestoration of the merchant gateway) is self-attested in the\nruling text reported by Bloomberg the day of the decision.\nobservation_kind=observed_change because this is a *recovery*\n/ counter-censorship event: the order moves the offramp_cex\ncascade surface from blocked (post-2010-12 Visa Europe\nsuspension) back toward open. DRYRUN: wayback wildcard\npointer in lieu of pinned-timestamp snapshot.\n",
+            "scope_descriptor": {
+              "countries": [
+                "IS"
+              ],
+              "providers": [
+                "valitor",
+                "datacell"
+              ],
+              "time_window": [
+                "2012-07-12T00:00:00+00:00",
+                "2012-07-26T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-",
+            "wayback": "https://web.archive.org/web/2012/https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Reykjavik Grapevine 2012-07-13 coverage corroborates the\nruling date, the 14-day compliance window, and the\nISK 800,000/day daily-fine figure (court reduced DataCell's\nclaimed ISK 1,000,000/day prayer to ISK 800,000/day). Also\nrecords the ISK 1,500,000 litigation-costs award to DataCell.\nIndependent local-press confirmation of the court-ordered\nrestoration.\n",
+            "scope_descriptor": {
+              "countries": [
+                "IS"
+              ],
+              "providers": [
+                "valitor",
+                "datacell"
+              ],
+              "time_window": [
+                "2012-07-12T00:00:00+00:00",
+                "2012-07-26T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/",
+            "wayback": "https://web.archive.org/web/2012/https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "RSF coverage characterising the 2012-07-12 ruling as the\nfirst judicial finding worldwide that a card-network\nWikiLeaks payment blockade was unlawful at the merchant-\nservices contract layer. RSF analysis treats the decision\nas a counter-censorship precedent.\n",
+            "scope_descriptor": {
+              "countries": [
+                "IS"
+              ],
+              "providers": [
+                "valitor",
+                "datacell"
+              ],
+              "time_window": [
+                "2012-07-12T00:00:00+00:00",
+                "2012-07-26T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks",
+            "wayback": "https://web.archive.org/web/2012/https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks"
+          }
+        ],
+        "timestamp": "2012-07-12T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-visa-europe-suspension-2010-12",
+      "wikileaks-paypal-freeze-2010-12",
+      "wikileaks-mastercard-suspension-2010-12"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"On 2012-07-12, the Reykjavik District Court (Iceland)\nordered Valitor hf. (the Iceland Visa/Mastercard sub-processor)\nto restore the DataCell ehf. merchant gateway used to collect\nWikiLeaks donations over Visa/Mastercard card rails within\n14 days, on pain of daily fines of ISK 800,000 for each day of\nnon-compliance. The ruling is the first judicial finding\nworldwide that a card-network WikiLeaks payment blockade was\nunlawful at the merchant-services contract layer, and constitutes\na court-ordered counter-censorship (recovery / restoration) event\nat the offramp_cex cascade axis. The cascade surface moves in the\nrestoration direction, away from the 2010-12 WikiLeaks\npayment-rail blockade. Observational axis at offramp_cex\n(load-bearing, attribution=direct via the court order self-\nattesting the restoration mandate). Admission-anchor-grade\npromotion pending pinned archive captures.\"\n",
+    "scoped_knowledge": "The 2012-07-12 Reykjavik District Court ruling is the\npre-Bitcoin-era anchor case for court-ordered counter-\ncensorship at the payment-rail layer. It demonstrates that\neven in the pre-blockchain financial-rail context, judicial\nintervention is capable of reversing a corporate / card-\nnetwork censorship action at the merchant-services contract\nlayer \u2014 provided the target operator (DataCell) is\njurisdictionally co-located with a card-network sub-processor\n(Valitor in Iceland) whose merchant agreement is governed by\nenforceable national contract law. The Icelandic Supreme Court\nsubsequently affirmed the district-court order on 2013-04-24,\nand a broader damages settlement was reached in 2019-07\n(~7 years downstream). The case is the conceptual ancestor of\nlater judicial-intervention recovery dynamics that may apply\nto blockchain-asset / centralized-exchange contexts: where a\nnational court has personal jurisdiction over a payment\nintermediary and the underlying merchant agreement is\ngoverned by enforceable national contract law, a court order\nis in principle capable of restoring the payment / off-ramp\nsurface. The ruling has been frequently cited in the academic\nand civil-society literature on financial-censorship counter-\nmeasures (RSF, EDRi, European Parliament parliamentary\nquestions) as the foundational court-ordered restoration\nprecedent.\n",
+    "status": "draft",
+    "tags": [
+      "court_civil_order",
+      "iceland",
+      "reykjavik_district_court",
+      "valitor",
+      "datacell",
+      "wikileaks",
+      "counter_censorship",
+      "payment_rail_restoration",
+      "offramp_cex",
+      "s3_doj_sec_cftc_fiod",
+      "discovery_ledger_only",
+      "dryrun_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Valitor hf. / DataCell ehf.",
+      "actor_type": "payment_processor_merchant_agreement",
+      "entity": "Valitor hf. (Iceland Visa/Mastercard sub-processor) - DataCell ehf. merchant agreement",
+      "enumeration": "subset",
+      "enumeration_note": "Target is the Valitor-DataCell merchant-services relationship: the\nVisa/Mastercard card-network sub-processor (Valitor hf., the\nIceland sub-processor formerly trading as Visa Iceland) and the\nDataCell ehf. merchant account used to collect WikiLeaks donations\nover Visa/Mastercard card rails. The court order operates on this\nspecific bilateral merchant agreement; subset because the\nenumerated target is the single DataCell merchant account /\nmerchant-services contract rather than the broader class of\nWikiLeaks-aligned merchants worldwide. The ruling is jurisdictional\nto Iceland and does not bind other card-network sub-processors in\nother countries.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "IS_REYKJAVIK_DISTRICT_COURT",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Bloomberg 2012-07-12 coverage (\"Iceland Court Orders Valitor to\nProcess WikiLeaks Donations\"). Independent journalism anchor for\nthe ruling date and the order's substantive content: the\nReykjavik District Court directed Valitor (the Visa/Mastercard\nsub-processor in Iceland) to reopen the DataCell merchant\ngateway used for WikiLeaks donation collection, within fourteen\ndays, on pain of daily fines (originally claimed at ISK 1M/day,\nreduced by the court to ISK 800,000/day for each day non-\ncompliance persists). DRYRUN: wayback wildcard pointer in lieu\nof a pinned-timestamp snapshot; evidence_use=contextual_unarchived\nbecause no body_hash+body_path pair has been captured into\nsources/http_captures/ in this session.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-",
+          "wayback": "https://web.archive.org/web/2012/https://www.bloomberg.com/news/articles/2012-07-12/iceland-court-orders-valitor-to-process-wikileaks-donations-1-"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Reykjavik Grapevine 2012-07-13 coverage (\"DataCell Wins Case\nAgainst Valitor\"). Icelandic local-press anchor confirming the\n2012-07-12 ruling, the 14-day compliance window, and the\nISK 800,000/day daily-fine figure (down from the ISK 1,000,000/day\nprayer for relief). Also confirms Valitor was ordered to pay\nDataCell's litigation costs of ISK 1,500,000. evidence_use=\ncontextual_unarchived; body_hash capture deferred to human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/",
+          "wayback": "https://web.archive.org/web/2012/https://grapevine.is/news/2012/07/13/datacell-wins-case-against-valitor/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Reporters Without Borders (RSF) coverage of the 2012-07-12\nReykjavik District Court ruling, framing the decision as the\nfirst judicial order requiring a card-network sub-processor\nto lift a WikiLeaks-related payment block. RSF analysis treats\nthe ruling as a counter-censorship precedent at the\npayment-rail layer. evidence_use=contextual_unarchived;\nbody_hash capture deferred to human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks",
+          "wayback": "https://web.archive.org/web/2012/https://rsf.org/en/court-orders-visa-subcontractor-lift-block-payments-wikileaks"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Computerworld 2012-07 coverage (\"Wikileaks donations via Visa\nand MasterCard may resume, Icelandic court rules\"). Independent\nEnglish-language journalism confirmation of the ruling and its\noperational effect: WikiLeaks donations via Visa/Mastercard could\nagain be processed through the DataCell merchant gateway in\nIceland. evidence_use=contextual_unarchived; body_hash capture\ndeferred to human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.computerworld.com/article/1417186/wikileaks-donations-via-visa-and-mastercard-may-resume-icelandic-court-rules.html",
+          "wayback": "https://web.archive.org/web/2012/https://www.computerworld.com/article/1417186/wikileaks-donations-via-visa-and-mastercard-may-resume-icelandic-court-rules.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "WikiLeaks press release announcing the launch of the DataCell\ncase against Valitor (the predecessor procedural step to the\n2012-07-12 ruling). Provides the counter-censorship-litigation\nframing the case was filed under: WikiLeaks/DataCell alleged\nthat Valitor's December-2010 closure of the donation gateway\nviolated the Visa merchant-services contract and Icelandic\ncontract law. evidence_use=contextual_unarchived; body_hash\ncapture deferred to human audit.\n",
+          "type": "supporting_community",
+          "url": "https://wikileaks.org/Wikileaks-has-launched-a-case.html",
+          "wayback": "https://web.archive.org/web/2012/https://wikileaks.org/Wikileaks-has-launched-a-case.html"
+        }
+      ],
+      "timestamp": "2012-07-12T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision. Bloomberg, Reykjavik Grapevine, RSF,\nComputerworld, and Slashdot all date the Reykjavik District\nCourt ruling to 2012-07-12 (Thursday). The Reykjavik Grapevine\ncoverage carries a 2012-07-13 publish date but reports the\nruling as having been issued the prior day.\n",
+          "type": "supporting_journalism"
+        }
+      ],
+      "type": "court_civil_order"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "dprk-usdt-network-ofac-2025.yaml",
     "admission_tier": "empirical_case",
     "analysis_notes": "comparison documenting the 2025-11-04 DPRK laundering-network designation. The\nevent is **structurally novel** within the dataset: every one of the 53 designated\naddresses is USDT-on-TRON, giving a single-token-on-single-chain target shape that no\nearlier event matches.\n\n**Core finding (from overnight empirical batch)**: spot-check of 2 of the 53 addresses\nvia usdtbanlist.com reveals they were **already blocked by Tether on 2025-04-30 \u2014 ~188\ndays BEFORE the OFAC designation**. This reverses the expected cross-layer causation\ndirection: rather than \"OFAC \u2192 Tether freeze cascade,\" the observed pattern is \"Tether\nfreeze precedes OFAC action by 6 months,\" suggesting either (a) upstream Treasury /\nFBI / TRM Labs intelligence reaches Tether months before formal SDN publication, or\n(b) Tether acts on its own compliance signals (chain-analytics firms' DPRK-cluster\ntagging) independently of the formal OFAC process. This is a paper-worthy structural\nfinding: **the timing direction of the asset-layer cascade is opposite to what the\ndataset's comparison class presumes**.\n\nFollow-up directions (post-admission): full 53-address enumeration (versus the 2-address spot check); ideal\nverification would cross-reference Tronscan logs for each of the 53 addresses to\nconfirm whether the 2025-04-30 batch-freeze covered all of them.\n",
@@ -7445,6 +7657,165 @@
         }
       ],
       "type": "supranational_regulation"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "egold-doj-guilty-plea-2008-07.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase E discovery-tier\nauthoring): new discovery_only_2008_2012 event for the 2008-07-21\nDOJ DC guilty plea by e-Gold Ltd., Gold & Silver Reserve Inc., and\nDouglas Jackson. Authored by LLM agent without personally\nverifying Wayback/body_hash; origin=agent_draft and status=draft\nper validator constraint (agent_draft incompatible with admitted).\nReal release must replace this DRYRUN marker with a human-verified\naudit after pinning real archive anchors (the wayback URLs here\nare 2008 wildcard pointers, not pinned snapshot timestamps).\n\ncomparison shape: 1 observed_change layer (offramp_cex, e-Gold\nservice operations cessation following corporate + CEO guilty\npleas). The 2008-07-21 plea in US District Court for the District\nof Columbia to operating an unlicensed money transmitter (18 USC\ns 1960) and conspiring to engage in money laundering (18 USC\ns 1956(h)) is the foundational pre-Bitcoin digital-currency\ntakedown \u2014 it predates FinCEN FIN-2013-G001 by ~5 years and\nestablishes the BSA / MSB / 18-USC-1960 enforcement template\nlater applied across the 2013-2016 historical-baseline tier\n(Shrem/Faiella 2014, Murgio/Coin.mx 2015) and continuing into the\n2017+ comparable-analysis era. attribution=plausible because the\nDOJ release does not itself order a corporate shutdown; the wind-\ndown is the corporate consequence of conviction. L0/L1/L3/L4 and\nasset_onchain are all not_applicable: e-Gold was a centralized\ndigital-gold-account ledger (gold-grams off-chain), pre-dating any\nblockchain by ~6 months, and no DOJ-attributed frontend seizure\nis documented for e-gold.com on 2008-07-21. Admission tier\nempirical_case (1 strong-attribution observed_change layer).\n\nDiscovery-tier-only by construction: temporal_tier=\ndiscovery_only_2008_2012 and analysis_use=discovery_ledger_only.\nThis row carries no comparable-analysis denominator weight; its\npurpose is to anchor the 2008+ pre-Bitcoin DOJ MSB enforcement\npredicate for the FinCEN-2013-G001 \u2192 Shrem-2014 \u2192 Coin.mx-2015\n\u2192 BTC-e-2017 lineage already in corpus.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2008-07-21 plea did not invoke any ISP / DNS / network-\nlayer block of e-gold.com. Public-web L0 instruments\n(Censored Planet, OONI) do not apply to a 2008 corporate\nenforcement event; the platform wind-down that followed was\nthe corporate consequence of conviction, not a network-layer\naction.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "e-Gold was a centralized digital-gold-account ledger (gold-\ngrams as the unit of account, administered by e-Gold Ltd.);\nthere is no blockchain and no decentralized consensus layer.\nOut of scope; consensus-layer filtering surfaces did not\nexist for any chain in 2008.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "No hosted RPC provider surface is implicated. e-Gold was a\ncentralized web-account ledger pre-dating any RPC-mediated\ncrypto infrastructure by ~3 years (Bitcoin genesis 2009-01).\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "No DOJ-attributed L4 seizure or takedown banner on e-gold.com\nis documented for 2008-07-21. The e-Gold legal-update page\npublished the plea text; the operational e-gold.com account\nsurface remained accessible at that date and the platform\nwind-down (cessation of new account creation and effective\nshutdown of the gold-grams transfer service) proceeded as a\npost-conviction corporate decision through 2008-2009, not as\na frontend seizure event. Recording the post-conviction\nwind-down page state as observed_change at L4 would conflate\na corporate wind-down with a DOJ-ordered frontend takedown,\nso L4 is not coded here.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "e-Gold's \"gold-grams\" was an off-chain ledger entry\nadministered by e-Gold Ltd., not a blockchain token. No\nasset-layer freeze instrument exists to attach.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer. e-Gold operated as a centralized digital-\ncurrency administrator and exchanger (Gold & Silver Reserve\nInc. handling the fiat-to-gold-grams conversion side). The\nguilty plea is the legally definitive end-state that ended\ne-Gold's MSB-regulated service operations; the platform's\ngold-grams transfer service ceased and the corporate entity\ndid not resume normal operations. Coverage status is `measured`\nbecause the platform's wind-down is publicly attested in the\nDOJ release and contemporaneous trade press, even though this\nDRYRUN row does not pin per-quarter Wayback-frontend snapshots.\n",
+        "scope": [
+          "e_gold"
+        ],
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "egold-doj-guilty-plea-2008-07",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "exchange:e_gold",
+        "attribution": "plausible",
+        "delta_hours": 0,
+        "event": "egold_ceases_operations_following_corporate_and_ceo_guilty_plea",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "note": "DOJ #08-635 press release recording e-Gold Ltd. + Gold &\nSilver Reserve Inc. + Douglas Jackson guilty pleas to\nconspiracy to engage in money laundering (18 USC s 1956(h))\nand operation of an unlicensed money transmitting business\n(18 USC s 1960). The convictions ended e-Gold's MSB-\nregulated service operations; the gold-grams transfer\nservice did not resume normal operations following the\nplea and sentencing (2008-11-20). attribution=plausible\n(not direct) because the DOJ release does not itself order\na corporate shutdown; the platform wind-down is the\ndownstream corporate consequence of the conviction with\nstrong temporal coincidence. evidence_use=contextual_\nunarchived for this DRYRUN authoring pass.\n",
+            "scope_descriptor": {
+              "providers": [
+                "e_gold"
+              ],
+              "time_window": [
+                "2008-07-21T00:00:00+00:00",
+                "2009-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html",
+            "wayback": "https://web.archive.org/web/2008/https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html"
+          },
+          {
+            "note": "e-Gold company legal-update plea-agreement posting (2008-\n07-21) confirming the Douglas L. Jackson guilty plea under\n18 USC ss 1956(h) and 1960(b)(1)(A), (B), and (C).\nPrimary-corporate self-attestation by the defendant\ncompany that the plea occurred and that the corporate\ngovernance of e-Gold was effectively terminated. Retained\nas a supporting anchor for the offramp_cex shutdown\nobservation. evidence_use=contextual_unarchived.\n",
+            "scope_descriptor": {
+              "providers": [
+                "e_gold"
+              ],
+              "time_window": [
+                "2008-07-21T00:00:00+00:00",
+                "2009-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://legalupdate.e-gold.com/2008/07/plea-agreement-as-to-douglas-l-jackson-20080721.html",
+            "wayback": "https://web.archive.org/web/2008/https://legalupdate.e-gold.com/2008/07/plea-agreement-as-to-douglas-l-jackson-20080721.html"
+          }
+        ],
+        "timestamp": "2008-07-21T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "fincen-virtual-currency-msb-guidance-2013",
+      "shrem-faiella-bitcoin-exchange-2014",
+      "coin-mx-doj-murgio-2015"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"The 2008-07-21 DOJ guilty plea by e-Gold Ltd., Gold & Silver\nReserve Inc., and Douglas Jackson (in US District Court for the\nDistrict of Columbia) on conspiracy to engage in money laundering\n(18 USC s 1956(h)) and operation of an unlicensed money\ntransmitting business (18 USC s 1960) produced an offramp_cex\ncascade (e-Gold's digital-gold-account service operations ceased\nand did not resume). The row claims only this single-layer\nofframp shutdown observation with attribution=plausible; no\nL0/L1/L3/L4/asset-onchain effects are coded. Discovery-tier only:\nno comparable-analysis use.\"\n",
+    "status": "draft",
+    "tags": [
+      "doj_enforcement",
+      "guilty_plea",
+      "unlicensed_money_transmitter",
+      "money_laundering",
+      "18_usc_1960",
+      "18_usc_1956",
+      "e_gold",
+      "pre_bitcoin_digital_currency",
+      "discovery_ledger",
+      "offramp_shutdown"
+    ],
+    "target": {
+      "actor_name": "e-Gold Ltd. + Gold & Silver Reserve Inc. + Douglas Jackson",
+      "actor_type": "digital_currency_administrator_msb",
+      "canonical_domains": [
+        "e-gold.com"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Named corporate defendants e-Gold Ltd. (operator of the e-gold\ndigital-gold-account ledger) and Gold & Silver Reserve Inc. (its\nUS affiliate handling fiat-side exchange of the e-gold unit),\nplus three named individual directors who entered guilty pleas:\nDr. Douglas Jackson (principal director / CEO), Barry Downey, and\nReid Jackson. e-Gold was a centralized digital-gold-account\nledger (gold-grams as the unit of account; no blockchain, no\ndecentralized consensus); therefore no on-chain addresses are\nenumerated. Marked subset because the plea targets the named\ndefendants and the e-Gold corporate vehicle rather than an\nenumerated complete set of e-Gold account holders. canonical_\ndomains lists the e-gold.com operational frontend.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "US_DOJ_DC",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "DOJ Criminal Division press release #08-635 (2008-07-21):\n\"Digital Currency Business E-Gold Pleads Guilty to Money\nLaundering and Illegal Money Transmitting Charges.\" Records\nthat Dr. Douglas Jackson (51, of Melbourne FL), principal\ndirector of e-Gold and CEO of Gold & Silver Reserve Inc.,\npleaded guilty in the US District Court for the District of\nColumbia to (i) conspiracy to engage in money laundering\n(18 USC s 1956(h)) and (ii) operation of an unlicensed money\ntransmitting business (18 USC s 1960(b)(1)(A), (B), and (C)).\nE-Gold Ltd. and corporate affiliate Gold & Silver Reserve Inc.\neach pleaded guilty to the same two conspiracy counts. The\nother two senior directors (Barry Downey of Baltimore; Reid\nJackson of Melbourne FL) each pleaded guilty to felony\nviolations of DC law for operating a money transmitting\nbusiness without a license. Charges originated from a federal\ngrand jury indictment returned 2007-04-24; sentencing was set\nfor 2008-11-20. evidence_use=contextual_unarchived because no\nbody_hash has been independently captured in this DRYRUN\nauthoring pass; the justice.gov/archive page remains publicly\naccessible and a 2008 Wayback bracketing is straightforward\nin follow-up human-audit. Provisional year-prefix wayback\nanchor pending re-pin.\n",
+          "type": "primary_legal",
+          "url": "https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html",
+          "wayback": "https://web.archive.org/web/2008/https://www.justice.gov/archive/opa/pr/2008/July/08-crm-635.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "US Secret Service press release (2008-07-21): \"In U.S. Secret\nService-Led Investigation, Digital Currency Business E-Gold\nPleads Guilty to Money Laundering and Illegal Money\nTransmitting Charges.\" Documents USSS lead-agency role in the\ne-Gold investigation alongside IRS-CI and DOJ Criminal\nDivision. Retained as contextual_unarchived corroborating\npointer; the DOJ #08-635 release above is the load-bearing\ntrigger anchor.\n",
+          "type": "primary_legal",
+          "url": "https://www.secretservice.gov/press/releases/2008/07/us-secret-service-led-investigation-digital-currency-business-e-gold-pleads"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "e-Gold company legal-update page (2008-07-21) publishing the\nplea agreement text as to Douglas L. Jackson under 18 USC\nss 1956(h) and 1960(b)(1)(A), (B), and (C). Primary-corporate\nconfirmation from the defendant company of the same guilty\nplea recorded in the DOJ press release. evidence_use=\ncontextual_unarchived for this DRYRUN authoring pass.\n",
+          "type": "primary_corporate",
+          "url": "https://legalupdate.e-gold.com/2008/07/plea-agreement-as-to-douglas-l-jackson-20080721.html"
+        }
+      ],
+      "timestamp": "2008-07-21T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision per the 2008-07-21 DOJ press release and\nthe contemporaneously dated e-Gold legal-update plea posting.\nNo intra-day timestamp is necessary for the trigger event.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "doj_indictment"
     },
     "version": "0.1"
   },
@@ -24296,6 +24667,1484 @@
         }
       ],
       "type": "doj_seizure_order"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-amazon-aws-eviction-2010-12.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED -- DRYRUN 2026-05-16** (agent_draft per user\ninstruction; status=draft because no body_hash+body_path archive\nanchors have been pinned in this session). Authored by LLM agent\nwithout personally verifying Wayback/body_hash; human review required\nto elevate to admitted status.\n\nFoundational L4-frontend / cloud-hosting censorship precedent in the\ncorpus. Amazon Web Services terminated WikiLeaks' EC2 / S3 hosting on\n2010-12-01 approximately 2 days after WikiLeaks had migrated to AWS\n(2010-11-29) to escape DDoS attacks against its self-hosted Swedish\ninfrastructure. The action followed a press release the same morning\nfrom Senator Joe Lieberman (chair, Senate Homeland Security and\nGovernmental Affairs Committee) announcing that Amazon had \"informed\nmy staff\" of the termination. AWS's own corporate statement\n(2010-12-02) denied political pressure and grounded the termination\nin terms-of-service violations (content the customer does not \"own or\notherwise control all of the rights to\" plus injury-risk).\n\nConceptual ancestor of 2022 Apple/Google App Store removals\n(apple-india-crypto-exchange-removal-2024-01,\ngoogle-play-india-crypto-exchange-removal-2024-01) and Cloudflare\ngateway eviction events\n(cloudflare-ethereum-gateway-tornado-block-2022-08): a corporate\nintermediary withdraws hosting / distribution access in response to\npolitical pressure, with the intermediary publicly grounding the\ndecision in its own TOS / acceptable-use policy rather than in any\nlegal compulsion. Pre-modern because the censorship target was\npublication infrastructure, not a crypto frontend; recorded under\ndiscovery_only_2008_2012 / discovery_ledger_only so that early-period\nprecedent is preserved without entering the 2017+ comparable\ndenominator.\n\nAttribution annotated plausible (not direct) because:\n  1. AWS denies that the Lieberman contact caused the termination.\n  2. No internal AWS communication has been disclosed publicly that\n     would resolve the conflict between Lieberman's public credit-\n     claim and AWS's TOS-violation framing.\n  3. The 2-day hosting window and same-morning timing with the\n     Lieberman press release are strong circumstantial evidence but\n     not direct documentary proof of causation.\n\nRelated sibling axes recorded as separate events:\n  - wikileaks-everydns-domain-termination-2010-12 (DNS authoritative\n    provider termination; sibling L0 / DNS axis).\n  - PayPal / Visa / Mastercard / Bank of America financial-rail\n    blockade (sibling offramp axis; not recorded in this session).\n  - apple-india-crypto-exchange-removal-2024-01 (modern descendant\n    via related_events cross-reference; corporate intermediary\n    withdrawing distribution access under political pressure).\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "ISP-level reachability of wikileaks.org is not the censorship axis\nrecorded here; the relevant L0 axes (PayPal/Visa/Mastercard/Bank of\nAmerica financial-rail blockade; EveryDNS/EasyDNS authoritative DNS\ntermination) are sibling events. This event records only the cloud-\nhosting eviction axis.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "Amazon Web Services terminated WikiLeaks' cloud hosting on\n2010-12-01, approximately 2 days after WikiLeaks had migrated to\nAWS (2010-11-29 \u2192 2010-12-01). AWS's 2010-12-02 corporate statement\ncites terms-of-service violation; press reporting on 2010-12-01\nattributes the timing to pressure from Senator Joe Lieberman's\noffice (chair, Senate Homeland Security Committee). This is the\nfoundational pre-modern L4-frontend / cloud-hosting censorship\nprecedent in the corpus; conceptual ancestor of 2022 Apple/Google\napp-store removals and Cloudflare gateway events.\nReplayable AWS account-termination snapshots not pinned;\ncontextual_unarchived sourcing via the AWS corporate statement and\npress coverage in this draft.\n",
+        "scope": [
+          "amazon_aws_us_east"
+        ],
+        "status": "partially_measured"
+      },
+      {
+        "layer": "asset_onchain",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "status": "not_applicable"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "wikileaks-amazon-aws-eviction-2010-12",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "cloud_host:amazon_aws",
+        "attribution": "plausible",
+        "country": "US",
+        "delta_hours": 0,
+        "event": "wikileaks_account_terminated_from_amazon_aws_ec2_s3_hosting",
+        "layer": "l4_frontend",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Amazon Web Services official statement \"WikiLeaks\" (2010-12-02)\nconfirming the WikiLeaks account was terminated for terms-of-\nservice violations: \"AWS does not pre-screen its customers, but\nit does have terms of service that must be followed. WikiLeaks\nwas not following them.\" AWS explicitly denies that government\ninquiry or DDoS prompted the termination. Attribution annotated\nplausible because Senator Lieberman's office publicly took\ncredit for prompting the action while AWS denies political\npressure; no internal AWS communication has been disclosed\nthat would harden the attribution to direct. No archived\nAWS account-termination internal record pinned in this\nsession.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "amazon_aws"
+              ],
+              "time_window": [
+                "2010-12-01T00:00:00+00:00",
+                "2010-12-02T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://aws.amazon.com/message/65348/",
+            "wayback": "https://web.archive.org/web/2010/https://aws.amazon.com/message/65348/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "CNN 2010-12-01 reporting that Amazon dropped WikiLeaks after\ncontact from Senator Joe Lieberman's office. Quotes\nLieberman's press statement: \"This morning Amazon informed my\nstaff that it has ceased to host the WikiLeaks website.\"\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "amazon_aws"
+              ],
+              "time_window": [
+                "2010-12-01T00:00:00+00:00",
+                "2010-12-02T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html",
+            "wayback": "https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "The Register 2010-12-01 contemporaneous reporting that\nWikiLeaks vanished from Amazon EC2 hosting on the afternoon\nof 2010-12-01. Establishes the ~2-day AWS-hosting window\n(2010-11-29/30 migration after DDoS against PRQ \u2192 2010-12-01\nAWS termination).\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "amazon_aws"
+              ],
+              "time_window": [
+                "2010-12-01T00:00:00+00:00",
+                "2010-12-02T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/",
+            "wayback": "https://web.archive.org/web/2010/https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/"
+          }
+        ],
+        "timestamp": "2010-12-01T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-everydns-domain-termination-2010-12",
+      "apple-india-crypto-exchange-removal-2024-01"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"On 2010-12-01, Amazon Web Services terminated WikiLeaks' EC2 / S3\ncloud-hosting account approximately 2 days after WikiLeaks had\nmigrated to AWS to escape DDoS against its self-hosted infrastructure,\nfollowing same-morning public pressure from Senator Joe Lieberman's\noffice. AWS publicly grounded the termination in TOS violation and\ndenied that the Lieberman contact prompted the decision.\nObservational axis at l4_frontend (cloud-hosting eviction).\nDiscovery-only precedent for the corporate-intermediary censorship\npattern; not eligible for the 2017+ comparable denominator.\"\n",
+    "status": "draft",
+    "tags": [
+      "corporate_policy_change",
+      "amazon_aws",
+      "wikileaks",
+      "cloud_hosting_eviction",
+      "l4_frontend",
+      "s5_corporate",
+      "discovery_only_2008_2012",
+      "foundational_precedent",
+      "dryrun_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "WikiLeaks (Sunshine Press)",
+      "actor_type": "publisher_hosted_on_cloud",
+      "canonical_domains": [
+        "wikileaks.org",
+        "cablegate.wikileaks.org"
+      ],
+      "chains": [],
+      "entity": "wikileaks",
+      "enumeration": "subset",
+      "enumeration_note": "Single-target entity: WikiLeaks (wikileaks.org). WikiLeaks had migrated\nto Amazon EC2 / S3 hosting on or about 2010-11-28/29 after DDoS attacks\nagainst its self-hosted infrastructure (PRQ in Sweden). AWS terminated\nthe WikiLeaks account approximately 2 days later on 2010-12-01.\nenumeration=subset because the specific AWS account identifiers and\naffected S3 buckets / EC2 instance IDs are not publicly enumerated.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "AMAZON_AWS_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Amazon Web Services public message \"WikiLeaks\" (2010-12-02) stating\nWikiLeaks violated AWS terms of service (\"you represent and warrant\nthat you own or otherwise control all of the rights to the content\n... that use of the content you supply does not violate this policy\nand will not cause injury to any person or entity\"). The same\nstatement denies that government inquiry or DDoS prompted the\ndecision. Wayback wildcard pointer (web/2010/) in lieu of pinned\nsnapshot; evidence_use=contextual_unarchived because no\nbody_hash+body_path pair has been captured in this session.\n",
+          "type": "primary_corporate",
+          "url": "https://aws.amazon.com/message/65348/",
+          "wayback": "https://web.archive.org/web/2010/https://aws.amazon.com/message/65348/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "CNN 2010-12-01 reporting that Amazon dropped WikiLeaks after\nSenator Joe Lieberman's office contacted Amazon. Quotes Lieberman:\n\"This morning Amazon informed my staff that it has ceased to host\nthe WikiLeaks website.\" Wayback wildcard pointer in lieu of pinned\nsnapshot.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html",
+          "wayback": "https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "The Register 2010-12-01 reporting that WikiLeaks vanished from\nAmazon US EC2 hosting on the afternoon of 2010-12-01 following the\nLieberman press release. Confirms the 2010-11-30 \u2192 2010-12-01\nAWS-hosting window (WikiLeaks had migrated to AWS on Sunday\n2010-11-28/29 after DDoS against its Swedish infrastructure).\n",
+          "type": "supporting_journalism",
+          "url": "https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/",
+          "wayback": "https://web.archive.org/web/2010/https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/"
+        }
+      ],
+      "timestamp": "2010-12-01T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision. Lieberman press release issued 2010-12-01;\nAmazon's own corporate statement followed 2010-12-02. WikiLeaks\nloss of AWS reachability reported by The Register and CNN on\n2010-12-01 afternoon US-time. Exact AWS account-termination\ntimestamp not publicly disclosed; day-level precision matches\nthe reporting cluster.\n",
+          "type": "supporting_journalism"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-bank-of-america-block-2010-12.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "NEW EVENT AUTHORED \u2014 agent_draft 2026-05-16. Phase E\ndiscovery-only contextual case for the 2010-12-18 Bank of America\npublic statement announcing the bank's refusal to process any\ntransactions believed to be intended for WikiLeaks. Authored at\nstatus=draft pending human audit of (i) the bofa.com /\nnewsroom.bankofamerica.com URL reachability and Wayback snapshot\npinning, (ii) the Reuters idUS wire snapshot pin, and (iii) any\nbofa.com IR-page or press-release archive containing the original\nstatement that may exist but was not located in this authoring\npass.\n\nSignificance: Bank of America's 2010-12-18 announcement was the\nfifth and final constituent action of the December 2010\n\"banking blockade\" against WikiLeaks (after PayPal 2010-12-04,\nPostFinance 2010-12-06, Mastercard 2010-12-06/07, Visa Europe\n2010-12-07, Western Union 2010-12-18, and Bank of America 2010-12-18).\nIt is the only US-bank rail action in the cluster; the others are\npayment-network (Mastercard / Visa) or money-transmitter (Western\nUnion / PayPal) actors. The Bank of America action is the\ncleanest example in the cluster of a corporate-policy-change\ntrigger phrased as an internal-policy interpretation rather than\na US-government-directed compliance action. Phase E.1 scoping\nrule #2 (payment-rail-Bitcoin nexus) admits this event because\nthe same banking-blockade dynamic became the proximate motivator\nfor early-Bitcoin donation-routing experiments (Bitcoin\ndonations to WikiLeaks were first publicly proposed in late\n2010 and became material in 2011).\n\nWhy discovery_only_2008_2012 / discovery_ledger_only: the event\nfalls in the 2008-2012 pre-Bitcoin-cascade-substrate temporal\ntier per sampling/frame.yaml. analysis_use=discovery_ledger_only\nexcludes this row from the 2017+ comparable-analysis denominator.\nThe event is retained as contextual discovery-ledger material\nrather than as a denominator row because (a) it predates the\nEthereum-era cascade substrate and (b) the cascade surface is\nexclusively at offramp_cex with no on-chain measurable receipt.\n\nWhy empirical_case rather than anchor_case: only 1 observed_change\nlayer is anchored (offramp_cex). anchor_case requires >=2\nobserved_change layers; the L0/L1/L3/L4/asset_onchain layers are\nall not_applicable on construct-did-not-exist grounds, so the\nevent cannot reach anchor_case strength regardless of evidence\nhardening. empirical_shape=comparison reflects the 1-observed-\nchange-layer count.\n\nWhy L0/L1/L3/L4/asset_onchain are not_applicable: 2010-12 predates\nthe entire Ethereum-era cascade substrate. Bitcoin existed (genesis\n2009-01-03) but had no measured exchange-side L4 frontend universe\nin 2010-12, no L1 PBS relay primitive (Ethereum Merge 2022-09-15),\nno L3 RPC-compliance primitive (Flashbots Protect 2022-11), and\nno asset-issuer freeze admin path (USDT 2014-10 onward). The\ncascade surface is exclusively at offramp_cex (US-bank-rail\nrefusal).\n\nRecovery: no recovery row is authored in this pass. Bank of\nAmerica never formally rescinded the policy in the public record;\nWikiLeaks's later donation infrastructure (Bitcoin donations from\n2011-06, Wau Holland Foundation routing for fiat, plus subsequent\nlitigation including Datacell ehf. v. Visa Europe / Valitor in\nIceland) operated around the US-bank rail rather than restoring\nit. A recovery event covering the eventual unfreezing of any\nspecific WikiLeaks-adjacent account by Bank of America would\nrequire human-audit-grade evidence not located in this pass.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2010-12-18 Bank of America statement does not direct\nISP-level domain blocking, DNS interference, or network-layer\naction. The cascade surface is the US-bank payment rail, not\nthe network layer.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "L1 PBS relay-filter substrate did not exist in 2010-12.\nEthereum itself launched 2015-07-30 and the Merge / MEV-Boost\nrelay surface arrived 2022-09-15. not_applicable on construct-\ndid-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate did not exist in 2010. not_applicable on\nconstruct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The Bank of America statement is a US-bank-rail refusal; it\ndoes not require frontend changes at any crypto exchange or\nservice. No L4 frontend surface is in scope. Bitcoin's first\nblock was 2009-01-03 and there were no general-purpose smart-\ncontract dApp frontends in 2010-12.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "No stablecoin-issuer admin path or asset-level freeze primitive\nexisted in 2010-12; USDT was first issued ~2014-10 and\nissuer-side freeze admin actions arose later. not_applicable\non construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "denominator_artifact": {
+          "note": "Coverage scope: Bank of America's stated payment-policy\nposture toward WikiLeaks-intended transactions, in force from\nthe 2010-12-18 announcement onward and never formally\nrescinded in the public record during the 12 months following.\nHuman audit will pin the bofa.com / newsroom.bankofamerica.com\nand Reuters wire snapshots as the replayable denominator\nanchor for this off-ramp-rail observation.\n",
+          "scope_descriptor": {
+            "countries": [
+              "US"
+            ],
+            "providers": [
+              "bank_of_america"
+            ],
+            "time_window": [
+              "2010-12-18T00:00:00+00:00",
+              "2011-12-18T00:00:00+00:00"
+            ]
+          },
+          "type": "scope_descriptor"
+        },
+        "layer": "offramp_cex",
+        "note": "Bank of America publicly stated its refusal to process any\ntransactions believed to be intended for WikiLeaks. This is a\ndirect off-ramp-rail observation: the bank is the off-ramp\nrail for WikiLeaks USD donations. The coverage scope is the\npublic corporate statement of 2010-12-18 as carried by Reuters\nwire copy and reproduced across NBC, CBS, Al Jazeera, France 24,\nand Huffington Post syndications, plus the WikiLeaks Banking\nBlockade page. Measured because the corporate statement\nitself is the observable; no underlying transaction-level\nenumeration is required for the policy-change observation.\n",
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "wikileaks-bank-of-america-block-2010-12",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "bank:bank_of_america",
+        "attribution": "direct",
+        "country": "US",
+        "delta_hours": 0,
+        "event": "bofa_refuses_to_process_wikileaks_intended_transactions",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Bank of America public statement of 2010-12-18 is the\ndirect off-ramp-rail observation: the bank declares it\n\"will not process any transactions of any type that we\nhave reason to believe are intended for WikiLeaks\". The\nstated rationale is the bank's \"reasonable belief that\nWikiLeaks may be engaged in activities that are, among\nother things, inconsistent with our internal policies for\nprocessing payments\". attribution=direct because the\ncorporate statement is itself the policy action; Bank of\nAmerica is the US-bank rail and its statement is the\noff-ramp-rail closure for WikiLeaks USD donations.\nSpecific Wayback snapshot timestamp requires re-pinning\nin human audit.\n",
+            "type": "primary_corporate",
+            "url": "https://newsroom.bankofamerica.com/",
+            "wayback": "https://web.archive.org/web/2010/https://newsroom.bankofamerica.com/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Reuters wire copy of 2010-12-18 carrying the canonical\nBank of America statement quote. Reuters is the\noriginating public source of the \"inconsistent with our\ninternal policies\" sentence reproduced across downstream\ncoverage. Specific Wayback snapshot timestamp requires\nre-pinning in human audit.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.reuters.com/article/idUSTRE6BH0NQ/",
+            "wayback": "https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6BH0NQ/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "NBC News 2010-12-18 syndication \"Bank of America cuts\noff WikiLeaks payments\" reproducing the canonical\ncorporate statement. Cross-confirms the same-day\nannouncement. Specific Wayback snapshot timestamp\nrequires re-pinning in human audit.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.nbcnews.com/id/wbna40728284",
+            "wayback": "https://web.archive.org/web/2010/https://www.nbcnews.com/id/wbna40728284"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "WikiLeaks Banking Blockade page listing Bank of America's\n2010-12-18 refusal as the fifth constituent action of the\ncoordinated December 2010 \"banking blockade\" alongside\nPayPal, Mastercard, Visa Europe, and Western Union.\nTarget self-report; corroborated by the corporate /\njournalism anchors above. Specific Wayback snapshot\ntimestamp requires re-pinning in human audit.\n",
+            "type": "supporting_community",
+            "url": "https://wikileaks.org/Banking-Blockade.html",
+            "wayback": "https://web.archive.org/web/2011/https://wikileaks.org/Banking-Blockade.html"
+          }
+        ],
+        "timestamp": "2010-12-18T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-paypal-freeze-2010-12",
+      "wikileaks-visa-europe-suspension-2010-12",
+      "wikileaks-mastercard-suspension-2010-12",
+      "wikileaks-western-union-interdiction-2010-12"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "Bank of America's public statement of 2010-12-18 announcing that\nthe bank \"will not process any transactions of any type that we\nhave reason to believe are intended for WikiLeaks\", citing\ninternal-payment-policy interpretation regarding WikiLeaks\nactivities deemed \"inconsistent with our internal policies for\nprocessing payments\", constitutes a discovery-ledger corporate-\npolicy-change event documenting US-bank-rail off-ramp closure\nagainst WikiLeaks. Fifth and final constituent action of the\nDecember 2010 \"banking blockade\" cluster.\n",
+    "scoped_knowledge": "This event is the US-bank-rail constituent of the December 2010\n\"banking blockade\" cluster against WikiLeaks. The cluster is\nsignificant in the broader censorship-event-database arc because\nit is the canonical pre-Bitcoin demonstration of coordinated\noff-ramp closure against a publisher target by private-sector\npayment infrastructure, acting on stated internal-policy grounds\nrather than under formal government order. The cluster is widely\ncited as a proximate motivator for early Bitcoin adoption among\npublishers and as a precedent for subsequent banking-blockade-\nstyle actions (e.g. Operation Choke Point 2013-2017 against\nlawful-but-disfavored industries; later crypto-rail refusals).\nThe Bank of America action in particular is the cleanest example\nin the cluster of a corporate-policy-change trigger phrased\npurely as internal-policy interpretation. The off-ramp_cex\nobserved_change is the single anchored cascade-surface row;\nL0/L1/L3/L4/asset_onchain are all not_applicable on construct-\ndid-not-exist grounds because 2010-12 predates the entire\nEthereum-era cascade substrate. Sibling events\nwikileaks-paypal-freeze-2010-12, wikileaks-visa-europe-suspension-\n2010-12, wikileaks-mastercard-suspension-2010-12, and\nwikileaks-western-union-interdiction-2010-12 carry the parallel\npayment-network and money-transmitter actions; together the five\nevents form the complete December 2010 banking-blockade cluster.\n",
+    "status": "draft",
+    "tags": [
+      "corporate_policy_change",
+      "bank_of_america",
+      "wikileaks",
+      "banking_blockade",
+      "offramp_cex",
+      "us_bank_rail",
+      "discovery_ledger",
+      "pre_bitcoin_cascade_substrate"
+    ],
+    "target": {
+      "actor_name": "WikiLeaks",
+      "actor_type": "publisher_donation_recipient",
+      "canonical_domains": [],
+      "chains": [],
+      "enumeration": "subset",
+      "enumeration_note": "Target is WikiLeaks and its donation-collection vehicles, i.e.\nany payee or transaction that Bank of America has \"reason to\nbelieve\" is intended for WikiLeaks. enumeration=subset because\nthe bank's stated criterion is belief-based rather than an\nenumerated account list; no specific WikiLeaks-controlled BofA\naccount number is named in the public statement. No specific\ndomain anchor is identified for the target, so canonical_domains\nis empty.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "BANK_OF_AMERICA_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Bank of America public statement of 2010-12-18 announcing that\nthe bank \"will not process any transactions of any type that we\nhave reason to believe are intended for WikiLeaks\". The\nstatement is widely quoted in contemporaneous wire copy\n(Reuters / AP) and direct corporate-newsroom dissemination\nwas the bofa.com / newsroom.bankofamerica.com surface. The\ncanonical sentence reads (as reported by Reuters and quoted in\ndownstream coverage): \"This decision is based upon our\nreasonable belief that WikiLeaks may be engaged in activities\nthat are, among other things, inconsistent with our internal\npolicies for processing payments.\" Specific Wayback snapshot\npin requires re-pinning in human audit; the bofa.com newsroom\ndomain anchor is contextual_unarchived in this authoring pass.\n",
+          "type": "primary_corporate",
+          "url": "https://newsroom.bankofamerica.com/",
+          "wayback": "https://web.archive.org/web/2010/https://newsroom.bankofamerica.com/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Reuters wire copy of 2010-12-18 carrying the canonical Bank of\nAmerica statement quote on the refusal to process any\nWikiLeaks-intended transactions. This wire is the originating\npublic source of the \"inconsistent with our internal policies\"\nsentence reproduced across all downstream coverage (NBC News,\nCBS News, Al Jazeera, France 24, Huffington Post, 6abc). URL\nis the standard Reuters idUS identifier shape; specific\nWayback snapshot timestamp requires re-pinning in human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.reuters.com/article/idUSTRE6BH0NQ/",
+          "wayback": "https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6BH0NQ/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "NBC News / msnbc.com 2010-12-18 syndication titled \"Bank of\nAmerica cuts off WikiLeaks payments\". Carries the canonical\nBank of America statement quote and frames the announcement\nas the addition of Bank of America to the existing\nPayPal/Mastercard/Visa Europe/Western Union banking-blockade\ncluster against WikiLeaks. Specific Wayback snapshot\ntimestamp requires re-pinning in human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.nbcnews.com/id/wbna40728284",
+          "wayback": "https://web.archive.org/web/2010/https://www.nbcnews.com/id/wbna40728284"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Al Jazeera 2010-12-18 article titled \"Bank of America cuts\noff WikiLeaks\" reporting the same-day announcement with the\ncanonical statement quote and cross-referencing the prior\nactions by PayPal, Mastercard, and Visa Europe. Specific\nWayback snapshot timestamp requires re-pinning in human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.aljazeera.com/economy/2010/12/18/bank-of-america-cuts-off-wikileaks",
+          "wayback": "https://web.archive.org/web/2010/https://www.aljazeera.com/economy/2010/12/18/bank-of-america-cuts-off-wikileaks"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "CBS News 2010-12-18 article \"Bank of America to Block\nDonations to WikiLeaks\" reproducing the canonical bank\nstatement and confirming the corporate-policy framing.\nSpecific Wayback snapshot timestamp requires re-pinning in\nhuman audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.cbsnews.com/news/bank-of-america-to-block-donations-to-wikileaks/",
+          "wayback": "https://web.archive.org/web/2010/https://www.cbsnews.com/news/bank-of-america-to-block-donations-to-wikileaks/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "WikiLeaks \"Banking Blockade\" page listing the December 2010\nrefusals by Bank of America, PayPal, Mastercard, Visa Europe,\nand Western Union as the constituent actions of the\ncoordinated \"banking blockade\" against WikiLeaks. Self-\nreported by the target organization but corroborated by the\nindividual primary-corporate / supporting-journalism sources\nfor each constituent action. Specific Wayback snapshot\ntimestamp requires re-pinning in human audit.\n",
+          "type": "supporting_community",
+          "url": "https://wikileaks.org/Banking-Blockade.html",
+          "wayback": "https://web.archive.org/web/2011/https://wikileaks.org/Banking-Blockade.html"
+        }
+      ],
+      "timestamp": "2010-12-18T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Bank of America public statement carries a Saturday 2010-12-18\ndate in all wire copy (Reuters, AP, NBC, CBS, Al Jazeera,\nFrance 24). Day-level precision is appropriate because the\nbank did not publish intra-day issuance timing for this\ncorporate-policy statement; Reuters wire timestamp is\n2010-12-18 (intra-day not preserved in the visible record).\n",
+          "type": "supporting_journalism"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-everydns-domain-termination-2010-12.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (discovery_only_2008_2012\ntier; lean run): authored by LLM agent without personally verifying\nWayback/body_hash; origin=agent_draft per validator policy. Real\nrelease must replace this DRYRUN marker with a human-verified audit\nafter pinning real archive anchors and promote origin to\nhuman_reviewed.\n\nFoundational L4-frontend / DNS-layer censorship precedent. The\n2010-12-02 EveryDNS termination of authoritative DNS for\nwikileaks.org is the conceptual ancestor of the 2024 India FIU\ndomain-blocking action and the 2022 Cloudflare gateway-termination\npattern: a corporate intermediary (DNS provider, in this case the\ndominant free-DNS provider serving ~500k domains) invokes its TOS\nto terminate the resolution / publication relationship for a\npressure-targeted client, citing DDoS / collateral-damage rather\nthan direct legal compulsion. The DNS termination took effect ~22:00\nEST 2010-12-02 (24 hours after EveryDNS notice) and produced\nworldwide DNS unreachability of wikileaks.org until the relocation\nto wikileaks.ch (Swiss Pirate Party-hosted) the following day.\n\nDiscovery tier rationale: events 2008-2012 belong to the\ndiscovery_only_2008_2012 temporal tier per the 2008+ tiered frame\nin sampling/frame.yaml. analysis_use=discovery_ledger_only excludes\nthis row from the 2017+ comparable-analysis denominator and from\nthe 2013-2016 historical-baseline cohort; it is retained for\ndiscovery / cross-temporal-anchor purposes only. The 2010-12-02\nEveryDNS termination predates the existence of any blockchain\ncensorship surface (Bitcoin genesis 2009-01-03; Ethereum Merge\n2022-09-15; PBS relay-censorship 2022+) and is therefore by\nconstruction outside the corpus's comparable analysis frame.\n\nEmpirical shape: comparison (1 observed_change layer \u2014 L4 frontend\nload-bearing, attribution=direct). Admission tier: empirical_case\n(\u22651 observed_change layer with direct attribution from the DNS\nprovider's own statement). Stratum coding: S5_corporate. EveryDNS\nwas not legally compelled by US authorities to terminate; the\naction was a unilateral corporate-TOS decision by the DNS provider\nin response to DDoS traffic, which makes this the canonical\nS5_corporate pre-2017 anchor \u2014 the corporate-intermediary\n\"infrastructure provider exercising contractual termination under\nTOS pressure\" precedent that the 2022-2024 Cloudflare / India FIU\nevents extend.\n\nCross-event reference: this event is the sibling DNS-layer row to\nwikileaks-amazon-aws-eviction-2010-12 (Amazon AWS eviction of\nWikiLeaks 2010-12-01, the prior-day hosting-provider termination).\nTogether the Amazon-then-EveryDNS sequence constitutes the\ncanonical 2010-12 \"WikiLeaks intermediary cascade\" \u2014 a hosting-\nlayer termination on 2010-12-01 followed by a DNS-layer\ntermination on 2010-12-02, both invoked under corporate TOS in\nresponse to political and DDoS pressure, with no direct US-\ngovernment legal order in either case. This pair is the\nfoundational pre-crypto reference for the 2022+ DeFi-frontend /\ngateway-termination cascade pattern.\n\nL0/L1/L3/asset_onchain/offramp_cex are all marked not_applicable on\nconstruct-did-not-exist grounds (no blockchain censorship surface in\n2010), consistent with the validator policy and the discovery-tier\nframing.\n\nDRYRUN caveats: all four citations (EveryDNS corporate statement +\nthree contemporaneous journalism) carry 2010-calendar-folder\nWayback pointers rather than pinned snapshots; pinned snapshot\ntimestamps and body_hash captures are deferred to the human-audit\npass. For non-DRYRUN release, capture body_hash + body_path for:\n(1) the EveryDNS public statement of 2010-12-02 (the everydns.com\nhomepage snapshot in the Wayback CDX); (2) The Register and The\nNext Web article permalinks; optionally (3) the Wired / Guardian /\nReuters 2010-12-02-03 coverage for additional triangulation. Marked\nevidence_use=contextual_unarchived on all citations to flag the\nunarchived state per validator policy.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "No ISP-level or backbone-level packet block invoked by the\nEveryDNS action; the termination is exclusively at the\nauthoritative-DNS layer, which is treated here as L4 frontend\n(domain-resolution / domain-takedown surface). L0 not engaged.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Construct-did-not-exist. WikiLeaks 2010 has no blockchain\nconsensus surface; this is a pre-crypto-cascade DNS-termination\nprecedent.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "Construct-did-not-exist. JSON-RPC / MEV-relay provider compliance\nsubstrate is a 2022+ phenomenon.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "Load-bearing layer for this event. EveryDNS (then the dominant\nfree-DNS provider, ~500k domains) terminated authoritative DNS\nfor wikileaks.org effective ~22:00 EST 2010-12-02 under its TOS\nclause prohibiting service use that interferes with other\nmembers' use; cited cause was DDoS traffic against the\nwikileaks.org records that \"threatened the stability of\nEveryDNS.net's infrastructure.\" Effect: worldwide DNS\nunreachability of wikileaks.org within ~24 hours, forcing\nWikiLeaks to relocate to wikileaks.ch (Swiss Pirate Party\nhosting) and a global mirror network. Treated as L4 frontend\n(domain-resolution / domain-takedown layer) \u2014 conceptual\nancestor of the 2024 India FIU domain-blocking and 2022\nCloudflare gateway-termination events.\n",
+        "provider_scope": "unknown",
+        "scope": [
+          "wikileaks.org"
+        ],
+        "status": "measured"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Construct-did-not-exist. No on-chain asset surface in 2010\nWikiLeaks infrastructure (Bitcoin donations began 2011-06).\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Construct-did-not-exist. CEX off-ramp surface is post-2013.\nThe sibling 2010-12 payment-rail severance events (PayPal,\nVisa, Mastercard, Bank of America \"WikiLeaks blockade\") are a\nseparate event family and are tracked outside this corpus's\ncrypto-cascade frame; they are conceptual but not validator-\nrelevant L-layer rows here.\n",
+        "status": "not_applicable"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "wikileaks-everydns-domain-termination-2010-12",
+    "jurisdiction": [
+      "US",
+      "corporate_global"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "dns_provider:everydns",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "everydns_terminated_authoritative_dns_for_wikileaks_org_under_tos",
+        "layer": "l4_frontend",
+        "observation_kind": "observed_change",
+        "precision": "hour",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "EveryDNS's own 2010-12-02 public statement is the canonical\ncorporate-policy source for this L4 (DNS-layer) termination.\nThe DNS-provider operator names: (a) the action\n(authoritative-DNS termination for wikileaks.org), (b) the\nTOS clause invoked (interference-with-other-members'-use),\nand (c) the proximate cause (DDoS traffic against the\nwikileaks.org records). attribution=direct because the\nsource is the operator naming the action. DRYRUN: pinned\nWayback snapshot and body_hash for the EveryDNS statement\npage are deferred to the human-audit pass; marked\nevidence_use=contextual_unarchived per validator policy.\n",
+            "scope_descriptor": {
+              "domains": [
+                "wikileaks.org"
+              ],
+              "providers": [
+                "everydns"
+              ],
+              "time_window": [
+                "2010-12-02T00:00:00+00:00",
+                "2010-12-03T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "http://everydns.com/",
+            "wayback": "https://web.archive.org/web/2010/http://everydns.com/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "The Register contemporaneous coverage (2010-12-03) of the\nEveryDNS termination, retained for hour-level timing\ntriangulation and independent confirmation of the TOS\nclause / DDoS rationale. DRYRUN: pinned Wayback snapshot\ndeferred to human audit.\n",
+            "scope_descriptor": {
+              "domains": [
+                "wikileaks.org"
+              ],
+              "providers": [
+                "everydns"
+              ],
+              "time_window": [
+                "2010-12-02T00:00:00+00:00",
+                "2010-12-03T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.theregister.com/2010/12/03/wikileaks_loses_dns/",
+            "wayback": "https://web.archive.org/web/2010/https://www.theregister.com/2010/12/03/wikileaks_loses_dns/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "The Next Web follow-up documenting the immediate mirror-\nnetwork response \u2014 wikileaks.org relocated to wikileaks.ch\n(Swiss Pirate Party hosting) and a global mirror network\nwithin ~24 hours. Confirms the effect of the EveryDNS\ntermination at the domain-resolution layer and the\nsubsequent multi-jurisdictional domain-mirroring response.\nDRYRUN: pinned Wayback snapshot deferred to human audit.\n",
+            "type": "supporting_journalism",
+            "url": "https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/",
+            "wayback": "https://web.archive.org/web/2010/https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/"
+          }
+        ],
+        "timestamp": "2010-12-02T22:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "recovery": [
+      {
+        "layer": "l4_frontend",
+        "note": "WikiLeaks restored worldwide reachability within ~24 hours of\nthe EveryDNS termination by relocating wikileaks.org to\nwikileaks.ch (Swiss Pirate Party-hosted, Switch-registered) and\nestablishing a global mirror network of >1,000 domain mirrors\nover the following days. Recovery is at the WikiLeaks-actor\nlevel (the EveryDNS authoritative-DNS relationship itself was\nnot restored); the operational L4-frontend reachability of the\nWikiLeaks content was substantively recovered via the Swiss\ndomain and mirror network.\n",
+        "resolved": true,
+        "resolved_timestamp": "2010-12-03T00:00:00+00:00"
+      }
+    ],
+    "related_events": [
+      "wikileaks-amazon-aws-eviction-2010-12"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "EveryDNS terminated authoritative DNS service for wikileaks.org at\n~22:00 EST 2010-12-02 under its TOS clause prohibiting service use\nthat interferes with other members', citing DDoS traffic against\nthe wikileaks.org records; the termination produced worldwide DNS\nunreachability of wikileaks.org until the relocation to\nwikileaks.ch the following day. The L4-frontend layer carries the\nload-bearing direct-attribution observation; this is the\nfoundational pre-crypto DNS-layer corporate-intermediary censorship\nprecedent in the corpus.\n",
+    "scoped_knowledge": "This event is the canonical pre-crypto S5_corporate DNS-layer\ncensorship precedent. EveryDNS (then the dominant free-DNS\nprovider, serving ~500k domains) invoked a TOS interference clause\nto terminate authoritative DNS for wikileaks.org on 2010-12-02 in\nresponse to DDoS traffic against the wikileaks.org records. The\nproximate trigger was infrastructure-stability pressure, not direct\nUS-government legal compulsion, which is what makes this row an\nS5_corporate (corporate policy) rather than an S3 (DoJ) or S1\n(OFAC) case. The conceptual analog in the modern corpus is the\n2022+ pattern of corporate-intermediary terminations under\nTOS / AUP at the gateway, frontend, and domain-resolution layers\n(Cloudflare gateway terminations, frontend operator delistings,\nIndia FIU domain-blocking). The 2010-12-02 EveryDNS action is the\nancestor of all three: a corporate intermediary at the\ndomain-resolution layer terminating service under TOS in response\nto pressure that the intermediary itself frames as\ninfrastructure-stability rather than legal compulsion. Paired with\nthe sibling wikileaks-amazon-aws-eviction-2010-12 (hosting-layer\ntermination 2010-12-01), the two events constitute the\nfoundational pre-crypto reference cascade for the cross-layer\nintermediary-termination pattern this corpus documents at the\ncryptocurrency layers in the 2017+ comparable cohort.\n",
+    "status": "draft",
+    "tags": [
+      "corporate_policy_change",
+      "dns_termination",
+      "wikileaks",
+      "everydns",
+      "domain_takedown",
+      "frontend_restriction",
+      "foundational_precedent",
+      "discovery_anchor",
+      "dryrun_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "WikiLeaks (wikileaks.org domain)",
+      "actor_type": "media_publisher",
+      "canonical_domains": [
+        "wikileaks.org"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Canonical target is the wikileaks.org domain (DNS authoritative-\nservice relationship at EveryDNS), terminated 2010-12-02. Subset\nenumeration because the EveryDNS action removed authoritative DNS\nfor the wikileaks.org domain only (the WikiLeaks organizational\nentity hosted content across multiple infrastructure providers in\n2010-11/12; this row captures the DNS-provider termination\nspecifically, sibling to the Amazon AWS eviction recorded under\nwikileaks-amazon-aws-eviction-2010-12).\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "EVERYDNS_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "EveryDNS public statement of 2010-12-02 terminating free DNS\nservice for wikileaks.org within 24 hours of notice, citing the\nEveryDNS Terms of Service clause that \"Member shall not\ninterfere with another Member's use and enjoyment of the\nService or another entity's use and enjoyment of similar\nservices.\" EveryDNS cited DDoS attacks against the wikileaks.org\nDNS records that \"threatened the stability of EveryDNS.net's\ninfrastructure\" supporting ~500,000 other domains. The\ntermination took effect at 2010-12-02 ~22:00 EST (per the\nEveryDNS statement specifying a 24-hour notice ending 22:00 EST\non 2010-12-02). DRYRUN: pinned Wayback snapshot and body_hash\nfor the EveryDNS statement page are deferred to the human-audit\npass; marked evidence_use=contextual_unarchived per validator\npolicy for unarchived sources.\n",
+          "type": "primary_corporate",
+          "url": "http://everydns.com/",
+          "wayback": "https://web.archive.org/web/2010/http://everydns.com/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "The Register contemporaneous coverage (2010-12-03) \"Wikileaks'\nDNS pulls plug, citing collateral DDoS damage\" naming EveryDNS\nas the terminating DNS provider, the TOS clause invoked, and\nthe ~22:00 EST 2010-12-02 cutoff. Triangulation source for\nactor (EveryDNS), mechanism (DNS service termination at the\nauthoritative free-DNS provider for wikileaks.org), and\nhour-level timing. DRYRUN: pinned Wayback snapshot deferred to\nhuman audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.theregister.com/2010/12/03/wikileaks_loses_dns/",
+          "wayback": "https://web.archive.org/web/2010/https://www.theregister.com/2010/12/03/wikileaks_loses_dns/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "The Next Web contemporaneous coverage (2010-12-02/03) reporting\nthe worldwide unreachability of wikileaks.org following the\nEveryDNS termination, and WikiLeaks' own Twitter\nacknowledgment that the domain had been \"killed by U.S.\nEveryDNS.net after claimed mass attacks.\" Independent\nconfirmation of the public visibility and effect of the DNS\ntermination. DRYRUN: pinned Wayback snapshot deferred to\nhuman audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://thenextweb.com/news/wikileaks-is-reportedly-down-worldwide-as-dns-services-pulled",
+          "wayback": "https://web.archive.org/web/2010/https://thenextweb.com/news/wikileaks-is-reportedly-down-worldwide-as-dns-services-pulled"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "The Next Web follow-up (2010-12-03) documenting that wikileaks.org\nwas relocated to wikileaks.ch (Swiss Pirate Party-hosted) and\nother mirrors within ~24 hours of the EveryDNS termination.\nEstablishes the L4-frontend / domain-takedown effect and the\nimmediate mirror-network response. DRYRUN: pinned Wayback\nsnapshot deferred to human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/",
+          "wayback": "https://web.archive.org/web/2010/https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/"
+        }
+      ],
+      "timestamp": "2010-12-02T22:00:00+00:00",
+      "timestamp_precision": "hour",
+      "timestamp_sources": [
+        {
+          "note": "Hour-level precision per the EveryDNS statement specifying a\n24-hour notice ending 22:00 EST on 2010-12-02 (= 2010-12-03\n03:00 UTC, but conventionally the termination cutoff is\nrecorded as 2010-12-02 ~22:00 local US Eastern, which falls\nwithin the 2010-12-02 calendar day in the original source\nframing). UTC normalization: 2010-12-03T03:00:00Z; this draft\nrecords 2010-12-02T22:00:00Z as a same-day approximation\nconsistent with the contemporaneous press framing; the precise\nUTC-vs-local conversion is to be re-pinned during human audit.\n",
+          "type": "primary_corporate"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-mastercard-suspension-2010-12.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase E pre-Bitcoin\nbaseline discovery pass per\nsources/pre_bitcoin_baseline_2008_2012/triage_manifest.json\ncandidate `wikileaks-mastercard-suspension-2010-12`): drafted by\nLLM agent without personally pinning Wayback snapshots or\ncomputing body_hash artifacts for the MasterCard spokesman\nstatement surface or the CNN Money / France 24 coverage. status\nremains `draft` and origin remains `agent_draft` per validator\nrule (agent_draft is only valid at status=draft). Real release\nrequires (a) human audit to replace this DRYRUN marker, (b) a\npinned Wayback snapshot or local body_hash+body_path archive of\nthe MasterCard newsroom / spokesman-quotation surface as\ncirculated to press on 2010-12-06/07, and (c) Wayback re-pin of\nthe CNN Money and France 24 articles cited as supporting\njournalism.\n\ncomparison shape: 1 observed_change layer (offramp_cex). L0 /\nL1 / L3 / L4 / asset_onchain are all not_applicable. The\nnot_applicable codings are construct-grounded rather than\ndata-grounded: in 2010-12 WikiLeaks did not yet accept Bitcoin\ndonations (Bitcoin acceptance began 2011-06), so chain-consensus,\nRPC-compliance, and stablecoin-issuer-freeze primitives have no\nmeasured construct against which to record a change; the\ncontemporaneous L0 / L4 pressures on wikileaks.org (EveryDNS\ntermination 2010-12-02, Amazon AWS eviction 2010-12-01, Operation\nPayback DDoS against mastercard.com 2010-12-08) are sibling\nevents or third-party reactions and are explicitly not\ndouble-counted in the MasterCard row.\n\nDiscovery-only placement: this row is part of the 2008-2012\npre-Bitcoin baseline tier and is admitted to the discovery ledger\nonly. It is explicitly out of scope for the 2017+ comparable\ndenominator (per temporal_tier=discovery_only_2008_2012 +\nanalysis_use=discovery_ledger_only). The row documents the\ncard-network operator-policy mechanism of payment-rail\ncensorship as it appeared a year before Bitcoin emerged as a\ndonations-channel substitute \u2014 a foundational comparator for\nlater chain-censorship cascades but not itself a chain event.\n\nSibling-event cluster (the \"WikiLeaks Banking Blockade\"):\npaypal-freeze-2010-12 (2010-12-04, PayPal AUP termination of the\nWau-Holland-Stiftung donations account), visa-europe-suspension\n2010-12 (2010-12-07, Visa Europe via acquirer Teller / Korta\nterminated DataCell ehf merchant agreement, the Visa leg of the\ncard-network blockade and the direct predicate of the later\nDataCell v. Valitor Iceland District Court 2012-07 litigation),\nbank-of-america-block-2010-12 (2010-12-18, sole US-domiciled\ncommercial bank action in the blockade), western-union-\ninterdiction-2010-12 (2010-12-21, WU added WikiLeaks to its\ninternal Interdiction List), postfinance-account-closure-2010-12\n(2010-12-06, Swiss Post PostFinance closed the Julian Assange\nDefence Fund account), and the downstream judicial endpoint\ndatacell-v-valitor-iceland-district-court-2012-07. MasterCard is\ntreated as one of the two card-network legs of the blockade\n(companion to Visa Europe).\n\nThird-party reaction note (NOT counted toward observations):\nOperation Payback (Anonymous-affiliated DDoS coalition) launched\na coordinated DDoS attack against mastercard.com on 2010-12-08\nin retaliation for the MasterCard processing suspension. This is\na third-party reaction with attribution=unknown to the MasterCard\ntrigger and is captured in `follow_on_reaction` semantics per\nschema 0.2.0; it is not double-counted as a coverage_gap or\nobserved_change in this row. The Anonymous DDoS reaction\nillustrates a cascade-shape secondary effect but is informational\nonly for this event's empirical_shape accounting.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The MasterCard processing suspension is an operator-policy\naction at the card-network rail. It does not direct ISP-level\nblocking, DNS interference, or BGP-layer manipulation against\nwikileaks.org reachability. The contemporaneous DNS-resolver\ntermination of wikileaks.org by EveryDNS on 2010-12-02 is a\nseparate event (sibling case in the same blockade cluster) and\nis not double-counted here. not_applicable on\nconstruct-out-of-scope grounds for the trigger.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Pre-Bitcoin baseline. Bitcoin mainnet launched 2009-01-03 but\nWikiLeaks did not begin accepting Bitcoin donations until\n2011-06; in 2010-12 there is no chain-consensus primitive that\na card-network operator-policy change could engage.\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "Pre-Bitcoin baseline (2010-12). The L3 RPC / public-RPC\ncompliance substrate that this dataset measures (Flashbots\nProtect, MEV-Blocker, Infura/Alchemy compliance filters)\npost-dates this event by \u2265 8 years. not_applicable on\nconstruct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The MasterCard suspension did not require takedown of the\nWikiLeaks frontend or geofencing of any visitor cohort at the\npublic-web layer. The contemporaneous wikileaks.org L4 /\ninfrastructure pressures (EveryDNS DNS-service termination\n2010-12-02, Amazon AWS hosting eviction 2010-12-01) are\nseparate sibling events; no L4 frontend diff is reconstructed\nfor the MasterCard row.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Pre-Bitcoin baseline for WikiLeaks donations. No stablecoin\nissuer-side blacklist / freeze admin path is engaged by a\n2010-12 card-network operator-policy change. not_applicable on\nconstruct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer for this event: an operator-policy change at\na card-network payment rail. MasterCard Worldwide suspended\nacceptance of MasterCard-branded card donations to WikiLeaks\neffective 2010-12-06, severing the credit/debit-card donation\nchannel that had been routed through the DataCell ehf merchant\ngateway in Iceland. This is treated as the offramp_cex layer\nanalogue for the pre-Bitcoin baseline: a centralized payment\noperator unilaterally terminating the off-ramp / on-ramp\nsurface used to fund a target entity. Attached below as\nobservation_kind=observed_change with attribution=direct.\n",
+        "scope": [
+          "mastercard_card_network_wikileaks_donation_processing"
+        ],
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "follow_on_reaction": [
+      {
+        "actor": "anonymous_operation_payback",
+        "attribution": "unknown",
+        "kind": "third_party_ddos_retaliation",
+        "note": "Operation Payback (Anonymous-affiliated DDoS coalition)\nlaunched a coordinated distributed-denial-of-service attack\nagainst mastercard.com on 2010-12-08 in retaliation for the\nMasterCard processing suspension. Captured here as a\ncross-event follow-on reaction with attribution=unknown\nper reviewer Action 4 (schema 0.2.0). Does NOT count toward\nthis event's empirical_shape or admission_tier accounting;\ntracked for cross-event-anchor purposes only.\n",
+        "precision": "day",
+        "target": "mastercard.com",
+        "timestamp": "2010-12-08T00:00:00+00:00"
+      }
+    ],
+    "id": "wikileaks-mastercard-suspension-2010-12",
+    "jurisdiction": [
+      "US",
+      "corporate_global"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "payment_operator:mastercard_worldwide",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "mastercard_suspended_card_network_processing_of_wikileaks_donations",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "MasterCard Worldwide spokesman Chris Monteiro statement,\ndelivered to press 2010-12-06: \"MasterCard is in the\nprocess of working to suspend the acceptance of MasterCard\ncards on WikiLeaks until the situation is resolved \u2026\nMasterCard rules prohibit customers from directly or\nindirectly engaging in or facilitating any action that is\nillegal.\" attribution=direct because the operator itself\ndeclares the policy change; the statement is the operative\nact of severance. The MasterCard newsroom has no\ncontemporaneous standalone press release, so the operator-\ndomain root is used as the canonical operator anchor.\nMarked evidence_use=contextual_unarchived because the\nspokesman quotation surface was not pinned to a specific\nWayback snapshot or body_hash+body_path during this\nauthoring pass.\n",
+            "type": "primary_corporate",
+            "url": "https://www.mastercard.com/",
+            "wayback": "https://web.archive.org/web/2010/https://www.mastercard.com/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "CNN Money 2010-12-08 carries the MasterCard spokesman\nstatement and reports the operational effect (acceptance\nsuspended; mastercard.com itself subsequently DDoSed by\nOperation Payback on 2010-12-08 in retaliation). Used as\ncontemporaneous third-party corroboration of the operator\nstatement. Marked evidence_use=contextual_unarchived\npending Wayback re-pin and body_hash capture during human\naudit.\n",
+            "type": "supporting_journalism",
+            "url": "https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm",
+            "wayback": "https://web.archive.org/web/2010/https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "France 24 2010-12-09 reporting that cross-references the\nMasterCard processing suspension and the Visa Europe leg\n(sibling event wikileaks-visa-europe-suspension-2010-12)\nand frames the Operation Payback DDoS as third-party\nretaliation against the card-network operators. Marked\nevidence_use=contextual_unarchived pending Wayback re-pin\nand body_hash capture during human audit.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.france24.com/en/20101209-hackers-attack-mastercard-visa-support-wikileaks",
+            "wayback": "https://web.archive.org/web/2010/https://www.france24.com/en/20101209-hackers-attack-mastercard-visa-support-wikileaks"
+          }
+        ],
+        "timestamp": "2010-12-06T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-paypal-freeze-2010-12",
+      "wikileaks-visa-europe-suspension-2010-12",
+      "wikileaks-bank-of-america-block-2010-12",
+      "wikileaks-western-union-interdiction-2010-12",
+      "wikileaks-postfinance-account-closure-2010-12",
+      "datacell-v-valitor-iceland-district-court-2012-07"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"MasterCard Worldwide announced on 2010-12-06 that it was suspending\nacceptance of MasterCard-branded cards for WikiLeaks donations on\nthe grounds that its rules prohibit customers from facilitating\nillegal action, severing the card-network donation channel routed\nthrough the DataCell ehf merchant gateway; the row is registered as\na single-layer offramp_cex operator-policy-change observation in\nthe discovery-only 2008-2012 tier and does not assert ISP-level\nnetwork blocking, L1 consensus engagement, RPC-compliance\nfiltering, asset-onchain freezing, or L4 frontend takedown by the\ncard-network operator.\"\n",
+    "status": "draft",
+    "tags": [
+      "corporate_payment_blockade",
+      "card_network_operator_policy",
+      "wikileaks_banking_blockade",
+      "pre_bitcoin_baseline",
+      "discovery_only",
+      "operator_state_change",
+      "offramp_cex_layer",
+      "mastercard"
+    ],
+    "target": {
+      "actor_name": "MasterCard Worldwide",
+      "actor_type": "card_network_payment_operator",
+      "canonical_domains": [
+        "wikileaks.org"
+      ],
+      "chains": [],
+      "enumeration": "subset",
+      "enumeration_note": "Target is the WikiLeaks donations-acceptance surface across the\nMasterCard card-network processing rail. Concretely, MasterCard-\nbranded credit/debit-card donations routed through the DataCell\nehf merchant gateway in Iceland (which had set up card-network\nacquiring under a 2010-10 services contract to process WikiLeaks\ndonations) were severed when MasterCard suspended acceptance.\nMarked enumeration=subset rather than complete because the\noperator-public statement names \"WikiLeaks\" as the target without\nenumerating downstream merchant-of-record entities (e.g. Sunshine\nPress Productions ehf., DataCell ehf., the Wau-Holland-Stiftung\naffiliate accounts) and because the broader WikiLeaks donations-\ninfrastructure umbrella is not exhaustively listed in the\nstatement. No on-chain addresses are enumerated (pre-Bitcoin\nbaseline: WikiLeaks did not begin accepting Bitcoin donations\nuntil 2011-06). canonical_domains lists the operator-attacked\ndonation-acceptance domain (wikileaks.org); chains is empty\nbecause no L1 chain primitive is engaged by a card-network\noperator policy change in 2010.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "MASTERCARD_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "MasterCard Worldwide stated on 2010-12-06 that it was \"in the\nprocess of working to suspend the acceptance of MasterCard\ncards on WikiLeaks until the situation is resolved\" and that\n\"MasterCard rules prohibit customers from directly or indirectly\nengaging in or facilitating any action that is illegal.\"\nSpokesman Chris Monteiro delivered the statement to multiple\npress outlets (Reuters, CNN Money, NPR, CBC, BBC, Guardian,\nFrance 24) on 2010-12-06 / 2010-12-07. The card-network\nprocessing suspension took effect within hours and severed the\nMasterCard-branded credit-card donation channel for WikiLeaks\ndonations routed through the DataCell ehf merchant gateway in\nIceland. MasterCard never issued a standalone press release on\nthe mastercard.com newsroom; the statement exists only as a\nspokesman quotation circulated to journalists. Marked\nevidence_use=contextual_unarchived because no specific\nbody_hash+body_path or pinned Wayback snapshot of the\nspokesman quotation surface was captured during this authoring\npass; the live mastercard.com root URL remains the operator\ndomain and Wayback bracketing of the 2010-12 newsroom window\nis the natural anchor for follow-up human-audit pinning.\nProvisional Wayback anchor uses Wayback Machine year-prefix\nlookup.\n",
+          "type": "primary_corporate",
+          "url": "https://www.mastercard.com/",
+          "wayback": "https://web.archive.org/web/2010/https://www.mastercard.com/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "CNN Money 2010-12-08 reporting on the MasterCard / Visa\nWikiLeaks suspension and the Operation Payback DDoS\nretaliation against mastercard.com. Carries the MasterCard\nspokesman statement quotation (\"MasterCard rules prohibit\ncustomers from directly or indirectly engaging in or\nfacilitating any action that is illegal\") and reports on the\nsame-week Anonymous-affiliated DDoS campaign that took down\nmastercard.com on 2010-12-08. Marked\nevidence_use=contextual_unarchived pending Wayback re-pin and\nbody_hash capture during human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm",
+          "wayback": "https://web.archive.org/web/2010/https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "WikiLeaks \"Banking Blockade\" archive page enumerates the\n2010-12 financial-intermediary actions including the\nMasterCard processing suspension. Used as the canonical\noperator-self-description anchor for the blockade timeline\neven though the page is operator-authored. Marked\nevidence_use=contextual_unarchived pending pinned-snapshot\nre-pin during human audit.\n",
+          "type": "supporting_journalism",
+          "url": "https://wikileaks.org/Banking-Blockade.html",
+          "wayback": "https://web.archive.org/web/2011/https://wikileaks.org/Banking-Blockade.html"
+        }
+      ],
+      "timestamp": "2010-12-06T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision per contemporaneous Reuters / CNN Money /\nCBC / NPR / France 24 reporting that places the MasterCard\nspokesman statement on 2010-12-06 (with broader press uptake\n2010-12-07). MasterCard never published a timestamped press\nrelease on the mastercard.com newsroom; the public record\ncarries day-level rather than intra-day precision.\n",
+          "type": "supporting_journalism"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-paypal-freeze-2010-12.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (agent_draft per user\ninstruction; status=draft because no body_hash+body_path archive\nanchors have been pinned in this session). Authored by LLM agent\nwithout personally verifying Wayback/body_hash; human review required\nto elevate to admitted status.\n\nPre-Bitcoin baseline event. Bitcoin's genesis block was 2009-01-03;\nWikiLeaks first published a Bitcoin donation address on 2011-06-14\n(i.e. ~6 months after this 2010-12-04 PayPal freeze). At the\ntrigger date there was no blockchain-asset substrate for WikiLeaks\ndonations, so the l0_network, l1_consensus, l3_rpc, and\nasset_onchain cascade axes are all not_applicable. The single\nobserved_change layer is offramp_cex, which is the closest schema\nanalog for a pre-Bitcoin payment-processor freeze (PayPal acting as\nthe fiat donation-collection rail, conceptually analogous to a\ncentralized-exchange offramp in the post-Bitcoin era).\n\ncomparison shape: 1 observed_change layer (offramp_cex\nload-bearing, attribution=direct via PayPal's own corporate blog\npost + Bedier's Le Web admission). admission_tier=empirical_case\n(>=1 strong-attribution observed_change layer).\n\ntemporal_tier=discovery_only_2008_2012 + analysis_use=\ndiscovery_ledger_only: this event predates the 2017+ comparable\nanalysis window. It enters the discovery ledger as part of the\npre-Bitcoin baseline cluster of WikiLeaks payment-rail blockade\nevents (PayPal, Visa Europe, Mastercard, Bank of America, Western\nUnion, PostFinance, plus the parallel infrastructure-rail events\nAmazon AWS and EveryDNS, and the downstream\nDatacell-v-Valitor 2012 Iceland District Court ruling). The 2010\nWikiLeaks blockade is the single most-cited pre-Bitcoin\ncorporate-payment-rail censorship event in academic literature and\nserves as the conceptual anchor for the post-Bitcoin\nofframp_cex / payment-rail cascade pattern documented elsewhere in\nthe dataset.\n\nSchema-actor handling: the user spec proposed\nactor=PAYPAL_OPERATOR (corporate). The schema does not constrain\ntrigger.actor to an enumerated set (it is a free-form string), so\nPAYPAL_OPERATOR is accepted as-is and no controlled_vocab.yaml\naddition is required. The actor/type coherence check in the\nvalidator only fires for US-agency substrings (US_SEC, US_CFTC,\nUS_FINCEN, US_DOJ, US_OFAC, EU_COUNCIL); PAYPAL_OPERATOR does not\nmatch any of those, so no coherence-rule conflict arises.\n\nDRYRUN caveats: all citations carry wayback wildcard pointers\n(web/2010/...) and evidence_use=contextual_unarchived. For\nnon-DRYRUN release, capture body_hash + body_path for: (1) PayPal\ncorporate blog post 2010-12-04, (2) CNN 2010-12-04 coverage, (3)\nBloomberg 2010-12-04 coverage, (4) TechCrunch 2010-12-08 Bedier\nadmission coverage. The Guardian 2010-12-08 Bedier coverage\n(referenced in the user spec) and Wired 2010-12-04 coverage are\nalso candidate archive captures for the non-DRYRUN pass.\n\nRelated WikiLeaks blockade events (cross-referenced in\nrelated_events) form the conceptual cluster: Visa Europe\nsuspension, Mastercard suspension, Bank of America block, Western\nUnion interdiction, PostFinance account closure, Amazon AWS\neviction, EveryDNS domain termination, and the\nDatacell-v-Valitor 2012-07 Iceland District Court ruling (the\nlegal-pushback follow-on). The PayPal action is the first in the\npayment-rail blockade sequence (2010-12-04), preceded only by the\nAmazon AWS eviction (2010-12-01) and the EveryDNS termination\n(2010-12-03) on the infrastructure side.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "Pre-Bitcoin event (Bitcoin genesis 2009-01-03; in 2010 Bitcoin had\nnot yet been adopted by WikiLeaks for donations - the WikiLeaks\nBitcoin donation address was published on 2011-06-14). No\nblockchain-network reachability question applies in 2010.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "No blockchain consensus layer exists in scope for this 2010\npayment-processor freeze; the affected payment rail is PayPal,\nnot an L1 blockchain.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "No blockchain RPC layer in scope for this 2010 payment-processor\nfreeze.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The wikileaks.org website remained reachable on 2010-12-04 (the\neverydns DNS termination was 2010-12-03, the amazon AWS eviction\nwas 2010-12-01, and wikileaks.org re-emerged on alternate\nhosting). The l4_frontend cascade-axis observations belong to the\nsibling EveryDNS / Amazon AWS events, not this PayPal-rail event.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Pre-Bitcoin event; no on-chain asset-level censorship primitive\napplies. WikiLeaks did not yet accept Bitcoin donations in\n2010-12.\n",
+        "status": "not_applicable"
+      },
+      {
+        "denominator_artifact": {
+          "note": "Denominator anchor is the PayPal corporate blog post itself\n(wayback wildcard pointer). Single-account scope; the\npartially_measured status reflects that the freeze is\nwell-attested via multiple corporate + journalism sources but\nthe underlying PayPal internal-policy-determination paper trail\nis not public.\n",
+          "type": "contextual_unarchived",
+          "wayback": "https://web.archive.org/web/2010/https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/"
+        },
+        "layer": "offramp_cex",
+        "note": "offramp_cex is the closest schema analog for a pre-Bitcoin\npayment-processor freeze: PayPal acted as the fiat\ndonation-collection rail (the conceptual analog of a centralized\nexchange offramp for on-chain assets in the post-Bitcoin era).\nThe merchant account was permanently restricted on 2010-12-04;\ndonation flow to the Wau-Holland-Stiftung pass-through was cut\noff the same day. attribution=direct observed_change attached\nbelow; replayable PayPal-blog and journalism-archive snapshots\ndeferred to human audit (DRYRUN: wayback wildcard pointers\nonly).\n",
+        "scope": [
+          "paypal_merchant_account"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "wikileaks-paypal-freeze-2010-12",
+    "jurisdiction": [
+      "US",
+      "corporate_global"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "paypal_operator",
+        "attribution": "direct",
+        "country": "US",
+        "delta_hours": 0,
+        "event": "paypal_permanently_restricted_wikileaks_donation_merchant_account",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "PayPal corporate blog post 2010-12-04 (\"Why PayPal\nrestricted WikiLeaks account\") is the corporate-statement\nanchor for the freeze. attribution=direct because the\nobserved change (permanent merchant-account restriction) is\nself-attested by the actor in the same corporate statement\nthat records the action. DRYRUN: wayback wildcard pointer\nin lieu of pinned-timestamp snapshot.\n",
+            "scope_descriptor": {
+              "providers": [
+                "paypal"
+              ],
+              "time_window": [
+                "2010-12-04T00:00:00+00:00",
+                "2010-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/",
+            "wayback": "https://web.archive.org/web/2010/https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "TechCrunch 2010-12-08 coverage of PayPal VP Osama Bedier's\nLe Web Paris conference admission: the State Department had\ndetermined WikiLeaks' activities to be illegal under US law\n(via a 2010-11-27 letter to WikiLeaks itself, not to\nPayPal), and that determination informed PayPal's\nAcceptable-Use-Policy enforcement decision. This is the\nsingle most-cited corporate-statement anchor in academic\nliterature on the 2010 WikiLeaks payment-rail blockade.\n",
+            "scope_descriptor": {
+              "providers": [
+                "paypal"
+              ],
+              "time_window": [
+                "2010-12-08T00:00:00+00:00",
+                "2010-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://techcrunch.com/2010/12/08/paypal-wikileaks/",
+            "wayback": "https://web.archive.org/web/2010/https://techcrunch.com/2010/12/08/paypal-wikileaks/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "CNN 2010-12-04 coverage. Independent journalism confirmation\nof the trigger date and platform action scope.\n",
+            "scope_descriptor": {
+              "providers": [
+                "paypal"
+              ],
+              "time_window": [
+                "2010-12-04T00:00:00+00:00",
+                "2010-12-05T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html",
+            "wayback": "https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html"
+          }
+        ],
+        "timestamp": "2010-12-04T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-visa-europe-suspension-2010-12",
+      "wikileaks-mastercard-suspension-2010-12",
+      "wikileaks-bank-of-america-block-2010-12",
+      "wikileaks-western-union-interdiction-2010-12",
+      "wikileaks-postfinance-account-closure-2010-12",
+      "wikileaks-amazon-aws-eviction-2010-12",
+      "wikileaks-everydns-domain-termination-2010-12",
+      "datacell-v-valitor-iceland-district-court-2012-07"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"On 2010-12-04, PayPal permanently restricted the WikiLeaks\ndonation merchant account (registered to the Wau-Holland-Stiftung\npass-through), citing its Acceptable Use Policy prohibition on\nfacilitating activities determined illegal. PayPal VP Osama Bedier\nsubsequently (2010-12-08, Le Web Paris) acknowledged that a US\nState Department determination that WikiLeaks' activities were\nillegal under US law informed the decision. The freeze is the\npre-Bitcoin conceptual analog of an offramp_cex / payment-rail\nclosure (the only observed cascade axis in 2010 in the absence of\nany blockchain-asset substrate for WikiLeaks donations).\nObservational axis at offramp_cex (load-bearing,\nattribution=direct via PayPal's own corporate statement).\nAdmission-anchor-grade promotion pending pinned archive captures.\"\n",
+    "status": "draft",
+    "tags": [
+      "corporate_policy_change",
+      "wikileaks",
+      "paypal",
+      "payment_rail_censorship",
+      "pre_bitcoin_baseline",
+      "offramp_cex",
+      "s5_corporate",
+      "discovery_ledger_only",
+      "dryrun_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "WikiLeaks (donation pass-through via Wau-Holland-Stiftung)",
+      "actor_type": "media_publisher_donation_pass_through",
+      "entity": "WikiLeaks / Wau-Holland-Stiftung PayPal merchant account",
+      "enumeration": "subset",
+      "enumeration_note": "WikiLeaks donation pass-through PayPal account, registered to the\nWau-Holland-Stiftung (a German non-profit foundation that operated\nas the legal/financial pass-through for WikiLeaks donations during\n2010). Subset because the enumerated target is the single PayPal\nmerchant account used by WikiLeaks for donation collection; the\nbroader exclusion class is any future or alternate PayPal merchant\naccount that WikiLeaks (or a successor pass-through) might attempt\nto open, given PayPal's stated Acceptable Use Policy basis for the\npermanent restriction.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "PAYPAL_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "PayPal blog post 2010-12-04 (\"Why PayPal restricted WikiLeaks\naccount\"). PayPal stated that the WikiLeaks account had been\npermanently restricted for violation of PayPal's Acceptable Use\nPolicy \"which states that our payment service cannot be used for\nany activities that encourage, promote, facilitate or instruct\nothers to engage in illegal activity.\" The blog item is the\ncorporate-statement anchor for the freeze action; the technical\nplatform action (donate-button stopped collecting funds for\nWau-Holland-Stiftung -> WikiLeaks routing) was effective the same\nday. DRYRUN: wayback wildcard pointer in lieu of pinned-timestamp\nsnapshot; evidence_use=contextual_unarchived because no\nbody_hash+body_path pair has been captured into\nsources/http_captures/wikileaks-paypal-freeze-2010-12/ in this\nsession.\n",
+          "type": "primary_corporate",
+          "url": "https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/",
+          "wayback": "https://web.archive.org/web/2010/https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "CNN 2010-12-04 coverage (\"WikiLeaks loses PayPal revenue\nservice\"). Independent confirmation of the trigger date and the\nplatform-action scope: WikiLeaks donation account permanently\nrestricted, donate button stopped collecting for the\nWau-Holland-Stiftung pass-through to WikiLeaks.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html",
+          "wayback": "https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Bloomberg 2010-12-04 coverage (\"PayPal Cuts WikiLeaks' Access to\nFunds Amid Global Scrutiny\"). Second independent journalism\nconfirmation of the 2010-12-04 freeze date and platform action.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.bloomberg.com/news/articles/2010-12-04/paypal-restricts-wikileaks-account-as-website-comes-under-global-scrutity",
+          "wayback": "https://web.archive.org/web/2010/https://www.bloomberg.com/news/articles/2010-12-04/paypal-restricts-wikileaks-account-as-website-comes-under-global-scrutity"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "TechCrunch 2010-12-08 coverage of PayPal VP Osama Bedier's Le Web\nParis conference admission that PayPal's freeze decision was\ninfluenced by a US State Department determination that\nWikiLeaks' activities were illegal under US law (the State\nDepartment letter, dated 2010-11-27, was sent to WikiLeaks\nrather than to PayPal; Bedier clarified PayPal was not directly\ncontacted by any government agency). The Bedier admission is the\nsingle most-cited corporate-statement anchor in the academic\nliterature on the 2010 WikiLeaks payment-rail blockade.\n",
+          "type": "supporting_journalism",
+          "url": "https://techcrunch.com/2010/12/08/paypal-wikileaks/",
+          "wayback": "https://web.archive.org/web/2010/https://techcrunch.com/2010/12/08/paypal-wikileaks/"
+        }
+      ],
+      "timestamp": "2010-12-04T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision. PayPal blog post and the CNN / Bloomberg /\nAl Jazeera / CBS / TechCrunch coverage cluster all date the\npermanent restriction of the WikiLeaks PayPal account to\n2010-12-04 (Friday). The Bedier Le Web Paris admission (per\nTechCrunch / The Guardian) was made 2010-12-08, four days after\nthe freeze action.\n",
+          "type": "primary_corporate"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-postfinance-account-closure-2010-12.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (agent_draft per user\ninstruction; status=draft because no body_hash+body_path archive\nanchors have been pinned in this drafting session). Authored by LLM\nagent without personally verifying Wayback/body_hash; human review\nrequired to elevate to admitted status.\n\nTemporal tier: discovery_only_2008_2012 (analysis_use=\ndiscovery_ledger_only \u2014 the controlled-vocab spelling of the\nuser-instruction's \"discovery_only\" shorthand). The event predates\nthe 2017+ comparable-analysis tier and the 2013+ historical-baseline\ntier; it is admitted to the discovery ledger only, not to the\ncomparable-denominator corpus.\n\ncomparison shape: exactly 1 observed_change layer at offramp_cex\n(load-bearing, attribution=direct, source-anchored on the PostFinance\nsame-day media statement plus same-day Bloomberg / Al Jazeera /\nFrance 24 / swissinfo coverage). All other layers (l0_network,\nl1_consensus, l3_rpc, l4_frontend, asset_onchain) are\nnot_applicable: this is a fiat-banking customer-account closure\npre-dating any chain-layer cascade surface in the dataset's model.\n\nSibling-event structure (the WikiLeaks 2010-12 corporate-financial\nblockade cluster): this event is the only Swiss-state-postal-banking\nleg of the blockade. Sibling enumeration (per triage manifest\nsources/pre_bitcoin_baseline_2008_2012/triage_manifest.md):\n\n1. **wikileaks-paypal-freeze-2010-12** (2010-12-04, P0,\n   PAYPAL_OPERATOR) \u2014 payment-processor leg; State-Department-cited\n   rationale (per PayPal VP Osama Bedier, LeWeb 2010-12-08).\n2. **wikileaks-mastercard-suspension-2010-12** (2010-12-06, P0,\n   MASTERCARD_OPERATOR) \u2014 card-network leg; same-day as the present\n   PostFinance event.\n3. **wikileaks-visa-europe-suspension-2010-12** (2010-12-07, P0,\n   VISA_EUROPE_OPERATOR) \u2014 Visa Europe / DataCell-Valitor leg.\n\nPaper-relevant axis: PostFinance is the only European-state-postal-\nbanking leg of the WikiLeaks blockade. It is structurally distinct\nfrom the US-card-network legs (MasterCard, Visa Europe) and the\nUS-payment-processor leg (PayPal) because (a) the rationale cited\nwas not a State-Department referral or sanctions/AML hook but a\ncustomer-residency-verification failure, and (b) PostFinance is a\nSwiss-state-owned retail-banking entity, putting the closure\nsquarely within Swiss-jurisdiction corporate-policy authority rather\nthan US-jurisdiction processor authority. Useful pre-Bitcoin\nbaseline precedent for later European-jurisdiction bank-account\nclosures of crypto-adjacent customers under \"due diligence\" framings.\n\nDRYRUN caveats: all citations carry wayback wildcard pointers and\nevidence_use=contextual_unarchived because no body_hash+body_path\ncaptures have been pinned in this drafting session. For non-DRYRUN\nrelease, capture body_hash + body_path for: (1) the PostFinance\n2010-12-06 media-archive page, (2) the Bloomberg 2010-12-06 article,\n(3) the Al Jazeera 2010-12-06 article, (4) the France 24 2010-12-06\narticle, (5) the swissinfo.ch PostFinance-DDoS coverage. Marked\nevidence_use=contextual_unarchived on all citations to flag the\nunarchived state per validator policy.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "This is a Swiss-bank customer-account closure event; no\ndomain-level / ISP-level reachability question is at issue for the\ntrigger action itself. (Operation Payback's same-day DDoS against\npostfinance.ch is documented in the triage manifest as a\nthird-party retaliation, not part of this event's enumeration.)\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "No L4 chain-frontend surface at issue: PostFinance's action is a\nbank-account-relationship termination in Swiss fiat banking,\npre-dating the cryptocurrency-frontend layer in the dataset's\ncascade model.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Swiss-bank account closure at the fiat-banking offramp layer:\nPostFinance terminated the customer relationship for the\nWikiLeaks-advertised defence-fund account, blocking the\nSwiss-IBAN donation rail that WikiLeaks had been promoting on\nwikileaks.org. Load-bearing observed_change attached below.\nReplayable bank-side artifact pinning (account-status records,\npinned PostFinance media-archive snapshot) deferred to human\naudit; trigger and effect are nonetheless directly attested in\nthe same-day PostFinance press statement and the Bloomberg / Al\nJazeera / France 24 / swissinfo coverage cluster.\n",
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "wikileaks-postfinance-account-closure-2010-12",
+    "jurisdiction": [
+      "CH"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "bank:postfinance_swiss_post",
+        "attribution": "direct",
+        "country": "CH",
+        "delta_hours": 0,
+        "event": "postfinance_closes_assange_wikileaks_defence_fund_account_citing_residency_verification_failure",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "PostFinance same-day media statement is the corporate-statement\nanchor for the closure: the bank itself announces termination\nof the \"Assange Julian Paul, Geneve\" customer relationship on\nstated grounds of false residency information / failure to\nmeet customer-relationship criteria. attribution=direct: the\nobserved change (account termination) is the action stated by\nthe actor itself in a primary-corporate communication. DRYRUN:\nwayback wildcard pointer in lieu of pinned-timestamp snapshot.\n",
+            "scope_descriptor": {
+              "countries": [
+                "CH"
+              ],
+              "providers": [
+                "postfinance"
+              ],
+              "time_window": [
+                "2010-12-06T00:00:00+00:00",
+                "2010-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html",
+            "wayback": "https://web.archive.org/web/2010/https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Bloomberg same-day independent pin on the closure date, the\nPostFinance rationale, and the broader-blockade interpretation.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question",
+            "wayback": "https://web.archive.org/web/2010/https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Al Jazeera same-day independent pin situating the PostFinance\nclosure within the PayPal / MasterCard / Visa Europe blockade\ncluster.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account",
+            "wayback": "https://web.archive.org/web/2010/https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account"
+          }
+        ],
+        "timestamp": "2010-12-06T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-paypal-freeze-2010-12",
+      "wikileaks-mastercard-suspension-2010-12",
+      "wikileaks-visa-europe-suspension-2010-12"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"On 2010-12-06, PostFinance (Swiss Post's retail-banking arm)\nterminated the customer account registered as 'Assange Julian Paul,\nGeneve' \u2014 the account WikiLeaks had publicly advertised as the\ndestination for the 'Julian Assange and other WikiLeaks Staff\nDefence Fund' \u2014 citing residency-verification failure under\ncustomer-relationship criteria. One observed_change at offramp_cex\n(load-bearing, attribution=direct, anchored on the PostFinance\nsame-day media statement plus same-day Bloomberg / Al Jazeera /\nFrance 24 / swissinfo coverage). Discovery-ledger-only per\ntemporal_tier=discovery_only_2008_2012.\"\n",
+    "status": "draft",
+    "tags": [
+      "corporate_policy_change",
+      "wikileaks",
+      "assange",
+      "postfinance",
+      "swiss_post",
+      "financial_blockade",
+      "offramp_cex",
+      "bank_account_closure",
+      "swiss_banking",
+      "s5_corporate",
+      "discovery_only_2008_2012",
+      "dryrun_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "PostFinance customer account \"Assange Julian Paul, Geneve\" (Julian Assange / WikiLeaks Defence Fund)",
+      "actor_type": "bank_customer_account",
+      "entity": "assange_julian_paul_postfinance_defence_fund_account",
+      "enumeration": "subset",
+      "enumeration_note": "Subset: the single PostFinance customer account registered as\n\"Assange Julian Paul, Geneve\" \u2014 the account WikiLeaks had publicly\nadvertised on wikileaks.org as the donation destination for the\n\"Julian Assange and other WikiLeaks Staff Defence Fund.\" This is a\nsingle named-account closure, not a class-wide WikiLeaks-supporter\nPostFinance customer sweep. Other PostFinance customer relationships\nheld by WikiLeaks supporters or staff outside this named account are\nnot enumerated here (no contemporaneous evidence of class-wide\nclosure beyond the single defence-fund account).\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "SWISSPOST_POSTFINANCE_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "PostFinance (Swiss Post's retail-banking arm) press statement\ndated 2010-12-06 announcing closure of the customer account held\nin the name of \"Assange Julian Paul, Geneve\" \u2014 the account\nWikiLeaks had publicly advertised as the destination for the\n\"Julian Assange and other WikiLeaks Staff Defence Fund.\" The\nbank's stated rationale: the customer \"provided false information\nregarding his place of residence during the account opening\nprocess\" and could not produce proof of Swiss residency,\ntherefore did not meet PostFinance's customer-relationship\ncriteria. PostFinance added that there would be \"no criminal\nconsequences\" for the alleged residency misrepresentation,\nsignalling that the closure was a unilateral corporate\npolicy/diligence decision rather than a criminal-referral or\nregulator-directed action. DRYRUN: wayback wildcard\n(web/2010/) pointer in lieu of a pinned-timestamp snapshot;\nevidence_use=contextual_unarchived because no body_hash+body_path\ncapture of the PostFinance media-archive page has been pinned\ninto sources/http_captures/ in this drafting session.\n",
+          "type": "primary_corporate",
+          "url": "https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html",
+          "wayback": "https://web.archive.org/web/2010/https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Bloomberg 2010-12-06 coverage (\"WikiLeaks Founder's Swisspost\nAccount Closed on Residency Question\") confirming the closure\ndate, the PostFinance \"false residency information\" rationale,\nand the broader-blockade interpretation context. Independent\nsame-day pin on the day-level trigger timestamp.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question",
+          "wayback": "https://web.archive.org/web/2010/https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Al Jazeera 2010-12-06 coverage independently reporting the\nPostFinance closure of Assange's defence-fund account on\nresidency-verification grounds and situating the action within\nthe contemporaneous PayPal / MasterCard / Visa Europe blockade\ncluster.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account",
+          "wayback": "https://web.archive.org/web/2010/https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "France 24 2010-12-06 coverage: \"Swiss bank closes Assange's\naccount, accuses him of lying.\" Additional independent-pin same\nday; names the WikiLeaks-advertised account (\"Assange Julian\nPaul, Geneve\") and the PostFinance \"false residence information\"\nstatement.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.france24.com/en/20101206-swiss-bank-closes-assange-account-accuses-lying-wikileaks-paypal-post",
+          "wayback": "https://web.archive.org/web/2010/https://www.france24.com/en/20101206-swiss-bank-closes-assange-account-accuses-lying-wikileaks-paypal-post"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "SWI swissinfo.ch (Swiss public-broadcaster English service) 2010\ncoverage of the PostFinance closure and the same-day\nOperation-Payback DDoS retaliation against postfinance.ch.\nSwiss-jurisdiction-local journalism pin.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.swissinfo.ch/eng/wikileaks-supporters-attack-postfinance-site/28971816",
+          "wayback": "https://web.archive.org/web/2010/https://www.swissinfo.ch/eng/wikileaks-supporters-attack-postfinance-site/28971816"
+        }
+      ],
+      "timestamp": "2010-12-06T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision (2010-12-06). PostFinance's same-day media\nstatement and the Bloomberg / Al Jazeera / France 24 / swissinfo\ncoverage cluster all pin the closure announcement and effective\ndate to 2010-12-06. AP-quoted PostFinance spokesman said the\naccount \"was closed Monday afternoon\" (2010-12-06 was a Monday).\nNo sub-day press-release timestamp survives in archived form.\n",
+          "type": "primary_corporate"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-visa-europe-suspension-2010-12.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase E S5\ncorporate-card-network discovery; lean run): authored by LLM\nagent without personally verifying Wayback/body_hash;\norigin=agent_draft and status=draft pending human review.\nReal release must replace this DRYRUN marker with a\nhuman-verified audit after pinning real archive anchors.\n\ncomparison \u2014 S5 corporate-policy card-network suspension by\nVisa Europe (with downstream Teller A/S compliance terminating\nthe DataCell ehf merchant agreement carried via Korta in\nIceland), effective 2010-12-07. The Visa Europe statement is\nthe card-network sibling of the same-week PayPal account\nfreeze (related: wikileaks-paypal-freeze-2010-12) and the\nMasterCard Europe suspension (related:\nwikileaks-mastercard-suspension-2010-12), all converging in\nthe 2010-12 WikiLeaks financial blockade following the\nCablegate publication of 2010-11-28. The DataCell-Teller\ntermination on 2010-12-07 is the direct upstream trigger of\nthe 2012 Reykjav\u00edk District Court case E-561/2012 (related:\ndatacell-v-valitor-iceland-district-court-2012-07), although\nthe named defendant in that case is Valitor hf (which signed\na fresh acquirer agreement with DataCell in June 2011, briefly\nreopened the gateway, then terminated again \u2014 that 2011\ntermination is the specific act litigated in 2012).\n\nempirical_shape=comparison (1 observed_change layer:\nofframp_cex with attribution=direct via the Visa Europe\ncorporate statement and Reuters/BBC/Guardian contemporaneous\njournalism); admission_tier=empirical_case (1 strong-attrib\nobserved_change layer satisfies the \u22651 requirement). The\ncard-network rail is treated as the offramp_cex analogue for\nthe 2010 fiat-payments cascade.\n\nWhy discovery_only_2008_2012 / discovery_ledger_only:\n2010-12 belongs to the pre-2013 discovery-only tier per\nsampling/frame.yaml. analysis_use=discovery_ledger_only\nexcludes this row from both the historical-baseline and the\n2017+ comparable-analysis denominators. The event is retained\nas a discovery-ledger case-study anchor for the dataset's\norigins of corporate-actor financial-infrastructure censorship.\n\nWhy L0/L1/L3/L4/asset_onchain are not_applicable:\nthe action is a card-network acquirer-rail suspension; it\ndoes not engage ISP-level blocking, any L1 consensus or L3\nRPC primitive (Ethereum mainnet launched 2015-07-30, MEV-Boost\nlaunched 2022-09-15), any L4 frontend operator overlay (the\nDataCell donation page itself remained reachable; the failure\nwas downstream at card authorization), or any asset-issuer\nadmin path (no stablecoin/token freeze surface engaged in\n2010-12). The L0/L1/L3/L4/asset_onchain not_applicable\ntreatment matches the sibling 2010-12 PayPal account-freeze\nevent's expected coverage shape.\n\nDRYRUN caveats: the Visa Europe press-statement PDF\n(visaeurope.com), Reuters dispatch, BBC News article, and\nGuardian article all carry 2010-calendar-folder Wayback\npointers rather than pinned snapshots; pinned snapshot\ntimestamps and body_hash captures are deferred to the\nhuman-audit pass. For non-DRYRUN release, capture body_hash +\nbody_path for: (1) the visaeurope.com PDF as preserved in\narchive.org; (2) the Reuters / BBC / Guardian permalinks;\noptionally (3) DataCell's 2011-07-01 public statement and\nthe 2012-09-19 EU competition complaint anchor on\npublicintelligence.net. Marked\nevidence_use=contextual_unarchived on all citations to flag\nthe unarchived state per validator policy.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "Visa Europe's card-network compliance action does not\nimplicate ISP-level domain blocking, DNS interference, or\nnetwork-layer action against wikileaks.org or datacell.com.\nnot_applicable on construct-not-engaged grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "The Ethereum Merge / PBS relay-filter primitive that the L1\nconsensus layer measures is ~12 years downstream of 2010-12\n(2022-09-15). not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 RPC layer measures did not\nexist in 2010-12; the Ethereum mainnet itself launched\n2015-07-30. not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "Visa Europe's compliance action operates at the card-network\nacquirer/issuer layer, not at the WikiLeaks website frontend\nor any DataCell-hosted donation page. The DataCell donation\npage remained reachable; the failure mode is downstream at\nauthorization. not_applicable on construct-not-engaged\ngrounds at the L4 frontend definition used here (DApp UI /\nwebsite operator overlay).\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "No token-contract-level freeze or blacklist; the action is a\nfiat card-network suspension. The Ethereum mainnet did not\nexist; Bitcoin existed (since 2009-01-03) but no asset-issuer\nadmin path is engaged. not_applicable.\n",
+        "status": "not_applicable"
+      },
+      {
+        "denominator_artifact": {
+          "note": "Denominator anchor for the offramp_cex card-network\nsuspension: the Visa Europe corporate statement is the\ncanonical operator declaration. The cascade surface here\nis the card-network acquirer/issuer rail (the closest\n2010-era analogue of the offramp_cex layer for fiat-on/\noff-ramping) \u2014 DataCell's ability to convert card-network\ndebits into fiat credits to WikiLeaks' account was\nterminated when Teller (under Visa Europe instruction)\ncut the merchant agreement. partially_measured because\nthe scope is bounded (Visa Europe territory, Teller-Korta\nacquirer chain, ~6-month window before the brief Valitor\nreopening of June 2011) but the public-record search is\nnot exhaustive of every EU/EEA Visa acquirer that may have\ncarried a WikiLeaks-class merchant. DRYRUN: Wayback anchor\nunverified.\n",
+          "scope_descriptor": {
+            "countries": [
+              "EU",
+              "IS"
+            ],
+            "providers": [
+              "visa_europe",
+              "teller_korta"
+            ],
+            "time_window": [
+              "2010-12-07T00:00:00+00:00",
+              "2011-06-30T00:00:00+00:00"
+            ]
+          },
+          "type": "primary_corporate",
+          "url": "https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf",
+          "wayback": "https://web.archive.org/web/2010/https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf"
+        },
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer for this event. On 2010-12-07 Visa Europe\npublicly suspended acceptance of WikiLeaks-class donations\npending an investigation, and Visa-licensed acquirer Teller\nA/S (Danish; agent Korta in Iceland) terminated the DataCell\nehf merchant agreement the same day on Visa Europe's\ninstruction. The Visa Inc (US) side is a separate corporate\nentity and is not the actor here. The card-network rail is\ntreated as the offramp_cex analogue for the 2010 fiat\npayments cascade (no crypto-exchange existed at scale yet;\nMt. Gox launched 2010-07-17 but was not on the WikiLeaks\ndonation path).\n",
+        "scope": [
+          "visa_europe_acquirer_chain",
+          "teller_korta_iceland"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "wikileaks-visa-europe-suspension-2010-12",
+    "jurisdiction": [
+      "EU",
+      "IS"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "card_network:visa_europe_via_teller_korta",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "visa_europe_suspended_wikileaks_donations_and_teller_terminated_datacell_merchant_agreement",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Visa Europe's own corporate statement of 2010-12-07\nannouncing the suspension of WikiLeaks-class donations\npending an investigation of whether the WikiLeaks\nwebsite contravenes Visa operating rules. The downstream\noperational effect on the same day was Teller A/S\nterminating the DataCell ehf merchant agreement under\nVisa Europe instruction. observation_kind=observed_change\nat offramp_cex (card-network acquirer rail).\nattribution=direct because the source is the operator\nitself naming the action. DRYRUN: pinned Wayback snapshot\nand body_hash capture for the visaeurope.com PDF deferred\nto human audit.\n",
+            "scope_descriptor": {
+              "countries": [
+                "EU",
+                "IS"
+              ],
+              "providers": [
+                "visa_europe",
+                "teller_korta"
+              ],
+              "time_window": [
+                "2010-12-07T00:00:00+00:00",
+                "2011-06-30T00:00:00+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf",
+            "wayback": "https://web.archive.org/web/2010/https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Reuters (2010-12-07) places the Visa Europe action at\nthis day and corroborates the cutoff of WikiLeaks\ndonations via the DataCell-Teller acquirer chain.\nIndependent contemporaneous journalism source. DRYRUN:\nWayback anchor unverified.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.reuters.com/article/idUSTRE6B65T420101207",
+            "wayback": "https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6B65T420101207"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "BBC (2010-12-07/08) \"Wikileaks: Visa, Mastercard move\nto block payments\" \u2014 independent corroboration of the\nVisa Europe card-network suspension placed at 2010-12-07\nalongside MasterCard Europe. DRYRUN: Wayback anchor\nunverified.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.bbc.co.uk/news/world-us-canada-11935539",
+            "wayback": "https://web.archive.org/web/2010/https://www.bbc.co.uk/news/world-us-canada-11935539"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "The Guardian (2010-12-07) confirms the Visa Europe\nsuspension and the DataCell-Teller-Korta acquirer chain\ncontext. DRYRUN: Wayback anchor unverified.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back",
+            "wayback": "https://web.archive.org/web/2010/https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back"
+          }
+        ],
+        "timestamp": "2010-12-07T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-paypal-freeze-2010-12",
+      "wikileaks-mastercard-suspension-2010-12",
+      "datacell-v-valitor-iceland-district-court-2012-07"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "On 2010-12-07 Visa Europe publicly suspended acceptance of\nWikiLeaks-related card donations pending an investigation of\nwhether the WikiLeaks website contravened Visa operating\nrules, and Visa-licensed acquirer Teller A/S (Danish, with\nagent Korta in Iceland) terminated the DataCell ehf merchant\nagreement that had carried WikiLeaks donations under a\nservices agreement dated 2010-10-18. The cascade surface is\nthe card-network acquirer rail (offramp_cex layer analogue\nfor the 2010 fiat payments stack); attribution is direct via\nVisa Europe's own corporate statement and corroborating\nReuters / BBC / Guardian contemporaneous journalism.\n",
+    "scoped_knowledge": "This event is one of the earliest documented cases in the\ndataset of a non-state-actor corporate compliance decision\ncutting financial-infrastructure access on the basis of a\npublisher's content. Three structural features make it\npaper-relevant despite the pre-comparable-corpus date:\n\n(a) The action is voluntary corporate policy, not a US\ngovernment enforcement action. No OFAC SDN designation\nnamed WikiLeaks; no DOJ indictment or seizure order was\noutstanding against WikiLeaks at 2010-12-07. Visa Europe's\nstated rationale \u2014 investigation of whether the WikiLeaks\nwebsite \"contravenes Visa operating rules\" \u2014 is a\ncontractual / terms-of-service framing, not a legal-\ncompulsion framing.\n\n(b) The action operates through a multi-tier acquirer chain:\nVisa Europe (card network) \u2192 Teller A/S (Danish acquirer) \u2192\nKorta (Icelandic agent) \u2192 DataCell ehf (merchant). The\ndownstream merchant termination is the operational outcome,\nbut the upstream Visa Europe statement is what binds the\nintermediate processors. The 2012 Reykjav\u00edk District Court\ncase is brought against Valitor hf, the post-Teller Iceland\nprocessor, but the chain-of-causation reaches back to Visa\nEurope's 2010-12-07 statement.\n\n(c) The 2010-12 blockade is the empirical seed of the later\nEU-competition-complaint thread (DataCell's 2011-08 / 2012-09\nArticle 101 / 102 EU competition complaint, the European\nParliament question E-007868/2013, and the resulting\nReykjav\u00edk District Court ruling in DataCell's favour on\n2012-07-12). Treated as discovery_ledger_only because it\npre-dates the comparable-analysis corpus, but it is a\nfoundational anchor for the dataset's S5 corporate stratum.\n",
+    "status": "draft",
+    "tags": [
+      "corporate_policy_change",
+      "card_network_suspension",
+      "wikileaks",
+      "visa_europe",
+      "teller",
+      "korta",
+      "datacell",
+      "financial_blockade",
+      "offramp_cex",
+      "discovery_ledger",
+      "2010_12_wikileaks_blockade"
+    ],
+    "target": {
+      "actor_name": "DataCell ehf (Iceland-based card-donation processor for WikiLeaks)",
+      "actor_type": "payment_services_merchant",
+      "canonical_domains": [
+        "wikileaks.org",
+        "datacell.com"
+      ],
+      "chains": [],
+      "entity": "DataCell_ehf",
+      "enumeration": "subset",
+      "enumeration_note": "Class-level target: DataCell ehf, the Iceland-based payment\nservices company processing card donations to WikiLeaks under\na 2010-10-18 services agreement with Teller A/S (Danish\nVisa-licensed acquirer, agent Korta in Iceland). The Visa\nEurope announcement names \"WikiLeaks\" as the subject of the\nsuspension; the merchant agreement actually terminated on\n2010-12-07 was DataCell's, because DataCell \u2014 not WikiLeaks\nitself \u2014 held the card-network merchant relationship. The\nsuspension is scoped to the Visa Europe operating territory\n(EU/EEA + EFTA) via the Teller-Korta acquirer chain; Visa Inc\n(US territory) is a separate corporate entity not the actor\nof this event row. enumeration=subset because the suspension\naffects this specific merchant relationship rather than a\nbroader Visa-wide WikiLeaks-class enumeration.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "VISA_EUROPE_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase E S5\ncorporate-card-network discovery; lean run): authored by LLM\nagent without personally verifying Wayback/body_hash;\norigin=agent_draft and status=draft pending human review.\nReal release must replace this DRYRUN marker with a\nhuman-verified audit after pinning real archive anchors.\n\nVisa Europe press statement of 2010-12-07 announcing the\nsuspension of WikiLeaks-related card donations pending an\ninvestigation of whether the WikiLeaks website\n\"contravenes Visa operating rules\". The statement is the\ncanonical corporate-statement anchor for the card-network\nside of the WikiLeaks 2010-12 financial blockade. The\ndownstream operational effect was the termination, on\n2010-12-07, of the DataCell ehf merchant agreement carried\nby Visa Europe's Iceland-territory acquirer Teller A/S\n(Danish acquirer, agent Korta in Iceland; Teller was the\nVisa-licensed processor for DataCell's payment gateway under\na services agreement dated 2010-10-18). The Visa-Iceland\nprocessor Valitor hf only entered the picture later: in\nJune 2011 DataCell signed a fresh acquirer agreement with\nValitor, briefly reopened the gateway, and Valitor\nterminated again \u2014 that termination is the substantive\ntrigger of the 2012 Reykjav\u00edk District Court case\n(E-561/2012, datacell-v-valitor-iceland-district-court-\n2012-07). DRYRUN: pinned Wayback timestamp and body_hash\ncapture for the visaeurope.com PDF deferred to human audit.\n",
+          "type": "primary_corporate",
+          "url": "https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf",
+          "wayback": "https://web.archive.org/web/2010/https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Reuters dispatch of 2010-12-07 reporting Visa Europe's\nsuspension of WikiLeaks donations pending investigation,\nand the corresponding cutoff of donations routed through\nDataCell ehf via the Visa card network. Independent\ncontemporaneous journalism corroborating the corporate\nstatement. DRYRUN: Wayback anchor unverified.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.reuters.com/article/idUSTRE6B65T420101207",
+          "wayback": "https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6B65T420101207"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "BBC News (2010-12-07/08) \"Wikileaks: Visa, Mastercard move\nto block payments\" \u2014 independent contemporaneous coverage\nplacing the Visa Europe action at 2010-12-07 alongside\nMasterCard Europe and against the backdrop of the\nPayPal freeze (2010-12-03/04) and the post-2010-11-28\nCablegate publication. DRYRUN: Wayback anchor unverified.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.bbc.co.uk/news/world-us-canada-11935539",
+          "wayback": "https://web.archive.org/web/2010/https://www.bbc.co.uk/news/world-us-canada-11935539"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "The Guardian (2010-12-07) coverage of the Visa Europe and\nMasterCard Europe card-network suspensions targeting\nWikiLeaks donations via DataCell. Names the Iceland-based\nacquirer relationship and the Cablegate context. DRYRUN:\nWayback anchor unverified.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back",
+          "wayback": "https://web.archive.org/web/2010/https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back"
+        }
+      ],
+      "timestamp": "2010-12-07T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision. The Visa Europe press statement and\nthe contemporaneous Reuters / BBC / Guardian reports place\nthe suspension at 2010-12-07. The press statement itself\ndoes not publish an intra-day timestamp, and the downstream\nTeller-side termination of the DataCell merchant agreement\nis recorded at day-level in DataCell's later EU competition\ncomplaint and the 2012 court filings.\n",
+          "type": "primary_corporate"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "wikileaks-western-union-interdiction-2010-12.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16. Phase E of the 2026-05-16\nstaged-release plan, discovery_only_2008_2012 tier fill, WikiLeaks\nDecember-2010 financial-blockade family.\n\nThe 2010-12 WikiLeaks financial blockade consisted of five legs\nenumerated by the WikiLeaks Banking Blockade support-campaign page:\nBank of America (2010-12-18), PayPal (2010-12-04), MasterCard\n(2010-12-07), VISA Europe (2010-12-07), and Western Union\n(2010-12-21 addition to the Western Union Interdiction List).\nThis event records the Western Union leg.\n\nWhy null_event / null_case / coverage_gap with attribution=unknown:\nthis is the weakest-sourced leg of the blockade in the public\nrecord located in this authoring pass. The PayPal, MasterCard,\nVISA Europe, and Bank of America legs each carry primary corporate\ndisclosures (PayPal blog post, MasterCard wire statement, VISA\nEurope press release, Bank of America press statement). The\nWestern Union leg is documented via the counterparty (WikiLeaks\nitself, in its Banking Blockade support page) and contemporaneous\njournalism (CSMonitor 2011-10-24, Forbes / Guardian coverage of\nthe blockade enumeration), but no primary Western Union corporate\npress release explicitly announcing the addition of WikiLeaks to\nthe Interdiction List was located. Coding honestly: the cascade\nis real but the primary acting-party evidence is missing, so the\nload-bearing observation row is observation_kind=coverage_gap\nwith attribution=unknown, and the event admits at null_case /\nnull_event strength. Fabricating a primary URL or upgrading\nattribution beyond what the public record supports would be\ndishonest; the honest call is to record the gap.\n\nWhy discovery_only_2008_2012 tier: 2010 belongs to the pre-2013\ndiscovery-only tier per sampling/frame.yaml. analysis_use=\ndiscovery_ledger_only excludes this row from the 2017+ comparable-\nanalysis denominator and from the 2013-2016 historical-baseline\ndenominator. The event is retained as discovery-ledger material:\na pre-crypto-era corporate-policy money-transfer-rail closure\nthat produced the cross-rail cascade pattern later observable in\nthe comparable era. (The brief specified analysis_use=\ndiscovery_only; the canonical schema enum is discovery_ledger_only\nper sampling/frame.yaml. Used the canonical enum.)\n\nWhy offramp_cex coverage status=not_measured: Western Union is a\nmoney-transfer operator rather than a crypto-asset CEX, but the\nofframp_cex layer is the closest taxonomic match for a regulated\nfiat money-transfer rail closure. The layer is marked not_measured\nrather than partially_measured because no primary Western Union\ndisclosure was located and the WU leg is therefore not exchange-\nside observable at primary-source strength. L0/L1/L3/L4/\nasset_onchain are not_applicable on construct-did-not-exist or\nconstruct-out-of-scope grounds.\n\nWhy related_events lists the four sibling WikiLeaks blockade\nevents: those events are companion records for the PayPal,\nMasterCard, VISA Europe, and Bank of America legs of the same\n2010-12 blockade, authored in the same staged-release pass.\nTogether they constitute the WikiLeaks-2010-12 cascade family\nin the discovery-only tier.\n\nSchema-enum surprises encountered during authoring:\n- analysis_use has no discovery_only enum; the canonical\n  schema enum is discovery_ledger_only per sampling/frame.yaml.\n  Used discovery_ledger_only.\n- observation_kind has no missing_primary_source enum; the\n  closest match is coverage_gap with attribution=unknown, which\n  is exactly the documented-but-weak-primary-source posture.\n  coverage_gap is only retained on status=draft per the validator\n  (line 1222); the event is explicitly draft and stays so until\n  either (a) a primary Western Union corporate disclosure is\n  located in a human-audit pass and the row is upgraded to\n  observed_change, or (b) the event is retired in favor of the\n  four sibling blockade events that already carry primary\n  corporate disclosures.\n\nstatus remains draft until a human review decides whether to:\n(1) upgrade to empirical_case with observed_change if a primary\n    Western Union corporate disclosure is located in human audit\n    (e.g. via a Western Union 2010-12 press release or a 2011\n    WU shareholder filing referencing the Interdiction-List\n    practice), or\n(2) retain at null_case as a coverage_gap discovery-ledger row,\n    with the four sibling blockade events carrying the cascade-\n    family load-bearing function.\n\nOrigin=agent_draft and status=draft per the agent-authoring\nconvention.\n",
+    "analysis_use": "discovery_ledger_only",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2010-12-21 Western Union Interdiction-List addition is a\nmoney-transfer-rail receipt block at the corporate-policy\nlayer. It does not direct ISP-level domain blocking or DNS\ninterference against wikileaks.org. not_applicable on\nconstruct-out-of-scope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Ethereum proof-of-work consensus in 2010-12 (and the post-Merge\nPBS relay-filter primitive that the L1 layer was constructed to\nmeasure) did not exist. Bitcoin existed but has no protocol-\nlevel relay-filter primitive. not_applicable on construct-did-\nnot-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist\nin 2010 (Flashbots Protect launched 2022-11; MEV-Blocker\nlaunched 2023-03-27). not_applicable on construct-did-not-\nexist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The Western Union Interdiction-List action is a back-end\nmoney-transfer-receipt-eligibility decision and does not\nrequire frontend takedown or geo-blocking of wikileaks.org.\nnot_applicable on construct-out-of-scope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Stablecoin issuer admin-key freeze primitives did not exist in\n2010 (USDT first issued ~2014-10); WikiLeaks first accepted\nbitcoin donations in 2011-06, ~6 months after the WU action.\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "The substantive corporate-policy effect of the 2010-12-21\nWestern Union Interdiction-List addition is to cut the\nWikiLeaks donation-receipt rail through Western Union money\ntransfers. However, no primary Western Union corporate\ndisclosure of the action was located in this authoring pass;\nthe action is documented via the counterparty (WikiLeaks\nBanking Blockade page) and secondary journalism (CSMonitor\n2011-10-24). Marked not_measured because the cascade is\nattested via counterparty statement rather than primary\nacting-party disclosure; the corresponding observation row\nbelow records this as a coverage_gap with attribution=\nunknown. This is the weakest-sourced leg of the WikiLeaks\nDecember-2010 financial blockade; the PayPal, MasterCard,\nVISA Europe, and Bank of America legs each carry primary\ncorporate disclosures, while the WU leg does not.\n",
+        "scope": [
+          "western_union_money_transfer_rail"
+        ],
+        "status": "not_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "wikileaks-western-union-interdiction-2010-12",
+    "jurisdiction": [
+      "US",
+      "corporate_global"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "western_union",
+        "attribution": "unknown",
+        "delta_hours": 0,
+        "event": "wikileaks_added_to_western_union_interdiction_list",
+        "layer": "offramp_cex",
+        "observation_kind": "coverage_gap",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "WikiLeaks Banking Blockade page is the strongest publicly\naccessible anchor for the 2010-12-21 Western Union\nInterdiction-List addition that this authoring pass located.\nobservation_kind=coverage_gap with attribution=unknown\nhonestly represents the absence of a primary Western Union\ncorporate disclosure of the action. The cascade is real but\nthe primary acting-party evidence is missing from the public\nrecord located in this authoring pass; the counterparty-\nstatement anchor cannot bear admission weight. Provisional\nyear-prefix wayback anchor pending re-pin.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "western_union"
+              ],
+              "time_window": [
+                "2010-12-21T00:00:00+00:00",
+                "2012-07-18T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_community",
+            "url": "https://wikileaks.org/Banking-Blockade.html",
+            "wayback": "https://web.archive.org/web/2012/https://wikileaks.org/Banking-Blockade.html"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "CSMonitor wire piece 2011-10-24 corroborates the WU leg of\nthe financial blockade and the WikiLeaks revenue-loss\nclaim. Secondary journalism anchor only; does not substitute\nfor the missing primary Western Union corporate disclosure.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "western_union"
+              ],
+              "time_window": [
+                "2010-12-21T00:00:00+00:00",
+                "2012-07-18T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business",
+            "wayback": "https://web.archive.org/web/2012/https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business"
+          }
+        ],
+        "timestamp": "2010-12-21T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "wikileaks-paypal-freeze-2010-12",
+      "wikileaks-mastercard-suspension-2010-12",
+      "wikileaks-visa-europe-suspension-2010-12",
+      "wikileaks-bank-of-america-block-2010-12"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "Western Union added WikiLeaks to its money-transfer \"Interdiction\nList\" on 2010-12-21, blocking WikiLeaks from receiving donations\nthrough the Western Union rail as one of five legs of the\nDecember-2010 financial blockade. observation_kind=coverage_gap\nwith attribution=unknown because no primary Western Union\ncorporate disclosure was located in this authoring pass; the\naction is attested only via counterparty statement (WikiLeaks\nBanking Blockade page) and contemporaneous journalism. Discovery-\nledger tier; not used in main statistical denominators.\n",
+    "scoped_knowledge": "This event sits in the discovery_only_2008_2012 tier as one of\nfive legs of the 2010-12 WikiLeaks financial blockade. The cross-\nrail cascade pattern that the blockade exhibits \u2014 sequential cuts\nby PayPal, MasterCard, VISA Europe, Bank of America, and Western\nUnion over a two-week window in response to WikiLeaks' publication\nof US diplomatic cables \u2014 is a pre-crypto-era instance of the\nsame cascade-of-corporate-policy-actions shape that the\ncomparable-tier corpus documents in the crypto-asset off-ramp\nlayer (e.g. multi-exchange delistings, multi-issuer freezes).\nThe WU leg is the weakest-sourced of the five legs: the four\ncard / bank / payment-processor legs each carry primary corporate\ndisclosures, while the Western Union leg is attested only by\ncounterparty statement (WikiLeaks Banking Blockade page) and\ncontemporaneous journalism. Coding the WU leg honestly as\ncoverage_gap with attribution=unknown \u2014 rather than fabricating\na primary URL or upgrading attribution \u2014 preserves the cascade-\nfamily completeness in the discovery ledger while accurately\nrepresenting the evidence-strength asymmetry across legs. The\n~6-month gap between the WU action (2010-12-21) and WikiLeaks'\nfirst acceptance of bitcoin donations (2011-06) is a candidate\nrecovery anchor for the family-level cascade but is not authored\nas a separate recovery row in this event because the recovery\nspans the family rather than the WU leg in isolation.\n",
+    "status": "draft",
+    "tags": [
+      "discovery_only_2008_2012",
+      "corporate_policy_change",
+      "western_union",
+      "wikileaks",
+      "financial_blockade",
+      "banking_blockade",
+      "offramp_money_transfer_rail",
+      "missing_primary_source",
+      "dryrun_2026_05_16",
+      "phase_e_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "WikiLeaks (donation funnel)",
+      "actor_type": "publishing_organization",
+      "canonical_domains": [
+        "wikileaks.org"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Target is the WikiLeaks donation-receipt funnel via the Western\nUnion money-transfer rail. WikiLeaks (and affiliated legal-\ndefense / publishing entities such as the Wau Holland Foundation\nthat channelled donations to WikiLeaks in 2010-2011) is the\nsingle named donee whose Western Union receipt capability was\ncut. enumeration=subset because the public record does not\nenumerate the specific WikiLeaks-affiliated receiving accounts\nor counterparties named on the Western Union \"Interdiction List\";\nonly the donee-side identity (WikiLeaks) is identified.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "discovery_only_2008_2012",
+    "trigger": {
+      "actor": "WESTERN_UNION_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "WikiLeaks \"Banking Blockade\" support-campaign page enumerates\nthe financial intermediaries that cut off WikiLeaks donation\nrails in December 2010. The enumeration names Bank of America,\nVISA, MasterCard, PayPal, and Western Union, and dates the\nWestern Union action to 2010-12-21 as an addition of WikiLeaks\nto a Western Union \"Interdiction List\". This is a counter-\nparty statement issued by WikiLeaks (the donee), not a\ncorporate press release issued by Western Union itself, and\nno primary Western Union corporate disclosure of the action\nwas located in this authoring pass. Marked\nevidence_use=contextual_unarchived because (a) the body_hash+\nbody_path archival capture was not pinned in this authoring\npass and (b) the source is the affected party rather than the\nacting party. The citation is the strongest publicly accessible\nanchor for the 2010-12-21 date and is retained here as the\ncoverage_gap anchor for the WU leg of the blockade. Provisional\nyear-prefix wayback anchor pending re-pin.\n",
+          "type": "supporting_community",
+          "url": "https://wikileaks.org/Banking-Blockade.html",
+          "wayback": "https://web.archive.org/web/2012/https://wikileaks.org/Banking-Blockade.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Christian Science Monitor wire piece dated 2011-10-24\nsummarising the WikiLeaks financial blockade and the\nenumerated intermediary set (Bank of America, VISA,\nMasterCard, PayPal, Western Union). The piece references the\n2010-12 trigger window and the ~95%-revenue-loss claim\nWikiLeaks made at the time. Used here as a contemporaneous\nsecondary anchor for the WU leg of the blockade, since no\nprimary Western Union corporate disclosure was located in\nthis authoring pass. evidence_use=contextual_unarchived;\nWayback snapshot pinning required in human-audit pass.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business",
+          "wayback": "https://web.archive.org/web/2012/https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business"
+        }
+      ],
+      "timestamp": "2010-12-21T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision per the 2010-12-21 date stated on the\nWikiLeaks Banking Blockade page. No intra-day timestamp is\npublished in any source located in this authoring pass, and\nno Western Union primary corporate disclosure of the\nInterdiction-List addition was located.\n",
+          "type": "supporting_community"
+        }
+      ],
+      "type": "corporate_policy_change"
     },
     "version": "0.1"
   },

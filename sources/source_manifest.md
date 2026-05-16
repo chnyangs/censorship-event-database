@@ -1,11 +1,11 @@
 # Source Artifact Manifest
 
-Dataset snapshot: v0.2.0-rc-dryrun-7 · cutoff `2026-05-16` · commit `5e28a89` · generated `2026-05-21T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-8 · cutoff `2026-05-16` · commit `f18bc7a` · generated `2026-05-22T00:00:00Z`
 
 This manifest lists local source artifacts included in the release reproduction surface and records their SHA-256 hashes. Re-fetchable operator-census repository clones and large upstream dumps excluded by `.gitignore` are intentionally not listed; their retrieval policy is recorded in `sources/external_retrieval_receipts.yaml`.
 
-- Files: 895
-- Total bytes: 54347116
+- Files: 897
+- Total bytes: 54397550
 
 ## By Artifact Family
 
@@ -27,6 +27,7 @@ This manifest lists local source artifacts included in the release reproduction 
 | `ofac_sdn_diffs` | 77 |
 | `operator_census` | 1 |
 | `operator_commits` | 12 |
+| `pre_bitcoin_baseline_2008_2012` | 2 |
 | `source_frame_triage` | 7 |
 | `supranational` | 2 |
 
@@ -39,8 +40,8 @@ This manifest lists local source artifacts included in the release reproduction 
 | `diff` | 3 |
 | `go` | 3 |
 | `html` | 555 |
-| `json` | 306 |
-| `md` | 10 |
+| `json` | 307 |
+| `md` | 11 |
 | `py` | 1 |
 | `txt` | 2 |
 | `yaml` | 2 |

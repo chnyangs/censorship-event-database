@@ -7,15 +7,15 @@ This file is the operational summary for the repo's two current priorities:
 
 ## Process
 
-- Event count: `146`
+- Event count: `156`
 - Release-ready cases: `9`
 - Admitted but release-blocked cases: `96`
 - Fully complete release-ready cases: `0`
 - Scope-limited release-ready cases: `9`
-- Working drafts: `13`
+- Working drafts: `14`
 - Cases with gap markers: `2`
-- Paper-use roles: `{'appendix_only': 41, 'aggregate_datapoint': 90, 'paper_anchor': 3, 'null_control': 12}`
-- Draft priority order: `china-pboc-exchange-shutdown-2017-09, china-sichuan-mining-ban-2021-06, fincen-virtual-currency-msb-guidance-2013, kazakhstan-internet-shutdown-mining-2022-01, nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015, ofac-recent-action-20240111, philippines-sec-binance-block-2024, russia-cbr-bitcoin-information-letter-2014, uniswap-balancer-tornado-frontend-block-2022-08, opensea-iran-cuba-sanctions-block-2022, apple-india-crypto-exchange-removal-2024-01, china-nft-secondary-trading-self-discipline-2022-06, china-state-council-mining-crackdown-2021-05, fatf-virtual-currencies-key-definitions-2014, google-play-india-crypto-exchange-removal-2024-01, hongkong-sfc-vatp-licensing-2023-06, iceland-cbi-foreign-exchange-bitcoin-2014, karpeles-arrest-tokyo-mtgox-2015, mtgox-bankruptcy-tokyo-2014, mtgox-coinlab-civil-2013, ukraine-virtual-assets-law-2022-03, 1inch-us-geofence-2021-09, aave-arc-fireblocks-whitelist-2022-01, aave-tornado-frontend-block-2022-08, china-ico-ban-2017-09, china-inner-mongolia-mining-ban-2021-05, cloudflare-ethereum-gateway-tornado-block-2022-08, coin-mx-doj-murgio-2015, dydx-tornado-account-block-2022-08, eba-virtual-currencies-opinion-eba-op-2014-08, hongkong-hkma-stablecoins-ordinance-2025, infura-metamask-donetsk-luhansk-block-2022-03, kazakhstan-digital-assets-law-2023-02, mtgox-dhs-dwolla-wells-fargo-seizure-2013, mtgox-usd-withdrawal-suspension-2013-06, russia-mining-regional-ban-2024-12, sec-garza-gaw-miners-zenminer-2015, uniswap-tokenized-stocks-delisting-2021-07, paxos-busd-nydfs-minting-stop-2023, polymarket-cftc-geofence-2022-01`
+- Paper-use roles: `{'appendix_only': 51, 'aggregate_datapoint': 90, 'paper_anchor': 3, 'null_control': 12}`
+- Draft priority order: `china-pboc-exchange-shutdown-2017-09, china-sichuan-mining-ban-2021-06, datacell-v-valitor-iceland-district-court-2012-07, fincen-virtual-currency-msb-guidance-2013, kazakhstan-internet-shutdown-mining-2022-01, nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015, ofac-recent-action-20240111, philippines-sec-binance-block-2024, russia-cbr-bitcoin-information-letter-2014, uniswap-balancer-tornado-frontend-block-2022-08, wikileaks-western-union-interdiction-2010-12, opensea-iran-cuba-sanctions-block-2022, apple-india-crypto-exchange-removal-2024-01, china-nft-secondary-trading-self-discipline-2022-06, china-state-council-mining-crackdown-2021-05, fatf-virtual-currencies-key-definitions-2014, google-play-india-crypto-exchange-removal-2024-01, hongkong-sfc-vatp-licensing-2023-06, iceland-cbi-foreign-exchange-bitcoin-2014, karpeles-arrest-tokyo-mtgox-2015, mtgox-bankruptcy-tokyo-2014, mtgox-coinlab-civil-2013, ukraine-virtual-assets-law-2022-03, 1inch-us-geofence-2021-09, aave-arc-fireblocks-whitelist-2022-01, aave-tornado-frontend-block-2022-08, china-ico-ban-2017-09, china-inner-mongolia-mining-ban-2021-05, cloudflare-ethereum-gateway-tornado-block-2022-08, coin-mx-doj-murgio-2015, dydx-tornado-account-block-2022-08, eba-virtual-currencies-opinion-eba-op-2014-08, egold-doj-guilty-plea-2008-07, hongkong-hkma-stablecoins-ordinance-2025, infura-metamask-donetsk-luhansk-block-2022-03, kazakhstan-digital-assets-law-2023-02, mtgox-dhs-dwolla-wells-fargo-seizure-2013, mtgox-usd-withdrawal-suspension-2013-06, russia-mining-regional-ban-2024-12, sec-garza-gaw-miners-zenminer-2015, uniswap-tokenized-stocks-delisting-2021-07, wikileaks-amazon-aws-eviction-2010-12, wikileaks-bank-of-america-block-2010-12, wikileaks-everydns-domain-termination-2010-12, wikileaks-mastercard-suspension-2010-12, wikileaks-paypal-freeze-2010-12, wikileaks-postfinance-account-closure-2010-12, wikileaks-visa-europe-suspension-2010-12, paxos-busd-nydfs-minting-stop-2023, polymarket-cftc-geofence-2022-01`
 
 ## Cases
 
@@ -734,6 +734,30 @@ This file is the operational summary for the repo's two current priorities:
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 
+### `datacell-v-valitor-iceland-district-court-2012-07`
+
+- Status: `draft`
+- Readiness: `working_draft`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
+- Blocker: A direct-attribution changed layer lacks any primary_legal / primary_corporate / primary_onchain source.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
 ### `dprk-usdt-network-ofac-2025`
 
 - Status: `admitted`
@@ -766,6 +790,24 @@ This file is the operational summary for the repo's two current priorities:
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `eba-virtual-currencies-opinion-eba-op-2014-08`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `medium`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `egold-doj-guilty-plea-2008-07`
 
 - Status: `draft`
 - Readiness: `candidate_for_admission`
@@ -2571,6 +2613,149 @@ This file is the operational summary for the repo's two current priorities:
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `wikileaks-amazon-aws-eviction-2010-12`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `medium`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `wikileaks-bank-of-america-block-2010-12`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `wikileaks-everydns-domain-termination-2010-12`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `wikileaks-mastercard-suspension-2010-12`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `wikileaks-paypal-freeze-2010-12`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `wikileaks-postfinance-account-closure-2010-12`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `wikileaks-visa-europe-suspension-2010-12`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
+### `wikileaks-western-union-interdiction-2010-12`
+
+- Status: `draft`
+- Readiness: `needs_re_scoping`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `low`
+- Attribution reliability: `low`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: At least one retained observation still depends on unresolved evidence scaffolding.
+- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
+- Blocker: The file does not currently retain a stable changed-layer claim.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
+- Next action: Either measure the remaining layer or document why it is out of scope.
+- Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `zservers-ofac-2025`
 
