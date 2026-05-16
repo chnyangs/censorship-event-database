@@ -1,0 +1,27 @@
+id: candidate-alphabay-hansa-doj-2017
+registry_status: promoted_to_event
+promoted_event_id: alphabay-hansa-doj-2017
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+source_frame_id: us_federal_enforcement_crypto_2017_2026
+source_frame_phase: open_ended_2008_tiered_v0_2
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ
+  timestamp: 2017-07-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/alphabay-largest-online-dark-market-shut-down
+      title: AlphaBay, the Largest Online Dark Market, Shut Down
+target:
+  kind: entity
+  id: alphabay_hansa_marketplaces
+  chains: [bitcoin, monero, ethereum]
+jurisdiction: [US, NL]
+expected_layers: [l4_frontend, asset_onchain, offramp_cex]
+triage_notes: >
+  Candidate S3 takedown case. Promotion needs domain seizure / marketplace
+  frontend evidence and a decision on whether AlphaBay and Hansa are one joint
+  operation event or separate frame units.

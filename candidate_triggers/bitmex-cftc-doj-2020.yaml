@@ -1,0 +1,26 @@
+id: bitmex-cftc-doj-2020
+registry_status: candidate
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+source_frame_id: us_federal_enforcement_crypto_2017_2026
+source_frame_phase: open_ended_2008_tiered_v0_2
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2020-10-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/8270-20
+      title: CFTC Charges BitMEX Owners with Illegally Operating a Cryptocurrency Derivatives Trading Platform
+target:
+  kind: entity
+  id: bitmex
+  chains: [bitcoin]
+jurisdiction: [US]
+expected_layers: [l4_frontend, offramp_cex]
+triage_notes: >
+  Candidate S3 exchange-enforcement case. Promotion needs BitMEX user-region
+  restrictions, KYC / access-change evidence, or anchored no-change coverage
+  after the CFTC/DOJ action.

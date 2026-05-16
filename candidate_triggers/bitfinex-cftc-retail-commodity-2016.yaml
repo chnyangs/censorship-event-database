@@ -1,0 +1,25 @@
+id: bitfinex-cftc-retail-commodity-2016
+registry_status: candidate
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+source_frame_id: us_federal_enforcement_crypto_2017_2026
+source_frame_phase: open_ended_2008_tiered_v0_2
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2016-06-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/7380-16
+      title: CFTC Orders Bitcoin Exchange Bitfinex to Pay Penalty for Retail Commodity and Registration Violations
+target:
+  kind: entity
+  id: bitfinex
+  chains: [bitcoin]
+jurisdiction: [US]
+expected_layers: [offramp_cex]
+triage_notes: >
+  Historical-baseline Bitfinex/CFTC candidate. Promotion needs evidence of
+  custody, margin, or U.S.-user service changes tied to the order.

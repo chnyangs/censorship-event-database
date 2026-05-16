@@ -1,0 +1,26 @@
+id: shrem-faiella-bitcoin-exchange-2014
+registry_status: candidate
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+source_frame_id: us_federal_enforcement_crypto_2017_2026
+source_frame_phase: open_ended_2008_tiered_v0_2
+trigger:
+  type: doj_indictment
+  actor: US_DOJ
+  timestamp: 2014-09-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1
+      title: Bitcoin Exchangers Plead Guilty In Manhattan Federal Court
+target:
+  kind: entity
+  id: bitinstant_btcking
+  chains: [bitcoin]
+jurisdiction: [US]
+expected_layers: [offramp_cex]
+triage_notes: >
+  Historical-baseline DOJ exchange/MSB candidate. Promotion needs a clean
+  target split between BitInstant and BTCKing plus evidence of platform or
+  rail-state change.

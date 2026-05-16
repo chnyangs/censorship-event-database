@@ -1,0 +1,26 @@
+id: silk-road-doj-seizure-2013
+registry_status: candidate
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+source_frame_id: us_federal_enforcement_crypto_2017_2026
+source_frame_phase: open_ended_2008_tiered_v0_2
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ
+  timestamp: 2013-10-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archive/usao/nys/pressreleases/October13/SilkRoadSeizurePR.php
+      title: Manhattan U.S. Attorney Announces Seizure Of Additional Bitcoins Belonging To Ross William Ulbricht
+target:
+  kind: entity
+  id: silk_road_marketplace
+  chains: [bitcoin]
+jurisdiction: [US]
+expected_layers: [l4_frontend, asset_onchain, offramp_cex]
+triage_notes: >
+  Historical-baseline marketplace seizure candidate. Promotion needs website
+  seizure evidence, forfeiture/order anchors, and wallet-level asset evidence
+  that can be represented without contaminating 2017+ comparable denominators.

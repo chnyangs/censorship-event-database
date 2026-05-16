@@ -1,0 +1,26 @@
+id: coinbase-irs-john-doe-summons-2016
+registry_status: candidate
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+source_frame_id: us_federal_enforcement_crypto_2017_2026
+source_frame_phase: open_ended_2008_tiered_v0_2
+trigger:
+  type: court_civil_order
+  actor: US_DISTRICT_COURT_IRS
+  timestamp: 2016-11-30T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archives/opa/pr/court-authorizes-service-john-doe-summons-seeking-identities-us-taxpayers-who-have-used
+      title: Court Authorizes Service of John Doe Summons Seeking the Identities of U.S. Taxpayers Who Have Used Virtual Currency
+target:
+  kind: entity
+  id: coinbase
+  chains: [bitcoin]
+jurisdiction: [US]
+expected_layers: [offramp_cex]
+triage_notes: >
+  Historical-baseline court/IRS summons candidate. Promotion needs Coinbase
+  response or narrowed production-order evidence; the legal order alone is not
+  a service-layer change.

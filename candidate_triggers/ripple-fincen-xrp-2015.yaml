@@ -1,0 +1,26 @@
+id: ripple-fincen-xrp-2015
+registry_status: candidate
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+source_frame_id: us_federal_enforcement_crypto_2017_2026
+source_frame_phase: open_ended_2008_tiered_v0_2
+trigger:
+  type: fincen_action
+  actor: US_FINCEN
+  timestamp: 2015-05-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fincen.gov/news/news-releases/fincen-fines-ripple-labs-inc-first-civil-enforcement-action-against-virtual
+      title: FinCEN Fines Ripple Labs Inc. in First Civil Enforcement Action Against a Virtual Currency Exchanger
+target:
+  kind: entity
+  id: ripple_labs_xrp_ii
+  chains: [xrp]
+jurisdiction: [US]
+expected_layers: [offramp_cex]
+triage_notes: >
+  Historical-baseline FinCEN/XRP candidate. Promotion needs settlement/order
+  anchors and a conservative observation surface; do not treat general AML
+  undertakings as a layer change without replayable evidence.
