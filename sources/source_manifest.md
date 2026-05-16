@@ -1,11 +1,11 @@
 # Source Artifact Manifest
 
-Dataset snapshot: v0.2.0-rc-dryrun-8 · cutoff `2026-05-16` · commit `f18bc7a` · generated `2026-05-22T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-9 · cutoff `2026-05-16` · commit `397819d` · generated `2026-05-23T00:00:00Z`
 
 This manifest lists local source artifacts included in the release reproduction surface and records their SHA-256 hashes. Re-fetchable operator-census repository clones and large upstream dumps excluded by `.gitignore` are intentionally not listed; their retrieval policy is recorded in `sources/external_retrieval_receipts.yaml`.
 
-- Files: 897
-- Total bytes: 54397550
+- Files: 899
+- Total bytes: 54439613
 
 ## By Artifact Family
 
@@ -21,6 +21,7 @@ This manifest lists local source artifacts included in the release reproduction 
 | `federal_enforcement` | 2 |
 | `historical_baseline_2013_2016` | 2 |
 | `http_captures` | 736 |
+| `japan_ofac_density_2014_2025` | 2 |
 | `l0_datasets` | 24 |
 | `l1_datasets` | 3 |
 | `non_us_state` | 2 |
@@ -40,8 +41,8 @@ This manifest lists local source artifacts included in the release reproduction 
 | `diff` | 3 |
 | `go` | 3 |
 | `html` | 555 |
-| `json` | 307 |
-| `md` | 11 |
+| `json` | 308 |
+| `md` | 12 |
 | `py` | 1 |
 | `txt` | 2 |
 | `yaml` | 2 |

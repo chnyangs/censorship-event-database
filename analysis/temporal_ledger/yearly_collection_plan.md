@@ -1,6 +1,6 @@
 # Yearly Collection Plan
 
-Dataset snapshot: v0.2.0-rc-dryrun-8 · cutoff `2026-05-16` · generated `2026-05-22T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-9 · cutoff `2026-05-16` · generated `2026-05-23T00:00:00Z`
 
 This is the year-level control surface for the 2008+ tiered frame. It is derived from the monthly discovery ledger and trigger registry; it is not a paper denominator.
 
@@ -16,13 +16,13 @@ This is the year-level control surface for the 2008+ tiered frame. It is derived
 | 2015 | `historical_baseline_2013_2016` | 72 | 8 | 56 | 12 | 8 | 4 | 0 | 0 | 2 | triage pending source-frame months |
 | 2016 | `historical_baseline_2013_2016` | 72 | 3 | 69 | 4 | 2 | 2 | 0 | 0 | 1 | triage pending source-frame months |
 | 2017 | `comparable_main_2017_present` | 72 | 4 | 68 | 8 | 5 | 3 | 0 | 0 | 2 | triage pending source-frame months |
-| 2018 | `comparable_main_2017_present` | 72 | 6 | 66 | 9 | 3 | 3 | 0 | 0 | 5 | triage pending source-frame months |
+| 2018 | `comparable_main_2017_present` | 72 | 8 | 64 | 11 | 5 | 3 | 0 | 0 | 5 | triage pending source-frame months |
 | 2019 | `comparable_main_2017_present` | 72 | 4 | 68 | 6 | 3 | 3 | 0 | 0 | 3 | triage pending source-frame months |
 | 2020 | `comparable_main_2017_present` | 72 | 9 | 63 | 15 | 7 | 7 | 0 | 0 | 4 | triage pending source-frame months |
 | 2021 | `comparable_main_2017_present` | 72 | 14 | 58 | 21 | 15 | 10 | 0 | 0 | 2 | triage pending source-frame months |
-| 2022 | `comparable_main_2017_present` | 72 | 22 | 50 | 41 | 30 | 19 | 0 | 0 | 4 | triage pending source-frame months |
-| 2023 | `comparable_main_2017_present` | 72 | 29 | 43 | 47 | 34 | 31 | 0 | 0 | 6 | triage pending source-frame months |
-| 2024 | `comparable_main_2017_present` | 72 | 14 | 58 | 27 | 11 | 6 | 0 | 0 | 9 | triage pending source-frame months |
+| 2022 | `comparable_main_2017_present` | 72 | 23 | 49 | 42 | 31 | 19 | 0 | 0 | 4 | triage pending source-frame months |
+| 2023 | `comparable_main_2017_present` | 72 | 30 | 42 | 52 | 39 | 31 | 0 | 0 | 6 | triage pending source-frame months |
+| 2024 | `comparable_main_2017_present` | 72 | 15 | 57 | 30 | 14 | 6 | 0 | 0 | 9 | triage pending source-frame months |
 | 2025 | `comparable_main_2017_present` | 72 | 13 | 59 | 25 | 11 | 10 | 0 | 0 | 7 | triage pending source-frame months |
 | 2026 | `comparable_main_2017_present` | 30 | 2 | 28 | 2 | 0 | 0 | 0 | 0 | 2 | triage pending source-frame months |
 
