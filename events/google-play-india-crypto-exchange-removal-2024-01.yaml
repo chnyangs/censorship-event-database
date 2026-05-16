@@ -1,0 +1,211 @@
+id: google-play-india-crypto-exchange-removal-2024-01
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - india-fiu-offshore-vda-block-2023
+  - apple-india-crypto-exchange-removal-2024-01
+
+trigger:
+  type: corporate_policy_change
+  actor: google_llc
+  timestamp: 2024-01-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://techcrunch.com/2024/01/13/google-pulls-binance-other-global-crypto-apps-from-india-store/
+      wayback: https://web.archive.org/web/2024/https://techcrunch.com/2024/01/13/google-pulls-binance-other-global-crypto-apps-from-india-store/
+      evidence_use: contextual_unarchived
+      note: |
+        TechCrunch (2024-01-13/14): "Google pulls Binance, other global crypto
+        apps from India store." Reports Google Play India removed Binance,
+        Kraken, KuCoin, Huobi, Gate.io, Bittrex, MEXC, and Bitfinex apps from
+        the regional storefront, following the FIU-IND 2023-12-28 show-cause
+        notices and Apple's earlier App Store India removal (2024-01-09 to
+        2024-01-10). Google's action followed Apple's by approximately four
+        days. Marked evidence_use=contextual_unarchived per author constraint;
+        Wayback wildcard pointer (web/2024/) in lieu of a pinned-timestamp
+        snapshot; body_hash + body_path archival capture deferred to human
+        audit pass.
+    - type: supporting_journalism
+      url: https://cointelegraph.com/news/google-play-store-removes-binance-others-in-response-to-indian-fiu-notice
+      wayback: https://web.archive.org/web/2024/https://cointelegraph.com/news/google-play-store-removes-binance-others-in-response-to-indian-fiu-notice
+      evidence_use: contextual_unarchived
+      note: |
+        Cointelegraph (2024-01-14): "Google Play Store removes Binance, others
+        in response to Indian FIU notice." Confirms Google Play India removal
+        as compliance action downstream of the FIU-IND 2023-12-28 enforcement
+        cascade. Names same enumerated app set as TechCrunch coverage.
+        Wayback wildcard pointer pending pinned snapshot during human audit.
+    - type: supporting_journalism
+      url: https://www.pymnts.com/cryptocurrency/2024/google-follows-apple-in-yanking-crypto-apps-in-india/
+      wayback: https://web.archive.org/web/2024/https://www.pymnts.com/cryptocurrency/2024/google-follows-apple-in-yanking-crypto-apps-in-india/
+      evidence_use: contextual_unarchived
+      note: |
+        PYMNTS (2024-01-14): "Google Follows Apple in Yanking Crypto Apps in
+        India." Anchors the four-day temporal gap between Apple App Store IN
+        removal (2024-01-09 to 2024-01-10) and Google Play IN removal
+        (2024-01-13 to 2024-01-14). Wayback wildcard pointer; pinned snapshot
+        deferred.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. TechCrunch dateline 2024-01-13 (US time); India
+        local reporting and follow-up coverage anchor the storefront-removal
+        observation to 2024-01-14 (IST). Comparable corporate-compliance
+        action timestamped to the storefront-removal day rather than the
+        underlying FIU-IND show-cause notice (2023-12-28).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Seven offshore Virtual Digital Asset (VDA) exchange apps removed from the
+    Google Play India regional storefront on 2024-01-13/14: Binance, OKX,
+    Kraken, KuCoin, MEXC Global, Bitfinex, and Bittrex. Subset framing
+    because (a) the FIU-IND show-cause notice population was nine platforms
+    (Binance, Kraken, KuCoin, Huobi, OKX, Bitstamp, MEXC Global, BitTrex,
+    Gate.io) but per-platform Google Play storefront enumeration in mid-
+    January press coverage names different subsets (e.g. some sources add
+    Huobi and Gate.io); (b) some platforms (e.g. Binance, KuCoin) later
+    re-registered with FIU-IND and partially restored Indian Play access.
+    Enumeration here uses the title-line set provided in the authoring
+    brief; cross-source reconciliation deferred to human audit.
+  actor_type: offshore_vda_exchange_apps
+  actor_name: Offshore VDA exchange apps on Google Play IN regional storefront
+  canonical_domains:
+    - binance.com
+    - okx.com
+    - kraken.com
+    - kucoin.com
+    - mexc.com
+    - bitfinex.com
+    - bittrex.com
+
+jurisdiction: [IN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [google_play_in]
+    note: |
+      Google Play India regional storefront removed seven offshore VDA
+      exchange apps (Binance, OKX, Kraken, KuCoin, MEXC, Bitfinex, Bittrex)
+      on 2024-01-13/14, approximately four days after Apple App Store IN
+      pulled a similar app set (2024-01-09 to 2024-01-10). Replayable
+      app-store regional-availability archive captures deferred;
+      contextual_unarchived sourcing via press coverage (TechCrunch,
+      Cointelegraph, PYMNTS).
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_measured
+    scope: [offshore_vda_inr_rails]
+    note: |
+      Downstream INR on/off-ramp severance for IN-resident users of the
+      affected exchanges is recorded under the parent
+      india-fiu-offshore-vda-block-2023 event (offramp_cex layer). Not
+      duplicated here to avoid double-counting; this event is scoped to
+      Google's L4 corporate-compliance action only.
+
+observations:
+  - layer: l4_frontend
+    actor: google_play_in
+    event: seven_offshore_vda_apps_removed_from_google_play_in_regional_storefront
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-01-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IN
+    sources:
+      - type: supporting_journalism
+        url: https://techcrunch.com/2024/01/13/google-pulls-binance-other-global-crypto-apps-from-india-store/
+        wayback: https://web.archive.org/web/2024/https://techcrunch.com/2024/01/13/google-pulls-binance-other-global-crypto-apps-from-india-store/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [google_play_in]
+          countries: [IN]
+          time_window:
+            - 2024-01-13T00:00:00Z
+            - 2024-01-20T23:59:59Z
+        note: |
+          TechCrunch (2024-01-13) confirms Google Play India removed Binance,
+          Kraken, KuCoin, Huobi, Gate.io, Bittrex, Bitfinex apps; comparable
+          to Apple action four days earlier. Attribution=plausible because
+          Google has not published a public corporate notice naming the
+          FIU-IND / MEITY enforcement action as the cause; press attribution
+          to the FIU notice is consistent but not directly anchored in a
+          primary_corporate Google takedown notice. delta_hours=0 because
+          this observation co-occurs with the trigger timestamp (corporate
+          compliance action observed on the same day as the storefront
+          removal); cross-event comparator gap to apple-india-crypto-
+          exchange-removal-2024-01 (approx 96h, four days) recorded in
+          analysis_notes rather than delta_hours.
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/google-play-store-removes-binance-others-in-response-to-indian-fiu-notice
+        wayback: https://web.archive.org/web/2024/https://cointelegraph.com/news/google-play-store-removes-binance-others-in-response-to-indian-fiu-notice
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [google_play_in]
+          countries: [IN]
+          time_window:
+            - 2024-01-13T00:00:00Z
+            - 2024-01-20T23:59:59Z
+        note: |
+          Cointelegraph (2024-01-14) anchors the Google Play IN regional
+          removal to the FIU-IND 2023-12-28 show-cause cascade.
+
+analysis_notes: |
+  **NEW EVENT DRAFTED — DRYRUN 2026-05-16** by LLM agent under
+  origin=agent_draft, status=draft. Real release must (a) pin a body_hash +
+  body_path Wayback snapshot for at least one of the TechCrunch /
+  Cointelegraph / PYMNTS citations, (b) reconcile the per-platform app
+  enumeration across sources (TechCrunch names Huobi and Gate.io alongside
+  the title-line set; brief specifies seven), and (c) re-anchor the
+  delta_hours against a verified Apple App Store IN trigger timestamp once
+  apple-india-crypto-exchange-removal-2024-01 is authored.
+
+  Empirical shape: comparison. One observed_change layer at l4_frontend
+  (Google Play IN regional storefront removal). The companion
+  apple-india-crypto-exchange-removal-2024-01 event (sibling, not yet
+  authored) records the comparable Apple App Store IN action approximately
+  four days earlier. Both are downstream corporate-compliance actions of
+  the parent india-fiu-offshore-vda-block-2023 nation_state_block event
+  (FIU-IND 2023-12-28 show-cause notices + MEITY section 69A URL block).
+  This event is recorded under S5_corporate (Google's app-store policy
+  action) rather than S4_nation_state (the FIU/MEITY cascade) to preserve
+  the distinct corporate-trigger axis for cross-platform comparison; the
+  upstream nation-state trigger is captured under the parent event.
+
+  Not eligible for admission anchor in its current state because all
+  citations are evidence_use=contextual_unarchived per author constraint.
+  Admission promotion requires either a body_hash + body_path archive of
+  one of the news citations or a primary_corporate Google takedown notice.
+
+tags:
+  - corporate_policy_change
+  - google_play
+  - india
+  - app_store_regional_removal
+  - l4_frontend
+  - offshore_vda
+  - apple_google_comparison
+  - fiu_ind_downstream
+  - dryrun_2026_05_16
+  - agent_draft

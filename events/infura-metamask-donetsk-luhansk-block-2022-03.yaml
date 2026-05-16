@@ -1,0 +1,412 @@
+id: infura-metamask-donetsk-luhansk-block-2022-03
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - infura-alchemy-tornado-rpc-block-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: consensys_infura_metamask
+  timestamp: 2022-03-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
+      wayback: https://web.archive.org/web/2022/https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
+      evidence_use: contextual_unarchived
+      note: |
+        ConsenSys blog statement of March 2022 describing its compliance
+        posture in response to US sanctions arising from the Russia-Ukraine
+        conflict, including the IP-geographic restrictions applied to
+        Infura and MetaMask for the OFAC-comprehensively-sanctioned
+        regions (Crimea, Donetsk, Luhansk) following the 2022-02-21
+        Executive Order 14065. Wayback anchor is a 2022 calendar-folder
+        pointer; pinned snapshot and body_hash are deferred to human
+        audit. Marked evidence_use=contextual_unarchived per validator
+        policy for unarchived sources.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous coverage (2022-03-03) of the
+        Infura/MetaMask IP-geo block of the OFAC-comprehensively-sanctioned
+        regions. Day-level timing triangulation source. DRYRUN: pinned
+        Wayback snapshot deferred to human audit.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2022/03/04/crypto-industrys-sanctions-woes-on-full-display-in-metamasks-venezuela-hiccup
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/03/04/crypto-industrys-sanctions-woes-on-full-display-in-metamasks-venezuela-hiccup
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk follow-up coverage (2022-03-04) of the
+        misconfiguration in which the IP-geo block applied too broadly
+        and inadvertently captured Venezuelan users. Triangulation
+        source for the over-blocking side-effect. DRYRUN: pinned
+        Wayback snapshot deferred to human audit.
+    - type: supporting_journalism
+      url: https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
+      wayback: https://web.archive.org/web/2022/https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
+      evidence_use: contextual_unarchived
+      note: |
+        Decrypt contemporaneous coverage of the IP-geo over-block and
+        Venezuelan-user side-effect. Triangulation source. DRYRUN:
+        pinned Wayback snapshot deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per ConsenSys statement and contemporaneous
+        CoinDesk coverage of 2022-03-03. The Infura/MetaMask IP-geo
+        enforcement was implemented in the same window as the
+        2022-02-21 Executive Order 14065 (Donetsk/Luhansk comprehensive
+        sanctions); the corporate-policy response was published
+        2022-03-03. precision=day reflects the LLM-author's inability
+        to pin a sub-day timestamp from the public corporate
+        statements.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The IP-geo block enforcement target is the set of end-users
+    located in OFAC-comprehensively-sanctioned regions per Executive
+    Order 14065 (Donetsk and Luhansk regions of Ukraine), in
+    combination with prior comprehensive-sanctions regions
+    (Crimea, Iran, North Korea, Cuba, Syria). enumeration=subset
+    because (a) the corporate-policy statement names regions but
+    does not enumerate specific user accounts/IPs and (b) the
+    operational block was implemented against IP-geolocation
+    inferences, which is a moving reference rather than a fixed
+    snapshot. The recorded over-block scope additionally captured
+    Venezuela and (per some user reports) Iran for a transient
+    window of hours-to-days before correction.
+  entity: ConsenSys (Infura + MetaMask)
+  actor_type: rpc_provider_and_wallet_frontend
+  actor_name: ConsenSys (Infura RPC + MetaMask wallet UI)
+  chains: [ethereum]
+  canonical_domains:
+    - infura.io
+    - metamask.io
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The block is implemented as an application-layer IP-geo filter on
+      the Infura RPC endpoints and the MetaMask wallet UI, not an
+      ISP-level DNS or BGP block. The Infura and MetaMask domains
+      remained globally resolvable; the geo-filter is in the
+      application response logic.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge Ethereum (Paris was 2022-09-15, ~6 months after this
+      event); PBS/relay censorship infrastructure did not exist yet.
+      The IP-geo block at the RPC/frontend layer does not engage
+      consensus-layer block production.
+  - layer: l3_rpc
+    status: partially_measured
+    chain: ethereum
+    provider_scope: public_and_enterprise
+    note: |
+      Load-bearing layer for the event's primary mechanism. Infura
+      (ConsenSys-operated managed Ethereum RPC service) added the
+      Donetsk/Luhansk IP-geo block at the RPC endpoint level in the
+      2022-03-03 enforcement window in response to EO 14065. The
+      block is implemented in the RPC endpoint reachability logic
+      (IP-geolocation filter on incoming requests). partially_measured
+      because the corporate-policy statement is pinned at calendar-
+      folder Wayback granularity only (pending body_hash on human
+      audit); provider universe at L3 is bounded to Infura on the
+      ConsenSys side.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - metamask
+    note: |
+      Downstream frontend cascade observed at L4: the MetaMask wallet
+      UI surfaced an error state to users whose IP-geolocation
+      resolved to the blocked regions (and, transiently during the
+      misconfiguration window, to Venezuela / Iran). The L4
+      observation is a direct user-facing manifestation of the L3
+      IP-geo block via Infura's MetaMask-default-RPC position.
+      partially_measured because the user-facing behavior is
+      recoverable mainly via Wayback / community-forum captures
+      (Twitter, Reddit) rather than a first-party MetaMask
+      help-center revision pinned at exact-snapshot granularity.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level stablecoin freeze or on-chain asset action is
+      invoked by the IP-geo block; the IP-geo filter is upstream of
+      any on-chain action.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The IP-geo block is at the RPC/frontend layer and does not
+      directly engage CEX off-ramps.
+
+observations:
+  - layer: l3_rpc
+    actor: rpc_provider:consensys_infura
+    event: infura_rpc_ip_geo_block_of_donetsk_luhansk_regions
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-03-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: UA
+    sources:
+      - type: primary_corporate
+        url: https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
+        wayback: https://web.archive.org/web/2022/https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - consensys_infura
+          countries:
+            - UA
+          time_window:
+            - 2022-03-03T00:00:00Z
+            - 2022-03-04T23:59:59Z
+        note: |
+          ConsenSys corporate blog statement of March 2022 naming the
+          IP-geo restriction on Infura RPC requests originating from
+          OFAC-comprehensively-sanctioned regions, including the
+          Donetsk and Luhansk regions added under EO 14065
+          (2022-02-21). attribution=direct because the source is the
+          operator's own corporate statement naming the action.
+          DRYRUN: pinned Wayback snapshot and body_hash for the
+          specific blog revision are deferred to the human-audit
+          pass; marked evidence_use=contextual_unarchived per
+          validator policy.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk contemporaneous coverage of 2022-03-03 confirming
+          Infura applied IP-geo blocks to "certain areas" in
+          compliance with the new sanctions directives. Day-level
+          timing triangulation. DRYRUN: pinned Wayback snapshot
+          deferred to human audit.
+  - layer: l4_frontend
+    actor: frontend:metamask_wallet_ui
+    event: metamask_ui_error_state_for_blocked_region_users_including_overblock_venezuela_iran
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-03-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
+        wayback: https://web.archive.org/web/2022/https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - consensys_infura
+            - metamask
+          domains:
+            - metamask.io
+          countries:
+            - UA
+            - VE
+            - IR
+          time_window:
+            - 2022-03-03T00:00:00Z
+            - 2022-03-04T23:59:59Z
+        note: |
+          ConsenSys statement of March 2022 covering MetaMask
+          (Infura's downstream-default-RPC wallet UI) and noting
+          that the IP-geo configuration was applied "more broadly
+          than they needed to be," transiently capturing users in
+          Venezuela (and per some contemporaneous reports, Iran)
+          before correction. attribution=direct because the source
+          is ConsenSys's own corporate statement naming the action
+          and the over-block. DRYRUN: pinned Wayback snapshot and
+          body_hash deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/business/2022/03/04/crypto-industrys-sanctions-woes-on-full-display-in-metamasks-venezuela-hiccup
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/03/04/crypto-industrys-sanctions-woes-on-full-display-in-metamasks-venezuela-hiccup
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk follow-up coverage (2022-03-04) documenting the
+          Venezuelan-user over-block before ConsenSys corrected the
+          configuration. Triangulation source for the over-block
+          side-effect. DRYRUN: pinned Wayback snapshot deferred to
+          human audit.
+      - type: supporting_journalism
+        url: https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
+        wayback: https://web.archive.org/web/2022/https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
+        evidence_use: contextual_unarchived
+        note: |
+          Decrypt contemporaneous coverage of the Donetsk/Luhansk
+          block and Venezuelan-user over-block. Triangulation
+          source. DRYRUN: pinned Wayback snapshot deferred to human
+          audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: true
+    resolved_timestamp: 2022-03-04T00:00:00Z
+    note: |
+      The over-block side-effect on Venezuela (and per some reports
+      Iran) was corrected by ConsenSys within ~24h of the initial
+      configuration; service to Venezuelan users was restored on
+      2022-03-04 per contemporaneous CoinDesk reporting. The
+      intended block on the Donetsk and Luhansk regions remained
+      in place (not resolved at the corporate-policy level in this
+      window). resolved=true here refers narrowly to the
+      over-block correction; precision=day.
+  - layer: l3_rpc
+    resolved: false
+    note: |
+      The intended IP-geo block on the Donetsk/Luhansk (and other
+      OFAC-comprehensively-sanctioned) regions remained in place
+      at the RPC layer; this is the persistent enforcement
+      perimeter through the subsequent corporate-policy window and
+      is not reversed in this event.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase D of 2026-05-16
+  staged-release plan; lean run): authored by LLM agent without
+  personally verifying Wayback/body_hash; origin=agent_draft and
+  status=draft per validator policy. Real release must replace this
+  DRYRUN marker with a human-verified audit after pinning real
+  archive anchors and (if accepted) promoting origin to
+  human_reviewed and status to admitted or observation_active.
+
+  **First documented L3 + L4 IP-geo region-block in the corpus
+  driven by a US comprehensive-sanctions Executive Order.** Within
+  10 days of the 2022-02-21 EO 14065 (comprehensive sanctions on
+  the Donetsk and Luhansk regions of Ukraine), ConsenSys (operator
+  of Infura RPC and MetaMask wallet UI) implemented an
+  IP-geolocation block on Infura RPC endpoint reachability and on
+  MetaMask wallet-UI rendering for users whose IP resolved to the
+  newly-sanctioned regions (plus the prior comprehensive-sanctions
+  set: Crimea, Iran, North Korea, Cuba, Syria). A configuration
+  error transiently extended the block to users in Venezuela (and
+  per some user reports, Iran end-users), generating contemporaneous
+  community outcry; ConsenSys corrected the over-block within ~24h.
+
+  Stratum coding: S5_corporate. The OFAC/Treasury action (EO 14065)
+  is the upstream trigger, but ConsenSys chose to apply the block
+  as a corporate-compliance policy at the RPC/frontend layer, not
+  as an OFAC-compelled action against a designated entity. The
+  corporate-policy character is what makes this a paper-relevant
+  L3+L4 anchor for the broader "L3+L4 substrate is
+  corporate-policy-driven, not OFAC-compelled" claim, and
+  parallels the L3-RPC sibling event
+  infura-alchemy-tornado-rpc-block-2022 (which is address-set
+  screening rather than IP-geo).
+
+  Empirical shape: comparison (2 distinct observed_change layers -
+  L3 RPC IP-geo block, L4 frontend UI error state including the
+  Venezuela/Iran over-block window). Admission tier: empirical_case
+  (≥1 strong-attribution observed_change layer with both L3 and L4
+  rows at attribution=direct via ConsenSys's own corporate
+  statement).
+
+  Comparative value: this is the IP-geo counterpart of the
+  address-set sibling infura-alchemy-tornado-rpc-block-2022. The
+  pair isolates the two distinct L3-RPC enforcement perimeters that
+  emerged in 2022: (a) IP-geo region filtering (this event, driven
+  by comprehensive sanctions on a geographic region) and (b)
+  address-set screening (the August 2022 Tornado Cash event, driven
+  by an SDN designation on a specific contract set). Both pairs
+  are L3-load-bearing with downstream L4 cascade.
+
+  DRYRUN caveats: the four primary_corporate and supporting_journalism
+  citations all carry 2022-calendar-folder Wayback pointers rather
+  than pinned snapshots; pinned snapshot timestamps and body_hash
+  captures are deferred to the human-audit pass. For non-DRYRUN
+  release, capture body_hash + body_path for: (1) the specific
+  ConsenSys blog revision of March 2022 (compare archive.org
+  snapshots 2022-03-03..2022-03-04 for the "Russia-Ukraine
+  conflict" / "compliance" wording); (2) the CoinDesk 2022-03-03
+  and 2022-03-04 article permalinks; (3) the Decrypt article
+  permalink. Marked evidence_use=contextual_unarchived on all
+  citations to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "The 2022-03-03 ConsenSys IP-geographic block at the Infura RPC
+  endpoint layer and at the MetaMask wallet UI layer, applied to
+  end-users in the Donetsk and Luhansk regions of Ukraine (plus
+  the prior comprehensive-sanctions region set) in response to the
+  2022-02-21 EO 14065, constitutes the first documented S5_corporate
+  IP-geo region-block in the corpus, with both L3 (RPC reachability)
+  and L4 (wallet UI rendering) rows anchored on ConsenSys's own
+  corporate statement (attribution=direct). The row does not claim
+  ISP-level connectivity blocking, consensus-layer (PBS) effect,
+  on-chain asset freeze, or off-ramp severance. The contemporaneous
+  Venezuela/Iran over-block was a transient configuration error
+  corrected within ~24h and is recorded as a recovery row on the
+  L4 layer."
+
+scoped_knowledge: |
+  What changed: this row is the L3+L4 IP-geo anchor for the
+  2022-02-21 EO 14065 (Donetsk/Luhansk comprehensive sanctions)
+  trigger family at the S5_corporate stratum. Retained changed
+  layers are L3 RPC (Infura IP-geo block, direct) and L4 frontend
+  (MetaMask UI error state, direct).
+
+  What did not change or could not be measured: L0 network is not
+  applicable (the block is in application-layer IP-geo response
+  logic, not in DNS or BGP routing); L1 consensus is not applicable
+  (pre-Merge by ~6 months, PBS did not exist); asset_onchain and
+  offramp_cex are not applicable here (no issuer-level freeze and
+  no CEX engagement at the RPC/frontend block layer).
+
+  Attribution: L3 and L4 rows are direct because the primary
+  corporate source is ConsenSys's own statement naming the action,
+  the targeted regions, and the over-block error. The
+  Venezuela/Iran over-block side-effect is interpretable from the
+  contemporaneous corporate statement plus CoinDesk/Decrypt
+  triangulation; it is captured as a recovery row (L4 resolved
+  within ~24h) rather than as a separate observed_change row to
+  avoid double-counting the same physical configuration action.
+
+  Comparative value: pair with infura-alchemy-tornado-rpc-block-2022
+  to isolate the two distinct L3-RPC corporate-compliance
+  enforcement perimeters of 2022 (geographic IP-geo vs. address-set
+  screening). Both are S5_corporate, both have L3 load-bearing
+  with L4 downstream cascade, and both share Infura as one of the
+  named operators - making the pair useful for the paper's
+  "corporate-policy-driven L3 substrate" claim.
+
+  DRYRUN risk: the four corporate-policy and journalism citations
+  are unarchived at pinned-snapshot granularity. Before paper-
+  release the human-audit pass must pin Wayback snapshots and
+  body_hashes for the ConsenSys blog revision and the
+  CoinDesk/Decrypt article permalinks. If archive.org coverage
+  of the March 2022 ConsenSys blog revision proves recoverable
+  only at calendar-folder granularity, the L3 and L4 observations
+  should be downgraded from direct to plausible to reflect the
+  weaker primary-source anchor.
+
+tags:
+  - corporate_policy_change
+  - ip_geo_filtering
+  - infura
+  - metamask
+  - consensys
+  - donetsk_luhansk
+  - eo_14065
+  - russia_ukraine_sanctions_thread
+  - overblock_venezuela
+  - l3_anchor
+  - l4_anchor
+  - dryrun_2026_05_16

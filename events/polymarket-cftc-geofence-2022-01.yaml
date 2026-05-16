@@ -1,0 +1,213 @@
+id: polymarket-cftc-geofence-2022-01
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2022-01-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/8478-22
+      wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8478-22
+      evidence_use: contextual_unarchived
+      note: |
+        CFTC press release 8478-22 (2022-01-03): "CFTC Orders Event-Based
+        Binary Options Markets Operator to Pay $1.4 Million Penalty." The
+        Commission filed and simultaneously settled charges against
+        Blockratize, Inc. d/b/a Polymarket.com (Delaware-registered, NYC-
+        based) for offering off-exchange event-based binary options
+        contracts and failure to obtain designation as a DCM or
+        registration as a SEF. Beginning approximately June 2020,
+        Polymarket operated an illegal unregistered facility for event-
+        based binary options ("event markets"). The settlement order
+        requires: (a) $1.4M civil monetary penalty, (b) wind-down of all
+        non-compliant markets on polymarket.com, and (c) cease-and-desist
+        from CEA / CFTC regulation violations. Implementation included a
+        US-vantage geofence at polymarket.com.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per CFTC press release 8478-22 (2022-01-03).
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Blockratize, Inc. d/b/a Polymarket.com — single corporate entity
+    (Delaware-registered, NYC-based) operating the polymarket.com
+    event-market frontend and the Polygon-based prediction-market smart
+    contracts. The CFTC order targets the operator entity; the on-chain
+    Polymarket protocol contracts on Polygon remained functional
+    post-settlement.
+  entity: blockratize_inc_polymarket
+  actor_type: prediction_market_operator
+  actor_name: Polymarket (Blockratize, Inc.)
+  chains: [polygon]
+  canonical_domains:
+    - polymarket.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer (DNS / ISP) blocking observed. The cascade surface
+      is operator-side geofencing at the application layer, not
+      substrate-level filtering of polymarket.com.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Polymarket runs on Polygon PoS; the CFTC settlement does not
+      implicate validator-level block-construction or consensus
+      censorship.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public Polygon RPC filter-lists are not implicated by the CFTC
+      settlement; the enforcement targets the frontend operator, not
+      RPC providers.
+  - layer: l4_frontend
+    status: measured
+    scope: [polymarket.com]
+    note: |
+      Polymarket.com implemented a US-vantage geofence on the frontend
+      following the 2022-01-03 CFTC settlement, blocking US-resident
+      access to the event-market interface. The 2026-04 DOJ indictment
+      of Master Sergeant Gannon Ken Van Dyke (charged with using
+      classified information to profit on Polymarket Maduro-raid
+      markets) confirms in court filings that "Americans are banned from
+      using Polymarket" and that VPN-based circumvention is operationally
+      possible — load-bearing for the L4 measured-frontend cascade row.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level asset freeze implicated by the CFTC settlement.
+      Polymarket's USDC and on-chain position tokens were not frozen.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No CEX off-ramp restriction is asserted by the CFTC order. The
+      cascade surface is the frontend geofence, not a fiat off-ramp
+      change.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:polymarket_com
+    event: polymarket_us_vantage_geofence_post_cftc_settlement
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-01-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/8478-22
+        wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8478-22
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [polymarket_com_frontend]
+          countries: [US]
+          time_window:
+            - 2022-01-03T00:00:00Z
+            - 2026-05-16T23:59:59Z
+        note: |
+          CFTC settlement order (2022-01-03) requires Polymarket to wind
+          down all non-compliant event markets on polymarket.com and to
+          cease-and-desist further CEA violations. The operator-side
+          implementation is the US-vantage geofence on polymarket.com.
+          attribution=direct because the CFTC order is the legal
+          instrument compelling the frontend change. Wayback URL is a
+          DRYRUN stub pending scripts/capture_http_artifact.py.
+      - type: supporting_journalism
+        url: https://thedefiant.io/news/defi/polymarket-settlement-cftc
+        wayback: https://web.archive.org/web/20260516000000/https://thedefiant.io/news/defi/polymarket-settlement-cftc
+        evidence_use: contextual_unarchived
+        note: |
+          The Defiant (2022-01-03): "Polymarket Shuts Out U.S. Traders to
+          Comply with CFTC Settlement." Same-day journalism confirming
+          the operator response was a US-resident frontend ban. Wayback
+          URL is a DRYRUN stub pending capture.
+      - type: supporting_journalism
+        url: https://www.justice.gov/opa/pr/us-soldier-charged-using-classified-information-profit-prediction-market-bets
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/us-soldier-charged-using-classified-information-profit-prediction-market-bets
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [polymarket_com_frontend]
+          countries: [US]
+          time_window:
+            - 2025-12-26T00:00:00Z
+            - 2026-04-24T23:59:59Z
+        note: |
+          DOJ SDNY press release (2026-04): "U.S. Soldier Charged With
+          Using Classified Information To Profit From Prediction Market
+          Bets." Master Sergeant Gannon Ken Van Dyke (US Army Special
+          Forces) charged with using classified intel about Operation
+          Absolute Resolve (Maduro-capture operation) to bet ~$33K on
+          Polymarket markets and net ~$409,881 in profit. Court filings
+          confirm: Americans are banned from Polymarket; Van Dyke
+          allegedly used VPN-based circumvention. Provides 2026 evidence
+          that the 2022 US-vantage geofence remained in place ~4 years
+          post-settlement and that VPN-bypass is well-documented.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- DRYRUN 2026-05-16** (agent_draft). Pending
+  human audit and (a) Wayback-replayable captures with body_hash /
+  body_path artifacts via scripts/capture_http_artifact.py for the
+  cftc.gov press release 8478-22, the polymarket.com US-geofence
+  notice page, and the DOJ SDNY 2026-04 indictment press release;
+  (b) lift evidence_use from contextual_unarchived once artifacts are
+  pinned.
+
+  comparison -- Polymarket is the FIRST CFTC enforcement in the dataset
+  against a prediction-market frontend operator (binary-options /
+  event-markets theory) that produced an operator-implemented US-vantage
+  geofence rather than full market exit. Structurally adjacent to:
+  (1) `cftc-v-ooki-dao-2022` (CFTC vs. DEX-DAO, frontend geo-blocking
+  via default judgment) -- both retain the on-chain protocol while
+  blocking the US-resident frontend; (2) `bitfinex-tether-cftc-2021`
+  (CFTC vs. crypto-finance operator with monetary penalty + US-rails
+  restriction). Distinguishing features: (i) the cascade surface is
+  ONLY the L4 frontend -- no asset-onchain or off-ramp CEX involvement;
+  (ii) ~4-year longitudinal validation via the 2026-04 DOJ indictment
+  of Master Sergeant Van Dyke, which confirms US-resident access remains
+  banned and that VPN circumvention is operationally well-documented;
+  (iii) the on-chain Polygon contracts remained functional throughout.
+  One observed_change layer (L4 frontend) with direct attribution ->
+  empirical_case admission tier; empirical_shape = comparison.
+
+scoped_claim: |
+  The 2022-01-03 CFTC settlement against Blockratize Inc. d/b/a
+  Polymarket ($1.4M penalty + cease-and-desist) produced a single-layer
+  L4 cascade -- a US-vantage geofence at polymarket.com -- with the
+  on-chain Polygon protocol contracts remaining functional. Longitudinal
+  validation via the 2026-04 DOJ SDNY indictment of Master Sergeant
+  Gannon Ken Van Dyke (for using classified Maduro-operation intel to
+  win ~$409K on Polymarket) confirms the US-vantage geofence remained
+  in place through 2026 and that VPN-bypass is well-documented.
+
+related_events:
+  - cftc-v-ooki-dao-2022
+  - bitfinex-tether-cftc-2021
+  - bitmex-cftc-doj-2020
+  - binance-cftc-2023
+
+tags:
+  - cftc_enforcement
+  - prediction_market
+  - frontend_geofence
+  - us_vantage_block
+  - vpn_circumvention
+  - frontend_protocol_split
+  - binary_options

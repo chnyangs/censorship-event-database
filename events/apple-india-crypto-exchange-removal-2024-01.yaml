@@ -1,0 +1,221 @@
+id: apple-india-crypto-exchange-removal-2024-01
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - india-fiu-offshore-vda-block-2023
+  - google-play-india-crypto-exchange-removal-2024-01
+
+trigger:
+  type: corporate_policy_change
+  actor: APPLE
+  timestamp: 2024-01-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://techcrunch.com/2024/01/09/apple-crypto-apps-binance-india/
+      wayback: https://web.archive.org/web/2024/https://techcrunch.com/2024/01/09/apple-crypto-apps-binance-india/
+      evidence_use: contextual_unarchived
+      note: |
+        TechCrunch 2024-01-09/10 coverage reporting that Apple removed
+        Binance, KuCoin, OKX, Kraken, Bitstamp, MEXC Global, Bitfinex,
+        Bittrex, and other offshore VDA exchange apps from the Apple App
+        Store India regional storefront. Action occurred days after the
+        FIU-IND 2023-12-28 show-cause notices and the MEITY section 69A
+        URL blocking order. Wayback wildcard pointer (web/2024/) in lieu
+        of a pinned-timestamp snapshot; evidence_use=contextual_unarchived
+        because no body_hash+body_path pair has been captured into
+        sources/http_captures/apple-india-crypto-exchange-removal-2024-01/
+        in this session.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2024/01/10/binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-store
+      wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/01/10/binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-store
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2024-01-10 reporting on the Apple App Store India
+        regional removals naming Binance, KuCoin, and the broader FIU-IND
+        show-cause class. Wayback wildcard pointer in lieu of pinned
+        snapshot.
+    - type: supporting_journalism
+      url: https://cointelegraph.com/news/apple-india-binance-kraken-crypto-exchanges-delist-fiu-notice
+      wayback: https://web.archive.org/web/2024/https://cointelegraph.com/news/apple-india-binance-kraken-crypto-exchanges-delist-fiu-notice
+      evidence_use: contextual_unarchived
+      note: |
+        Cointelegraph 2024-01-10 coverage confirming the Apple App Store
+        India removal cascade. Notes that OKX was also pulled even though
+        it was not directly named in the FIU-IND show-cause notice cohort.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. TechCrunch first reported the App Store India
+        regional removals on 2024-01-09 US-time / 2024-01-10 IST, with
+        confirmation from CoinDesk, Cointelegraph, Reuters, and Hindustan
+        Times the same day. Exact app-store regional unpublish timestamp
+        not publicly disclosed by Apple; day-level precision matches
+        observed reporting cluster.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Apple App Store India regional removal cohort: Binance, OKX, Kraken,
+    KuCoin, MEXC Global, Bitfinex, Bittrex, Bitstamp, Huobi, Gate.io.
+    Overlaps with but is not identical to the FIU-IND 2023-12-28
+    show-cause cohort (OKX was removed by Apple although not in the
+    FIU-IND named-nine; Huobi/Gate.io enumeration in press reporting is
+    incomplete). Subset rather than complete: pinned per-app App Store IN
+    availability snapshots have not been captured in this session.
+  protocol: null
+  actor_type: app_store_regional_removal_cohort
+  actor_name: Offshore VDA exchanges (Apple App Store IN regional storefront, FIU-IND cascade)
+  chains: []
+  canonical_domains:
+    - binance.com
+    - okx.com
+    - kraken.com
+    - kucoin.com
+    - mexc.com
+    - bitfinex.com
+    - bittrex.com
+    - bitstamp.net
+
+jurisdiction: [IN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      L0 ISP-level reachability of exchange domains is the parent event
+      india-fiu-offshore-vda-block-2023 (MEITY section 69A IT Act URL
+      block). This event records the sibling L4 frontend app-store
+      removal axis only.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [apple_app_store_in]
+    note: |
+      Apple App Store India regional storefront removed the offshore VDA
+      exchange apps from Indian availability on/around 2024-01-10. Affected
+      apps include Binance, OKX, Kraken, KuCoin, MEXC Global, Bitfinex,
+      Bittrex, and Bitstamp per press reporting cluster (TechCrunch,
+      CoinDesk, Cointelegraph). Apps remained available via Google Play IN
+      and via direct download / mobile web in January 2024, narrowing the
+      scope of this L4 axis to the iOS regional storefront specifically.
+      Replayable App Store IN availability snapshots deferred;
+      contextual_unarchived sourcing via press coverage in this draft.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      INR off-ramp severance is recorded under the parent FIU-IND event;
+      this Apple-action sibling event does not re-record the offramp axis
+      to avoid double-counting.
+
+observations:
+  - layer: l4_frontend
+    actor: app_store:apple_in
+    event: offshore_vda_exchange_apps_removed_from_apple_app_store_in_regional_storefront
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-01-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IN
+    sources:
+      - type: supporting_journalism
+        url: https://techcrunch.com/2024/01/09/apple-crypto-apps-binance-india/
+        wayback: https://web.archive.org/web/2024/https://techcrunch.com/2024/01/09/apple-crypto-apps-binance-india/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [apple_app_store_in]
+          countries: [IN]
+          time_window:
+            - 2024-01-09T00:00:00Z
+            - 2024-01-15T23:59:59Z
+        note: |
+          TechCrunch 2024-01-09/10 reporting that Binance, KuCoin, OKX,
+          Kraken, and other offshore VDA exchange apps were removed from
+          the Apple App Store India regional storefront. Attribution
+          annotated plausible because the FIU-IND show-cause notice and
+          MEITY URL block are the load-bearing regulatory anchors but
+          Apple did not publicly publish a corporate notice tying the
+          removals to a specific MEITY order, and OKX was removed
+          although not on the FIU-IND named-nine list. No archived
+          App Store IN regional-availability snapshot pinned in this
+          session.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2024/01/10/binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-store
+        wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/01/10/binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-store
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [apple_app_store_in]
+          countries: [IN]
+          time_window:
+            - 2024-01-10T00:00:00Z
+            - 2024-01-15T23:59:59Z
+        note: |
+          CoinDesk 2024-01-10 confirmation of the Apple App Store India
+          removal cohort, naming Binance, KuCoin, and the broader
+          FIU-IND show-cause class.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash; human review required
+  to elevate to admitted status.
+
+  Sibling-layer comparison event documenting the Apple App Store India
+  regional storefront removal of offshore VDA exchange apps (Binance,
+  OKX, Kraken, KuCoin, MEXC Global, Bitfinex, Bittrex, Bitstamp) on
+  2024-01-10, following the FIU-IND 2023-12-28 show-cause notices and
+  the MEITY section 69A IT Act URL blocking order. Recorded separately
+  from the parent india-fiu-offshore-vda-block-2023 event because Apple
+  is a corporate actor (S5_corporate) executing a downstream compliance
+  decision in response to nation-state enforcement, and the App Store IN
+  axis is a distinct L4 frontend enforcement vector from the Google Play
+  IN sibling and from the ISP-level L0 block. trigger.type is
+  corporate_policy_change with actor=APPLE; the regulatory trigger
+  (india-fiu-offshore-vda-block-2023) is referenced via related_events.
+
+  Notable scope detail: OKX was removed from Apple App Store IN even
+  though OKX was not in the FIU-IND named-nine show-cause cohort,
+  suggesting Apple's removal cohort was driven by a broader compliance
+  judgement (e.g., FIU-IND recommended block list to MEITY) rather than
+  a strict mapping to the show-cause population. This anomaly is the
+  key analytic axis distinguishing the Apple sibling event from the
+  parent FIU-IND event.
+
+scoped_claim: |
+  "On 2024-01-10, Apple removed offshore Virtual Digital Asset exchange
+  apps (Binance, OKX, Kraken, KuCoin, MEXC Global, Bitfinex, Bittrex,
+  Bitstamp) from the Apple App Store India regional storefront as a
+  corporate compliance response to the FIU-IND 2023-12-28 show-cause
+  notices and the MEITY section 69A URL blocking order. Observational
+  axis at l4_frontend (Apple App Store IN regional removal).
+  Admission-anchor-grade promotion pending pinned App Store IN
+  availability snapshots."
+
+tags:
+  - corporate_policy_change
+  - apple
+  - app_store_regional_removal
+  - india
+  - fiu_ind_cascade
+  - offshore_vda
+  - l4_frontend
+  - s5_corporate
+  - dryrun_2026_05_16

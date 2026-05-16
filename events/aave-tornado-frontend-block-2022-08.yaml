@@ -1,0 +1,315 @@
+id: aave-tornado-frontend-block-2022-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - tornado-cash-ofac-2022
+  - infura-alchemy-tornado-rpc-block-2022
+  - uniswap-frontend-delisting-2023
+  - circle-usdc-tornado-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: aave_companies_dao
+  timestamp: 2022-08-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://twitter.com/AaveAave/status/1558414985380536321
+      wayback: https://web.archive.org/web/2022/https://twitter.com/AaveAave/status/1558414985380536321
+      evidence_use: contextual_unarchived
+      note: |
+        Aave official Twitter (@AaveAave) statement of 2022-08-13 acknowledging
+        that "TRM API risk parameters identify all wallets that have interacted
+        with Tornado Cash contracts" and confirming the frontend at
+        app.aave.com integrated a TRM Labs compliance API following the
+        2022-08-08 OFAC SDN designation of Tornado Cash (see related event
+        tornado-cash-ofac-2022). The Aave frontend operator's own corporate
+        statement names the action and the upstream cause. DRYRUN: pinned
+        Wayback snapshot and body_hash for this tweet are deferred to the
+        human-audit pass; marked evidence_use=contextual_unarchived per
+        validator policy for unarchived sources.
+    - type: supporting_journalism
+      url: https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+      wayback: https://web.archive.org/web/2022/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+      evidence_use: contextual_unarchived
+      note: |
+        Blockworks contemporaneous coverage (2022-08-13) of the Aave / Uniswap /
+        Balancer frontend blocks following the 2022-08-08 OFAC Tornado Cash
+        designation, describing the TRM Labs-driven blocklist and the
+        "dust attack" downstream that flagged 600+ wallets including
+        Brian Armstrong and Justin Sun. Triangulation source for day-level
+        timing. DRYRUN: pinned Wayback snapshot deferred to human audit.
+    - type: supporting_journalism
+      url: https://cryptoslate.com/aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored/
+      wayback: https://web.archive.org/web/2022/https://cryptoslate.com/aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored/
+      evidence_use: contextual_unarchived
+      note: |
+        CryptoSlate contemporaneous coverage (2022-08-13/14) naming the
+        TRM Labs API integration on the Aave IPFS frontend as the
+        mechanism, and documenting Aave's response and partial
+        rollback of dust-flagged addresses. Triangulation source for
+        the actor (TRM Labs) and mechanism (frontend-integrated risk-
+        scoring API). DRYRUN: pinned Wayback snapshot deferred to
+        human audit.
+    - type: supporting_journalism
+      url: https://decrypt.co/107890/meet-the-sleuthing-firm-helping-defi-projects-stay-compliant-with-tornado-cash-sanctions
+      wayback: https://web.archive.org/web/2022/https://decrypt.co/107890/meet-the-sleuthing-firm-helping-defi-projects-stay-compliant-with-tornado-cash-sanctions
+      evidence_use: contextual_unarchived
+      note: |
+        Decrypt profile of TRM Labs describing its role as compliance-
+        screening provider to DeFi frontends (Aave among the named
+        integrators) following the 2022-08-08 OFAC Tornado Cash
+        designation. Supports the mechanism description (off-the-shelf
+        TRM Labs / Chainalysis screening API integrated at the
+        frontend operator's UI layer). DRYRUN: pinned Wayback snapshot
+        deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per Aave's 2022-08-13 Twitter acknowledgment and
+        the same-day contemporaneous press coverage. The block became
+        publicly visible on 2022-08-13 when Justin Sun and other
+        high-profile wallets reported being unable to interact with
+        app.aave.com; precision=day reflects the LLM-author's inability
+        to pin a sub-day timestamp from the public corporate statement.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Aave Companies / Aave DAO operates the app.aave.com frontend UI
+    (and the IPFS-mirrored frontend deployment). On 2022-08-13 the
+    frontend integrated a TRM Labs compliance API whose blocklist
+    inherited from the OFAC Tornado Cash address universe (per related
+    event tornado-cash-ofac-2022) plus all addresses that had
+    interacted with the OFAC-listed Tornado Cash contracts post-
+    sanction. Target is the operator entity (Aave frontend) rather
+    than an enumerated address set because the blocklist is a moving
+    reference maintained by TRM Labs, not a static published roster;
+    subset because only the Aave-operated UI is in scope here (the
+    Aave Protocol smart contracts on-chain remained unaffected).
+  protocol: aave_v2_v3
+  actor_type: defi_frontend
+  actor_name: Aave Companies / Aave DAO (frontend operator)
+  chains: [ethereum]
+  canonical_domains:
+    - app.aave.com
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      app.aave.com remained reachable globally; the frontend restriction
+      is client-side wallet-connection filtering via a TRM Labs risk-
+      scoring API call, not a DNS or ISP-level block.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge Ethereum (Paris was 2022-09-15, 33 days after this
+      event); PBS relay-censorship infrastructure did not exist yet.
+      Consensus-layer effects of the 2022-08-08 OFAC trigger are
+      captured under tornado-cash-ofac-2022 observations[l1].
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Distinct from the L3 RPC-provider block under
+      infura-alchemy-tornado-rpc-block-2022. The Aave frontend block
+      is an L4 wallet-connect screening, not an L3 JSON-RPC response
+      policy.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - app.aave.com
+    provider_scope: unknown
+    note: |
+      Load-bearing layer for this event. Aave's own Twitter statement
+      and contemporaneous journalism name the TRM Labs API integration
+      at the Aave-operated frontend (app.aave.com and its IPFS mirror)
+      as the mechanism that blocked wallets flagged for Tornado Cash
+      contract interaction. The Aave Protocol smart contracts on
+      Ethereum remained reachable directly; the block is exclusively
+      at the frontend UI layer. Attached below as observed_change at
+      attribution=direct (Aave's own statement names the action and
+      mechanism).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level asset freeze invoked by Aave's frontend policy;
+      the sibling asset-layer action (Circle USDC blacklist) is
+      captured in circle-usdc-tornado-2022.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      CEX off-ramp reactions are captured under tornado-cash-ofac-2022
+      observations[offramp_cex].
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:aave_companies_dao
+    event: aave_frontend_integrated_trm_labs_api_blocking_tornado_tainted_wallets
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://twitter.com/AaveAave/status/1558414985380536321
+        wayback: https://web.archive.org/web/2022/https://twitter.com/AaveAave/status/1558414985380536321
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - app.aave.com
+          providers:
+            - trm_labs
+          time_window:
+            - 2022-08-13T00:00:00Z
+            - 2022-08-14T23:59:59Z
+        note: |
+          Aave's own Twitter statement of 2022-08-13 is the canonical
+          corporate-policy source for this L4 frontend block. The
+          frontend operator names: (a) the action (wallets that
+          interacted with Tornado Cash contracts post-sanction are
+          blocked from app.aave.com), (b) the mechanism (TRM Labs
+          risk-parameter API integrated on the Aave IPFS frontend),
+          and (c) the upstream cause (compliance with the 2022-08-08
+          OFAC SDN designation, per related event
+          tornado-cash-ofac-2022). attribution=direct because the
+          source is the operator naming the action. DRYRUN: pinned
+          Wayback snapshot and body_hash for this tweet are deferred
+          to the human-audit pass; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: supporting_journalism
+        url: https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+        wayback: https://web.archive.org/web/2022/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - app.aave.com
+          time_window:
+            - 2022-08-13T00:00:00Z
+            - 2022-08-14T23:59:59Z
+        note: |
+          Blockworks contemporaneous coverage (2022-08-13) of the Aave
+          frontend block, retained for day-level timing triangulation
+          and independent confirmation of the TRM Labs mechanism.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+      - type: supporting_journalism
+        url: https://cryptoslate.com/aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored/
+        wayback: https://web.archive.org/web/2022/https://cryptoslate.com/aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored/
+        evidence_use: contextual_unarchived
+        note: |
+          CryptoSlate contemporaneous coverage documenting Aave's
+          confirmation that the TRM Labs API integration on the Aave
+          IPFS frontend was responsible for the wallet blocks, and
+          the partial rollback of dust-flagged addresses. DRYRUN:
+          pinned Wayback snapshot deferred to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: |
+      Aave partially mitigated the dust-attack false-positive issue
+      by removing falsely flagged wallets from the TRM-driven
+      blocklist within days of 2022-08-13 (e.g. Justin Sun and other
+      dust-flagged accounts regained app.aave.com access). The
+      underlying TRM Labs / Chainalysis compliance-screening
+      integration itself was not reverted — the core L4 frontend
+      block of Tornado-Cash-interacting wallets remains in place.
+      The 2025-03-21 OFAC delisting (see
+      tornado-cash-ofac-delisting-2025) is the candidate upstream
+      recovery anchor and is tracked separately.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2
+  corporate_policy discovery; lean run): authored by LLM agent
+  without personally verifying Wayback/body_hash; origin=agent_draft
+  per validator policy. Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors and
+  promote origin to human_reviewed.
+
+  Comparison-shape S5 corporate-policy-change event sibling to
+  uniswap-frontend-delisting-2023 (the canonical L4-only
+  frontend-delisting anchor). Aave's 2022-08-13 frontend block is
+  the earliest documented L4 DeFi-frontend compliance action in the
+  Tornado Cash 2022 cascade family, and the only event in the corpus
+  that names TRM Labs (rather than Chainalysis) as the screening-API
+  provider. Paper-relevant because it isolates the same
+  frontend-operator / protocol-layer split documented under
+  uniswap-frontend-delisting-2023, but with two distinguishing
+  features: (a) the trigger is an upstream OFAC SDN action (rather
+  than the frontend operator's independent compliance judgment), and
+  (b) the mechanism is an off-the-shelf compliance-screening API
+  rather than a curated token-list. Together with
+  infura-alchemy-tornado-rpc-block-2022 (L3) and
+  circle-usdc-tornado-2022 (asset_onchain), this row completes the
+  S5_corporate cascade triangle downstream of the 2022-08-08 OFAC
+  Tornado Cash designation: asset-issuer (Circle, ~6h),
+  RPC-provider (Infura/Alchemy, ~24h), frontend-operator (Aave,
+  ~120h / 5 days). The 5-day lag relative to the upstream OFAC
+  trigger (2022-08-08) is paper-relevant for the cascade-latency
+  comparison and is tracked at the cross-event level (delta_hours
+  inside this event is 0 because the Aave trigger and the Aave
+  observation share a day-precision timestamp).
+
+  Empirical shape: comparison (1 observed_change layer — L4 frontend
+  load-bearing). Admission tier: empirical_case (≥1 observed_change
+  layer with direct attribution). Stratum coding: S5_corporate. The
+  OFAC SDN designation is the upstream trigger (related event
+  tornado-cash-ofac-2022), but Aave Companies / Aave DAO chose to
+  apply the block as a corporate-compliance policy via an
+  off-the-shelf TRM Labs API integration — Aave was not named in
+  the OFAC designation, and DeFi-frontend operators are not
+  themselves a regulated activity under the Treasury secondary-
+  sanctions authority. The corporate-policy character is what makes
+  this an L4 row sibling to uniswap-frontend-delisting-2023 rather
+  than an S1_ofac_sdn row.
+
+  DRYRUN caveats: the four citations (Aave Twitter + three
+  contemporaneous journalism) all carry 2022-calendar-folder
+  Wayback pointers rather than pinned snapshots; pinned snapshot
+  timestamps and body_hash captures are deferred to the
+  human-audit pass. For non-DRYRUN release, capture body_hash +
+  body_path for: (1) the Aave Twitter status anchor of 2022-08-13;
+  (2) the Blockworks, CryptoSlate, and Decrypt article permalinks;
+  optionally (3) a TRM Labs blog post or case study describing the
+  Aave integration (the TRM Labs / Aave engagement is documented
+  in the Decrypt profile but the firm did not publish a standalone
+  post about the Aave integration). Marked
+  evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+scoped_claim: |
+  "Aave's 2022-08-13 integration of a TRM Labs compliance-screening
+  API at the app.aave.com frontend — blocking wallets that interacted
+  with the OFAC-designated Tornado Cash contracts from the
+  Aave-operated UI while leaving the Aave Protocol smart contracts
+  on-chain unaffected — documents an L4-only frontend-operator
+  corporate-compliance action downstream of the 2022-08-08 OFAC
+  trigger (related event tornado-cash-ofac-2022). Paper-relevant as
+  the frontend-operator vertex of the S5_corporate cascade triangle
+  (Circle asset, Infura/Alchemy RPC, Aave frontend) and as the
+  comparison sibling to uniswap-frontend-delisting-2023."
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - aave
+  - trm_labs
+  - tornado_cash_thread
+  - dex_frontend
+  - frontend_protocol_split
+  - dryrun_2026_05_16

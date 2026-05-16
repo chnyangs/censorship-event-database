@@ -1,0 +1,184 @@
+# DRYRUN: agent_draft authored without live source archival. All citations
+# below are evidence_use: contextual_unarchived; Wayback links are wildcard
+# placeholders pending human review and replayable archival. This draft does
+# NOT support admission-tier claims.
+id: opensea-iran-cuba-sanctions-block-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+trigger:
+  type: corporate_policy_change
+  actor: OPENSEA_OPERATOR
+  timestamp: 2022-03-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://opensea.io/blog
+      wayback: https://web.archive.org/web/2022*/opensea.io/blog
+      evidence_use: contextual_unarchived
+      note: |
+        OpenSea corporate blog / Help Center 2022-03 TOS update — OpenSea
+        publicly confirmed via Twitter on 2022-03-03 that as a US-based
+        company it complies with US sanctions law and blocks users in
+        OFAC-sanctioned jurisdictions (Iran, Cuba, etc.). Reports of mass
+        Iranian-account terminations begin same day. Wayback wildcard
+        placeholder pending replayable archival.
+  timestamp_sources:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up
+      wayback: https://web.archive.org/web/2022*/coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up
+      evidence_use: contextual_unarchived
+      note: Day-level timing per CoinDesk 2022-03-03 reporting.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    OpenSea NFT-marketplace user accounts based in OFAC-sanctioned
+    jurisdictions (primarily Iran, later disclosed Cuba) plus nationals
+    of those countries (Iranian / Cuban passport holders) living outside
+    the sanctioned territory. Subset enumeration: OpenSea has not
+    published the full list of terminated accounts. Reported instances
+    include Iranian NFT artist Parin Heidari (Iran-national, resident
+    outside Iran 13+ years), ~30 Cuban / Cuban-passport artists and
+    collectors (incl. NFTcuba.ART founder Gianni D'Alerta resident in
+    the US, Gabriel Bianchini Swiss-Italian resident in Spain).
+  entity: opensea_user_accounts_ofac_country_nationals
+  actor_type: nft_marketplace_user_set
+  actor_name: OpenSea users from / nationals of OFAC-sanctioned countries
+  canonical_domains:
+    - opensea.io
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: opensea.io remained globally reachable; restriction is account-level / nationality-screening, not DNS / IP.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [opensea.io]
+    note: |
+      Frontend account termination + nationality screening at the
+      OpenSea-operated UI. Underlying NFT contracts on Ethereum remain
+      transferable; restriction is exclusively on the OpenSea frontend
+      account layer. Partially measured — terminated-account counts and
+      criteria are not publicly enumerated by OpenSea.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No on-chain freeze of underlying ERC-721 / ERC-1155 NFT contracts; frontend-only.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:opensea
+    event: opensea_terminated_iranian_user_accounts_under_ofac_compliance
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-03-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IR
+    sources:
+      - type: primary_corporate
+        url: https://opensea.io/blog
+        wayback: https://web.archive.org/web/2022*/opensea.io/blog
+        evidence_use: contextual_unarchived
+        note: |
+          OpenSea public statement (Twitter / blog, 2022-03-03):
+          "We're a US-based company and comply with US sanctions law,
+          meaning we're required to block people in places on the US
+          sanctions lists from using OpenSea." Direct corporate attribution
+          for the Iranian-account terminations.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up
+        wayback: https://web.archive.org/web/2022*/coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up
+        evidence_use: contextual_unarchived
+        note: CoinDesk 2022-03-03 — OpenSea bars Iranian users; reports of accounts terminated without prior notice and verified collections removed.
+      - type: supporting_journalism
+        url: https://decrypt.co/94365/opensea-deletes-iranian-users-accounts-citing-sanctions
+        wayback: https://web.archive.org/web/2022*/decrypt.co/*opensea*iran*
+        evidence_use: contextual_unarchived
+        note: Decrypt 2022-03 coverage of mass Iranian-account terminations including artist Parin Heidari (resident outside Iran 13+ years).
+      - type: supporting_journalism
+        url: https://www.artnews.com/art-news/news/opensea-deplatforms-iranian-users-us-sanctions-1234621105/
+        wayback: https://web.archive.org/web/2022*/artnews.com/*opensea*iran*
+        evidence_use: contextual_unarchived
+        note: ARTnews 2022-03 — OpenSea deplatforms Iranian users in compliance with US sanctions.
+
+  - layer: l4_frontend
+    actor: frontend:opensea
+    event: opensea_terminated_cuban_artist_accounts_including_diaspora_passport_holders
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-12-20T00:00:00Z
+    precision: day
+    country: CU
+    sources:
+      - type: primary_corporate
+        url: https://opensea.io/blog
+        wayback: https://web.archive.org/web/2022*/opensea.io/blog
+        evidence_use: contextual_unarchived
+        note: |
+          OpenSea spokesperson statement (2022-12): "We comply with U.S.
+          sanctions law. Our terms of service explicitly prohibit
+          sanctioned individuals, individuals in sanctioned jurisdictions,
+          or services from using OpenSea." Direct corporate attribution for
+          the Cuban-artist account terminations — including Cuban-passport
+          holders resident outside Cuba (diaspora over-blocking).
+      - type: supporting_journalism
+        url: https://decrypt.co/117869/nft-marketplace-opensea-confirms-ban-on-cuban-artists
+        wayback: https://web.archive.org/web/2022*/decrypt.co/117869/*
+        evidence_use: contextual_unarchived
+        note: Decrypt 2022-12 — OpenSea confirms ban on Cuban artists; ~30 artists / collectors affected.
+      - type: supporting_journalism
+        url: https://news.artnet.com/market/nft-marketplace-opensea-delisting-cuban-artists-us-sanctions-2235440
+        wayback: https://web.archive.org/web/2022*/news.artnet.com/*opensea*cuban*
+        evidence_use: contextual_unarchived
+        note: |
+          Artnet News 2022-12 — names diaspora cases (NFTcuba.ART founder
+          Gianni D'Alerta resident in the US; Gabriel Bianchini Swiss-
+          Italian resident in Spain). Documents over-blocking of
+          Cuban-passport holders living outside Cuba.
+      - type: supporting_journalism
+        url: https://www.washingtontimes.com/news/2022/dec/20/cuban-artists-blocked-from-once-promising-nft-trad/
+        wayback: https://web.archive.org/web/2022*/washingtontimes.com/news/2022/dec/20/cuban-artists-blocked-from-once-promising-nft-trad/
+        evidence_use: contextual_unarchived
+        note: Washington Times 2022-12-20 — Cuban artists blocked from OpenSea.
+
+analysis_notes: |
+  comparison — S5 corporate compliance event mirroring the Uniswap-Labs
+  L4-only frontend split, but with two distinct sub-actions: (1) Iranian
+  user-account terminations from 2022-03-03 in the wake of US-sanctions
+  discourse around the Russia / Ukraine context, and (2) Cuban-artist
+  account terminations disclosed 2022-12, notable for over-blocking of
+  Cuban-passport holders resident outside Cuba (diaspora nationality
+  screening rather than geo-IP only). Both restrictions operate at L4
+  (frontend account / nationality screening) without on-chain action on
+  the NFT contracts themselves. Paper-relevant as a corporate-frontend
+  example of nationality-based screening overshoot.
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - opensea
+  - nft_marketplace
+  - ofac_compliance
+  - nationality_screening
+  - iran
+  - cuba
+  - diaspora_overblocking

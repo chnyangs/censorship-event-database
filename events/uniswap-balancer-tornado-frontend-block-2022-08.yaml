@@ -1,0 +1,333 @@
+id: uniswap-balancer-tornado-frontend-block-2022-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - tornado-cash-ofac-2022
+  - infura-alchemy-tornado-rpc-block-2022
+  - aave-tornado-frontend-block-2022-08
+  - circle-usdc-tornado-2022
+  - uniswap-frontend-delisting-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: uniswap_labs_and_balancer_labs
+  timestamp: 2022-08-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/162680
+      wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162680
+      evidence_use: contextual_unarchived
+      note: |
+        The Block contemporaneous coverage of the 2022-08-12 DeFi frontend
+        cascade naming Uniswap Labs and Balancer Labs as having begun
+        blocking Tornado-Cash-tainted addresses from app.uniswap.org and
+        balancer.fi via TRM Labs API screening. Day-level timing anchor.
+        DRYRUN: pinned Wayback snapshot and body_hash deferred to human
+        audit; marked evidence_use=contextual_unarchived per validator
+        policy for unarchived sources.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/tech/2022/08/22/popular-uniswap-frontend-blocks-over-250-crypto-addresses-related-to-defi-crimes
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/22/popular-uniswap-frontend-blocks-over-250-crypto-addresses-related-to-defi-crimes
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk retrospective coverage (2022-08-22) reporting that the
+        Uniswap-Labs-operated frontend blocked 253 crypto addresses via
+        the TRM Labs API across seven risk categories including Tornado
+        Cash / privacy-mixer-tainted addresses, following the 2022-08-08
+        OFAC SDN designation. Triangulation source for the TRM Labs
+        integration mechanism. DRYRUN: pinned Wayback snapshot and
+        body_hash deferred to human audit.
+    - type: supporting_journalism
+      url: https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+      wayback: https://web.archive.org/web/2022/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+      evidence_use: contextual_unarchived
+      note: |
+        Blockworks coverage of the DeFi-frontend cascade following the
+        2022-08-09 Tornado Cash "dust attack" (small ETH amounts sent
+        from a Tornado pool to public-figure addresses, propagating the
+        OFAC taint to bystanders). Names Aave, Uniswap, Balancer, dYdX
+        as having activated frontend-block screening within days.
+        Day-level timing triangulation. DRYRUN: pinned Wayback snapshot
+        and body_hash deferred to human audit.
+    - type: supporting_journalism
+      url: https://thedefiant.io/news/defi/defi-bans-tornado-addresses
+      wayback: https://web.archive.org/web/2022/https://thedefiant.io/news/defi/defi-bans-tornado-addresses
+      evidence_use: contextual_unarchived
+      note: |
+        The Defiant aggregator-level coverage of the growing DeFi
+        frontend ban list for Tornado Cash-tainted addresses
+        (mid-August 2022). Triangulation source for the cascade
+        pattern across multiple DeFi frontends including
+        balancer.fi. DRYRUN: pinned Wayback snapshot deferred to
+        human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level timing (2022-08-12) per The Block, CoinDesk, and
+        Blockworks contemporaneous coverage. precision=day reflects
+        the agent-author's inability to pin sub-day timestamps from
+        the available public sources. Uniswap Labs and Balancer Labs
+        Twitter / blog posts from the same window are the candidate
+        sub-day timestamp sources to be re-pinned during human audit.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The frontend block applies to addresses flagged by the TRM Labs
+    risk-screening API across seven categories (sanctions, stolen
+    funds, privacy mixers, terrorist wallets, CSAM-linked wallets,
+    and other categories), with the 2022-08-08 OFAC Tornado Cash SDN
+    address set forming the seed enforcement perimeter. By 2022-08-22
+    (CoinDesk reporting) Uniswap Labs had blocked 253 addresses via
+    the TRM Labs integration. The target is `entity` (not address_set)
+    because the enforcement is a two-firm corporate-policy action
+    against a moving TRM-flagged address universe rather than a
+    fixed enumerated address list; the firms blocked are the named
+    target. Subset because the TRM-flagged address universe is not
+    publicly enumerated by either firm in real time, and the 253
+    figure is a 2022-08-22 retrospective snapshot.
+  entity: Uniswap Labs and Balancer Labs (DeFi frontend operators)
+  actor_type: dex_frontend_operator
+  actor_name: Uniswap Labs (app.uniswap.org) and Balancer Labs (balancer.fi)
+  chains: [ethereum]
+  canonical_domains:
+    - app.uniswap.org
+    - balancer.fi
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      DeFi-frontend block is a client-side TRM-API-driven address
+      screening policy implemented in the app.uniswap.org and
+      balancer.fi UI; not a DNS / ISP-level block. The domains
+      remained globally reachable; blocked addresses see a
+      compliance-block modal rather than a connectivity error.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge by 34 days (Paris was 2022-09-15); PBS relay
+      censorship infrastructure did not exist yet. The
+      consensus-layer effect of the 2022-08-08 OFAC trigger is
+      captured in tornado-cash-ofac-2022 observations[l1] for
+      the post-Merge window.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The L3 RPC-provider sanctions block (Infura, Alchemy) is
+      captured in the sibling event
+      infura-alchemy-tornado-rpc-block-2022. This event isolates
+      the L4 frontend-operator policy decision, which is upstream
+      of the user wallet but downstream of any L3 RPC filter.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - app.uniswap.org
+      - balancer.fi
+    note: |
+      Load-bearing layer for this event. Two named DeFi frontend
+      operators (Uniswap Labs, Balancer Labs) activated TRM-Labs-
+      API-driven address screening on their hosted UIs around
+      2022-08-12, surfacing a compliance-block modal for TRM-
+      flagged wallets attempting to connect. The underlying
+      Uniswap and Balancer smart-contract protocols remained
+      fully functional and reachable via alternative frontends
+      / direct contract interaction. Status=measured because
+      the action is corroborated by multiple contemporaneous
+      journalism sources (The Block, CoinDesk, Blockworks,
+      The Defiant) and the 253-address scale anchor was
+      cross-checked against the open-source banteg/uniswap-
+      banned-addresses GitHub gist cited by CoinDesk.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level token freeze invoked by the frontend
+      block. The sibling asset-layer action is the Circle USDC
+      blacklist captured in circle-usdc-tornado-2022.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Frontend block is upstream of CEX off-ramps; the off-ramp
+      reaction (dYdX, etc.) is captured under the OFAC trigger
+      event tornado-cash-ofac-2022 observations[offramp_cex].
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:uniswap_labs
+    event: uniswap_labs_trm_screening_block_of_tornado_tainted_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
+        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - uniswap_labs
+          domains:
+            - app.uniswap.org
+          time_window:
+            - 2022-08-12T00:00:00Z
+            - 2022-08-22T23:59:59Z
+        note: |
+          The Block contemporaneous report ("Uniswap Labs now blocks
+          certain crypto wallets from its app's frontend") naming
+          Uniswap Labs as the operator and TRM Labs as the
+          address-screening API provider. attribution=direct because
+          the firm publicly confirmed the screening integration via
+          Uniswap Labs' general counsel statement quoted in the
+          piece. DRYRUN: pinned Wayback snapshot and body_hash
+          deferred to human audit; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/tech/2022/08/22/popular-uniswap-frontend-blocks-over-250-crypto-addresses-related-to-defi-crimes
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/22/popular-uniswap-frontend-blocks-over-250-crypto-addresses-related-to-defi-crimes
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk retrospective (2022-08-22) reporting the 253-
+          address blocklist scale and the seven-category TRM Labs
+          taxonomy. Triangulation source for the scale of the
+          Uniswap Labs frontend block. DRYRUN: pinned Wayback
+          snapshot deferred to human audit.
+  - layer: l4_frontend
+    actor: frontend:balancer_labs
+    event: balancer_labs_trm_screening_block_of_tornado_tainted_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://cryptoslate.com/defi-protocols-aave-uniswap-balancer-ban-users-following-ofac-sanctions-on-tornado-cash/
+        wayback: https://web.archive.org/web/2022/https://cryptoslate.com/defi-protocols-aave-uniswap-balancer-ban-users-following-ofac-sanctions-on-tornado-cash/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - balancer_labs
+          domains:
+            - balancer.fi
+          time_window:
+            - 2022-08-12T00:00:00Z
+            - 2022-08-22T23:59:59Z
+        note: |
+          CryptoSlate contemporaneous report naming Balancer Labs
+          alongside Uniswap and Aave as DeFi frontend operators
+          activating the TRM-Labs-API-driven block of Tornado-
+          tainted addresses on balancer.fi. attribution=direct
+          because the firm's frontend behavior change is the
+          first-party operator action named in the source. DRYRUN:
+          pinned Wayback snapshot and body_hash deferred to human
+          audit.
+      - type: supporting_journalism
+        url: https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+        wayback: https://web.archive.org/web/2022/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+        evidence_use: contextual_unarchived
+        note: |
+          Blockworks coverage triangulating the Balancer frontend
+          block in the 2022-08-09..2022-08-12 dust-attack response
+          window. Triangulation source. DRYRUN: pinned Wayback
+          snapshot deferred to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: |
+      The Uniswap Labs and Balancer Labs frontend-screening
+      policies were not reversed in the initial cascade window.
+      Uniswap Labs subsequently expanded the screening universe
+      (see uniswap-frontend-delisting-2023 for the 2023 token-
+      list restriction follow-on). The 2025-03-21 OFAC delisting
+      (tornado-cash-ofac-delisting-2025) is the candidate
+      upstream L4 recovery anchor and is tracked separately.
+
+analysis_notes: |
+  DRYRUN 2026-05-16 — agent-drafted; status=draft; origin=agent_draft.
+  Real release requires a human-audit pass to pin Wayback snapshots
+  and body_hashes for the four supporting_journalism citations (The
+  Block, CoinDesk, Blockworks, CryptoSlate, The Defiant) and to
+  re-pin the Uniswap Labs / Balancer Labs first-party social-media
+  / blog statements (Hayden Adams Twitter, Balancer governance
+  forum) that this draft does not cite directly.
+
+  Frontend cascade row paired with the sibling L3 RPC block
+  (infura-alchemy-tornado-rpc-block-2022) and the sibling asset-
+  layer freeze (circle-usdc-tornado-2022). Together with the
+  contemporaneous Aave frontend block (aave-tornado-frontend-
+  block-2022-08, sibling event) the four S5_corporate rows
+  compose the August 2022 corporate-cascade quartet downstream
+  of the OFAC Tornado Cash trigger family.
+
+  Structurally distinct from uniswap-frontend-delisting-2023 (the
+  2023 token-list restriction event), which is L4-only and
+  token-scoped; this 2022-08 event is L4-only and address-scoped
+  (TRM-Labs-flagged wallet screening). The pair documents two
+  modes of Uniswap Labs frontend-level compliance action: address
+  screening (2022) and token delisting (2023).
+
+  Empirical shape: comparison (2 distinct observed_change rows
+  at L4 — Uniswap Labs frontend direct, Balancer Labs frontend
+  direct). Admission tier: empirical_case (2 strong-attribution
+  observed_change rows at the same layer; not anchor_case
+  because the supporting_journalism citations are not first-
+  party corporate policy statements at the time of draft).
+
+  Stratum coding: S5_corporate. The OFAC SDN designation is the
+  upstream trigger (related event tornado-cash-ofac-2022), but
+  Uniswap Labs and Balancer Labs chose to apply the block as a
+  corporate-compliance policy via the third-party TRM Labs
+  screening API; neither firm was named in the OFAC designation,
+  and the L4 frontend layer is not itself a regulated activity
+  under the Treasury secondary-sanctions authority. The
+  corporate-policy character is what makes this a paper-relevant
+  L4 anchor for the broader "L4 frontend is corporate-policy-
+  driven, not OFAC-compelled" claim.
+
+  DRYRUN caveats: all citations carry 2022-calendar-folder
+  Wayback pointers rather than pinned snapshots; pinned
+  snapshot timestamps and body_hash captures are deferred to
+  the human-audit pass. Marked evidence_use=contextual_unarchived
+  on all citations per validator policy.
+
+scoped_claim: |
+  "The 2022-08-12 Uniswap Labs and Balancer Labs frontend-
+  screening blocks of TRM-Labs-flagged wallets (seeded by the
+  2022-08-08 OFAC Tornado Cash SDN address set) constitute a
+  paired L4 frontend-operator corporate-policy-change event,
+  with two named operators (Uniswap Labs, Balancer Labs)
+  applying the block to their hosted UIs (app.uniswap.org,
+  balancer.fi) while the underlying smart-contract protocols
+  remain fully functional. The row does not claim OFAC-
+  compelled action, ISP-level connectivity blocking,
+  consensus-layer effect, or asset-layer freeze — those are
+  sibling-event rows under tornado-cash-ofac-2022 / infura-
+  alchemy-tornado-rpc-block-2022 / circle-usdc-tornado-2022."
+
+tags:
+  - corporate_policy_change
+  - frontend_address_screening
+  - trm_labs
+  - uniswap_labs
+  - balancer_labs
+  - dex_frontend
+  - tornado_cash_thread
+  - dryrun_2026_05_16

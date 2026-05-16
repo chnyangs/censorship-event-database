@@ -1,0 +1,281 @@
+id: aave-arc-fireblocks-whitelist-2022-01
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - aave-tornado-frontend-block-2022-08
+  - cftc-v-ooki-dao-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: AAVE_DAO_AAVE_COMPANIES
+  timestamp: 2022-01-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
+      wayback: https://web.archive.org/web/2022/https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
+      evidence_use: contextual_unarchived
+      note: |
+        Fireblocks corporate press release dated 2022-01-05 announcing the
+        launch of Aave Arc as a permissioned DeFi liquidity market with
+        Fireblocks as the first active whitelister. Names 30 KYC-vetted
+        institutions onboarded into the Aave Arc permissioned pool at
+        launch (Anubi Digital, Bluefire Capital, Canvas Digital, Celsius,
+        CoinShares, GSR, Hidden Road, Ribbit Capital, Covario, Wintermute,
+        and others). The Aave Arc protocol-architecture decision is a
+        joint Aave-DAO governance approval + Aave Companies (Aave-Labs)
+        engineering deployment; the Fireblocks press item is the first
+        active-whitelister anchor. DRYRUN: wayback wildcard
+        (web/2022/) pointer in lieu of a pinned-timestamp snapshot;
+        evidence_use=contextual_unarchived because no body_hash+body_path
+        pair has been captured into
+        sources/http_captures/aave-arc-fireblocks-whitelist-2022-01/ in
+        this session.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2022/01/05/fireblocks-whitelists-30-trading-firms-for-aaves-institutional-defi-debut
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/01/05/fireblocks-whitelists-30-trading-firms-for-aaves-institutional-defi-debut
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2022-01-05 coverage: "Fireblocks 'Whitelists' 30 Trading
+        Firms for Aave's Institutional DeFi Debut." Independent
+        confirmation of the launch date, whitelister role, and KYC-only
+        institutional access model.
+    - type: supporting_journalism
+      url: https://cointelegraph.com/news/aave-launches-its-permissioned-pool-aave-arc-with-30-institutions-set-to-join
+      wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/aave-launches-its-permissioned-pool-aave-arc-with-30-institutions-set-to-join
+      evidence_use: contextual_unarchived
+      note: |
+        Cointelegraph 2022-01-05 coverage of the Aave Arc launch as a
+        permissioned pool with 30 institutions onboarded via Fireblocks
+        whitelister role.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision. Fireblocks press release and the CoinDesk /
+        Cointelegraph / CryptoNinjas coverage cluster all date the Aave
+        Arc + Fireblocks whitelister launch to 2022-01-05. Aave Governance
+        approval of the Fireblocks whitelister role and the underlying
+        Aave Arc PermissionManager smart-contract deployment predate the
+        2022-01-05 production-live date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Aave Arc permissioned pool: the institutional-only Aave V2 fork with a
+    PermissionManager contract layer enforcing address-binary whitelisting
+    at the protocol-contract level (not frontend-level). Subset because the
+    enumerated targets are the 30 KYC-vetted Fireblocks-whitelisted
+    institutional addresses at launch (Anubi Digital, Bluefire Capital,
+    Canvas Digital, Celsius, CoinShares, GSR, Hidden Road, Ribbit Capital,
+    Covario, Wintermute, and others named in the Fireblocks press item),
+    plus the broader cohort of non-whitelisted Ethereum addresses that are
+    excluded by protocol-contract design from supplying or borrowing in
+    the Aave Arc pool. The exclusion class is global (any non-whitelisted
+    address) — the whitelisted-inclusion class is the small named cohort.
+  protocol: aave_arc
+  actor_type: permissioned_defi_pool
+  actor_name: Aave Arc (Aave V2 institutional permissioned pool)
+  chains: [ethereum]
+  canonical_domains:
+    - aave.com
+    - app.aave.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Aave Arc is an Ethereum-mainnet smart-contract deployment; no
+      domain-level / ISP-level reachability question is at issue. The
+      app.aave.com frontend serves Aave Arc UI globally; non-whitelisted
+      addresses can connect to the frontend but cannot transact against
+      the permissioned pool.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [app.aave.com]
+    note: |
+      The Aave Arc UI on app.aave.com surfaces the permissioned pool only
+      to wallet addresses that pass the on-chain whitelist check; the
+      frontend reflects the protocol-contract permission decision rather
+      than imposing an independent compliance overlay. attribution=direct
+      observed_change attached below for the protocol-architecture launch
+      (the UI surface for Aave Arc went live on 2022-01-05 reflecting the
+      PermissionManager-enforced inclusion class). Replayable app.aave.com
+      Aave Arc subview snapshots deferred to human audit.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    scope: [aave_arc_pool]
+    note: |
+      Protocol-contract-level address-binary whitelisting via the Aave Arc
+      PermissionManager contract. Non-whitelisted addresses are excluded
+      at the contract-state-machine level from supplying or borrowing in
+      the Aave Arc pool. This is the first major protocol-level (not
+      frontend-level) address-binary whitelisting in major DeFi, distinct
+      from the later (2022-08) frontend-overlay address-screening pattern
+      on Aave V2/V3. Load-bearing observed_change attached below.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: protocol:aave_arc
+    event: aave_arc_permissioned_pool_launched_with_protocol_contract_level_address_whitelist
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-01-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
+        wayback: https://web.archive.org/web/2022/https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [aave_arc, fireblocks]
+          time_window:
+            - 2022-01-05T00:00:00Z
+            - 2022-01-31T23:59:59Z
+        note: |
+          Fireblocks press release is the corporate-statement anchor for
+          the Aave Arc launch event: a permissioned pool with
+          PermissionManager-enforced address whitelist at the protocol
+          contract layer, 30 KYC-vetted institutional addresses onboarded
+          at launch. attribution=direct: the architectural decision to
+          deploy a permissioned-pool fork with on-chain whitelist is the
+          observed change itself (the protocol contracts only accept
+          whitelisted addresses by design). DRYRUN: wayback wildcard
+          pointer in lieu of pinned-timestamp snapshot.
+      - type: supporting_community
+        url: https://aave-arc.gitbook.io/docs/contracts-interacting-with-protocol/permissionmanager
+        wayback: https://web.archive.org/web/2022/https://aave-arc.gitbook.io/docs/contracts-interacting-with-protocol/permissionmanager
+        evidence_use: contextual_unarchived
+        note: |
+          Aave Arc PermissionManager contract documentation (GitBook) —
+          technical substrate confirming that whitelisting is enforced at
+          the protocol-contract layer via permissionAdmins (whitelisters
+          approved by Aave Governance). Wayback wildcard pointer in lieu
+          of pinned snapshot; community docs source pending body_hash
+          capture.
+  - layer: l4_frontend
+    actor: frontend:app_aave_com_arc_view
+    event: aave_arc_frontend_surface_reflects_protocol_whitelist_inclusion_class
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-01-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
+        wayback: https://web.archive.org/web/2022/https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [app_aave_com]
+          time_window:
+            - 2022-01-05T00:00:00Z
+            - 2022-01-31T23:59:59Z
+        note: |
+          The Aave Arc UI on app.aave.com surfaces the permissioned pool
+          to whitelisted addresses only; the frontend is a thin reflection
+          of the protocol-contract permission state rather than an
+          independent L4 compliance overlay. attribution=direct because
+          the frontend behavior is fully determined by the on-chain
+          whitelist contract. DRYRUN: pinned Wayback snapshot of the
+          app.aave.com Aave Arc subview deferred to human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash; human review required
+  to elevate to admitted status.
+
+  comparison shape: 2 observed_change layers (asset_onchain load-bearing,
+  L4 frontend secondary-and-derived). Paper-relevant as the **first
+  major protocol-level (not frontend-level) address-binary whitelisting
+  in major DeFi**. Structurally distinct from sibling Aave events:
+
+  1. **vs. aave-tornado-frontend-block-2022-08** — the later 2022-08
+     event is a frontend-overlay address-screening on the open Aave
+     V2/V3 pools (L4-only, addresses screened by the frontend operator,
+     underlying protocol unchanged). The present 2022-01-05 event is the
+     **architectural** permissioned-pool launch: a separate Aave V2 fork
+     deployed with the PermissionManager contract enforcing
+     address-binary whitelisting at the protocol-contract layer. The
+     two events are different censorship primitives at different layers
+     on different deployments of the Aave protocol family.
+
+  2. **vs. cftc-v-ooki-dao-2022** — Ooki DAO is a regulator-triggered
+     enforcement event against a DAO; Aave Arc is a self-imposed
+     corporate/DAO-governance architectural decision to deploy a
+     permissioned variant of the protocol to onboard regulated
+     institutional capital. The Ooki event is reactive-enforcement
+     (S3); Aave Arc is proactive-self-permissioning (S5).
+
+  Paper-relevant axis: Aave Arc is the cleanest example in the dataset
+  of a major DeFi protocol introducing **on-chain (asset_onchain layer)
+  address-binary inclusion/exclusion control** without any direct
+  external regulatory trigger — the architectural decision was driven
+  by the Aave DAO + Aave Companies' commercial strategy to onboard
+  regulated institutional capital, with KYC-only access enforced at the
+  protocol-contract layer via PermissionManager. The whitelister role
+  (Fireblocks at launch) is itself a corporate compliance intermediary
+  approved by Aave Governance.
+
+  DRYRUN caveats: trigger primary citation (Fireblocks press item) and
+  supporting community-doc citation (Aave Arc PermissionManager docs)
+  are asserted with wayback wildcard pointers; pinned-snapshot
+  timestamps and body_hash captures are deferred to the human-audit
+  pass. For non-DRYRUN release, capture body_hash + body_path for: (1)
+  Fireblocks 2022-01-05 press item, (2) CoinDesk 2022-01-05 launch
+  coverage, (3) Aave Arc PermissionManager docs page, (4) an
+  app.aave.com Aave Arc subview snapshot circa 2022-01. Marked
+  evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+  Note: distinct from the later Aave Tornado frontend block (2022-08)
+  — the 2022-08 event is the frontend address-screening overlay on
+  Aave V2/V3 (L4-only); the 2022-01 event documented here is the
+  architectural permissioned-pool launch (asset_onchain layer).
+
+scoped_claim: |
+  "On 2022-01-05, Aave Arc — a permissioned-pool fork of the Aave V2
+  protocol — went live on Ethereum mainnet with Fireblocks as the first
+  active whitelister and 30 KYC-vetted institutional addresses onboarded
+  at launch. Address-binary whitelisting is enforced at the
+  protocol-contract layer via the PermissionManager contract, making
+  this the first major protocol-level (not frontend-level)
+  address-binary whitelisting deployment in major DeFi. Observational
+  axes at asset_onchain (load-bearing, attribution=direct) and
+  l4_frontend (derived from the on-chain permission state,
+  attribution=direct). Admission-anchor-grade promotion pending pinned
+  archive captures."
+
+tags:
+  - corporate_policy_change
+  - aave
+  - aave_arc
+  - fireblocks
+  - permissioned_defi
+  - protocol_level_whitelist
+  - kyc_only_access
+  - asset_onchain
+  - s5_corporate
+  - dryrun_2026_05_16

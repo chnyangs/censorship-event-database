@@ -1,0 +1,243 @@
+id: 1inch-us-geofence-2021-09
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - uniswap-frontend-delisting-2023
+  - aave-tornado-frontend-block-2022-08
+
+trigger:
+  type: corporate_policy_change
+  actor: 1INCH_FOUNDATION
+  timestamp: 2021-09-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
+      wayback: https://web.archive.org/web/2021/https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 S5
+        corporate-frontend discovery; lean run): authored by LLM agent
+        without personally verifying Wayback/body_hash; origin=agent_draft
+        and status=draft pending human review. Real release must replace
+        this DRYRUN marker with a human-verified audit after pinning real
+        archive anchors.
+
+        1inch Help Center article on country restrictions for the
+        app.1inch.io dApp. On 2021-09-29 the 1inch Foundation /
+        1inch Network frontend operator added a pop-up notification
+        and a technical IP-detection layer that geofenced US-vantage
+        users out of the app.1inch.io frontend UI; the underlying
+        1inch Aggregation Protocol (smart contracts on Ethereum and
+        other chains) was not affected. This is a *voluntary*
+        corporate-policy frontend restriction — no specific US
+        regulator named a 1inch enforcement action; the operator's
+        own public explanation cited perceived US regulatory risk
+        and a forthcoming 1inch Pro product for the US market under
+        the Series B announcement.
+    - type: supporting_journalism
+      url: https://cryptoslate.com/1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep/
+      wayback: https://web.archive.org/web/2021/https://cryptoslate.com/1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep/
+      evidence_use: contextual_unarchived
+      note: |
+        CryptoSlate coverage (2021-09-30) of the 1inch US-IP geofence
+        announcement, citing the 1inch Network blog post / public
+        statements that frame the restriction as a voluntary terms-of-
+        use compliance step pending the launch of a US-targeted 1inch
+        Pro product. DRYRUN: Wayback anchor unverified by LLM agent
+        at authoring time.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. The 1inch Network frontend operator added
+        the US IP geofence pop-up / technical layer on or about
+        2021-09-29; CryptoSlate (2021-09-30) and other contemporaneous
+        coverage place the announcement at this day. The Help Center
+        article on country restrictions is undated in its public
+        masthead, so the journalism date carries the timestamp.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: US-vantage users (clients with US-geolocated
+    IPs) of the 1inch Network's app.1inch.io frontend. The restriction
+    is a client-side / edge-detection IP-gate combined with a
+    terms-of-use pop-up; not enumerated by user account because the
+    1inch dApp is non-custodial. The 1inch Aggregation Protocol
+    smart contracts on Ethereum / other chains remain reachable to
+    US-vantage users via alternative frontends, direct contract calls,
+    and self-hosted UI mirrors — the restriction is exclusively at
+    the 1inch-operated frontend.
+  protocol: 1inch_aggregation_protocol
+  actor_type: dex_aggregator_frontend
+  actor_name: 1inch Network / 1inch Foundation (frontend operator)
+  chains: [ethereum]
+  canonical_domains:
+    - app.1inch.io
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      app.1inch.io remains globally reachable at the DNS / IP layer;
+      the geofence is an application-layer IP-detection gate, not an
+      ISP-level domain block. not_applicable on construct-not-engaged
+      grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Voluntary frontend geofence does not implicate the Ethereum
+      consensus layer (PBS / relay-filter primitive). not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The 1inch frontend operator's geofence does not affect public
+      RPC providers; US-vantage users with their own wallet RPC can
+      still reach the 1inch smart contracts on Ethereum. not_applicable.
+  - layer: l4_frontend
+    status: measured
+    scope: [app.1inch.io]
+    denominator_artifact:
+      type: primary_corporate
+      url: https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
+      wayback: https://web.archive.org/web/2021/https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
+      scope_descriptor:
+        domains: [app.1inch.io]
+        countries: [US]
+        providers: [1inch_foundation_frontend]
+        time_window:
+          - 2021-09-29T00:00:00Z
+          - 2026-05-16T00:00:00Z
+      note: |
+        Denominator anchor for the l4_frontend US-vantage restriction:
+        the 1inch Foundation Help Center country-restriction article
+        is the canonical corporate statement describing the geofenced
+        country set. DRYRUN: Wayback anchor unverified.
+    note: |
+      Load-bearing layer for this event. On 2021-09-29 the 1inch
+      Network frontend operator added a pop-up notification and an
+      IP-based technical layer that gates US-vantage users out of
+      the app.1inch.io UI. Frontend-only — the underlying 1inch
+      Aggregation Protocol smart contracts are unaffected.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token-contract-level freeze or blacklist; the 1inch
+      Aggregation Protocol on-chain surface is not directly targeted.
+      not_applicable.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Event is purely a frontend-operator IP geofence; not a
+      CEX-offramp action. not_applicable.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:1inch_foundation
+    event: 1inch_network_geofenced_us_vantage_users_from_app_1inch_io
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-09-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_corporate
+        url: https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
+        wayback: https://web.archive.org/web/2021/https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains: [app.1inch.io]
+          countries: [US]
+          providers: [1inch_foundation_frontend]
+          time_window:
+            - 2021-09-29T00:00:00Z
+            - 2026-05-16T00:00:00Z
+        note: |
+          1inch Help Center "Which countries are restricted from using
+          the 1inch dApp" article — canonical corporate-statement
+          source documenting the US-vantage frontend restriction.
+          observation_kind=observed_change at l4_frontend: the 1inch
+          Network frontend operator chose to add an IP-based geofence
+          gate against US-vantage users on app.1inch.io.
+          attribution=direct because the frontend operator publicly
+          claimed ownership of the restriction as a voluntary
+          terms-of-use compliance step. DRYRUN: Wayback anchor
+          unverified by LLM agent at authoring time.
+      - type: supporting_journalism
+        url: https://cryptoslate.com/1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep/
+        wayback: https://web.archive.org/web/2021/https://cryptoslate.com/1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep/
+        evidence_use: contextual_unarchived
+        note: |
+          CryptoSlate (2021-09-30) confirms the geofence pop-up and
+          IP-detection layer on app.1inch.io against US IP addresses
+          and reports 1inch's own framing of the action as a
+          voluntary terms-of-use compliance step pending the launch
+          of a US-targeted 1inch Pro product. Independent
+          contemporaneous journalism corroborating the Help Center
+          statement. DRYRUN: Wayback anchor unverified.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 S5
+  corporate-frontend discovery; lean run): authored by LLM agent
+  without personally verifying Wayback/body_hash; origin=agent_draft
+  and status=draft pending human review.
+
+  comparison — S5 voluntary corporate-policy frontend geofence by
+  the 1inch Network / 1inch Foundation against US-vantage users of
+  the app.1inch.io frontend, effective on or about 2021-09-29. This
+  is a *voluntary* corporate action: no specific US regulator
+  named a 1inch enforcement action, and "perceived US regulatory
+  risk" is the operator's own public explanation. Paper-relevant
+  as an early S5 example of L4-only frontend-operator compliance
+  action that pre-dates the comparable Uniswap Labs frontend
+  token-list restriction (uniswap-frontend-delisting-2023) and the
+  Aave / Tornado-Cash post-OFAC frontend blocks
+  (aave-tornado-frontend-block-2022-08). The 1inch case is the
+  cleanest pre-OFAC-Tornado precedent for voluntary frontend-
+  operator geofencing: no upstream regulator trigger, no
+  protocol-layer action, restriction observable only at L4 on a
+  US-vantage axis.
+
+  empirical_shape=comparison (1 observed_change layer: l4_frontend
+  with attribution=direct via the 1inch Foundation Help Center +
+  contemporaneous CryptoSlate journalism); admission_tier=
+  empirical_case (1 strong-attribution observed_change layer
+  satisfies the ≥1 requirement). coverage at L0/L1/L3/asset_onchain/
+  offramp_cex is not_applicable on construct-not-engaged grounds
+  because the geofence is purely a 1inch-operated frontend
+  application-layer gate.
+
+scoped_claim: |
+  "On 2021-09-29 the 1inch Network / 1inch Foundation frontend
+  operator added a pop-up notification and an IP-based technical
+  layer that geofenced US-vantage users from the app.1inch.io
+  frontend, while the underlying 1inch Aggregation Protocol
+  smart-contract layer remained unaffected. The restriction was
+  voluntary (no specific US regulator trigger named); the
+  operator's stated rationale was perceived US regulatory risk
+  pending a US-targeted 1inch Pro product. Load-bearing axis is
+  l4_frontend on a US-vantage subset."
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - 1inch
+  - dex_aggregator_frontend
+  - voluntary_geofence
+  - us_vantage
+  - frontend_protocol_split

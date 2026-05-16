@@ -1,0 +1,302 @@
+id: uniswap-tokenized-stocks-delisting-2021-07
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - uniswap-frontend-delisting-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: uniswap_labs
+  timestamp: 2021-07-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://app.uniswap.org
+      wayback: https://web.archive.org/web/2021/https://app.uniswap.org
+      evidence_use: contextual_unarchived
+      note: |
+        Uniswap Labs operates app.uniswap.org. On 2021-07-23 the frontend
+        operator announced that approximately 100 tokens — predominantly
+        tokenized-equity exposures (e.g., Mirror Protocol "mAsset" stocks
+        such as mTSLA / mAAPL / mAMZN, Synthetix "synthetic equity"
+        sAsset pairs), tokenized-option products (Opyn / Hegic style
+        option tokens), index / derivative wraps, and insurance-related
+        token instruments deemed to have securities-law exposure — would
+        no longer be surfaced in the Uniswap-Labs-operated frontend at
+        app.uniswap.org. The Uniswap Protocol smart contracts (v2 / v3)
+        and the underlying pools remained autonomous and permissionless;
+        the action was a frontend token-list filter only. Marked
+        evidence_use=contextual_unarchived because in this DRYRUN the
+        authoring LLM agent did not personally pin a Wayback snapshot
+        timestamp or compute a body_hash of the 2021-07-23 announcement
+        copy; the Uniswap-Labs domain is the canonical corporate anchor
+        and is routinely captured by Wayback through 2021, but the
+        precise announcement page / blog body must be re-anchored
+        during human audit before this citation may serve as an
+        admission anchor in its own right.
+  timestamp_sources:
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/112696/uniswap-labs-delists-tokens-frontend
+      wayback: https://web.archive.org/web/2021/https://www.theblock.co/post/112696/uniswap-labs-delists-tokens-frontend
+      evidence_use: contextual_unarchived
+      note: |
+        The Block (2021-07-23) reporting on the Uniswap Labs frontend
+        delisting batch corroborates the day-level trigger timestamp.
+        Wayback wildcard pointer (web/2021/) in lieu of a pinned-
+        timestamp snapshot; evidence_use=contextual_unarchived
+        pending human-audit re-pin of the precise article URL slug.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Approximately 100 tokens removed from the Uniswap Labs-operated
+    frontend at app.uniswap.org on 2021-07-23. Named cohorts per
+    contemporaneous coverage: Mirror Protocol tokenized-stock "mAssets"
+    (mTSLA, mAAPL, mAMZN, mGOOGL, mNFLX, etc.), Synthetix "synthetic
+    equity" sAssets (sTSLA, sAAPL, sCOIN, etc.), tokenized-option
+    products (Opyn / Hegic option tokens), tokenized-index and
+    derivative-wrap instruments, and insurance-related token
+    instruments deemed by Uniswap Labs to have potential securities-law
+    exposure. enumeration=subset because the full restricted token-list
+    diff (against the @uniswap/default-token-list at the relevant
+    commit) was not enumerated in the public announcement and must be
+    reconstructed by diffing the GitHub repo commit history during
+    human audit. Target is the Uniswap Labs frontend operator (the
+    entity that controls app.uniswap.org / the default token list),
+    not the Uniswap Protocol smart contracts.
+  protocol: uniswap_v2_v3
+  actor_type: dex_frontend
+  actor_name: Uniswap Labs (frontend operator, app.uniswap.org)
+  chains: [ethereum]
+  canonical_domains:
+    - app.uniswap.org
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      app.uniswap.org remained reachable globally before, during, and
+      after the 2021-07-23 frontend token-list change; the action is
+      client-side token-list filtering inside the Uniswap-Labs-operated
+      UI, not an ISP / DNS domain filter. not_applicable on substrate-
+      mismatch grounds (consistent with the 2023 sibling event
+      uniswap-frontend-delisting-2023).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Ethereum mainnet validator / miner consensus surfaces are not
+      engaged by a Uniswap-Labs frontend token-list edit. The action
+      is a UI catalogue change at the frontend operator, not a
+      block-production or inclusion primitive. not_applicable on
+      substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists are not implicated by a
+      Uniswap-Labs frontend token-list edit. The underlying ERC-20
+      contracts for the removed tokens remained queryable via standard
+      Ethereum RPC. not_applicable on substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: measured
+    scope: [app.uniswap.org]
+    note: |
+      Load-bearing layer. Frontend token-list filter — approximately
+      100 ERC-20 tokens (tokenized stocks, option tokens, synthetic
+      equities, and other tokenized-equity exposures) excluded from
+      the Uniswap-Labs-operated UI at app.uniswap.org effective
+      2021-07-23. Pool addresses for the removed tokens remained
+      routable on the underlying Uniswap v2 / v3 smart contracts
+      (accessible via the protocol contracts directly or via
+      alternative frontends). Attached below as observed_change with
+      attribution=direct.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token-contract-level freeze or admin action by Uniswap Labs.
+      The underlying ERC-20 contracts (Mirror mAssets, Synthetix
+      sAssets, option tokens, etc.) are operated by third parties
+      and were not restricted; frontend-level UI catalogue change
+      only. not_applicable on substrate-mismatch grounds.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No centralized-exchange off-ramp action is engaged by a
+      Uniswap-Labs frontend token-list edit. not_applicable on
+      substrate-mismatch grounds.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:uniswap_labs
+    event: uniswap_labs_restricted_tokenized_equity_cohort_from_frontend_ui_preemptive
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-07-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://app.uniswap.org
+        wayback: https://web.archive.org/web/2021/https://app.uniswap.org
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains: [app.uniswap.org]
+          providers: [uniswap_labs_frontend_default_token_list]
+          time_window:
+            - 2021-07-23T00:00:00Z
+            - 2021-12-31T23:59:59Z
+        note: |
+          Uniswap Labs is both the announcing actor and the operator
+          of the affected frontend UI; attribution=direct. The
+          2021-07-23 action excluded approximately 100 tokenized-
+          equity / option / synthetic-equity tokens from the
+          app.uniswap.org token-list catalogue. The underlying
+          Uniswap Protocol smart contracts (v2 / v3) and the removed
+          tokens' ERC-20 contracts were unaffected. Wayback wildcard
+          pointer (web/2021/) in lieu of a pinned-timestamp snapshot;
+          evidence_use=contextual_unarchived pending human-audit
+          re-pin of the precise announcement-page URL slug and
+          body_hash.
+      - type: semi_primary_measurement
+        url: https://github.com/Uniswap/default-token-list
+        wayback: https://web.archive.org/web/2021/https://github.com/Uniswap/default-token-list
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [uniswap_default_token_list_github_repo]
+          time_window:
+            - 2021-07-01T00:00:00Z
+            - 2021-08-31T23:59:59Z
+        note: |
+          @uniswap/default-token-list GitHub repo is the technical
+          substrate for the app.uniswap.org frontend token catalogue.
+          Commit history around 2021-07-23 records the removal diff
+          for the tokenized-equity / option / synthetic-equity cohort
+          and provides an independent semi-primary measurement anchor
+          via the open-source repo. evidence_use=contextual_unarchived
+          pending human-audit pin of the precise commit hash(es) and
+          repo-state body_hash at the relevant point in the commit
+          DAG. Treated symmetrically with the token-lists repo anchor
+          in the 2023 sibling event uniswap-frontend-delisting-2023.
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/112696/uniswap-labs-delists-tokens-frontend
+        wayback: https://web.archive.org/web/2021/https://www.theblock.co/post/112696/uniswap-labs-delists-tokens-frontend
+        evidence_use: contextual_unarchived
+        note: |
+          The Block (2021-07-23) reporting on the frontend delisting
+          batch corroborates the day-level timing and the
+          tokenized-equity / option / synthetic-equity cohort
+          characterization. evidence_use=contextual_unarchived
+          pending human-audit re-pin of the precise article URL
+          slug.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2 corporate_policy
+  discovery; lean run): authored by LLM agent without personally
+  verifying Wayback/body_hash; status=draft / origin=agent_draft per
+  validator. Real release must replace this DRYRUN marker with a
+  human-verified audit after pinning real archive anchors (the
+  2021-07-23 announcement page body_hash, the precise commit
+  hash(es) on @uniswap/default-token-list, and the supporting-
+  journalism article URL slugs).
+
+  comparison — S5 corporate-policy-change event documenting Uniswap
+  Labs' 2021-07-23 frontend token-list restriction of approximately
+  100 tokenized-equity / option / synthetic-equity tokens from
+  app.uniswap.org. This is the **2021 antecedent** of the larger
+  2023 sibling event uniswap-frontend-delisting-2023; together they
+  bracket the Uniswap Labs frontend-restriction timeline before and
+  after the August 2022 SEC subpoena to Uniswap Labs (CoinDesk
+  2022-09 reporting) and the 2024 SEC Wells Notice (see
+  sec-v-uniswap-wells-notice-2024). Critically, the 2021-07-23 action
+  is **preemptive**: no SEC enforcement instrument had been issued
+  against Uniswap Labs at that date — the announcement framed the
+  delisting as the company's own response to "the evolving regulatory
+  landscape" rather than a response to a specific subpoena, complaint,
+  or order. This makes the row the cleanest 2021 example in the
+  dataset of an L4 frontend-operator compliance action taken in
+  anticipation of (not in reaction to) US securities-enforcement
+  pressure.
+
+  Single observed_change layer (l4_frontend) with attribution=direct
+  via the Uniswap Labs frontend operator primary anchor. L0 / L1 /
+  L3 / asset_onchain / offramp_cex are all not_applicable on
+  substrate-mismatch grounds — this is a frontend-only token-list
+  catalogue change at the Uniswap-Labs-operated UI, not a
+  protocol, network, token-contract, or CEX off-ramp engagement.
+  The frontend / protocol split (the Uniswap Protocol smart contracts
+  remained autonomous and permissionless throughout) is the same
+  decoupling that anchors the 2023 sibling event.
+
+  Why empirical_case rather than anchor_case: in this DRYRUN pass
+  the load-bearing l4_frontend observation carries direct attribution
+  but no citation is body-hash-pinned. Promotion to anchor_case
+  requires (a) the Uniswap-Labs announcement page body_hash /
+  body_path pin, (b) the precise commit hash(es) on
+  @uniswap/default-token-list capturing the 2021-07-23 token-cohort
+  removal diff, and (c) human-archived supporting-journalism
+  citations (The Block / CoinDesk / Decrypt / Cointelegraph
+  2021-07-23 coverage) with pinned-timestamp Wayback snapshots
+  or body_hash anchors. Until that audit lands the row sits at
+  status=draft / origin=agent_draft.
+
+scoped_claim: |
+  "Uniswap Labs' 2021-07-23 restriction of approximately 100
+  tokenized-equity / option / synthetic-equity tokens from the
+  app.uniswap.org frontend UI — taken preemptively, with no SEC
+  enforcement instrument issued at that date and without
+  corresponding action at the Uniswap Protocol smart-contract layer
+  — documents the 2021 antecedent of the 2023 sibling
+  uniswap-frontend-delisting-2023 and the cleanest 2021 example in
+  the dataset of an L4-only frontend-operator compliance action
+  taken in anticipation of (not in reaction to) US
+  securities-enforcement pressure."
+
+scoped_knowledge: |
+  This event is the 2021 precursor row in the Uniswap-Labs
+  frontend-restriction timeline: 2021-07-23 (this row, preemptive,
+  tokenized-equity cohort) → 2022-08 SEC subpoena to Uniswap Labs
+  (reported 2022-09; coded separately if admitted) → 2023-07-21
+  broader frontend token-list restriction (uniswap-frontend-
+  delisting-2023, ~100+ tokens, broader regulatory categories) →
+  2024 SEC Wells Notice (sec-v-uniswap-wells-notice-2024).
+  Together the rows form the multi-year Uniswap-Labs L4-only
+  corporate-compliance arc absent a direct OFAC trigger.
+
+  Paper-relevant axes: (a) the preemptive vs reactive split within
+  S5 corporate-frontend-restriction actions — this row is the
+  clean 2021 preemptive anchor, the 2023 sibling is the
+  post-subpoena reactive expansion, and the 2024 Wells Notice
+  is the formal enforcement instrument; (b) the frontend /
+  protocol decoupling at L4 (the underlying Uniswap Protocol
+  smart contracts and the removed tokens' ERC-20 contracts were
+  unaffected in both 2021 and 2023 actions, providing a
+  longitudinal pair of "L4-only" cascade shapes within one
+  operator); (c) the tokenized-equity cohort scope (Mirror
+  mAssets, Synthetix sAssets, Opyn / Hegic option tokens) as
+  the 2021-specific subset, vs the 2023 broader regulatory-
+  category set (privacy-adjacent, SEC-securities-flagged,
+  FTX-related, etc.) — useful for cohort-evolution analysis
+  across two L4 actions by the same operator.
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - uniswap_labs
+  - dex_frontend
+  - frontend_protocol_split
+  - tokenized_stocks
+  - tokenized_equity
+  - preemptive_compliance
+  - dryrun_2026_05_16

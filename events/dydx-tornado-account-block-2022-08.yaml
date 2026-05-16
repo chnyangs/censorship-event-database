@@ -1,0 +1,478 @@
+id: dydx-tornado-account-block-2022-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: anchor_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - tornado-cash-ofac-2022
+  - aave-tornado-frontend-block-2022-08
+  - uniswap-balancer-tornado-frontend-block-2022-08
+
+trigger:
+  type: corporate_policy_change
+  actor: dydx_trading_inc
+  timestamp: 2022-08-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://dydx.exchange/blog/tornado-cash-update
+      wayback: https://web.archive.org/web/2022/https://dydx.exchange/blog/tornado-cash-update
+      evidence_use: contextual_unarchived
+      note: |
+        dYdX Trading Inc. official blog post of 2022-08-11 confirming that
+        the platform's compliance vendor flagged accounts associated with
+        Tornado Cash following the 2022-08-08 OFAC SDN designation (see
+        related event tornado-cash-ofac-2022) and that flagged accounts
+        had been blocked from the dYdX platform. The post explicitly
+        acknowledges that "this sudden influx of flags affected many
+        account holders that never directly engaged with Tornado Cash"
+        — i.e. the first major operator-acknowledged history-based
+        "guilt by association" block in the dataset. DRYRUN: pinned
+        Wayback snapshot and body_hash for the dYdX blog revision are
+        deferred to the human-audit pass; marked
+        evidence_use=contextual_unarchived per validator policy for
+        unarchived sources.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous coverage (2022-08-11) of the dYdX
+        account-block action, naming the history-based "guilt by
+        association" mechanism — accounts blocked because their wallets
+        received even small amounts traceable to Tornado Cash, regardless
+        of whether the holder knowingly used the mixer. Triangulation
+        source for day-level timing and the "history-based not
+        current-state-based" mechanism. DRYRUN: pinned Wayback snapshot
+        deferred to human audit.
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
+      wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
+      evidence_use: contextual_unarchived
+      note: |
+        The Block contemporaneous coverage (2022-08-11) of the dYdX
+        compliance action, documenting the compliance-vendor mechanism
+        and dYdX's same-day statement that funds in blocked accounts
+        remained available for withdrawal while trading and other
+        platform functions were restricted. Triangulation source for
+        the layer split (l4_frontend block vs offramp_cex withdrawal
+        constraint). DRYRUN: pinned Wayback snapshot deferred to human
+        audit.
+    - type: supporting_journalism
+      url: https://cointelegraph.com/news/dydx-confirms-blocking-and-unblocking-some-accounts-linked-to-tornado-cash
+      wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/dydx-confirms-blocking-and-unblocking-some-accounts-linked-to-tornado-cash
+      evidence_use: contextual_unarchived
+      note: |
+        Cointelegraph contemporaneous coverage (2022-08-11) of the dYdX
+        action and the partial rollback (some accounts unblocked after
+        the platform acknowledged the compliance-vendor flag was
+        over-inclusive). Triangulation source for the rollback note.
+        DRYRUN: pinned Wayback snapshot deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per dYdX's 2022-08-11 blog post and same-day
+        Twitter/community statements. Precision=day reflects the
+        LLM-author's inability to pin a sub-day timestamp from the
+        public corporate statement; the action became publicly visible
+        on 2022-08-11 when affected users posted screenshots of
+        platform-block messages to Twitter.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    dYdX Trading Inc. operates the dYdX centralized perpetuals exchange
+    (v3 era — centralized matching engine with onchain StarkEx-based
+    settlement). On 2022-08-11 dYdX's compliance vendor flagged
+    accounts whose wallet history included any interaction with the
+    OFAC-listed Tornado Cash contracts (per related event
+    tornado-cash-ofac-2022) and dYdX blocked the flagged accounts
+    from the platform UI; flagged accounts retained the ability to
+    withdraw funds but lost the ability to open new positions or
+    otherwise interact with the trading UI. Target is the operator
+    entity (dYdX Trading Inc.) rather than an enumerated address set
+    because the blocklist is a moving reference maintained by the
+    compliance vendor (not a static published roster); subset because
+    only the dYdX-operated venue is in scope here (the StarkEx
+    settlement contracts on-chain remained unaffected).
+  protocol: dydx_v3
+  actor_type: hybrid_cex_perpetuals_exchange
+  actor_name: dYdX Trading Inc.
+  chains: [ethereum]
+  canonical_domains:
+    - dydx.exchange
+    - trade.dydx.exchange
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      dydx.exchange and trade.dydx.exchange remained reachable globally;
+      the restriction is account-level platform-block logic invoked by
+      a compliance-vendor flag, not a DNS or ISP-level block.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge Ethereum (Paris was 2022-09-15, 35 days after this
+      event); PBS relay-censorship infrastructure did not exist yet.
+      Consensus-layer effects of the 2022-08-08 OFAC trigger are
+      captured under tornado-cash-ofac-2022 observations[l1].
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      dYdX v3 used StarkEx (StarkWare's L2) for settlement; the L3
+      JSON-RPC managed-provider layer is not in scope for the dYdX
+      account-block action. The L3 block of Tornado Cash RPC requests
+      is captured separately under infura-alchemy-tornado-rpc-block-2022.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - dydx.exchange
+      - trade.dydx.exchange
+    provider_scope: unknown
+    note: |
+      Load-bearing layer for this event. dYdX's own blog post and
+      contemporaneous press coverage name the compliance-vendor flag
+      as the mechanism that blocked Tornado-Cash-history-tainted
+      accounts from the dYdX-operated trading UI. Attached below as
+      observed_change at attribution=direct (dYdX's own statement
+      names the action and mechanism).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level asset freeze invoked by dYdX's account-block
+      policy; the sibling asset-layer action (Circle USDC blacklist)
+      is captured in circle-usdc-tornado-2022.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - dydx
+    note: |
+      Second load-bearing layer. dYdX is structurally a hybrid CEX
+      (centralized order book / matching engine + onchain StarkEx
+      settlement), so the account-block action surfaces simultaneously
+      at the frontend UI layer (trading blocked) and the off-ramp CEX
+      layer (the venue itself is a regulated off-ramp from the
+      perpetuals position into USDC). Per dYdX's 2022-08-11 statement
+      flagged accounts retained the ability to withdraw funds but
+      lost trading and other platform functions — so the off-ramp
+      effect is "trading-side restriction, withdrawal-side preserved"
+      rather than a full off-ramp severance. Attached below as
+      observed_change at attribution=direct.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:dydx_trading_inc
+    event: dydx_blocked_accounts_with_any_historical_tornado_cash_interaction
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://dydx.exchange/blog/tornado-cash-update
+        wayback: https://web.archive.org/web/2022/https://dydx.exchange/blog/tornado-cash-update
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - dydx.exchange
+            - trade.dydx.exchange
+          time_window:
+            - 2022-08-11T00:00:00Z
+            - 2022-08-12T23:59:59Z
+        note: |
+          dYdX Trading Inc.'s own blog post of 2022-08-11 is the
+          canonical corporate-policy source for this L4 frontend
+          account-block. The operator names: (a) the action (accounts
+          flagged for Tornado Cash interaction history blocked from
+          the dYdX trading UI), (b) the mechanism (third-party
+          compliance vendor flag), and (c) the upstream cause
+          (compliance with the 2022-08-08 OFAC SDN designation, per
+          related event tornado-cash-ofac-2022). The post also
+          explicitly acknowledges the history-based "guilt by
+          association" character of the block — accounts blocked
+          because their wallets received Tornado-traceable funds in
+          the past, not because of current-state interaction.
+          attribution=direct because the source is the operator
+          naming the action. DRYRUN: pinned Wayback snapshot and
+          body_hash deferred to human audit; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - dydx.exchange
+          time_window:
+            - 2022-08-11T00:00:00Z
+            - 2022-08-12T23:59:59Z
+        note: |
+          CoinDesk contemporaneous coverage (2022-08-11) of the dYdX
+          account-block, documenting the history-based "even small
+          amounts from Tornado Cash" trigger condition that makes
+          this a paper-defining "guilt by association" anchor.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
+        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
+        evidence_use: contextual_unarchived
+        note: |
+          The Block contemporaneous coverage (2022-08-11) confirming
+          the compliance-vendor mechanism and the layer split
+          (frontend trading block vs withdrawal preservation).
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+  - layer: offramp_cex
+    actor: exchange:dydx
+    event: dydx_off_ramp_trading_restricted_for_tornado_tainted_accounts
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://dydx.exchange/blog/tornado-cash-update
+        wayback: https://web.archive.org/web/2022/https://dydx.exchange/blog/tornado-cash-update
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - dydx_trading_inc
+          time_window:
+            - 2022-08-11T00:00:00Z
+            - 2022-08-12T23:59:59Z
+        note: |
+          Same dYdX blog post serves as the off-ramp-layer anchor: as
+          a hybrid CEX (centralized matching engine + onchain StarkEx
+          settlement) dYdX is structurally an off-ramp venue, and the
+          account-block restricts trading and platform interaction
+          while preserving withdrawal. The dYdX statement names the
+          off-ramp-specific consequence — flagged accounts cannot
+          open new perpetuals positions or otherwise interact with
+          the dYdX venue, but funds remain withdrawable. This is the
+          "trading-side restriction, withdrawal-side preserved"
+          off-ramp signature characteristic of compliance-vendor-
+          flagged accounts on hybrid-CEX venues. attribution=direct
+          because the source is the operator naming the action.
+          DRYRUN: pinned Wayback snapshot and body_hash deferred to
+          human audit; marked evidence_use=contextual_unarchived per
+          validator policy.
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
+        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - dydx_trading_inc
+          time_window:
+            - 2022-08-11T00:00:00Z
+            - 2022-08-12T23:59:59Z
+        note: |
+          The Block contemporaneous coverage (2022-08-11) confirming
+          that withdrawals from blocked dYdX accounts remained
+          available — load-bearing for the "trading restricted,
+          withdrawal preserved" off-ramp shape. DRYRUN: pinned
+          Wayback snapshot deferred to human audit.
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/dydx-confirms-blocking-and-unblocking-some-accounts-linked-to-tornado-cash
+        wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/dydx-confirms-blocking-and-unblocking-some-accounts-linked-to-tornado-cash
+        evidence_use: contextual_unarchived
+        note: |
+          Cointelegraph contemporaneous coverage (2022-08-11)
+          documenting the same-day partial rollback of incorrectly
+          flagged accounts. DRYRUN: pinned Wayback snapshot deferred
+          to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: |
+      dYdX partially mitigated the over-inclusive-flag issue by
+      unblocking some accounts within days of 2022-08-11 (per the
+      Cointelegraph "blocking and unblocking" coverage and dYdX's
+      follow-up statements). The underlying compliance-vendor
+      integration was not reverted — the core L4 frontend block of
+      Tornado-Cash-history-tainted accounts remains in place. The
+      2025-03-21 OFAC delisting (see tornado-cash-ofac-delisting-2025)
+      is the candidate upstream recovery anchor and is tracked
+      separately.
+  - layer: offramp_cex
+    resolved: false
+    note: |
+      The off-ramp-side restriction (no new positions, no platform
+      interaction beyond withdrawal) was likewise not lifted in the
+      cascade window; same partial-rollback caveat as the L4 row
+      above.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2
+  corporate_policy discovery; lean run): authored by LLM agent
+  without personally verifying Wayback/body_hash; origin=agent_draft
+  per validator policy. Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors and
+  promote origin to human_reviewed.
+
+  Comparison-shape S5 corporate-policy-change event sibling to
+  aave-tornado-frontend-block-2022-08 and
+  uniswap-balancer-tornado-frontend-block-2022-08. The dYdX
+  2022-08-11 account-block is the first major operator-acknowledged
+  *history-based* "guilt by association" block in the corpus —
+  accounts blocked because their wallets received Tornado-Cash-
+  traceable funds at any point in the past, regardless of whether
+  the holder knowingly used the mixer or whether the wallet
+  currently held any Tornado-tainted balance. This is structurally
+  distinct from the contemporaneous Aave (2022-08-13) and Uniswap/
+  Balancer block actions, which were implemented as wallet-connect
+  screening on the frontend layer alone: dYdX is structurally a
+  *hybrid CEX* (centralized matching engine + onchain StarkEx
+  settlement), so the same account-flag action surfaces
+  simultaneously at L4 (trading UI blocked) and offramp_cex
+  (trading-side venue interaction blocked, withdrawal-side preserved).
+  The dual-layer cascade footprint is the paper-relevant feature
+  that makes this event a comparison sibling rather than a pure
+  L4 row.
+
+  Empirical shape: comparison (2 observed_change layers — L4
+  frontend and offramp_cex, both load-bearing). Admission tier:
+  anchor_case (≥2 observed_change layers with attribution=direct,
+  both sourced to dYdX's own 2022-08-11 statement). Stratum coding:
+  S5_corporate. The OFAC SDN designation is the upstream trigger
+  (related event tornado-cash-ofac-2022), but dYdX Trading Inc.
+  chose to apply the block as a corporate-compliance policy via a
+  third-party compliance-vendor flag — dYdX was not named in the
+  OFAC designation, and the company is a non-US-jurisdictional
+  exchange operator that voluntarily restricted Tornado-tainted
+  accounts. The corporate-policy character is what makes this an
+  S5_corporate row sibling to aave-tornado-frontend-block-2022-08
+  and uniswap-balancer-tornado-frontend-block-2022-08 rather than
+  an S1_ofac_sdn row.
+
+  Note on dYdX-row deduplication: the tornado-cash-ofac-2022
+  composite event already contains an offramp_cex observation
+  attributed to exchange:dydx anchored on the 2022-08-10 "tornado
+  outage" dYdX blog post. The present event row is a *scoped*
+  S5_corporate authorship covering the 2022-08-11 dYdX policy
+  statement specifically, which is one day later than the
+  composite-event row and adds the L4 frontend layer (which the
+  composite event did not separately enumerate for dYdX). Both
+  rows reference the same underlying physical action — flagging
+  and blocking accounts that interacted with Tornado Cash — but
+  the present row is the canonical S5_corporate authorship and
+  the composite-event row is the layer-attribution for the
+  upstream OFAC trigger. The author leaves this as two retained
+  rows pending human audit (a future audit pass may set
+  action_id / duplicate_of_action_id to deduplicate).
+
+  DRYRUN caveats: the four citations (dYdX blog + three
+  contemporaneous journalism) all carry 2022-calendar-folder
+  Wayback pointers rather than pinned snapshots; pinned snapshot
+  timestamps and body_hash captures are deferred to the human-
+  audit pass. For non-DRYRUN release, capture body_hash +
+  body_path for: (1) the dYdX blog post permalink (the dydx.exchange
+  "tornado-cash-update" URL specifically, distinct from the
+  2022-08-10 "tornado-outage" post already captured under
+  tornado-cash-ofac-2022); (2) the CoinDesk, The Block, and
+  Cointelegraph article permalinks; optionally (3) Twitter
+  threads from affected users with screenshots of the platform-
+  block UI message (community evidence corroborating the
+  observable user experience). Marked
+  evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+scoped_claim: |
+  "dYdX's 2022-08-11 block of accounts whose wallets had any
+  historical interaction with the OFAC-designated Tornado Cash
+  contracts — implemented via a third-party compliance vendor
+  flag at the dYdX-operated trading UI, with funds remaining
+  withdrawable from flagged accounts — documents an L4-frontend
+  + offramp_cex dual-layer corporate-compliance action and the
+  first major operator-acknowledged history-based 'guilt by
+  association' block downstream of the 2022-08-08 OFAC trigger
+  (related event tornado-cash-ofac-2022). Paper-relevant as the
+  hybrid-CEX vertex of the S5_corporate cascade (alongside
+  aave-tornado-frontend-block-2022-08 at L4 and
+  uniswap-balancer-tornado-frontend-block-2022-08 at L4)."
+
+scoped_knowledge: |
+  What changed: this row is the hybrid-CEX (l4_frontend +
+  offramp_cex dual-layer) anchor for the 2022-08-08 OFAC Tornado
+  Cash trigger family's S5_corporate cascade. Retained changed
+  layers are L4 frontend (dYdX trading UI blocked, direct) and
+  offramp_cex (dYdX venue interaction restricted while withdrawal
+  preserved, direct).
+
+  What did not change or could not be measured: L0 network is not
+  applicable (the block is account-level platform logic, not DNS
+  or routing); L1 consensus is not applicable (pre-Merge by 35
+  days); L3 RPC is not applicable (dYdX v3 used StarkEx L2
+  settlement, not the L3 managed-RPC layer); asset_onchain is not
+  applicable here (the sibling asset-layer action is Circle USDC
+  in circle-usdc-tornado-2022).
+
+  Attribution: both rows are direct because the primary_corporate
+  source is dYdX's own blog post naming the action, the mechanism
+  (compliance-vendor flag), the upstream cause (2022-08-08 OFAC
+  SDN), and the layer split (trading restricted, withdrawal
+  preserved).
+
+  Comparative value: this event has three paper-relevant
+  distinctive features against the other S5_corporate Tornado-
+  family rows. (1) **First major guilt-by-association anchor**:
+  blocking is history-based (any past Tornado interaction) not
+  current-state-based, and dYdX's statement explicitly
+  acknowledges that "many account holders that never directly
+  engaged with Tornado Cash" were caught — this is the corpus's
+  earliest first-party operator acknowledgment of the history-
+  based flagging mechanism that becomes standard practice in
+  later DeFi-compliance integrations. (2) **Hybrid-CEX dual-
+  layer footprint**: dYdX's centralized-matching-engine /
+  onchain-StarkEx-settlement architecture means the same account
+  flag surfaces at L4 (UI) and offramp_cex (venue interaction)
+  simultaneously, distinct from the pure-L4 footprint of Aave
+  and Uniswap/Balancer in the same week. (3) **Trading-restricted
+  withdrawal-preserved off-ramp signature**: the off-ramp effect
+  is not a full venue severance — flagged accounts retain
+  withdrawal access — which makes this a useful comparator for
+  the harder "full off-ramp severance" off-ramp cases later in
+  the corpus (e.g. the various Binance-jurisdictional exits).
+
+  Stratum coding S5_corporate (not S1_ofac_sdn) because dYdX is
+  not OFAC-compelled — dYdX is incorporated outside the US, was
+  not named in the OFAC designation, and exchanges/perpetuals
+  venues are not themselves a regulated activity under the
+  Treasury secondary-sanctions authority. The corporate-policy
+  character of dYdX's voluntary action is what makes this a
+  paper-relevant S5 row.
+
+  DRYRUN risk: the four citations are unarchived; before paper-
+  release the human-audit pass must pin Wayback snapshots and
+  body_hashes for the dYdX blog post and three journalism links.
+  If archive.org coverage of the 2022-08-11 dYdX blog revision
+  proves unrecoverable, the L4 and offramp_cex observations
+  should be downgraded from direct to plausible to reflect the
+  weaker primary-source anchor.
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - offramp_restriction
+  - dydx
+  - tornado_cash_thread
+  - hybrid_cex
+  - guilt_by_association
+  - history_based_flagging
+  - compliance_vendor
+  - dryrun_2026_05_16

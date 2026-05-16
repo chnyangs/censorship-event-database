@@ -1,0 +1,369 @@
+id: cloudflare-ethereum-gateway-tornado-block-2022-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - tornado-cash-ofac-2022
+  - infura-alchemy-tornado-rpc-block-2022
+  - aave-tornado-frontend-block-2022-08
+  - uniswap-balancer-tornado-frontend-block-2022-08
+  - circle-usdc-tornado-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: cloudflare
+  timestamp: 2022-08-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://blog.cloudflare.com/cloudflare-ethereum-gateway/
+      wayback: https://web.archive.org/web/2022/https://blog.cloudflare.com/cloudflare-ethereum-gateway/
+      evidence_use: contextual_unarchived
+      note: |
+        Cloudflare blog post "Cloudflare's Ethereum Gateway" describes the
+        cloudflare-eth.com Ethereum Gateway product (Cloudflare-Workers-fronted
+        JSON-RPC + CDN cache for public Ethereum queries). Used here as the
+        canonical operator-defined description of the perimeter that
+        Cloudflare narrowed in August 2022 in response to the 2022-08-08
+        OFAC Tornado Cash SDN designation. DRYRUN: pinned snapshot and
+        body_hash for the specific August 2022 policy revision must be
+        captured in human audit; marked evidence_use=contextual_unarchived.
+    - type: primary_corporate
+      url: https://www.cloudflare.com/transparency/
+      wayback: https://web.archive.org/web/2023/https://www.cloudflare.com/transparency/
+      evidence_use: contextual_unarchived
+      note: |
+        Cloudflare Transparency Report H2 2022 (PDF on cf-assets domain)
+        documents the Ethereum-Gateway access-restriction program: in
+        2H 2022 Cloudflare disabled access through its
+        cloudflare-eth.com gateway to 99 items on the Ethereum network,
+        explicitly framed as a response to the U.S. Treasury OFAC
+        sanctions against Tornado Cash. Primary corporate disclosure of
+        the gateway-level enforcement perimeter. DRYRUN: pinned PDF
+        body_hash + body_path deferred to human audit; marked
+        evidence_use=contextual_unarchived.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous coverage of the August 2022 OFAC
+        Tornado Cash cascade across infrastructure operators, including
+        the Cloudflare Ethereum Gateway response. Triangulation source
+        for day-level timing. DRYRUN: pinned Wayback snapshot deferred
+        to human audit; marked evidence_use=contextual_unarchived.
+    - type: supporting_journalism
+      url: https://torrentfreak.com/cloudflare-blocks-abusive-content-on-its-ethereum-gateway-231121/
+      wayback: https://web.archive.org/web/2023/https://torrentfreak.com/cloudflare-blocks-abusive-content-on-its-ethereum-gateway-231121/
+      evidence_use: contextual_unarchived
+      note: |
+        TorrentFreak (2023-11-21) summarization of Cloudflare's H2 2022
+        Transparency Report disclosure of the 99 Ethereum-Gateway items
+        disabled in connection with the OFAC Tornado Cash sanctions.
+        Retained for retroactive disclosure timing and the explicit
+        quote from Cloudflare that the gateway restrictions are
+        sanctions-driven. DRYRUN: pinned Wayback snapshot deferred to
+        human audit; marked evidence_use=contextual_unarchived.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing reflects the public OFAC Tornado Cash
+        designation date (2022-08-08) plus the few-day window in which
+        Cloudflare publicly documented the gateway-policy change.
+        The Cloudflare H2 2022 Transparency Report (published 2023)
+        is the canonical operator-disclosed perimeter description but
+        does not pin the exact August 2022 implementation date below
+        day granularity. The 2022-08-12 trigger timestamp is the LLM
+        author's contemporaneous-event-window midpoint estimate
+        (CoinDesk 2022-08-17 follow-up article describing the cascade
+        as already in effect); precision=day reflects the inability
+        to pin a sub-day implementation timestamp from public
+        corporate sources.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the Cloudflare Ethereum Gateway product (cloudflare-eth.com)
+    as the entity whose corporate-policy change narrowed gateway access
+    to the OFAC Tornado Cash SDN address set (per tornado-cash-ofac-2022
+    target.addresses). Subset because the corporate disclosure does not
+    enumerate the 99 blocked items verbatim and the operational block
+    was implemented against the OFAC SDN list as a moving reference;
+    the Tornado Cash address universe is the documented enforcement
+    perimeter.
+  entity: Cloudflare Ethereum Gateway (cloudflare-eth.com)
+  actor_type: cdn_gateway_operator
+  actor_name: Cloudflare, Inc.
+  chains: [ethereum]
+  canonical_domains:
+    - cloudflare-eth.com
+    - cloudflare.com
+    - blog.cloudflare.com
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The Cloudflare Ethereum Gateway block is a JSON-RPC response /
+      Cloudflare-Workers application-layer policy on the cloudflare-eth.com
+      gateway, not an ISP-level DNS or routing block. The cloudflare-eth.com
+      domain remained globally reachable; the block is in the gateway
+      response logic.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge Ethereum (Paris was 2022-09-15, 34 days after this event);
+      PBS relay-censorship infrastructure did not exist yet. The
+      consensus-layer effect of the 2022-08-08 OFAC trigger is captured
+      in the related event tornado-cash-ofac-2022 observations[l1] for
+      the post-Merge window.
+  - layer: l3_rpc
+    status: measured
+    chain: ethereum
+    provider_scope: public_only
+    note: |
+      Load-bearing layer for this event. The Cloudflare Ethereum Gateway
+      (cloudflare-eth.com) is a public Cloudflare-fronted JSON-RPC
+      gateway — a distinct subtype from the managed-RPC providers
+      captured under infura-alchemy-tornado-rpc-block-2022 (Infura,
+      Alchemy). Cloudflare disclosed in its H2 2022 Transparency
+      Report and the linked blog/policy material that access through
+      the cloudflare-eth.com gateway was disabled to the OFAC-listed
+      Tornado Cash addresses. provider_scope=public_only reflects
+      that the cloudflare-eth.com gateway is a public CDN-fronted
+      endpoint without an enterprise managed-RPC tier in the sense
+      Infura/Alchemy mean it. Coverage status is measured because the
+      Cloudflare disclosure is direct operator attestation; perimeter
+      is bounded to the Cloudflare Ethereum Gateway only via the
+      scope_descriptor on the L3 observation.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Cloudflare-fronted UIs that proxy JSON-RPC through the
+      cloudflare-eth.com gateway (or which use Cloudflare as their CDN
+      and route Tornado-related Ethereum reads via the Cloudflare
+      gateway) plausibly surfaced broken Tornado interactions in the
+      same window, but the L4 effect is a downstream consequence of
+      the gateway block, not an independent frontend-operator policy
+      decision, and no specific Cloudflare-fronted consumer UI is
+      named in the public corporate disclosure. Status set to
+      not_measured rather than partially_measured to avoid claiming
+      a denominator we cannot anchor; the named-frontend cascade is
+      captured in sibling events aave-tornado-frontend-block-2022-08
+      and uniswap-balancer-tornado-frontend-block-2022-08.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level stablecoin freeze primitive is invoked by the
+      Cloudflare Ethereum Gateway policy; the Circle USDC freeze is
+      the sibling asset-layer action (circle-usdc-tornado-2022).
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Cloudflare CDN/gateway block is upstream of CEX off-ramps; the
+      off-ramp reaction is captured under the OFAC trigger event
+      tornado-cash-ofac-2022 observations[offramp_cex].
+
+observations:
+  - layer: l3_rpc
+    actor: gateway_operator:cloudflare
+    event: cloudflare_ethereum_gateway_blocked_ofac_tornado_cash_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.cloudflare.com/transparency/
+        wayback: https://web.archive.org/web/2023/https://www.cloudflare.com/transparency/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - cloudflare_ethereum_gateway
+          domains:
+            - cloudflare-eth.com
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          Cloudflare H2 2022 Transparency Report disclosed that
+          Cloudflare disabled access through the cloudflare-eth.com
+          Ethereum Gateway to 99 items on the Ethereum network in
+          response to the U.S. Treasury OFAC sanctions against
+          Tornado Cash. attribution=direct because the source is
+          Cloudflare's own corporate disclosure naming the action
+          and the sanctions trigger. DRYRUN: pinned PDF body_hash +
+          body_path deferred to human audit; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: primary_corporate
+        url: https://blog.cloudflare.com/cloudflare-ethereum-gateway/
+        wayback: https://web.archive.org/web/2022/https://blog.cloudflare.com/cloudflare-ethereum-gateway/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - cloudflare_ethereum_gateway
+          domains:
+            - cloudflare-eth.com
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          Cloudflare blog post describing the cloudflare-eth.com
+          Ethereum Gateway product surface area as the perimeter
+          subject to the access restriction. Triangulation with the
+          Transparency Report for the operator-defined gateway
+          identity. DRYRUN: pinned snapshot deferred to human audit.
+      - type: supporting_journalism
+        url: https://torrentfreak.com/cloudflare-blocks-abusive-content-on-its-ethereum-gateway-231121/
+        wayback: https://web.archive.org/web/2023/https://torrentfreak.com/cloudflare-blocks-abusive-content-on-its-ethereum-gateway-231121/
+        evidence_use: contextual_unarchived
+        note: |
+          TorrentFreak summarization of the Cloudflare H2 2022
+          Transparency Report disclosure, including the explicit
+          framing that the Ethereum-Gateway restrictions are at least
+          in part a response to the U.S. Treasury Tornado Cash
+          sanctions. Retained for triangulation. DRYRUN: pinned
+          Wayback snapshot deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk contemporaneous coverage of the August 2022 cascade
+          across infrastructure operators including Cloudflare, used
+          for day-level timing triangulation. DRYRUN: pinned Wayback
+          snapshot deferred to human audit.
+
+recovery:
+  - layer: l3_rpc
+    resolved: false
+    note: |
+      The Cloudflare Ethereum Gateway block is not reversed in the
+      initial cascade window; the 2025-03-21 OFAC delisting (see
+      tornado-cash-ofac-delisting-2025) is the candidate L3 recovery
+      anchor and is tracked separately.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (S5 corporate_policy
+  discovery, CDN-gateway subtype): authored by LLM agent without
+  personally verifying Wayback/body_hash; origin=agent_draft and
+  status=draft per validator policy. Real release must replace this
+  DRYRUN marker with a human-verified audit pass that pins the
+  Cloudflare H2 2022 Transparency Report PDF body_hash + body_path
+  and the Cloudflare blog snapshot, then re-anchors evidence_use to
+  admission_anchor where applicable.
+
+  This event isolates the **CDN gateway subtype** of L3 censorship
+  for the 2022-08-08 OFAC Tornado Cash trigger family. The
+  Cloudflare Ethereum Gateway (cloudflare-eth.com) is structurally
+  distinct from the managed-RPC providers (Infura, Alchemy) captured
+  in infura-alchemy-tornado-rpc-block-2022: Cloudflare is a CDN +
+  Cloudflare-Workers-fronted public JSON-RPC gateway, not a
+  developer-facing enterprise RPC service. Separating the two events
+  preserves the paper's L3 column granularity (managed-RPC subtype
+  vs. CDN-gateway subtype) and avoids collapsing two different
+  operator-policy mechanisms into a single row.
+
+  Stratum coding: S5_corporate. OFAC SDN is the upstream trigger
+  (tornado-cash-ofac-2022) but Cloudflare's policy decision is a
+  corporate compliance action against its own public gateway product,
+  not an OFAC-compelled action against Cloudflare itself; the
+  cloudflare-eth.com gateway is not a regulated activity under the
+  Treasury secondary-sanctions authority.
+
+  Empirical shape: comparison (1 observed_change layer at L3 RPC
+  with attribution=direct; L4 frontend left not_measured to avoid
+  double-counting with sibling frontend events).
+
+  Admission tier: empirical_case (1 strong-attribution
+  observed_change layer at L3; not anchor_case because the only
+  observed_change layer is L3 — L4 cascade is left not_measured
+  without a separate observation row, because the Cloudflare-
+  fronted-UI cascade is upstream-shared with the named-frontend
+  events aave-tornado-frontend-block-2022-08 and
+  uniswap-balancer-tornado-frontend-block-2022-08 and should not
+  be double-counted here).
+
+  DRYRUN caveats: all four citations carry calendar-folder Wayback
+  pointers; before paper-release the human-audit pass must pin: (1)
+  the Cloudflare H2 2022 Transparency Report PDF (cf-assets URL)
+  body_hash + body_path; (2) the Cloudflare blog post snapshot at
+  the August 2022 revision (compare archive.org snapshots
+  2022-08-09..2022-08-15 for the policy-revision banner / footer
+  language); (3) CoinDesk 2022-08-17 article permalink; (4)
+  TorrentFreak 2023-11-21 article permalink. Marked
+  evidence_use=contextual_unarchived per validator policy for
+  unarchived sources.
+
+scoped_claim: |
+  "The August 2022 Cloudflare Ethereum Gateway (cloudflare-eth.com)
+  access restriction against the 2022-08-08 OFAC Tornado Cash SDN
+  address set constitutes the CDN-gateway subtype of L3 censorship
+  in the corpus — structurally distinct from the managed-RPC
+  subtype (Infura, Alchemy, sibling event
+  infura-alchemy-tornado-rpc-block-2022). The row does not claim
+  ISP-level connectivity blocking, consensus-layer (PBS) effect,
+  on-chain asset freeze, or off-ramp severance — those are sibling
+  rows under tornado-cash-ofac-2022 / circle-usdc-tornado-2022."
+
+scoped_knowledge: |
+  What changed: L3 RPC (Cloudflare Ethereum Gateway, direct) — the
+  cloudflare-eth.com gateway disabled access to OFAC-listed Tornado
+  Cash addresses in August 2022, per Cloudflare's own H2 2022
+  Transparency Report.
+
+  What did not change or could not be measured: L0 network is not
+  applicable (the block is in JSON-RPC response logic at the gateway,
+  not DNS or routing); L1 consensus is not applicable (pre-Merge by
+  34 days, PBS did not exist); L4 frontend is not_measured here
+  (downstream cascade tracked under sibling named-frontend events
+  to avoid double-counting); asset_onchain and offramp_cex are not
+  applicable here (captured in sibling Circle/OFAC composite
+  events).
+
+  Attribution: L3 row is direct because the primary_corporate source
+  is Cloudflare's own Transparency Report disclosure naming the
+  Tornado Cash sanctions as the reason for the gateway access
+  restriction.
+
+  Comparative value: this is the CDN-gateway subtype companion to
+  the managed-RPC anchor infura-alchemy-tornado-rpc-block-2022
+  within the S5_corporate stratum. Together with
+  aave-tornado-frontend-block-2022-08,
+  uniswap-balancer-tornado-frontend-block-2022-08, and
+  circle-usdc-tornado-2022, the row populates the paper's
+  "corporate-cascade" portrait downstream of the 2022-08-08 OFAC
+  trigger across distinct L3/L4/asset substrates.
+
+  DRYRUN risk: the four citations are unarchived; before paper
+  release the human-audit pass must pin the Cloudflare H2 2022
+  Transparency Report PDF body_hash, blog snapshot, and the two
+  journalism triangulation links. If archive.org coverage of the
+  August 2022 Cloudflare blog policy revision proves recoverable
+  only at calendar-folder granularity (rather than at the
+  exact-revision snapshot level), the L3 observation should be
+  downgraded from direct to plausible.
+
+tags:
+  - corporate_policy_change
+  - cdn_gateway
+  - cloudflare
+  - cloudflare_ethereum_gateway
+  - tornado_cash_thread
+  - l3_anchor
+  - cdn_gateway_subtype
+  - dryrun_2026_05_16
