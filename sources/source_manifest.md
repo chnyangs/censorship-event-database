@@ -1,11 +1,11 @@
 # Source Artifact Manifest
 
-Dataset snapshot: v0.2.0-rc-dryrun-3 · cutoff `2026-05-16` · commit `bfb1de7` · generated `2026-05-17T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-4 · cutoff `2026-05-16` · commit `a0d61e2` · generated `2026-05-20T00:00:00Z`
 
 This manifest lists local source artifacts included in the release reproduction surface and records their SHA-256 hashes. Re-fetchable operator-census repository clones and large upstream dumps excluded by `.gitignore` are intentionally not listed; their retrieval policy is recorded in `sources/external_retrieval_receipts.yaml`.
 
-- Files: 871
-- Total bytes: 52802552
+- Files: 889
+- Total bytes: 54221039
 
 ## By Artifact Family
 
@@ -14,26 +14,30 @@ This manifest lists local source artifacts included in the release reproduction 
 | `README.md` | 1 |
 | `archived_htmls` | 2 |
 | `asset_layer_scan` | 17 |
+| `corporate_policy` | 2 |
 | `external_retrieval_receipts.yaml` | 1 |
-| `http_captures` | 726 |
+| `federal_enforcement` | 2 |
+| `http_captures` | 736 |
 | `l0_datasets` | 24 |
 | `l1_datasets` | 3 |
+| `non_us_state` | 2 |
 | `ofac_sdn_diffs` | 77 |
 | `operator_census` | 1 |
 | `operator_commits` | 12 |
 | `source_frame_triage` | 7 |
+| `supranational` | 2 |
 
 ## By Extension
 
 | extension | files |
 | --- | ---: |
-| `bin` | 3 |
+| `bin` | 4 |
 | `csv` | 9 |
 | `diff` | 3 |
 | `go` | 3 |
-| `html` | 552 |
-| `json` | 293 |
-| `md` | 3 |
+| `html` | 555 |
+| `json` | 303 |
+| `md` | 7 |
 | `py` | 1 |
 | `txt` | 2 |
 | `yaml` | 2 |

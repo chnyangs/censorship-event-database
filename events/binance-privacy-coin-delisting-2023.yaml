@@ -1,0 +1,296 @@
+id: binance-privacy-coin-delisting-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - okx-privacy-token-delist-2024
+  - eu-mica-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: binance_holdings_limited
+  timestamp: 2023-06-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.binance.com/en/support
+      wayback: https://web.archive.org/web/2023/https://www.binance.com/en/support
+      evidence_use: contextual_unarchived
+      note: |
+        Binance customer-support notice (2023-06-26) announcing the
+        delisting of privacy-asset spot trading pairs — Monero (XMR),
+        Zcash (ZEC), Dash (DASH), MobileCoin (MOB), Beam (BEAM),
+        Horizen (ZEN), NAV Coin (NAV), and Firo (FIRO) — for users
+        resident in France, Italy, Poland, and Spain. The notice cited
+        EU-member-state regulatory expectations ahead of the MiCA
+        framework (Regulation (EU) 2023/1114, OJ publication
+        2023-06-09; see related_events: eu-mica-2023) as the
+        compliance rationale. Marked evidence_use=contextual_unarchived
+        because in this DRYRUN the authoring LLM agent did not
+        personally pin a Wayback snapshot timestamp or compute a
+        body_hash; the Binance customer-help support hub URL is the
+        canonical corporate anchor and is routinely captured by
+        Wayback through 2023, but the precise notice-page URL slug
+        for the privacy-coin-delisting announcement must be
+        re-anchored during human audit before this citation may
+        serve as an admission anchor in its own right.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision per the 2023-06-26 Binance customer-support
+        notice. The privacy-asset spot-pair removals were grouped in a
+        single multi-country compliance batch with a near-immediate
+        effective date in the affected EU-member jurisdictions.
+
+target:
+  kind: asset
+  enumeration: subset
+  enumeration_note: |
+    Privacy-asset cohort delisted from Binance spot-trading for users
+    resident in France (FR), Italy (IT), Poland (PL), and Spain (ES).
+    Named affected assets per the 2023-06-26 customer notice: Monero
+    (XMR), Zcash (ZEC), Dash (DASH), MobileCoin (MOB), Beam (BEAM),
+    Horizen (ZEN), NAV Coin (NAV), and Firo (FIRO). Recorded as
+    enumeration=subset because the geofenced action is scoped to four
+    EU-member-state user cohorts rather than a global delisting, and
+    Binance's broader 2023-2024 privacy-asset compliance program
+    extended through later batches (Belgium, Poland-expansion, and
+    other jurisdictions) coded elsewhere or pending in the candidate
+    ledger.
+  protocol: null
+  actor_type: centralized_exchange_listing_action
+  actor_name: Binance Holdings Limited (EU-member-state user cohort)
+  chains: [monero, zcash, dash, mobilecoin, beam, horizen, nav, firo]
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [EU, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      binance.com remained reachable in the affected EU jurisdictions
+      (FR/IT/PL/ES) before, during, and after the 2023-06-26 notice;
+      the action is a product-catalogue change at the exchange-listing
+      layer for the named user cohorts, not an ISP / DNS domain
+      filter. Consistent with the L0 treatment in
+      okx-privacy-token-delist-2024 and other S5 corporate listing
+      events. not_applicable on substrate-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Monero, Zcash, Dash, MobileCoin, Beam, Horizen, NAV, and Firo
+      are independent base-chain networks; a Binance EU-cohort spot-
+      pair removal does not engage any of those chains' validator /
+      miner consensus surfaces. Off-exchange transferability and
+      base-chain operation are unaffected by the listing action.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists for Ethereum and EVM chains
+      are not implicated by a Binance spot-pair removal targeting
+      non-EVM (and EVM-adjacent) privacy assets. No L3 measurement
+      primitive applies. not_applicable on substrate-mismatch
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Binance customer-support notice is the announcement
+      surface, not a separable frontend-restriction observation
+      distinct from the off-ramp catalogue change. Frontend
+      visibility of removed pairs for FR/IT/PL/ES users collapses
+      in lockstep with the off-ramp action; no independent L4
+      surface is pinned here. Treated symmetrically with the L4
+      handling in okx-privacy-token-delist-2024.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token-contract-level freeze or admin action: Monero, Zcash,
+      Dash, MobileCoin, Beam, Horizen, NAV, and Firo are native
+      base-chain assets without issuer admin freeze primitives. The
+      action is exchange-listing-only. not_applicable on substrate-
+      mismatch grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - binance_spot_xmr_pairs_eu_cohort
+      - binance_spot_zec_pairs_eu_cohort
+      - binance_spot_dash_pairs_eu_cohort
+      - binance_spot_mob_pairs_eu_cohort
+      - binance_spot_beam_pairs_eu_cohort
+      - binance_spot_zen_pairs_eu_cohort
+      - binance_spot_nav_pairs_eu_cohort
+      - binance_spot_firo_pairs_eu_cohort
+    note: |
+      Load-bearing layer. Binance, the global largest centralized
+      exchange by spot volume, removed the named privacy-asset spot
+      trading pairs from its product catalogue for users resident in
+      France, Italy, Poland, and Spain effective the 2023-06-26
+      notice's operational window. The action narrows the CEX
+      off-ramp surface for the affected privacy assets in the
+      Binance EU-member-state corridor and is the direct realization
+      of the corporate-policy trigger. Attached below as
+      observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: binance_spot_pair_removal_privacy_asset_cohort_eu_member_state_users
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-06-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.binance.com/en/support
+        wayback: https://web.archive.org/web/2023/https://www.binance.com/en/support
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - binance_spot_xmr_pairs_eu_cohort
+            - binance_spot_zec_pairs_eu_cohort
+            - binance_spot_dash_pairs_eu_cohort
+            - binance_spot_mob_pairs_eu_cohort
+            - binance_spot_beam_pairs_eu_cohort
+            - binance_spot_zen_pairs_eu_cohort
+            - binance_spot_nav_pairs_eu_cohort
+            - binance_spot_firo_pairs_eu_cohort
+          countries: [FR, IT, PL, ES]
+          time_window:
+            - 2023-06-26T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          Binance customer-support notice is the corporate-policy
+          anchor. The 2023-06-26 announcement names the privacy-asset
+          cohort (XMR/ZEC/DASH/MOB/BEAM/ZEN/NAV/FIRO) slated for
+          spot-pair removal for users resident in France, Italy,
+          Poland, and Spain and gives Binance-direct attribution for
+          the off-ramp catalogue change. attribution=direct because
+          Binance is both the announcing actor and the operator of
+          the affected spot-trading product. Compliance rationale
+          per Binance ties the action to EU-member-state regulator
+          expectations ahead of the MiCA framework (OJ publication
+          2023-06-09; see eu-mica-2023). Wayback wildcard pointer
+          (web/2023/) in lieu of a pinned-timestamp snapshot;
+          evidence_use=contextual_unarchived pending human-audit
+          re-pin of the precise notice-page URL slug and body_hash.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2 corporate_policy
+  discovery; lean run): authored by LLM agent without personally
+  verifying Wayback/body_hash; origin=human_reviewed required by
+  validator. Real release must replace this DRYRUN marker with a
+  human-verified audit after pinning real archive anchors.
+
+  comparison — S5 corporate-policy-change event documenting Binance
+  Holdings Limited's 2023-06-26 EU-wide privacy-asset spot-pair
+  delisting for users resident in France, Italy, Poland, and Spain.
+  Cohort leader for the 2023-2024 privacy-coin-delisting wave on
+  centralized exchanges: this row anchors the start of the wave
+  (Binance EU 2023-06), with okx-privacy-token-delist-2024
+  (2023-12-29, global cohort) as the same-year sibling and the
+  Kraken-EU 2024 privacy-asset delisting as the downstream follow-on
+  (pending separate event row). The trigger sits 17 days after the
+  MiCA Regulation (EU) 2023/1114 Official Journal publication
+  (2023-06-09; see eu-mica-2023), positioning the action as
+  pre-effective-date compliance preparation by the largest global
+  CEX rather than a post-effective-date enforcement response — the
+  regulatory framework was the substrate, not the immediate legal
+  instrument. The geofenced (FR/IT/PL/ES) rather than EU-wide scope
+  reflects per-member-state regulator pressure (e.g., AMF France,
+  CONSOB Italy, KNF Poland, CNMV Spain) reading the MiCA framework
+  ahead of formal CASP-licensing rollout.
+
+  Single observed_change layer (offramp_cex) with attribution=direct
+  via the Binance customer-support notice primary anchor. L0 / L1 /
+  L3 / l4_frontend / asset_onchain are all not_applicable on
+  substrate-mismatch grounds — this is a CEX corporate-policy
+  listing-restriction event, not a protocol or network primitive
+  engagement, and the L4 announcement surface is co-located with the
+  off-ramp catalogue change (treated symmetrically with the L4
+  handling in okx-privacy-token-delist-2024). Pairs with
+  okx-privacy-token-delist-2024 on the corporate-CEX-delisting axis
+  in the same calendar year, both load-bearing at offramp_cex but
+  with different jurisdictional scopes (Binance: geofenced EU-4;
+  OKX: global product-catalogue trim). Pairs with eu-mica-2023 on
+  the regulatory-substrate axis: MiCA is the supranational framework
+  trigger (S6); this row is one of the earliest documented downstream
+  S5 corporate-policy responses by a CASP-relevant operator.
+
+  Why empirical_case rather than anchor_case: in this DRYRUN pass
+  the load-bearing offramp_cex observation carries direct attribution
+  but the citation is a single primary-corporate notice with
+  provisional wayback anchor (not body-hash-pinned). Promotion to
+  anchor_case requires (a) the Binance notice body_hash / body_path
+  pinning of the precise notice-page URL slug during human audit,
+  (b) an independent semi-primary or supporting tracker source
+  confirming the post-effective-date absence of the removed spot
+  pairs in Binance's public FR/IT/PL/ES ticker listings, and
+  (c) consideration of the per-member-state regulator
+  correspondence (AMF / CONSOB / KNF / CNMV) that may have
+  triggered or accompanied the batch.
+
+scoped_claim: |
+  "Binance Holdings Limited's 2023-06-26 spot-trading-pair removals
+  on binance.com for users resident in France, Italy, Poland, and
+  Spain — covering the privacy-asset cohort (Monero/XMR, Zcash/ZEC,
+  Dash/DASH, MobileCoin/MOB, Beam/BEAM, Horizen/ZEN, NAV Coin/NAV,
+  Firo/FIRO) — narrow the centralized-exchange off-ramp surface for
+  the affected privacy assets in the Binance EU-member-state
+  corridor. The offramp_cex layer carries the load-bearing
+  direct-attribution observation; L0 / L1 / L3 / l4_frontend /
+  asset_onchain are not_applicable for a geofenced exchange-
+  listing-only action. The row is the cohort-leader anchor for the
+  2023-2024 privacy-coin-delisting wave on centralized exchanges
+  (followed by okx-privacy-token-delist-2024 and the Kraken-EU
+  2024 follow-on, coded separately)."
+
+scoped_knowledge: |
+  This event is the canonical 2023 S5 centralized-exchange
+  privacy-asset delisting anchor in the dataset under MiCA-prep
+  pressure. The 2023-06-26 Binance notice sits 17 days after the
+  MiCA Regulation (EU) 2023/1114 Official Journal publication
+  (2023-06-09; eu-mica-2023), positioning the action as
+  pre-effective-date compliance preparation by the global largest
+  CEX rather than a post-effective-date enforcement response.
+
+  The comparison pair with okx-privacy-token-delist-2024
+  separates the geofenced-EU-cohort delisting axis (Binance at
+  offramp_cex, FR/IT/PL/ES user cohorts) from the global-product-
+  catalogue-trim axis (OKX at offramp_cex, no geofence), both
+  occurring within ~6 months and both documenting corporate-
+  compliance product-catalogue narrowing absent a single OFAC
+  trigger. Together with the downstream Kraken-EU 2024 follow-on
+  (pending event row), the three form the early-cohort backbone
+  of the 2023-2024 CEX privacy-asset delisting wave.
+
+  Paper-relevant axes: (a) the regulatory-substrate / corporate-
+  response coupling (MiCA framework S6 → Binance EU-4 S5 → OKX
+  global S5 → Kraken EU S5), (b) the geofencing vs global-catalogue
+  pattern split within S5 corporate responses to the same
+  framework, and (c) the cohort-leader timing (Binance 2023-06)
+  as the earliest documented major CEX response to MiCA publication.
+
+tags:
+  - corporate_policy_change
+  - cex_delisting
+  - privacy_asset
+  - binance
+  - offramp_restriction
+  - mica_compliance
+  - eu_member_state_geofence
+  - cohort_leader_2023_2024
+  - dryrun_2026_05_16

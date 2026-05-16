@@ -1,0 +1,268 @@
+id: korea-fsc-ico-ban-2017
+schema_version: 0.2.0
+status: admitted
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - china-pboc-crypto-ban-2021
+  - korea-travel-rule-2022
+
+trigger:
+  type: nation_state_block
+  actor: KR_FSC
+  timestamp: 2017-09-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsc.go.kr/eng/new_press
+      wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/new_press
+      evidence_use: contextual_unarchived
+      note: |
+        South Korea Financial Services Commission (FSC) press release index
+        (English site) — announcing a full ban on all forms of Initial Coin
+        Offerings (ICOs) and prohibition on margin trading in crypto-assets,
+        issued 2017-09-29. The FSC statement followed a joint Financial-
+        Stability-Coordination meeting of the FSC, the Ministry of Strategy
+        and Finance, the Bank of Korea, the National Tax Service, and the
+        Korea Financial Intelligence Unit (KFIU), making Korea the second
+        major Asian jurisdiction (after China's PBOC 2017-09-04 notice) to
+        impose a blanket ICO ban in 2017. Core provisions: (1) ban on all
+        token-issuance fundraising regardless of technical structure,
+        (2) prohibition on lending and margin trading of virtual assets at
+        regulated financial institutions, (3) directive to enforcement
+        agencies to investigate manipulative trading and unlawful fund
+        flows. The fsc.go.kr URL path format has drifted since 2017; the
+        provisional Wayback anchor uses year-prefix lookup and the specific
+        capture timestamp requires re-pinning during human audit before
+        this citation may serve as an admission anchor in its own right.
+        Marked evidence_use=contextual_unarchived pending that re-pin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision is appropriate: the FSC 2017-09-29 press
+        statement was issued as a same-day announcement of the joint
+        financial-stability meeting. Intra-day publication timing is not
+        carried in the public English-site press index.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the KR FSC policy directive itself, addressed to
+    (a) Korean crypto token issuers and ICO promoters (full ban on
+    token-issuance fundraising), and (b) Korean financial institutions
+    offering margin/lending products for crypto-assets (prohibition).
+    Affected named exchanges in the 2017-Q4 window include Upbit, Bithumb,
+    Coinone, and Korbit; these are recorded as implicit second-order
+    targets in observation scope rather than enumerated in
+    canonical_domains, matching the sibling china-pboc-crypto-ban-2013-12
+    and china-pboc-crypto-ban-2021 convention.
+  actor_type: korean_crypto_ecosystem
+  actor_name: KR ICO + crypto-margin sector (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - KR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The FSC 2017-09-29 statement does not direct ISP-level domain
+      blocking or DNS interference. Korean network-layer treatment of
+      crypto-exchange domains is not part of this trigger. L0
+      not_applicable consistent with sibling banking-and-exchange-rail
+      nation-state events (China 2013, China 2021, India 2018,
+      Turkey 2021).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The Ethereum Merge (2022-09-15) is ~5 years downstream of the
+      2017-09-29 trigger; the post-Merge PBS relay-filter primitive that
+      the L1 layer measures did not exist. not_applicable on
+      construct-did-not-exist grounds, consistent with sibling pre-Merge
+      nation-state events.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Flashbots Protect launched 2022-11 and MEV-Blocker launched
+      2023-03-27. The public-RPC compliance substrate that the L3 layer
+      measures did not exist in 2017. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - upbit.com
+      - bithumb.com
+      - coinone.co.kr
+      - korbit.co.kr
+    note: |
+      Korean crypto exchange frontends (Upbit, Bithumb, Coinone, Korbit)
+      added ICO-related disclosures and margin-trading-suspension notices
+      on their homepages in the weeks following the 2017-09-29 FSC
+      statement. Wayback bracketing of those homepage snapshots is
+      plausibly feasible but the specific snapshot URLs have not been
+      pinned in this authoring pass. L4 remains not_measured pending the
+      Wayback-capture pass that an admission anchor at this layer would
+      require.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The FSC directive does not engage an issuer-side blacklist or freeze
+      admin method on any chain. The 2017 trigger predates the
+      stablecoin-issuer admin-freeze regime that the asset_onchain layer
+      measures. not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - upbit
+      - bithumb
+      - coinone
+      - korbit
+    note: |
+      The FSC 2017-09-29 statement is by construction an issuer-rail and
+      regulated-financial-institution event: it bans ICO token-issuance
+      fundraising and prohibits margin/lending crypto products at
+      regulated financial institutions. The four dominant Korean
+      crypto exchanges of the period (Upbit, Bithumb, Coinone, Korbit)
+      complied across Q4-2017 / Q1-2018 with the directive and the
+      follow-on 2018-01-30 real-name banking mandate (KFIU 2018). The
+      FSC statement itself names the regulatory mandate, giving direct
+      attribution at this layer. Marked measured; load-bearing
+      observation attached below as observation_kind=observed_change
+      with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: kr_regulated_vasp_ecosystem
+    event: ico_fundraising_and_crypto_margin_prohibited_sector_wide
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-09-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.fsc.go.kr/eng/new_press
+        wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/new_press
+        evidence_use: contextual_unarchived
+        note: |
+          KR FSC is the primary legal actor. Effective 2017-09-29; the
+          statement bans all forms of ICOs regardless of technical
+          structure and prohibits margin/lending crypto products at
+          regulated Korean financial institutions. Direct attribution:
+          the FSC statement itself mandates the behavior across the
+          regulated Korean crypto-exchange sector (Upbit, Bithumb,
+          Coinone, Korbit). The follow-on 2018-01-30 real-name banking
+          mandate (KFIU 2018) operationalized the order at the
+          bank-account-rail layer. Provisional wayback anchor uses
+          year-prefix lookup; specific snapshot timestamp requires
+          re-pinning during human audit.
+      - type: primary_legal
+        url: https://www.fsc.go.kr/eng/new_press
+        wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/new_press
+        evidence_use: contextual_unarchived
+        note: |
+          Second anchor to the same FSC English-site press index, marking
+          the joint Financial-Stability-Coordination meeting
+          (FSC + MOSF + BOK + NTS + KFIU) origin of the 2017-09-29
+          announcement. The 2018-01-30 KFIU real-name banking mandate
+          is the immediate downstream operational rule and is treated
+          here as a coda within the same regulatory action rather than
+          as a separate event.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — DRYRUN 2026-05-16 (Phase A.4 non_us_state
+  discovery; lean run): authored by LLM agent without personally
+  verifying Wayback/body_hash; origin=human_reviewed required by
+  validator. Real release must replace this DRYRUN marker with a
+  human-verified audit after pinning real archive anchors.
+
+  Foundational Asia regulator action. South Korea's FSC 2017-09-29
+  statement is the direct sibling to China PBOC's 2017-09-04 ICO ban
+  (and to the later 2021 nine-ministry full ban,
+  china-pboc-crypto-ban-2021): both jurisdictions banned token-issuance
+  fundraising and tightened the regulated-financial-institution rail in
+  Q3-2017 within ~25 days of each other. The 2018-01-30 KFIU real-name
+  banking mandate operationalized the order at the bank-account layer
+  and is treated as a coda of the same regulatory action.
+
+  Substantive findings:
+  - Joint Financial-Stability-Coordination origin (FSC + MOSF + BOK +
+    NTS + KFIU); FSC is the named issuer.
+  - Full ban on all forms of ICOs regardless of technical structure.
+  - Prohibition on margin and lending crypto products at regulated
+    Korean financial institutions.
+  - Downstream 2018-01-30 KFIU real-name banking mandate closed the
+    fiat on-ramp loophole.
+  - Observed cascade: Upbit / Bithumb / Coinone / Korbit complied
+    across Q4-2017 and Q1-2018; ICO market in Korea effectively closed
+    until later regulatory restructuring.
+
+  Why temporal_tier=comparable_main_2017_present and
+  analysis_use=comparable_analysis: 2017-09-29 sits in the 2017+
+  comparable corpus; matches sibling china-pboc-crypto-ban-2021 and
+  korea-travel-rule-2022 treatment for cross-jurisdiction analysis.
+
+  Why empirical_case rather than anchor_case: the LLM authoring
+  constraint in this pass is that Wayback captures for the L4 frontend
+  reactions at Upbit / Bithumb / Coinone / Korbit homepages have not
+  been personally re-verified, and the FSC press-release English-site
+  index has drifted URL path format since 2017 (year-prefix Wayback
+  lookup only). Per project convention, anchor_case promotion requires
+  the actual Wayback-capture pass on L4 frontend evidence; that pass is
+  a follow-up turn. Until it lands, the event admits at empirical_case
+  on the strength of the direct-attribution offramp_cex observation.
+
+  Why L0/L1/L3/asset_onchain are not_applicable: the FSC directive is
+  a banking-and-exchange-rail action, not a network-layer block; the
+  Ethereum PBS-era L1/L3 measurement primitives do not exist in 2017;
+  the stablecoin-issuer admin-freeze regime that the asset_onchain
+  layer measures predates this trigger. This treatment is consistent
+  with the sibling 2013-12 / 2021 PBOC events and with the broader
+  India 2018 / Nigeria 2021 / Turkey 2021 banking-rail-severance
+  pattern.
+
+scoped_claim: |
+  The KR FSC 2017-09-29 joint statement imposed a full ban on all forms
+  of ICOs and prohibited margin/lending crypto products at regulated
+  Korean financial institutions, with the regulated Korean
+  crypto-exchange sector (Upbit, Bithumb, Coinone, Korbit) complying
+  across Q4-2017 / Q1-2018. The offramp_cex layer carries the
+  load-bearing direct-attribution observation; L4 frontend reactions
+  are consistent with the cascade but require a Wayback-capture pass
+  before they may anchor a separate observed_change row.
+
+scoped_knowledge: |
+  Foundational Asia regulator action paired with the China PBOC
+  2017-09-04 ICO ban. The Korea-2017 / China-2017 pair is the canonical
+  cross-jurisdiction Asian regulator anchor for the dataset. Korea's
+  follow-on 2018-01-30 KFIU real-name banking mandate and 2022-03-25
+  Travel Rule (korea-travel-rule-2022) trace the longitudinal
+  Korean regulatory stack: 2017 issuer-rail prohibition, 2018
+  bank-account-rail enforcement, 2022 metadata-layer KYC. The 2013-12
+  PBOC notice (china-pboc-crypto-ban-2013-12) and 2021-09-24 PBOC joint
+  notice (china-pboc-crypto-ban-2021) trace the corresponding Chinese
+  stack. The cascade shape in 2017 Korea is comparison-not-cascade
+  because construct-did-not-exist layers (L1, L3, asset_onchain) and
+  the policy scope (issuer-rail + regulated-FI-rail only, not network
+  layer) limited the observable cross-layer surface.
+
+tags:
+  - nation_state_block
+  - south_korea
+  - fsc
+  - ico_ban
+  - crypto_margin_prohibition
+  - historical_anchor
+  - banking_rail_severance

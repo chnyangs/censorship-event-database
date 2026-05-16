@@ -1,0 +1,223 @@
+id: oecd-carf-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - eu-mica-2023
+  - fatf-r15-vasp-travel-rule-2019
+
+trigger:
+  type: supranational_regulation
+  actor: OECD
+  timestamp: 2022-10-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
+      wayback: https://web.archive.org/web/20260516000000/https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
+      evidence_use: contextual_unarchived
+      note: |
+        OECD Crypto-Asset Reporting Framework (CARF) published 2022-10-10 by
+        the OECD Committee on Fiscal Affairs at the request of the G20. CARF
+        is the first binding supranational crypto tax-reporting standard,
+        functioning as a companion to the Common Reporting Standard (CRS)
+        first published 2014. The instrument mandates that Reporting
+        Crypto-Asset Service Providers (RCASPs) — broadly defined to cover
+        centralized exchanges, brokers, dealers, and operators of crypto
+        ATMs — collect and transmit transaction-level reporting on relevant
+        crypto-asset transactions to their domestic tax authorities, which
+        then automatically exchange the data with partner jurisdictions
+        under the CRS multilateral framework. Companion amendments to CRS
+        were issued in the same publication to capture central-bank digital
+        currencies and specified electronic money products. The 2022-10-10
+        publication is the foundational instrument; subsequent OECD work
+        delivered the Multilateral Competent Authority Agreement (MCAA) for
+        CARF on 2023-11-10, with the first reporting under CARF scheduled
+        for 2027 (covering 2026 calendar-year transactions) in 48+
+        jurisdictions that committed to early adoption in the 2023-11-10
+        joint statement.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level via the 2022-10-10 OECD publication date. CARF was
+        approved at the OECD Committee on Fiscal Affairs meeting and
+        released for public consultation between March-May 2022; the
+        2022-10-10 release is the finalized binding text.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Reporting Crypto-Asset Service Providers (RCASPs) operating in CARF-
+    adopting jurisdictions. RCASPs are defined to include centralized
+    crypto exchanges (Coinbase, Kraken, Binance country entities,
+    Bitstamp, Bitpanda, etc.), brokers, dealers, and operators of crypto
+    ATMs that effectuate relevant exchange transactions in crypto-assets
+    as a business. Self-hosted (non-custodial) wallets and most peer-to-
+    peer protocol activity remain out of scope at the protocol level,
+    but RCASP-intermediated transfers to / from self-custody addresses
+    fall within the reporting perimeter when the RCASP is the
+    counterparty. No address-level enumeration — this is sector-wide
+    tax-reporting regulation operating at the RCASP entity class.
+  protocol: null
+  actor_type: supranational_regulatory_framework
+  actor_name: OECD Reporting Crypto-Asset Service Provider ecosystem (CARF-regulated)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      CARF imposes tax-reporting obligations on RCASPs, not frontend
+      domain takedowns. Individual RCASPs may surface CARF-related KYC /
+      tax-residency prompts in their UI but no canonical frontend-level
+      domain effect is implicated by the framework itself.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      CARF does not impose any asset-layer freeze, blacklist, or issuer
+      action. The framework is metadata-collection-only at the RCASP
+      transaction-reporting level; the underlying assets and on-chain
+      protocols are not directly targeted.
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Load-bearing layer for this event. RCASP-level reporting
+      obligations attach at the off-ramp interface between regulated
+      crypto-asset service providers and their tax-authority reporting
+      pipelines. The RCASP definition is the substantive operational
+      bite of the framework.
+
+observations:
+  - layer: offramp_cex
+    actor: oecd_rcasp_ecosystem
+    event: oecd_carf_published_first_binding_supranational_crypto_tax_reporting_standard
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-10-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
+        wayback: https://web.archive.org/web/20260516000000/https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
+        scope_descriptor:
+          providers: [oecd_rcasp_aggregate, oecd_carf_adopting_jurisdictions]
+          time_window:
+            - 2022-10-10T00:00:00Z
+            - 2027-01-01T00:00:00Z
+          addresses_cohort: all_carf_in_scope_rcasps
+        note: |
+          OECD CARF publication 2022-10-10 is the primary legal instrument.
+          The OECD Committee on Fiscal Affairs (acting at G20 instruction)
+          is the direct supranational actor. CARF-adopting jurisdictions
+          subsequently transpose the framework into domestic law (e.g. EU
+          via DAC8 Directive 2023/2226 adopted 2023-10-17; UK via 2024
+          Finance Act amendments; 48+ jurisdictions per the 2023-11-10
+          joint statement) and impose CARF-equivalent reporting on RCASPs
+          domiciled or operating in their territory. attribution=direct
+          because the CARF text itself defines the RCASP entity class and
+          mandates the reporting behavior; the supranational framework is
+          the substantive driver, with subsequent domestic transposition
+          acts as direct implementations rather than independent triggers.
+        evidence_use: contextual_unarchived
+      - type: primary_legal
+        url: https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
+        wayback: https://web.archive.org/web/20260516000001/https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
+        note: |
+          Second anchor to the same OECD CARF publication — covers the
+          companion CRS amendments (CBDC + specified electronic money
+          coverage) and the foundational definition of "Reporting
+          Crypto-Asset" / "Relevant Crypto-Asset" / "Relevant Transaction"
+          that govern the RCASP reporting perimeter. Cross-reference
+          context for the CARF Multilateral Competent Authority Agreement
+          (CARF MCAA) signed 2023-11-10 by 48+ jurisdictions.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 supranational discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison documenting the OECD's 2022-10-10 Crypto-Asset Reporting
+  Framework (CARF) publication — the first binding supranational
+  crypto tax-reporting standard. CARF is a companion to the 2014
+  Common Reporting Standard (CRS) and operates at the OECD level with
+  G20 endorsement, distinct from EU-level instruments like MiCA
+  (eu-mica-2023) and FATF-level instruments like Recommendation 15 +
+  the VASP Travel Rule (fatf-r15-vasp-travel-rule-2019). Together
+  these three supranational instruments form the regulatory substrate
+  layer of the dataset: CARF (tax-reporting), MiCA (market-conduct +
+  licensing), FATF R.15 (AML / Travel Rule). Each operates on the
+  RCASP / CASP / VASP entity class with overlapping but distinct
+  reporting and conduct obligations.
+
+  Load-bearing structure: offramp_cex is the load-bearing observation
+  axis. CARF defines the RCASP entity class and mandates transaction-
+  level reporting to domestic tax authorities (then automatically
+  exchanged across jurisdictions under CRS-equivalent mechanics). The
+  framework is metadata-collection at the off-ramp interface — distinct
+  from MiCA's market-conduct / licensing axis and from FATF R.15's
+  AML / Travel Rule axis. Paper-relevant because it captures a
+  censorship-adjacent regulatory event at the metadata / tax-reporting
+  layer rather than at the asset- or list-layer; CARF is the third
+  major supranational instrument shaping the RCASP operating
+  environment alongside MiCA and FATF R.15.
+
+  Empirical_shape = comparison (1 observed_change layer: offramp_cex,
+  attribution=direct on the primary legal instrument); admission_tier
+  = empirical_case (1 strong-attribution observed_change layer
+  satisfies the ≥1 requirement). The CARF text itself defines the
+  RCASP entity class and reporting obligations, supporting
+  attribution=direct on the regulatory-framework axis. Downstream
+  domestic transpositions (EU DAC8 2023-10-17, UK 2024 Finance Act,
+  Australia / Canada / Japan / Singapore / Korea implementation
+  statutes) are direct implementations of CARF rather than independent
+  triggers; the first reporting cycle under CARF is scheduled for 2027
+  (covering 2026 calendar-year transactions). For a real release,
+  replace this DRYRUN marker after human audit and pin a verified
+  Wayback snapshot + body_hash / body_path capture of the OECD CARF
+  publication via scripts/capture_http_artifact.py; additionally pin
+  the 2023-11-10 CARF MCAA joint statement and one domestic
+  transposition instrument (e.g. EU DAC8 OJ publication) as
+  cross-reference anchors.
+
+scoped_claim: |
+  "The OECD's 2022-10-10 Crypto-Asset Reporting Framework (CARF)
+  publication established the first binding supranational crypto
+  tax-reporting standard, mandating that Reporting Crypto-Asset
+  Service Providers (RCASPs) — centralized exchanges, brokers,
+  dealers, and crypto ATM operators — report relevant crypto-asset
+  transactions to domestic tax authorities for automatic exchange
+  under CRS-equivalent mechanics. CARF is the third major
+  supranational instrument shaping the RCASP / CASP / VASP operating
+  environment alongside EU MiCA (eu-mica-2023) and FATF Recommendation
+  15 (fatf-r15-vasp-travel-rule-2019). Empirical_shape=comparison;
+  load-bearing axis is offramp_cex at the RCASP reporting-obligation
+  layer."
+
+tags:
+  - supranational_regulation
+  - oecd_carf
+  - crypto_tax_reporting
+  - rcasp_obligations
+  - supranational_framework
+  - companion_to_crs
+  - metadata_layer_regulation

@@ -1,42 +1,44 @@
 # Table 7 · Jurisdictional composition of the admitted corpus
 
-Generated: `2026-05-17T00:00:00Z`.
+Generated: `2026-05-20T00:00:00Z`.
 
-**US-trigger share** (events with `US` in `jurisdiction`): 58/83 (69.9%) · **non-US-trigger share**: 25/83 (30.1%).
+**US-trigger share** (events with `US` in `jurisdiction`): 72/105 (68.6%) · **non-US-trigger share**: 33/105 (31.4%).
 
-The v0.1 corpus is US-trigger-dominant (69.9% of admitted events have `US` in their jurisdiction list); second-most-touched region (under inclusive multi-jurisdiction counting): **Rest of World** (19 events). Non-Western state-actor jurisdictions (RU / CN / IN / KR / NG / TR) account for ~15.7% of country-level mentions. **Region row counts use inclusive multi-jurisdiction membership** — an event with `[UK, US]` is counted in both the US and Europe rows; do not read region shares as a partition. This concentration is a property of the sampling frame, not of the underlying phenomenon, and is driven by the frame's public-English-language-archival requirement combined with the high absolute volume of OFAC / DOJ / SEC activity in 2022-2025. The paper's landscape claims must be bounded accordingly; see `docs/paper_claims.md §0 Sampling frame` and `docs/datasheet.md §3` for the honest statement.
+The v0.1 corpus is US-trigger-dominant (68.6% of admitted events have `US` in their jurisdiction list); second-most-touched region (under inclusive multi-jurisdiction counting): **Europe (EU+UK+CH+non-bloc)** (23 events). Non-Western state-actor jurisdictions (RU / CN / IN / KR / NG / TR) account for ~14.3% of country-level mentions. **Region row counts use inclusive multi-jurisdiction membership** — an event with `[UK, US]` is counted in both the US and Europe rows; do not read region shares as a partition. This concentration is a property of the sampling frame, not of the underlying phenomenon, and is driven by the frame's public-English-language-archival requirement combined with the high absolute volume of OFAC / DOJ / SEC activity in 2022-2025. The paper's landscape claims must be bounded accordingly; see `docs/paper_claims.md §0 Sampling frame` and `docs/datasheet.md §3` for the honest statement.
 
 ## Distribution by region (inclusive)
 
 | region | events touching | share of corpus |
 | --- | ---: | ---: |
-| US | 58 | 69.9% |
-| Europe (EU+UK+CH+non-bloc) | 18 | 21.7% |
-| Rest of World | 19 | 22.9% |
-| Corporate (no jurisdiction) | 6 | 7.2% |
-| Other | 3 | 3.6% |
-| **CORPUS TOTAL** | **83** | — |
-_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (104) ≥ corpus total (83). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
+| US | 72 | 68.6% |
+| Europe (EU+UK+CH+non-bloc) | 23 | 21.9% |
+| Rest of World | 22 | 21.0% |
+| Corporate (no jurisdiction) | 9 | 8.6% |
+| Other | 5 | 4.8% |
+| **CORPUS TOTAL** | **105** | — |
+_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (131) ≥ corpus total (105). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
 
 ## Distribution by country / bloc (all codes)
 
 | jurisdiction code | events |
 | --- | ---: |
-| `US` | 58 |
-| `EU` | 7 |
-| `UK` | 6 |
-| `corporate_global` | 6 |
+| `US` | 72 |
+| `EU` | 9 |
+| `corporate_global` | 9 |
+| `UK` | 7 |
+| `NL` | 5 |
+| `AU` | 5 |
 | `RU` | 5 |
-| `NL` | 4 |
-| `DE` | 4 |
-| `AU` | 4 |
+| `DE` | 5 |
 | `IN` | 3 |
+| `KR` | 3 |
 | `CA` | 2 |
 | `CN` | 2 |
 | `BE` | 1 |
 | `PL` | 1 |
 | `CH` | 1 |
-| `KR` | 1 |
+| `UN` | 1 |
+| `JP` | 1 |
 | `MY` | 1 |
 | `NG` | 1 |
 | `PT` | 1 |

@@ -1,0 +1,225 @@
+id: binance-us-staking-end-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - kraken-sec-staking-2023
+  - sec-v-binance-2023
+  - binance-4framework-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: binance_us
+  timestamp: 2023-06-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://blog.binance.us/end-of-staking-services-on-binance-us/
+      wayback: https://web.archive.org/web/2023/https://blog.binance.us/end-of-staking-services-on-binance-us/
+      evidence_use: contextual_unarchived
+      note: |
+        Binance.US corporate blog post (2023-06-09): "End of Staking Services
+        on Binance.US." Announces the discontinuation of Binance.US staking
+        services across all supported assets, with users directed to unstake
+        positions and re-custody assets in spot wallets ahead of the
+        sunsetting timeline. The announcement was issued four days after the
+        2023-06-05 SEC v. Binance complaint (sec-v-binance-2023), which named
+        Binance Simple Earn, BNB Vault, BUSD staking-product, and BETH as
+        unregistered securities offerings against Binance Holdings / BAM
+        Trading. Binance.US framed the staking-service shutdown as an
+        autonomous corporate-policy decision rather than a regulator-ordered
+        cessation; no consent decree, settlement agreement, or court order
+        compelled the staking-service withdrawal at the 2023-06-09 timestamp.
+        This contrasts structurally with the kraken-sec-staking-2023 twin
+        (2023-02-09), where the SEC press release and Kraken platform
+        statement co-locate a settlement-ordered staking-service shutdown.
+        Marked evidence_use=contextual_unarchived because in this DRYRUN the
+        authoring LLM agent did not personally pin a Wayback snapshot
+        timestamp or compute a body_hash; the blog.binance.us URL is routinely
+        captured by Wayback in 2023 and remains the canonical corporate
+        anchor. Pinned snapshot timestamp + body_hash to be re-anchored
+        during human audit before this citation may serve as an admission
+        anchor in its own right.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision per the 2023-06-09 Binance.US corporate blog
+        announcement.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance.US (BAM Trading Services Inc.) staking-as-a-service product
+    surface. Service-level target covering the pooled-staking offering
+    across all supported assets on the Binance.US platform; not a token
+    delisting, not a chain-level consensus event, not a global Binance.com
+    staking product (Binance.US is the U.S.-scoped BAM-operated affiliate
+    and remained legally and operationally distinct from binance.com in
+    2023).
+  actor_type: exchange_staking_service
+  actor_name: Binance.US / BAM Trading Services Inc.
+  chains: []
+  canonical_domains:
+    - binance.us
+    - blog.binance.us
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer (L0) reachability blocking is implicated. binance.us
+      and blog.binance.us remained globally reachable from U.S. vantage
+      points before, during, and after the 2023-06-09 announcement; the
+      change is a CEX-product-line withdrawal at the application layer,
+      not an ISP-level DNS / TCP block. not_applicable on substrate-mismatch
+      grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The trigger affected Binance.US's pooled staking service, not
+      protocol-level validator rules or consensus participation generally.
+      Ethereum, Solana, Polkadot, Cardano, and other affected networks
+      continued to support staking through their own validator-set
+      primitives. not_applicable on substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC provider filter-list change attaches to the Binance.US
+      staking-service shutdown. The L3 substrate (MEV-Boost / Flashbots
+      Protect / MEV-Blocker / Infura) is orthogonal to a CEX-level pooled-
+      staking product decision. not_applicable on substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [binance.us]
+    note: |
+      No admission-grade historical frontend diff is retained in this file.
+      The admitted-quality observation is the staking-service product
+      withdrawal at the exchange/platform layer. Do not double-count the
+      same product shutdown as a frontend delisting without a UI, Wayback,
+      or platform-diff artifact distinct from the corporate-blog
+      announcement itself.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The staking-service shutdown does not engage a stablecoin-issuer
+      freeze or OFAC SDN-list address designation primitive. Underlying
+      staked assets were returned to user spot wallets administratively;
+      no issuer-level address blacklist was published. not_applicable on
+      substrate-mismatch grounds.
+  - layer: offramp_cex
+    status: measured
+    scope: [binance_us_staking]
+    note: |
+      Load-bearing layer. The Binance.US staking-as-a-service product was
+      withdrawn from the U.S. centralized exchange surface effective on or
+      shortly after the 2023-06-09 announcement. The observed layer is the
+      centralized exchange/platform service surface (staking-product
+      removal), not L1 consensus, not asset-issuer freeze, not L0
+      reachability. Pairs with kraken-sec-staking-2023 (regulator-forced
+      twin) as the autonomous-vs-forced comparison anchor: same product-
+      category withdrawal (CEX staking-as-a-service), divergent trigger
+      type (corporate_policy_change here vs sec_action there), and divergent
+      attribution structure (autonomous corporate response here, settlement-
+      ordered cessation there).
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance_us_staking
+    event: us_cex_staking_service_discontinued_autonomous
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-06-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://blog.binance.us/end-of-staking-services-on-binance-us/
+        wayback: https://web.archive.org/web/2023/https://blog.binance.us/end-of-staking-services-on-binance-us/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [binance_us_staking]
+          countries: [US]
+          time_window:
+            - 2023-06-09T00:00:00Z
+            - 2023-06-09T23:59:59Z
+          addresses_cohort: binance_us_staking_users
+        note: |
+          Binance.US corporate blog hosted the 2023-06-09 staking-service
+          shutdown announcement. attribution=direct because the Binance.US
+          frontend / corporate-blog announcement is the canonical instrument
+          executing the staking-service product withdrawal; the corporate
+          decision and the staking-service shutdown are co-located in the
+          same corporate actor (BAM Trading Services Inc. / Binance.US).
+          The SEC v. Binance complaint (2023-06-05, sec-v-binance-2023) is
+          the plausible upstream pressure four days prior, but the proximate
+          legal instrument here is the Binance.US unilateral corporate-
+          policy announcement, not a settlement-ordered cessation. Wayback
+          wildcard pointer in lieu of a pinned-timestamp snapshot;
+          evidence_use=contextual_unarchived pending human-audit re-pin.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2 corporate_policy discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison documenting Binance.US (BAM Trading Services Inc.) 2023-06-09
+  autonomous discontinuation of its staking-as-a-service product, four days
+  after the 2023-06-05 SEC v. Binance complaint (sec-v-binance-2023) named
+  Binance Simple Earn, BNB Vault, BUSD staking-product, and BETH among 13
+  charges. Structurally, this row is the **autonomous-vs-forced comparison
+  anchor** paired with kraken-sec-staking-2023 (2023-02-09 SEC-settlement-
+  ordered Kraken staking shutdown): same product-category withdrawal (CEX
+  staking-as-a-service in the U.S. market), divergent trigger type
+  (corporate_policy_change here vs sec_action at Kraken), and divergent
+  legal instrument (unilateral corporate announcement here vs SEC press
+  release plus same-day Kraken platform statement at Kraken).
+
+  One observed_change layer (offramp_cex) with attribution=direct via the
+  Binance.US corporate blog primary anchor. L0 / L1 / L3 / l4_frontend /
+  asset_onchain are all not_applicable or not_measured on substrate-
+  mismatch grounds — this is a CEX product-line withdrawal, not a protocol
+  or network primitive engagement. Sibling of binance-russia-exit-commex-
+  2023 in the S5 corporate-policy / market-exit cluster, distinguished by
+  the product-category-only scope (staking only, not full market exit) and
+  the U.S.-jurisdiction anchor (vs Russia-market in the CommEX divestiture).
+
+  Comparative value: high-intensity SEC civil-action upstream context
+  (sec-v-binance-2023, 4 days prior) yielding an autonomous corporate-
+  policy response at the staking-product layer rather than a settlement-
+  ordered shutdown. The 2023-11-21 binance-4framework-2023 DOJ / FinCEN /
+  OFAC / CFTC settlement is downstream context (~5 months after this row)
+  and not directly load-bearing for the staking-service decision.
+
+scoped_claim: |
+  "The 2023-06-09 Binance.US autonomous discontinuation of its staking-as-
+  a-service product, announced four days after the SEC v. Binance complaint
+  but executed as an autonomous corporate-policy decision rather than a
+  regulator-ordered cessation, produced a single-layer cascade at the
+  offramp_cex surface: the U.S.-scoped Binance.US pooled-staking product
+  was withdrawn. The row asserts only this offramp_cex observation and
+  does not claim L0 network, L1 consensus, L3 RPC, L4 frontend
+  delisting/geofence, or asset_onchain issuer-freeze effects. The
+  autonomous-vs-forced distinction relative to kraken-sec-staking-2023
+  (regulator-ordered twin) is the load-bearing analytical contribution."
+
+tags:
+  - corporate_policy_change
+  - staking_service
+  - exchange_service_restriction
+  - binance_us
+  - autonomous_response
+  - sec_pressure_context
+  - offramp_cex
+  - dryrun_2026_05_16
+  - phase_a2_2026_05_16

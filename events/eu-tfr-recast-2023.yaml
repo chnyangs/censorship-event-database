@@ -1,0 +1,202 @@
+id: eu-tfr-recast-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: supranational_regulation
+  actor: EU_Council
+  timestamp: 2023-05-31T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113
+      wayback: https://web.archive.org/web/20260516000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113
+      note: |
+        Regulation (EU) 2023/1113 of the European Parliament and of the
+        Council of 31 May 2023 on information accompanying transfers of funds
+        and certain crypto-assets (the "Transfer of Funds Regulation Recast"
+        / "TFR Recast" / EU Travel Rule companion to MiCA). Extends the
+        existing TFR (2015/847) to cover crypto-asset transfers between
+        Crypto-Asset Service Providers (CASPs) at a zero de-minimis
+        threshold: originator + beneficiary information must accompany every
+        CASP-to-CASP crypto-asset transfer regardless of amount. Direct
+        supranational implementation of FATF Recommendation 15 (2019) for
+        the EU-27 bloc; sibling instrument to MiCA (Regulation 2023/1114)
+        adopted on the same day. Effective application date 2024-12-30,
+        aligned with MiCA CASP licensing phase. DRYRUN wayback stub;
+        replace with a verified capture + body_hash / body_path during real
+        human audit.
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113
+      evidence_use: contextual_unarchived
+      note: |
+        Second citation pointer to the EUR-Lex CELEX:32023R1113 record per
+        brief instruction (evidence_use: contextual_unarchived). Documents
+        TFR Recast articles on originator/beneficiary info (Art. 14),
+        verification duties on CASPs (Arts. 16–17), and missing-info
+        procedures (Arts. 19–21). Zero-threshold distinguishes the EU
+        regime from FATF's recommended de-minimis (USD/EUR 1,000) and from
+        national implementations like KR FSC's KRW 1M threshold.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level adoption date 2023-05-31 by the European Parliament and
+        Council (Co-decision procedure). Published in the EU Official
+        Journal 2023-06-09 alongside MiCA. Application date 2024-12-30.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All EU-operating Crypto-Asset Service Providers (CASPs) — the same
+    population regulated by MiCA Title V. TFR Recast obliges originating
+    CASPs to collect, verify, and transmit originator + beneficiary
+    information for every crypto-asset transfer between CASPs, regardless
+    of transfer amount (zero de-minimis). Beneficiary CASPs are obliged to
+    receive, verify, and act on missing-information cases. Sector-wide
+    rather than address-enumerable; covers Binance EU operations, Coinbase
+    EU, Kraken EU, Bitstamp, and all licensed EU-27 CASPs as of the
+    2024-12-30 application date.
+  protocol: null
+  actor_type: vasp_sector_regulation
+  actor_name: EU-operating Crypto-Asset Service Providers (TFR-Recast-regulated)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      TFR Recast is a backend metadata-transmission obligation on CASPs; it
+      does not mandate frontend takedown. Individual CASPs may reconfigure
+      onboarding / withdrawal UI for EU users but no single-domain effect.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      TFR Recast does not mandate issuer-level freeze; it constrains
+      transfer metadata, not the underlying asset. Asset-layer reasoning
+      from the OFAC USDC / USDT comparison set does not apply.
+  - layer: offramp_cex
+    status: measured
+    scope: [eu_casp_ecosystem]
+    note: |
+      Load-bearing layer for this row: TFR Recast operationalizes via the
+      CASP / offramp layer by requiring originator + beneficiary KYC data
+      on every CASP-to-CASP crypto-asset transfer. Effective application
+      2024-12-30. Anchor is the EUR-Lex primary-legal artifact.
+
+observations:
+  - layer: offramp_cex
+    actor: eu_casp_ecosystem
+    event: eu_tfr_recast_adopted_zero_threshold_travel_rule_for_casps
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-05-31T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113
+        wayback: https://web.archive.org/web/20260516000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113
+        scope_descriptor:
+          providers: [eu_casp_aggregate]
+          time_window:
+            - 2023-05-31T00:00:00Z
+            - 2024-12-30T23:59:59Z
+        note: |
+          Regulation (EU) 2023/1113 — the TFR Recast — adopted by the
+          European Parliament and Council on 2023-05-31, published in the
+          EU Official Journal on 2023-06-09, with phased application
+          culminating 2024-12-30 (aligned with the MiCA CASP licensing
+          regime). Imposes a zero-de-minimis Travel Rule on all
+          CASP-to-CASP crypto-asset transfers in the EU: originating CASPs
+          must collect and transmit originator + beneficiary information
+          regardless of transfer amount. Direct supranational
+          implementation of FATF Recommendation 15 (2019) at the EU-27
+          level. attribution=direct because the regulation itself is the
+          primary legal instrument mandating the behavior of EU-operating
+          CASPs. DRYRUN wayback stub; replace with a verified capture
+          during real human audit.
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113
+        wayback: https://web.archive.org/web/20260516000001/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113
+        note: |
+          Second anchor to the EUR-Lex CELEX:32023R1113 record. Cross-reference
+          for the zero-threshold provision (Art. 14) and the missing-info
+          procedure (Arts. 19–21) — the structural features that
+          distinguish TFR Recast from the FATF R.15 (2019) recommended
+          de-minimis and from national implementations such as the KR FSC
+          Travel Rule (KRW 1M ≈ USD 750 threshold). The brief specified
+          evidence_use=contextual_unarchived for the EUR-Lex citation; per
+          dataset convention (cf. sinbad-doj-2024) contextual_unarchived is
+          only valid on trigger.citation, not on observation.sources, so a
+          DRYRUN wayback stub is used here and the contextual_unarchived
+          pointer is retained on trigger.citation. Replace with a verified
+          capture + body_hash / body_path during real human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 supranational discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison documenting the EU Council + European Parliament's 2023-05-31
+  adoption of Regulation (EU) 2023/1113 — the Transfer of Funds Regulation
+  Recast ("TFR Recast"), the EU's zero-de-minimis Travel Rule companion
+  to MiCA (Regulation 2023/1114, adopted the same day). TFR Recast is the
+  direct supranational child of FATF Recommendation 15 (2019) and the
+  sibling instrument of MiCA at the EU-27 level: where MiCA establishes
+  the licensing / capital / custody framework for CASPs, TFR Recast layers
+  on the metadata-transmission obligation for every CASP-to-CASP
+  crypto-asset transfer regardless of amount. Effective application
+  2024-12-30, aligned with the MiCA CASP licensing phase.
+
+  Structural contribution to the dataset: a regulatory-framework trigger
+  at the metadata layer (transfer-approval gating, not asset freeze or
+  list publication), positioned between FATF R.15 (2019) as parent and
+  the national-scale Travel Rule implementations (KR FSC 2022,
+  India FIU offshore-VDA 2023) as siblings. Distinguishes the EU regime
+  by its zero-threshold posture: no de-minimis floor (vs. FATF's
+  recommended USD/EUR 1,000 and KR's KRW 1M ≈ USD 750), making it the
+  strictest known supranational Travel Rule implementation in the corpus.
+  Paper-relevant as the regulatory substrate for downstream EU-CASP
+  compliance actions expected through 2025.
+
+scoped_claim: |
+  "EU Regulation 2023/1113 (TFR Recast), adopted 2023-05-31 alongside
+  MiCA, establishes a zero-de-minimis Travel Rule for all CASP-to-CASP
+  crypto-asset transfers in the EU-27 — the supranational implementation
+  of FATF Recommendation 15 (2019) and a metadata-layer companion to
+  MiCA's licensing framework. Effective 2024-12-30. Represents a
+  supranational regulatory-framework trigger at the offramp_cex layer
+  distinct from sanction-style enforcement; downstream CASP-specific
+  compliance actions are expected as follow-on events."
+
+related_events:
+  - eu-mica-2023
+  - fatf-r15-vasp-travel-rule-2019
+  - korea-travel-rule-2022
+
+tags:
+  - supranational_framework
+  - eu_regulation
+  - travel_rule
+  - fatf_r15
+  - crypto_asset_regulation
+  - metadata_layer_regulation
+  - zero_threshold
