@@ -1,0 +1,330 @@
+id: binance-busd-wind-down-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: corporate_policy_change
+  actor: binance_holdings_limited
+  timestamp: 2024-02-22T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.binance.com/en/support/announcement/notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422dbbaeda7066ae445b
+      wayback: https://web.archive.org/web/20240222000000/https://www.binance.com/en/support/announcement/notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422dbbaeda7066ae445b
+      evidence_use: contextual_unarchived
+      note: |
+        Binance customer-support announcement: "Notice Regarding the
+        Removal of BUSD and Conversion of BUSD to FDUSD." Binance
+        explicitly cites Paxos's NYDFS-directed cessation of new BUSD
+        minting (2023-02-13; see related_events:
+        paxos-busd-nydfs-minting-stop-2023) as the proximate cause for
+        ending BUSD product support, and notifies users that BUSD
+        spot-trading pairs will be removed and remaining BUSD balances
+        in Spot and Funding Wallets will be auto-converted to FDUSD
+        (First Digital USD, FD121 Ltd.) at 1:1. Effective wind-down
+        cutoff for ongoing product support is 2024-02-22, after which
+        no BUSD spot pairs are listed and BUSD ceases to be a
+        Binance-supported trading asset. evidence_use=
+        contextual_unarchived: in this DRYRUN the authoring LLM agent
+        did not personally pin a body_hash or verified Wayback
+        snapshot; the binance.com customer-support announcement slug
+        is routinely captured by Wayback through 2023-2024, but the
+        precise snapshot timestamp must be re-anchored during human
+        audit before this citation may serve as an admission anchor.
+    - type: primary_corporate
+      url: https://www.binance.com/en/support/announcement/binance-encourages-users-to-convert-busd-to-other-stablecoins-prior-to-february-2024-d392843e81fd4bc3a5f7e219aa01f34d
+      wayback: https://web.archive.org/web/2023/https://www.binance.com/en/support/announcement/binance-encourages-users-to-convert-busd-to-other-stablecoins-prior-to-february-2024-d392843e81fd4bc3a5f7e219aa01f34d
+      evidence_use: contextual_unarchived
+      note: |
+        Earlier (2023-08-30) Binance announcement giving advance notice
+        that Binance will end BUSD product support by February 2024
+        following Paxos's NYDFS-directed cessation of BUSD minting,
+        and encouraging users to convert BUSD to other stablecoins
+        (FDUSD, USDT, USDC). Establishes the public corporate-policy
+        commitment of which 2024-02-22 is the operational realization.
+        Wayback wildcard pointer in lieu of a pinned-timestamp
+        snapshot.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision: 2024-02-22 is the Binance-published
+        wind-down cutoff after which BUSD ceases to be a supported
+        Binance trading asset, with auto-conversion of remaining
+        balances to FDUSD. Pre-announced 2023-08-30 and reaffirmed in
+        the 2023-11-29 update setting an interim 2023-12-15 withdrawal
+        cutoff; 2024-02-22 is the terminal end-of-support date.
+
+target:
+  kind: asset
+  enumeration: complete
+  enumeration_note: |
+    Single-asset target: BUSD (Binance USD), the Paxos-issued ERC-20
+    stablecoin (contract 0x4Fabb145d64652a948d72533023f6E7A623C7C53 on
+    Ethereum mainnet, plus its BEP-20 Binance-Peg representation on
+    BNB Chain). The Binance-side wind-down ends product support
+    globally on binance.com — spot pairs are removed and remaining
+    user balances are auto-converted to FDUSD at 1:1. enumeration=
+    complete because the action targets the entire BUSD asset class
+    on Binance, not a geofenced subset.
+  asset: paxos_issued_busd
+  actor_type: centralized_exchange_listing_action
+  actor_name: Binance Holdings Limited (global BUSD product wind-down)
+  chains: [ethereum, bnb_chain]
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      binance.com remained reachable globally before, during, and after
+      the 2024-02-22 wind-down; the action is a product-catalogue
+      change at the exchange-listing layer and an issuer-cascade
+      end-of-life realization, not an ISP / DNS domain filter. Treated
+      symmetrically with the L0 handling in
+      binance-privacy-coin-delisting-2023 and
+      paxos-busd-nydfs-minting-stop-2023.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      The action is an exchange-listing end-of-support plus a
+      Binance-side balance auto-conversion; no validator / miner
+      consensus surface on Ethereum or BNB Chain is engaged.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public RPC provider filter-list change is implicated by a
+      Binance product wind-down for BUSD. not_applicable on substrate-
+      mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Binance customer-support announcement is the public-policy
+      anchor for the wind-down, not a separable frontend-restriction
+      observation distinct from the off-ramp catalogue change.
+      Frontend visibility of BUSD pairs on binance.com collapses in
+      lockstep with the off-ramp action; no independent L4 surface is
+      pinned here. Treated symmetrically with the L4 handling in
+      binance-privacy-coin-delisting-2023 and
+      okx-privacy-token-delist-2024.
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    scope: [busd_erc20_contract]
+    note: |
+      The BUSD ERC-20 contract
+      (0x4Fabb145d64652a948d72533023f6E7A623C7C53) continues to
+      execute redemption-driven `decreaseSupply` burns through the
+      Binance wind-down window; total supply monotonically declines
+      and the lifecycle terminus of the BUSD asset is realized as
+      Binance — the dominant venue for BUSD trading and redemption —
+      exits the product. Etherscan-replayable contract history is
+      the public anchor for the asset's end-of-life supply
+      trajectory. The mint-cessation cutoff itself is attributed in
+      paxos-busd-nydfs-minting-stop-2023; here the on-chain
+      observation records the lifecycle-end pattern (supply-only-
+      decreases through the wind-down window) coincident with the
+      Binance off-ramp removal.
+    denominator_artifact:
+      type: primary_onchain
+      url: https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
+      wayback: https://web.archive.org/web/20240222000000/https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
+      scope_descriptor:
+        providers: [ethereum_mainnet_etherscan]
+        time_window:
+          - 2024-02-22T00:00:00Z
+          - 2024-08-22T23:59:59Z
+      note: |
+        Etherscan contract page for the BUSD ERC-20 token
+        (0x4Fabb145d64652a948d72533023f6E7A623C7C53) is the
+        replayable denominator anchor for the asset's lifecycle-end
+        supply trajectory through the Binance wind-down window.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - binance_spot_busd_pairs_global
+    note: |
+      Load-bearing layer. Binance — the global largest centralized
+      exchange by spot volume — removes BUSD spot trading pairs and
+      ends BUSD product support globally on binance.com effective the
+      2024-02-22 wind-down cutoff, with remaining user BUSD balances
+      auto-converted to FDUSD at 1:1. The action narrows the CEX
+      off-ramp surface for BUSD to zero on its dominant venue and is
+      the direct cascade-follow-on to the upstream NYDFS-directed
+      Paxos mint cessation (2023-02-13). Attached below as
+      observed_change with attribution=direct.
+
+observations:
+  - layer: asset_onchain
+    actor: paxos_busd_supply_controller
+    event: busd_lifecycle_end_supply_only_decreases_through_binance_wind_down_window
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-02-22T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_corporate
+        url: https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
+        wayback: https://web.archive.org/web/20240222000000/https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [ethereum_mainnet_etherscan]
+          time_window:
+            - 2024-02-22T00:00:00Z
+            - 2024-08-22T23:59:59Z
+        note: |
+          Etherscan contract page for the BUSD ERC-20 token
+          (0x4Fabb145d64652a948d72533023f6E7A623C7C53). Through the
+          Binance 2024-02-22 wind-down window the contract continues
+          to execute redemption-driven `decreaseSupply` burns and no
+          `increaseSupply` mint calls are observed (mint cessation
+          cutoff 2023-02-21 attributed in paxos-busd-nydfs-minting-
+          stop-2023). Total supply monotonically declines through
+          and beyond 2024-02-22, realizing the lifecycle terminus
+          of the BUSD asset coincident with Binance — the dominant
+          venue for BUSD trading and redemption — ending product
+          support. attribution=direct: Binance's 2024-02-22
+          customer-support announcement publicly cites the upstream
+          Paxos / NYDFS BUSD cessation (which names the BUSD asset
+          and its contract) as the cause, and the on-chain supply-
+          only-decreases pattern is the literal execution of the
+          asset-class lifecycle end. evidence_use=contextual_
+          unarchived pending body_hash pin and / or a primary_onchain
+          tx_hash anchor on the final redemption-driven burn during
+          human audit.
+
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: binance_busd_spot_pair_removal_and_balance_auto_conversion_to_fdusd
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-02-22T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.binance.com/en/support/announcement/notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422dbbaeda7066ae445b
+        wayback: https://web.archive.org/web/20240222000000/https://www.binance.com/en/support/announcement/notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422dbbaeda7066ae445b
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [binance_spot_busd_pairs_global]
+          time_window:
+            - 2024-02-22T00:00:00Z
+            - 2024-08-22T23:59:59Z
+        note: |
+          Binance customer-support announcement is the corporate-policy
+          anchor for the wind-down. The notice names BUSD as the
+          asset losing product support, specifies the auto-conversion
+          to FDUSD at 1:1 for remaining Spot and Funding Wallet
+          balances, and explicitly cites Paxos's NYDFS-directed
+          cessation of new BUSD minting (2023-02-13; see
+          paxos-busd-nydfs-minting-stop-2023) as the upstream cause.
+          attribution=direct under §1.2 reasoning extended to a CEX
+          off-ramp action: the actor (Binance) publicly cites the
+          trigger (Paxos / NYDFS BUSD cessation) and the trigger
+          names the specific target (BUSD) being acted upon at the
+          actor's product layer. The 2023-02-13 NYDFS / Paxos action
+          is the cleanest upstream cascade origin in the corpus for
+          which this 2024-02-22 row is the downstream S5 corporate
+          follow-on. evidence_use=contextual_unarchived pending human-
+          audit re-pin of the precise notice-page snapshot timestamp
+          and body_hash.
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/248301/binance-ends-busd-support-fdusd
+        wayback: https://web.archive.org/web/2023/https://www.theblock.co/post/248301/binance-ends-busd-support-fdusd
+        evidence_use: contextual_unarchived
+        note: |
+          The Block coverage of the 2023-08-30 Binance announcement
+          confirming the February-2024 BUSD wind-down and FDUSD
+          conversion plan. Independent journalistic confirmation of
+          the Binance-direct attribution. evidence_use=
+          contextual_unarchived in this DRYRUN pending body_hash
+          pin during human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E follow-on to
+  paxos-busd-nydfs-minting-stop-2023): authored by LLM agent without
+  personally verifying Wayback / body_hash anchors; real release must
+  replace this DRYRUN marker with a human-verified audit after pinning
+  real archive anchors and (a) replacing wayback URL stubs with
+  verified captures plus body_hash / body_path artifacts for the
+  Binance 2024-02-22 wind-down notice and the 2023-08-30 advance
+  notice, (b) considering promotion of status=draft → admitted at
+  that point.
+
+  comparison — S5 corporate-policy-change event documenting Binance
+  Holdings Limited's 2024-02-22 global wind-down of BUSD product
+  support: spot-trading-pair removal and auto-conversion of remaining
+  user BUSD balances to FDUSD at 1:1. This is the cleanest follow-on
+  cascade to the upstream NYDFS-directed Paxos cessation of new BUSD
+  minting (2023-02-13; see related_events:
+  paxos-busd-nydfs-minting-stop-2023). The cascade arc — NYDFS
+  consumer alert + SEC Wells notice (2023-02-13) → Paxos mint
+  cessation at the ERC-20 SupplyController layer (asset_onchain) →
+  Binance pre-announces wind-down (2023-08-30) → Binance ends BUSD
+  product support globally (2024-02-22, offramp_cex) — anchors the
+  state-regulator → issuer → dominant-CEX dependency chain in S5,
+  distinct from the OFAC-driven address-set freezes of Circle
+  (2022-08-08) and Tether (2023-12-09).
+
+  Single observed_change layer (offramp_cex) with attribution=direct
+  via the Binance 2024-02-22 customer-support announcement that
+  publicly cites the upstream Paxos / NYDFS trigger. asset_onchain
+  is `measured` but the load-bearing on-chain observation (mint
+  cessation cutoff) is attributed in paxos-busd-nydfs-minting-stop-
+  2023 and is not duplicated here; the asset_onchain coverage row
+  records the contract continuing to execute redemption-driven
+  burns through the Binance wind-down window, contextualizing the
+  off-ramp observation rather than independently driving cascade
+  count. L0 / L1 / L3 / l4_frontend are all not_applicable on
+  substrate-mismatch grounds — this is a CEX corporate-policy
+  listing-restriction event, not a protocol or network primitive
+  engagement.
+
+  Why empirical_case rather than anchor_case: in this DRYRUN pass
+  the load-bearing offramp_cex observation carries direct
+  attribution but evidence rests on a single primary-corporate
+  notice with provisional wayback anchor (not body-hash-pinned).
+  Promotion to anchor_case requires (a) body_hash / body_path
+  pinning of the Binance wind-down notice during human audit, and
+  (b) an independent semi-primary or supporting tracker source
+  confirming the post-2024-02-22 absence of BUSD spot pairs in
+  Binance's public ticker listings.
+
+scoped_claim: |
+  "Binance Holdings Limited's 2024-02-22 global wind-down of BUSD
+  product support on binance.com — spot-trading-pair removal and
+  auto-conversion of remaining user BUSD balances to FDUSD at 1:1
+  — narrows the centralized-exchange off-ramp surface for BUSD to
+  zero on its dominant venue. The offramp_cex layer carries the
+  load-bearing direct-attribution observation, with the Binance
+  customer-support announcement publicly citing the upstream
+  NYDFS-directed Paxos cessation of new BUSD minting (2023-02-13)
+  as the proximate cause; the event is the cleanest downstream S5
+  corporate follow-on to that upstream trigger in the corpus."
+
+related_events: []
+
+tags:
+  - corporate_policy_change
+  - cex_delisting
+  - stablecoin_lifecycle_end
+  - binance
+  - busd
+  - fdusd_migration
+  - nydfs_follow_on
+  - offramp_restriction
+  - dryrun_2026_05_17

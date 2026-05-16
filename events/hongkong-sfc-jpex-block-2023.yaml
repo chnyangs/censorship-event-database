@@ -1,0 +1,276 @@
+# DRYRUN preamble (Phase E):
+# - **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+# - status: draft (origin: agent_draft, no human audit yet)
+# - research_stratum: S4_nation_state (HK SAR sub-sovereign jurisdiction;
+#   SFC administrative enforcement action against an unlicensed VATP)
+# - empirical_shape: comparison (1-2 observed_change layers anchored;
+#   offramp_cex HK user-funds freeze/withdrawal halt + l4_frontend HK
+#   user-access restriction)
+# - admission_tier: empirical_case (pending human audit)
+# - analysis_use: comparable_analysis; temporal_tier: comparable_main_2017_present
+# - trigger.type: regulatory_enforcement (per codebook §5.1: non-US
+#   national regulator administrative enforcement — SFC 2023-09-13 public
+#   warning statement on JPEX is an administrative enforcement act, NOT a
+#   network/payment-rail block)
+# - target.kind: entity; target.enumeration: subset (JPEX named as the
+#   enforcement target; full universe of unlicensed VATPs marketing to HK
+#   is broader)
+# - jurisdiction: [HK]
+# - related_events: [hongkong-sfc-vatp-licensing-2023-06,
+#   hongkong-hkma-stablecoins-ordinance-2025]
+# - evidence_use: contextual_unarchived (sources cited but not Wayback-pinned
+#   in this draft; human audit will harden into admission_anchor evidence)
+
+id: hongkong-sfc-jpex-block-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: regulatory_enforcement
+  actor: HK_SFC
+  timestamp: 2023-09-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+      wayback: https://web.archive.org/web/2023/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+      note: |
+        Hong Kong Securities and Futures Commission (SFC) "Statement on
+        JPEX" published 2023-09-13. The SFC publicly warned that JPEX
+        was operating in Hong Kong without an SFC licence, that its
+        claims to be regulated were false, and that the offering of
+        high-return VA products contravened the Anti-Money Laundering
+        and Counter-Terrorist Financing Ordinance (AMLO). The matter
+        was referred to the Hong Kong Police Force for suspected
+        fraud. This is the SFC's first public warning under the new
+        2023-06-01 VATP licensing regime.
+      evidence_use: contextual_unarchived
+    - type: supporting_journalism
+      url: https://www.lexology.com/library/detail.aspx?g=2cb94d6d-15c2-4d85-866c-ae0fd5ec207e
+      wayback: https://web.archive.org/web/2023/https://www.lexology.com/library/detail.aspx?g=2cb94d6d-15c2-4d85-866c-ae0fd5ec207e
+      note: |
+        Lexology client alert "Pitfalls exposed: Unlicensed crypto
+        exchange, JPEX, receives first public warning from SFC under
+        new HK licensing regime" describing the 2023-09-13 SFC
+        statement and the enforcement context.
+      evidence_use: contextual_unarchived
+    - type: supporting_journalism
+      url: https://www.elliptic.co/blog/crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning
+      wayback: https://web.archive.org/web/2023/https://www.elliptic.co/blog/crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning
+      note: |
+        Elliptic blog summarising the SFC warning and the 2023-09-18
+        Hong Kong Police Force arrests under "Operation Iron Gate";
+        contextualises HK$1.6B+ in alleged losses and 2,500+ victims
+        in the initial reporting window.
+      evidence_use: contextual_unarchived
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Subset enumeration: JPEX is the named enforcement target of the
+    SFC 2023-09-13 public warning and the subsequent HKPF "Operation
+    Iron Gate" arrests beginning 2023-09-18. JPEX-related OTC money
+    changers, social-media KOLs (e.g. Joseph Lam Chok, Chan Wing),
+    and platform members were swept into the same enforcement chain
+    but are not exhaustively enumerated here. The full universe of
+    unlicensed VATPs marketing to HK is broader; this event records
+    the JPEX-specific slice.
+  entity: jpex
+  actor_name: JPEX cryptocurrency exchange
+  actor_type: exchange
+  canonical_domains:
+    - jp-ex.io
+
+jurisdiction:
+  - HK
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      SFC administrative warning + HKPF arrests; not an ISP/DNS-level
+      network block. HK does not operate a mainland-style network
+      filter against unlicensed crypto frontends.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Administrative enforcement against an unlicensed VATP does not
+      map to Ethereum PBS relay filtering or other L1 consensus
+      primitives.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      L3 RPC layer is not implicated by the SFC JPEX enforcement
+      action.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      JPEX restricted HK user access on its frontend in the days
+      following the 2023-09-13 SFC warning (raised withdrawal fees
+      to 999 USDT, then suspended HK user withdrawals). Wayback-diff
+      evidence of jp-ex.io HK-vantage snapshots bracketing
+      2023-09-13 is not yet attached; pending human audit.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin admin-method freeze attaches to the SFC JPEX
+      action. Asset-onchain layer not implicated.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - jpex
+    note: |
+      JPEX HK users were unable to withdraw funds following the SFC
+      warning; the platform first raised withdrawal fees to 999 USDT
+      and then effectively halted HK user withdrawals. SFC public
+      statement and contemporaneous journalism corroborate the
+      offramp-disruption pattern. HK$1.6B+ in losses reported across
+      2,500+ victims in the initial reporting window. Sources
+      contextual_unarchived for this draft; human audit will pin
+      Wayback snapshots.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+      wayback: https://web.archive.org/web/2023/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+      scope_descriptor:
+        providers:
+          - jpex
+        countries: [HK]
+        time_window:
+          - 2023-09-13T00:00:00Z
+          - 2023-09-30T23:59:59Z
+      note: |
+        SFC "Statement on JPEX" as the denominator anchor for the
+        named-target enforcement scope. Wayback wildcard pending
+        human-audit pinning of a specific snapshot.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:hk_sfc
+    event: jpex_unlicensed_vatp_public_warning_hk_user_funds_frozen
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-09-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: HK
+    note: |
+      SFC public warning + HKPF "Operation Iron Gate" arrests starting
+      2023-09-18 directly named JPEX as the enforcement target. JPEX
+      HK users were unable to withdraw funds in the days following;
+      the platform raised withdrawal fees to 999 USDT and then halted
+      HK user withdrawals. Attribution=direct: actor publicly references
+      the enforcement target by name (codebook §1.1).
+    sources:
+      - type: primary_legal
+        url: https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+        wayback: https://web.archive.org/web/2023/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+        note: |
+          SFC "Statement on JPEX" 2023-09-13 — the named public
+          warning that triggered the offramp-disruption chain.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.charltonslaw.com/hong-kong-police-arrest-suspects-in-jpex-scandal/
+        wayback: https://web.archive.org/web/2023/https://www.charltonslaw.com/hong-kong-police-arrest-suspects-in-jpex-scandal/
+        note: |
+          Charltons Law summary "Hong Kong Police Arrest Suspects in
+          JPEX Scandal" — documents the 2023-09-18 HKPF arrests
+          under "Operation Iron Gate" and the HK$1.6B+ loss figure
+          across 2,500+ victims.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/hong-kong-regulator-sfc-crackdown-unregulated-crypto-platforms-jpex-scandal
+        wayback: https://web.archive.org/web/2023/https://cointelegraph.com/news/hong-kong-regulator-sfc-crackdown-unregulated-crypto-platforms-jpex-scandal
+        note: |
+          Cointelegraph reporting on HK's post-JPEX "suspicious VATP"
+          list — documents the SFC's accelerated post-JPEX
+          enforcement posture under the VATP licensing regime.
+        evidence_use: contextual_unarchived
+  - layer: l4_frontend
+    actor: exchange:jpex
+    event: jpex_hk_user_access_restrictions_post_sfc_warning_coverage_gap
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp_range:
+      - 2023-09-13T00:00:00Z
+      - 2023-09-20T23:59:59Z
+    precision: day
+    country: HK
+    note: |
+      Following the 2023-09-13 SFC warning, contemporaneous reporting
+      (Elliptic, Crypto Daily) describes JPEX raising the platform
+      withdrawal fee to 999 USDT and halting HK user withdrawals on
+      its frontend. No Wayback-pinned HK-vantage snapshot of jp-ex.io
+      bracketing 2023-09-13 has been captured for this draft, so per
+      codebook §2 (Kazakhstan precedent) this layer is recorded as a
+      coverage_gap, not as an observed_change. Human audit may elevate
+      to observed_change once a replayable artifact is pinned.
+    sources:
+      - type: supporting_journalism
+        url: https://www.elliptic.co/blog/crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning
+        wayback: https://web.archive.org/web/2023/https://www.elliptic.co/blog/crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning
+        note: |
+          Elliptic blog documenting JPEX raising withdrawal fees to
+          999 USDT and HK user withdrawal halt in the days after
+          the SFC warning.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://cryptodaily.co.uk/2023/09/hong-kong-sfc-opens-probe-into-jpex-exchange-one-arrested
+        wayback: https://web.archive.org/web/2023/https://cryptodaily.co.uk/2023/09/hong-kong-sfc-opens-probe-into-jpex-exchange-one-arrested
+        note: |
+          Crypto Daily 2023-09 reporting on the SFC probe and the
+          frontend-side user-access restrictions JPEX imposed in
+          the same window.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Non-US national regulator administrative enforcement: HK SFC's
+  2023-09-13 public warning statement on JPEX as an unlicensed VATP
+  under the new (2023-06-01) VATP licensing regime, followed by HKPF
+  "Operation Iron Gate" arrests beginning 2023-09-18. Reported losses
+  exceeded HK$1.6 billion across 2,500+ victims; this is the largest
+  HK crypto enforcement case in 2023 and is widely credited with
+  accelerating SFC enforcement posture under the VATP regime.
+
+  trigger.type=regulatory_enforcement applied per codebook §5.1: HK
+  SFC is a non-US national regulator and the 2023-09-13 statement is
+  an administrative enforcement act (public warning + AMLO predicate
+  + police referral), not a network/payment-rail block. Research
+  stratum S4_nation_state per the codebook §5.2 stratum-actor map.
+
+  Empirical shape is `comparison`: one observed_change layer —
+  offramp_cex HK user-funds freeze (direct attribution; SFC named
+  JPEX). The l4_frontend HK user-access restriction layer is
+  recorded as a coverage_gap per codebook §2 (Kazakhstan precedent)
+  because no Wayback-pinned HK-vantage snapshot of jp-ex.io has
+  been captured for this draft, even though contemporaneous
+  journalism describes the withdrawal-halt frontend behaviour.
+
+  All sources in this draft are `contextual_unarchived` per the
+  evidence_use convention; status remains `draft` (origin:
+  agent_draft) pending human audit and Wayback pinning.
+
+related_events:
+  - hongkong-sfc-vatp-licensing-2023-06
+  - hongkong-hkma-stablecoins-ordinance-2025
+
+tags:
+  - nation_state
+  - hong_kong
+  - sfc
+  - jpex
+  - regulatory_enforcement
+  - offramp_cex
+  - l4_frontend

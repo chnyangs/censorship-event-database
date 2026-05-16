@@ -1,0 +1,379 @@
+id: switzerland-finma-tezos-zg-2018
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - eu-mica-2023
+  - japan-fsa-coincheck-orders-2018
+
+trigger:
+  type: regulatory_enforcement
+  actor: CH_FINMA
+  timestamp: 2018-02-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
+      wayback: https://web.archive.org/web/2018/https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
+      evidence_use: contextual_unarchived
+      note: |
+        Swiss Financial Market Supervisory Authority (FINMA /
+        Eidgenössische Finanzmarktaufsicht) press release and accompanying
+        "Guidelines for enquiries regarding the regulatory framework for
+        initial coin offerings (ICOs)" (FINMA ICO-Wegleitung) published
+        2018-02-16. The guidelines establish FINMA's tripartite token
+        taxonomy for the purpose of assessing ICO regulatory treatment
+        under Swiss financial market law:
+          (1) Payment tokens (Zahlungs-Token) — synonymous with
+              cryptocurrencies, no further functions or links to
+              development projects; treated as means of payment and
+              subject to Swiss Anti-Money Laundering Act (GwG) obligations
+              once tradeable / transferable.
+          (2) Utility tokens (Nutzungs-Token) — confer digital access
+              rights to an application or service; not treated as
+              securities under Swiss law if their sole purpose is access
+              and they are usable at issuance.
+          (3) Asset tokens (Anlage-Token) — represent assets such as
+              participations in real underlyings, companies, earnings
+              streams, or entitlements to dividends/interest; treated as
+              securities, with attendant prospectus / civil-law
+              requirements under the Swiss Code of Obligations.
+        The framework explicitly contemplates hybrid forms (e.g. utility
+        tokens with payment-token characteristics simultaneously falling
+        under GwG). The guidelines apply retroactively as the framework
+        FINMA uses when ICO sponsors request a no-action enquiry; this
+        affects Zug-based ICO sponsors from the 2017 cohort, including
+        Tezos Foundation (Zug), whose 2017-07 ICO raised ~USD 232M and
+        whose post-ICO governance dispute between the Foundation
+        (Johann Gevers) and the Breitman family (Dynamic Ledger
+        Solutions) escalated concurrent with FINMA's broader Swiss-ICO
+        scrutiny. The guidelines themselves are framework guidance, not
+        a per-entity enforcement order — they do not name Tezos or any
+        other 2017-cohort issuer. evidence_use=contextual_unarchived
+        because body_hash + body_path archival capture was not pinned in
+        this agent-authoring pass; Wayback anchor is a year-prefix
+        bracket pending re-pin by the human auditor.
+    - type: supporting_journalism
+      url: https://www.reuters.com/article/us-swiss-finma-ico-idUSKCN1G01YE
+      wayback: https://web.archive.org/web/2018/https://www.reuters.com/article/us-swiss-finma-ico-idUSKCN1G01YE
+      evidence_use: contextual_unarchived
+      note: |
+        Reuters coverage of the 2018-02-16 FINMA ICO guidelines release,
+        retained as a corroborating secondary anchor for the publication
+        date and the tripartite token taxonomy. Useful for cross-checking
+        the FINMA press-release language against international press
+        reporting on the same day. evidence_use=contextual_unarchived;
+        Wayback anchor is a year-prefix bracket pending re-pin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2018-02-16 FINMA publication date on
+        the official press release. DRYRUN: timestamp asserted from
+        FINMA public communications and corroborated via WebSearch; not
+        personally archive-verified by the LLM agent at authoring time.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target of the 2018-02-16 FINMA ICO guidelines is the
+    open-ended regulatory class of Swiss-jurisdiction or Swiss-
+    nexus ICO sponsors (token issuers, foundation vehicles, and
+    asset-issuing entities) seeking regulatory clarity on Swiss
+    financial market law treatment of their token issuances. The
+    document is framework guidance applied via FINMA's enquiry
+    process; it does not enumerate specific addressee entities. The
+    Tezos Foundation (Zug, CH) is the most prominent 2017-cohort
+    Swiss ICO sponsor affected by the retroactive framework — its
+    2017-07 ICO (~USD 232M raised) sits squarely in the Swiss
+    Zug-foundation issuance pattern the guidelines clarify — but
+    other 2017-cohort Swiss ICOs (Cardano Foundation, DFINITY,
+    Bancor via BProtocol Foundation, Status, etc.) face the same
+    framework retroactively. Marked enumeration=subset rather than
+    complete because the affected class is open-ended and
+    framework-defined rather than per-entity enumerated; the
+    Tezos Foundation is named as the load-bearing illustrative
+    target in title and analysis_notes but does not exhaust the
+    affected class. No on-chain addresses or canonical_domains are
+    enumerated because the framework guidance does not designate
+    specific entities or hosts. Schema enum target.kind has no
+    regulatory_class value; entity is the closest schema match and
+    mirrors the precedent set by
+    fatf-virtual-currencies-key-definitions-2014 and
+    fincen-virtual-currency-msb-guidance-2013.
+  protocol: null
+  actor_type: regulated_ico_sponsor_class
+  actor_name: "Swiss-nexus ICO sponsors (2017 cohort; Tezos Foundation, Zug, CH, as load-bearing illustrative target)"
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - CH
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2018-02-16 FINMA ICO guidelines are framework guidance at the
+      regulatory-class level. They do not direct ISP-level domain
+      blocking or DNS interference against any ICO-related host
+      (Tezos Foundation, Cardano Foundation, etc. remained reachable).
+      not_applicable on construct-out-of-scope grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No protocol-level relay-filter primitive engaged. The Tezos
+      mainnet did not launch until 2018-06-30 (genesis block ~four
+      months after the guidelines), and the guidelines do not
+      contemplate consensus-layer filtering. not_applicable on
+      construct-out-of-scope grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2018-02 (Flashbots Protect launched 2022-11). not_applicable
+      on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The guidelines do not require, name, or contemplate any
+      ICO-related frontend takedown or geo-blocking. Tezos.com,
+      tezosfoundation.ch, and other Swiss-ICO frontends remained
+      reachable. not_applicable on construct-out-of-scope grounds.
+  - layer: asset_onchain
+    status: partially_measured
+    scope:
+      - swiss_ico_token_classification_framework
+    note: |
+      Load-bearing axis at the framework level: the guidelines
+      establish the tripartite payment-token / utility-token /
+      asset-token taxonomy that classifies whether a given token
+      issuance triggers Swiss securities law (asset tokens),
+      anti-money-laundering law (payment tokens, hybrid utility
+      tokens with payment functionality), or remains outside
+      securities scope (pure utility tokens usable at issuance).
+      Marked partially_measured (rather than not_measured) because
+      the framework class-level effect is observable as the
+      classification-rule predicate, but no point-in-time
+      asset-layer admin freeze or token-issuer-level enforcement
+      action is bundled with the 2018-02-16 release. The
+      corresponding observation row records the framework
+      predicate as observed_no_change with attribution=none at the
+      class-level token-classification axis.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Adjacent axis at the framework level: by classifying tokens
+      as securities (asset tokens) vs payment-tokens-under-GwG vs
+      utility-tokens-outside-securities-scope, the guidelines
+      indirectly shape Swiss CEX listing eligibility and
+      anti-money-laundering due-diligence obligations for Swiss
+      VASPs handling ICO tokens. However, no point-in-time Swiss
+      CEX delisting or listing-rail change is bundled with the
+      2018-02-16 release itself, and no observation row is coded
+      at this layer. Marked not_applicable on
+      construct-out-of-scope grounds for the framework-predicate
+      event; downstream Swiss VASP licensing actions under
+      FinIA / FinSA (2020-01-01 effective) are out-of-scope of
+      this row.
+
+observations:
+  - layer: asset_onchain
+    actor: ch_finma_ico_token_classification_class
+    event: tripartite_payment_utility_asset_token_taxonomy_established_swiss_predicate_guidance
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2018-02-16T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2018-02-16T00:00:00Z
+      - 2020-01-01T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
+        wayback: https://web.archive.org/web/2018/https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - swiss_ico_sponsor_class
+          time_window:
+            - 2018-02-16T00:00:00Z
+            - 2020-01-01T00:00:00Z
+          addresses_cohort: swiss_nexus_ico_2017_cohort_inclusive_of_tezos_foundation_zug
+        note: |
+          FINMA 2018-02-16 ICO Guidelines is the framework-level
+          regulatory predicate that establishes the tripartite
+          payment / utility / asset token taxonomy under Swiss
+          financial market law (FINMASA / GwG / FinSA-precursor
+          frame). observation_kind=observed_no_change honestly
+          represents the load-bearing role of the document: it
+          introduces the classification rule that subsequent
+          Swiss-nexus ICO sponsors (including Tezos Foundation,
+          Zug, CH; Cardano Foundation; DFINITY; Bancor; Status)
+          must apply retroactively to their 2017-cohort
+          issuances, but does not itself impose a per-issuance
+          enforcement order or on-chain admin-key freeze.
+          attribution=none per the schema constraint that
+          observed_no_change rows take attribution=none; the
+          dispersed framework predicate role is documented in
+          analysis_notes. The Tezos Foundation governance
+          dispute (Gevers vs Breitman family) escalated
+          concurrent with this Swiss-ICO scrutiny window but is
+          a corporate-governance dispute internal to the
+          Foundation, not an observable censorship-layer change
+          attributable to FINMA. Provisional year-prefix Wayback
+          anchor pending re-pin in a follow-up human-audit pass.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (agent_draft;
+  comparable_main_2017_present tier fill). Authored by LLM agent
+  without personally verifying Wayback/body_hash; status=draft and
+  origin=agent_draft. Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors
+  via scripts/capture_http_artifact.py.
+
+  FINMA's 2018-02-16 "Guidelines for enquiries regarding the
+  regulatory framework for initial coin offerings (ICOs)" (the
+  FINMA ICO-Wegleitung) is the foundational Swiss-jurisdiction
+  framework instrument categorizing tokens into three classes
+  for the purpose of assessing ICO regulatory treatment:
+    - Payment tokens (cryptocurrencies; GwG/AML obligations once
+      tradeable)
+    - Utility tokens (digital access rights; outside securities
+      scope only if sole-purpose and usable at issuance)
+    - Asset tokens (participations / dividends / interest claims;
+      treated as securities under Swiss Code of Obligations
+      prospectus rules)
+  Hybrid forms are explicitly contemplated. The framework is the
+  Swiss-jurisdiction analogue to the EU MiCA tripartite token
+  taxonomy (e-money tokens / asset-referenced tokens / other
+  crypto-assets) that arrives five years later in MiCA
+  2023/1114 (eu-mica-2023), and it sits in the same family of
+  2018-era national/supranational framework-guidance instruments
+  that crystallized the post-2017-ICO-bubble regulatory frame
+  (cf. Japan FSA's 2018-01-29 Coincheck order
+  japan-fsa-coincheck-orders-2018, which is reactive single-
+  entity supervision rather than framework taxonomy).
+
+  Tezos Foundation (Zug, CH) is the load-bearing illustrative
+  target: its 2017-07 ICO (~USD 232M raised on ~30,000 BTC + ~
+  366,000 ETH contributed) was the largest 2017-cohort Swiss
+  ICO and sat in the Swiss Zug-foundation issuance pattern the
+  guidelines clarify. The concurrent Tezos governance dispute
+  (Foundation president Johann Gevers vs co-founders
+  Arthur & Kathleen Breitman / Dynamic Ledger Solutions) over
+  the disposition of contributed funds escalated through 2017-
+  10 to 2018-02 and was the highest-profile Swiss-ICO
+  governance crisis at the time the guidelines were drafted.
+  However, the guidelines themselves are framework guidance,
+  not a per-entity enforcement order — they do not name Tezos,
+  do not designate Tezos addresses, and do not impose a
+  bilateral remediation regime on the Tezos Foundation. The
+  retroactive impact is the application of the tripartite
+  classification framework to the 2017-cohort token issuances,
+  which subsequent FINMA enquiry responses to individual
+  sponsors (the no-action enquiry process) operationalize on a
+  case-by-case basis. Other 2017-cohort Swiss ICOs in scope
+  include Cardano Foundation (Zug), DFINITY (Zurich), Bancor /
+  BProtocol Foundation (Zug), and Status (formerly Zug).
+
+  Why null_event / null_case / observed_no_change: this event's
+  load-bearing function is framework predicate-establishing
+  rather than cascade-producing. The substantive regulatory
+  effect — introducing the Swiss-jurisdiction tripartite
+  payment / utility / asset token taxonomy and the corresponding
+  Swiss-financial-market-law treatment matrix — unfolds
+  dispersedly across the per-sponsor FINMA enquiry process
+  rather than as a single observable point-in-time cascade
+  directly attributable to the 2018-02-16 release alone. The
+  cascade-shape grammar of the schema does not natively express
+  framework-level token-classification guidance, so this event
+  is coded honestly as null_event (0 observed_change layers) /
+  null_case (0 strong-attribution observed_change), with the
+  single observation row expressing the framework predicate as
+  observed_no_change with attribution=none at the
+  token-classification axis per the schema constraint that
+  observed_no_change rows take attribution=none.
+
+  Why comparable_main_2017_present tier: 2018-02 belongs to the
+  comparable_main_2017_present temporal tier per the 2008+
+  tiered frame. analysis_use=comparable_analysis matches the
+  validator's tier-vs-analysis-use consistency rule
+  (validate.py); the row will sit in the comparable denominator
+  as a null_case framework-predicate row, analogous to the EU
+  MiCA framework precedent (eu-mica-2023) at the supranational
+  level.
+
+  Schema-enum surprises encountered during authoring:
+  - target.kind has no regulatory_class enum; fell back to
+    target.kind=entity with target.enumeration=subset and an
+    enumeration_note that records the class-level character.
+  - target.enumeration has no class_level value (schema enum is
+    complete / subset / pending); used subset with class-level
+    rationale in the enumeration_note.
+  - trigger.type=regulatory_enforcement is the canonical
+    non-US national-regulator administrative trigger type per
+    codebook §5.1; CH_FINMA mapped to S4_nation_state per
+    codebook §5.2 stratum-actor matrix.
+  - empirical_shape has no case_study enum; mapped the
+    framework-level predicate-establishing posture to
+    null_event + null_case + observation_kind=observed_no_change
+    with attribution=none per the schema's
+    observed_no_change-attribution constraint.
+
+  status remains draft until human review either:
+  (1) admits the event as null_case at empirical_shape=null_event
+      after pinning a verified Wayback snapshot + body_hash /
+      body_path capture of the FINMA 2018-02-16 ICO Guidelines
+      release page (and the underlying ICO-Wegleitung PDF) via
+      scripts/capture_http_artifact.py, or
+  (2) retires this event in favor of eu-mica-2023 as the
+      load-bearing tripartite-taxonomy anchor, with the Swiss
+      FINMA 2018 guidelines cited as predicate in MiCA's
+      analysis_notes rather than as a free-standing event.
+
+  Origin=agent_draft and status=draft per the agent-authoring
+  convention.
+
+scoped_claim: |
+  FINMA's 2018-02-16 "Guidelines for enquiries regarding the
+  regulatory framework for initial coin offerings (ICOs)"
+  established the Swiss-jurisdiction tripartite payment /
+  utility / asset token taxonomy that classifies token
+  issuances under Swiss financial market law (GwG / Code of
+  Obligations / FinSA-precursor frame) and that Swiss-nexus
+  2017-cohort ICO sponsors — most prominently the
+  Tezos Foundation (Zug, CH) — must apply retroactively. The
+  guidelines are framework predicate guidance, not a per-entity
+  enforcement order; observation_kind=observed_no_change with
+  attribution=none at the token-classification axis honestly
+  represents the dispersed framework predicate role. The
+  concurrent Tezos Foundation governance dispute (Gevers vs
+  Breitman) is documented in analysis_notes as contextual
+  background but is not coded as a censorship-layer
+  observation. Comparable-analysis tier; null_case admission
+  candidate pending human audit and archival pinning.
+
+tags:
+  - comparable_main_2017_present
+  - switzerland
+  - finma
+  - ico_guidelines
+  - token_taxonomy
+  - payment_utility_asset
+  - tezos_foundation
+  - zug
+  - regulatory_predicate
+  - class_level_guidance
+  - dryrun_2026_05_17

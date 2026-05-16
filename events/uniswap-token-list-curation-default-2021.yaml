@@ -1,0 +1,293 @@
+id: uniswap-token-list-curation-default-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - uniswap-tokenized-stocks-delisting-2021-07
+  - uniswap-frontend-delisting-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: uniswap_labs
+  timestamp: 2021-07-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://app.uniswap.org
+      wayback: https://web.archive.org/web/2021/https://app.uniswap.org
+      evidence_use: contextual_unarchived
+      note: |
+        Uniswap Labs operates app.uniswap.org and ships the default
+        token-list catalogue that the frontend renders. The 2021
+        default-token-list curation policy — formalized 2021-07-23
+        alongside the synthetic-stocks delisting batch and after the
+        2021-04 Wells-notice-era regulatory-pressure cycle — establishes
+        that Uniswap Labs (the US-based frontend operator) is the
+        discretionary curator of which ERC-20 tokens are surfaced on
+        app.uniswap.org. The on-chain Uniswap Protocol smart contracts
+        (v2 / v3) remain autonomous and permissionless; the curation
+        policy applies exclusively to the Uniswap-Labs-operated
+        frontend UI. This row codes the **policy framework itself**
+        (the discretionary curation power), not any specific per-token
+        cascade — the load-bearing per-token observation for the
+        2021-07-23 cohort is the sibling event
+        uniswap-tokenized-stocks-delisting-2021-07. Marked
+        evidence_use=contextual_unarchived because in this DRYRUN the
+        authoring LLM agent did not personally pin a Wayback snapshot
+        timestamp or compute a body_hash of the policy-framework
+        announcement copy; the Uniswap-Labs domain is the canonical
+        corporate anchor but the precise policy / token-list curation
+        page must be re-anchored during human audit before this
+        citation may serve as an admission anchor.
+  timestamp_sources:
+    - type: semi_primary_measurement
+      url: https://github.com/Uniswap/default-token-list
+      wayback: https://web.archive.org/web/2021/https://github.com/Uniswap/default-token-list
+      evidence_use: contextual_unarchived
+      note: |
+        @uniswap/default-token-list GitHub repo is the technical
+        substrate for the app.uniswap.org default token catalogue.
+        Repo existence and commit history through 2021 corroborate
+        the day-level timestamp of the formalized curation framework
+        coinciding with the 2021-07-23 cohort delisting. Wayback
+        wildcard pointer (web/2021/) in lieu of a pinned-timestamp
+        snapshot; evidence_use=contextual_unarchived pending
+        human-audit re-pin of the precise repo state / README at the
+        2021-07-23 cutover.
+    - type: semi_primary_measurement
+      url: https://blog.uniswap.org/token-lists
+      wayback: https://web.archive.org/web/2020/https://blog.uniswap.org/token-lists
+      evidence_use: contextual_unarchived
+      note: |
+        "Introducing Token Lists" — Uniswap Labs blog post establishing
+        the token-list specification and the default-list curation
+        approach ("a list supported by their own reputation"). The
+        2021-07-23 default-token-list curation policy is the
+        post-Wells-notice-era operationalization of this framework
+        as a discretionary corporate-compliance gate at the
+        Uniswap-Labs frontend. Wayback wildcard pointer pending
+        human-audit re-pin.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The target of this row is the **policy framework** — the
+    Uniswap-Labs-operated default token list at app.uniswap.org and
+    the discretionary curation power that Uniswap Labs (the US-based
+    frontend operator) exercises over which ERC-20 tokens are
+    surfaced in the UI. enumeration=subset because the framework
+    governs an open-ended ongoing class of tokens (any ERC-20 that
+    Uniswap Labs's compliance review chooses to admit or exclude),
+    not a closed finite enumerated set. The 2021-07-23 cohort of
+    approximately 100 tokenized-equity / option / synthetic-equity
+    tokens that triggered the formal articulation of this curation
+    policy is enumerated separately in the sibling event
+    uniswap-tokenized-stocks-delisting-2021-07. The 2023-07-21
+    broader regulatory-category cohort is enumerated in the sibling
+    event uniswap-frontend-delisting-2023. Target is the Uniswap
+    Labs frontend operator (the entity that controls app.uniswap.org
+    and the @uniswap/default-token-list repo), not the Uniswap
+    Protocol smart contracts and not any specific listed token.
+  protocol: uniswap_v2_v3
+  actor_type: dex_frontend
+  actor_name: Uniswap Labs (frontend operator, app.uniswap.org)
+  chains: [ethereum]
+  canonical_domains:
+    - app.uniswap.org
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      app.uniswap.org remained reachable globally throughout the
+      2021 curation-policy formalization window; the policy
+      framework is client-side token-list filtering inside the
+      Uniswap-Labs-operated UI, not an ISP / DNS / network filter.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Ethereum mainnet validator / miner consensus surfaces are not
+      engaged by a Uniswap-Labs default-token-list curation policy.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists are not implicated by a
+      Uniswap-Labs frontend default-token-list curation policy.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [app.uniswap.org]
+    note: |
+      The default-token-list curation policy formalized 2021-07-23
+      is the **policy framework** governing the Uniswap-Labs frontend
+      UI. It is articulated at L4 (the load-bearing layer) but this
+      row codes the framework itself, NOT any specific per-token
+      cascade. The 2021-07-23 cohort-level per-token observation is
+      attached as the load-bearing observed_change in the sibling
+      event uniswap-tokenized-stocks-delisting-2021-07 (and the
+      2023-07-21 cohort in uniswap-frontend-delisting-2023). To
+      avoid double-counting the same per-token cascade across two
+      event rows, this row carries no observed_change at L4:
+      empirical_shape=null_event by codebook §3 (0 observed_change
+      layers). l4_frontend status=not_measured rather than measured
+      because no per-token cascade observation is captured on this
+      row; the framework-level claim is asserted via
+      observed_no_change-style narrative anchoring in
+      analysis_notes pending human-audit body_hash pinning of the
+      policy-framework announcement page.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token-contract-level freeze or admin action follows from
+      a Uniswap-Labs frontend default-token-list curation policy;
+      the underlying ERC-20 contracts are operated by third parties
+      and the curation policy governs only the frontend UI catalogue.
+      not_applicable on substrate-mismatch grounds.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No centralized-exchange off-ramp action is engaged by a
+      Uniswap-Labs frontend default-token-list curation policy.
+      not_applicable on substrate-mismatch grounds.
+
+observations: []
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.2 corporate_policy
+  framework row; lean run): authored by LLM agent without personally
+  verifying Wayback / body_hash; status=draft / origin=agent_draft per
+  validator. Real release must replace this DRYRUN marker with a
+  human-verified audit after pinning real archive anchors (the
+  policy-framework announcement page body_hash, the
+  @uniswap/default-token-list repo state at the 2021-07-23 cutover,
+  and the "Introducing Token Lists" blog post body_hash).
+
+  null_event — S5 corporate-policy-framework row documenting the
+  Uniswap Labs default-token-list curation policy formalized on
+  2021-07-23 (post-2021-04 Wells-notice-era regulatory-pressure
+  cycle, concurrent with the synthetic-stocks delisting batch).
+  This row codes the **policy framework itself** — the
+  discretionary curation power that Uniswap Labs (the US-based
+  frontend operator) exercises over the app.uniswap.org default
+  token list, separate from the autonomous on-chain Uniswap
+  Protocol smart contracts (v2 / v3).
+
+  empirical_shape=null_event because the per-token cascade
+  observations are coded on the sibling rows
+  (uniswap-tokenized-stocks-delisting-2021-07 for the 2021-07-23
+  ~100-token tokenized-equity cohort, and
+  uniswap-frontend-delisting-2023 for the 2023-07-21 ~100+-token
+  broader regulatory-category cohort). To avoid double-counting
+  the same load-bearing l4_frontend observed_change across two
+  rows, this framework row carries no observed_change of its own
+  (codebook §3: null_event = 0 observed_change layers).
+  Correspondingly admission_tier=null_case (codebook §4: 0
+  strong-attribution observed_change layers → null_case;
+  framework rows function as denominator-control / scoping
+  anchors, not as numerator events).
+
+  Why this row exists despite carrying no observed_change:
+  (a) it documents the corporate-governance fact that
+  Uniswap Labs operates the default token list as a
+  discretionary frontend gate, distinct from the on-chain
+  Uniswap Protocol — a structural claim load-bearing for the
+  paper's frontend / protocol-decoupling thesis but not itself
+  a measurable per-token cascade; (b) it provides the
+  temporal anchor (2021-07-23) at which the framework
+  was formally articulated, giving the two sibling per-token
+  rows a shared policy-framework parent for cohort-evolution
+  analysis (2021 tokenized-equity cohort → 2023 broader
+  regulatory-category cohort, under the same curation
+  framework); (c) it provides a 2021 framework reference for
+  any future post-2021 Uniswap-Labs frontend curation rows
+  (e.g., subsequent token additions / removals) without
+  forcing each such row to re-explain the framework. This is
+  the same denominator-control role that other null_case
+  rows play in the dataset.
+
+  L0 / L1 / L3 / asset_onchain / offramp_cex are all
+  not_applicable on substrate-mismatch grounds. l4_frontend is
+  not_measured (not measured / not_applicable) because the
+  framework is articulated at L4 but the per-token cascade
+  observations are coded on the sibling rows; on this row L4
+  is the policy-articulation layer with no row-local
+  observation captured.
+
+  Promotion path: this row stays at admission_tier=null_case /
+  empirical_shape=null_event indefinitely by design — it is a
+  framework-scoping row, not an empirical-case row. Human audit
+  should focus on pinning the policy-framework announcement
+  page body_hash and the @uniswap/default-token-list repo state
+  at the 2021-07-23 cutover so the framework citation is
+  archive-grade even though the row carries no
+  observed_change.
+
+scoped_claim: |
+  "Uniswap Labs' default token list curation policy — formalized
+  2021-07-23 alongside the synthetic-stocks delisting batch and
+  after the 2021-04 Wells-notice-era regulatory-pressure cycle —
+  establishes that the US-based frontend operator (Uniswap Labs)
+  holds discretionary curation power over which ERC-20 tokens
+  are surfaced on app.uniswap.org, separate from the autonomous
+  on-chain Uniswap Protocol smart contracts. This framework row
+  carries no row-local observed_change (the per-token cascade
+  observations are coded on the sibling events
+  uniswap-tokenized-stocks-delisting-2021-07 and
+  uniswap-frontend-delisting-2023); it functions as a
+  policy-scoping anchor for the Uniswap-Labs frontend-curation
+  arc and as denominator control in S5 corporate-frontend
+  analyses."
+
+scoped_knowledge: |
+  This row is the policy-framework parent of the Uniswap-Labs
+  frontend-restriction timeline: 2021-07-23 default-token-list
+  curation policy (this row, framework) → 2021-07-23
+  tokenized-equity ~100-token cohort delisting
+  (uniswap-tokenized-stocks-delisting-2021-07) → 2022-08 SEC
+  subpoena to Uniswap Labs (coded separately if admitted) →
+  2023-07-21 broader regulatory-category ~100+-token cohort
+  delisting (uniswap-frontend-delisting-2023) → 2024 SEC
+  Wells Notice (sec-v-uniswap-wells-notice-2024). The
+  framework row gives the two per-token sibling rows a shared
+  policy-framework reference and isolates the structural
+  frontend / protocol decoupling that recurs across both
+  per-token cohorts.
+
+  Paper-relevant axes: (a) framework rows as denominator
+  control — null_event / null_case rows that capture
+  structural corporate-governance claims load-bearing for the
+  L4-decoupling thesis without entering the per-token-cascade
+  numerator; (b) the discretionary curation power at L4 as a
+  recurrent S5 corporate-compliance gate distinct from the
+  on-chain protocol — the same gate fires in 2021 (tokenized
+  equity cohort) and 2023 (broader regulatory cohort) under
+  the same framework; (c) the framework's articulation timing
+  (post-2021-04 Wells-notice-era, concurrent with the
+  2021-07-23 cohort delisting) anchors the preemptive-vs-
+  reactive split within S5 corporate-frontend actions.
+
+tags:
+  - corporate_policy_change
+  - frontend_curation
+  - default_token_list
+  - uniswap_labs
+  - dex_frontend
+  - frontend_protocol_split
+  - policy_framework
+  - null_event
+  - denominator_control
+  - dryrun_2026_05_17

@@ -1,0 +1,298 @@
+id: korea-fsc-institutional-restriction-2017
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+last_human_audit: 2026-05-17
+
+related_events:
+  - korea-travel-rule-2022
+  - korea-fsc-ico-ban-2017
+
+trigger:
+  type: regulatory_enforcement
+  actor: KR_FSC
+  timestamp: 2017-12-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsc.go.kr/eng/pr010101/22173
+      wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/pr010101/22173
+      evidence_use: contextual_unarchived
+      note: |
+        South Korea Financial Services Commission (FSC) press release index
+        (English site). Joint government emergency measure announced
+        2017-12-13 by the Office for Government Policy Coordination with
+        the FSC named as the financial-sector regulator. The 2017-12-13
+        package introduced two load-bearing rules for the Korean crypto
+        rail: (1) real-name verified bank accounts mandatory for crypto
+        exchange deposits/withdrawals (anonymous virtual accounts at
+        Korean exchanges to be phased out), (2) prohibition on minors and
+        foreign nationals opening Korean crypto exchange accounts, and
+        (3) regulated financial institutions prohibited from buying,
+        holding, or investing in crypto-assets. The follow-on FSC
+        announcement 2018-01-23 set the 2018-01-30 effective date for the
+        real-name banking mandate. The fsc.go.kr URL path drifts; the
+        provisional Wayback anchor uses year-prefix lookup and requires
+        re-pinning during human audit before this citation may serve as
+        an admission anchor in its own right. Marked
+        evidence_use=contextual_unarchived pending that re-pin.
+    - type: supporting_journalism
+      url: https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
+      wayback: https://web.archive.org/web/2018/https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
+      evidence_use: contextual_unarchived
+      note: |
+        Secondary reporting of the FSC 2018-01-23 confirmation that the
+        real-name mandate would take effect 2018-01-30. Used as a
+        contextual anchor for the date sequence (2017-12-13 emergency
+        package → 2018-01-23 FSC confirmation → 2018-01-30 effective
+        date). Wayback timestamp requires re-pinning during human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision is appropriate: the joint government emergency
+        measure was issued 2017-12-13 as a same-day policy announcement.
+        Intra-day publication timing is not carried in the public English
+        site press index.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the KR FSC + Office for Government Policy
+    Coordination joint directive, addressed to (a) Korean crypto
+    exchanges operating fiat on/off-ramps (real-name verified account
+    mandate, anonymous virtual account ban, minor/foreign-national
+    account ban), and (b) Korean regulated financial institutions
+    (prohibition on buying, holding, or investing in crypto-assets).
+    Affected named exchanges in the 2017-12 / 2018-01 window include
+    Upbit, Bithumb, Coinone, and Korbit; these are recorded as implicit
+    second-order targets in observation scope rather than enumerated in
+    canonical_domains, matching the sibling korea-fsc-ico-ban-2017 and
+    china-pboc-crypto-ban-2021 convention.
+  actor_type: korean_crypto_ecosystem
+  actor_name: KR regulated VASP + financial-institution sector (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - KR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2017-12-13 emergency measure does not direct ISP-level domain
+      blocking or DNS interference. Korean network-layer treatment of
+      crypto-exchange domains is not part of this trigger. L0
+      not_applicable consistent with sibling banking-and-exchange-rail
+      nation-state events (korea-fsc-ico-ban-2017, China 2013, China 2021,
+      India 2018, Turkey 2021).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The Ethereum Merge (2022-09-15) is ~5 years downstream of the
+      2017-12-13 trigger; the post-Merge PBS relay-filter primitive that
+      the L1 layer measures did not exist. not_applicable on
+      construct-did-not-exist grounds, consistent with sibling pre-Merge
+      nation-state events.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Flashbots Protect launched 2022-11 and MEV-Blocker launched
+      2023-03-27. The public-RPC compliance substrate that the L3 layer
+      measures did not exist in 2017. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - upbit.com
+      - bithumb.com
+      - coinone.co.kr
+      - korbit.co.kr
+    note: |
+      Korean crypto exchange frontends (Upbit, Bithumb, Coinone, Korbit)
+      added real-name-account onboarding flows and anonymous-account
+      deprecation notices on their homepages and account-onboarding
+      pages across 2017-12 / 2018-01 in compliance with the FSC mandate.
+      Wayback bracketing of those snapshots is plausibly feasible but
+      specific snapshot URLs have not been pinned in this authoring
+      pass. L4 remains not_measured pending the Wayback-capture pass.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The FSC directive does not engage an issuer-side blacklist or
+      freeze admin method on any chain. The 2017 trigger predates the
+      stablecoin-issuer admin-freeze regime that the asset_onchain layer
+      measures. not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - upbit
+      - bithumb
+      - coinone
+      - korbit
+    note: |
+      The 2017-12-13 emergency measure is by construction a regulated-
+      VASP and regulated-financial-institution event: it mandates
+      real-name verified bank accounts for crypto exchange deposits/
+      withdrawals, bans anonymous virtual accounts, prohibits minors
+      and foreign nationals from opening Korean exchange accounts, and
+      prohibits regulated financial institutions from buying, holding,
+      or investing in crypto-assets. The four dominant Korean crypto
+      exchanges (Upbit, Bithumb, Coinone, Korbit) complied across
+      Q4-2017 / Q1-2018; the operational effective date for the
+      real-name banking mandate was 2018-01-30 per the FSC 2018-01-23
+      confirmation. The FSC directive itself names the regulatory
+      mandate, giving direct attribution at this layer. Marked
+      measured; load-bearing observation attached below as
+      observation_kind=observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: kr_regulated_vasp_ecosystem
+    event: real_name_account_mandate_and_institutional_crypto_prohibition
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-12-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.fsc.go.kr/eng/pr010101/22173
+        wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/pr010101/22173
+        evidence_use: contextual_unarchived
+        note: |
+          KR FSC is the named financial-sector regulator within the
+          joint government emergency measure of 2017-12-13. The package
+          mandates: (1) real-name verified bank accounts for Korean
+          crypto exchange deposits/withdrawals (anonymous virtual
+          accounts banned), (2) minors and foreign nationals barred
+          from opening Korean crypto exchange accounts, (3) regulated
+          financial institutions prohibited from buying, holding, or
+          investing in crypto-assets. The 2018-01-23 FSC announcement
+          set the 2018-01-30 effective date for the banking-rail real-
+          name mandate. Direct attribution: the FSC directive itself
+          mandates the behavior across the regulated Korean
+          crypto-exchange sector (Upbit, Bithumb, Coinone, Korbit) and
+          across the regulated-financial-institution sector.
+          Provisional wayback anchor uses year-prefix lookup; specific
+          snapshot timestamp requires re-pinning during human audit.
+      - type: supporting_journalism
+        url: https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
+        wayback: https://web.archive.org/web/2018/https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
+        evidence_use: contextual_unarchived
+        note: |
+          Secondary anchor to the FSC 2018-01-23 confirmation of the
+          2018-01-30 effective date for the real-name banking mandate.
+          The 2018-01-30 effective date is treated as a coda within the
+          same regulatory action rather than as a separate event.
+          Wayback timestamp requires re-pinning during human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.4 non_us_state
+  discovery; lean run): authored by LLM agent without personally
+  verifying Wayback/body_hash anchors; status=draft, origin=agent_draft.
+  Real release requires human-verified audit pass to replace the DRYRUN
+  marker after pinning real archive anchors.
+
+  Foundational Asia regulator action. South Korea's FSC 2017-12-13
+  emergency measure is the immediate downstream sibling to the
+  korea-fsc-ico-ban-2017 (2017-09-29) trigger: where the September order
+  closed token-issuance fundraising and crypto-margin products at
+  regulated financial institutions, the December order closed the fiat
+  banking-rail loophole by mandating real-name verified bank accounts
+  for Korean crypto exchange deposits/withdrawals and prohibiting
+  institutional crypto holdings. The 2018-01-30 effective date is
+  operational follow-through. This event and korea-fsc-ico-ban-2017
+  together form the canonical Korean 2017 regulator stack;
+  korea-travel-rule-2022 traces the longitudinal extension to the
+  metadata-layer KYC regime.
+
+  Per codebook §5.1, trigger.type=regulatory_enforcement is the canonical
+  fit: the actor is a non-US national regulator (KR FSC) and the action
+  is administrative (real-name account mandate, institutional crypto
+  prohibition), not a network/payment-rail block. Per §5.2,
+  research_stratum=S4_nation_state is permitted with
+  trigger.type=regulatory_enforcement.
+
+  Substantive findings:
+  - First major nation-state KYC-mandated crypto regime: real-name
+    verified bank accounts required for Korean crypto exchange
+    deposits/withdrawals.
+  - Anonymous virtual accounts at Korean exchanges banned.
+  - Minors and foreign nationals barred from opening Korean crypto
+    exchange accounts.
+  - Regulated financial institutions prohibited from buying, holding,
+    or investing in crypto-assets.
+  - Effective date for the banking-rail real-name mandate: 2018-01-30
+    (per FSC 2018-01-23 confirmation).
+  - Observed cascade: Upbit / Bithumb / Coinone / Korbit complied
+    across Q4-2017 and Q1-2018.
+
+  Why temporal_tier=comparable_main_2017_present and
+  analysis_use=comparable_analysis: 2017-12-13 sits in the 2017+
+  comparable corpus; matches sibling korea-fsc-ico-ban-2017 and
+  korea-travel-rule-2022 treatment for cross-jurisdiction analysis.
+
+  Why empirical_case rather than anchor_case: the LLM authoring
+  constraint in this pass is that Wayback captures for the L4 frontend
+  reactions at Upbit / Bithumb / Coinone / Korbit homepages have not
+  been personally re-verified, and the FSC press-release English-site
+  index has drifted URL path format since 2017 (year-prefix Wayback
+  lookup only). Per project convention, anchor_case promotion requires
+  the actual Wayback-capture pass on L4 frontend evidence; until that
+  lands, the event admits at empirical_case on the strength of the
+  direct-attribution offramp_cex observation. Conservative-default
+  rule (§8.4) applied.
+
+  Why L0/L1/L3/asset_onchain are not_applicable: the FSC directive is
+  a banking-and-exchange-rail action, not a network-layer block; the
+  Ethereum PBS-era L1/L3 measurement primitives do not exist in 2017;
+  the stablecoin-issuer admin-freeze regime that the asset_onchain
+  layer measures predates this trigger. Consistent with sibling
+  korea-fsc-ico-ban-2017.
+
+scoped_claim: |
+  The KR FSC 2017-12-13 joint government emergency measure mandated
+  real-name verified bank accounts at Korean crypto exchanges, banned
+  anonymous virtual accounts, barred minors and foreign nationals from
+  opening Korean exchange accounts, and prohibited regulated financial
+  institutions from buying, holding, or investing in crypto-assets,
+  with the banking-rail real-name mandate effective 2018-01-30 and the
+  regulated Korean crypto-exchange sector (Upbit, Bithumb, Coinone,
+  Korbit) complying across Q4-2017 / Q1-2018. The offramp_cex layer
+  carries the load-bearing direct-attribution observation; L4 frontend
+  reactions are consistent with the cascade but require a Wayback-
+  capture pass before they may anchor a separate observed_change row.
+
+scoped_knowledge: |
+  Foundational Asia regulator action and the first major nation-state
+  KYC-mandated crypto regime. Together with korea-fsc-ico-ban-2017
+  (2017-09-29), the 2017-12-13 emergency measure forms the canonical
+  Korean 2017 regulator stack: September closed token-issuance
+  fundraising and institutional crypto-margin products, December closed
+  the fiat banking-rail loophole via real-name account mandate and
+  institutional crypto prohibition. The 2018-01-30 operational
+  effective date is a coda of the same regulatory action.
+  korea-travel-rule-2022 traces the longitudinal extension to
+  metadata-layer KYC. The cascade shape is comparison-not-cascade
+  because construct-did-not-exist layers (L1, L3, asset_onchain) and
+  the policy scope (regulated-VASP and regulated-FI rail only, not
+  network layer) limited the observable cross-layer surface.
+
+tags:
+  - regulatory_enforcement
+  - south_korea
+  - fsc
+  - real_name_account_mandate
+  - institutional_crypto_prohibition
+  - banking_rail_severance
+  - historical_anchor

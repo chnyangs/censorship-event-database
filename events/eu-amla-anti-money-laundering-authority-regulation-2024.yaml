@@ -1,0 +1,202 @@
+id: eu-amla-anti-money-laundering-authority-regulation-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: EU_COUNCIL
+  timestamp: 2024-05-30T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/eli/reg/2024/1620/oj
+      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/eli/reg/2024/1620/oj
+      evidence_use: contextual_unarchived
+      note: |
+        DRYRUN wayback stub; replace with verified capture during real
+        human audit.
+        Regulation (EU) 2024/1620 of the European Parliament and of the
+        Council of 31 May 2024 establishing the Authority for Anti-Money
+        Laundering and Countering the Financing of Terrorism (AMLA).
+        Approved by the European Parliament on 2024-04-24 and adopted by
+        the Council on 2024-05-30; published in the Official Journal of
+        the European Union on 2024-06-19. AMLA seat: Frankfurt am Main,
+        Germany. AMLA begins operations 2025-07-01; direct supervision of
+        selected high-risk obliged entities (including high-risk Crypto-
+        Asset Service Providers / CASPs operating cross-border in ≥6
+        Member States) is scheduled to begin 2028-01-01 (the original
+        political agreement referenced 2027 start; the final regulation
+        sets first selection in 2027 with direct supervision from 2028).
+        This event records the supranational regulatory trigger; no
+        observed cross-layer behavior is admissible at trigger time
+        because the supervisory regime is future-effective.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level Council adoption timing 2024-05-30.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level: high-risk Crypto-Asset Service Providers (CASPs) operating
+    cross-border in the EU that will fall under AMLA's direct supervision
+    once the selection process completes (first selection scheduled 2027;
+    direct supervision from 2028-01-01). Per Reg (EU) 2024/1620 selection
+    criteria, AMLA will directly supervise approximately 40 of the highest-
+    risk obliged entities EU-wide, of which a subset are CASPs. No address-
+    or domain-level enumeration possible at trigger date; this is sector-
+    wide supranational supervisory architecture. Per codebook §7, subset
+    enumeration with class-level rationale (high-risk cross-border CASPs)
+    is the canonical coding for class-level regulatory targets.
+  actor_type: supranational_supervisory_authority
+  actor_name: EU AMLA-supervised high-risk CASP cohort (future-effective)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: AMLA Regulation establishes a supervisory authority; it does not mandate asset-level address freezes.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [eu_high_risk_casp_cohort]
+    note: |
+      AMLA's direct supervision of high-risk CASPs is future-effective
+      (first selection 2027; direct supervision from 2028-01-01). No
+      observable CASP-level behavioral change is attributable to the
+      2024-05-30 Council adoption at trigger date. Coded
+      partially_measured — anchored by the EUR-Lex primary-legal artifact
+      documenting the class-level scope — to support the
+      observed_no_change row; revisit once first-selection (2027) and
+      direct-supervision (2028) artifacts surface.
+    denominator_artifact:
+      type: primary_legal
+      url: https://eur-lex.europa.eu/eli/reg/2024/1620/oj
+      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/eli/reg/2024/1620/oj
+      note: |
+        EUR-Lex Regulation (EU) 2024/1620 anchor for the class-level
+        high-risk CASP scope. DRYRUN wayback stub; replace with verified
+        capture during real human audit.
+
+observations:
+  - layer: offramp_cex
+    actor: eu_high_risk_casp_cohort
+    event: amla_regulation_adopted_supervisory_regime_future_effective_no_observed_casp_change_at_trigger
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-05-30T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-05-30T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/eli/reg/2024/1620/oj
+        wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/eli/reg/2024/1620/oj
+        scope_descriptor:
+          providers: [eu_high_risk_casp_cohort]
+          time_window:
+            - 2024-05-30T00:00:00Z
+            - 2028-01-01T00:00:00Z
+        note: |
+          DRYRUN wayback stub; replace with verified capture during real
+          human audit.
+          Council adoption of Reg (EU) 2024/1620 on 2024-05-30 creates the
+          supervisory authority and selection framework but does not yet
+          impose direct supervision. AMLA operational from 2025-07-01;
+          direct CASP supervision from 2028-01-01. No CASP-level
+          observable change at trigger date; null_event coding per codebook
+          §3 (0 observed_change layers).
+        evidence_use: contextual_unarchived
+      - type: primary_legal
+        url: https://www.amla.europa.eu/about-amla_en
+        wayback: https://web.archive.org/web/20260517000001/https://www.amla.europa.eu/about-amla_en
+        scope_descriptor:
+          providers: [eu_high_risk_casp_cohort]
+          time_window:
+            - 2024-05-30T00:00:00Z
+            - 2028-01-01T00:00:00Z
+        note: |
+          DRYRUN wayback stub; replace with verified capture during real
+          human audit.
+          AMLA "About" page anchors the Frankfurt am Main seat, 2025-07-01
+          operational start, and the 2028 direct-supervision phase-in.
+          Used as a second contextual_unarchived pointer for the null-event
+          posture; revisit once first-selection (2027) and direct-
+          supervision (2028) artifacts surface.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Null-event recording the 2024-05-30 Council adoption of Regulation (EU)
+  2024/1620 establishing AMLA, the EU-level supervisor for AML/CFT
+  including direct supervision of high-risk CASPs. Headquartered in
+  Frankfurt am Main. AMLA begins operations 2025-07-01; first selection
+  of directly supervised entities scheduled 2027; direct supervision from
+  2028-01-01.
+
+  Codebook compliance:
+  - trigger.type=supranational_regulation per §5.1 (EU regulation,
+    non-sanctions). Stratum S6_supranational per §5.2.
+  - target.enumeration=subset per §7 (class-level high-risk cross-border
+    CASPs; not exhaustively enumerable at trigger date).
+  - analysis_use=comparable_analysis (canonical form, not
+    `comparative_analysis`) per §6.
+  - empirical_shape=null_event per §3 (0 observed_change layers; the
+    supervisory regime is future-effective and produces no observable
+    cross-layer behavior at trigger date).
+  - admission_tier=null_case per §4 (0 strong-attribution observed_change
+    layers).
+  - Observation rows use attribution=`none` because observation_kind is
+    `observed_no_change` (§1.1).
+
+  Evidence is contextual_unarchived (per ingestion request); no admission-
+  anchor capture in this draft. Sibling supranational events:
+  eu-mica-2023 (CASP licensing regime), eu-tfr-recast-2023 (Travel Rule),
+  fatf-r15-vasp-travel-rule-2019 (FATF substrate). DAC8 sibling slug
+  referenced in related_events for future-coupling even though that event
+  is not yet authored in the dataset.
+
+scoped_claim: |
+  "Council adoption of EU Regulation 2024/1620 on 2024-05-30 established
+  AMLA (HQ Frankfurt) as the EU-level AML/CFT supervisor, including
+  future direct supervision of high-risk cross-border CASPs. Recorded as
+  a null event because the supervisory regime is future-effective (CASP
+  direct supervision from 2028-01-01) and produces no observable
+  cross-layer behavior at trigger date."
+
+related_events:
+  - eu-mica-2023
+  - eu-tfr-recast-2023
+  - eu-dac8-crypto-asset-reporting-directive-2023
+  - fatf-r15-vasp-travel-rule-2019
+
+tags:
+  - eu_regulation
+  - amla
+  - supranational_framework
+  - aml_cft
+  - casp_supervision
+  - null_event
+  - future_effective

@@ -1,0 +1,371 @@
+id: kraken-monero-eu-delisting-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - binance-privacy-coin-delisting-2023
+  - okx-privacy-token-delist-2024
+  - eu-mica-2023
+  - eu-tfr-recast-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: KRAKEN_PAYWARD
+  timestamp: 2024-10-31T15:00:00Z
+  timestamp_precision: hour
+  citation:
+    - type: primary_corporate
+      url: https://support.kraken.com/articles/support-for-monero-xmr-in-europe
+      wayback: https://web.archive.org/web/2024/https://support.kraken.com/articles/support-for-monero-xmr-in-europe
+      evidence_use: contextual_unarchived
+      note: |
+        Kraken (Payward, Inc.) customer-support article "Support for
+        Monero (XMR) in Europe" announcing termination of XMR trading
+        and deposit support for clients resident in the European
+        Economic Area (EEA), effective 2024-10-31 at 15:00 UTC. The
+        notice closes the XMR/USD, XMR/EUR, XMR/BTC, and XMR/USDT spot
+        markets for EEA users and sets a 2024-12-31 15:00 UTC
+        withdrawal deadline, after which remaining XMR balances are
+        force-converted to BTC at the prevailing market rate and
+        distributed back to affected users by 2025-01-06. The notice
+        cites EU regulatory changes (the Markets in Crypto-Assets
+        framework — Regulation (EU) 2023/1114; see related_events:
+        eu-mica-2023 — and the Travel-Rule / TFR recast Regulation
+        (EU) 2023/1113; see related_events: eu-tfr-recast-2023) as
+        the compliance rationale for ending EEA Monero support.
+        Marked evidence_use=contextual_unarchived because in this
+        DRYRUN the authoring LLM agent did not personally pin a
+        Wayback snapshot timestamp or compute a body_hash; the
+        precise support-article URL must be re-anchored during human
+        audit before this citation may serve as an admission anchor
+        in its own right.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Hour-level precision (2024-10-31T15:00:00Z) per the Kraken
+        customer-support notice, which specifies 15:00 UTC as the
+        operational cutover for halting XMR trading and deposits for
+        EEA clients. Companion 2024-12-31T15:00:00Z withdrawal
+        deadline and 2025-01-06 force-conversion-to-BTC distribution
+        are documented in the same notice but coded under the
+        offramp_cex observation rather than the trigger timestamp.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target entity is Kraken (Payward, Inc.) as the centralized-
+    exchange operator implementing the EEA-cohort Monero (XMR)
+    delisting. The named affected asset is Monero (XMR) and the
+    named affected pairs are XMR/USD, XMR/EUR, XMR/BTC, and
+    XMR/USDT spot markets for users resident in the European
+    Economic Area (EEA: the 27 EU member states plus Iceland,
+    Liechtenstein, Norway). Recorded as enumeration=subset because
+    (a) the action is a geofenced EEA-cohort listing restriction
+    rather than a global Kraken-wide delisting, (b) the class-
+    level rationale (MiCA-era privacy-asset compliance) extends
+    to a broader cohort of privacy assets that Kraken did not
+    enumerate in this notice, and (c) Kraken's broader 2024-2025
+    EEA / EU compliance program covered additional product-
+    catalogue narrowing in later notices, coded elsewhere or
+    pending in the candidate ledger.
+  entity: kraken_payward_eea_xmr_delisting
+  actor_name: Kraken (Payward, Inc.) — EEA user cohort
+  actor_type: centralized_exchange_listing_action
+  chains: [monero]
+  canonical_domains:
+    - kraken.com
+    - support.kraken.com
+
+jurisdiction: [EU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      kraken.com and support.kraken.com remained reachable in the
+      affected EEA jurisdictions before, during, and after the
+      2024-10-31 cutover; the action is a product-catalogue change
+      at the exchange-listing layer for the named EEA user cohort,
+      not an ISP / DNS domain filter. Consistent with the L0
+      treatment in binance-privacy-coin-delisting-2023 and
+      okx-privacy-token-delist-2024 S5 corporate listing events.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Monero is an independent base-chain network; a Kraken EEA-
+      cohort XMR spot-pair removal does not engage Monero's miner /
+      consensus surface. Off-exchange transferability and base-
+      chain operation are unaffected by the listing action.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists for Ethereum and EVM
+      chains are not implicated by a Kraken spot-pair removal
+      targeting non-EVM Monero. No L3 measurement primitive
+      applies. not_applicable on substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Kraken support-article notice is itself the announcement
+      surface, not a separable frontend-restriction observation
+      distinct from the off-ramp catalogue change. Frontend
+      visibility of removed pairs for EEA users collapses in
+      lockstep with the off-ramp action; no independent L4 surface
+      is pinned here. Treated symmetrically with the L4 handling
+      in binance-privacy-coin-delisting-2023 and
+      okx-privacy-token-delist-2024.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Monero is a native base-chain asset with no issuer admin
+      freeze primitive; no token-contract-level freeze or admin
+      action is engaged by the Kraken listing change. The
+      auto-conversion-to-BTC at the 2024-12-31 withdrawal deadline
+      is a CEX-internal force-liquidation occurring inside Kraken's
+      books, not an on-chain admin freeze of the underlying XMR.
+      The action is exchange-listing-only. not_applicable on
+      substrate-mismatch grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - kraken_spot_xmr_usd_eea_cohort
+      - kraken_spot_xmr_eur_eea_cohort
+      - kraken_spot_xmr_btc_eea_cohort
+      - kraken_spot_xmr_usdt_eea_cohort
+    note: |
+      Load-bearing layer. Kraken (Payward, Inc.), one of the global
+      top-tier centralized exchanges by EUR-denominated spot
+      volume, halted XMR trading and deposits for EEA-resident
+      clients effective 2024-10-31 at 15:00 UTC, with a
+      2024-12-31 15:00 UTC withdrawal deadline and automatic
+      force-conversion of remaining XMR balances to BTC for
+      affected users by 2025-01-06. The action narrows the CEX
+      off-ramp surface for Monero in the Kraken EEA corridor and
+      is the direct realization of the corporate-policy trigger.
+      Attached below as observed_change with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:kraken
+    event: kraken_spot_pair_removal_xmr_eea_cohort
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-10-31T15:00:00Z
+    precision: hour
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://support.kraken.com/articles/support-for-monero-xmr-in-europe
+        wayback: https://web.archive.org/web/2024/https://support.kraken.com/articles/support-for-monero-xmr-in-europe
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - kraken_spot_xmr_usd_eea_cohort
+            - kraken_spot_xmr_eur_eea_cohort
+            - kraken_spot_xmr_btc_eea_cohort
+            - kraken_spot_xmr_usdt_eea_cohort
+          countries: [EU]
+          time_window:
+            - 2024-10-31T15:00:00Z
+            - 2025-01-06T23:59:59Z
+        note: |
+          Kraken customer-support article is the corporate-policy
+          anchor. The notice names the XMR spot pairs slated for
+          removal in the EEA-cohort batch (XMR/USD, XMR/EUR,
+          XMR/BTC, XMR/USDT) and gives Kraken-direct attribution
+          for the off-ramp catalogue change. attribution=direct
+          per codebook §1.4 corporate-self-cite-of-trigger logic
+          extended to S5 offramp_cex: the actor (Kraken) is both
+          the announcing entity and the operator of the affected
+          spot-trading product, AND the corporate notice publicly
+          cites the regulatory substrate (MiCA / TFR recast) as
+          the compliance rationale. The geofenced EEA scope plus
+          the documented 2024-12-31 withdrawal deadline and
+          2025-01-06 force-conversion-to-BTC mechanic underline
+          the operational completeness of the off-ramp narrowing
+          within the Kraken EEA corridor. Provisional Wayback
+          wildcard pointer (web/2024/) in lieu of a pinned-
+          timestamp snapshot; evidence_use=contextual_unarchived
+          pending human-audit re-pin of the precise
+          support-article URL and body_hash.
+      - type: supporting_journalism
+        url: https://cryptobriefing.com/kraken-monero-delisting-eea/
+        wayback: https://web.archive.org/web/2024/https://cryptobriefing.com/kraken-monero-delisting-eea/
+        evidence_use: contextual_unarchived
+        note: |
+          Crypto Briefing reporting (2024-10) on the Kraken EEA
+          Monero delisting, corroborating the 2024-10-31 cutover
+          date, the four affected spot pairs, the
+          2024-12-31 withdrawal deadline, and the MiCA / Travel-
+          Rule regulatory rationale. Supporting-journalism
+          tier with provisional Wayback anchor; supports the
+          primary-corporate notice rather than replacing it.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E follow-on
+  S5 corporate-policy candidate authored from the
+  binance-privacy-coin-delisting-2023 /
+  okx-privacy-token-delist-2024 sibling pair as the third
+  cohort anchor for the 2023-2024 CEX privacy-asset delisting
+  wave): authored by LLM agent without personally verifying
+  Wayback/body_hash. status=draft and origin=agent_draft per
+  authoring brief; this row requires human audit and Wayback /
+  body_hash pinning of the Kraken support-article URL before
+  promotion to admitted/human_reviewed.
+
+  comparison — S5 corporate-policy-change event documenting
+  Kraken (Payward, Inc.)'s 2024-10-31 termination of Monero
+  (XMR) trading and deposit support for EEA-resident clients,
+  citing MiCA-era compliance pressure (Regulation (EU)
+  2023/1114; see eu-mica-2023) and the EU Transfer of Funds
+  Regulation recast (Regulation (EU) 2023/1113; see
+  eu-tfr-recast-2023) as the regulatory substrate. The
+  trigger sits ~16 months after the MiCA Official Journal
+  publication (2023-06-09) and ~2 months before MiCA's
+  CASP-rules effective date (2024-12-30), positioning the
+  action as pre-effective-date compliance preparation by the
+  largest EUR-denominated CEX off-ramp for Monero in the EEA
+  corridor. The 2024-10-31 cutover is the largest privacy-coin
+  delisting event keyed to EU jurisdiction in the dataset and
+  carries the highest jurisdictional precision among the
+  2023-2024 CEX privacy-asset wave: where
+  binance-privacy-coin-delisting-2023 geofenced to four
+  EU member states (FR/IT/PL/ES) and okx-privacy-token-delist-2024
+  operated at global product-catalogue scope, the Kraken EEA
+  delisting spans the full EEA-30 (EU-27 + IS + LI + NO) and
+  enumerates the four XMR spot pairs and the operational
+  withdrawal / force-conversion mechanics.
+
+  Single observed_change layer (offramp_cex) with attribution=
+  direct via the Kraken customer-support article primary
+  anchor. L0 / L1 / L3 / l4_frontend / asset_onchain are all
+  not_applicable on substrate-mismatch grounds — this is a CEX
+  corporate-policy listing-restriction event keyed to a single
+  base-chain privacy asset (Monero), not a protocol or network
+  primitive engagement, and the L4 announcement surface is
+  co-located with the off-ramp catalogue change (treated
+  symmetrically with the L4 handling in
+  binance-privacy-coin-delisting-2023 and
+  okx-privacy-token-delist-2024). Pairs with
+  binance-privacy-coin-delisting-2023 (Binance EU-4 cohort
+  leader, 2023-06-26) and okx-privacy-token-delist-2024
+  (OKX global product-catalogue trim, 2023-12-29) as the
+  three-event backbone of the 2023-2024 CEX privacy-asset
+  delisting wave. Pairs with eu-mica-2023 and
+  eu-tfr-recast-2023 on the regulatory-substrate axis: MiCA
+  is the supranational framework trigger (S6) and the TFR
+  recast supplies the AML / Travel-Rule companion; this row
+  is the largest 2024 EU-jurisdictional S5 corporate-policy
+  response by a CASP-relevant operator.
+
+  attribution=direct rationale (codebook §1.4 extended to S5
+  offramp_cex): (A) the corporate notice publicly cites the
+  regulatory substrate as compliance rationale, and (B) the
+  action is implemented by the named actor within the
+  publicly-knowable compliance window ahead of the MiCA
+  CASP-rules effective date (2024-12-30). The actor is both
+  the announcing entity and the operator of the affected
+  off-ramp product, satisfying the corporate-self-cite-of-
+  trigger logic in §1.4.
+
+  Why empirical_case rather than anchor_case: in this DRYRUN
+  pass the load-bearing offramp_cex observation carries direct
+  attribution but the citation is a single primary-corporate
+  notice plus one supporting-journalism corroboration, both
+  with provisional wayback anchors (not body-hash-pinned).
+  Promotion to anchor_case requires (a) the Kraken support-
+  article body_hash / body_path pinning during human audit,
+  (b) an independent semi-primary or supporting tracker
+  source confirming the post-2024-10-31 absence of the XMR
+  spot pairs in Kraken's public EEA ticker listings, and
+  (c) capture of the 2024-12-31 withdrawal-deadline and
+  2025-01-06 force-conversion-to-BTC distribution mechanics
+  as a separate operational anchor.
+
+scoped_claim: |
+  "Kraken (Payward, Inc.)'s 2024-10-31 15:00 UTC termination
+  of Monero (XMR) spot trading and deposits for clients
+  resident in the European Economic Area — closing the
+  XMR/USD, XMR/EUR, XMR/BTC, and XMR/USDT pairs and
+  force-converting remaining XMR balances to BTC by
+  2025-01-06 — narrows the centralized-exchange off-ramp
+  surface for Monero in the Kraken EEA corridor under
+  MiCA-era compliance pressure. The offramp_cex layer carries
+  the load-bearing direct-attribution observation; L0 / L1 /
+  L3 / l4_frontend / asset_onchain are not_applicable for a
+  geofenced exchange-listing-only action keyed to a single
+  base-chain privacy asset. The row is the largest 2024
+  EU-jurisdictional privacy-coin delisting anchor in the
+  2023-2024 CEX privacy-asset delisting wave (alongside
+  binance-privacy-coin-delisting-2023 and
+  okx-privacy-token-delist-2024)."
+
+scoped_knowledge: |
+  This event is the 2024 EEA-cohort anchor in the
+  2023-2024 CEX privacy-asset delisting wave under
+  MiCA-era compliance pressure. The 2024-10-31 Kraken
+  cutover sits ~16 months after MiCA's Official Journal
+  publication (2023-06-09; eu-mica-2023) and ~2 months
+  before MiCA's CASP-rules effective date (2024-12-30),
+  positioning the action as pre-effective-date compliance
+  preparation by the largest EUR-denominated CEX off-ramp
+  for Monero in the EEA corridor. The TFR recast
+  (eu-tfr-recast-2023) supplies the companion Travel-Rule
+  / AML substrate cited in the Kraken notice.
+
+  The three-event backbone of the wave —
+  binance-privacy-coin-delisting-2023 (2023-06-26,
+  Binance EU-4 cohort leader), okx-privacy-token-delist-2024
+  (2023-12-29, OKX global product-catalogue trim), and
+  this kraken-monero-eu-delisting-2024 (2024-10-31,
+  Kraken EEA-30 cohort) — separates three distinct
+  S5 corporate-response patterns to the same MiCA
+  regulatory substrate: (a) geofenced multi-asset
+  EU-member-state cohort (Binance), (b) global
+  multi-asset product-catalogue trim (OKX), and
+  (c) geofenced single-asset (XMR) EEA-30 cohort
+  (Kraken). The jurisdictional-precision gradient
+  (EU-4 → corporate_global → EEA-30) and the
+  asset-scope gradient (8-asset cohort → 4+-asset
+  cohort → 1-asset) document the corporate-response
+  heterogeneity within the same regulatory substrate.
+
+  Paper-relevant axes: (a) the regulatory-substrate /
+  corporate-response coupling (MiCA framework S6 +
+  TFR recast S6 → Binance EU-4 S5 → OKX global S5 →
+  Kraken EEA-30 S5), (b) the jurisdictional-precision
+  gradient within S5 corporate responses to the same
+  framework (member-state vs corporate-global vs
+  EEA-wide), (c) the operational-mechanics anchor
+  (Kraken's 2024-12-31 withdrawal deadline plus
+  2025-01-06 force-conversion-to-BTC mechanic is the
+  most operationally explicit privacy-asset off-ramp
+  closure in the corpus), and (d) the asset-specificity
+  axis (Monero-only EEA action vs multi-asset cohorts)
+  as a corporate-targeting indicator.
+
+tags:
+  - corporate_policy_change
+  - cex_delisting
+  - privacy_asset
+  - kraken_payward
+  - offramp_restriction
+  - mica_compliance
+  - tfr_recast_compliance
+  - eea_geofence
+  - monero_xmr
+  - eu_jurisdiction
+  - cohort_anchor_2024
+  - dryrun_2026_05_17

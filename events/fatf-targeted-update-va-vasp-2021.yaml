@@ -1,0 +1,208 @@
+id: fatf-targeted-update-va-vasp-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: FATF
+  timestamp: 2021-10-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html
+      wayback: https://web.archive.org/web/2021*/https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3 supranational
+        discovery; lean run): authored by LLM agent without personally
+        verifying Wayback/body_hash; origin=agent_draft per validator
+        hard-rule. Human auditor must replace this DRYRUN marker with a
+        pinned archive anchor before release.
+
+        FATF "Updated Guidance for a Risk-Based Approach to Virtual Assets
+        and Virtual Asset Service Providers" issued 2021-10-28. Major
+        targeted update to the 2019 R.15 INR Guidance covering six focus
+        areas: (1) clarified definitions of virtual assets and VASPs,
+        (2) how FATF Standards apply to stablecoins, (3) ML/TF risks and
+        country-level tools for peer-to-peer (P2P) transactions,
+        (4) updated VASP licensing/registration guidance, (5) Travel Rule
+        implementation guidance for public and private sectors (incl.
+        the "sunrise problem" of asymmetric national rollout), and
+        (6) information-sharing and co-operation among VASP supervisors.
+        The 2021 update also addresses DeFi and NFTs at the standards-
+        application layer (functional test: control or sufficient
+        influence over a VA arrangement => potential VASP scope).
+    - type: primary_legal
+      url: https://www.fatf-gafi.org/content/dam/fatf-gafi/guidance/Updated-Guidance-VA-VASP.pdf
+      wayback: https://web.archive.org/web/2021*/https://www.fatf-gafi.org/content/dam/fatf-gafi/guidance/Updated-Guidance-VA-VASP.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        Full PDF of the 2021-10-28 Updated Guidance. DRYRUN: archival
+        anchor unverified by LLM agent at authoring time.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        FATF publication date 2021-10-28 (per FATF site and FSB
+        notification). Day-level precision. DRYRUN authored 2026-05-17.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level coverage extension to Virtual Asset Service Providers
+    (VASPs) and adjacent arrangements (DeFi, NFTs, stablecoin
+    arrangements, P2P facilitators) operating in FATF member-state
+    jurisdictions. Per §7 codebook, class-level regulatory guidance
+    is encoded as enumeration=subset with the class-level rationale
+    documented here. No address-level enumeration; binding force is
+    via member-state implementation (mutual evaluation + grey-listing
+    pressure). Downstream affected entities include centralized
+    exchanges and custodians (Binance, Coinbase, Kraken, Upbit,
+    Bithumb, Bitstamp, etc.), stablecoin issuers (Tether, Circle,
+    Paxos), and any "natural or legal person … with control or
+    sufficient influence" over a DeFi protocol or NFT marketplace
+    (FATF functional test, 2021 Guidance §B).
+  actor_type: supranational_standard_setting_body
+  actor_name: FATF-jurisdiction VASP / DeFi / stablecoin ecosystem
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [UN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Class-level guidance update; no L4 domain-level effect at the
+      FATF supranational layer.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The 2021 update clarifies that stablecoin arrangements are
+      within FATF Standards scope (and that issuers / governance
+      bodies may be VASPs), but it does not itself mandate on-chain
+      asset-level blacklisting. No L_asset effect attributable to
+      the 2021-10-28 publication date as such.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Class-level coverage extension at the off-ramp layer (VASP
+      definition broadened; DeFi / stablecoin / P2P scope clarified).
+      No per-event observed_change cascade attributable to the
+      2021-10-28 publication date in isolation — downstream member-
+      state implementations (EU TFR 2023, OECD CARF 2022, national
+      VASP rule updates) are tracked as separate child events.
+      Coded null_event per §3 codebook: 0 observed_change layers
+      directly attributable to this trigger at the corpus's
+      resolution.
+
+observations:
+  - layer: offramp_cex
+    actor: fatf_member_state_vasp_aggregate
+    event: fatf_2021_targeted_update_class_level_coverage_extension
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2021-10-28T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html
+        wayback: https://web.archive.org/web/2021*/https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html
+        scope_descriptor:
+          providers: [fatf_member_state_vasp_aggregate]
+          time_window:
+            - 2021-10-28T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          FATF 2021-10-28 Updated Guidance is a class-level coverage
+          extension to the 2019 R.15 INR (DeFi, NFTs, stablecoins,
+          P2P, Travel Rule implementation). DRYRUN: no per-event
+          observed_change cascade is attributable to this trigger at
+          the corpus's resolution — downstream effects manifest via
+          national implementations (EU TFR 2023, member-state VASP
+          rule updates) which are tracked as separate child events.
+          Coverage_gap / attribution=none per §1.1 codebook
+          (observed_no_change-style row at the class-level standard
+          layer; admission requires admission-grade sources, which
+          are not asserted here pending human-auditor anchor pinning).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  null_event documenting FATF's 2021-10-28 publication of the
+  "Updated Guidance for a Risk-Based Approach to Virtual Assets and
+  Virtual Asset Service Providers". This is a class-level coverage
+  extension to the 2019 R.15 INR (fatf-r15-vasp-travel-rule-2019),
+  covering six focus areas: (1) VA/VASP definition clarifications,
+  (2) stablecoin arrangements under FATF Standards, (3) P2P-transfer
+  risk tools, (4) VASP licensing/registration, (5) Travel Rule
+  implementation including the "sunrise problem", and (6) supervisor
+  information-sharing.
+
+  Per §6 codebook the temporal_tier is comparable_main_2017_present
+  and the canonical analysis_use is comparable_analysis. Per §7
+  codebook the enumeration is `subset` with the class-level
+  rationale documented in target.enumeration_note (FATF Standards
+  operate at the international-standards layer; binding force is via
+  member-state implementation). Per §3 codebook the empirical_shape
+  is null_event: 0 observed_change layers directly attributable to
+  the 2021-10-28 publication date; downstream cascades (EU TFR 2023,
+  OECD CARF 2022, national VASP rule updates) are tracked as
+  separate child events. Per §4 codebook admission_tier=null_case
+  (0 strong-attribution observed_change layers).
+
+  Per §1.1 codebook, the single off-ramp row uses
+  attribution=`none` because observation_kind=`coverage_gap` (no
+  direct per-event observed_change at the corpus's resolution).
+  This event functions as a parent / standards-layer anchor for the
+  downstream member-state Travel Rule and stablecoin/DeFi rule
+  cascades and as a temporal landmark for the 2022-2024 wave of
+  national VASP regulation. DRYRUN: archival anchors asserted but
+  not personally verified by the LLM agent; human auditor must pin
+  real Wayback / body_hash anchors before release.
+
+scoped_claim: |
+  "FATF's 2021-10-28 'Updated Guidance for a Risk-Based Approach to
+  Virtual Assets and Virtual Asset Service Providers' is a class-
+  level coverage extension to the 2019 R.15 INR, clarifying the
+  application of FATF Standards to DeFi, NFTs, stablecoins, P2P
+  transfers, and Travel Rule implementation. Coded as null_event /
+  null_case at the corpus's resolution: no per-event observed_change
+  cascade is directly attributable to the 2021-10-28 publication
+  date; downstream member-state implementations (EU TFR 2023, OECD
+  CARF 2022, national VASP rule updates) are tracked as separate
+  child events."
+
+related_events:
+  - fatf-r15-vasp-travel-rule-2019
+  - oecd-carf-2022
+  - eu-tfr-recast-2023
+
+tags:
+  - supranational_regulation
+  - fatf
+  - fatf_r15
+  - travel_rule
+  - vasp_metadata_layer
+  - stablecoin_scope
+  - defi_scope
+  - nft_scope
+  - p2p_scope
+  - supranational_trigger
+  - parent_event
+  - null_event

@@ -1,0 +1,300 @@
+id: pump-fun-uk-fca-geofence-2024-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - 1inch-us-geofence-2021-09
+  - opensea-iran-cuba-sanctions-block-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: PUMP_FUN_OPERATORS
+  timestamp: 2024-12-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://pump.fun/
+      wayback: https://web.archive.org/web/2024/https://pump.fun/
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E S5
+        corporate-frontend discovery): authored by LLM agent without
+        personally verifying Wayback/body_hash; origin=agent_draft and
+        status=draft pending human review. Real release must replace
+        this DRYRUN marker with a human-verified audit after pinning
+        real archive anchors.
+
+        On 2024-12-06 the Pump.fun frontend operators updated the
+        site terms of service to exclude UK-vantage users and
+        deployed a UK-IP geofence pop-up on the pump.fun frontend.
+        The change followed the UK FCA's 2024-12-03 unauthorised-
+        firm warning naming Pump.fun. The Solana on-chain bonding-
+        curve / memecoin launch program contracts themselves were
+        not affected; the restriction is exclusively a frontend
+        application-layer gate.
+    - type: primary_legal
+      url: https://www.fca.org.uk/news/warnings/pumpfun
+      wayback: https://web.archive.org/web/2024/https://www.fca.org.uk/news/warnings/pumpfun
+      evidence_use: contextual_unarchived
+      note: |
+        FCA unauthorised-firm warning page for Pump.fun (issued
+        2024-12-03). The FCA states Pump.fun is not authorised or
+        registered by the FCA and may be promoting or providing
+        financial services in the UK without permission. This is
+        the public regulator pressure that the Pump.fun operators
+        cited as the proximate cause of the 2024-12-06 UK-vantage
+        terms-of-service exclusion. DRYRUN: Wayback anchor
+        unverified.
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/329804/uk-top-financial-regulator-says-pump-fun-doesnt-have-its-permission-to-do-business-in-the-country
+      wayback: https://web.archive.org/web/2024/https://www.theblock.co/post/329804/uk-top-financial-regulator-says-pump-fun-doesnt-have-its-permission-to-do-business-in-the-country
+      evidence_use: contextual_unarchived
+      note: |
+        The Block (2024-12-03) coverage of the FCA warning naming
+        Pump.fun and quoting the FCA statement that Pump.fun does
+        not have permission to do business in the UK.
+    - type: supporting_journalism
+      url: https://cryptoslate.com/pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning/
+      wayback: https://web.archive.org/web/2024/https://cryptoslate.com/pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning/
+      evidence_use: contextual_unarchived
+      note: |
+        CryptoSlate (2024-12-06) reports the Pump.fun terms-of-
+        service update excluding UK users and the UK-vantage
+        geofence pop-up implementation on the pump.fun frontend,
+        three days after the FCA warning. DRYRUN: Wayback anchor
+        unverified.
+    - type: supporting_journalism
+      url: https://www.cryptotimes.io/2024/12/06/pump-fun-bans-uk-traders-in-response-to-fca-warning/
+      wayback: https://web.archive.org/web/2024/https://www.cryptotimes.io/2024/12/06/pump-fun-bans-uk-traders-in-response-to-fca-warning/
+      evidence_use: contextual_unarchived
+      note: |
+        Crypto Times (2024-12-06) independent contemporaneous
+        coverage of the Pump.fun UK ban citing the FCA warning as
+        the trigger. DRYRUN: Wayback anchor unverified.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. CryptoSlate and Crypto Times both date
+        the Pump.fun UK terms-of-service exclusion and frontend
+        geofence pop-up to 2024-12-06, three calendar days after
+        the FCA's 2024-12-03 warning.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: UK-vantage users (clients with UK-geolocated
+    IPs) of the Pump.fun memecoin launchpad frontend. The
+    restriction is an application-layer IP-gate combined with a
+    terms-of-service exclusion clause; not enumerated by user
+    account because Pump.fun is non-custodial / wallet-connect. The
+    Solana on-chain Pump.fun bonding-curve / launch program
+    contracts remain reachable to UK-vantage users via alternative
+    frontends, direct program calls, and self-hosted UI mirrors —
+    the restriction is exclusively at the Pump.fun-operated
+    frontend.
+  protocol: pump_fun_launchpad
+  actor_type: memecoin_launchpad_frontend
+  actor_name: Pump.fun (frontend operators)
+  chains: [solana]
+  canonical_domains:
+    - pump.fun
+
+jurisdiction:
+  - UK
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      pump.fun remains globally reachable at the DNS / IP layer;
+      the geofence is an application-layer IP-detection gate, not
+      an ISP-level domain block. not_applicable on construct-not-
+      engaged grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Voluntary frontend geofence does not implicate the Solana
+      consensus layer. not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The Pump.fun frontend operator's geofence does not affect
+      public Solana RPC providers; UK-vantage users with their own
+      wallet RPC can still reach the Pump.fun program on Solana.
+      not_applicable.
+  - layer: l4_frontend
+    status: measured
+    scope: [pump.fun]
+    denominator_artifact:
+      type: primary_corporate
+      url: https://pump.fun/
+      wayback: https://web.archive.org/web/2024/https://pump.fun/
+      scope_descriptor:
+        domains: [pump.fun]
+        countries: [UK]
+        providers: [pump_fun_frontend]
+        time_window:
+          - 2024-12-06T00:00:00Z
+          - 2026-05-17T00:00:00Z
+      note: |
+        Denominator anchor for the l4_frontend UK-vantage
+        restriction: the Pump.fun terms-of-service exclusion clause
+        and the UK-vantage geofence pop-up on pump.fun are the
+        canonical corporate statements describing the geofenced
+        country set. DRYRUN: Wayback anchor unverified.
+    note: |
+      Load-bearing layer for this event. On 2024-12-06 the
+      Pump.fun frontend operators added a UK-vantage IP-detection
+      geofence pop-up and a UK exclusion clause in the site terms
+      of service. Frontend-only — the underlying Pump.fun bonding-
+      curve / launch program on Solana is unaffected.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token-contract-level freeze or blacklist; Pump.fun-minted
+      memecoins on Solana are not directly targeted. not_applicable.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Event is purely a frontend-operator IP geofence; not a
+      CEX-offramp action. not_applicable.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:pump_fun_operators
+    event: pump_fun_geofenced_uk_vantage_users_from_pump_fun_frontend
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-12-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: UK
+    sources:
+      - type: primary_corporate
+        url: https://pump.fun/
+        wayback: https://web.archive.org/web/2024/https://pump.fun/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains: [pump.fun]
+          countries: [UK]
+          providers: [pump_fun_frontend]
+          time_window:
+            - 2024-12-06T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          Pump.fun frontend / terms-of-service is the canonical
+          corporate-statement source documenting the UK-vantage
+          frontend restriction. observation_kind=observed_change at
+          l4_frontend: the Pump.fun frontend operators added an
+          IP-based geofence gate and a terms-of-service exclusion
+          clause against UK-vantage users on pump.fun.
+          attribution=direct under §1.4: the blocking provider
+          (Pump.fun operators) publicly cited the FCA warning as
+          the trigger via contemporaneous press statements, and
+          the block was implemented within the publicly-knowable
+          compliance window (3 days post-trigger, well inside the
+          ≤7-day §1.4 frontend window). DRYRUN: Wayback anchor
+          unverified.
+      - type: supporting_journalism
+        url: https://cryptoslate.com/pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning/
+        wayback: https://web.archive.org/web/2024/https://cryptoslate.com/pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning/
+        evidence_use: contextual_unarchived
+        note: |
+          CryptoSlate (2024-12-06) confirms the Pump.fun terms-of-
+          service update excluding UK users and the UK-vantage
+          geofence pop-up, citing the FCA warning as the trigger.
+          DRYRUN: Wayback anchor unverified.
+      - type: supporting_journalism
+        url: https://www.cryptotimes.io/2024/12/06/pump-fun-bans-uk-traders-in-response-to-fca-warning/
+        wayback: https://web.archive.org/web/2024/https://www.cryptotimes.io/2024/12/06/pump-fun-bans-uk-traders-in-response-to-fca-warning/
+        evidence_use: contextual_unarchived
+        note: |
+          Crypto Times (2024-12-06) independent contemporaneous
+          journalism corroborating the Pump.fun UK ban and naming
+          the FCA warning as the proximate trigger. DRYRUN:
+          Wayback anchor unverified.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E S5
+  corporate-frontend discovery): authored by LLM agent without
+  personally verifying Wayback/body_hash; origin=agent_draft and
+  status=draft pending human review.
+
+  comparison — S5 corporate-policy frontend geofence by the
+  Pump.fun operators against UK-vantage users of the pump.fun
+  memecoin launchpad frontend, effective 2024-12-06, three
+  calendar days after the UK FCA's 2024-12-03 unauthorised-firm
+  warning naming Pump.fun. This is the first major memecoin-
+  launchpad regulatory-compliance frontend geofence in the
+  corpus; it sits alongside 1inch-us-geofence-2021-09 (DEX
+  aggregator, voluntary, US-vantage) and opensea-iran-cuba-
+  sanctions-block-2022 (NFT marketplace, OFAC-driven, sanctioned-
+  jurisdiction vantage) as comparable S5 L4-only frontend-operator
+  compliance actions. The Pump.fun case differs from 1inch in
+  that there *is* a named regulator action (FCA warning) the
+  operator cites publicly, putting attribution at `direct` under
+  §1.4 (both conditions satisfied: provider publicly cites the
+  trigger via press statements, block implemented in ≤7-day
+  compliance window).
+
+  Per §1.4 frontend-block attribution: (i) Pump.fun operators
+  publicly cited the FCA warning as the trigger via
+  contemporaneous press statements (CryptoSlate, Crypto Times,
+  Bitcoin Times all date 2024-12-06 reporting the operator
+  framing); (ii) block implemented 2024-12-06, 3 days post-FCA
+  warning of 2024-12-03, well inside the §1.4 ≤7-day window. Both
+  conditions hold → attribution=direct.
+
+  empirical_shape=comparison (1 observed_change layer: l4_frontend
+  with attribution=direct); admission_tier=empirical_case (≥1
+  strong-attribution observed_change layer). coverage at
+  L0/L1/L3/asset_onchain/offramp_cex is not_applicable on
+  construct-not-engaged grounds because the geofence is purely a
+  Pump.fun-operated frontend application-layer gate; the
+  underlying Solana program contracts are unaffected and the
+  pump.fun domain remains globally reachable.
+
+  Paper salience: first major memecoin-launchpad frontend
+  geofence triggered by a non-US national regulator's
+  administrative warning (FCA unauthorised-firm warning is not a
+  ban / network-block — it is administrative). Comparable to but
+  distinct from the §5 `regulatory_enforcement` family because the
+  *operator* (not the regulator) is the entity coding the layer
+  action; trigger.type=corporate_policy_change is correct per §5.1
+  ("Corporate unilateral policy"). Reported UK-vantage volume
+  context (~$3B cumulative volume from UK-IP users prior to the
+  block) is contextual only — not load-bearing for any admission
+  claim because that figure is third-party analytics commentary,
+  not a replayable measurement artifact.
+
+scoped_claim: |
+  "On 2024-12-06 the Pump.fun frontend operators added a UK-
+  vantage IP-detection geofence pop-up and a UK exclusion clause
+  in the site terms of service, three calendar days after the UK
+  FCA's 2024-12-03 unauthorised-firm warning naming Pump.fun;
+  the underlying Pump.fun bonding-curve / memecoin launch
+  program on Solana remained unaffected. Load-bearing axis is
+  l4_frontend on a UK-vantage subset; attribution=direct under
+  §1.4 (operator publicly cited FCA warning; block within ≤7-day
+  compliance window)."
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - pump_fun
+  - memecoin_launchpad_frontend
+  - regulatory_compliance_geofence
+  - uk_vantage
+  - fca
+  - solana
+  - frontend_protocol_split

@@ -1,0 +1,292 @@
+id: russia-cbr-crypto-payment-ban-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - russia-cbr-bitcoin-information-letter-2014
+  - russia-mining-regional-ban-2024-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: RU_CENTRAL_BANK
+  timestamp: 2022-01-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cbr.ru/eng/press/event/?id=12627
+      wayback: https://web.archive.org/web/2022/https://www.cbr.ru/eng/press/event/?id=12627
+      evidence_use: contextual_unarchived
+      note: |
+        Bank of Russia (Central Bank of the Russian Federation / CBR)
+        consultation paper "Cryptocurrencies: trends, risks, measures"
+        ("Криптовалюты: тренды, риски, меры") published 2022-01-20 by
+        the CBR Financial Stability Department under director
+        Elizaveta Danilova. The paper proposed a comprehensive ban
+        on cryptocurrency issuance and circulation inside Russia,
+        including dedicated crypto exchanges, peer-to-peer (P2P)
+        platforms, and other financial organizations issuing or
+        circulating cryptocurrencies; a ban on crypto mining citing
+        electricity-grid and energy-policy concerns; and a prohibition
+        on the use of cryptocurrencies as a means of payment. The
+        consultation window invited comments until 2022-03-01. The
+        proposal was NOT adopted as Russian law in the form proposed:
+        the Ministry of Finance (Minfin) published a competing
+        regulation-rather-than-ban concept in early February 2022,
+        and the subsequent Russian regulatory framework (Federal Law
+        On Digital Financial Assets 259-FZ already in force since
+        2021-01-01, plus the 2024 mining law) partially restricts
+        crypto payments without enacting the full CBR ban. Wayback
+        anchor is provisional; specific snapshot timestamp requires
+        human-audit re-pinning.
+    - type: supporting_journalism
+      url: https://www.aljazeera.com/economy/2022/1/20/russias-central-bank-proposes-ban-on-crypto-mining-and-trading
+      wayback: https://web.archive.org/web/2022/https://www.aljazeera.com/economy/2022/1/20/russias-central-bank-proposes-ban-on-crypto-mining-and-trading
+      evidence_use: contextual_unarchived
+      note: |
+        Al Jazeera English same-day coverage (2022-01-20) of the
+        Bank of Russia consultation paper. Reports the CBR proposal
+        to ban crypto mining, trading, and use within Russia and
+        names Elizaveta Danilova as the Financial Stability
+        Department director presenting the report. Used here as a
+        contextual journalism anchor. Specific Wayback snapshot
+        timestamp requires re-pinning during human audit.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2022-01-20 same-day coverage of the Bank of Russia
+        consultation paper "Cryptocurrencies: trends, risks,
+        measures". Reports the full-ban proposal scope (mining,
+        trading, payments) and the public-comment window through
+        2022-03-01. Contextual journalism anchor; Wayback snapshot
+        pinning required at human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        The CBR consultation paper carries a 2022-01-20 publication
+        date, used by contemporaneous Russian-language and English-
+        language secondary coverage (Al Jazeera, CoinDesk, JURIST,
+        The Register, Linklaters, Reuters). Day-level precision is
+        appropriate; intra-day timing is not load-bearing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the proposed regulatory class of
+    cryptocurrency activity within Russia: cryptocurrency mining,
+    crypto-exchange/P2P-platform issuance and circulation, and the
+    use of cryptocurrencies as a means of payment by Russian
+    residents and Russian legal entities. The consultation paper
+    does not enumerate specific exchanges, addresses, or domains
+    as targets; it is a class-level regulatory proposal.
+    enumeration=subset rather than complete because the proposal
+    addresses an activity class without a fixed roster of named
+    entities.
+  protocol: null
+  actor_type: russia_crypto_activity_class
+  actor_name: Russia-resident crypto activity (CBR proposal class)
+  chains:
+    - bitcoin
+    - ethereum
+  canonical_domains: []
+
+jurisdiction:
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2022-01-20 CBR consultation paper is a regulatory
+      proposal, not an ISP-level domain block or DNS directive.
+      Russian Roskomnadzor enforcement of crypto-exchange domain
+      blocking is a separate enforcement track not actuated by
+      this consultation paper. L0 not_applicable on scope-mismatch
+      grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No protocol-level relay-filter primitive is engaged by a
+      national consultation paper. not_applicable on
+      construct-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public-RPC compliance substrate (Flashbots Protect /
+      MEV-Blocker) is not engaged by a national consultation
+      paper that did not become binding law. not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The consultation paper does not direct frontend takedowns
+      and was never enacted in the form proposed. not_applicable
+      on scope-mismatch grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-side admin freeze primitive engaged. The proposal
+      is class-level Russian-jurisdiction regulatory text without
+      stablecoin-issuer or chain-admin engagement. not_applicable.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      The CBR consultation paper proposed banning dedicated crypto
+      exchanges, P2P platforms, and crypto payments in Russia, but
+      the proposal was not enacted as proposed: the Russian
+      Ministry of Finance published a competing
+      regulation-rather-than-ban concept in early February 2022,
+      and Russian crypto-payment activity continued under a partial
+      framework (259-FZ + subsequent amendments). No measured
+      Russian off-ramp shock attributable to the 2022-01-20
+      consultation publication itself has been pinned in this
+      authoring pass. Marked not_measured with a coverage_gap
+      observation row below; this is the null_event-shaped
+      empirical posture flagged in the task brief.
+
+observations:
+  - layer: offramp_cex
+    actor: russia_resident_crypto_offramp_class
+    event: cbr_consultation_paper_proposed_but_not_enacted
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2022-01-20T00:00:00Z
+    precision: day
+    note: |
+      The 2022-01-20 CBR consultation paper proposed a full ban on
+      crypto trading, mining, and crypto payments inside Russia,
+      but the proposal was not enacted in the form proposed. The
+      Russian Ministry of Finance published a competing concept
+      paper in early February 2022 favoring regulation rather than
+      a full ban, and the subsequent Russian regulatory framework
+      (259-FZ + 2024 mining law) implemented a partial restriction
+      regime rather than the CBR full ban. No enumerated measured
+      Russian off-ramp shock attributable to the 2022-01-20
+      consultation publication itself has been pinned in this
+      authoring pass. Recorded as coverage_gap with
+      attribution=unknown to signal the null_event posture: the
+      proposal did not take direct effect on payment rails. This
+      observation row does NOT count toward empirical_shape or
+      admission_tier (coverage_gap rows are excluded by codebook
+      §3 / §4).
+    sources:
+      - type: primary_legal
+        url: https://www.cbr.ru/eng/press/event/?id=12627
+        wayback: https://web.archive.org/web/2022/https://www.cbr.ru/eng/press/event/?id=12627
+        evidence_use: contextual_unarchived
+        note: |
+          CBR English-language press event page for the 2022-01-20
+          consultation paper "Cryptocurrency risks and possible
+          regulation measures". Provisional Wayback anchor; specific
+          snapshot timestamp to be re-pinned at human audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2022-01-20 coverage corroborating the full-ban
+          scope and consultation-window framing. Contextual
+          journalism anchor; Wayback re-pin required at human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-main
+  authoring pass for the 2022-01-20 Bank of Russia consultation
+  paper "Cryptocurrencies: trends, risks, measures" ("Криптовалюты:
+  тренды, риски, меры"). origin=agent_draft and status=draft; human
+  re-verification of (i) the cbr.ru source URL reachability and
+  Wayback snapshot pinning, (ii) the CoinDesk and Al Jazeera
+  English-language journalism snapshots, and (iii) any
+  contemporaneous Russian off-ramp class-level measurement is
+  required before this event may be promoted to human_reviewed.
+
+  Why comparable_main / comparable_analysis tier: 2022 falls inside
+  the 2017+ comparable analysis frame. analysis_use=comparable_
+  analysis is the canonical form (codebook §6); aliases
+  "comparative_analysis" / "contextual_baseline" are not accepted
+  by the validator.
+
+  Why empirical_shape=null_event / admission_tier=null_case: zero
+  observed_change observations. The CBR consultation paper was a
+  proposal — not an enacted regulation — and did not directly
+  actuate L0 blocking, asset-onchain freezes, or offramp_cex
+  payment-rail severance. The Russian Ministry of Finance published
+  a competing regulation-rather-than-ban concept in early February
+  2022, and the Russian regulatory framework (259-FZ already in
+  force since 2021-01-01, plus the 2024 mining law) implemented a
+  partial-restriction posture instead. The single observation row
+  is observation_kind=coverage_gap with attribution=unknown, which
+  does not contribute toward empirical_shape or admission_tier
+  per codebook §3 / §4. null_event is the conservative shape
+  consistent with the task-brief hint.
+
+  Why trigger.type=regulatory_enforcement (NOT nation_state_block):
+  per codebook §5.1, regulatory_enforcement is the canonical
+  trigger type for non-US national regulator administrative
+  enforcement that is NOT a network-layer or payment-rail block.
+  The CBR consultation paper is administrative regulatory text
+  proposing a ban; it is not itself a Roskomnadzor ISP/DNS block
+  directive nor an enacted payment-rail severance. nation_state_
+  block is reserved for actuated ISP/DNS or payment-rail blocks
+  (KZ shutdown, CN PBoC banking-rail severance, NG CBN, IN RBI,
+  TR CBRT). The task-brief hint explicitly notes "the proposal
+  didn't take direct effect; this is null_event-shaped", which
+  aligns with regulatory_enforcement rather than nation_state_
+  block. research_stratum=S4_nation_state is permitted for both
+  trigger types per codebook §5.2.
+
+  Why target.kind=entity / enumeration=subset: schema target_kinds
+  does not include "regulatory_class"; entity is the closest enum
+  for a population/activity-class target. enumeration=subset rather
+  than complete because the proposal addresses an activity class
+  (mining, exchange/P2P circulation, payments) without a fixed
+  roster of named entities. Matches the sibling
+  russia-cbr-bitcoin-information-letter-2014 pattern.
+
+  Why all coverage layers are not_applicable except offramp_cex:
+  L0 — no Roskomnadzor blocking directive in the paper; L1 — no
+  consensus-layer primitive engaged; L3 — no public-RPC compliance
+  substrate engaged; L4 — no frontend takedown directive; asset_
+  onchain — no issuer-side admin freeze primitive engaged. offramp_
+  cex (not_measured) — the paper proposed banning crypto exchanges,
+  P2P platforms, and crypto payments but the proposal was not
+  enacted as proposed and no measured Russian off-ramp shock
+  attributable to the 2022-01-20 publication itself has been
+  pinned. coverage_gap row is class-level dispersed.
+
+  Cross-temporal context: this 2022-01-20 CBR consultation paper
+  is the comparable-main downstream sibling of the 2014-01-27 CBR
+  information letter (russia-cbr-bitcoin-information-letter-2014),
+  forming a within-jurisdiction longitudinal anchor for Russian
+  central-bank crypto-disposition. It is also an upstream context
+  anchor for russia-mining-regional-ban-2024-12 (the partial
+  mining restriction eventually enacted). The 2022 consultation
+  established the regulatory split between the CBR (anti-crypto,
+  full-ban posture) and the Ministry of Finance (pro-regulation
+  posture), which framed Russian crypto regulatory debate through
+  2024.
+
+  Evidence-use posture: all three citations are marked
+  evidence_use=contextual_unarchived because Wayback anchors are
+  provisional (year-prefix wildcard) and require specific snapshot
+  timestamp re-pinning at human audit. Per task brief
+  evidence_use=contextual_unarchived applies to all sources.
+
+tags:
+  - regulatory_enforcement
+  - russia
+  - cbr
+  - bitcoin
+  - ethereum
+  - null_event
+  - comparable_main
+  - crypto_payment_ban_proposal

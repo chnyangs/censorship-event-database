@@ -1,0 +1,259 @@
+id: japan-fsa-binance-warning-2018
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - japan-fsa-coincheck-orders-2018
+  - japan-fsa-six-exchange-orders-2018-06
+
+trigger:
+  type: regulatory_enforcement
+  actor: JP_FSA
+  timestamp: 2018-03-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsa.go.jp/news/29/sonota/
+      wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/29/sonota/
+      evidence_use: contextual_unarchived
+      note: |
+        Japan Financial Services Agency (金融庁 / FSA) press-release index for
+        Heisei-29 "sonota" (その他 / "other") notices. On 2018-03-23 the FSA
+        issued a public warning under the Payment Services Act (資金決済法)
+        against Binance (Hong Kong-domiciled crypto-asset exchange operated
+        at the time by Binance Holdings) for operating a crypto-asset
+        exchange business targeted at Japanese residents without
+        registration with the FSA. The warning stated Binance would face
+        criminal charges if it continued unregistered operations. In
+        response, Binance CEO Changpeng Zhao announced the company would
+        relocate its headquarters out of Japan; Binance subsequently
+        announced its move to Malta in March 2018. First major FSA
+        enforcement against an offshore crypto exchange after the
+        Coincheck supervisory cascade (sibling event
+        japan-fsa-coincheck-orders-2018). DRYRUN: real anchor is the FSA
+        press-release index folder pointer; pinned snapshot timestamp and
+        body_hash capture for the specific 2018-03-23 release permalink
+        deferred to non-DRYRUN release.
+  timestamp_sources:
+    - type: supporting_journalism
+      url: https://www.cnbc.com/2018/03/23/japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.html
+      wayback: https://web.archive.org/web/2018/https://www.cnbc.com/2018/03/23/japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNBC contemporaneous reporting dated 2018-03-23 corroborates the
+        day-level timing of the FSA warning to Binance. DRYRUN: pinned
+        snapshot anchor deferred to human audit.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance (Binance Holdings Ltd., Hong Kong-domiciled at the time of the
+    2018-03-23 FSA warning) — treated at the entity-level as the named
+    addressee of the FSA's 2018-03-23 public warning for operating a
+    crypto-asset exchange business targeted at Japanese residents without
+    Payment Services Act registration. Subset enumeration: only Binance is
+    enumerated here; the 2018-06-22 FSA business-improvement orders
+    against six registered Japanese exchanges (sibling event
+    japan-fsa-six-exchange-orders-2018-06) is a separate row.
+    Downstream operational effect: Binance ceased serving Japan residents
+    from its Tokyo-based operations and relocated headquarters to Malta
+    in March 2018; Japanese-resident access to Binance via direct
+    onboarding was wound down as a registered-VASP-regime compliance
+    response.
+  protocol: null
+  actor_type: offshore_crypto_exchange
+  actor_name: Binance Holdings Ltd.
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      FSA's 2018-03-23 warning is an administrative public notice under
+      the Payment Services Act; it does not direct ISP/DNS-level blocking
+      of binance.com from Japan, and no Japanese ISP-level connectivity
+      block was implemented. No frontend-disable observation is coded.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - binance_jp_resident_user_access
+    note: |
+      Load-bearing observation. FSA's 2018-03-23 public warning compelled
+      Binance to deprecate direct service to Japanese residents and to
+      relocate its headquarters to Malta in March 2018. Direct
+      attribution: Binance's operator-side decision to exit the Japanese
+      market and move HQ to Malta is the documented compliance response
+      to the FSA warning per CEO Changpeng Zhao's public statements.
+      partially_measured pending pinned anchors for (1) the FSA
+      2018-03-23 warning release page, (2) Binance's contemporaneous
+      public statements / Malta relocation announcement, (3) any Binance
+      announcement deprecating Japanese-resident user onboarding.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:binance
+    event: binance_jp_resident_access_deprecation_and_hq_relocation_to_malta
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-03-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: JP
+    sources:
+      - type: primary_legal
+        url: https://www.fsa.go.jp/news/29/sonota/
+        wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/29/sonota/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [binance]
+          countries: [JP]
+          time_window:
+            - 2018-03-23T00:00:00Z
+            - 2018-12-31T23:59:59Z
+        note: |
+          FSA's 2018-03-23 public warning is the legal instrument that
+          named Binance and compelled the operator-side exit from the
+          Japanese market. attribution=direct per codebook §1.4: the
+          actor (Binance) publicly cited the trigger (FSA warning) via
+          CEO Changpeng Zhao's public statement that company lawyers
+          called JFSA immediately, AND the JP-resident access wind-down
+          plus Malta relocation occurred within days of the trigger
+          (well inside the typical ≤7-day compliance window for
+          frontend/CEX trigger-attributed actions). DRYRUN: Wayback
+          anchor is an FSA press-index folder pointer at
+          fsa.go.jp/news/29/sonota; pinned snapshot timestamp and
+          body_hash capture for the specific 2018-03-23 release
+          permalink deferred to human audit.
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/binance-served-warning-by-japan-s-fsa-for-operating-without-authorization
+        wayback: https://web.archive.org/web/2018/https://cointelegraph.com/news/binance-served-warning-by-japan-s-fsa-for-operating-without-authorization
+        evidence_use: contextual_unarchived
+        note: |
+          Cointelegraph contemporaneous reporting dated 2018-03-23
+          corroborates the FSA warning and Binance's announced response
+          (CEO statement, intent to relocate). DRYRUN: pinned snapshot
+          anchor deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.cnbc.com/2018/03/23/japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.html
+        wayback: https://web.archive.org/web/2018/https://www.cnbc.com/2018/03/23/japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.html
+        evidence_use: contextual_unarchived
+        note: |
+          CNBC contemporaneous reporting dated 2018-03-23: Japan FSA
+          warned Binance of criminal charges if it continued operating
+          in Japan without registration. DRYRUN: pinned snapshot anchor
+          deferred to human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E/F non_us_state
+  cohort; lean run): authored by LLM agent without personally verifying
+  Wayback/body_hash; status=draft and origin=agent_draft. Real release
+  must replace this DRYRUN marker with a human-verified audit after
+  pinning real archive anchors.
+
+  Comparison documenting Japan FSA's 2018-03-23 public warning to
+  Binance (Hong Kong-domiciled at the time) for operating a crypto-asset
+  exchange business targeted at Japanese residents without Payment
+  Services Act registration. First major FSA enforcement against an
+  offshore (non-registered) crypto exchange post-Coincheck, and a
+  formative case for how Japan's registered-VASP regime addresses
+  unregistered cross-border exchange access. Binance's public response
+  (CEO Changpeng Zhao confirming receipt of the warning, lawyers
+  contacting JFSA, and announcement of a Malta headquarters relocation
+  in the same month) is the direct-attribution operator-side compliance
+  response.
+
+  Codebook compliance:
+  - trigger.type=regulatory_enforcement per §5.1 (JP_FSA is a non-US
+    national regulator and the action is administrative under the
+    Payment Services Act, not a network/payment-rail block).
+  - research_stratum=S4_nation_state per §5.2 stratum-actor map.
+  - target.kind=entity, target.enumeration=subset per §7 (Binance is the
+    single named addressee; the 2018-06-22 six-exchange orders are
+    tracked separately as japan-fsa-six-exchange-orders-2018-06).
+  - analysis_use=comparable_analysis per §6 (temporal_tier
+    comparable_main_2017_present).
+  - empirical_shape=comparison per §3 (one observed_change layer:
+    offramp_cex).
+  - admission_tier=empirical_case per §4 (one observed_change layer with
+    direct attribution).
+  - attribution=direct on offramp_cex per §1.4 frontend/CEX rule: the
+    operator (Binance) publicly cites the trigger (FSA warning) via the
+    CEO's public statement AND implements the JP-resident access
+    wind-down / HQ relocation within the ≤7-day compliance window.
+
+  Paper-relevant contrast vs sibling Coincheck case
+  (japan-fsa-coincheck-orders-2018): both are JP_FSA Payment Services
+  Act supervisory actions on the offramp_cex axis, but the Coincheck
+  case is reactive single-entity supervision over a registered (deemed)
+  Japanese VASP triggered by a security failure (NEM hack), with a
+  ~5-month withdrawal freeze as the load-bearing change; the Binance
+  case is enforcement against an unregistered offshore exchange,
+  triggering exit from the Japanese market and HQ relocation to Malta
+  rather than a withdrawal freeze for existing customers. The pair
+  spans the two main archetypes of FSA Payment Services Act enforcement
+  (registered-VASP supervision vs unregistered-exchange warning).
+
+  Paper-relevant contrast vs sibling six-exchange orders case
+  (japan-fsa-six-exchange-orders-2018-06): the 2018-06-22 six-exchange
+  business-improvement orders are class-wide registered-VASP
+  supervision (six named registered exchanges), whereas the 2018-03-23
+  Binance warning is single-entity unregistered-exchange enforcement.
+  The trio (Coincheck 2018-01, Binance 2018-03, six-exchange 2018-06)
+  collectively documents the 2018 FSA enforcement cascade
+  post-NEM-hack across both registered and unregistered VASPs.
+
+  DRYRUN caveats: trigger primary citation (FSA press-release index) is
+  asserted with a 2018-calendar-folder Wayback pointer; pinned snapshot
+  timestamp and body_hash capture for the specific 2018-03-23 release
+  permalink are deferred to the human-audit pass. For non-DRYRUN
+  release, capture body_hash + body_path for: (1) the FSA's 2018-03-23
+  warning release page (Japanese original and any English translation),
+  (2) Binance's public announcement of the Malta relocation, (3) CEO
+  Changpeng Zhao's contemporaneous public statement (Twitter/blog), (4)
+  any Binance.com announcement deprecating Japanese-resident user
+  onboarding. Marked evidence_use=contextual_unarchived on all citations
+  to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "Japan FSA's 2018-03-23 public warning to Binance under the Payment
+  Services Act for operating a crypto-asset exchange business targeted
+  at Japanese residents without registration directly compelled
+  Binance's operator-side exit from the Japanese market and relocation
+  of its headquarters from Tokyo to Malta in March 2018. The row does
+  not claim frontend-disable, ISP/DNS-level connectivity blocking of
+  binance.com from Japan, on-chain asset-layer freeze, or any
+  customer-funds freeze — only the single-entity Binance-cohort
+  offramp_cex load-bearing axis of JP-resident-access deprecation and
+  HQ relocation under the Payment Services Act registration regime."
+
+tags:
+  - regulatory_enforcement
+  - japan
+  - fsa
+  - binance
+  - offramp_cex_exit
+  - payment_services_act
+  - hq_relocation_malta
+  - dryrun_2026_05_17

@@ -1,0 +1,322 @@
+id: israel-nbctf-hamas-crypto-addresses-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - ofac-hamas-buy-cash-msb-2023-10
+  - ofac-hamas-irgc-virtual-currency-network-2024-01
+  - ofac-hamas-gaza-now-2024-03
+
+trigger:
+  type: regulatory_enforcement
+  actor: IL_NBCTF
+  timestamp: 2021-07-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
+      wayback: https://web.archive.org/web/2021/https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
+      evidence_use: contextual_unarchived
+      note: |
+        Chainalysis 2021-07 blog "Israeli Government Seizes Cryptocurrency
+        Addresses Associated with Hamas Donation Campaigns" summarises the
+        NBCTF (National Bureau for Counter Terror Financing, an arm of
+        Israel's Ministry of Defense) Administrative Seizure Order issued
+        2021-07-08 against 84 crypto addresses spanning BTC, ETH, USDT,
+        DOGE, XRP, LTC, TRX, BSC, XLM and LSK, attributed to seven
+        Palestinian-national individuals associated with Hamas's al-Qassam
+        Brigades donation campaigns. The order is the first documented
+        nation-state administrative seizure order against a Hamas-linked
+        crypto-address cluster, predating the post-October-7 OFAC Hamas
+        cascade (ofac-hamas-buy-cash-msb-2023-10 et seq.) by ~2.3 years.
+        DRYRUN: pinned Wayback snapshot and body_hash for the Chainalysis
+        post are deferred to the human-audit pass; marked
+        evidence_use=contextual_unarchived per validator policy for
+        unarchived sources.
+    - type: primary_legal
+      url: https://www.merklescience.com/blog/israel-issues-seizure-orders
+      wayback: https://web.archive.org/web/2021/https://www.merklescience.com/blog/israel-issues-seizure-orders
+      evidence_use: contextual_unarchived
+      note: |
+        Merkle Science 2021-07 blog "Israeli Authorities Issue Seizure
+        Order Against 84 Hamas-linked Crypto Wallets that Received Over
+        $11 Million Since October 2015" anchors the legal authority
+        (Administrative Seizure Order under Section 66 of Israel's
+        Anti-Terrorism Law of 2016, signed by then-Defense-Minister
+        Benny Gantz acting on NBCTF analysis) and the cluster economics
+        (37 BTC addresses receiving 3,758.828 BTC ≈ $9.89M; 8 Ethereum
+        addresses receiving 202.246 ETH + 1,182,038.889 USDT ≈ $1.23M;
+        93.43% of BTC concentrated in a single address
+        19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW). Triangulation source for
+        the trigger's legal-authority framing. DRYRUN: pinned Wayback
+        snapshot deferred to human audit.
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/110725/israeli-counterterror-authority-seizes-84-crypto-addresses-it-says-belong-to-hamas
+      wayback: https://web.archive.org/web/2021/https://www.theblock.co/post/110725/israeli-counterterror-authority-seizes-84-crypto-addresses-it-says-belong-to-hamas
+      evidence_use: contextual_unarchived
+      note: |
+        The Block 2021-07-08 coverage of the NBCTF Administrative
+        Seizure Order. Triangulation source for the trigger date and
+        the 84-address scope. DRYRUN: pinned Wayback snapshot deferred
+        to human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per Chainalysis blog and The Block reporting
+        anchoring the NBCTF Administrative Seizure Order on 2021-07-08.
+        precision=day reflects the LLM-author's inability to pin a
+        sub-day signature timestamp on the seizure order itself without
+        the underlying Hebrew-language NBCTF gazette publication (not
+        pinned at draft time).
+
+target:
+  kind: address_set
+  enumeration: subset
+  enumeration_note: |
+    The 2021-07-08 NBCTF Administrative Seizure Order targets 84 crypto
+    addresses across BTC, ETH, USDT, DOGE, XRP, LTC, TRX, BSC, XLM, and
+    LSK, attributed by NBCTF analysis to seven named Palestinian
+    nationals associated with Hamas's al-Qassam Brigades donation
+    campaigns (Ali Ismail Shafiq Abualkas; Mahmoud Madhat Ahmed Baroud;
+    Tareq Alla Mohammedali Baraaasi; Mahmoud Mohammed Mahmoud Ayesh;
+    Karem Munir Mohammed Abed; Mohammed Ramadan Hasan Abukwaik;
+    Mohammed Nasser Ibrahim Abulaila). Only one canonical BTC address
+    (19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW; the 93.43%-concentration
+    consolidation address) is pinned in target.addresses at draft time;
+    the full 84-address roster from the order itself is deferred to
+    the human-audit pass. enumeration=subset reflects that intentional
+    scoping.
+  addresses:
+    - 19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW
+  chains:
+    - bitcoin
+    - ethereum
+    - tron
+    - binance_smart_chain
+    - dogecoin
+    - xrp
+    - litecoin
+    - stellar
+    - lisk
+  actor_name: Hamas al-Qassam Brigades donation-campaign address cluster
+  actor_type: terrorist_organization_donation_cluster
+
+jurisdiction:
+  - IL
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The trigger is an Israeli administrative seizure order against
+      address-level targets, not a nation-state ISP/DNS block. No L0
+      network-layer scope applies.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge event (Ethereum Merge was 2022-09-15; ~14 months after
+      this trigger). PBS / MEV-Boost relay infrastructure did not exist
+      at event time. L1 consensus-layer relay-filter bracketing is
+      structurally not_applicable for the Ethereum portion of the
+      address set.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Pre-Flashbots-Protect (launched 2022-09) and pre-MEV-Blocker
+      (launched 2023-03-27). No L3 RPC-provider compliance substrate
+      with per-address filter lists is operational at event time.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No operator-controlled UI surface is the target of the order;
+      the seizure order acts directly on address-level custody claims
+      via Israeli administrative law, not on a frontend.
+  - layer: asset_onchain
+    status: partially_measured
+    chain: ethereum
+    note: |
+      Load-bearing layer (1 of 2). The order's named address set
+      includes USDT-on-Ethereum and USDT-on-Tron addresses receiving
+      ~1.18M USDT in the documented 2015-2021 window. Tether's public
+      compliance posture at event time (2021-07) was to freeze on
+      law-enforcement request, and contemporaneous reporting indicates
+      issuer-level freezes followed the order, but per-address
+      Etherscan freeze-tx anchors against the NBCTF roster are not
+      pinned at draft time. Status is partially_measured rather than
+      measured because the per-address sweep (usdtbanlist.com against
+      the 84-address roster) is deferred to the human-audit pass.
+      DRYRUN.
+  - layer: offramp_cex
+    status: partially_measured
+    provider_scope: unknown
+    note: |
+      Load-bearing layer (2 of 2). Contemporaneous Chainalysis
+      reporting traces consolidation flows into deposit addresses at
+      a major mainstream exchange (unnamed in the public blog but
+      widely understood to be Binance per later 2022/2023 follow-on
+      Israeli police-Binance account seizures referenced in DL News
+      coverage). The NBCTF order's effect at the offramp_cex layer is
+      to compel CEX freezes/forfeitures of deposit addresses fed by
+      the named cluster. partially_measured rather than measured
+      because per-CEX KYT / deposit-cluster-flagging slices
+      (Chainalysis Reactor, TRM, Elliptic per-event report screenshots)
+      are not pinned at draft time. DRYRUN.
+
+observations:
+  - layer: asset_onchain
+    actor: il_nbctf
+    event: nbctf_administrative_seizure_order_targets_usdt_addresses_in_hamas_donation_cluster
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-07-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IL
+    sources:
+      - type: primary_legal
+        url: https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
+        wayback: https://web.archive.org/web/2021/https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - il_nbctf
+          time_window:
+            - 2021-07-08T00:00:00Z
+            - 2021-07-09T23:59:59Z
+        note: |
+          Chainalysis 2021-07 writeup naming the NBCTF action and the
+          USDT/ETH portion of the seizure roster. attribution=direct
+          under §1.2: the seizure order is itself the asset_onchain
+          censorship action against the named address-level targets;
+          the actor (NBCTF) explicitly names the addresses in the
+          underlying order. DRYRUN: pinned Wayback snapshot deferred
+          to human audit.
+      - type: primary_legal
+        url: https://www.merklescience.com/blog/israel-issues-seizure-orders
+        wayback: https://web.archive.org/web/2021/https://www.merklescience.com/blog/israel-issues-seizure-orders
+        evidence_use: contextual_unarchived
+        note: |
+          Merkle Science independent legal-framing anchor (Section 66
+          Anti-Terrorism Law 2016; Defense Minister Gantz signature).
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+  - layer: offramp_cex
+    actor: il_nbctf
+    event: nbctf_seizure_order_severs_il_ramp_access_for_named_hamas_cluster
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-07-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IL
+    sources:
+      - type: supporting_journalism
+        url: https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
+        wayback: https://web.archive.org/web/2021/https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - mainstream_exchange_unnamed
+          time_window:
+            - 2021-07-08T00:00:00Z
+            - 2021-07-09T23:59:59Z
+        note: |
+          Chainalysis writeup traces consolidation flows into deposit
+          addresses at a major mainstream exchange. attribution=plausible
+          (not direct) per §1.2: the NBCTF order names the source-side
+          addresses but does not publicly name the downstream CEX, and
+          the receiving exchange did not make a public compliance
+          statement tying its account freezes to the NBCTF order in
+          the immediate 2021-07 window. DRYRUN: pinned Wayback snapshot
+          deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
+        wayback: https://web.archive.org/web/2023/https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
+        evidence_use: contextual_unarchived
+        note: |
+          DL News 2023-10 coverage retroactively confirms the
+          downstream-CEX leg (Israeli police seizures of Binance
+          accounts linked to Hamas) and references the earlier 2021
+          NBCTF action as the precedent ("Israeli authorities blocked
+          84 addresses believed to be linked to Hamas that had
+          received $7.7 million in crypto assets"). Triangulation
+          source for the offramp_cex plausibility claim. DRYRUN:
+          pinned Wayback snapshot deferred to human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E S4_nation_state
+  discovery; comparable-tier authoring): authored by LLM agent without
+  personally verifying Wayback / body_hash anchors; origin=agent_draft
+  per validator policy. Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors and
+  promote origin to human_reviewed.
+
+  Comparison-shape S4 regulatory_enforcement event sibling to the
+  post-October-7 OFAC Hamas cascade (ofac-hamas-buy-cash-msb-2023-10,
+  ofac-hamas-irgc-virtual-currency-network-2024-01,
+  ofac-hamas-gaza-now-2024-03). Paper-relevant because this is the
+  **first documented nation-state administrative seizure order
+  against a terrorism-financing crypto-address cluster**, predating
+  the post-October-7 OFAC Hamas cluster by ~2.3 years and establishing
+  the Israeli-domestic template (NBCTF + Section 66 Anti-Terrorism
+  Law 2016) that the 2022 Gantz 30-wallet expansion and the 2023-10
+  Israeli police Binance-account seizures inherit from.
+
+  Codebook compliance: trigger.type=regulatory_enforcement under
+  §5.1 (non-US national regulator administrative enforcement, not a
+  network/payment-rail block — NBCTF is the MoD's counter-terror-
+  financing arm, structurally analogous to JP FSA business
+  improvement orders); research_stratum=S4_nation_state per §5.2.
+  analysis_use=comparable_analysis (2021 → comparable_main_2017_
+  present temporal tier). empirical_shape=comparison (2 observed_
+  change layers: asset_onchain at direct, offramp_cex at plausible).
+  admission_tier=empirical_case (≥1 strong-attribution observed_
+  change layer). Attribution coding per §1.2: asset_onchain=direct
+  because the seizure order itself names the addresses (the action
+  IS the censorship); offramp_cex=plausible because the downstream
+  CEX is not publicly named in the order and the immediate CEX
+  compliance response was not tied to the trigger in a public
+  statement at event time.
+
+  Distinguishing features vs. siblings: (a) trigger jurisdiction is
+  IL (not US) — this is the precedent-setting non-US nation-state
+  action against the Hamas crypto-funding pipeline; (b) trigger
+  authority is administrative (Section 66 Anti-Terrorism Law 2016)
+  rather than SDN-list-driven, exercising a domestic-Israeli legal
+  mechanism distinct from US OFAC SDN secondary-sanctions exposure;
+  (c) the target is a 84-address direct enumeration (vs. the entity-
+  level Buy Cash MSB designation in ofac-hamas-buy-cash-msb-2023-10);
+  (d) pre-Merge / pre-Flashbots-Protect / pre-MEV-Blocker timing
+  means L1/L3 compliance substrates are structurally not_applicable
+  rather than not_measured.
+
+  Follow-up directions (post-admission): (1) human-audit pinning of
+  the underlying Hebrew-language NBCTF gazette publication of the
+  Administrative Seizure Order (currently anchored only via English-
+  language secondary coverage); (2) full enumeration of the 84-
+  address roster from the order itself, with per-address Etherscan
+  + Tronscan freeze-tx anchors and a usdtbanlist.com sweep against
+  Tether; (3) per-CEX KYT-flagging anchors for the downstream
+  mainstream-exchange leg (Chainalysis Reactor, TRM, Elliptic per-
+  event report slices); (4) 2022 Gantz 30-wallet expansion as a
+  candidate sibling event for the IL-NBCTF cluster timeline.
+
+tags:
+  - regulatory_enforcement
+  - nation_state
+  - israel
+  - nbctf
+  - hamas
+  - terrorism_financing
+  - address_seizure
+  - pre_october_7
+  - first_documented_nation_state_address_seizure

@@ -1,0 +1,247 @@
+id: eu-amlr-eu-single-rulebook-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: EU_Council
+  timestamp: 2024-05-30T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
+      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
+      note: |
+        Regulation (EU) 2024/1624 of the European Parliament and of the
+        Council of 31 May 2024 on the prevention of the use of the financial
+        system for the purposes of money laundering or terrorist financing
+        (the "AMLR" / EU AML single rulebook). Formally adopted by the
+        European Parliament and Council on 2024-05-30, signed on 2024-05-31,
+        published in the EU Official Journal on 2024-06-19, entered into
+        force 2024-07-09, with general application date 2027-07-10. Replaces
+        the patchwork of national AML transpositions of the prior AMLD
+        directives with a single, directly-applicable EU regulation. Crypto-
+        specific provisions include: (1) class-level AML/CFT obligations on
+        Crypto-Asset Service Providers (CASPs) as obliged entities; (2) a
+        EUR 1,000 occasional-transaction / non-customer threshold for
+        enhanced CDD by CASPs (Art. 19); (3) a prohibition on anonymous
+        CASP-hosted accounts and anonymity-enhancing CASP-issued instruments
+        (Art. 79); and (4) restrictions on CASP relationships with
+        non-custodial / self-hosted wallets in defined scenarios. Sibling
+        instrument to AMLA Regulation (EU) 2024/1620 adopted the same day —
+        cross-reference for the supervisory architecture. DRYRUN
+        contextual_unarchived stub; replace with a verified Wayback /
+        body_hash / body_path capture during real human audit.
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
+      evidence_use: contextual_unarchived
+      note: |
+        Second pointer to the EUR-Lex CELEX:32024R1624 record (AMLR), per
+        brief instruction to use evidence_use=contextual_unarchived for this
+        future-effective regulation. Documents the Article 19 EUR 1,000
+        occasional-/non-customer-transaction threshold for CASPs and the
+        Article 79 ban on anonymous CASP accounts and anonymity-enhancing
+        instruments. AMLR is one of three legs of the EU AML package
+        (AMLR + AMLD6 + AMLA Regulation 2024/1620); together with the
+        TFR Recast (2023/1113) and MiCA (2023/1114) it forms the EU's
+        post-2024 crypto AML/CFT architecture.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level adoption date 2024-05-30 by the European Parliament and
+        Council (Co-decision). Published in the EU Official Journal
+        2024-06-19; entry into force 2024-07-09; general application
+        2027-07-10.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All EU-operating Crypto-Asset Service Providers (CASPs) as defined under
+    MiCA Title V — the same class-level cohort covered by the TFR Recast
+    (Regulation 2023/1113). AMLR adds CASPs to the EU AML/CFT "obliged
+    entities" perimeter at the regulation level (no longer at the
+    member-state directive-transposition level), and layers class-level
+    obligations: enhanced CDD over the EUR 1,000 occasional-transaction
+    threshold (Art. 19); ban on anonymous CASP accounts and anonymity-
+    enhancing CASP-issued instruments (Art. 79); restrictions on CASP
+    relationships with self-hosted wallets in defined scenarios. Covers
+    Binance EU operations, Coinbase EU, Kraken EU, Bitstamp, and all
+    licensed EU-27 CASPs as of the 2027-07-10 application date. Sector-wide
+    rather than address-enumerable.
+  protocol: null
+  actor_type: vasp_sector_regulation
+  actor_name: EU-operating Crypto-Asset Service Providers (AMLR-regulated)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      AMLR is a class-level AML/CFT obligation framework for CASPs as
+      obliged entities; it does not mandate frontend takedown. Individual
+      CASPs may reconfigure onboarding / withdrawal UI for EU users to
+      comply with the anonymous-account ban and EUR 1,000 threshold but no
+      single-domain effect.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      AMLR does not mandate issuer-level freeze; it constrains CASP
+      customer-due-diligence and account-anonymity, not the underlying
+      asset. Asset-layer reasoning from the OFAC USDC / USDT comparison
+      set does not apply.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [eu_casp_ecosystem]
+    note: |
+      Load-bearing layer for downstream effects: AMLR Art. 19 (EUR 1,000
+      occasional-/non-customer-transaction threshold) and Art. 79 (ban on
+      anonymous CASP accounts and anonymity-enhancing instruments)
+      operationalize through the CASP / offramp_cex layer. General
+      application is 2027-07-10, i.e. AFTER this dataset snapshot date —
+      no observed_change has materialized yet; coded as null_event /
+      null_case (future-effective). Per §4 codebook: 0 strong-attribution
+      observed_change layers → null_case. Per §3: 0 observed_change layers,
+      admission requires observed_no_change with admission-grade sources.
+      Coverage status=partially_measured to support the observed_no_change
+      row at this layer; the EUR-Lex primary-legal artifact is the
+      replayable anchor (DRYRUN wayback stub pending real audit).
+
+observations:
+  - layer: offramp_cex
+    actor: eu_casp_ecosystem
+    event: eu_amlr_single_rulebook_adopted_future_effective_2027
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-05-30T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-05-30T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
+        wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
+        scope_descriptor:
+          providers: [eu_casp_aggregate]
+          time_window:
+            - 2024-05-30T00:00:00Z
+            - 2027-07-10T23:59:59Z
+        note: |
+          Regulation (EU) 2024/1624 — the AMLR / EU AML single rulebook —
+          adopted by the European Parliament and Council on 2024-05-30,
+          published in the EU Official Journal on 2024-06-19, with general
+          application 2027-07-10. AMLR replaces the patchwork of national
+          AML transpositions of the prior AMLD directives with a directly-
+          applicable EU regulation, and brings CASPs into the EU AML/CFT
+          "obliged entities" perimeter at the regulation level with
+          class-level obligations: enhanced CDD over the EUR 1,000
+          occasional-/non-customer-transaction threshold (Art. 19); ban on
+          anonymous CASP-hosted accounts and anonymity-enhancing CASP-issued
+          instruments (Art. 79); restrictions on CASP relationships with
+          self-hosted wallets in defined scenarios. Sibling instrument to
+          AMLA Regulation (EU) 2024/1620 (anti-money-laundering authority)
+          adopted the same day, which establishes the supervisory body that
+          will directly supervise selected high-risk CASPs across the
+          EU-27. observation_kind=observed_no_change with attribution=none
+          because the application date (2027-07-10) is in the future
+          relative to this dataset snapshot — the regulatory trigger is
+          registered but no downstream CASP behavioral change at the
+          offramp layer can yet be observed. DRYRUN contextual_unarchived
+          stub; replace with a verified capture during real human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3 supranational
+  discovery; lean run): authored by LLM agent without personally verifying
+  Wayback / body_hash. origin=agent_draft at status=draft. Real release must
+  replace this DRYRUN marker with a human-verified audit after pinning real
+  archive anchors.
+
+  null_event documenting the EU Council + European Parliament's 2024-05-30
+  adoption of Regulation (EU) 2024/1624 — the Anti-Money Laundering
+  Regulation ("AMLR" / EU AML single rulebook) — and its sibling Regulation
+  (EU) 2024/1620 establishing the Anti-Money Laundering Authority ("AMLA").
+  AMLR is the EU's first directly-applicable AML/CFT regulation: it
+  replaces the patchwork of national AMLD transpositions with a single
+  rulebook, and adds CASPs to the EU AML obliged-entities perimeter at the
+  regulation level. Crypto-specific provisions: (1) Art. 19 — EUR 1,000
+  occasional-/non-customer-transaction threshold for enhanced CDD by CASPs;
+  (2) Art. 79 — ban on anonymous CASP-hosted accounts and anonymity-
+  enhancing CASP-issued instruments; (3) CASP / self-hosted-wallet
+  relationship restrictions in defined scenarios.
+
+  NOTE: AMLR (Regulation 2024/1624) and AMLA (Regulation 2024/1620) are
+  sibling instruments adopted the same day (2024-05-30). They form two
+  legs of the EU AML package; the third leg is AMLD6 (a parallel
+  directive). Cross-reference the AMLA event for the supervisory
+  architecture (AMLA will directly supervise selected high-risk CASPs
+  across the EU-27); AMLR carries the substantive obligations. Together
+  with MiCA (2023/1114) and the TFR Recast (2023/1113), AMLR + AMLA
+  complete the EU's post-2024 crypto regulatory architecture: MiCA
+  (licensing / capital / custody), TFR Recast (zero-threshold travel rule
+  / metadata), AMLR (CASP-level AML obligations + anonymous-account ban +
+  EUR 1,000 CDD threshold), AMLA (supervision).
+
+  empirical_shape=null_event and admission_tier=null_case per codebook §3
+  / §4: 0 observed_change layers because the AMLR general application
+  date (2027-07-10) is in the future relative to this dataset snapshot
+  (2026-05-17). Coded conservatively as null per codebook §8.4 (default
+  to more-conservative value). This is a regulatory-trigger registration
+  row that establishes the supranational anchor for downstream events
+  expected from 2027 onward; the offramp_cex coverage row is
+  not_measured because no replayable artifact of CASP behavioral change
+  can yet be captured. evidence_use=contextual_unarchived on the
+  trigger.citation per brief instruction; per dataset convention
+  (cf. eu-tfr-recast-2023, sinbad-doj-2024) contextual_unarchived is
+  acceptable on trigger.citation and on observation.sources for null_case
+  draft rows; real human audit must replace with verified captures.
+
+scoped_claim: |
+  "EU Regulation 2024/1624 (AMLR — Anti-Money Laundering Regulation /
+  single rulebook), adopted 2024-05-30 alongside AMLA Regulation
+  2024/1620, replaces the patchwork of national AMLD transpositions with a
+  directly-applicable EU regulation and brings CASPs into the EU AML
+  obliged-entities perimeter at the regulation level. Crypto-specific
+  provisions: EUR 1,000 occasional-/non-customer-transaction CDD threshold
+  (Art. 19) and ban on anonymous CASP-hosted accounts and anonymity-
+  enhancing instruments (Art. 79). General application 2027-07-10.
+  null_event in this corpus: the regulatory trigger is registered but the
+  application date is future-effective, so no downstream CASP behavioral
+  change at the offramp_cex layer is yet observable."
+
+related_events:
+  - eu-mica-2023
+  - eu-tfr-recast-2023
+  - eu-dac8-crypto-asset-reporting-directive-2023
+  - eu-amla-anti-money-laundering-authority-regulation-2024
+
+tags:
+  - supranational_framework
+  - eu_regulation
+  - amlr
+  - aml_single_rulebook
+  - anonymous_account_ban
+  - eur_1000_threshold
+  - casp_obligations
+  - crypto_asset_regulation
+  - future_effective
+  - null_event

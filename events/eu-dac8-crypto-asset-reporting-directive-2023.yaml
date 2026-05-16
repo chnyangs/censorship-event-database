@@ -1,0 +1,247 @@
+id: eu-dac8-crypto-asset-reporting-directive-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - oecd-carf-2022
+  - eu-tfr-recast-2023
+  - eu-mica-2023
+
+trigger:
+  type: supranational_regulation
+  actor: EU_Council
+  timestamp: 2023-10-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+      evidence_use: contextual_unarchived
+      note: |
+        Council Directive (EU) 2023/2226 of 17 October 2023 amending
+        Directive 2011/16/EU on administrative cooperation in the field of
+        taxation ("DAC8"). Adopted by the Council of the European Union on
+        2023-10-17 (ECOFIN), published in the Official Journal of the
+        European Union on 2023-10-24. DAC8 is the EU-level transposition
+        of the OECD Crypto-Asset Reporting Framework (CARF, 2022-10-10) and
+        accompanying CRS amendments, extending the EU's automatic exchange
+        of information (AEOI) regime to crypto-asset transactions. Imposes
+        due diligence and reporting obligations on Reporting Crypto-Asset
+        Service Providers (RCASPs) defined consistently with CARF and
+        substantively overlapping the MiCA CASP population. Member States
+        must transpose by 2025-12-31 and apply provisions from 2026-01-01;
+        first reporting cycle 2027-01-01 to 2027-09-30 covering the 2026
+        calendar year. DRYRUN contextual_unarchived stub; replace with a
+        verified Wayback + body_hash / body_path capture during real
+        human audit.
+    - type: primary_legal
+      url: https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/directive-administrative-cooperation-dac/dac8_en
+      evidence_use: contextual_unarchived
+      note: |
+        European Commission DG TAXUD landing page for the DAC8 directive.
+        Documents the 2023-10-17 Council adoption date, the 2023-10-24 OJ
+        publication, the 2025-12-31 transposition deadline, the
+        2026-01-01 application date, and the 2027 first-reporting window.
+        Cross-references CARF (oecd-carf-2022) as the OECD parent
+        instrument and confirms RCASP scope alignment with CARF.
+        contextual_unarchived per brief.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level Council adoption date 2023-10-17 at ECOFIN. OJ
+        publication 2023-10-24 (Directive (EU) 2023/2226). Application
+        date 2026-01-01.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All EU-operating Reporting Crypto-Asset Service Providers (RCASPs) as
+    defined under DAC8 Annex VI, transposing the OECD CARF RCASP
+    definition into EU law. The population substantively overlaps the
+    MiCA CASP population (Binance EU operations, Coinbase EU, Kraken EU,
+    Bitstamp, Bitpanda, and all licensed EU-27 CASPs) plus brokers,
+    dealers, and crypto ATM operators captured by CARF's RCASP
+    perimeter. Class-level scope: due diligence and transaction-level
+    reporting obligations on RCASPs, with no address-level enumeration.
+    Self-hosted (non-custodial) wallets remain out of scope at the
+    protocol level, but RCASP-intermediated transfers to / from
+    self-custody addresses fall within the reporting perimeter when the
+    RCASP is the counterparty (same treatment as CARF).
+  protocol: null
+  actor_type: supranational_regulatory_framework
+  actor_name: EU-operating Reporting Crypto-Asset Service Providers (DAC8-regulated)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      DAC8 imposes tax due diligence and reporting obligations on RCASPs,
+      not frontend domain takedowns. Individual RCASPs may surface
+      tax-residency / self-certification prompts in their UI but no
+      canonical frontend-level domain effect is implicated by the
+      directive itself.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      DAC8 does not impose any asset-layer freeze, blacklist, or issuer
+      action. The directive is metadata-collection-only at the RCASP
+      transaction-reporting level (same posture as the CARF parent);
+      the underlying assets and on-chain protocols are not directly
+      targeted.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [eu_rcasp_ecosystem]
+    note: |
+      Class-level offramp_cex obligation on EU-operating RCASPs takes
+      effect 2026-01-01 with first reporting cycle 2027. As of the
+      2023-10-17 trigger date and the 2026-05-17 authoring date, no
+      RCASP-level behavioral change has materialized: the directive is
+      future-effective at the EU level and pending Member-State
+      transposition (deadline 2025-12-31). Coded partially_measured —
+      anchored by the EUR-Lex primary-legal artifact documenting the
+      class-level scope — to support the observed_no_change row;
+      revisit when 2027 first-cycle reports surface.
+    denominator_artifact:
+      type: primary_legal
+      url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+      note: |
+        EUR-Lex CELEX:32023L2226 anchor for the class-level RCASP
+        scope. DRYRUN wayback stub; replace with verified capture
+        during real human audit.
+
+observations:
+  - layer: offramp_cex
+    actor: eu_rcasp_ecosystem
+    event: eu_dac8_directive_adopted_no_observed_rcasp_change_yet
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-10-17T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-10-17T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+        wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+        scope_descriptor:
+          providers: [eu_rcasp_aggregate]
+          time_window:
+            - 2023-10-17T00:00:00Z
+            - 2026-05-17T00:00:00Z
+          addresses_cohort: all_eu_operating_rcasps
+        note: |
+          DAC8 adoption 2023-10-17 is a class-level, future-effective
+          directive: Member-State transposition deadline 2025-12-31,
+          application 2026-01-01, first reporting 2027. As of the
+          authoring date (2026-05-17) no class-level RCASP behavior
+          change attributable to DAC8 has been observed at the
+          offramp_cex layer beyond pre-existing MiCA / TFR Recast
+          compliance preparation. observed_no_change with
+          attribution=none reflects this null-event posture; revisit
+          when 2027 first-cycle reports surface.
+        evidence_use: contextual_unarchived
+      - type: primary_legal
+        url: https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/directive-administrative-cooperation-dac/dac8_en
+        wayback: https://web.archive.org/web/20260517000001/https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/directive-administrative-cooperation-dac/dac8_en
+        scope_descriptor:
+          providers: [eu_rcasp_aggregate]
+          time_window:
+            - 2023-10-17T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          DG TAXUD landing page anchors the adoption / OJ-publication /
+          transposition / application / first-reporting calendar. Used
+          here as a second contextual_unarchived pointer for the
+          null-event posture; no observed RCASP-level change to date.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3 supranational
+  discovery; lean run): authored by LLM agent without personally
+  verifying Wayback/body_hash; origin=agent_draft and status=draft.
+  Real release must replace this DRYRUN marker with human-verified
+  Wayback + body_hash / body_path captures for the EUR-Lex CELEX:32023L2226
+  primary-legal record and the DG TAXUD DAC8 landing page.
+
+  null_event documenting the EU Council's 2023-10-17 adoption of
+  Directive (EU) 2023/2226 — DAC8 — the EU-level transposition of the
+  OECD Crypto-Asset Reporting Framework (oecd-carf-2022). DAC8 extends
+  the EU's automatic exchange of information (AEOI) regime under
+  Directive 2011/16/EU to crypto-asset transactions, imposing
+  CARF-aligned due diligence and reporting obligations on
+  EU-operating RCASPs. Member-State transposition deadline 2025-12-31;
+  application 2026-01-01; first reporting cycle 2027-01-01 to
+  2027-09-30 covering 2026 calendar-year transactions.
+
+  Structural contribution to the dataset: DAC8 is the EU-level
+  implementation child of CARF (oecd-carf-2022), companion to MiCA
+  (eu-mica-2023) and TFR Recast (eu-tfr-recast-2023) in the EU's
+  supranational crypto-regulatory triad. Where MiCA establishes
+  licensing / capital / custody, TFR Recast layers the zero-threshold
+  Travel Rule, DAC8 layers the tax-reporting / AEOI metadata
+  obligation. The three EU instruments together transpose three
+  distinct supranational parents (CARF, FATF R.15, OECD CRS) onto the
+  same EU-27 RCASP / CASP population.
+
+  Empirical_shape = null_event (0 observed_change layers): DAC8 is
+  future-effective (2026-01-01 application) and class-level; no
+  observed RCASP-level behavior change has materialized as of the
+  2026-05-17 authoring date. admission_tier = null_case (0
+  strong-attribution observed_change layers); analysis_use =
+  comparable_analysis as a denominator control for the supranational
+  regulatory-substrate axis. target.enumeration = subset per codebook
+  §7 (no class_level value; rationale documented in
+  target.enumeration_note). trigger.type = supranational_regulation
+  per codebook §5.1 (EU regulation, non-sanctions). Codebook compliance:
+  §5.1 trigger.type, §5.2 stratum-actor map (supranational_regulation →
+  S6_supranational), §6 analysis_use (comparable_main_2017_present →
+  comparable_analysis), §7 enumeration (subset + enumeration_note),
+  §3 empirical_shape (null_event), §4 admission_tier (null_case),
+  §8.5 DRYRUN preamble present.
+
+scoped_claim: |
+  "EU Council Directive (EU) 2023/2226 (DAC8), adopted 2023-10-17,
+  transposes the OECD Crypto-Asset Reporting Framework (CARF, 2022)
+  into EU law, imposing CARF-aligned tax due diligence and
+  transaction-level reporting obligations on EU-operating Reporting
+  Crypto-Asset Service Providers (RCASPs). Member-State transposition
+  due 2025-12-31; application 2026-01-01; first reporting 2027. As of
+  the 2026-05-17 authoring date no observed RCASP-level change has
+  materialized — coded null_event / null_case as the EU-level
+  metadata-layer companion to MiCA (eu-mica-2023) and TFR Recast
+  (eu-tfr-recast-2023), and the EU implementation child of CARF
+  (oecd-carf-2022)."
+
+tags:
+  - supranational_regulation
+  - eu_regulation
+  - dac8
+  - crypto_tax_reporting
+  - rcasp_obligations
+  - supranational_framework
+  - carf_transposition
+  - metadata_layer_regulation
+  - null_event
