@@ -1,6 +1,6 @@
 # Table 7 · Jurisdictional composition of the admitted corpus
 
-Generated: `2026-05-18T10:40:00Z`.
+Generated: `2026-05-17T00:00:00Z`.
 
 **US-trigger share** (events with `US` in `jurisdiction`): 58/83 (69.9%) · **non-US-trigger share**: 25/83 (30.1%).
 
