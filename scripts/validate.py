@@ -369,6 +369,7 @@ class EventValidator:
             "fincen_action": "S3_doj_sec_cftc_fiod",
             "court_civil_order": "S3_doj_sec_cftc_fiod",
             "nation_state_block": "S4_nation_state",
+            "regulatory_enforcement": "S4_nation_state",
             "non_us_sanctions": "S6_supranational",
             "supranational_regulation": "S6_supranational",
             "corporate_policy_change": "S5_corporate",
