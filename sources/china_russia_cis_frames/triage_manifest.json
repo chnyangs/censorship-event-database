@@ -1,0 +1,354 @@
+{
+  "phase": "C",
+  "frame": "china_russia_cis_frames",
+  "discovery_date": "2026-05-16",
+  "scope_window": ["2017-01-01", "2025-12-31"],
+  "stratum": "S4_nation_state",
+  "method": "agent-enumerated from domain knowledge cross-checked against events/*.yaml and candidate_triggers/*.yaml; primary regulators issue in Chinese/Russian, so anchors verified via English secondary sources (Reuters, CoinDesk, Bloomberg, SCMP, TASS English, Library of Congress Global Legal Monitor, law-firm client alerts). Original-language primary-document retrieval is a documented follow-up requirement.",
+  "in_scope_existing": [
+    "china-pboc-crypto-ban-2013-12",
+    "china-pboc-crypto-ban-2021",
+    "russia-cbr-bitcoin-information-letter-2014",
+    "russia-cbr-crypto-payment-ban-2022",
+    "garantex-ofac-2022",
+    "grinex-garantex-successor-ofac-2025",
+    "hydra-ofac-2022",
+    "hydra-doj-2022",
+    "binance-russia-exit-commex-2023",
+    "eu-russia-crypto-wallet-cap-2022",
+    "eu-russia-full-crypto-wallet-ban-2022",
+    "eu-12th-russia-sanctions-2023"
+  ],
+  "exclusion_notes": [
+    "Belarus Decree No. 8 (2017-12-21, effective 2018-03-28) is permissive — it created the High-Tech Park crypto-friendly regime and legalised smart contracts. Not censorship; flagged deferred=true.",
+    "Russia 2020 Digital Financial Assets law has dual character: it defines and creates a permissive regime for DFAs while prohibiting use of cryptocurrency as a means of payment inside Russia. Included as P1 on the payment-prohibition prong; primary load-bearing layer is offramp_cex.",
+    "Russia 2024-08 mining legalisation law is mostly permissive but contains the regional-ban authorisation that triggers the 2024-12 ban. Included as P1 because the law itself authorises CBR-led regional shutdowns and a mandatory miner-registry; the 2024-12 regional ban is the direct enforcement event.",
+    "Bitzlato 2023-01 takedown excluded — US DOJ + FinCEN action against a RU-linked exchange, not a RU-domestic regulatory event. Belongs in federal_enforcement frame.",
+    "Russia Rosfinmonitoring 'Transparent Blockchain' tool and KYC-classification platform operationalised 2022-onward — included as P2 because the load-bearing enforcement triggers (specific exchange license revocations, deplatforming) are not yet pinned to a discrete English secondary source.",
+    "Tajikistan, Turkmenistan, Kyrgyzstan documented restrictions in scope window are predominantly energy-driven temporary shutdowns or permissive regimes. Turkmenistan's 2025-11 Law on Virtual Assets is post-scope. Included as P2 (Kyrgyzstan 2023-11 mining shutdown) where verifiable.",
+    "Weibo 2022-08 12,000-account purge identified during research (CAC-led) but the August 2021 specific event in the task brief could not be verified via English secondary sources; the load-bearing Weibo event is the 2021-03 / 2021-06 deactivation of major exchange accounts. Anchored on 2021-03-11 SCMP / CoinDesk coverage."
+  ],
+  "total_candidates": 17,
+  "p0_count": 12,
+  "p1_count": 4,
+  "p2_count": 1,
+  "candidates": [
+    {
+      "slug": "china-ico-ban-2017-09",
+      "title": "China PBOC + 7 ministries joint announcement banning ICOs",
+      "trigger_date": "2017-09-04",
+      "actor": "CN_PBOC_CAC_MIIT_SAIC_CBRC_CSRC_CIRC",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html",
+      "secondary_urls": [
+        "https://www.loc.gov/item/global-legal-monitor/2017-10-19/china-regulators-ban-companies-from-raising-money-through-virtual-currencies/",
+        "https://www.nortonrosefulbright.com/en/knowledge/publications/aa676f71/china-issues-announcement-to-ban-fundraising-through-token-offerings"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "Joint announcement by 7 central authorities banned all ICO fundraising and ordered refunds to investors; first time CN treated ICO as illegal fund-raising. Triggered immediate BTC -5% drop and the September exchange-shutdown cascade. English secondary via CNBC + Reuters local-press citations + LOC Global Legal Monitor.",
+      "layer_observations": ["offramp_cex", "asset_issuance"],
+      "deferred": false
+    },
+    {
+      "slug": "china-pboc-exchange-shutdown-2017-09",
+      "title": "China BTCC, OKCoin, Huobi forced shutdown of CNY trading and full domestic crypto exchange wind-down",
+      "trigger_date": "2017-09-29",
+      "actor": "CN_PBOC",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/",
+      "secondary_urls": [
+        "https://qz.com/1079908/huobi-and-okcoin-chinas-two-biggest-bitcoin-exchanges-will-halt-all-trading-services-for-local-customers",
+        "https://www.scmp.com/tech/policy/article/3142710/cryptocurrency-exchange-operators-huobi-okcoin-close-beijing"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "BTCC 2017-09-14 suspension, Huobi + OKCoin 2017-09-29 full halt of domestic services. Forced the three largest CN exchanges to wind down within 6 weeks of the 2017-09-04 ICO ban; produced large-scale capital flight to offshore venues (Binance HK launch within weeks). Direct domestic offramp_cex cascade.",
+      "layer_observations": ["offramp_cex"],
+      "deferred": false
+    },
+    {
+      "slug": "china-state-council-mining-crackdown-2021-05",
+      "title": "China State Council Financial Stability Committee crackdown on bitcoin mining and trading",
+      "trigger_date": "2021-05-21",
+      "actor": "CN_STATE_COUNCIL_FSDC",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.nasdaq.com/articles/china-vows-to-crack-down-on-bitcoin-mining-trading-activities-2021-05-21",
+      "secondary_urls": [
+        "https://time.com/6051991/why-china-is-cracking-down-on-bitcoin-mining-and-what-it-could-mean-for-other-countries/",
+        "https://decrypt.co/74187/chinas-2021-bitcoin-crackdown-what-you-need-know"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "Vice-Premier Liu He chaired FSDC meeting — first time State Council explicitly ordered mining crackdown. Highest-rank political signal driving the 2021 hashrate exodus from China (estimated 50-70% of global hashrate). Triggered the provincial-ban cascade (Inner Mongolia, Sichuan, Xinjiang, Yunnan).",
+      "layer_observations": ["mining_hashpower", "offramp_cex"],
+      "deferred": false
+    },
+    {
+      "slug": "china-inner-mongolia-mining-ban-2021-05",
+      "title": "China Inner Mongolia NDRC draft rules ending all crypto mining in province",
+      "trigger_date": "2021-05-25",
+      "actor": "CN_INNER_MONGOLIA_NDRC",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/",
+      "secondary_urls": [
+        "https://www.scmp.com/tech/policy/article/3134909/china-bitcoin-inner-mongolia-reinforces-beijings-ban-mining-strict",
+        "https://www.cnbc.com/2021/05/26/major-china-bitcoin-mining-hub-lays-out-harsher-crackdown-measures.html"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "First province-level enforcement after State Council 2021-05-21. NDRC draft published 2021-05-25 with social-credit-blacklist penalties; Inner Mongolia previously hosted ~8% of global BTC mining. Templated the provincial mining-ban model adopted by Sichuan and Xinjiang.",
+      "layer_observations": ["mining_hashpower"],
+      "deferred": false
+    },
+    {
+      "slug": "china-sichuan-mining-ban-2021-06",
+      "title": "China Sichuan NDRC + Energy Bureau orders State Grid to cut power to 26 mining farms",
+      "trigger_date": "2021-06-18",
+      "actor": "CN_SICHUAN_NDRC",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.coindesk.com/markets/2021/06/18/sichuan-becomes-latest-chinese-province-to-order-bitcoin-miner-shutdown",
+      "secondary_urls": [
+        "https://www.scmp.com/tech/policy/article/3137988/chinas-cryptocurrency-crackdown-intensifies-sichuan-province-orders",
+        "https://www.theblock.co/amp/post/108916/sichuan-orders-state-power-grid-to-cut-supply-for-26-bitcoin-mining-farms"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "Sichuan was the largest hydro-based CN mining hub. Power-cut directive 2021-06-18 dropped global hashrate ~37% across major mining pools within days. Closes the China-exodus chapter that began with the 2021-05-21 State Council statement. Clean mining_hashpower load-bearing layer.",
+      "layer_observations": ["mining_hashpower"],
+      "deferred": false
+    },
+    {
+      "slug": "china-pboc-ten-agencies-crypto-illegal-2021-09",
+      "title": "China PBOC + 9 agencies notice declaring all cryptocurrency-related activities illegal (the comprehensive ban)",
+      "trigger_date": "2021-09-24",
+      "actor": "CN_PBOC_PLUS_NINE",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.bloomberg.com/news/articles/2021-09-24/china-deems-all-crypto-related-transactions-illegal-in-crackdown",
+      "secondary_urls": [
+        "https://www.cnbc.com/2021/09/24/china-central-bank-vows-harsh-crackdown-on-cryptocurrency-industry.html",
+        "https://www.loc.gov/item/global-legal-monitor/2021-10-13/china-central-bank-issues-new-regulatory-document-on-cryptocurrency-transactions/",
+        "https://blockchain.bakermckenzie.com/2021/10/04/chinas-central-bank-declares-all-cryptocurrency-transactions-illegal/"
+      ],
+      "priority": "P0",
+      "verification": "needs_check",
+      "rationale": "10-agency notice dated 2021-09-15, publicly released 2021-09-24 — declares all crypto-related activities illegal including services by offshore exchanges to PRC residents and employees working in CN for offshore exchanges. Likely overlaps with existing china-pboc-crypto-ban-2021 — verify whether existing event already pins this specific notice or only the State Council statement. NEEDS CHECK against existing YAML.",
+      "layer_observations": ["offramp_cex", "asset_onchain"],
+      "deferred": false
+    },
+    {
+      "slug": "china-nft-secondary-trading-self-discipline-2022-06",
+      "title": "China Tencent / Ant / JD digital-collectible self-discipline initiative banning NFT secondary trading and crypto settlement",
+      "trigger_date": "2022-06-30",
+      "actor": "CN_CULTURAL_INDUSTRY_ASSOCIATION_PLUS_PLATFORMS",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban",
+      "secondary_urls": [
+        "https://techcrunch.com/2022/06/30/china-nft-tencent-alibaba/",
+        "https://www.pymnts.com/nfts/2022/chinas-tencent-to-shut-down-nft-platform/",
+        "https://www.upi.com/Top_News/World-News/2022/07/15/Tencent-shuts-down-NFT-platform/6481657898687/"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "14-article China Cultural Industry Association initiative signed by Tencent, Ant Group, JD.com — bans NFT secondary trading, mandates real-name auth, prohibits crypto settlement. Triggered Tencent Huanhe 2022-07 closure. Distinct from offshore crypto ban because targets PRC L4 platform-stack (Tencent Huanhe, Phoenix, Alibaba JingTan, Whale).",
+      "layer_observations": ["l4_frontend", "asset_issuance"],
+      "deferred": false
+    },
+    {
+      "slug": "china-weibo-crypto-exchange-purge-2021-03",
+      "title": "China Weibo deactivation of Binance, Huobi, OKEx official accounts",
+      "trigger_date": "2021-03-11",
+      "actor": "CN_WEIBO_CAC",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge",
+      "secondary_urls": [
+        "https://www.globaltimes.cn/page/202103/1218100.shtml",
+        "https://forkast.news/weibo-takedown-huobi-binance-okex-crypto-china/"
+      ],
+      "priority": "P1",
+      "verification": "verified",
+      "rationale": "Cleanest L4 social-media censorship event from PRC: Weibo (CAC-supervised) deactivated the three biggest CN-language exchange accounts in March 2021 — 6 months before the 2021-09-24 comprehensive ban. Followed by 2022-08 12,000-influencer purge. Anchors the social-media-censorship sub-frame distinct from regulator-issued notices.",
+      "layer_observations": ["l4_frontend", "discovery_layer"],
+      "deferred": false
+    },
+    {
+      "slug": "hongkong-sfc-vatp-licensing-2023-06",
+      "title": "Hong Kong SFC Virtual Asset Trading Platform licensing regime (retail-access framework)",
+      "trigger_date": "2023-06-01",
+      "actor": "HK_SFC",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.sfc.hk/-/media/EN/assets/components/codes/files-current/web/guidelines/Guidelines-for-Virtual-Asset-Trading-Platform-Operators/Guidelines-for-Virtual-Asset-Trading-Platform-Operators.pdf",
+      "secondary_urls": [
+        "https://www.omm.com/insights/alerts-publications/hong-kong-launches-new-virtual-asset-trading-platform-licensing-regime/",
+        "https://www.klgates.com/The-Dual-Licensing-Regime-for-Virtual-Asset-Trading-Platforms-in-Hong-Kong-Part-3-10-5-2023"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "Effective 2023-06-01 — established the dual AMLO + SFO licensing regime for VATPs in HK; gave 1-year transitional window which closed 2024-06 and led to mass deemed-withdrawal of unlicensed offshore exchanges from HK. Pairs with hongkong-sfc-jpex-block-2023 (already candidate elsewhere). Foundational HK retail-access frame.",
+      "layer_observations": ["offramp_cex", "l4_frontend"],
+      "deferred": false
+    },
+    {
+      "slug": "hongkong-hkma-stablecoins-ordinance-2025",
+      "title": "Hong Kong Stablecoins Ordinance enactment + HKMA licensing regime",
+      "trigger_date": "2025-08-01",
+      "actor": "HK_HKMA_LEGCO",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/07/20250729-4/",
+      "secondary_urls": [
+        "https://www.morganlewis.com/pubs/2025/06/hong-kongs-stablecoins-ordinance-to-take-effect-august-1-an-overview-of-the-regulatory-framework",
+        "https://www.sidley.com/en/insights/newsupdates/2025/08/hong-kong-implements-new-regulatory-framework-for-stablecoins"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "LegCo passed 2025-05-21, ordinance in force 2025-08-01. Imposes HKMA licensing for stablecoin issuers; unlicensed activity carries HK$5M fine + 7yr imprisonment. Distinct censorship vector — restricts issuance-layer and locks the HK market to HKMA-approved fiat-backed coins, effectively foreclosing offshore stablecoin issuance to HK persons.",
+      "layer_observations": ["stablecoin_issuance", "offramp_cex"],
+      "deferred": false
+    },
+    {
+      "slug": "russia-dfa-law-2020",
+      "title": "Russia Federal Law 259-FZ 'On Digital Financial Assets and Digital Currency' — prohibition on crypto-as-payment",
+      "trigger_date": "2020-07-31",
+      "actor": "RU_FEDERAL_LAW",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/",
+      "secondary_urls": [
+        "https://www.debevoise.com/insights/publications/2020/08/russia-adopts-law-on-digital-financial-assets",
+        "https://gowlingwlg.com/en/insights-resources/articles/2020/a-new-russian-digital-assets-law"
+      ],
+      "priority": "P1",
+      "verification": "verified",
+      "rationale": "Signed 2020-07-31 by Putin, effective 2021-01-01. Mixed permissive-DFA-issuance + prohibitive-payment-use. The payment-prohibition prong is the censorship-relevant element: bans crypto as means-of-payment and advertising-as-payment inside RU. Foundation for the 2022-01 CBR consultation paper already in corpus. Dual character flagged in rationale.",
+      "layer_observations": ["offramp_cex", "stablecoin_issuance"],
+      "deferred": false
+    },
+    {
+      "slug": "russia-mining-legalization-law-2024-08",
+      "title": "Russia Federal Law on cryptocurrency mining — register, CBR regional-ban authority",
+      "trigger_date": "2024-08-08",
+      "actor": "RU_FEDERAL_LAW",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://tass.com/economy/1826725",
+      "secondary_urls": [
+        "https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia",
+        "https://www.nasdaq.com/articles/putin-signs-law-legalizing-cryptocurrency-mining-russia"
+      ],
+      "priority": "P1",
+      "verification": "verified",
+      "rationale": "Signed 2024-08-08 effective 2024-11-01. Mostly permissive but creates the mandatory miner-registry (only Russian legal entities/IEs) and authorises CBR to ban placements threatening financial stability. The registry + regional-ban authority is the censorship-relevant element that triggers the 2024-12 regional ban. Anchor for the 2024-12 enforcement.",
+      "layer_observations": ["mining_hashpower"],
+      "deferred": false
+    },
+    {
+      "slug": "russia-mining-regional-ban-2024-12",
+      "title": "Russia Council of Ministers 6-year mining ban in 10 regions (Dagestan, Chechnya, Donetsk, Lugansk, Zaporizhzhia, Kherson + 4)",
+      "trigger_date": "2024-12-23",
+      "actor": "RU_COUNCIL_OF_MINISTERS",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass",
+      "secondary_urls": [
+        "https://cointelegraph.com/news/russia-crypto-mining-ban-2025-2031",
+        "https://www.financemagnates.com/trending/russia-bans-crypto-mining-in-10-regions-for-6-years-following-putins-signed-law/"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "Council of Ministers decision banning mining in 10 regions 2025-01-01 through 2031-03-15. Includes North Caucasus republics (energy-shortage rationale) AND occupied Ukrainian oblasts (Donetsk, Lugansk, Zaporizhzhia, Kherson) — the latter creates an unusual cross-jurisdiction censorship event under contested sovereignty. Seasonal restrictions in Irkutsk, Buryatia, Zabaikalsky. Clean mining_hashpower censorship cascade.",
+      "layer_observations": ["mining_hashpower"],
+      "deferred": false
+    },
+    {
+      "slug": "kazakhstan-internet-shutdown-mining-2022-01",
+      "title": "Kazakhstan nationwide internet shutdown during political unrest — collateral 13% global BTC hashrate drop",
+      "trigger_date": "2022-01-05",
+      "actor": "KZ_GOVT_TOKAYEV",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests",
+      "secondary_urls": [
+        "https://fortune.com/2022/01/05/kazakhstan-internet-bitcoin-mining-mystery-crypto/",
+        "https://www.nbcnews.com/tech/tech-news/bitcoin-network-power-slumps-kazakhstan-crackdown-hits-crypto-miners-rcna11221"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "Tokayev-ordered nationwide internet shutdown on 2022-01-05 during fuel-price protests collapsed Kazakh hashrate (then ~18% global, second only to US). Pure infrastructure-layer censorship event with measurable on-chain consequences. Unique in corpus as a non-financial-regulator nation-state action with cross-layer crypto effect. Templates the broader 'internet-shutdown-as-crypto-censorship' pattern.",
+      "layer_observations": ["network_layer", "mining_hashpower"],
+      "deferred": false
+    },
+    {
+      "slug": "kazakhstan-digital-assets-law-2023-02",
+      "title": "Kazakhstan Law on Digital Assets — mandatory mining registration, AIFC-exchange offload mandates",
+      "trigger_date": "2023-02-06",
+      "actor": "KZ_PRESIDENT_TOKAYEV",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/",
+      "secondary_urls": [
+        "https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets",
+        "https://www.jurist.org/features/2023/05/18/how-kazakhstans-new-digital-asset-law-could-pave-the-way-to-a-regulated-crypto-economy/"
+      ],
+      "priority": "P0",
+      "verification": "verified",
+      "rationale": "Tokayev signed 2023-02-06, effective 2023-04-01. Establishes mandatory licensing for miners, requires miners to offload mined coins via AIFC-licensed exchanges (50% in 2024 rising to 75% in 2025), and electricity-consumption-based tax. Direct counterpart to post-China-exodus mining reshore frame. Combined censorship + capital-control layer.",
+      "layer_observations": ["mining_hashpower", "offramp_cex"],
+      "deferred": false
+    },
+    {
+      "slug": "ukraine-virtual-assets-law-2022-03",
+      "title": "Ukraine Law 'On Virtual Assets' (signed during post-invasion donation surge)",
+      "trigger_date": "2022-03-16",
+      "actor": "UA_PRESIDENT_ZELENSKY",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law",
+      "secondary_urls": [
+        "https://www.jurist.org/news/2022/03/ukraine-president-zelenskyy-signs-bill-legalizing-cryptocurrency-market/",
+        "https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-zelenskyy-signs-virtual-currency-bill-into-law"
+      ],
+      "priority": "P1",
+      "verification": "verified",
+      "rationale": "Zelensky signed 2022-03-16 (Rada passed 2022-02-17, just one week pre-invasion). Predominantly permissive but creates NSSMC + NBU joint VASP registration regime with sanctions screening — censorship-relevant element is the sanctions-screening obligation under wartime conditions. Anchors Ukraine's wartime-crypto regulatory frame distinct from EU sanctions on RU.",
+      "layer_observations": ["offramp_cex"],
+      "deferred": false
+    },
+    {
+      "slug": "uzbekistan-napp-vasp-licensing-2022-07",
+      "title": "Uzbekistan NAPP Order No. 32 + Reg. No. 3380 — VASP licensing under presidential decree",
+      "trigger_date": "2022-07-14",
+      "actor": "UZ_NAPP",
+      "stratum": "S4_nation_state",
+      "primary_url": "https://www.lexology.com/library/detail.aspx?g=91e869a9-e800-455a-aa60-52d50e3d6c87",
+      "secondary_urls": [
+        "https://www.elliptic.co/country-guides/uzbekistan",
+        "https://cointelegraph.com/news/uzbekistan-issues-first-crypto-licenses-to-two-local-crypto-stores"
+      ],
+      "priority": "P2",
+      "verification": "verified",
+      "rationale": "April 2022 presidential decree authorised, NAPP Order No. 32 of 2022-07-14 + Reg. No. 3380 of 2022-08-15 implemented full VASP licensing with ~$1.985M licence fee + $10.8K/mo operational fee — effectively foreclosed retail participation while preserving sovereign control. Censorship-relevant via licence-fee-as-barrier-to-entry. Lower-priority because LL secondary sources outweigh top-tier coverage.",
+      "layer_observations": ["offramp_cex"],
+      "deferred": false
+    }
+  ],
+  "deferred_for_followup": [
+    {
+      "slug": "belarus-decree-no-8-2017",
+      "title": "Belarus Decree No. 8 on Development of Digital Economy",
+      "trigger_date": "2017-12-21",
+      "rationale": "Permissive regime creating HTP crypto-banking framework. NOT censorship. Documented per task brief request for triage but flagged deferred=true."
+    },
+    {
+      "slug": "russia-rosfinmonitoring-transparent-blockchain-2022",
+      "title": "Russia Rosfinmonitoring 'Transparent Blockchain' KYC tracking platform operationalisation",
+      "trigger_date": "2022-01-01",
+      "rationale": "Operational since 2022 per Chairman Chikhanchin statements but no discrete enforcement trigger with English secondary anchor; load-bearing effect is diffuse rather than event-shaped. Defer until specific deplatforming or licence-revocation action surfaces."
+    },
+    {
+      "slug": "kyrgyzstan-mining-shutdown-2023-11",
+      "title": "Kyrgyzstan energy-driven shutdown of crypto mining farms",
+      "trigger_date": "2023-11-01",
+      "rationale": "Energy-Minister-ordered shutdown reported by CABAR.asia and Cryptorank but no top-tier English secondary source (Reuters/Bloomberg/CoinDesk) confirms the exact decision date. Hold as P2-needs-check; not in active candidate list."
+    },
+    {
+      "slug": "tajikistan-criminal-mining-ban",
+      "title": "Tajikistan criminalisation of unauthorised mining",
+      "trigger_date": "2024-01-01",
+      "rationale": "Reported by Cryptopolitan / btcc.com but no Reuters/Bloomberg English anchor; date imprecise. Defer."
+    }
+  ]
+}

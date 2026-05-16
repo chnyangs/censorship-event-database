@@ -1,0 +1,311 @@
+id: china-inner-mongolia-mining-ban-2021-05
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - china-pboc-crypto-ban-2021
+  - china-state-council-mining-crackdown-2021-05
+  - china-sichuan-mining-ban-2021-06
+
+trigger:
+  type: nation_state_block
+  actor: CN_INNER_MONGOLIA_NDRC
+  timestamp: 2021-05-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://fgw.nmg.gov.cn/
+      wayback: https://web.archive.org/web/2021/https://fgw.nmg.gov.cn/
+      evidence_use: contextual_unarchived
+      note: |
+        Inner Mongolia Autonomous Region Development and Reform Commission
+        (内蒙古自治区发展和改革委员会) draft notice "Eight Measures on
+        Resolutely Investigating, Punishing and Rectifying Virtual
+        Currency 'Mining' Behavior" (关于坚决查处惩戒整治虚拟货币
+        "挖矿"行为八项措施(征求意见稿)), issued 2021-05-25 with a
+        public-comment window 2021-05-25 to 2021-06-01. The notice
+        enumerates four crackdown target classes (mining enterprises;
+        miners disguised as data centres; landlords housing mining
+        activities; entities obtaining electricity illegally for mining)
+        and announces a public reporting hotline + email address for
+        citizens to report mining operations. This follows a 2021-02-25
+        Inner Mongolia NDRC notice ordering all mining to cease by end of
+        April 2021. DRYRUN: wayback wildcard pointer in lieu of pinned
+        snapshot of the Inner Mongolia NDRC origin page (the draft notice
+        was hosted on the regional NDRC site at fgw.nmg.gov.cn and the
+        pinned-page URL is not yet captured in this session);
+        evidence_use=contextual_unarchived per validator policy.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/
+      wayback: https://web.archive.org/web/2021/https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2021-05-25 coverage: "Inner Mongolia Outlines How It May
+        Ban Crypto Mining." Confirms the Inner Mongolia NDRC draft notice
+        date (2021-05-25), the public-comment window (2021-05-25 to
+        2021-06-01), the four enumerated crackdown target classes, and
+        the existence of a public reporting channel (hotline + email)
+        for citizens to report mining operations. DRYRUN wayback
+        wildcard pointer.
+    - type: supporting_journalism
+      url: https://www.scmp.com/economy/china-economy/article/3134058/chinas-cryptocurrency-crackdown-sees-inner-mongolia-call
+      wayback: https://web.archive.org/web/2021/https://www.scmp.com/economy/china-economy/article/3134058/chinas-cryptocurrency-crackdown-sees-inner-mongolia-call
+      evidence_use: contextual_unarchived
+      note: |
+        South China Morning Post 2021-05-25 coverage on Inner Mongolia
+        calling on the public to report illegal mining operations.
+        Independent corroboration of the public-reporting-hotline
+        mechanism. DRYRUN wayback wildcard pointer.
+    - type: supporting_journalism
+      url: https://www.cnbc.com/2021/05/26/major-china-bitcoin-mining-hub-lays-out-harsher-crackdown-measures.html
+      wayback: https://web.archive.org/web/2021/https://www.cnbc.com/2021/05/26/major-china-bitcoin-mining-hub-lays-out-harsher-crackdown-measures.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNBC 2021-05-26 coverage: "Major bitcoin mining region in China
+        sets tough penalties for cryptocurrency activities." Confirms
+        penalty schedule (banning offenders from regional power-trading
+        scheme, revoking business licenses, shutting businesses down)
+        targeting industrial parks, data centres, telecoms companies,
+        internet firms, and cybercafes. DRYRUN wayback wildcard pointer.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision. The Inner Mongolia NDRC "Eight Measures"
+        draft notice was published on 2021-05-25 with a public-comment
+        window opening that day; CoinDesk, SCMP, and CNBC coverage
+        cluster on 2021-05-25 / 2021-05-26 with consistent dating.
+        Note: this 2021-05-25 enforcement notice was preceded by the
+        2021-02-25 Inner Mongolia NDRC notice ordering all mining to
+        cease by end of April 2021, and was further preceded on
+        2021-05-18 by the regional public-reporting hotline + email
+        address setup; the 2021-05-25 draft is the load-bearing
+        enforcement-framework anchor.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Sub-national (province-level) policy directive targeting cryptocurrency
+    mining operations physically located within the Inner Mongolia
+    Autonomous Region. Subset because the enumerated targets are the four
+    crackdown target classes named in the 2021-05-25 NDRC draft notice:
+    (1) mining enterprises, (2) miners disguised as data centres /
+    industrial parks claiming preferential tax/land/energy policies,
+    (3) landlords housing mining operations, and (4) entities obtaining
+    electricity supply illegally for mining. The broader class of all
+    bitcoin mining hashpower physically located in Inner Mongolia is
+    the implicit exclusion target. Jurisdiction stays [CN] but actor is
+    province-level (Inner Mongolia Autonomous Region NDRC), not the
+    central PRC government.
+  entity: inner_mongolia_bitcoin_mining_operations_ban
+  actor_type: provincial_economic_planning_authority
+  actor_name: Inner Mongolia Autonomous Region Development and Reform Commission (内蒙古自治区发展和改革委员会)
+  chains: [bitcoin]
+
+jurisdiction:
+  - CN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Inner Mongolia mining ban is a physical-infrastructure shutdown
+      directive (power-supply revocation, business-license revocation,
+      industrial-park lockouts); it does not map to domain-level /
+      ISP-level reachability questions at the network layer.
+  - layer: l1_consensus
+    status: partially_measured
+    chain: bitcoin
+    scope: [inner_mongolia_mining_hashpower]
+    note: |
+      Mining hashpower is the load-bearing L1 consensus surface for a
+      bitcoin mining ban. Inner Mongolia accounted for ~8% of global
+      bitcoin hashrate at event time (per Cambridge Bitcoin Electricity
+      Consumption Index, May 2021 snapshot). The Inner Mongolia
+      enforcement notice is one input to the May-June 2021 cascade that
+      removed ~50%+ of global bitcoin hashrate from China within
+      ~3 months (the broader CN mining-ban hashrate-migration event).
+      partially_measured because the load-bearing observed_change is the
+      published enforcement notice at the policy-instrument layer
+      (attribution=direct), with downstream physical-effect reporting
+      (mining-rig confiscations, hashrate migration) cited as
+      contextual support; per-event-bracketing CBECI mining-map
+      snapshots specifically pinned to Inner Mongolia hashrate share
+      are deferred to human audit.
+    denominator_artifact:
+      type: contextual_unarchived
+      url: https://ccaf.io/cbnsi/cbeci/mining_map
+      wayback: https://web.archive.org/web/2021/https://ccaf.io/cbnsi/cbeci/mining_map
+      note: |
+        CBECI mining-map is the canonical L1 hashrate-share denominator
+        artifact for CN-province mining-ban analysis; pinned-timestamp
+        snapshots (pre-event / event-day / post-event) deferred to
+        human audit. DRYRUN wayback wildcard pointer.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Bitcoin L1 mining ban does not map to Ethereum PBS-era RPC
+      provider filter lists; L3 not applicable by construct.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Inner Mongolia NDRC notice targets physical mining operations,
+      not consumer-facing crypto frontends; L4 not applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin-issuer admin-method freezes are implicated by a
+      mining-hashpower shutdown directive.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Exchange-level offramp filtering is not implicated by a regional
+      mining-infrastructure shutdown.
+
+observations:
+  - layer: l1_consensus
+    actor: mining_pool_cohort:inner_mongolia
+    event: inner_mongolia_provincial_mining_ban_enforcement_notice_published_with_public_reporting_hotline
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-05-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://fgw.nmg.gov.cn/
+        wayback: https://web.archive.org/web/2021/https://fgw.nmg.gov.cn/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [inner_mongolia_mining_operations]
+          time_window:
+            - 2021-05-25T00:00:00Z
+            - 2021-06-30T23:59:59Z
+        note: |
+          Inner Mongolia NDRC 2021-05-25 draft notice constitutes the
+          enforcement-framework anchor for the provincial mining-ban
+          regime: it enumerates the four target classes, specifies the
+          public reporting hotline + email channel, and announces
+          penalties (power-trading ban, business-license revocation,
+          enterprise shutdown). attribution=direct: the published
+          enforcement notice is the observed change itself at the
+          policy-instrument layer; the load-bearing physical-effect
+          observation (mining-rig confiscations, hashrate-migration) is
+          a downstream cascade well-documented in 2021-Q2/Q3 reporting
+          (CryptoPotato: "Over 10,000 Mining Rigs Confiscated in Inner
+          Mongolia"; Forkast: bitcoin miners fleeing Inner Mongolia
+          ahead of crypto mining ban). DRYRUN: wayback wildcard pointer
+          in lieu of pinned snapshot of the Inner Mongolia NDRC origin
+          page; pinned-snapshot + body_hash capture deferred to human
+          audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/
+        wayback: https://web.archive.org/web/2021/https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2021-05-25 contemporaneous coverage confirming notice
+          date, target classes, public-comment window, and reporting
+          channel. DRYRUN wayback wildcard pointer.
+      - type: supporting_journalism
+        url: https://cryptopotato.com/chinese-crack-down-on-crypto-intensifies-over-10000-mining-rigs-confiscated-in-inner-mongolia/
+        wayback: https://web.archive.org/web/2021/https://cryptopotato.com/chinese-crack-down-on-crypto-intensifies-over-10000-mining-rigs-confiscated-in-inner-mongolia/
+        evidence_use: contextual_unarchived
+        note: |
+          Downstream-cascade reporting on >10,000 mining rigs confiscated
+          in Inner Mongolia, attributing the seizures to the regional
+          enforcement framework anchored by the 2021-05-25 notice.
+          DRYRUN wayback wildcard pointer.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash; human review required
+  to elevate to admitted status.
+
+  Sub-national (province-level) nation-state-block trigger.
+  Jurisdiction=[CN] is retained per validator schema (province-level
+  CN actors map to CN jurisdiction), but the actor is the Inner
+  Mongolia Autonomous Region Development and Reform Commission, not
+  the central PRC government. This positions the event as a
+  **province-level enforcement anchor** within the broader 2021 CN
+  mining-ban cascade and is structurally distinct from sibling
+  events:
+
+  1. **vs. china-pboc-crypto-ban-2021** — the 2021-09-24 PBOC joint
+     notice is a *central-government* directive targeting
+     virtual-currency *trading and business activities* (offramp_cex
+     surface). The present event is a *provincial* directive
+     targeting *mining hashpower* (l1_consensus surface), issued
+     ~4 months earlier in the cascade timeline.
+
+  2. **vs. china-state-council-mining-crackdown-2021-05** — the
+     2021-05-21 State Council Financial Stability Committee statement
+     is the central-government counterpart that triggered the
+     province-level enforcement wave; the present 2021-05-25 Inner
+     Mongolia notice is the *first concrete provincial enforcement
+     framework* operationalizing the State Council directive,
+     including the public reporting hotline.
+
+  3. **vs. china-sichuan-mining-ban-2021-06** — Sichuan's 2021-06-18
+     mining shutdown is a sibling provincial enforcement notice
+     issued by Sichuan's NDRC ~3 weeks after Inner Mongolia's,
+     targeting the hydropower-fueled mining cluster in Sichuan
+     (~10-20% of global hashrate). The two provincial events together
+     define the bulk of the 2021 CN-side hashrate migration.
+
+  comparison shape: 1 observed_change layer (l1_consensus
+  load-bearing, attribution=direct on the policy-instrument anchor).
+  L0/L3/L4/asset_onchain/offramp_cex are not_applicable by
+  construction of a province-level mining-infrastructure ban.
+
+  DRYRUN caveats: primary citation (Inner Mongolia NDRC origin URL)
+  and supporting-journalism citations (CoinDesk, SCMP, CNBC) are
+  asserted with wayback wildcard pointers; pinned-snapshot timestamps
+  and body_hash captures are deferred to the human-audit pass. For
+  non-DRYRUN release, capture body_hash + body_path for: (1) Inner
+  Mongolia NDRC 2021-05-25 draft notice page (the actual notice URL
+  on fgw.nmg.gov.cn), (2) CoinDesk 2021-05-25 article, (3) SCMP
+  2021-05-25 article, (4) CNBC 2021-05-26 article, and (5) a CBECI
+  Inner Mongolia hashrate-share snapshot bracketing the event.
+  Marked evidence_use=contextual_unarchived on all citations to
+  flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "On 2021-05-25, the Inner Mongolia Autonomous Region Development and
+  Reform Commission published a draft enforcement notice
+  ('Eight Measures on Resolutely Investigating, Punishing and
+  Rectifying Virtual Currency Mining Behavior') enumerating four
+  classes of mining-related targets, announcing a public reporting
+  hotline + email channel for citizens, and specifying penalties
+  (power-trading bans, business-license revocations, enterprise
+  shutdowns). The notice operationalizes the 2021-02-25 Inner
+  Mongolia NDRC mandate that all bitcoin mining cease by end of
+  April 2021 and is the first concrete province-level enforcement
+  framework in the 2021 CN mining-ban cascade. Observational axis at
+  l1_consensus (attribution=direct on the policy-instrument anchor;
+  downstream physical-effect observations such as mining-rig
+  confiscations and hashrate migration are documented in
+  contemporaneous reporting but not load-bearing in this scoped
+  claim). Admission-anchor-grade promotion pending pinned archive
+  captures."
+
+tags:
+  - nation_state
+  - china
+  - inner_mongolia
+  - provincial
+  - mining_ban
+  - bitcoin
+  - l1_consensus
+  - s4_nation_state
+  - dryrun_2026_05_16

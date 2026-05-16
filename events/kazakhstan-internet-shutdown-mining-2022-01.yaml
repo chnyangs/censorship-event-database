@@ -1,0 +1,415 @@
+id: kazakhstan-internet-shutdown-mining-2022-01
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - china-sichuan-mining-ban-2021-06
+
+trigger:
+  type: nation_state_block
+  actor: KZ_PRESIDENT_TOKAYEV
+  timestamp: 2022-01-05T12:00:00Z
+  timestamp_precision: hour
+  citation:
+    - type: semi_primary_measurement
+      url: https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+      wayback: https://web.archive.org/web/2022/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C S4
+        nation-state L0 network-layer discovery; lean run): authored by
+        LLB agent without personally verifying Wayback/body_hash;
+        origin=agent_draft and status=draft pending human review. Real
+        release must replace this DRYRUN marker with a human-verified
+        audit after pinning real archive anchors (NetBlocks report
+        snapshot, IODA outage signature, Cloudflare Radar BGP/HTTP
+        traffic drop chart, CBECI Kazakhstan hashrate share data).
+
+        NetBlocks report "Internet disrupted in Kazakhstan amid energy
+        price protests" documents normalized country-level connectivity
+        falling to ~2% on 2022-01-05 starting around noon UTC. NetBlocks
+        is the canonical semi-primary measurement vantage point for this
+        L0 shutdown; IODA (Internet Outage Detection and Analysis,
+        CAIDA) and Cloudflare Radar independently corroborate. The
+        shutdown was ordered by Kazakhstan's President Kassym-Jomart
+        Tokayev in response to nationwide political unrest that began
+        2022-01-02 over LPG fuel price liberalization.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2022-01-06: "Kazakhstan's Hashrate Drops as Internet
+        Blackout Persists Amid Nationwide Protests." Independent
+        contemporaneous journalism anchor naming Tokayev as the actor
+        ordering the shutdown and documenting the downstream hashrate
+        collapse.
+    - type: supporting_journalism
+      url: https://www.cnbc.com/2022/01/06/kazakhstan-bitcoin-mining-shuts-down-amid-fatal-protests.html
+      wayback: https://web.archive.org/web/2022/https://www.cnbc.com/2022/01/06/kazakhstan-bitcoin-mining-shuts-down-amid-fatal-protests.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNBC 2022-01-06: "Kazakhstan's deadly protests hit bitcoin, as
+        the world's second-biggest mining hub shuts down." Provides the
+        ~18% global hashrate figure (CBECI fall-2021 estimate) and the
+        L1-layer hashrate-collapse context.
+    - type: supporting_tracker
+      url: https://blog.cloudflare.com/internet-shut-down-in-kazakhstan-amid-unrest/
+      wayback: https://web.archive.org/web/2022/https://blog.cloudflare.com/internet-shut-down-in-kazakhstan-amid-unrest/
+      evidence_use: contextual_unarchived
+      note: |
+        Cloudflare blog post documenting the Kazakhstan internet
+        shutdown from the Cloudflare Radar vantage point: HTTP request
+        traffic from KZ collapsed at the same 2022-01-05 noon UTC
+        timestamp NetBlocks recorded, with brief partial restorations
+        during Tokayev's televised speeches.
+  timestamp_sources:
+    - type: semi_primary_measurement
+      note: |
+        Hour-precision. NetBlocks records connectivity loss "at around
+        noon UTC Wednesday" 2022-01-05. Cloudflare Radar BGP/HTTP
+        signatures align with the same hour. The shutdown persisted
+        through 2022-01-10 with brief partial restorations during
+        Tokayev's televised speeches. Trigger timestamp is set to
+        2022-01-05T12:00:00Z (the onset of the L0 shutdown) with
+        hour-precision; the political decision (Tokayev's order) is the
+        underlying actor but the L0 vantage signatures are the precise
+        observable timestamp.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Subset because the nation-state directive targets nationwide
+    internet reachability inside Kazakhstan (the canonical target), and
+    the resulting downstream L1 hashrate collapse is observed only on
+    the Kazakhstan-hosted miner population (~18% global share per CBECI
+    fall-2021 estimate). The enumerated target is the Kazakhstan-routed
+    AS-level internet substrate (the L0 shutdown surface) plus the
+    Kazakhstan-hosted bitcoin mining-pool stratum-server connectivity
+    (the L1 downstream collapse surface). Out of scope: any specific
+    crypto-domain reachability slice (no per-domain OONI/Censored
+    Planet attestation pinned in this DRYRUN session).
+  entity: kazakhstan_nationwide_internet_shutdown_jan_2022
+  actor_type: nation_state_internet_shutdown
+  actor_name: Kazakhstan nationwide internet shutdown (2022-01-05 to 2022-01-10)
+  chains: [bitcoin]
+
+jurisdiction:
+  - KZ
+
+coverage:
+  - layer: l0_network
+    status: partially_measured
+    scope:
+      - kazakhstan_as_level_connectivity
+    note: |
+      L0 network-layer vantage substrate is well-attested: NetBlocks
+      (normalized connectivity to ~2% on 2022-01-05), IODA / Cloudflare
+      Radar (BGP/HTTP signature drop at the same hour), and OONI
+      (probe-vantage measurements from KZ are available for the January
+      2022 window per OONI Explorer, though crypto-domain-specific
+      slices not yet pinned). attribution=direct observed_change
+      attached below for the L0 shutdown itself. Status is
+      partially_measured rather than measured because per-vantage
+      replayable artifacts (NetBlocks snapshot body_hash, IODA outage
+      JSON, OONI measurement_ids) are not yet pinned in this DRYRUN
+      session; the measurement substrate is well-established (canonical
+      L0 censorship measurement platforms) but the per-event slice
+      capture is deferred to human audit.
+    denominator_artifact:
+      type: semi_primary_measurement
+      url: https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+      wayback: https://web.archive.org/web/2022/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+      scope_descriptor:
+        countries: [KZ]
+        time_window:
+          - 2022-01-05T00:00:00Z
+          - 2022-01-10T23:59:59Z
+      note: |
+        NetBlocks country-level connectivity index for KZ; canonical
+        replayable L0 anchor for the shutdown. DRYRUN: wayback wildcard
+        in lieu of pinned-timestamp snapshot; body_hash capture deferred.
+  - layer: l1_consensus
+    status: partially_measured
+    chain: bitcoin
+    scope:
+      - kazakhstan_hosted_mining_pools
+    note: |
+      L1 consensus-layer downstream effect: the Kazakhstan-hosted miner
+      population (~18% global hashrate per CBECI fall-2021 estimate)
+      lost network connectivity at the same hour as the L0 shutdown.
+      Bitcoin network total hashrate dropped from ~194 EH/s (2022-01-04)
+      to ~168 EH/s (2022-01-05) per CoinDesk / The Block / mining-pool
+      dashboards (1THash -82% decline, OKExPool -46.3%, KuCoinPool
+      -22.7%). attribution=direct observed_change attached below: the
+      L1 hashrate drop is causally coupled to the L0 shutdown via the
+      mining pool stratum-server reachability dependency. Status is
+      partially_measured rather than measured because CBECI mining-map
+      JSON for the Jan 2022 window and per-pool hashrate timeseries
+      snapshots are not yet pinned in this DRYRUN session.
+    denominator_artifact:
+      type: supporting_tracker
+      url: https://ccaf.io/cbnsi/cbeci/mining_map
+      wayback: https://web.archive.org/web/2022/https://ccaf.io/cbnsi/cbeci/mining_map
+      scope_descriptor:
+        countries: [KZ]
+        time_window:
+          - 2022-01-01T00:00:00Z
+          - 2022-01-31T23:59:59Z
+      note: |
+        CBECI (Cambridge Bitcoin Electricity Consumption Index) mining
+        map — canonical replayable substrate for country-level
+        bitcoin hashrate share. DRYRUN: wayback wildcard in lieu of
+        pinned snapshot; per-month JSON capture deferred.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Pre-Merge event (Ethereum Merge 2022-09-15). Bitcoin-network L1
+      hashrate effect; Ethereum L3 RPC layer is not in scope.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Nation-state internet shutdown; not a frontend-overlay event.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Network reachability event; no stablecoin-issuer admin-method
+      freeze at any address level.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The shutdown did not target specific exchange offramp surfaces;
+      exchange access from inside KZ was incidentally impacted by the
+      blanket internet outage but no exchange-specific compliance
+      action attaches to this event.
+
+observations:
+  - layer: l0_network
+    actor: nation_state:kz_president_tokayev
+    event: kazakhstan_nationwide_internet_shutdown_at_l0_substrate
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-01-05T12:00:00Z
+    precision: hour
+    delta_hours: 0
+    country: KZ
+    sources:
+      - type: semi_primary_measurement
+        url: https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+        wayback: https://web.archive.org/web/2022/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+        evidence_use: contextual_unarchived
+        measurement_ids:
+          - netblocks-kz-2022-01-05
+        scope_descriptor:
+          countries: [KZ]
+          time_window:
+            - 2022-01-05T00:00:00Z
+            - 2022-01-10T23:59:59Z
+        note: |
+          NetBlocks normalized country-level connectivity for KZ falls
+          to ~2% at 2022-01-05 noon UTC; the L0 observed_change anchor.
+          attribution=direct: the shutdown was ordered by Tokayev in
+          response to political unrest, explicitly named in
+          state-of-emergency decree and KZ-government public statements.
+          DRYRUN: wayback wildcard in lieu of pinned snapshot;
+          measurement_id placeholder pending NetBlocks API-stable id.
+      - type: supporting_tracker
+        url: https://blog.cloudflare.com/internet-shut-down-in-kazakhstan-amid-unrest/
+        wayback: https://web.archive.org/web/2022/https://blog.cloudflare.com/internet-shut-down-in-kazakhstan-amid-unrest/
+        evidence_use: contextual_unarchived
+        note: |
+          Cloudflare Radar vantage corroboration: HTTP request traffic
+          from KZ collapsed at the same noon-UTC 2022-01-05 timestamp,
+          with brief partial restorations during Tokayev's televised
+          speeches. Independent vantage from a non-CAIDA / non-NetBlocks
+          probe network.
+      - type: supporting_journalism
+        url: https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
+        wayback: https://web.archive.org/web/2022/https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
+        evidence_use: contextual_unarchived
+        note: |
+          Access Now timeline of the Kazakhstan internet shutdowns and
+          protests; contextualizes Tokayev's role as the actor ordering
+          the shutdown and documents the multi-day duration through
+          2022-01-10.
+  - layer: l1_consensus
+    actor: bitcoin_network:kazakhstan_hosted_miners
+    event: bitcoin_hashrate_collapse_following_l0_shutdown
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-01-05T12:00:00Z
+    precision: hour
+    delta_hours: 0
+    country: KZ
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [KZ]
+          time_window:
+            - 2022-01-05T00:00:00Z
+            - 2022-01-10T23:59:59Z
+        note: |
+          CoinDesk 2022-01-06 documents the Kazakhstan-hosted bitcoin
+          hashrate collapse following the L0 shutdown. Bitcoin network
+          total hashrate dropped from ~194 EH/s (2022-01-04) to ~168
+          EH/s (2022-01-05) — a ~13% network-level drop consistent with
+          the Kazakh share losing connectivity. The Block reported
+          1THash -82% decline, OKExPool -46.3%, KuCoinPool -22.7% at
+          the pool level. attribution=direct because the L1 effect is
+          causally chained from the L0 shutdown via the mining-pool
+          stratum-server reachability dependency: KZ-hosted miners that
+          cannot reach external pool stratum servers cannot submit
+          shares and effectively go offline from the network's
+          perspective within the same block-interval window.
+      - type: supporting_journalism
+        url: https://www.theblock.co/amp/post/129312/bitcoin-mining-pool-hashrates-fall-amid-kazakhstan-internet-shutdown
+        wayback: https://web.archive.org/web/2022/https://www.theblock.co/amp/post/129312/bitcoin-mining-pool-hashrates-fall-amid-kazakhstan-internet-shutdown
+        evidence_use: contextual_unarchived
+        note: |
+          The Block coverage with per-pool hashrate-decline percentages
+          documenting which mining pools had heavy KZ-resident hashrate
+          exposure (1THash, OKExPool, KuCoinPool). Independent
+          journalism vantage.
+      - type: supporting_tracker
+        url: https://ccaf.io/cbnsi/cbeci/mining_map
+        wayback: https://web.archive.org/web/2022/https://ccaf.io/cbnsi/cbeci/mining_map
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [KZ]
+          time_window:
+            - 2021-09-01T00:00:00Z
+            - 2022-01-31T23:59:59Z
+        note: |
+          CBECI mining map establishes the ~18% global hashrate share
+          for KZ as of fall 2021 — the post-China-2021-migration
+          baseline against which the January 2022 hashrate collapse is
+          measured. Replayable substrate; DRYRUN wayback wildcard in
+          lieu of pinned snapshot.
+
+recovery:
+  - layer: l0_network
+    resolved: true
+    resolved_timestamp: 2022-01-10T00:00:00Z
+    citation:
+      - type: supporting_journalism
+        url: https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
+        wayback: https://web.archive.org/web/2022/https://www.accessnow.org/kazakhstan-internet-shutdowns-protests-almaty-timeline-whats-happening/
+        evidence_use: contextual_unarchived
+        note: |
+          Access Now timeline documents the L0 shutdown lifting around
+          2022-01-10 (with brief partial restorations during the
+          shutdown window for Tokayev televised addresses). Total
+          duration ~5 days. DRYRUN: day-precision recovery anchor.
+    note: |
+      L0 internet reachability restored 2022-01-10 (approx);
+      hour-precision restoration timestamp not yet pinned.
+  - layer: l1_consensus
+    resolved: true
+    resolved_timestamp: 2022-01-12T00:00:00Z
+    citation:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
+        evidence_use: contextual_unarchived
+        note: |
+          Bitcoin network total hashrate recovered to pre-shutdown
+          levels within ~1 week of L0 restoration, as KZ-hosted miners
+          re-established stratum-server connectivity. The recovery is
+          driven by L0 restoration; no independent L1-layer recovery
+          mechanism. DRYRUN: day-precision recovery anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash; human review required
+  to elevate to admitted status.
+
+  **First pure L0 network-layer event in the corpus.** This event is
+  structurally novel relative to prior nation-state triggers in the
+  dataset (china-pboc-crypto-ban-2021, nigeria-cbn-crypto-ban-2021,
+  malaysia-sc-binance-disable-2021): those events are policy-directive
+  triggers whose first-order substrate is corporate-compliance or
+  exchange-offramp reactions; the Kazakhstan 2022-01 event is a direct
+  nation-state internet shutdown whose first-order substrate is the L0
+  network layer itself, with the L1 consensus-layer hashrate collapse
+  as the downstream cascade effect.
+
+  comparison shape: 2 observed_change layers (L0 load-bearing, L1
+  causally chained). The L0+L1 pairing makes this event a candidate for
+  promotion to anchor_case once per-vantage replayable measurement
+  artifacts (NetBlocks snapshot body_hash, IODA outage JSON, CBECI
+  mining-map per-month JSON, OONI KZ measurement_ids) are pinned in a
+  human-audit pass. The two distinct cascade layers (L0 → L1) are
+  causally coupled via the mining-pool stratum-server reachability
+  dependency, not independent observations.
+
+  Sibling relationship to china-sichuan-mining-ban-2021-06: the China
+  2021 mining ban (and the broader China crypto-mining displacement
+  cluster) drove the post-2021 migration of Chinese hashrate to
+  Kazakhstan, making KZ the ~18% global hashrate share per CBECI fall
+  2021 estimate. The Kazakhstan 2022-01 shutdown is therefore the
+  first major L0-triggered hashrate disruption in the post-China-2021
+  bitcoin-mining geography.
+
+  DRYRUN caveats: all citations carry evidence_use=contextual_unarchived
+  with wayback wildcard pointers (web/2022/) rather than pinned-timestamp
+  snapshots; body_hash+body_path captures are deferred to the human-audit
+  pass. For non-DRYRUN release, capture body_hash + body_path for:
+  (1) NetBlocks 2022-01-05 KZ shutdown report (canonical L0 anchor),
+  (2) Cloudflare Radar / Cloudflare blog post on KZ shutdown,
+  (3) IODA outage signature JSON for KZ Jan 2022,
+  (4) OONI Explorer KZ-vantage measurements (Jan 2022 window) — at
+      minimum a web_connectivity slice for crypto-relevant domains,
+  (5) CBECI mining-map JSON for the Jan 2022 country-share window,
+  (6) CoinDesk + The Block + CNBC 2022-01-05/06/07 contemporaneous
+      journalism coverage,
+  (7) Access Now timeline for the recovery anchor.
+
+  Per validator constraint (item 11 in instructions): network_layer →
+  l0_network, mining_hashpower → l1_consensus. trigger.type =
+  nation_state_block; research_stratum = S4_nation_state.
+
+scoped_claim: |
+  "On 2022-01-05 at approximately noon UTC, the government of
+  Kazakhstan under President Tokayev ordered a nationwide internet
+  shutdown in response to political unrest. NetBlocks recorded
+  normalized country-level connectivity falling to ~2% (L0 layer,
+  attribution=direct), and the bitcoin network total hashrate dropped
+  from ~194 EH/s to ~168 EH/s within the same day as the
+  Kazakhstan-hosted miner population (~18% global hashrate share per
+  CBECI fall-2021) lost stratum-server connectivity (L1 consensus
+  layer, attribution=direct, causally chained from the L0 shutdown).
+  L0 restored on or around 2022-01-10; hashrate recovered to
+  pre-shutdown levels within ~1 week of L0 restoration. This is the
+  first pure L0 network-layer event in the corpus. Admission-anchor-grade
+  promotion pending pinned archive captures (NetBlocks snapshot,
+  IODA JSON, CBECI mining-map JSON)."
+
+tags:
+  - nation_state
+  - nation_state_block
+  - kazakhstan
+  - internet_shutdown
+  - l0_network
+  - l1_consensus
+  - bitcoin_mining
+  - hashrate_collapse
+  - tokayev
+  - netblocks
+  - cbeci
+  - s4_nation_state
+  - dryrun_2026_05_16

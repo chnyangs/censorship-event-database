@@ -1,0 +1,252 @@
+# DRYRUN preamble (Phase C):
+# - status: draft (origin: agent_draft, no human audit yet)
+# - research_stratum: S4_nation_state (sub-sovereign jurisdiction; HK SAR
+#   regulatory regime distinct from mainland PRC for crypto licensing)
+# - empirical_shape: comparison (1-2 observed_change layers anchored;
+#   offramp_cex licensing exclusion + l4_frontend HK-vantage geofencing)
+# - admission_tier: empirical_case (pending human audit)
+# - analysis_use: comparable_analysis; temporal_tier: comparable_main_2017_present
+# - trigger.type: nation_state_block (HK is sub-sovereign but the VATP
+#   licensing regime is a functional nation-state-level regulatory action
+#   over crypto offramps and frontends within HK jurisdiction)
+# - target.kind: entity; target.enumeration: subset (named major offshore
+#   platforms required to apply or wind-down; not the full universe of VATPs)
+# - jurisdiction: [HK]
+# - related_events: [china-pboc-crypto-ban-2021] (sibling sub-PRC framework;
+#   HK regime is functionally distinct but in the same broader PRC-region
+#   regulatory family)
+# - evidence_use: contextual_unarchived (sources cited but not Wayback-pinned
+#   in this draft; human audit will harden into admission_anchor evidence)
+
+id: hongkong-sfc-vatp-licensing-2023-06
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+trigger:
+  type: nation_state_block
+  actor: HK_SFC
+  timestamp: 2023-06-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sfc.hk/-/media/EN/files/ER/PDF/23CP2_Consultation-Conclusions-on-VATP_eng.pdf
+      wayback: https://web.archive.org/web/2023/https://www.sfc.hk/-/media/EN/files/ER/PDF/23CP2_Consultation-Conclusions-on-VATP_eng.pdf
+      note: |
+        Hong Kong Securities and Futures Commission (SFC) "Consultation
+        Conclusions on the Proposed Regulatory Requirements for Virtual
+        Asset Trading Platform Operators Licensed by the SFC" published
+        2023-05-23, with the VATP licensing regime coming into force
+        2023-06-01. All centralised VATPs carrying on business in Hong
+        Kong or actively marketing to HK investors must be licensed by
+        the SFC. Existing platforms with "meaningful and substantial
+        presence" in HK prior to 2023-06-01 had until 2024-05-31 to
+        apply for a licence or wind down operations.
+      evidence_use: contextual_unarchived
+    - type: supporting_journalism
+      url: https://www.davispolk.com/insights/client-update/hong-kong-licensing-regime-virtual-asset-trading-platforms-comes-force
+      wayback: https://web.archive.org/web/2023/https://www.davispolk.com/insights/client-update/hong-kong-licensing-regime-virtual-asset-trading-platforms-comes-force
+      note: |
+        Davis Polk client update "Hong Kong licensing regime for virtual
+        asset trading platforms comes into force" describing the
+        2023-06-01 effective date and the dual-licensing framework
+        (SFC Type 1 / Type 7 plus AMLO VATP licence).
+      evidence_use: contextual_unarchived
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Subset enumeration: named major offshore CEXs (Binance, OKX, Bybit,
+    HTX/Huobi) that were effectively excluded by the VATP regime's
+    mainland-China-residents bar and other requirements, plus the two
+    SFC-licensed VATPs (HashKey, OSL) that were authorized at the
+    transition. Full universe of HK-marketing VATPs is broader; this
+    subset is the defensible analytic slice.
+  entity: hk_vatp_licensing_regime
+  actor_name: Hong Kong SFC VATP licensing regime
+  actor_type: regulatory_jurisdiction
+  canonical_domains:
+    - binance.com
+    - www.okx.com
+    - bybit.com
+    - hashkey.com
+    - osl.com
+
+jurisdiction:
+  - HK
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      VATP licensing is a jurisdictional regulatory action; it does not
+      operate via L0 network-layer interference. HK does not run a
+      mainland-style network filter against unlicensed crypto frontends.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Jurisdictional licensing regime does not map to Ethereum PBS relay
+      filtering or any other L1 consensus primitive.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      L3 RPC layer is not implicated by HK CEX licensing. Same not-applicable
+      reasoning as other jurisdictional-CEX-licensing events.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Unlicensed offshore platforms (Binance, OKX, Bybit, HTX) responded
+      with HK-vantage geofencing or HK-user restrictions following the
+      regime's entry into force. Wayback-diff evidence (HK-vantage
+      snapshots of exchange landing/registration pages bracketing
+      2023-06-01 and 2024-05-31) is not yet attached.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Licensing regime does not implicate stablecoin admin-method freezes
+      or other asset-onchain primitives.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - hashkey
+      - osl
+      - binance
+      - okx
+      - bybit
+    note: |
+      Only HashKey and OSL were SFC-licensed VATPs at the 2023-06-01
+      effective date and through 2024-05-31. Major offshore platforms
+      (Binance, OKX, Bybit, HTX) did not obtain licences; by 2024-05-31
+      multiple withdrew applications, driven in part by the SFC
+      requirement that licensees bar mainland-China residents. Primary
+      SFC public register and contemporaneous journalism corroborate
+      the exclusion. Sources contextual_unarchived for this draft;
+      human audit will pin Wayback snapshots.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing/Virtual-asset-trading-platforms-operators
+      wayback: https://web.archive.org/web/2023/https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing/Virtual-asset-trading-platforms-operators
+      scope_descriptor:
+        providers:
+          - hashkey
+          - osl
+          - binance
+          - okx
+          - bybit
+        countries: [HK]
+        time_window:
+          - 2023-06-01T00:00:00Z
+          - 2024-05-31T23:59:59Z
+      note: |
+        SFC public VATP licensing register as the denominator anchor;
+        HashKey and OSL are the only licensed VATPs in the transitional
+        window. Wayback wildcard pending human-audit pinning of a
+        specific snapshot.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:hk_sfc
+    event: vatp_licensing_regime_in_force_hashkey_osl_authorized
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-06-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: HK
+    sources:
+      - type: primary_legal
+        url: https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing/Virtual-asset-trading-platforms-operators
+        wayback: https://web.archive.org/web/2023/https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing/Virtual-asset-trading-platforms-operators
+        note: |
+          SFC public landing page for the VATP licensing regime, listing
+          licensed VATP operators (HashKey, OSL) authorized at the
+          2023-06-01 effective date. Sources contextual_unarchived in
+          this draft.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.omm.com/insights/alerts-publications/hong-kong-launches-new-virtual-asset-trading-platform-licensing-regime/
+        wayback: https://web.archive.org/web/2023/https://www.omm.com/insights/alerts-publications/hong-kong-launches-new-virtual-asset-trading-platform-licensing-regime/
+        note: |
+          O'Melveny alert describing the launch of the HK VATP licensing
+          regime on 2023-06-01 and the dual-licensing framework.
+        evidence_use: contextual_unarchived
+  - layer: offramp_cex
+    actor: exchange:hk_offshore_set
+    event: offshore_platforms_excluded_or_withdrew_applications
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp_range:
+      - 2023-06-01T00:00:00Z
+      - 2024-05-31T23:59:59Z
+    precision: day
+    country: HK
+    note: |
+      Across the 2023-06-01 to 2024-05-31 transitional window, major
+      offshore platforms (Binance, OKX, Bybit, HTX/Huobi, Gate.io,
+      KuCoin) either never applied for an SFC VATP licence or
+      subsequently withdrew applications. The SFC's requirement that
+      licensees bar mainland-China residents was widely reported as a
+      proximate driver. Attribution=plausible because individual
+      withdrawal decisions were not always tied to a single named
+      SFC requirement in primary corporate statements.
+    sources:
+      - type: supporting_journalism
+        url: https://www.scmp.com/tech/policy/article/3250996/sfc-reminds-crypto-investors-be-wary-unlicensed-platforms-final-month-apply-under-hong-kong-scheme
+        wayback: https://web.archive.org/web/2024/https://www.scmp.com/tech/policy/article/3250996/sfc-reminds-crypto-investors-be-wary-unlicensed-platforms-final-month-apply-under-hong-kong-scheme
+        note: |
+          SCMP 2024-05 reporting on the final month for unlicensed
+          platforms to apply under the SFC VATP scheme; documents
+          the exclusion / withdrawal pattern for offshore platforms.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/hong-kong-crypto-exchanges-license-scrutiny
+        wayback: https://web.archive.org/web/2024/https://cointelegraph.com/news/hong-kong-crypto-exchanges-license-scrutiny
+        note: |
+          Cointelegraph reporting on HK targeting non-compliant crypto
+          exchanges in the licensing push and the withdrawals by
+          mainland-China-linked exchanges.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  Sub-sovereign jurisdictional regulatory action: HK SFC's VATP licensing
+  regime in force 2023-06-01, with a 2024-05-31 transitional deadline.
+  Two SFC-licensed platforms (HashKey, OSL) were authorized at the
+  effective date; major offshore platforms (Binance, OKX, Bybit, HTX)
+  were effectively excluded and largely withdrew applications, driven
+  in part by the SFC requirement to bar mainland-China residents.
+
+  Although HK is sub-sovereign within the PRC, its crypto-licensing
+  framework is functionally distinct from the mainland PRC's blanket
+  2021 PBOC ban; we classify the trigger as nation_state_block under
+  research_stratum S4_nation_state and cross-reference the parallel
+  mainland PRC event via related_events.
+
+  Empirical shape is `comparison`: two observed_change layers
+  (offramp_cex licensing exclusion + offramp_cex offshore-platform
+  withdrawal pattern), both within the offramp_cex layer at the event
+  level. L4 frontend HK-vantage geofencing reactions are recorded as
+  `not_measured` pending Wayback-diff evidence collection.
+
+  All sources in this draft are `contextual_unarchived` per the
+  evidence_use convention; status remains `draft` (origin: agent_draft)
+  pending human audit and Wayback pinning.
+
+related_events:
+  - china-pboc-crypto-ban-2021
+
+tags:
+  - nation_state
+  - hong_kong
+  - sfc
+  - vatp
+  - cex_licensing
+  - offramp_cex

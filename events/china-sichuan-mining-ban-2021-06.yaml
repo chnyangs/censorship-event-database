@@ -1,0 +1,275 @@
+id: china-sichuan-mining-ban-2021-06
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+trigger:
+  type: nation_state_block
+  actor: CN_SICHUAN_GOVT_NDRC_ENERGY_BUREAU
+  timestamp: 2021-06-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.scmp.com/tech/policy/article/3137988/chinas-cryptocurrency-crackdown-intensifies-sichuan-province-orders
+      wayback: https://web.archive.org/web/20211013145459/https://www.scmp.com/tech/policy/article/3137988/chinas-cryptocurrency-crackdown-intensifies-sichuan-province-orders
+      evidence_use: contextual_unarchived
+      note: |
+        South China Morning Post, 2021-06-20, reports the Sichuan
+        provincial branch of the National Development and Reform
+        Commission (NDRC) and the Sichuan Energy Bureau jointly
+        issued the notice on Friday 2021-06-18. The notice required
+        26 companies "inspected and reported as potential
+        cryptocurrency mining enterprises" to be closed by Sunday
+        2021-06-20; electricity providers (State Grid Corp of
+        China's Sichuan branch) had to report inspection results
+        by 2021-06-25. Wayback snapshot 2021-10-13 14:54 UTC. The
+        underlying Sichuan provincial NDRC / Energy Bureau Chinese-
+        language primary_legal notice is not yet pinned and remains
+        a follow-up item; the SCMP archived body is the load-bearing
+        contextual evidence for trigger date anchoring in this draft.
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/108916/sichuan-orders-state-power-grid-to-cut-supply-for-26-bitcoin-mining-farms
+      wayback: https://web.archive.org/web/20220819210027/https://www.theblock.co/post/108916/sichuan-orders-state-power-grid-to-cut-supply-for-26-bitcoin-mining-farms
+      evidence_use: contextual_unarchived
+      note: |
+        The Block, 2021-06-19, corroborates that the Sichuan Energy
+        Bureau and the Sichuan Development and Reformation
+        Commission jointly issued the notice on 2021-06-18,
+        ordering state-owned power generators and distributors
+        (incl. State Grid) to cut hydroelectricity supply to 26
+        bitcoin mining facilities by 2021-06-20. Wayback snapshot
+        2022-08-19 (live URL bot-blocks fetch in 2026).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The 26 named "potential cryptocurrency mining enterprises"
+    identified by the Sichuan provincial NDRC inspection as the
+    initial subjects of the State Grid power cut, plus follow-on
+    inspection sweeps of privately powered facilities, are the
+    enumerated subset. The full list of 26 entities is not pinned
+    in this draft (the underlying provincial notice in Chinese
+    has not yet been archived). enumeration=subset reflects that
+    we are recording a defensible slice of the targeted Sichuan-
+    hosted bitcoin mining population rather than asserting a
+    complete enumeration of all Sichuan mining capacity at event
+    time.
+  entity: sichuan_bitcoin_mining_operations
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - CN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A provincial power-grid disconnection order does not target
+      DNS / TCP / TLS reachability of crypto-infrastructure
+      domains. The censorship primitive is physical electricity
+      cutoff to mining facilities, not network-layer filtering.
+  - layer: l1_consensus
+    status: measured
+    chain: bitcoin
+    note: |
+      Global Bitcoin network hashrate is the load-bearing
+      consensus-layer signal. The June 2021 Sichuan power-grid
+      enforcement, layered on top of the May 2021 State Council
+      / Inner Mongolia / Xinjiang sweeps, produced a measurable
+      global-hashrate collapse: contemporary CCAF / CBECI
+      reporting and bitcoin mining-difficulty data show a
+      multi-week drawdown culminating in the largest
+      mining-difficulty downward adjustment (~28%) in Bitcoin
+      history on 2021-07-03. Coverage is `measured` because the
+      observable (7-day-average global Bitcoin hashrate) is a
+      public on-chain-derivable metric and the affected slice
+      (Sichuan-hosted hashpower) was a multi-EH/s fraction of
+      the global total at event time.
+    denominator_artifact:
+      type: semi_primary_measurement
+      url: https://www.blockchain.com/charts/hash-rate
+      wayback: https://web.archive.org/web/20210720232335/https://www.blockchain.com/charts/hash-rate
+      scope_descriptor:
+        time_window:
+          - 2021-05-01T00:00:00Z
+          - 2021-08-01T23:59:59Z
+      note: |
+        DRYRUN draft denominator anchor: blockchain.com 7-day-
+        average global Bitcoin hashrate chart, Wayback snapshot
+        2021-07-20 23:23 UTC — i.e. captured 32 days after the
+        2021-06-18 Sichuan trigger and 17 days after the
+        2021-07-03 ~28% mining-difficulty downward adjustment.
+        Snapshot brackets the post-event hashrate trough. Pre-
+        event baseline (~180 EH/s mid-May 2021) vs. post-event
+        trough (~85 EH/s late June / early July 2021) is the
+        load-bearing comparison. CBECI bitcoin.network.hash-
+        rate dataset (ccaf.io) is the complementary academic-
+        grade denominator and should be pinned with a
+        measurement_id in a follow-up human-audit pass.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Bitcoin's RPC substrate is not the OFAC-compliance-adjacent
+      Ethereum RPC layer the L3 schema column tracks. Provincial
+      power cuts do not map to the L3 RPC primitive used in this
+      dataset.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      A power-grid disconnection order targets mining facilities
+      directly, not crypto-exchange frontends. No frontend
+      reaction is in scope for this event.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native-asset; no issuer-freeze primitive applicable
+      for BTC. Mining-side enforcement does not freeze on-chain
+      balances.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Mainland-Chinese exchanges (Huobi, OKEx, Binance China-
+      service tracks) had largely retreated prior to this
+      provincial mining ban, and the load-bearing CEX-cessation
+      cascade for PRC users is anchored in the 2021-09-24 PBOC
+      joint notice (see related event china-pboc-crypto-ban-
+      2021). offramp_cex is `not_measured` rather than
+      `not_applicable` because some contemporaneous mining-pool
+      offramps may have been affected, but no observation rows
+      are attached to this draft.
+
+observations:
+  - layer: l1_consensus
+    actor: bitcoin_global_network
+    event: global_hashrate_collapse_following_sichuan_power_cut
+    observation_kind: observed_change
+    attribution: direct
+    timestamp_range:
+      - 2021-06-18T00:00:00Z
+      - 2021-07-31T23:59:59Z
+    precision: day
+    country: CN
+    sources:
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/109030/chinese-bitcoin-mining-pools-hash-rate-plunge-sichuan-shutdown
+        wayback: https://web.archive.org/web/20220825183717/https://www.theblock.co/post/109030/chinese-bitcoin-mining-pools-hash-rate-plunge-sichuan-shutdown
+        evidence_use: contextual_unarchived
+        note: |
+          The Block, 2021-06-22, reports Chinese bitcoin mining
+          pools (notably Sichuan-hosted pools and pool-level
+          aggregates) saw further hash-rate plunge in the days
+          immediately following the 2021-06-18 Sichuan
+          shutdown order, with the global Bitcoin hashrate
+          continuing its multi-week drawdown from the
+          mid-May peak. Wayback snapshot 2022-08-25.
+      - type: supporting_journalism
+        url: https://www.jbs.cam.ac.uk/2021/new-data-reveals-timeline-of-chinas-bitcoin-mining-exodus/
+        wayback: https://web.archive.org/web/20230930161939/https://www.jbs.cam.ac.uk/2021/new-data-reveals-timeline-of-chinas-bitcoin-mining-exodus/
+        evidence_use: contextual_unarchived
+        note: |
+          Cambridge Judge Business School / Cambridge Centre
+          for Alternative Finance commentary (2021-07-15)
+          confirms that the June 2021 government crackdown
+          "has effectively led to all of China's hashrate
+          disappearing overnight"; the CBECI Mining Map was
+          discontinued from June 2021 onward because
+          Chinese-pool geolocation data became unreliable
+          after the exodus. Wayback snapshot 2023-09-30. The
+          CBECI time-series body_hash pinning is deferred to
+          a human-audit pass.
+      - type: supporting_journalism
+        url: https://www.cnbc.com/2021/06/21/bitcoin-btc-price-drops-on-china-crypto-mining-crackdown.html
+        wayback: https://web.archive.org/web/20210625233627/https://www.cnbc.com/2021/06/21/bitcoin-btc-price-drops-on-china-crypto-mining-crackdown.html
+        evidence_use: contextual_unarchived
+        note: |
+          CNBC, 2021-06-21, contemporaneous coverage of the
+          Bitcoin price drop following the Sichuan mining
+          crackdown, noting that more than half the world's
+          bitcoin miners faced shutdown. Wayback snapshot
+          2021-06-25, four days post-publication.
+    note: |
+      Direction-of-effect: Sichuan was the dominant wet-season
+      hydropower hashpower hub for Chinese bitcoin mining. The
+      2021-06-18 provincial NDRC / Energy Bureau notice ordering
+      State Grid's Sichuan branch to cut power to 26 named mining
+      facilities by 2021-06-20 (and to expand inspections of
+      privately powered facilities by 2021-06-25), layered on top
+      of the May 2021 State Council and Inner Mongolia / Xinjiang
+      sweeps, produced a measurable multi-week global Bitcoin
+      hashrate collapse and the largest single mining-difficulty
+      downward adjustment (~28%) in Bitcoin history on 2021-07-03.
+      Attribution is `direct` because the affected hashpower
+      cohort (Sichuan-hosted Bitcoin mining) is identifiable, the
+      enforcement primitive (physical electricity disconnection)
+      directly removed that cohort from the hashing population,
+      and the global-hashrate time series bracketing the event
+      window quantifies the effect.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase C drafting of the
+  2021 PRC mining-crackdown cluster: this event records the
+  Sichuan provincial NDRC / Energy Bureau notice of 2021-06-18
+  that ordered State Grid Corp of China's Sichuan branch to cut
+  hydroelectricity supply to 26 inspected bitcoin mining
+  facilities by 2021-06-20, with follow-on inspection sweeps of
+  privately powered facilities due by 2021-06-25. The Sichuan
+  ban is the pivotal enforcement step of the broader 2021 PRC
+  mining crackdown cluster (see related_events) because Sichuan
+  was the dominant wet-season hydropower hashpower hub; its
+  shutdown drove the global Bitcoin hashrate collapse that
+  culminated in the largest single mining-difficulty downward
+  adjustment (~28%) in Bitcoin history on 2021-07-03.
+
+  Authored by LLM in this pass; origin=agent_draft and
+  status=draft. A real human-audit pass must (i) attach the
+  Sichuan provincial NDRC / Energy Bureau Chinese-language
+  primary_legal notice with body_hash + Wayback pinning, (ii)
+  pin the CBECI / blockchain.com global hashrate time-series
+  denominator artifact with body_hash / measurement_id and a
+  scope_descriptor.time_window bracketing the event, and (iii)
+  upgrade the trigger citation tier from supporting_journalism
+  / contextual_unarchived to primary_legal / admission_anchor
+  before this event can be promoted to admitted status.
+
+  empirical_shape=comparison with admission_tier=empirical_case:
+  one observed_change row at l1_consensus with attribution=direct
+  is supported by contemporaneous journalism and CCAF/CBECI
+  commentary; promotion to anchor_case requires (a) pinning the
+  CBECI / blockchain.com hashrate denominator artifact and (b)
+  attaching a second strong-attribution observation row (e.g. a
+  Sichuan-pool-level hashrate observation from a named Chinese
+  mining pool such as Poolin or F2Pool).
+
+  Cross-event relationships: this event is the third in the 2021
+  PRC mining-crackdown cluster, following the 2021-05-21 State
+  Council Financial Stability and Development Committee meeting
+  (china-state-council-mining-crackdown-2021-05) and the
+  2021-05-25 Inner Mongolia mining ban (china-inner-mongolia-
+  mining-ban-2021-05), and preceding the broader 2021-09-24
+  PBOC joint notice (china-pboc-crypto-ban-2021) that closed
+  the CEX-side of the PRC crypto cascade.
+
+related_events:
+  - china-pboc-crypto-ban-2021
+  - china-state-council-mining-crackdown-2021-05
+  - china-inner-mongolia-mining-ban-2021-05
+
+tags:
+  - nation_state
+  - china
+  - sichuan
+  - bitcoin_mining
+  - hashrate
+  - state_grid

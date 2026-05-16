@@ -1,0 +1,353 @@
+id: china-pboc-exchange-shutdown-2017-09
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - china-ico-ban-2017-09
+  - china-pboc-crypto-ban-2013-12
+  - china-pboc-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: CN_PBOC
+  timestamp: 2017-09-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: http://www.pbc.gov.cn/
+      wayback: https://web.archive.org/web/2017/http://www.pbc.gov.cn/
+      evidence_use: contextual_unarchived
+      note: |
+        DRYRUN 2026-05-16. Canonical primary instrument is the
+        mid-September 2017 PBOC-led joint instruction directing all
+        domestic Chinese cryptocurrency exchanges to cease CNY-paired
+        trading and wind down domestic operations. The instruction was
+        delivered via the PBOC Business Management Department (Beijing)
+        and the Shanghai Municipal Financial Services Office in the
+        days following the 2017-09-04 ICO ban (China's "Notice on
+        Preventing Risks of Token Issuance Financing", 关于防范代币发行
+        融资风险的公告). Unlike the 2013-12 and 2021-09 notices, the
+        2017-09 exchange-shutdown directive was not published as a
+        single named ministerial notice; it was issued verbally /
+        administratively to named exchanges and corroborated via the
+        exchanges' own shutdown announcements and contemporaneous
+        Chinese-language and English-language press coverage. The PBOC
+        primary URL is a placeholder anchor pending a human re-pin of
+        the original 2017-09 PBOC business-management-department
+        communication or its archival surrogate. Marked
+        evidence_use=contextual_unarchived.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/
+      wayback: https://web.archive.org/web/2017/https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2017-09-15 report "China's Bitcoin Exchanges Receive
+        Shutdown Orders and Closure Timeline" giving English-language
+        contemporaneous coverage of the PBOC-led shutdown order and
+        the closure-deadline timeline communicated to BTCC, OKCoin,
+        and Huobi. Used here as a contextual translation anchor; the
+        specific Wayback snapshot timestamp is to be re-pinned during
+        human audit. Marked evidence_use=contextual_unarchived.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2017/09/15/huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end/
+      wayback: https://web.archive.org/web/2017/https://www.coindesk.com/markets/2017/09/15/huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end/
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2017-09-15 report "Huobi, OKCoin to Stop Yuan-to-Bitcoin
+        Trading By October's End" documenting the staged shutdown
+        commitments of the two largest remaining domestic exchanges in
+        direct response to the regulator instruction. Marked
+        evidence_use=contextual_unarchived pending human-audit re-pin
+        of the Wayback snapshot timestamp.
+    - type: supporting_journalism
+      url: https://qz.com/1079908/huobi-and-okcoin-chinas-two-biggest-bitcoin-exchanges-will-halt-all-trading-services-for-local-customers
+      wayback: https://web.archive.org/web/2017/https://qz.com/1079908/huobi-and-okcoin-chinas-two-biggest-bitcoin-exchanges-will-halt-all-trading-services-for-local-customers
+      evidence_use: contextual_unarchived
+      note: |
+        Quartz report "It's over: China's biggest bitcoin exchanges
+        will halt all trading services for local customers" covering
+        the final shutdown of domestic CNY trading services at Huobi
+        and OKCoin. Used as English-language journalistic
+        corroboration. Marked evidence_use=contextual_unarchived.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        The PBOC-led instruction to cease domestic CNY-paired crypto
+        trading was issued in stages across mid-September 2017, with
+        BTCC announcing closure by 2017-09-30 and Huobi / OKCoin
+        committing to cease yuan-paired trading by end of October.
+        The 2017-09-29 trigger timestamp anchors on the final
+        BTCC-tier exchange shutdown deadline (BTCC ceased all trading
+        on 2017-09-30 PRC time, equivalent to 2017-09-29 UTC).
+        Day-level precision is appropriate; the underlying PBOC
+        administrative communication does not carry intra-day
+        publication timing in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the cluster of three dominant PRC domestic
+    cryptocurrency exchanges operating in 2017: BTCC (btcc.com /
+    btcchina.com), OKCoin (okcoin.cn), and Huobi (huobi.com). The
+    PBOC-led shutdown instruction also affected smaller venues (ViaBTC,
+    YoBTC, Yunbi, etc.) but those are out of scope for this subset.
+    Marked enumeration=subset because the named cluster (BTCC, OKCoin,
+    Huobi) is a defensible slice representing the dominant ~90%+ of
+    domestic CNY-paired Bitcoin trading volume at the time, rather
+    than a full enumeration of every Chinese venue affected. Some
+    cluster members migrated offshore in response (Huobi → Singapore,
+    OKCoin spinoff OKEx → offshore; Binance moved from China to
+    Malta in early 2018).
+  entity: prc_domestic_crypto_exchange_cluster_2017
+  actor_type: chinese_crypto_exchange_cluster
+  actor_name: PRC domestic crypto-exchange triad (BTCC, OKCoin, Huobi)
+  chains:
+    - bitcoin
+    - ethereum
+  canonical_domains:
+    - btcc.com
+    - btcchina.com
+    - okcoin.cn
+    - huobi.com
+
+jurisdiction:
+  - CN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2017-09 PBOC-led exchange-shutdown instruction is a
+      banking-rail and licensing-rail directive, not an ISP-level
+      domain block. Domestic exchanges were ordered to cease
+      CNY-paired trading and wind down operations via administrative
+      instruction, not via DNS or IP-level interference. PRC L0-layer
+      blocking of crypto-exchange domains is a later, separate
+      enforcement phenomenon. not_applicable, consistent with the
+      sibling china-pboc-crypto-ban-2013-12 and india-rbi-crypto-ban-2018
+      banking-and-exchange-rail nation-state treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Pre-Merge event (Ethereum Merge 2022-09-15). Bitcoin proof-of-work
+      consensus in 2017-09 has no protocol-level relay-filter primitive
+      analogous to the post-Merge Ethereum PBS relay surface.
+      not_applicable on construct-did-not-exist grounds, consistent
+      with the sibling 2013 and 2021 PBOC events.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2017; Flashbots Protect launched 2022-11 and MEV-Blocker launched
+      2023-03-27. not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - btcc.com
+      - btcchina.com
+      - okcoin.cn
+      - huobi.com
+    note: |
+      The three named domestic exchanges (BTCC, OKCoin, Huobi)
+      published shutdown announcements on their homepages and via
+      exchange-bulletin pages between mid-September and end-of-October
+      2017. Wayback CDX coverage of these domains in 2017-09 / 2017-10
+      is non-trivial but the specific snapshot URLs and body_hash
+      anchors have not been pinned in this authoring pass. L4 status
+      remains not_measured pending the Wayback-capture pass that an
+      admission anchor at this layer would require.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The 2017-09 directive does not engage a stablecoin-issuer
+      admin path. not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - btcc
+      - okcoin
+      - huobi
+    note: |
+      The 2017-09 PBOC-led instruction is by construction an off-ramp
+      / CNY-rail closure event: it directed the three dominant PRC
+      domestic exchanges (BTCC, OKCoin, Huobi) to cease all CNY-paired
+      crypto trading and wind down domestic operations. BTCC announced
+      cessation of all trading by 2017-09-30; Huobi and OKCoin committed
+      to ceasing yuan-paired trading by end of October 2017. The
+      offramp_cex layer carries the load-bearing direct-attribution
+      observation. Marked measured.
+
+observations:
+  - layer: offramp_cex
+    actor: prc_domestic_crypto_exchange_cluster
+    event: cny_paired_trading_ceased_domestic_shutdown
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-09-29T00:00:00Z
+    precision: day
+    country: CN
+    note: |
+      Within ~2 weeks of the mid-September 2017 PBOC-led shutdown
+      instruction, all three named PRC domestic crypto-exchange triad
+      members (BTCC, OKCoin, Huobi) had announced and executed
+      cessation of CNY-paired trading services. BTCC ceased all
+      trading on 2017-09-30 (BTCC shutdown deadline). Huobi and OKCoin
+      committed to staged cessation of yuan-paired trading by end of
+      October 2017 and subsequently shut down domestic CNY operations.
+      Some cluster members migrated offshore (Huobi → Singapore;
+      OKCoin spinoff OKEx → offshore; Binance moved from China to
+      Malta in early 2018). attribution=direct because the
+      exchange-shutdown announcements and contemporaneous press
+      coverage explicitly cite the PBOC-led regulator instruction
+      as the proximate cause.
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/
+        wayback: https://web.archive.org/web/2017/https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2017-09-15 report giving the staged closure-deadline
+          timeline communicated by Chinese regulators to BTCC, OKCoin,
+          and Huobi. Specific Wayback snapshot timestamp requires
+          re-pinning in human audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2017/09/15/huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end/
+        wayback: https://web.archive.org/web/2017/https://www.coindesk.com/markets/2017/09/15/huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2017-09-15 report documenting Huobi and OKCoin's
+          commitment to halt yuan-paired bitcoin trading by end of
+          October 2017 in direct response to the regulator
+          instruction. Specific Wayback snapshot timestamp requires
+          re-pinning in human audit.
+      - type: supporting_journalism
+        url: https://qz.com/1079908/huobi-and-okcoin-chinas-two-biggest-bitcoin-exchanges-will-halt-all-trading-services-for-local-customers
+        wayback: https://web.archive.org/web/2017/https://qz.com/1079908/huobi-and-okcoin-chinas-two-biggest-bitcoin-exchanges-will-halt-all-trading-services-for-local-customers
+        evidence_use: contextual_unarchived
+        note: |
+          Quartz report covering the final shutdown of domestic
+          trading services at Huobi and OKCoin. Corroborates the
+          observed industry-wide CNY-paired trading cessation.
+          Specific Wayback snapshot timestamp requires re-pinning
+          in human audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2017/09/27/bitcoin-exchange-btcc-sets-deadline-for-yuan-withdrawals
+        wayback: https://web.archive.org/web/2017/https://www.coindesk.com/markets/2017/09/27/bitcoin-exchange-btcc-sets-deadline-for-yuan-withdrawals
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2017-09-27 report "Bitcoin Exchange BTCC Sets
+          Deadline for Yuan Withdrawals" documenting the BTCC
+          wind-down operational timeline, including the
+          2017-09-30 final-shutdown deadline. Specific Wayback
+          snapshot timestamp requires re-pinning in human audit.
+
+analysis_notes: |
+  DRYRUN 2026-05-16. Phase C agent-drafted event covering the 2017-09
+  PBOC-led shutdown of all domestic Chinese cryptocurrency exchanges,
+  which ordered BTCC, OKCoin, Huobi, and smaller venues to cease
+  CNY-paired trading and wind down domestic operations. The triad
+  cluster (BTCC, OKCoin, Huobi) is the canonical subset target;
+  enumeration=subset reflects that the full set of affected venues
+  is larger than the named cluster but the triad represents the
+  dominant volume share. origin=agent_draft / status=draft per the
+  Phase C constraint.
+
+  This event sits between the historical-baseline
+  china-pboc-crypto-ban-2013-12 (banking-rail exclusion of Bitcoin
+  services) and the later comparable-corpus china-pboc-crypto-ban-2021
+  (nine-ministry full-ban escalation), and immediately follows the
+  2017-09-04 ICO ban (china-ico-ban-2017-09) which was the same
+  regulatory cycle's first action. The 2017-09 exchange shutdown is
+  the load-bearing CNY-rail closure step that severed the dominant
+  domestic on/off-ramp surface for the entire pre-2021 PRC retail
+  crypto market.
+
+  Substantive findings:
+  - Mid-September 2017 PBOC-led administrative instruction to all
+    domestic crypto exchanges to cease CNY-paired trading.
+  - BTCC: announced shutdown of all trading by 2017-09-30.
+  - Huobi, OKCoin: committed to cease yuan-paired trading by end of
+    October 2017; subsequently shut down domestic CNY operations.
+  - Smaller venues (ViaBTC, YoBTC, Yunbi) closed in the same window.
+  - Offshore migration in response: Huobi → Singapore; OKCoin spinoff
+    OKEx → offshore; Binance → Malta (early 2018).
+  - Executives of Huobi and OKCoin were temporarily barred from
+    leaving Beijing during the regulatory investigation.
+
+  Why comparable_main_2017_present tier: 2017-09 sits at the leading
+  edge of the comparable-analysis corpus that begins 2017-01-01 per
+  the project's tiered analytical frame. analysis_use=comparable_analysis.
+
+  Why empirical_case rather than anchor_case: only the offramp_cex
+  layer carries a strong-attribution observed_change row in this
+  authoring pass; L4 frontend Wayback captures for the
+  exchange-shutdown homepage notices have not been re-verified.
+  Promotion to anchor_case would require the Wayback-capture pass
+  on L4 frontend evidence (BTCC, OKCoin, Huobi homepage notices in
+  late September / October 2017).
+
+  Why L0/L1/L3/asset_onchain are not_applicable: the 2017-09
+  instruction is a CNY-rail / licensing-rail directive, not a network
+  block; the Ethereum PBS-era L1/L3 measurement primitives do not
+  exist in 2017; Bitcoin native asset has no issuer-side admin freeze
+  primitive. Consistent with the 2013 and 2021 sibling treatments.
+
+  Why the primary PBOC URL is a placeholder: unlike the 2013-12 and
+  2021-09 PBOC notices, the 2017-09 exchange-shutdown directive was
+  issued administratively / verbally via the PBOC Business Management
+  Department (Beijing) and the Shanghai Municipal Financial Services
+  Office, not as a single named ministerial notice with a stable
+  pbc.gov.cn URL. Human audit must locate and pin the most
+  authoritative archival surrogate (e.g. the PBOC Business Management
+  Department communication or contemporaneous Xinhua / People's Daily
+  reproduction) before the event may be promoted out of agent_draft.
+
+scoped_claim: |
+  In mid-September 2017 the PBOC and affiliated PRC regulators
+  instructed domestic cryptocurrency exchanges to cease CNY-paired
+  trading and wind down domestic operations; within ~2 weeks the
+  PRC exchange triad (BTCC, OKCoin, Huobi) had announced and
+  executed cessation of domestic CNY-paired trading, with BTCC
+  ceasing all trading on 2017-09-30 and Huobi / OKCoin completing
+  staged shutdown by end of October. The offramp_cex layer carries
+  the load-bearing direct-attribution observation; L4 frontend
+  reactions are consistent with the cascade but require a Wayback-
+  capture pass before they may anchor a separate observed_change row.
+
+scoped_knowledge: |
+  This event is the canonical 2017-cycle CNY-rail closure case and
+  sits between the historical-baseline 2013-12 PBOC Bitcoin-services
+  exclusion and the 2021-09 nine-ministry full ban. Together with
+  the 2017-09-04 ICO ban (china-ico-ban-2017-09), it forms the
+  two-step 2017 PRC regulatory cycle: first cut the primary-issuance
+  channel (ICOs), then cut the secondary-market CNY on/off-ramp
+  (domestic exchanges). The offshore-migration response (Huobi to
+  Singapore, OKEx offshore, Binance to Malta) is a load-bearing
+  cross-event signal: PRC nation-state-block enforcement against
+  domestic exchanges drove the global crypto-exchange landscape's
+  offshoring pattern from 2017 onward, with downstream consequences
+  for both the 2021 PBOC nine-ministry notice's "foreign-exchange
+  services serving PRC residents in violation" framing and for the
+  US-jurisdiction enforcement perimeter (e.g. the 2023 DOJ / CFTC /
+  FinCEN actions against Binance reach into a corporate structure
+  that was itself a product of the 2017 PRC exchange shutdown).
+
+tags:
+  - nation_state_block
+  - china
+  - pboc
+  - crypto_ban
+  - exchange_shutdown
+  - cny_offramp_closure

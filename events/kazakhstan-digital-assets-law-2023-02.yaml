@@ -1,0 +1,330 @@
+id: kazakhstan-digital-assets-law-2023-02
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - kazakhstan-internet-shutdown-mining-2022-01
+
+trigger:
+  type: nation_state_block
+  actor: KZ_PRESIDENT
+  timestamp: 2023-02-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://adilet.zan.kz/eng/docs/Z2300000193
+      wayback: https://web.archive.org/web/2023/https://adilet.zan.kz/eng/docs/Z2300000193
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C S4
+        nation-state CIS / Central-Asia discovery; lean run): authored
+        by LLM agent without personally verifying Wayback / body_hash;
+        origin=agent_draft and status=draft pending human review. Real
+        release must replace this DRYRUN marker with a human-verified
+        audit after pinning real archive anchors.
+
+        Republic of Kazakhstan Law No. 193-VII "On Digital Assets in the
+        Republic of Kazakhstan" (О цифровых активах в Республике
+        Казахстан), signed by President Kassym-Jomart Tokayev on
+        2023-02-06 and brought into force on 2023-04-01. The law
+        establishes a state-licensed cryptomining regime (mandatory
+        license for digital-mining operators, accreditation for digital
+        mining pools, separate registration of hardware / software
+        systems) and confines commercial issuance and circulation of
+        unsecured digital assets to licensed exchanges within the Astana
+        International Financial Centre (AIFC) jurisdiction; off-AIFC
+        commercial exchange activity inside Kazakhstan becomes
+        unlicensed. The companion act Law No. 194-VII (signed the same
+        day) introduces electricity-supply rules and quotas for digital
+        miners.
+    - type: supporting_journalism
+      url: https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
+      wayback: https://web.archive.org/web/2023/https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
+      evidence_use: contextual_unarchived
+      note: |
+        US Library of Congress Global Legal Monitor (2023-04-30) summary
+        of Law No. 193-VII confirming signing on 2023-02-06 and in-force
+        date 2023-04-01, and describing the mandatory mining-licence
+        regime and AIFC-confined exchange-registration regime. DRYRUN:
+        Wayback anchor unverified by LLM agent at authoring time.
+    - type: supporting_journalism
+      url: https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+      wayback: https://web.archive.org/web/2023/https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+      evidence_use: contextual_unarchived
+      note: |
+        Morgan Lewis legal advisory (2023-02) describing the Digital
+        Assets Law as a mandatory-licensing regime for mining and for
+        commercial digital-asset exchange activity, with offshore /
+        non-AIFC exchange services to Kazakh users falling outside the
+        permitted perimeter. DRYRUN: Wayback anchor unverified.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision. The presidential signing ceremony of
+        2023-02-06 is the load-bearing event-time stamp; the law's
+        operational effect dates from the 2023-04-01 in-force date.
+        Multiple contemporaneous reports (LOC GLM 2023-04-30, Morgan
+        Lewis 2023-02 advisory, kursiv.media 2023-02-10) agree on the
+        2023-02-06 signing date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: (a) unlicensed cryptomining operators inside
+    Kazakhstan, and (b) commercial digital-asset exchange services
+    operating outside the AIFC jurisdiction for Kazakh-vantage users.
+    Subset rather than complete because the law's enforcement reach is
+    formally limited to the territory of Kazakhstan and to entities
+    that touch the Kazakh perimeter (mining infrastructure on Kazakh
+    soil, or exchanges actively soliciting Kazakh customers); offshore
+    CEX surfaces are reachable in practice via consumer-side
+    circumvention (VPNs, peer-to-peer trades) and are not enumerated
+    address-by-address.
+  entity: kz_digital_assets_law_193_vii
+  actor_type: nation_state_legal_framework
+  actor_name: Republic of Kazakhstan — Law No. 193-VII On Digital Assets
+  chains: []
+  canonical_domains:
+    - aifc.kz
+    - adilet.zan.kz
+
+jurisdiction:
+  - KZ
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The Digital Assets Law is a domestic licensing / registration
+      framework, not an ISP-level domain block. Distinct from the
+      January 2022 Kazakhstan national internet shutdown
+      (see related_events: kazakhstan-internet-shutdown-mining-2022-01),
+      which operated at L0 / L1 network and consensus layers via an
+      emergency communications cutoff. not_applicable on
+      construct-not-engaged grounds for this regulatory event.
+  - layer: l1_consensus
+    status: partially_measured
+    scope:
+      - kz_domestic_mining_operators
+    denominator_artifact:
+      type: primary_legal
+      url: https://adilet.zan.kz/eng/docs/Z2300000193
+      wayback: https://web.archive.org/web/2023/https://adilet.zan.kz/eng/docs/Z2300000193
+      scope_descriptor:
+        countries: [KZ]
+        providers: [kz_ministry_of_digital_development, kz_aifc]
+        time_window:
+          - 2023-04-01T00:00:00Z
+          - 2026-05-16T00:00:00Z
+      note: |
+        Denominator anchor for the l1_consensus mining-licence regime
+        is the legal text of Law No. 193-VII itself: it defines the
+        scope of the licensed perimeter (operators of digital-mining
+        hardware on Kazakh territory, and digital mining pools subject
+        to accreditation). DRYRUN: Wayback anchor unverified.
+    note: |
+      Load-bearing axis (S4 mining-licence regime). The law makes
+      unlicensed cryptomining on Kazakh territory illegal effective
+      2023-04-01 and conditions continued operation on issuance of a
+      mining licence and pool accreditation by the Ministry of Digital
+      Development. Pre-existing Kazakhstan-resident hash-rate
+      (the country was briefly the #2 global Bitcoin mining
+      jurisdiction in 2021-Q3 after the PRC mining ban) is the
+      affected substrate. Status is partially_measured: the legal-text
+      anchor is pinned (denominator_artifact above), but per-event
+      bracketing of CBECI / pool-attribution share (pre-2023-04-01 vs
+      post-2023-04-01) has not been pinned to this event in the
+      dataset.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The Digital Assets Law does not engage the Ethereum public-RPC
+      provider filter-list substrate (Flashbots Protect, MEV-Blocker)
+      and does not impose RPC-level filtering on any Kazakh provider.
+      not_applicable on construct-not-engaged grounds.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      The law's exchange-registration regime conditions commercial
+      digital-asset exchange activity on AIFC licensing. Frontend-layer
+      observable effects (e.g. offshore CEX consumer-frontend
+      restrictions for KZ-vantage users) are plausibly second-order but
+      have not been pinned with per-event Wayback diffs in this draft.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin-issuer admin-method freeze or address-level
+      blacklist; the law operates at the operator-licensing layer, not
+      at any specific token-contract surface. not_applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - kz_offramp_perimeter
+    denominator_artifact:
+      type: primary_legal
+      url: https://adilet.zan.kz/eng/docs/Z2300000193
+      wayback: https://web.archive.org/web/2023/https://adilet.zan.kz/eng/docs/Z2300000193
+      scope_descriptor:
+        countries: [KZ]
+        providers: [kz_aifc]
+        time_window:
+          - 2023-04-01T00:00:00Z
+          - 2026-05-16T00:00:00Z
+      note: |
+        Denominator anchor for the offramp_cex commercial-exchange
+        registration regime is the legal text of Law No. 193-VII: it
+        defines the AIFC-confined commercial-exchange perimeter for
+        Kazakh-vantage users. DRYRUN: Wayback anchor unverified.
+    note: |
+      Second load-bearing axis (commercial exchange registration
+      regime). Off-AIFC commercial exchange activity targeting
+      Kazakh-vantage users is unlicensed under the new law from
+      2023-04-01 onward. Status is partially_measured: legal-text
+      anchor is pinned (denominator_artifact above), but per-event
+      bracketing snapshots of major offshore CEX KZ-vantage frontends
+      (geo-blocks, account-restriction notices) have not yet been
+      pinned for this event.
+
+observations:
+  - layer: l1_consensus
+    actor: nation_state:kz_government
+    event: mandatory_mining_license_and_pool_accreditation_regime_in_force
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-04-01T00:00:00Z
+    precision: day
+    delta_hours: 1320
+    country: KZ
+    sources:
+      - type: primary_legal
+        url: https://adilet.zan.kz/eng/docs/Z2300000193
+        wayback: https://web.archive.org/web/2023/https://adilet.zan.kz/eng/docs/Z2300000193
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [KZ]
+          providers: [kz_ministry_of_digital_development, kz_aifc]
+          time_window:
+            - 2023-04-01T00:00:00Z
+            - 2026-05-16T00:00:00Z
+        note: |
+          Adilet (Republican Center of Legal Information) authoritative
+          English-language text of Law No. 193-VII. observation_kind=
+          observed_change at l1_consensus because the law makes the
+          underlying physical-substrate activity (cryptomining on
+          Kazakh territory) conditional on a new state licensing /
+          pool-accreditation regime that did not exist before the
+          in-force date 2023-04-01. attribution=direct: the law itself
+          is the change in the licensing regime; no inference step
+          beyond reading the statute. DRYRUN: Wayback anchor unverified
+          by LLM agent at authoring time.
+      - type: supporting_journalism
+        url: https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
+        wayback: https://web.archive.org/web/2023/https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
+        evidence_use: contextual_unarchived
+        note: |
+          US Library of Congress Global Legal Monitor independent
+          summary of the licensing / pool-accreditation regime.
+          DRYRUN: Wayback anchor unverified.
+  - layer: offramp_cex
+    actor: nation_state:kz_government
+    event: commercial_digital_asset_exchange_activity_confined_to_aifc_licensed_perimeter
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-04-01T00:00:00Z
+    precision: day
+    delta_hours: 1320
+    country: KZ
+    sources:
+      - type: primary_legal
+        url: https://adilet.zan.kz/eng/docs/Z2300000193
+        wayback: https://web.archive.org/web/2023/https://adilet.zan.kz/eng/docs/Z2300000193
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [KZ]
+          providers: [kz_aifc]
+          time_window:
+            - 2023-04-01T00:00:00Z
+            - 2026-05-16T00:00:00Z
+        note: |
+          Adilet authoritative English-language text of Law No. 193-VII.
+          observation_kind=observed_change at offramp_cex because the
+          law restricts commercial issuance and circulation of
+          unsecured digital assets (including exchange services) to
+          AIFC-licensed entities, making prior non-AIFC commercial
+          exchange activity for Kazakh-vantage users unlicensed from
+          2023-04-01. attribution=direct on the same legal-text basis.
+          DRYRUN: Wayback anchor unverified.
+      - type: supporting_journalism
+        url: https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+        wayback: https://web.archive.org/web/2023/https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+        evidence_use: contextual_unarchived
+        note: |
+          Morgan Lewis legal advisory (2023-02) corroborating the
+          AIFC-confined commercial-exchange perimeter and the
+          implication for offshore CEX activity serving Kazakh users.
+          DRYRUN: Wayback anchor unverified.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C S4 nation-state
+  Central-Asia discovery; lean run): authored by LLM agent without
+  personally verifying Wayback / body_hash; origin=agent_draft and
+  status=draft pending human review.
+
+  comparison — S4 nation-state regulatory event. President Tokayev
+  signed Republic of Kazakhstan Law No. 193-VII "On Digital Assets in
+  the Republic of Kazakhstan" on 2023-02-06; in-force 2023-04-01. The
+  statute introduces (i) a mandatory state cryptomining-licence and
+  pool-accreditation regime (l1_consensus-layer effect on Kazakh
+  mining substrate, which was briefly the #2 global Bitcoin
+  jurisdiction in 2021-Q3 after the PRC mining ban) and (ii) an
+  AIFC-confined commercial-exchange registration regime
+  (offramp_cex-layer effect: off-AIFC commercial exchange activity
+  for Kazakh-vantage users becomes unlicensed). Two observed_change
+  layers attached, both attribution=direct on the legal-text basis;
+  empirical_shape=comparison (1-2 distinct observed_change layers);
+  admission_tier=empirical_case (>=1 strong-attribution
+  observed_change layer).
+
+  Distinct from but related to kazakhstan-internet-shutdown-mining-
+  2022-01 (the January 2022 national emergency-communications cutoff,
+  which operated at L0 network / L1 consensus through a temporary
+  outage rather than through a permanent licensing regime). The 2023
+  Digital Assets Law is the durable legal-framework follow-on to the
+  2022 episode and is the policy instrument that re-channels Kazakh
+  mining activity through a licensed perimeter.
+
+  L0 / L3 / asset_onchain are not_applicable on construct-not-engaged
+  grounds (regulatory licensing regime does not engage ISP-level
+  domain blocking, Ethereum public-RPC filtering, or
+  stablecoin-issuer admin-method freezes). L4 frontend remains
+  not_measured pending per-event Wayback bracketing.
+
+scoped_claim: |
+  "On 2023-02-06 the President of the Republic of Kazakhstan signed
+  Law No. 193-VII On Digital Assets, in force 2023-04-01, which
+  introduced (i) a mandatory state cryptomining-licence and
+  pool-accreditation regime and (ii) an AIFC-confined commercial
+  digital-asset exchange registration regime. Both effects are
+  attribution=direct from the legal text: unlicensed cryptomining on
+  Kazakh territory and off-AIFC commercial exchange activity for
+  Kazakh-vantage users become unlicensed from the in-force date.
+  Load-bearing axes are l1_consensus (Kazakh mining substrate) and
+  offramp_cex (Kazakh-vantage commercial exchange perimeter)."
+
+tags:
+  - nation_state
+  - kazakhstan
+  - mining_licence
+  - exchange_registration
+  - aifc
+  - cis_central_asia

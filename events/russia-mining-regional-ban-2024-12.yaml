@@ -1,0 +1,400 @@
+id: russia-mining-regional-ban-2024-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - russia-cbr-crypto-payment-ban-2022
+  - russia-cbr-bitcoin-information-letter-2014
+
+trigger:
+  type: nation_state_block
+  actor: RU_COUNCIL_OF_MINISTERS
+  timestamp: 2024-12-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: http://government.ru/news/53954/
+      wayback: https://web.archive.org/web/2024/http://government.ru/news/53954/
+      evidence_use: contextual_unarchived
+      note: |
+        Russian Federation Council of Ministers (Government /
+        Pravitelstvo Rossiyskoy Federatsii) decision dated 2024-12-23
+        approving the list of regions and territories where
+        cryptocurrency mining is prohibited from 2025-01-01 through
+        2031-03-15 (approximately six years). The decision lists ten
+        permanently banned regions: six North Caucasus federal subjects
+        of the Russian Federation (Dagestan, Ingushetia, Kabardino-
+        Balkaria, Karachay-Cherkessia, North Ossetia – Alania,
+        Chechnya) and four Russian-administered occupied Ukrainian
+        territories (the Donetsk People's Republic, the Lugansk
+        People's Republic, the Zaporizhzhia oblast, and the Kherson
+        oblast). The decision additionally imposes peak-season
+        prohibitions in parts of the Irkutsk oblast, the Republic of
+        Buryatia, and the Zabaykalsky Krai during winter peak-load
+        windows (2025-01-01 to 2025-03-15 and 2025-11-15 to
+        2031-03-15). Stated rationale is preservation of the regional
+        electricity-supply balance against industrial / household
+        demand during peak load. The government.ru press release is
+        the canonical primary-source URL; the specific Wayback snapshot
+        timestamp has not been pinned in this DRYRUN authoring pass.
+        Wayback anchor uses the year-prefix lookup form and requires
+        human-audit re-pinning before this citation may serve as an
+        admission anchor in its own right;
+        evidence_use=contextual_unarchived in the interim.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass
+      wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous English-language coverage dated
+        2024-12-24 titled "Russia Imposes 6-Year Ban on Crypto Mining
+        in 10 Regions, Citing Energy Use: Tass". Corroborates the
+        2025-01-01 to 2031-03-15 effective window, the ten-region
+        enumeration, the seasonal Siberian restrictions, and the
+        electricity-balance rationale. Used as a translation /
+        triangulation anchor for the Russian-language primary source.
+        Wayback anchor uses the year-prefix lookup form and requires
+        human-audit re-pinning before any admission-anchor use;
+        evidence_use=contextual_unarchived in the interim.
+    - type: supporting_journalism
+      url: https://meduza.io/en/news/2024/12/24/russia-bans-cryptocurrency-mining-in-the-caucasus-and-occupied-ukraine
+      wayback: https://web.archive.org/web/2024/https://meduza.io/en/news/2024/12/24/russia-bans-cryptocurrency-mining-in-the-caucasus-and-occupied-ukraine
+      evidence_use: contextual_unarchived
+      note: |
+        Meduza English-language coverage dated 2024-12-24 titled
+        "Russia bans cryptocurrency mining in the Caucasus and
+        occupied Ukraine". Names the ten regions (six North Caucasus
+        federal subjects plus the four Russian-administered occupied
+        Ukrainian territories) and the 2025-01-01 to 2031-03-15
+        window. Retained because Meduza's contemporaneous reporting
+        explicitly characterizes the four Ukrainian regions as
+        occupied territories under Russian administrative control,
+        which is load-bearing for the target / jurisdiction modeling
+        of this event. Wayback anchor uses the year-prefix lookup
+        form; evidence_use=contextual_unarchived pending human-audit
+        re-pinning.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the government.ru press release dated
+        2024-12-23 and the contemporaneous CoinDesk / Meduza /
+        Izvestia coverage dated 2024-12-23 to 2024-12-24. The
+        decision itself does not publish intra-day adoption time on
+        the public record; day-level is the supportable upper bound
+        until a specific OPV (Official Publication) timestamp is
+        pinned during human audit.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the cryptocurrency-mining activity class
+    operating within the ten regions enumerated by the 2024-12-23
+    Council of Ministers decision: six North Caucasus federal
+    subjects of the Russian Federation (Dagestan, Ingushetia,
+    Kabardino-Balkaria, Karachay-Cherkessia, North Ossetia – Alania,
+    Chechnya) and four Russian-administered occupied Ukrainian
+    territories (the Donetsk People's Republic, the Lugansk People's
+    Republic, the Zaporizhzhia oblast, and the Kherson oblast). The
+    schema target_kinds enum does not include a "regional_activity"
+    or "mining_operator_class" type; entity is the closest enum for
+    a regionally scoped activity-class target. enumeration=subset
+    rather than complete because (i) the decision addresses a
+    population class (all mining within the ten regions) rather than
+    an enumerated roster of named mining operators, and (ii) the
+    decision explicitly contemplates further additions to the
+    restricted-region list, so the ten-region set is the initial
+    subset rather than the closed universe. Three Siberian regions
+    (Irkutsk, Buryatia, Zabaykalsky Krai) carry peak-season
+    restrictions rather than year-round prohibitions; they are
+    referenced in analysis_notes / observations but are not part of
+    the canonical ten-region enumerated target set.
+  protocol: null
+  actor_type: regional_crypto_mining_activity_class
+  actor_name: Crypto-mining activity within ten Russia-administered regions (six North Caucasus + four occupied Ukrainian territories)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2024-12-23 Council of Ministers decision does not direct
+      ISP-level domain blocking or DNS interference. The prohibition
+      operates at the regional administrative / electricity-supply /
+      mining-permit layer rather than at the network layer. Russian
+      network-layer crypto blocking is a separate Roskomnadzor
+      phenomenon outside the scope of this 2024-12-23 mining ban.
+      not_applicable on construct-not-engaged grounds, consistent
+      with the sibling russia-cbr-bitcoin-information-letter-2014 L0
+      treatment.
+  - layer: l1_consensus
+    status: partially_measured
+    chain: bitcoin
+    note: |
+      The 2024-12-23 decision prohibits cryptocurrency-mining
+      activity in ten enumerated regions of Russia-administered
+      territory from 2025-01-01 through 2031-03-15. Per the user's
+      authoring brief, mining_hashpower maps to the l1_consensus
+      layer for cross-event compatibility. The decision is a regional
+      hashpower-shutdown directive in expectation: Russia was the
+      world's number-two Bitcoin-mining jurisdiction by hashrate
+      share in 2024, and several of the named regions (notably
+      Irkutsk in the peak-season tier and Dagestan / Chechnya in the
+      year-round tier) hosted documented mining concentrations
+      driven by subsidized residual electricity. The l1_consensus
+      coverage row is partially_measured because the policy lever
+      and the regional hashpower context are observable from the
+      decree text and from contemporaneous English-language coverage,
+      but the post-ban Bitcoin global hashrate redistribution
+      attributable specifically to this regional decision (versus
+      ongoing Russia-wide mining licensing changes under the 2024
+      Federal Law on Mining and other concurrent regulatory moves)
+      has not been quantitatively re-verified in this authoring
+      pass. The load-bearing observation row below is recorded as
+      observed_change with attribution=plausible accordingly.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The decision is a regional mining-activity prohibition; it does
+      not engage the MEV-Boost / Flashbots Protect / MEV-Blocker
+      public-Ethereum RPC compliance substrate. The named target
+      chain context is Bitcoin (mining), not Ethereum PBS. The
+      Ethereum L3 RPC layer is not_applicable on construct-not-engaged
+      grounds for a Bitcoin-mining regional ban.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The decision targets mining activity at the regional
+      electricity / permitting layer, not crypto-exchange or
+      crypto-application frontends. No L4 frontend takedown is
+      directed or implied by the text. not_applicable on
+      construct-not-engaged / scope-mismatch grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The decision is a regional mining-activity prohibition; it
+      does not engage stablecoin-issuer admin-freeze primitives or
+      any other on-chain issuer-side mechanism. not_applicable on
+      construct-not-engaged grounds.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The decision targets mining at the regional
+      electricity-supply / permitting layer. It does not direct
+      Russian or foreign-licensed exchanges to retire Russian-user
+      accounts or to suspend service to the named regions. The
+      separate Russian crypto-payments / circulation regime is the
+      subject of the sibling russia-cbr-crypto-payment-ban-2022;
+      this 2024-12-23 mining decision does not engage the
+      offramp_cex layer. not_applicable on construct-not-engaged
+      grounds.
+
+observations:
+  - layer: l1_consensus
+    actor: regional_mining_activity_class:ru_ten_regions
+    event: russia_council_of_ministers_prohibits_mining_in_ten_regions_2025_01_2031_03
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-12-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: http://government.ru/news/53954/
+        wayback: https://web.archive.org/web/2024/http://government.ru/news/53954/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [RU]
+          providers:
+            - regional_mining_activity:dagestan
+            - regional_mining_activity:ingushetia
+            - regional_mining_activity:kabardino_balkaria
+            - regional_mining_activity:karachay_cherkessia
+            - regional_mining_activity:north_ossetia_alania
+            - regional_mining_activity:chechnya
+            - regional_mining_activity:donetsk_occupied
+            - regional_mining_activity:lugansk_occupied
+            - regional_mining_activity:zaporizhzhia_occupied
+            - regional_mining_activity:kherson_occupied
+          time_window:
+            - 2025-01-01T00:00:00Z
+            - 2031-03-15T23:59:59Z
+        note: |
+          The 2024-12-23 Council of Ministers decision is the legal
+          instrument. The decision text prohibits cryptocurrency-
+          mining activity (including participation in mining pools)
+          within the ten enumerated regions from 2025-01-01 through
+          2031-03-15. attribution=plausible (not direct) because the
+          load-bearing causal chain "policy → regional hashpower
+          shutdown → global Bitcoin hashrate redistribution" requires
+          quantitative mining-share evidence that has not been
+          re-verified in this authoring pass; the decree text itself
+          establishes the policy lever but does not by itself
+          enumerate the post-ban hashrate transition. Wayback anchor
+          uses the year-prefix lookup form and requires human-audit
+          re-pinning before any admission-anchor use;
+          evidence_use=contextual_unarchived in the interim.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass
+        wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk English-language coverage dated 2024-12-24
+          corroborates the ten-region enumeration, the 2025-01-01 to
+          2031-03-15 window, the seasonal Siberian peak-load
+          restrictions, and the energy-supply rationale. Retained as
+          a contextual triangulation anchor for the Russian-language
+          primary source; evidence_use=contextual_unarchived pending
+          human-audit re-pinning of the specific Wayback snapshot.
+      - type: supporting_journalism
+        url: https://meduza.io/en/news/2024/12/24/russia-bans-cryptocurrency-mining-in-the-caucasus-and-occupied-ukraine
+        wayback: https://web.archive.org/web/2024/https://meduza.io/en/news/2024/12/24/russia-bans-cryptocurrency-mining-in-the-caucasus-and-occupied-ukraine
+        evidence_use: contextual_unarchived
+        note: |
+          Meduza English-language coverage dated 2024-12-24 names the
+          ten regions and characterizes the four Ukrainian regions
+          (Donetsk, Lugansk, Zaporizhzhia, Kherson) as occupied
+          territories under Russian administrative control. Used as
+          the load-bearing translation / jurisdiction-context anchor
+          for the occupied-territories subset of the regional ban.
+          evidence_use=contextual_unarchived pending human-audit
+          re-pinning of the specific Wayback snapshot.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C
+  comparable_main_2017_present authoring pass for the Russia 2024
+  regional mining ban): authored by LLM agent without personally
+  verifying Wayback / body_hash anchors; origin=agent_draft and
+  status=draft per the validator's agent-draft pathway. Real release
+  must replace this DRYRUN marker with a human-verified audit after
+  pinning real archive anchors and re-verifying the
+  Russian-language government.ru press release.
+
+  S4_nation_state empirical_case anchored on the 2024-12-23 Russian
+  Federation Council of Ministers decision approving the list of
+  regions and territories where cryptocurrency mining is prohibited
+  from 2025-01-01 through 2031-03-15 (approximately six years). The
+  permanently banned ten-region set comprises six North Caucasus
+  federal subjects of the Russian Federation (Dagestan, Ingushetia,
+  Kabardino-Balkaria, Karachay-Cherkessia, North Ossetia – Alania,
+  Chechnya) and four Russian-administered occupied Ukrainian
+  territories (the Donetsk People's Republic, the Lugansk People's
+  Republic, the Zaporizhzhia oblast, and the Kherson oblast). The
+  decision additionally imposes peak-season prohibitions in parts of
+  the Irkutsk oblast, the Republic of Buryatia, and the Zabaykalsky
+  Krai during winter peak-load windows; those three Siberian regions
+  are not part of the canonical ten-region target enumeration because
+  their restrictions are seasonal rather than year-round.
+
+  Why trigger.type=nation_state_block: the schema trigger_types enum
+  does not include a distinct "regulatory_decree" or "regional_activity_ban"
+  type. nation_state_block is the closest enum for a single-country
+  central-government regional-activity prohibition with a fixed
+  multi-year effective window. trigger.actor=RU_COUNCIL_OF_MINISTERS
+  identifies the Russian Federation Government (Pravitelstvo
+  Rossiyskoy Federatsii) as the issuing body; this is distinct from
+  RU_CBR (the Central Bank of Russia), which is the actor for the
+  sibling russia-cbr-bitcoin-information-letter-2014 and the
+  russia-cbr-crypto-payment-ban-2022 events.
+
+  Why jurisdiction=[RU] but target enumerates ten regions including
+  four occupied Ukrainian territories: jurisdiction is coded by the
+  issuing authority's jurisdictional namespace (Russia, per
+  RU_COUNCIL_OF_MINISTERS as the issuing body and per Russia's
+  exercise of administrative control over the four Ukrainian
+  territories at the time of the decision). The schema jurisdiction
+  enum does not include UA at present, and recording UA jurisdiction
+  for a decision issued by the Russian Federation Government would
+  misrepresent the issuing authority. The fact that four of the ten
+  regions are occupied Ukrainian territories under Russian
+  administrative control is recorded in the target enumeration_note,
+  in the observation scope_descriptor.providers list, and in the
+  Meduza English-language source note. This is the same convention
+  used by other Russia-administered events that touch occupied
+  Ukrainian territories.
+
+  Why target.kind=entity / enumeration=subset: the schema
+  target_kinds enum does not include "regional_activity" or
+  "mining_operator_class"; entity is the closest enum for a
+  regionally scoped activity-class target, matching the
+  population-class convention used by the sibling
+  russia-cbr-bitcoin-information-letter-2014 (entity / subset for
+  the Russia-resident bitcoin-user class). enumeration=subset
+  rather than complete because (i) the decision addresses a
+  population class (all mining within the ten regions) rather than
+  an enumerated roster of named mining operators, and (ii) the
+  decision contemplates further additions to the restricted-region
+  list.
+
+  Why empirical_shape=comparison / admission_tier=empirical_case:
+  one observed_change layer (l1_consensus) with attribution=plausible
+  is recorded. The l1_consensus observation maps the user-supplied
+  "mining_hashpower" semantics to the l1_consensus layer enum per
+  the authoring brief; the decision's policy lever directly engages
+  the consensus-layer mining substrate (Bitcoin hashpower regional
+  shutdown) in expectation. attribution=plausible (not direct)
+  because the load-bearing causal chain "policy → regional hashpower
+  shutdown → global Bitcoin hashrate redistribution" requires
+  quantitative mining-share evidence (e.g. Cambridge Bitcoin
+  Electricity Consumption Index country-share / pool-mapping
+  re-verification) that has not been re-verified in this authoring
+  pass; the decree text itself establishes the policy lever but
+  does not by itself enumerate the post-ban hashrate transition.
+  empirical_shape=comparison (1-2 observed_change layers);
+  admission_tier=empirical_case (≥1 strong-attribution observed_change
+  layer).
+
+  Why all other layers are not_applicable: L0 (not_applicable) —
+  no ISP / DNS directive in the decision; Russian network-layer
+  crypto blocking is a separate Roskomnadzor phenomenon. L3
+  (not_applicable) — the decision is a Bitcoin-mining regional
+  prohibition, not an Ethereum PBS / public-RPC directive.
+  L4 (not_applicable) — scope mismatch: the decision does not direct
+  frontend takedowns. asset_onchain (not_applicable) — no
+  issuer-side admin-freeze primitive is engaged. offramp_cex
+  (not_applicable) — the decision targets mining at the
+  electricity-supply / permitting layer and does not direct Russian
+  or foreign-licensed exchanges to retire Russian-user accounts;
+  the separate Russian crypto-payments / circulation regime is the
+  subject of the sibling russia-cbr-crypto-payment-ban-2022.
+
+  Cross-temporal context: the sibling Russian central-bank events
+  russia-cbr-bitcoin-information-letter-2014 (2014-01-27 advisory)
+  and russia-cbr-crypto-payment-ban-2022 (2022 CBR full
+  crypto-payments ban) trace the within-jurisdiction longitudinal
+  trajectory of Russian central-bank crypto-disposition;
+  this 2024-12-23 regional mining ban is a separate
+  electricity-supply-rationale lever issued by the Council of
+  Ministers (not by the CBR) and addresses the production
+  (mining) side rather than the use / payments side of the
+  Russian crypto regulatory perimeter. The 2024-12-23 ban also
+  follows Russia's 2024 Federal Law on Mining (signed 2024-08-08)
+  which legalized industrial-scale mining at the federal level
+  while delegating regional restriction authority to the Council
+  of Ministers; this regional decision is the first exercise of
+  that delegated authority.
+
+tags:
+  - nation_state_block
+  - russia
+  - council_of_ministers
+  - mining
+  - bitcoin
+  - l1_consensus
+  - regional_ban
+  - occupied_territories
+  - electricity_supply

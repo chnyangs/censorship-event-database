@@ -1,0 +1,307 @@
+id: china-nft-secondary-trading-self-discipline-2022-06
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - china-pboc-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: CN_BANKING_ASSOC + CN_INTERNET_SOC + CN_SAC
+  timestamp: 2022-06-30T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban
+      wayback: https://web.archive.org/web/2022/https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban
+      evidence_use: contextual_unarchived
+      note: |
+        South China Morning Post 2022-06-30 reporting on the "Digital
+        Collectible Industry Self-Discipline Development Initiative"
+        signed by approximately 30 Chinese firms and institutions
+        including Tencent, Ant Group, JD.com, and Baidu. The pact's
+        14 articles ban secondary trading of NFTs ("digital
+        collectibles"), require real-name authentication for issuers,
+        sellers, and buyers, and restrict denomination/settlement to
+        RMB legal tender. Issued under the umbrella of three
+        industry self-regulatory bodies (China Banking Association,
+        Internet Society of China, Securities Association of China)
+        coordinating with the Chinese Cultural Industry Association.
+        Wayback wildcard pointer in lieu of pinned-timestamp snapshot;
+        evidence_use=contextual_unarchived because no body_hash+body_path
+        pair has been captured into
+        sources/http_captures/china-nft-secondary-trading-self-discipline-2022-06/
+        in this session.
+    - type: supporting_journalism
+      url: https://www.euronews.com/next/2022/06/30/china-tech-nfts
+      wayback: https://web.archive.org/web/2022/https://www.euronews.com/next/2022/06/30/china-tech-nfts
+      evidence_use: contextual_unarchived
+      note: |
+        Euronews / Reuters 2022-06-30 reporting confirming Chinese tech
+        giants' pledge to halt NFT secondary trading. Wayback wildcard
+        pointer in lieu of pinned snapshot.
+    - type: supporting_journalism
+      url: https://www.asiafinancial.com/chinas-big-tech-groups-pledge-to-help-ban-nft-trading
+      wayback: https://web.archive.org/web/2022/https://www.asiafinancial.com/chinas-big-tech-groups-pledge-to-help-ban-nft-trading
+      evidence_use: contextual_unarchived
+      note: |
+        Asia Financial 2022-06-30 corroboration of the self-discipline
+        initiative, naming the three industry associations and listing
+        platform-level signatories. Wayback wildcard pointer in lieu of
+        pinned snapshot.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. The Chinese-language self-discipline
+        initiative notice was published 2022-06-30 by the joint industry
+        self-regulatory bodies (China Banking Association, Internet
+        Society of China, Securities Association of China) with parallel
+        coordination from the China Cultural Industry Association.
+        English-language press cluster (SCMP, Euronews/Reuters, Asia
+        Financial, Bloomberg) reported the same day. Exact publication
+        hour not recorded in this session; day precision matches
+        observed reporting cluster.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    PRC NFT ("digital collectibles") permissioned-platform cohort
+    bound by the self-discipline initiative. Named platform signatories
+    include Tencent Huanhe (幻核), Alibaba/Ant Group Phoenix (鲸探),
+    JD.com Lingxi (灵稀), and Baidu's digital collectibles platform.
+    Subset rather than complete: approximately 30 firms and institutes
+    are reported as signatories but the full enumeration is not yet
+    pinned to a primary-source signatory list in this session.
+  entity: prc_nft_digital_collectibles_self_discipline_cohort
+  actor_type: permissioned_nft_platform_cohort
+  actor_name: PRC digital-collectibles platforms (Tencent Huanhe, Alibaba Phoenix, JD Lingxi, Baidu, etc.)
+  chains: []
+  canonical_domains:
+    - h.qq.com
+    - jingtan.taobao.com
+
+jurisdiction:
+  - CN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Self-discipline initiative is an industry-platform-level
+      restriction on secondary trading UIs and primary-sale RMB
+      denomination; it does not map to ISP-level L0 reachability of
+      external domains. (Parent PBOC virtual-currency event covers the
+      L0 axis for offshore crypto exchanges in CN.)
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      PRC digital-collectibles platforms operate on permissioned
+      consortium chains (e.g., Ant Chain, Tencent's Zhixin Chain), not
+      Ethereum PBS-era public consensus. L1 consensus filtering as
+      defined for the comparable corpus does not apply.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Permissioned-chain primitive; the public Ethereum RPC substrate
+      (Flashbots Protect, MEV-Blocker) does not apply.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - tencent_huanhe
+      - alibaba_phoenix
+    note: |
+      Permissioned-platform frontends (Tencent Huanhe, Alibaba/Ant
+      Group Phoenix) removed or restricted secondary-trading UI
+      elements following the 2022-06-30 self-discipline initiative,
+      keeping only primary-sale flows with RMB-denominated payment and
+      real-name authentication. Replayable Wayback diffs of the
+      affected platform UIs are deferred; contextual_unarchived
+      sourcing via press coverage in this draft.
+  - layer: asset_onchain
+    status: partially_measured
+    scope:
+      - permissioned_consortium_chains
+    note: |
+      Mapped from the original "asset_issuance" axis: token issuance on
+      PRC digital-collectibles permissioned consortium chains was
+      restricted to primary-sale flows (no secondary transfer) under
+      the self-discipline initiative. Scope narrowed to the
+      primary/secondary distinction rather than blanket issuance
+      cessation; the platforms continued to mint primary collectibles
+      after 2022-06-30. Replayable on-chain artifacts for the
+      consortium chains are not yet pinned in this session.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      PRC digital-collectibles platforms are not CEX off-ramps in the
+      sense of the comparable corpus (no RMB-to-crypto fiat off-ramp).
+      Off-ramp severance for offshore crypto exchanges is recorded
+      under the parent china-pboc-crypto-ban-2021 event.
+
+observations:
+  - layer: l4_frontend
+    actor: platform_cohort:prc_digital_collectibles
+    event: secondary_trading_ui_removed_on_permissioned_nft_platforms
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-06-30T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: CN
+    sources:
+      - type: supporting_journalism
+        url: https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban
+        wayback: https://web.archive.org/web/2022/https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [tencent_huanhe, alibaba_phoenix, jd_lingxi, baidu]
+          countries: [CN]
+          time_window:
+            - 2022-06-30T00:00:00Z
+            - 2022-07-31T23:59:59Z
+        note: |
+          SCMP 2022-06-30 reporting that Tencent, Ant Group, and other
+          signatories committed to halting secondary-trading flows for
+          digital collectibles on their permissioned-platform frontends
+          and to restricting primary sales to RMB-denominated payments
+          with real-name authentication. Attribution=plausible because
+          the initiative is industry self-regulation under state
+          direction rather than a binding state order, and per-platform
+          UI-removal Wayback diffs are not pinned in this session.
+      - type: supporting_journalism
+        url: https://www.euronews.com/next/2022/06/30/china-tech-nfts
+        wayback: https://web.archive.org/web/2022/https://www.euronews.com/next/2022/06/30/china-tech-nfts
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [tencent_huanhe, alibaba_phoenix]
+          countries: [CN]
+          time_window:
+            - 2022-06-30T00:00:00Z
+            - 2022-07-31T23:59:59Z
+        note: |
+          Euronews / Reuters 2022-06-30 confirmation of the
+          secondary-trading halt pledge from PRC tech-platform
+          signatories.
+  - layer: asset_onchain
+    actor: chain_cohort:prc_consortium_chains
+    event: nft_issuance_restricted_to_primary_rmb_sales_no_secondary_transfer
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-06-30T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: CN
+    sources:
+      - type: supporting_journalism
+        url: https://www.asiafinancial.com/chinas-big-tech-groups-pledge-to-help-ban-nft-trading
+        wayback: https://web.archive.org/web/2022/https://www.asiafinancial.com/chinas-big-tech-groups-pledge-to-help-ban-nft-trading
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [ant_chain, tencent_zhixin_chain]
+          countries: [CN]
+          time_window:
+            - 2022-06-30T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          Asia Financial 2022-06-30 confirmation that on-chain
+          issuance on PRC digital-collectibles permissioned
+          consortium chains was restricted to primary-sale flows
+          with RMB legal-tender denomination and real-name
+          authentication; secondary peer-to-peer transfer was
+          prohibited under the initiative. Attribution=plausible
+          because chain-level transfer-disable evidence has not
+          been pinned to specific consortium-chain artifacts in
+          this session.
+      - type: supporting_journalism
+        url: https://cryptopotato.com/chinese-tech-giants-vow-support-additional-regulations-on-digital-collectibles/
+        wayback: https://web.archive.org/web/2022/https://cryptopotato.com/chinese-tech-giants-vow-support-additional-regulations-on-digital-collectibles/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [ant_chain, tencent_zhixin_chain]
+          countries: [CN]
+          time_window:
+            - 2022-06-30T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          CryptoPotato 2022-06-30 corroboration of the on-chain
+          primary-only / RMB-only constraints.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
+  instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash; human review
+  required to elevate to admitted status.
+
+  Industry self-regulatory event recorded under research_stratum
+  S4_nation_state and trigger.type nation_state_block because the
+  closest enum match captures the state-directed character of the
+  PRC industry-association joint initiative, even though the
+  instrument is a self-discipline pact rather than a formal state
+  order. Three industry self-regulatory bodies (China Banking
+  Association, Internet Society of China, Securities Association of
+  China) issued the 2022-06-30 "Digital Collectible Industry
+  Self-Discipline Development Initiative" with approximately 30
+  platform signatories including Tencent, Ant Group, JD.com, and
+  Baidu. The 14-article pact (i) bans secondary trading of NFTs
+  ("digital collectibles"), (ii) restricts denomination/settlement to
+  RMB legal tender on primary sales, (iii) requires real-name
+  authentication for issuers, sellers, and buyers, and (iv) mandates
+  "secure and controllable" blockchain implementations
+  (i.e., permissioned consortium chains).
+
+  Two comparison observations are recorded:
+  (1) l4_frontend — secondary-trading UI removal on permissioned
+  platform frontends (Tencent Huanhe, Alibaba Phoenix);
+  (2) asset_onchain — token issuance restricted to primary-sale
+  flows on permissioned consortium chains, mapping the original
+  "asset_issuance" axis to the schema's asset_onchain layer with
+  scope narrowed to the primary/secondary distinction rather than
+  blanket issuance cessation. Both observations carry
+  attribution=plausible because the instrument is industry
+  self-regulation under state direction rather than a binding state
+  order, and per-platform UI / consortium-chain transfer-disable
+  artifacts have not been pinned to body_hash+body_path anchors in
+  this session.
+
+  Cross-event anchor to china-pboc-crypto-ban-2021: the PBOC
+  2021-09-24 joint notice declared offshore crypto-related business
+  activities illegal in the PRC; this 2022-06-30 NFT initiative
+  extends the cordoning of crypto-asset commerce in CN to the
+  domestic permissioned-NFT segment by foreclosing secondary
+  trading and pegging primary sales to RMB legal tender.
+
+scoped_claim: |
+  On 2022-06-30, three PRC industry self-regulatory bodies (China
+  Banking Association, Internet Society of China, Securities
+  Association of China) issued a 14-article self-discipline
+  initiative co-signed by approximately 30 platform signatories
+  (including Tencent Huanhe and Alibaba/Ant Group Phoenix) that
+  banned secondary trading of NFTs ("digital collectibles") and
+  restricted primary sales to RMB-denominated, real-name-authenticated
+  flows on permissioned consortium chains. Observational axes at
+  l4_frontend (secondary-trading UI removal) and asset_onchain
+  (issuance restricted to primary-only). Admission-anchor-grade
+  promotion pending pinned platform / consortium-chain artifacts.
+
+tags:
+  - nation_state
+  - china
+  - nft
+  - digital_collectibles
+  - self_discipline_initiative
+  - permissioned_chain
+  - l4_frontend
+  - asset_onchain
+  - s4_nation_state
+  - dryrun_2026_05_16
