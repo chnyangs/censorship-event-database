@@ -1,0 +1,123 @@
+id: kraken-sec-staking-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2023-02-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/newsroom/press-releases/2023-25
+      body_hash: sha256:dbcde40b85e3ff9d67c56327cfa5144cb2177688e67541bf1c706097719c3bb2
+      body_path: sources/http_captures/kraken-sec-staking-2023/primary/www.sec.gov__newsroom-press-releases-2023-25__60bb01826e.html
+      note: |
+        SEC press release 2023-25 (2023-02-09): Kraken subsidiaries Payward
+        Ventures and Payward Trading agreed to discontinue unregistered
+        crypto asset staking-as-a-service offers and sales and pay $30M.
+    - type: primary_corporate
+      url: https://blog.kraken.com/news/settlement
+      body_hash: sha256:5ee3db50eb12a5d305663c016587b0b3be2c94fbb4e6da470b31101dbeddf41e
+      body_path: sources/http_captures/kraken-sec-staking-2023/primary/blog.kraken.com__news-settlement__d26530fc20.html
+      note: |
+        Kraken's same-day platform statement says U.S. clients would no longer
+        be able to stake new assets, enrolled non-ETH assets would be
+        automatically unstaked, and those assets would no longer earn staking
+        rewards.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per SEC press release and same-day Kraken statement.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Kraken U.S. staking service. This is a service-level target, not a token
+    delisting or chain-level consensus event.
+  actor_type: exchange_staking_service
+  actor_name: Kraken / Payward Ventures and Payward Trading
+  chains: [ethereum, cardano, solana, polkadot]
+  canonical_domains:
+    - kraken.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The trigger affected Kraken's pooled staking service, not protocol-level
+      validator rules or consensus participation generally.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    scope: [kraken.com]
+    note: |
+      No admission-grade historical frontend diff is retained in this file.
+      The admitted-quality observation is the exchange service restriction.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [kraken_us_staking]
+    note: |
+      SEC and Kraken sources both describe a U.S.-scoped staking-service
+      shutdown. The observed layer is the centralized exchange/platform service
+      surface, not L1 consensus or an asset freeze.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:kraken_us_staking
+    event: us_onchain_staking_service_discontinued
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-02-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2023-25
+        body_hash: sha256:dbcde40b85e3ff9d67c56327cfa5144cb2177688e67541bf1c706097719c3bb2
+        body_path: sources/http_captures/kraken-sec-staking-2023/primary/www.sec.gov__newsroom-press-releases-2023-25__60bb01826e.html
+        note: |
+          SEC release states the Kraken entities agreed to immediately cease
+          offering or selling securities through crypto asset staking services
+          or staking programs.
+      - type: primary_corporate
+        url: https://blog.kraken.com/news/settlement
+        body_hash: sha256:5ee3db50eb12a5d305663c016587b0b3be2c94fbb4e6da470b31101dbeddf41e
+        body_path: sources/http_captures/kraken-sec-staking-2023/primary/blog.kraken.com__news-settlement__d26530fc20.html
+        note: |
+          Kraken says U.S. clients cannot stake new assets and non-ETH assets
+          in the on-chain staking program would be automatically unstaked.
+
+analysis_notes: |
+  **PROMOTION STAMP — DRYRUN 2026-05-16** (Phase 0c of 2026-05-16 staged-release plan; LLM-review packet at `analysis/promotion_packets/kraken-sec-staking-2023.md`): admit_with_minor_fixes (high confidence). Substance sound — both primary citations have body_hash + body_path that the reviewer independently re-hashed against local archives. Only nits: denominator_artifact missing on offramp_cex coverage row. Promoted observation_closed → admitted by LLM agent review; origin remains `agent_draft` until real human re-verifies. For a real release, replace this DRYRUN marker after human audit and flip origin to `human_reviewed`.
+  
+      comparison - SEC staking settlement with a direct exchange-service reaction.
+  The file intentionally does not code an L1 consensus change: the network
+  protocols continued to support staking, while Kraken's U.S. pooled staking
+  product was discontinued.
+
+scoped_claim: |
+  "The 2023-02-09 SEC Kraken staking settlement is coded only as a U.S.-scoped
+  centralized exchange service shutdown; it does not claim protocol-level
+  staking censorship or token delisting."
+
+tags:
+  - sec_enforcement
+  - staking_service
+  - exchange_service_restriction

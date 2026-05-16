@@ -1,0 +1,131 @@
+id: sec-beaxy-platform-shutdown-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2023-03-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/newsroom/press-releases/2023-64
+      body_hash: sha256:67f588f1cdc68c76bfe1a131bcc7b00a8e1e98e67ca8565f087d62e3a7cee7bb
+      body_path: sources/http_captures/sec-beaxy-platform-shutdown-2023/primary/www.sec.gov__newsroom-press-releases-2023-64__47268803d6.html
+      note: |
+        SEC press release 2023-64 (2023-03-29): Beaxy Platform and executives
+        charged for operating as an unregistered exchange, broker, and clearing
+        agency; settling parties agreed to shut down the platform.
+    - type: primary_legal
+      url: https://www.sec.gov/files/litigation/complaints/2023/comp-pr2023-64.pdf
+      body_hash: sha256:e46031492fe74d5513616cbfd9b0a06311a9067d3af69ef11981aeee9eeaed33
+      body_path: sources/http_captures/sec-beaxy-platform-shutdown-2023/primary/www.sec.gov__files-litigation-complaints-2023-comp-pr2023-64.pdf__34db79071e.bin
+      note: |
+        SEC complaint in Securities and Exchange Commission v. Beaxy Digital,
+        Ltd., et al., N.D. Ill. No. 1:23-cv-1962.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per SEC press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Beaxy.com trading platform and related exchange/broker/clearing service.
+    The row does not enumerate every listed token or customer account.
+  actor_type: crypto_trading_platform
+  actor_name: Beaxy Platform / Windy Inc.
+  chains: []
+  canonical_domains:
+    - beaxy.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [beaxy.com]
+    note: |
+      No L0 measurement slice is retained for this expansion draft.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [beaxy.com]
+    note: |
+      SEC source states the settling parties agreed to shut down the Beaxy
+      Platform. This supports a platform/frontend observed_change at the
+      public trading-platform surface, without claiming ISP blocking.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [beaxy_platform_customer_assets]
+    note: |
+      SEC source states the undertakings included ceasing exchange/broker/
+      clearing activities and transferring customer assets and funds to each
+      respective customer.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:beaxy_platform
+    event: beaxy_platform_shutdown
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-03-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2023-64
+        body_hash: sha256:67f588f1cdc68c76bfe1a131bcc7b00a8e1e98e67ca8565f087d62e3a7cee7bb
+        body_path: sources/http_captures/sec-beaxy-platform-shutdown-2023/primary/www.sec.gov__newsroom-press-releases-2023-64__47268803d6.html
+        note: |
+          SEC release states the settling parties agreed to shut down the Beaxy
+          Platform.
+  - layer: offramp_cex
+    actor: exchange:beaxy_platform
+    event: exchange_broker_clearing_activities_ceased_and_customer_assets_returned
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-03-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2023-64
+        body_hash: sha256:67f588f1cdc68c76bfe1a131bcc7b00a8e1e98e67ca8565f087d62e3a7cee7bb
+        body_path: sources/http_captures/sec-beaxy-platform-shutdown-2023/primary/www.sec.gov__newsroom-press-releases-2023-64__47268803d6.html
+        note: |
+          SEC release states the undertakings included ceasing unregistered
+          exchange, broker, clearing-agency, and dealer activity; accounting for
+          assets and funds; and transferring customer assets and funds to
+          customers.
+
+analysis_notes: |
+  **PROMOTION STAMP — DRYRUN 2026-05-16** (Phase 0c of 2026-05-16 staged-release plan; LLM-review packet at `analysis/promotion_packets/sec-beaxy-platform-shutdown-2023.md`): admit_with_minor_fixes (medium confidence). **TIER DOWNGRADED 2026-05-16 per agent review**: admission_tier anchor_case → empirical_case. Two observed_change layers (L4 + offramp_cex), both cited from a single SEC press release paragraph — too thin for anchor-narrative use; defensible as empirical_case. Promoted observation_closed → admitted by LLM agent review; origin remains `agent_draft` until real human re-verifies. For a real release, replace this DRYRUN marker after human audit and flip origin to `human_reviewed`.
+  
+      comparison - SEC intermediary registration action with two public-platform
+  surfaces: trading-platform shutdown and customer asset/fund return. The row
+  deliberately does not claim L0 blocking or token-level on-chain effects.
+
+scoped_claim: |
+  "The 2023-03-29 SEC Beaxy action is coded as a Beaxy Platform shutdown plus
+  cessation/return obligations at the centralized platform layer; it is not
+  coded as network blocking or an on-chain asset freeze."
+
+tags:
+  - sec_enforcement
+  - exchange_shutdown
+  - customer_asset_return

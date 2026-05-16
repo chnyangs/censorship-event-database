@@ -1,0 +1,116 @@
+id: blockfi-sec-lending-2022
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2022-02-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/newsroom/press-releases/2022-26
+      body_hash: sha256:805ea579d1452e64855b30ea674d7e83f960dc40c996dec5b469c24c781bfa01
+      body_path: sources/http_captures/blockfi-sec-lending-2022/primary/www.sec.gov__newsroom-press-releases-2022-26__ae4da616fa.html
+      note: |
+        SEC press release 2022-26 (2022-02-14): BlockFi agreed to penalties
+        and to cease unregistered offers and sales of BlockFi Interest Accounts.
+    - type: primary_legal
+      url: https://www.sec.gov/litigation/admin/2022/33-11029.pdf
+      body_hash: sha256:1f0a57b3706af2a0f94c4ff3fb5e86db2c2cc8f82eab20093350b82304888a3e
+      body_path: sources/http_captures/blockfi-sec-lending-2022/primary/www.sec.gov__litigation-admin-2022-33-11029.pdf__19ddea27cd.bin
+      note: |
+        SEC administrative order for BlockFi Lending LLC. Captured as the
+        legal-order anchor for the product-level restriction.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per SEC press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    BlockFi Interest Account product. This is a lending-product/service target,
+    not an on-chain address set.
+  actor_type: crypto_lending_platform
+  actor_name: BlockFi Lending LLC
+  chains: [bitcoin, ethereum]
+  canonical_domains:
+    - blockfi.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    scope: [blockfi.com]
+    note: |
+      No historical BlockFi frontend diff is retained here. The retained
+      observation is the legal-order product restriction.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [blockfi_interest_accounts]
+    note: |
+      The centralized crypto lending product is treated as the measured
+      platform/service layer. The event does not claim a chain-level or
+      frontend takedown effect.
+
+observations:
+  - layer: offramp_cex
+    actor: lending_platform:blockfi_interest_accounts
+    event: unregistered_interest_account_offers_and_sales_ceased
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-02-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2022-26
+        body_hash: sha256:805ea579d1452e64855b30ea674d7e83f960dc40c996dec5b469c24c781bfa01
+        body_path: sources/http_captures/blockfi-sec-lending-2022/primary/www.sec.gov__newsroom-press-releases-2022-26__ae4da616fa.html
+        note: |
+          SEC release states BlockFi agreed to cease unregistered offers and
+          sales of the lending product, BlockFi Interest Accounts.
+      - type: primary_legal
+        url: https://www.sec.gov/litigation/admin/2022/33-11029.pdf
+        body_hash: sha256:1f0a57b3706af2a0f94c4ff3fb5e86db2c2cc8f82eab20093350b82304888a3e
+        body_path: sources/http_captures/blockfi-sec-lending-2022/primary/www.sec.gov__litigation-admin-2022-33-11029.pdf__19ddea27cd.bin
+        note: |
+          Administrative order anchors the settlement obligation and product
+          restriction.
+
+analysis_notes: |
+  **PROMOTION STAMP — DRYRUN 2026-05-16** (Phase 0c of 2026-05-16 staged-release plan; LLM-review packet at `analysis/promotion_packets/blockfi-sec-lending-2022.md`): admit_with_minor_fixes (high confidence). Missing denominator_artifact on offramp_cex coverage row + evidence_use annotation on trigger citations — both technical fixes, not blockers. Promoted observation_closed → admitted by LLM agent review; origin remains `agent_draft` until real human re-verifies. For a real release, replace this DRYRUN marker after human audit and flip origin to `human_reviewed`.
+  
+      comparison - first-of-kind SEC crypto lending-product settlement in this
+  corpus expansion pass. The measured change is product/service restriction at
+  the centralized lending platform. No frontend takedown, token delisting, or
+  on-chain asset freeze is asserted.
+
+scoped_claim: |
+  "The 2022-02-14 SEC BlockFi settlement is coded only as a BlockFi Interest
+  Account product/service restriction, not as a frontend, L1, L3, or on-chain
+  censorship event."
+
+tags:
+  - sec_enforcement
+  - lending_product
+  - centralized_platform_restriction

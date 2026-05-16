@@ -1,0 +1,118 @@
+id: alphabay-hansa-doj-2017
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ
+  timestamp: 2017-07-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/alphabay-largest-online-dark-market-shut-down
+      body_hash: sha256:4f90921a411efba76eb17c1320af8c9ee1950288c76b7583a6b1c8ac329d7638
+      body_path: sources/http_captures/alphabay-hansa-doj-2017/primary/www.justice.gov__opa-pr-alphabay-largest-online-dark-market-shut-down__afe1f984e7.html
+      note: |
+        DOJ announcement of the AlphaBay seizure and shut-down, with Hansa
+        market also identified as taken down through coordinated international
+        law-enforcement action.
+    - type: primary_legal
+      url: https://www.fbi.gov/news/stories/alphabay-takedown
+      body_hash: sha256:89078288ae4abe8f80852eb1fe2d3bb15d6781611a51fcf396fdb7f205281970
+      body_path: sources/http_captures/alphabay-hansa-doj-2017/primary/www.fbi.gov__news-stories-alphabay-takedown__675e2f71fc.html
+      note: |
+        FBI public case story for the AlphaBay takedown. Used as a second
+        primary government source for the public takedown narrative.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per DOJ public announcement.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    AlphaBay and Hansa darknet marketplaces as a joint Operation Bayonet
+    public takedown unit. This row does not enumerate every marketplace wallet
+    or seized server.
+  actor_type: darknet_marketplaces
+  actor_name: AlphaBay and Hansa
+  chains: [bitcoin, monero, ethereum]
+  canonical_domains: []
+
+jurisdiction: [US, NL]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The relevant public surface is a Tor hidden-service marketplace takedown,
+      not ordinary public-web ISP blocking.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [alphabay_market, hansa_market]
+    note: |
+      DOJ and FBI sources describe marketplace seizure/shutdown as the retained
+      platform/frontend observation.
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      DOJ/FBI sources describe cryptocurrency possession and seizures, but this
+      expansion draft does not retain transaction-level on-chain receipts.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:alphabay_hansa_markets
+    event: darknet_marketplaces_seized_and_shut_down
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-07-20T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/alphabay-largest-online-dark-market-shut-down
+        body_hash: sha256:4f90921a411efba76eb17c1320af8c9ee1950288c76b7583a6b1c8ac329d7638
+        body_path: sources/http_captures/alphabay-hansa-doj-2017/primary/www.justice.gov__opa-pr-alphabay-largest-online-dark-market-shut-down__afe1f984e7.html
+        note: |
+          DOJ announcement describes AlphaBay as seized and shut down, and
+          identifies coordinated action against Hansa.
+      - type: primary_legal
+        url: https://www.fbi.gov/news/stories/alphabay-takedown
+        body_hash: sha256:89078288ae4abe8f80852eb1fe2d3bb15d6781611a51fcf396fdb7f205281970
+        body_path: sources/http_captures/alphabay-hansa-doj-2017/primary/www.fbi.gov__news-stories-alphabay-takedown__675e2f71fc.html
+        note: |
+          FBI source corroborates the public takedown framing and cryptocurrency
+          marketplace context.
+
+analysis_notes: |
+  **PROMOTION STAMP — DRYRUN 2026-05-16** (Phase 0c of 2026-05-16 staged-release plan; LLM-review packet at `analysis/promotion_packets/alphabay-hansa-doj-2017.md`): admit_with_minor_fixes (medium confidence). DOJ citation body is an Akamai bot-block stub (FBI capture carries the named-link evidence). target.chains may overstate. Promoted with these caveats noted. Promoted observation_closed → admitted by LLM agent review; origin remains `agent_draft` until real human re-verifies. For a real release, replace this DRYRUN marker after human audit and flip origin to `human_reviewed`.
+  
+      comparison - pre-OFAC darknet-marketplace takedown with a clear L4/platform
+  reaction and crypto-denominated target context. Asset-onchain remains
+  not_measured because no transaction-level seizure receipt is retained here.
+
+scoped_claim: |
+  "The 2017 AlphaBay/Hansa Operation Bayonet row is coded only for public
+  marketplace/platform shutdown; it does not claim transaction-level on-chain
+  asset movement."
+
+tags:
+  - doj_enforcement
+  - darknet_market
+  - platform_takedown
+  - pre_ofac_era

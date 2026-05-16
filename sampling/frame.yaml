@@ -10,12 +10,43 @@ purpose: >
 
 snapshot_scope:
   current_snapshot_end: 2026-05-06
-  historical_start: 2017-01-01
+  historical_start: 2008-01-01
+  historical_baseline_start: 2013-01-01
+  comparable_main_start: 2017-01-01
   v0_2_expansion_end: 2026-12-31
-  candidate_trigger_registry_target_min: 150
-  candidate_trigger_registry_target_max: 250
-  admitted_event_target_min: 80
-  admitted_event_target_max: 120
+  candidate_trigger_registry_milestone_min: 150
+  candidate_trigger_registry_milestone_max: 250
+  admitted_event_quality_milestone: 120
+  final_collection_cutoff: 2026-12-31
+  collection_rule: >
+    Keep collecting publicly discoverable trigger-level / target-level frame
+    units until each declared source frame has an exhausted triage manifest
+    through final_collection_cutoff. The old 120-case target is retained only
+    as an admitted-quality progress milestone, not as a stop rule or cap.
+
+temporal_tiers:
+  discovery_only_2008_2012:
+    date_range: [2008-01-01, 2012-12-31]
+    analysis_use: discovery_ledger_only
+    default_month_status: pending
+    description: >
+      Monthly discovery ledger for early Bitcoin / pre-mature market years.
+      Rows normally stay out of event-rate claims unless exceptional
+      admission-grade public trigger evidence exists.
+  historical_baseline_2013_2016:
+    date_range: [2013-01-01, 2016-12-31]
+    analysis_use: historical_baseline
+    default_month_status: pending
+    description: >
+      Early enforcement, seizure, exchange, and darknet-market history. Full
+      event YAMLs are allowed, but denominator use is historical-baseline only
+      unless a future claim explicitly separates the tier.
+  comparable_main_2017_present:
+    date_range: [2017-01-01, 2026-12-31]
+    analysis_use: comparable_analysis
+    default_month_status: pending
+    description: >
+      Main source-frame corpus for comparable cross-layer observability claims.
 
 trigger_registry_statuses:
   - admitted
@@ -53,8 +84,19 @@ source_frames:
   ofac_recent_actions_crypto:
     source_frame_id: ofac_recent_actions_crypto_2017_2026
     strata: [S1_ofac_sdn, S2_ofac_removal]
-    date_range: [2017-01-01, 2026-03-13]
+    date_range: [2008-01-01, 2026-12-31]
+    analysis_use: comparable_analysis
+    tiered_date_ranges:
+      discovery_only_2008_2012: [2008-01-01, 2012-12-31]
+      historical_baseline_2013_2016: [2013-01-01, 2016-12-31]
+      comparable_main_2017_present: [2017-01-01, 2026-12-31]
     source_artifact: sources/ofac_sdn_diffs/opensanctions/ofac-recent-actions-triage.json
+    source_artifact_status: ingested
+    # First month the artifact actually covers (per Agent A F1 finding):
+    # OFAC's machine-readable "Recent Actions" extractor first entry is
+    # 2015-04. Months before this are `source_unavailable`, not
+    # `pending` — the source has nothing to triage there.
+    source_artifact_first_available_date: 2015-04-01
     extractor_rule: >
       OFAC recent-action pages with crypto address extractors or entity keywords;
       rows without concrete crypto targets remain screened_no_extractor_target.
@@ -64,8 +106,21 @@ source_frames:
   us_federal_enforcement_archives:
     source_frame_id: us_federal_enforcement_crypto_2017_2026
     strata: [S3_doj_sec_cftc_fiod]
-    date_range: [2017-01-01, 2026-12-31]
+    date_range: [2008-01-01, 2026-12-31]
+    analysis_use: comparable_analysis
+    tiered_date_ranges:
+      discovery_only_2008_2012: [2008-01-01, 2012-12-31]
+      historical_baseline_2013_2016: [2013-01-01, 2016-12-31]
+      comparable_main_2017_present: [2017-01-01, 2026-12-31]
     source_artifact: planned:sources/federal_enforcement/triage_manifest.json
+    source_artifact_status: planned
+    # Artifact has not been ingested yet; the date below is the
+    # planned first-coverage point once the triage_manifest is
+    # built. Until that happens, all months render as
+    # `source_unavailable` (not `pending`) so the ledger does not
+    # claim 12-month-per-year searched-but-empty coverage on a
+    # source that nobody has actually searched.
+    source_artifact_first_available_date: 2013-05-01
     extractor_rule: >
       DOJ, SEC, CFTC, FinCEN, and CourtListener/RECAP records with concrete
       crypto target extraction and at least one platform/on-chain/rail surface.
@@ -75,19 +130,71 @@ source_frames:
   non_us_state_archives:
     source_frame_id: non_us_state_crypto_2017_2026
     strata: [S4_nation_state]
-    date_range: [2017-01-01, 2026-12-31]
+    date_range: [2008-01-01, 2026-12-31]
+    analysis_use: comparable_analysis
+    tiered_date_ranges:
+      discovery_only_2008_2012: [2008-01-01, 2012-12-31]
+      historical_baseline_2013_2016: [2013-01-01, 2016-12-31]
+      comparable_main_2017_present: [2017-01-01, 2026-12-31]
     source_artifact: planned:sources/non_us_state/triage_manifest.json
+    source_artifact_status: planned
+    # PBOC Notice 2013/289 (China crypto-ban precursor to the 2021
+    # ban already admitted) is the earliest known in-scope event.
+    # Setting planned first-coverage at 2013-01 lets a future
+    # ingest capture it; pre-2013 months render `source_unavailable`.
+    source_artifact_first_available_date: 2013-01-01
     extractor_rule: >
       Central-bank, FIU, emergency-order, travel-rule, or national blocking
       actions with named crypto venues, domains, assets, or regulated classes.
     current_raw_rows: 0
     current_in_frame_units: 6
     current_screened_rows: 0
+  us_state_regulator_archives:
+    # Added 2026-05-16 per Agent B M2 (4-agent temporal-ledger review).
+    # The 2015-06 NYDFS BitLicense final rule triggered ShapeShift /
+    # Kraken / Bitfinex / Poloniex NY-exit cascades that no existing
+    # frame slot covered — federal-enforcement is wrong (state, not
+    # federal), corporate-policy is wrong (regulator action, not
+    # corporate decision), and non-US-state is wrong (US-state, not
+    # foreign). This new slot is `planned:` until an ingest builds
+    # the triage_manifest.
+    source_frame_id: us_state_regulator_crypto_2014_2026
+    strata: [S3_doj_sec_cftc_fiod]  # nearest-existing stratum; may need its own S3a/S3b split at v0.3
+    date_range: [2008-01-01, 2026-12-31]
+    analysis_use: comparable_analysis
+    tiered_date_ranges:
+      discovery_only_2008_2012: [2008-01-01, 2012-12-31]
+      historical_baseline_2013_2016: [2013-01-01, 2016-12-31]
+      comparable_main_2017_present: [2017-01-01, 2026-12-31]
+    source_artifact: planned:sources/us_state_regulator/triage_manifest.json
+    source_artifact_status: planned
+    # NYDFS BitLicense process formally opened 2014-07; the earliest
+    # in-scope event for this slot. Pre-2014-07 months render
+    # `source_unavailable`.
+    source_artifact_first_available_date: 2014-07-01
+    extractor_rule: >
+      US-state-level regulator actions: NYDFS, Texas DBO, California DFPI,
+      and similar state-level money-transmitter / securities / consumer-
+      protection regulators with concrete crypto targets.
+    current_raw_rows: 0
+    current_in_frame_units: 0
+    current_screened_rows: 0
   corporate_policy_archives:
     source_frame_id: corporate_policy_crypto_2017_2026
     strata: [S5_corporate]
-    date_range: [2017-01-01, 2026-12-31]
+    date_range: [2008-01-01, 2026-12-31]
+    analysis_use: comparable_analysis
+    tiered_date_ranges:
+      discovery_only_2008_2012: [2008-01-01, 2012-12-31]
+      historical_baseline_2013_2016: [2013-01-01, 2016-12-31]
+      comparable_main_2017_present: [2017-01-01, 2026-12-31]
     source_artifact: planned:sources/corporate_policy/triage_manifest.json
+    source_artifact_status: planned
+    # Issuer/exchange/frontend public statements pre-2014 are too
+    # sparse + the artifact is planned. Earliest serious corporate
+    # crypto-compliance statements (Coinbase Tos, Circle terms) are
+    # 2014.
+    source_artifact_first_available_date: 2014-01-01
     extractor_rule: >
       Issuer, exchange, frontend, or infrastructure-provider announcements or
       commits naming an external legal/policy trigger or explicit compliance
@@ -98,8 +205,18 @@ source_frames:
   supranational_archives:
     source_frame_id: supranational_crypto_2017_2026
     strata: [S6_supranational]
-    date_range: [2017-01-01, 2026-12-31]
+    date_range: [2008-01-01, 2026-12-31]
+    analysis_use: comparable_analysis
+    tiered_date_ranges:
+      discovery_only_2008_2012: [2008-01-01, 2012-12-31]
+      historical_baseline_2013_2016: [2013-01-01, 2016-12-31]
+      comparable_main_2017_present: [2017-01-01, 2026-12-31]
     source_artifact: planned:sources/supranational/triage_manifest.json
+    source_artifact_status: planned
+    # FATF first crypto-relevant guidance was 2015 ("Guidance for a
+    # Risk-Based Approach to Virtual Currencies"). Supranational
+    # signals pre-2015 are sparse + the artifact is planned.
+    source_artifact_first_available_date: 2015-06-01
     extractor_rule: >
       EU Official Journal, UN Security Council, G7, FATF, or similar
       supranational records with concrete crypto targets or regulated venues.
@@ -112,31 +229,37 @@ strata:
     description: OFAC SDN designations naming crypto addresses, entities, or protocols.
     v0_1_admitted: 26
     v0_2_admitted_min: 30
+    v0_2_admitted_target: 35
     v0_2_candidate_min: 50
   S2_ofac_removal:
     description: OFAC SDN removals and delistings affecting prior crypto targets.
     v0_1_admitted: 1
     v0_2_admitted_min: 5
+    v0_2_admitted_target: 10
     v0_2_candidate_min: 10
   S3_doj_sec_cftc_fiod:
     description: US federal enforcement plus non-US MLAT companion actions.
     v0_1_admitted: 12
     v0_2_admitted_min: 20
+    v0_2_admitted_target: 30
     v0_2_candidate_min: 40
   S4_nation_state:
     description: Single-country central-bank, emergency-order, or national blocking actions.
     v0_1_admitted: 6
     v0_2_admitted_min: 10
+    v0_2_admitted_target: 20
     v0_2_candidate_min: 20
   S5_corporate:
     description: Issuer, exchange, frontend, or infrastructure-provider unilateral policy changes.
     v0_1_admitted: 6
     v0_2_admitted_min: 10
+    v0_2_admitted_target: 15
     v0_2_candidate_min: 20
   S6_supranational:
     description: EU, UN, G7, or other supranational sanctions and regulatory packages.
     v0_1_admitted: 2
     v0_2_admitted_min: 5
+    v0_2_admitted_target: 10
     v0_2_candidate_min: 10
 
 expansion_priority_queue:
@@ -211,7 +334,7 @@ jurisdiction_groups:
     members: [EU, UN]
     v0_2_min_admitted: 5
   non_us_state:
-    members: [AU, CA, CH, CN, DE, IN, IR, IS, JP, KR, NG, NL, PL, PT, RU, SG, TR, UK]
+    members: [AU, BE, CA, CH, CN, DE, IN, IR, IS, JP, KR, MY, NG, NL, PH, PL, PT, RU, SG, TR, UK]
     v0_2_min_admitted: 20
   corporate_global:
     members: [corporate_global]
