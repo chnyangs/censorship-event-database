@@ -1,0 +1,267 @@
+id: coin-mx-doj-murgio-2015
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - shrem-faiella-bitcoin-exchange-2014
+  - ripple-fincen-xrp-2015
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2015-07-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground
+      wayback: https://web.archive.org/web/2015/https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ SDNY press release (2015-07-21): "Manhattan U.S. Attorney
+        Announces Charges Against Two Florida Men For Operating An
+        Underground Bitcoin Exchange." Criminal complaint unsealed in
+        SDNY against Anthony R. Murgio and Yuri Lebedev for operating
+        Coin.mx, an unlawful internet-based Bitcoin exchange, in
+        violation of federal anti-money-laundering laws (18 U.S.C.
+        Sec. 1960 - operating an unlicensed money transmitting
+        business). Between approximately October 2013 and January
+        2015, Coin.mx exchanged at least $1.8 million for Bitcoins
+        on behalf of tens of thousands of customers. To evade
+        scrutiny from financial institutions, in 2014 Murgio and his
+        co-conspirators gained control of HOPE Federal Credit Union
+        (HOPE FCU), a small New Jersey federal credit union with
+        primarily low-income members, after paying more than $150,000
+        in bribes. Wayback URL pinned as a wildcard 2015 anchor;
+        evidence_use=contextual_unarchived because no body_hash has
+        been independently captured in this DRYRUN authoring pass.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering
+      wayback: https://web.archive.org/web/2017/https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ SDNY press release (2017-01): "Operator Of Unlawful
+        Bitcoin Exchange Pleads Guilty In Multimillion-Dollar Money
+        Laundering And Fraud Scheme." Records Murgio's guilty plea
+        to (1) conspiracy to operate an unlicensed money transmitting
+        business, (2) conspiracy to commit bank fraud, and (3)
+        conspiracy to obstruct an examination of a financial
+        institution. Retained as contextual_unarchived corroborating
+        pointer for the conviction phase.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-sentenced-more-5-years-prison-leading-multimillion
+      wayback: https://web.archive.org/web/2017/https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-sentenced-more-5-years-prison-leading-multimillion
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ SDNY press release: "Operator Of Unlawful Bitcoin Exchange
+        Sentenced To More Than 5 Years In Prison For Leading
+        Multimillion-Dollar Money Laundering And Fraud Scheme."
+        Murgio sentenced to 66 months imprisonment. Retained as
+        contextual_unarchived corroborating pointer for the
+        sentencing phase.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per the DOJ SDNY press release announcing
+        the 2015-07-21 arrests of Murgio and Lebedev at their
+        Florida residences.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named individual defendants Anthony R. Murgio and Yuri Lebedev
+    operating the Coin.mx unlicensed bitcoin exchange, with HOPE
+    Federal Credit Union (HOPE FCU) used as a captured banking
+    conduit and a phony "Collectors Club" front company used to
+    disguise USD rails. canonical_domains lists the Coin.mx
+    operating domain; no on-chain BTC addresses are enumerated at
+    this event-row level (the SDNY complaint cites aggregate volume
+    ~$1.8M without exhaustive address enumeration).
+  actor_type: exchange
+  actor_name: Coin.mx
+  chains: [bitcoin]
+  canonical_domains:
+    - coin.mx
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2015-07-21 indictment did not invoke any ISP / DNS /
+      network-layer block of coin.mx. Public-web L0 instruments
+      (Censored Planet, OONI) do not apply; the platform shutdown
+      that followed was a corporate consequence of criminal
+      exposure, not a network-layer event.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin, 2015; consensus-layer filtering surfaces tracked by
+      this dataset (post-Merge Ethereum PBS, mev-watch /
+      censorship.pics) did not exist for any chain in 2015. Out of
+      scope on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No hosted Bitcoin-RPC provider surface is implicated. The
+      MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2015. Out of scope on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No L4 frontend seizure or takedown banner is documented for
+      coin.mx on 2015-07-21. The site went dark following the
+      arrests without a DOJ-attributed L4 seizure banner. Recording
+      the post-arrest disappearance as observed_change at L4 would
+      conflate corporate shutdown with a DOJ takedown order, so L4
+      is not coded here.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin is unfreezable at the protocol layer. No issuer-level
+      or asset-layer freeze is implicated by the 2015-07-21
+      indictment. No stablecoin admin-method actions existed in
+      2015 to attach here.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [coin_mx, hope_fcu]
+    note: |
+      Load-bearing layer. Coin.mx — the unlicensed bitcoin exchange
+      operated by Murgio — was the operative off-ramp affected by
+      the indictment. The exchange shut down post-arrest and never
+      resumed operations; the USD-rails conduit (HOPE Federal
+      Credit Union, the captured New Jersey federal credit union
+      used to bank Coin.mx flows) was likewise severed when the
+      indictment unsealed the bribery-and-fraud scheme. Coverage
+      status is partially_measured because the operational
+      shutdown is publicly attested via DOJ press releases but no
+      per-month Wayback-frontend volumetric timeline is pinned in
+      this DRYRUN authoring pass.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:coin_mx
+    event: coin_mx_ceases_operations_and_hope_fcu_usd_rails_severed_following_indictment
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2015-07-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground
+        wayback: https://web.archive.org/web/2015/https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground
+        scope_descriptor:
+          providers: [coin_mx, hope_fcu]
+          time_window:
+            - 2015-07-21T00:00:00Z
+            - 2017-06-30T23:59:59Z
+        note: |
+          DOJ SDNY press release announcing the 2015-07-21
+          criminal complaint against Anthony R. Murgio and Yuri
+          Lebedev for operating Coin.mx as an unlicensed money
+          transmitting business in violation of 18 U.S.C. Sec. 1960.
+          The complaint also charges bank fraud and obstruction of
+          a financial institution examination tied to Murgio's
+          capture of HOPE Federal Credit Union as a banking conduit
+          for Coin.mx USD flows. attribution=direct: the indictment
+          named Coin.mx by name and the USD rails through HOPE FCU
+          were directly severed as a consequence of unsealing
+          (rather than as a downstream business decision distinct
+          from the legal action). The exchange did not resume
+          operations after the arrests.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering
+        wayback: https://web.archive.org/web/2017/https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering
+        scope_descriptor:
+          providers: [coin_mx]
+          time_window:
+            - 2017-01-01T00:00:00Z
+            - 2017-12-31T23:59:59Z
+        note: |
+          DOJ SDNY guilty-plea press release documenting Murgio's
+          plea to conspiracy to operate an unlicensed money
+          transmitting business, conspiracy to commit bank fraud,
+          and conspiracy to obstruct an examination of a financial
+          institution. This conviction is the legally definitive
+          end-state confirming Coin.mx's terminal shutdown. Used
+          as the secondary corroborating anchor for the offramp_cex
+          observation.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B authoring): new
+  historical-baseline event for the 2015-07-21 DOJ SDNY indictment
+  of Anthony Murgio and Yuri Lebedev for operating Coin.mx as an
+  unlicensed bitcoin exchange. Authored by LLM agent without
+  personally verifying Wayback/body_hash; origin=agent_draft and
+  status=draft per validator constraint (agent_draft incompatible
+  with admitted). Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors
+  (the wayback URLs here are 2015/2017 wildcard pointers, not
+  pinned snapshot timestamps).
+
+  comparison shape: 1 observed_change layer (offramp_cex, Coin.mx
+  shutdown + HOPE FCU USD rails severance). The 2015-07-21 SDNY
+  indictment charged Murgio and Lebedev with operating Coin.mx in
+  violation of 18 U.S.C. Sec. 1960 (unlicensed money transmitting
+  business), and additionally charged Murgio with bank fraud and
+  obstruction of a financial institution examination tied to his
+  2014 capture of HOPE Federal Credit Union as a banking conduit
+  for Coin.mx USD flows. Between October 2013 and January 2015,
+  Coin.mx exchanged at least $1.8M for Bitcoins on behalf of tens
+  of thousands of customers. Murgio pleaded guilty in January 2017
+  and was sentenced to 66 months. attribution=direct because the
+  indictment named Coin.mx by name and the USD-rails severance
+  through HOPE FCU was a direct enforcement consequence of the
+  unsealing. Admission tier empirical_case (1 strong-attribution
+  observed_change layer).
+
+  Historical-baseline anchor for the DOJ exchange/MSB enforcement
+  family in the 2013-2016 era, structurally complementary to the
+  2014-01-27 shrem-faiella-bitcoin-exchange-2014 indictment of
+  BitInstant CEO Charlie Shrem and the 2015-05-05
+  ripple-fincen-xrp-2015 FinCEN/DOJ NPA against Ripple Labs.
+  Distinguishing feature: Coin.mx is the first 2013-2016
+  historical-baseline DOJ case in which the unlicensed-MSB
+  enforcement was paired with capture of a regulated banking
+  institution (HOPE FCU) as the USD-rails conduit; the bribery
+  and bank-fraud counts substantially raise the criminal-exposure
+  profile relative to the Shrem case.
+
+scoped_claim: |
+  The 2015-07-21 DOJ SDNY indictment of Anthony R. Murgio and
+  Yuri Lebedev for operating Coin.mx as an unlicensed bitcoin
+  exchange (with HOPE Federal Credit Union captured as a banking
+  conduit and a phony "Collectors Club" front company) produced
+  an offramp_cex cascade: Coin.mx shut down post-arrest and the
+  USD-rails conduit through HOPE FCU was severed. The row claims
+  only this single-layer offramp shutdown observation with
+  attribution=direct; no L0/L1/L3/L4/asset-onchain effects are
+  coded.
+
+tags:
+  - doj_enforcement
+  - exchange_indictment
+  - unlicensed_money_transmitter
+  - money_laundering
+  - bank_fraud
+  - hope_fcu_capture
+  - coin_mx
+  - historical_baseline
+  - pre_ofac_era
+  - offramp_shutdown

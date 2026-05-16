@@ -1,0 +1,309 @@
+id: iceland-cbi-foreign-exchange-bitcoin-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - china-pboc-crypto-ban-2013-12
+
+trigger:
+  type: nation_state_block
+  actor: IS_CBI
+  timestamp: 2014-03-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
+      wayback: https://web.archive.org/web/2014/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
+      evidence_use: contextual_unarchived
+      note: |
+        Central Bank of Iceland (Seðlabanki Íslands / CBI) news release
+        dated 2014-03-19 titled "Significant risk attached to use of
+        virtual currency". The statement, issued in the days leading up
+        to the Auroracoin (AUR) airdrop launch, examines the legal
+        status of virtual currencies (bitcoin, Auroracoin) under
+        Icelandic law and the Iceland Foreign Exchange Act (Act
+        No. 87/1992 on Foreign Exchange, as amended after the 2008
+        banking-crisis capital-controls regime). Core position
+        articulated by the CBI: (1) bitcoin and Auroracoin are not
+        recognised currency or legal tender in the sense of Icelandic
+        law; (2) it is prohibited to engage in foreign-exchange trading
+        with the electronic currency bitcoin under the Foreign Exchange
+        Act, because Icelandic-resident purchases of bitcoin from
+        foreign counterparties constitute movement of capital out of
+        Iceland which is restricted under the post-2008 capital
+        controls; (3) Icelandic residents should be cautious about
+        using virtual currencies given the absence of consumer
+        protection and the foreign-exchange-law exposure. The CBI is
+        the only authority with rule-making power under the FX Act,
+        so this statement carries the legal interpretation that
+        bitcoin purchases by Icelandic residents are restricted by
+        existing FX-control law. The cb.is URL path is the canonical
+        publication anchor; specific Wayback snapshot timestamp
+        requires re-pinning in human audit before this citation may
+        serve as an admission anchor.
+    - type: primary_legal
+      url: https://www.sedlabanki.is/?PageId=eeebb4db-0460-11e5-93fa-005056bc0bdb&newsid=1fca32cd-af9c-11e3-93f5-005056bc0bdb
+      wayback: https://web.archive.org/web/2014/https://www.sedlabanki.is/?PageId=eeebb4db-0460-11e5-93fa-005056bc0bdb&newsid=1fca32cd-af9c-11e3-93f5-005056bc0bdb
+      evidence_use: contextual_unarchived
+      note: |
+        Icelandic-language mirror of the same 2014-03-19 CBI news
+        release on the sedlabanki.is domain. Carries identical
+        substantive content to the cb.is English statement. Marked
+        evidence_use=contextual_unarchived; specific Wayback snapshot
+        timestamp requires re-pinning in human audit.
+    - type: supporting_tracker
+      url: https://www.loc.gov/item/global-legal-monitor/2014-08-12/iceland-national-digital-currency-auroracoin-launched/
+      wayback: https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2014-08-12/iceland-national-digital-currency-auroracoin-launched/
+      evidence_use: contextual_unarchived
+      note: |
+        US Library of Congress Global Legal Monitor entry titled
+        "Iceland: National Digital Currency Auroracoin Launched"
+        dated 2014-08-12, providing an English-language summary
+        of the CBI 2014-03-19 position and characterising it as an
+        interpretation of the Foreign Exchange Act restricting
+        Icelandic-resident purchases of bitcoin (since such
+        purchases entail capital movement out of Iceland that the
+        post-2008 capital-controls regime prohibits). Used here as
+        a contextual translation anchor. Specific Wayback snapshot
+        timestamp requires re-pinning in human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        The CBI news release carries a 2014-03-19 publication date in
+        its URL path and dateline. Day-level precision is appropriate
+        because the CBI does not publish intra-day publication timing
+        for this kind of news release in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the class of Icelandic residents engaged in or
+    contemplating bitcoin purchases (and by extension other virtual-
+    currency purchases). The CBI statement does not enumerate
+    specific exchanges or specific resident counterparties; it
+    states a legal interpretation that applies to the entire class
+    of Icelandic-resident bitcoin purchasers under the Foreign
+    Exchange Act. No specific exchange is named as the target,
+    so canonical_domains is empty.
+  protocol: null
+  actor_type: regulated_resident_class
+  actor_name: Iceland-resident bitcoin purchasers
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - IS
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-03-19 CBI statement does not direct ISP-level domain
+      blocking, DNS interference, or network-layer action; it is a
+      legal-interpretation notice under existing FX-control law.
+      not_applicable consistent with India 2018 / China 2013-12
+      sibling treatment of banking-rail nation-state events.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-03 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. The Ethereum Merge itself is ~8.5 years downstream
+      (2022-09-15). not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2014; Flashbots Protect launched 2022-11 and MEV-Blocker launched
+      2023-03-27. not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The CBI statement is a legal-interpretation notice addressed to
+      Icelandic residents; it does not require frontend changes at any
+      specific exchange or service. No L4 frontend surface within
+      Iceland is in scope.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The 2014 CBI statement does not engage a stablecoin-
+      issuer admin path (USDT first issued ~2014-10; chainwide admin
+      freezes arose later). not_applicable on construct-did-not-exist
+      grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      The CBI statement is by construction an off-ramp-layer signal:
+      it tells Icelandic residents that purchasing bitcoin from
+      foreign exchanges violates the Foreign Exchange Act. The
+      coverage scope for the observed_no_change row below is the
+      public record (English and Icelandic press, exchange status
+      pages, LoC Global Legal Monitor) for the 90 days following
+      the 2014-03-19 release: no specific exchange is documented
+      as having cut off Icelandic-resident accounts in that window,
+      and the dominant 2014 bitcoin exchanges (Bitstamp, Bitfinex,
+      Mt. Gox in its pre-collapse and collapse phases) did not
+      maintain Iceland-specific compliance flags in the public
+      record. Class-level Icelandic-resident exposure to FX law is
+      real but not exchange-side observable in this authoring pass.
+      partially_measured because the public-record search is
+      bounded but not exhaustive.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - IS
+        time_window:
+          - 2014-03-19T00:00:00Z
+          - 2014-06-17T00:00:00Z
+      note: |
+        Coverage scope: Iceland-resident off-ramp cutoffs documented
+        in the public record during the 90-day window following the
+        CBI 2014-03-19 statement. No exchange-side Iceland-specific
+        cutoff was located in this authoring pass; a human-audit
+        pass on contemporaneous Icelandic press (Morgunblaðið,
+        Viðskiptablaðið) and English crypto-press (CoinDesk,
+        Bitcoin Magazine) is the gating step for a stronger
+        denominator anchor.
+
+observations:
+  - layer: offramp_cex
+    actor: icelandic_resident_bitcoin_purchasers
+    event: no_measured_exchange_side_cutoff_of_iceland_residents
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2014-03-19T00:00:00Z
+    precision: day
+    window:
+      - 2014-03-19T00:00:00Z
+      - 2014-06-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
+        wayback: https://web.archive.org/web/2014/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
+        evidence_use: contextual_unarchived
+        note: |
+          The CBI 2014-03-19 statement is the legal instrument. It
+          states the FX-Act interpretation that bitcoin purchases by
+          Icelandic residents are prohibited under the capital-controls
+          regime, but it does not name any specific exchange as having
+          implemented an Iceland-resident-cutoff in response. The
+          observation_kind=not_observed row records that the cascade
+          surface at offramp_cex is class-level (Icelandic residents
+          as a class) rather than exchange-specific in the available
+          public record. attribution=plausible because the FX-Act
+          interpretation plausibly affected Icelandic-resident
+          bitcoin-buying behaviour even though no exchange-level
+          cutoff is documented. Specific Wayback snapshot timestamp
+          requires re-pinning in human audit.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — agent_draft 2026-05-16. Historical-baseline
+  contextual case for the 2014-03-19 Central Bank of Iceland
+  (Seðlabanki Íslands / CBI) statement "Significant risk attached
+  to use of virtual currency", which articulated the CBI's
+  interpretation that purchases of bitcoin by Icelandic residents
+  are prohibited under the Iceland Foreign Exchange Act (Act
+  No. 87/1992, as amended) and the post-2008-banking-crisis
+  capital-controls regime. Authored at status=draft pending human
+  audit of (i) the cb.is and sedlabanki.is URL reachability and
+  Wayback snapshot pinning, (ii) the LoC Global Legal Monitor
+  English-language summary anchor, and (iii) any exchange-side
+  evidence of Iceland-resident-cutoff that may exist in
+  contemporaneous press coverage but was not located in this
+  authoring pass.
+
+  Significance: this is the first nation-state action explicitly
+  treating bitcoin purchases as prohibited under existing FX-control
+  law rather than under a freshly issued crypto-specific directive.
+  It is the contextual sibling of china-pboc-crypto-ban-2013-12
+  (PBOC Notice 2013/289 of 2013-12-05) — the China 2013 notice
+  acted via banking-and-payments-rail prohibitions, while the
+  Iceland 2014 statement acts via capital-controls FX-law
+  reinterpretation. Together they form the earliest pair of
+  nation-state-level bitcoin-restriction events in the dataset.
+
+  Why historical_baseline_2013_2016 tier: 2014 belongs to the
+  pre-2017 historical-baseline tier per sampling/frame.yaml.
+  analysis_use=contextual_baseline excludes this row from the
+  2017+ comparable-analysis denominator. The event is retained as
+  contextual case-study material rather than as a denominator row
+  because (a) it predates the comparable corpus and (b) the
+  cascade surface is class-level rather than exchange-specific.
+
+  Why empirical_case rather than anchor_case: the offramp_cex
+  observation is observation_kind=not_observed with
+  attribution=plausible, not an observed_change row. The CBI
+  statement clearly carries direct-attribution force on
+  Icelandic-resident bitcoin-buying behaviour as a class, but
+  the cascade surface in the available public record is not
+  exchange-specific. Without a documented exchange-side cutoff
+  or a measured Iceland-resident on-chain volume shift, the
+  event admits only at empirical_case strength.
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the CBI
+  statement is a legal-interpretation notice under existing
+  FX-control law; it does not direct network-layer blocking,
+  L4 frontend changes, or engage any 2014-nonexistent L1/L3 PBS
+  measurement primitive or any asset-issuer admin path. The
+  L0/L1/L3/asset_onchain not_applicable treatment matches the
+  sibling 2013 PBOC / 2018 RBI / 2021 PBOC banking-rail-severance
+  pattern.
+
+  Post-2014 trajectory: Iceland's broader capital-controls regime
+  was substantially liberalised in 2017 (CBI New Rules on Foreign
+  Exchange, 2017-03-12), which effectively lifted the indirect
+  bitcoin-purchase prohibition. That 2017 amendment is a natural
+  candidate for a separate recovery / sibling-event row but is
+  not authored in this pass.
+
+scoped_claim: |
+  The Central Bank of Iceland (Seðlabanki Íslands) news release of
+  2014-03-19, "Significant risk attached to use of virtual currency",
+  stated the CBI's interpretation that purchases of bitcoin by
+  Icelandic residents are prohibited under the Iceland Foreign
+  Exchange Act and the post-2008 capital-controls regime. The
+  cascade surface is class-level on Icelandic residents; no
+  exchange-side Iceland-resident cutoff is documented in this
+  authoring pass, so offramp_cex carries an observation_kind=not_observed
+  row with attribution=plausible.
+
+scoped_knowledge: |
+  This event is the earliest dataset case of a nation-state acting
+  against bitcoin via reinterpretation of pre-existing capital-
+  controls / FX-control law, rather than via a freshly issued
+  crypto-specific directive. The contrast with china-pboc-crypto-ban-
+  2013-12 (which acted via a five-ministry crypto-specific notice
+  prohibiting bank services to bitcoin) is informative: both events
+  produce a banking-rail-severance shape, but the Iceland 2014
+  legal mechanism is FX-law-reuse rather than crypto-specific
+  rule-making. The cascade surface is class-level rather than
+  exchange-specific because Iceland's bitcoin market in 2014 was
+  small relative to the PRC market and because the CBI statement
+  did not name specific exchanges. The 2017 CBI New Rules on
+  Foreign Exchange materially relaxed the capital-controls regime,
+  effectively rendering the 2014 interpretation moot — that
+  recovery dynamic is a candidate sibling event for future
+  authoring.
+
+tags:
+  - nation_state_block
+  - iceland
+  - cbi
+  - foreign_exchange_act
+  - capital_controls
+  - historical_baseline
+  - contextual_case

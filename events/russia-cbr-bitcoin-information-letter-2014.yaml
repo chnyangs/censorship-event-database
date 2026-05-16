@@ -1,0 +1,282 @@
+id: russia-cbr-bitcoin-information-letter-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - russia-cbr-crypto-payment-ban-2022
+  - china-pboc-crypto-ban-2013-12
+
+trigger:
+  type: nation_state_block
+  actor: RU_CBR
+  timestamp: 2014-01-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
+      wayback: https://web.archive.org/web/2014/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
+      evidence_use: contextual_unarchived
+      note: |
+        Central Bank of the Russian Federation (Bank of Russia / CBR)
+        information letter dated 2014-01-27 titled "Об использовании при
+        совершении сделок «виртуальных валют», в частности, Биткойн"
+        ("On Using Virtual Currencies, Specifically Bitcoin, in
+        Transactions"). The Bank of Russia warned Russian citizens and
+        legal entities (in particular credit and non-credit financial
+        organizations) against using virtual currencies for exchange
+        into goods, services, or monetary funds in rubles and foreign
+        currency. The letter framed virtual-currency exchange activities
+        by Russian business entities as "dubious activity" potentially
+        constituting involvement in money-laundering and
+        terrorism-financing under Russian AML/CFT law, and invoked
+        Article 27 of the Federal Law "On the Central Bank of the
+        Russian Federation" which prohibits the issuance of monetary
+        surrogates in Russia. This was an information letter / advisory
+        — not a formal prohibition on residents holding bitcoin — but
+        signaled the regulatory disposition that anticipates the later
+        CBR-led 2017+ enforcement posture and the 2022 CBR full
+        crypto-payments ban. Russian-language original on cbr.ru.
+        Wayback wildcard anchor is provisional; specific snapshot
+        timestamp must be re-pinned during human audit before this
+        citation may carry an admission anchor in its own right. Marked
+        evidence_use=contextual_unarchived pending that re-pin.
+    - type: supporting_tracker
+      url: https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
+      wayback: https://web.archive.org/web/2014/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
+      evidence_use: contextual_unarchived
+      note: |
+        US Library of Congress Global Legal Monitor entry dated
+        2014-02-06 titled "Russia: Bitcoin Exchanges Can Be Penalized",
+        providing English-language summary of the 2014-01-27 Bank of
+        Russia information letter and naming Article 27 of the CBR Law
+        as the cited legal basis. Used here as a contextual translation
+        anchor; specific Wayback snapshot timestamp to be re-pinned
+        during human audit. Marked evidence_use=contextual_unarchived.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        The CBR information letter carries a 2014-01-27 issuance date,
+        which is the date used by contemporaneous Russian-language and
+        English-language secondary coverage (Library of Congress, TASS,
+        Reuters, CoinDesk). Day-level precision is appropriate because
+        the CBR information letter does not carry intra-day publication
+        timing in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the CBR advisory directed at Russia-resident
+    bitcoin users and Russian legal entities (in particular credit
+    and non-credit financial organizations). This is a class-level
+    advisory, not an enumerated entity list: the letter does not
+    name specific exchanges or individual addresses. No Russian
+    crypto-exchange ecosystem of the scale of the contemporaneous
+    PRC triad (BTC China, OKCoin, Huobi) existed at the time, and
+    the advisory's binding force on residents was indirect (an
+    AML/CFT-violation warning rather than a banking-rail severance
+    directive). Enumeration=subset rather than complete because the
+    advisory addresses a population class without a fixed roster.
+  protocol: null
+  actor_type: russia_resident_bitcoin_user_class
+  actor_name: Russia-resident bitcoin users (CBR advisory class)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-01-27 CBR information letter does not direct ISP-level
+      domain blocking or DNS interference. Russian network-layer
+      blocking of crypto-exchange domains is a downstream and later
+      phenomenon (Roskomnadzor enforcement actions begin 2017+) that
+      is not part of this 2014-01-27 advisory trigger. L0 marked
+      not_applicable consistent with the China 2013 / India 2018
+      sibling treatment of nation-state regulatory-advisory and
+      banking-rail events.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-01 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. The Ethereum Merge itself is ~8.5 years downstream
+      (2022-09-15). not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2014; Flashbots Protect launched 2022-11 and MEV-Blocker launched
+      2023-03-27. not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The 2014-01-27 CBR letter is a population-class advisory, not a
+      directive to take down specific frontends. Russian-language
+      bitcoin frontends were not enumerated targets of this advisory,
+      and Russian frontends were not part of a dominant domestic
+      exchange ecosystem at the time. not_applicable on
+      scope-mismatch grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The 2014-01-27 advisory does not engage a stablecoin-
+      issuer admin path (USDT first issued ~2014-10; chainwide admin
+      freezes arose later). not_applicable on construct-did-not-exist
+      grounds.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      The CBR information letter is functionally an AML/CFT advisory
+      directed at Russian credit and non-credit financial organizations
+      and the Russia-resident bitcoin-user class. It is plausible that
+      Russian banks tightened or refused virtual-currency-related
+      account servicing in response, but no enumerated Russian
+      crypto-exchange triad analogous to the 2013-12 PRC case has been
+      pinned in this authoring pass, and contemporaneous public
+      measurement of Russian off-ramp behavior in the 2014-01 window
+      has not been re-verified. Dispersed cascade with no load-bearing
+      direct-attribution observation available. Marked not_measured
+      with a coverage_gap observation row below.
+
+observations:
+  - layer: offramp_cex
+    actor: russia_resident_bitcoin_offramp_class
+    event: cbr_aml_cft_advisory_dispersed_cascade
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2014-01-27T00:00:00Z
+    precision: day
+    note: |
+      The 2014-01-27 CBR information letter plausibly influenced the
+      willingness of Russian credit and non-credit financial
+      organizations to service virtual-currency-related accounts, but
+      no enumerated counterfactual or class-level off-ramp measurement
+      has been pinned in this authoring pass. Recorded as coverage_gap
+      with attribution=unknown to signal a dispersed cascade
+      consistent with the advisory's framing (AML/CFT-violation
+      warning + monetary-surrogate prohibition reference) without
+      claiming a measured observed_change. Schema observation_kind
+      enum does not include "not_observed"; coverage_gap is the
+      canonical pattern for class-level dispersed advisories without
+      measured action evidence (cf. fincen-virtual-currency-msb-
+      guidance-2013). Validator rule constrains coverage_gap rows to
+      attribution ∈ {unknown, none}; "unknown" reads as
+      plausibly-influenced-but-not-measured here.
+    sources:
+      - type: primary_legal
+        url: http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
+        wayback: https://web.archive.org/web/2014/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
+        evidence_use: contextual_unarchived
+        note: |
+          CBR 2014-01-27 information letter is the legal instrument.
+          The letter explicitly warns Russian citizens and legal
+          entities (in particular credit and non-credit financial
+          organizations) against virtual-currency exchange activity
+          and frames such activity by Russian businesses as
+          potentially constituting AML/CFT violations. Provisional
+          wayback anchor; specific snapshot timestamp requires
+          human-audit re-pinning.
+      - type: supporting_tracker
+        url: https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
+        wayback: https://web.archive.org/web/2014/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
+        evidence_use: contextual_unarchived
+        note: |
+          Library of Congress Global Legal Monitor 2014-02-06 English
+          summary of the CBR 2014-01-27 letter, corroborating the
+          advisory's scope and the cited Article 27 of the CBR Law.
+          Specific Wayback snapshot timestamp requires re-pinning in
+          human audit.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — AGENT DRAFT 2026-05-16. Historical-baseline
+  authoring pass for the 2014-01-27 Bank of Russia information letter
+  "Об использовании при совершении сделок «виртуальных валют», в
+  частности, Биткойн" ("On Using Virtual Currencies, Specifically
+  Bitcoin, in Transactions"). origin=agent_draft and status=draft;
+  human re-verification of (i) the cbr.ru source URL reachability and
+  Wayback snapshot pinning, (ii) the Library of Congress English-
+  summary snapshot pinning, and (iii) any contemporaneous Russian
+  off-ramp class-level measurement evidence (TASS / RIA Novosti /
+  Reuters / CoinDesk / bits.media) is required before this event may
+  be promoted to human_reviewed and admitted.
+
+  Why historical_baseline tier: events 2013–2016 belong to the
+  historical_baseline_2013_2016 temporal tier per the 2008+ tiered
+  frame in sampling/frame.yaml. analysis_use=historical_baseline
+  excludes this row from the 2017+ comparable-analysis denominator,
+  matching the validator's tier-vs-analysis-use consistency rule.
+
+  Why empirical_shape=null_event / admission_tier=null_case: this
+  event has zero observed_change observations. The CBR letter is an
+  AML/CFT advisory, not a banking-rail severance directive, and no
+  enumerated Russian crypto-exchange or banking counterfactual has
+  been pinned in this authoring pass. The single observation row is
+  observation_kind=coverage_gap with attribution=plausible, which
+  does not contribute toward empirical_shape or admission_tier.
+  Treated as historical-baseline context rather than admission-grade
+  cascade evidence.
+
+  Why trigger.type=nation_state_block: the schema enum
+  trigger_types includes nation_state_block but does not include a
+  distinct "regulatory_advisory" or "warning" type. nation_state_block
+  is the closest enum for a single-country central-bank action and is
+  the same trigger.type used by the sibling china-pboc-crypto-ban-
+  2013-12 historical-baseline event. The advisory-vs-ban distinction
+  is captured in analysis_notes and scoped_knowledge rather than in
+  trigger.type.
+
+  Why target.kind=entity / enumeration=subset: schema target_kinds
+  does not include "regulatory_class" or "exchange"; entity is the
+  closest enum for a population-class target and matches the China
+  2013 / China 2021 / India 2018 sibling pattern. enumeration=subset
+  rather than complete because the advisory addresses a Russia-
+  resident bitcoin-user class without a fixed roster.
+
+  Why all coverage layers are not_applicable except offramp_cex:
+  L0 (not_applicable) — no ISP / DNS directive in the letter; Russian
+  network-layer crypto blocking is a downstream 2017+ Roskomnadzor
+  phenomenon. L1 (not_applicable) — Ethereum PBS relay primitive
+  does not exist in 2014. L3 (not_applicable) — public-RPC compliance
+  primitive (Flashbots Protect / MEV-Blocker) does not exist in 2014.
+  L4 (not_applicable) — scope mismatch: the advisory does not target
+  specific frontends. asset_onchain (not_applicable) — bitcoin has
+  no issuer-side admin freeze primitive and USDT did not exist in
+  2014-01. offramp_cex (not_measured) — the advisory is plausibly
+  off-ramp-relevant but no enumerated measurement is pinned.
+
+  Cross-temporal context: this 2014-01-27 information letter
+  precedes the later CBR-led 2017+ enforcement posture and the 2022
+  CBR full crypto-payments ban (russia-cbr-crypto-payment-ban-2022).
+  The cross-temporal sibling pair (2014 advisory → 2022 ban) is a
+  within-jurisdiction longitudinal anchor for the Russian
+  central-bank crypto-disposition trajectory. The 2013-12-05 PBOC
+  Notice 2013/289 (china-pboc-crypto-ban-2013-12) is a contemporaneous
+  cross-jurisdictional comparator one month earlier, with a stronger
+  cascade (PRC three-exchange CNY-deposit pause) because the PRC
+  notice was a banking-rail severance directive rather than an
+  AML/CFT advisory.
+
+tags:
+  - nation_state_block
+  - russia
+  - cbr
+  - bitcoin
+  - regulatory_advisory
+  - historical_baseline
+  - aml_cft

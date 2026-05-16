@@ -1,0 +1,191 @@
+id: mtgox-usd-withdrawal-suspension-2013-06
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - mtgox-dhs-dwolla-wells-fargo-seizure-2013
+
+trigger:
+  type: corporate_policy_change
+  actor: MTGOX_OPERATOR
+  timestamp: 2013-06-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.mtgox.com/press_release_20130620.html
+      wayback: https://web.archive.org/web/20140122193202/https://www.mtgox.com/press_release_20130620.html
+      evidence_use: contextual_unarchived
+      note: |
+        Mt. Gox 2013-06-20 press release announcing the temporary suspension
+        of all USD withdrawals pending implementation of an upgraded USD-
+        transaction processing system in cooperation with its banking
+        partner. Officially framed as a voluntary corporate verification-
+        procedure update; in context, downstream of the 2013-05-14 DHS/HSI
+        Dwolla account seizure (mtgox-dhs-dwolla-wells-fargo-seizure-2013)
+        and the parallel Wells Fargo / Mutum Sigillum banking-rail
+        difficulties. mtgox.com is dead — Wayback memento 2014-01-22
+        retained as the only available archive vector. evidence_use=
+        contextual_unarchived: no body_hash captured into
+        sources/http_captures/ in this session.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals
+      wayback: https://web.archive.org/web/20211016054018/https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals/
+      evidence_use: contextual_unarchived
+      note: |
+        Contemporary CoinDesk coverage (2013-06-20) reporting Mt. Gox's
+        announcement of a temporary suspension of USD withdrawals, framed
+        by the exchange as a response to growing transaction volume that
+        was straining its banking partner's processing capacity. Wayback
+        memento 2021-10-16 (closest stable snapshot). evidence_use=
+        contextual_unarchived: no body_hash captured into
+        sources/http_captures/ in this session.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All Mt. Gox USD-balance customers globally. USD withdrawals were
+    suspended pending banking-partner review and verification process
+    changes; USD deposits and non-USD withdrawals continued. No on-chain
+    BTC addresses are enumerated at this event level; the action is a
+    fiat-rail offramp suspension at the operator layer.
+  actor_type: exchange
+  actor_name: Mt. Gox K.K.
+  chains: [bitcoin]
+  canonical_domains:
+    - mtgox.com
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      mtgox.com remained reachable as a website; the 2013-06-20 action was
+      a fiat-rail offramp suspension announced by the operator, not an
+      ISP-level reachability block. Standard public-web L0 instruments
+      do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2013 has no protocol-level relay-
+      filter primitive analogous to the post-Merge Ethereum PBS relay
+      surface. not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The MEV-Boost / Flashbots Protect public-RPC compliance substrate
+      that the L3 layer measures did not exist in 2013. not_applicable
+      on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      mtgox.com continued to serve trading-platform pages; no frontend
+      takedown or domain seizure was associated with the 2013-06-20
+      operator action.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The suspension operated on USD-denominated fiat withdrawals,
+      not on-chain BTC.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - mtgox_usd_offramp
+    note: |
+      Mt. Gox USD withdrawals globally suspended on 2013-06-20.
+      partially_measured because the operator's own announcement is
+      attestable via Wayback but a replayable banking-partner artifact
+      (and a captured body_hash for the press release) is not pinned
+      this session.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:mtgox
+    event: usd_withdrawal_suspended_globally
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2013-06-20T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.mtgox.com/press_release_20130620.html
+        wayback: https://web.archive.org/web/20140122193202/https://www.mtgox.com/press_release_20130620.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [GLOBAL]
+          time_window:
+            - 2013-06-20T00:00:00Z
+            - 2013-07-31T23:59:59Z
+        note: |
+          Direct attribution: operator's own announcement of the USD-
+          withdrawal suspension. Context: downstream of the 2013-05-14
+          DHS Dwolla seizure (see mtgox-dhs-dwolla-wells-fargo-seizure-
+          2013). evidence_use=contextual_unarchived: no body_hash
+          captured into sources/http_captures/ in this session.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals
+        wayback: https://web.archive.org/web/20211016054018/https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [GLOBAL]
+          time_window:
+            - 2013-06-20T00:00:00Z
+            - 2013-06-30T23:59:59Z
+        note: |
+          Contemporary CoinDesk coverage corroborating the suspension and
+          its operator-framed rationale (banking-partner transaction-
+          processing capacity). evidence_use=contextual_unarchived: no
+          body_hash captured in this session.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16
+  staged-release plan, historical_baseline_2013_2016 tier fill): authored
+  end-to-end by LLM agent. Mt. Gox's 2013-06-20 USD-withdrawal suspension
+  is the operator-action node in the Mt. Gox 2013-cascade, downstream of
+  the 2013-05-14 DHS Dwolla seizure. Coded as S5_corporate because the
+  trigger is an operator announcement, but causally bound to the parallel
+  federal seizure event (related: mtgox-dhs-dwolla-wells-fargo-seizure-
+  2013). evidence_use=contextual_unarchived everywhere; mtgox.com is dead
+  so Wayback is the only available archive vector. Status remains draft
+  pending real-archive capture (Wayback body_hash) and human review.
+
+  comparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/
+  asset_onchain are all not_applicable on the same construct-did-not-
+  exist / out-of-scope grounds as the parent mtgox-dhs-dwolla-wells-
+  fargo-seizure-2013 event. Single load-bearing observation is the
+  globally-suspended USD withdrawal at the Mt. Gox operator layer,
+  attribution=direct via the operator's own press release.
+
+scoped_claim: |
+  "Mt. Gox suspended all USD withdrawals globally on 2013-06-20, framed
+  as a voluntary corporate verification-procedure update but causally
+  downstream of the 2013-05-14 DHS Dwolla seizure (mtgox-dhs-dwolla-
+  wells-fargo-seizure-2013). The row claims only this single-layer
+  offramp_cex operator-announcement observation. Historical-baseline
+  tier; not used in main statistical denominators."
+
+tags:
+  - historical_baseline_2013_2016
+  - mtgox
+  - usd_offramp
+  - operator_action
+  - corporate_policy
+  - dryrun_2026_05_16
+  - phase_b_2026_05_16

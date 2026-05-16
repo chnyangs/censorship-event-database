@@ -1,0 +1,200 @@
+id: karpeles-arrest-tokyo-mtgox-2015
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - mtgox-dhs-dwolla-wells-fargo-seizure-2013
+
+trigger:
+  type: doj_indictment
+  actor: JP_TMPD
+  timestamp: 2015-08-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801
+      wayback: https://web.archive.org/web/20150801120000/https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801
+      evidence_use: contextual_unarchived
+      note: |
+        Reuters 2015-08-01 wire coverage of the Tokyo Metropolitan Police
+        Department arrest of Mark Karpelès, former CEO of Mt. Gox K.K., on
+        suspicion of accessing the Mt. Gox computer system to manipulate
+        account balances (~$1M inflation of his own USD account in
+        February 2013). Tokyo MPD press releases are Japanese-language only;
+        Reuters used as English-language contemporaneous anchor.
+        evidence_use=contextual_unarchived: no body_hash captured into
+        sources/http_captures/ in this session.
+    - type: supporting_journalism
+      url: https://www.cnn.com/2015/08/01/asia/bitcoin-mt-gox-karpeles-arrested/index.html
+      wayback: https://web.archive.org/web/20150801200000/https://www.cnn.com/2015/08/01/asia/bitcoin-mt-gox-karpeles-arrested/index.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNN 2015-08-01 coverage confirming the arrest date, the Tokyo MPD as
+        the arresting authority, and the data-manipulation predicate. Used
+        as cross-source corroboration of the Reuters anchor.
+        evidence_use=contextual_unarchived: no body_hash captured this
+        session.
+    - type: supporting_journalism
+      url: https://www.nbcnews.com/news/world/head-failed-japan-based-bitcoin-exchange-mt-gox-arrested-n402391
+      wayback: https://web.archive.org/web/20150802000000/https://www.nbcnews.com/news/world/head-failed-japan-based-bitcoin-exchange-mt-gox-arrested-n402391
+      evidence_use: contextual_unarchived
+      note: |
+        NBC News 2015-08-01 coverage. Third-source corroboration of the
+        arrest date and Tokyo MPD attribution.
+        evidence_use=contextual_unarchived: no body_hash captured this
+        session.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day precision. The Tokyo MPD arrest occurred 2015-08-01 (Saturday,
+        local time, Tokyo). Sub-day timestamping is not load-bearing for
+        this historical-baseline-tier event since no observable cascade is
+        coded.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Mark Karpelès as former CEO of Mt. Gox K.K., charged with data
+    manipulation and (in subsequent September 2015 indictment) embezzlement
+    and aggravated breach of trust. Mt. Gox itself was already in
+    bankruptcy at arrest date — no further on/off-ramp cascade triggered
+    by the arrest. Target is a key person, not the exchange itself.
+  actor_type: exchange_principal
+  actor_name: Mark Karpelès (Mt. Gox K.K. former CEO)
+  chains: [bitcoin]
+  canonical_domains:
+    - mtgox.com
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      mtgox.com had already gone offline in February 2014 in connection
+      with the bankruptcy filing; no separate ISP-level reachability
+      action attached to the 2015-08-01 arrest. L0 layer not implicated.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2015 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2015; Flashbots Protect launched 2022-11. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      mtgox.com was already offline from the February 2014 bankruptcy;
+      the 2015-08-01 arrest did not produce a separate frontend
+      enforcement event.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The arrest operated on a person (Karpelès), not on-chain
+      BTC. not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - mtgox_post_bankruptcy_state
+    note: |
+      Mt. Gox was already in bankruptcy at arrest date (2014-02-28
+      filing). The 2015-08-01 Karpelès arrest is downstream criminal-
+      enforcement and triggers no further cascade. Coded as
+      partially_measured against the pre-existing bankruptcy freeze
+      (observable via contemporary Reuters/CNN/NBC reporting that the
+      exchange remained shuttered through and beyond the arrest date),
+      to support the observed_no_change observation below.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:jp_tmpd
+    event: criminal_arrest_of_former_ceo
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2015-08-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2015-08-01T00:00:00Z
+      - 2015-09-30T23:59:59Z
+    sources:
+      - type: supporting_journalism
+        url: https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801
+        wayback: https://web.archive.org/web/20150801120000/https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [JP]
+          time_window:
+            - 2015-08-01T00:00:00Z
+            - 2015-09-30T23:59:59Z
+        note: |
+          observation_kind=observed_no_change + attribution=none
+          because Mt. Gox is already in bankruptcy (frozen) from
+          2014-02-28; the arrest does not produce a cascading change at
+          any layer beyond what mtgox-dhs-dwolla-wells-fargo-seizure-2013
+          and the (not-yet-authored) Mt. Gox bankruptcy event already
+          cover. evidence_use=contextual_unarchived: no body_hash
+          captured this session.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16
+  staged-release plan, historical_baseline_2013_2016 tier fill):
+  authored end-to-end by LLM agent. The 2015-08-01 Tokyo MPD arrest of
+  Mark Karpelès is a downstream criminal-enforcement node in the Mt. Gox
+  cluster — the exchange is already in bankruptcy from 2014-02-28, so
+  the arrest does not trigger observable cascade at any layer. Coded as
+  null_case / null_event with observation_kind=observed_no_change +
+  attribution=none to honestly represent the absence of further
+  cascade. Included in the corpus for completeness of the Mt. Gox
+  cluster. evidence_use=contextual_unarchived; Tokyo MPD press releases
+  are Japanese-language, Reuters/CNN/NBC used as English anchors. Status
+  remains draft pending real-archive capture and human review.
+
+  Schema-fit notes: trigger.type=doj_indictment is used as the closest
+  enum for non-US criminal arrest (matching the pertsev-nl-arrest-2022
+  precedent for foreign-jurisdiction criminal enforcement);
+  target.kind=entity is the only fit for a natural-person target;
+  observation_kind=observed_no_change is the closest schema-valid
+  encoding of "no observable cascade beyond the pre-existing
+  bankruptcy freeze."
+
+scoped_claim: |
+  "Tokyo MPD arrested Mark Karpelès (former Mt. Gox CEO) on 2015-08-01
+  on suspicion of data manipulation (and was later indicted for
+  embezzlement and aggravated breach of trust) related to the 2014
+  collapse. Cascade impact is observation_kind=observed_no_change +
+  attribution=none because Mt. Gox was already in bankruptcy from
+  2014-02-28 — the arrest does not produce observable change at any
+  layer beyond the pre-existing freeze. Historical-baseline tier; not
+  used in main statistical denominators."
+
+tags:
+  - historical_baseline_2013_2016
+  - mtgox
+  - karpeles
+  - tokyo_mpd
+  - criminal_arrest
+  - downstream_followup
+  - dryrun_2026_05_16
+  - phase_b_2026_05_16

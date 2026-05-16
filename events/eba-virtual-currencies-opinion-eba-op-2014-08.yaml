@@ -1,0 +1,243 @@
+id: eba-virtual-currencies-opinion-eba-op-2014-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - fatf-r15-vasp-travel-rule-2019
+  - eu-mica-2023
+  - oecd-carf-2022
+  - fatf-virtual-currencies-key-definitions-2014
+
+trigger:
+  type: supranational_regulation
+  actor: EU_EBA
+  timestamp: 2014-07-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf
+      wayback: https://web.archive.org/web/2014/https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 supranational
+        discovery; lean run): authored by LLM agent without personally
+        verifying Wayback/body_hash; origin=agent_draft and status=draft
+        pending human review. Real release must replace this DRYRUN marker
+        with a human-verified audit after pinning real archive anchors.
+
+        EBA Opinion EBA/Op/2014/08 ("Opinion on 'virtual currencies'")
+        issued by the European Banking Authority on 4 July 2014. The
+        Opinion identifies 70+ risks arising from virtual currencies
+        (risks to users, market participants, financial integrity,
+        payment systems, and regulatory authorities) and concludes that
+        the risks outweigh the benefits in the EU context. While the
+        Opinion proposes a longer-term comprehensive regulatory regime,
+        as an immediate interim measure it advises national supervisory
+        authorities to "discourage credit institutions, payment
+        institutions, and e-money institutions from buying, holding, or
+        selling virtual currencies" whilst no such regime is in place.
+        This is the first major EU-level supervisory guidance on virtual
+        currencies and sets the pre-MiCA pan-European regulatory tone
+        for the 2014-2018 window.
+    - type: primary_legal
+      url: https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n
+      wayback: https://web.archive.org/web/2014/https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n
+      evidence_use: contextual_unarchived
+      note: |
+        EBA press release accompanying the 2014-07-04 publication of
+        EBA/Op/2014/08, confirming the discouragement recommendation
+        directed at credit institutions, payment institutions, and
+        e-money institutions and the parallel proposal of a longer-term
+        regulatory regime. DRYRUN: Wayback anchor unverified by LLM
+        agent at authoring time.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        EBA/Op/2014/08 carries an issuance date of 4 July 2014 on the
+        document cover page; the accompanying press release and the EBA
+        publications register agree on the 2014-07-04 publication day.
+        Day-level precision; the Opinion does not carry intra-day
+        publication timing in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: EU credit institutions, payment institutions,
+    and e-money institutions (as defined under CRD IV, the Payment
+    Services Directive, and the E-Money Directive respectively) that
+    might otherwise buy, hold, or sell virtual currencies. The
+    discouragement is routed through national competent authorities
+    rather than imposed on named institutions; no address-level or
+    institution-level enumeration. The 2014 EU credit/payment/e-money
+    institutional population numbers in the thousands across the 28
+    Member States and EEA participants supervised by the EBA.
+  protocol: null
+  actor_type: regulatory_class
+  actor_name: EU credit/payment/e-money institutions handling virtual currencies
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - EU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      EBA/Op/2014/08 is a supervisory-guidance instrument directed at
+      EU prudentially-regulated institutions; it does not implicate
+      ISP-level domain blocking or DNS interference. not_applicable on
+      construct-not-engaged grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Pre-Merge era (Ethereum Merge ~2022-09-15 is ~8 years downstream);
+      no PBS / relay-filter primitive exists in 2014. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist in
+      2014. not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The Opinion does not direct any frontend takedown or domain-level
+      action; the discouragement is purely a supervisory instruction to
+      EU prudentially-regulated institutions. not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      EBA/Op/2014/08 does not engage any on-chain freeze, blacklist, or
+      issuer admin action; native and issued asset surfaces are not
+      directly targeted. not_applicable.
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Load-bearing layer for this event, but a dispersed cascade across
+      the EU credit/payment/e-money institutional sector. The Opinion's
+      discouragement of buying/holding/selling virtual currencies routes
+      through national supervisory authorities and propagates as
+      institution-by-institution risk-appetite decisions (banking-rail
+      severance for crypto businesses, account closures, payment-rail
+      de-risking) rather than as a discrete enforcement action against
+      a named exchange. Empirical measurement of the resulting cascade
+      requires aggregating EBA member-state supervisor responses and
+      institution-level account-closure reports across 2014-2018, which
+      is out of scope of this draft. Marked not_measured pending such a
+      pass.
+
+observations:
+  - layer: offramp_cex
+    actor: eu_credit_payment_emoney_institution_aggregate
+    event: eba_opinion_2014_08_discourages_institutional_vc_handling
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2014-07-04T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf
+        wayback: https://web.archive.org/web/2014/https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [eu_credit_payment_emoney_institution_aggregate]
+          countries: [EU]
+          time_window:
+            - 2014-07-04T00:00:00Z
+            - 2018-12-31T23:59:59Z
+        note: |
+          EBA/Op/2014/08 directs national supervisory authorities to
+          discourage EU credit/payment/e-money institutions from buying,
+          holding, or selling virtual currencies pending a longer-term
+          regulatory regime. observation_kind=observed_change at the
+          supranational supervisory-instruction layer: the Opinion's
+          issuance is itself the regulatory change at offramp_cex via
+          the class-level discouragement directive routed through
+          national competent authorities. attribution=plausible (not
+          direct) because the Opinion operates through downstream
+          national-supervisor and institution-level risk-appetite
+          decisions rather than a discrete enumerable enforcement
+          action; downstream banking-rail severance against EU crypto
+          businesses across 2014-2018 is consistent with the cascade
+          hypothesis but not enumerated here. DRYRUN: Wayback anchor
+          unverified by LLM agent at authoring time.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 supranational
+  discovery; lean run): authored by LLM agent without personally
+  verifying Wayback/body_hash; origin=agent_draft and status=draft
+  pending human review.
+
+  case_study documenting the European Banking Authority's 2014-07-04
+  Opinion EBA/Op/2014/08 on virtual currencies — the first major EU-
+  level supervisory guidance on crypto. The Opinion is structurally a
+  supranational supervisory recommendation: it identifies 70+ risks
+  arising from virtual currencies and, as an immediate interim measure
+  pending a longer-term regulatory regime, advises national supervisory
+  authorities to discourage credit institutions, payment institutions,
+  and e-money institutions from buying, holding, or selling virtual
+  currencies.
+
+  This event sits in the historical_baseline_2013_2016 tier and is
+  used as contextual_baseline only; it is not part of the 2017+
+  comparable-analysis corpus. It is the EU-level upstream of the later
+  EU MiCA regime (eu-mica-2023) and a sibling of the contemporaneous
+  FATF "Virtual Currencies: Key Definitions and Potential AML/CFT
+  Risks" report (fatf-virtual-currencies-key-definitions-2014) on the
+  supranational regulatory-guidance axis. Structurally analogous to
+  US FinCEN FIN-2013-G001 in that the instrument operates at the
+  class-level and produces a dispersed cascade across the regulated-
+  institution sector rather than a discrete enumerable enforcement
+  action.
+
+  empirical_shape=comparison (1 observed_change layer: offramp_cex at
+  the supranational supervisory-instruction layer, attribution=
+  plausible on the dispersed-cascade hypothesis across the EU credit/
+  payment/e-money sector); admission_tier=empirical_case (1 strong-
+  attribution observed_change layer satisfies the ≥1 requirement).
+  Schema enums substituted for prompt-supplied non-enum values
+  (analysis_use=historical_baseline, empirical_shape=comparison,
+  target.enumeration=subset, observation_kind=observed_change) per
+  the "schema enums first" constraint. coverage at L0/L1/L3/L4/asset_onchain
+  is not_applicable on construct-not-engaged or construct-did-not-
+  exist grounds; offramp_cex is not_measured pending an EU
+  institution-level account-closure aggregation pass. Paper-relevant
+  as the pre-MiCA EU-level supervisory anchor that frames the 2014-
+  2018 banking-rail de-risking environment for EU-based crypto
+  businesses.
+
+scoped_claim: |
+  "EBA Opinion EBA/Op/2014/08 of 4 July 2014 ('Opinion on virtual
+  currencies') is the first major EU-level supervisory instrument on
+  virtual currencies; it advises national supervisory authorities to
+  discourage EU credit institutions, payment institutions, and
+  e-money institutions from buying, holding, or selling virtual
+  currencies pending a longer-term regulatory regime. The
+  load-bearing axis is offramp_cex at the dispersed-cascade
+  institutional-aggregate layer; downstream banking-rail / payment-
+  rail severance against EU crypto businesses across 2014-2018 is
+  consistent with the cascade hypothesis but not enumerated in this
+  draft."
+
+tags:
+  - supranational_regulation
+  - eu
+  - eba
+  - virtual_currencies
+  - pre_mica_guidance
+  - historical_baseline
+  - dispersed_cascade
+  - class_level_predicate

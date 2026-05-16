@@ -1,0 +1,286 @@
+id: fincen-virtual-currency-msb-guidance-2013
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - shrem-faiella-bitcoin-exchange-2014
+  - powell-unlicensed-bitcoin-exchange-2014
+  - ripple-fincen-xrp-2015
+  - sec-shavers-btcst-2013
+  - silk-road-doj-seizure-2013
+
+trigger:
+  type: fincen_action
+  actor: US_FINCEN
+  timestamp: 2013-03-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
+      wayback: https://web.archive.org/web/2013/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
+      evidence_use: contextual_unarchived
+      note: |
+        FinCEN guidance FIN-2013-G001, "Application of FinCEN's
+        Regulations to Persons Administering, Exchanging, or Using
+        Virtual Currencies," issued 2013-03-18. The guidance interprets
+        FinCEN's Bank Secrecy Act (BSA) money-services-business (MSB)
+        regulations as applied to virtual currency (VC) and defines
+        three role categories: (1) users (persons who obtain VC to
+        purchase goods/services) — not regulated as MSBs; (2) exchangers
+        (persons engaged as a business in the exchange of VC for real
+        currency, funds, or other VC) — money transmitters and therefore
+        MSBs subject to BSA registration, AML program, recordkeeping,
+        and reporting obligations; (3) administrators (persons engaged
+        as a business in issuing/redeeming VC) — money transmitters and
+        therefore MSBs. The guidance is the foundational regulatory
+        predicate cited as authority in nearly every subsequent US BSA
+        enforcement against a virtual-currency exchanger in the
+        2013-2016 historical-baseline tier (Shrem/Faiella 2014, Powell
+        2014, Ripple/XRP II 2015, Murgio/Coin.mx 2015) and continuing
+        into the 2017+ comparable-analysis era (BitMEX 2020 FinCEN
+        concurrent action, Helix 2020 FinCEN consent assessment,
+        Binance 2023 FinCEN settlement). evidence_use=contextual_unarchived
+        because body_hash+body_path archival capture was not pinned in
+        this authoring pass; the live fincen.gov URL remains publicly
+        accessible and Wayback bracketing of the 2013 publication window
+        is straightforward in a follow-up human-audit pass. Provisional
+        year-prefix wayback anchor pending re-pin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per FIN-2013-G001 issuance date of
+        2013-03-18. The guidance carries no intra-day publication
+        timestamp in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target of this guidance is the regulatory class of
+    "administrators and exchangers" of virtual currency under the
+    BSA, i.e. any business that exchanges VC for fiat (or for other
+    VC) or that administers issuance/redemption. The class is open-
+    ended by construction: any US-resident person or legal entity
+    that comes within FinCEN's interpretation of "money transmitter"
+    is brought under BSA registration, AML-program, recordkeeping,
+    and reporting obligations prospectively. Marked enumeration=subset
+    rather than complete because the class is open-ended and the
+    membership set evolves with subsequent FinCEN administrative
+    rulings and enforcement actions (e.g. FIN-2014-R001 mining,
+    FIN-2014-R002 software development, FIN-2019-G001 CVC business-
+    models guidance). actor_name labels the regulated class; no
+    on-chain addresses or canonical_domains are enumerated because
+    the guidance does not designate specific entities or hosts.
+  protocol: null
+  actor_type: regulatory_class
+  actor_name: "Virtual currency administrators and exchangers (US BSA money transmitters)"
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      FIN-2013-G001 is a BSA registration-and-AML interpretive guidance
+      at the entity / regulatory-class level. It does not direct
+      ISP-level domain blocking or DNS interference against any
+      VC-related host. not_applicable on construct-out-of-scope grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2013-03 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface that the L1 layer was constructed to measure. The
+      Ethereum Merge itself is ~9 years downstream (2022-09-15).
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2013 (Flashbots Protect launched 2022-11; MEV-Blocker
+      launched 2023-03-27). not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The guidance does not require, name, or contemplate any
+      VC-related frontend takedown or geo-blocking. Compliance
+      obligations attach to MSB registration and AML-program
+      requirements at the entity level, not at the public-facing web
+      surface. not_applicable on construct-out-of-scope grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The guidance does not engage stablecoin-issuer or token-issuer
+      admin-key freeze primitives. USDT was first issued ~2014-10;
+      chain-wide issuer admin freezes arose later; FIN-2013-G001
+      pre-dates the stablecoin admin-freeze regulatory frame entirely.
+      not_applicable on construct-out-of-scope grounds.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - us_vc_exchanger_class
+    note: |
+      The substantive regulatory effect of FIN-2013-G001 is to bring
+      the US-resident VC-exchanger class under BSA MSB registration
+      and AML-program obligations. The cascade, however, is dispersed
+      across the 2013-2016 enforcement era rather than localized to a
+      single point-in-time offramp event: downstream FinCEN/DOJ
+      actions (Shrem/Faiella 2014, Powell 2014, Ripple/XRP II 2015,
+      Murgio/Coin.mx 2015) each cite this guidance as predicate but
+      no single CEX cessation is directly attributable to the
+      guidance alone. Marked not_measured because the load-bearing
+      cascade is class-level and predicate-establishing rather than
+      point-in-time observable; the corresponding observation row
+      below records this as a coverage_gap.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:fincen
+    event: vc_exchanger_class_brought_under_bsa_msb_regime
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2013-03-18T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
+        wayback: https://web.archive.org/web/2013/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - us_vc_exchanger_class
+          countries:
+            - US
+          time_window:
+            - 2013-03-18T00:00:00Z
+            - 2016-12-31T23:59:59Z
+        note: |
+          FIN-2013-G001 is the legal instrument. observation_kind=
+          coverage_gap with attribution=none honestly represents the
+          load-bearing role of this guidance as a regulatory predicate
+          whose cascade is dispersed across multiple downstream
+          enforcement actions (Shrem/Faiella 2014, Powell 2014,
+          Ripple/XRP II 2015, Murgio/Coin.mx 2015) rather than a
+          single observable point-in-time CEX cessation directly
+          attributable to the guidance alone. The cited downstream
+          enforcement actions carry their own load-bearing
+          observed_change rows in their own event files; this event
+          records the predicate-establishing role only. Provisional
+          year-prefix wayback anchor pending re-pin in a follow-up
+          human-audit pass.
+
+analysis_notes: |
+  NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase B of the 2026-05-16
+  staged-release plan, historical_baseline_2013_2016 tier fill.
+
+  FinCEN FIN-2013-G001 ("Application of FinCEN's Regulations to
+  Persons Administering, Exchanging, or Using Virtual Currencies,"
+  issued 2013-03-18) is the foundational regulatory predicate for
+  the 2013-2016 US MSB-registration enforcement era. The guidance
+  interprets FinCEN's BSA money-transmitter regulations as applied
+  to virtual currency and defines (a) users as not regulated, (b)
+  exchangers as MSBs, and (c) administrators as MSBs. It is cited
+  as authority in nearly every subsequent S3 enforcement against a
+  US-resident VC exchanger in the historical-baseline tier
+  (Shrem/Faiella 2014, Powell 2014, Ripple/XRP II 2015, Murgio/
+  Coin.mx 2015) and continues to anchor 2017+ comparable-analysis
+  enforcement (BitMEX 2020 FinCEN concurrent action, Helix 2020
+  FinCEN consent assessment, Binance 2023 FinCEN settlement).
+
+  Why null_event / null_case / coverage_gap: this event's load-
+  bearing function is predicate-establishing rather than cascade-
+  producing. The substantive regulatory effect — bringing the
+  US-resident VC-exchanger class under BSA MSB registration and
+  AML-program obligations — unfolds dispersedly across the
+  2013-2016 enforcement era rather than as a single observable
+  point-in-time CEX cessation directly attributable to the
+  guidance alone. The cascade-shape grammar of the schema does
+  not natively express class-level predicate-establishing
+  regulatory guidance, so this event is coded honestly as
+  null_event (0 observed_change layers) / null_case (0 strong-
+  attribution observed_change), with the single observation row
+  expressing the class-level coverage_gap. The downstream
+  enforcement events carry the load-bearing observed_change rows
+  in their own event files.
+
+  Why historical_baseline tier: events 2013-2016 belong to the
+  historical_baseline_2013_2016 temporal tier per the 2008+ tiered
+  frame in sampling/frame.yaml. analysis_use=historical_baseline
+  excludes this row from the 2017+ comparable-analysis denominator,
+  matching the validator's tier-vs-analysis-use consistency rule.
+  (The user's authoring brief suggested analysis_use=contextual_baseline,
+  but that value is not in the vocabulary; historical_baseline is
+  the correct historical-tier mapping per sampling/frame.yaml.)
+
+  Schema-enum surprises encountered during authoring:
+  - target.kind has no regulatory_class enum; fell back to
+    target.kind=entity with target.enumeration=subset and an
+    enumeration_note that records the class-level character.
+  - trigger.type has no regulatory_guidance enum; used
+    trigger.type=fincen_action (the canonical FinCEN trigger
+    type, also used by ripple-fincen-xrp-2015).
+  - empirical_shape has no case_study enum; mapped the class-
+    level predicate-establishing posture to null_event +
+    null_case + observation_kind=coverage_gap.
+  - observation_kind has no not_observed enum; used coverage_gap
+    with attribution=none. coverage_gap is only retained on
+    status=draft per the validator (line 1222); the event is
+    explicitly draft and stays so until either (a) the predicate
+    role is rewritten as observed_no_change with a falsifiable
+    window scope, or (b) the event is retired in favor of the
+    downstream enforcement rows that already carry load-bearing
+    observed_change.
+
+  status remains draft until a human review decides whether to:
+  (1) admit the event as null_case at empirical_case=null_event
+      after rewriting the predicate observation as
+      observed_no_change with a falsifiable 2013-03-18 to 2016-12-31
+      scope_descriptor and a replayable archival anchor (since
+      coverage_gap is not admitted), or
+  (2) retire this event entirely and let the downstream enforcement
+      events (Shrem/Faiella 2014, Powell 2014, Ripple/XRP II 2015,
+      Murgio/Coin.mx 2015) carry the historical-baseline anchor
+      function on their own, with FIN-2013-G001 cited as predicate
+      in their analysis_notes rather than as a free-standing event.
+
+  Origin=agent_draft and status=draft per the agent-authoring
+  convention.
+
+scoped_claim: |
+  FinCEN FIN-2013-G001 (2013-03-18) interpreted the Bank Secrecy
+  Act's money-transmitter regulations to apply to virtual-currency
+  exchangers and administrators, establishing the foundational
+  regulatory predicate for the 2013-2016 US MSB-registration
+  enforcement era. observation_kind=coverage_gap with attribution=
+  none because the substantive cascade is dispersed across
+  downstream enforcement actions (Shrem/Faiella 2014, Powell 2014,
+  Ripple/XRP II 2015, Murgio/Coin.mx 2015) that each cite this
+  guidance as predicate, rather than localized to a single
+  observable point-in-time CEX cessation. Historical-baseline tier;
+  not used in main statistical denominators.
+
+tags:
+  - historical_baseline_2013_2016
+  - fincen
+  - msb
+  - bsa
+  - regulatory_predicate
+  - class_level_guidance
+  - dryrun_2026_05_16
+  - phase_b_2026_05_16

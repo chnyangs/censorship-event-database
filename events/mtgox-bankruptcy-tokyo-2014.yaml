@@ -1,0 +1,317 @@
+id: mtgox-bankruptcy-tokyo-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - mtgox-dhs-dwolla-wells-fargo-seizure-2013
+  - silk-road-doj-seizure-2013
+  - shrem-faiella-bitcoin-exchange-2014
+  - powell-unlicensed-bitcoin-exchange-2014
+
+trigger:
+  type: corporate_policy_change
+  actor: MTGOX_KK
+  timestamp: 2014-02-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf
+      wayback: https://web.archive.org/web/20140310191411/https://www.mtgox.com/
+      evidence_use: contextual_unarchived
+      note: |
+        Mt. Gox official announcement dated 2014-02-28 (English translation):
+        "On February 28, 2014, MTGOX submitted an application for the start
+        of a procedure of civil rehabilitation at the Tokyo District Court,
+        and the application was accepted on the same day." The PDF URL
+        https://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf is the
+        canonical document path (mtgox.com is preserved by Mark Karpeles /
+        the Rehabilitation Trustee to publish creditor notices and is still
+        serving the file as of 2026-05-16, though the trading site itself
+        is dead). The 2014-03-10 Wayback snapshot of the mtgox.com landing
+        page is retained here as a closest-pointer replayable anchor; the
+        2014-02-28 announcement PDF itself has no Wayback memento captured
+        in this session (Wayback Availability API returned empty for the
+        PDF URL on 2026-05-16). evidence_use=contextual_unarchived: no
+        body_hash captured this session.
+    - type: supporting_journalism
+      url: https://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost
+      wayback: https://web.archive.org/web/20150523223011/http://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost
+      evidence_use: contextual_unarchived
+      note: |
+        NPR The Two-Way (2014-02-28): "Mt. Gox Files For Bankruptcy; Nearly
+        $500M Of Bitcoins Lost." Contemporary press coverage of the Tokyo
+        District Court civil-rehabilitation filing; reports liabilities of
+        ~6.5 billion yen (~$64M at the time), ~750k customer BTC + ~100k
+        Mt. Gox BTC missing (~7% of all bitcoin at the time, ~$473M).
+        Wayback memento 2015-05-23 (closest archived snapshot, since
+        Wayback's 2014-02-28..03-01 mementos of this exact URL were not
+        located in this session).
+    - type: supporting_journalism
+      url: https://www.bloomberg.com/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy
+      wayback: https://web.archive.org/web/20150215092806/http://www.bloomberg.com:80/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy
+      evidence_use: contextual_unarchived
+      note: |
+        Bloomberg (2014-02-28): "Mt. Gox Seeks Bankruptcy After $480 Million
+        Bitcoin Loss." Documents the news conference at the Tokyo District
+        Court at which CEO Mark Karpeles publicly apologized and confirmed
+        the civil-rehabilitation (minji saisei) filing. Wayback memento
+        2015-02-15 (closest archived snapshot).
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing established by the Mt. Gox announcement PDF
+        explicitly dated 2014-02-28 and confirmed by same-day press
+        coverage of the Tokyo District Court news conference.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Mt. Gox K.K. (MtGox Co., Ltd.), a Tokyo-incorporated bitcoin exchange
+    operator. All Mt. Gox customers globally; ~750k customer BTC and
+    ~100k corporate BTC plus customer JPY/USD/EUR balances frozen at
+    filing. Mt. Gox was the dominant bitcoin exchange globally with
+    ~70% market share at peak (2013). Subset enumeration: customer-set
+    headcount and per-jurisdiction breakdown not retained at this row;
+    the load-bearing target is the Mt. Gox K.K. corporate entity and
+    its single canonical domain mtgox.com.
+  actor_type: exchange
+  actor_name: Mt. Gox K.K. (MtGox Co., Ltd.)
+  chains: [bitcoin]
+  canonical_domains:
+    - mtgox.com
+
+jurisdiction:
+  - JP
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer blocking implicated. mtgox.com remained reachable
+      throughout the wind-down (and continues to be served by the
+      Rehabilitation Trustee as of 2026-05-16); the cessation surface is
+      the operator's withdrawal of trading services, not ISP/DNS filtering.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin, 2014; consensus-layer filtering surfaces tracked by this
+      dataset (post-Merge Ethereum PBS, mev-watch / censorship.pics) did
+      not exist in 2014. Out of scope.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No hosted Bitcoin-RPC provider surface implicated. Mt. Gox was a
+      centralized custodial exchange, not an RPC-mediated transaction-
+      routing service. Out of scope.
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [mtgox.com]
+    note: |
+      mtgox.com trading UI was replaced with a static wind-down /
+      announcement surface in the 2014-02-24..2014-03-10 window. Wayback
+      retains snapshots of mtgox.com on 2014-02-25, 2014-02-26, 2014-02-27,
+      2014-02-28, and 2014-03-10 documenting the transition from the
+      trading platform to the closure-notice page. partially_measured
+      because no body_hash was captured in this session; the Wayback
+      snapshots provide replayable closure-state pointers but the trader-
+      facing UI states pre/post change are not pinned to fingerprinted
+      mementos here.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin is unfreezable at the protocol layer (no issuer blacklist
+      method). The ~850k missing BTC are a custody-loss event, not an
+      asset-layer freeze in this dataset's sense.
+  - layer: offramp_cex
+    status: measured
+    scope: [mtgox_all_currencies]
+    note: |
+      Load-bearing layer. All Mt. Gox on/off-ramps (BTC, JPY, USD, EUR)
+      permanently ceased on 2014-02-28 when Mt. Gox filed for civil
+      rehabilitation at the Tokyo District Court. The operator's own
+      announcement and Karpeles's same-day news conference at the court
+      directly attest the cessation. Best-documented exchange collapse
+      of the 2013-2016 tier; ~70% peak market share makes this the
+      single largest CEX off-ramp closure of the era.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:mtgox
+    event: all_onramps_offramps_permanently_closed_at_civil_rehabilitation_filing
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2014-02-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf
+        wayback: https://web.archive.org/web/20140310191411/https://www.mtgox.com/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [JP, US, EU, GB, AU]
+          time_window:
+            - 2014-02-28T00:00:00Z
+            - 2014-03-31T23:59:59Z
+        note: |
+          Mt. Gox's own 2014-02-28 announcement directly attests the civil-
+          rehabilitation filing and the corresponding cessation of all
+          services. attribution=direct because the operator's filing is
+          itself the cessation act; the Tokyo District Court's role is
+          supervisory (accepting the petition), not the proximate cause
+          of the operational shutdown. Wayback pointer is the 2014-03-10
+          mtgox.com landing-page memento; the announcement PDF itself
+          had no captured Wayback memento as of 2026-05-16.
+      - type: supporting_journalism
+        url: https://www.bloomberg.com/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy
+        wayback: https://web.archive.org/web/20150215092806/http://www.bloomberg.com:80/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [JP, US, EU, GB, AU]
+          time_window:
+            - 2014-02-28T00:00:00Z
+            - 2014-03-31T23:59:59Z
+        note: |
+          Bloomberg same-day coverage of the Tokyo District Court news
+          conference; corroborates the operator's announcement of cessation
+          of all customer services and the ~$480M scale of the missing-BTC
+          balance.
+      - type: supporting_journalism
+        url: https://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost
+        wayback: https://web.archive.org/web/20150523223011/http://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [JP, US, EU, GB, AU]
+          time_window:
+            - 2014-02-28T00:00:00Z
+            - 2014-03-31T23:59:59Z
+        note: |
+          NPR Two-Way same-day coverage; independent secondary anchor on
+          the bankruptcy filing and the scale of customer-fund losses.
+
+  - layer: l4_frontend
+    actor: domain:mtgox.com
+    event: trading_ui_replaced_with_wind_down_notice
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2014-02-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2014-02-24T00:00:00Z
+      - 2014-03-10T23:59:59Z
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.mtgox.com/
+        wayback: https://web.archive.org/web/20140228233441/https://www.mtgox.com/
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [GLOBAL]
+          time_window:
+            - 2014-02-25T00:00:00Z
+            - 2014-03-15T23:59:59Z
+        evidence_group_id: mtgox_com_wayback_closure_window
+        note: |
+          Wayback snapshot of mtgox.com captured 2014-02-28 23:34:41 UTC
+          (same calendar day as the civil-rehabilitation filing). The
+          trading UI present in earlier 2014-02-25 / 2014-02-26 mementos
+          is gone; mtgox.com serves a static closure-notice surface.
+          Replayable via Wayback; no body_hash captured this session.
+      - type: semi_primary_wayback
+        url: https://www.mtgox.com/
+        wayback: https://web.archive.org/web/20140310191411/https://www.mtgox.com/
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [GLOBAL]
+          time_window:
+            - 2014-02-25T00:00:00Z
+            - 2014-03-15T23:59:59Z
+        evidence_group_id: mtgox_com_wayback_post_filing_window
+        note: |
+          Wayback snapshot of mtgox.com captured 2014-03-10 (10 days after
+          the bankruptcy filing). Confirms the post-filing state of the
+          domain — trading UI permanently replaced with the Rehabilitation
+          Trustee announcement surface. Independent Wayback evidence group
+          from the same-day 2014-02-28 snapshot (different capture window,
+          different replayable artifact); together they satisfy the
+          ≥2-distinct-semi-primary-group admission threshold.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase B of 2026-05-16
+  staged-release plan, historical_baseline_2013_2016 tier fill):
+  authored end-to-end by LLM agent (origin=agent_draft, status=draft).
+
+  Mt. Gox's 2014-02-28 civil-rehabilitation filing at the Tokyo District
+  Court is the dominant exchange-collapse event of the 2013-2016 tier:
+  ~70% peak market share, ~850k BTC lost (~$473M at the time, ~7% of all
+  bitcoin in circulation), and the first global-scale CEX off-ramp
+  closure in the dataset. comparison shape: 2 distinct observed_change
+  layers (offramp_cex via the operator filing + l4_frontend via
+  Wayback-attested mtgox.com closure-notice surface).
+
+  Coded as S5_corporate because the trigger is an operator-filed
+  bankruptcy petition (Mt. Gox K.K. unilaterally suspended services and
+  filed minji saisei), not a state-mandated shutdown. The Tokyo District
+  Court's role on 2014-02-28 was supervisory (accepting the petition);
+  the cessation itself is the operator's act. This is the same coding
+  logic used for ftx-bankman-fried-doj-2022 (S3 because the trigger
+  there was the DOJ indictment, not the corporate Chapter 11) and
+  celsius-bankruptcy-mashinsky-doj-2023 (S3 for the same reason).
+  Karpeles's later arrest (2015-08, parallel criminal case) would be
+  S3 if added; this row is scoped to the bankruptcy moment.
+
+  evidence_use=contextual_unarchived throughout because no body_hash
+  was captured this session. Wayback coverage is dense (mtgox.com
+  snapshots on 2014-02-25, 2014-02-26, 2014-02-27, 2014-02-28,
+  2014-03-10 all confirmed via the Wayback Availability API) so a
+  real archive pull to upgrade to body_hash anchors is straightforward
+  in follow-up. The 2014-02-28 announcement PDF itself
+  (https://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf) is
+  still served by the live mtgox.com host (now operated by the
+  Rehabilitation Trustee) and could be captured directly; the Wayback
+  Availability API returned no memento for the PDF URL in this session.
+
+  Related-event slugs trimmed to events that actually exist in the
+  repository as of 2026-05-16: the predecessor 2013 DHS/Dwolla seizure
+  row (mtgox-dhs-dwolla-wells-fargo-seizure-2013) is the strongest
+  cross-reference; the originally proposed coinlab / 2013-06
+  usd-withdrawal-suspension / 2015 Karpeles-arrest rows do not yet
+  exist as event files and were not added to related_events to avoid
+  dangling references. Real release must replace this DRYRUN marker
+  with a human adversarial audit pinning body_hash anchors for the
+  Wayback mementos.
+
+scoped_claim: |
+  "The 2014-02-28 Mt. Gox K.K. civil-rehabilitation filing at the
+  Tokyo District Court permanently closed all Mt. Gox on/off-ramps
+  (BTC, JPY, USD, EUR) and replaced the mtgox.com trading UI with
+  a wind-down / Rehabilitation-Trustee announcement surface.
+  Observational axes at offramp_cex and l4_frontend. Historical-
+  baseline tier; not used in 2017+ comparable denominators."
+
+tags:
+  - historical_baseline_2013_2016
+  - mtgox
+  - bankruptcy
+  - civil_rehabilitation
+  - tokyo_district_court
+  - exchange_collapse
+  - karpeles
+  - dryrun_2026_05_16
+  - phase_b_2026_05_16

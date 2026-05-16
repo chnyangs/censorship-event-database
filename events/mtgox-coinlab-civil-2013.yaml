@@ -1,0 +1,261 @@
+id: mtgox-coinlab-civil-2013
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - mtgox-dhs-dwolla-wells-fargo-seizure-2013
+  - mtgox-usd-withdrawal-suspension-2013-06
+
+trigger:
+  type: court_civil_order
+  actor: US_WDWA_COURT
+  timestamp: 2013-05-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court
+      wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous coverage (published 2013-05-03) of the
+        CoinLab v. Mt. Gox K.K. complaint filed 2013-05-02 in the US
+        District Court for the Western District of Washington
+        (Case 2:13-cv-00777-RSL). $75M breach-of-contract claim over
+        Mt. Gox's failure to perform under the November 2012 agreement
+        granting CoinLab the exclusive right to handle North American
+        bitcoin-exchange services. PACER docket is the canonical
+        primary; PACER access requires login, so contemporaneous press
+        coverage is used as supporting_journalism. evidence_use=
+        contextual_unarchived: no body_hash captured in this session.
+    - type: supporting_journalism
+      url: https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/
+      wayback: https://web.archive.org/web/2013/https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/
+      evidence_use: contextual_unarchived
+      note: |
+        GeekWire 2013-05-02 coverage from Seattle-local reporting,
+        corroborating the filing date, the $75M damages figure, and
+        the Western District of Washington venue. CoinLab CEO Peter
+        Vessenes quoted on the breach. evidence_use=
+        contextual_unarchived: no body_hash captured in this session.
+    - type: supporting_journalism
+      url: https://dockets.justia.com/docket/washington/wawdce/2:2013cv00777/192566
+      wayback: https://web.archive.org/web/2013/https://dockets.justia.com/docket/washington/wawdce/2:2013cv00777/192566
+      evidence_use: contextual_unarchived
+      note: |
+        Justia docket landing page for Case 2:13-cv-00777-RSL,
+        confirming the court (US District Court, Western District of
+        Washington), filing date (2013-05-02), nature of suit
+        (contract), and the parties (CoinLab, Inc. v. Mt. Gox K.K.
+        et al.). Used as a structured-metadata pointer to the PACER
+        docket. evidence_use=contextual_unarchived: no body_hash
+        captured in this session.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day precision. Complaint filed 2013-05-02 in the US District
+        Court for the Western District of Washington (Case
+        2:13-cv-00777-RSL). CoinDesk and GeekWire both report the
+        filing date as 2 May 2013; the docket-listing on Justia
+        corroborates this filing date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Mt. Gox North American user-facing operations (USD on/off-ramp,
+    customer service for US/Canada users). The CoinLab suit
+    challenged Mt. Gox's failure to delegate these operations to
+    CoinLab under the November 2012 partnership agreement that
+    granted CoinLab the exclusive right to handle North American
+    bitcoin-exchange services. No on-chain BTC addresses are
+    enumerated at this event level; the action is a private civil
+    breach-of-contract dispute, not an asset freeze.
+  entity: Mt. Gox K.K.
+  actor_type: exchange
+  actor_name: Mt. Gox K.K.
+  chains: [bitcoin]
+  canonical_domains:
+    - mtgox.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      mtgox.com remained reachable as a website; the 2013-05-02 civil
+      complaint did not implicate ISP-level reachability. Standard
+      public-web L0 instruments (Censored Planet, OONI) do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2013 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2013; Flashbots Protect launched 2022-11.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      mtgox.com continued to serve trading-platform pages through
+      May 2013; no frontend takedown or domain seizure was associated
+      with the 2013-05-02 civil complaint. Frontend-enforcement
+      layer not implicated.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze
+      admin method. The civil suit operated on contract-damages claims
+      against Mt. Gox K.K. in US federal court, not on on-chain BTC.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - mtgox_us_operations
+    note: |
+      The civil suit itself did not directly close any Mt. Gox
+      on/off-ramp — it sought damages for breach of contract. The
+      suit coincided with the broader Mt. Gox USD-withdrawal cascade
+      (Dwolla seizure 2013-05-14, USD withdrawal suspension
+      2013-06-20), but those layer changes are attributable to the
+      parallel federal Dwolla/Wells Fargo seizure twelve days later,
+      not to the civil suit directly. partially_measured because
+      contemporaneous press coverage establishes that no offramp
+      change followed the 2013-05-02 filing itself within the
+      14-day pre-Dwolla-seizure window; the observed_no_change row
+      is anchored on supporting_journalism without a captured
+      body_hash this session.
+
+observations:
+  - layer: offramp_cex
+    actor: court:wdwa
+    event: civil_breach_of_contract_complaint_filed_no_offramp_change_in_pre_dwolla_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2013-05-02T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2013-05-02T00:00:00Z
+      - 2013-05-13T23:59:59Z
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court
+        wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox_us_operations]
+          countries: [US]
+          time_window:
+            - 2013-05-02T00:00:00Z
+            - 2013-05-13T23:59:59Z
+        note: |
+          observation_kind=observed_no_change + attribution=none
+          because the civil suit sought monetary damages, not
+          injunctive relief that would close a USD on/off-ramp; no
+          contemporaneous CoinDesk reporting in the 11-day window
+          before the 2013-05-14 federal Dwolla seizure documents any
+          USD on/off-ramp change attributable to the suit itself.
+          The downstream Mt. Gox cascade is attributable to the
+          parallel federal Dwolla/Wells Fargo seizure
+          (mtgox-dhs-dwolla-wells-fargo-seizure-2013), not to the
+          civil complaint. evidence_use=contextual_unarchived: no
+          body_hash captured in this session.
+      - type: supporting_journalism
+        url: https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/
+        wayback: https://web.archive.org/web/2013/https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox_us_operations]
+          countries: [US]
+          time_window:
+            - 2013-05-02T00:00:00Z
+            - 2013-05-13T23:59:59Z
+        note: |
+          GeekWire local Seattle reporting corroborating filing date,
+          $75M damages figure, and W.D. Wash. venue. Establishes that
+          the dispute was a private contract-damages action rather
+          than a government-driven offramp closure.
+          evidence_use=contextual_unarchived: no body_hash captured
+          in this session.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16
+  staged-release plan, historical_baseline_2013_2016 tier fill):
+  authored end-to-end by LLM agent from sources/historical_baseline_
+  2013_2016/triage_manifest.json. CoinLab v. Mt. Gox is a private
+  civil dispute that coincided with the broader Mt. Gox cascade —
+  the civil filing itself produced no observable layer change in
+  the 11-day pre-Dwolla-seizure window (observation_kind=
+  observed_no_change, attribution=none). The parallel federal
+  Dwolla seizure twelve days later (mtgox-dhs-dwolla-wells-fargo-
+  seizure-2013) is the load-bearing cascade trigger. Included
+  in the corpus for completeness of the Mt. Gox event cluster
+  and to anchor the distinction between civil-litigation and
+  federal-enforcement tracks within the cascade.
+
+  Borderline S3 vs S5 stratum coding — annotated S3_doj_sec_cftc_fiod
+  because the venue is a US federal court (Western District of
+  Washington), though the dispute is private breach-of-contract
+  rather than a sovereign enforcement action. The trigger.type
+  court_civil_order maps to S3 in the existing stratum vocabulary
+  used by other private-civil events (coinbase-irs-john-doe-summons-
+  2016, nydfs-bitlicense-2015-06).
+
+  evidence_use=contextual_unarchived across all citations: PACER
+  access for the canonical 2:13-cv-00777-RSL docket requires login,
+  so CoinDesk contemporaneous press coverage and the Justia docket-
+  metadata landing page are used as supporting_journalism anchors.
+  body_hash has not been captured into sources/http_captures/ in
+  this session. Status remains draft pending real-archive capture
+  and human review.
+
+  null_event shape: 0 observed_change layers; 1 observed_no_change
+  layer (offramp_cex with attribution=none, window 2013-05-02 to
+  2013-05-13 closing one day before the 2013-05-14 Dwolla seizure).
+  L0/L1/L3/L4/asset_onchain are all not_applicable because mtgox.com
+  remained reachable and serving frontend pages, the Bitcoin protocol
+  layers tracked by this dataset did not exist in their measured
+  forms in 2013, and the action was a private civil-damages claim
+  rather than an asset freeze. admission_tier=null_case;
+  analysis_use=historical_baseline.
+
+scoped_claim: |
+  "CoinLab v. Mt. Gox civil complaint (filed 2013-05-02 in US
+  District Court, Western District of Washington, Case
+  2:13-cv-00777-RSL) sought $75M damages for Mt. Gox's breach of
+  the November 2012 North American operations agreement. The row
+  records observation_kind=observed_no_change + attribution=none at
+  offramp_cex over the 11-day window 2013-05-02 to 2013-05-13
+  (closing one day before the federal Dwolla seizure
+  mtgox-dhs-dwolla-wells-fargo-seizure-2013), because the civil
+  filing itself produced no observable USD on/off-ramp change.
+  null_event shape; historical-baseline tier; not used in main
+  statistical denominators."
+
+tags:
+  - historical_baseline_2013_2016
+  - mtgox
+  - coinlab
+  - civil_litigation
+  - wd_washington
+  - dryrun_2026_05_16
+  - phase_b_2026_05_16

@@ -1,0 +1,281 @@
+id: sec-garza-gaw-miners-zenminer-2015
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+
+related_events:
+  - sec-shavers-btcst-2013
+  - sec-burnside-bitcoin-stock-exchange-2014
+  - sec-voorhees-satoshidice-2014
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2015-12-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/litigation/litreleases/2015/lr23415.htm
+      wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/litreleases/2015/lr23415.htm
+      evidence_use: contextual_unarchived
+      note: |
+        SEC Litigation Release No. 23415 (2015-12-01): "Homero Joshua
+        Garza" — announcing the SEC civil action filed in the U.S.
+        District Court for the District of Connecticut against Homero
+        Joshua Garza and his Connecticut-based companies GAW Miners,
+        LLC and ZenMiner, LLC (d/b/a Zen Cloud) for selling
+        unregistered securities in the form of "Hashlets" — purported
+        shares in a digital Bitcoin mining operation. From approximately
+        August 2014 to December 2014, Garza and his companies sold
+        ~$20 million worth of Hashlet contracts to more than 10,000
+        investors, while the companies did not own enough computing
+        power to deliver the mining capacity promised; returns paid to
+        some investors came from proceeds of sales to other investors
+        (Ponzi-style). Charges: violations of Securities Act Sections
+        5(a), 5(c), and 17(a), and Exchange Act Section 10(b) /
+        Rule 10b-5. Wayback URL pinned as a 2015 wildcard anchor;
+        evidence_use=contextual_unarchived because the authoring LLM
+        agent has not personally captured a body_hash or pinned a
+        specific snapshot timestamp in this draft pass.
+    - type: primary_legal
+      url: https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf
+      wayback: https://web.archive.org/web/2015/https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        SEC civil complaint (D. Conn., 2015-12-01) against Homero
+        Joshua Garza, GAW Miners, LLC, and ZenMiner, LLC. Details the
+        Hashlet product as a securities-law "investment contract" under
+        Howey: investors paid in for shares of computing power pointing
+        to digital mining returns, with returns dependent on the
+        managerial efforts of Garza and his companies. The complaint
+        alleges Garza and the companies oversold cloud-mining capacity
+        substantially beyond what they actually owned. Relief sought:
+        permanent injunctive relief, disgorgement of ill-gotten gains
+        plus prejudgment interest, and civil penalties. Wayback URL
+        pinned as a 2015 wildcard anchor; evidence_use=
+        contextual_unarchived pending human-audit re-pin and body_hash.
+    - type: primary_legal
+      url: https://www.sec.gov/news/pressrelease/2015-271.html
+      wayback: https://web.archive.org/web/2015/https://www.sec.gov/news/pressrelease/2015-271.html
+      evidence_use: contextual_unarchived
+      note: |
+        SEC press release 2015-271 (2015-12-01): "SEC Charges Bitcoin
+        Mining Companies." Press-release corroboration of the
+        litigation release and complaint; characterizes the action as
+        an SEC charge against Garza and the GAW Miners / ZenMiner
+        companies for perpetrating a securities-fraud scheme through
+        the sale of Hashlets to more than 10,000 investors.
+        contextual_unarchived pending human-audit re-pin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per SEC Litigation Release No. 23415
+        and SEC press release 2015-271, both dated 2015-12-01.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named defendants: Homero Joshua Garza (individual founder/CEO);
+    GAW Miners, LLC; and ZenMiner, LLC (d/b/a Zen Cloud). GAW Miners
+    and ZenMiner were Connecticut-based cloud-mining service operators
+    that sold the "Hashlet" product — a service contract purporting to
+    represent a share in digital Bitcoin mining capacity. Hashlets
+    were not on-chain tokens or freezable assets; they were
+    contractual claims against the issuing service. canonical_domains
+    lists the two operator-controlled public surfaces. No on-chain BTC
+    addresses are enumerated at this event-row level.
+  actor_type: cloud_mining_service_operator
+  actor_name: GAW Miners / ZenMiner / Garza
+  chains: [bitcoin]
+  canonical_domains:
+    - gawminers.com
+    - zenminer.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2015-12-01 SEC civil action did not direct any ISP-level,
+      DNS, or network-layer block of gawminers.com or zenminer.com.
+      Public-web L0 instruments (Censored Planet, OONI) do not apply;
+      any subsequent disappearance of the operator surfaces was a
+      corporate consequence of enforcement exposure rather than a
+      network-layer event.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2015 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum PBS
+      relay surface. The Ethereum Merge itself is ~7 years downstream
+      (2022-09-15). not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2015 (Flashbots Protect launched 2022-11). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - gawminers.com
+      - zenminer.com
+    note: |
+      Load-bearing layer. Following the 2015-12-01 SEC complaint and
+      the parallel collapse of GAW Miners / ZenMiner operations, the
+      gawminers.com and zenminer.com public frontends ceased operating
+      as cloud-mining-service surfaces in the weeks/months after
+      filing (site offline by early 2016). Coverage is
+      partially_measured: the operator-surface cessation is publicly
+      attested via the SEC primary-legal sources and contemporaneous
+      reporting, but no pinned per-month Wayback frontend timeline
+      has been independently captured in this draft pass to bracket
+      the precise shutdown window.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Hashlets were service contracts (purported shares of digital
+      mining capacity), not on-chain tokens with an issuer-side
+      blacklist / freeze admin method. Bitcoin native asset is
+      unfreezable at the protocol layer; no stablecoin admin-method
+      surface is implicated. not_applicable on construct-did-not-exist
+      grounds for the asset-onchain dimension as defined by this
+      dataset.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      GAW Miners / ZenMiner was a cloud-mining service operator, not
+      a centralized exchange or fiat off-ramp; the companies did not
+      function as a Bitcoin/fiat trading venue. The SEC action targets
+      the unregistered-securities offering (Hashlets), not an
+      exchange/off-ramp function. not_applicable.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:gawminers_zenminer
+    event: gaw_miners_zenminer_cloud_mining_frontends_taken_offline_following_sec_action
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2015-12-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/litigation/litreleases/2015/lr23415.htm
+        wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/litreleases/2015/lr23415.htm
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains: [gawminers.com, zenminer.com]
+          time_window:
+            - 2015-12-01T00:00:00Z
+            - 2016-06-30T23:59:59Z
+        note: |
+          SEC Litigation Release No. 23415 names Garza, GAW Miners,
+          and ZenMiner as the defendants in the unregistered-
+          securities / Hashlet-fraud civil action. attribution=direct
+          because the SEC complaint named the issuing operators by
+          name and the public cloud-mining frontends (gawminers.com,
+          zenminer.com) ceased operating as the cloud-mining service
+          surface within weeks/months of filing; the cessation was a
+          direct consequence of the enforcement action and parallel
+          corporate collapse rather than an independent business
+          decision. Wayback anchor is a 2015 wildcard pointer pending
+          human-audit re-pin.
+      - type: primary_legal
+        url: https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf
+        wayback: https://web.archive.org/web/2015/https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf
+        evidence_use: contextual_unarchived
+        note: |
+          SEC civil complaint (D. Conn.) details the Hashlet product
+          and the operator-state collapse it precipitated.
+          Corroborates the L4 frontend cessation observation at the
+          primary-legal tier. Wayback anchor is a 2015 wildcard
+          pointer pending human-audit re-pin.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B authoring): new
+  historical-baseline event for the 2015-12-01 SEC civil action filed
+  in D. Conn. against Homero Joshua Garza and his cloud-mining
+  companies GAW Miners, LLC and ZenMiner, LLC for the unregistered
+  sale of Hashlet "securities" pointing to nonexistent or oversold
+  cloud-mining capacity. Authored by LLM agent without personally
+  verifying Wayback/body_hash; origin=agent_draft and status=draft
+  per validator constraint (agent_draft incompatible with admitted).
+  Real release must replace this DRYRUN marker with a human-verified
+  audit after pinning real archive anchors (the wayback URLs here are
+  2015 wildcard pointers, not pinned snapshot timestamps).
+
+  Thin-cascade comparison shape: 1 observed_change layer (l4_frontend,
+  gawminers.com / zenminer.com taken offline as cloud-mining service
+  surfaces following the SEC complaint and parallel corporate
+  collapse). L0/L1/L3/asset_onchain/offramp_cex are all
+  not_applicable: no network-layer block was directed, 2015 predates
+  the post-Merge PBS L1/L3 measurement surface by ~7 years, Hashlets
+  were service contracts rather than on-chain freezable tokens, and
+  GAW Miners was a cloud-mining service operator rather than a fiat
+  off-ramp / exchange. attribution=direct via the SEC primary-legal
+  sources naming Garza and his companies as the targets of the
+  unregistered-securities-fraud action. Admission tier empirical_case
+  (1 strong-attribution observed_change layer).
+
+  Why historical_baseline tier: 2015-12 sits inside the
+  historical_baseline_2013_2016 temporal tier per the 2008+ tiered
+  frame. analysis_use=historical_baseline excludes this row from the
+  2017+ comparable-analysis denominator while keeping it as
+  cross-temporal context for the SEC's early-crypto enforcement
+  record against crypto-adjacent securities-fraud schemes. Sibling
+  rows in the same tier and family:
+  - sec-shavers-btcst-2013 (2013-07-23 SEC civil filing against
+    BTCST; Bitcoin-denominated Ponzi; offramp_cex single-layer);
+  - sec-burnside-bitcoin-stock-exchange-2014 (2014-12-08 SEC cease-
+    and-desist against BTCT and LTC-Global; unregistered crypto-
+    denominated securities exchange; L4 + offramp_cex two-layer);
+  - sec-voorhees-satoshidice-2014 (sibling 2014 SEC enforcement
+    against an unregistered crypto-securities offering).
+
+  Distinguishing feature: GAW Miners / ZenMiner is the only
+  historical-baseline SEC enforcement in this slice against a
+  cloud-mining service rather than an exchange or pure investment
+  scheme. The cascade is correspondingly thin: only the L4 frontend
+  records an observed_change, because the target operator class
+  (service provider) does not surface at the exchange/off-ramp or
+  on-chain-asset layers.
+
+scoped_claim: |
+  The 2015-12-01 SEC civil action against Homero Joshua Garza, GAW
+  Miners, LLC, and ZenMiner, LLC for the unregistered sale of
+  Hashlet "securities" pointing to nonexistent or oversold cloud-
+  mining capacity precipitated the cessation of the gawminers.com
+  and zenminer.com cloud-mining-service frontends in the months
+  following filing. The row claims only this single-layer L4
+  frontend cessation observation with attribution=direct; no
+  L0/L1/L3/asset-onchain/offramp_cex effects are coded because the
+  Hashlet product was a service contract rather than an on-chain
+  freezable token and the operator was a cloud-mining service
+  rather than a fiat off-ramp / exchange.
+
+tags:
+  - sec_enforcement
+  - unregistered_securities
+  - cloud_mining_fraud
+  - hashlet
+  - gaw_miners
+  - zenminer
+  - garza
+  - historical_baseline
+  - pre_ofac_era
+  - frontend_shutdown
