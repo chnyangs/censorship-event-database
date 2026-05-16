@@ -30,7 +30,7 @@ The paper must not claim:
 
 | surface | current state | A-class interpretation |
 | --- | --- | --- |
-| Corpus | 53 admitted YAML records, 0 drafts | enough for a protocol/data paper; not enough for population inference |
+| Corpus | 52 admitted YAML records, 1 rejected registry row, 0 drafts | enough for a protocol/data paper; not enough for population inference |
 | Case roles | 2 anchor, 38 empirical, 13 null | anchor count is too low for a case-study-heavy paper |
 | Review posture | 7 `release_ready_scoped`, 46 `admitted_scope_blocked` | use most records as aggregate datapoints, not narrative claims |
 | Trigger frame | 126 trigger-registry rows; 54 distinct in-frame triggers | transparent, but still under the v0.2 target of 150-250 frame units |
@@ -99,8 +99,9 @@ dataset is a population sample.
 
 Minimum A-class target:
 
-- 70-90 admitted events if time is limited; 80-120 is the stronger v0.2
-  target already encoded in [`sampling/frame.yaml`](../sampling/frame.yaml).
+- 120 admitted-quality events as a progress milestone; source-frame exhaustion
+  is the stop rule, encoded in [`sampling/frame.yaml`](../sampling/frame.yaml)
+  and [`final-collection-protocol.md`](final-collection-protocol.md).
 - 150-250 distinct in-frame trigger units in the registry.
 - Real non-promoted backlog across S2/S3/S4/S5/S6, not only promoted OFAC
   duplicates.
@@ -220,6 +221,6 @@ Do not submit if any are true:
 
 - the paper calls LLM self-consistency "inter-rater reliability";
 - unaudited null cases are used as named narrative examples;
-- 53 admitted events are presented as representative population coverage;
+- 52 admitted events are presented as representative population coverage;
 - L0/L3 missing denominators are written as zeros;
 - the artifact cannot reproduce from a clean checkout.

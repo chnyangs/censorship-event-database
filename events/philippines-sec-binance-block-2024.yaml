@@ -75,7 +75,7 @@ jurisdiction: [PH]
 
 coverage:
   - layer: l0_network
-    status: partially_measured
+    status: not_measured
     scope: [binance.com, binance.org]
     note: |
       ISP-level blocking of Binance domains from Philippine vantage points
@@ -112,42 +112,14 @@ coverage:
       Binance regional-notice archive lands in sources/http_captures/.
 
 observations:
-  - layer: l0_network
-    actor: ph_isp_aggregate
-    event: binance_com_blocked_from_ph_vantage
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2024-03-25T00:00:00Z
-    precision: day
-    delta_hours: 0
-    country: PH
-    sources:
-      - type: supporting_journalism
-        url: https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
-        wayback: https://web.archive.org/web/2024/https://www.gmanetwork.com/news/money/companies/901661/sec-formally-requests-ntc-to-block-binance-in-ph/story/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [ooni_probe_PH]
-          countries: [PH]
-          domains: [binance.com, binance.org]
-          time_window:
-            - 2024-03-25T00:00:00Z
-            - 2024-04-25T23:59:59Z
-        note: |
-          L0 observation anchor for the PH-vantage ISP blocking of
-          binance.com / binance.org effective NTC order date 2024-03-25.
-          The scope_descriptor enumerates the intended OONI Probe PH
-          vantage and time window (2024-03-25 to 2024-04-25) for the
-          follow-up batch query. Source is currently a contextual press
-          citation rather than the OONI measurement payload itself;
-          evidence_use=contextual_unarchived flags that this row is not
-          yet admission-anchor-grade. Promotion to anchor-grade requires
-          (a) hitting api.ooni.io for binance.com from PH over the
-          stated window, (b) pinning measurement_ids in this source
-          block via a semi_primary_measurement source, and (c)
-          recomputing attribution from plausible to direct with
-          measurement backing. Wayback wildcard pointer in lieu of a
-          pinned-timestamp snapshot.
+  # NOTE: L0 observation row removed 2026-05-16 because L0 coverage
+  # was honestly downgraded to `not_measured` (no real OONI / Censored
+  # Planet batch query was run in this session). The validator
+  # correctly enforces that `observed_change` requires `measured` or
+  # `partially_measured` coverage. Reinstate this row once the OONI
+  # batch query (api.ooni.io for binance.com from PH over
+  # 2024-03-25..2024-04-25) is run and measurement_ids are pinned;
+  # coverage status flips back to partially_measured at that point.
   - layer: offramp_cex
     actor: exchange:binance_ph
     event: php_peso_onramp_offramp_closed_for_ph_users

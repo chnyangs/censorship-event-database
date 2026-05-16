@@ -12,7 +12,8 @@ decisions for the maintainer:
 3. Runs the full regenerate chain at the provided release date
    (used as SOURCE_DATE_EPOCH).
 4. Runs `check_paper_readiness.py --strict-repro --strict-reliability
-   --strict-null-audit --strict-audit` and reports.
+   --strict-null-audit --strict-audit` and reports. Soft attribution
+   and dryrun human gates require explicit flags.
 5. Verifies byte-stability across two regenerate runs.
 6. Emits a structured sign-off log to
    `analysis/release_signoff/<version>.md`.
@@ -100,6 +101,15 @@ def main() -> int:
                              "current tree is already at the release "
                              "snapshot). Mostly for re-emitting the "
                              "sign-off log without recomputing.")
+    parser.add_argument("--accept-soft-attribution", action="store_true",
+                        help="Pass --allow-soft-attribution to the "
+                             "paper-readiness gate. Use only after the "
+                             "release notes and paper claims explicitly "
+                             "park comparative attribution-rate claims.")
+    parser.add_argument("--allow-dryrun-human-gates", action="store_true",
+                        help="Pass --allow-dryrun-human-gates to the "
+                             "paper-readiness gate. Use only for release "
+                             "pipeline rehearsals, never for a real tag.")
     args = parser.parse_args()
 
     SIGNOFF_DIR.mkdir(parents=True, exist_ok=True)
@@ -191,18 +201,30 @@ def main() -> int:
     # ---- 4. strict gate ----
     log.append("## 4. Strict paper-readiness gate")
     env = {**os.environ, "SOURCE_DATE_EPOCH": str(epoch_for_regen)}
-    rc, out, err = _run([
+    readiness_cmd = [
         sys.executable, "scripts/check_paper_readiness.py",
         "--strict-repro", "--strict-reliability",
         "--strict-null-audit", "--strict-audit",
-        # The v0.1 paper retracts comparative attribution-rate claims
-        # (docs/paper_claims.md §0 Reliability discipline). The
-        # attribution κ < 0.6 is a documented codebook gap rather than
-        # a coding regression. Soft-attribution downgrades that ERROR to
-        # WARN so the release gate can complete; the WARN is still
-        # printed and recorded in the sign-off log.
-        "--allow-soft-attribution",
-    ], env=env)
+    ]
+    if args.accept_soft_attribution:
+        readiness_cmd.append("--allow-soft-attribution")
+        log.append("- soft attribution accepted explicitly "
+                   "(`--accept-soft-attribution`) ✓")
+    else:
+        log.append("- soft attribution not accepted; attribution κ < 0.6 "
+                   "will fail the strict gate")
+    if args.allow_dryrun_human_gates:
+        readiness_cmd.append("--allow-dryrun-human-gates")
+        log.append("- dryrun human gates accepted explicitly "
+                   "(`--allow-dryrun-human-gates`) ✓")
+    else:
+        log.append("- dryrun human gates not accepted; dryrun audit stamps "
+                   "or dryrun IRR provenance will fail the strict gate")
+    log.append("- command:")
+    log.append("```")
+    log.append(" ".join(readiness_cmd))
+    log.append("```")
+    rc, out, err = _run(readiness_cmd, env=env)
     log.append(f"- exit: {rc}")
     log.append("- output (last 40 lines):")
     log.append("```")

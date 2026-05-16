@@ -52,7 +52,7 @@ This project asks a narrower and more reproducible question:
 > the public evidentiary denominator does not exist?
 
 The answer is implemented as a six-artifact measurement protocol and a
-53-record admitted corpus. Each event is a YAML record with a trigger,
+52-admitted-event paper corpus over a 53-record YAML surface. Each event is a YAML record with a trigger,
 target, layer coverage rows, layer observations, and source anchors. The
 derived artifacts then compute the coverage matrix, evidence chains, and
 paper tables from the same source records. A rate is emitted only when the
@@ -61,8 +61,9 @@ denominator. When the denominator is absent, the table reports `—`, not `0`.
 
 The resulting v0.1 corpus is not a population sample. It is a
 selection-transparent, US-trigger-dominant, English-indexable public-evidence
-corpus. It currently contains 53 admitted events: 2 anchor cases, 38
-empirical cases, and 13 null cases. The corpus is useful because it makes
+corpus. It currently contains 52 admitted events: 2 anchor cases, 38
+empirical cases, and 12 null cases. One rejected YAML row is retained in
+the registry surface for selection transparency. The corpus is useful because it makes
 the evidentiary substrate explicit. It shows where public measurement can
 support layer-level claims, where named partial observations exist, and where
 the only honest conclusion is an observability gap.
@@ -155,13 +156,13 @@ prevalence sample.
 
 ## 4. Corpus
 
-The current snapshot contains 53 admitted events. Table 1 reports three
-paper roles: 2 anchor cases, 38 empirical cases, and 13 null cases. The case
+The current snapshot contains 52 admitted events. Table 1 reports three
+paper roles: 2 anchor cases, 38 empirical cases, and 12 null cases. The case
 role controls how an event may be cited. Anchor cases can appear in narrative
 spotlights and figures. Empirical cases contribute to aggregate tables. Null
 cases support denominator and observed-no-change interpretation only.
 
-Trigger precision is also uneven. Only 5 of the 53 events have hour-level
+Trigger precision is also uneven. Only 5 of the 52 admitted events have hour-level
 trigger precision, while 48 have day-level precision. Hour-granularity
 latency claims are therefore restricted to the hour-precision subset, and
 day-precision events are reported in interval buckets.
@@ -191,7 +192,7 @@ coverage-matched rates:
 | L0 network | 0 | 0 | 22 | — / 0 = — | — / 0 = — | — / 0 = — | No conditional rate; public measurements are absent in the queried cells. |
 | L1 consensus | 6 | 1 | 1 | 0/6 = 0.000 | 1/6 = 0.167 | 2/7 = 0.286 | Sensitive; cite all three rubrics or name the exact one. |
 | L3 RPC | 0 | 2 | 7 | — / 0 = — | — / 0 = — | 2 named observations, no rate | Named Flashbots partial observations only; no conditional rate. |
-| L4 frontend | 14 | 3 | 10 | 8/14 = 0.571 | 10/14 = 0.714 | 12/17 = 0.706 | Sensitive; cite all three rubrics or name the exact one. |
+| L4 frontend | 13 | 3 | 10 | 8/13 = 0.615 | 10/13 = 0.769 | 12/16 = 0.750 | Sensitive; cite all three rubrics or name the exact one. |
 | Asset on-chain | 17 | 0 | 6 | retracted | retracted | retracted | Rate retracted because the admission rule is structurally circular. |
 | Off-ramp CEX | 25 | 1 | 21 | 13/25 = 0.520 | 15/25 = 0.600 | 16/26 = 0.615 | Moderate sensitivity; quote with denominator and rubric context. |
 

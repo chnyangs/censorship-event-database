@@ -28,6 +28,12 @@ Case expansion is not ad hoc. The pre-declared frame lives in
 [`sampling/frame.yaml`](../sampling/frame.yaml), and the generated
 registry lives in
 [`analysis/trigger_registry/trigger_registry.md`](../analysis/trigger_registry/trigger_registry.md).
+Collection is now open-ended from 2008 onward: 2008-2012 is discovery-only,
+2013-2016 is historical baseline, and 2017-present is the comparable main
+corpus. The 120 admitted-quality number is a progress milestone under
+[`final-collection-protocol.md`](final-collection-protocol.md), not a freeze
+target or cap. New discoveries remain candidates until they satisfy the same
+admission and human-review gates as the original corpus.
 
 The registry is a pre-admission surface:
 
@@ -39,7 +45,10 @@ The registry is a pre-admission surface:
    `candidate_triggers/rejected/*.yaml` so selection decisions are
    auditable.
 4. `make trigger-registry` recomputes current counts and the v0.2
-   expansion gaps declared in the sampling frame.
+   milestone gaps declared in the sampling frame.
+5. `make temporal-ledger` records every source-frame/month from 2008-01
+   through the dataset cutoff so `pending` months are distinct from searched
+   months with no candidate.
 
 The first committed historical backfill is the OFAC recent-actions sweep:
 `scripts/materialize_ofac_recent_action_candidates.py` converts the cached
@@ -381,13 +390,14 @@ On-chain sources record a validated 64-hex transaction hash and, when available,
 
 OFAC SDN diffs are archived separately: use Treasury's Sanctions List Service archive for 2022+ and store local snapshots under `sources/ofac_sdn_diffs/YYYY-MM-DD.xml.gz`. This gives us our own working corpus rather than relying on future URL stability.
 
-## 7. Historical backfill — how to collect events from 2017–2025
+## 7. Historical backfill — how to collect events from 2008 onward
 
 This is the initial dataset build. Estimated 3 months of work.
 
 ### 7.1 Trigger enumeration phase
 
-Work **backward from trigger**, not forward from effects. For the pilot period 2017–2025:
+Work **backward from trigger**, not forward from effects. For the 2008+
+tiered frame:
 
 1. **OFAC SDN history**: use Treasury's Sanctions List Service archive for 2022+ and a combination of OpenSanctions + Wayback for older periods. Diff consecutive snapshots to enumerate every designation and removal event. Filter for designations mentioning crypto keywords (`virtual currency`, `digital asset`, known address patterns like `0x[0-9a-f]{40}`). Planning range: 40–80 crypto-relevant SDN candidates in the 8-year window.
 2. **DOJ press release archive**: scrape `justice.gov/news` with keyword filters (`cryptocurrency`, `virtual currency`, `mixer`, `blockchain`). Manual review to drop cases where DOJ action did not actually touch on-chain state. Planning range: 20–40 candidates.

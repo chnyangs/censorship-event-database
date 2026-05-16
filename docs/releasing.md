@@ -56,6 +56,11 @@ make regenerate
 #    independent-human IRR report; omit only for non-release working snapshots.
 python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 
+# Optional helper: prepares the same release packet and writes a sign-off log.
+# Pass --accept-soft-attribution only when attribution-rate claims are explicitly
+# parked. Never pass --allow-dryrun-human-gates for a real tag/submission release.
+python3 scripts/release_signoff.py --version "${NEW_VERSION}" --date "$(date -u +%Y-%m-%d)"
+
 # 5. CHANGELOG entry summarising what's in this version.
 $EDITOR CHANGELOG.md
 
@@ -96,7 +101,9 @@ After the push:
 - **Don't edit `dataset.meta.json` by hand.** It's regenerated from
   `events/*.yaml` + `CITATION.cff`. Regenerate via `make dataset`.
 - **Don't drop `dataset.json` or `dataset.csv` from the tag.** They are a
-  tracked release surface, not separate GitHub Release-only assets.
+  tracked all-event YAML registry surface, not separate GitHub Release-only
+  assets. Rejected rows may be present for selection transparency; paper
+  denominators must use `paper_corpus_included=true` / admitted rows only.
 - **Don't use `make paper-check` as a regeneration step.** It is intentionally
   non-mutating. Use `make regenerate` or `make paper-regenerate-check` when
   outputs need to be rebuilt before checking.

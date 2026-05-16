@@ -7,15 +7,15 @@ This file is the operational summary for the repo's two current priorities:
 
 ## Process
 
-- Event count: `53`
-- Release-ready cases: `7`
-- Admitted but release-blocked cases: `46`
+- Event count: `65`
+- Release-ready cases: `8`
+- Admitted but release-blocked cases: `54`
 - Fully complete release-ready cases: `0`
-- Scope-limited release-ready cases: `7`
-- Working drafts: `0`
+- Scope-limited release-ready cases: `8`
+- Working drafts: `1`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 38, 'paper_anchor': 2, 'null_control': 13}`
-- Draft priority order: `none`
+- Paper-use roles: `{'aggregate_datapoint': 48, 'paper_anchor': 2, 'null_control': 12, 'appendix_only': 3}`
+- Draft priority order: `philippines-sec-binance-block-2024, paxos-busd-nydfs-minting-stop-2023`
 
 ## Cases
 
@@ -36,6 +36,24 @@ This file is the operational summary for the repo's two current priorities:
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `alphabay-hansa-doj-2017`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `binance-4framework-2023`
@@ -88,6 +106,24 @@ This file is the operational summary for the repo's two current priorities:
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `blockfi-sec-lending-2022`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `btc-e-doj-2017`
@@ -154,6 +190,24 @@ This file is the operational summary for the repo's two current priorities:
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
+
+### `china-pboc-crypto-ban-2013-12`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either measure the remaining layer or document why it is out of scope.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `china-pboc-crypto-ban-2021`
 
@@ -275,6 +329,24 @@ This file is the operational summary for the repo's two current priorities:
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin down the target set more concretely in the event file.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `eu-russia-crypto-wallet-cap-2022`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `funnull-cdn-ofac-2025`
@@ -429,6 +501,38 @@ This file is the operational summary for the repo's two current priorities:
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
+### `kraken-sec-staking-2023`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either measure the remaining layer or document why it is out of scope.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `kucoin-doj-2024`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `high`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+
 ### `lazarus-entity-ofac-2019`
 
 - Status: `admitted`
@@ -529,6 +633,41 @@ This file is the operational summary for the repo's two current priorities:
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
+### `nydfs-bitlicense-2015-06`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `medium`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `paxos-busd-nydfs-minting-stop-2023`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `medium`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: Case shape is visible but the case is not yet admitted.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Promote to admitted once promotion-gate criteria are met.
+
 ### `pertsev-nl-arrest-2022`
 
 - Status: `admitted`
@@ -546,6 +685,30 @@ This file is the operational summary for the repo's two current priorities:
 - Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `philippines-sec-binance-block-2024`
+
+- Status: `draft`
+- Readiness: `working_draft`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
+- Coverage completeness: `low`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
+- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `russia-election-interference-ofac-2020`
 
@@ -611,6 +774,22 @@ This file is the operational summary for the repo's two current priorities:
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
+### `sec-beaxy-platform-shutdown-2023`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `high`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: One layer remains explicitly unmeasured.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Either measure the remaining layer or document why it is out of scope.
+
 ### `sec-v-binance-2023`
 
 - Status: `admitted`
@@ -653,9 +832,9 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `sec-v-uniswap-wells-notice-2024`
 
-- Status: `admitted`
-- Readiness: `admitted_scope_blocked`
-- Paper-use role: `null_control`
+- Status: `rejected`
+- Readiness: `needs_re_scoping`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
 - Attribution reliability: `low`
@@ -663,11 +842,11 @@ This file is the operational summary for the repo's two current priorities:
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: No observed_change entries remain, so attribution cannot be evaluated.
-- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
-- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+- Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `semenov-ofac-2023`
 
@@ -703,6 +882,19 @@ This file is the operational summary for the repo's two current priorities:
 - Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `silk-road-doj-seizure-2013`
+
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `sinbad-ofac-2023`
@@ -870,6 +1062,23 @@ This file is the operational summary for the repo's two current priorities:
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `uk-fca-binance-markets-2021`
+
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `medium`
+- Coverage completeness: `high`
+- Case-shape completeness: `high`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: Coverage is majority-measured; some layers are only partially_measured.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 
 ### `uniswap-frontend-delisting-2023`
 

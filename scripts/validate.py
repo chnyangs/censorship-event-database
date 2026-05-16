@@ -181,6 +181,8 @@ class EventValidator:
         self.target_kinds = set(vocab["target_kinds"])
         self.target_enumerations = set(vocab.get("target_enumerations", []))
         self.origins = set(vocab.get("origins", []))
+        self.temporal_tiers = set(vocab.get("temporal_tiers", []))
+        self.analysis_uses = set(vocab.get("analysis_uses", []))
 
     def validate_event(
         self,
@@ -300,6 +302,24 @@ class EventValidator:
         ):
             result.error("status=admitted is incompatible with origin=agent_draft; promote to human_reviewed first.")
 
+        temporal_tier = event.get("temporal_tier")
+        if temporal_tier is not None and self.temporal_tiers and temporal_tier not in self.temporal_tiers:
+            result.error(
+                f"temporal_tier must be one of {sorted(self.temporal_tiers)} "
+                f"(got {temporal_tier!r})."
+            )
+        analysis_use = event.get("analysis_use")
+        if analysis_use is not None and self.analysis_uses and analysis_use not in self.analysis_uses:
+            result.error(
+                f"analysis_use must be one of {sorted(self.analysis_uses)} "
+                f"(got {analysis_use!r})."
+            )
+        if temporal_tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"} and analysis_use == "comparable_analysis":
+            result.error(
+                f"temporal_tier={temporal_tier} cannot use analysis_use=comparable_analysis; "
+                "keep early-period rows out of 2017+ comparable denominators."
+            )
+
         if "last_human_audit" in event:
             try:
                 datetime.strptime(str(event["last_human_audit"]), "%Y-%m-%d")
@@ -346,6 +366,7 @@ class EventValidator:
             "doj_seizure_order": "S3_doj_sec_cftc_fiod",
             "sec_action": "S3_doj_sec_cftc_fiod",
             "cftc_action": "S3_doj_sec_cftc_fiod",
+            "fincen_action": "S3_doj_sec_cftc_fiod",
             "court_civil_order": "S3_doj_sec_cftc_fiod",
             "nation_state_block": "S4_nation_state",
             "non_us_sanctions": "S6_supranational",
@@ -364,6 +385,7 @@ class EventValidator:
             # (actor substring, required trigger.type value, human label)
             ("US_SEC", "sec_action", "US_SEC requires trigger.type=sec_action"),
             ("US_CFTC", "cftc_action", "US_CFTC requires trigger.type=cftc_action"),
+            ("US_FINCEN", "fincen_action", "US_FINCEN requires trigger.type=fincen_action"),
             ("US_DOJ", ("doj_indictment", "doj_seizure_order"), "US_DOJ requires trigger.type ∈ {doj_indictment, doj_seizure_order}"),
             ("US_OFAC", ("ofac_sdn_designation", "ofac_sdn_removal"), "US_OFAC requires trigger.type ∈ {ofac_sdn_designation, ofac_sdn_removal}"),
             ("EU_COUNCIL", ("non_us_sanctions", "supranational_regulation"), "EU_Council requires trigger.type ∈ {non_us_sanctions, supranational_regulation}"),

@@ -18,6 +18,7 @@ DERIVED_DIR     ?= derived
 SITE_DIR        ?= site
 EVIDENCE_DIR    ?= analysis/evidence-chains
 TRIGGER_REGISTRY_DIR ?= analysis/trigger_registry
+TEMPORAL_LEDGER_DIR ?= analysis/temporal_ledger
 SOURCE_MANIFEST_PREFIX ?= sources/source_manifest
 
 # ---- Framework Layer B (case-based retrieval) inputs ----
@@ -30,7 +31,7 @@ COMPARE_OUT ?= -
 
 .PHONY: help \
     validate schema-check validate-citations validate-archives verify-citations freshness \
-    draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry source-manifest \
+    draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry temporal-ledger source-manifest \
     event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
     admission-sensitivity jurisdiction derived \
     audit-worksheets paper-tables paper-check paper-regenerate-check test \
@@ -58,6 +59,7 @@ help:
 	    'make dataset               # rebuild $(DATASET_JSON) + $(DATASET_CSV) + $(DATASET_META)' \
 	    'make ofac-recent-action-candidates # materialize OFAC backfill stubs from cached triage' \
 	    'make trigger-registry      # pre-admission trigger registry + sampling-frame gaps' \
+	    'make temporal-ledger       # 2008+ monthly source-frame discovery ledger' \
 	    'make source-manifest       # hash manifest for local source artifacts under sources/' \
 	    '' \
 	    '### Derived research layer (→ $(DERIVED_DIR)/)' \
@@ -142,6 +144,9 @@ ofac-recent-action-candidates:
 trigger-registry: dataset
 	$(PYTHON) scripts/build_trigger_registry.py --out-dir $(TRIGGER_REGISTRY_DIR)
 
+temporal-ledger: dataset
+	$(PYTHON) scripts/build_temporal_discovery_ledger.py --out-dir $(TEMPORAL_LEDGER_DIR)
+
 source-manifest: dataset
 	$(PYTHON) scripts/build_source_manifest.py --out-prefix $(SOURCE_MANIFEST_PREFIX)
 
@@ -197,7 +202,7 @@ audit-worksheets:
 # number in the paper must come from this artifact at a given
 # source_commit.
 ifndef SOURCE_DATE_EPOCH
-paper-tables paper-regenerate-check source-manifest: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+paper-tables paper-regenerate-check source-manifest temporal-ledger: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
@@ -205,7 +210,7 @@ paper-tables: derived
 paper-check:
 	$(PYTHON) scripts/check_paper_readiness.py --strict-audit
 
-paper-regenerate-check: trigger-registry source-manifest paper-tables paper-check
+paper-regenerate-check: trigger-registry temporal-ledger source-manifest paper-tables paper-check
 
 # Pytest suite for classifier / coverage-numerator / recovery-filter /
 # paper-table fail-closed invariants (install with `pip install -r
@@ -217,7 +222,7 @@ test:
 # Umbrella target: rebuild every derived artifact (dataset.meta.json must
 # land first so downstream scripts read the latest version/cutoff).
 ifndef SOURCE_DATE_EPOCH
-derived coverage-matrix trigger-registry: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+derived coverage-matrix trigger-registry temporal-ledger: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 derived: dataset event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census admission-sensitivity jurisdiction
 	@echo "[derived] all derived artifacts rebuilt under $(DERIVED_DIR)/"
@@ -292,7 +297,7 @@ capture:
 ifndef SOURCE_DATE_EPOCH
 check: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
-check: test validate schema-check draft-gaps status review staleness trigger-registry source-manifest paper-check
+check: test validate schema-check draft-gaps status review staleness trigger-registry temporal-ledger source-manifest paper-check
 
 check-network: verify-citations freshness
 
@@ -307,7 +312,7 @@ check-all: check check-network
 ifndef SOURCE_DATE_EPOCH
 regenerate: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
-regenerate: validate schema-check dataset trigger-registry source-manifest event-metrics action-registry layer-observability archetypes coverage-matrix \
+regenerate: validate schema-check dataset trigger-registry temporal-ledger source-manifest event-metrics action-registry layer-observability archetypes coverage-matrix \
             admission-sensitivity jurisdiction \
             paper-tables status review staleness \
             render-site irr-packet render-evidence-all audit-worksheets paper-check

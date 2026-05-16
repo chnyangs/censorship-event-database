@@ -77,6 +77,24 @@
       ],
       "description": "Authorship lineage. human_authored = written by a human end-to-end. agent_draft = ingested / drafted by an agent and not yet reviewed; only valid at status=draft. human_reviewed = agent-drafted then reviewed and accepted by a human."
     },
+    "temporal_tier": {
+      "type": "string",
+      "enum": [
+        "discovery_only_2008_2012",
+        "historical_baseline_2013_2016",
+        "comparable_main_2017_present"
+      ],
+      "description": "Time-frame tier used to separate 2008+ discovery from the 2017+ comparable analysis corpus."
+    },
+    "analysis_use": {
+      "type": "string",
+      "enum": [
+        "discovery_ledger_only",
+        "historical_baseline",
+        "comparable_analysis"
+      ],
+      "description": "How this event may be used in corpus-level analysis. Comparable denominator rows must be comparable_analysis."
+    },
     "last_human_audit": {
       "type": "string",
       "format": "date",
@@ -101,10 +119,11 @@
       "minItems": 1,
       "items": {
         "type": "string",
-        "enum": [
-          "AU",
-          "CA",
-          "CH",
+          "enum": [
+            "AU",
+            "BE",
+            "CA",
+            "CH",
           "CN",
           "DE",
           "EU",
@@ -112,10 +131,12 @@
           "IR",
           "IS",
           "JP",
-          "KR",
-          "NG",
-          "NL",
-          "PL",
+            "KR",
+            "MY",
+            "NG",
+            "NL",
+            "PH",
+            "PL",
           "PT",
           "RU",
           "SG",
@@ -376,6 +397,7 @@
             "doj_seizure_order",
             "cftc_action",
             "sec_action",
+            "fincen_action",
             "non_us_sanctions",
             "supranational_regulation",
             "court_civil_order",

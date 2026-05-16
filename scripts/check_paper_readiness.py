@@ -36,7 +36,9 @@ DATASET_JSON = REPO_ROOT / "dataset.json"
 DATASET_CSV = REPO_ROOT / "dataset.csv"
 CITATION_CFF = REPO_ROOT / "CITATION.cff"
 IRR_REPORT = REPO_ROOT / "analysis" / "inter_rater" / "kappa_report.json"
+SAMPLING_FRAME = REPO_ROOT / "sampling" / "frame.yaml"
 TRIGGER_REGISTRY_DIR = REPO_ROOT / "analysis" / "trigger_registry"
+TEMPORAL_LEDGER_DIR = REPO_ROOT / "analysis" / "temporal_ledger"
 SOURCE_MANIFEST_PREFIX = REPO_ROOT / "sources" / "source_manifest"
 
 HOUR_PRECISION_VALUES = {"second", "minute", "hour"}
@@ -88,12 +90,29 @@ REQUIRED_TRIGGER_REGISTRY = [
     "trigger_registry.md",
 ]
 
+REQUIRED_TEMPORAL_LEDGER = [
+    "monthly_discovery_ledger.csv",
+    "monthly_discovery_ledger.json",
+    "monthly_discovery_ledger.md",
+    "yearly_collection_plan.csv",
+    "yearly_collection_plan.json",
+    "yearly_collection_plan.md",
+]
+
 REQUIRED_SOURCE_MANIFEST = [
     "sources/source_manifest.csv",
     "sources/source_manifest.json",
     "sources/source_manifest.md",
     "sources/source_manifest.meta.json",
 ]
+
+TEMPORAL_LEDGER_STATUSES = {
+    "searched_no_candidate",
+    "candidate_found",
+    "not_applicable_pre_market",
+    "source_unavailable",
+    "pending",
+}
 
 FORBIDDEN_CLAIM_PHRASES = [
     "scripts/paper_tables.py",
@@ -131,7 +150,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--strict-reliability",
         action="store_true",
-        help="fail unless κ provenance is independent_human",
+        help=("fail unless κ provenance is independent_human; dryrun "
+              "provenance requires --allow-dryrun-human-gates"),
     )
     parser.add_argument(
         "--allow-soft-attribution",
@@ -141,6 +161,14 @@ def parse_args() -> argparse.Namespace:
               "discipline` documents that comparative attribution-rate "
               "claims are retracted at the named-row / audit level. "
               "Documented codebook gap, not a regression."),
+    )
+    parser.add_argument(
+        "--allow-dryrun-human-gates",
+        action="store_true",
+        help=("allow explicitly marked dryrun human-audit stamps and "
+              "`independent_human_dryrun_llm_simulated` IRR provenance. "
+              "Use only for release-pipeline rehearsals, never for a "
+              "real tag/submission release."),
     )
     return parser.parse_args()
 
@@ -231,6 +259,242 @@ def as_int(value: Any) -> int | None:
         return int(value)
     except (TypeError, ValueError):
         return None
+
+
+def nonblank_list(value: Any) -> bool:
+    return (
+        isinstance(value, list)
+        and bool(value)
+        and all(isinstance(item, str) and item.strip() for item in value)
+    )
+
+
+def citation_has_replayable_anchor(citation: Any) -> bool:
+    if not isinstance(citation, dict):
+        return False
+    if citation.get("type") == "primary_onchain" and citation.get("tx_hash"):
+        return True
+    return bool(
+        citation.get("wayback")
+        or citation.get("query_hash")
+        or (citation.get("body_hash") and citation.get("body_path"))
+        or nonblank_list(citation.get("measurement_ids"))
+    )
+
+
+def check_trigger_citation_archiving(
+    all_events: list[dict[str, Any]],
+    errors: list[str],
+    warnings: list[str],
+    strict_repro: bool,
+) -> None:
+    for event in all_events:
+        event_id = str(event.get("id") or "<unknown>")
+        citations = (event.get("trigger") or {}).get("citation") or []
+        if not isinstance(citations, list):
+            continue
+        has_trigger_anchor = any(citation_has_replayable_anchor(c) for c in citations)
+        if not has_trigger_anchor:
+            msg = (
+                f"{event_id}: trigger.citation has no replayable archive anchor "
+                "(wayback, body_hash+body_path, query_hash, measurement_ids, or tx_hash)"
+            )
+            if strict_repro:
+                errors.append(msg)
+            else:
+                warnings.append(msg)
+        for idx, citation in enumerate(citations):
+            if citation_has_replayable_anchor(citation):
+                continue
+            evidence_use = citation.get("evidence_use") if isinstance(citation, dict) else None
+            if evidence_use not in {"contextual_unarchived", "non_admission"}:
+                msg = (
+                    f"{event_id}: trigger.citation[{idx}] has no replayable archive "
+                    "anchor and is not marked evidence_use=contextual_unarchived "
+                    "or non_admission"
+                )
+                if strict_repro:
+                    errors.append(msg)
+                else:
+                    warnings.append(msg)
+
+
+def check_temporal_tier_contract(
+    all_events: list[dict[str, Any]],
+    errors: list[str],
+) -> None:
+    for event in all_events:
+        event_id = str(event.get("id") or "<unknown>")
+        temporal_tier = str(event.get("temporal_tier") or "")
+        analysis_use = str(event.get("analysis_use") or "")
+        if not temporal_tier:
+            errors.append(f"{event_id}: missing temporal_tier")
+        if not analysis_use:
+            errors.append(f"{event_id}: missing analysis_use")
+        if (
+            temporal_tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"}
+            and analysis_use == "comparable_analysis"
+        ):
+            errors.append(
+                f"{event_id}: {temporal_tier} row cannot enter comparable_analysis"
+            )
+
+
+def check_dataset_surface_contract(
+    dataset_meta: dict[str, Any],
+    csv_rows: list[dict[str, str]],
+    dataset_payload: Any,
+    errors: list[str],
+) -> None:
+    event_count = as_int(dataset_meta.get("event_count"))
+    registry_event_count = as_int(dataset_meta.get("registry_event_count"))
+    paper_corpus_event_count = as_int(dataset_meta.get("paper_corpus_event_count"))
+    counts_by_status = dataset_meta.get("counts_by_status") or {}
+    admitted_count = (
+        as_int(counts_by_status.get("admitted"))
+        if isinstance(counts_by_status, dict)
+        else None
+    )
+
+    if dataset_meta.get("release_surface_scope") != "all_event_yaml_records":
+        errors.append(
+            "dataset.meta.json release_surface_scope must be all_event_yaml_records"
+        )
+    if dataset_meta.get("paper_corpus_statuses") != ["admitted"]:
+        errors.append("dataset.meta.json paper_corpus_statuses must be ['admitted']")
+    if event_count != len(csv_rows):
+        errors.append(
+            f"dataset.meta.json event_count={dataset_meta.get('event_count')} "
+            f"but dataset.csv has {len(csv_rows)} rows"
+        )
+    if registry_event_count != event_count:
+        errors.append(
+            f"dataset.meta.json registry_event_count={dataset_meta.get('registry_event_count')} "
+            f"but event_count={dataset_meta.get('event_count')}"
+        )
+    if isinstance(dataset_payload, list) and event_count != len(dataset_payload):
+        errors.append(
+            f"dataset.meta.json event_count={dataset_meta.get('event_count')} "
+            f"but dataset.json has {len(dataset_payload)} rows"
+        )
+    elif not isinstance(dataset_payload, list):
+        errors.append("dataset.json must contain a list of event records")
+    if paper_corpus_event_count != admitted_count:
+        errors.append(
+            "dataset.meta.json paper_corpus_event_count must equal "
+            "counts_by_status.admitted"
+        )
+    included_rows = [
+        row for row in csv_rows
+        if str(row.get("paper_corpus_included") or "").lower() == "true"
+    ]
+    if len(included_rows) != paper_corpus_event_count:
+        errors.append(
+            f"dataset.csv paper_corpus_included=true rows={len(included_rows)} "
+            f"but dataset.meta.json paper_corpus_event_count="
+            f"{dataset_meta.get('paper_corpus_event_count')}"
+        )
+    for row in csv_rows:
+        expected = str(row.get("status") or "") == "admitted"
+        observed = str(row.get("paper_corpus_included") or "").lower() == "true"
+        if expected != observed:
+            errors.append(
+                f"{row.get('id')}: dataset.csv paper_corpus_included="
+                f"{row.get('paper_corpus_included')!r} inconsistent with "
+                f"status={row.get('status')!r}"
+            )
+
+
+def month_range(start: datetime, end: datetime) -> list[str]:
+    year = start.year
+    month = start.month
+    months: list[str] = []
+    while (year, month) <= (end.year, end.month):
+        months.append(f"{year:04d}-{month:02d}")
+        month += 1
+        if month == 13:
+            year += 1
+            month = 1
+    return months
+
+
+def check_temporal_ledger(
+    dataset_meta: dict[str, Any] | None,
+    errors: list[str],
+) -> None:
+    csv_path = TEMPORAL_LEDGER_DIR / "monthly_discovery_ledger.csv"
+    json_path = TEMPORAL_LEDGER_DIR / "monthly_discovery_ledger.json"
+    if not csv_path.exists():
+        return
+    try:
+        frame = yaml.safe_load(SAMPLING_FRAME.read_text())
+    except FileNotFoundError:
+        errors.append("missing sampling/frame.yaml")
+        return
+    if not isinstance(frame, dict):
+        errors.append("sampling/frame.yaml must parse as a mapping")
+        return
+    snapshot = frame.get("snapshot_scope") or {}
+    start = parse_iso_date_or_datetime(snapshot.get("historical_start") or "2008-01-01")
+    cutoff = parse_iso_date_or_datetime((dataset_meta or {}).get("cutoff_date"))
+    if not start or not cutoff:
+        errors.append("temporal ledger needs sampling historical_start and dataset cutoff_date")
+        return
+    source_frame_ids = {
+        str(spec.get("source_frame_id") or "")
+        for spec in (frame.get("source_frames") or {}).values()
+        if isinstance(spec, dict) and spec.get("source_frame_id")
+    }
+    if not source_frame_ids:
+        errors.append("sampling/frame.yaml source_frames missing source_frame_id values")
+        return
+    months = set(month_range(start, cutoff))
+    expected = {
+        (source_frame_id, discovery_month)
+        for source_frame_id in source_frame_ids
+        for discovery_month in months
+    }
+    rows = read_csv(csv_path)
+    observed = {
+        (row.get("source_frame_id") or "", row.get("discovery_month") or "")
+        for row in rows
+    }
+    missing = sorted(expected - observed)
+    if missing:
+        preview = ", ".join(f"{source}:{month}" for source, month in missing[:10])
+        suffix = "..." if len(missing) > 10 else ""
+        errors.append(
+            f"temporal ledger missing {len(missing)} source-frame/month rows: "
+            f"{preview}{suffix}"
+        )
+    if len(rows) != len(observed):
+        errors.append("temporal ledger has duplicate source-frame/month rows")
+    for row in rows:
+        status = row.get("ledger_status") or ""
+        if status not in TEMPORAL_LEDGER_STATUSES:
+            errors.append(
+                f"{row.get('source_frame_id')} {row.get('discovery_month')}: "
+                f"invalid temporal ledger status={status!r}"
+            )
+        tier = row.get("temporal_tier") or ""
+        analysis_use = row.get("analysis_use") or ""
+        if (
+            tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"}
+            and analysis_use == "comparable_analysis"
+        ):
+            errors.append(
+                f"{row.get('source_frame_id')} {row.get('discovery_month')}: "
+                f"{tier} row cannot use comparable_analysis"
+            )
+    if json_path.exists():
+        payload = load_json(json_path)
+        meta = payload.get("meta") if isinstance(payload, dict) else {}
+        row_count = as_int((meta or {}).get("row_count"))
+        if row_count != len(rows):
+            errors.append(
+                f"monthly_discovery_ledger.json meta.row_count={row_count} "
+                f"but CSV has {len(rows)} rows"
+            )
 
 
 def check_citation_metadata(
@@ -371,6 +635,68 @@ def kappa_value(report: dict[str, Any], variable: str) -> float | None:
     return value if isinstance(value, (int, float)) else None
 
 
+def human_audit_is_dryrun(event: dict[str, Any]) -> bool:
+    notes = str(event.get("analysis_notes") or "")
+    return (
+        bool(event.get("last_human_audit"))
+        and "LAST_HUMAN_AUDIT STAMP" in notes
+        and "DRYRUN" in notes
+    )
+
+
+def handle_dryrun_audit_stamps(
+    *,
+    ids: list[str],
+    gate_name: str,
+    strict: bool,
+    allow_dryrun: bool,
+    errors: list[str],
+    warnings: list[str],
+) -> None:
+    if not ids:
+        return
+    msg = (
+        f"{len(ids)} {gate_name} cases carry DRYRUN last_human_audit "
+        "stamps; these are pipeline-rehearsal markers, not real human "
+        "audit: " + ", ".join(ids)
+    )
+    if strict and not allow_dryrun:
+        errors.append(msg + " (pass --allow-dryrun-human-gates only for dry runs)")
+    else:
+        warnings.append(msg)
+
+
+def handle_irr_provenance(
+    *,
+    mode: str | None,
+    strict_reliability: bool,
+    allow_dryrun: bool,
+    errors: list[str],
+    warnings: list[str],
+) -> None:
+    if mode == "independent_human_dryrun_llm_simulated":
+        msg = (
+            "IRR coder_provenance.mode is "
+            "independent_human_dryrun_llm_simulated; this is a "
+            "pipeline rehearsal, not independent-human reliability"
+        )
+        if strict_reliability and not allow_dryrun:
+            errors.append(
+                msg + " (pass --allow-dryrun-human-gates only for dry runs)"
+            )
+        else:
+            warnings.append(msg)
+    elif mode != "independent_human":
+        msg = (
+            f"IRR coder_provenance.mode={mode!r}; κ may be cited only as "
+            "self-consistency, not independent-human reliability"
+        )
+        if strict_reliability:
+            errors.append(msg)
+        else:
+            warnings.append(msg)
+
+
 def main() -> int:
     args = parse_args()
     events_dir = pathlib.Path(args.events_dir)
@@ -386,6 +712,15 @@ def main() -> int:
     events_by_id = {event["id"]: event for event in events}
     all_event_ids = {event["id"] for event in all_events}
     head = git_head_short()
+    dataset_meta: dict[str, Any] | None = None
+
+    check_trigger_citation_archiving(
+        all_events,
+        errors,
+        warnings,
+        args.strict_repro,
+    )
+    check_temporal_tier_contract(all_events, errors)
 
     try:
         dataset_meta = load_json(DATASET_META)
@@ -426,6 +761,17 @@ def main() -> int:
         if not path.exists():
             errors.append(f"missing tracked release dataset artifact: {path.name} — run `make dataset`")
 
+    if dataset_meta is not None:
+        try:
+            check_dataset_surface_contract(
+                dataset_meta,
+                read_csv(DATASET_CSV),
+                load_json(DATASET_JSON),
+                errors,
+            )
+        except FileNotFoundError:
+            pass
+
     for rel in REQUIRED_TABLES:
         path = paper_tables_dir / rel
         if not path.exists():
@@ -446,6 +792,15 @@ def main() -> int:
                 f"missing trigger-registry artifact: {path.relative_to(REPO_ROOT)} — "
                 "run `make trigger-registry`"
             )
+
+    for rel in REQUIRED_TEMPORAL_LEDGER:
+        path = TEMPORAL_LEDGER_DIR / rel
+        if not path.exists():
+            errors.append(
+                f"missing temporal-ledger artifact: {path.relative_to(REPO_ROOT)} — "
+                "run `make temporal-ledger`"
+            )
+    check_temporal_ledger(dataset_meta, errors)
 
     for rel in REQUIRED_SOURCE_MANIFEST:
         path = REPO_ROOT / rel
@@ -529,10 +884,15 @@ def main() -> int:
 
     try:
         table_meta = load_json(paper_tables_dir / ".meta.json")
-        if table_meta.get("event_count") != len(events):
+        expected_paper_event_count = (
+            as_int(dataset_meta.get("paper_corpus_event_count"))
+            if dataset_meta is not None
+            else len(events)
+        )
+        if table_meta.get("event_count") != expected_paper_event_count:
             errors.append(
                 f"paper table event_count={table_meta.get('event_count')} "
-                f"but admitted event count={len(events)}"
+                f"but paper corpus event count={expected_paper_event_count}"
             )
         snapshot = table_meta.get("dataset_snapshot") or {}
         if head and snapshot.get("source_commit") != head:
@@ -692,6 +1052,21 @@ def main() -> int:
         else:
             warnings.append(msg)
 
+    dryrun_audited_anchors = [
+        event["id"]
+        for event in events
+        if event.get("admission_tier") == "anchor_case"
+        and human_audit_is_dryrun(event)
+    ]
+    handle_dryrun_audit_stamps(
+        ids=dryrun_audited_anchors,
+        gate_name="paper-spotlight anchor",
+        strict=args.strict_audit,
+        allow_dryrun=args.allow_dryrun_human_gates,
+        errors=errors,
+        warnings=warnings,
+    )
+
     unaudited_nulls = [
         event["id"]
         for event in events
@@ -709,28 +1084,32 @@ def main() -> int:
         else:
             warnings.append(msg)
 
+    dryrun_audited_nulls = [
+        event["id"]
+        for event in events
+        if event.get("admission_tier") == "null_case"
+        and human_audit_is_dryrun(event)
+    ]
+    handle_dryrun_audit_stamps(
+        ids=dryrun_audited_nulls,
+        gate_name="null-denominator",
+        strict=args.strict_null_audit,
+        allow_dryrun=args.allow_dryrun_human_gates,
+        errors=errors,
+        warnings=warnings,
+    )
+
     try:
         irr = load_json(IRR_REPORT)
         provenance = irr.get("coder_provenance") or {}
         mode = provenance.get("mode")
-        # Both `independent_human` (real) and
-        # `independent_human_dryrun_llm_simulated` (pipeline-demo) pass
-        # the provenance gate; the latter is a clearly-labeled dryrun
-        # tier added so a maintainer can exercise the release flow
-        # end-to-end without lying about the recoder identity. The
-        # kappa_report.json carries the tier name verbatim and the
-        # `coder_notes` field documents the dryrun.
-        accepted_modes = {"independent_human",
-                          "independent_human_dryrun_llm_simulated"}
-        if mode not in accepted_modes:
-            msg = (
-                f"IRR coder_provenance.mode={mode!r}; κ may be cited only as "
-                "self-consistency, not independent-human reliability"
-            )
-            if args.strict_reliability:
-                errors.append(msg)
-            else:
-                warnings.append(msg)
+        handle_irr_provenance(
+            mode=mode,
+            strict_reliability=args.strict_reliability,
+            allow_dryrun=args.allow_dryrun_human_gates,
+            errors=errors,
+            warnings=warnings,
+        )
         coverage_kappa = kappa_value(irr, "coverage_status")
         if coverage_kappa is None or coverage_kappa < 0.6:
             errors.append(

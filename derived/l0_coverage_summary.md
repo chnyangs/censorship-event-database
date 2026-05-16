@@ -1,6 +1,6 @@
 # L0 OONI coverage summary
 
-Dataset snapshot: v0.1.0 · cutoff `2026-05-06` · commit `5b8d353` · generated `2026-05-14T11:24:13Z`
+Dataset snapshot: v0.2.0-rc-dryrun-2 · cutoff `2026-05-16` · commit `f8dc941` · generated `2026-05-16T12:00:00Z`
 
 This artifact summarizes archived OONI web-connectivity query outputs for candidate L0 network-layer evidence. It is denominator-aware: `no_ooni_measurements` means the public OONI query returned no measurements for that domain/window, not that blocking was absent.
 
@@ -34,10 +34,10 @@ This artifact summarizes archived OONI web-connectivity query outputs for candid
 | class | events |
 | --- | ---: |
 | `queried_no_ooni_measurements` | 14 |
-| `not_queried_yet` | 8 |
-| `cp_not_ingested_v0_1` | 22 |
+| `not_queried_yet` | 10 |
+| `cp_not_ingested_v0_1` | 24 |
 
-`not_queried_yet` events: `bitzlato-doj-2023`, `grinex-garantex-successor-ofac-2025`, `hydra-ofac-2022`, `iran-ransomware-ofac-2018`, `semenov-ofac-2023`, `tornado-cash-ofac-delisting-2025`, `tornado-cash-ofac-redesignation-2022`, `zservers-ofac-2025`.
+`not_queried_yet` events: `bitzlato-doj-2023`, `grinex-garantex-successor-ofac-2025`, `hydra-ofac-2022`, `iran-ransomware-ofac-2018`, `philippines-sec-binance-block-2024`, `sec-beaxy-platform-shutdown-2023`, `semenov-ofac-2023`, `tornado-cash-ofac-delisting-2025`, `tornado-cash-ofac-redesignation-2022`, `zservers-ofac-2025`.
 
 
 ## Phrasing lock

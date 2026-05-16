@@ -19,6 +19,7 @@ Reference documentation for the Cross-Layer Censorship Event Study Database. Alr
 | A-class submission readiness plan, go/no-go criteria, and phase gates | [`a-class-submission-readiness.md`](a-class-submission-readiness.md) |
 | Current A-class submission gap report generated from the live artifact state | [`../analysis/a_class_submission_gap_report.md`](../analysis/a_class_submission_gap_report.md) |
 | Longer A/A+ upgrade execution plan and expansion targets | [`top-venue-upgrade-plan.md`](top-venue-upgrade-plan.md) |
+| Final bounded collection pass before human audit / IRR | [`final-collection-protocol.md`](final-collection-protocol.md) |
 | Pre-admission selection surface and v0.2 case-expansion gaps | [`../analysis/trigger_registry/trigger_registry.md`](../analysis/trigger_registry/trigger_registry.md), [`../sampling/frame.yaml`](../sampling/frame.yaml) |
 | Event-by-layer denominator eligibility surface | [`../derived/coverage_matrix.md`](../derived/coverage_matrix.md) |
 | L0 OONI query denominator surface | [`../derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md) |

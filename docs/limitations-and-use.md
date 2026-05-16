@@ -16,7 +16,7 @@ primary-source citations (sha256 `body_hash`); a concrete target
 with admission-grade evidence; and an explicit `scoped_claim` that the
 retained observations support.
 
-Current working snapshot: **53 admitted events** and no working drafts; every event validates
+Current working snapshot: **52 admitted events**, 1 rejected registry row, and no working drafts; every event validates
 under [`scripts/validate.py`](../scripts/validate.py) at schema version
 0.2.0. Paper-facing tables use admitted events only. This is not a strict
 release/submission artifact until the full human/release gate passes.
@@ -62,7 +62,7 @@ using any output for anything consequential.
 
 ### 2.1 Not a predictive model
 
-With 53 admitted events across 6 research strata × 6 cascade layers × multiple
+With 52 admitted events across 6 research strata × 6 cascade layers × multiple
 time windows, **the statistical power for causal inference is low**. We
 publish descriptive patterns ("across N historical OFAC mixer
 designations, the canonical frontend was taken down within 48 hours in

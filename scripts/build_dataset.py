@@ -3,8 +3,10 @@
 """Build dataset release artifacts from event YAML files.
 
 Emits three files at the repo root:
-  - dataset.json       full events, pretty-printed, sort_keys for reproducibility
-  - dataset.csv        per-event summary row (one line per event)
+  - dataset.json       full event YAML registry surface, including admitted,
+                       rejected, or other non-draft rows when present
+  - dataset.csv        per-event summary row (one line per event) with
+                       paper_corpus_included=true only for admitted rows
   - dataset.meta.json  stable metadata sidecar: version, cutoff, counts, schema,
                        commit sha, generator. This is the file external consumers
                        (citation tooling, downstream pipelines, the static site,
@@ -20,7 +22,11 @@ dataset.meta.json schema (stable, do not break without a CHANGELOG entry):
                                                   # canonical definition in docs/limitations-and-use.md §2.5
     "generated_at":      "2026-04-23T10:20:30Z",  # UTC ISO-8601
     "source_commit":     "abc1234",               # short sha, "" if not in a git checkout
-    "event_count":       53,
+    "event_count":       53,                       # all event YAML rows
+    "registry_event_count": 53,                    # same all-event surface
+    "paper_corpus_statuses": ["admitted"],
+    "paper_corpus_event_count": 52,                # admitted-only paper corpus
+    "release_surface_scope": "all_event_yaml_records",
     "counts_by_status":  {"admitted": 53, ...},
     "counts_by_stratum": {"S1_ofac_sdn": 26, ...},
     "counts_by_shape":   {"cascade": 2, ...},
@@ -58,7 +64,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 EVENTS_DIR = REPO_ROOT / "events"
 CITATION_CFF = REPO_ROOT / "CITATION.cff"
 
-GENERATOR_VERSION = "1.0.0"
+GENERATOR_VERSION = "1.1.0"
 DATASET_NAME = "censorship-event-database"
 DATASET_URL = "https://github.com/chnyangs/censorship-event-database"
 SOURCE_INPUT_GLOBS = [
@@ -74,6 +80,7 @@ SOURCE_INPUT_GLOBS = [
     "schema/*.json",
     "schema/*.yaml",
     "sources/external_retrieval_receipts.yaml",
+    "sources/source_frame_triage/**/*",
     "scripts/*.py",
     "sources/operator_census/candidates.yaml",
     "sources/l0_datasets/_summary.json",
@@ -117,6 +124,8 @@ def summarize_event(event: dict) -> dict[str, object]:
         "id": event.get("id"),
         "status": event.get("status"),
         "research_stratum": event.get("research_stratum"),
+        "temporal_tier": event.get("temporal_tier"),
+        "analysis_use": event.get("analysis_use"),
         "empirical_shape": event.get("empirical_shape"),
         "admission_tier": event.get("admission_tier"),
         "trigger_type": event.get("trigger", {}).get("type"),
@@ -125,6 +134,7 @@ def summarize_event(event: dict) -> dict[str, object]:
         "jurisdiction": ",".join(event.get("jurisdiction", [])),
         "changed_layer_count": len(changed_layers),
         "changed_layers": ",".join(changed_layers),
+        "paper_corpus_included": "true" if event.get("status") == "admitted" else "false",
         "source_file": event.get("_source_file"),
     }
 
@@ -278,8 +288,14 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
         "source_input_hash": input_hash,
         "source_input_file_count": input_count,
         "event_count": len(events),
+        "registry_event_count": len(events),
+        "paper_corpus_statuses": ["admitted"],
+        "paper_corpus_event_count": sum(1 for e in events if e.get("status") == "admitted"),
+        "release_surface_scope": "all_event_yaml_records",
         "counts_by_status": counter("status"),
         "counts_by_stratum": counter("research_stratum"),
+        "counts_by_temporal_tier": counter("temporal_tier"),
+        "counts_by_analysis_use": counter("analysis_use"),
         "counts_by_shape": counter("empirical_shape"),
         "counts_by_tier": counter("admission_tier"),
         "generator": {
@@ -310,8 +326,9 @@ def main() -> int:
     rows = [summarize_event(event) for event in events]
     fieldnames = list(rows[0].keys()) if rows else [
         "id", "status", "research_stratum", "empirical_shape", "admission_tier",
+        "temporal_tier", "analysis_use",
         "trigger_type", "trigger_actor", "trigger_timestamp", "jurisdiction",
-        "changed_layer_count", "changed_layers", "source_file",
+        "changed_layer_count", "changed_layers", "paper_corpus_included", "source_file",
     ]
     with csv_out.open("w", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=fieldnames, lineterminator="\n")

@@ -30,6 +30,9 @@ REGISTRY_COLUMNS = [
     "trigger_id",
     "frame_unit_id",
     "source_frame_id",
+    "temporal_tier",
+    "analysis_use",
+    "discovery_month",
     "source_type",
     "registry_status",
     "event_status",
@@ -128,15 +131,65 @@ def observed_change_layers(event: dict[str, Any]) -> list[str]:
     )
 
 
-def infer_source_frame_id(candidate: dict[str, Any]) -> str:
-    value = candidate.get("source_frame_id")
+def infer_source_frame_id(record: dict[str, Any]) -> str:
+    value = record.get("source_frame_id")
     if value:
         return scalar(value)
-    extraction = candidate.get("extraction") or {}
+    stratum = scalar(record.get("research_stratum"))
+    if stratum in {"S1_ofac_sdn", "S2_ofac_removal"}:
+        return "ofac_recent_actions_crypto_2017_2026"
+    if stratum == "S3_doj_sec_cftc_fiod":
+        return "us_federal_enforcement_crypto_2017_2026"
+    if stratum == "S4_nation_state":
+        return "non_us_state_crypto_2017_2026"
+    if stratum == "S5_corporate":
+        return "corporate_policy_crypto_2017_2026"
+    if stratum == "S6_supranational":
+        return "supranational_crypto_2017_2026"
+    extraction = record.get("extraction") or {}
     source = str(extraction.get("source") or "")
     if "ofac-recent-actions-triage.json" in source:
         return "ofac_recent_actions_crypto_2017_2026"
     return ""
+
+
+def parse_year_month(timestamp: Any) -> tuple[int | None, str]:
+    value = scalar(timestamp)
+    if len(value) < 7:
+        return None, ""
+    try:
+        year = int(value[:4])
+        month = int(value[5:7])
+    except ValueError:
+        return None, ""
+    if not 1 <= month <= 12:
+        return None, ""
+    return year, f"{year:04d}-{month:02d}"
+
+
+def infer_temporal_tier(record: dict[str, Any]) -> str:
+    explicit = record.get("temporal_tier")
+    if explicit:
+        return scalar(explicit)
+    year, _month = parse_year_month((record.get("trigger") or {}).get("timestamp"))
+    if year is None:
+        return ""
+    if year <= 2012:
+        return "discovery_only_2008_2012"
+    if year <= 2016:
+        return "historical_baseline_2013_2016"
+    return "comparable_main_2017_present"
+
+
+def infer_analysis_use(record: dict[str, Any], temporal_tier: str) -> str:
+    explicit = record.get("analysis_use")
+    if explicit:
+        return scalar(explicit)
+    return {
+        "discovery_only_2008_2012": "discovery_ledger_only",
+        "historical_baseline_2013_2016": "historical_baseline",
+        "comparable_main_2017_present": "comparable_analysis",
+    }.get(temporal_tier, "")
 
 
 def frame_unit_id(trigger_id: str, source_frame_id: str, target: dict[str, Any]) -> str:
@@ -154,11 +207,16 @@ def event_row(event: dict[str, Any], source_file: str) -> dict[str, str]:
     trigger = event.get("trigger") or {}
     target = event.get("target") or {}
     trigger_id = scalar(event.get("id"))
-    source_frame_id = "legacy_v0_1_event_yaml"
+    source_frame_id = infer_source_frame_id(event) or "legacy_v0_1_event_yaml"
+    temporal_tier = infer_temporal_tier(event)
+    _year, discovery_month = parse_year_month(trigger.get("timestamp"))
     return {
         "trigger_id": trigger_id,
         "frame_unit_id": frame_unit_id(trigger_id, source_frame_id, target),
         "source_frame_id": source_frame_id,
+        "temporal_tier": temporal_tier,
+        "analysis_use": infer_analysis_use(event, temporal_tier),
+        "discovery_month": discovery_month,
         "source_type": "event_yaml",
         "registry_status": scalar(event.get("status")),
         "event_status": scalar(event.get("status")),
@@ -192,10 +250,15 @@ def candidate_row(candidate: dict[str, Any], source_file: str, rejected_dir: boo
     status = status or "candidate"
     trigger_id = candidate.get("id") or pathlib.Path(source_file).stem
     source_frame_id = infer_source_frame_id(candidate)
+    temporal_tier = infer_temporal_tier(candidate)
+    _year, discovery_month = parse_year_month(trigger.get("timestamp"))
     return {
         "trigger_id": scalar(trigger_id),
         "frame_unit_id": frame_unit_id(scalar(trigger_id), source_frame_id, target),
         "source_frame_id": source_frame_id,
+        "temporal_tier": temporal_tier,
+        "analysis_use": infer_analysis_use(candidate, temporal_tier),
+        "discovery_month": discovery_month,
         "source_type": "candidate_trigger",
         "registry_status": scalar(status),
         "event_status": "",
@@ -253,10 +316,17 @@ def load_candidate_rows(candidate_dir: pathlib.Path) -> list[dict[str, str]]:
 
 
 def validate_rows(rows: list[dict[str, str]], frame: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
+    errors: list[str] = validate_frame(frame)
     allowed_statuses = set(frame.get("trigger_registry_statuses") or [])
     allowed_strata = set((frame.get("strata") or {}).keys())
     allowed_target_kinds = set(frame.get("target_kinds") or [])
+    temporal_tiers = frame.get("temporal_tiers") or {}
+    allowed_temporal_tiers = set(temporal_tiers.keys())
+    allowed_analysis_uses = {
+        scalar(spec.get("analysis_use"))
+        for spec in temporal_tiers.values()
+        if isinstance(spec, dict) and spec.get("analysis_use")
+    }
 
     seen: set[str] = set()
     event_ids = {
@@ -284,6 +354,22 @@ def validate_rows(rows: list[dict[str, str]], frame: dict[str, Any]) -> list[str
         if target_kind and allowed_target_kinds and target_kind not in allowed_target_kinds:
             errors.append(f"{trigger_id}: target_kind={target_kind} not in sampling frame")
 
+        temporal_tier = row.get("temporal_tier") or ""
+        if temporal_tier and allowed_temporal_tiers and temporal_tier not in allowed_temporal_tiers:
+            errors.append(f"{trigger_id}: temporal_tier={temporal_tier} not in sampling frame")
+
+        analysis_use = row.get("analysis_use") or ""
+        if analysis_use and allowed_analysis_uses and analysis_use not in allowed_analysis_uses:
+            errors.append(f"{trigger_id}: analysis_use={analysis_use} not in sampling frame")
+
+        if (
+            temporal_tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"}
+            and analysis_use == "comparable_analysis"
+        ):
+            errors.append(
+                f"{trigger_id}: {temporal_tier} rows cannot use comparable_analysis"
+            )
+
         if row.get("source_type") == "candidate_trigger" and status == "promoted_to_event":
             linked_ids = [value for value in row.get("event_id", "").split(",") if value]
             if not linked_ids:
@@ -295,6 +381,55 @@ def validate_rows(rows: list[dict[str, str]], frame: dict[str, Any]) -> list[str
                     + ", ".join(missing)
                 )
 
+    return errors
+
+
+def optional_int(value: Any) -> int | None:
+    if value in (None, ""):
+        return None
+    return int(value)
+
+
+def validate_frame(frame: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    temporal_tiers = frame.get("temporal_tiers") or {}
+    if not temporal_tiers:
+        errors.append("sampling frame must declare temporal_tiers")
+    for tier, spec in temporal_tiers.items():
+        if not isinstance(spec, dict):
+            errors.append(f"{tier}: temporal_tiers entry must be a mapping")
+            continue
+        if not spec.get("date_range"):
+            errors.append(f"{tier}: temporal_tiers entry missing date_range")
+        if not spec.get("analysis_use"):
+            errors.append(f"{tier}: temporal_tiers entry missing analysis_use")
+        if not spec.get("default_month_status"):
+            errors.append(f"{tier}: temporal_tiers entry missing default_month_status")
+
+    strata = frame.get("strata") or {}
+    stratum_targets = [
+        optional_int(spec.get("v0_2_admitted_target"))
+        for spec in strata.values()
+    ]
+    if any(target is not None for target in stratum_targets):
+        missing = [
+            stratum
+            for stratum, target in zip(strata.keys(), stratum_targets)
+            if target is None
+        ]
+        if missing:
+            errors.append(
+                "all strata need v0_2_admitted_target when any stratum uses it; "
+                "missing: " + ", ".join(missing)
+            )
+        for stratum, spec in strata.items():
+            admitted_floor = optional_int(spec.get("v0_2_admitted_min")) or 0
+            admitted_target = optional_int(spec.get("v0_2_admitted_target"))
+            if admitted_target is not None and admitted_target < admitted_floor:
+                errors.append(
+                    f"{stratum}: v0_2_admitted_target must be >= "
+                    "v0_2_admitted_min"
+                )
     return errors
 
 
@@ -329,6 +464,11 @@ def build_summary(frame: dict[str, Any], rows: list[dict[str, str]]) -> list[str
     admitted_count = status_counts.get("admitted", 0)
     raw_registry_rows = len(rows)
     distinct_in_frame = len({row.get("frame_unit_id") or row["trigger_id"] for row in in_frame_rows})
+    candidate_milestone_min = int(snapshot.get("candidate_trigger_registry_milestone_min") or 0)
+    candidate_milestone_max = snapshot.get("candidate_trigger_registry_milestone_max", "n/a")
+    quality_milestone = optional_int(snapshot.get("admitted_event_quality_milestone"))
+    tier_counts = collections.Counter(row.get("temporal_tier") or "unspecified" for row in rows)
+    analysis_counts = collections.Counter(row.get("analysis_use") or "unspecified" for row in rows)
 
     lines = [
         "# Trigger registry",
@@ -351,31 +491,51 @@ def build_summary(frame: dict[str, Any], rows: list[dict[str, str]]) -> list[str
         ),
         (
             f"| distinct in-frame triggers | {distinct_in_frame} | "
-            f"{snapshot.get('candidate_trigger_registry_target_min', 'n/a')}-"
-            f"{snapshot.get('candidate_trigger_registry_target_max', 'n/a')} | "
-            f"{gap(distinct_in_frame, int(snapshot.get('candidate_trigger_registry_target_min') or 0))} |"
+            f"{candidate_milestone_min or 'n/a'}-{candidate_milestone_max} milestone | "
+            f"{gap(distinct_in_frame, candidate_milestone_min)} |"
         ),
         (
             f"| admitted events | {admitted_count} | "
-            f"{snapshot.get('admitted_event_target_min', 'n/a')}-"
-            f"{snapshot.get('admitted_event_target_max', 'n/a')} | "
-            f"{gap(admitted_count, int(snapshot.get('admitted_event_target_min') or 0))} |"
+            f"{quality_milestone or 'n/a'} quality milestone | "
+            f"{gap(admitted_count, quality_milestone or 0)} |"
         ),
+    ]
+    lines.extend([
         "",
         "## Status distribution",
         "",
         "| registry_status | count |",
         "| --- | ---: |",
-    ]
+    ])
     for status, count in sorted(status_counts.items()):
         lines.append(f"| `{status}` | {count} |")
 
     lines.extend([
         "",
+        "## Temporal tier distribution",
+        "",
+        "| temporal_tier | rows |",
+        "| --- | ---: |",
+    ])
+    for tier, count in sorted(tier_counts.items()):
+        lines.append(f"| `{tier}` | {count} |")
+
+    lines.extend([
+        "",
+        "## Analysis-use distribution",
+        "",
+        "| analysis_use | rows |",
+        "| --- | ---: |",
+    ])
+    for analysis_use, count in sorted(analysis_counts.items()):
+        lines.append(f"| `{analysis_use}` | {count} |")
+
+    lines.extend([
+        "",
         "## Stratum expansion gaps",
         "",
-        "| stratum | in-frame triggers | admitted | v0.2 admitted min | admitted gap | v0.2 candidate min | candidate gap |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| stratum | in-frame triggers | admitted | v0.2 admitted min | min gap | v0.2 admitted milestone | milestone gap | v0.2 candidate min | candidate gap |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ])
     for stratum, spec in (frame.get("strata") or {}).items():
         admitted = admitted_by_stratum.get(stratum, 0)
@@ -385,10 +545,14 @@ def build_summary(frame: dict[str, Any], rows: list[dict[str, str]]) -> list[str
             if row["research_stratum"] == stratum
         })
         admitted_min = int(spec.get("v0_2_admitted_min") or 0)
+        admitted_target = optional_int(spec.get("v0_2_admitted_target"))
         candidate_min = int(spec.get("v0_2_candidate_min") or 0)
+        admitted_target_cell = admitted_target if admitted_target is not None else "n/a"
+        admitted_target_gap = gap(admitted, admitted_target) if admitted_target is not None else "n/a"
         lines.append(
             f"| `{stratum}` | {all_rows} | {admitted} | {admitted_min} | "
-            f"{gap(admitted, admitted_min)} | {candidate_min} | {gap(all_rows, candidate_min)} |"
+            f"{gap(admitted, admitted_min)} | {admitted_target_cell} | "
+            f"{admitted_target_gap} | {candidate_min} | {gap(all_rows, candidate_min)} |"
         )
 
     lines.extend([
@@ -396,9 +560,11 @@ def build_summary(frame: dict[str, Any], rows: list[dict[str, str]]) -> list[str
         "## Phrasing lock",
         "",
         "- The registry gap is an expansion backlog, not a paper result.",
+        "- The 120 admitted-event number is a quality milestone, not a stop rule, cap, or freeze target.",
         "- Raw registry rows are an audit surface and include promoted duplicates and extractor-screened rows.",
         "- Candidate target gaps are computed from distinct in-frame triggers only.",
         "- Admitted-only paper tables remain the only source for paper-facing event counts.",
+        "- `discovery_only` and `historical_baseline` rows are excluded from 2017+ comparable denominators unless a paper claim explicitly separates them.",
         "- Draft, rejected, deferred, screened, and not-measurable triggers are retained to make selection visible.",
     ])
     return lines

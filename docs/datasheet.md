@@ -23,7 +23,10 @@ points at the authoritative source of truth in the repo rather than restating it
 - **Instances**: each row is a single censorship event defined by a trigger
   action (OFAC SDN, DOJ indictment, corporate policy, nation-state block, etc.)
   and one or more layer-level observations.
-- **Count at release time**: see `dataset.csv` header count + `analysis/pilot-status.json`.
+- **Count at release time**: `dataset.csv` / `dataset.json` are the
+  all-event YAML registry surface; use `dataset.meta.json ::
+  paper_corpus_event_count` or `dataset.csv :: paper_corpus_included=true`
+  for the admitted-only paper corpus.
 - **Sampling frame**: publicly documented crypto censorship events with an
   identifiable legal, regulatory, state, or corporate trigger and at least one
   independently archivable evidence surface. This is not a population sample of
@@ -72,7 +75,9 @@ points at the authoritative source of truth in the repo rather than restating it
 ## 4. Preprocessing / Cleaning / Labeling
 
 - YAML files are the ground truth. `build_dataset.py` emits the JSON and CSV
-  release artifacts deterministically from those YAMLs.
+  release artifacts deterministically from those YAMLs. These release
+  artifacts may include rejected registry rows for selection transparency;
+  paper tables consume only rows with `status=admitted`.
 - `build_trigger_registry.py` emits the pre-admission selection surface from
   `events/*.yaml` plus `candidate_triggers/*.yaml`.
 - `build_coverage_matrix.py` emits one row per event-layer pair and labels
@@ -143,7 +148,7 @@ they've been through admission review. Examples that stay within scope:
 - **Cascade-shape claim** — "cross-layer reactions were observed on at
   least three layers within 72 hours." Backed by the per-layer observation
   tallies. Safe when restated in layer-count terms.
-- **Distribution claim** — "among 53 admitted events, 38 satisfy the
+- **Distribution claim** — "among 52 admitted events, 38 satisfy the
   `comparison` shape (1–2 observed-change layers) and only 2 satisfy the
   `cascade` shape (≥3)." Safe *if* you carry the dataset version + cutoff
   so readers understand which admitted release slice you counted.
@@ -151,7 +156,7 @@ they've been through admission review. Examples that stay within scope:
 What the data does **not** support:
 
 - **Probabilistic forecasts** about future events of the same trigger type.
-  With 53 admitted events across 6 strata, the per-cell sample is too small.
+  With 52 admitted events across 6 strata, the per-cell sample is too small.
 - **Individualised covered-party determinations.** The dataset records
   what happened to listed targets; it does not opine on whether a
   particular future action falls under a regulator's authority.

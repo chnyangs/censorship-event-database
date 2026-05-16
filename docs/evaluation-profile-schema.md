@@ -29,7 +29,7 @@ Output:
 
 Three reasons, in decreasing order of importance:
 
-1. **Sample size**. 53 admitted events across 5–6 archetypes; many
+1. **Sample size**. 52 admitted events across 5–6 archetypes; many
    archetype × stack-type cells will have n < 5. Numeric scores invite
    downstream arithmetic (averaging, ratio-taking) that the cells do
    not support.

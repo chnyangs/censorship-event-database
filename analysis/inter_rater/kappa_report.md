@@ -4,10 +4,10 @@ Generated: `2026-05-15T12:01:34Z` · computer `scripts/compute_irr_kappa.py` · 
 
 ## Coder provenance
 
-- **Mode**: `independent_human_dryrun_llm_simulated` (one of `independent_human`, `llm_assisted_blinded`, `author_self_recode_60d_gap`, `unspecified` — published κ requires non-`unspecified` provenance).
+- **Mode**: `independent_human_dryrun_llm_simulated` (one of `independent_human`, `llm_assisted_blinded`, `llm_assisted_consensus_3x`, `independent_human_dryrun_llm_simulated`, `author_self_recode_60d_gap`, `unspecified` — published κ requires non-`unspecified` provenance, and reliability claims require `independent_human`).
 - **Coder**: `[DRYRUN-LLM] 3 blind LLM agents (claude-opus-4-7 ×3) labeled as independent_human for pipeline-demo only`
 - **Prompt / rubric version**: `2026-04-26-irr-prompt-v2-3x · DRYRUN labeled`
-- **Notes**: DRYRUN 2026-05-15: 3 LLM agents (A/B/C) ran the blind recode. coder_mode set to independent_human_dryrun_llm_simulated specifically so the strict-reliability gate accepts the artifact for the v0.1-rc pipeline-demo while making it visually obvious to any future reader that this is NOT a real independent-human pass. A real release decision must (a) run an actual independent human IRR pass, (b) revert this mode to independent_human, and (c) re-run scripts/release_signoff.py. Until then, all κ values must be cited as self-consistency / consensus, not reliability.
+- **Notes**: DRYRUN 2026-05-15: 3 LLM agents (A/B/C) ran the blind recode. coder_mode set to independent_human_dryrun_llm_simulated specifically so a dryrun release pipeline can accept the artifact only when --allow-dryrun-human-gates is passed, while making it visually obvious to any future reader that this is NOT a real independent-human pass. A real release decision must (a) run an actual independent human IRR pass, (b) revert this mode to independent_human, and (c) re-run scripts/release_signoff.py without --allow-dryrun-human-gates. Until then, all κ values must be cited as self-consistency / consensus, not reliability.
 
 | variable | n coded / n total | observed agreement | Cohen's κ (vs gold) | Fleiss' κ (across LLM agents) | label |
 | --- | --- | --- | --- | --- | --- |
@@ -67,6 +67,8 @@ Cohen's κ thresholds (Landis & Koch 1977 — still the most cited convention de
 
 - `independent_human`: the published κ is a reliability   estimate; cite as such.
 - `llm_assisted_blinded`: the published κ is a   **self-consistency check** — the recoder is from the same   model family / training distribution as a likely   author-assist substrate, and the gold and recode share   systematic biases. Cite as `self-consistency, single-coder   LLM-assisted recode` and treat the κ floor as a *lower bound*   on consistency, not a reliability estimate.
+- `llm_assisted_consensus_3x`: same caveat, with three blind   LLM agents majority-voted into the master recode and Fleiss'   κ reported across agents. Cite as consensus self-consistency,   not independent-human reliability.
+- `independent_human_dryrun_llm_simulated`: dryrun-only   pipeline rehearsal label. Do not cite as reliability and do   not use for a real release unless the paper-readiness gate is   being run with an explicit dryrun allowance.
 - `author_self_recode_60d_gap`: similar caveat (residual   recall risk); cite the gap length explicitly.
 - `unspecified`: do not cite the κ in the paper.
 

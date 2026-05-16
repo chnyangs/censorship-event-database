@@ -7,7 +7,7 @@ file, table, audit worksheet, or validation command proves it.
 
 ## Current Baseline
 
-- Corpus: 53 YAML records, 53 admitted, 0 working drafts.
+- Corpus: 53 YAML records, 52 admitted, 1 rejected registry row, 0 working drafts.
 - Case roles: 2 `anchor_case`, 38 `empirical_case`, 13 `null_case`.
 - Review posture: 7 `release_ready_scoped`, 46 `admitted_scope_blocked`.
 - Registry posture: 126 trigger-registry rows; 54 distinct in-frame
@@ -44,7 +44,8 @@ Goal: expand from a good v0.1 corpus to a predeclared v0.2 sampling frame.
 Targets:
 
 - 150-250 distinct in-frame trigger-registry rows.
-- 80-120 admitted events.
+- 120 admitted-quality events as a progress milestone; the stop rule is
+  source-frame exhaustion, not a case cap.
 - Stratum gaps are reported explicitly; missing cases are backlog, not
   hidden exclusions.
 

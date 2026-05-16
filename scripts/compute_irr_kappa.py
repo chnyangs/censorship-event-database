@@ -306,9 +306,11 @@ def main() -> int:
         "## Coder provenance",
         "",
         f"- **Mode**: `{cp['mode']}` (one of `independent_human`, "
-        "`llm_assisted_blinded`, `author_self_recode_60d_gap`, "
-        "`unspecified` — published κ requires non-`unspecified` "
-        "provenance).",
+        "`llm_assisted_blinded`, `llm_assisted_consensus_3x`, "
+        "`independent_human_dryrun_llm_simulated`, "
+        "`author_self_recode_60d_gap`, `unspecified` — published κ "
+        "requires non-`unspecified` provenance, and reliability claims "
+        "require `independent_human`).",
         f"- **Coder**: `{cp['coder_name'] or '—'}`",
         f"- **Prompt / rubric version**: `{cp['prompt_version'] or '—'}`",
         f"- **Notes**: {cp['notes'] or '—'}",
@@ -412,6 +414,14 @@ def main() -> int:
         "  systematic biases. Cite as `self-consistency, single-coder "
         "  LLM-assisted recode` and treat the κ floor as a *lower bound* "
         "  on consistency, not a reliability estimate.",
+        "- `llm_assisted_consensus_3x`: same caveat, with three blind "
+        "  LLM agents majority-voted into the master recode and Fleiss' "
+        "  κ reported across agents. Cite as consensus self-consistency, "
+        "  not independent-human reliability.",
+        "- `independent_human_dryrun_llm_simulated`: dryrun-only "
+        "  pipeline rehearsal label. Do not cite as reliability and do "
+        "  not use for a real release unless the paper-readiness gate is "
+        "  being run with an explicit dryrun allowance.",
         "- `author_self_recode_60d_gap`: similar caveat (residual "
         "  recall risk); cite the gap length explicitly.",
         "- `unspecified`: do not cite the κ in the paper.",
