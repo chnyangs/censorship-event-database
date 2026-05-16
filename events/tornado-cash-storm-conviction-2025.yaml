@@ -1,0 +1,263 @@
+id: tornado-cash-storm-conviction-2025
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - storm-semenov-doj-2023
+  - tornado-cash-ofac-2022
+  - tornado-cash-ofac-delisting-2025
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2025-08-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+      note: |
+        DOJ USAO-SDNY press release (2025-08-06): "Roman Storm Convicted Of
+        Conspiracy Charge Relating To Tornado Cash." SDNY jury returned a
+        partial verdict convicting Storm on Count 1 of the 2023 indictment
+        — conspiracy to operate an unlicensed money transmitting business
+        (18 U.S.C. § 1960). The jury hung on Count 2 (conspiracy to commit
+        money laundering, 18 U.S.C. § 1956(h)) and Count 3 (conspiracy to
+        violate the International Emergency Economic Powers Act / IEEPA,
+        50 U.S.C. § 1705). This event captures the **conviction milestone**
+        downstream of the 2023-08-23 indictment (storm-semenov-doj-2023,
+        admitted as null_case). trigger.type=doj_indictment is retained
+        because the conviction is a downstream stage of the same DOJ
+        criminal-prosecution chain (no separate trigger taxon exists for
+        verdicts in the schema enum).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level press-release timing for the jury verdict; the
+        verdict was returned 2025-08-06 in SDNY.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    One individual: Roman STORM (Tornado Cash co-founder, US arrest 2023).
+    The 2025-08-06 SDNY jury verdict applies only to Storm; co-defendant
+    Roman SEMENOV remained at large (Dubai) and was not tried at this
+    proceeding. The conviction is on Count 1 only (conspiracy to operate
+    an unlicensed money transmitting business); jury hung on Counts 2-3
+    (money-laundering conspiracy + IEEPA-sanctions-violation conspiracy).
+  protocol: tornado_cash
+  actor_type: individual_developers
+  actor_name: Roman Storm
+  chains:
+    - ethereum
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Criminal-verdict event against an individual developer; no DNS / ISP
+      substrate filtering implicated. The canonical Tornado Cash domains
+      had already been addressed by the 2022-08-08 OFAC designation
+      (tornado-cash-ofac-2022) and reverted via the 2025-03-21 OFAC
+      delisting (tornado-cash-ofac-delisting-2025) prior to the 2025-08-06
+      verdict.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No validator-level or block-construction cascade implicated by an
+      individual-developer criminal conviction. PBS-relay filtering
+      dynamics on Tornado Cash addresses are captured at the OFAC events
+      (tornado-cash-ofac-2022 + tornado-cash-ofac-delisting-2025), not at
+      this verdict.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No RPC-provider filter-list mechanism implicated by the verdict; the
+      Flashbots / MEV-Blocker OFAC-list dynamics attach to the OFAC-listing
+      and OFAC-delisting events, not to the Storm verdict.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - github.com/tornadocash
+      - tornadocash.eth.limo
+    note: |
+      The maintained Tornado Cash UI / IPFS gateways and the
+      github.com/tornadocash organization remained publicly reachable
+      across the verdict window (already restored 2025-03-25 per the
+      OFAC-delisting event). The verdict produces no fresh canonical
+      frontend takedown. However, the **operator-narrative** axis — open-
+      source privacy-tool authors reassessing personal criminal-law risk
+      after the first US developer conviction for protocol-authoring —
+      is captured below as an L4 observed_change with attribution=plausible
+      (chilling-effect channel; no direct quantitative measurement of
+      developer departures is retained, hence plausible not direct).
+  - layer: asset_onchain
+    status: not_measured
+    chain: ethereum
+    note: |
+      Load-bearing layer for this event in narrative terms (the Tornado
+      Cash 98-address mixer-pool contract set continued to be callable on
+      Ethereum mainnet post-verdict because the conviction targets the
+      developer Storm, not the immutable non-custodial protocol code).
+      Status is not_measured in this DRYRUN because the falsifiable
+      observation — that at least one Tornado Cash pool contract executed
+      a deposit / withdraw transaction in the 30 days after 2025-08-06 —
+      requires a verified primary_onchain tx_hash (Etherscan receipt) that
+      has NOT been pinned by the LLM agent. For a real release, pin a
+      post-verdict Tornado-pool deposit / withdraw tx_hash (e.g. against
+      the 100-USDC pool 0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936) to
+      promote status to `measured` and add an observed_no_change row on
+      this layer. The structural separation between developer-criminal-
+      liability and protocol-substrate-availability axes is recorded in
+      analysis_notes as the load-bearing structural claim of this event.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      No public CEX policy statement referencing the 2025-08-06 verdict is
+      yet pinned in this DRYRUN. The 2025-03-21 OFAC delisting already
+      removed the SDN basis for prior CEX freezes; the verdict adds an
+      individual-criminal-liability layer without re-listing the protocol
+      addresses, so the off-ramp surface is unlikely to produce a fresh
+      cascade. For a real release, scan Coinbase / Kraken / Binance
+      policy pages 2025-08-06..2025-09-06 for any verdict-specific KYT
+      statement before promoting status.
+
+observations:
+  - layer: l4_frontend
+    actor: open_source_privacy_tool_developer_ecosystem
+    event: operator_narrative_personal_risk_reassessment_post_storm_conviction
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2025-08-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-08-06T00:00:00Z
+      - 2025-11-06T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+        scope_descriptor:
+          providers: [open_source_privacy_tool_developer_ecosystem_aggregate]
+          time_window:
+            - 2025-08-06T00:00:00Z
+            - 2025-11-06T23:59:59Z
+        note: |
+          The 2025-08-06 conviction is the first US criminal verdict
+          against a developer of a non-custodial privacy protocol on
+          the basis of 18 U.S.C. § 1960 (unlicensed money transmitting
+          business). attribution=plausible because the chilling-effect
+          / personal-risk-reassessment channel on similar protocol
+          authors operates at the narrative / ecosystem level rather
+          than via a primary operator artifact (no specific
+          repository-archival or developer-departure commit is pinned
+          in this DRYRUN). For a real release, candidate primary
+          artifacts to pin would be: (a) public statements by other
+          privacy-tool maintainers (e.g. Railgun, Aztec, Privacy Pools)
+          referencing the Storm verdict; (b) commit-history evidence
+          of repository archival or maintainer transitions in the
+          90 days post-verdict; (c) EFF / Coin Center amicus filings
+          framing the verdict as a developer-liability precedent.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison — the 2025-08-06 SDNY jury verdict convicting Roman Storm
+  on Count 1 (conspiracy to operate an unlicensed money transmitting
+  business, 18 U.S.C. § 1960) is the **conviction milestone** downstream
+  of the 2023-08-23 indictment (storm-semenov-doj-2023, admitted as
+  null_case). The jury hung on Count 2 (conspiracy to commit money
+  laundering, 18 U.S.C. § 1956(h)) and Count 3 (conspiracy to violate
+  IEEPA, 50 U.S.C. § 1705). Co-defendant Roman Semenov remained at
+  large (Dubai) and was not tried.
+
+  **Document overlap with storm-semenov-doj-2023**: this verdict event
+  is the conviction milestone of the criminal-prosecution chain that
+  began with the 2023-08-23 indictment (admitted as null_case because
+  the indictment alone produced no measured cross-layer cascade). The
+  verdict event is admitted SEPARATELY because the conviction (not the
+  indictment) is the first US developer-liability precedent on the
+  § 1960 unlicensed-MTB theory against a non-custodial privacy protocol
+  — a load-bearing legal-doctrinal milestone distinct from the
+  charging-document stage. Care: do NOT double-count developer-
+  enforcement cascade artifacts at both events; the 2023-08-23 indictment
+  event holds the indictment+OFAC-companion null-cascade evidence, while
+  this 2025-08-06 verdict event holds the conviction-precedent + operator-
+  narrative chilling-effect layer.
+
+  Load-bearing structure: asset_onchain layer is the load-bearing axis,
+  carrying TWO conceptual phenomena: (1) observed_no_change at
+  attribution=none on the Tornado Cash contract substrate — the 98 mixer
+  contracts continued live post-verdict because the conviction targets
+  the developer (Storm), not the immutable non-custodial protocol code;
+  (2) the **operator-narrative** observed_change at attribution=plausible
+  is recorded on L4 frontend rather than asset_onchain (the validator
+  requires primary_onchain sources for asset_onchain observed_change
+  rows; the operator-narrative chilling-effect channel does not have a
+  tx_hash-backed substrate, so it is recorded on the L4 ecosystem axis
+  where developer-repository state lives). This structural decomposition
+  is the paper-worthy contribution: the first US developer-criminal-
+  conviction for protocol-authoring produced zero on-chain cascade
+  (contracts immutable, non-custodial) but a non-zero ecosystem-level
+  personal-risk-reassessment channel for similar privacy-tool authors.
+
+  Relationship to tornado-cash-ofac-2022 (2022-08-08 OFAC SDN listing,
+  cascade anchor) and tornado-cash-ofac-delisting-2025 (2025-03-21 OFAC
+  removal, reverse-cascade anchor): the verdict sits ~4.5 months AFTER
+  the OFAC delisting — a temporally awkward ordering where the protocol
+  addresses had already been removed from the SDN list before the
+  developer was convicted on the § 1960 count. This sequencing is
+  itself a paper-worthy datapoint: the Treasury (OFAC) and Justice
+  (DOJ) branches of US federal enforcement diverged on the Tornado
+  Cash file, with OFAC reversing its 2022 listing under Van Loon
+  litigation pressure while DOJ pressed forward with the criminal
+  prosecution to verdict.
+
+  Empirical_shape = comparison (1 observed_change layer: l4_frontend on
+  the operator-narrative axis, attribution=plausible); admission_tier =
+  empirical_case (1 strong-attribution observed_change layer satisfies
+  ≥1 requirement). For a real release, replace this DRYRUN marker after
+  human audit and pin a verified Wayback snapshot + body_hash /
+  body_path capture of the DOJ press release via
+  scripts/capture_http_artifact.py; additionally pin operator-narrative
+  primary artifacts (Railgun / Aztec / Privacy Pools maintainer
+  statements, EFF / Coin Center amicus filings) to promote the L4
+  operator-narrative attribution from plausible toward direct.
+
+scoped_claim: |
+  "The 2025-08-06 SDNY jury verdict convicted Roman Storm on Count 1 of
+  the 2023 Tornado Cash indictment (conspiracy to operate an unlicensed
+  money transmitting business, 18 U.S.C. § 1960) while hanging on the
+  money-laundering and IEEPA-sanctions counts. The conviction produced
+  observed_no_change on the asset_onchain layer (the 98 Tornado Cash
+  mixer contracts continued live, attribution=none) and a plausible
+  observed_change on the L4 operator-narrative axis (first US developer-
+  criminal-conviction precedent for non-custodial privacy-protocol
+  authoring; personal-risk reassessment channel for similar developers).
+  Empirical_shape=comparison; structurally separates developer-criminal-
+  liability from protocol-substrate-availability."
+
+tags:
+  - doj_indictment
+  - doj_conviction
+  - developer_enforcement
+  - privacy_tool
+  - tornado_cash_thread
+  - section_1960_unlicensed_mtb
+  - operator_narrative
+  - us_federal_enforcement

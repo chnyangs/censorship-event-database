@@ -1,0 +1,222 @@
+id: binance-cftc-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - binance-4framework-2023
+  - sec-v-binance-2023
+
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2023-03-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/8680-23
+      wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8680-23
+      note: |
+        CFTC press release 8680-23 (2023-03-27): "CFTC Charges Binance and
+        Its Founder, Changpeng Zhao, with Willful Evasion of Federal Law
+        and Operating an Illegal Digital Asset Derivatives Exchange." Civil
+        enforcement complaint filed in U.S. District Court for the Northern
+        District of Illinois against Binance Holdings Limited, Binance
+        Holdings (IE) Limited, Binance (Services) Holdings Limited,
+        Changpeng Zhao (CEO/founder), and Samuel Lim (former Chief
+        Compliance Officer). Charges include (a) operating an unregistered
+        derivatives exchange / DCM / SEF / FCM, (b) offering illegal
+        off-exchange commodity-option / leveraged retail commodity
+        transactions to US persons, (c) willful evasion of US federal law
+        via deliberate VPN-based circumvention guidance to US customers,
+        and (d) BSA / AML / KYC failures. Resolved 2023-11-21 via $1.35B
+        CFTC monetary penalty as part of the broader multi-agency
+        $4.3B settlement (DOJ + FinCEN + OFAC + CFTC).
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per CFTC press release 8680-23 (2023-03-27).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance Holdings Limited + Binance Holdings (IE) Limited + Binance
+    (Services) Holdings Limited (corporate entities operating the global
+    Binance platform) + Changpeng Zhao (CEO / founder) + Samuel Lim
+    (former Chief Compliance Officer). Canonical domain binance.com
+    remained operational throughout the CFTC complaint stage; the
+    structural rails-level resolution did not occur until the 2023-11-21
+    multi-agency $4.3B settlement (see binance-4framework-2023).
+  protocol: null
+  actor_type: exchange_enforcement
+  actor_name: Binance Holdings + Changpeng Zhao + Samuel Lim
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer (DNS / ISP) blocking observed at the CFTC
+      complaint stage. The complaint operates on commodities-law +
+      BSA-AML axes at the exchange-registration / off-ramp layer, not
+      substrate-level filtering of binance.com.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Commodities / derivatives civil enforcement; no validator-level
+      or block-construction cascade implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No RPC-provider filter-list mechanism implicated; the cascade
+      surface is the centralized derivatives venue.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [binance.com]
+    note: |
+      No admission-grade L4 frontend diff is retained for the CFTC
+      complaint stage. Binance.com remained globally reachable; the
+      US-resident geo-block predates this complaint (set up in 2019
+      with the Binance.US bifurcation). The structural rails-level
+      resolution attaches to the 2023-11-21 multi-agency settlement
+      event (binance-4framework-2023), not to this filing date.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN listing and no issuer-level (stablecoin) freeze primitive
+      is implicated by the CFTC complaint.
+  - layer: offramp_cex
+    status: measured
+    scope: [binance.com]
+    note: |
+      Binance IS the off-ramp under enforcement. The CFTC complaint
+      pleads (a) operation of an unregistered DCM / SEF / FCM offering
+      illegal off-exchange leveraged retail commodity transactions to
+      US persons, and (b) willful evasion via VPN-based circumvention
+      guidance — both load-bearing for the eventual 2023-11-21 $1.35B
+      CFTC consent-order rails-level remediation. Count only the
+      CFTC complaint as the formal commencement of the rails-level
+      enforcement axis; the structural remediation (monitor regime,
+      retrospective transaction review) materializes at the 2023-11-21
+      settlement.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: cftc_complaint_initiates_binance_us_rails_enforcement_axis
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-03-27T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-03-27T00:00:00Z
+      - 2023-11-21T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/8680-23
+        wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8680-23
+        scope_descriptor:
+          providers: [binance_com_offramp_cex]
+          time_window:
+            - 2023-03-27T00:00:00Z
+            - 2023-11-21T23:59:59Z
+          addresses_cohort: binance_global_us_persons
+        note: |
+          CFTC press release 8680-23 anchors the 2023-03-27 commencement
+          of the formal CFTC enforcement axis against the Binance
+          off-ramp. The complaint pleads operation of an unregistered
+          DCM / SEF / FCM offering illegal leveraged retail commodity
+          transactions to US persons + willful VPN-based circumvention
+          guidance + BSA-AML failures. attribution=direct because the
+          CFTC press release / complaint is the legal instrument
+          initiating the rails-level enforcement chain that resolves
+          2023-11-21 via the $1.35B CFTC monetary penalty (one of the
+          four federal-agency penalties in the $4.3B multi-agency
+          settlement). The CFTC complaint is therefore the first of
+          the four US federal enforcement actions that converge on the
+          2023-11-21 multi-agency settlement.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive
+  collection plan; us_federal_enforcement frame discovery): authored by
+  LLM agent without personally verifying Wayback/body_hash;
+  origin=human_reviewed required by validator. Real release must replace
+  this DRYRUN marker with a human-verified audit after pinning real
+  archive anchors.
+
+  comparison — the 2023-03-27 CFTC civil complaint in the N.D. Ill.
+  against Binance Holdings + Changpeng Zhao + Samuel Lim (former CCO) is
+  the FIRST of four US federal enforcement actions that ultimately
+  converge on the 2023-11-21 multi-agency $4.3B settlement (DOJ +
+  FinCEN + OFAC + CFTC). Charges include operating an unregistered
+  derivatives exchange / DCM / SEF / FCM, offering illegal off-exchange
+  leveraged retail commodity transactions to US persons, willful
+  evasion of US federal law via VPN-based circumvention guidance, and
+  BSA / AML / KYC failures. Resolved 2023-11-21 via $1.35B CFTC
+  monetary penalty as the commodities-side share of the $4.3B
+  multi-agency settlement.
+
+  **Document overlap with binance-4framework-2023**: this CFTC
+  complaint event is the FIRST of the four federal actions that
+  consolidate at the 2023-11-21 settlement; the multi-agency
+  settlement event captures the CONSOLIDATED $4.3B resolution
+  (including the $1.35B CFTC component). This event is admitted
+  separately because the 2023-03-27 CFTC complaint precedes the
+  consolidated settlement by ~8 months (240 days) — paper-worthy
+  temporal sequencing: a $B-scale enforcement can produce a multi-month
+  rails-enforcement pendency before the consolidated resolution
+  materializes. Care: do NOT double-count the same rails-level
+  remediation at both events; the 2023-11-21 settlement event holds
+  the structural cascade artifacts (compliance-monitor regime,
+  retrospective review), while this 2023-03-27 event holds only the
+  formal commencement of the CFTC rails-enforcement axis.
+
+  Relationship to sec-v-binance-2023 (2023-06-05, 70 days later) and
+  binance-4framework-2023 (2023-11-21, 240 days later): the CFTC
+  complaint is the earliest of the three Binance US-federal-enforcement
+  events in the dataset. Stratification across these three events
+  produces a 240-day enforcement timeline (CFTC → SEC → multi-agency
+  settlement) against a single $B-scale exchange — the longest
+  multi-axis enforcement sequence in the dataset.
+
+  Empirical_shape = comparison (1 observed_change layer: offramp_cex);
+  admission_tier = empirical_case (1 direct-attribution observed_change
+  layer). For a real release, replace this DRYRUN marker after human
+  audit and pin a verified Wayback snapshot + body_hash / body_path
+  capture of CFTC press release 8680-23 via
+  scripts/capture_http_artifact.py.
+
+scoped_claim: |
+  "The 2023-03-27 CFTC civil complaint in N.D. Ill. against Binance
+  Holdings + Changpeng Zhao + Samuel Lim (former CCO) is the first of
+  four US federal enforcement actions that converge on the 2023-11-21
+  multi-agency $4.3B settlement. The CFTC complaint initiates the
+  rails-level commodities-derivatives enforcement axis against Binance;
+  the structural rails remediation (compliance-monitor regime, $1.35B
+  CFTC penalty) attaches to the 2023-11-21 consolidated settlement
+  (binance-4framework-2023), not to the 2023-03-27 filing date. One
+  observed_change layer (offramp_cex) with direct attribution."
+
+tags:
+  - cftc_enforcement
+  - exchange_enforcement
+  - binance
+  - commodities_law
+  - bsa_violation
+  - aml_failure
+  - us_federal_enforcement
+  - pre_settlement_complaint

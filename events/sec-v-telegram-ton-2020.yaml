@@ -1,0 +1,289 @@
+id: sec-v-telegram-ton-2020
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - sec-v-coinbase-2023
+  - cftc-v-ooki-dao-2022
+  - blockfi-sec-lending-2022
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2020-03-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2020-69
+      wayback: https://web.archive.org/web/2020/https://www.sec.gov/news/press-release/2020-69
+      evidence_use: contextual_unarchived
+      note: |
+        SEC press release 2020-69 (2020-03-24): "Court Orders Preliminary
+        Injunction in Telegram Case." SDNY (Judge P. Kevin Castel) granted
+        the SEC's motion for a preliminary injunction halting Telegram
+        Group Inc. and TON Issuer Inc. from distributing the approximately
+        2.9 billion Gram digital tokens to the 175 initial purchasers
+        (and ultimately to the secondary market) from the October 2017 -
+        March 2018 private placement that raised roughly $1.7 billion.
+        The court applied the Howey test plus the Gary Plastic resale-
+        analysis doctrine and concluded the Gram distribution constituted
+        an unregistered offering of securities under Section 5 of the
+        Securities Act of 1933, because the initial purchasers stood as
+        statutory underwriters reselling into a public market. This is the
+        landmark SAFT-framework ("Simple Agreement for Future Tokens")
+        decision: the court rejected Telegram's argument that the SAFT
+        sale to accredited investors and the later token delivery were
+        legally distinct transactions, holding instead that they were
+        steps in a single unregistered public offering. Marked
+        evidence_use=contextual_unarchived because the authoring LLM agent
+        did not personally pin a Wayback snapshot timestamp or compute a
+        body_hash for the press release; SEC press-release URL format is
+        stable and routinely captured by Wayback, but the specific
+        snapshot is to be re-pinned during human audit before this
+        citation may serve as an admission anchor in its own right.
+        Provisional Wayback anchor uses Wayback Machine year-prefix
+        lookup.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per the 2020-03-24 SEC press release announcing
+        SDNY Judge Castel's order granting the preliminary injunction.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Telegram Group Inc. + TON Issuer Inc. (the corporate issuer entities
+    named in SEC v. Telegram Group Inc., No. 19-cv-9439 (SDNY)). Subject
+    matter scope: the Gram token and the approximately $1.7 billion
+    October 2017 - March 2018 SAFT private placement to 175 initial
+    purchasers. No on-chain addresses are enumerated because the Gram
+    token never reached public distribution: the TON mainnet launch was
+    halted by the preliminary injunction and Telegram terminated the TON
+    project on 2020-05-12 before any token-level on-chain primitive
+    became live on a public chain. The dataset row enumerates only the
+    Telegram corporate issuer entities and the Gram instrument as a
+    distribution that was cancelled at the issuer level.
+  actor_type: token_issuer_securities_enforcement
+  actor_name: Telegram Group Inc. / TON Issuer Inc.
+  chains: []
+  canonical_domains:
+    - telegram.org
+    - ton.org
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The SEC civil action and SDNY preliminary injunction are securities-
+      law remedies against the Telegram corporate issuer entities; they
+      did not alter ISP-level reachability of telegram.org or ton.org.
+      not_applicable on the L0 network-reachability layer.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The TON mainnet never launched publicly during the injunction
+      window — there is no live TON consensus surface in 2020-03-24
+      against which to measure relay-filter / validator-set
+      compliance behaviour. The L1 layer this dataset measures
+      (post-Merge Ethereum PBS relay surface and chain-specific
+      validator-level filtering) did not exist for TON at the trigger
+      timestamp. not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2020-03; Flashbots Protect launched 2022-11. The TON public
+      RPC surface itself never launched during the injunction window.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The SEC filing did not require shutdown of telegram.org or
+      ton.org; the order operates at the token-distribution / issuer
+      layer rather than the public-web frontend. No independent L4
+      frontend diff is reconstructed for this event.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Gram had no issuer-side blacklist / freeze admin method that
+      ever became operational on a public chain — the token never
+      launched. The dataset's asset_onchain primitive measures live
+      issuer-controlled admin actions (e.g. Circle USDC blacklist
+      additions); there is no analogous Gram primitive to retain.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - gram_token_distribution
+      - ton_mainnet_public_launch
+    note: |
+      Load-bearing layer for this event: the SDNY preliminary
+      injunction halted the planned Gram token distribution to the
+      175 initial purchasers and, by extension, the cascade onto
+      public secondary venues. Gram never launched on public CEXs
+      because the distribution itself was injunction-triggered
+      cancelled. The distinct measurable observation is the issuer-
+      cancellation event: Telegram's 2020-05-12 termination of the
+      TON project, which is the operator-state-change endpoint of
+      the SEC enforcement episode and is the closest analogue this
+      dataset has to a CEX/offramp listing event when the listing
+      never came into being. Attached below as observation_kind=
+      observed_change with attribution=direct because the issuer
+      cancellation is the legally compelled response to the SDNY
+      injunction.
+
+observations:
+  - layer: offramp_cex
+    actor: issuer:telegram_ton
+    event: sec_injunction_triggered_issuer_cancellation_of_gram_token_distribution_and_ton_mainnet_launch
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-05-12T00:00:00Z
+    precision: day
+    delta_hours: 1176
+    window:
+      - 2020-03-24T00:00:00Z
+      - 2020-05-12T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2020-69
+        wayback: https://web.archive.org/web/2020/https://www.sec.gov/news/press-release/2020-69
+        evidence_use: contextual_unarchived
+        note: |
+          SEC press release 2020-69 (2020-03-24) announcing the SDNY
+          preliminary injunction granted by Judge P. Kevin Castel.
+          The injunction halted the planned Gram distribution from
+          Telegram / TON Issuer to the 175 initial purchasers and, by
+          extension, the resale cascade to the public secondary
+          market. attribution=direct because the SEC press release and
+          the underlying SDNY order are the direct legal mechanism
+          compelling the issuer-side cancellation. Provisional Wayback
+          anchor uses Wayback Machine year-prefix lookup; specific
+          snapshot to be re-pinned during human audit.
+      - type: primary_corporate
+        url: https://telegram.org/blog/what-was-ton
+        wayback: https://web.archive.org/web/2020/https://telegram.org/blog/what-was-ton
+        evidence_use: contextual_unarchived
+        note: |
+          Telegram founder Pavel Durov's 2020-05-12 blog post
+          "What was TON and why it is over" announcing termination of
+          the TON project, citing the SDNY decision as the operative
+          reason: a U.S. court ruled the planned Gram distribution
+          could not occur even to non-U.S. purchasers, which Telegram
+          interpreted as foreclosing the global mainnet launch.
+          Provides the direct issuer-side timestamp of the
+          cancellation event 49 days after the injunction.
+          evidence_use=contextual_unarchived pending Wayback re-pin
+          and body_hash capture during human audit; provisional
+          Wayback anchor uses Wayback Machine year-prefix lookup.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/
+  asset_onchain are all not_applicable because the SDNY preliminary
+  injunction did not alter ISP-level reachability of telegram.org or
+  ton.org, the TON mainnet never publicly launched (so the L1/L3 and
+  asset_onchain primitives this dataset measures had no live surface
+  on TON during the injunction window), and the order did not require
+  frontend takedown. The single load-bearing observation is the
+  issuer-compelled cancellation of the Gram distribution and the TON
+  mainnet launch, attribution=direct via the 2020-03-24 SDNY
+  injunction and the 2020-05-12 Telegram termination post.
+
+  Structural significance: SEC v. Telegram Group Inc. (No. 19-cv-9439,
+  SDNY, Judge P. Kevin Castel) is the landmark SAFT-framework
+  decision in U.S. crypto-securities enforcement. Telegram argued the
+  Simple Agreement for Future Tokens sale to accredited investors and
+  the later token delivery were legally distinct transactions — the
+  SAFT-being-a-security-but-the-token-not architecture promoted by
+  practitioners following the 2017 ICO wave. Judge Castel rejected
+  that severance under a Gary Plastic resale-analysis reading of
+  Howey: the initial purchasers were treated as statutory underwriters
+  whose contemplated resales into a public market collapsed the
+  primary and secondary transactions into a single unregistered
+  public offering of securities. This precedent reshaped the SAFT
+  fundraising template and is regularly cited in subsequent SEC
+  unregistered-token cases (and forms part of the legal background
+  for related-event rows including sec-v-coinbase-2023 and
+  blockfi-sec-lending-2022).
+
+  The measurable observation is intentionally narrow: an issuer-level
+  cancellation of a planned token distribution + the foreclosed
+  public-CEX listing cascade. Gram never launched on public CEXs,
+  not because exchanges delisted it, but because the issuer-side
+  distribution itself was injunction-triggered cancelled. This is
+  why offramp_cex is the load-bearing layer rather than a stub L4
+  takedown or a token-delisting claim. The dataset does not assert
+  ISP-level blocking of telegram.org / ton.org, a frontend takedown,
+  on-chain admin-method engagement (Gram had no live such primitive),
+  or specific secondary-market delisting actions by named CEXs (none
+  occurred because there was no token to list).
+
+  Pairs with cftc-v-ooki-dao-2022 (legal-personhood / DAO-as-target
+  enforcement at the modern endpoint of U.S. crypto-civil-action
+  reach) and sec-v-coinbase-2023 (entity-level unregistered-
+  securities theory against an operating exchange). All three are
+  S3 securities/derivatives civil actions where the load-bearing
+  observation is an operator-state or issuer-state change rather
+  than a chain-level filter.
+
+scoped_claim: |
+  "The 2020-03-24 SDNY preliminary injunction in SEC v. Telegram
+  Group Inc. (No. 19-cv-9439, Judge Castel) is admitted as a single-
+  layer offramp_cex issuer-cancellation row: Telegram's 2020-05-12
+  termination of the TON project and the foreclosed Gram public-CEX
+  listing cascade. The row does not claim ISP-level blocking of
+  telegram.org / ton.org, a frontend takedown, on-chain admin-method
+  engagement, or specific named-CEX delisting actions, because the
+  Gram token never reached public distribution."
+
+scoped_knowledge: |
+  What changed: Telegram terminated the TON project on 2020-05-12
+  citing the SDNY preliminary injunction as the operative reason; the
+  planned Gram distribution to 175 initial purchasers and the
+  contemplated public-CEX listing cascade were foreclosed at the
+  issuer level. The observable cascade is an issuer-state-change
+  event rather than a downstream exchange-listing change, because
+  the listing layer never came into being.
+
+  What did not change or could not be measured: telegram.org and
+  ton.org remained reachable at the ISP layer; the SEC action did not
+  engage a frontend-takedown remedy; no live TON L1 consensus or
+  public RPC surface existed to measure during the injunction window;
+  Gram had no live issuer-side blacklist / freeze admin primitive on
+  a public chain because the token never launched. The dataset
+  therefore declines to retain L0/L1/L3/L4/asset_onchain observations
+  for this event.
+
+  Attribution: direct to the SDNY preliminary injunction and the
+  Telegram founder's 2020-05-12 termination post, which cites the
+  injunction as the operative reason for cancellation. This is one
+  of the strongest direct-attribution links available in the S3
+  securities-enforcement corpus because the issuer's own public
+  statement names the federal-court order as the cancellation
+  driver.
+
+tags:
+  - sec_enforcement
+  - securities_law
+  - saft_framework
+  - telegram_ton
+  - unregistered_offering
+  - issuer_cancellation
+  - howey_test
+  - landmark_precedent

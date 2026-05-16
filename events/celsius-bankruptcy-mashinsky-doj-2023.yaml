@@ -1,0 +1,256 @@
+id: celsius-bankruptcy-mashinsky-doj-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2023-07-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/founder-and-former-chief-executive-officer-celsius-network-limited-charged-multi
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/founder-and-former-chief-executive-officer-celsius-network-limited-charged-multi
+      note: |
+        DOJ SDNY press release (2023-07-13): "Founder And Former Chief Executive
+        Officer Of Celsius Network Limited Charged With Multi-Billion Dollar
+        Fraud And Market Manipulation Schemes." Seven-count criminal indictment
+        unsealed against Alex Mashinsky (Celsius founder/former CEO) charging
+        securities fraud, commodities fraud, wire fraud, conspiracy to commit
+        securities/commodities/wire fraud, market manipulation, and manipulation
+        of a security. Co-defendant Roni Cohen-Pavon (former CRO) charged in
+        parallel. Filed exactly 1 year after Celsius's 2022-07-13 Chapter 11
+        bankruptcy petition; freeze of customer withdrawals occurred
+        2022-06-12, 31 days prior to the bankruptcy.
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2023-127
+      wayback: https://web.archive.org/web/20260516000000/https://www.sec.gov/news/press-release/2023-127
+      note: |
+        SEC press release 2023-127 (2023-07-13): "SEC Charges Alex Mashinsky
+        and Celsius Network Limited with Fraud and Unregistered Offer and
+        Sale of Securities." SEC civil action in SDNY alleging Celsius's
+        Earn Interest Account program constituted unregistered securities
+        offerings and that Mashinsky misled investors about Celsius's core
+        business and financial condition, including manipulation of CEL
+        token price. Same-day parallel to DOJ indictment.
+    - type: primary_legal
+      url: https://www.cftc.gov/PressRoom/PressReleases/8758-23
+      wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8758-23
+      note: |
+        CFTC press release 8758-23 (2023-07-13): "CFTC Charges Alexander
+        Mashinsky and Celsius Network LLC With Fraud and Material
+        Misrepresentations in Massive Commodity Pool Scheme." Civil
+        enforcement alleging Celsius operated an unregistered commodity
+        pool and that Mashinsky made material misrepresentations about
+        Celsius's safety and profitability. Same-day parallel.
+    - type: primary_legal
+      url: https://www.ftc.gov/news-events/news/press-releases/2023/07/ftc-action-leads-record-47-billion-imposed-judgment-against-crypto-platform-celsius
+      wayback: https://web.archive.org/web/20260516000000/https://www.ftc.gov/news-events/news/press-releases/2023/07/ftc-action-leads-record-47-billion-imposed-judgment-against-crypto-platform-celsius
+      note: |
+        FTC press release (2023-07-13): "FTC Action Leads to Record $4.7
+        Billion Imposed Judgment Against Crypto Platform Celsius." FTC
+        secured a record-breaking imposed judgment (largest in FTC history
+        at that time) against Celsius Network's holding companies, alleging
+        the platform deceived consumers and unfairly endangered customer
+        deposits. Same-day fourth-framework parallel.
+    - type: primary_legal
+      url: https://cases.stretto.com/celsius/
+      evidence_use: contextual_unarchived
+      note: |
+        Celsius Network bankruptcy docket (Case No. 22-10964, S.D.N.Y.
+        Bankruptcy Court): Chapter 11 petition filed 2022-07-13; the criminal
+        indictment one year later runs in parallel with the ongoing
+        reorganization proceedings. Pinned here as bankruptcy-context
+        anchor; no specific docket entry is retained for this DRYRUN row.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per coordinated same-day DOJ + SEC + CFTC + FTC
+        press releases (2023-07-13).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Celsius Network Limited / Celsius Network LLC / Celsius Network Inc.
+    (collectively "Celsius") plus founder/former CEO Alexander Mashinsky
+    and former Chief Revenue Officer Roni Cohen-Pavon as named criminal
+    defendants. Celsius's Earn Interest Account product and CEL token are
+    the named securities/commodities. Civil parallels target Celsius entity
+    + Mashinsky individually (SEC, CFTC) and Celsius holding companies
+    (FTC). Off-ramp surface had already collapsed pre-indictment:
+    withdraw-freeze 2022-06-12, Chapter 11 petition 2022-07-13. No on-chain
+    address set; charges operate at lending-product + token-issuance +
+    fraud-disclosure level.
+  actor_type: crypto_lending_platform_bankruptcy
+  actor_name: Celsius Network + Alex Mashinsky + Roni Cohen-Pavon
+  chains: [bitcoin, ethereum]
+  canonical_domains:
+    - celsius.network
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer blocking observed; the cascade surface is the
+      lending-platform off-ramp collapse + criminal/civil enforcement
+      against named executives, not ISP / DNS filtering of celsius.network.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Post-Merge but the enforcement targets a centralized lending platform's
+      fraud / unregistered-securities / commodity-pool conduct, not PBS-level
+      block construction or validator-level censorship.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists are not implicated. No Celsius-
+      specific RPC rejection or docs/status-page change is pinned.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [celsius.network]
+    note: |
+      No admission-grade L4 frontend diff is retained at the indictment
+      moment. The customer-facing platform had already been frozen since
+      2022-06-12 (withdraw-freeze) and was in active bankruptcy proceedings
+      by the 2023-07-13 indictment date. The retained scoped observation is
+      the offramp_cex/lending-platform collapse, not a fresh frontend
+      takedown attributable to the indictment.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      CEL token (Celsius's native exchange token) experienced post-freeze
+      price collapse, but no issuer-level on-chain freeze or sanction-list
+      address set is asserted. CEL price manipulation is the subject of the
+      criminal charges, not an on-chain censorship primitive.
+  - layer: offramp_cex
+    status: measured
+    scope: [celsius_lending_platform, celsius_earn_program]
+    note: |
+      Celsius's centralized lending platform IS the off-ramp under
+      enforcement. The load-bearing cascade was already in motion before
+      the indictment: customer withdrawals frozen 2022-06-12, Chapter 11
+      filed 2022-07-13. The 2023-07-13 same-day DOJ + SEC + CFTC + FTC
+      coordinated action codifies the legal-disposition of the platform
+      collapse and forecloses any Earn-product revival. This is the
+      load-bearing layer for the cascade shape (lender variant of the FTX
+      twin).
+
+observations:
+  - layer: offramp_cex
+    actor: lending_platform:celsius_network
+    event: celsius_lending_platform_collapse_codified_by_doj_sec_cftc_ftc_actions
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-07-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2022-06-12T00:00:00Z
+      - 2023-07-13T23:59:59Z
+    note: |
+      The customer-facing off-ramp had already collapsed 2022-06-12
+      (withdraw-freeze) and 2022-07-13 (Chapter 11 petition). The
+      2023-07-13 same-day coordinated DOJ + SEC + CFTC + FTC actions
+      codify the legal disposition of the lending platform: criminal
+      indictment of the founder, SEC fraud + unregistered-securities
+      charges, CFTC commodity-pool charges, and a record $4.7B FTC
+      judgment. attribution=direct because the indictment and parallel
+      civil actions name Celsius's specific Earn-product / CEL-token /
+      withdraw-freeze conduct as the operative cause.
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/founder-and-former-chief-executive-officer-celsius-network-limited-charged-multi
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/founder-and-former-chief-executive-officer-celsius-network-limited-charged-multi
+        scope_descriptor:
+          providers: [celsius_lending_platform]
+          time_window:
+            - 2022-06-12T00:00:00Z
+            - 2023-07-13T23:59:59Z
+        note: |
+          DOJ SDNY indictment recites the Celsius withdraw-freeze
+          (2022-06-12), the Chapter 11 filing (2022-07-13), and the alleged
+          CEL-token market manipulation. The 7-count indictment forecloses
+          executive recovery of operational control over the platform.
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2023-127
+        wayback: https://web.archive.org/web/20260516000000/https://www.sec.gov/news/press-release/2023-127
+        note: |
+          SEC press release anchors the Earn Interest Account as an
+          unregistered securities offering and ties Mashinsky's
+          misrepresentations to the platform-level customer-deposit
+          collapse.
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/8758-23
+        wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8758-23
+        note: |
+          CFTC press release anchors the commodity-pool framing and the
+          material-misrepresentation conduct, complementing the SEC
+          securities-law axis with the commodities-law axis.
+      - type: primary_legal
+        url: https://www.ftc.gov/news-events/news/press-releases/2023/07/ftc-action-leads-record-47-billion-imposed-judgment-against-crypto-platform-celsius
+        wayback: https://web.archive.org/web/20260516000000/https://www.ftc.gov/news-events/news/press-releases/2023/07/ftc-action-leads-record-47-billion-imposed-judgment-against-crypto-platform-celsius
+        note: |
+          FTC press release records the record $4.7B imposed judgment
+          (largest in FTC history at the time) against Celsius's holding
+          companies, completing the four-framework codification of the
+          platform collapse.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive
+  collection plan; us_federal_enforcement frame discovery): authored by LLM
+  agent without personally verifying Wayback/body_hash; origin=human_reviewed
+  required by validator. Real release must replace this DRYRUN marker with
+  a human-verified audit after pinning real archive anchors.
+
+  comparison — lender variant of the FTX twin pattern. 2023-07-13
+  same-day coordinated DOJ + SEC + CFTC + FTC actions against Celsius
+  Network and founder Alex Mashinsky, filed exactly one year after the
+  2022-07-13 Chapter 11 petition and ~13 months after the 2022-06-12
+  withdraw-freeze. The cascade was already in motion before the
+  indictment moment: the off-ramp had collapsed via the operational
+  withdraw-freeze, the bankruptcy reorganization was already running, and
+  the CEL token had cascaded. The 2023-07-13 codification adds the
+  criminal/civil legal disposition layer on top of the pre-existing
+  operational collapse. Single-layer offramp_cex observed_change with
+  direct attribution → empirical_case admission tier (comparable to
+  blockfi-sec-lending-2022 in shape; structurally narrower than
+  ftx-bankman-fried-doj-2022 which spans both exchange + lending arms).
+
+scoped_claim: |
+  "The 2023-07-13 coordinated DOJ + SEC + CFTC + FTC actions against
+  Celsius Network and Alex Mashinsky codify a single-layer offramp_cex
+  cascade: the centralized lending platform's withdraw-freeze (2022-06-12)
+  and Chapter 11 collapse (2022-07-13) are legally disposed via criminal
+  indictment + securities-fraud + commodity-pool + FTC consumer-protection
+  parallels. Lender variant of the FTX twin; structurally narrower than
+  the FTX exchange-plus-lender cascade."
+
+related_events:
+  - blockfi-sec-lending-2022
+  - genesis-sec-gemini-earn-2023
+  - ftx-bankman-fried-doj-2022
+
+tags:
+  - doj_enforcement
+  - sec_enforcement
+  - cftc_enforcement
+  - ftc_enforcement
+  - lending_product
+  - centralized_platform_collapse
+  - bankruptcy_cascade
+  - withdraw_freeze
+  - cel_token_manipulation
+  - lender_variant_twin

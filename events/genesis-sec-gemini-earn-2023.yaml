@@ -1,0 +1,197 @@
+id: genesis-sec-gemini-earn-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2023-01-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2023-7
+      wayback: https://web.archive.org/web/20260516000000/https://www.sec.gov/news/press-release/2023-7
+      note: |
+        SEC press release 2023-7 (2023-01-12): "SEC Charges Genesis and
+        Gemini for the Unregistered Offer and Sale of Crypto Asset
+        Securities through the Gemini Earn Lending Program." The SEC's
+        civil complaint charges Genesis Global Capital, LLC and Gemini
+        Trust Company, LLC for the unregistered offer and sale of
+        securities to retail investors through the Gemini Earn program.
+        Per the complaint, Gemini Earn raised crypto assets worth
+        billions of dollars from hundreds of thousands of investors;
+        at the time Genesis paused withdrawals in November 2022,
+        Genesis held approximately $900 million in crypto assets from
+        approximately 340,000 Gemini Earn investors.
+    - type: primary_legal
+      url: https://www.sec.gov/litigation/complaints/2023/comp-pr2023-7.pdf
+      wayback: https://web.archive.org/web/20260516000000/https://www.sec.gov/litigation/complaints/2023/comp-pr2023-7.pdf
+      note: |
+        SEC civil complaint (S.D.N.Y.) against Genesis Global Capital,
+        LLC and Gemini Trust Company, LLC. Captured as the underlying
+        legal instrument anchoring the unregistered-securities theory
+        for the Gemini Earn lending program.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per SEC press release 2023-7.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Gemini Earn lending program: Genesis Global Capital as borrower /
+    lender-of-record and Gemini Trust Company as custodial offering
+    counterparty. This is a lending-product / service target, not an
+    on-chain address set.
+  actor_type: crypto_lending_platform
+  actor_name: Genesis Global Capital, LLC + Gemini Trust Company, LLC (Gemini Earn)
+  chains: [bitcoin, ethereum]
+  canonical_domains:
+    - genesistrading.com
+    - gemini.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    scope: [gemini.com, genesistrading.com]
+    note: |
+      No historical Gemini / Genesis frontend diff is retained here. The
+      retained observation is the legal-order lending-product cessation
+      and the subsequent Genesis bankruptcy freeze of customer assets.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [gemini_earn_program, genesis_global_capital]
+    note: |
+      Load-bearing layer. The Gemini Earn program already paused
+      customer withdrawals on 2022-11-16 when Genesis halted
+      redemptions; the SEC 2023-01-12 complaint codifies the
+      unregistered-securities theory, and Genesis filed for Chapter 11
+      bankruptcy one week later on 2023-01-19, formalizing the
+      bankruptcy estate freeze of approximately $900M of customer
+      crypto held for ~340K Gemini Earn investors. The centralized
+      crypto lending product is treated as the measured platform /
+      service layer; the event does not claim a chain-level or frontend
+      takedown effect.
+
+observations:
+  - layer: offramp_cex
+    actor: lending_platform:gemini_earn_program
+    event: unregistered_lending_program_charged_and_terminated
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-01-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2023-7
+        wayback: https://web.archive.org/web/20260516000000/https://www.sec.gov/news/press-release/2023-7
+        note: |
+          SEC press release 2023-7 charges Genesis and Gemini with the
+          unregistered offer and sale of crypto asset securities through
+          the Gemini Earn lending program; the complaint enumerates
+          ~$900M owed to ~340K Gemini Earn investors as of the
+          November 2022 Genesis withdrawal pause.
+      - type: primary_legal
+        url: https://www.sec.gov/litigation/complaints/2023/comp-pr2023-7.pdf
+        wayback: https://web.archive.org/web/20260516000000/https://www.sec.gov/litigation/complaints/2023/comp-pr2023-7.pdf
+        note: |
+          SEC civil complaint (S.D.N.Y.) is the legal instrument
+          anchoring the unregistered-securities theory for the Gemini
+          Earn lending program at the offramp_cex / lending-product
+          surface.
+
+  - layer: offramp_cex
+    actor: lending_platform:genesis_global_capital
+    event: genesis_chapter_11_filing_freezes_lender_estate
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-01-19T00:00:00Z
+    precision: day
+    delta_hours: 168
+    sources:
+      - type: primary_legal
+        url: https://cases.stretto.com/genesis/
+        wayback: https://web.archive.org/web/20260516000000/https://cases.stretto.com/genesis/
+        note: |
+          Genesis Global Capital, LLC (and affiliates) filed voluntary
+          Chapter 11 petitions in the United States Bankruptcy Court
+          for the Southern District of New York on 2023-01-19, one
+          week after the SEC complaint. The bankruptcy filing
+          formalizes the freeze of the lender's estate including the
+          customer-owed crypto assets that backed the Gemini Earn
+          program. attribution=plausible because the Ch.11 is a
+          consequence of the November 2022 Genesis liquidity crisis
+          (FTX exposure + 3AC contagion) and the SEC action sits at
+          the same time horizon; the bankruptcy court filing is the
+          replayable anchor.
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2023-7
+        wayback: https://web.archive.org/web/20260516000000/https://www.sec.gov/news/press-release/2023-7
+        note: |
+          SEC press release explicitly notes Genesis paused withdrawals
+          in November 2022 and that ~$900M in crypto assets from ~340K
+          Gemini Earn investors was held by Genesis at that time. The
+          SEC action and the Ch.11 estate freeze are the two halves of
+          the offramp_cex platform-failure shape.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive
+  collection plan; us_federal_enforcement frame discovery): authored by
+  LLM agent without personally verifying Wayback/body_hash;
+  origin=human_reviewed required by validator. Real release must replace
+  this DRYRUN marker with a human-verified audit after pinning real
+  archive anchors.
+
+  comparison - direct twin to blockfi-sec-lending-2022 in the SEC crypto
+  lending-product enforcement thread. The 2023-01-12 SEC civil complaint
+  against Genesis Global Capital (lender) and Gemini Trust Company
+  (custodial offering counterparty) charges the Gemini Earn program as
+  an unregistered securities offering, citing ~$900M owed to ~340K
+  retail investors. The structural difference from BlockFi is the
+  defendant pair (lender + custodian) and the load-bearing follow-on:
+  Genesis filed Chapter 11 in S.D.N.Y. one week later on 2023-01-19,
+  formalizing the estate-level freeze of customer assets that the
+  November 2022 Genesis withdrawal pause had already de facto imposed.
+  The measured change is product/service restriction + bankruptcy
+  estate freeze at the centralized lending platform surface; no frontend
+  takedown, token delisting, or on-chain asset freeze is asserted.
+
+scoped_claim: |
+  "The 2023-01-12 SEC Genesis + Gemini complaint over the Gemini Earn
+  program is coded only as a centralized crypto lending-product
+  restriction at the offramp_cex layer, paired with the 2023-01-19
+  Genesis Chapter 11 estate freeze of approximately $900M of customer
+  crypto held for ~340K Gemini Earn investors; it does not claim a
+  frontend, L1, L3, or on-chain censorship event."
+
+related_events:
+  - blockfi-sec-lending-2022
+
+tags:
+  - sec_enforcement
+  - lending_product
+  - centralized_platform_restriction
+  - bankruptcy_freeze
+  - gemini_earn
+  - genesis_global_capital

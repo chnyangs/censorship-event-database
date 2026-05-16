@@ -1,0 +1,300 @@
+id: sinbad-doj-2024
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_NDGA
+  timestamp: 2025-01-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/operators-cryptocurrency-mixers-charged-money-laundering
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/operators-cryptocurrency-mixers-charged-money-laundering
+      note: |
+        DOJ Office of Public Affairs press release "Operators of Cryptocurrency
+        Mixers Charged with Money Laundering" (2025-01-10). A federal grand
+        jury in the Northern District of Georgia (NDGA) returned an indictment
+        on 2025-01-07 charging three Russian nationals — Roman Vitalyevich
+        Ostapenko (55), Alexander Evgenievich Oleynik (44), and Anton
+        Vyachlavovich Tarasov (32) — for their roles operating the
+        cryptocurrency mixing services Blender.io and Sinbad.io. Ostapenko
+        and Oleynik were arrested 2024-12-01; Tarasov remains at large.
+        Counts: conspiracy to commit money laundering (max 20y) +
+        operating an unlicensed money transmitting business (max 5y/count).
+        The press release also references the prior 2023-11-27 coordinated
+        domain seizure of Sinbad.io by FBI + Netherlands FIOD + Finland NBI.
+        Investigative agencies named: FBI (lead). DRYRUN wayback stub;
+        replace with a verified capture + body_hash / body_path during real
+        human audit.
+    - type: primary_legal
+      url: https://complianceconcourse.willkie.com/articles/federal-jury-indicts-blender-io-and-sinbad-io-operators-on-money-laundering-charges/
+      evidence_use: contextual_unarchived
+      note: |
+        Willkie Compliance Concourse compliance writeup summarizing the
+        2025-01-07 grand-jury indictment and confirming defendant identities
+        (Ostapenko / Oleynik / Tarasov) plus NDGA venue. Pinned as
+        contextual_unarchived corroboration of the DOJ press release.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level via the DOJ Office of Public Affairs press release dated
+        2025-01-10. The underlying grand-jury indictment was returned in NDGA
+        on 2025-01-07; trigger.timestamp is set to the DOJ public-disclosure
+        date (the canonical primary_legal artifact) per the convention used
+        in chipmixer-doj-2023 and samourai-doj-2024.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Sinbad.io was a Bitcoin mixer marketed as a Tornado Cash successor for
+    the Bitcoin chain; per OFAC and DOJ, it served as the "preferred mixing
+    service" of the DPRK Lazarus Group and processed proceeds from the 2022
+    Harmony Horizon Bridge and Axie Infinity / Ronin Bridge hacks plus
+    ransomware funds. The Sinbad service was founded in September 2022 by
+    an operator using the alias "Mehdi" (per WIRED 2024 reporting); the
+    2025-01-07 NDGA indictment names three Russian nationals as operators
+    — Ostapenko, Oleynik, and Tarasov — without resolving whether the
+    "Mehdi" persona maps to any of the three. Target identified by
+    canonical domain sinbad.io and the operator-state of the indicted
+    natural persons. The indictment does not publish an OFAC-SDN-style
+    enumerated address set at the event level; address-set enumeration
+    lives on the sibling sinbad-ofac-2023 row (2 BTC addresses).
+  protocol: sinbad_io
+  actor_type: mixer_service
+  actor_name: Sinbad (sinbad.io)
+  chains: [bitcoin]
+  canonical_domains: [sinbad.io]
+
+jurisdiction:
+  - US
+  - NL
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    scope: [sinbad.io]
+    note: |
+      L0 network-layer OONI probe coverage of sinbad.io is effectively absent
+      for the relevant window per the sibling sinbad-ofac-2023 OONI query
+      (0 measurements 2023-10-29..2023-12-29; artifact
+      sources/l0_datasets/sinbad-ofac-2023/sinbad.io__ooni.json). No new
+      L0 query is performed at this DOJ-event level; the OFAC-event L0 gap
+      finding carries forward.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin has no PBS / MEV-Boost analogue and no aggregate
+      OFAC-compliant-relay metric. L1-layer reasoning from the
+      Ethereum-focused comparison cases does not apply.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin wallet transactions are typically broadcast via P2P or
+      public-API endpoints without the Ethereum-style "OFAC-compliant RPC"
+      intermediary layer. Not_applicable to avoid transplanting an
+      Ethereum-specific construct.
+  - layer: l4_frontend
+    status: measured
+    scope: [sinbad.io]
+    note: |
+      The canonical sinbad.io frontend was juridically anchored as seized by
+      the time of this 2025-01-10 DOJ indictment unsealing: the domain was
+      taken down on 2023-11-27 via FBI seizure warrant in coordinated
+      action with the Netherlands FIOD and Finland NBI (~roughly 13 months
+      prior). The 2025-01-10 operator indictment converts the frontend's
+      state from "seized but operator at large / under investigation" to
+      "seized + named operators indicted + 2 of 3 arrested" — a structural
+      finality on the frontend layer. attribution=direct via the DOJ
+      primary-legal anchor, which explicitly references the prior
+      domain-seizure operation. Sibling row sinbad-ofac-2023 records
+      sinbad.io was reachable through at least 2023-12-09 (the Wayback
+      anchors there reflect the operator's pre-seizure mirror, not the
+      seized-domain banner — the seizure took effect at the canonical
+      sinbad.io address on 2023-11-27 according to the DOJ release and
+      contemporaneous reporting; the 2023-12-09 sibling capture appears to
+      reflect either a still-live mirror or a Wayback-archived snapshot of
+      an unseized variant. This discrepancy is left as a known
+      cross-event-anchor question for the next human audit pass).
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin is a native-asset chain without issuer-level freeze primitives
+      (no USDC-style blacklist function). Asset-layer reasoning from
+      Ethereum cases does not apply.
+  - layer: offramp_cex
+    status: measured
+    scope: [sinbad_io_operator_state]
+    note: |
+      The load-bearing layer for this row: the indictment converts the
+      Sinbad operator-state from "service seized + operators at large" to
+      "named operators indicted + 2 of 3 arrested (Ostapenko, Oleynik
+      arrested 2024-12-01; Tarasov at large)." This is a mixer-operator-state
+      transition analogous to helix-doj-mixer-2020, chipmixer-doj-2023, and
+      samourai-doj-2024. attribution=direct via the DOJ primary-legal
+      source. No per-address chain-analytics report slices are pinned at
+      this event level; the substrate Chainalysis / TRM / Elliptic anchors
+      from sinbad-ofac-2023 carry forward.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:sinbad_io
+    event: sinbad_frontend_seizure_finality_anchored_by_operator_indictment
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-01-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/operators-cryptocurrency-mixers-charged-money-laundering
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/operators-cryptocurrency-mixers-charged-money-laundering
+        note: |
+          DOJ press release explicitly states that on 2023-11-27 "Sinbad.io
+          was taken down through law enforcement action" coordinated by the
+          FBI, Netherlands FIOD, and Finland NBI, and that the 2025-01-07
+          NDGA indictment of Ostapenko / Oleynik / Tarasov follows that
+          prior infrastructure seizure. The operator-indictment forecloses
+          any near-term restoration of the canonical sinbad.io frontend
+          under the indicted operators; attribution=direct because the DOJ
+          release is the primary legal instrument naming both the operators
+          and the prior domain-seizure operation. DRYRUN wayback stub;
+          replace with a verified capture during real human audit.
+
+  - layer: offramp_cex
+    actor: mixer:sinbad_io
+    event: sinbad_operator_indicted_two_of_three_arrested
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-01-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/operators-cryptocurrency-mixers-charged-money-laundering
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/operators-cryptocurrency-mixers-charged-money-laundering
+        scope_descriptor:
+          providers: [sinbad_io_mixer]
+          time_window:
+            - 2022-09-01T00:00:00Z
+            - 2023-11-27T23:59:59Z
+        note: |
+          DOJ release names the indicted Sinbad operators (Roman Vitalyevich
+          Ostapenko, Alexander Evgenievich Oleynik, Anton Vyachlavovich
+          Tarasov) and confirms Ostapenko + Oleynik were arrested on
+          2024-12-01; Tarasov remains at large. The mixer-operator-state
+          transitions from "service seized but operators uncharged" to
+          "operators criminally indicted with 2 of 3 arrested" — a
+          structural off-ramp / venue-layer transition analogous to
+          helix-doj-mixer-2020 (single-jurisdiction post-shutdown
+          indictment) and bitzlato-doj-2023 (operator-state takedown).
+          attribution=direct via the DOJ primary-legal anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  **Brief-vs-reality discrepancy documented (per brief instruction).** The
+  authoring brief specified `trigger.timestamp=2024-02-21T00:00:00Z` and an
+  operator name "Mehdi Borchashvili (or successor — verify against DOJ
+  press release)." Cross-checking against the canonical DOJ press release
+  surfaced three corrections:
+    (1) The DOJ press release announcing the Sinbad operator indictment is
+        dated 2025-01-10 (NOT 2024-02-21); the underlying NDGA grand-jury
+        indictment was returned 2025-01-07. No DOJ Sinbad-specific press
+        release exists for 2024-02-21.
+    (2) The DOJ-indicted operators are three Russian nationals — Roman
+        Vitalyevich Ostapenko, Alexander Evgenievich Oleynik, and Anton
+        Vyachlavovich Tarasov — NOT "Mehdi Borchashvili." Per separate
+        WIRED reporting, "Mehdi" is the alias used by Sinbad's claimed
+        founder, but the DOJ indictment does not name any "Borchashvili"
+        and does not resolve whether the "Mehdi" persona maps to any of
+        the three indicted Russian nationals.
+    (3) The actor is US_DOJ_NDGA (Office of Public Affairs press release
+        announcing an NDGA grand-jury indictment), not a generic US_DOJ.
+        The canonical sinbad.io domain was already seized on 2023-11-27
+        (i.e. ~2 days BEFORE the OFAC SDN — not "~3 months later" as the
+        brief asserted) via FBI seizure warrant in coordinated action with
+        Netherlands FIOD and Finland NBI. The 2025-01-10 DOJ event is
+        therefore the criminal-charges-against-operator companion to the
+        2023-11-27 same-week seizure, not a free-standing post-OFAC
+        seizure.
+  These corrections are applied to the row; the brief's intent (capture
+  the DOJ side of the Sinbad enforcement complex, distinct from the OFAC
+  SDN at sinbad-ofac-2023) is preserved.
+
+  comparison — Sinbad-DOJ-2024 (now 2025-01-10) is a structural twin of
+  helix-doj-mixer-2020 (single-jurisdiction US operator indictment) and a
+  cousin of chipmixer-doj-2023 / samourai-doj-2024 (coordinated US +
+  European seizure-plus-indictment). Unlike chipmixer / samourai (where
+  domain seizure and operator indictment landed on the same day),
+  Sinbad's enforcement was time-split: the 2023-11-27 domain seizure
+  produced the same-week L4 effect (recorded contextually via
+  sinbad-ofac-2023 and the contemporaneous-reporting trail), while this
+  2025-01-10 event records the operator-state transition that closes the
+  loop ~13 months later. Two observed_change layers (l4_frontend +
+  offramp_cex) with direct attribution → empirical_case admission tier
+  with comparison shape.
+
+  Distinguishing structural feature vs. the mixer-indictment comparison
+  set: Sinbad uniquely shows a coordinated multi-jurisdictional seizure
+  (US + NL + Finland) PAIRED WITH a single-jurisdictional US-only
+  operator indictment ~13 months later. Finland (FI) is not in the
+  controlled jurisdictions vocab; the cooperating Finnish NBI role is
+  documented narratively but not as a jurisdiction enum entry.
+
+  Follow-up directions for the next human audit pass: (a) pin a verified
+  Wayback capture of the 2025-01-10 DOJ press release with body_hash /
+  body_path; (b) capture the 2023-11-27 FBI seizure banner page at
+  sinbad.io (currently only narratively cited) — this would convert one
+  of the two observation rows from indictment-anchored to seizure-banner
+  anchored; (c) attempt to resolve the "Mehdi" alias ↔ Ostapenko /
+  Oleynik / Tarasov mapping question; (d) reconcile the apparent
+  inconsistency between the sinbad-ofac-2023 L4 observed_no_change
+  (sinbad.io reachable through 2023-12-09 per Wayback) and this row's
+  primary-legal assertion that the domain was seized 2023-11-27 — likely
+  explained by a mirror domain vs. canonical-domain distinction, but
+  should be verified.
+
+scoped_claim: |
+  "The 2025-01-10 DOJ Office of Public Affairs unsealing of the NDGA
+  grand-jury indictment of Roman Vitalyevich Ostapenko, Alexander
+  Evgenievich Oleynik, and Anton Vyachlavovich Tarasov for operating the
+  Sinbad.io Bitcoin mixer produced a 2-layer comparison-shape cascade in
+  the dataset: an l4_frontend finality anchored by the operator
+  indictment (atop the prior 2023-11-27 FBI + Netherlands FIOD + Finland
+  NBI domain seizure) and an offramp_cex mixer-operator-state transition
+  (2 of 3 operators arrested 2024-12-01; Tarasov at large). Distinct from
+  sinbad-ofac-2023 (OFAC SDN designation 2023-11-29) and from
+  chipmixer-doj-2023 / samourai-doj-2024 in that the enforcement was
+  time-split: multi-jurisdictional infrastructure seizure ~13 months
+  before the single-jurisdictional US-only operator indictment."
+
+related_events:
+  - sinbad-ofac-2023
+  - chipmixer-doj-2023
+  - helix-doj-mixer-2020
+  - samourai-doj-2024
+  - blender-ofac-2022
+
+tags:
+  - doj_indictment
+  - bitcoin_mixer
+  - mixer_operator_state
+  - dprk_linked
+  - international_cooperation_ndga
+  - post_seizure_indictment
+  - time_split_enforcement

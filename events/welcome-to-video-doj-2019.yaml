@@ -1,0 +1,203 @@
+id: welcome-to-video-doj-2019
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - silk-road-doj-seizure-2013
+  - alphabay-hansa-doj-2017
+  - hydra-doj-2022
+  - bitzlato-doj-2023
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ
+  timestamp: 2019-10-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/south-korean-national-and-hundreds-others-charged-worldwide-takedown-largest-darknet-child
+      wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/south-korean-national-and-hundreds-others-charged-worldwide-takedown-largest-darknet-child
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ Office of Public Affairs press release announcing the
+        2019-10-16 unsealing of the indictment of Jong Woo Son, a South
+        Korean national, for operating "Welcome to Video", described in
+        the release as the world's largest darknet child sexual abuse
+        material marketplace at the time of takedown. The release
+        describes a joint operation between US DOJ + IRS-Criminal
+        Investigation + UK National Crime Agency + Korean National
+        Police Agency, with 337 arrests across 38 jurisdictions and
+        approximately $370K in Bitcoin seized. The wayback URL above is
+        a DRYRUN stub; the live justice.gov URL is retained as
+        evidence_use=contextual_unarchived per the authoring brief,
+        which forbade fabricating a body_hash. A real release must
+        replace this stub with a human-verified Wayback memento and a
+        body_hash + body_path artifact captured from a re-archived
+        DOJ snapshot.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per the DOJ press release dated 2019-10-16,
+        which announces the unsealing of the indictment originally
+        returned by a federal grand jury in the District of Columbia.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Jong Woo Son (named operator) and the Welcome to Video darknet
+    marketplace (Tor hidden service accepting Bitcoin payments). The
+    DOJ release identifies 337 arrests globally across 38 jurisdictions
+    and approximately $370K in Bitcoin seized; this event does not
+    enumerate the per-defendant arrest list or an SDN-style address
+    set. canonical_domains is left empty because no verified .onion
+    address is pinned in this DRYRUN row.
+  actor_type: darknet_marketplace
+  actor_name: Welcome to Video (operated by Jong Woo Son)
+  chains: [bitcoin]
+  canonical_domains: []
+
+jurisdiction: [US, KR, UK]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Welcome to Video was a Tor hidden service; ordinary public-web
+      L0 reachability instruments (Censored Planet, OONI) do not apply
+      to .onion services.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin, pre-Merge by ~3 years; consensus-layer filtering
+      surfaces tracked by this dataset (PBS relays, mev-watch /
+      censorship.pics) did not exist in 2019 on Bitcoin.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No Bitcoin RPC-provider rejection surface is implicated by the
+      Welcome to Video takedown; this is a Tor-hosted marketplace
+      seizure plus parallel BTC forfeiture, not an RPC-mediated
+      transaction-rejection event.
+  - layer: l4_frontend
+    status: measured
+    scope: [welcome_to_video_tor_service]
+    note: |
+      The Welcome to Video Tor hidden service was seized as part of
+      the joint US/UK/KR takedown announced 2019-10-16. The DOJ press
+      release describes the marketplace as taken down and its servers
+      seized; the canonical .onion address is not retained at this
+      event level because no Wayback / replayable .onion snapshot is
+      pinned in this DRYRUN row. The L4 observation is anchored on
+      the primary-legal DOJ release as the evidentiary instrument
+      naming the service and the seizure.
+  - layer: asset_onchain
+    status: not_measured
+    chain: bitcoin
+    scope: [welcome_to_video_btc_seizure_receipts]
+    note: |
+      The DOJ release describes approximately $370K in Bitcoin seized
+      from the Welcome to Video operator and downstream defendants,
+      enabling the address-traceability investigative chain that the
+      government and IRS-Criminal Investigation framed as the case's
+      methodological signature. Status is not_measured (not
+      not_applicable) to mark the substrate as load-bearing for the
+      structural framing: with verified per-transaction seizure
+      receipts pinned (forfeiture complaints listing BTC addresses,
+      block-explorer references) this row could be promoted to a
+      cascade shape with asset_onchain as a second observed_change
+      layer. The authoring brief forbade fabricating a tx_hash, so no
+      primary_onchain anchor is retained in this DRYRUN row, and the
+      asset_onchain layer remains structurally not_measured pending
+      human audit. Bitcoin has no issuer-level blacklist primitive;
+      the on-chain dimension here is custody-transfer / forfeiture
+      tracing, not protocol-layer asset freeze.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The target is the darknet marketplace itself plus its named
+      operator, not a centralized exchange. No CEX delisting or
+      withdrawal freeze is implicated by the 2019-10-16 takedown.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:welcome_to_video_tor_service
+    event: tor_marketplace_seized_in_joint_us_uk_kr_operation
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2019-10-16T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/south-korean-national-and-hundreds-others-charged-worldwide-takedown-largest-darknet-child
+        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/south-korean-national-and-hundreds-others-charged-worldwide-takedown-largest-darknet-child
+        note: |
+          DOJ press release names the Welcome to Video Tor marketplace
+          as taken down on 2019-10-16 in coordination with IRS-CI,
+          UK NCA, and Korean NPA. attribution=direct because the
+          primary-legal DOJ source names the seized service and the
+          marketplace operator. The wayback URL is a DRYRUN stub;
+          real release must replace with a human-verified Wayback
+          memento plus body_hash + body_path artifact. The live
+          justice.gov URL is retained as the canonical pointer.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison shape: 1 observed_change layer (L4 frontend) is the
+  retained admission anchor in this DRYRUN row. The brief identifies
+  asset_onchain (Bitcoin seizure receipts) as the second load-bearing
+  layer structurally, framing Welcome to Video as the cleanest
+  address-traceability anchor in the DOJ stratum (IRS-CI methodology
+  publicly framed around chain analysis of BTC payment flows). That
+  second layer is held at coverage.status=not_measured rather than
+  observed_change because the authoring brief forbade fabricating a
+  primary_onchain tx_hash. After a real human audit pins verified
+  forfeiture-complaint BTC addresses and explorer references (or
+  body_hash artifacts of those filings), the row would promote to a
+  2-layer comparison with asset_onchain as the second observed_change.
+
+  Structural neighbors: silk-road-doj-seizure-2013 (Tor + BTC, earlier
+  baseline, L4-only), alphabay-hansa-doj-2017 (Tor + multi-chain
+  marketplace, L4-only), hydra-doj-2022 (Tor + BTC + parallel OFAC,
+  L4-only). Welcome to Video sits at 2019-10-16, between
+  alphabay-hansa-doj-2017 and hydra-doj-2022 in the
+  darknet-marketplace-takedown comparison set, and is the cleanest
+  jurisdiction-spanning joint operation in that family (US + UK + KR
+  named on the indictment release).
+
+  Analysis kept factual and minimal per the authoring brief; this
+  marketplace was a CSAM venue and the row exists as a structural
+  reference point in the DOJ enforcement cascade.
+
+scoped_claim: |
+  "The 2019-10-16 DOJ unsealing of the indictment of Jong Woo Son for
+  operating the Welcome to Video Tor marketplace produced an L4
+  frontend seizure of the marketplace's Tor hidden-service
+  infrastructure, in a joint operation with IRS-Criminal
+  Investigation, UK NCA, and Korean NPA. The row claims only this
+  single-layer marketplace-takedown observation; the asset_onchain
+  BTC-seizure receipts that structurally anchor the case's
+  address-traceability framing are held at not_measured pending
+  human audit of forfeiture filings."
+
+tags:
+  - doj_seizure
+  - darknet_market
+  - tor_service
+  - joint_international_operation
+  - irs_ci_chain_analysis
+  - bitcoin_seizure

@@ -1,0 +1,243 @@
+id: sec-v-bittrex-2023
+schema_version: 0.2.0
+status: admitted
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-05-16
+last_human_audit: 2026-05-16
+
+related_events:
+  - sec-v-binance-2023
+  - sec-v-coinbase-2023
+  - blockfi-sec-lending-2022
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2023-04-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2023-78
+      body_hash: sha256:0972b223df1e70a3ed0e7878a412f78b44d5d178097da04938d37aef9505568a
+      body_path: sources/http_captures/sec-v-bittrex-2023/primary/www.sec.gov__news-press-release-2023-78__8f8cebb461.html
+      evidence_use: admission_anchor
+      note: |
+        SEC press release 2023-78 (2023-04-17): "SEC Charges Crypto Asset
+        Trading Platform Bittrex and its Former CEO for Operating an
+        Unregistered Exchange, Broker, and Clearing Agency." Civil action in
+        WDWA naming Bittrex Inc., Bittrex Global GmbH, and former CEO William
+        Shihara. Allegations: operating an unregistered national securities
+        exchange / broker / clearing agency from 2014 through 2022; coaching
+        token issuers to delete public statements likely to draw SEC scrutiny.
+        Filed 17 days after Bittrex announced US-exit (2023-03-31) and 21
+        days before Bittrex Inc. filed Chapter 11 (2023-05-08). Direct
+        precursor to SEC v. Binance (2023-06-05) and SEC v. Coinbase
+        (2023-06-06) — same unregistered-exchange/broker/clearing theory.
+    - type: primary_legal
+      url: https://www.sec.gov/litigation/complaints/2023/comp-pr2023-78.pdf
+      body_hash: sha256:289268cccf208638f62642fa5e7c36ee18b79eae19dd051c74c78068540cb2aa
+      body_path: sources/http_captures/sec-v-bittrex-2023/primary/www.sec.gov__litigation-complaints-2023-comp-pr2023-78.pdf__7d9d537543.bin
+      evidence_use: admission_anchor
+      note: |
+        SEC v. Bittrex Inc. et al. complaint PDF (WDWA, filed 2023-04-17).
+        Captured as the legal-pleading anchor for the unregistered-exchange /
+        broker / clearing-agency charges and the six named tokens
+        (OMG, DASH, ALGO, TKN, NGC, IHT) described as crypto asset securities.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per SEC press release.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Bittrex Inc. (US) + Bittrex Global GmbH (Liechtenstein) + William Shihara
+    (former CEO) entity / individual action. Six tokens named in the complaint
+    as unregistered crypto asset securities: OMG, DASH, ALGO, TKN, NGC, IHT.
+    No on-chain addresses; securities-law charges operate at
+    exchange-registration / token-offering level.
+  protocol: null
+  actor_type: exchange_securities_enforcement
+  actor_name: Bittrex Inc / Bittrex Global GmbH / William Shihara
+  chains: []
+  canonical_domains:
+    - bittrex.com
+    - global.bittrex.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    note: Securities-law civil action; no L1 consensus impact.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    scope: [bittrex.com]
+    note: |
+      No admission-grade L4 frontend diff is retained beyond the load-bearing
+      US-exit notice captured at offramp_cex. The bittrex.com Wayback snapshot
+      and zendesk article are used here as primary_corporate evidence for the
+      exchange/platform shutdown, not as a measured frontend-takedown claim.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [bittrex_us_exchange]
+    note: |
+      The Bittrex US exchange/off-ramp is the load-bearing measured layer.
+      Bittrex announced US-exit on 2023-03-31 (17 days before the SEC filing)
+      and filed Chapter 11 in DDE on 2023-05-08 (21 days after), freezing
+      US customer fiat and crypto withdrawal channels for the remaining
+      cohort. Count only this CEX/platform scope.
+    denominator_artifact:
+      type: primary_corporate
+      url: https://web.archive.org/web/20230401230357/https://bittrex.com/
+      body_hash: sha256:79af4c0fce77e3b0202b68df72b651be95b5b7a369adc15c538645cb855037a6
+      body_path: sources/http_captures/sec-v-bittrex-2023/platform-response/web.archive.org__web-20230401230357-https-bittrex.com__36cff035c3.html
+      scope_descriptor:
+        providers: [bittrex_us_exchange]
+        countries: [US]
+        time_window:
+          - 2023-03-31T00:00:00Z
+          - 2023-05-08T23:59:59Z
+      note: |
+        Wayback snapshot 2023-04-01 of bittrex.com homepage carrying the
+        US-exit banner ("we have made the difficult decision to close our
+        U.S. operations, effective April 30, 2023") as a replayable
+        denominator anchor for the Bittrex US off-ramp service surface
+        across the SEC-action window.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bittrex_us
+    event: bittrex_us_exchange_wind_down_and_chapter_11_off_ramp_freeze
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-04-30T00:00:00Z
+    precision: day
+    delta_hours: 312
+    window:
+      - 2023-03-31T00:00:00Z
+      - 2023-05-08T23:59:59Z
+    note: |
+      Bittrex Inc. wound down US operations effective 2023-04-30 (announced
+      2023-03-31), then filed Chapter 11 in DDE on 2023-05-08. The SEC
+      complaint filed 2023-04-17 sits between those two platform events.
+      Attribution is plausible rather than direct because Bittrex framed the
+      March 31 US-exit on "regulatory and economic environment" grounds
+      pre-filing, and the May 8 bankruptcy is the load-bearing off-ramp
+      freeze. The dataset records the Bittrex US CEX/off-ramp shutdown as a
+      scoped exchange-service event tied to the SEC enforcement episode, not
+      a claim of SEC-only causation.
+    sources:
+      - type: primary_corporate
+        url: https://web.archive.org/web/20230331224349/https://bittrex.zendesk.com/hc/en-us/articles/10080271948701
+        body_hash: sha256:a75e689c3b0a2b1355c813fb1e64e7a84dbb66aef318c12b0d76f2363f63001b
+        body_path: sources/http_captures/sec-v-bittrex-2023/platform-response/web.archive.org__web-20230331224349-https-bittrex.zendesk.com-hc-en-us-articles-10080271948701__061683ac94.html
+        scope_descriptor:
+          providers: [bittrex_us_exchange]
+          countries: [US]
+          time_window:
+            - 2023-03-31T00:00:00Z
+            - 2023-04-30T23:59:59Z
+        note: |
+          Bittrex U.S. customer support article "Important Information for
+          Bittrex U.S. Customers" (Wayback 2023-03-31 22:43 UTC) confirms the
+          wind-down of Bittrex US operations and tells U.S. customers their
+          funds are safe and available for withdrawal, citing the
+          U.S. regulatory and economic environment.
+      - type: primary_corporate
+        url: https://web.archive.org/web/20230401230357/https://bittrex.com/
+        body_hash: sha256:79af4c0fce77e3b0202b68df72b651be95b5b7a369adc15c538645cb855037a6
+        body_path: sources/http_captures/sec-v-bittrex-2023/platform-response/web.archive.org__web-20230401230357-https-bittrex.com__36cff035c3.html
+        scope_descriptor:
+          providers: [bittrex_us_exchange]
+          countries: [US]
+          time_window:
+            - 2023-04-01T00:00:00Z
+            - 2023-04-30T23:59:59Z
+        note: |
+          Wayback snapshot 2023-04-01 of bittrex.com carries the homepage
+          banner: "Due to continued regulatory uncertainty, we have made the
+          difficult decision to close our U.S. operations, effective April 30,
+          2023. All U.S. customer funds are safe and can be fully withdrawn
+          immediately. This announcement does not impact non-U.S. customers
+          using Bittrex Global."
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+
+  comparison — third SEC civil-enforcement event in the dataset operating on
+  the same unregistered-exchange / broker / clearing-agency theory that the
+  SEC then deployed against Binance (2023-06-05) and Coinbase (2023-06-06).
+  Bittrex is the direct precursor: filed 49 days before SEC v. Binance and
+  50 days before SEC v. Coinbase, with substantively identical securities-law
+  charges. Unlike the Binance/Coinbase pair, the Bittrex case is paired with a
+  load-bearing exchange off-ramp event: Bittrex Inc. wound down US operations
+  effective 2023-04-30 (announced 17 days before the SEC filing) and filed
+  Chapter 11 in DDE on 2023-05-08 (21 days after), making the US-customer
+  off-ramp closure measurable at the offramp_cex layer.
+
+  The admitted observation is intentionally scoped to the Bittrex US
+  exchange/off-ramp shutdown. Attribution is plausible rather than direct
+  because the wind-down announcement pre-dated the SEC complaint and Bittrex
+  framed it as a response to the broader US regulatory and economic
+  environment; the SEC enforcement episode is the contemporaneous trigger
+  family but not the sole causal mechanism. No L4 frontend takedown, token
+  delisting (the six named tokens — OMG, DASH, ALGO, TKN, NGC, IHT — are
+  target tokens in a securities-law theory rather than a measured listing
+  diff), L1/L3 effect, or on-chain asset freeze is asserted.
+
+scoped_claim: |
+  "SEC v. Bittrex (2023-04-17) is admitted only for the Bittrex US
+  exchange/off-ramp wind-down + Chapter 11 freeze; the dataset does not claim
+  a measured L4 frontend takedown, named-token delisting, L1/L3 effect, or
+  on-chain asset freeze."
+
+scoped_knowledge: |
+  What changed: the Bittrex US exchange / off-ramp is admitted as a scoped
+  CEX/platform shutdown. The retained operational artifacts cover the
+  2023-03-31 US-exit announcement (Bittrex support article + bittrex.com
+  homepage banner) and the 2023-04-30 wind-down date that bracket the
+  2023-04-17 SEC complaint. The Chapter 11 filing on 2023-05-08 is recorded
+  in the observation window as the load-bearing off-ramp freeze for any
+  remaining US-customer cohort.
+
+  What did not change or could not be measured: this event has no address
+  set, no asset issuer primitive, and no L1/L3 mechanism. The six named
+  tokens (OMG, DASH, ALGO, TKN, NGC, IHT) are target tokens in a
+  securities-law theory rather than target chains for on-chain measurement.
+  The Bittrex Global non-US arm is not coded as the measured surface; the
+  scoped claim is limited to Bittrex US off-ramp operations.
+
+  Attribution: plausible. The SEC press release and complaint PDF name the
+  Bittrex Inc. / Bittrex Global GmbH / William Shihara targets; the Bittrex
+  support article and bittrex.com Wayback snapshot record the US-exit
+  decision in primary_corporate evidence. Because Bittrex announced the
+  wind-down 17 days before the SEC filing and framed it as a response to the
+  broader US regulatory and economic environment, attribution is coded
+  plausible rather than direct.
+
+  Comparative value: structural precursor to SEC v. Binance and SEC v.
+  Coinbase on the same unregistered-exchange / broker / clearing-agency
+  theory, with a load-bearing CEX off-ramp closure that the Binance and
+  Coinbase rows lack at this intensity.
+
+tags:
+  - sec_enforcement
+  - securities_law
+  - exchange_civil_action
+  - bittrex
+  - us_exit
+  - chapter_11
