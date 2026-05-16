@@ -1,0 +1,292 @@
+id: thailand-sec-binance-bybit-c-and-d-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - malaysia-sc-binance-disable-2021
+  - singapore-mas-binance-services-2021
+  - thailand-bot-bitcoin-prohibition-2013
+
+trigger:
+  type: regulatory_enforcement
+  actor: TH_SEC
+  timestamp: 2021-07-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9017
+      wayback: https://web.archive.org/web/2021/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9017
+      evidence_use: contextual_unarchived
+      note: |
+        Thailand Securities and Exchange Commission (TH SEC) news release
+        dated 2021-07-02 announcing that the SEC has filed a criminal
+        complaint against Binance with the Economic Crime Suppression
+        Division (ECD) of the Royal Thai Police for operating a digital
+        asset exchange business in Thailand without a licence in violation
+        of the Emergency Decree on Digital Asset Businesses Act B.E. 2561
+        (2018). The complaint follows an SEC warning letter dated
+        2021-04-05 that gave Binance a 15-day window to respond regarding
+        unlicensed solicitation of the Thai public via binance.com and the
+        Binance Thai Community Facebook page. Bybit is named in this
+        record under the same TH SEC enforcement posture (TH SEC
+        contemporaneous public warning list of unlicensed digital asset
+        operators serving Thai residents); the analogous formal TH SEC
+        criminal complaint against Bybit Fintech Limited was filed later
+        (operative window starting 2022-01-25), recorded here as a
+        cross-target subset because the user-anchored event scope binds
+        Binance + Bybit under the 2021-07 TH SEC enforcement wave.
+        DRYRUN promotion: real anchor (TH SEC News_Detail SECID=9017)
+        asserted with a 2021-calendar-folder Wayback pointer; pinned
+        snapshot timestamp and body_hash capture deferred to non-DRYRUN
+        release. Marked evidence_use=contextual_unarchived to flag the
+        unarchived state per validator policy.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per TH SEC News_Detail SECID=9017 dated
+        2021-07-02 (Friday). Coindesk / Bangkok Post coverage same day
+        corroborates the day-level anchor; user-supplied
+        trigger_date≈2021-07-05 is within the publication-week window
+        and resolved to the SEC's own publication date 2021-07-02.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance group entities (binance.com global platform and the Binance
+    Thai Community Facebook page solicitation channel) serving Thai
+    retail customers, plus Bybit (bybit.com) under the same TH SEC
+    enforcement posture for operating a digital asset exchange business
+    without a Thai licence per Emergency Decree on Digital Asset
+    Businesses Act B.E. 2561. enumeration=subset because (a) the named
+    TH SEC criminal complaint of 2021-07-02 is addressed to Binance
+    specifically, with Bybit included here as a class-level
+    cross-target on the basis of the TH SEC public-warning posture
+    against unlicensed operators serving Thai residents (the formal
+    TH SEC criminal complaint against Bybit Fintech Limited was filed
+    later, operative window 2022-01-25), and (b) only the two
+    user-anchored target entities are enumerated; the broader TH SEC
+    investor-alert universe of unlicensed digital-asset operators
+    serving Thai residents is class-level context, not enumerated here.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Binance Holdings Ltd. (TH cohort) + Bybit Fintech Limited (TH cohort)
+  chains: []
+  canonical_domains:
+    - binance.com
+    - bybit.com
+
+jurisdiction: [TH]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      TH SEC criminal complaint is a regulator-directed legal-process
+      action filed with the Royal Thai Police ECD against Binance; it is
+      not an ISP / DNS / network-level block. No L0 measurement of Thai
+      ISP-level reachability to binance.com / bybit.com is retained in
+      this file. Distinct from the later (2024-2025) TH MDES / SEC
+      coordinated network-block wave that did target unlicensed
+      exchanges at the ISP layer.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    scope: [binance.com, bybit.com]
+    note: |
+      No regulator-directed disable order on the binance.com or
+      bybit.com frontend is part of the 2021-07-02 TH SEC action
+      (contrast Malaysia SC 2021-07-30 which did compel a frontend
+      disable for MY users). The TH SEC instrument is a criminal
+      complaint filed with the police, not a disable directive, so no
+      L4-frontend operator-state change is load-bearing for this row.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - binance_thb_rail
+      - bybit_thb_rail
+    note: |
+      TH SEC criminal complaint signalled the unlicensed status of
+      Binance (and, under the same posture, Bybit) operating
+      digital-asset-exchange businesses serving Thai retail with THB
+      solicitation. Cascade observation attached below at
+      attribution=plausible: the criminal complaint, paired with the
+      contemporaneous Bank of Thailand (BOT) / TH SEC investor-warning
+      posture, constrained the Thai THB on/off-ramp rails accessible
+      via binance.com / bybit.com (Thai-bank card-deposit and P2P-THB
+      rails) without a direct banking-prohibition directive. The cascade
+      is downstream of the criminal complaint rather than a TH SEC
+      banking-rail order; partially_measured pending pinned anchors for
+      contemporaneous Binance / Bybit THB-rail public-facing notices.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:binance_th_cohort_and_bybit_th_cohort
+    event: th_thb_rail_constraint_under_th_sec_unlicensed_status
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-07-02T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2021-07-02T00:00:00Z
+      - 2021-12-31T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9017
+        wayback: https://web.archive.org/web/2021/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9017
+        evidence_use: contextual_unarchived
+        note: |
+          TH SEC News_Detail SECID=9017 (2021-07-02) is the legal
+          anchor naming Binance as the addressee of the criminal
+          complaint filed with the Royal Thai Police ECD for unlicensed
+          digital-asset-exchange operations under the Emergency Decree
+          on Digital Asset Businesses Act B.E. 2561. attribution=
+          plausible (not direct) because the rail constraint is a
+          downstream consequence of the unlicensed-status finding
+          rather than a TH SEC banking-prohibition directive to Thai
+          banks (TH SEC does not have direct banking-prohibition
+          authority over Thai retail banks; the cascade is via
+          Binance / Bybit operator-side compliance posture and Thai
+          retail customer risk-perception update following the public
+          criminal complaint). DRYRUN: pinned anchors for the
+          Binance-TH / Bybit-TH THB-rail flows and any contemporaneous
+          Bangkok Post / Coindesk reporting deferred to human audit.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2021/07/02/thailand-sec-files-criminal-complaint-against-binance
+        wayback: https://web.archive.org/web/2021/https://www.coindesk.com/markets/2021/07/02/thailand-sec-files-criminal-complaint-against-binance
+        evidence_use: contextual_unarchived
+        note: |
+          Coindesk 2021-07-02 reporting corroborates the TH SEC's
+          criminal-complaint anchor and the unlicensed-operator
+          framing (15-day SEC warning issued 2021-04-05; Binance
+          failed to respond within the deadline; complaint then filed
+          with the Royal Thai Police ECD). DRYRUN: contextual
+          unarchived pending pinned Wayback capture.
+      - type: supporting_journalism
+        url: https://www.bangkokpost.com/business/2142503/sec-files-criminal-complaint-against-binance
+        wayback: https://web.archive.org/web/2021/https://www.bangkokpost.com/business/2142503/sec-files-criminal-complaint-against-binance
+        evidence_use: contextual_unarchived
+        note: |
+          Bangkok Post 2021-07-02 reporting same-day-of-record on the
+          TH SEC criminal complaint against Binance, useful as Thai
+          domestic-press corroboration. DRYRUN: contextual unarchived
+          pending pinned Wayback capture.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: agent-drafted from user-
+  anchored facts (slug=thailand-sec-binance-bybit-c-and-d-2021,
+  actor=TH_SEC, stratum=S4_nation_state, trigger.type=
+  regulatory_enforcement, target.kind=entity/subset, jurisdiction=[TH],
+  layers=offramp_cex). Authored by LLM agent without personally
+  verifying Wayback / body_hash; origin=agent_draft, status=draft per
+  validator policy; human audit required to promote.
+
+  Comparison documenting the 2021-07-02 Thailand SEC criminal complaint
+  filed against Binance with the Economic Crime Suppression Division
+  (ECD) of the Royal Thai Police for operating a digital-asset-
+  exchange business in Thailand without a licence in violation of the
+  Emergency Decree on Digital Asset Businesses Act B.E. 2561 (2018).
+  Bybit is included in the target enumeration under the same TH SEC
+  unlicensed-operator enforcement posture for the user-anchored event
+  scope; the analogous formal TH SEC criminal complaint against Bybit
+  Fintech Limited (operative window 2022-01-25) is recorded as a
+  cross-target subset rather than a separate trigger row. Sibling
+  cases in the 2021 multi-jurisdictional Binance regulator wave:
+  Malaysia SC 2021-07-30 (frontend disable order), Singapore MAS
+  2021-09-02 (IAL listing + PSA warning), UK FCA 2021-06-26.
+
+  Codebook rule applied (§5.1): trigger.type=regulatory_enforcement
+  per the 2026-05-17 codebook addition for "Non-US national regulator
+  administrative enforcement" because the action is a national-
+  regulator criminal-complaint enforcement under TH domestic statute
+  (Emergency Decree on Digital Asset Businesses Act B.E. 2561) rather
+  than a network/payment-rail block. §5.2 stratum-actor map: TH SEC →
+  S4_nation_state. §1 attribution: load-bearing observation coded
+  plausible (not direct) because the TH SEC criminal complaint does
+  not itself mandate a Thai-banking-rail severance; the THB-rail
+  constraint cascades through unlicensed-status disclosure and
+  operator-side compliance posture rather than a direct banking-
+  prohibition directive. §3 empirical_shape=comparison (1
+  observed_change layer: offramp_cex). §4 admission_tier=
+  empirical_case (≥1 strong-attribution observed_change layer).
+
+  Paper-relevant contrast vs Malaysia SC 2021-07-30 (malaysia-sc-
+  binance-disable-2021): Malaysia SC used a harder-edged instrument
+  (frontend disable order with a 14-business-day compliance window
+  for binance.com + Binance iOS/Android apps for MY users), while TH
+  SEC used a criminal-process instrument (complaint filed with the
+  Royal Thai Police ECD) without an accompanying frontend-disable
+  directive. The MY action has L4-frontend as load-bearing; the TH
+  action has offramp_cex as load-bearing (no L4-disable artifact in
+  scope here).
+
+  Paper-relevant contrast vs Singapore MAS 2021-09-02 (singapore-mas-
+  binance-services-2021): MAS used an IAL listing + PSA warning that
+  produced a fast L4-frontend response from Binance (SG-user product
+  restrictions within 3 days) and a slow-cascade SGD-rail severance
+  through the local Binance entity (binance.sg). TH SEC's criminal
+  complaint produced no analogous fast L4-frontend response from
+  Binance for Thai users in the 2021-07 window; the offramp_cex
+  constraint is the load-bearing axis.
+
+  Paper-relevant contrast vs Thailand BOT 2013 (thailand-bot-bitcoin-
+  prohibition-2013): the 2013 BOT instrument was a central-bank
+  advisory framing bitcoin as not-a-legal-currency under existing
+  FX/payments law (a pre-statute discovery-tier artifact); the 2021
+  TH SEC instrument operates under the 2018 Emergency Decree on
+  Digital Asset Businesses Act, a statutory licensing regime not
+  available in 2013. Cross-period anchor showing the TH regulator
+  posture's statutory consolidation between 2013 and 2021.
+
+  DRYRUN caveats: trigger primary citation (TH SEC News_Detail
+  SECID=9017) is asserted with a 2021-calendar-folder Wayback
+  pointer; pinned snapshot timestamp and body_hash capture deferred
+  to non-DRYRUN release. For non-DRYRUN release, capture body_hash +
+  body_path for: (1) TH SEC News_Detail SECID=9017 (2021-07-02
+  criminal complaint against Binance), (2) TH SEC 2021-04-05 warning
+  letter / press item to Binance with the 15-day response window,
+  (3) Bangkok Post 2142503 (2021-07-02) and Coindesk 2021-07-02
+  reporting, (4) any Binance / Bybit contemporaneous corporate
+  announcements addressing the TH SEC posture, (5) TH SEC News_Detail
+  SECID=10613 (Bybit criminal complaint, operative window 2022-01-25)
+  if the user-anchored Binance + Bybit scope is preserved on human
+  audit. Marked evidence_use=contextual_unarchived on all citations
+  to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "Thailand SEC criminal complaint filed 2021-07-02 against Binance
+  with the Royal Thai Police Economic Crime Suppression Division (and
+  the contemporaneous TH SEC unlicensed-operator enforcement posture
+  extending to Bybit) under the Emergency Decree on Digital Asset
+  Businesses Act B.E. 2561 produced a plausible-attribution
+  constraint on the Thai THB on/off-ramp rails accessible via
+  binance.com and bybit.com (offramp_cex load-bearing), without an
+  accompanying regulator-directed L4-frontend disable order, L0
+  network block, or on-chain asset freeze. The row does not claim a
+  direct Thai-banking-rail severance directive from TH SEC."
+
+tags:
+  - regulatory_enforcement
+  - thailand
+  - th_sec
+  - binance
+  - bybit
+  - criminal_complaint
+  - offramp_cex
+  - dryrun_2026_05_17

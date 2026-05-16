@@ -1,0 +1,365 @@
+id: huobi-htx-privacy-coin-delisting-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - binance-privacy-coin-delisting-2023
+  - okx-privacy-token-delist-2024
+  - kraken-monero-eu-delisting-2024
+
+trigger:
+  type: corporate_policy_change
+  actor: HUOBI_HTX
+  timestamp: 2024-01-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: primary_corporate
+      url: https://www.htx.com/support/
+      wayback: https://web.archive.org/web/2024/https://www.htx.com/support/
+      evidence_use: contextual_unarchived
+      note: |
+        HTX (rebranded from Huobi on 2023-09-13) customer-support
+        announcement hub anchoring the 2024 privacy-asset spot-trading-
+        pair removals identified in Kaiko's 2024 CEX privacy-coin
+        delisting tally (highest yearly delisting rate since 2021).
+        HTX is one of the named platforms in the Kaiko cohort
+        (alongside Binance, Kraken, OKX, Bittrex, Coincheck, Upbit)
+        whose 2024 privacy-asset product-catalogue narrowing follows
+        the original 2022-09 Huobi-era seven-coin privacy delisting
+        (Monero/XMR, Dash/DASH, Decred/DCR, Firo/FIRO, Verge/XVG,
+        Zcash/ZEC, Horizen/ZEN) and extends into the post-rebrand
+        HTX 2024 batch under continued MiCA-era regulatory pressure
+        and EU/UAE/South-Korea jurisdictional tightening. Marked
+        evidence_use=contextual_unarchived because the precise 2024
+        HTX support-article URL and announcement-date have not been
+        pinned by the authoring LLM agent in this DRYRUN; the
+        canonical HTX support hub is the corporate anchor pending
+        human audit re-pin of the specific 2024 batch notice.
+    - type: supporting_tracker
+      url: https://cryptoslate.com/privacy-tokens-reach-highest-delisting-rate-in-2024-kaiko/
+      wayback: https://web.archive.org/web/2024/https://cryptoslate.com/privacy-tokens-reach-highest-delisting-rate-in-2024-kaiko/
+      evidence_use: contextual_unarchived
+      note: |
+        Kaiko 2024 privacy-coin delisting report (reported by
+        CryptoSlate / Coinspeaker / Binance Square in 2024-10):
+        names HTX (Huobi) among the exchanges driving the 2024
+        delisting wave (~60 delistings total, highest since 2021).
+        Supporting-tracker tier; corroborates HTX inclusion in the
+        2024 corporate cohort but does not enumerate per-asset HTX
+        batch notice URLs.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Week-level precision (calendar-year 2024 placeholder) because
+        the authoring LLM agent did not pin a specific HTX 2024
+        batch-notice timestamp in this DRYRUN. The Kaiko 2024
+        privacy-coin delisting tally aggregates per-exchange
+        delistings across the calendar year without enumerating
+        per-batch dates for HTX. Human audit must replace this
+        placeholder with the pinned HTX support-article timestamp
+        (or a tightened range) before promotion to admitted.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target entity is HTX (formerly Huobi; rebranded 2023-09-13) as
+    the centralized-exchange operator implementing the 2024
+    privacy-asset product-catalogue narrowing identified in Kaiko's
+    2024 CEX delisting tally. Named affected privacy assets in the
+    cohort include Monero (XMR), Dash (DASH), and Zcash (ZEC); the
+    underlying 2022-09 Huobi-era seven-coin cohort additionally
+    enumerated Decred (DCR), Firo (FIRO), Verge (XVG), and Horizen
+    (ZEN) and is treated as the prior-window baseline rather than
+    the 2024 batch scope. Recorded as enumeration=subset because
+    (a) the 2024 HTX batch notice URLs and per-asset effective
+    dates are not pinned in this DRYRUN, and (b) the class-level
+    rationale (MiCA-era / EU + UAE + South-Korea privacy-asset
+    compliance pressure per Kaiko) extends to a broader cohort of
+    privacy assets that HTX did not exhaustively enumerate in
+    public 2024 notices captured by the authoring agent.
+  entity: huobi_htx_2024_privacy_asset_delisting
+  actor_name: HTX (formerly Huobi; HTX Global, post-rebrand 2023-09-13)
+  actor_type: centralized_exchange_listing_action
+  chains: [monero, dash, zcash]
+  canonical_domains:
+    - htx.com
+    - www.htx.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      htx.com remained reachable globally during the 2024 batch
+      window; the action is a product-catalogue change at the
+      exchange-listing layer, not an ISP / DNS domain filter.
+      Consistent with the L0 treatment in
+      binance-privacy-coin-delisting-2023,
+      okx-privacy-token-delist-2024, and
+      kraken-monero-eu-delisting-2024 S5 corporate listing events.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Monero, Dash, and Zcash are independent base-chain networks;
+      an HTX spot-pair removal does not engage any of those chains'
+      miner / validator consensus surfaces. Off-exchange
+      transferability and base-chain operation are unaffected by
+      the listing action. not_applicable on substrate-mismatch
+      grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC providers' filter lists for Ethereum and EVM
+      chains are not implicated by an HTX spot-pair removal
+      targeting non-EVM privacy assets. No L3 measurement
+      primitive applies. not_applicable on substrate-mismatch
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The HTX customer-support notice surface is the announcement
+      anchor, not a separable frontend-restriction observation
+      distinct from the off-ramp catalogue change. Frontend
+      visibility of removed pairs collapses in lockstep with the
+      off-ramp action; no independent L4 surface is pinned here.
+      Treated symmetrically with the L4 handling in
+      binance-privacy-coin-delisting-2023,
+      okx-privacy-token-delist-2024, and
+      kraken-monero-eu-delisting-2024.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Monero, Dash, and Zcash are native base-chain assets without
+      issuer admin freeze primitives; no token-contract-level
+      freeze or admin action is engaged by the HTX listing change.
+      The action is exchange-listing-only. not_applicable on
+      substrate-mismatch grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - htx_spot_xmr_pairs
+      - htx_spot_dash_pairs
+      - htx_spot_zec_pairs
+    note: |
+      Load-bearing layer. HTX (formerly Huobi), a top-tier global
+      centralized exchange by spot volume, narrowed its product
+      catalogue for the named privacy-asset spot-trading pairs
+      during the 2024 batch window per Kaiko's 2024 privacy-coin
+      delisting tally (HTX is one of the named cohort exchanges
+      driving the ~60-delistings 2024 record). The action narrows
+      the CEX off-ramp surface for the affected privacy assets in
+      the HTX corridor and is the direct realization of the
+      corporate-policy trigger. Attached below as observed_change
+      with attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:htx
+    event: htx_spot_pair_removal_privacy_asset_cohort_2024
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-01-01T00:00:00Z
+    precision: week
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://www.htx.com/support/
+        wayback: https://web.archive.org/web/2024/https://www.htx.com/support/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - htx_spot_xmr_pairs
+            - htx_spot_dash_pairs
+            - htx_spot_zec_pairs
+          time_window:
+            - 2024-01-01T00:00:00Z
+            - 2024-12-31T23:59:59Z
+        note: |
+          HTX customer-support hub is the corporate-policy anchor.
+          attribution=direct per codebook §1.4 corporate-self-cite
+          logic extended to S5 offramp_cex: HTX is both the
+          announcing actor and the operator of the affected spot-
+          trading product, and the rebranded HTX entity has
+          continued the 2022-09 Huobi-era privacy-asset delisting
+          program into the 2024 calendar year per Kaiko's tally.
+          Provisional Wayback wildcard pointer (web/2024/) in lieu
+          of a pinned-timestamp snapshot; evidence_use=
+          contextual_unarchived pending human-audit re-pin of the
+          precise 2024 HTX batch-notice URL slug and body_hash.
+      - type: supporting_tracker
+        url: https://cryptoslate.com/privacy-tokens-reach-highest-delisting-rate-in-2024-kaiko/
+        wayback: https://web.archive.org/web/2024/https://cryptoslate.com/privacy-tokens-reach-highest-delisting-rate-in-2024-kaiko/
+        evidence_use: contextual_unarchived
+        note: |
+          Kaiko 2024 privacy-coin delisting tally (via CryptoSlate
+          / Coinspeaker / Binance Square 2024-10 reporting):
+          identifies HTX (Huobi) as one of the named exchanges
+          driving the 2024 ~60-delistings record (highest since
+          2021), with XMR / DASH leading the delisted-asset
+          rankings. Supporting-tracker tier; corroborates HTX
+          inclusion in the 2024 cohort but does not pin per-batch
+          notice URLs.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (follow-on S5
+  corporate-policy candidate authored to complete the 2023-2024
+  CEX privacy-asset delisting wave four-event backbone alongside
+  binance-privacy-coin-delisting-2023,
+  okx-privacy-token-delist-2024, and
+  kraken-monero-eu-delisting-2024): authored by LLM agent without
+  personally pinning the precise 2024 HTX batch-notice URL or a
+  Wayback / body_hash anchor. status=draft and origin=agent_draft
+  per authoring brief; this row requires human audit and
+  identification + Wayback / body_hash pinning of the specific
+  HTX 2024 support-article(s) before promotion to admitted /
+  human_reviewed.
+
+  comparison — S5 corporate-policy-change event documenting HTX
+  (formerly Huobi; rebranded 2023-09-13)'s 2024 product-catalogue
+  narrowing for the privacy-asset cohort (XMR / DASH / ZEC named
+  in the Kaiko 2024 tally; the prior-window 2022-09 Huobi-era
+  seven-coin cohort additionally enumerated DCR / FIRO / XVG /
+  ZEN as baseline). The event is distinct from
+  binance-privacy-coin-delisting-2023 (Binance Holdings Limited,
+  2023-06-26, geofenced FR/IT/PL/ES EU-4 cohort) and represents
+  the HTX rebrand-era continuation of the legacy Huobi 2022-09
+  privacy-asset removal program into the 2024 batch window per
+  Kaiko's record-year tally. Pairs with
+  okx-privacy-token-delist-2024 (OKX, 2023-12-29, global
+  product-catalogue trim) and kraken-monero-eu-delisting-2024
+  (Kraken, 2024-10-31, EEA-30 cohort, XMR-only) as the
+  four-event backbone of the 2023-2024 CEX privacy-asset
+  delisting wave under MiCA-era + EU TFR-recast + South-Korea +
+  UAE jurisdictional compliance pressure.
+
+  HTX-rebrand-context (paper-relevant): the 2023-09-13
+  Huobi→HTX rebrand (TRON-aligned "H + T + X" branding) sits
+  between the 2022-09 Huobi-era privacy-coin delisting wave
+  (seven-coin cohort, regulatory-compliance rationale) and the
+  2024 batch window logged by Kaiko. The 2024 HTX delistings are
+  therefore not a fresh independent event but a continuation of
+  the legacy Huobi compliance program under the rebranded entity,
+  which makes this row a within-actor longitudinal anchor (Huobi
+  2022 → HTX 2024) in addition to its cross-actor cohort position
+  alongside Binance / OKX / Kraken.
+
+  Single observed_change layer (offramp_cex) with
+  attribution=direct via the HTX customer-support hub primary
+  anchor plus Kaiko-tally supporting-tracker corroboration. L0 /
+  L1 / L3 / l4_frontend / asset_onchain are all not_applicable on
+  substrate-mismatch grounds — this is a CEX corporate-policy
+  listing-restriction event keyed to base-chain privacy assets,
+  not a protocol or network primitive engagement, and the L4
+  announcement surface is co-located with the off-ramp catalogue
+  change (treated symmetrically with the L4 handling in the three
+  sibling events).
+
+  attribution=direct rationale (codebook §1.4 extended to S5
+  offramp_cex): the actor (HTX) is both the announcing entity
+  and the operator of the affected off-ramp product, and the
+  legacy Huobi 2022-09 program publicly cited "latest financial
+  regulations" as the compliance rationale, continued under HTX
+  through 2024 per Kaiko's tally. Defaulted to direct per the
+  corporate-self-cite logic; a more conservative reviewer may
+  prefer plausible pending pinning of the specific 2024
+  batch-notice text.
+
+  Why empirical_case rather than anchor_case: in this DRYRUN
+  pass the load-bearing offramp_cex observation carries direct
+  attribution but the citation is a primary-corporate hub URL
+  (not a specific batch notice) plus one supporting-tracker
+  corroboration, both with provisional Wayback wildcard anchors
+  (not body-hash-pinned). The trigger timestamp is logged at
+  week-level precision with a calendar-year-2024 placeholder
+  rather than a specific batch-notice date. Promotion to
+  anchor_case requires (a) identification + Wayback / body_hash
+  pinning of the specific HTX 2024 support-article(s), (b) per-
+  asset effective-date enumeration (XMR / DASH / ZEC at minimum)
+  to tighten timestamp precision below week-level, and (c) an
+  independent semi-primary or supporting-tracker source
+  confirming the post-effective-date absence of the removed spot
+  pairs in HTX's public ticker listings.
+
+scoped_claim: |
+  "HTX (formerly Huobi; rebranded 2023-09-13)'s 2024 product-
+  catalogue narrowing for privacy-asset spot-trading pairs
+  (XMR / DASH / ZEC named in Kaiko's 2024 record-year delisting
+  tally) narrows the centralized-exchange off-ramp surface for
+  the affected privacy assets in the HTX corridor under
+  continued MiCA-era + EU TFR-recast + Asia-Pacific regulatory
+  compliance pressure. The offramp_cex layer carries the
+  load-bearing direct-attribution observation; L0 / L1 / L3 /
+  l4_frontend / asset_onchain are not_applicable for an
+  exchange-listing-only action keyed to base-chain privacy
+  assets. The row is the HTX-rebrand-era continuation of the
+  legacy Huobi 2022-09 seven-coin privacy-asset delisting
+  program and the fourth anchor of the 2023-2024 CEX
+  privacy-asset delisting wave alongside
+  binance-privacy-coin-delisting-2023,
+  okx-privacy-token-delist-2024, and
+  kraken-monero-eu-delisting-2024."
+
+scoped_knowledge: |
+  This event is the HTX-rebrand-era 2024 cohort anchor in the
+  2023-2024 CEX privacy-asset delisting wave. The 2024 HTX
+  batch sits at the intersection of two within-actor and
+  cross-actor axes: (a) within-actor longitudinal continuity
+  from the 2022-09 Huobi-era seven-coin delisting (XMR / DASH /
+  DCR / FIRO / XVG / ZEC / ZEN) through the 2023-09-13
+  Huobi→HTX rebrand into the 2024 batch window logged by
+  Kaiko, and (b) cross-actor cohort membership alongside
+  Binance (geofenced EU-4, 2023-06), OKX (global, 2023-12), and
+  Kraken (EEA-30 XMR-only, 2024-10).
+
+  The four-event backbone of the wave —
+  binance-privacy-coin-delisting-2023 (2023-06-26, Binance
+  EU-4 cohort leader, 8-asset cohort),
+  okx-privacy-token-delist-2024 (2023-12-29, OKX global
+  product-catalogue trim, 4-asset cohort),
+  kraken-monero-eu-delisting-2024 (2024-10-31, Kraken EEA-30
+  cohort, XMR-only), and this
+  huobi-htx-privacy-coin-delisting-2024 (2024 batch window,
+  HTX corporate-global, XMR / DASH / ZEC named) — separates
+  four distinct S5 corporate-response patterns to overlapping
+  MiCA-era regulatory substrates: (a) geofenced multi-asset
+  EU-member-state cohort (Binance), (b) global multi-asset
+  product-catalogue trim (OKX), (c) geofenced single-asset
+  (XMR) EEA-30 cohort (Kraken), and (d) corporate-global
+  multi-asset rebrand-continuation cohort (HTX).
+
+  Paper-relevant axes: (a) the regulatory-substrate /
+  corporate-response coupling (MiCA framework S6 + TFR recast
+  S6 + APAC regulatory pressure → four-exchange S5 cohort),
+  (b) the rebrand-continuity axis (Huobi 2022 → HTX 2024 as a
+  single longitudinal compliance program under a re-named
+  operator), (c) the jurisdictional-precision gradient across
+  the four sibling events (member-state vs corporate-global
+  vs EEA-wide vs corporate-global-rebrand-era), and (d) the
+  Kaiko-tally record-year context (~60 delistings in 2024,
+  highest since 2021) as the corpus-level denominator anchor
+  for 2024 S5 privacy-asset corporate-policy actions.
+
+tags:
+  - corporate_policy_change
+  - cex_delisting
+  - privacy_asset
+  - htx_exchange
+  - huobi_legacy
+  - offramp_restriction
+  - mica_compliance
+  - rebrand_continuity
+  - cohort_anchor_2024
+  - kaiko_2024_tally
+  - dryrun_2026_05_17

@@ -1,0 +1,225 @@
+id: kucoin-canada-exit-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - canada-csa-binance-withdrawal-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: KUCOIN_EXCHANGE
+  timestamp: 2023-06-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.kucoin.com/news/en-kucoin-announcement-regarding-canada
+      wayback: https://web.archive.org/web/2023*/kucoin.com/news/en-kucoin-announcement-regarding-canada
+      evidence_use: contextual_unarchived
+      note: |
+        KuCoin corporate announcement (2023-06-28) notifying Canadian
+        users of mandatory KYC effective 2023-07-15 and the corresponding
+        wind-down of deposit and trading services for Canadian-resident
+        accounts. Captures KuCoin's self-initiated retreat from the
+        Canadian retail user market following sustained OSC / CSA
+        enforcement pressure (OSC Capital Markets Tribunal order
+        2022-07-22 imposing C$2M penalty + permanent participation ban
+        on Mek Global / PhoenixFin / KuCoin entities, against the
+        backdrop of the 2023-02-22 CSA Staff Notice 21-332 enhanced
+        pre-registration-undertaking framework). Marked
+        evidence_use=contextual_unarchived because the authoring LLM
+        agent did not personally pin a Wayback snapshot timestamp or
+        compute a body_hash for the KuCoin announcement page; the
+        canonical KuCoin announcement archive is to be re-pinned during
+        human audit before this citation may serve as an admission
+        anchor.
+    - type: primary_legal
+      url: https://www.osc.ca/en/news-events/news/osc-holds-global-crypto-asset-trading-platforms-accountable
+      wayback: https://web.archive.org/web/2022*/osc.ca/en/news-events/news/osc-holds-global-crypto-asset-trading-platforms-accountable
+      evidence_use: contextual_unarchived
+      note: |
+        OSC announcement (2022-07-22) of Capital Markets Tribunal orders
+        permanently banning Mek Global Limited and PhoenixFin Pte. Ltd.
+        (collectively KuCoin) from Ontario's capital markets, with C$2M
+        administrative penalty plus C$96,550.35 investigation costs.
+        This OSC enforcement action and the broader 2023-02-22 CSA
+        pre-registration-undertaking framework collectively constitute
+        the regulatory backdrop against which KuCoin chose to retreat
+        from the Canadian user market in mid-2023. Marked
+        evidence_use=contextual_unarchived pending human-audit Wayback
+        re-pin and body_hash capture.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level trigger timing per the KuCoin Canada announcement
+        (2023-06-28). The 2023-07-15 KYC / service wind-down date is
+        recorded as the offramp_cex observation timestamp.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    KuCoin Canadian-resident user cohort. KuCoin (Mek Global Limited,
+    Seychelles; PhoenixFin Pte. Ltd., Singapore) is the focal target
+    actor; the affected population is Canadian-resident retail users
+    of kucoin.com. Subset-enumerated because KuCoin's Canada exit
+    affected the Canadian retail cohort rather than a fully named
+    individual address list. Sibling cascade leg to
+    canada-csa-binance-withdrawal-2023 from the corporate-policy
+    (S5) side rather than the nation-state-block (S4) side.
+  actor_type: regulated_crypto_service_provider
+  actor_name: KuCoin (Canada user cohort)
+  chains: []
+  canonical_domains:
+    - kucoin.com
+
+jurisdiction: [CA]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      KuCoin's Canada exit is a corporate policy decision, not an
+      ISP-level / network-layer block. No DNS or BGP reachability
+      change is asserted against kucoin.com from Canadian networks.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Corporate market-exit decision; no validator-level / PBS-level
+      construct is implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change is implicated by a CEX
+      market-exit.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      KuCoin's announcement was a corporate-blog notification rather
+      than a geo-gated kucoin.com frontend block; no replayable
+      frontend-state diff for Canadian geo was captured by the
+      authoring agent. Held as not_measured pending human-audit
+      Wayback capture of the kucoin.com Canada-geo behavior across
+      the 2023-06-28 to 2023-07-15 window.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN listing or stablecoin-issuer freeze primitive applicable;
+      KuCoin's Canada exit operates at the platform-service layer,
+      not at the issuer-admin freeze layer.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - kucoin_canada_users
+      - cad_payment_rails_to_kucoin
+    note: |
+      KuCoin Canada is the focal off-ramp under corporate-policy
+      retreat. Following the 2023-06-28 announcement, Canadian-
+      resident KuCoin accounts faced mandatory KYC and a 2023-07-15
+      cut-off of deposits and trading. Load-bearing observation
+      attached below as observed_change with direct attribution to
+      the KuCoin corporate announcement which itself situates the
+      decision against the OSC / CSA enforcement backdrop.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:kucoin_canada
+    event: kucoin_canada_offramp_shutdown
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-07-15T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_corporate
+        url: https://www.kucoin.com/news/en-kucoin-announcement-regarding-canada
+        wayback: https://web.archive.org/web/2023*/kucoin.com/news/en-kucoin-announcement-regarding-canada
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [kucoin_canada_offramp_cohort]
+          time_window:
+            - 2023-06-28T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          KuCoin announcement (2023-06-28) documents the operational
+          off-boarding plan for Canadian-resident accounts: mandatory
+          KYC effective 2023-07-15, after which deposits and trades
+          stop working for non-compliant Canadian accounts.
+          attribution=direct because the announcement is a self-
+          authored corporate-policy statement explicitly addressed to
+          the Canadian user cohort. Per §1.2/§1.4 codebook analogue
+          for corporate-policy triggers: the actor is itself the
+          publisher of both the trigger statement and the action,
+          collapsing the trigger→action chain.
+      - type: primary_legal
+        url: https://www.osc.ca/en/news-events/news/osc-holds-global-crypto-asset-trading-platforms-accountable
+        wayback: https://web.archive.org/web/2022*/osc.ca/en/news-events/news/osc-holds-global-crypto-asset-trading-platforms-accountable
+        evidence_use: contextual_unarchived
+        note: |
+          OSC Capital Markets Tribunal order (2022-07-22) is the
+          contextual regulatory backdrop; KuCoin's 2023 Canada exit
+          comes against the sustained OSC enforcement posture and the
+          broader 2023-02-22 CSA Staff Notice 21-332 framework.
+          Contextual citation rather than admission anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase 6c-extension: KuCoin
+  Canada cohort sibling to canada-csa-binance-withdrawal-2023). Authored
+  by LLM agent without personally verifying Wayback / body_hash; only
+  valid at status=draft / origin=agent_draft. Real release must replace
+  this DRYRUN marker with a human-verified audit after pinning real
+  archive anchors for the KuCoin announcement page and the OSC
+  enforcement page.
+
+  comparison shape: 1 observed_change layer (offramp_cex) with direct
+  attribution. Sibling of canada-csa-binance-withdrawal-2023 from the
+  S5_corporate side — same Canadian regulatory environment (2022-07-22
+  OSC enforcement + 2023-02-22 CSA Staff Notice 21-332) produced two
+  distinct exchange-exit cascades. KuCoin's response was a unilateral
+  corporate-policy KYC-gate + service wind-down for Canadian users,
+  characterized in OSC commentary as notable because (unlike Bybit)
+  KuCoin did not engage in dialogue with the regulator. Empirical
+  shape held at comparison rather than cascade because only the
+  offramp_cex layer is captured as measured + observed_change; the
+  l4_frontend cohort behavior is held not_measured pending human
+  audit.
+
+  Codebook decisions applied:
+  - trigger.type=corporate_policy_change per §5.1 (exchange-initiated
+    market retreat).
+  - research_stratum=S5_corporate per §5.2 stratum-actor map.
+  - attribution=direct on offramp_cex because the corporate-policy
+    trigger and the offramp shutdown are co-authored by the same
+    actor (collapses the trigger→action linkage).
+  - target.enumeration=subset per §7 — Canadian-resident retail user
+    cohort is class-level rather than per-address enumerated.
+  - empirical_shape=comparison per §3 (1 observed_change layer).
+  - admission_tier=empirical_case per §4 (≥1 strong-attribution
+    observed_change layer).
+
+scoped_claim: |
+  "Under sustained OSC enforcement (2022-07-22 Capital Markets Tribunal
+  order) and the 2023-02-22 CSA Staff Notice 21-332 framework, KuCoin
+  on 2023-06-28 announced mandatory KYC effective 2023-07-15 for
+  Canadian-resident accounts and an associated wind-down of deposit
+  and trading services, producing a 1-layer offramp_cex cascade for
+  the KuCoin Canada cohort. Structurally an S5 corporate-policy
+  retreat sibling to the S4 CSA-driven Binance Canada withdrawal
+  (canada-csa-binance-withdrawal-2023)."
+
+tags:
+  - corporate_policy_change
+  - canada
+  - kucoin
+  - osc
+  - csa
+  - market_exit
+  - regulated_crypto_service_provider
+  - dryrun_2026_05_17

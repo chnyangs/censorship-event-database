@@ -1,0 +1,293 @@
+id: brazil-bacen-stablecoin-restriction-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - brazil-bcb-comunicado-25306-2014
+
+trigger:
+  type: regulatory_enforcement
+  actor: BR_BACEN
+  timestamp: 2023-06-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+      wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+      evidence_use: contextual_unarchived
+      note: |
+        Decreto nº 11.563, de 13 de junho de 2023 ("Decree No.
+        11,563 of June 13, 2023"), issued by the Brazilian federal
+        executive, regulates Lei nº 14.478/2022 (Brazilian Virtual
+        Assets Law / BVAL) by designating the Banco Central do
+        Brasil (BACEN / BCB) as the competent regulator for virtual
+        asset service providers (VASPs) in Brazil. The decree
+        operationalizes the BVAL framework that supplies the legal
+        basis for BACEN's subsequent administrative restrictions
+        on BRL-pegged stablecoin issuance and offshore stablecoin
+        trading. Entered into force 2023-06-20. This is the
+        operational follow-on to the 2022 crypto law and the
+        canonical trigger anchor for BACEN's stablecoin-framework
+        authority. Wayback wildcard anchor is provisional; specific
+        snapshot timestamp must be re-pinned during human audit
+        before this citation may carry an admission anchor in its
+        own right. Marked evidence_use=contextual_unarchived
+        pending that re-pin.
+    - type: primary_legal
+      url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
+      wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
+      evidence_use: contextual_unarchived
+      note: |
+        Lei nº 14.478, de 21 de dezembro de 2022 (Brazilian Virtual
+        Assets Law / BVAL), the underlying federal statute that
+        Decreto 11.563/2023 regulates. Published 2022-12-22;
+        entered into force 180 days after publication
+        (~2023-06-20), coincident with Decreto 11.563/2023.
+        Provided as the legislative anchor for the
+        regulatory_enforcement trigger; the BVAL itself is a
+        framework statute and the trigger.timestamp is pegged to
+        the 2023-06-13 BACEN-empowering decree rather than the
+        2022-12-21 law. Wayback anchor provisional pending human
+        audit re-pin. Marked evidence_use=contextual_unarchived.
+    - type: supporting_journalism
+      url: https://www.loc.gov/item/global-legal-monitor/2023-01-31/brazil-new-law-regulates-cryptocurrency/
+      wayback: https://web.archive.org/web/2023/https://www.loc.gov/item/global-legal-monitor/2023-01-31/brazil-new-law-regulates-cryptocurrency/
+      evidence_use: contextual_unarchived
+      note: |
+        US Library of Congress Global Legal Monitor 2023-01-31
+        digest of Lei 14.478/2022. Provided as an English-language
+        framing source for the BVAL statutory perimeter that the
+        2023-06-13 BACEN decree operationalizes. Wayback anchor
+        provisional pending human audit re-pin. Marked
+        evidence_use=contextual_unarchived.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Decreto 11.563 carries a 2023-06-13 signature date on the
+        Planalto register and entered into force 2023-06-20.
+        Day-level precision is appropriate because federal decrees
+        do not carry intra-day signature timing in the Planalto
+        public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the BACEN-supervised virtual-asset-service-
+    provider (VASP) class operating in or accessible from Brazil,
+    insofar as the BVAL/Decreto 11.563 framework conditions BRL-
+    pegged stablecoin issuance and offshore stablecoin trading on
+    BACEN registration and supervision. This is a class-level
+    regulatory perimeter: the decree does not name specific
+    exchanges, issuers, addresses, or domains. enumeration=subset
+    rather than complete because the framework addresses a VASP
+    class without a fixed roster, matching the codebook §7 class-
+    level rationale and the sibling 2014 BCB Comunicado treatment.
+  protocol: null
+  actor_type: brazil_supervised_vasp_class
+  actor_name: BACEN-supervised virtual-asset service providers (BRL-pegged stablecoin issuers and offshore stablecoin trading venues)
+  chains:
+    - ethereum
+    - tron
+  canonical_domains: []
+
+jurisdiction:
+  - BR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Decreto 11.563/2023 does not direct ISP-level domain blocking
+      or DNS interference. The framework grants BACEN administrative
+      regulatory authority over VASPs; it is not a network-layer
+      block. L0 marked not_applicable consistent with the sibling
+      2014 BCB Comunicado treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Decreto 11.563/2023 does not direct PBS-relay or block-builder
+      compliance behavior; it is an administrative supervisory
+      framework. not_applicable on scope-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Decreto 11.563/2023 does not condition public-RPC operator
+      behavior in or accessible from Brazil. not_applicable on
+      scope-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The 2023-06-13 decree is a VASP-supervisory framework, not a
+      directive to take down specific dApp frontends. No Brazilian
+      frontends were enumerated targets. not_applicable on scope-
+      mismatch grounds.
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      The BVAL/Decreto 11.563 framework conditions BRL-pegged
+      stablecoin issuance on BACEN registration and supervision,
+      and subsequent BCB resolutions (520/2025-era) impose backing
+      and audit requirements that constrain issuer admin behavior
+      on-chain. However, in the 2023-06-13 trigger window itself no
+      enumerated BRL-pegged stablecoin issuer admin transition has
+      been pinned. The asset_onchain disposition is plausibly
+      framework-shaped but not measured at the 2023-06 trigger
+      anchor. Marked not_measured with a coverage_gap observation
+      row below.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      The BVAL/Decreto 11.563 framework conditions VASP operation
+      (including offshore stablecoin trading accessible from Brazil)
+      on BACEN registration and supervision. Plausible off-ramp
+      perimeter effects on Brazilian-resident access to offshore
+      stablecoin venues, but no enumerated Brazilian-VASP roster
+      transition or counterfactual measurement has been pinned at
+      the 2023-06-13 trigger anchor. Marked not_measured with a
+      coverage_gap observation row below.
+
+observations:
+  - layer: asset_onchain
+    actor: brl_pegged_stablecoin_issuer_class
+    event: bacen_decreto_11563_brl_stablecoin_issuance_perimeter
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2023-06-13T00:00:00Z
+    precision: day
+    note: |
+      Decreto 11.563/2023 plausibly conditions BRL-pegged stablecoin
+      issuer admin behavior on BACEN registration and supervision,
+      but no enumerated BRL-pegged stablecoin issuer admin
+      transition (mint/redeem/blacklist) has been pinned in the
+      2023-06 trigger window. Recorded as coverage_gap with
+      attribution=unknown to signal a framework-level disposition
+      consistent with the BVAL/Decreto perimeter without claiming a
+      measured observed_change.
+    sources:
+      - type: primary_legal
+        url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+        wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+        evidence_use: contextual_unarchived
+        note: |
+          Decreto 11.563/2023 designates BACEN as the competent
+          regulator for VASPs operating under Lei 14.478/2022.
+          Provisional Wayback anchor; specific snapshot timestamp
+          requires human-audit re-pinning.
+  - layer: offramp_cex
+    actor: brazil_resident_offshore_stablecoin_offramp_class
+    event: bacen_decreto_11563_offshore_stablecoin_trading_perimeter
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2023-06-13T00:00:00Z
+    precision: day
+    note: |
+      Decreto 11.563/2023 plausibly conditions Brazilian-resident
+      access to offshore stablecoin trading venues on BACEN VASP
+      registration and supervision, but no enumerated Brazilian-
+      VASP roster transition or counterfactual off-ramp measurement
+      has been pinned at the 2023-06-13 trigger anchor. Recorded as
+      coverage_gap with attribution=unknown to signal a framework-
+      level disposition without claiming a measured observed_change.
+    sources:
+      - type: primary_legal
+        url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+        wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+        evidence_use: contextual_unarchived
+        note: |
+          Decreto 11.563/2023 grants BACEN VASP-supervisory
+          authority. Provisional Wayback anchor; specific snapshot
+          timestamp requires human-audit re-pinning.
+      - type: primary_legal
+        url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
+        wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
+        evidence_use: contextual_unarchived
+        note: |
+          Lei 14.478/2022 is the underlying statute that Decreto
+          11.563/2023 operationalizes. Provisional Wayback anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-main
+  authoring pass for the 2023-06-13 Brazilian federal Decreto
+  11.563, the operational follow-on to Lei 14.478/2022 (Brazilian
+  Virtual Assets Law) that designates BACEN as the competent
+  regulator for VASPs and supplies the legal authority for BACEN's
+  subsequent BRL-pegged stablecoin issuance and offshore stablecoin
+  trading restrictions. origin=agent_draft and status=draft; human
+  re-verification of (i) the Planalto URLs reachability and Wayback
+  snapshot pinning, (ii) the BCB normativos register snapshots for
+  the implementing resolutions, and (iii) any contemporaneous
+  enumerated BRL-stablecoin-issuer or Brazilian-VASP roster
+  transition pinned to the 2023-06 trigger window is required
+  before this event may be promoted to human_reviewed and admitted.
+
+  Why comparable_main_2017_present tier: 2023-06-13 falls within
+  the 2017+ comparable-analysis temporal frame per sampling/frame.
+  analysis_use=comparable_analysis is the canonical pairing per
+  codebook §6.
+
+  Why empirical_shape=null_event / admission_tier=null_case: this
+  event has zero observed_change observations. The decree is a
+  framework-level VASP-supervisory perimeter, not an enumerated-
+  target enforcement action. Both observation rows are
+  observation_kind=coverage_gap with attribution=unknown, which
+  does not contribute toward empirical_shape or admission_tier
+  (codebook §3, §4). Treated as comparable-tier null-case denominator
+  context rather than admission-grade cascade evidence.
+
+  Why trigger.type=regulatory_enforcement: per codebook §5.1
+  (2026-05-17 entry), the canonical trigger.type for non-US
+  national-regulator administrative actions (excluding ISP/DNS
+  network blocks and payment-rail severance directives) is
+  regulatory_enforcement. BACEN is a non-US national regulator and
+  Decreto 11.563/2023 is an administrative VASP-supervisory
+  framework; this is the canonical fit. Per codebook §5.2 the
+  permitted research_stratum is S4_nation_state.
+
+  Why target.kind=entity / enumeration=subset: schema target.kind
+  enum does not include "regulatory_class"; entity is the closest
+  enum for a population-class target. enumeration=subset rather
+  than complete because the framework addresses a BACEN-supervised
+  VASP class without a fixed roster (codebook §7: class-level
+  rationale documented in enumeration_note).
+
+  Why asset_onchain and offramp_cex are not_measured (others not_
+  applicable): L0/L1/L3/L4 are scope-mismatch not_applicable (the
+  decree is not a network/relay/RPC/frontend directive). The two
+  layers the framework plausibly conditions are issuer-side admin
+  behavior (asset_onchain, for BRL-pegged stablecoin issuance) and
+  off-ramp perimeter (offramp_cex, for offshore stablecoin trading
+  accessible from Brazil); both are coded not_measured with a
+  coverage_gap observation row because no enumerated counterfactual
+  has been pinned at the 2023-06 trigger anchor.
+
+  Cross-temporal context: this 2023-06-13 event is the comparable-
+  tier follow-on to the 2014-02-19 BCB Comunicado n° 25.306 (event
+  brazil-bcb-comunicado-25306-2014), forming a within-jurisdiction
+  longitudinal anchor for the Brazilian central-bank crypto-
+  disposition trajectory (2014 risk advisory → 2022 framework
+  statute → 2023 BACEN regulatory authority → 2025+ implementing
+  resolutions). Subsequent BCB resolutions (e.g., Resolução 520/2025
+  and the 2026-02 cross-border eFX restrictions) operate under the
+  authority this 2023-06-13 decree grants and may be authored as
+  separate downstream events.
+
+tags:
+  - regulatory_enforcement
+  - brazil
+  - bacen
+  - bcb
+  - stablecoin
+  - brl_stablecoin
+  - vasp
+  - comparable_main
+  - class_level_advisory

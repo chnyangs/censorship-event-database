@@ -1,0 +1,198 @@
+id: kraken-uk-derivatives-exit-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - uk-fca-binance-markets-2021
+
+trigger:
+  type: corporate_policy_change
+  actor: KRAKEN_PAYWARD
+  timestamp: 2021-01-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://support.kraken.com/articles/futures-trading-for-clients-in-the-united-kingdom
+      wayback: https://web.archive.org/web/2021*/support.kraken.com/hc/en-us/articles/futures-trading-for-clients-in-the-united-kingdom
+      evidence_use: contextual_unarchived
+      note: |
+        Kraken support article "Becoming a Professional Client in the UK"
+        (Kraken Futures / Crypto Facilities Ltd). Documents Kraken's
+        compliance response to the FCA PS20/10 prohibition on the sale,
+        marketing and distribution of crypto-derivatives to UK retail
+        consumers (effective 2021-01-06): UK retail clients are restricted
+        from derivatives access, and derivatives trading is available only
+        to clients categorised as Professional Clients under COBS 3 of the
+        FCA Handbook. DRYRUN: Wayback URL pattern asserted; pinned body-hash
+        capture deferred.
+    - type: primary_corporate
+      url: https://support.kraken.com/articles/changes-for-clients-residing-in-the-united-kingdom
+      wayback: https://web.archive.org/web/2021*/support.kraken.com/hc/en-us/articles/changes-for-clients-residing-in-the-united-kingdom
+      evidence_use: contextual_unarchived
+      note: |
+        Kraken support article "Changes for Clients Residing in the United
+        Kingdom" -- enumerates Kraken's UK customer-facing changes following
+        the FCA ban. Companion compliance notice. Wayback pinned capture
+        deferred for DRYRUN.
+  timestamp_sources:
+    - type: primary_legal
+      url: https://www.fca.org.uk/news/press-releases/fca-bans-sale-crypto-derivatives-retail-consumers
+      wayback: https://web.archive.org/web/20201006*/fca.org.uk/news/press-releases/fca-bans-sale-crypto-derivatives-retail-consumers
+      evidence_use: contextual_unarchived
+      note: |
+        FCA press release (2020-10-06) announcing PS20/10 prohibition with
+        an effective date of 2021-01-06. Kraken's compliance restriction on
+        UK retail derivatives access aligns to the regulator's effective
+        date; the exact Kraken-announcement timestamp (which preceded the
+        effective date by some days/weeks for customer notice) is bracketed
+        at day-precision to the FCA effective date pending a pinned Kraken
+        announcement timestamp. DRYRUN.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    UK-resident retail customer cohort of Kraken Futures (operated by
+    Crypto Facilities Ltd, the FCA-authorised Kraken subsidiary). The
+    enumeration is subset because the named target is the class of UK
+    retail customers (not an enumerable individual account list);
+    Professional Clients under COBS 3 remained eligible.
+  actor_type: regulated_crypto_service_provider
+  actor_name: Kraken Futures / Crypto Facilities Ltd
+  chains: []
+  canonical_domains:
+    - futures.kraken.com
+    - kraken.com
+
+jurisdiction: [UK]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Corporate compliance policy; no DNS / connectivity action.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Kraken-Futures derivatives access is gated at the account / KYC
+      categorisation layer, not via UI geofence. UK retail clients retain
+      access to the spot UI; the restriction is product-scoped (derivatives
+      only).
+  - layer: asset_onchain
+    status: not_applicable
+    note: No issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - kraken_futures_uk_retail_derivatives
+    note: |
+      Product-level access restriction at the offramp_cex layer: UK retail
+      clients lost the ability to open / hold crypto-derivatives positions
+      on Kraken Futures from the FCA PS20/10 effective date (2021-01-06).
+      Documented via Kraken's own support articles. partially_measured
+      pending pinned body-hash capture of the Kraken support pages.
+
+observations:
+  - layer: offramp_cex
+    actor: kraken_futures_uk
+    event: uk_retail_derivatives_access_restricted_to_professional_clients
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-01-06T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_corporate
+        url: https://support.kraken.com/articles/futures-trading-for-clients-in-the-united-kingdom
+        wayback: https://web.archive.org/web/2021*/support.kraken.com/hc/en-us/articles/futures-trading-for-clients-in-the-united-kingdom
+        evidence_use: contextual_unarchived
+        note: |
+          Kraken's UK Professional Client gating page documents the
+          post-FCA-ban access regime: retail UK clients restricted from
+          derivatives; Professional Client categorisation under COBS 3
+          required. Attribution=plausible (codebook §1.2-adjacent): the
+          trigger here is a Kraken corporate_policy_change implementing
+          an external regulator's binding prohibition rather than an
+          OFAC-style designation; Kraken's stated cause is its FCA
+          regulatory obligation. Conservative coding per codebook §8.4.
+      - type: primary_corporate
+        url: https://support.kraken.com/articles/changes-for-clients-residing-in-the-united-kingdom
+        wayback: https://web.archive.org/web/2021*/support.kraken.com/hc/en-us/articles/changes-for-clients-residing-in-the-united-kingdom
+        evidence_use: contextual_unarchived
+        note: |
+          Kraken "Changes for Clients Residing in the United Kingdom"
+          support article -- the second corporate-side compliance notice.
+      - type: supporting_journalism
+        url: https://blockchain.news/news/uk-financial-watchdog-fca-bans-crypto-derivatives-trading-for-retail-investors
+        wayback: https://web.archive.org/web/2021*/blockchain.news/news/uk-financial-watchdog-fca-bans-crypto-derivatives-trading-for-retail-investors
+        evidence_use: contextual_unarchived
+        note: |
+          Trade press contextual report noting FCA PS20/10 was issued "barely
+          3 months after the FCA had granted Kraken Futures a license," and
+          documenting Kraken's compliance posture. Supporting only.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- DRYRUN 2026-05-17** (agent_draft stub). S5_corporate
+  comparison documenting Kraken Futures' restriction of UK retail customer
+  access to crypto-derivatives products in compliance with the FCA's PS20/10
+  prohibition on the sale, marketing and distribution of crypto-derivatives
+  to UK retail consumers (effective 2021-01-06).
+
+  Coded as a corporate_policy_change trigger (S5_corporate) rather than a
+  nation_state_block (S4) because the Kraken-side action is a Kraken
+  corporate compliance implementation; the regulator-side action (FCA
+  PS20/10) is the upstream cause but is not the actor of the recorded
+  trigger here. Sibling event uk-fca-binance-markets-2021 records the
+  parallel FCA-regulator track for a different exchange.
+
+  Attribution: plausible (not direct). Per codebook §1.2 worked analogues
+  (Aave/Uniswap-style provider-cited compliance blocks), Kraken publicly
+  references its FCA obligations in the support pages but the FCA's
+  PS20/10 does not name Kraken specifically; the prohibition is class-wide
+  across UK-regulated derivatives providers. Conservative default to
+  plausible per codebook §8.4.
+
+  empirical_shape=comparison (1 observed_change layer at offramp_cex).
+  admission_tier=empirical_case (1 strong-attribution observed_change
+  layer).
+
+  DRYRUN caveats: (1) exact Kraken-announcement timestamp not pinned --
+  bracketed to the FCA PS20/10 effective date 2021-01-06 with day-precision;
+  Kraken's customer-notice timestamp likely preceded by 1-4 weeks. For
+  non-DRYRUN release, capture pinned Wayback snapshot of Kraken support
+  page with the original "Last updated" timestamp. (2) body_hash + body_path
+  capture deferred for all citations -- marked evidence_use=
+  contextual_unarchived per validator policy. (3) Sibling cross-reference
+  to uk-fca-binance-markets-2021 is the related-events anchor; both events
+  describe 2021 UK regulator-driven retail-cohort restrictions but at
+  different layers and via different trigger families (S4 nation_state vs
+  S5 corporate compliance).
+
+scoped_claim: |
+  "Kraken Futures (Crypto Facilities Ltd) restricted UK retail customer
+  access to crypto-derivatives products on or around 2021-01-06 in
+  compliance with the FCA PS20/10 prohibition, retaining access only for
+  customers categorised as Professional Clients under COBS 3. Primary
+  observational axis is offramp_cex at the UK-retail-cohort level;
+  attribution=plausible because the FCA prohibition is class-wide rather
+  than Kraken-specific."
+
+tags:
+  - corporate_policy_change
+  - uk
+  - fca
+  - kraken
+  - derivatives
+  - retail_restriction
+  - dryrun_2026_05_17

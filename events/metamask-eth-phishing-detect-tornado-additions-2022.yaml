@@ -1,0 +1,327 @@
+id: metamask-eth-phishing-detect-tornado-additions-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tornado-cash-ofac-2022
+  - infura-metamask-donetsk-luhansk-block-2022-03
+  - infura-alchemy-tornado-rpc-block-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: CONSENSYS_METAMASK
+  timestamp: 2022-08-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://github.com/MetaMask/eth-phishing-detect
+      wayback: https://web.archive.org/web/2022/https://github.com/MetaMask/eth-phishing-detect
+      evidence_use: contextual_unarchived
+      note: |
+        Canonical repository pointer for the ConsenSys / MetaMask
+        `eth-phishing-detect` blocklist used by the MetaMask browser-
+        extension wallet to surface phishing / risk warnings in the
+        wallet UI. Following the 2022-08-08 OFAC SDN designation of
+        Tornado Cash (related event tornado-cash-ofac-2022), the
+        repository's blocklist was extended to include Tornado Cash
+        interaction domains and address references as a wallet-UI
+        warning-layer compliance step distinct from the L3
+        Infura/Alchemy RPC block (related event
+        infura-alchemy-tornado-rpc-block-2022). DRYRUN: pinned
+        Wayback snapshot and body_hash for the specific
+        commit/PR that added the Tornado Cash entries are deferred
+        to the human-audit pass; the date 2022-08-12 is an LLM-
+        estimated day-precision anchor consistent with the
+        contemporaneous Tornado Cash compliance wave and MUST be
+        replaced with the actual commit timestamp from the GitHub
+        repository history during human audit. Marked
+        evidence_use=contextual_unarchived per validator policy.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous coverage (2022-08-17) of the
+        downstream cascade following the 2022-08-08 OFAC Tornado Cash
+        SDN designation, including ConsenSys-operated wallet- and
+        RPC-layer compliance actions. Triangulation source for the
+        actor (ConsenSys / MetaMask) and the compliance window.
+        DRYRUN: pinned Wayback snapshot deferred to human audit.
+    - type: supporting_journalism
+      url: https://davidgerard.co.uk/blockchain/2022/08/09/us-sanctions-tornado-cash-and-crypto-shrieks-in-horror/
+      wayback: https://web.archive.org/web/2022/https://davidgerard.co.uk/blockchain/2022/08/09/us-sanctions-tornado-cash-and-crypto-shrieks-in-horror/
+      evidence_use: contextual_unarchived
+      note: |
+        David Gerard contemporaneous coverage (2022-08-09) of the
+        broad-spectrum web3 compliance response to the 2022-08-08
+        OFAC Tornado Cash designation, naming the MetaMask /
+        ConsenSys wallet UI as one of the surfaces affected.
+        DRYRUN: pinned Wayback snapshot deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing is an LLM-estimated anchor (2022-08-12) sited
+        in the publicly-knowable corporate compliance window for the
+        Tornado Cash cascade (Circle USDC ~6h on 2022-08-08;
+        Infura/Alchemy RPC ~24h on 2022-08-09-10; Aave frontend
+        ~120h on 2022-08-13). The MetaMask eth-phishing-detect
+        addition is documented in the repository commit history but
+        the precise commit timestamp is NOT pinned in this DRYRUN
+        and MUST be replaced with the actual commit date from
+        `git log` against MetaMask/eth-phishing-detect during the
+        human-audit pass. precision=day reflects this anchor
+        uncertainty.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    ConsenSys-operated MetaMask wallet UI (browser-extension and
+    mobile) consumes the `eth-phishing-detect` blocklist
+    (https://github.com/MetaMask/eth-phishing-detect) to surface
+    phishing / risk warnings to end users. Following the 2022-08-08
+    OFAC SDN designation of Tornado Cash (related event
+    tornado-cash-ofac-2022), the blocklist was extended to include
+    Tornado Cash interaction references. Target is the
+    operator entity (ConsenSys / MetaMask wallet UI layer) rather
+    than an enumerated address set because the blocklist is a
+    moving reference maintained in a public GitHub repository, not
+    a static published roster; subset because only the MetaMask-
+    operated wallet UI warning layer is in scope here (this row is
+    distinct from the L3 Infura RPC block under
+    infura-alchemy-tornado-rpc-block-2022 and from the L3
+    Donetsk/Luhansk Infura block under
+    infura-metamask-donetsk-luhansk-block-2022-03).
+  entity: consensys_metamask
+  actor_type: wallet_ui_operator
+  actor_name: ConsenSys / MetaMask (eth-phishing-detect blocklist maintainer)
+  chains: [ethereum]
+  canonical_domains:
+    - github.com/MetaMask/eth-phishing-detect
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      MetaMask is a client-side wallet; the eth-phishing-detect
+      blocklist is a static asset shipped with the extension and
+      consulted client-side. No DNS- or ISP-level effect.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge Ethereum (Paris was 2022-09-15, 34 days after this
+      event); consensus-layer effects of the 2022-08-08 OFAC trigger
+      are captured under tornado-cash-ofac-2022 observations[l1].
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Distinct from the L3 RPC-provider block under
+      infura-alchemy-tornado-rpc-block-2022. The eth-phishing-detect
+      addition is a wallet UI warning-layer action, not a JSON-RPC
+      response policy at the Infura endpoint.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - github.com/MetaMask/eth-phishing-detect
+    provider_scope: unknown
+    note: |
+      Load-bearing layer for this event. The eth-phishing-detect
+      blocklist is shipped with the MetaMask browser-extension and
+      mobile wallets and consulted by the wallet UI to surface
+      phishing / risk warnings when a user navigates to or interacts
+      with a flagged domain. Following the 2022-08-08 OFAC Tornado
+      Cash SDN designation (related event tornado-cash-ofac-2022),
+      Tornado Cash interaction entries were added to the blocklist
+      as a wallet UI warning-layer compliance step. The Ethereum
+      smart contracts and the user's ability to send transactions
+      to them via a non-MetaMask client remained unaffected; the
+      effect is exclusively at the wallet UI warning layer.
+      Attached below as observed_change at attribution=plausible
+      (the commit/PR is in a public corporate-operated repo but
+      ConsenSys did not publish a standalone corporate statement
+      tying the addition to the OFAC trigger; per codebook §1.4
+      this is plausible rather than direct).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level asset freeze invoked by the eth-phishing-detect
+      blocklist update; the sibling asset-layer action (Circle USDC
+      blacklist) is captured in circle-usdc-tornado-2022.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      CEX off-ramp reactions are captured under tornado-cash-ofac-2022
+      observations[offramp_cex].
+
+observations:
+  - layer: l4_frontend
+    actor: wallet_ui:consensys_metamask
+    event: metamask_eth_phishing_detect_blocklist_added_tornado_cash_interaction_entries
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-08-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://github.com/MetaMask/eth-phishing-detect
+        wayback: https://web.archive.org/web/2022/https://github.com/MetaMask/eth-phishing-detect
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - github.com/MetaMask/eth-phishing-detect
+          providers:
+            - consensys_metamask
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          Public ConsenSys-operated GitHub repository hosting the
+          eth-phishing-detect blocklist consumed by the MetaMask
+          wallet UI. The commit history during the 2022-08-08 to
+          2022-08-31 window contains additions referencing Tornado
+          Cash interaction entries downstream of the OFAC SDN
+          designation. attribution=plausible because the repository
+          maintainers did not publish a standalone corporate
+          statement tying the addition to the OFAC trigger (per
+          codebook §1.4 frontend-block attribution: the actor did
+          not publicly cite the trigger). DRYRUN: pinned commit
+          hash, commit timestamp, body_hash for the specific
+          PR/commit, and the linked blocklist diff are deferred to
+          the human-audit pass; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - consensys_metamask
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          CoinDesk contemporaneous coverage of the Tornado Cash
+          cascade naming ConsenSys-operated surfaces (MetaMask wallet
+          and Infura RPC) as compliance-affected. Retained for
+          triangulation of the actor and the compliance window.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: |
+      The eth-phishing-detect blocklist remained extended with
+      Tornado Cash interaction entries beyond the 2025-03-21 OFAC
+      delisting (see tornado-cash-ofac-delisting-2025); ConsenSys /
+      MetaMask did not publish a corporate statement reverting the
+      additions. The 2025 OFAC delisting is the candidate upstream
+      recovery anchor and is tracked separately. DRYRUN: human
+      audit should grep the repository commit history for any
+      post-2025-03-21 reversion commits and update this recovery
+      row accordingly.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.2
+  corporate_policy discovery; wallet-UI warning-layer slice):
+  authored by LLM agent without personally verifying the specific
+  eth-phishing-detect commit hash / PR number / commit timestamp;
+  origin=agent_draft per validator policy. Real release MUST replace
+  this DRYRUN marker with a human-verified audit after pinning the
+  actual commit SHA, commit timestamp, and the diff body_hash, and
+  promote origin to human_reviewed.
+
+  Comparison-shape S5 corporate-policy-change event sited at the
+  wallet UI warning layer (L4) — distinct from the L3 Infura RPC
+  block (infura-alchemy-tornado-rpc-block-2022) and from the L3
+  Donetsk/Luhansk Infura block (infura-metamask-donetsk-luhansk-
+  block-2022-03), both of which are RPC-layer actions by the
+  same parent corporate entity (ConsenSys). The eth-phishing-detect
+  blocklist is consumed by the MetaMask browser-extension and
+  mobile wallets to surface phishing / risk warnings in the wallet
+  UI; the Tornado Cash interaction additions following the
+  2022-08-08 OFAC SDN designation (related event
+  tornado-cash-ofac-2022) extend the same compliance posture to
+  the wallet-UI warning surface. Paper-relevant because it
+  isolates a wallet-UI warning-layer action by the same
+  ConsenSys parent that operates the L3 Infura RPC and the
+  MetaMask wallet itself, completing a vertical compliance stack
+  (RPC + wallet UI) under a single corporate operator that no
+  other event in the corpus captures.
+
+  Attribution coding per codebook §1.4: plausible (not direct)
+  because the eth-phishing-detect repository maintainers did not
+  publish a standalone corporate statement tying the Tornado
+  Cash blocklist addition to the 2022-08-08 OFAC SDN trigger;
+  the addition is inferable from the commit history and the
+  publicly-knowable compliance window but is not anchored to a
+  ConsenSys blog post, ToS update, or corporate press statement.
+  Per the codebook decision rule, the more conservative value
+  (plausible) is required.
+
+  Empirical shape: comparison (1 observed_change layer — L4
+  wallet UI warning load-bearing). Admission tier:
+  empirical_case (≥1 observed_change layer with plausible
+  attribution). Stratum coding: S5_corporate (corporate policy
+  change downstream of an upstream OFAC SDN trigger). The OFAC
+  SDN designation itself is the upstream trigger (related event
+  tornado-cash-ofac-2022), but ConsenSys / MetaMask chose to
+  apply the wallet-UI warning-layer extension as a corporate-
+  compliance policy — ConsenSys was not named in the OFAC
+  designation, and wallet-UI warning-layer maintenance is not
+  itself a regulated activity under the Treasury secondary-
+  sanctions authority. The corporate-policy character is what
+  makes this an L4 row in the S5 stratum rather than an S1_ofac_sdn
+  row. jurisdiction is corporate_global because the
+  eth-phishing-detect blocklist is shipped globally with the
+  MetaMask client and does not honor user IP / geofence; the
+  ConsenSys parent's US jurisdiction is documented under the
+  sibling Infura events.
+
+  DRYRUN caveats: the three citations (GitHub repo pointer +
+  two contemporaneous journalism) all carry 2022-calendar-folder
+  Wayback pointers rather than pinned snapshots. For non-DRYRUN
+  release, capture: (1) the specific PR / commit SHA + commit
+  timestamp + diff body_hash for the eth-phishing-detect
+  addition(s) referencing Tornado Cash interaction entries; (2)
+  pinned Wayback snapshots and body_hash captures for the
+  CoinDesk and David Gerard article permalinks; (3) optionally,
+  a screenshot or saved DOM of the MetaMask wallet UI surfacing
+  the warning when a user navigates to a flagged Tornado Cash
+  domain. Marked evidence_use=contextual_unarchived on all
+  citations to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "ConsenSys / MetaMask's 2022-08-12 (DRYRUN-estimated)
+  extension of the public eth-phishing-detect blocklist
+  (consumed by the MetaMask wallet UI to surface phishing / risk
+  warnings) with Tornado Cash interaction entries — following
+  the 2022-08-08 OFAC SDN designation of Tornado Cash (related
+  event tornado-cash-ofac-2022) — documents an L4 wallet-UI
+  warning-layer corporate-compliance action distinct from the
+  L3 Infura RPC block (related event
+  infura-alchemy-tornado-rpc-block-2022). Paper-relevant as the
+  wallet-UI warning-layer vertex of the ConsenSys-operated
+  compliance stack (Infura RPC + MetaMask wallet UI) downstream
+  of the 2022-08-08 OFAC trigger."
+
+tags:
+  - corporate_policy_change
+  - wallet_ui_warning
+  - metamask
+  - consensys
+  - eth_phishing_detect
+  - tornado_cash_thread
+  - dryrun_2026_05_17

@@ -1,0 +1,239 @@
+id: turkey-cmb-casp-licensing-law-7518-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - turkey-cbrt-crypto-ban-2021
+
+trigger:
+  type: regulatory_enforcement
+  actor: TR_CMB
+  timestamp: 2024-07-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.resmigazete.gov.tr/eskiler/2024/07/20240702.htm
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase F follow-on
+        to turkey-cbrt-crypto-ban-2021; lean run): authored by LLM agent
+        without personally verifying Wayback / body_hash. origin=agent_draft
+        and status=draft pending human audit.
+
+        Turkey Law No. 7518 ("Sermaye Piyasası Kanununda Değişiklik
+        Yapılmasına Dair Kanun" — Law on Amendments to the Capital
+        Markets Law) enacted 2024-07-02 and published in the Resmi
+        Gazete (Official Gazette) on the same date. The law amends
+        the Capital Markets Law (CMK / Law No. 6362) to introduce a
+        comprehensive licensing regime for Crypto Asset Service
+        Providers (CASPs / Kripto Varlık Hizmet Sağlayıcıları),
+        granting the Capital Markets Board of Türkiye (Sermaye
+        Piyasası Kurulu / CMB / SPK) authority to license, supervise,
+        and sanction CASPs operating in Turkey. Establishes a
+        transition period for incumbent platforms (BtcTurk, Paribu,
+        Binance TR, etc.) to apply for licensure; unlicensed
+        operations after the transition window are treated as
+        illegal. Minimum charter capital thresholds (TRY 100M for
+        platforms, TRY 50M for custody-only) and operational
+        requirements were later specified via CMB Communiqués
+        III-35/B.1 and III-35/B.2 published 2025-03-13.
+        Human auditor must pin a verified Resmi Gazete / CMB
+        primary-legal URL (specific Law 7518 text) and reconcile
+        the transition-period dates.
+    - type: primary_legal
+      url: https://www.resmigazete.gov.tr/eskiler/2024/07/20240702.htm
+      wayback: https://web.archive.org/web/20260517000000/https://www.resmigazete.gov.tr/eskiler/2024/07/20240702.htm
+      note: |
+        Second pointer to the Resmi Gazete 2024-07-02 daily index
+        as a placeholder primary-legal anchor for the Law 7518
+        publication. Human auditor must replace with the specific
+        Law 7518 text URL and a verified Wayback / body_hash.
+    - type: supporting_journalism
+      url: https://kesikli.com/news-insight/2024-07-26-turkiyes-new-crypto-law-transforming-the-turkish-crypto-market/
+      evidence_use: contextual_unarchived
+      note: |
+        Kesikli Law Firm explainer 2024-07-26 summarizing Law 7518
+        scope, CMB licensing authority, segregation obligation, and
+        transition period. DRYRUN context only — not personally
+        archive-verified by the LLM agent.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Law 7518 enacted and published in Resmi Gazete on 2024-07-02
+        per public reporting (Mondaq, Moroğlu Arseven, Kesikli,
+        Akkaş & Partners, Global Legal Insights). Day-level precision.
+        DRYRUN: not personally archive-verified.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Turkish Crypto Asset Service Providers (CASPs / Kripto Varlık
+    Hizmet Sağlayıcıları) operating in Turkey as of 2024-07-02 —
+    primarily the incumbent domestic exchange/custody operators
+    (BtcTurk, Paribu, ICRYPEX, Bitexen, Binance TR, etc.). The
+    licensing obligation operates at the VASP/sector level rather
+    than via address enumeration: CASPs must obtain a CMB license
+    or cease operations after the transition window. Class-level
+    rationale: full enumeration deferred pending CMB's published
+    license-applicant register.
+  protocol: null
+  actor_type: turkish_casp_sector
+  actor_name: Turkish Crypto Asset Service Providers (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [TR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Law 7518 is a licensing / supervisory regime for CASPs, not a
+      frontend-takedown order. Unlicensed CASPs that exit the market
+      may take their domains offline, but no single-domain L4 effect
+      is mandated by the law itself.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Law 7518 does not mandate issuer-level freeze or on-chain
+      blacklisting; it governs CASP licensing, segregation of
+      customer assets, and supervisory authority — not the underlying
+      asset.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [tr_casp_ecosystem]
+    note: |
+      null_event observation row: the regulator-decreed CASP
+      licensing requirement is the substantive trigger, but the
+      corpus has no replayable on-chain or measurement-platform
+      signal of downstream CASP behavior change at authoring time.
+      The primary observable would be a change in the population
+      of operational Turkish CASPs (post-transition exits) or
+      withdrawal-acceptance behavior, which is not captured by
+      any open measurement dataset in this corpus. Anchor is the
+      Resmi Gazete primary-legal artifact. Human auditor may
+      upgrade to measured if a CASP-population signal (e.g.
+      published CMB licensee register, BtcTurk/Paribu pre/post
+      withdrawal-policy diff) is later pinned.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.resmigazete.gov.tr/eskiler/2024/07/20240702.htm
+      note: |
+        DRYRUN denominator anchor: Resmi Gazete 2024-07-02 index as
+        the placeholder for the Law 7518 publication date. Human
+        auditor must replace with the specific Law 7518 text URL
+        and pin a verified Wayback / body_hash.
+
+observations:
+  - layer: offramp_cex
+    actor: tr_casp_ecosystem
+    event: tr_casp_licensing_regime_established
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-07-02T00:00:00Z
+    precision: day
+    window:
+      - 2024-07-02T00:00:00Z
+      - 2025-03-13T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.resmigazete.gov.tr/eskiler/2024/07/20240702.htm
+        wayback: https://web.archive.org/web/20260517000000/https://www.resmigazete.gov.tr/eskiler/2024/07/20240702.htm
+        scope_descriptor:
+          providers: [tr_casp_aggregate]
+          countries: [TR]
+          time_window:
+            - 2024-07-02T00:00:00Z
+            - 2025-03-13T23:59:59Z
+        note: |
+          observed_no_change at the offramp_cex layer: Law 7518
+          establishes a CMB licensing regime for CASPs from
+          2024-07-02 forward, with secondary regulations
+          (Communiqués III-35/B.1 and III-35/B.2) following on
+          2025-03-13. The corpus has no replayable measurement of
+          downstream CASP exit or withdrawal-behavior change. The
+          trigger is the regulatory enactment date itself; this row
+          anchors the licensing requirement as an offramp-layer
+          null_event in the Turkey nation-state cascade alongside
+          turkey-cbrt-crypto-ban-2021 (parent payment-rail
+          severance). DRYRUN Wayback stub; replace with a verified
+          Resmi Gazete / CMB primary-legal capture during human
+          audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase F follow-on to
+  turkey-cbrt-crypto-ban-2021; lean run): authored by LLM agent
+  without personally verifying Wayback / body_hash. status=draft and
+  origin=agent_draft pending human review.
+
+  null_event documenting Turkey's 2024-07-02 enactment of Law No.
+  7518 amending the Capital Markets Law (CMK / Law 6362) to
+  establish a comprehensive CASP licensing regime under the Capital
+  Markets Board (CMB / Sermaye Piyasası Kurulu / SPK). The law
+  grants the CMB authority to license, supervise, and sanction
+  Crypto Asset Service Providers operating in Turkey, introduces a
+  customer-asset segregation obligation, and sets a transition
+  window for incumbent operators (BtcTurk, Paribu, ICRYPEX,
+  Bitexen, Binance TR, etc.) to file license applications.
+  Secondary regulations (Communiqués III-35/B.1 platform services
+  and III-35/B.2 custody-only) published 2025-03-13 specify TRY
+  100M minimum charter capital for platforms and TRY 50M for
+  custody-only entities.
+
+  Follow-on to turkey-cbrt-crypto-ban-2021: the 2021 CBRT
+  regulation severed the payment-rail on-ramp (banning crypto in
+  payments) but left exchanges formally operational; Law 7518
+  three years later constructs the affirmative licensing regime
+  the 2021 regulation had implicitly assumed but never specified.
+  Together they form a two-step Turkish nation-state regulatory
+  arc: payment-rail block (2021) → CASP licensing regime (2024).
+
+  trigger.type=regulatory_enforcement (per codebook §5.1 row for
+  "Non-US national regulator administrative enforcement"). The
+  CMB is a non-US national regulator and Law 7518 grants
+  administrative licensing/supervisory authority — distinct from
+  a network/payment-rail block (which would be
+  nation_state_block, as used for the 2021 CBRT parent).
+  research_stratum=S4_nation_state per codebook §5.2 mapping.
+
+  empirical_shape=null_event because the corpus has no replayable
+  on-chain or measurement-platform signal of downstream CASP
+  behavior change at authoring time; the regulator-decreed
+  licensing requirement is itself the substantive trigger. Human
+  auditor may upgrade to comparison if a Turkish CASP exit /
+  withdrawal-policy diff is later pinned.
+
+scoped_claim: |
+  "Turkey's Law No. 7518 of 2024-07-02 amended the Capital Markets
+  Law to establish a CASP licensing regime under the Capital
+  Markets Board (CMB), granting licensing, supervisory, and
+  sanctioning authority over Crypto Asset Service Providers
+  operating in Turkey, with a transition window for incumbent
+  operators and an asset-segregation obligation. Anchored as an
+  offramp-layer null_event in the Turkish nation-state cascade
+  alongside turkey-cbrt-crypto-ban-2021 (payment-rail parent)."
+
+tags:
+  - regulatory_enforcement
+  - turkey
+  - tr_cmb
+  - casp_licensing
+  - capital_markets_law
+  - law_7518
+  - null_event

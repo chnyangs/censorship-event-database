@@ -1,0 +1,195 @@
+id: bybit-singapore-exit-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - singapore-mas-binance-services-2021
+  - singapore-mas-retail-crypto-restriction-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: BYBIT_GLOBAL
+  timestamp: 2022-05-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: primary_corporate
+      url: https://announcements.bybit.com/
+      wayback: https://web.archive.org/web/2022*/announcements.bybit.com
+      evidence_use: contextual_unarchived
+      note: |
+        Bybit (Bybit Fintech Limited / global) decision to wind down its
+        Singapore user-facing operations and relocate its global
+        headquarters to Dubai during 2022, following sustained MAS
+        regulatory pressure (Payment Services Act licensing regime, MAS
+        2022-01-17 retail-crypto advertising restrictions, and the
+        Financial Services and Markets Act 2022 cross-border DTSP
+        licensing regime enacted 2022-04). Bybit was not on the MAS
+        Investor Alert List in 2022, but its unlicensed posture under
+        PSA / forthcoming FSM Act created the same operational
+        constraint that drove other unlicensed offshore exchanges to
+        scale back SG-user services. DRYRUN: pinned Wayback / body-hash
+        captures for the Bybit Singapore-user wind-down notice and the
+        Bybit Dubai HQ move announcement deferred to a non-DRYRUN
+        release.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Week-level precision. Bybit's Singapore exit was a multi-step
+        2022 wind-down (no single press release pinpointing the cutover
+        day); timestamp anchored to early-May 2022 around the FSM Act
+        2022 commencement and Bybit's public Dubai HQ relocation
+        signals.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Bybit Fintech Limited (global Bybit.com) Singapore-resident user
+    cohort. Subset rationale: target is the SG slice of Bybit's global
+    user base (Bybit had no MAS-licensed SG entity, so the "entity"
+    scope is operationally the SG retail cohort served via bybit.com
+    rather than a Singapore-licensed subsidiary). Class-level rationale
+    follows codebook §7: subset + enumeration_note over class_level.
+  actor_type: unlicensed_offshore_exchange
+  actor_name: Bybit (bybit.com SG cohort)
+  chains: []
+  canonical_domains:
+    - bybit.com
+
+jurisdiction: [SG]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Corporate unilateral exit; no DNS / network-level action.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Bybit.com SG-geo restriction banner / KYC blocking for SG-
+      resident users is reported but not pinned. Coded not_measured
+      pending a Wayback / body_hash capture of the bybit.com SG-user
+      restriction notice.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No stablecoin-issuer freeze or SDN-driven on-chain asset action; corporate exit only.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - bybit_com_sg_user_cohort
+    note: |
+      Bybit's 2022 wind-down of SG-user services on bybit.com,
+      coincident with the relocation of Bybit's global HQ to Dubai,
+      severed the SG retail cohort's access to Bybit's offramp
+      (fiat-rails and KYC onboarding for SG residents). Load-bearing
+      observational axis. partially_measured pending pinned anchors
+      for the Bybit SG-user wind-down notice and the Dubai HQ move
+      announcement.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:bybit_com_sg_cohort
+    event: bybit_sg_user_services_wound_down_and_hq_to_dubai
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-05-01T00:00:00Z
+    precision: week
+    window:
+      - 2022-01-17T00:00:00Z
+      - 2022-12-31T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://announcements.bybit.com/
+        wayback: https://web.archive.org/web/2022*/announcements.bybit.com
+        evidence_use: contextual_unarchived
+        note: |
+          Bybit corporate decision (2022) to wind down its Singapore
+          user-facing operations and relocate its global HQ to Dubai.
+          Attribution=plausible per codebook §1: Bybit's public
+          statements frame the Dubai move as a positive strategic
+          relocation and do NOT explicitly cite MAS as the cause.
+          Causal consistency with the MAS regulatory environment
+          (PSA licensing, MAS 2022-01-17 retail-crypto advertising
+          restrictions, FSM Act 2022 cross-border DTSP licensing) is
+          strong but class-level / inferential, not actor-cited. DRYRUN:
+          pinned Wayback / body_hash capture deferred.
+      - type: supporting_journalism
+        url: https://www.bybit.com/en/help-center/article/Service-Restricted-Countries
+        wayback: https://web.archive.org/web/2022*/bybit.com/en/help-center/article/Service-Restricted-Countries
+        evidence_use: contextual_unarchived
+        note: |
+          Bybit Service-Restricted-Countries help-center page lists
+          Singapore among excluded jurisdictions. Supports the
+          offramp_cex observation at the SG retail cohort level.
+          DRYRUN: pinned Wayback / body_hash capture deferred.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: agent-authored draft of
+  Bybit's 2022 wind-down of Singapore user-facing operations and
+  relocation of its global headquarters to Dubai, under sustained MAS
+  regulatory pressure (PSA licensing regime, MAS 2022-01-17 retail-
+  crypto advertising restrictions, FSM Act 2022 cross-border DTSP
+  licensing). origin=agent_draft per codebook §8 for agent-authored
+  drafts; requires human review before promotion.
+
+  Distinct from singapore-mas-binance-services-2021: the Binance event
+  is a nation_state_block stratum (S4) triggered by a MAS Investor
+  Alert List listing naming Binance.com explicitly. The Bybit event is
+  a corporate_policy_change (S5) where the actor (Bybit Global)
+  unilaterally exits the SG market under a class-level regulatory
+  environment without being individually named on an MAS IAL listing.
+  Stratum-actor map (codebook §5.2): corporate_policy_change permits
+  S5_corporate; consistent.
+
+  Attribution per codebook §1: plausible (not direct) because Bybit's
+  corporate communications around the Dubai HQ move do not explicitly
+  cite MAS as the cause; the causal link runs through the MAS
+  regulatory environment as a class-level driver. Conservative coding
+  (plausible over direct) per codebook §8.4.
+
+  empirical_shape=comparison per codebook §3 (one observed_change
+  layer: offramp_cex). admission_tier=empirical_case per codebook §4
+  (one strong-attribution observed_change layer at plausible).
+
+  Load-bearing observational axis: offramp_cex (SG retail cohort lost
+  access to Bybit's offramp). L4 frontend coded not_measured pending
+  pinned anchors for the bybit.com SG-user geofence / KYC banner.
+
+  DRYRUN caveats: all citations are evidence_use=contextual_unarchived
+  per validator policy. For non-DRYRUN release, capture body_hash +
+  body_path for (1) Bybit SG-user wind-down notice on
+  announcements.bybit.com, (2) Bybit Dubai HQ move corporate
+  announcement, (3) Bybit Service-Restricted-Countries help-center
+  page snapshot showing SG listed, (4) MAS 2022-01-17 retail-crypto
+  advertising-restriction guidelines as the contextual regulatory
+  anchor.
+
+scoped_claim: |
+  "Bybit Fintech Limited wound down Singapore user-facing services on
+  bybit.com and relocated its global headquarters to Dubai during 2022,
+  plausibly in response to the MAS regulatory environment (PSA
+  licensing, 2022-01-17 retail-crypto advertising restrictions, FSM
+  Act 2022 cross-border DTSP licensing). Load-bearing observational
+  axis is offramp_cex at the SG retail cohort level; attribution is
+  plausible because Bybit's corporate communications do not explicitly
+  cite MAS as the cause."
+
+tags:
+  - corporate_policy_change
+  - sg
+  - mas
+  - bybit
+  - offramp_cex
+  - dryrun_2026_05_17

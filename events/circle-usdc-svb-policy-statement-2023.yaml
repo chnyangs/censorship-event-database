@@ -1,0 +1,258 @@
+id: circle-usdc-svb-policy-statement-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events: []
+
+trigger:
+  type: corporate_policy_change
+  actor: CIRCLE_USDC_ISSUER
+  timestamp: 2023-03-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.circle.com/pressroom/3-3-billion-of-usdc-reserve-risk-removed-dollar-de-peg-closes
+      wayback: https://web.archive.org/web/2023/https://www.circle.com/pressroom/3-3-billion-of-usdc-reserve-risk-removed-dollar-de-peg-closes
+      evidence_use: contextual_unarchived
+      note: |
+        Circle press-room statement "$3.3 Billion of USDC Reserve Risk
+        Removed, Dollar De-peg Closes" — the corporate-policy
+        clarification anchor for the 2023-03-11 / 2023-03-12 SVB-cycle
+        statements. Circle publicly discloses that approximately $3.3
+        billion of USDC's cash reserves (~8% of total backing) remained
+        at Silicon Valley Bank at the time of the FDIC receivership
+        (2023-03-10), commits to full 1:1 USDC backing using corporate
+        funds if necessary, and pre-announces resumption of normal USDC
+        redemption / minting operations through banking channels on
+        Monday 2023-03-13 after the Federal Reserve / Treasury / FDIC
+        joint backstop (announced 2023-03-12 Sunday). This row codes
+        the **corporate-transparency / policy-clarification action
+        itself** (Circle voluntarily disclosing reserve-bank exposure
+        and committing to peg defense) — not a censorship cascade.
+        evidence_use=contextual_unarchived: in this DRYRUN the
+        authoring LLM agent did not personally pin a body_hash or
+        verified Wayback snapshot of the circle.com press-room slug;
+        Wayback wildcard pointer pending human-audit re-pin.
+    - type: primary_corporate
+      url: https://www.circle.com/blog/an-update-on-usdc-and-silicon-valley-bank
+      wayback: https://web.archive.org/web/2023/https://www.circle.com/blog/an-update-on-usdc-and-silicon-valley-bank
+      evidence_use: contextual_unarchived
+      note: |
+        Companion Circle blog "An Update on USDC and Silicon Valley
+        Bank" (2023-03-11) confirming the $3.3B SVB exposure figure,
+        the 77% Treasury-bills / 23% cash reserve composition (with
+        cash held primarily at BNY Mellon), and Circle's intent to
+        cover any SVB shortfall with corporate resources. Wayback
+        wildcard pointer; evidence_use=contextual_unarchived pending
+        human audit body_hash pinning.
+  timestamp_sources:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2023/03/11/circle-confirms-33b-of-usdcs-cash-reserves-stuck-at-failed-silicon-valley-bank
+      wayback: https://web.archive.org/web/2023/https://www.coindesk.com/business/2023/03/11/circle-confirms-33b-of-usdcs-cash-reserves-stuck-at-failed-silicon-valley-bank
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk timestamp confirmation — Circle's 2023-03-11 policy
+        statement disclosing $3.3B SVB exposure is the day-level
+        anchor. Day-level precision because Circle's initial Twitter
+        and blog disclosures were issued Friday evening 2023-03-10
+        and the formal press-room statement followed Saturday
+        2023-03-11; the canonical disclosure window is the 2023-03-11
+        day. The Monday 2023-03-13 redemption-resumption commitment
+        is the operational follow-on.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is Circle Internet Financial (the USDC issuer entity) and
+    the USDC stablecoin holder / redemption-counterparty class — the
+    population of USDC holders globally that relies on Circle's
+    redemption commitment and reserve-backing transparency.
+    enumeration=subset because the affected class is an open-ended
+    population (all USDC holders during the 2023-03-10 to 2023-03-13
+    banking-stress window) rather than a closed enumerable set; the
+    policy statement is addressed to that population as a class via
+    public press-room / blog channels. This row codes the
+    **corporate-transparency / policy-clarification action** —
+    Circle's voluntary disclosure of SVB reserve exposure, peg-
+    defense commitment, and redemption-resumption schedule — not a
+    restriction or freeze. No specific addresses, protocols, or
+    domains are targeted; Circle's product policy is preserved
+    (USDC remains 1:1 backed, redemption resumes Monday).
+  entity: circle_internet_financial
+  actor_type: stablecoin_issuer
+  actor_name: Circle Internet Financial (USDC issuer)
+  asset: usdc
+  chains: [ethereum, solana, avalanche, polygon, stellar, algorand]
+  canonical_domains:
+    - circle.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      circle.com and USDC-related domains remained reachable globally
+      throughout the 2023-03-10 to 2023-03-13 banking-stress window;
+      no ISP / DNS / network-filter surface is engaged by a corporate
+      transparency statement about reserve-bank exposure.
+      not_applicable on substrate-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Ethereum / Solana / Avalanche / Polygon / Stellar / Algorand
+      validator consensus surfaces are not engaged by a Circle
+      corporate policy-clarification statement. not_applicable on
+      substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC provider filter lists are not implicated by a Circle
+      reserve-disclosure / peg-defense statement. not_applicable on
+      substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend UI restriction follows from a corporate transparency
+      statement; Circle's own circle.com properties continued to
+      operate and the statement is the public-policy anchor itself
+      rather than a separable frontend-restriction observation.
+      not_applicable on substrate-mismatch grounds.
+  - layer: asset_onchain
+    status: not_measured
+    chain: ethereum
+    scope: [usdc_erc20_contract]
+    note: |
+      No USDC blacklist / freeze / supply-control action is taken by
+      Circle in response to the SVB cycle — the policy statement is
+      a peg-defense commitment, not an issuer freeze. The USDC ERC-20
+      contract continues to operate normally; Circle pauses redemption
+      / minting only over the weekend banking-closure window
+      (2023-03-11 / 2023-03-12) and resumes Monday 2023-03-13 per the
+      announced policy. This row codes the **policy-clarification
+      action itself**, not a per-address asset-onchain cascade;
+      status=not_measured rather than not_applicable because the
+      USDC contract is the asset surface to which the policy speaks,
+      but no row-local on-chain observation is captured (no freeze,
+      no blacklist transaction, no supply-control event). The brief
+      redemption pause over the banking-closure weekend is operational
+      / banking-rail-driven rather than a discretionary issuer
+      censorship action and is not coded as an observed_change here.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No centralized-exchange off-ramp action is taken by Circle; the
+      policy statement addresses Circle-direct redemption only.
+      Secondary-market USDC trading on CEXes continued during the
+      depeg window (USDC briefly traded as low as ~$0.86 on
+      2023-03-11 before recovering to ~$1.00 after the 2023-03-12
+      federal backstop announcement); price movements at CEXes are
+      market-driven and not a Circle off-ramp restriction.
+      not_applicable on substrate-mismatch grounds.
+
+observations: []
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: authored by LLM agent
+  without personally verifying Wayback / body_hash anchors;
+  status=draft / origin=agent_draft per validator. Real release must
+  replace this DRYRUN marker with a human-verified audit after
+  pinning real archive anchors (the circle.com press-room statement
+  body_hash, the companion Circle blog body_hash, and a Federal
+  Reserve / Treasury / FDIC joint backstop announcement reference).
+
+  null_event — S5 corporate-policy-clarification row documenting
+  Circle's 2023-03-11 (formal press-room statement, with initial
+  Twitter / blog disclosures evening 2023-03-10) public disclosure
+  that ~$3.3B (~8%) of USDC's cash reserves remained at Silicon
+  Valley Bank at the time of the FDIC receivership (2023-03-10),
+  paired with Circle's commitment to full 1:1 USDC backing using
+  corporate funds and pre-announcement of redemption / minting
+  resumption Monday 2023-03-13 once banking channels reopened. The
+  Federal Reserve / Treasury / FDIC joint backstop announcement
+  (Sunday 2023-03-12) effectively removed the reserve-shortfall
+  risk, and USDC's secondary-market price recovered toward $1.00 by
+  Monday's redemption resumption.
+
+  Why null_event / null_case: this is a corporate **transparency /
+  policy-clarification** action, not a censorship cascade.
+  Circle did NOT freeze any addresses, did NOT restrict any class of
+  holders, did NOT delist or geofence any product surface, and did
+  NOT impose any discretionary compliance gate; instead, Circle
+  voluntarily disclosed reserve-bank exposure and reaffirmed its
+  redemption commitment under banking-rail stress. The weekend
+  redemption pause (2023-03-11 / 2023-03-12) is the operational
+  consequence of US banking-system closure over the SVB-failure
+  weekend rather than a discretionary issuer policy action, and is
+  not coded as an observed_change here. Codebook §3: 0
+  observed_change layers → empirical_shape=null_event; codebook §4:
+  0 strong-attribution observed_change layers → admission_tier=
+  null_case.
+
+  Why this row exists despite carrying no observed_change: it
+  documents an **issuer transparency-action denominator-control**
+  data point for the S5 corporate-policy-change stratum — a high-
+  salience moment where the dominant US-licensed stablecoin issuer
+  faced acute banking-rail stress (the second-largest US bank
+  failure in history at the time) yet responded with disclosure and
+  peg-defense commitment rather than any form of holder restriction
+  or address-level freeze. The row scopes the denominator for "S5
+  corporate actions during banking-rail stress" so that the
+  numerator OFAC-cascade / discretionary-freeze rows in S5 (e.g.,
+  the 2022-08 Circle Tornado Cash freeze, the 2023-08-23 Semenov
+  designation, the 2023-12 Tether retroactive sweep) can be
+  compared against a banking-rail-stress baseline in which the
+  same issuer class chose transparency over restriction.
+
+  L0 / L1 / L3 / l4_frontend / offramp_cex are not_applicable on
+  substrate-mismatch grounds — a corporate transparency statement
+  about reserve-bank exposure engages no network / consensus / RPC /
+  frontend / CEX off-ramp surface. asset_onchain is not_measured
+  rather than not_applicable because the USDC contract is the
+  asset surface the policy speaks to, but no row-local on-chain
+  observation (no freeze, no blacklist, no supply-control event)
+  is captured: USDC continues operating normally and no
+  discretionary issuer cascade fires.
+
+  Promotion path: this row stays at admission_tier=null_case /
+  empirical_shape=null_event by design — it is a transparency-
+  action denominator-control row. Human audit should focus on
+  pinning the circle.com press-room and blog body_hashes and on
+  optionally adding a Federal Reserve / Treasury / FDIC joint
+  backstop announcement citation as supporting context.
+
+scoped_claim: |
+  "Circle Internet Financial's 2023-03-11 corporate-transparency
+  statement disclosing ~$3.3B of USDC cash reserves held at Silicon
+  Valley Bank at the time of FDIC receivership — paired with
+  Circle's commitment to full 1:1 USDC backing using corporate
+  funds and the pre-announcement of redemption / minting resumption
+  Monday 2023-03-13 — documents an S5 stablecoin-issuer policy
+  posture under acute banking-rail stress. No address-level freeze,
+  holder restriction, or off-ramp action is taken; the row carries
+  no observed_change and functions as denominator control for the
+  S5 corporate-policy-change stratum, scoping the 'transparency
+  over restriction' baseline against which S5 OFAC-cascade and
+  discretionary-freeze rows can be compared."
+
+tags:
+  - corporate_policy_change
+  - stablecoin_issuer
+  - circle
+  - usdc
+  - banking_rail_stress
+  - svb
+  - transparency_action
+  - null_event
+  - denominator_control
+  - dryrun_2026_05_17

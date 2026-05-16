@@ -1,0 +1,188 @@
+id: iran-cbi-crypto-banking-prohibition-2018
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: regulatory_enforcement
+  actor: IR_CENTRAL_BANK
+  timestamp: 2018-04-22T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://maint.loc.gov/law/help/cryptocurrency/iran.php
+      wayback: https://web.archive.org/web/2018/https://maint.loc.gov/law/help/cryptocurrency/iran.php
+      evidence_use: contextual_unarchived
+      note: |
+        Library of Congress Law Library — "Regulation of Cryptocurrency: Iran".
+        Reports that the Central Bank of Iran (CBI) announced on 2018-04-22 a
+        prohibition on Iranian financial institutions (banks, credit institutions,
+        currency exchanges) from handling cryptocurrencies. Per the CBI statement,
+        the underlying decision was made 2017-12-30 by Iran's High Council on
+        Anti-Money Laundering, then formalized and published 2018-04-22. Rationale:
+        AML / CFT alignment with FATF action plan. DRYRUN: wayback anchor stub
+        pending body_hash + body_path capture in a future audit pass.
+    - type: supporting_journalism
+      url: https://www.ccn.com/iran-central-bank-bans-banks-from-cryptocurrency-dealings/
+      wayback: https://web.archive.org/web/2018/https://www.ccn.com/iran-central-bank-bans-banks-from-cryptocurrency-dealings/
+      evidence_use: contextual_unarchived
+      note: |
+        CCN coverage of the 2018-04-22 CBI prohibition naming banks, credit
+        institutions, and currency exchanges as in-scope. DRYRUN: wayback stub.
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/Cryptocurrency_in_Iran
+      wayback: https://web.archive.org/web/2018/https://en.wikipedia.org/wiki/Cryptocurrency_in_Iran
+      evidence_use: contextual_unarchived
+      note: |
+        Wikipedia "Cryptocurrency in Iran" — secondary aggregate confirming the
+        2018-04-22 CBI prohibition and the December 2017 origin decision.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision; the LoC report and contemporaneous press accounts
+        anchor the public announcement to 2018-04-22.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Iranian banks, credit institutions, and currency exchanges as a regulated
+    class — not an enumerated entity list. The CBI prohibition operates at the
+    population of CBI-regulated financial institutions; individual exchange or
+    bank names are not enumerated in the order itself. Class-level subset coded
+    per codebook §7.
+  protocol: null
+  actor_type: regulated_financial_institutions
+  actor_name: Iranian banks and credit institutions (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [IR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Banking-channel prohibition, not a DNS / connectivity action. Iran's
+      cryptocurrency-exchange domain-blocking actions are separate events.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Iranian exchange / wallet frontends not bracketed for this event. The
+      prohibition operates at the rial-deposit/withdrawal banking layer rather
+      than at the L4 application layer.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - iranian_banks_and_credit_institutions_class
+    note: |
+      The CBI prohibition is by construction an off-ramp-layer event — it
+      directs Iranian banks and credit institutions to cease servicing
+      cryptocurrency-related accounts. Industry-class observation; per-exchange
+      offramp slicing not yet pinned. DRYRUN: wayback anchor stub pending
+      body_hash + body_path capture of the LoC report in a future audit pass.
+    denominator_artifact:
+      type: semi_primary_wayback
+      url: https://maint.loc.gov/law/help/cryptocurrency/iran.php
+      wayback: https://web.archive.org/web/2018/https://maint.loc.gov/law/help/cryptocurrency/iran.php
+      note: |
+        Library of Congress Law Library report on the CBI 2018-04-22 prohibition
+        as the denominator-anchor reference. DRYRUN stub; pin body_hash on
+        human-review pass.
+
+observations:
+  - layer: offramp_cex
+    actor: iranian_bank_and_credit_institution_class
+    event: rial_banking_channel_severed_industry_wide
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-04-22T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://maint.loc.gov/law/help/cryptocurrency/iran.php
+        wayback: https://web.archive.org/web/2018/https://maint.loc.gov/law/help/cryptocurrency/iran.php
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [IR]
+          providers: [iranian_banks_and_credit_institutions]
+        note: |
+          Library of Congress Law Library — "Regulation of Cryptocurrency: Iran"
+          summarizes the CBI 2018-04-22 prohibition mandating Iranian banks,
+          credit institutions, and currency exchanges cease handling
+          cryptocurrencies. attribution=direct because the CBI order itself
+          names the regulated-institution class as the target and the regulatory
+          mandate as the cause; the actor publicly references the action and
+          the trigger names the target population (codebook §1, §1.5 boundary
+          for nation-state administrative orders). DRYRUN: wayback stub
+          pending body_hash + body_path capture.
+      - type: supporting_journalism
+        url: https://www.ccn.com/iran-central-bank-bans-banks-from-cryptocurrency-dealings/
+        wayback: https://web.archive.org/web/2018/https://www.ccn.com/iran-central-bank-bans-banks-from-cryptocurrency-dealings/
+        evidence_use: contextual_unarchived
+        note: |
+          CCN contemporaneous reporting corroborates the 2018-04-22 CBI
+          prohibition and identifies banks, credit institutions, and currency
+          exchanges as the named scope. DRYRUN: wayback stub.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Agent draft of the Central Bank of Iran (CBI) 2018-04-22 administrative
+  prohibition on Iranian banks, credit institutions, and currency exchanges
+  handling cryptocurrencies. This is the first major MENA-region central-bank
+  banking-rail prohibition and pre-dates the broader 2018-11 OFAC sanctions
+  re-imposition on Iran (see related iran-ransomware-ofac-2018 for the parallel
+  OFAC action later that year).
+
+  Coded per codebook §5.1 as `trigger.type: regulatory_enforcement` (non-US
+  national regulator administrative enforcement; CBI is a non-US central bank
+  issuing administrative restrictions on regulated entities rather than a
+  domain/payment-rail block). Per §5.2 this maps to `S4_nation_state`.
+
+  empirical_shape `comparison` reflects this event's natural pairing with
+  india-rbi-crypto-ban-2018 (2018-04-06 RBI banking-rail severance, 16 days
+  prior) as the two earliest 2018 major-economy central-bank prohibitions on
+  bank-crypto servicing. Both share the offramp_cex single-layer cascade
+  shape with `direct` attribution from the regulator's order text.
+
+  admission_tier `empirical_case` per codebook §4 (>=1 strong-attribution
+  observed_change layer). attribution coded `direct` because the CBI order
+  itself names the regulated-institution class as the target and the regulatory
+  mandate as the cause — analogous to the india-rbi-crypto-ban-2018 coding
+  (RBI circular cited as direct because it names the banking-service severance
+  as the regulatory mandate).
+
+  All current citations are `evidence_use: contextual_unarchived` (LoC
+  summary, secondary journalism, Wikipedia) with DRYRUN wayback stubs;
+  body_hash + body_path captures of the LoC report and the underlying Persian-
+  language CBI order text are pending human-review audit. Per repo convention,
+  contextual_unarchived sources cannot support paper claims until promoted to
+  admission_anchor with body_hash + body_path.
+
+related_events:
+  - iran-ransomware-ofac-2018
+  - irgc-ransomware-ofac-2022
+
+tags:
+  - regulatory_enforcement
+  - iran
+  - banking_rail_severance
+  - central_bank_prohibition
+  - mena_region
+  - pre_ofac_2018_parallel

@@ -1,0 +1,282 @@
+id: trustwallet-sanctioned-token-ui-update-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tornado-cash-ofac-2022
+  - metamask-eth-phishing-detect-tornado-additions-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: TRUSTWALLET_BINANCE
+  timestamp: 2022-08-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: supporting_journalism
+      url: https://trustwallet.com/blog/cryptocurrency/tornado-cash-explained
+      wayback: https://web.archive.org/web/2022/https://trustwallet.com/blog/cryptocurrency/tornado-cash-explained
+      evidence_use: contextual_unarchived
+      note: |
+        Trust Wallet's own educational blog post discussing Tornado Cash
+        following the 2022-08-08 OFAC SDN designation (related event
+        tornado-cash-ofac-2022). This is the closest publicly retrievable
+        Trust Wallet corporate-channel anchor located in the present
+        authoring pass for any 2022 Trust Wallet UI behaviour change
+        relating to OFAC-sanctioned tokens. evidence_use=
+        contextual_unarchived; the post acknowledges the OFAC designation
+        as context but does NOT directly document a Trust Wallet UI
+        update that displays warnings on sanctioned tokens. Retained for
+        context only and for the human-audit pass to triangulate against.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Public-record search in this authoring pass (WebSearch 2026-05-17,
+        queries "Trust Wallet sanctioned token warning UI 2022 OFAC
+        Tornado Cash" and "Trust Wallet UI update warning OFAC sanctioned
+        tokens 2022 blacklist") did not surface any specific 2022 Trust
+        Wallet UI update announcement, release note, or contemporaneous
+        journalism describing a Trust Wallet UI feature that displays
+        warnings on OFAC-sanctioned tokens. Without a pinned corporate
+        release-note or app-store changelog anchor, the trigger timestamp
+        is recorded at week-level precision against the 2022-08 OFAC SDN
+        cascade window and flagged as low-confidence for human audit.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Hypothesised target is the class of OFAC-SDN-listed token contracts
+    surfaced inside the Trust Wallet mobile UI (asset list, send / swap
+    flows). The Trust Wallet asset surface is operator-curated and the
+    OFAC-listed Tornado Cash contracts (the 44 Ethereum addresses named
+    in the 2022-08-08 designation, per related event
+    tornado-cash-ofac-2022) are the candidate target subset. Because the
+    UI-warning behaviour itself could not be confirmed from any
+    Trust-Wallet-operated corporate channel in this authoring pass,
+    enumeration=subset with class-level rationale (per codebook §7); no
+    specific UI-warning roster has been pinned.
+  protocol: null
+  actor_type: noncustodial_mobile_wallet
+  actor_name: Trust Wallet (Binance affiliate)
+  chains:
+    - ethereum
+  canonical_domains:
+    - trustwallet.com
+
+jurisdiction:
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Trust Wallet is a non-custodial mobile wallet; the hypothesised
+      UI warning is a client-side display change, not an ISP / DNS
+      block. L0 not_applicable on construct-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Wallet-UI warnings have no effect on Ethereum consensus or PBS
+      relay filtering. L1 not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Trust Wallet uses its own RPC endpoints for network calls; the
+      hypothesised UI warning is a display-layer behaviour, not an
+      RPC-response filter. L3 not_applicable for this row; sibling
+      L3 effects in the 2022-08 cascade are captured under the
+      Infura/Alchemy thread (see related events).
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - trustwallet.com
+    provider_scope: unknown
+    note: |
+      Hypothesised load-bearing layer (mobile-app UI warning on
+      OFAC-sanctioned tokens). The coverage scope for the
+      observed_no_change row below is the bounded public-record
+      search executed in this authoring pass (WebSearch 2026-05-17
+      against the trustwallet.com corporate blog and contemporaneous
+      crypto-press): no Trust Wallet release note, App Store / Play
+      Store changelog, or independent journalism describing a
+      sanctioned-token UI warning was located. Per codebook §1.4,
+      frontend attribution requires the operator to publicly cite
+      the trigger; no such Trust Wallet citation was found.
+      partially_measured because the public-record search is
+      bounded but not exhaustive — a human-audit pass on (a) Trust
+      Wallet GitHub repos (e.g. trustwallet/assets,
+      trustwallet/wallet-core) for 2022-08 commit history,
+      (b) Trust Wallet store-changelog history, and (c)
+      contemporaneous community forums (Reddit r/trustapp, Trust
+      Wallet community) is the gating step before this row can be
+      promoted past status=draft.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        domains:
+          - trustwallet.com
+        providers:
+          - trustwallet_binance
+        time_window:
+          - 2022-08-08T00:00:00Z
+          - 2022-11-08T00:00:00Z
+      note: |
+        Coverage scope: Trust Wallet corporate-channel and
+        independent-press search across the 90-day window
+        following the 2022-08-08 OFAC Tornado Cash designation.
+        Only the trustwallet.com Tornado Cash explainer blog post
+        was located, and it does not describe a sanctioned-token
+        UI warning feature.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Trust Wallet is non-custodial and has no issuer-side asset
+      blacklist / freeze admin method. asset_onchain not_applicable.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Trust Wallet is a self-custody wallet, not a centralized
+      off-ramp. The Binance affiliation does not propagate Binance's
+      offramp_cex compliance surface into the Trust Wallet UI as a
+      matter of public record. Binance-side off-ramp reactions to
+      the 2022-08-08 OFAC trigger, if any, would be captured
+      separately. offramp_cex not_applicable for this row.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:trustwallet_binance
+    event: no_documented_trustwallet_ui_warning_on_ofac_sanctioned_tokens_2022
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-08-08T00:00:00Z
+    precision: week
+    window:
+      - 2022-08-08T00:00:00Z
+      - 2022-11-08T00:00:00Z
+    sources:
+      - type: supporting_journalism
+        url: https://trustwallet.com/blog/cryptocurrency/tornado-cash-explained
+        wayback: https://web.archive.org/web/2022/https://trustwallet.com/blog/cryptocurrency/tornado-cash-explained
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - trustwallet.com
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-11-08T00:00:00Z
+        note: |
+          Trust Wallet's own Tornado Cash explainer blog post is the
+          closest Trust-Wallet-operated corporate-channel anchor
+          located in this authoring pass. It acknowledges the 2022-
+          08-08 OFAC designation as context but does NOT document
+          any Trust Wallet UI-warning feature for OFAC-sanctioned
+          tokens. Retained as the contextual-only anchor backing
+          the observed_no_change row. attribution=none per
+          validator rule for observed_no_change.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Authored at status=
+  draft / origin=agent_draft as a LOW-CONFIDENCE null_event row
+  pending human audit. The candidate event description ("Trust
+  Wallet (Binance-affiliated) UI update to display warnings on
+  sanctioned tokens following the 2022 OFAC SDN cascade") could
+  not be verified in this authoring pass against any pinned
+  Trust-Wallet-operated corporate channel (release notes, blog
+  post explicitly describing the UI warning, App Store /
+  Play Store changelog, GitHub diff in trustwallet/assets or
+  trustwallet/wallet-core, or contemporaneous independent
+  journalism). The only located Trust Wallet corporate-channel
+  anchor is the trustwallet.com Tornado Cash explainer blog post,
+  which acknowledges the OFAC designation as background context
+  but does NOT describe a sanctioned-token UI warning feature.
+
+  WebSearch 2026-05-17 (queries: "Trust Wallet sanctioned token
+  warning UI 2022 OFAC Tornado Cash" and "Trust Wallet UI update
+  warning OFAC sanctioned tokens 2022 blacklist") confirmed only
+  that (a) industry compliance discussion in 2022-08 distinguished
+  custodial-wallet OFAC obligations from non-custodial-wallet
+  obligations (Trust Wallet sits in the latter class), and (b)
+  Trust Wallet's Terms of Service require users not to be on the
+  OFAC SDN list, which is a contractual-policy posture rather
+  than a UI-feature behaviour. No specific 2022 UI-update
+  announcement was surfaced.
+
+  Per task instruction ("If unverifiable, code as null_event with
+  low-confidence note"), this row is coded:
+    - empirical_shape: null_event
+    - admission_tier: null_case
+    - one observation_kind=observed_no_change row at l4_frontend
+      with attribution=none (per validator rule for
+      observed_no_change)
+    - l4_frontend coverage.status=not_measured (per codebook §2 +
+      Kazakhstan precedent: documented-but-uncaptured measurement
+      claims must be coded as not_measured until the dataset slice
+      is pinned)
+
+  Codebook compliance:
+    - §3 (empirical_shape): null_event because there are 0
+      observed_change layers.
+    - §4 (admission_tier): null_case because there are 0
+      strong-attribution observed_change layers (denominator
+      control).
+    - §5.1 / §5.2 (trigger.type and stratum-actor map):
+      corporate_policy_change paired with S5_corporate is the
+      canonical stratum for non-custodial-wallet operator
+      unilateral policy actions.
+    - §6 (analysis_use): comparable_analysis is the canonical
+      form (not the alias comparative_analysis); temporal_tier=
+      comparable_main_2017_present because the candidate trigger
+      sits in 2022-08, well inside the comparable corpus window.
+    - §7 (target.enumeration): subset with class-level rationale
+      documented in enumeration_note (not the unsupported
+      class_level enum value).
+    - §8 (LLM-authoring): DRYRUN preamble included; observed_no_
+      change paired with attribution=none; conservative coding
+      (null_case over empirical_case) under unverifiability.
+
+  Human-audit follow-ups (gating before this row may be promoted
+  past status=draft):
+    1. Search trustwallet/assets and trustwallet/wallet-core
+       GitHub history for any 2022-08 / 2022-09 commit adding a
+       sanctioned-token warning surface, OFAC blocklist file, or
+       token-info metadata flag.
+    2. Pull Trust Wallet mobile-app release notes / App Store
+       and Google Play changelogs for v6.x / v7.x releases in
+       Q3 2022 for any UI-warning copy.
+    3. Search Trust Wallet community forum and r/trustapp Reddit
+       for any 2022-08-to-2022-11 user observation of a
+       sanctioned-token UI warning.
+    4. If none of (1)-(3) surfaces an artifact, mark this event
+       rejected as an unverifiable candidate. If any surfaces,
+       upgrade the l4_frontend row to observed_change and
+       re-evaluate empirical_shape and admission_tier.
+
+scoped_claim: |
+  The candidate event "Trust Wallet (Binance-affiliated) UI update
+  to display warnings on OFAC-sanctioned tokens following the
+  2022-08-08 OFAC SDN cascade (related event tornado-cash-ofac-2022)"
+  could not be verified against any pinned Trust-Wallet-operated
+  corporate channel in this authoring pass. The row is coded as a
+  low-confidence null_event with one observed_no_change row at
+  l4_frontend (attribution=none) and l4_frontend coverage.status=
+  not_measured pending human audit of Trust Wallet release notes,
+  GitHub history, and community discussion.
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - trust_wallet
+  - tornado_cash_thread
+  - low_confidence
+  - unverified_candidate
+  - dryrun_2026_05_17

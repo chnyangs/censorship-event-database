@@ -1,0 +1,177 @@
+id: coinbase-japan-exit-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - coinbase-india-exit-2022
+  - japan-fsa-coincheck-orders-2018
+
+trigger:
+  type: corporate_policy_change
+  actor: coinbase_inc
+  timestamp: 2023-01-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
+      wayback: https://web.archive.org/web/2023/https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
+      evidence_use: contextual_unarchived
+      note: |
+        Coinbase corporate blog post "Halting Operations in Japan" (2023-01-18)
+        announcing the wind-down of Coinbase KK retail operations. Cited as
+        contextual_unarchived per evidence_use rule; not used to support
+        admission claims at this draft stage. Wayback anchor pinned at year-
+        level; per-snapshot body_hash to be captured before admission promotion.
+  timestamp_sources:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2023/01/18/coinbase-confirms-it-is-halting-operations-in-japan
+      wayback: https://web.archive.org/web/2023/https://www.coindesk.com/business/2023/01/18/coinbase-confirms-it-is-halting-operations-in-japan
+      evidence_use: contextual_unarchived
+      note: CoinDesk confirms day-level timing of the 2023-01-18 announcement.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is Coinbase KK (Coinbase Japan retail entity), a registered Japan
+    FSA crypto-asset exchange service provider. Subset enumeration because
+    the wind-down enumerates the Japan-market retail product surface
+    (new-account suspension, fiat-deposit removal, customer-withdrawal
+    deadline) rather than a complete on-chain address set. No address-level
+    targets; the action is a market-level exit by a registered exchange.
+  actor_type: exchange_market_withdrawal
+  actor_name: Coinbase KK (Coinbase Japan)
+  chains: []
+  canonical_domains:
+    - coinbase.com
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Global Coinbase domain remained reachable from Japan; restriction is at exchange-product level, not at network/DNS level.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      coinbase.com remained globally reachable. Coinbase KK Japan-localized
+      retail-product surface was deprecated; this is a product-level
+      withdrawal, not a frontend-takedown event.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - coinbase_kk_jp_retail
+    note: |
+      Coinbase is itself the CEX. The event documents a registered exchange
+      exiting a national retail market following corporate restructuring +
+      regulatory-cost considerations. Partially_measured because the
+      corporate-disclosure anchor is replayable via wayback but the precise
+      per-user offramp impact set is not enumerated at this draft stage.
+    denominator_artifact:
+      type: primary_corporate
+      url: https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
+      wayback: https://web.archive.org/web/2023/https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
+      scope_descriptor:
+        providers: [coinbase_kk]
+        countries: [JP]
+        time_window:
+          - 2023-01-18T00:00:00Z
+          - 2023-02-17T23:59:59Z
+      note: |
+        Wayback-anchored denominator. Pinned body_hash to be captured before
+        admission promotion.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:coinbase_kk
+    event: japan_retail_operations_wind_down_announced
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-01-18T00:00:00Z
+    precision: day
+    country: JP
+    sources:
+      - type: primary_corporate
+        url: https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
+        wayback: https://web.archive.org/web/2023/https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [coinbase_kk]
+          countries: [JP]
+          time_window:
+            - 2023-01-18T00:00:00Z
+            - 2023-02-17T23:59:59Z
+        note: |
+          Coinbase corporate blog announcing Japan operations halt. Fiat
+          deposit functionality removed 2023-01-20; customer withdrawal
+          deadline 2023-02-16; residual JPY deposited with Legal Affairs
+          Bureau after 2023-02-17. attribution=direct because Coinbase
+          (the CEX subject of the corporate policy) made and announced the
+          decision itself; the trigger and the acting entity are the same
+          firm.
+      - type: supporting_journalism
+        url: https://www.bloomberg.com/news/articles/2023-01-18/coinbase-stops-japan-operations-after-slump-in-digital-assets
+        wayback: https://web.archive.org/web/2023/https://www.bloomberg.com/news/articles/2023-01-18/coinbase-stops-japan-operations-after-slump-in-digital-assets
+        evidence_use: contextual_unarchived
+        note: Bloomberg corroboration; cites crypto-winter cost-cutting context.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  comparison documenting Coinbase KK's 2023-01-18 wind-down of Japan retail
+  operations: announcement 2023-01-18 → fiat-deposit disabled 2023-01-20 →
+  customer-withdrawal deadline 2023-02-16 → residual JPY deposited with
+  Legal Affairs Bureau after 2023-02-17. Coinbase had registered with JP FSA
+  in 2021-06; the exit followed the 2022 crypto-winter cost-cutting (~20%
+  workforce reduction, ~950 employees) and the FSA's heavier compliance
+  burden relative to retail-volume realized in Japan. Coinbase's public
+  framing cites "market conditions" rather than a specific FSA enforcement
+  action; coded as corporate_policy_change (S5_corporate) rather than
+  regulatory_enforcement (S4_nation_state) because no JP FSA business
+  improvement order or other administrative-enforcement instrument is
+  attached to the exit decision.
+
+  Sibling-event context:
+    - coinbase-india-exit-2022: prior Coinbase market-retreat datapoint
+      (informal NPCI pressure 2022-04, also S5_corporate market-exit).
+    - japan-fsa-coincheck-orders-2018: prior JP FSA administrative-
+      enforcement datapoint illustrating the regulatory-burden environment
+      that Coinbase KK operated under, even though no specific FSA order
+      drove Coinbase's 2023 exit.
+
+  Attribution=direct under §1.2/§1.4 analogy: the actor (Coinbase) publicly
+  states the policy and the action is the actor's own decision. Citations
+  are contextual_unarchived per evidence_use rule because no Wayback /
+  body_hash captures are yet pinned at this draft stage; admission promotion
+  would require pinned archival captures of the Coinbase blog post and
+  Bloomberg article.
+
+scoped_claim: |
+  "Coinbase KK's 2023-01-18 wind-down of Japan retail operations
+  illustrates a registered-exchange market exit driven by corporate
+  restructuring (2022 crypto-winter cost-cutting) rather than by a
+  jurisdiction-specific enforcement order, complementing the India 2022
+  informal-pressure exit and the JP FSA 2018 administrative-enforcement
+  baseline."
+
+tags:
+  - corporate_policy_change
+  - market_exit
+  - japan
+  - coinbase
+  - crypto_winter_2022

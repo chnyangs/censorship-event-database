@@ -1,0 +1,237 @@
+id: france-amf-binance-psan-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - uk-fca-binance-markets-2021
+  - germany-bafin-binance-licence-withdrawal-2023
+  - eu-mica-2023
+
+trigger:
+  type: regulatory_enforcement
+  actor: FR_AMF
+  timestamp: 2022-05-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+      wayback: https://web.archive.org/web/20260517000000/https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+      evidence_use: contextual_unarchived
+      note: |
+        AMF (Autorité des Marchés Financiers) public white-list entry for
+        Binance France SAS, registered as a Prestataire de Services sur
+        Actifs Numériques (PSAN) / Digital Asset Service Provider (DASP)
+        under registration number E2022-037, effective 2022-05-04. The
+        registration authorizes four regulated services: digital-asset
+        custody; purchase/sale of digital assets for legal tender;
+        exchange of digital assets for other digital assets; and
+        operation of a digital-asset trading platform. This is a
+        PERMISSIVE regulatory recognition (counter-example to
+        enforcement-driven cascades), not a censorship trigger. DRYRUN:
+        Wayback URL pattern asserted; body-hash capture deferred.
+    - type: supporting_journalism
+      url: https://siecledigital.fr/2022/05/05/binance-enfin-reconnu-psan-en-france/
+      wayback: https://web.archive.org/web/20220505000000/https://siecledigital.fr/2022/05/05/binance-enfin-reconnu-psan-en-france/
+      evidence_use: contextual_unarchived
+      note: |
+        Siècle Digital (2022-05-05) "Binance enfin reconnu PSAN en France"
+        confirms the 2022-05-04 AMF registration of Binance France SAS
+        as the first major Western jurisdiction PSAN/DASP authorization
+        granted to Binance. Contemporaneous press confirmation of the
+        registration date.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        AMF white-list entry timestamps the Binance France SAS PSAN
+        registration as 2022-05-04 (day precision). Corroborated by
+        contemporaneous French-press coverage 2022-05-05.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance France SAS (the French legal entity of the Binance group,
+    established in Montrouge in November 2021) is the registered PSAN.
+    Operational effect extends, by class-level inference, to French
+    retail customers of binance.com obtaining a regulated on-ramp via
+    the registered French entity. Treated as entity-level at the
+    Binance-France cohort; class-level rationale documented here per
+    codebook §7.
+  protocol: null
+  actor_type: regulated_crypto_service_provider
+  actor_name: Binance France SAS
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [FR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      AMF PSAN registration is an administrative licensing act, not a
+      DNS / ISP / connectivity action. binance.com remained reachable
+      in France throughout.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No consensus-layer / validator-level implication; PSAN registration
+      is exchange-licensing scope only.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC provider implicated by the AMF registration; PSAN
+      scope is centralized-exchange operations, not Ethereum RPC.
+  - layer: l4_frontend
+    status: not_measured
+    scope: [binance.com]
+    note: |
+      No new geo-fence or restriction observed on binance.com in France
+      post-registration; this is a PERMISSIVE event (the registration
+      expands, not restricts, Binance's lawful French market access).
+      No frontend cascade in censorship direction.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN listing or stablecoin-issuer freeze primitive implicated by
+      PSAN licensing.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [binance_france_sas, french_retail_eur_rails]
+    note: |
+      The PSAN registration affirmatively AUTHORIZES Binance France SAS
+      to operate four regulated services (custody, fiat purchase/sale,
+      crypto-crypto exchange, trading-platform operation) under French
+      law. Counter-example to the UK-FCA-2021 / DE-BaFin-2023 enforcement
+      cascades: the operative offramp_cex direction is permissive
+      recognition, not severance. Recorded as observed_no_change at
+      offramp_cex (no rail severance) with attribution=none. Denominator
+      artifact is the AMF white-list entry itself, which exhaustively
+      enumerates the four authorized service scopes.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+      wayback: https://web.archive.org/web/20260517000000/https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+      scope_descriptor:
+        countries: [FR]
+        providers: [binance_france_sas_offramp_cex]
+        time_window:
+          - 2022-05-04T00:00:00Z
+          - 2023-12-31T23:59:59Z
+      note: |
+        AMF white-list entry scopes the disposition as PSAN registration
+        E2022-037 authorizing four regulated services. The artifact
+        affirmatively documents the absence of rail-severance: it is a
+        licensing instrument, not an enforcement order. Pairs with
+        related_events (UK FCA 2021 / DE BaFin 2023) as the permissive
+        counter-pole in the 2021-2023 Binance EU/UK regulator wave.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:fr_amf
+    event: binance_france_sas_psan_registered_no_rail_severance
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-05-04T00:00:00Z
+    precision: day
+    window:
+      - 2022-05-04T00:00:00Z
+      - 2023-12-31T23:59:59Z
+    country: FR
+    sources:
+      - type: primary_legal
+        url: https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+        wayback: https://web.archive.org/web/20260517000000/https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [FR]
+          providers: [binance_france_sas_offramp_cex]
+          time_window:
+            - 2022-05-04T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          AMF white-list entry: Binance France SAS PSAN registration
+          E2022-037 effective 2022-05-04. Affirmatively authorizes
+          (does not restrict) Binance's French offramp_cex operations.
+          observed_no_change row anchors the null-event status of this
+          permissive regulatory recognition.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- DRYRUN 2026-05-17**: 2022-05-04 France AMF
+  registration of Binance France SAS as a PSAN (Prestataire de Services
+  sur Actifs Numériques) / Digital Asset Service Provider under
+  registration number E2022-037. First major Western jurisdiction to
+  formally register a Binance entity.
+
+  PERMISSIVE EVENT FRAMING: This row is the CLEANEST counter-example in
+  the 2021-2023 Binance EU/UK regulator wave. Where UK-FCA-2021
+  (uk-fca-binance-markets-2021) produced a class-wide GBP payment-rail
+  severance via FCA consumer warning, and DE-BaFin-2023
+  (germany-bafin-binance-licence-withdrawal-2023) produced a regulated-
+  market-access withdrawal, the French AMF granted affirmative PSAN
+  registration to a Binance entity. The operative direction at
+  offramp_cex is permissive (rails opened, not severed).
+
+  null_event RATIONALE per codebook §3: 0 observed_change layers. The
+  only observation row is observed_no_change at offramp_cex with
+  attribution=none, anchored on the AMF white-list entry as denominator
+  artifact. This yields empirical_shape=null_event and admission_tier=
+  null_case -- a denominator control / counter-example row for the
+  2022-vintage Western-regulator Binance stratum.
+
+  TRIGGER-TYPE CODING per codebook §5.1: trigger.type=regulatory_enforcement
+  (non-US national regulator administrative action; AMF is the French
+  national-competent-authority for PSAN/DASP under the 2019 Pacte law,
+  not a network/payment-rail block). Stratum S4_nation_state per §5.2
+  mapping. Note: §5.1 examples emphasize enforcement (orders / restrictions);
+  this row uses regulatory_enforcement to capture the permissive companion
+  modality (affirmative registration / whitelist admission). Human
+  reviewer should confirm this read of §5.1 -- alternative reads might
+  warrant a future trigger-type expansion (e.g. regulatory_authorization)
+  but the closest current enum value is regulatory_enforcement.
+
+  RELATED EVENTS: uk-fca-binance-markets-2021 (enforcement cascade,
+  GBP rail severance), germany-bafin-binance-licence-withdrawal-2023
+  (regulated-market-access withdrawal), eu-mica-2023 (supranational
+  PSAN/DASP successor framework). Together these four events bracket
+  the 2021-2023 European Binance regulator trajectory: FR permissive
+  (2022) -> DE restrictive (2023) -> EU harmonization (2023+ MiCA).
+
+  DRYRUN caveats: AMF white-list URL and Siècle Digital press URL are
+  asserted with Wayback patterns; body-hash captures deferred. For
+  non-DRYRUN release, capture body_hash + body_path for: (1) AMF
+  white-list entry for Binance France SAS, (2) Siècle Digital 2022-05-05
+  article. Marked evidence_use=contextual_unarchived per validator policy.
+
+scoped_claim: |
+  "France AMF granted Binance France SAS a PSAN (Digital Asset Service
+  Provider) registration (E2022-037) effective 2022-05-04, authorizing
+  four regulated services (custody, fiat purchase/sale, crypto-crypto
+  exchange, trading-platform operation). This was the first major
+  Western jurisdiction to formally register a Binance entity and serves
+  as the permissive counter-example to the UK-FCA-2021 GBP-rail severance
+  and DE-BaFin-2023 licence withdrawal in the 2021-2023 Binance EU/UK
+  regulator wave. Recorded as a null_event denominator-control row at
+  offramp_cex with attribution=none."
+
+tags:
+  - regulatory_enforcement
+  - france
+  - amf
+  - binance
+  - psan
+  - dasp
+  - permissive_event
+  - counter_example
+  - null_event
+  - dryrun_2026_05_17

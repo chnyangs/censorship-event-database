@@ -1,0 +1,301 @@
+# DRYRUN preamble (Phase E):
+# - **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+# - status: draft (origin: agent_draft, no human audit yet)
+# - research_stratum: S4_nation_state (HK SAR sub-sovereign jurisdiction;
+#   SFC administrative enforcement against an unlicensed VATP)
+# - empirical_shape: comparison (1-2 observed_change layers anchored;
+#   offramp_cex HK product/marketing restriction following SFC public
+#   warning + alert-list listing; l4_frontend recorded as coverage_gap)
+# - admission_tier: empirical_case (pending human audit)
+# - analysis_use: comparable_analysis; temporal_tier: comparable_main_2017_present
+# - trigger.type: regulatory_enforcement (per codebook §5.1: non-US
+#   national regulator administrative enforcement — SFC 2024-03-14
+#   public warning naming Bybit and listing the platform plus its
+#   crypto products on the SFC Suspicious VATP / Investment Products
+#   Alert Lists is an administrative enforcement act, NOT a
+#   network/payment-rail block)
+# - target.kind: entity; target.enumeration: subset (Bybit named as the
+#   enforcement target; full universe of unlicensed VATPs marketing to
+#   HK is broader, and Bybit's later full HK exit / VATP-licence
+#   withdrawal is a downstream event outside this row's scope)
+# - jurisdiction: [HK]
+# - related_events: [hongkong-sfc-jpex-block-2023,
+#   hongkong-sfc-vatp-licensing-2023-06]
+# - evidence_use: contextual_unarchived (sources cited but not Wayback-
+#   pinned in this draft; human audit will harden into admission_anchor
+#   evidence)
+
+id: hongkong-sfc-bybit-warning-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: regulatory_enforcement
+  actor: HK_SFC
+  timestamp: 2024-03-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://apps.sfc.hk/edistributionWeb/api/news/list-content?refNo=24PR47&lang=EN
+      wayback: https://web.archive.org/web/2024/https://apps.sfc.hk/edistributionWeb/api/news/list-content?refNo=24PR47&lang=EN
+      note: |
+        Hong Kong Securities and Futures Commission (SFC) press release
+        24PR47 "SFC warns public against unlicensed virtual asset
+        trading platform Bybit", dated 2024-03-14. The SFC publicly
+        warned that no entity in the Bybit group is licensed by or
+        registered with the SFC to conduct any regulated activity in
+        Hong Kong, and that Bybit's crypto-related products (including
+        Bybit Futures Contracts, Inverse Futures Contracts, options,
+        leveraged tokens, and Bybit Wealth Management) have been
+        offered to HK investors without authorisation. Bybit was added
+        to the SFC Suspicious Virtual Asset Trading Platforms Alert
+        List and its products to the Suspicious Investment Products
+        Alert List on the same day.
+      evidence_use: contextual_unarchived
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+      wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+      note: |
+        CoinDesk 2024-03-14 reporting on the SFC public warning against
+        Bybit and the addition to the Suspicious VATP Alert List;
+        contextualises Bybit's pending Hong Kong VATP licence
+        application (filed February 2024 via Spark Fintech Limited).
+      evidence_use: contextual_unarchived
+    - type: supporting_journalism
+      url: https://www.blockhead.co/2024/03/18/hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list/
+      wayback: https://web.archive.org/web/2024/https://www.blockhead.co/2024/03/18/hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list/
+      note: |
+        Blockhead summary of the SFC Bybit warning and Suspicious VATP
+        Alert List listing; corroborates the enumerated product list
+        (futures, inverse futures, options, leveraged tokens, wealth
+        management) the SFC flagged as offered to HK investors.
+      evidence_use: contextual_unarchived
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Subset enumeration: Bybit is the named enforcement target of the
+    SFC 2024-03-14 public warning and the Suspicious VATP Alert List
+    listing. The named Bybit group entity covered by the warning is
+    not exhaustively enumerated by the SFC release (the SFC refers to
+    "the Bybit group" generically); Bybit's HK licence applicant
+    Spark Fintech Limited (February 2024 VATP application) is the
+    related corporate vehicle. The full universe of unlicensed VATPs
+    marketing to HK is broader; this event records the Bybit-specific
+    slice. Bybit's subsequent full HK exit / VATP-licence-application
+    withdrawal (later in 2024) is a downstream event outside this
+    row's scope.
+  entity: bybit
+  actor_name: Bybit
+  actor_type: exchange
+  canonical_domains:
+    - bybit.com
+
+jurisdiction:
+  - HK
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      SFC administrative warning + Suspicious VATP Alert List listing;
+      not an ISP/DNS-level network block. HK does not operate a
+      mainland-style network filter against unlicensed crypto
+      frontends.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Administrative enforcement against an unlicensed VATP does not
+      map to Ethereum PBS relay filtering or other L1 consensus
+      primitives.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      L3 RPC layer is not implicated by the SFC Bybit warning.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Bybit did not implement an immediate HK-vantage frontend block
+      following the 2024-03-14 SFC warning (the full HK product
+      withdrawal / regional exit occurred later in 2024 and is tracked
+      as a separate downstream event). No Wayback-pinned HK-vantage
+      snapshot of bybit.com bracketing 2024-03-14 has been captured
+      for this draft; per codebook §2 (Kazakhstan precedent) this
+      layer is `not_measured`, pending human audit.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin admin-method freeze attaches to the SFC Bybit
+      warning. Asset-onchain layer not implicated.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - bybit
+    note: |
+      The SFC named Bybit and enumerated the specific crypto-related
+      products (Bybit Futures Contracts, Inverse Futures Contracts,
+      options, leveraged tokens, Bybit Wealth Management) it considered
+      offered to HK investors without authorisation, and added Bybit
+      to the Suspicious VATP Alert List with its products on the
+      Suspicious Investment Products Alert List. This is an explicit
+      regulator-side restriction on Bybit's lawful HK retail offramp
+      surface that pre-dates Bybit's subsequent full HK exit.
+      Contemporaneous journalism (CoinDesk, Blockhead, FX News Group,
+      Dailycoin) corroborates the regulator's named-target enforcement
+      posture. Sources contextual_unarchived for this draft; human
+      audit will pin Wayback snapshots.
+    denominator_artifact:
+      type: primary_legal
+      url: https://apps.sfc.hk/edistributionWeb/api/news/list-content?refNo=24PR47&lang=EN
+      wayback: https://web.archive.org/web/2024/https://apps.sfc.hk/edistributionWeb/api/news/list-content?refNo=24PR47&lang=EN
+      scope_descriptor:
+        providers:
+          - bybit
+        countries: [HK]
+        time_window:
+          - 2024-03-14T00:00:00Z
+          - 2024-03-31T23:59:59Z
+      note: |
+        SFC press release 24PR47 "SFC warns public against unlicensed
+        virtual asset trading platform Bybit" as the denominator
+        anchor for the named-target enforcement scope. Wayback
+        wildcard pending human-audit pinning of a specific snapshot.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:hk_sfc
+    event: bybit_unlicensed_vatp_public_warning_and_alert_list_listing
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-03-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: HK
+    note: |
+      SFC public warning 24PR47 directly named Bybit as the
+      enforcement target and listed Bybit on the Suspicious Virtual
+      Asset Trading Platforms Alert List, with Bybit's crypto-related
+      products listed on the Suspicious Investment Products Alert
+      List. The SFC enumerated specific products (futures, inverse
+      futures, options, leveraged tokens, wealth management) it
+      considered offered to HK investors without authorisation.
+      Attribution=direct: actor publicly references the enforcement
+      target by name (codebook §1.1).
+    sources:
+      - type: primary_legal
+        url: https://apps.sfc.hk/edistributionWeb/api/news/list-content?refNo=24PR47&lang=EN
+        wayback: https://web.archive.org/web/2024/https://apps.sfc.hk/edistributionWeb/api/news/list-content?refNo=24PR47&lang=EN
+        note: |
+          SFC press release 24PR47 "SFC warns public against unlicensed
+          virtual asset trading platform Bybit" 2024-03-14 — the named
+          public warning that anchors the offramp restriction.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+        wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+        note: |
+          CoinDesk 2024-03-14 reporting confirming the SFC warning,
+          alert-list listing, and the context of Bybit's pending
+          HK VATP licence application via Spark Fintech Limited.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://dailycoin.com/hong-kong-flags-bybit-as-suspicious-on-warning-list/
+        wayback: https://web.archive.org/web/2024/https://dailycoin.com/hong-kong-flags-bybit-as-suspicious-on-warning-list/
+        note: |
+          Dailycoin reporting on the SFC Bybit Suspicious VATP listing
+          situating it within the broader 2024 HK enforcement cleanse
+          (parallel to the post-JPEX SFC posture).
+        evidence_use: contextual_unarchived
+  - layer: l4_frontend
+    actor: exchange:bybit
+    event: bybit_hk_frontend_response_post_sfc_warning_coverage_gap
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp_range:
+      - 2024-03-14T00:00:00Z
+      - 2024-03-31T23:59:59Z
+    precision: day
+    country: HK
+    note: |
+      Following the 2024-03-14 SFC warning, Bybit did not implement
+      an immediate HK-vantage frontend block; the full HK product
+      withdrawal / regional exit occurred later in 2024 and is tracked
+      as a separate downstream event. No Wayback-pinned HK-vantage
+      snapshot of bybit.com bracketing 2024-03-14 has been captured
+      for this draft, so per codebook §2 (Kazakhstan precedent) this
+      layer is recorded as a coverage_gap, not as an observed_change
+      or observed_no_change. Human audit may elevate once a replayable
+      artifact is pinned.
+    sources:
+      - type: supporting_journalism
+        url: https://blockchain.news/news/breaking-bybit-receives-unlicensed-operation-warning-from-hk-sfc
+        wayback: https://web.archive.org/web/2024/https://blockchain.news/news/breaking-bybit-receives-unlicensed-operation-warning-from-hk-sfc
+        note: |
+          Blockchain.News reporting on the SFC Bybit warning;
+          describes the regulator-side action but does not document
+          a Bybit-side HK frontend block in the immediate post-warning
+          window.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.charltonslaw.com/sfc-warns-unlicensed-crypto-exchanges-of-legal-consequences/
+        wayback: https://web.archive.org/web/2024/https://www.charltonslaw.com/sfc-warns-unlicensed-crypto-exchanges-of-legal-consequences/
+        note: |
+          Charltons Law summary of the SFC 2024 posture toward
+          unlicensed VATPs including Bybit; contextualises the
+          enforcement chain leading to Bybit's later HK exit.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Non-US national regulator administrative enforcement: HK SFC's
+  2024-03-14 press release 24PR47 publicly warning against Bybit as
+  an unlicensed VATP, with simultaneous Suspicious VATP Alert List
+  and Suspicious Investment Products Alert List listings enumerating
+  Bybit Futures Contracts, Inverse Futures Contracts, options,
+  leveraged tokens, and Bybit Wealth Management as products offered
+  to HK investors without authorisation. This event PRE-DATES Bybit's
+  later full HK exit / VATP-licence-application withdrawal, which is
+  a separate downstream event outside this row's scope.
+
+  trigger.type=regulatory_enforcement applied per codebook §5.1: HK
+  SFC is a non-US national regulator and the 2024-03-14 press
+  release is an administrative enforcement act (public warning +
+  alert-list listing), not a network/payment-rail block. Research
+  stratum S4_nation_state per the codebook §5.2 stratum-actor map.
+
+  Empirical shape is `comparison`: one observed_change layer —
+  offramp_cex (direct attribution; SFC named Bybit and enumerated
+  the affected products). The l4_frontend layer is recorded as a
+  coverage_gap per codebook §2 (Kazakhstan precedent) because no
+  Wayback-pinned HK-vantage snapshot of bybit.com has been captured
+  for this draft, and the full HK frontend withdrawal occurred later
+  in 2024 as a downstream event. admission_tier=empirical_case
+  (one strong-attribution observed_change layer per codebook §4).
+
+  All sources in this draft are `contextual_unarchived` per the
+  evidence_use convention; status remains `draft` (origin:
+  agent_draft) pending human audit and Wayback pinning.
+
+related_events:
+  - hongkong-sfc-jpex-block-2023
+  - hongkong-sfc-vatp-licensing-2023-06
+
+tags:
+  - nation_state
+  - hong_kong
+  - sfc
+  - bybit
+  - regulatory_enforcement
+  - offramp_cex
+  - vatp_alert_list

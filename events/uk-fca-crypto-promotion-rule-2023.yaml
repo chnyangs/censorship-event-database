@@ -1,0 +1,327 @@
+id: uk-fca-crypto-promotion-rule-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - uk-fca-binance-markets-2021
+  - kraken-uk-derivatives-exit-2021
+  - pump-fun-uk-fca-geofence-2024-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: UK_FCA
+  timestamp: 2023-10-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fca.org.uk/publications/policy-statements/ps23-6-financial-promotion-rules-cryptoassets
+      wayback: https://web.archive.org/web/2023/https://www.fca.org.uk/publications/policy-statements/ps23-6-financial-promotion-rules-cryptoassets
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E S4 non-US
+        regulator administrative-enforcement discovery): authored by
+        LLM agent without personally verifying Wayback/body_hash;
+        origin=agent_draft and status=draft pending human review.
+
+        UK Financial Conduct Authority Policy Statement PS23/6
+        "Financial promotion rules for cryptoassets". The rules
+        brought qualifying cryptoasset promotions made to UK
+        consumers within the FCA's financial-promotions remit
+        effective 2023-10-08. All cryptoasset firms marketing to UK
+        consumers (including overseas firms) must comply via one of
+        four legal routes; non-compliant promotions are a criminal
+        offence under FSMA section 21. The regime is administrative
+        enforcement, not a network-level or payment-rail block.
+        DRYRUN: Wayback anchor unverified.
+    - type: primary_legal
+      url: https://www.fca.org.uk/firms/cryptoassets/marketing-uk-consumers
+      wayback: https://web.archive.org/web/2023/https://www.fca.org.uk/firms/cryptoassets/marketing-uk-consumers
+      evidence_use: contextual_unarchived
+      note: |
+        FCA firms-guidance page "Cryptoasset firms marketing to UK
+        consumers" enumerating the four legal communication routes
+        and the 2023-10-08 effective date. DRYRUN: Wayback anchor
+        unverified.
+    - type: primary_legal
+      url: https://www.fca.org.uk/publications/finalised-guidance/fg23-3-cryptoasset-financial-promotions
+      wayback: https://web.archive.org/web/2023/https://www.fca.org.uk/publications/finalised-guidance/fg23-3-cryptoasset-financial-promotions
+      evidence_use: contextual_unarchived
+      note: |
+        FCA Finalised Guidance FG23/3 on cryptoasset financial
+        promotions, the non-handbook guidance published alongside
+        PS23/6. DRYRUN: Wayback anchor unverified.
+    - type: primary_legal
+      url: https://www.fca.org.uk/news/press-releases/fca-sets-expectations-ahead-incoming-crypto-marketing-rules
+      wayback: https://web.archive.org/web/2023/https://www.fca.org.uk/news/press-releases/fca-sets-expectations-ahead-incoming-crypto-marketing-rules
+      evidence_use: contextual_unarchived
+      note: |
+        FCA press release setting expectations ahead of the
+        2023-10-08 effective date, anchoring the regulator's public
+        framing of the regime. DRYRUN: Wayback anchor unverified.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision. PS23/6 final rules came into force on
+        2023-10-08 per the FCA policy statement and firms-guidance
+        page.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: all cryptoasset firms (UK-domiciled and
+    overseas) communicating financial promotions of qualifying
+    cryptoassets to UK consumers. Non-exhaustive enumerated subset
+    of observed compliance reactions: Bybit and KuCoin announced
+    UK retail restrictions / exits in the days surrounding the
+    2023-10-08 effective date; additional firms (PayPal UK crypto,
+    Luno UK, Binance UK retail, others) layered partial
+    compliance changes through Q4 2023. Per codebook §7 the
+    target is coded `subset` and the class-level rationale is
+    documented here.
+  protocol: null
+  actor_type: regulated_crypto_service_provider_class
+  actor_name: Cryptoasset firms marketing to UK consumers (class)
+  chains: []
+  canonical_domains:
+    - bybit.com
+    - kucoin.com
+
+jurisdiction:
+  - UK
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Financial-promotions regime is an administrative-marketing
+      rule, not a DNS / IP / network-connectivity action. Target
+      domains remain globally reachable.
+  - layer: l1_consensus
+    status: not_applicable
+    note: Regulatory regime does not implicate any consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No RPC-provider geofence implicated. Firms' compliance was at
+      the application / offramp-CEX layer.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - bybit.com
+      - kucoin.com
+    note: |
+      UK-vantage frontend banners / KYC restriction flows appeared
+      on bybit.com and kucoin.com in the compliance window around
+      2023-10-08. Frontend-layer signal is secondary to the
+      offramp_cex signal (UK retail exits). partially_measured
+      pending pinned Wayback brackets of UK-geo banners on each
+      domain.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer freeze primitive.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - bybit_uk_retail
+      - kucoin_uk_retail
+    note: |
+      Load-bearing layer. Bybit and KuCoin both announced UK
+      retail-customer restrictions / exits citing the FCA
+      financial-promotions regime as the proximate cause. Bybit
+      announced 2023-10-02 that it would halt new UK customer
+      onboarding and restrict existing UK retail accounts ahead of
+      the 2023-10-08 effective date; KuCoin announced UK retail
+      restrictions in the same compliance window.
+      partially_measured pending pinned body_hash captures of each
+      operator's compliance announcement.
+
+observations:
+  - layer: offramp_cex
+    actor: bybit_global
+    event: bybit_restricted_uk_retail_customers_in_response_to_fca_financial_promotions_regime
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-10-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: UK
+    window:
+      - 2023-10-02T00:00:00Z
+      - 2023-11-15T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://announcements.bybit.com/en-US/article/important-notice-for-bybit-users-in-the-uk-blt8d6c3a98f0db4f4b/
+        wayback: https://web.archive.org/web/2023/https://announcements.bybit.com/en-US/article/important-notice-for-bybit-users-in-the-uk-blt8d6c3a98f0db4f4b/
+        evidence_use: contextual_unarchived
+        note: |
+          Bybit operator announcement to UK users notifying that
+          Bybit would suspend new account creation and progressively
+          restrict UK retail services to comply with the FCA
+          financial-promotions regime effective 2023-10-08.
+          attribution=direct under §1.4 (provider publicly cites
+          the trigger; block within publicly-knowable compliance
+          window). DRYRUN: Wayback anchor unverified.
+      - type: supporting_journalism
+        url: https://www.reuters.com/technology/crypto-exchange-bybit-suspend-services-britain-2023-10-02/
+        wayback: https://web.archive.org/web/2023/https://www.reuters.com/technology/crypto-exchange-bybit-suspend-services-britain-2023-10-02/
+        evidence_use: contextual_unarchived
+        note: |
+          Reuters contemporaneous coverage of Bybit suspending UK
+          services citing the incoming FCA financial-promotions
+          rules. DRYRUN: Wayback anchor unverified.
+  - layer: offramp_cex
+    actor: kucoin_global
+    event: kucoin_restricted_uk_retail_customers_in_response_to_fca_financial_promotions_regime
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-10-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: UK
+    window:
+      - 2023-10-02T00:00:00Z
+      - 2023-11-30T23:59:59Z
+    sources:
+      - type: primary_corporate
+        url: https://www.kucoin.com/news/en-important-notice-for-our-uk-users
+        wayback: https://web.archive.org/web/2023/https://www.kucoin.com/news/en-important-notice-for-our-uk-users
+        evidence_use: contextual_unarchived
+        note: |
+          KuCoin operator announcement to UK users notifying that
+          KuCoin would restrict UK retail services in line with the
+          FCA financial-promotions regime effective 2023-10-08.
+          attribution=direct under §1.4. DRYRUN: Wayback anchor
+          unverified.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2023/10/06/kucoin-tells-uk-users-to-close-positions-amid-new-fca-rules/
+        wayback: https://web.archive.org/web/2023/https://www.coindesk.com/policy/2023/10/06/kucoin-tells-uk-users-to-close-positions-amid-new-fca-rules/
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk coverage of KuCoin instructing UK users to close
+          positions ahead of the FCA financial-promotions effective
+          date. DRYRUN: Wayback anchor unverified.
+  - layer: l4_frontend
+    actor: frontend:bybit_kucoin_uk_geo
+    event: uk_geo_frontend_banners_and_kyc_restrictions_added_on_bybit_and_kucoin_uk_vantage
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-10-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: UK
+    sources:
+      - type: primary_corporate
+        url: https://announcements.bybit.com/en-US/article/important-notice-for-bybit-users-in-the-uk-blt8d6c3a98f0db4f4b/
+        wayback: https://web.archive.org/web/2023/https://announcements.bybit.com/en-US/article/important-notice-for-bybit-users-in-the-uk-blt8d6c3a98f0db4f4b/
+        evidence_use: contextual_unarchived
+        note: |
+          Frontend-layer UK-vantage restriction banners on bybit.com
+          and parallel KuCoin frontend banners were posted in the
+          compliance window. attribution=plausible under §1.4: the
+          per-domain frontend-banner timing is operator-driven and
+          not independently anchored to a per-domain regulator
+          notice; the offramp_cex announcements (above) carry the
+          direct-attribution weight. DRYRUN: Wayback anchor
+          unverified.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E S4 non-US
+  regulator administrative-enforcement discovery): authored by LLM
+  agent without personally verifying Wayback/body_hash;
+  origin=agent_draft and status=draft pending human review. Real
+  release must replace this DRYRUN marker with a human-verified
+  audit after pinning real archive anchors.
+
+  comparison documenting the UK FCA Financial Promotions Regime for
+  cryptoassets (Policy Statement PS23/6 + Finalised Guidance FG23/3)
+  effective 2023-10-08. The regime requires all cryptoasset firms
+  marketing to UK consumers (UK-domiciled and overseas) to communicate
+  financial promotions via one of four legal routes; non-compliant
+  promotions are a criminal offence under FSMA section 21. This is
+  administrative enforcement (per codebook §5.1 `regulatory_enforcement`,
+  non-US national regulator administrative enforcement), distinct
+  from `nation_state_block` (L0/payment-rail) and from
+  `corporate_policy_change` (the operator-side responses are coded as
+  observations under this trigger, not as separate corporate-policy
+  events).
+
+  Per §5.2 stratum-actor map, trigger.type=regulatory_enforcement maps
+  to research_stratum=S4_nation_state. The UK FCA is a non-US national
+  regulator and the action is administrative, not network-level — this
+  matches the new 2026-05-17 §5.1 row exactly.
+
+  Attribution coding (per §1.4 frontend-block and the offramp_cex
+  analog):
+    - Bybit offramp_cex: Bybit's operator announcement publicly cites
+      the FCA financial-promotions regime as the reason for the UK
+      retail restriction; restriction announced 2023-10-02 and
+      effective 2023-10-08 — both conditions satisfied →
+      attribution=direct.
+    - KuCoin offramp_cex: KuCoin's operator announcement publicly
+      cites the FCA regime; restriction announced in early October
+      2023 within the compliance window → attribution=direct.
+    - L4 frontend banners: timing and per-domain implementation are
+      operator-driven without a per-domain regulator citation →
+      attribution=plausible (more conservative per §8.4).
+
+  empirical_shape=comparison (2 distinct observed_change layers:
+  offramp_cex and l4_frontend); admission_tier=empirical_case (≥1
+  strong-attribution observed_change layer; offramp_cex carries two
+  direct-attribution rows for Bybit and KuCoin respectively).
+
+  Related-events cross-references:
+    - uk-fca-binance-markets-2021 — earlier UK FCA action against
+      single entity (BML), cascading via UK retail banking rails.
+      This 2023 event is the class-wide successor: a marketing-rule
+      regime affecting an entire class of crypto firms rather than
+      one named entity.
+    - kraken-uk-derivatives-exit-2021 — single-firm UK exit precedent
+      driven by an earlier FCA action (crypto derivatives ban for
+      retail consumers, effective 2021-01-06).
+    - pump-fun-uk-fca-geofence-2024-12 — downstream successor in the
+      same FCA-driven UK-retail-restriction lineage; the 2023
+      promotions regime is the regulatory infrastructure that makes
+      the 2024 Pump.fun unauthorised-firm warning possible.
+
+  DRYRUN caveats: all citations (FCA PS23/6, FCA firms-guidance page,
+  FG23/3, FCA press release, Bybit announcement, KuCoin announcement,
+  Reuters Bybit, CoinDesk KuCoin) are asserted with replayable Wayback
+  URL patterns but body_hash captures are deferred. For non-DRYRUN
+  release, capture body_hash + body_path for: (1) PS23/6 policy
+  statement page + PDF, (2) FG23/3 finalised guidance page + PDF,
+  (3) FCA cryptoasset-marketing firms page, (4) FCA press release,
+  (5) Bybit UK announcement, (6) KuCoin UK announcement, (7) Reuters
+  Bybit story, (8) CoinDesk KuCoin story. All citations marked
+  evidence_use=contextual_unarchived per validator policy.
+
+scoped_claim: |
+  "The UK FCA's Financial Promotions Regime for cryptoassets
+  (Policy Statement PS23/6 + Finalised Guidance FG23/3), effective
+  2023-10-08, required all cryptoasset firms (UK-domiciled and
+  overseas) marketing to UK consumers to communicate financial
+  promotions via one of four legal routes under FSMA section 21.
+  Within the compliance window, Bybit and KuCoin announced UK
+  retail-customer restrictions / exits explicitly citing the
+  regime; load-bearing observational axis is offramp_cex (Bybit and
+  KuCoin UK retail restrictions, attribution=direct), with
+  secondary l4_frontend UK-geo banners (attribution=plausible)."
+
+tags:
+  - regulatory_enforcement
+  - uk
+  - fca
+  - financial_promotions
+  - bybit
+  - kucoin
+  - offramp_cex
+  - dryrun_2026_05_17

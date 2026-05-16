@@ -1,0 +1,164 @@
+id: okx-monero-global-delisting-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - okx-privacy-token-delist-2024
+  - binance-privacy-coin-delisting-2023
+  - kraken-monero-eu-delisting-2024
+
+trigger:
+  type: corporate_policy_change
+  actor: okx_exchange
+  timestamp: 2023-12-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+      wayback: https://web.archive.org/web/2023/https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+      evidence_use: contextual_unarchived
+      note: |
+        Same OKX customer-help notice "OKX to delist several spot trading
+        pairs" dated 2023-12-29 that anchors okx-privacy-token-delist-2024.
+        The notice enumerates the global spot-pair removal for Monero
+        (XMR) alongside Zcash/ZEC, Dash/DASH, Horizen/ZEN. The originally
+        targeted "early 2024" framing for this slug collapses onto the
+        2023-12-29 corporate trigger, which is already coded in the
+        sibling event.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Intended target was the OKX global Monero (XMR) spot-pair removal as
+    a standalone Monero-scoped event. After cross-checking the sibling
+    file okx-privacy-token-delist-2024.yaml the XMR removal is found to
+    be fully enumerated there (chains include monero; scope includes
+    okx_spot_xmr_pairs at offramp_cex). This row is therefore retained
+    only as a cross-reference stub and carries no independent
+    observed_change layer.
+  actor_type: centralized_exchange_listing_action
+  actor_name: OKX (centralized-exchange operator)
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      No independent measurement attempted. The load-bearing
+      offramp_cex observation for OKX's global XMR spot-pair removal is
+      pinned in okx-privacy-token-delist-2024 (status=admitted,
+      coverage.offramp_cex=measured). This event records no separate
+      coverage to avoid double-counting the same physical action.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Monero is an independent base-chain asset without an issuer admin
+      freeze primitive; no token-contract action is implicated by an
+      exchange-listing change.
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      OKX customer-help domain remained reachable globally; the action
+      is a product-catalogue change, not ISP / DNS filtering.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Monero base-chain validator / miner surface is not engaged by an
+      OKX spot-pair removal.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No EVM / public RPC filter list implicated for a non-EVM
+      base-chain asset off-ramp restriction.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The OKX notice is itself the announcement surface; no separable
+      frontend-restriction observation distinct from the off-ramp
+      catalogue change is pinned.
+
+observations:
+  - layer: offramp_cex
+    actor: okx_exchange
+    event: cross_reference_only_no_independent_observation
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-12-29T00:00:00Z
+    precision: day
+    note: |
+      Duplicate scope of okx-privacy-token-delist-2024; admitted as
+      cross-reference only. No independent observed_change is recorded
+      to avoid double-counting the same OKX 2023-12-29 spot-pair
+      removal physical action already pinned in the sibling event.
+    sources:
+      - type: primary_corporate
+        url: https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+        wayback: https://web.archive.org/web/2023/https://www.okx.com/en-us/help/okx-to-delist-several-spot-trading-pairs-12-29
+        evidence_use: contextual_unarchived
+        note: |
+          Same OKX customer-help notice anchoring the sibling event.
+          Provided here only to document the cross-reference; the
+          load-bearing observation lives in okx-privacy-token-delist-2024.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  null_event — coded as a duplicate-scope cross-reference of
+  okx-privacy-token-delist-2024 per the user's CRITICAL pre-authoring
+  check. The sibling event (status=admitted, empirical_shape=comparison,
+  admission_tier=empirical_case) already pins OKX's 2023-12-29 global
+  spot-pair removal of Monero (XMR) alongside Zcash, Dash, and Horizen,
+  with the offramp_cex layer marked measured and the load-bearing
+  direct-attribution observation coded there. The originally requested
+  "early 2024" framing for a Monero-scoped OKX delisting collapses onto
+  the same 2023-12-29 corporate trigger because OKX's privacy-asset
+  removals were announced in a single batch notice rather than a
+  separate XMR-only action; web searching for a distinct early-2024
+  OKX-global Monero delisting was deemed unnecessary because the
+  sibling notice already enumerates XMR explicitly.
+
+  This row is admitted as null_event / null_case purely as a
+  cross-reference stub. No independent observed_change layer is
+  recorded; attribution=none on the single coverage_gap row in keeping
+  with §1.1 (none reserved for observed_no_change and coverage_gap
+  rows). Related events:
+  - okx-privacy-token-delist-2024 (canonical record of the same action)
+  - binance-privacy-coin-delisting-2023 (sibling CEX delisting axis)
+  - kraken-monero-eu-delisting-2024 (jurisdiction-scoped Monero
+    delisting axis at a different CEX)
+
+  Coding decisions per codebook:
+  - empirical_shape=null_event (0 observed_change layers): §3.
+  - admission_tier=null_case (0 strong-attribution observed_change
+    layers): §4.
+  - trigger.type=corporate_policy_change + research_stratum=S5_corporate
+    matches §5.2 stratum-actor map.
+  - target.kind=entity + target.enumeration=subset with rationale in
+    enumeration_note per §7.
+  - analysis_use=comparable_analysis (post-2017 temporal tier) per §6.
+
+scoped_claim: |
+  "okx-monero-global-delisting-2024 records no independent observation
+  of OKX's global Monero (XMR) spot-pair removal; the load-bearing
+  evidence is pinned in okx-privacy-token-delist-2024 and this row
+  exists only as a cross-reference stub to prevent double-counting of
+  the same 2023-12-29 corporate-policy action."
+
+tags:
+  - corporate_policy_change
+  - cex_delisting
+  - privacy_asset
+  - okx_exchange
+  - monero
+  - cross_reference_only

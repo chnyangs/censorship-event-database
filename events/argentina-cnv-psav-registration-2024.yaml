@@ -1,0 +1,315 @@
+id: argentina-cnv-psav-registration-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - argentina-uif-resolution-300-2014
+  - fatf-r15-vasp-travel-rule-2019
+
+trigger:
+  type: regulatory_enforcement
+  actor: AR_CNV
+  timestamp: 2024-03-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
+      wayback: https://web.archive.org/web/2024/https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
+      evidence_use: contextual_unarchived
+      note: |
+        Boletín Oficial de la República Argentina — publication of
+        Comisión Nacional de Valores (CNV) Resolución General N°
+        994/2024 on 2024-03-25, establishing the Registro de
+        Proveedores de Servicios de Activos Virtuales (PSAV /
+        Virtual Asset Service Provider Registry). The resolution
+        implements Ley 27.739 (the AML modernisation law that
+        amended Ley 25.246) and introduces the PSAV figure into
+        Argentine financial-supervision law. A PSAV is defined as
+        any individual or legal entity that, as a business, carries
+        out one or more of (i) exchange between virtual assets and
+        legal tender, (ii) exchange between forms of virtual assets,
+        (iii) transfer of virtual assets, (iv) custody / management
+        of virtual assets or instruments allowing control over such
+        assets, and (v) participation in / provision of financial
+        services related to a virtual-asset offer or sale. All such
+        providers must register in the PSAV registry before
+        commencing operations; failure to register results in a ban
+        on operating in Argentina. The registry is closed to
+        applicants resident, domiciled, or incorporated in
+        jurisdictions on the FATF non-cooperative / high-risk list
+        or in non-cooperative tax-transparency jurisdictions.
+        Specific Wayback snapshot timestamp requires re-pinning in
+        human audit before this citation may serve as an admission
+        anchor.
+    - type: supporting_tracker
+      url: https://digitalpolicyalert.org/event/18948-implemented-cnv-resolution-on-registry-of-virtual-asset-service-providers-resolution-9942024
+      wayback: https://web.archive.org/web/2024/https://digitalpolicyalert.org/event/18948-implemented-cnv-resolution-on-registry-of-virtual-asset-service-providers-resolution-9942024
+      evidence_use: contextual_unarchived
+      note: |
+        Digital Policy Alert tracker entry for "Argentina: Implemented
+        CNV Resolution on Registry of Virtual Asset Service Providers
+        (Resolution 994/2024)", indexing the 2024-03-25 effective
+        date and the FATF-aligned AML/CFT scope of the PSAV regime.
+        Specific Wayback snapshot timestamp requires re-pinning in
+        human audit.
+    - type: supporting_journalism
+      url: https://www.marval.com/publicacion/se-reglamenta-la-inscripcion-de-los-proveedores-de-servicios-de-activos-virtuales-15792?lang=en
+      wayback: https://web.archive.org/web/2024/https://www.marval.com/publicacion/se-reglamenta-la-inscripcion-de-los-proveedores-de-servicios-de-activos-virtuales-15792?lang=en
+      evidence_use: contextual_unarchived
+      note: |
+        Marval, O'Farrell & Mairal (Argentine law-firm client alert)
+        English-language summary of Resolución General 994/2024
+        titled "Registration of Virtual Assets Service Providers Now
+        Regulated", confirming the PSAV definition, the registration
+        prerequisite for operating in Argentina, and the FATF
+        AML/CFT alignment. Used as a translation / contextual
+        anchor. Specific Wayback snapshot timestamp requires
+        re-pinning in human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Resolución General CNV N° 994/2024 was published in the
+        Boletín Oficial on 2024-03-25 (aviso primera 305110). Day-
+        level precision is appropriate; intra-day timing is not part
+        of the public record for this administrative resolution.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the class of Proveedores de Servicios de Activos
+    Virtuales (PSAV / Virtual Asset Service Providers) operating in
+    or into Argentina — exchanges, custodians, transfer providers,
+    and virtual-asset-related financial-service providers as defined
+    in Ley 27.739. The resolution does not enumerate specific
+    exchanges; it imposes a class-level registration prerequisite on
+    the entire PSAV set. No specific Argentine or foreign exchange
+    is named as the target, so canonical_domains is empty. subset
+    enumeration with class-level rationale per codebook §7.
+  protocol: null
+  actor_type: regulated_vasp_class
+  actor_name: PSAVs operating in or into Argentina (Ley 27.739 / CNV RG 994/2024)
+  chains:
+    - cross_chain
+  canonical_domains: []
+
+jurisdiction:
+  - AR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      CNV RG 994/2024 establishes an administrative registration
+      regime under Ley 27.739; it does not direct ISP-level domain
+      blocking, DNS interference, or network-layer action.
+      not_applicable consistent with sibling AML/VASP-registration
+      regulatory events (Argentina UIF 300/2014, FATF R15 2019).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No L1 consensus / PBS relay-filter surface is engaged by an
+      Argentine PSAV-registry regime. not_applicable on
+      construct-not-engaged grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate is not engaged by an Argentine
+      PSAV-registry regime. not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The CNV resolution is a registration prerequisite addressed
+      to PSAVs as a class; it does not require frontend changes at
+      any specific exchange or service.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-side blacklist / freeze admin path is engaged by an
+      Argentine PSAV-registry regime; the resolution does not
+      direct stablecoin issuers to freeze addresses.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      CNV RG 994/2024 is by construction an off-ramp-layer signal:
+      it imposes a registration prerequisite on PSAVs (exchanges,
+      custodians, transfer providers) operating in or into
+      Argentina, with failure to register triggering a ban on
+      operations. The coverage scope for the observed_no_change row
+      below is the public record (Argentine and English crypto-
+      press, exchange status pages, Digital Policy Alert tracker)
+      for the 90 days following the 2024-03-25 publication date:
+      no specific exchange is documented as having cut off
+      Argentine-resident accounts in that window, and the dominant
+      Argentine-market actors (Binance, Bitso, Lemon, Ripio,
+      Belo, Buenbit) entered the PSAV registration pipeline rather
+      than exiting the market. Class-level PSAV exposure to the
+      registration prerequisite is real but not exchange-side
+      observable as a cutoff in this authoring pass.
+      partially_measured because the public-record search is
+      bounded but not exhaustive.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - AR
+        time_window:
+          - 2024-03-25T00:00:00Z
+          - 2024-06-23T00:00:00Z
+      note: |
+        Coverage scope: Argentine-resident or Argentine-PSAV
+        off-ramp cutoffs documented in the public record during the
+        90-day window following the 2024-03-25 publication date of
+        CNV RG 994/2024. No exchange-side Argentina-specific cutoff
+        was located in this authoring pass; a human-audit pass on
+        contemporaneous Argentine press (La Nación, Clarín, El
+        Cronista, Ámbito Financiero, iProUP) and English crypto-
+        press (CoinDesk, The Block, Decrypt) is the gating step
+        for a stronger denominator anchor.
+
+observations:
+  - layer: offramp_cex
+    actor: argentine_psavs
+    event: no_measured_exchange_side_cutoff_of_argentine_residents
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-03-25T00:00:00Z
+    precision: day
+    window:
+      - 2024-03-25T00:00:00Z
+      - 2024-06-23T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
+        wayback: https://web.archive.org/web/2024/https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
+        evidence_use: contextual_unarchived
+        note: |
+          Resolución General CNV N° 994/2024 is the legal
+          instrument. It imposes a class-level PSAV registration
+          prerequisite under Ley 27.739, effective on publication
+          2024-03-25, but it does not name any specific exchange as
+          having implemented an Argentina-resident cutoff in
+          response. The observation_kind=observed_no_change row
+          records that the cascade surface at offramp_cex is class-
+          level (PSAVs as a class) rather than exchange-specific in
+          the available public record. attribution=none consistent
+          with observed_no_change rows per codebook §1.1. Specific
+          Wayback snapshot timestamp requires re-pinning in human
+          audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-tier
+  contextual case for Resolución General CNV N° 994/2024, issued
+  by Argentina's Comisión Nacional de Valores (CNV / National
+  Securities Commission) and published in the Boletín Oficial on
+  2024-03-25. The resolution establishes the Registro de
+  Proveedores de Servicios de Activos Virtuales (PSAV / VASP
+  Registry), implementing Ley 27.739 — the AML modernisation law
+  that amended Ley 25.246 and introduced the PSAV figure into
+  Argentine financial-supervision law. PSAVs (exchanges,
+  custodians, transfer providers, virtual-asset-related financial-
+  service providers) must register before commencing operations;
+  failure to register triggers a ban on operating in Argentina.
+  The registry is closed to applicants resident, domiciled, or
+  incorporated in FATF non-cooperative / high-risk jurisdictions
+  or non-cooperative tax-transparency jurisdictions. Authored at
+  status=draft pending human audit of (i) Boletín Oficial URL
+  reachability and Wayback snapshot pinning, (ii) the Digital
+  Policy Alert and Marval contextual anchors, and (iii) any
+  exchange-side evidence of Argentina-resident cutoff that may
+  exist in contemporaneous press coverage but was not located in
+  this authoring pass.
+
+  Codebook rule applied (§5.1): trigger.type=regulatory_enforcement
+  per the 2026-05-17 codebook entry for "Non-US national regulator
+  administrative enforcement". The CNV is a non-US national
+  regulator (not a payment-rail blocker, not a court) and RG
+  994/2024 is an administrative resolution under Ley 27.739, so
+  regulatory_enforcement is the canonical fit.
+  research_stratum=S4_nation_state per §5.2 stratum-actor map.
+
+  Why comparable_main_2017_present tier: 2024-03-25 is in the
+  2017+ comparable-analysis corpus window per sampling/frame.yaml.
+  analysis_use=comparable_analysis (canonical form per codebook
+  §6).
+
+  Why null_case / null_event: the offramp_cex observation is
+  observation_kind=observed_no_change with attribution=none. No
+  observed_change layer carries strong attribution (direct or
+  plausible). Per codebook §3, 0 observed_change layers →
+  empirical_shape=null_event; per codebook §4, 0 strong-
+  attribution observed_change layers → admission_tier=null_case.
+  The resolution clearly carries direct-attribution force on the
+  PSAV class as a registration prerequisite, but the cascade
+  surface in the available public record is class-level: the
+  dominant Argentine-market actors (Binance, Bitso, Lemon, Ripio,
+  Belo, Buenbit) entered the PSAV registration pipeline rather
+  than exiting Argentina, and no exchange-side Argentina-resident
+  cutoff is documented in the 90-day window following the
+  2024-03-25 publication date.
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the CNV
+  resolution is a class-level registration prerequisite under Ley
+  27.739; it does not direct network-layer blocking, L4 frontend
+  changes, or engage any L1/L3 PBS measurement primitive or any
+  asset-issuer admin path. not_applicable treatment matches the
+  sibling Argentina UIF 300/2014 and FATF R15 2019 patterns.
+
+  Lineage: this event is the comparable-tier successor to
+  argentina-uif-resolution-300-2014 (the historical-baseline
+  Article-20 obliged-entity reporting regime) and the Argentine
+  national-competent-authority implementation of the FATF R15
+  2019 VASP travel-rule extension (fatf-r15-vasp-travel-rule-2019).
+  A subsequent CNV resolution (RG 1058/2025, published 2025-03-14)
+  introduced updated PSAV requirements taking effect 2025-12-31
+  and is a candidate sibling event for future authoring.
+
+scoped_claim: |
+  Resolución General CNV N° 994/2024, published 2024-03-25,
+  established the Argentine PSAV (Proveedor de Servicios de
+  Activos Virtuales) registration regime under Ley 27.739. The
+  cascade surface is class-level on PSAVs operating in or into
+  Argentina; no exchange-side Argentina-resident cutoff is
+  documented in this authoring pass, so offramp_cex carries an
+  observation_kind=observed_no_change row with attribution=none.
+
+scoped_knowledge: |
+  This event is the Argentine national-competent-authority
+  implementation of the FATF R15 2019 VASP travel-rule extension,
+  arriving ~5 years after FATF R15 and ~10 years after the
+  earliest Argentine AML-pipeline capture of virtual-currency
+  operations (Resolución UIF 300/2014). The mechanism is class-
+  level registration prerequisite rather than prohibition or
+  banking-rail severance: PSAVs must register with the CNV before
+  operating, with failure to register triggering an operating
+  ban, and the registry is closed to applicants from FATF non-
+  cooperative jurisdictions. This is the FATF-aligned dominant
+  global pattern of post-2019 VASP regulation. The cascade surface
+  in the 90-day post-publication window is class-level on PSAVs
+  rather than exchange-specific: the dominant Argentine-market
+  actors entered the registration pipeline rather than exiting,
+  consistent with a registry-style compliance instrument rather
+  than a prohibition. The 2025 supersession by RG 1058/2025
+  (effective 2025-12-31) is a candidate sibling event for future
+  authoring.
+
+tags:
+  - regulatory_enforcement
+  - argentina
+  - cnv
+  - psav
+  - vasp_registration
+  - aml_cft
+  - comparable_analysis
+  - contextual_case
+  - fatf_r15_implementation

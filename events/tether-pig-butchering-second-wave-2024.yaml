@@ -1,0 +1,201 @@
+id: tether-pig-butchering-second-wave-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T12:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tether-doj-pig-butchering-freeze-2023
+  - tether-retroactive-sweep-2023
+  - tether-dprk-precommit-freeze-2025
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_usdt_issuer
+  timestamp: 2024-06-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: supporting_tracker
+      url: https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
+      wayback: https://web.archive.org/web/20260516203540/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
+      body_hash: sha256:311e23872a27be62c829f35d88e4a09692aaa7b196d62cf2f6ac21be48140ec8
+      body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/contextual/www.chainalysis.com__blog-apac-law-enforcement-freezes-pig-butchering-funds-august-2025__3d1717bde7.html
+      evidence_use: contextual_unarchived
+      note: |
+        Chainalysis blog (August 2025) disclosing a June 2024 APAC-based
+        law-enforcement operation in which Tether froze ~$46.9M (reported
+        elsewhere as $49.6M) in USDT linked to a Southeast Asia pig-butchering
+        scam cluster. Chainalysis' Crypto Investigations Solution traced
+        victim deposits (Nov 2022 - Jul 2023) through intermediary wallets
+        to five terminal wallets; Binance and OKX co-developed the
+        intelligence; Tether executed the freeze at law-enforcement direction.
+        Distinct from tether-doj-pig-butchering-freeze-2023 ($225M, US DOJ /
+        USSS / EDVA civil forfeiture lead, 2023-11-20): different lead
+        jurisdiction (APAC vs US), different lead intelligence partner
+        (Chainalysis vs DOJ), different cohort, different magnitude, and
+        different timing (June 2024 vs November 2023).
+    - type: supporting_journalism
+      url: https://crypto.news/tether-binance-chainalysis-aid-47m-pig-butchering-crackdown-in-apac/
+      wayback: https://web.archive.org/web/20260516203715/https://crypto.news/tether-binance-chainalysis-aid-47m-pig-butchering-crackdown-in-apac/
+      body_hash: sha256:a2c10cc9935dd4cbcf9ab9d3ed1a02f4b7620e9560cdd58b2def70274146bde2
+      body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/contextual/crypto.news__tether-binance-chainalysis-aid-47m-pig-butchering-crackdown-in-apac__2683c3a529.html
+      evidence_use: contextual_unarchived
+      note: |
+        crypto.news coverage of the Chainalysis disclosure; corroborates
+        June 2024 freeze timing and ~$47M figure with Tether/Binance/OKX
+        as crypto-firm collaborators and APAC law enforcement as the lead.
+  timestamp_sources:
+    - type: supporting_tracker
+      note: |
+        Week-level precision: the freeze is dated to "June 2024" in the
+        Chainalysis disclosure; no day-level public anchor exists for the
+        freeze transaction(s) because the operation was only disclosed
+        retroactively in August 2025.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Pig-butchering scam cluster operating from Southeast Asia; Chainalysis
+    traced funds to five terminal wallets after passing through intermediary
+    wallets. Eight victim deposits funded eight scammer-controlled wallets
+    between November 2022 and July 2023. Public disclosure does not
+    enumerate the specific on-chain addresses, so the target set is
+    subset-enumerable in principle (via Chainalysis case file) but not
+    primary-source enumerable here. This is the same broad class of target
+    (pig-butchering scam wallet cluster) as the 2023 sibling event but a
+    distinct cohort identified by a different intelligence lead.
+  protocol: null
+  actor_type: scam_syndicate_wallet_cluster
+  actor_name: Southeast Asia pig-butchering scam cluster (APAC 2024 cohort)
+  chains: [tron, ethereum]
+  canonical_domains: []
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Asset-layer issuer freeze; no consensus-layer mechanism involved.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical web presence for a wallet-cluster target.
+  - layer: asset_onchain
+    status: not_measured
+    chain: tron
+    note: |
+      Tether's June 2024 freeze of ~$46.9M-$49.6M USDT is an asset-layer
+      action in principle, but the specific wallet addresses are not
+      enumerated in the public Chainalysis disclosure or any other primary
+      source — they remain inside the Chainalysis / APAC-LE case file.
+      Per-tx primary_onchain receipts therefore cannot be anchored. The
+      paper-relevant observation moves to the offramp_cex layer (issuer-
+      level stablecoin-access denial); asset_onchain remains not_measured
+      until the wallet cohort is pinned.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [tether_usdt_issuer]
+    note: |
+      Issuer-level offramp denial: Tether suspended USDT transfer capability
+      for the APAC pig-butchering cohort wallets at law-enforcement
+      direction. Partially_measured rather than measured because the
+      cohort is only documented at aggregate (~$46.9M-$49.6M, five terminal
+      wallets) and the specific address set is not enumerated in any
+      replayable primary artifact. Observation attached below as
+      observed_change direct attribution (Tether is the actor; the freeze
+      was executed under its corporate compliance policy at LE request).
+
+observations:
+  - layer: offramp_cex
+    actor: tether_usdt_issuer
+    event: tether_froze_apac_pig_butchering_cohort_june_2024
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-06-01T00:00:00Z
+    precision: week
+    delta_hours: 0
+    sources:
+      - type: supporting_tracker
+        url: https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
+        wayback: https://web.archive.org/web/20260516203540/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
+        body_hash: sha256:311e23872a27be62c829f35d88e4a09692aaa7b196d62cf2f6ac21be48140ec8
+        body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/contextual/www.chainalysis.com__blog-apac-law-enforcement-freezes-pig-butchering-funds-august-2025__3d1717bde7.html
+        evidence_use: contextual_unarchived
+        note: |
+          Chainalysis blog post explicitly states Tether froze the cohort
+          funds in June 2024 at APAC law enforcement's direction following
+          Chainalysis-Binance-OKX-developed intelligence. Tether is the
+          executing actor; the action is described directly by the lead
+          intelligence partner.
+      - type: supporting_journalism
+        url: https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
+        wayback: https://web.archive.org/web/20260516203734/https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
+        body_hash: sha256:903087b1b628c521af4214926f92d4d340c62a5fc2b24bd97e8e66b2418826d6
+        body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/contextual/www.infosecurity-magazine.com__news-crypto-freeze-47m-romance-baiting__5b90088eb4.html
+        evidence_use: contextual_unarchived
+        note: |
+          Infosecurity Magazine independent journalism corroboration of the
+          June 2024 freeze (~$47M figure) with Tether-as-actor framing and
+          APAC law-enforcement lead.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Second-wave Tether pig-butchering freeze, distinct from the
+  tether-doj-pig-butchering-freeze-2023 sibling. Key distinctions:
+    - Lead jurisdiction: APAC law enforcement (vs US DOJ/USSS/EDVA in 2023).
+    - Lead intelligence partner: Chainalysis (vs DOJ EDVA civil forfeiture
+      filing in 2023).
+    - Magnitude: ~$46.9M-$49.6M (vs $225M in 2023).
+    - Timing: June 2024 (vs 2023-11-20).
+    - Cohort: APAC-traced five-terminal-wallet cluster (vs 37-39 wallets
+      in the 2023 cohort).
+
+  Attribution: `direct` per §1.2 logic applied to a non-OFAC freeze: Tether
+  is named as the executing actor in the Chainalysis primary disclosure;
+  the disclosure explicitly states the freeze was executed at law-
+  enforcement direction. The §1.2 OFAC-specific (A)/(B) test does not
+  apply (no OFAC SDN involved); we apply the more general "actor publicly
+  references trigger AND trigger names target" test from §1.1. Both hold:
+  Tether is publicly named as the freezer, and the LE-traced wallet cohort
+  is the named target.
+
+  Evidence quality: all citations are `contextual_unarchived` because no
+  primary Tether blog post or APAC LE press release has been located that
+  enumerates the freeze transactions. The Chainalysis blog (August 2025)
+  and The Block (August 2025) are the only public anchors. This event
+  therefore qualifies as `empirical_case` on the strength of one
+  observed_change `direct` row at offramp_cex, but cannot be elevated to
+  `anchor_case` without primary corporate / primary onchain anchors.
+
+  Cascade shape: 1 observed_change layer (offramp_cex) → `comparison`.
+
+scoped_claim: |
+  "Tether's June 2024 freeze of ~$46.9M-$49.6M USDT linked to a Southeast
+  Asia pig-butchering cohort traced by Chainalysis with APAC law-enforcement
+  collaboration documents a second, APAC-led wave of issuer-driven scam
+  freezes — distinct from the 2023 US-DOJ-led $225M freeze in lead
+  jurisdiction, lead intelligence partner, cohort, magnitude, and timing —
+  and confirms that the DOJ-request-driven mode of stablecoin compliance
+  generalises to non-US national / regional law-enforcement requests."
+
+tags:
+  - corporate_policy_change
+  - tether_freeze
+  - law_enforcement_request_driven
+  - non_ofac_triggered
+  - pig_butchering
+  - apac_led
+  - second_wave

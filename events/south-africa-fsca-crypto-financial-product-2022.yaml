@@ -1,0 +1,261 @@
+id: south-africa-fsca-crypto-financial-product-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - eu-mica-2023
+  - fatf-r15-vasp-travel-rule-2019
+
+trigger:
+  type: regulatory_enforcement
+  actor: ZA_FSCA
+  timestamp: 2022-10-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsca.co.za/News%20Documents/FSCA%20Press%20Release_Declaration%20of%20Crypto%20Assets%20As%20A%20Financial%20Product_20%20October%202022.pdf
+      wayback: https://web.archive.org/web/20260517000000/https://www.fsca.co.za/News%20Documents/FSCA%20Press%20Release_Declaration%20of%20Crypto%20Assets%20As%20A%20Financial%20Product_20%20October%202022.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        Financial Sector Conduct Authority (FSCA, South Africa) press
+        release dated 2022-10-20 announcing the declaration of crypto
+        assets as a financial product under the Financial Advisory and
+        Intermediary Services Act, 37 of 2002 (FAIS Act). The Declaration
+        itself was issued by the FSCA on 2022-10-19 and published as
+        Government Notice 1350 in Government Gazette 47334 (2022-10-19).
+        The Declaration brings persons providing financial services
+        ("advice" and / or "intermediary services" under FAIS) in respect
+        of crypto assets into the FAIS licensing perimeter, requiring
+        such persons to be authorised as Financial Services Providers
+        (FSPs). Crypto assets are defined as a digital representation of
+        value that is not issued by a central bank, but is capable of
+        being traded, transferred or stored electronically by natural and
+        legal persons for the purpose of payment, investment and other
+        forms of utility. A general transitional exemption from
+        section 7(1) of the FAIS Act applies until licence applications
+        are approved or declined; the licence application window ran
+        2023-06-01 to 2023-11-30. DRYRUN contextual_unarchived stub;
+        replace with verified Wayback + body_hash / body_path capture of
+        the FSCA PDF during real human audit.
+    - type: supporting_journalism
+      url: https://www.cliffedekkerhofmeyr.com/en/news/publications/2022/Practice/Finance/finance-and-banking-alert-20-october-2022-fsca-declares-crypto-assets-as-a-financial-product-.html
+      wayback: https://web.archive.org/web/20260517000001/https://www.cliffedekkerhofmeyr.com/en/news/publications/2022/Practice/Finance/finance-and-banking-alert-20-october-2022-fsca-declares-crypto-assets-as-a-financial-product-.html
+      evidence_use: contextual_unarchived
+      note: |
+        Cliffe Dekker Hofmeyr Finance and Banking Alert (2022-10-20)
+        analysing the FSCA Declaration. Documents the Government Notice
+        1350 / Government Gazette 47334 publication, the FAIS Act
+        framing, and the transitional-exemption structure. Used as a
+        secondary contextual anchor for the trigger date and scope.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level timing per Government Notice 1350, Government Gazette
+        47334, dated 2022-10-19. The FSCA press release was dated
+        2022-10-20. Day-level precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All persons providing financial services (furnishing of "advice" and /
+    or rendering of "intermediary services", each as defined in the FAIS
+    Act) in relation to crypto assets to South African clients. Population
+    substantively covers South-Africa-operating Crypto Asset Service
+    Providers (CASPs) — including local exchanges (Luno, VALR, AltCoinTrader,
+    Ovex), South-Africa-facing operations of global exchanges (Binance ZA,
+    Coinbase ZA-facing, Kraken ZA-facing), brokers, and crypto-asset
+    investment advisers — plus their key individuals and representatives.
+    Class-level scope: licensing perimeter applies at the FSP / FAIS-
+    licensee level rather than at any specific on-chain address set; per
+    codebook §7 coded as `subset` (no `class_level` enumeration value).
+    Self-custody and peer-to-peer activity outside the FAIS advice /
+    intermediary perimeter is not directly captured.
+  protocol: null
+  actor_type: regulated_crypto_service_provider_perimeter
+  actor_name: South-Africa-operating Crypto Asset Service Providers and FAIS advisers (FSCA-FAIS-regulated)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [ZA]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      FSCA Declaration is a licensing-perimeter instrument, not an ISP /
+      DNS connectivity action. No ZA-level network blocking of any crypto
+      domain is asserted or implied.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend-domain takedown is implicated. Individual licensed
+      CASPs may surface FAIS / FSP disclosures in their ZA-facing UI but
+      no canonical frontend-level domain effect flows from the
+      Declaration itself.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Declaration imposes no asset-layer freeze, blacklist, or issuer
+      action. The instrument is a licensing-perimeter expansion; the
+      underlying assets and on-chain protocols are not directly targeted.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [za_casp_ecosystem]
+    note: |
+      Class-level offramp_cex obligation on ZA-operating CASPs and FAIS
+      advisers. The FAIS licensing requirement was prospective from the
+      Declaration date with a transitional exemption until licence
+      applications were approved or declined; the licence application
+      window ran 2023-06-01 to 2023-11-30. As of the 2026-05-17 authoring
+      date no class-level offramp_cex behavioral change attributable
+      specifically to the 2022-10-19 Declaration (independent of MiCA /
+      FATF-R15 / TFR-style obligations elsewhere) is observed at the
+      authoring level. Coded partially_measured — anchored by the FSCA
+      primary-legal artifact — to support the observed_no_change row;
+      revisit when the FSCA publishes the licensed-CASP register and
+      any subsequent licence-refusal / withdrawal actions.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.fsca.co.za/News%20Documents/FSCA%20Press%20Release_Declaration%20of%20Crypto%20Assets%20As%20A%20Financial%20Product_20%20October%202022.pdf
+      note: |
+        FSCA Declaration press release anchor for the class-level ZA
+        CASP / FAIS-adviser scope. DRYRUN wayback stub; replace with
+        verified capture during real human audit.
+
+observations:
+  - layer: offramp_cex
+    actor: za_casp_ecosystem
+    event: fsca_crypto_financial_product_declaration_no_observed_casp_change_yet
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-10-19T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: ZA
+    window:
+      - 2022-10-19T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.fsca.co.za/News%20Documents/FSCA%20Press%20Release_Declaration%20of%20Crypto%20Assets%20As%20A%20Financial%20Product_20%20October%202022.pdf
+        wayback: https://web.archive.org/web/20260517000000/https://www.fsca.co.za/News%20Documents/FSCA%20Press%20Release_Declaration%20of%20Crypto%20Assets%20As%20A%20Financial%20Product_20%20October%202022.pdf
+        scope_descriptor:
+          providers: [za_casp_aggregate]
+          countries: [ZA]
+          time_window:
+            - 2022-10-19T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          FSCA Declaration 2022-10-19 brings ZA-operating CASPs and FAIS
+          advisers into the FAIS Act licensing perimeter. Effect is
+          prospective: transitional exemption from FAIS s.7(1) applies
+          until licence applications are approved or declined; the
+          licence application window ran 2023-06-01 to 2023-11-30. As of
+          the 2026-05-17 authoring date no class-level offramp_cex
+          behavioral change at the ZA CASP cohort attributable
+          specifically to the Declaration has been observed. attribution=
+          none is required by schema (observed_no_change rows).
+          observed_no_change reflects the null-event posture; revisit
+          when the FSCA licensed-CASP register and any subsequent
+          licence-refusal / enforcement actions surface.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.cliffedekkerhofmeyr.com/en/news/publications/2022/Practice/Finance/finance-and-banking-alert-20-october-2022-fsca-declares-crypto-assets-as-a-financial-product-.html
+        wayback: https://web.archive.org/web/20260517000001/https://www.cliffedekkerhofmeyr.com/en/news/publications/2022/Practice/Finance/finance-and-banking-alert-20-october-2022-fsca-declares-crypto-assets-as-a-financial-product-.html
+        scope_descriptor:
+          providers: [za_casp_aggregate]
+          countries: [ZA]
+          time_window:
+            - 2022-10-19T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          Cliffe Dekker Hofmeyr alert anchors the Government Notice
+          1350 / Government Gazette 47334 publication and the FAIS-Act
+          framing. Used here as a second contextual_unarchived pointer
+          for the null-event posture; no observed CASP-level change to
+          date.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A non_us_state
+  discovery; lean run): authored by LLM agent without personally
+  verifying Wayback / body_hash; origin=agent_draft and status=draft.
+  Real release must replace this DRYRUN marker with human-verified
+  Wayback + body_hash / body_path captures for the FSCA PDF press
+  release and the Cliffe Dekker Hofmeyr alert.
+
+  null_event documenting the FSCA's 2022-10-19 Declaration of crypto
+  assets as a financial product under the FAIS Act (Government Notice
+  1350, Government Gazette 47334). The Declaration brings persons
+  providing FAIS-defined "advice" and "intermediary services" in
+  respect of crypto assets into the FSP licensing perimeter, with a
+  general transitional exemption from FAIS s.7(1) until licence
+  applications are approved or declined; the licence application
+  window ran 2023-06-01 to 2023-11-30.
+
+  Structural contribution to the dataset: this is South Africa's
+  nation-state regulatory-perimeter expansion onto the ZA CASP cohort,
+  sibling to MiCA (eu-mica-2023) at the EU level and a downstream
+  national-implementation companion to the FATF R.15 / Travel Rule
+  framework (fatf-r15-vasp-travel-rule-2019). It is the first ZA
+  national-regulator perimeter action to be authored into the corpus
+  and serves as a denominator control for the S4_nation_state stratum
+  on the African-continent axis.
+
+  Codebook compliance: §5.1 trigger.type = regulatory_enforcement
+  (non-US national regulator administrative enforcement, NEW
+  2026-05-17 enum addition); §5.2 stratum-actor map
+  (regulatory_enforcement → S4_nation_state); §6 analysis_use
+  (comparable_main_2017_present → comparable_analysis); §7
+  enumeration (subset + enumeration_note documents class-level
+  rationale, no `class_level` value used); §3 empirical_shape
+  (null_event, 0 observed_change layers); §4 admission_tier
+  (null_case, 0 strong-attribution observed_change layers); §8.5
+  DRYRUN preamble present.
+
+  Attribution posture: all rows are observed_no_change with
+  attribution=none (schema-mandated for observed_no_change). No
+  direct / plausible attribution is asserted because no CASP-level
+  behavioral change is being claimed at this authoring date. If a
+  subsequent FSCA licence-refusal or enforcement action against a
+  named CASP emerges, that should be authored as a separate event
+  with this row as the regulatory-perimeter parent.
+
+scoped_claim: |
+  "FSCA Declaration 2022-10-19 (Government Notice 1350, Government
+  Gazette 47334) declares crypto assets a financial product under
+  the South African FAIS Act, bringing persons providing FAIS-defined
+  advice and intermediary services in respect of crypto assets into
+  the FSP licensing perimeter, with a transitional exemption pending
+  licence-application disposition (window 2023-06-01 to 2023-11-30).
+  As of the 2026-05-17 authoring date no class-level offramp_cex
+  behavioral change at the ZA CASP cohort attributable specifically
+  to the Declaration has been observed — coded null_event / null_case
+  as a S4_nation_state denominator control on the African-continent
+  axis, sibling to MiCA (eu-mica-2023) and a downstream national-
+  implementation companion to FATF R.15 (fatf-r15-vasp-travel-rule-
+  2019)."
+
+tags:
+  - regulatory_enforcement
+  - south_africa
+  - fsca
+  - fais_act
+  - casp_licensing_perimeter
+  - nation_state_regulator
+  - null_event
+  - dryrun_2026_05_17
