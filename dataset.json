@@ -3911,6 +3911,174 @@
     "version": "0.1"
   },
   {
+    "_source_file": "coin-mx-doj-murgio-2015.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B authoring): new\nhistorical-baseline event for the 2015-07-21 DOJ SDNY indictment\nof Anthony Murgio and Yuri Lebedev for operating Coin.mx as an\nunlicensed bitcoin exchange. Authored by LLM agent without\npersonally verifying Wayback/body_hash; origin=agent_draft and\nstatus=draft per validator constraint (agent_draft incompatible\nwith admitted). Real release must replace this DRYRUN marker\nwith a human-verified audit after pinning real archive anchors\n(the wayback URLs here are 2015/2017 wildcard pointers, not\npinned snapshot timestamps).\n\ncomparison shape: 1 observed_change layer (offramp_cex, Coin.mx\nshutdown + HOPE FCU USD rails severance). The 2015-07-21 SDNY\nindictment charged Murgio and Lebedev with operating Coin.mx in\nviolation of 18 U.S.C. Sec. 1960 (unlicensed money transmitting\nbusiness), and additionally charged Murgio with bank fraud and\nobstruction of a financial institution examination tied to his\n2014 capture of HOPE Federal Credit Union as a banking conduit\nfor Coin.mx USD flows. Between October 2013 and January 2015,\nCoin.mx exchanged at least $1.8M for Bitcoins on behalf of tens\nof thousands of customers. Murgio pleaded guilty in January 2017\nand was sentenced to 66 months. attribution=direct because the\nindictment named Coin.mx by name and the USD-rails severance\nthrough HOPE FCU was a direct enforcement consequence of the\nunsealing. Admission tier empirical_case (1 strong-attribution\nobserved_change layer).\n\nHistorical-baseline anchor for the DOJ exchange/MSB enforcement\nfamily in the 2013-2016 era, structurally complementary to the\n2014-01-27 shrem-faiella-bitcoin-exchange-2014 indictment of\nBitInstant CEO Charlie Shrem and the 2015-05-05\nripple-fincen-xrp-2015 FinCEN/DOJ NPA against Ripple Labs.\nDistinguishing feature: Coin.mx is the first 2013-2016\nhistorical-baseline DOJ case in which the unlicensed-MSB\nenforcement was paired with capture of a regulated banking\ninstitution (HOPE FCU) as the USD-rails conduit; the bribery\nand bank-fraud counts substantially raise the criminal-exposure\nprofile relative to the Shrem case.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2015-07-21 indictment did not invoke any ISP / DNS /\nnetwork-layer block of coin.mx. Public-web L0 instruments\n(Censored Planet, OONI) do not apply; the platform shutdown\nthat followed was a corporate consequence of criminal\nexposure, not a network-layer event.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l1_consensus",
+        "note": "Bitcoin, 2015; consensus-layer filtering surfaces tracked by\nthis dataset (post-Merge Ethereum PBS, mev-watch /\ncensorship.pics) did not exist for any chain in 2015. Out of\nscope on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l3_rpc",
+        "note": "No hosted Bitcoin-RPC provider surface is implicated. The\nMEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist\nin 2015. Out of scope on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "No L4 frontend seizure or takedown banner is documented for\ncoin.mx on 2015-07-21. The site went dark following the\narrests without a DOJ-attributed L4 seizure banner. Recording\nthe post-arrest disappearance as observed_change at L4 would\nconflate corporate shutdown with a DOJ takedown order, so L4\nis not coded here.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "asset_onchain",
+        "note": "Bitcoin is unfreezable at the protocol layer. No issuer-level\nor asset-layer freeze is implicated by the 2015-07-21\nindictment. No stablecoin admin-method actions existed in\n2015 to attach here.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer. Coin.mx \u2014 the unlicensed bitcoin exchange\noperated by Murgio \u2014 was the operative off-ramp affected by\nthe indictment. The exchange shut down post-arrest and never\nresumed operations; the USD-rails conduit (HOPE Federal\nCredit Union, the captured New Jersey federal credit union\nused to bank Coin.mx flows) was likewise severed when the\nindictment unsealed the bribery-and-fraud scheme. Coverage\nstatus is partially_measured because the operational\nshutdown is publicly attested via DOJ press releases but no\nper-month Wayback-frontend volumetric timeline is pinned in\nthis DRYRUN authoring pass.\n",
+        "scope": [
+          "coin_mx",
+          "hope_fcu"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "coin-mx-doj-murgio-2015",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "exchange:coin_mx",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "coin_mx_ceases_operations_and_hope_fcu_usd_rails_severed_following_indictment",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "note": "DOJ SDNY press release announcing the 2015-07-21\ncriminal complaint against Anthony R. Murgio and Yuri\nLebedev for operating Coin.mx as an unlicensed money\ntransmitting business in violation of 18 U.S.C. Sec. 1960.\nThe complaint also charges bank fraud and obstruction of\na financial institution examination tied to Murgio's\ncapture of HOPE Federal Credit Union as a banking conduit\nfor Coin.mx USD flows. attribution=direct: the indictment\nnamed Coin.mx by name and the USD rails through HOPE FCU\nwere directly severed as a consequence of unsealing\n(rather than as a downstream business decision distinct\nfrom the legal action). The exchange did not resume\noperations after the arrests.\n",
+            "scope_descriptor": {
+              "providers": [
+                "coin_mx",
+                "hope_fcu"
+              ],
+              "time_window": [
+                "2015-07-21T00:00:00+00:00",
+                "2017-06-30T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground",
+            "wayback": "https://web.archive.org/web/2015/https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground"
+          },
+          {
+            "note": "DOJ SDNY guilty-plea press release documenting Murgio's\nplea to conspiracy to operate an unlicensed money\ntransmitting business, conspiracy to commit bank fraud,\nand conspiracy to obstruct an examination of a financial\ninstitution. This conviction is the legally definitive\nend-state confirming Coin.mx's terminal shutdown. Used\nas the secondary corroborating anchor for the offramp_cex\nobservation.\n",
+            "scope_descriptor": {
+              "providers": [
+                "coin_mx"
+              ],
+              "time_window": [
+                "2017-01-01T00:00:00+00:00",
+                "2017-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering",
+            "wayback": "https://web.archive.org/web/2017/https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering"
+          }
+        ],
+        "timestamp": "2015-07-21T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "shrem-faiella-bitcoin-exchange-2014",
+      "ripple-fincen-xrp-2015"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "The 2015-07-21 DOJ SDNY indictment of Anthony R. Murgio and\nYuri Lebedev for operating Coin.mx as an unlicensed bitcoin\nexchange (with HOPE Federal Credit Union captured as a banking\nconduit and a phony \"Collectors Club\" front company) produced\nan offramp_cex cascade: Coin.mx shut down post-arrest and the\nUSD-rails conduit through HOPE FCU was severed. The row claims\nonly this single-layer offramp shutdown observation with\nattribution=direct; no L0/L1/L3/L4/asset-onchain effects are\ncoded.\n",
+    "status": "draft",
+    "tags": [
+      "doj_enforcement",
+      "exchange_indictment",
+      "unlicensed_money_transmitter",
+      "money_laundering",
+      "bank_fraud",
+      "hope_fcu_capture",
+      "coin_mx",
+      "historical_baseline",
+      "pre_ofac_era",
+      "offramp_shutdown"
+    ],
+    "target": {
+      "actor_name": "Coin.mx",
+      "actor_type": "exchange",
+      "canonical_domains": [
+        "coin.mx"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Named individual defendants Anthony R. Murgio and Yuri Lebedev\noperating the Coin.mx unlicensed bitcoin exchange, with HOPE\nFederal Credit Union (HOPE FCU) used as a captured banking\nconduit and a phony \"Collectors Club\" front company used to\ndisguise USD rails. canonical_domains lists the Coin.mx\noperating domain; no on-chain BTC addresses are enumerated at\nthis event-row level (the SDNY complaint cites aggregate volume\n~$1.8M without exhaustive address enumeration).\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "US_DOJ_SDNY",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "DOJ SDNY press release (2015-07-21): \"Manhattan U.S. Attorney\nAnnounces Charges Against Two Florida Men For Operating An\nUnderground Bitcoin Exchange.\" Criminal complaint unsealed in\nSDNY against Anthony R. Murgio and Yuri Lebedev for operating\nCoin.mx, an unlawful internet-based Bitcoin exchange, in\nviolation of federal anti-money-laundering laws (18 U.S.C.\nSec. 1960 - operating an unlicensed money transmitting\nbusiness). Between approximately October 2013 and January\n2015, Coin.mx exchanged at least $1.8 million for Bitcoins\non behalf of tens of thousands of customers. To evade\nscrutiny from financial institutions, in 2014 Murgio and his\nco-conspirators gained control of HOPE Federal Credit Union\n(HOPE FCU), a small New Jersey federal credit union with\nprimarily low-income members, after paying more than $150,000\nin bribes. Wayback URL pinned as a wildcard 2015 anchor;\nevidence_use=contextual_unarchived because no body_hash has\nbeen independently captured in this DRYRUN authoring pass.\n",
+          "type": "primary_legal",
+          "url": "https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground",
+          "wayback": "https://web.archive.org/web/2015/https://www.justice.gov/usao-sdny/pr/manhattan-us-attorney-announces-charges-against-two-florida-men-operating-underground"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "DOJ SDNY press release (2017-01): \"Operator Of Unlawful\nBitcoin Exchange Pleads Guilty In Multimillion-Dollar Money\nLaundering And Fraud Scheme.\" Records Murgio's guilty plea\nto (1) conspiracy to operate an unlicensed money transmitting\nbusiness, (2) conspiracy to commit bank fraud, and (3)\nconspiracy to obstruct an examination of a financial\ninstitution. Retained as contextual_unarchived corroborating\npointer for the conviction phase.\n",
+          "type": "primary_legal",
+          "url": "https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering",
+          "wayback": "https://web.archive.org/web/2017/https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-pleads-guilty-multimillion-dollar-money-laundering"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "DOJ SDNY press release: \"Operator Of Unlawful Bitcoin Exchange\nSentenced To More Than 5 Years In Prison For Leading\nMultimillion-Dollar Money Laundering And Fraud Scheme.\"\nMurgio sentenced to 66 months imprisonment. Retained as\ncontextual_unarchived corroborating pointer for the\nsentencing phase.\n",
+          "type": "primary_legal",
+          "url": "https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-sentenced-more-5-years-prison-leading-multimillion",
+          "wayback": "https://web.archive.org/web/2017/https://www.justice.gov/usao-sdny/pr/operator-unlawful-bitcoin-exchange-sentenced-more-5-years-prison-leading-multimillion"
+        }
+      ],
+      "timestamp": "2015-07-21T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level timing per the DOJ SDNY press release announcing\nthe 2015-07-21 arrests of Murgio and Lebedev at their\nFlorida residences.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "doj_indictment"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "coinbase-india-exit-2022.yaml",
     "admission_tier": "empirical_case",
     "analysis_notes": "comparison documenting Coinbase's 2022-04 India market retreat:\nlaunched 2022-04-07 with UPI integration; NPCI issued disavowal statement\nwithin 3 days; Coinbase disabled India UPI within the same week. Brian\nArmstrong later characterized it as \"informal pressure\" from RBI. This is\nan unusual datapoint \u2014 a market-exit by a US exchange from a major\njurisdiction via informal rather than formal sanction, distinct from the\ndirect RBI bank-rail severance of 2018 (see india-rbi-crypto-ban-2018).\n",
@@ -4831,6 +4999,145 @@
     "version": "0.1"
   },
   {
+    "_source_file": "eba-virtual-currencies-opinion-eba-op-2014-08.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.3 supranational\ndiscovery; lean run): authored by LLM agent without personally\nverifying Wayback/body_hash; origin=agent_draft and status=draft\npending human review.\n\ncase_study documenting the European Banking Authority's 2014-07-04\nOpinion EBA/Op/2014/08 on virtual currencies \u2014 the first major EU-\nlevel supervisory guidance on crypto. The Opinion is structurally a\nsupranational supervisory recommendation: it identifies 70+ risks\narising from virtual currencies and, as an immediate interim measure\npending a longer-term regulatory regime, advises national supervisory\nauthorities to discourage credit institutions, payment institutions,\nand e-money institutions from buying, holding, or selling virtual\ncurrencies.\n\nThis event sits in the historical_baseline_2013_2016 tier and is\nused as contextual_baseline only; it is not part of the 2017+\ncomparable-analysis corpus. It is the EU-level upstream of the later\nEU MiCA regime (eu-mica-2023) and a sibling of the contemporaneous\nFATF \"Virtual Currencies: Key Definitions and Potential AML/CFT\nRisks\" report (fatf-virtual-currencies-key-definitions-2014) on the\nsupranational regulatory-guidance axis. Structurally analogous to\nUS FinCEN FIN-2013-G001 in that the instrument operates at the\nclass-level and produces a dispersed cascade across the regulated-\ninstitution sector rather than a discrete enumerable enforcement\naction.\n\nempirical_shape=comparison (1 observed_change layer: offramp_cex at\nthe supranational supervisory-instruction layer, attribution=\nplausible on the dispersed-cascade hypothesis across the EU credit/\npayment/e-money sector); admission_tier=empirical_case (1 strong-\nattribution observed_change layer satisfies the \u22651 requirement).\nSchema enums substituted for prompt-supplied non-enum values\n(analysis_use=historical_baseline, empirical_shape=comparison,\ntarget.enumeration=subset, observation_kind=observed_change) per\nthe \"schema enums first\" constraint. coverage at L0/L1/L3/L4/asset_onchain\nis not_applicable on construct-not-engaged or construct-did-not-\nexist grounds; offramp_cex is not_measured pending an EU\ninstitution-level account-closure aggregation pass. Paper-relevant\nas the pre-MiCA EU-level supervisory anchor that frames the 2014-\n2018 banking-rail de-risking environment for EU-based crypto\nbusinesses.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "EBA/Op/2014/08 is a supervisory-guidance instrument directed at\nEU prudentially-regulated institutions; it does not implicate\nISP-level domain blocking or DNS interference. not_applicable on\nconstruct-not-engaged grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Pre-Merge era (Ethereum Merge ~2022-09-15 is ~8 years downstream);\nno PBS / relay-filter primitive exists in 2014. not_applicable on\nconstruct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist in\n2014. not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The Opinion does not direct any frontend takedown or domain-level\naction; the discouragement is purely a supervisory instruction to\nEU prudentially-regulated institutions. not_applicable.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "EBA/Op/2014/08 does not engage any on-chain freeze, blacklist, or\nissuer admin action; native and issued asset surfaces are not\ndirectly targeted. not_applicable.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer for this event, but a dispersed cascade across\nthe EU credit/payment/e-money institutional sector. The Opinion's\ndiscouragement of buying/holding/selling virtual currencies routes\nthrough national supervisory authorities and propagates as\ninstitution-by-institution risk-appetite decisions (banking-rail\nseverance for crypto businesses, account closures, payment-rail\nde-risking) rather than as a discrete enforcement action against\na named exchange. Empirical measurement of the resulting cascade\nrequires aggregating EBA member-state supervisor responses and\ninstitution-level account-closure reports across 2014-2018, which\nis out of scope of this draft. Marked not_measured pending such a\npass.\n",
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "eba-virtual-currencies-opinion-eba-op-2014-08",
+    "jurisdiction": [
+      "EU"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "eu_credit_payment_emoney_institution_aggregate",
+        "attribution": "plausible",
+        "delta_hours": 0,
+        "event": "eba_opinion_2014_08_discourages_institutional_vc_handling",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "EBA/Op/2014/08 directs national supervisory authorities to\ndiscourage EU credit/payment/e-money institutions from buying,\nholding, or selling virtual currencies pending a longer-term\nregulatory regime. observation_kind=observed_change at the\nsupranational supervisory-instruction layer: the Opinion's\nissuance is itself the regulatory change at offramp_cex via\nthe class-level discouragement directive routed through\nnational competent authorities. attribution=plausible (not\ndirect) because the Opinion operates through downstream\nnational-supervisor and institution-level risk-appetite\ndecisions rather than a discrete enumerable enforcement\naction; downstream banking-rail severance against EU crypto\nbusinesses across 2014-2018 is consistent with the cascade\nhypothesis but not enumerated here. DRYRUN: Wayback anchor\nunverified by LLM agent at authoring time.\n",
+            "scope_descriptor": {
+              "countries": [
+                "EU"
+              ],
+              "providers": [
+                "eu_credit_payment_emoney_institution_aggregate"
+              ],
+              "time_window": [
+                "2014-07-04T00:00:00+00:00",
+                "2018-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf",
+            "wayback": "https://web.archive.org/web/2014/https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf"
+          }
+        ],
+        "timestamp": "2014-07-04T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "fatf-r15-vasp-travel-rule-2019",
+      "eu-mica-2023",
+      "oecd-carf-2022",
+      "fatf-virtual-currencies-key-definitions-2014"
+    ],
+    "research_stratum": "S6_supranational",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"EBA Opinion EBA/Op/2014/08 of 4 July 2014 ('Opinion on virtual\ncurrencies') is the first major EU-level supervisory instrument on\nvirtual currencies; it advises national supervisory authorities to\ndiscourage EU credit institutions, payment institutions, and\ne-money institutions from buying, holding, or selling virtual\ncurrencies pending a longer-term regulatory regime. The\nload-bearing axis is offramp_cex at the dispersed-cascade\ninstitutional-aggregate layer; downstream banking-rail / payment-\nrail severance against EU crypto businesses across 2014-2018 is\nconsistent with the cascade hypothesis but not enumerated in this\ndraft.\"\n",
+    "status": "draft",
+    "tags": [
+      "supranational_regulation",
+      "eu",
+      "eba",
+      "virtual_currencies",
+      "pre_mica_guidance",
+      "historical_baseline",
+      "dispersed_cascade",
+      "class_level_predicate"
+    ],
+    "target": {
+      "actor_name": "EU credit/payment/e-money institutions handling virtual currencies",
+      "actor_type": "regulatory_class",
+      "canonical_domains": [],
+      "chains": [],
+      "enumeration": "subset",
+      "enumeration_note": "Class-level target: EU credit institutions, payment institutions,\nand e-money institutions (as defined under CRD IV, the Payment\nServices Directive, and the E-Money Directive respectively) that\nmight otherwise buy, hold, or sell virtual currencies. The\ndiscouragement is routed through national competent authorities\nrather than imposed on named institutions; no address-level or\ninstitution-level enumeration. The 2014 EU credit/payment/e-money\ninstitutional population numbers in the thousands across the 28\nMember States and EEA participants supervised by the EBA.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "EU_EBA",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.3 supranational\ndiscovery; lean run): authored by LLM agent without personally\nverifying Wayback/body_hash; origin=agent_draft and status=draft\npending human review. Real release must replace this DRYRUN marker\nwith a human-verified audit after pinning real archive anchors.\n\nEBA Opinion EBA/Op/2014/08 (\"Opinion on 'virtual currencies'\")\nissued by the European Banking Authority on 4 July 2014. The\nOpinion identifies 70+ risks arising from virtual currencies\n(risks to users, market participants, financial integrity,\npayment systems, and regulatory authorities) and concludes that\nthe risks outweigh the benefits in the EU context. While the\nOpinion proposes a longer-term comprehensive regulatory regime,\nas an immediate interim measure it advises national supervisory\nauthorities to \"discourage credit institutions, payment\ninstitutions, and e-money institutions from buying, holding, or\nselling virtual currencies\" whilst no such regime is in place.\nThis is the first major EU-level supervisory guidance on virtual\ncurrencies and sets the pre-MiCA pan-European regulatory tone\nfor the 2014-2018 window.\n",
+          "type": "primary_legal",
+          "url": "https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf",
+          "wayback": "https://web.archive.org/web/2014/https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "EBA press release accompanying the 2014-07-04 publication of\nEBA/Op/2014/08, confirming the discouragement recommendation\ndirected at credit institutions, payment institutions, and\ne-money institutions and the parallel proposal of a longer-term\nregulatory regime. DRYRUN: Wayback anchor unverified by LLM\nagent at authoring time.\n",
+          "type": "primary_legal",
+          "url": "https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n",
+          "wayback": "https://web.archive.org/web/2014/https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n"
+        }
+      ],
+      "timestamp": "2014-07-04T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "EBA/Op/2014/08 carries an issuance date of 4 July 2014 on the\ndocument cover page; the accompanying press release and the EBA\npublications register agree on the 2014-07-04 publication day.\nDay-level precision; the Opinion does not carry intra-day\npublication timing in the public record.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "supranational_regulation"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "eu-12th-russia-sanctions-2023.yaml",
     "admission_tier": "empirical_case",
     "analysis_notes": "comparison \u2014 first full-prohibition EU sanctions targeting\nindividual retail crypto users (Russian nationals/residents as a class).\nStructurally distinct from OFAC address-level SDN designations: no\nwallet-address enumeration, no on-chain observability \u2014 the observable\nsignal is exclusively at the offramp_cex layer via CASP account-closure\ncompliance. Paper-worthy as a \"class-prohibition\" mode distinct from\nthe \"address-list-prohibition\" OFAC mode.\n",
@@ -5647,6 +5954,290 @@
         }
       ],
       "type": "supranational_regulation"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "fatf-virtual-currencies-key-definitions-2014.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase B of the 2026-05-16\nstaged-release plan, historical_baseline_2013_2016 tier fill;\nagent_draft). Authored by LLM agent without personally verifying\nWayback/body_hash; status=draft and origin=agent_draft. Real release\nmust replace this DRYRUN marker with a human-verified audit after\npinning real archive anchors via scripts/capture_http_artifact.py.\n\nFATF \"Virtual Currencies \u2014 Key Definitions and Potential AML/CFT\nRisks\" (2014-06-26) is the foundational supranational risk-framing\npredicate for the global FATF VASP regime that culminates in the\n2019-06-21 R.15 INR Travel Rule extension. The 2014 report\nintroduces the taxonomy (\"virtual currency\", \"convertible / non-\nconvertible VC\", \"centralised / decentralised VC\", \"exchanger\",\n\"administrator\", \"user\", \"miner\") and the convertibility-as-risk-\naxis frame that the subsequent FATF instruments build on. It is a\nfive-year regulatory development arc:\n  2014-06-26  FATF VC Key Definitions report (this event)\n  2015-06     FATF Guidance for a Risk-Based Approach to VCs\n  2018-10     FATF Recommendations amended \u2014 VASP added to glossary\n  2019-06-21  FATF R.15 INR adopting the Travel Rule for VASPs\n              (fatf-r15-vasp-travel-rule-2019)\nThe 2014 report sits at the top of this arc as the predicate\nguidance \u2014 analogous to the FinCEN FIN-2013-G001 predicate role in\nthe US BSA-MSB enforcement era (fincen-virtual-currency-msb-\nguidance-2013) and the EBA 2014-07-04 Opinion EBA-Op-2014-08 role\nin the EU regulatory development arc that culminates in the EU\nMiCA Regulation 2023/1114 (eu-mica-2023).\n\nWhy null_event / null_case / observed_no_change: this event's load-\nbearing function is predicate-establishing rather than cascade-\nproducing. The substantive regulatory effect \u2014 introducing a\nshared FATF-level taxonomy and risk frame for virtual currencies \u2014\nunfolds dispersedly across the 2014\u21922019 regulatory development\narc rather than as a single observable point-in-time CEX\ncessation directly attributable to the 2014 report alone. The\ncascade-shape grammar of the schema does not natively express\nclass-level predicate-establishing supranational guidance, so this\nevent is coded honestly as null_event (0 observed_change layers) /\nnull_case (0 strong-attribution observed_change), with the single\nobservation row expressing the class-level pre-regime posture as\nobserved_no_change with attribution=plausible at the supranational\nstandard-setting axis. The downstream FATF R.15 INR Travel Rule\nevent (fatf-r15-vasp-travel-rule-2019) carries the load-bearing\nobserved_change row in its own event file.\n\nWhy historical_baseline tier: 2014 belongs to the\nhistorical_baseline_2013_2016 temporal tier per the 2008+ tiered\nframe. analysis_use=historical_baseline excludes this row from\nthe 2017+ comparable-analysis denominator, matching the validator's\ntier-vs-analysis-use consistency rule (validate.py line 317).\nThe user authoring brief suggested analysis_use=contextual_baseline,\nbut that value is not in the controlled vocabulary; historical_\nbaseline is the correct historical-tier mapping per the\ncontrolled_vocab.yaml enum.\n\nSchema-enum surprises encountered during authoring (mirroring the\nfincen-virtual-currency-msb-guidance-2013 sibling experience):\n- target.kind has no regulatory_class enum; fell back to\n  target.kind=entity with target.enumeration=subset and an\n  enumeration_note that records the class-level character.\n- target.enumeration has no class_level value (schema enum is\n  complete / subset / pending); used subset with class-level\n  rationale in the enumeration_note.\n- trigger.type=supranational_regulation is the canonical FATF\n  trigger type, matching fatf-r15-vasp-travel-rule-2019 and\n  oecd-carf-2022.\n- empirical_shape has no case_study enum (schema enum is cascade /\n  comparison / null_event); mapped the class-level predicate-\n  establishing posture to null_event + null_case + observation_\n  kind=observed_no_change with attribution=plausible.\n- observation_kind has no not_observed value (schema enum is\n  observed_change / observed_no_change / coverage_gap);\n  observed_no_change with attribution=plausible is the closest\n  schema match for the user's \"not_observed / plausible\n  (dispersed pre-regime guidance)\" framing.\n- jurisdiction has no GLOBAL value (controlled_vocab enum lists\n  UN and corporate_global as the two supranational codes); UN is\n  the correct match for an intergovernmental standard-setting\n  body (FATF), matching the precedent set by\n  fatf-r15-vasp-travel-rule-2019.\n\nstatus remains draft until human review either:\n(1) admits the event as null_case at empirical_shape=null_event\n    after pinning a verified Wayback snapshot + body_hash /\n    body_path capture of the 2014 FATF report PDF via\n    scripts/capture_http_artifact.py and confirming the 2014-06-26\n    publication date against a second independent archival\n    anchor, or\n(2) retires this event in favor of the 2019 R.15 INR Travel Rule\n    event (fatf-r15-vasp-travel-rule-2019) as the load-bearing\n    FATF anchor, with the 2014 VC report cited as predicate in\n    that event's analysis_notes rather than as a free-standing\n    event.\n\nOrigin=agent_draft and status=draft per the agent-authoring\nconvention.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2014 FATF report is supranational non-binding risk-framing\nguidance at the entity / regulatory-class level. It does not\ndirect ISP-level domain blocking or DNS interference against\nany VC-related host. not_applicable on construct-out-of-scope\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2014-06 has no protocol-level\nrelay-filter primitive analogous to the post-Merge Ethereum PBS\nrelay surface that the L1 layer was constructed to measure. The\nEthereum Merge itself is ~8 years downstream (2022-09-15).\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist\nin 2014 (Flashbots Protect launched 2022-11; MEV-Blocker\nlaunched 2023-03-27). not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The report does not require, name, or contemplate any VC-related\nfrontend takedown or geo-blocking. The substantive\nrecommendation surface is preliminary risk-framing for AML/CFT\nregulators \u2014 not a frontend takedown directive. Member-state\ndownstream implementations may produce L4 effects, but not the\nFATF instrument itself. not_applicable on construct-out-of-\nscope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "The 2014 FATF report does not engage stablecoin-issuer or\ntoken-issuer admin-key freeze primitives. USDT was first issued\n~2014-10 (four months later); chain-wide issuer admin freezes\narose later still; the FATF VC report pre-dates the stablecoin\nadmin-freeze regulatory frame entirely. not_applicable on\nconstruct-out-of-scope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "The substantive supranational effect of the 2014 FATF report\nis to introduce a shared taxonomy (\"exchanger\", \"administrator\",\n\"convertible VC\") at the FATF standard-setting layer. The\ncascade, however, is dispersed across the five-year regulatory\ndevelopment arc (2014 risk report \u2192 2015 RBA guidance \u2192 2018\nVASP definition added to Recommendations glossary \u2192 2019-06-21\nR.15 INR adopting the Travel Rule for VASPs) rather than\nlocalized to a single point-in-time off-ramp event. Marked\npartially_measured (rather than not_measured, which the\nvalidator forbids on observed_no_change observations) because\nthe load-bearing effect is class-level and predicate-\nestablishing, observable only at the class / regulatory-standard\nlayer; the corresponding observation row below records this as\nobserved_no_change with attribution=none at the supranational\nstandard-setting layer, scoped to the 2014-06-26 to 2019-06-21\npre-regime window.\n",
+        "scope": [
+          "global_vc_exchanger_class"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "fatf-virtual-currencies-key-definitions-2014",
+    "jurisdiction": [
+      "UN"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "fatf_global_vc_exchanger_class",
+        "attribution": "none",
+        "delta_hours": 0,
+        "event": "vc_exchanger_administrator_class_defined_supranational_predicate_guidance",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_no_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "FATF 2014-06-26 report is the supranational risk-framing\npredicate instrument. observation_kind=observed_no_change\nhonestly represents the load-bearing role of this report:\nit introduces the taxonomy (\"exchanger\", \"administrator\",\n\"convertible / non-convertible VC\") that anchors the later\nregulatory regime but does not itself impose binding VASP\nobligations or Travel Rule transmission. The substantive\nregulatory cascade is dispersed across the 2014\u21922019 arc\n(2015-06 RBA guidance, 2018-10 VASP definition added to\nRecommendations, 2019-06-21 R.15 INR Travel Rule adoption)\nrather than localized to a single point-in-time CEX\ncessation directly attributable to the 2014 report alone.\nattribution=none at the class-level supranational\nstandard-setting axis: the 2014 report introduces taxonomy\nand risk-framing but produces no direct measurable off-ramp\neffect in the 2014-06-26 to 2019-06-21 pre-regime window\n(window field). The validator requires attribution=none on\nobserved_no_change rows; the user authoring brief suggested\nattribution=plausible to express \"dispersed pre-regime\nguidance,\" which is documented in analysis_notes but cannot\nbe expressed at the observation-row level under the\nschema's observed_no_change attribution constraint.\nProvisional year-prefix Wayback anchor pending re-pin in a\nfollow-up human-audit pass.\n",
+            "scope_descriptor": {
+              "addresses_cohort": "fatf_pre_regime_vc_exchanger_class",
+              "providers": [
+                "global_vc_exchanger_class"
+              ],
+              "time_window": [
+                "2014-06-26T00:00:00+00:00",
+                "2019-06-21T00:00:00+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf",
+            "wayback": "https://web.archive.org/web/2014/https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf"
+          }
+        ],
+        "timestamp": "2014-06-26T00:00:00+00:00",
+        "window": [
+          "2014-06-26T00:00:00+00:00",
+          "2019-06-21T00:00:00+00:00"
+        ]
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "fatf-r15-vasp-travel-rule-2019",
+      "eba-virtual-currencies-opinion-eba-op-2014-08",
+      "fincen-virtual-currency-msb-guidance-2013",
+      "oecd-carf-2022",
+      "eu-mica-2023"
+    ],
+    "research_stratum": "S6_supranational",
+    "schema_version": "0.2.0",
+    "scoped_claim": "The FATF 2014-06-26 report \"Virtual Currencies \u2014 Key Definitions\nand Potential AML/CFT Risks\" introduced a shared FATF-level\ntaxonomy (\"exchanger\", \"administrator\", \"convertible / non-\nconvertible VC\", \"centralised / decentralised VC\") and a\npreliminary risk-framing for AML/CFT exposures of virtual\ncurrency activity, establishing the foundational supranational\npredicate guidance for the five-year regulatory development arc\nculminating in the 2019-06-21 FATF R.15 INR Travel Rule\nextension to VASPs (fatf-r15-vasp-travel-rule-2019). The 2014\nreport does not itself impose binding VASP obligations;\nobservation_kind=observed_no_change with attribution=plausible\nat the supranational standard-setting axis honestly represents\nthe dispersed pre-regime predicate role. Historical-baseline\ntier; not used in main statistical denominators.\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "fatf",
+      "virtual_currency_key_definitions",
+      "supranational_regulation",
+      "regulatory_predicate",
+      "class_level_guidance",
+      "predicate_to_fatf_r15",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Virtual currency exchangers and administrators (global FATF class)",
+      "actor_type": "supranational_regulatory_class",
+      "canonical_domains": [],
+      "chains": [],
+      "enumeration": "subset",
+      "enumeration_note": "Canonical target of this 2014 FATF report is the open-ended\nregulatory class of \"virtual currency exchangers and administrators\"\nas defined in the report glossary. Exchangers are \"natural or legal\npersons engaged as a business in the exchange of virtual currency\nfor real currency, funds, or other forms of virtual currency\"; the\nreport flags exchangers as the primary regulatory access point\nwhere AML/CFT obligations can be attached. Administrators are\n\"persons engaged as a business in issuing/redeeming a centralised\nvirtual currency\". The class is open-ended by construction and\noperates at the supranational standard-setting layer; binding\nforce is mediated entirely by downstream member-state\nimplementation following the later 2019 R.15 INR adoption.\nMarked enumeration=subset rather than complete because the class\nis open-ended and pre-regime \u2014 the 2014 report names categories\nwithout enumerating member entities or addresses. actor_name\nlabels the regulated class; no on-chain addresses or\ncanonical_domains are enumerated because the report does not\ndesignate specific entities or hosts. Schema enum target.kind has\nno regulatory_class value; entity is the closest schema match and\nmatches the precedent set by fincen-virtual-currency-msb-guidance-\n2013 and fatf-r15-vasp-travel-rule-2019.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "FATF",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "FATF report \"Virtual Currencies \u2014 Key Definitions and Potential\nAML/CFT Risks,\" published 2014-06-26 by the Financial Action Task\nForce (FATF) plenary in Paris. The report is the first FATF\ninstrument to engage virtual currencies (VC) substantively at\nthe supranational standard-setting layer. It establishes a\nshared taxonomy (\"virtual currency\", \"convertible / non-\nconvertible VC\", \"centralised / decentralised VC\", \"exchanger\",\n\"administrator\", \"user\", \"miner\") and a preliminary risk\nassessment of money-laundering and terrorist-financing exposures\nassociated with virtual currency activity. The report is non-\nbinding guidance \u2014 it does not amend the FATF Recommendations\nand does not impose Travel Rule or VASP obligations \u2014 but it\nestablishes the conceptual scaffolding (\"exchanger\" as the\nregulatory locus, convertibility as the risk axis) that anchors\nthe subsequent five-year regulatory development arc:\n(a) the 2015-06 FATF \"Guidance for a Risk-Based Approach to\nVirtual Currencies\"; (b) the 2018-10 FATF Recommendations\namendments adding the VASP definition into the glossary;\n(c) the 2019-06-21 FATF Plenary adoption of the Interpretive\nNote to Recommendation 15 extending the Travel Rule to VASPs\n(fatf-r15-vasp-travel-rule-2019). This 2014 report is therefore\nthe predicate guidance for the global FATF VASP regime.\nevidence_use=contextual_unarchived because body_hash + body_path\narchival capture was not pinned in this agent-authoring pass.\nWayback anchor is a year-prefix bracket pending re-pin by the\nhuman auditor.\n",
+          "type": "primary_legal",
+          "url": "https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf",
+          "wayback": "https://web.archive.org/web/2014/https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "FATF publication landing page for the same June 2014 report,\nretained as a secondary anchor for the publication record. The\nlanding page provides the canonical FATF citation metadata and\nserved as the primary discovery surface in WebSearch verification\nfor this authoring pass. evidence_use=contextual_unarchived;\nWayback anchor is a year-prefix bracket pending re-pin.\n",
+          "type": "primary_legal",
+          "url": "https://www.fatf-gafi.org/en/publications/Methodsandtrends/Virtual-currency-definitions-aml-cft-risk.html",
+          "wayback": "https://web.archive.org/web/2014/https://www.fatf-gafi.org/en/publications/Methodsandtrends/Virtual-currency-definitions-aml-cft-risk.html"
+        }
+      ],
+      "timestamp": "2014-06-26T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision per the 2014-06-26 publication date carried\non the FATF report. DRYRUN: timestamp asserted from FATF public\ncommunications and corroborated via WebSearch; not personally\narchive-verified by the LLM agent at authoring time.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "supranational_regulation"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "fincen-virtual-currency-msb-guidance-2013.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16. Phase B of the 2026-05-16\nstaged-release plan, historical_baseline_2013_2016 tier fill.\n\nFinCEN FIN-2013-G001 (\"Application of FinCEN's Regulations to\nPersons Administering, Exchanging, or Using Virtual Currencies,\"\nissued 2013-03-18) is the foundational regulatory predicate for\nthe 2013-2016 US MSB-registration enforcement era. The guidance\ninterprets FinCEN's BSA money-transmitter regulations as applied\nto virtual currency and defines (a) users as not regulated, (b)\nexchangers as MSBs, and (c) administrators as MSBs. It is cited\nas authority in nearly every subsequent S3 enforcement against a\nUS-resident VC exchanger in the historical-baseline tier\n(Shrem/Faiella 2014, Powell 2014, Ripple/XRP II 2015, Murgio/\nCoin.mx 2015) and continues to anchor 2017+ comparable-analysis\nenforcement (BitMEX 2020 FinCEN concurrent action, Helix 2020\nFinCEN consent assessment, Binance 2023 FinCEN settlement).\n\nWhy null_event / null_case / coverage_gap: this event's load-\nbearing function is predicate-establishing rather than cascade-\nproducing. The substantive regulatory effect \u2014 bringing the\nUS-resident VC-exchanger class under BSA MSB registration and\nAML-program obligations \u2014 unfolds dispersedly across the\n2013-2016 enforcement era rather than as a single observable\npoint-in-time CEX cessation directly attributable to the\nguidance alone. The cascade-shape grammar of the schema does\nnot natively express class-level predicate-establishing\nregulatory guidance, so this event is coded honestly as\nnull_event (0 observed_change layers) / null_case (0 strong-\nattribution observed_change), with the single observation row\nexpressing the class-level coverage_gap. The downstream\nenforcement events carry the load-bearing observed_change rows\nin their own event files.\n\nWhy historical_baseline tier: events 2013-2016 belong to the\nhistorical_baseline_2013_2016 temporal tier per the 2008+ tiered\nframe in sampling/frame.yaml. analysis_use=historical_baseline\nexcludes this row from the 2017+ comparable-analysis denominator,\nmatching the validator's tier-vs-analysis-use consistency rule.\n(The user's authoring brief suggested analysis_use=contextual_baseline,\nbut that value is not in the vocabulary; historical_baseline is\nthe correct historical-tier mapping per sampling/frame.yaml.)\n\nSchema-enum surprises encountered during authoring:\n- target.kind has no regulatory_class enum; fell back to\n  target.kind=entity with target.enumeration=subset and an\n  enumeration_note that records the class-level character.\n- trigger.type has no regulatory_guidance enum; used\n  trigger.type=fincen_action (the canonical FinCEN trigger\n  type, also used by ripple-fincen-xrp-2015).\n- empirical_shape has no case_study enum; mapped the class-\n  level predicate-establishing posture to null_event +\n  null_case + observation_kind=coverage_gap.\n- observation_kind has no not_observed enum; used coverage_gap\n  with attribution=none. coverage_gap is only retained on\n  status=draft per the validator (line 1222); the event is\n  explicitly draft and stays so until either (a) the predicate\n  role is rewritten as observed_no_change with a falsifiable\n  window scope, or (b) the event is retired in favor of the\n  downstream enforcement rows that already carry load-bearing\n  observed_change.\n\nstatus remains draft until a human review decides whether to:\n(1) admit the event as null_case at empirical_case=null_event\n    after rewriting the predicate observation as\n    observed_no_change with a falsifiable 2013-03-18 to 2016-12-31\n    scope_descriptor and a replayable archival anchor (since\n    coverage_gap is not admitted), or\n(2) retire this event entirely and let the downstream enforcement\n    events (Shrem/Faiella 2014, Powell 2014, Ripple/XRP II 2015,\n    Murgio/Coin.mx 2015) carry the historical-baseline anchor\n    function on their own, with FIN-2013-G001 cited as predicate\n    in their analysis_notes rather than as a free-standing event.\n\nOrigin=agent_draft and status=draft per the agent-authoring\nconvention.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "FIN-2013-G001 is a BSA registration-and-AML interpretive guidance\nat the entity / regulatory-class level. It does not direct\nISP-level domain blocking or DNS interference against any\nVC-related host. not_applicable on construct-out-of-scope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2013-03 has no protocol-level\nrelay-filter primitive analogous to the post-Merge Ethereum PBS\nrelay surface that the L1 layer was constructed to measure. The\nEthereum Merge itself is ~9 years downstream (2022-09-15).\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist\nin 2013 (Flashbots Protect launched 2022-11; MEV-Blocker\nlaunched 2023-03-27). not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The guidance does not require, name, or contemplate any\nVC-related frontend takedown or geo-blocking. Compliance\nobligations attach to MSB registration and AML-program\nrequirements at the entity level, not at the public-facing web\nsurface. not_applicable on construct-out-of-scope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "The guidance does not engage stablecoin-issuer or token-issuer\nadmin-key freeze primitives. USDT was first issued ~2014-10;\nchain-wide issuer admin freezes arose later; FIN-2013-G001\npre-dates the stablecoin admin-freeze regulatory frame entirely.\nnot_applicable on construct-out-of-scope grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "The substantive regulatory effect of FIN-2013-G001 is to bring\nthe US-resident VC-exchanger class under BSA MSB registration\nand AML-program obligations. The cascade, however, is dispersed\nacross the 2013-2016 enforcement era rather than localized to a\nsingle point-in-time offramp event: downstream FinCEN/DOJ\nactions (Shrem/Faiella 2014, Powell 2014, Ripple/XRP II 2015,\nMurgio/Coin.mx 2015) each cite this guidance as predicate but\nno single CEX cessation is directly attributable to the\nguidance alone. Marked not_measured because the load-bearing\ncascade is class-level and predicate-establishing rather than\npoint-in-time observable; the corresponding observation row\nbelow records this as a coverage_gap.\n",
+        "scope": [
+          "us_vc_exchanger_class"
+        ],
+        "status": "not_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "fincen-virtual-currency-msb-guidance-2013",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "regulator:fincen",
+        "attribution": "none",
+        "delta_hours": 0,
+        "event": "vc_exchanger_class_brought_under_bsa_msb_regime",
+        "layer": "offramp_cex",
+        "observation_kind": "coverage_gap",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "FIN-2013-G001 is the legal instrument. observation_kind=\ncoverage_gap with attribution=none honestly represents the\nload-bearing role of this guidance as a regulatory predicate\nwhose cascade is dispersed across multiple downstream\nenforcement actions (Shrem/Faiella 2014, Powell 2014,\nRipple/XRP II 2015, Murgio/Coin.mx 2015) rather than a\nsingle observable point-in-time CEX cessation directly\nattributable to the guidance alone. The cited downstream\nenforcement actions carry their own load-bearing\nobserved_change rows in their own event files; this event\nrecords the predicate-establishing role only. Provisional\nyear-prefix wayback anchor pending re-pin in a follow-up\nhuman-audit pass.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "us_vc_exchanger_class"
+              ],
+              "time_window": [
+                "2013-03-18T00:00:00+00:00",
+                "2016-12-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering",
+            "wayback": "https://web.archive.org/web/2013/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering"
+          }
+        ],
+        "timestamp": "2013-03-18T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "shrem-faiella-bitcoin-exchange-2014",
+      "powell-unlicensed-bitcoin-exchange-2014",
+      "ripple-fincen-xrp-2015",
+      "sec-shavers-btcst-2013",
+      "silk-road-doj-seizure-2013"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "FinCEN FIN-2013-G001 (2013-03-18) interpreted the Bank Secrecy\nAct's money-transmitter regulations to apply to virtual-currency\nexchangers and administrators, establishing the foundational\nregulatory predicate for the 2013-2016 US MSB-registration\nenforcement era. observation_kind=coverage_gap with attribution=\nnone because the substantive cascade is dispersed across\ndownstream enforcement actions (Shrem/Faiella 2014, Powell 2014,\nRipple/XRP II 2015, Murgio/Coin.mx 2015) that each cite this\nguidance as predicate, rather than localized to a single\nobservable point-in-time CEX cessation. Historical-baseline tier;\nnot used in main statistical denominators.\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "fincen",
+      "msb",
+      "bsa",
+      "regulatory_predicate",
+      "class_level_guidance",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Virtual currency administrators and exchangers (US BSA money transmitters)",
+      "actor_type": "regulatory_class",
+      "canonical_domains": [],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Canonical target of this guidance is the regulatory class of\n\"administrators and exchangers\" of virtual currency under the\nBSA, i.e. any business that exchanges VC for fiat (or for other\nVC) or that administers issuance/redemption. The class is open-\nended by construction: any US-resident person or legal entity\nthat comes within FinCEN's interpretation of \"money transmitter\"\nis brought under BSA registration, AML-program, recordkeeping,\nand reporting obligations prospectively. Marked enumeration=subset\nrather than complete because the class is open-ended and the\nmembership set evolves with subsequent FinCEN administrative\nrulings and enforcement actions (e.g. FIN-2014-R001 mining,\nFIN-2014-R002 software development, FIN-2019-G001 CVC business-\nmodels guidance). actor_name labels the regulated class; no\non-chain addresses or canonical_domains are enumerated because\nthe guidance does not designate specific entities or hosts.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "US_FINCEN",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "FinCEN guidance FIN-2013-G001, \"Application of FinCEN's\nRegulations to Persons Administering, Exchanging, or Using\nVirtual Currencies,\" issued 2013-03-18. The guidance interprets\nFinCEN's Bank Secrecy Act (BSA) money-services-business (MSB)\nregulations as applied to virtual currency (VC) and defines\nthree role categories: (1) users (persons who obtain VC to\npurchase goods/services) \u2014 not regulated as MSBs; (2) exchangers\n(persons engaged as a business in the exchange of VC for real\ncurrency, funds, or other VC) \u2014 money transmitters and therefore\nMSBs subject to BSA registration, AML program, recordkeeping,\nand reporting obligations; (3) administrators (persons engaged\nas a business in issuing/redeeming VC) \u2014 money transmitters and\ntherefore MSBs. The guidance is the foundational regulatory\npredicate cited as authority in nearly every subsequent US BSA\nenforcement against a virtual-currency exchanger in the\n2013-2016 historical-baseline tier (Shrem/Faiella 2014, Powell\n2014, Ripple/XRP II 2015, Murgio/Coin.mx 2015) and continuing\ninto the 2017+ comparable-analysis era (BitMEX 2020 FinCEN\nconcurrent action, Helix 2020 FinCEN consent assessment,\nBinance 2023 FinCEN settlement). evidence_use=contextual_unarchived\nbecause body_hash+body_path archival capture was not pinned in\nthis authoring pass; the live fincen.gov URL remains publicly\naccessible and Wayback bracketing of the 2013 publication window\nis straightforward in a follow-up human-audit pass. Provisional\nyear-prefix wayback anchor pending re-pin.\n",
+          "type": "primary_legal",
+          "url": "https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering",
+          "wayback": "https://web.archive.org/web/2013/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering"
+        }
+      ],
+      "timestamp": "2013-03-18T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision per FIN-2013-G001 issuance date of\n2013-03-18. The guidance carries no intra-day publication\ntimestamp in the public record.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "fincen_action"
     },
     "version": "0.1"
   },
@@ -7145,6 +7736,155 @@
     "version": "0.1"
   },
   {
+    "_source_file": "iceland-cbi-foreign-exchange-bitcoin-2014.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "NEW EVENT AUTHORED \u2014 agent_draft 2026-05-16. Historical-baseline\ncontextual case for the 2014-03-19 Central Bank of Iceland\n(Se\u00f0labanki \u00cdslands / CBI) statement \"Significant risk attached\nto use of virtual currency\", which articulated the CBI's\ninterpretation that purchases of bitcoin by Icelandic residents\nare prohibited under the Iceland Foreign Exchange Act (Act\nNo. 87/1992, as amended) and the post-2008-banking-crisis\ncapital-controls regime. Authored at status=draft pending human\naudit of (i) the cb.is and sedlabanki.is URL reachability and\nWayback snapshot pinning, (ii) the LoC Global Legal Monitor\nEnglish-language summary anchor, and (iii) any exchange-side\nevidence of Iceland-resident-cutoff that may exist in\ncontemporaneous press coverage but was not located in this\nauthoring pass.\n\nSignificance: this is the first nation-state action explicitly\ntreating bitcoin purchases as prohibited under existing FX-control\nlaw rather than under a freshly issued crypto-specific directive.\nIt is the contextual sibling of china-pboc-crypto-ban-2013-12\n(PBOC Notice 2013/289 of 2013-12-05) \u2014 the China 2013 notice\nacted via banking-and-payments-rail prohibitions, while the\nIceland 2014 statement acts via capital-controls FX-law\nreinterpretation. Together they form the earliest pair of\nnation-state-level bitcoin-restriction events in the dataset.\n\nWhy historical_baseline_2013_2016 tier: 2014 belongs to the\npre-2017 historical-baseline tier per sampling/frame.yaml.\nanalysis_use=contextual_baseline excludes this row from the\n2017+ comparable-analysis denominator. The event is retained as\ncontextual case-study material rather than as a denominator row\nbecause (a) it predates the comparable corpus and (b) the\ncascade surface is class-level rather than exchange-specific.\n\nWhy empirical_case rather than anchor_case: the offramp_cex\nobservation is observation_kind=not_observed with\nattribution=plausible, not an observed_change row. The CBI\nstatement clearly carries direct-attribution force on\nIcelandic-resident bitcoin-buying behaviour as a class, but\nthe cascade surface in the available public record is not\nexchange-specific. Without a documented exchange-side cutoff\nor a measured Iceland-resident on-chain volume shift, the\nevent admits only at empirical_case strength.\n\nWhy L0/L1/L3/L4/asset_onchain are not_applicable: the CBI\nstatement is a legal-interpretation notice under existing\nFX-control law; it does not direct network-layer blocking,\nL4 frontend changes, or engage any 2014-nonexistent L1/L3 PBS\nmeasurement primitive or any asset-issuer admin path. The\nL0/L1/L3/asset_onchain not_applicable treatment matches the\nsibling 2013 PBOC / 2018 RBI / 2021 PBOC banking-rail-severance\npattern.\n\nPost-2014 trajectory: Iceland's broader capital-controls regime\nwas substantially liberalised in 2017 (CBI New Rules on Foreign\nExchange, 2017-03-12), which effectively lifted the indirect\nbitcoin-purchase prohibition. That 2017 amendment is a natural\ncandidate for a separate recovery / sibling-event row but is\nnot authored in this pass.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2014-03-19 CBI statement does not direct ISP-level domain\nblocking, DNS interference, or network-layer action; it is a\nlegal-interpretation notice under existing FX-control law.\nnot_applicable consistent with India 2018 / China 2013-12\nsibling treatment of banking-rail nation-state events.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2014-03 has no protocol-level\nrelay-filter primitive analogous to the post-Merge Ethereum PBS\nrelay surface. The Ethereum Merge itself is ~8.5 years downstream\n(2022-09-15). not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist in\n2014; Flashbots Protect launched 2022-11 and MEV-Blocker launched\n2023-03-27. not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The CBI statement is a legal-interpretation notice addressed to\nIcelandic residents; it does not require frontend changes at any\nspecific exchange or service. No L4 frontend surface within\nIceland is in scope.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Bitcoin native asset has no issuer-side blacklist / freeze admin\nmethod. The 2014 CBI statement does not engage a stablecoin-\nissuer admin path (USDT first issued ~2014-10; chainwide admin\nfreezes arose later). not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "denominator_artifact": {
+          "note": "Coverage scope: Iceland-resident off-ramp cutoffs documented\nin the public record during the 90-day window following the\nCBI 2014-03-19 statement. No exchange-side Iceland-specific\ncutoff was located in this authoring pass; a human-audit\npass on contemporaneous Icelandic press (Morgunbla\u00f0i\u00f0,\nVi\u00f0skiptabla\u00f0i\u00f0) and English crypto-press (CoinDesk,\nBitcoin Magazine) is the gating step for a stronger\ndenominator anchor.\n",
+          "scope_descriptor": {
+            "countries": [
+              "IS"
+            ],
+            "time_window": [
+              "2014-03-19T00:00:00+00:00",
+              "2014-06-17T00:00:00+00:00"
+            ]
+          },
+          "type": "scope_descriptor"
+        },
+        "layer": "offramp_cex",
+        "note": "The CBI statement is by construction an off-ramp-layer signal:\nit tells Icelandic residents that purchasing bitcoin from\nforeign exchanges violates the Foreign Exchange Act. The\ncoverage scope for the observed_no_change row below is the\npublic record (English and Icelandic press, exchange status\npages, LoC Global Legal Monitor) for the 90 days following\nthe 2014-03-19 release: no specific exchange is documented\nas having cut off Icelandic-resident accounts in that window,\nand the dominant 2014 bitcoin exchanges (Bitstamp, Bitfinex,\nMt. Gox in its pre-collapse and collapse phases) did not\nmaintain Iceland-specific compliance flags in the public\nrecord. Class-level Icelandic-resident exposure to FX law is\nreal but not exchange-side observable in this authoring pass.\npartially_measured because the public-record search is\nbounded but not exhaustive.\n",
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "iceland-cbi-foreign-exchange-bitcoin-2014",
+    "jurisdiction": [
+      "IS"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "icelandic_resident_bitcoin_purchasers",
+        "attribution": "none",
+        "event": "no_measured_exchange_side_cutoff_of_iceland_residents",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_no_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "The CBI 2014-03-19 statement is the legal instrument. It\nstates the FX-Act interpretation that bitcoin purchases by\nIcelandic residents are prohibited under the capital-controls\nregime, but it does not name any specific exchange as having\nimplemented an Iceland-resident-cutoff in response. The\nobservation_kind=not_observed row records that the cascade\nsurface at offramp_cex is class-level (Icelandic residents\nas a class) rather than exchange-specific in the available\npublic record. attribution=plausible because the FX-Act\ninterpretation plausibly affected Icelandic-resident\nbitcoin-buying behaviour even though no exchange-level\ncutoff is documented. Specific Wayback snapshot timestamp\nrequires re-pinning in human audit.\n",
+            "type": "primary_legal",
+            "url": "https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/",
+            "wayback": "https://web.archive.org/web/2014/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/"
+          }
+        ],
+        "timestamp": "2014-03-19T00:00:00+00:00",
+        "window": [
+          "2014-03-19T00:00:00+00:00",
+          "2014-06-17T00:00:00+00:00"
+        ]
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "china-pboc-crypto-ban-2013-12"
+    ],
+    "research_stratum": "S4_nation_state",
+    "schema_version": "0.2.0",
+    "scoped_claim": "The Central Bank of Iceland (Se\u00f0labanki \u00cdslands) news release of\n2014-03-19, \"Significant risk attached to use of virtual currency\",\nstated the CBI's interpretation that purchases of bitcoin by\nIcelandic residents are prohibited under the Iceland Foreign\nExchange Act and the post-2008 capital-controls regime. The\ncascade surface is class-level on Icelandic residents; no\nexchange-side Iceland-resident cutoff is documented in this\nauthoring pass, so offramp_cex carries an observation_kind=not_observed\nrow with attribution=plausible.\n",
+    "scoped_knowledge": "This event is the earliest dataset case of a nation-state acting\nagainst bitcoin via reinterpretation of pre-existing capital-\ncontrols / FX-control law, rather than via a freshly issued\ncrypto-specific directive. The contrast with china-pboc-crypto-ban-\n2013-12 (which acted via a five-ministry crypto-specific notice\nprohibiting bank services to bitcoin) is informative: both events\nproduce a banking-rail-severance shape, but the Iceland 2014\nlegal mechanism is FX-law-reuse rather than crypto-specific\nrule-making. The cascade surface is class-level rather than\nexchange-specific because Iceland's bitcoin market in 2014 was\nsmall relative to the PRC market and because the CBI statement\ndid not name specific exchanges. The 2017 CBI New Rules on\nForeign Exchange materially relaxed the capital-controls regime,\neffectively rendering the 2014 interpretation moot \u2014 that\nrecovery dynamic is a candidate sibling event for future\nauthoring.\n",
+    "status": "draft",
+    "tags": [
+      "nation_state_block",
+      "iceland",
+      "cbi",
+      "foreign_exchange_act",
+      "capital_controls",
+      "historical_baseline",
+      "contextual_case"
+    ],
+    "target": {
+      "actor_name": "Iceland-resident bitcoin purchasers",
+      "actor_type": "regulated_resident_class",
+      "canonical_domains": [],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Target is the class of Icelandic residents engaged in or\ncontemplating bitcoin purchases (and by extension other virtual-\ncurrency purchases). The CBI statement does not enumerate\nspecific exchanges or specific resident counterparties; it\nstates a legal interpretation that applies to the entire class\nof Icelandic-resident bitcoin purchasers under the Foreign\nExchange Act. No specific exchange is named as the target,\nso canonical_domains is empty.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "IS_CBI",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Central Bank of Iceland (Se\u00f0labanki \u00cdslands / CBI) news release\ndated 2014-03-19 titled \"Significant risk attached to use of\nvirtual currency\". The statement, issued in the days leading up\nto the Auroracoin (AUR) airdrop launch, examines the legal\nstatus of virtual currencies (bitcoin, Auroracoin) under\nIcelandic law and the Iceland Foreign Exchange Act (Act\nNo. 87/1992 on Foreign Exchange, as amended after the 2008\nbanking-crisis capital-controls regime). Core position\narticulated by the CBI: (1) bitcoin and Auroracoin are not\nrecognised currency or legal tender in the sense of Icelandic\nlaw; (2) it is prohibited to engage in foreign-exchange trading\nwith the electronic currency bitcoin under the Foreign Exchange\nAct, because Icelandic-resident purchases of bitcoin from\nforeign counterparties constitute movement of capital out of\nIceland which is restricted under the post-2008 capital\ncontrols; (3) Icelandic residents should be cautious about\nusing virtual currencies given the absence of consumer\nprotection and the foreign-exchange-law exposure. The CBI is\nthe only authority with rule-making power under the FX Act,\nso this statement carries the legal interpretation that\nbitcoin purchases by Icelandic residents are restricted by\nexisting FX-control law. The cb.is URL path is the canonical\npublication anchor; specific Wayback snapshot timestamp\nrequires re-pinning in human audit before this citation may\nserve as an admission anchor.\n",
+          "type": "primary_legal",
+          "url": "https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/",
+          "wayback": "https://web.archive.org/web/2014/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Icelandic-language mirror of the same 2014-03-19 CBI news\nrelease on the sedlabanki.is domain. Carries identical\nsubstantive content to the cb.is English statement. Marked\nevidence_use=contextual_unarchived; specific Wayback snapshot\ntimestamp requires re-pinning in human audit.\n",
+          "type": "primary_legal",
+          "url": "https://www.sedlabanki.is/?PageId=eeebb4db-0460-11e5-93fa-005056bc0bdb&newsid=1fca32cd-af9c-11e3-93f5-005056bc0bdb",
+          "wayback": "https://web.archive.org/web/2014/https://www.sedlabanki.is/?PageId=eeebb4db-0460-11e5-93fa-005056bc0bdb&newsid=1fca32cd-af9c-11e3-93f5-005056bc0bdb"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "US Library of Congress Global Legal Monitor entry titled\n\"Iceland: National Digital Currency Auroracoin Launched\"\ndated 2014-08-12, providing an English-language summary\nof the CBI 2014-03-19 position and characterising it as an\ninterpretation of the Foreign Exchange Act restricting\nIcelandic-resident purchases of bitcoin (since such\npurchases entail capital movement out of Iceland that the\npost-2008 capital-controls regime prohibits). Used here as\na contextual translation anchor. Specific Wayback snapshot\ntimestamp requires re-pinning in human audit.\n",
+          "type": "supporting_tracker",
+          "url": "https://www.loc.gov/item/global-legal-monitor/2014-08-12/iceland-national-digital-currency-auroracoin-launched/",
+          "wayback": "https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2014-08-12/iceland-national-digital-currency-auroracoin-launched/"
+        }
+      ],
+      "timestamp": "2014-03-19T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "The CBI news release carries a 2014-03-19 publication date in\nits URL path and dateline. Day-level precision is appropriate\nbecause the CBI does not publish intra-day publication timing\nfor this kind of news release in the public record.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "nation_state_block"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "india-fiu-offshore-vda-block-2023.yaml",
     "admission_tier": "empirical_case",
     "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/india-fiu-offshore-vda-block-2023.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison documenting the FIU-IND 2023-12-28 show-cause notices to nine\noffshore Virtual Digital Asset (VDA) exchanges (Binance, Kraken, KuCoin,\nHuobi, OKX, Bitstamp, MEXC Global, BitTrex, Gate.io) for operating without\nPMLA registration, followed by a MEITY section 69A IT Act URL blocking\norder in early January 2024 and app-store regional removals in mid-\nJanuary 2024. Structurally distinct from the India 2018 RBI banking-rail\nban (offramp-only, industry-wide INR severance via banking sector) and\ncloser in shape to the Philippines 2024 NTC Binance block (state-mandated\nL0 network blocking of named exchange domains) but with a substantially\nbroader enumeration (nine platforms rather than one). Load-bearing axes:\nL0 network reachability (ISP-level blocking, IN vantage; coverage\nnot_measured pending OONI follow-up), L4 frontend (app-store regional\nremoval), and offramp_cex (INR rail severance for affected exchanges).\nSubsequent re-registration of Binance and KuCoin with FIU-IND under\nPMLA in 2024 partially reversed the block for those two platforms and\nis a natural candidate for a follow-up reversal-comparison event.\n",
@@ -8147,6 +8887,162 @@
         }
       ],
       "type": "nation_state_block"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "karpeles-arrest-tokyo-mtgox-2015.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16\nstaged-release plan, historical_baseline_2013_2016 tier fill):\nauthored end-to-end by LLM agent. The 2015-08-01 Tokyo MPD arrest of\nMark Karpel\u00e8s is a downstream criminal-enforcement node in the Mt. Gox\ncluster \u2014 the exchange is already in bankruptcy from 2014-02-28, so\nthe arrest does not trigger observable cascade at any layer. Coded as\nnull_case / null_event with observation_kind=observed_no_change +\nattribution=none to honestly represent the absence of further\ncascade. Included in the corpus for completeness of the Mt. Gox\ncluster. evidence_use=contextual_unarchived; Tokyo MPD press releases\nare Japanese-language, Reuters/CNN/NBC used as English anchors. Status\nremains draft pending real-archive capture and human review.\n\nSchema-fit notes: trigger.type=doj_indictment is used as the closest\nenum for non-US criminal arrest (matching the pertsev-nl-arrest-2022\nprecedent for foreign-jurisdiction criminal enforcement);\ntarget.kind=entity is the only fit for a natural-person target;\nobservation_kind=observed_no_change is the closest schema-valid\nencoding of \"no observable cascade beyond the pre-existing\nbankruptcy freeze.\"\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "mtgox.com had already gone offline in February 2014 in connection\nwith the bankruptcy filing; no separate ISP-level reachability\naction attached to the 2015-08-01 arrest. L0 layer not implicated.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2015 has no protocol-level\nrelay-filter primitive analogous to the post-Merge Ethereum PBS\nrelay surface. not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist in\n2015; Flashbots Protect launched 2022-11. not_applicable on\nconstruct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "mtgox.com was already offline from the February 2014 bankruptcy;\nthe 2015-08-01 arrest did not produce a separate frontend\nenforcement event.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "asset_onchain",
+        "note": "Bitcoin native asset has no issuer-side blacklist / freeze admin\nmethod. The arrest operated on a person (Karpel\u00e8s), not on-chain\nBTC. not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Mt. Gox was already in bankruptcy at arrest date (2014-02-28\nfiling). The 2015-08-01 Karpel\u00e8s arrest is downstream criminal-\nenforcement and triggers no further cascade. Coded as\npartially_measured against the pre-existing bankruptcy freeze\n(observable via contemporary Reuters/CNN/NBC reporting that the\nexchange remained shuttered through and beyond the arrest date),\nto support the observed_no_change observation below.\n",
+        "scope": [
+          "mtgox_post_bankruptcy_state"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "karpeles-arrest-tokyo-mtgox-2015",
+    "jurisdiction": [
+      "JP"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "regulator:jp_tmpd",
+        "attribution": "none",
+        "delta_hours": 0,
+        "event": "criminal_arrest_of_former_ceo",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_no_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "observation_kind=observed_no_change + attribution=none\nbecause Mt. Gox is already in bankruptcy (frozen) from\n2014-02-28; the arrest does not produce a cascading change at\nany layer beyond what mtgox-dhs-dwolla-wells-fargo-seizure-2013\nand the (not-yet-authored) Mt. Gox bankruptcy event already\ncover. evidence_use=contextual_unarchived: no body_hash\ncaptured this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "JP"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2015-08-01T00:00:00+00:00",
+                "2015-09-30T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801",
+            "wayback": "https://web.archive.org/web/20150801120000/https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801"
+          }
+        ],
+        "timestamp": "2015-08-01T00:00:00+00:00",
+        "window": [
+          "2015-08-01T00:00:00+00:00",
+          "2015-09-30T23:59:59+00:00"
+        ]
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "mtgox-dhs-dwolla-wells-fargo-seizure-2013"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"Tokyo MPD arrested Mark Karpel\u00e8s (former Mt. Gox CEO) on 2015-08-01\non suspicion of data manipulation (and was later indicted for\nembezzlement and aggravated breach of trust) related to the 2014\ncollapse. Cascade impact is observation_kind=observed_no_change +\nattribution=none because Mt. Gox was already in bankruptcy from\n2014-02-28 \u2014 the arrest does not produce observable change at any\nlayer beyond the pre-existing freeze. Historical-baseline tier; not\nused in main statistical denominators.\"\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "mtgox",
+      "karpeles",
+      "tokyo_mpd",
+      "criminal_arrest",
+      "downstream_followup",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Mark Karpel\u00e8s (Mt. Gox K.K. former CEO)",
+      "actor_type": "exchange_principal",
+      "canonical_domains": [
+        "mtgox.com"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Mark Karpel\u00e8s as former CEO of Mt. Gox K.K., charged with data\nmanipulation and (in subsequent September 2015 indictment) embezzlement\nand aggravated breach of trust. Mt. Gox itself was already in\nbankruptcy at arrest date \u2014 no further on/off-ramp cascade triggered\nby the arrest. Target is a key person, not the exchange itself.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "JP_TMPD",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Reuters 2015-08-01 wire coverage of the Tokyo Metropolitan Police\nDepartment arrest of Mark Karpel\u00e8s, former CEO of Mt. Gox K.K., on\nsuspicion of accessing the Mt. Gox computer system to manipulate\naccount balances (~$1M inflation of his own USD account in\nFebruary 2013). Tokyo MPD press releases are Japanese-language only;\nReuters used as English-language contemporaneous anchor.\nevidence_use=contextual_unarchived: no body_hash captured into\nsources/http_captures/ in this session.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801",
+          "wayback": "https://web.archive.org/web/20150801120000/https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "CNN 2015-08-01 coverage confirming the arrest date, the Tokyo MPD as\nthe arresting authority, and the data-manipulation predicate. Used\nas cross-source corroboration of the Reuters anchor.\nevidence_use=contextual_unarchived: no body_hash captured this\nsession.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.cnn.com/2015/08/01/asia/bitcoin-mt-gox-karpeles-arrested/index.html",
+          "wayback": "https://web.archive.org/web/20150801200000/https://www.cnn.com/2015/08/01/asia/bitcoin-mt-gox-karpeles-arrested/index.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "NBC News 2015-08-01 coverage. Third-source corroboration of the\narrest date and Tokyo MPD attribution.\nevidence_use=contextual_unarchived: no body_hash captured this\nsession.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.nbcnews.com/news/world/head-failed-japan-based-bitcoin-exchange-mt-gox-arrested-n402391",
+          "wayback": "https://web.archive.org/web/20150802000000/https://www.nbcnews.com/news/world/head-failed-japan-based-bitcoin-exchange-mt-gox-arrested-n402391"
+        }
+      ],
+      "timestamp": "2015-08-01T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day precision. The Tokyo MPD arrest occurred 2015-08-01 (Saturday,\nlocal time, Tokyo). Sub-day timestamping is not load-bearing for\nthis historical-baseline-tier event since no observable cascade is\ncoded.\n",
+          "type": "supporting_journalism"
+        }
+      ],
+      "type": "doj_indictment"
     },
     "version": "0.1"
   },
@@ -9796,6 +10692,782 @@
     "version": "0.1"
   },
   {
+    "_source_file": "mtgox-bankruptcy-tokyo-2014.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase B of 2026-05-16\nstaged-release plan, historical_baseline_2013_2016 tier fill):\nauthored end-to-end by LLM agent (origin=agent_draft, status=draft).\n\nMt. Gox's 2014-02-28 civil-rehabilitation filing at the Tokyo District\nCourt is the dominant exchange-collapse event of the 2013-2016 tier:\n~70% peak market share, ~850k BTC lost (~$473M at the time, ~7% of all\nbitcoin in circulation), and the first global-scale CEX off-ramp\nclosure in the dataset. comparison shape: 2 distinct observed_change\nlayers (offramp_cex via the operator filing + l4_frontend via\nWayback-attested mtgox.com closure-notice surface).\n\nCoded as S5_corporate because the trigger is an operator-filed\nbankruptcy petition (Mt. Gox K.K. unilaterally suspended services and\nfiled minji saisei), not a state-mandated shutdown. The Tokyo District\nCourt's role on 2014-02-28 was supervisory (accepting the petition);\nthe cessation itself is the operator's act. This is the same coding\nlogic used for ftx-bankman-fried-doj-2022 (S3 because the trigger\nthere was the DOJ indictment, not the corporate Chapter 11) and\ncelsius-bankruptcy-mashinsky-doj-2023 (S3 for the same reason).\nKarpeles's later arrest (2015-08, parallel criminal case) would be\nS3 if added; this row is scoped to the bankruptcy moment.\n\nevidence_use=contextual_unarchived throughout because no body_hash\nwas captured this session. Wayback coverage is dense (mtgox.com\nsnapshots on 2014-02-25, 2014-02-26, 2014-02-27, 2014-02-28,\n2014-03-10 all confirmed via the Wayback Availability API) so a\nreal archive pull to upgrade to body_hash anchors is straightforward\nin follow-up. The 2014-02-28 announcement PDF itself\n(https://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf) is\nstill served by the live mtgox.com host (now operated by the\nRehabilitation Trustee) and could be captured directly; the Wayback\nAvailability API returned no memento for the PDF URL in this session.\n\nRelated-event slugs trimmed to events that actually exist in the\nrepository as of 2026-05-16: the predecessor 2013 DHS/Dwolla seizure\nrow (mtgox-dhs-dwolla-wells-fargo-seizure-2013) is the strongest\ncross-reference; the originally proposed coinlab / 2013-06\nusd-withdrawal-suspension / 2015 Karpeles-arrest rows do not yet\nexist as event files and were not added to related_events to avoid\ndangling references. Real release must replace this DRYRUN marker\nwith a human adversarial audit pinning body_hash anchors for the\nWayback mementos.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "No network-layer blocking implicated. mtgox.com remained reachable\nthroughout the wind-down (and continues to be served by the\nRehabilitation Trustee as of 2026-05-16); the cessation surface is\nthe operator's withdrawal of trading services, not ISP/DNS filtering.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l1_consensus",
+        "note": "Bitcoin, 2014; consensus-layer filtering surfaces tracked by this\ndataset (post-Merge Ethereum PBS, mev-watch / censorship.pics) did\nnot exist in 2014. Out of scope.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l3_rpc",
+        "note": "No hosted Bitcoin-RPC provider surface implicated. Mt. Gox was a\ncentralized custodial exchange, not an RPC-mediated transaction-\nrouting service. Out of scope.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "mtgox.com trading UI was replaced with a static wind-down /\nannouncement surface in the 2014-02-24..2014-03-10 window. Wayback\nretains snapshots of mtgox.com on 2014-02-25, 2014-02-26, 2014-02-27,\n2014-02-28, and 2014-03-10 documenting the transition from the\ntrading platform to the closure-notice page. partially_measured\nbecause no body_hash was captured in this session; the Wayback\nsnapshots provide replayable closure-state pointers but the trader-\nfacing UI states pre/post change are not pinned to fingerprinted\nmementos here.\n",
+        "scope": [
+          "mtgox.com"
+        ],
+        "status": "partially_measured"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "asset_onchain",
+        "note": "Bitcoin is unfreezable at the protocol layer (no issuer blacklist\nmethod). The ~850k missing BTC are a custody-loss event, not an\nasset-layer freeze in this dataset's sense.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer. All Mt. Gox on/off-ramps (BTC, JPY, USD, EUR)\npermanently ceased on 2014-02-28 when Mt. Gox filed for civil\nrehabilitation at the Tokyo District Court. The operator's own\nannouncement and Karpeles's same-day news conference at the court\ndirectly attest the cessation. Best-documented exchange collapse\nof the 2013-2016 tier; ~70% peak market share makes this the\nsingle largest CEX off-ramp closure of the era.\n",
+        "scope": [
+          "mtgox_all_currencies"
+        ],
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "mtgox-bankruptcy-tokyo-2014",
+    "jurisdiction": [
+      "JP"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "exchange:mtgox",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "all_onramps_offramps_permanently_closed_at_civil_rehabilitation_filing",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Mt. Gox's own 2014-02-28 announcement directly attests the civil-\nrehabilitation filing and the corresponding cessation of all\nservices. attribution=direct because the operator's filing is\nitself the cessation act; the Tokyo District Court's role is\nsupervisory (accepting the petition), not the proximate cause\nof the operational shutdown. Wayback pointer is the 2014-03-10\nmtgox.com landing-page memento; the announcement PDF itself\nhad no captured Wayback memento as of 2026-05-16.\n",
+            "scope_descriptor": {
+              "countries": [
+                "JP",
+                "US",
+                "EU",
+                "GB",
+                "AU"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2014-02-28T00:00:00+00:00",
+                "2014-03-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf",
+            "wayback": "https://web.archive.org/web/20140310191411/https://www.mtgox.com/"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Bloomberg same-day coverage of the Tokyo District Court news\nconference; corroborates the operator's announcement of cessation\nof all customer services and the ~$480M scale of the missing-BTC\nbalance.\n",
+            "scope_descriptor": {
+              "countries": [
+                "JP",
+                "US",
+                "EU",
+                "GB",
+                "AU"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2014-02-28T00:00:00+00:00",
+                "2014-03-31T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.bloomberg.com/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy",
+            "wayback": "https://web.archive.org/web/20150215092806/http://www.bloomberg.com:80/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "NPR Two-Way same-day coverage; independent secondary anchor on\nthe bankruptcy filing and the scale of customer-fund losses.\n",
+            "scope_descriptor": {
+              "countries": [
+                "JP",
+                "US",
+                "EU",
+                "GB",
+                "AU"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2014-02-28T00:00:00+00:00",
+                "2014-03-31T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost",
+            "wayback": "https://web.archive.org/web/20150523223011/http://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost"
+          }
+        ],
+        "timestamp": "2014-02-28T00:00:00+00:00"
+      },
+      {
+        "actor": "domain:mtgox.com",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "trading_ui_replaced_with_wind_down_notice",
+        "layer": "l4_frontend",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_group_id": "mtgox_com_wayback_closure_window",
+            "note": "Wayback snapshot of mtgox.com captured 2014-02-28 23:34:41 UTC\n(same calendar day as the civil-rehabilitation filing). The\ntrading UI present in earlier 2014-02-25 / 2014-02-26 mementos\nis gone; mtgox.com serves a static closure-notice surface.\nReplayable via Wayback; no body_hash captured this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "GLOBAL"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2014-02-25T00:00:00+00:00",
+                "2014-03-15T23:59:59+00:00"
+              ]
+            },
+            "type": "semi_primary_wayback",
+            "url": "https://www.mtgox.com/",
+            "wayback": "https://web.archive.org/web/20140228233441/https://www.mtgox.com/"
+          },
+          {
+            "evidence_group_id": "mtgox_com_wayback_post_filing_window",
+            "note": "Wayback snapshot of mtgox.com captured 2014-03-10 (10 days after\nthe bankruptcy filing). Confirms the post-filing state of the\ndomain \u2014 trading UI permanently replaced with the Rehabilitation\nTrustee announcement surface. Independent Wayback evidence group\nfrom the same-day 2014-02-28 snapshot (different capture window,\ndifferent replayable artifact); together they satisfy the\n\u22652-distinct-semi-primary-group admission threshold.\n",
+            "scope_descriptor": {
+              "countries": [
+                "GLOBAL"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2014-02-25T00:00:00+00:00",
+                "2014-03-15T23:59:59+00:00"
+              ]
+            },
+            "type": "semi_primary_wayback",
+            "url": "https://www.mtgox.com/",
+            "wayback": "https://web.archive.org/web/20140310191411/https://www.mtgox.com/"
+          }
+        ],
+        "timestamp": "2014-02-28T00:00:00+00:00",
+        "window": [
+          "2014-02-24T00:00:00+00:00",
+          "2014-03-10T23:59:59+00:00"
+        ]
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "mtgox-dhs-dwolla-wells-fargo-seizure-2013",
+      "silk-road-doj-seizure-2013",
+      "shrem-faiella-bitcoin-exchange-2014",
+      "powell-unlicensed-bitcoin-exchange-2014"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"The 2014-02-28 Mt. Gox K.K. civil-rehabilitation filing at the\nTokyo District Court permanently closed all Mt. Gox on/off-ramps\n(BTC, JPY, USD, EUR) and replaced the mtgox.com trading UI with\na wind-down / Rehabilitation-Trustee announcement surface.\nObservational axes at offramp_cex and l4_frontend. Historical-\nbaseline tier; not used in 2017+ comparable denominators.\"\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "mtgox",
+      "bankruptcy",
+      "civil_rehabilitation",
+      "tokyo_district_court",
+      "exchange_collapse",
+      "karpeles",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Mt. Gox K.K. (MtGox Co., Ltd.)",
+      "actor_type": "exchange",
+      "canonical_domains": [
+        "mtgox.com"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Mt. Gox K.K. (MtGox Co., Ltd.), a Tokyo-incorporated bitcoin exchange\noperator. All Mt. Gox customers globally; ~750k customer BTC and\n~100k corporate BTC plus customer JPY/USD/EUR balances frozen at\nfiling. Mt. Gox was the dominant bitcoin exchange globally with\n~70% market share at peak (2013). Subset enumeration: customer-set\nheadcount and per-jurisdiction breakdown not retained at this row;\nthe load-bearing target is the Mt. Gox K.K. corporate entity and\nits single canonical domain mtgox.com.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "MTGOX_KK",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Mt. Gox official announcement dated 2014-02-28 (English translation):\n\"On February 28, 2014, MTGOX submitted an application for the start\nof a procedure of civil rehabilitation at the Tokyo District Court,\nand the application was accepted on the same day.\" The PDF URL\nhttps://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf is the\ncanonical document path (mtgox.com is preserved by Mark Karpeles /\nthe Rehabilitation Trustee to publish creditor notices and is still\nserving the file as of 2026-05-16, though the trading site itself\nis dead). The 2014-03-10 Wayback snapshot of the mtgox.com landing\npage is retained here as a closest-pointer replayable anchor; the\n2014-02-28 announcement PDF itself has no Wayback memento captured\nin this session (Wayback Availability API returned empty for the\nPDF URL on 2026-05-16). evidence_use=contextual_unarchived: no\nbody_hash captured this session.\n",
+          "type": "primary_corporate",
+          "url": "https://www.mtgox.com/img/pdf/20140228-announcement_eng.pdf",
+          "wayback": "https://web.archive.org/web/20140310191411/https://www.mtgox.com/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "NPR The Two-Way (2014-02-28): \"Mt. Gox Files For Bankruptcy; Nearly\n$500M Of Bitcoins Lost.\" Contemporary press coverage of the Tokyo\nDistrict Court civil-rehabilitation filing; reports liabilities of\n~6.5 billion yen (~$64M at the time), ~750k customer BTC + ~100k\nMt. Gox BTC missing (~7% of all bitcoin at the time, ~$473M).\nWayback memento 2015-05-23 (closest archived snapshot, since\nWayback's 2014-02-28..03-01 mementos of this exact URL were not\nlocated in this session).\n",
+          "type": "supporting_journalism",
+          "url": "https://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost",
+          "wayback": "https://web.archive.org/web/20150523223011/http://www.npr.org/sections/thetwo-way/2014/02/28/283863219/mtgox-files-for-bankruptcy-nearly-500m-of-bitcoins-lost"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Bloomberg (2014-02-28): \"Mt. Gox Seeks Bankruptcy After $480 Million\nBitcoin Loss.\" Documents the news conference at the Tokyo District\nCourt at which CEO Mark Karpeles publicly apologized and confirmed\nthe civil-rehabilitation (minji saisei) filing. Wayback memento\n2015-02-15 (closest archived snapshot).\n",
+          "type": "supporting_journalism",
+          "url": "https://www.bloomberg.com/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy",
+          "wayback": "https://web.archive.org/web/20150215092806/http://www.bloomberg.com:80/news/articles/2014-02-28/mt-gox-exchange-files-for-bankruptcy"
+        }
+      ],
+      "timestamp": "2014-02-28T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level timing established by the Mt. Gox announcement PDF\nexplicitly dated 2014-02-28 and confirmed by same-day press\ncoverage of the Tokyo District Court news conference.\n",
+          "type": "primary_corporate"
+        }
+      ],
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "mtgox-coinlab-civil-2013.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16\nstaged-release plan, historical_baseline_2013_2016 tier fill):\nauthored end-to-end by LLM agent from sources/historical_baseline_\n2013_2016/triage_manifest.json. CoinLab v. Mt. Gox is a private\ncivil dispute that coincided with the broader Mt. Gox cascade \u2014\nthe civil filing itself produced no observable layer change in\nthe 11-day pre-Dwolla-seizure window (observation_kind=\nobserved_no_change, attribution=none). The parallel federal\nDwolla seizure twelve days later (mtgox-dhs-dwolla-wells-fargo-\nseizure-2013) is the load-bearing cascade trigger. Included\nin the corpus for completeness of the Mt. Gox event cluster\nand to anchor the distinction between civil-litigation and\nfederal-enforcement tracks within the cascade.\n\nBorderline S3 vs S5 stratum coding \u2014 annotated S3_doj_sec_cftc_fiod\nbecause the venue is a US federal court (Western District of\nWashington), though the dispute is private breach-of-contract\nrather than a sovereign enforcement action. The trigger.type\ncourt_civil_order maps to S3 in the existing stratum vocabulary\nused by other private-civil events (coinbase-irs-john-doe-summons-\n2016, nydfs-bitlicense-2015-06).\n\nevidence_use=contextual_unarchived across all citations: PACER\naccess for the canonical 2:13-cv-00777-RSL docket requires login,\nso CoinDesk contemporaneous press coverage and the Justia docket-\nmetadata landing page are used as supporting_journalism anchors.\nbody_hash has not been captured into sources/http_captures/ in\nthis session. Status remains draft pending real-archive capture\nand human review.\n\nnull_event shape: 0 observed_change layers; 1 observed_no_change\nlayer (offramp_cex with attribution=none, window 2013-05-02 to\n2013-05-13 closing one day before the 2013-05-14 Dwolla seizure).\nL0/L1/L3/L4/asset_onchain are all not_applicable because mtgox.com\nremained reachable and serving frontend pages, the Bitcoin protocol\nlayers tracked by this dataset did not exist in their measured\nforms in 2013, and the action was a private civil-damages claim\nrather than an asset freeze. admission_tier=null_case;\nanalysis_use=historical_baseline.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "mtgox.com remained reachable as a website; the 2013-05-02 civil\ncomplaint did not implicate ISP-level reachability. Standard\npublic-web L0 instruments (Censored Planet, OONI) do not apply.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2013 has no protocol-level\nrelay-filter primitive analogous to the post-Merge Ethereum PBS\nrelay surface. not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist\nin 2013; Flashbots Protect launched 2022-11.\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "mtgox.com continued to serve trading-platform pages through\nMay 2013; no frontend takedown or domain seizure was associated\nwith the 2013-05-02 civil complaint. Frontend-enforcement\nlayer not implicated.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "asset_onchain",
+        "note": "Bitcoin native asset has no issuer-side blacklist / freeze\nadmin method. The civil suit operated on contract-damages claims\nagainst Mt. Gox K.K. in US federal court, not on on-chain BTC.\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "The civil suit itself did not directly close any Mt. Gox\non/off-ramp \u2014 it sought damages for breach of contract. The\nsuit coincided with the broader Mt. Gox USD-withdrawal cascade\n(Dwolla seizure 2013-05-14, USD withdrawal suspension\n2013-06-20), but those layer changes are attributable to the\nparallel federal Dwolla/Wells Fargo seizure twelve days later,\nnot to the civil suit directly. partially_measured because\ncontemporaneous press coverage establishes that no offramp\nchange followed the 2013-05-02 filing itself within the\n14-day pre-Dwolla-seizure window; the observed_no_change row\nis anchored on supporting_journalism without a captured\nbody_hash this session.\n",
+        "scope": [
+          "mtgox_us_operations"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "mtgox-coinlab-civil-2013",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "court:wdwa",
+        "attribution": "none",
+        "delta_hours": 0,
+        "event": "civil_breach_of_contract_complaint_filed_no_offramp_change_in_pre_dwolla_window",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_no_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "observation_kind=observed_no_change + attribution=none\nbecause the civil suit sought monetary damages, not\ninjunctive relief that would close a USD on/off-ramp; no\ncontemporaneous CoinDesk reporting in the 11-day window\nbefore the 2013-05-14 federal Dwolla seizure documents any\nUSD on/off-ramp change attributable to the suit itself.\nThe downstream Mt. Gox cascade is attributable to the\nparallel federal Dwolla/Wells Fargo seizure\n(mtgox-dhs-dwolla-wells-fargo-seizure-2013), not to the\ncivil complaint. evidence_use=contextual_unarchived: no\nbody_hash captured in this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "mtgox_us_operations"
+              ],
+              "time_window": [
+                "2013-05-02T00:00:00+00:00",
+                "2013-05-13T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court",
+            "wayback": "https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "GeekWire local Seattle reporting corroborating filing date,\n$75M damages figure, and W.D. Wash. venue. Establishes that\nthe dispute was a private contract-damages action rather\nthan a government-driven offramp closure.\nevidence_use=contextual_unarchived: no body_hash captured\nin this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "mtgox_us_operations"
+              ],
+              "time_window": [
+                "2013-05-02T00:00:00+00:00",
+                "2013-05-13T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/",
+            "wayback": "https://web.archive.org/web/2013/https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/"
+          }
+        ],
+        "timestamp": "2013-05-02T00:00:00+00:00",
+        "window": [
+          "2013-05-02T00:00:00+00:00",
+          "2013-05-13T23:59:59+00:00"
+        ]
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "mtgox-dhs-dwolla-wells-fargo-seizure-2013",
+      "mtgox-usd-withdrawal-suspension-2013-06"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"CoinLab v. Mt. Gox civil complaint (filed 2013-05-02 in US\nDistrict Court, Western District of Washington, Case\n2:13-cv-00777-RSL) sought $75M damages for Mt. Gox's breach of\nthe November 2012 North American operations agreement. The row\nrecords observation_kind=observed_no_change + attribution=none at\nofframp_cex over the 11-day window 2013-05-02 to 2013-05-13\n(closing one day before the federal Dwolla seizure\nmtgox-dhs-dwolla-wells-fargo-seizure-2013), because the civil\nfiling itself produced no observable USD on/off-ramp change.\nnull_event shape; historical-baseline tier; not used in main\nstatistical denominators.\"\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "mtgox",
+      "coinlab",
+      "civil_litigation",
+      "wd_washington",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Mt. Gox K.K.",
+      "actor_type": "exchange",
+      "canonical_domains": [
+        "mtgox.com"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
+      "entity": "Mt. Gox K.K.",
+      "enumeration": "subset",
+      "enumeration_note": "Mt. Gox North American user-facing operations (USD on/off-ramp,\ncustomer service for US/Canada users). The CoinLab suit\nchallenged Mt. Gox's failure to delegate these operations to\nCoinLab under the November 2012 partnership agreement that\ngranted CoinLab the exclusive right to handle North American\nbitcoin-exchange services. No on-chain BTC addresses are\nenumerated at this event level; the action is a private civil\nbreach-of-contract dispute, not an asset freeze.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "US_WDWA_COURT",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "CoinDesk contemporaneous coverage (published 2013-05-03) of the\nCoinLab v. Mt. Gox K.K. complaint filed 2013-05-02 in the US\nDistrict Court for the Western District of Washington\n(Case 2:13-cv-00777-RSL). $75M breach-of-contract claim over\nMt. Gox's failure to perform under the November 2012 agreement\ngranting CoinLab the exclusive right to handle North American\nbitcoin-exchange services. PACER docket is the canonical\nprimary; PACER access requires login, so contemporaneous press\ncoverage is used as supporting_journalism. evidence_use=\ncontextual_unarchived: no body_hash captured in this session.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court",
+          "wayback": "https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "GeekWire 2013-05-02 coverage from Seattle-local reporting,\ncorroborating the filing date, the $75M damages figure, and\nthe Western District of Washington venue. CoinLab CEO Peter\nVessenes quoted on the breach. evidence_use=\ncontextual_unarchived: no body_hash captured in this session.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/",
+          "wayback": "https://web.archive.org/web/2013/https://www.geekwire.com/2013/bitcoin-seattles-coinlab-files-75m-suit-mt-gox-exchange-alleges-breach-contract/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Justia docket landing page for Case 2:13-cv-00777-RSL,\nconfirming the court (US District Court, Western District of\nWashington), filing date (2013-05-02), nature of suit\n(contract), and the parties (CoinLab, Inc. v. Mt. Gox K.K.\net al.). Used as a structured-metadata pointer to the PACER\ndocket. evidence_use=contextual_unarchived: no body_hash\ncaptured in this session.\n",
+          "type": "supporting_journalism",
+          "url": "https://dockets.justia.com/docket/washington/wawdce/2:2013cv00777/192566",
+          "wayback": "https://web.archive.org/web/2013/https://dockets.justia.com/docket/washington/wawdce/2:2013cv00777/192566"
+        }
+      ],
+      "timestamp": "2013-05-02T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day precision. Complaint filed 2013-05-02 in the US District\nCourt for the Western District of Washington (Case\n2:13-cv-00777-RSL). CoinDesk and GeekWire both report the\nfiling date as 2 May 2013; the docket-listing on Justia\ncorroborates this filing date.\n",
+          "type": "supporting_journalism"
+        }
+      ],
+      "type": "court_civil_order"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "mtgox-dhs-dwolla-wells-fargo-seizure-2013.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16 staged-\nrelease plan, historical_baseline_2013_2016 tier fill): authored end-to-end\nby LLM agent from sources/historical_baseline_2013_2016/triage_manifest.json.\nThe DHS/HSI seizure of the Mutum Sigillum / Wells Fargo / Dwolla account\n(Case 1:13-mc-01162-WMN, D. Md.) was the first major US federal enforcement\nagainst a bitcoin exchange and the operational predicate for the Mt. Gox\nUSD-withdrawal cascade that culminated in the February 2014 Mt. Gox\nbankruptcy. evidence_use=contextual_unarchived across all citations because\nprimary-legal body_hash has not been captured into sources/http_captures/ in\nthis session; the original 2013 warrant PDF is not exposed via a stable\njustice.gov URL. Status remains draft pending real-archive capture and human\nreview.\n\ncomparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/\nasset_onchain are all not_applicable because mtgox.com remained reachable\nand serving frontend pages, the Bitcoin protocol layers tracked by this\ndataset did not exist in their measured forms in 2013, and the action\noperated on USD held in US bank/payment-processor accounts rather than on\non-chain BTC. The single load-bearing observation is the USD-on-ramp\nclosure at Mt. Gox's US-vantage Dwolla/Wells Fargo rail, attribution=direct\nvia the named seizure warrant.\n\nHistorical-baseline placement: this event is the earliest US federal\nfiat-rail enforcement action against a bitcoin exchange in the dataset,\npredating the 2014-01-26 Shrem/Faiella arrests (shrem-faiella-bitcoin-\nexchange-2014), the 2014 Kraken/Powell unlicensed-exchange action, and the\n2017-07-26 BTC-e DOJ indictment by ~4 years. Establishes the pre-OFAC,\npre-comparable-corpus baseline for fiat-payment-rail-mediated offramp_cex\nenforcement.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "mtgox.com remained reachable as a website; the 2013-05-14 action was a\nfiat-rail account seizure rather than an ISP-level reachability block.\nStandard public-web L0 instruments (Censored Planet, OONI) do not apply.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2013 has no protocol-level relay-\nfilter primitive analogous to the post-Merge Ethereum PBS relay surface.\nnot_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC compliance\nsubstrate that the L3 layer measures did not exist in 2013;\nFlashbots Protect launched 2022-11. not_applicable on\nconstruct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "mtgox.com continued to serve trading-platform pages through May 2013;\nno frontend takedown or domain seizure was associated with the\n2013-05-14 fiat-rail action. Frontend-enforcement layer not implicated.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "asset_onchain",
+        "note": "Bitcoin native asset has no issuer-side blacklist / freeze admin\nmethod. The seizure operated on USD held in US bank/payment-processor\naccounts, not on-chain BTC. not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "USD on-ramp closure via Dwolla account seizure (2013-05-14) and Wells\nFargo account seizure (2013-05-09 / follow-on 2013-06). Mt. Gox's\nprimary US-customer USD-to-BTC pathway was severed by the seizure of\n~$5M from the named US accounts. partially_measured because the\nDwolla / Wells Fargo cessation notice and Mt. Gox's contemporaneous\nUSD-withdrawal slowdown are documented in primary-legal and\ncontemporaneous journalism, but no replayable body_hash has been\ncaptured into sources/http_captures/ in this session.\n",
+        "scope": [
+          "mtgox_dwolla_usd_rail",
+          "mtgox_wells_fargo_usd_rail"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "mtgox-dhs-dwolla-wells-fargo-seizure-2013",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "exchange:mtgox",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "usd_onramp_closed_via_dwolla_account_seizure",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Direct attribution: the 2013-05-14 seizure warrant (Case 1:13-mc-\n01162-WMN, D. Md.) explicitly named the Mutum Sigillum Dwolla\naccount that constituted Mt. Gox's primary US-customer USD on-ramp.\nThe action closed that rail. evidence_use=contextual_unarchived\nbecause the original warrant PDF is not exposed via a stable\njustice.gov URL and no body_hash was captured into\nsources/http_captures/ in this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "mtgox",
+                "dwolla",
+                "wells_fargo"
+              ],
+              "time_window": [
+                "2013-05-14T00:00:00+00:00",
+                "2013-06-30T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.justice.gov/usao-md",
+            "wayback": "https://web.archive.org/web/20150228114134/http://www.justice.gov:80/usao-md"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Contemporary corroboration that ICE/HSI obtained and acted on the\nwarrant within 48 hours of issue. Establishes the operational\ntiming of the USD on-ramp closure as direct rather than delayed.\nevidence_use=contextual_unarchived: no body_hash captured in this\nsession.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "mtgox",
+                "dwolla"
+              ],
+              "time_window": [
+                "2013-05-14T00:00:00+00:00",
+                "2013-05-16T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://techcrunch.com/2013/05/16/mt-gox-dwolla-account-money-seizure/",
+            "wayback": "https://web.archive.org/web/20140102083717/http://techcrunch.com/2013/05/16/mt-gox-dwolla-account-money-seizure/"
+          }
+        ],
+        "timestamp": "2013-05-14T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "silk-road-doj-seizure-2013",
+      "sec-shavers-btcst-2013",
+      "shrem-faiella-bitcoin-exchange-2014",
+      "powell-unlicensed-bitcoin-exchange-2014"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"The 2013-05-14 DHS/HSI seizure of Mt. Gox subsidiary Mutum Sigillum's\nDwolla account at Veridian Credit Union (paired with the 2013-05-09\nWells Fargo seizure) closed Mt. Gox's primary USD on-ramp to US customers;\nthe row claims only this single-layer offramp_cex fiat-rail closure\nobservation and does not assert frontend, network, RPC, or on-chain BTC\neffects. Historical-baseline tier; not used in main statistical\ndenominators.\"\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "mtgox",
+      "dwolla",
+      "wells_fargo",
+      "dhs_hsi",
+      "usd_onramp_seizure",
+      "fiat_rail_enforcement",
+      "pre_ofac_era",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Mutum Sigillum LLC (Mt. Gox US subsidiary)",
+      "actor_type": "exchange_subsidiary",
+      "canonical_domains": [
+        "mtgox.com"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Mt. Gox US subsidiary Mutum Sigillum LLC, plus its Dwolla account (held in\ncustody at Veridian Credit Union) and the predicate Wells Fargo Bank\naccount opened 2011-05-20 by Mt. Gox CEO Mark Karpeles. Together these\nconstituted Mt. Gox's primary USD on-ramp/off-ramp infrastructure for US\ncustomers in 2013. No on-chain BTC addresses are enumerated at this event\nlevel; the action is a fiat-rail account seizure, not a crypto-asset\nfreeze.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "US_DHS_HSI",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "US Attorney's Office, District of Maryland \u2014 the prosecuting office of\nrecord for the 2013-05-14 seizure warrant against Mt. Gox subsidiary\nMutum Sigillum LLC's Dwolla account (Case 1:13-mc-01162-WMN, signed by\nUS Magistrate Judge Susan K. Gauvey on affidavit of a Homeland Security\nInvestigations special agent). No archived 2013 press-release URL for\nthis specific seizure was located on justice.gov; the office-of-record\nlanding page is retained as a contextual pointer. evidence_use=\ncontextual_unarchived: no body_hash captured in this session, and the\noriginal 2013 warrant PDF is not exposed via a stable justice.gov URL.\n",
+          "type": "primary_legal",
+          "url": "https://www.justice.gov/usao-md",
+          "wayback": "https://web.archive.org/web/20150228114134/http://www.justice.gov:80/usao-md"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Contemporary TechCrunch coverage (2013-05-16) reporting that ICE/HSI\nhad obtained a copy of the seizure warrant and confirming the basis\nof the action: Mt. Gox/Mutum Sigillum operating an unlicensed money-\ntransmitting business in violation of 18 U.S.C. \u00a7 1960. Wayback memento\n2014-01-02 (closest 2013-era snapshot). evidence_use=\ncontextual_unarchived: no body_hash captured in this session.\n",
+          "type": "supporting_journalism",
+          "url": "https://techcrunch.com/2013/05/16/mt-gox-dwolla-account-money-seizure/",
+          "wayback": "https://web.archive.org/web/20140102083717/http://techcrunch.com/2013/05/16/mt-gox-dwolla-account-money-seizure/"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Genesis Block reporting on the follow-on 2013-06 Wells Fargo seizure\nwarrant that brought the total seized from Mutum Sigillum / Mt. Gox\nUS-vantage accounts to ~$5M. Wayback memento 2013-12-30.\nevidence_use=contextual_unarchived: no body_hash captured in this\nsession.\n",
+          "type": "supporting_journalism",
+          "url": "https://thegenesisblock.com/warrant-for-mt-gox-wells-fargo-accounts-shows-additional-2-1m-seized/",
+          "wayback": "https://web.archive.org/web/20131230204444/http://thegenesisblock.com/warrant-for-mt-gox-wells-fargo-accounts-shows-additional-2-1m-seized/"
+        }
+      ],
+      "timestamp": "2013-05-14T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day precision. Seizure warrant for the Mutum Sigillum Dwolla account\nheld in custody at Veridian Credit Union was issued and unsealed\n2013-05-14 by the US District Court for the District of Maryland\n(Case 1:13-mc-01162-WMN). A predicate Wells Fargo warrant had been\nissued 2013-05-09; the 2013-05-14 Dwolla warrant is the operational\ntrigger for the USD on-ramp closure recorded by this event.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "doj_seizure_order"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "mtgox-usd-withdrawal-suspension-2013-06.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16\nstaged-release plan, historical_baseline_2013_2016 tier fill): authored\nend-to-end by LLM agent. Mt. Gox's 2013-06-20 USD-withdrawal suspension\nis the operator-action node in the Mt. Gox 2013-cascade, downstream of\nthe 2013-05-14 DHS Dwolla seizure. Coded as S5_corporate because the\ntrigger is an operator announcement, but causally bound to the parallel\nfederal seizure event (related: mtgox-dhs-dwolla-wells-fargo-seizure-\n2013). evidence_use=contextual_unarchived everywhere; mtgox.com is dead\nso Wayback is the only available archive vector. Status remains draft\npending real-archive capture (Wayback body_hash) and human review.\n\ncomparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/\nasset_onchain are all not_applicable on the same construct-did-not-\nexist / out-of-scope grounds as the parent mtgox-dhs-dwolla-wells-\nfargo-seizure-2013 event. Single load-bearing observation is the\nglobally-suspended USD withdrawal at the Mt. Gox operator layer,\nattribution=direct via the operator's own press release.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "mtgox.com remained reachable as a website; the 2013-06-20 action was\na fiat-rail offramp suspension announced by the operator, not an\nISP-level reachability block. Standard public-web L0 instruments\ndo not apply.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2013 has no protocol-level relay-\nfilter primitive analogous to the post-Merge Ethereum PBS relay\nsurface. not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect public-RPC compliance substrate\nthat the L3 layer measures did not exist in 2013. not_applicable\non construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "mtgox.com continued to serve trading-platform pages; no frontend\ntakedown or domain seizure was associated with the 2013-06-20\noperator action.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "asset_onchain",
+        "note": "Bitcoin native asset has no issuer-side blacklist / freeze admin\nmethod. The suspension operated on USD-denominated fiat withdrawals,\nnot on-chain BTC.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Mt. Gox USD withdrawals globally suspended on 2013-06-20.\npartially_measured because the operator's own announcement is\nattestable via Wayback but a replayable banking-partner artifact\n(and a captured body_hash for the press release) is not pinned\nthis session.\n",
+        "scope": [
+          "mtgox_usd_offramp"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "mtgox-usd-withdrawal-suspension-2013-06",
+    "jurisdiction": [
+      "JP"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "exchange:mtgox",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "usd_withdrawal_suspended_globally",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Direct attribution: operator's own announcement of the USD-\nwithdrawal suspension. Context: downstream of the 2013-05-14\nDHS Dwolla seizure (see mtgox-dhs-dwolla-wells-fargo-seizure-\n2013). evidence_use=contextual_unarchived: no body_hash\ncaptured into sources/http_captures/ in this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "GLOBAL"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2013-06-20T00:00:00+00:00",
+                "2013-07-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.mtgox.com/press_release_20130620.html",
+            "wayback": "https://web.archive.org/web/20140122193202/https://www.mtgox.com/press_release_20130620.html"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Contemporary CoinDesk coverage corroborating the suspension and\nits operator-framed rationale (banking-partner transaction-\nprocessing capacity). evidence_use=contextual_unarchived: no\nbody_hash captured in this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "GLOBAL"
+              ],
+              "providers": [
+                "mtgox"
+              ],
+              "time_window": [
+                "2013-06-20T00:00:00+00:00",
+                "2013-06-30T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals",
+            "wayback": "https://web.archive.org/web/20211016054018/https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals/"
+          }
+        ],
+        "timestamp": "2013-06-20T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "mtgox-dhs-dwolla-wells-fargo-seizure-2013"
+    ],
+    "research_stratum": "S5_corporate",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"Mt. Gox suspended all USD withdrawals globally on 2013-06-20, framed\nas a voluntary corporate verification-procedure update but causally\ndownstream of the 2013-05-14 DHS Dwolla seizure (mtgox-dhs-dwolla-\nwells-fargo-seizure-2013). The row claims only this single-layer\nofframp_cex operator-announcement observation. Historical-baseline\ntier; not used in main statistical denominators.\"\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "mtgox",
+      "usd_offramp",
+      "operator_action",
+      "corporate_policy",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "Mt. Gox K.K.",
+      "actor_type": "exchange",
+      "canonical_domains": [
+        "mtgox.com"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "All Mt. Gox USD-balance customers globally. USD withdrawals were\nsuspended pending banking-partner review and verification process\nchanges; USD deposits and non-USD withdrawals continued. No on-chain\nBTC addresses are enumerated at this event level; the action is a\nfiat-rail offramp suspension at the operator layer.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "MTGOX_OPERATOR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Mt. Gox 2013-06-20 press release announcing the temporary suspension\nof all USD withdrawals pending implementation of an upgraded USD-\ntransaction processing system in cooperation with its banking\npartner. Officially framed as a voluntary corporate verification-\nprocedure update; in context, downstream of the 2013-05-14 DHS/HSI\nDwolla account seizure (mtgox-dhs-dwolla-wells-fargo-seizure-2013)\nand the parallel Wells Fargo / Mutum Sigillum banking-rail\ndifficulties. mtgox.com is dead \u2014 Wayback memento 2014-01-22\nretained as the only available archive vector. evidence_use=\ncontextual_unarchived: no body_hash captured into\nsources/http_captures/ in this session.\n",
+          "type": "primary_corporate",
+          "url": "https://www.mtgox.com/press_release_20130620.html",
+          "wayback": "https://web.archive.org/web/20140122193202/https://www.mtgox.com/press_release_20130620.html"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Contemporary CoinDesk coverage (2013-06-20) reporting Mt. Gox's\nannouncement of a temporary suspension of USD withdrawals, framed\nby the exchange as a response to growing transaction volume that\nwas straining its banking partner's processing capacity. Wayback\nmemento 2021-10-16 (closest stable snapshot). evidence_use=\ncontextual_unarchived: no body_hash captured into\nsources/http_captures/ in this session.\n",
+          "type": "supporting_journalism",
+          "url": "https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals",
+          "wayback": "https://web.archive.org/web/20211016054018/https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals/"
+        }
+      ],
+      "timestamp": "2013-06-20T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "type": "corporate_policy_change"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "netherlands-dnb-binance-warning-2021.yaml",
     "admission_tier": "empirical_case",
     "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/netherlands-dnb-binance-warning-2021.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\nComparison documenting the 2021-08-18 De Nederlandsche Bank (DNB)\npublic warning that Binance was offering crypto services in the\nNetherlands without the legally-required registration under the\nDutch Wwft (Anti-Money Laundering and Anti-Terrorist Financing Act).\nSibling case to the 2021 global Binance regulator wave: UK FCA\n2021-06-26, Malaysia SC 2021-07-30, Singapore MAS 2021-09-02.\n\nPaper-relevant contrast vs UK FCA (uk-fca-binance-markets-2021):\nDNB warning targets the global Binance entity directly (no NL-\nregistered Binance legal entity at the time) rather than a UK-style\nnamed-subsidiary action. Cascade is slower and entity-level rather\nthan UK-style class-wide payment-rail severance: DNB EUR 3.3M fine\n2022-04, Binance NL withdrawal 2022-07. Load-bearing observational\naxes per stub brief: L4 frontend (Binance NL-user notices) and\nofframp_cex (NL-user rail restrictions).\n\nDRYRUN caveats: trigger primary citation (DNB press release index)\nis asserted without pinned Wayback / body-hash capture. For non-\nDRYRUN release, capture body_hash + body_path for: (1) DNB 2021-\n08-18 warning page, (2) DNB 2022-04 fine decision, (3) Binance NL\n2022-07 withdrawal announcement. Marked evidence_use=\ncontextual_unarchived on all citations to flag the unarchived\nstate per validator policy.\n",
@@ -10264,6 +11936,211 @@
           "type": "primary_legal"
         }
       ],
+      "type": "court_civil_order"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase B of 2026-05-16\nstaged-release plan, historical_baseline_2013_2016 tier fill):\nauthored end-to-end by LLM agent. This event documents the\npost-BitLicense exit cascade \u2014 a cluster of platforms (Bitfinex,\nKraken, ShapeShift, Poloniex, BitFlyer USA, OkCoin, GoCoin)\nwithdrew from serving NY-resident users on/around 2015-08-10\nrather than apply for the BitLicense. Distinct from the parent\nBitLicense rulemaking event nydfs-bitlicense-2015-06 (already in\ncorpus, which captures the ShapeShift/Kraken/Bitfinex/Poloniex L4\nexit anchors with real Wayback captures); this event captures the\ndownstream cluster-level L4-frontend + offramp_cex cascade and\nadds BitFlyer USA / OkCoin / GoCoin to the enumeration.\nevidence_use=contextual_unarchived throughout. Status remains\ndraft pending real-archive capture of platform exit announcements\nand human review.\n\nTrigger-type choice follows the parent event: NYDFS is a US\nsub-national (state) financial regulator and the BitLicense is an\nadministrative rule-making, not a criminal or civil enforcement\naction. The schema 0.2.0 trigger.type vocabulary does not include\na state_regulator_action enum value; the least-bad existing enum\nis court_civil_order (which maps to S3_doj_sec_cftc_fiod in the\nvalidator's trigger-type-to-stratum map). trigger.actor=US_NYDFS\ndoes not match any actor-coherence pattern, so no conflict.\n\nEmpirical shape: comparison. Two distinct observed_change layers\n(l4_frontend cluster geofencing + offramp_cex NY-resident account\nclosures), so empirical_shape=comparison. admission_tier=\nempirical_case (\u22651 strong-attribution observed_change layer; both\nobservations carry attribution=direct via cluster announcements).\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "State-licensing regime; no ISP-level reachability change.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "2015 predates post-Merge / post-PBS L1 filtering surface. Out of scope.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "Hosted-RPC providers did not operate at meaningful scale in 2015.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "Platform-by-platform NY-state geofencing at the L4 frontend\nlayer. Several platforms displayed \"not available to NY\nresidents\" notices to NY-IP visitors. Wayback snapshots of\n2015-08-10..2015-08-25 frontend pages document the geofence\nrollout but are not captured into sources/http_captures/\nthis session. Distinct from the parent rulemaking event\n(nydfs-bitlicense-2015-06), which already captures the\nShapeShift / Kraken / Bitfinex / Poloniex L4 exit anchors;\nthis event captures the broader cluster (adding BitFlyer USA,\nOkCoin, GoCoin) and codes the cluster as a single observation.\n",
+        "scope": [
+          "bitfinex.com",
+          "kraken.com",
+          "shapeshift.io",
+          "poloniex.com",
+          "gocoin.com"
+        ],
+        "status": "partially_measured"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "No issuer-level token freeze or admin-method invocation.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "NY-resident user account closures across the cluster. Email\nnotifications to existing NY users instructed wind-down of\nopen balances (e.g. Bitfinex's 2015-08-15 4:00pm EDT withdrawal\ndeadline for NY residents). partially_measured because the\nper-platform closure dates are individually documented in\ncontemporaneous press but a unified replayable artifact has\nnot been pinned this session.\n",
+        "scope": [
+          "bitfinex_ny",
+          "kraken_ny",
+          "shapeshift_ny",
+          "poloniex_ny"
+        ],
+        "status": "partially_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "cluster:bitlicense_non_compliant_exchanges",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "ny_state_geofencing_enabled_at_frontend",
+        "layer": "l4_frontend",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Direct attribution: each cluster-member exit announcement\nexplicitly cited the NYDFS BitLicense regulation as the\ncause. Cluster-level observation; per-platform exit-page\ncaptures live (partially) in the parent event\nnydfs-bitlicense-2015-06.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "bitfinex",
+                "kraken",
+                "shapeshift",
+                "poloniex",
+                "gocoin"
+              ],
+              "time_window": [
+                "2015-08-10T00:00:00+00:00",
+                "2015-08-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.dfs.ny.gov/virtual_currency_businesses",
+            "wayback": "https://web.archive.org/web/2015*/https://www.dfs.ny.gov/legal/regulations/adoptions/dfsp200t.pdf"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "CoinDesk 2015-08-09 report documenting Kraken and Bitfinex\nNY-service termination on the eve of the 2015-08-10 grace-\nperiod expiration. contextual_unarchived this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "bitfinex",
+                "kraken"
+              ],
+              "time_window": [
+                "2015-08-09T00:00:00+00:00",
+                "2015-08-15T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://www.coindesk.com/markets/2015/08/09/bitcoin-exchanges-kraken-and-bitfinex-cut-services-in-new-york",
+            "wayback": "https://web.archive.org/web/2015*/https://www.coindesk.com/markets/2015/08/09/bitcoin-exchanges-kraken-and-bitfinex-cut-services-in-new-york"
+          }
+        ],
+        "timestamp": "2015-08-10T00:00:00+00:00"
+      },
+      {
+        "actor": "cluster:bitlicense_non_compliant_exchanges",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "ny_resident_account_closures",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Fortune 2015-08-14 \"Behind the exodus of bitcoin startups\nfrom New York\" \u2014 cluster-level coverage of NY-resident\naccount-closure notices issued by Bitfinex, Kraken,\nShapeShift, Poloniex, and others. Direct attribution\nbecause each platform's closure notice references\nBitLicense. contextual_unarchived this session.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "bitfinex_ny",
+                "kraken_ny",
+                "shapeshift_ny",
+                "poloniex_ny"
+              ],
+              "time_window": [
+                "2015-08-10T00:00:00+00:00",
+                "2015-09-15T23:59:59+00:00"
+              ]
+            },
+            "type": "supporting_journalism",
+            "url": "https://fortune.com/2015/08/14/bitcoin-startups-leave-new-york-bitlicense/",
+            "wayback": "https://web.archive.org/web/2015*/https://fortune.com/2015/08/14/bitcoin-startups-leave-new-york-bitlicense/"
+          }
+        ],
+        "timestamp": "2015-08-10T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "nydfs-bitlicense-2015-06"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "\"The 2015-08-10 BitLicense grace-period expiration triggered a\ncluster of crypto exchange exits from the New York market:\nBitfinex, Kraken, ShapeShift, Poloniex, BitFlyer USA, OkCoin, and\nGoCoin all withdrew from serving NY-resident users via L4-frontend\nNY-state geofencing and offramp_cex account closures. Observational\naxes at l4_frontend and offramp_cex. Historical-baseline tier; not\nused in main statistical denominators.\"\n",
+    "status": "draft",
+    "tags": [
+      "historical_baseline_2013_2016",
+      "nydfs",
+      "bitlicense",
+      "bitfinex",
+      "kraken",
+      "shapeshift",
+      "poloniex",
+      "l4_frontend_geofence",
+      "cluster_exit",
+      "dryrun_2026_05_16",
+      "phase_b_2026_05_16"
+    ],
+    "target": {
+      "actor_name": "BitLicense-non-compliant crypto exchanges (cluster)",
+      "actor_type": "exchange",
+      "canonical_domains": [
+        "bitfinex.com",
+        "kraken.com",
+        "shapeshift.io",
+        "poloniex.com",
+        "gocoin.com"
+      ],
+      "chains": [
+        "bitcoin",
+        "ethereum"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Cluster of crypto exchanges and money-service businesses that\ndeclined to apply for the BitLicense and withdrew from serving\nNY-resident users on or around 2015-08-10. Documented exits\ninclude: Bitfinex, Kraken, ShapeShift, Poloniex, BitFlyer USA,\nOkCoin, GoCoin, Bitstamp (declined). Coinbase and Circle did\napply and received licenses later (2017+).\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "US_NYDFS",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "NYDFS 23 NYCRR Part 200 (BitLicense) became fully effective on\n2015-08-08; the 45-day application grace period set 2015-08-10\nas the de-facto cutoff for platforms to either apply or exit\nthe NY market. Multiple platforms publicly announced NY market\nexit on or around this date. evidence_use=contextual_unarchived;\nbody_hash not captured this session. The parent rulemaking event\nnydfs-bitlicense-2015-06 carries the archived rule-text capture.\n",
+          "type": "primary_legal",
+          "url": "https://www.dfs.ny.gov/virtual_currency_businesses",
+          "wayback": "https://web.archive.org/web/2015*/https://www.dfs.ny.gov/legal/regulations/adoptions/dfsp200t.pdf"
+        }
+      ],
+      "timestamp": "2015-08-10T00:00:00+00:00",
+      "timestamp_precision": "day",
       "type": "court_civil_order"
     },
     "version": "0.1"
@@ -11414,6 +13291,138 @@
     "version": "0.1"
   },
   {
+    "_source_file": "russia-cbr-bitcoin-information-letter-2014.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "NEW EVENT AUTHORED \u2014 AGENT DRAFT 2026-05-16. Historical-baseline\nauthoring pass for the 2014-01-27 Bank of Russia information letter\n\"\u041e\u0431 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043f\u0440\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u0438\u0438 \u0441\u0434\u0435\u043b\u043e\u043a \u00ab\u0432\u0438\u0440\u0442\u0443\u0430\u043b\u044c\u043d\u044b\u0445 \u0432\u0430\u043b\u044e\u0442\u00bb, \u0432\n\u0447\u0430\u0441\u0442\u043d\u043e\u0441\u0442\u0438, \u0411\u0438\u0442\u043a\u043e\u0439\u043d\" (\"On Using Virtual Currencies, Specifically\nBitcoin, in Transactions\"). origin=agent_draft and status=draft;\nhuman re-verification of (i) the cbr.ru source URL reachability and\nWayback snapshot pinning, (ii) the Library of Congress English-\nsummary snapshot pinning, and (iii) any contemporaneous Russian\noff-ramp class-level measurement evidence (TASS / RIA Novosti /\nReuters / CoinDesk / bits.media) is required before this event may\nbe promoted to human_reviewed and admitted.\n\nWhy historical_baseline tier: events 2013\u20132016 belong to the\nhistorical_baseline_2013_2016 temporal tier per the 2008+ tiered\nframe in sampling/frame.yaml. analysis_use=historical_baseline\nexcludes this row from the 2017+ comparable-analysis denominator,\nmatching the validator's tier-vs-analysis-use consistency rule.\n\nWhy empirical_shape=null_event / admission_tier=null_case: this\nevent has zero observed_change observations. The CBR letter is an\nAML/CFT advisory, not a banking-rail severance directive, and no\nenumerated Russian crypto-exchange or banking counterfactual has\nbeen pinned in this authoring pass. The single observation row is\nobservation_kind=coverage_gap with attribution=plausible, which\ndoes not contribute toward empirical_shape or admission_tier.\nTreated as historical-baseline context rather than admission-grade\ncascade evidence.\n\nWhy trigger.type=nation_state_block: the schema enum\ntrigger_types includes nation_state_block but does not include a\ndistinct \"regulatory_advisory\" or \"warning\" type. nation_state_block\nis the closest enum for a single-country central-bank action and is\nthe same trigger.type used by the sibling china-pboc-crypto-ban-\n2013-12 historical-baseline event. The advisory-vs-ban distinction\nis captured in analysis_notes and scoped_knowledge rather than in\ntrigger.type.\n\nWhy target.kind=entity / enumeration=subset: schema target_kinds\ndoes not include \"regulatory_class\" or \"exchange\"; entity is the\nclosest enum for a population-class target and matches the China\n2013 / China 2021 / India 2018 sibling pattern. enumeration=subset\nrather than complete because the advisory addresses a Russia-\nresident bitcoin-user class without a fixed roster.\n\nWhy all coverage layers are not_applicable except offramp_cex:\nL0 (not_applicable) \u2014 no ISP / DNS directive in the letter; Russian\nnetwork-layer crypto blocking is a downstream 2017+ Roskomnadzor\nphenomenon. L1 (not_applicable) \u2014 Ethereum PBS relay primitive\ndoes not exist in 2014. L3 (not_applicable) \u2014 public-RPC compliance\nprimitive (Flashbots Protect / MEV-Blocker) does not exist in 2014.\nL4 (not_applicable) \u2014 scope mismatch: the advisory does not target\nspecific frontends. asset_onchain (not_applicable) \u2014 bitcoin has\nno issuer-side admin freeze primitive and USDT did not exist in\n2014-01. offramp_cex (not_measured) \u2014 the advisory is plausibly\noff-ramp-relevant but no enumerated measurement is pinned.\n\nCross-temporal context: this 2014-01-27 information letter\nprecedes the later CBR-led 2017+ enforcement posture and the 2022\nCBR full crypto-payments ban (russia-cbr-crypto-payment-ban-2022).\nThe cross-temporal sibling pair (2014 advisory \u2192 2022 ban) is a\nwithin-jurisdiction longitudinal anchor for the Russian\ncentral-bank crypto-disposition trajectory. The 2013-12-05 PBOC\nNotice 2013/289 (china-pboc-crypto-ban-2013-12) is a contemporaneous\ncross-jurisdictional comparator one month earlier, with a stronger\ncascade (PRC three-exchange CNY-deposit pause) because the PRC\nnotice was a banking-rail severance directive rather than an\nAML/CFT advisory.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2014-01-27 CBR information letter does not direct ISP-level\ndomain blocking or DNS interference. Russian network-layer\nblocking of crypto-exchange domains is a downstream and later\nphenomenon (Roskomnadzor enforcement actions begin 2017+) that\nis not part of this 2014-01-27 advisory trigger. L0 marked\nnot_applicable consistent with the China 2013 / India 2018\nsibling treatment of nation-state regulatory-advisory and\nbanking-rail events.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2014-01 has no protocol-level\nrelay-filter primitive analogous to the post-Merge Ethereum PBS\nrelay surface. The Ethereum Merge itself is ~8.5 years downstream\n(2022-09-15). not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist in\n2014; Flashbots Protect launched 2022-11 and MEV-Blocker launched\n2023-03-27. not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The 2014-01-27 CBR letter is a population-class advisory, not a\ndirective to take down specific frontends. Russian-language\nbitcoin frontends were not enumerated targets of this advisory,\nand Russian frontends were not part of a dominant domestic\nexchange ecosystem at the time. not_applicable on\nscope-mismatch grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Bitcoin native asset has no issuer-side blacklist / freeze admin\nmethod. The 2014-01-27 advisory does not engage a stablecoin-\nissuer admin path (USDT first issued ~2014-10; chainwide admin\nfreezes arose later). not_applicable on construct-did-not-exist\ngrounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "The CBR information letter is functionally an AML/CFT advisory\ndirected at Russian credit and non-credit financial organizations\nand the Russia-resident bitcoin-user class. It is plausible that\nRussian banks tightened or refused virtual-currency-related\naccount servicing in response, but no enumerated Russian\ncrypto-exchange triad analogous to the 2013-12 PRC case has been\npinned in this authoring pass, and contemporaneous public\nmeasurement of Russian off-ramp behavior in the 2014-01 window\nhas not been re-verified. Dispersed cascade with no load-bearing\ndirect-attribution observation available. Marked not_measured\nwith a coverage_gap observation row below.\n",
+        "status": "not_measured"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "russia-cbr-bitcoin-information-letter-2014",
+    "jurisdiction": [
+      "RU"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "russia_resident_bitcoin_offramp_class",
+        "attribution": "unknown",
+        "event": "cbr_aml_cft_advisory_dispersed_cascade",
+        "layer": "offramp_cex",
+        "note": "The 2014-01-27 CBR information letter plausibly influenced the\nwillingness of Russian credit and non-credit financial\norganizations to service virtual-currency-related accounts, but\nno enumerated counterfactual or class-level off-ramp measurement\nhas been pinned in this authoring pass. Recorded as coverage_gap\nwith attribution=unknown to signal a dispersed cascade\nconsistent with the advisory's framing (AML/CFT-violation\nwarning + monetary-surrogate prohibition reference) without\nclaiming a measured observed_change. Schema observation_kind\nenum does not include \"not_observed\"; coverage_gap is the\ncanonical pattern for class-level dispersed advisories without\nmeasured action evidence (cf. fincen-virtual-currency-msb-\nguidance-2013). Validator rule constrains coverage_gap rows to\nattribution \u2208 {unknown, none}; \"unknown\" reads as\nplausibly-influenced-but-not-measured here.\n",
+        "observation_kind": "coverage_gap",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "CBR 2014-01-27 information letter is the legal instrument.\nThe letter explicitly warns Russian citizens and legal\nentities (in particular credit and non-credit financial\norganizations) against virtual-currency exchange activity\nand frames such activity by Russian businesses as\npotentially constituting AML/CFT violations. Provisional\nwayback anchor; specific snapshot timestamp requires\nhuman-audit re-pinning.\n",
+            "type": "primary_legal",
+            "url": "http://www.cbr.ru/press/pr/?file=27012014_1825052.htm",
+            "wayback": "https://web.archive.org/web/2014/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "Library of Congress Global Legal Monitor 2014-02-06 English\nsummary of the CBR 2014-01-27 letter, corroborating the\nadvisory's scope and the cited Article 27 of the CBR Law.\nSpecific Wayback snapshot timestamp requires re-pinning in\nhuman audit.\n",
+            "type": "supporting_tracker",
+            "url": "https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/",
+            "wayback": "https://web.archive.org/web/2014/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/"
+          }
+        ],
+        "timestamp": "2014-01-27T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "russia-cbr-crypto-payment-ban-2022",
+      "china-pboc-crypto-ban-2013-12"
+    ],
+    "research_stratum": "S4_nation_state",
+    "schema_version": "0.2.0",
+    "status": "draft",
+    "tags": [
+      "nation_state_block",
+      "russia",
+      "cbr",
+      "bitcoin",
+      "regulatory_advisory",
+      "historical_baseline",
+      "aml_cft"
+    ],
+    "target": {
+      "actor_name": "Russia-resident bitcoin users (CBR advisory class)",
+      "actor_type": "russia_resident_bitcoin_user_class",
+      "canonical_domains": [],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Canonical target is the CBR advisory directed at Russia-resident\nbitcoin users and Russian legal entities (in particular credit\nand non-credit financial organizations). This is a class-level\nadvisory, not an enumerated entity list: the letter does not\nname specific exchanges or individual addresses. No Russian\ncrypto-exchange ecosystem of the scale of the contemporaneous\nPRC triad (BTC China, OKCoin, Huobi) existed at the time, and\nthe advisory's binding force on residents was indirect (an\nAML/CFT-violation warning rather than a banking-rail severance\ndirective). Enumeration=subset rather than complete because the\nadvisory addresses a population class without a fixed roster.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "RU_CBR",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "Central Bank of the Russian Federation (Bank of Russia / CBR)\ninformation letter dated 2014-01-27 titled \"\u041e\u0431 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043f\u0440\u0438\n\u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u0438\u0438 \u0441\u0434\u0435\u043b\u043e\u043a \u00ab\u0432\u0438\u0440\u0442\u0443\u0430\u043b\u044c\u043d\u044b\u0445 \u0432\u0430\u043b\u044e\u0442\u00bb, \u0432 \u0447\u0430\u0441\u0442\u043d\u043e\u0441\u0442\u0438, \u0411\u0438\u0442\u043a\u043e\u0439\u043d\"\n(\"On Using Virtual Currencies, Specifically Bitcoin, in\nTransactions\"). The Bank of Russia warned Russian citizens and\nlegal entities (in particular credit and non-credit financial\norganizations) against using virtual currencies for exchange\ninto goods, services, or monetary funds in rubles and foreign\ncurrency. The letter framed virtual-currency exchange activities\nby Russian business entities as \"dubious activity\" potentially\nconstituting involvement in money-laundering and\nterrorism-financing under Russian AML/CFT law, and invoked\nArticle 27 of the Federal Law \"On the Central Bank of the\nRussian Federation\" which prohibits the issuance of monetary\nsurrogates in Russia. This was an information letter / advisory\n\u2014 not a formal prohibition on residents holding bitcoin \u2014 but\nsignaled the regulatory disposition that anticipates the later\nCBR-led 2017+ enforcement posture and the 2022 CBR full\ncrypto-payments ban. Russian-language original on cbr.ru.\nWayback wildcard anchor is provisional; specific snapshot\ntimestamp must be re-pinned during human audit before this\ncitation may carry an admission anchor in its own right. Marked\nevidence_use=contextual_unarchived pending that re-pin.\n",
+          "type": "primary_legal",
+          "url": "http://www.cbr.ru/press/pr/?file=27012014_1825052.htm",
+          "wayback": "https://web.archive.org/web/2014/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "US Library of Congress Global Legal Monitor entry dated\n2014-02-06 titled \"Russia: Bitcoin Exchanges Can Be Penalized\",\nproviding English-language summary of the 2014-01-27 Bank of\nRussia information letter and naming Article 27 of the CBR Law\nas the cited legal basis. Used here as a contextual translation\nanchor; specific Wayback snapshot timestamp to be re-pinned\nduring human audit. Marked evidence_use=contextual_unarchived.\n",
+          "type": "supporting_tracker",
+          "url": "https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/",
+          "wayback": "https://web.archive.org/web/2014/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/"
+        }
+      ],
+      "timestamp": "2014-01-27T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "The CBR information letter carries a 2014-01-27 issuance date,\nwhich is the date used by contemporaneous Russian-language and\nEnglish-language secondary coverage (Library of Congress, TASS,\nReuters, CoinDesk). Day-level precision is appropriate because\nthe CBR information letter does not carry intra-day publication\ntiming in the public record.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "nation_state_block"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "russia-election-interference-ofac-2020.yaml",
     "admission_tier": "empirical_case",
     "analysis_notes": "comparison documenting the 2020-09-10 Russia-linked election interference\nactor designations. 6-chain address diversity (second-most diverse in the dataset after\n2020-09-16 Russian cyber theft). Pre-Merge; individual-level; most infrastructure layers\nstructurally not_applicable.\n",
@@ -12325,6 +14334,169 @@
       "timestamp_sources": [
         {
           "note": "Day-level precision per SEC press release 2014-273 dated 2014-12-08.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "sec_action"
+    },
+    "version": "0.1"
+  },
+  {
+    "_source_file": "sec-garza-gaw-miners-zenminer-2015.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B authoring): new\nhistorical-baseline event for the 2015-12-01 SEC civil action filed\nin D. Conn. against Homero Joshua Garza and his cloud-mining\ncompanies GAW Miners, LLC and ZenMiner, LLC for the unregistered\nsale of Hashlet \"securities\" pointing to nonexistent or oversold\ncloud-mining capacity. Authored by LLM agent without personally\nverifying Wayback/body_hash; origin=agent_draft and status=draft\nper validator constraint (agent_draft incompatible with admitted).\nReal release must replace this DRYRUN marker with a human-verified\naudit after pinning real archive anchors (the wayback URLs here are\n2015 wildcard pointers, not pinned snapshot timestamps).\n\nThin-cascade comparison shape: 1 observed_change layer (l4_frontend,\ngawminers.com / zenminer.com taken offline as cloud-mining service\nsurfaces following the SEC complaint and parallel corporate\ncollapse). L0/L1/L3/asset_onchain/offramp_cex are all\nnot_applicable: no network-layer block was directed, 2015 predates\nthe post-Merge PBS L1/L3 measurement surface by ~7 years, Hashlets\nwere service contracts rather than on-chain freezable tokens, and\nGAW Miners was a cloud-mining service operator rather than a fiat\noff-ramp / exchange. attribution=direct via the SEC primary-legal\nsources naming Garza and his companies as the targets of the\nunregistered-securities-fraud action. Admission tier empirical_case\n(1 strong-attribution observed_change layer).\n\nWhy historical_baseline tier: 2015-12 sits inside the\nhistorical_baseline_2013_2016 temporal tier per the 2008+ tiered\nframe. analysis_use=historical_baseline excludes this row from the\n2017+ comparable-analysis denominator while keeping it as\ncross-temporal context for the SEC's early-crypto enforcement\nrecord against crypto-adjacent securities-fraud schemes. Sibling\nrows in the same tier and family:\n- sec-shavers-btcst-2013 (2013-07-23 SEC civil filing against\n  BTCST; Bitcoin-denominated Ponzi; offramp_cex single-layer);\n- sec-burnside-bitcoin-stock-exchange-2014 (2014-12-08 SEC cease-\n  and-desist against BTCT and LTC-Global; unregistered crypto-\n  denominated securities exchange; L4 + offramp_cex two-layer);\n- sec-voorhees-satoshidice-2014 (sibling 2014 SEC enforcement\n  against an unregistered crypto-securities offering).\n\nDistinguishing feature: GAW Miners / ZenMiner is the only\nhistorical-baseline SEC enforcement in this slice against a\ncloud-mining service rather than an exchange or pure investment\nscheme. The cascade is correspondingly thin: only the L4 frontend\nrecords an observed_change, because the target operator class\n(service provider) does not surface at the exchange/off-ramp or\non-chain-asset layers.\n",
+    "analysis_use": "historical_baseline",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The 2015-12-01 SEC civil action did not direct any ISP-level,\nDNS, or network-layer block of gawminers.com or zenminer.com.\nPublic-web L0 instruments (Censored Planet, OONI) do not apply;\nany subsequent disappearance of the operator surfaces was a\ncorporate consequence of enforcement exposure rather than a\nnetwork-layer event.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus in 2015 has no protocol-level\nrelay-filter primitive analogous to the post-Merge Ethereum PBS\nrelay surface. The Ethereum Merge itself is ~7 years downstream\n(2022-09-15). not_applicable on construct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "l3_rpc",
+        "note": "The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC\ncompliance substrate that the L3 layer measures did not exist\nin 2015 (Flashbots Protect launched 2022-11). not_applicable on\nconstruct-did-not-exist grounds.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "Load-bearing layer. Following the 2015-12-01 SEC complaint and\nthe parallel collapse of GAW Miners / ZenMiner operations, the\ngawminers.com and zenminer.com public frontends ceased operating\nas cloud-mining-service surfaces in the weeks/months after\nfiling (site offline by early 2016). Coverage is\npartially_measured: the operator-surface cessation is publicly\nattested via the SEC primary-legal sources and contemporaneous\nreporting, but no pinned per-month Wayback frontend timeline\nhas been independently captured in this draft pass to bracket\nthe precise shutdown window.\n",
+        "scope": [
+          "gawminers.com",
+          "zenminer.com"
+        ],
+        "status": "partially_measured"
+      },
+      {
+        "chain": "bitcoin",
+        "layer": "asset_onchain",
+        "note": "Hashlets were service contracts (purported shares of digital\nmining capacity), not on-chain tokens with an issuer-side\nblacklist / freeze admin method. Bitcoin native asset is\nunfreezable at the protocol layer; no stablecoin admin-method\nsurface is implicated. not_applicable on construct-did-not-exist\ngrounds for the asset-onchain dimension as defined by this\ndataset.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "GAW Miners / ZenMiner was a cloud-mining service operator, not\na centralized exchange or fiat off-ramp; the companies did not\nfunction as a Bitcoin/fiat trading venue. The SEC action targets\nthe unregistered-securities offering (Hashlets), not an\nexchange/off-ramp function. not_applicable.\n",
+        "status": "not_applicable"
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "sec-garza-gaw-miners-zenminer-2015",
+    "jurisdiction": [
+      "US"
+    ],
+    "last_verified": "2026-05-16",
+    "observations": [
+      {
+        "actor": "frontend:gawminers_zenminer",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "gaw_miners_zenminer_cloud_mining_frontends_taken_offline_following_sec_action",
+        "layer": "l4_frontend",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "SEC Litigation Release No. 23415 names Garza, GAW Miners,\nand ZenMiner as the defendants in the unregistered-\nsecurities / Hashlet-fraud civil action. attribution=direct\nbecause the SEC complaint named the issuing operators by\nname and the public cloud-mining frontends (gawminers.com,\nzenminer.com) ceased operating as the cloud-mining service\nsurface within weeks/months of filing; the cessation was a\ndirect consequence of the enforcement action and parallel\ncorporate collapse rather than an independent business\ndecision. Wayback anchor is a 2015 wildcard pointer pending\nhuman-audit re-pin.\n",
+            "scope_descriptor": {
+              "domains": [
+                "gawminers.com",
+                "zenminer.com"
+              ],
+              "time_window": [
+                "2015-12-01T00:00:00+00:00",
+                "2016-06-30T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.sec.gov/litigation/litreleases/2015/lr23415.htm",
+            "wayback": "https://web.archive.org/web/2015/https://www.sec.gov/litigation/litreleases/2015/lr23415.htm"
+          },
+          {
+            "evidence_use": "contextual_unarchived",
+            "note": "SEC civil complaint (D. Conn.) details the Hashlet product\nand the operator-state collapse it precipitated.\nCorroborates the L4 frontend cessation observation at the\nprimary-legal tier. Wayback anchor is a 2015 wildcard\npointer pending human-audit re-pin.\n",
+            "type": "primary_legal",
+            "url": "https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf",
+            "wayback": "https://web.archive.org/web/2015/https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf"
+          }
+        ],
+        "timestamp": "2015-12-01T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "related_events": [
+      "sec-shavers-btcst-2013",
+      "sec-burnside-bitcoin-stock-exchange-2014",
+      "sec-voorhees-satoshidice-2014"
+    ],
+    "research_stratum": "S3_doj_sec_cftc_fiod",
+    "schema_version": "0.2.0",
+    "scoped_claim": "The 2015-12-01 SEC civil action against Homero Joshua Garza, GAW\nMiners, LLC, and ZenMiner, LLC for the unregistered sale of\nHashlet \"securities\" pointing to nonexistent or oversold cloud-\nmining capacity precipitated the cessation of the gawminers.com\nand zenminer.com cloud-mining-service frontends in the months\nfollowing filing. The row claims only this single-layer L4\nfrontend cessation observation with attribution=direct; no\nL0/L1/L3/asset-onchain/offramp_cex effects are coded because the\nHashlet product was a service contract rather than an on-chain\nfreezable token and the operator was a cloud-mining service\nrather than a fiat off-ramp / exchange.\n",
+    "status": "draft",
+    "tags": [
+      "sec_enforcement",
+      "unregistered_securities",
+      "cloud_mining_fraud",
+      "hashlet",
+      "gaw_miners",
+      "zenminer",
+      "garza",
+      "historical_baseline",
+      "pre_ofac_era",
+      "frontend_shutdown"
+    ],
+    "target": {
+      "actor_name": "GAW Miners / ZenMiner / Garza",
+      "actor_type": "cloud_mining_service_operator",
+      "canonical_domains": [
+        "gawminers.com",
+        "zenminer.com"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Named defendants: Homero Joshua Garza (individual founder/CEO);\nGAW Miners, LLC; and ZenMiner, LLC (d/b/a Zen Cloud). GAW Miners\nand ZenMiner were Connecticut-based cloud-mining service operators\nthat sold the \"Hashlet\" product \u2014 a service contract purporting to\nrepresent a share in digital Bitcoin mining capacity. Hashlets\nwere not on-chain tokens or freezable assets; they were\ncontractual claims against the issuing service. canonical_domains\nlists the two operator-controlled public surfaces. No on-chain BTC\naddresses are enumerated at this event-row level.\n",
+      "kind": "entity"
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "US_SEC",
+      "citation": [
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "SEC Litigation Release No. 23415 (2015-12-01): \"Homero Joshua\nGarza\" \u2014 announcing the SEC civil action filed in the U.S.\nDistrict Court for the District of Connecticut against Homero\nJoshua Garza and his Connecticut-based companies GAW Miners,\nLLC and ZenMiner, LLC (d/b/a Zen Cloud) for selling\nunregistered securities in the form of \"Hashlets\" \u2014 purported\nshares in a digital Bitcoin mining operation. From approximately\nAugust 2014 to December 2014, Garza and his companies sold\n~$20 million worth of Hashlet contracts to more than 10,000\ninvestors, while the companies did not own enough computing\npower to deliver the mining capacity promised; returns paid to\nsome investors came from proceeds of sales to other investors\n(Ponzi-style). Charges: violations of Securities Act Sections\n5(a), 5(c), and 17(a), and Exchange Act Section 10(b) /\nRule 10b-5. Wayback URL pinned as a 2015 wildcard anchor;\nevidence_use=contextual_unarchived because the authoring LLM\nagent has not personally captured a body_hash or pinned a\nspecific snapshot timestamp in this draft pass.\n",
+          "type": "primary_legal",
+          "url": "https://www.sec.gov/litigation/litreleases/2015/lr23415.htm",
+          "wayback": "https://web.archive.org/web/2015/https://www.sec.gov/litigation/litreleases/2015/lr23415.htm"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "SEC civil complaint (D. Conn., 2015-12-01) against Homero\nJoshua Garza, GAW Miners, LLC, and ZenMiner, LLC. Details the\nHashlet product as a securities-law \"investment contract\" under\nHowey: investors paid in for shares of computing power pointing\nto digital mining returns, with returns dependent on the\nmanagerial efforts of Garza and his companies. The complaint\nalleges Garza and the companies oversold cloud-mining capacity\nsubstantially beyond what they actually owned. Relief sought:\npermanent injunctive relief, disgorgement of ill-gotten gains\nplus prejudgment interest, and civil penalties. Wayback URL\npinned as a 2015 wildcard anchor; evidence_use=\ncontextual_unarchived pending human-audit re-pin and body_hash.\n",
+          "type": "primary_legal",
+          "url": "https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf",
+          "wayback": "https://web.archive.org/web/2015/https://www.sec.gov/files/litigation/complaints/2015/comp23415.pdf"
+        },
+        {
+          "evidence_use": "contextual_unarchived",
+          "note": "SEC press release 2015-271 (2015-12-01): \"SEC Charges Bitcoin\nMining Companies.\" Press-release corroboration of the\nlitigation release and complaint; characterizes the action as\nan SEC charge against Garza and the GAW Miners / ZenMiner\ncompanies for perpetrating a securities-fraud scheme through\nthe sale of Hashlets to more than 10,000 investors.\ncontextual_unarchived pending human-audit re-pin.\n",
+          "type": "primary_legal",
+          "url": "https://www.sec.gov/news/pressrelease/2015-271.html",
+          "wayback": "https://web.archive.org/web/2015/https://www.sec.gov/news/pressrelease/2015-271.html"
+        }
+      ],
+      "timestamp": "2015-12-01T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision per SEC Litigation Release No. 23415\nand SEC press release 2015-271, both dated 2015-12-01.\n",
           "type": "primary_legal"
         }
       ],

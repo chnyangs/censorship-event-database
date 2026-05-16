@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.2.0-rc-dryrun-4 · cutoff `2026-05-16` · commit `a0d61e2` · generated `2026-05-20T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-5 · cutoff `2026-05-16` · commit `036e341` · generated `2026-05-19T00:00:00Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 
@@ -8,8 +8,8 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | count | value | target | gap |
 | --- | ---: | ---: | ---: |
-| raw registry rows | 201 | audit surface | — |
-| distinct in-frame triggers | 108 | 150-250 milestone | 42 |
+| raw registry rows | 214 | audit surface | — |
+| distinct in-frame triggers | 121 | 150-250 milestone | 29 |
 | admitted events | 105 | 120 quality milestone | 15 |
 
 ## Status distribution
@@ -17,7 +17,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | registry_status | count |
 | --- | ---: |
 | `admitted` | 105 |
-| `draft` | 3 |
+| `draft` | 16 |
 | `promoted_to_event` | 45 |
 | `rejected` | 1 |
 | `screened_no_extractor_target` | 47 |
@@ -27,14 +27,14 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | temporal_tier | rows |
 | --- | ---: |
 | `comparable_main_2017_present` | 177 |
-| `historical_baseline_2013_2016` | 24 |
+| `historical_baseline_2013_2016` | 37 |
 
 ## Analysis-use distribution
 
 | analysis_use | rows |
 | --- | ---: |
 | `comparable_analysis` | 177 |
-| `historical_baseline` | 24 |
+| `historical_baseline` | 37 |
 
 ## Stratum expansion gaps
 
@@ -42,10 +42,10 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `S1_ofac_sdn` | 27 | 26 | 30 | 4 | 35 | 9 | 50 | 23 |
 | `S2_ofac_removal` | 1 | 1 | 5 | 4 | 10 | 9 | 10 | 9 |
-| `S3_doj_sec_cftc_fiod` | 42 | 42 | 20 | 0 | 30 | 0 | 40 | 0 |
-| `S4_nation_state` | 19 | 18 | 10 | 0 | 20 | 2 | 20 | 1 |
-| `S5_corporate` | 12 | 11 | 10 | 0 | 15 | 4 | 20 | 8 |
-| `S6_supranational` | 7 | 7 | 5 | 0 | 10 | 3 | 10 | 3 |
+| `S3_doj_sec_cftc_fiod` | 49 | 42 | 20 | 0 | 30 | 0 | 40 | 0 |
+| `S4_nation_state` | 21 | 18 | 10 | 0 | 20 | 2 | 20 | 0 |
+| `S5_corporate` | 14 | 11 | 10 | 0 | 15 | 4 | 20 | 6 |
+| `S6_supranational` | 9 | 7 | 5 | 0 | 10 | 3 | 10 | 1 |
 
 ## Phrasing lock
 
