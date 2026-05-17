@@ -1,0 +1,254 @@
+id: fsb-crypto-asset-recommendations-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: FSB
+  timestamp: 2023-07-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsb.org/2023/07/fsb-finalises-global-regulatory-framework-for-crypto-asset-activities/
+      wayback: https://web.archive.org/web/2023*/https://www.fsb.org/2023/07/fsb-finalises-global-regulatory-framework-for-crypto-asset-activities/
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3 supranational
+        discovery; lean run): authored by LLM agent without personally
+        verifying Wayback/body_hash; origin=agent_draft per validator
+        hard-rule. Human auditor must replace this DRYRUN marker with a
+        pinned archive anchor before release.
+
+        FSB press release announcing finalisation of the global regulatory
+        framework for crypto-asset activities, dated 2023-07-17. The
+        framework consists of two distinct sets of high-level
+        recommendations: (1) nine recommendations on the regulation,
+        supervision and oversight of crypto-asset activities and markets,
+        and (2) ten recommendations on the regulation, supervision and
+        oversight of global stablecoin arrangements (GSCs). Built on the
+        principle of "same activity, same risk, same regulation" and
+        strengthened in three areas post-FTX: client-asset safeguarding,
+        conflicts-of-interest, and cross-border cooperation.
+    - type: primary_legal
+      url: https://www.fsb.org/2023/07/high-level-recommendations-for-the-regulation-supervision-and-oversight-of-crypto-asset-activities-and-markets-final-report/
+      wayback: https://web.archive.org/web/2023*/https://www.fsb.org/2023/07/high-level-recommendations-for-the-regulation-supervision-and-oversight-of-crypto-asset-activities-and-markets-final-report/
+      evidence_use: contextual_unarchived
+      note: |
+        FSB "High-level Recommendations for the Regulation, Supervision
+        and Oversight of Crypto-asset Activities and Markets: Final
+        Report" published 2023-07-17. Nine recommendations covering
+        regulatory powers and tools, cross-border cooperation,
+        governance, risk management, data reporting, disclosures,
+        addressing financial-stability risks of interconnections, and
+        comprehensive regulation of crypto-asset service providers with
+        multiple functions. DRYRUN: archival anchor unverified by LLM
+        agent at authoring time.
+    - type: primary_legal
+      url: https://www.fsb.org/2023/07/high-level-recommendations-for-the-regulation-supervision-and-oversight-of-global-stablecoin-arrangements-final-report/
+      wayback: https://web.archive.org/web/2023*/https://www.fsb.org/2023/07/high-level-recommendations-for-the-regulation-supervision-and-oversight-of-global-stablecoin-arrangements-final-report/
+      evidence_use: contextual_unarchived
+      note: |
+        FSB "High-level Recommendations for the Regulation, Supervision
+        and Oversight of Global Stablecoin Arrangements: Final Report"
+        published 2023-07-17. Ten recommendations for GSC arrangements,
+        addressing financial-stability risks at both domestic and
+        international levels. DRYRUN: archival anchor unverified by LLM
+        agent at authoring time.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        FSB publication date 2023-07-17 (per FSB site press release and
+        G20 reporting cycle). Day-level precision. DRYRUN authored
+        2026-05-17.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level supranational regulatory consensus targeting the global
+    crypto-asset ecosystem: (1) crypto-asset service providers (CASPs),
+    centralized exchanges, custodians, trading platforms, and providers
+    with multiple functions; and (2) global stablecoin arrangements
+    (GSCs) including issuers, governance bodies, and reserve managers
+    (Tether, Circle, Paxos, and any cross-jurisdictionally significant
+    stablecoin arrangement). Per §7 codebook, class-level regulatory
+    consensus is encoded as enumeration=subset with the class-level
+    rationale documented here. No address-level enumeration; binding
+    force is via FSB-member jurisdiction implementation (G20 endorsement
+    cycle, IMF-FSB joint synthesis paper, and IOSCO/BCBS/CPMI parallel
+    standard-setting). Downstream affected entities span FSB-member
+    jurisdictions' regulatory implementations.
+  actor_type: supranational_standard_setting_body
+  actor_name: FSB-member-jurisdiction crypto-asset / stablecoin ecosystem
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [UN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      The GSC recommendations cover stablecoin arrangements at the
+      supranational standard-setting layer but do not themselves
+      mandate on-chain asset-level blacklisting. No L_asset observed
+      change is directly attributable to the 2023-07-17 publication
+      date in isolation — downstream effects manifest via
+      jurisdiction-level stablecoin frameworks (EU MiCA stablecoin
+      titles, US stablecoin bills, UK FCA stablecoin regime) tracked
+      as separate child events.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Class-level supranational regulatory consensus at the off-ramp
+      layer (CASP regulatory powers, cross-border cooperation,
+      multi-function provider scope). No per-event observed_change
+      cascade attributable to the 2023-07-17 publication date in
+      isolation — downstream FSB-member implementations (EU MiCA
+      transitional milestones, IOSCO crypto policy recommendations,
+      national CASP rule updates) are tracked as separate child
+      events. Coded null_event per §3 codebook: 0 observed_change
+      layers directly attributable to this trigger at the corpus's
+      resolution.
+
+observations:
+  - layer: offramp_cex
+    actor: fsb_member_jurisdiction_casp_aggregate
+    event: fsb_2023_global_regulatory_framework_class_level_consensus
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-07-17T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.fsb.org/2023/07/fsb-finalises-global-regulatory-framework-for-crypto-asset-activities/
+        wayback: https://web.archive.org/web/2023*/https://www.fsb.org/2023/07/fsb-finalises-global-regulatory-framework-for-crypto-asset-activities/
+        scope_descriptor:
+          providers: [fsb_member_jurisdiction_casp_aggregate]
+          time_window:
+            - 2023-07-17T00:00:00Z
+            - 2024-12-31T23:59:59Z
+        note: |
+          FSB 2023-07-17 final reports finalise the global regulatory
+          framework for crypto-asset activities (9 recommendations) and
+          global stablecoin arrangements (10 recommendations). DRYRUN:
+          no per-event observed_change cascade is attributable to this
+          trigger at the corpus's resolution — downstream effects
+          manifest via FSB-member jurisdiction implementations (EU MiCA
+          transitional, IOSCO crypto policy, national CASP rule
+          updates), tracked as separate child events. Coverage_gap /
+          attribution=none per §1.1 codebook (observed_no_change-style
+          row at the class-level standard layer; admission requires
+          admission-grade sources, which are not asserted here pending
+          human-auditor anchor pinning).
+  - layer: asset_onchain
+    actor: fsb_member_jurisdiction_gsc_aggregate
+    event: fsb_2023_global_stablecoin_recommendations_class_level_consensus
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-07-17T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.fsb.org/2023/07/high-level-recommendations-for-the-regulation-supervision-and-oversight-of-global-stablecoin-arrangements-final-report/
+        wayback: https://web.archive.org/web/2023*/https://www.fsb.org/2023/07/high-level-recommendations-for-the-regulation-supervision-and-oversight-of-global-stablecoin-arrangements-final-report/
+        scope_descriptor:
+          providers: [fsb_member_jurisdiction_gsc_aggregate]
+          time_window:
+            - 2023-07-17T00:00:00Z
+            - 2024-12-31T23:59:59Z
+        note: |
+          FSB 2023-07-17 GSC final report sets ten high-level
+          recommendations for global stablecoin arrangements. DRYRUN:
+          no per-event observed_change at L_asset is directly
+          attributable to the 2023-07-17 publication date; downstream
+          effects manifest via jurisdiction-level stablecoin
+          frameworks (EU MiCA, etc.) tracked separately. Coverage_gap
+          / attribution=none per §1.1 codebook.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  null_event documenting the FSB's 2023-07-17 finalisation of the
+  global regulatory framework for crypto-asset activities. The
+  framework comprises two distinct sets of recommendations: (1) nine
+  high-level recommendations on the regulation, supervision and
+  oversight of crypto-asset activities and markets, and (2) ten
+  high-level recommendations on the regulation, supervision and
+  oversight of global stablecoin arrangements (GSCs). Both sets were
+  strengthened post-FTX in three areas: client-asset safeguarding,
+  conflicts-of-interest, and cross-border cooperation. The framework
+  is grounded in the principle of "same activity, same risk, same
+  regulation".
+
+  Per §5.1 codebook the trigger.type is supranational_regulation
+  (FSB is the G20 financial-stability standard-setting body). Per §5.2
+  codebook the stratum is S6_supranational. Per §6 codebook the
+  temporal_tier is comparable_main_2017_present and the canonical
+  analysis_use is comparable_analysis. Per §7 codebook the enumeration
+  is `subset` with the class-level rationale documented in
+  target.enumeration_note (FSB recommendations operate at the
+  international standard-setting layer; binding force is via
+  FSB-member jurisdiction implementation under G20 endorsement). Per
+  §3 codebook the empirical_shape is null_event: 0 observed_change
+  layers directly attributable to the 2023-07-17 publication date.
+  Per §4 codebook admission_tier=null_case (0 strong-attribution
+  observed_change layers).
+
+  Per §1.1 codebook, both off-ramp and asset_onchain rows use
+  attribution=`none` because observation_kind=`coverage_gap` (no
+  direct per-event observed_change at the corpus's resolution). This
+  event functions as a parent / standards-layer anchor for the
+  downstream FSB-member jurisdiction CASP and stablecoin rule cascades
+  and as a temporal landmark for the 2023-2024 wave of national
+  crypto-asset regulation. It sits alongside the G20 roadmap
+  (g20-roadmap-crypto-asset-policy-2023) and the FATF 2023 targeted
+  update (fatf-targeted-update-va-vasp-2023) as part of the
+  coordinated 2023 supranational regulatory wave.
+
+  DRYRUN: archival anchors asserted but not personally verified by
+  the LLM agent; human auditor must pin real Wayback / body_hash
+  anchors before release.
+
+scoped_claim: |
+  "The FSB's 2023-07-17 finalised global regulatory framework for
+  crypto-asset activities (nine recommendations) and global
+  stablecoin arrangements (ten recommendations) is a class-level
+  supranational regulatory consensus by the G20 financial-stability
+  authority. Coded as null_event / null_case at the corpus's
+  resolution: no per-event observed_change cascade is directly
+  attributable to the 2023-07-17 publication date; downstream
+  FSB-member jurisdiction implementations are tracked as separate
+  child events."
+
+related_events:
+  - g20-roadmap-crypto-asset-policy-2023
+  - fatf-targeted-update-va-vasp-2023
+
+tags:
+  - supranational_regulation
+  - fsb
+  - g20
+  - stablecoin_scope
+  - casp_scope
+  - global_stablecoin_arrangements
+  - supranational_trigger
+  - parent_event
+  - null_event

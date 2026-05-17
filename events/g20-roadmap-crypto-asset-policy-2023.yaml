@@ -1,0 +1,219 @@
+id: g20-roadmap-crypto-asset-policy-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: G20
+  timestamp: 2023-09-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fsb.org/2023/09/imf-fsb-synthesis-paper-policies-for-crypto-assets/
+      wayback: https://web.archive.org/web/2023*/https://www.fsb.org/2023/09/imf-fsb-synthesis-paper-policies-for-crypto-assets/
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3
+        supranational discovery; lean run): authored by LLM agent
+        without personally verifying Wayback/body_hash; origin=
+        agent_draft per validator hard-rule. Human auditor must
+        replace this DRYRUN marker with a pinned archive anchor
+        before release.
+
+        G20 New Delhi Leaders' Declaration (endorsed 2023-09-09)
+        endorsed the FSB high-level recommendations for the
+        regulation, supervision and oversight of crypto-asset
+        activities and markets and of global stablecoin
+        arrangements, alongside the IMF-FSB Synthesis Paper
+        "Policies for Crypto-Assets" (7 September 2023) which sets
+        out an implementation roadmap. All 83 paragraphs of the
+        declaration were passed unanimously (G20 consensus,
+        including China and Russia). Foundational G20-level
+        coordination instrument for cross-jurisdictional crypto-
+        asset regulation; downstream effects cascade via FSB R1
+        recommendations, FATF R.15 INR updates, and national
+        implementation.
+    - type: primary_legal
+      url: https://www.fsb.org/uploads/R070923-1.pdf
+      wayback: https://web.archive.org/web/2023*/https://www.fsb.org/uploads/R070923-1.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        IMF-FSB Synthesis Paper "Policies for Crypto-Assets"
+        (7 September 2023). Synthesises IMF and FSB (and standard-
+        setting body) policy recommendations and concludes with an
+        implementation roadmap covering institutional capacity
+        building beyond G20, global coordination/cooperation,
+        information sharing, and data-gap closure. DRYRUN:
+        archival anchor unverified by LLM agent at authoring time.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        G20 New Delhi Leaders' Declaration endorsement date
+        2023-09-09 (G20 Summit, New Delhi). Day-level precision.
+        IMF-FSB Synthesis Paper carries a 2023-09-07 publication
+        date; the canonical trigger timestamp is the 2023-09-09
+        Leaders' endorsement. DRYRUN authored 2026-05-17.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level G20-coordination instrument addressing crypto-asset
+    activities and markets and global stablecoin arrangements in
+    G20-member jurisdictions and (per the IMF-FSB Synthesis Paper's
+    implementation roadmap) beyond G20 via capacity-building and
+    coordination work. Per §7 codebook, class-level regulatory
+    coordination is encoded as enumeration=subset with the class-
+    level rationale documented here. No address-level enumeration;
+    binding force is via FSB / FATF / IOSCO / IMF standard-setter
+    work programs and national implementation. Downstream affected
+    entities include centralized exchanges and custodians,
+    stablecoin issuers (Tether, Circle, Paxos), and DeFi
+    arrangements whose governance bodies are within FSB/FATF
+    standards scope.
+  actor_type: supranational_coordination_body
+  actor_name: G20-jurisdiction crypto-asset ecosystem
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [UN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Class-level G20 coordination instrument; no L4 domain-level
+      effect at the G20 supranational layer.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The Roadmap endorses FSB stablecoin recommendations but does
+      not itself mandate on-chain asset-level blacklisting. No
+      L_asset effect attributable to the 2023-09-09 endorsement
+      date as such.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Class-level G20 coordination instrument at the off-ramp layer
+      (endorses FSB crypto/stablecoin recommendations and IMF-FSB
+      Synthesis Paper implementation roadmap). No per-event
+      observed_change cascade attributable to the 2023-09-09
+      endorsement date in isolation — downstream effects manifest
+      via FSB R1 recommendations (fsb-crypto-asset-recommendations-
+      2023), FATF R.15 targeted updates (fatf-targeted-update-va-
+      vasp-2023), and national implementations which are tracked
+      as separate child events. Coded null_event per §3 codebook:
+      0 observed_change layers directly attributable to this
+      trigger at the corpus's resolution.
+
+observations:
+  - layer: offramp_cex
+    actor: g20_member_state_crypto_aggregate
+    event: g20_2023_roadmap_crypto_asset_policy_endorsement
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-09-09T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.fsb.org/2023/09/imf-fsb-synthesis-paper-policies-for-crypto-assets/
+        wayback: https://web.archive.org/web/2023*/https://www.fsb.org/2023/09/imf-fsb-synthesis-paper-policies-for-crypto-assets/
+        scope_descriptor:
+          providers: [g20_member_state_crypto_aggregate]
+          time_window:
+            - 2023-09-09T00:00:00Z
+            - 2024-12-31T23:59:59Z
+        note: |
+          G20 New Delhi Leaders' Declaration endorsement of the
+          IMF-FSB Synthesis Paper and FSB high-level recommendations
+          on crypto-assets and global stablecoin arrangements is a
+          class-level coordination instrument. DRYRUN: no per-event
+          observed_change cascade is attributable to this trigger
+          at the corpus's resolution — downstream effects manifest
+          via FSB / FATF / national implementations which are
+          tracked as separate child events. Coverage_gap /
+          attribution=none per §1.1 codebook (observed_no_change-
+          style row at the class-level coordination layer;
+          admission requires admission-grade sources, which are not
+          asserted here pending human-auditor anchor pinning).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  null_event documenting the G20 Roadmap on Crypto-Asset Policy
+  endorsed at the G20 New Delhi Leaders' Summit on 2023-09-09.
+  The Leaders' Declaration endorsed (i) the FSB high-level
+  recommendations for the regulation, supervision and oversight of
+  crypto-asset activities and markets and of global stablecoin
+  arrangements, and (ii) the IMF-FSB Synthesis Paper "Policies for
+  Crypto-Assets" (7 September 2023) which sets out an implementation
+  roadmap covering capacity building beyond G20, global coordination
+  and information sharing, and data-gap closure.
+
+  Per §5 codebook trigger.type=supranational_regulation maps to
+  research_stratum=S6_supranational; the actor is G20 (a
+  supranational coordination forum). Per §6 codebook the
+  temporal_tier is comparable_main_2017_present and the canonical
+  analysis_use is comparable_analysis. Per §7 codebook the
+  enumeration is `subset` with the class-level rationale documented
+  in target.enumeration_note (G20 coordination operates at the
+  international-standards layer; binding force is via standard-
+  setter work programs and national implementation). Per §3
+  codebook the empirical_shape is null_event: 0 observed_change
+  layers directly attributable to the 2023-09-09 endorsement date;
+  downstream cascades (FSB R1, FATF 2023 targeted update, national
+  implementations) are tracked as separate child events. Per §4
+  codebook admission_tier=null_case (0 strong-attribution
+  observed_change layers).
+
+  Per §1.1 codebook, the single off-ramp row uses attribution=`none`
+  because observation_kind=`coverage_gap` (no direct per-event
+  observed_change at the corpus's resolution). This event functions
+  as a parent / coordination-layer anchor for the 2023 FSB and FATF
+  crypto-asset standards updates and as a temporal landmark for the
+  2023-2024 wave of G20-coordinated implementation work. DRYRUN:
+  archival anchors asserted but not personally verified by the LLM
+  agent; human auditor must pin real Wayback / body_hash anchors
+  before release.
+
+scoped_claim: |
+  "The G20 Roadmap on Crypto-Asset Policy, endorsed at the New Delhi
+  Leaders' Summit on 2023-09-09 together with the IMF-FSB Synthesis
+  Paper 'Policies for Crypto-Assets' (7 September 2023), is a
+  class-level G20 coordination instrument endorsing the FSB high-
+  level recommendations on crypto-asset activities and global
+  stablecoin arrangements. Coded as null_event / null_case at the
+  corpus's resolution: no per-event observed_change cascade is
+  directly attributable to the 2023-09-09 endorsement date;
+  downstream FSB, FATF, and national implementations are tracked
+  as separate child events."
+
+related_events:
+  - fsb-crypto-asset-recommendations-2023
+  - fatf-targeted-update-va-vasp-2023
+
+tags:
+  - supranational_regulation
+  - g20
+  - g20_roadmap
+  - imf_fsb_synthesis
+  - stablecoin_scope
+  - defi_scope
+  - supranational_trigger
+  - parent_event
+  - null_event

@@ -1,0 +1,366 @@
+id: consensys-metamask-infura-rpc-data-collection-2022-11
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - infura-alchemy-tornado-rpc-block-2022
+  - infura-metamask-donetsk-luhansk-block-2022-03
+
+trigger:
+  type: corporate_policy_change
+  actor: CONSENSYS_INC
+  timestamp: 2022-11-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://consensys.io/privacy-policy
+      wayback: https://web.archive.org/web/2022/https://consensys.io/privacy-policy
+      evidence_use: contextual_unarchived
+      note: |
+        ConsenSys privacy policy revision dated 2022-11-23 disclosing
+        that when a MetaMask user uses Infura as the default RPC
+        provider, Infura will collect the user's IP address and the
+        Ethereum wallet address whenever the user makes a transaction.
+        The disclosure is explicitly framed as a transparency update
+        about a pre-existing data-collection practice rather than an
+        introduction of a new collection. Wayback anchor is a 2022
+        calendar-folder pointer rather than a pinned snapshot of the
+        specific revision; pinned snapshot and body_hash are deferred
+        to the human-audit pass. Marked
+        evidence_use=contextual_unarchived per validator policy for
+        unarchived sources.
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/189717/consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura
+      wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/189717/consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura
+      evidence_use: contextual_unarchived
+      note: |
+        The Block contemporaneous coverage of the 2022-11-23 ConsenSys
+        privacy-policy update disclosing Infura IP+wallet-address
+        collection. Day-level timing triangulation. DRYRUN: pinned
+        Wayback snapshot deferred to human audit.
+    - type: supporting_journalism
+      url: https://decrypt.co/115486/infura-collect-metamask-users-ip-ethereum-addresses-after-privacy-policy-update
+      wayback: https://web.archive.org/web/2022/https://decrypt.co/115486/infura-collect-metamask-users-ip-ethereum-addresses-after-privacy-policy-update
+      evidence_use: contextual_unarchived
+      note: |
+        Decrypt contemporaneous coverage of the same ConsenSys
+        privacy-policy revision, noting the opt-out path (use a
+        self-hosted node or third-party RPC) by which the IP and
+        Ethereum-address collection can be avoided. Triangulation
+        source. DRYRUN: pinned Wayback snapshot deferred to human
+        audit.
+    - type: supporting_journalism
+      url: https://cryptoslate.com/consensys-updates-policy-to-collect-metamask-ip-data/
+      wayback: https://web.archive.org/web/2022/https://cryptoslate.com/consensys-updates-policy-to-collect-metamask-ip-data/
+      evidence_use: contextual_unarchived
+      note: |
+        CryptoSlate contemporaneous coverage of the ConsenSys privacy-
+        policy update, retained for community-reaction context (the
+        wallet-user concern about RPC-layer surveillance). DRYRUN:
+        pinned Wayback snapshot deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per the ConsenSys privacy-policy revision
+        date (2022-11-23) and contemporaneous The Block / Decrypt /
+        CryptoSlate coverage published 2022-11-24 to 2022-11-25.
+        precision=day reflects the LLM-author's inability to pin a
+        sub-day timestamp for the specific policy revision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The disclosure addresses the class of MetaMask end-users who use
+    Infura as the default RPC provider — i.e., the dominant default-
+    configuration MetaMask population that has not opted into a
+    self-hosted Ethereum node or a third-party RPC endpoint.
+    enumeration=subset because (a) the corporate-policy statement
+    addresses the user class collectively rather than enumerating
+    specific user accounts and (b) the opt-out path (self-hosted
+    node or third-party RPC) carves a documented exclusion from
+    the collection perimeter.
+  entity: MetaMask end-users on Infura default RPC
+  actor_type: wallet_user_class_via_managed_rpc
+  actor_name: MetaMask end-users using Infura as default RPC provider
+  chains: [ethereum]
+  canonical_domains:
+    - infura.io
+    - metamask.io
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The privacy-policy disclosure addresses application-layer
+      logging of incoming RPC requests at the Infura endpoints; it
+      does not direct ISP-level domain blocking or DNS / BGP routing
+      interference. not_applicable on construct-not-engaged grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Post-Merge Ethereum (Paris 2022-09-15, ~2 months prior), but
+      the disclosure concerns RPC-endpoint request logging — it does
+      not engage PBS / relay / builder block-production censorship
+      primitives at the consensus layer. not_applicable on
+      construct-not-engaged grounds.
+  - layer: l3_rpc
+    status: partially_measured
+    chain: ethereum
+    provider_scope: public_and_enterprise
+    note: |
+      The disclosure is at the L3 RPC layer: Infura (ConsenSys-
+      operated managed Ethereum RPC service) collects user IP
+      addresses and Ethereum wallet addresses on every RPC request
+      sent through it. This is a disclosure of pre-existing data-
+      collection practice rather than a new behavioral cutover — no
+      observable RPC-availability cascade is triggered by the policy
+      revision itself. Coverage is partially_measured because the
+      privacy-policy text is the canonical primary-corporate source
+      pinned at calendar-folder Wayback granularity (pending
+      body_hash on human audit); no behavioral L3 cascade is claimed.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend-UI change is required or documented at the
+      MetaMask wallet UI layer in response to the privacy-policy
+      disclosure. The wallet UI continued to function unchanged; the
+      disclosure is a textual transparency update rather than a UI
+      behavior change. not_applicable on construct-not-engaged
+      grounds in this null_event scope. (The MetaMask wallet UI is
+      the downstream-default surface for Infura RPC requests, so the
+      collection scope reaches MetaMask users via the L3 layer; the
+      L4 surface itself does not change.)
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level stablecoin freeze or on-chain asset action is
+      invoked by an RPC-endpoint data-collection disclosure.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The disclosure addresses RPC-layer request logging and does not
+      engage CEX off-ramps.
+
+observations:
+  - layer: l3_rpc
+    actor: rpc_provider:consensys_infura
+    event: privacy_policy_disclosure_of_preexisting_ip_and_ethereum_address_collection
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-11-23T00:00:00Z
+    precision: day
+    window:
+      - 2022-11-23T00:00:00Z
+      - 2023-02-23T00:00:00Z
+    sources:
+      - type: primary_corporate
+        url: https://consensys.io/privacy-policy
+        wayback: https://web.archive.org/web/2022/https://consensys.io/privacy-policy
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - consensys_infura
+          domains:
+            - metamask.io
+          time_window:
+            - 2022-11-23T00:00:00Z
+            - 2023-02-23T00:00:00Z
+        note: |
+          ConsenSys privacy-policy revision of 2022-11-23 disclosing
+          that Infura (the MetaMask default RPC provider) collects
+          user IP and Ethereum wallet addresses on every RPC request.
+          observation_kind=observed_no_change with attribution=none
+          because the policy revision discloses a pre-existing data-
+          collection practice rather than introducing a new
+          behavioral cutover at the RPC layer; no observable
+          availability cascade or new filter is triggered by the
+          disclosure itself. The opt-out path (self-hosted Ethereum
+          node or third-party RPC endpoint) is named in the policy
+          text. Codebook §1.1: attribution=none is reserved for
+          observed_no_change rows; codebook §3: 0 observed_change
+          layers → empirical_shape=null_event. DRYRUN: pinned
+          Wayback snapshot and body_hash for the specific 2022-11-23
+          revision are deferred to human audit; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/189717/consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura
+        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/189717/consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura
+        evidence_use: contextual_unarchived
+        note: |
+          The Block contemporaneous coverage (2022-11-24) of the
+          ConsenSys privacy-policy disclosure, retained for day-level
+          timing triangulation and for the framing that the
+          disclosure is a transparency update about pre-existing
+          collection rather than a new collection practice. DRYRUN:
+          pinned Wayback snapshot deferred to human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-tier
+  contextual case for the 2022-11-23 ConsenSys privacy-policy
+  revision that publicly disclosed Infura's collection of MetaMask
+  user IP addresses and Ethereum wallet addresses on every RPC
+  request when Infura is used as the default RPC provider. Authored
+  at status=draft and origin=agent_draft pending human audit of (i)
+  the ConsenSys privacy-policy URL reachability and pinned Wayback
+  snapshot for the 2022-11-23 revision, (ii) The Block / Decrypt /
+  CryptoSlate article permalinks, and (iii) any first-party MetaMask
+  help-center revision pinning the opt-out path narrative.
+
+  Codebook rule applied (§5.1): trigger.type=corporate_policy_change.
+  The action is a unilateral corporate privacy-policy revision by
+  ConsenSys; it is not an OFAC SDN designation, DOJ action, court
+  order, or nation-state block. research_stratum=S5_corporate per
+  §5.2 stratum-actor map.
+
+  Why null_event / null_case (codebook §3, §4): the privacy-policy
+  revision is a disclosure of pre-existing data-collection practice
+  rather than a behavioral cutover at the RPC layer. No new
+  availability filter, no new address-set screening, no new
+  IP-geographic block was introduced — the L3 RPC endpoint behavior
+  did not change on 2022-11-23, only the public documentation of
+  pre-existing logging was updated. The cascade surface is textual
+  / disclosure rather than behavioral. Per codebook §3, 0
+  observed_change layers → empirical_shape=null_event; per codebook
+  §4, 0 strong-attribution (direct/plausible) observed_change layers
+  → admission_tier=null_case. The single recorded observation is an
+  observed_no_change row at L3 with attribution=none per codebook
+  §1.1.
+
+  Why analysis_use=comparable_analysis: 2022-11-23 is within the
+  2017+ comparable-analysis corpus window. Canonical form per
+  codebook §6.
+
+  Why jurisdiction=corporate_global: ConsenSys is a US-incorporated
+  entity but the privacy-policy disclosure applies globally to all
+  MetaMask users using Infura default RPC, not to a US-resident-
+  user subset. Sibling Infura/MetaMask events in the corpus
+  (infura-alchemy-tornado-rpc-block-2022 at [US, corporate_global];
+  infura-metamask-donetsk-luhansk-block-2022-03 at [US,
+  corporate_global]) carry US in jurisdiction because they are
+  driven by US sanctions triggers. This event is not driven by a
+  US sanctions trigger (it is a transparency disclosure of pre-
+  existing collection); jurisdiction=[corporate_global] reflects the
+  global user-class scope without a sanctions-jurisdiction anchor.
+
+  Comparative value: this event is the privacy / surveillance
+  counterpart to the two sibling Infura/MetaMask cascade-shape
+  events of 2022:
+    - infura-metamask-donetsk-luhansk-block-2022-03 (L3+L4 IP-geo
+      region block, S5_corporate, comparison empirical_shape,
+      empirical_case admission tier).
+    - infura-alchemy-tornado-rpc-block-2022 (L3 address-set
+      sanctions screening with L4 downstream cascade, S5_corporate,
+      comparison empirical_shape, anchor_case admission tier).
+  Both siblings are observable-cascade S5_corporate events at the
+  L3 RPC layer driven by US sanctions triggers. This 2022-11
+  event is the null/disclosure counterpart at the same operator
+  (ConsenSys / Infura / MetaMask) and the same L3 layer, but the
+  cascade surface is textual (privacy policy) rather than
+  behavioral (RPC reachability or UI rendering). The triad
+  illustrates that the same operator's L3 substrate can produce
+  three distinct cascade shapes within ~9 months: address-set
+  screening (Aug 2022, anchor_case), IP-geo region blocking
+  (Mar 2022, empirical_case), and RPC-request metadata logging
+  (Nov 2022, null_case). The L3 substrate's surveillance
+  surface (this event) is the load-bearing context for the
+  paper's discussion of why public-RPC users face a privacy
+  asymmetry distinct from the censorship asymmetry surfaced by
+  the cascade-shape siblings.
+
+  DRYRUN caveats: the four primary-corporate and supporting-
+  journalism citations all carry 2022-calendar-folder Wayback
+  pointers rather than pinned snapshots; pinned snapshot
+  timestamps and body_hash captures are deferred to the human-
+  audit pass. For non-DRYRUN release, capture body_hash +
+  body_path for: (1) the ConsenSys privacy-policy revision dated
+  2022-11-23 (compare archive.org snapshots 2022-11-23..2022-11-25
+  for the "Infura" / "IP address" / "Ethereum wallet address"
+  language); (2) The Block, Decrypt, and CryptoSlate article
+  permalinks. Marked evidence_use=contextual_unarchived on all
+  citations to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "On 2022-11-23 ConsenSys updated the MetaMask privacy policy to
+  publicly disclose that Infura, when used as the MetaMask default
+  RPC provider, collects user IP addresses and Ethereum wallet
+  addresses on every RPC request. This is a disclosure of pre-
+  existing data-collection practice rather than a behavioral
+  cutover at the L3 RPC layer; no new availability filter, address-
+  set screen, or IP-geographic block is introduced. The single
+  recorded observation is an observed_no_change row at L3 with
+  attribution=none. The row does not claim any L0/L1/L4/asset/off-
+  ramp cascade."
+
+scoped_knowledge: |
+  What changed: only the public documentation. The ConsenSys
+  privacy policy was revised on 2022-11-23 to disclose that Infura
+  collects user IP and Ethereum wallet addresses on every RPC
+  request when used as the MetaMask default RPC provider. No
+  observable L3 RPC behavior changed on the disclosure date; the
+  collection practice was pre-existing.
+
+  What did not change or could not be measured: L0 network is not
+  applicable (the disclosure concerns application-layer logging,
+  not ISP-level blocking); L1 consensus is not applicable
+  (disclosure concerns RPC request logging, not PBS / relay block-
+  production); L4 frontend is not applicable (the wallet UI did
+  not change behavior); asset_onchain and offramp_cex are not
+  applicable. L3 is partially_measured because the canonical
+  primary-corporate source (the privacy-policy revision) is
+  pinned at calendar-folder Wayback granularity pending human
+  audit, and no behavioral cascade is claimed.
+
+  Attribution: the single L3 observation is observed_no_change with
+  attribution=none per codebook §1.1. The disclosure is direct
+  about the practice but the practice is pre-existing, so there is
+  no behavioral change at the L3 layer to attribute.
+
+  Comparative value: pairs with the two sibling Infura/MetaMask
+  cascade-shape S5_corporate events of 2022 to illustrate three
+  distinct L3-RPC-substrate cascade shapes from the same operator
+  within ~9 months: (a) IP-geo region blocking (March 2022,
+  comparison / empirical_case, driven by EO 14065); (b) address-set
+  sanctions screening (August 2022, comparison / anchor_case,
+  driven by the Tornado Cash OFAC SDN designation); and (c)
+  privacy/surveillance disclosure of pre-existing metadata
+  collection (this event, November 2022, null_event / null_case,
+  not driven by any specific US sanctions trigger). The pattern
+  surfaces the privacy asymmetry that public-RPC users face
+  alongside the censorship asymmetry already documented in the
+  cascade-shape siblings; together the three events anchor the
+  paper's discussion of corporate-policy governance of the L3
+  substrate.
+
+  DRYRUN risk: the four citations are unarchived at pinned-snapshot
+  granularity. Before paper release the human-audit pass must pin
+  Wayback snapshots and body_hashes for the ConsenSys privacy-
+  policy revision dated 2022-11-23 and the three journalism
+  permalinks. If archive.org coverage of the specific 2022-11-23
+  privacy-policy revision proves recoverable only at calendar-
+  folder granularity, the disclosure framing should be preserved
+  as-is (observed_no_change / attribution=none / null_case) because
+  the framing does not depend on a strong-attribution anchor.
+
+tags:
+  - corporate_policy_change
+  - privacy_policy_disclosure
+  - rpc_metadata_collection
+  - infura
+  - metamask
+  - consensys
+  - l3_surveillance_surface
+  - null_case
+  - dryrun_2026_05_17

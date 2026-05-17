@@ -1,0 +1,298 @@
+id: mica-l2-esma-eba-rts-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: EU_ESMA_EBA
+  timestamp: 2024-03-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica
+      wayback: https://web.archive.org/web/20260517000000/https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica
+      evidence_use: contextual_unarchived
+      note: |
+        DRYRUN wayback stub; replace with verified capture during real
+        human audit.
+        Canonical MiCA Level-2 milestone: ESMA's third (final) Consultation
+        Paper on MiCA technical standards, published 2024-03-25. The
+        CP3 package contained the last tranche of draft Regulatory
+        Technical Standards (RTS) covering crypto-asset related market
+        abuse (Art. 92 STOR), suitability assessment for portfolio
+        management, and crypto-asset transfer services. Together with the
+        EBA's parallel RTS packages on stablecoin issuer reserve
+        composition (ART/EMT own funds, liquidity, recovery plans,
+        overcollateralization) finalized through 2024, and ESMA's
+        2024-12-17 Final Report adopting the STOR RTS as a Commission
+        Delegated Regulation, this constitutes the MiCA Level-2
+        implementation operational layer. CASP authorization regime under
+        MiCA applies from 2024-12-30.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level publication of ESMA CP3 on 2024-03-25 marks the close of
+        major MiCA Level-2 draft RTS proposals. The EBA companion RTS
+        packages (own funds, liquidity, reserve composition, recovery
+        plans) were published as Final Reports across 2024. The 2024-03-25
+        date is used as the canonical L2 milestone trigger; downstream
+        adoption events (e.g., 2024-12-17 ESMA STOR Final Report; 2024-10
+        Commission rejection-and-amendment cycle for several RTS) are
+        documented in analysis_notes for cross-referencing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level: all EU-operating Crypto-Asset Service Providers (CASPs)
+    and stablecoin issuers (Asset-Referenced Tokens / E-Money Tokens)
+    subject to MiCA Title III (ART), Title IV (EMT), Title V (CASP), and
+    Title VI (Market Abuse). The Level-2 RTS packages impose detailed
+    operational obligations: (a) stablecoin issuer reserve composition
+    (≥30% deposits for ARTs/EMTs in official currencies; ≥60% for
+    significant tokens; weekly liquidity; overcollateralization formula
+    with 5-year daily look-back); (b) CASP authorization documentation
+    and prudential requirements; (c) market abuse detection / STOR
+    reporting under MiCA Art. 92. No address- or domain-level enumeration
+    possible at trigger date — sector-wide Level-2 implementation
+    framework. Per codebook §7, subset enumeration with class-level
+    rationale is canonical for class-level regulatory targets.
+  actor_type: supranational_regulatory_framework_l2
+  actor_name: EU CASP + ART/EMT issuer ecosystem (MiCA Level-2 RTS-regulated)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: partially_measured
+    scope: [eu_art_emt_stablecoin_issuer_cohort]
+    note: |
+      MiCA Level-2 RTS impose reserve composition, liquidity, and
+      overcollateralization constraints on ART/EMT issuers but do NOT
+      mandate retroactive on-chain address-level freezes or blacklisting.
+      The RTS shape new issuance and reserve management; they do not
+      create per-address observable on-chain events at trigger date.
+      Coded partially_measured to support the observed_no_change row,
+      anchored by the ESMA MiCA hub artifact. Revisit if any issuer
+      publishes on-chain compliance attestations tied to specific RTS
+      effective dates.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.eba.europa.eu/regulation-and-policy/asset-referenced-and-e-money-tokens-mica
+      wayback: https://web.archive.org/web/20260517000000/https://www.eba.europa.eu/regulation-and-policy/asset-referenced-and-e-money-tokens-mica
+      note: |
+        EBA "Asset-referenced and e-money tokens (MiCA)" landing page
+        anchors the EBA RTS package on stablecoin reserve composition,
+        own funds, liquidity, and recovery plans. DRYRUN wayback stub;
+        replace with verified capture during real human audit.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [eu_casp_aggregate]
+    note: |
+      MiCA Level-2 RTS detail the operational obligations CASPs must
+      meet for authorization (Art. 62), market abuse detection / STOR
+      (Art. 92), and ongoing prudential / conduct rules. CASP
+      authorization regime applies from 2024-12-30 (MiCA Art. 143
+      transition). At the 2024-03-25 CP3 trigger date the RTS were still
+      in draft / consultation; no CASP-level observable cross-layer
+      behavioral change is attributable to the trigger itself. Coded
+      partially_measured — anchored by the ESMA MiCA hub artifact — to
+      support the observed_no_change row; revisit once CASP-specific
+      authorization or delisting events surface (Kraken Monero EU
+      delisting 2024 is an adjacent sibling event already in dataset).
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica
+      wayback: https://web.archive.org/web/20260517000000/https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica
+      note: |
+        ESMA "Markets in Crypto-Assets Regulation (MiCA)" hub anchors the
+        Level-2 RTS package (CP1, CP2, CP3 and final reports). DRYRUN
+        wayback stub; replace with verified capture during real human
+        audit.
+
+observations:
+  - layer: asset_onchain
+    actor: eu_art_emt_stablecoin_issuer_cohort
+    event: mica_l2_rts_reserve_composition_published_no_observed_onchain_freeze_at_trigger
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-03-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-03-25T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.eba.europa.eu/regulation-and-policy/asset-referenced-and-e-money-tokens-mica
+        wayback: https://web.archive.org/web/20260517000000/https://www.eba.europa.eu/regulation-and-policy/asset-referenced-and-e-money-tokens-mica
+        scope_descriptor:
+          providers: [eu_art_emt_stablecoin_issuer_cohort]
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-12-30T23:59:59Z
+        note: |
+          DRYRUN wayback stub; replace with verified capture during real
+          human audit.
+          EBA RTS package on ART/EMT reserve composition, own funds,
+          liquidity, overcollateralization, and recovery plans. RTS
+          impose forward-looking reserve management constraints (≥30%
+          deposits; ≥60% for significant tokens; weekly liquid
+          instruments; 5-year daily look-back overcollateralization) but
+          do not mandate retroactive on-chain blacklisting. No on-chain
+          freeze observable at trigger date attributable to the L2 RTS.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.ashurst.com/en/insights/eba-provides-new-rules-for-stablecoins/
+        wayback: https://web.archive.org/web/20260517000001/https://www.ashurst.com/en/insights/eba-provides-new-rules-for-stablecoins/
+        scope_descriptor:
+          providers: [eu_art_emt_stablecoin_issuer_cohort]
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-12-30T23:59:59Z
+        note: |
+          DRYRUN wayback stub; replace with verified capture during real
+          human audit.
+          Secondary explainer confirming the EBA Level-2 RTS package
+          finalization for stablecoin reserves through 2024. Used as a
+          contextual_unarchived second pointer for the null-event
+          posture.
+        evidence_use: contextual_unarchived
+  - layer: offramp_cex
+    actor: eu_casp_aggregate
+    event: mica_l2_rts_casp_authorization_market_abuse_published_no_observed_casp_change_at_trigger
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-03-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-03-25T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica
+        wayback: https://web.archive.org/web/20260517000000/https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica
+        scope_descriptor:
+          providers: [eu_casp_aggregate]
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-12-30T23:59:59Z
+        note: |
+          DRYRUN wayback stub; replace with verified capture during real
+          human audit.
+          ESMA MiCA hub anchors the Level-2 RTS package for CASP
+          authorization (Art. 62), market abuse / STOR (Art. 92), and
+          suitability / transfer-service obligations. CP3 of 2024-03-25
+          is the final consultation package; the STOR RTS was adopted as
+          a Commission Delegated Regulation per ESMA's 2024-12-17 Final
+          Report. CASP authorization regime applies from 2024-12-30. At
+          trigger date the RTS package is operational guidance, not yet
+          binding on individual CASPs; no per-CASP observable cross-layer
+          behavioral change is attributable to the trigger itself.
+        evidence_use: contextual_unarchived
+      - type: primary_legal
+        url: https://www.esma.europa.eu/sites/default/files/2024-12/ESMA75-453128700-1278_Final_Report_STOR_MiCA_Article_92_2_.pdf
+        wayback: https://web.archive.org/web/20260517000002/https://www.esma.europa.eu/sites/default/files/2024-12/ESMA75-453128700-1278_Final_Report_STOR_MiCA_Article_92_2_.pdf
+        scope_descriptor:
+          providers: [eu_casp_aggregate]
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-12-30T23:59:59Z
+        note: |
+          DRYRUN wayback stub; replace with verified capture during real
+          human audit.
+          ESMA75-453128700-1278 Final Report on STOR RTS under MiCA Art.
+          92(2), published 2024-12-17. Documents the close of the CP3
+          consultation cycle that opened 2024-03-25. Used as a
+          contextual_unarchived second pointer for the offramp_cex
+          null-event posture.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Null-event recording the MiCA Level-2 Regulatory Technical Standards
+  (RTS) finalized through 2024 by ESMA and EBA. Canonical L2 milestone
+  trigger fixed at 2024-03-25 — ESMA's third (final) Consultation Paper
+  (CP3), which closed the major draft RTS proposals on crypto-asset
+  market abuse (Art. 92 STOR), suitability for portfolio management, and
+  crypto-asset transfer services. EBA companion RTS packages on
+  stablecoin issuer reserve composition (≥30% deposits for ART/EMT;
+  ≥60% for significant tokens; weekly liquidity; overcollateralization
+  with 5-year daily look-back) were finalized in parallel across 2024.
+  Downstream milestones: 2024-12-17 ESMA STOR Final Report (Commission
+  Delegated Regulation); 2024-12-30 MiCA CASP authorization regime
+  applies; 2024-10 Commission rejection-and-amendment cycle for several
+  RTS (documented for cross-referencing).
+
+  Codebook compliance:
+  - trigger.type=supranational_regulation per §5.1 (EU regulation,
+    non-sanctions; MiCA L2 RTS). Stratum S6_supranational per §5.2.
+  - target.enumeration=subset per §7 (class-level CASP + ART/EMT issuer
+    cohort; not exhaustively enumerable at trigger date).
+  - analysis_use=comparable_analysis (canonical form, not
+    `comparative_analysis`) per §6.
+  - empirical_shape=null_event per §3 (0 observed_change layers; the L2
+    RTS shape forward-looking authorization and reserve management
+    obligations, not retroactive per-address or per-CASP behavioral
+    events at trigger date).
+  - admission_tier=null_case per §4 (0 strong-attribution observed_change
+    layers).
+  - Observation rows use attribution=`none` because observation_kind is
+    `observed_no_change` (§1.1).
+
+  Evidence is contextual_unarchived (per ingestion request); no
+  admission-anchor capture in this draft. Sibling supranational events:
+  eu-mica-2023 (Level-1 framework), eu-amla-anti-money-laundering-
+  authority-regulation-2024 (AML/CFT supervisor), eu-tfr-recast-2023
+  (Travel Rule), kraken-monero-eu-delisting-2024 (an adjacent CASP-level
+  follow-on event already in dataset). Revisit when post-2024-12-30
+  CASP authorization decisions or RTS-driven stablecoin issuer behavior
+  surfaces as observable cross-layer events.
+
+scoped_claim: |
+  "ESMA + EBA finalized the MiCA Level-2 Regulatory Technical Standards
+  through 2024 (canonical L2 milestone 2024-03-25 with ESMA's CP3 final
+  consultation, EBA parallel reserve-composition RTS, and the
+  2024-12-17 STOR Final Report). Recorded as a null event because the
+  Level-2 RTS impose forward-looking authorization, reserve-management,
+  and market-abuse-detection obligations rather than producing
+  retroactive per-address or per-CASP observable cross-layer behavior at
+  trigger date; downstream CASP-level follow-on actions are tracked as
+  separate events."
+
+related_events:
+  - eu-mica-2023
+  - eu-amla-anti-money-laundering-authority-regulation-2024
+
+tags:
+  - eu_regulation
+  - mica
+  - mica_level_2
+  - rts
+  - supranational_framework
+  - stablecoin_reserve
+  - casp_authorization
+  - market_abuse
+  - null_event
+  - future_effective

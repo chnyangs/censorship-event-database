@@ -1,0 +1,208 @@
+id: fatf-targeted-update-va-vasp-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: FATF
+  timestamp: 2023-06-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2023.html
+      wayback: https://web.archive.org/web/2023*/https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2023.html
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3 supranational
+        discovery; lean run): authored by LLM agent without personally
+        verifying Wayback/body_hash; origin=agent_draft per validator
+        hard-rule. Human auditor must replace this DRYRUN marker with a
+        pinned archive anchor before release.
+
+        FATF "Virtual Assets: Targeted Update on Implementation of the
+        FATF Standards on VAs and VASPs" published 2023-06-27. Third
+        major FATF update on virtual assets post-R.15 2019 and post the
+        2021-10-28 Updated Guidance. Headline finding: based on 98 FATF
+        mutual evaluation / follow-up reports, 75% of jurisdictions are
+        only partially or not compliant with R.15/INR.15; more than half
+        of the 151 jurisdictions that responded to FATF's 2023 survey
+        had taken no steps toward implementing the Travel Rule. The
+        update also reviews emerging risks (DeFi, P2P, NFTs, unhosted
+        wallets, stablecoins) and references the February 2023 FATF
+        roadmap to improve R.15 implementation, with a follow-up review
+        committed for June 2024.
+    - type: primary_legal
+      url: https://www.fatf-gafi.org/content/dam/fatf-gafi/guidance/June2023-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
+      wayback: https://web.archive.org/web/2023*/https://www.fatf-gafi.org/content/dam/fatf-gafi/guidance/June2023-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        Full PDF of the June 2023 Targeted Update. DRYRUN: archival
+        anchor unverified by LLM agent at authoring time.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        FATF publication date 2023-06-27 (per FATF site). Day-level
+        precision. DRYRUN authored 2026-05-17.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level Travel Rule / R.15 implementation review at the FATF
+    member-state VASP layer. Per §7 codebook, class-level regulatory
+    updates are encoded as enumeration=subset with the class-level
+    rationale documented here. No address-level enumeration; binding
+    force is via member-state implementation (mutual evaluation +
+    grey-listing pressure). Downstream affected entities include
+    centralized exchanges, custodians, stablecoin issuers, and any
+    DeFi / NFT / P2P facilitator within the FATF functional-test
+    perimeter (control or sufficient influence over a VA arrangement).
+  actor_type: supranational_standard_setting_body
+  actor_name: FATF-jurisdiction VASP / DeFi / stablecoin ecosystem
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [UN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Class-level standards review; no L4 domain-level effect at the
+      FATF supranational layer.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The 2023 Targeted Update reviews R.15 implementation lag
+      (incl. stablecoin scope) but does not itself mandate on-chain
+      asset-level blacklisting. No L_asset effect attributable to
+      the 2023-06-27 publication date as such.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Class-level implementation-lag review at the off-ramp / VASP
+      layer (Travel Rule still partially or not implemented in 75%
+      of evaluated jurisdictions; >50% of 151 survey respondents had
+      taken no Travel Rule steps). No per-event observed_change
+      cascade attributable to the 2023-06-27 publication date in
+      isolation — downstream member-state implementations (EU TFR
+      2023, national VASP rule updates) are tracked as separate
+      child events. Coded null_event per §3 codebook: 0
+      observed_change layers directly attributable to this trigger
+      at the corpus's resolution.
+
+observations:
+  - layer: offramp_cex
+    actor: fatf_member_state_vasp_aggregate
+    event: fatf_2023_targeted_update_r15_implementation_review
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-06-27T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2023.html
+        wayback: https://web.archive.org/web/2023*/https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2023.html
+        scope_descriptor:
+          providers: [fatf_member_state_vasp_aggregate]
+          time_window:
+            - 2023-06-27T00:00:00Z
+            - 2024-06-30T23:59:59Z
+        note: |
+          FATF 2023-06-27 Targeted Update is a class-level R.15 /
+          Travel Rule implementation-lag review (DeFi, P2P, NFTs,
+          unhosted wallets, stablecoins). DRYRUN: no per-event
+          observed_change cascade is attributable to this trigger at
+          the corpus's resolution — downstream effects manifest via
+          national implementations (EU TFR 2023, member-state VASP
+          rule updates) which are tracked as separate child events.
+          Coverage_gap / attribution=none per §1.1 codebook
+          (observed_no_change-style row at the class-level standard
+          layer; admission requires admission-grade sources, which
+          are not asserted here pending human-auditor anchor pinning).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  null_event documenting FATF's 2023-06-27 publication of "Virtual
+  Assets: Targeted Update on Implementation of the FATF Standards on
+  VAs and VASPs". Third major FATF update on virtual assets after
+  the 2019 R.15 INR (fatf-r15-vasp-travel-rule-2019) and the
+  2021-10-28 Updated Guidance (fatf-targeted-update-va-vasp-2021).
+  Headline finding: based on 98 FATF mutual evaluation / follow-up
+  reports, 75% of jurisdictions are only partially or not compliant
+  with R.15/INR.15; >50% of 151 jurisdictions surveyed had taken no
+  Travel Rule implementation steps. The update also reviews emerging
+  risks across DeFi, P2P, NFTs, unhosted wallets, and stablecoins,
+  and references the February 2023 FATF roadmap to improve R.15
+  implementation.
+
+  Per §6 codebook the temporal_tier is comparable_main_2017_present
+  and the canonical analysis_use is comparable_analysis. Per §7
+  codebook the enumeration is `subset` with the class-level
+  rationale documented in target.enumeration_note (FATF Standards
+  operate at the international-standards layer; binding force is via
+  member-state implementation). Per §3 codebook the empirical_shape
+  is null_event: 0 observed_change layers directly attributable to
+  the 2023-06-27 publication date; downstream cascades (EU TFR 2023,
+  national VASP rule updates) are tracked as separate child events.
+  Per §4 codebook admission_tier=null_case (0 strong-attribution
+  observed_change layers).
+
+  Per §1.1 codebook, the single off-ramp row uses
+  attribution=`none` because observation_kind=`coverage_gap` (no
+  direct per-event observed_change at the corpus's resolution).
+  This event functions as a temporal landmark documenting the
+  Travel Rule implementation-lag pressure that the FATF applied on
+  member states in the 2023-2024 window, and as a parent / standards-
+  layer anchor for downstream member-state VASP rule cascades.
+  DRYRUN: archival anchors asserted but not personally verified by
+  the LLM agent; human auditor must pin real Wayback / body_hash
+  anchors before release.
+
+scoped_claim: |
+  "FATF's 2023-06-27 'Virtual Assets: Targeted Update on
+  Implementation of the FATF Standards on VAs and VASPs' is the
+  third major FATF update post-R.15 (2019) and post-2021 Targeted
+  Update, documenting that 75% of evaluated jurisdictions are only
+  partially or not compliant with R.15/INR.15 and that >50% of 151
+  surveyed jurisdictions had taken no Travel Rule implementation
+  steps. Coded as null_event / null_case at the corpus's
+  resolution: no per-event observed_change cascade is directly
+  attributable to the 2023-06-27 publication date; downstream
+  member-state implementations (EU TFR 2023, national VASP rule
+  updates) are tracked as separate child events."
+
+related_events:
+  - fatf-r15-vasp-travel-rule-2019
+  - fatf-targeted-update-va-vasp-2021
+
+tags:
+  - supranational_regulation
+  - fatf
+  - fatf_r15
+  - travel_rule
+  - vasp_metadata_layer
+  - stablecoin_scope
+  - defi_scope
+  - nft_scope
+  - p2p_scope
+  - unhosted_wallet_scope
+  - supranational_trigger
+  - parent_event
+  - null_event
