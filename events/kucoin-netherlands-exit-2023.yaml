@@ -1,0 +1,271 @@
+id: kucoin-netherlands-exit-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - kucoin-canada-exit-2023
+  - kucoin-doj-2024
+  - netherlands-dnb-binance-warning-2021
+
+trigger:
+  type: corporate_policy_change
+  actor: KUCOIN_EXCHANGE
+  timestamp: 2023-01-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: primary_legal
+      url: https://www.dnb.nl/en/general-news/news-2022/warning-against-mek-global-limited-doing-business-as-kucoin/
+      wayback: https://web.archive.org/web/2023/https://www.dnb.nl/en/general-news/news-2022/warning-against-mek-global-limited-doing-business-as-kucoin/
+      evidence_use: contextual_unarchived
+      note: |
+        De Nederlandsche Bank (DNB) public warning against MEK Global
+        Limited d/b/a 'KuCoin' for offering crypto services in the
+        Netherlands without the legally required DNB registration.
+        Published 2022-12-15 (i.e. PRECEDES the slug's claimed 2023
+        exit window). Contextual reference for the regulatory pressure
+        backdrop; does NOT by itself document a KuCoin 2023 Netherlands
+        market-exit corporate action. evidence_use=contextual_unarchived
+        because the authoring agent did not personally pin a Wayback
+        snapshot nor compute body_hash.
+    - type: primary_corporate
+      url: https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
+      wayback: https://web.archive.org/web/2023/https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
+      evidence_use: contextual_unarchived
+      note: |
+        KuCoin's official announcement for Netherlands users. The
+        announcement slug `_240930` indicates an effective date of
+        2024-09-30 (new NL user registrations halted; existing NL users
+        without KYC frozen). Subsequent reporting (e.g. KuCoin's
+        2025-07-28 follow-up announcement) extends the wind-down with
+        full NL exit effective 2025-08-04 / 2025-08-25. This is
+        CONTRARY to the slug's premise of a 2023 exit and is recorded
+        here as load-bearing evidence for the null_event disposition.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        No 2023 KuCoin Netherlands exit timestamp was located by the
+        authoring agent's WebSearch pass on 2026-05-17. The DNB warning
+        is 2022-12-15; KuCoin's first NL-restrictive announcement is
+        effective 2024-09-30; full NL exit is announced 2025-07-28
+        effective 2025-08-04 / 2025-08-25. Trigger timestamp set to a
+        nominal 2023-01-01 week-precision anchor purely to satisfy the
+        schema's required field; the actual coding decision is
+        empirical_shape=null_event because no specific 2023 exit action
+        is being claimed. Do NOT cite this timestamp as load-bearing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Hypothesized KuCoin Netherlands-resident user cohort. Subset-
+    enumerated because the slug postulates the NL retail cohort as the
+    target of a 2023 KuCoin corporate-policy exit ostensibly driven by
+    DNB registration requirements. The authoring agent could not pin a
+    specific 2023 exit-announcement; the closest documented KuCoin NL
+    actions are the 2022-12-15 DNB warning (pre-window) and the
+    2024-09-30 NL new-user / KYC freeze announcement followed by the
+    2025-07-28 full NL exit announcement (post-window). Coded as
+    null_event per the authoring instruction's null fallback clause.
+  actor_type: regulated_crypto_service_provider
+  actor_name: KuCoin (MEK Global Limited / Peken Global Limited — NL user cohort, hypothesized)
+  chains: []
+  canonical_domains:
+    - kucoin.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Hypothesized corporate-policy market retreat; no ISP / DNS / BGP
+      reachability claim against kucoin.com from Dutch networks is
+      being asserted.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Corporate market-policy hypothesis; no validator / PBS-layer
+      construct is implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change is implicated by a
+      hypothesized CEX market-exit.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      No geo-gated kucoin.com frontend state diff was captured for the
+      Netherlands geo across 2023. Held not_measured pending future
+      evidence; null_event coding for the event as a whole means this
+      layer is not load-bearing.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN / stablecoin-issuer freeze primitive is applicable to a
+      hypothesized CEX corporate market-exit.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - kucoin_netherlands_users
+    note: |
+      Partial replayable evidence for the observed_no_change row below:
+      KuCoin's own NL-user announcement page is dated effective
+      2024-09-30 (slug `_240930`), and the subsequent 2025-07-28
+      announcement schedules the full NL wind-down for 2025-08-04 /
+      2025-08-25. Both fall OUTSIDE the slug's 2023 window. The DNB
+      warning page (2022-12-15) likewise predates the 2023 window.
+      Replayable artifacts exist that affirmatively bracket the 2023
+      window (warning before, exit announcement after) but do not
+      themselves document a 2023 KuCoin NL exit action — so the layer
+      is held partially_measured per Kazakhstan precedent §2. Coded
+      null_event for the event as a whole; no observed_change row is
+      asserted.
+    denominator_artifact:
+      type: primary_corporate
+      url: https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
+      wayback: https://web.archive.org/web/2023/https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
+      note: |
+        KuCoin's NL-user announcement page (effective 2024-09-30) —
+        replayable denominator anchor demonstrating that KuCoin's first
+        published NL-restrictive action falls AFTER the slug's 2023
+        window.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:kucoin
+    event: kucoin_netherlands_exit_2023_unpinned
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-12-31T23:59:59Z
+    precision: day
+    window:
+      - 2023-01-01T00:00:00Z
+      - 2023-12-31T23:59:59Z
+    note: |
+      observed_no_change row recording the authoring agent's failure to
+      pin any specific 2023 KuCoin Netherlands exit action attributable
+      to DNB registration requirements. Held as observed_no_change
+      rather than coverage_gap because the publicly-available KuCoin
+      announcements bracket the 2023 window with affirmative evidence
+      (2022-12-15 DNB warning before; 2024-09-30 NL-user restrictions
+      and 2025-07-28 full NL exit after), which is positive (not
+      merely absent) evidence against a clean 2023 NL exit.
+      attribution=none per §1.1 (reserved for observed_no_change rows).
+    sources:
+      - type: primary_legal
+        url: https://www.dnb.nl/en/general-news/news-2022/warning-against-mek-global-limited-doing-business-as-kucoin/
+        wayback: https://web.archive.org/web/2023/https://www.dnb.nl/en/general-news/news-2022/warning-against-mek-global-limited-doing-business-as-kucoin/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [NL]
+          providers: [kucoin]
+          time_window:
+            - 2022-12-15T00:00:00Z
+            - 2022-12-15T23:59:59Z
+        note: |
+          De Nederlandsche Bank's 2022-12-15 public warning against
+          MEK Global Limited d/b/a 'KuCoin'. Documents the regulatory
+          pressure backdrop but predates the slug's 2023 window.
+      - type: primary_corporate
+        url: https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
+        wayback: https://web.archive.org/web/2023/https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [NL]
+          providers: [kucoin]
+          time_window:
+            - 2024-09-30T00:00:00Z
+            - 2024-09-30T23:59:59Z
+        note: |
+          KuCoin's NL-user announcement page (effective 2024-09-30).
+          Documents the first published KuCoin NL-restrictive action;
+          postdates the slug's 2023 window.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 preamble:
+  KuCoin Netherlands 2023 hypothesized exit — coded as null_event
+  because the authoring agent could not pin a specific 2023 NL exit
+  announcement attributable to DNB registration requirements).
+  Authored by LLM agent without personally verifying Wayback /
+  body_hash; only valid at status=draft / origin=agent_draft. The slug
+  `kucoin-netherlands-exit-2023` is retained verbatim per the
+  authoring instruction, but the empirical claim it suggests is NOT
+  admitted: null_event + null_case fallback per the instruction's
+  explicit "If no specific NL exit found: code null_event" clause.
+
+  Why null_event:
+  - The 2026-05-17 WebSearch pass on "KuCoin Netherlands exit 2023"
+    surfaced:
+    (a) DNB's 2022-12-15 public warning against MEK Global Limited
+        d/b/a 'KuCoin' (BEFORE the 2023 window).
+    (b) KuCoin's first NL-user-restrictive announcement effective
+        2024-09-30 (new NL user registrations halted; existing NL
+        users without KYC frozen) — slug `_240930` (AFTER the 2023
+        window).
+    (c) KuCoin's 2025-07-28 announcement scheduling full NL exit
+        effective 2025-08-04 / 2025-08-25 (also AFTER the 2023
+        window).
+  - No KuCoin 2023 NL-exit announcement attributable to DNB
+    registration requirements was located.
+  - Per §3 codebook: 0 observed_change layers → null_event.
+  - Per §4 codebook: 0 strong-attribution observed_change layers →
+    null_case.
+  - Per §8.4 codebook: ambiguous coding defaults to the more
+    conservative value (null_case over empirical_case).
+
+  Slug retention note: the slug `kucoin-netherlands-exit-2023` is
+  deliberately preserved so that any future evidence surfacing a
+  specific 2023 NL exit action can be admitted under the same id;
+  the current row stands as a documented null search until then.
+  Note that a sibling event capturing the actual 2024-09-30 NL
+  restriction announcement and/or the 2025-08 full NL exit may be
+  appropriate as a separate slug
+  (e.g. `kucoin-netherlands-exit-2024` or
+  `kucoin-netherlands-exit-2025`).
+
+  Codebook decisions applied:
+  - trigger.type=corporate_policy_change per §5.1 (hypothesized
+    exchange-initiated market retreat) — kept per authoring
+    instruction even though no specific 2023 action is being admitted.
+  - research_stratum=S5_corporate per §5.2 stratum-actor map.
+  - empirical_shape=null_event per §3 (0 observed_change layers).
+  - admission_tier=null_case per §4 (0 strong-attribution
+    observed_change layers).
+  - target.enumeration=subset per §7 — hypothesized NL retail cohort
+    is class-level rather than per-address enumerated; rationale
+    documented in enumeration_note.
+  - jurisdiction=[corporate_global] per authoring instruction.
+  - evidence_use=contextual_unarchived on all citations because the
+    authoring agent did not personally pin Wayback or compute
+    body_hash; per the slug's null disposition this is appropriate
+    (these citations are not admission anchors).
+
+scoped_claim: |
+  "As of the 2026-05-17 authoring pass, no specific 2023 KuCoin
+  Netherlands market-exit action attributable to DNB registration
+  requirements could be pinned by the authoring agent. The publicly
+  available record brackets the 2023 window with a 2022-12-15 DNB
+  warning before and a 2024-09-30 KuCoin NL-user restriction
+  announcement (extended to a full 2025-08 NL exit) after, which is
+  positive evidence against a clean 2023 NL exit. Slug is retained
+  as a documented null_event placeholder for future evidence
+  surfacing."
+
+tags:
+  - corporate_policy_change
+  - kucoin
+  - netherlands
+  - dnb
+  - eu
+  - null_event
+  - regulated_crypto_service_provider
+  - dryrun_2026_05_17

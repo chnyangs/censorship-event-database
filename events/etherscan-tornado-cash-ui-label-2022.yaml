@@ -1,0 +1,283 @@
+id: etherscan-tornado-cash-ui-label-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tornado-cash-ofac-2022
+  - tornado-cash-frontend-tornado-cash-eth-block-2022-04
+
+trigger:
+  type: corporate_policy_change
+  actor: etherscan
+  timestamp: 2022-08-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://etherscan.io/address/0x7ff9cfad3877f21d41da833e2f775db0569ee3d9
+      wayback: https://web.archive.org/web/2022/https://etherscan.io/address/0x7ff9cfad3877f21d41da833e2f775db0569ee3d9
+      evidence_use: contextual_unarchived
+      note: |
+        Live Etherscan address page for the Tornado Cash 0.1 ETH pool
+        contract (0x7Ff9...3D9), displaying the "OFAC Blocked"
+        public-label nametag in the address header — the canonical
+        artifact of Etherscan's UI-layer compliance label applied to
+        OFAC-designated Tornado Cash contracts after the 2022-08-08
+        OFAC SDN designation (see related event
+        tornado-cash-ofac-2022). DRYRUN: pinned Wayback snapshot and
+        body_hash deferred to human audit; marked
+        evidence_use=contextual_unarchived per validator policy.
+    - type: primary_corporate
+      url: https://etherscan.io/address/0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b
+      wayback: https://web.archive.org/web/2022/https://etherscan.io/address/0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b
+      evidence_use: contextual_unarchived
+      note: |
+        Live Etherscan address page for another OFAC-listed Tornado
+        Cash contract (0xa0e1...E4B), also showing the "OFAC Blocked"
+        nametag. Triangulation citation confirming Etherscan applied
+        the label class-wide across the OFAC-listed Tornado Cash
+        address universe rather than to a single contract. DRYRUN:
+        pinned Wayback snapshot deferred to human audit.
+    - type: primary_corporate
+      url: https://info.etherscan.com/public-name-tags-labels/
+      wayback: https://web.archive.org/web/2022/https://info.etherscan.com/public-name-tags-labels/
+      evidence_use: contextual_unarchived
+      note: |
+        Etherscan Information Center page describing the public
+        name-tags / labels system that supports the OFAC label class
+        applied at the UI layer. Documents the mechanism (operator-
+        applied public nametag visible on the address page header)
+        through which the Tornado Cash labels are surfaced. DRYRUN:
+        pinned Wayback snapshot deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing approximate. Earliest contemporaneous Wayback
+        captures of the Tornado Cash contract Etherscan pages bearing
+        the "OFAC Blocked" / "OFAC SDN" nametag are in the days
+        following the 2022-08-08 OFAC SDN designation; 2022-08-10 is
+        used as the day-precision placeholder pending pinned Wayback
+        diff between pre- and post-label snapshots in the human-audit
+        pass. precision=day reflects the LLM-author's inability to
+        sub-day-pin the label-addition transition from public sources.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Etherscan (etherscan.io) is the dominant Ethereum block-explorer
+    operator. After the 2022-08-08 OFAC SDN designation of Tornado
+    Cash (see related event tornado-cash-ofac-2022), Etherscan
+    applied "OFAC Blocked" / "OFAC SDN" public nametags on the
+    address-page headers of the OFAC-listed Tornado Cash contracts,
+    surfacing the sanctioned status to users browsing the addresses
+    via the UI. The label is a UI/discovery-layer signal: it does
+    not prevent on-chain interaction or RPC access; it warns users
+    encountering the contract via the explorer. Target is the
+    operator entity (Etherscan) rather than an enumerated address
+    set because the label policy applies class-wide to the OFAC SDN
+    list (Tornado Cash contracts are the in-scope subset for this
+    event); subset because only the Etherscan-operated UI is in
+    scope here (the underlying Tornado Cash smart contracts on-chain
+    and other block explorers are out of scope).
+  protocol: etherscan
+  actor_type: block_explorer
+  actor_name: Etherscan (etherscan.io)
+  chains: [ethereum]
+  canonical_domains:
+    - etherscan.io
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      etherscan.io remained reachable globally; the label is a
+      content-layer UI annotation, not a DNS or ISP-level block.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge Ethereum (Paris was 2022-09-15, 36 days after this
+      event); the UI-label action is independent of consensus-layer
+      effects, which are captured under tornado-cash-ofac-2022
+      observations[l1].
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Etherscan provides JSON-RPC and API endpoints but the UI label
+      does not gate RPC responses. The contemporaneous L3 RPC-provider
+      blocks are captured under infura-alchemy-tornado-rpc-block-2022.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - etherscan.io
+    provider_scope: unknown
+    note: |
+      Load-bearing layer for this event. Etherscan's address-page UI
+      surfaces an "OFAC Blocked" / "OFAC SDN" public nametag on the
+      OFAC-listed Tornado Cash contract pages, observable in the live
+      page DOM (and in subsequent Wayback captures) for each of the
+      OFAC-listed addresses. The mechanism is Etherscan's public
+      name-tags/labels feature applied operator-side. Attached below
+      as observed_change at attribution=direct (Etherscan applied the
+      label class-wide referencing the upstream OFAC SDN trigger).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level asset freeze invoked by Etherscan's UI label;
+      sibling asset-layer action is captured in
+      circle-usdc-tornado-2022.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Off-ramp reactions are captured under tornado-cash-ofac-2022
+      observations[offramp_cex].
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:etherscan
+    event: etherscan_applied_ofac_blocked_nametag_on_tornado_cash_contract_pages
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://etherscan.io/address/0x7ff9cfad3877f21d41da833e2f775db0569ee3d9
+        wayback: https://web.archive.org/web/2022/https://etherscan.io/address/0x7ff9cfad3877f21d41da833e2f775db0569ee3d9
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - etherscan.io
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          Etherscan address page for the Tornado Cash 0.1 ETH pool
+          contract showing the "OFAC Blocked" nametag in the address
+          header. Canonical operator-side primary source for the
+          UI-layer label action. attribution=direct because the label
+          is applied by the operator and explicitly cites the OFAC
+          SDN class as the rationale via the nametag text itself.
+          DRYRUN: pinned Wayback snapshot and body_hash deferred to
+          human audit; marked evidence_use=contextual_unarchived.
+      - type: primary_corporate
+        url: https://etherscan.io/address/0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b
+        wayback: https://web.archive.org/web/2022/https://etherscan.io/address/0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - etherscan.io
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          Second Etherscan Tornado Cash contract page (0xa0e1...E4B)
+          showing the "OFAC Blocked" nametag, triangulating that the
+          label was applied class-wide across the OFAC-listed Tornado
+          Cash address universe. DRYRUN: pinned Wayback snapshot
+          deferred to human audit.
+      - type: primary_corporate
+        url: https://info.etherscan.com/public-name-tags-labels/
+        wayback: https://web.archive.org/web/2022/https://info.etherscan.com/public-name-tags-labels/
+        evidence_use: contextual_unarchived
+        note: |
+          Etherscan Information Center documentation of the public
+          name-tags / labels mechanism, supporting the operator-side
+          attribution of the OFAC-label class. DRYRUN: pinned Wayback
+          snapshot deferred to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: |
+      Etherscan retained the "OFAC Blocked" / "OFAC SDN" nametags on
+      the Tornado Cash contract pages through the 2022-2025 sanctions
+      window. The 2025-03-21 OFAC delisting (see
+      tornado-cash-ofac-delisting-2025) is the candidate upstream
+      recovery anchor; whether Etherscan removed or revised the
+      labels post-delisting is deferred to the human-audit pass.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** Wave 2.3 P2 preamble
+  (Phase A.2 corporate_policy discovery): authored by LLM agent
+  without personally verifying Wayback/body_hash anchors;
+  origin=agent_draft per validator policy. Real release must replace
+  this DRYRUN marker with a human-verified audit after pinning real
+  archive anchors (especially pre/post Wayback diffs of the
+  Tornado Cash contract address pages bracketing 2022-08-08) and
+  promote origin to human_reviewed.
+
+  Comparison-shape S5 corporate-policy-change event capturing the
+  UI / discovery-layer compliance response by the dominant Ethereum
+  block-explorer operator (Etherscan) downstream of the 2022-08-08
+  OFAC Tornado Cash SDN designation. Distinct from the in-protocol
+  frontend block at tornado.cash (tornado-cash-frontend-tornado-cash-
+  eth-block-2022-04, a US-IP-geofence by the Tornado Cash team
+  itself) and from the dApp frontend blocks (Aave / Uniswap /
+  Balancer); the Etherscan label is a third class of L4 action:
+  not gating access, but annotating the address as sanctioned at
+  the discovery layer. Paper-relevant because block explorers are
+  the primary on-chain-discovery surface for most users, and a
+  UI-label compliance action propagates the sanctions signal far
+  more broadly than any single dApp frontend block.
+
+  Empirical shape: comparison (1 observed_change layer — L4
+  frontend load-bearing). Admission tier: empirical_case (≥1
+  observed_change layer with direct attribution). Stratum coding:
+  S5_corporate (Etherscan is a private corporate operator; the
+  label is an operator-side compliance policy, not a regulatory
+  order naming Etherscan). attribution=direct per §1.4 codebook
+  rule: the label text itself ("OFAC Blocked" / "OFAC SDN") names
+  the trigger class, and the labels were applied within the
+  publicly-knowable compliance window post-2022-08-08 OFAC SDN.
+
+  DRYRUN caveats: the three citations all carry 2022-calendar-folder
+  Wayback pointers rather than pinned snapshots. For non-DRYRUN
+  release, capture body_hash + body_path for: (1) a pre-2022-08-08
+  Wayback snapshot of one of the Tornado Cash contract Etherscan
+  pages (baseline, no label); (2) a post-2022-08-08 Wayback snapshot
+  of the same page showing the "OFAC Blocked" label (transition
+  anchor); (3) a current/live snapshot for triangulation; (4) the
+  Etherscan Information Center labels documentation. trigger
+  timestamp is 2022-08-10 day-precision pending sub-day pinning via
+  Wayback diff. delta_hours=0 inside this event reflects that
+  the trigger and observation share the same day-precision
+  timestamp (2022-08-10); the cross-event lag from the
+  2022-08-08 OFAC trigger (~48h) is tracked at the cross-event
+  level via related_events linkage to tornado-cash-ofac-2022.
+  Marked
+  evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+scoped_claim: |
+  "Etherscan's circa-2022-08-10 application of 'OFAC Blocked' /
+  'OFAC SDN' public nametags on the address-page headers of the
+  OFAC-designated Tornado Cash contracts documents a UI / discovery-
+  layer corporate-compliance action by the dominant Ethereum block-
+  explorer operator downstream of the 2022-08-08 OFAC trigger
+  (related event tornado-cash-ofac-2022). Paper-relevant as a
+  third class of L4 frontend action — discovery-layer annotation
+  rather than access-gating — that propagates the sanctions signal
+  to the on-chain-discovery surface used by most users."
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - ui_label
+  - block_explorer
+  - etherscan
+  - tornado_cash_thread
+  - discovery_layer
+  - dryrun_2026_05_17

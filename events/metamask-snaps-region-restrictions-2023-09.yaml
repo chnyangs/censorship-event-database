@@ -1,0 +1,440 @@
+id: metamask-snaps-region-restrictions-2023-09
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - infura-metamask-donetsk-luhansk-block-2022-03
+  - consensys-metamask-infura-rpc-data-collection-2022-11
+  - infura-alchemy-tornado-rpc-block-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: CONSENSYS_METAMASK
+  timestamp: 2023-09-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
+      wayback: https://web.archive.org/web/2023/https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
+      evidence_use: contextual_unarchived
+      note: |
+        ConsenSys / MetaMask blog post announcing the 2023-09-12 launch
+        of MetaMask Snaps in the public MetaMask Extension stable
+        channel (v11.0). The launch ships the Snaps platform behind an
+        allowlist: installation on MetaMask stable is restricted to
+        Snaps explicitly defined by npm package name, version, and
+        content checksum, curated through the MetaMask Snaps directory.
+        The allowlist is the corporate-policy filter at the L4 wallet-
+        frontend layer that this event records. DRYRUN: Wayback anchor
+        is a 2023 calendar-folder pointer rather than a pinned snapshot
+        of the specific blog post; pinned snapshot and body_hash are
+        deferred to the human-audit pass per validator policy for
+        unarchived sources.
+    - type: primary_corporate
+      url: https://metamask.io/news/metamask-snaps-our-first-step-on-the-road-to-becoming-fully-permissionless
+      wayback: https://web.archive.org/web/2023/https://metamask.io/news/metamask-snaps-our-first-step-on-the-road-to-becoming-fully-permissionless
+      evidence_use: contextual_unarchived
+      note: |
+        Companion MetaMask blog post framing the open-beta allowlist
+        as a transitional step on the road to a fully permissionless
+        Snaps platform. The post explicitly documents the curated
+        directory model and the audit gate as the corporate filter
+        through which third-party Snaps must pass before reaching the
+        wallet user. DRYRUN: pinned Wayback snapshot deferred to
+        human audit.
+    - type: supporting_journalism
+      url: https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
+      wayback: https://web.archive.org/web/2023/https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
+      evidence_use: contextual_unarchived
+      note: |
+        Contemporaneous (2023-09-13) coverage of the MetaMask Snaps
+        open-beta launch confirming the 2023-09-12 trigger date and
+        the allowlist-based curation model. Day-level timing
+        triangulation. DRYRUN: pinned Wayback snapshot deferred to
+        human audit.
+    - type: supporting_journalism
+      url: https://bitcoinist.com/metamask-snaps-open-beta-launches/
+      wayback: https://web.archive.org/web/2023/https://bitcoinist.com/metamask-snaps-open-beta-launches/
+      evidence_use: contextual_unarchived
+      note: |
+        Bitcoinist contemporaneous coverage of the MetaMask Snaps open-
+        beta launch describing the allowlist gating and the 30+ audited
+        Snaps in the directory at launch. Triangulation source for the
+        L4 corporate-curation filter framing. DRYRUN: pinned Wayback
+        snapshot deferred to human audit.
+    - type: supporting_community
+      url: https://github.com/MetaMask/snaps/discussions/1411
+      wayback: https://web.archive.org/web/2023/https://github.com/MetaMask/snaps/discussions/1411
+      evidence_use: contextual_unarchived
+      note: |
+        MetaMask Snaps Open Beta Readiness Guide GitHub Discussion
+        documenting the npm-package + version + checksum allowlist
+        constraint as the corporate gate for which Snaps are
+        installable on the MetaMask stable channel. Used to anchor the
+        L4-wallet-layer regional / jurisdictional filtering mechanism
+        in the developer-facing primary-corporate documentation.
+        DRYRUN: pinned Wayback snapshot deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per the MetaMask "Snaps in MetaMask Stable"
+        blog post (2023-09-12) and contemporaneous The Crypto Times /
+        Bitcoinist coverage published 2023-09-12 to 2023-09-13.
+        precision=day reflects the LLM-author's inability to pin a
+        sub-day timestamp for the platform rollout.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The corporate-policy filter addresses the class of MetaMask
+    wallet end-users who attempt to install third-party Snaps from
+    the curated Snaps directory. The allowlist mechanism gates Snap
+    availability per Snap (by npm package name, version, content
+    checksum) and is the substrate through which per-Snap regional /
+    jurisdictional restrictions (where a Snap's own developer or the
+    MetaMask audit gate declines availability in certain
+    jurisdictions) are surfaced to the wallet UI. enumeration=subset
+    because (a) the directory at launch enumerated 30+ audited Snaps
+    rather than the complete future Snap population and (b) the
+    regional-restriction surface is per-Snap, not a single
+    enumerable wallet-user cohort.
+  entity: MetaMask wallet end-users installing third-party Snaps
+  actor_type: wallet_user_class_via_curated_extension_directory
+  actor_name: MetaMask wallet end-users on stable channel (v11.0+) installing Snaps from the MetaMask Snaps directory
+  chains: [ethereum, non_evm_via_snaps]
+  canonical_domains:
+    - metamask.io
+    - snaps.metamask.io
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The Snaps launch and its allowlist gating operate at the wallet-
+      extension software layer; they do not direct ISP-level domain
+      blocking or DNS / BGP routing interference. not_applicable on
+      construct-not-engaged grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      The Snaps platform is a MetaMask wallet-extension feature; it
+      does not engage PBS / relay / builder block-production
+      censorship primitives at the Ethereum consensus layer.
+      not_applicable on construct-not-engaged grounds.
+  - layer: l3_rpc
+    status: partially_measured
+    chain: ethereum
+    provider_scope: public_and_enterprise
+    note: |
+      Snaps frequently bundle their own RPC endpoints (e.g., a
+      non-EVM-chain Snap will ship its own chain RPC client). The
+      MetaMask allowlist is the corporate gate through which those
+      Snap-internal RPC integrations reach the wallet user; per-Snap
+      regional availability filters propagate to the L3 substrate
+      indirectly via the L4 directory gate. Coverage is
+      partially_measured because the primary-corporate blog posts and
+      developer documentation enumerate the curation model at
+      calendar-folder Wayback granularity (pending body_hash on human
+      audit); no behavioral L3 cascade is independently measured.
+  - layer: l4_frontend
+    status: partially_measured
+    note: |
+      L4 is the load-bearing layer for this event. The MetaMask
+      wallet extension UI (v11.0+) ships the Snaps directory with an
+      allowlist filter: a Snap that is not on the npm-package +
+      version + checksum allowlist cannot be installed from the
+      stable channel. Per-Snap regional restrictions (where a Snap's
+      own developer or the MetaMask audit gate declines availability
+      in specific jurisdictions) are surfaced through the same L4
+      directory gate. Coverage is partially_measured because the
+      primary-corporate blog posts and the Snaps Discussion #1411
+      developer guide pin the curation mechanism at calendar-folder
+      Wayback granularity; the per-Snap regional restriction
+      enumeration at directory launch is not exhaustively captured
+      by replayable artifact.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level stablecoin freeze or on-chain asset action is
+      invoked by a wallet-extension extension-platform launch.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The Snaps platform launch addresses wallet-extension feature
+      curation and does not engage CEX off-ramps.
+
+observations:
+  - layer: l4_frontend
+    actor: wallet_provider:consensys_metamask
+    event: snaps_directory_allowlist_launch_with_per_snap_regional_filtering
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-09-12T00:00:00Z
+    precision: day
+    window:
+      - 2023-09-12T00:00:00Z
+      - 2023-12-12T00:00:00Z
+    sources:
+      - type: primary_corporate
+        url: https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
+        wayback: https://web.archive.org/web/2023/https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - consensys_metamask
+          domains:
+            - metamask.io
+            - snaps.metamask.io
+          time_window:
+            - 2023-09-12T00:00:00Z
+            - 2023-12-12T00:00:00Z
+        note: |
+          MetaMask blog post announcing the 2023-09-12 Snaps launch in
+          the MetaMask Extension stable channel (v11.0). The post
+          documents the allowlist mechanism (npm package name +
+          version + content checksum) as the corporate-policy filter
+          gating Snap installation; per-Snap regional restrictions
+          surface through the same L4 directory gate. Codebook §1.4:
+          attribution=direct because (i) the blocking provider
+          (ConsenSys / MetaMask) publicly cites the trigger
+          (corporate policy decision to launch behind an allowlist) in
+          the blog post and (ii) the L4 filter is implemented at
+          launch (compliance window = 0 days, well within the ≤ 7-day
+          publicly-knowable window). DRYRUN: pinned Wayback snapshot
+          and body_hash deferred to human audit; marked
+          evidence_use=contextual_unarchived per validator policy.
+      - type: supporting_community
+        url: https://github.com/MetaMask/snaps/discussions/1411
+        wayback: https://web.archive.org/web/2023/https://github.com/MetaMask/snaps/discussions/1411
+        evidence_use: contextual_unarchived
+        note: |
+          MetaMask Snaps Open Beta Readiness Guide developer
+          discussion thread documenting the npm-package + version +
+          checksum allowlist constraint. Triangulation source for the
+          curation mechanism. DRYRUN: pinned Wayback snapshot deferred
+          to human audit.
+      - type: supporting_journalism
+        url: https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
+        wayback: https://web.archive.org/web/2023/https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
+        evidence_use: contextual_unarchived
+        note: |
+          The Crypto Times contemporaneous (2023-09-13) coverage
+          confirming the 2023-09-12 launch and the allowlist-curation
+          framing. Day-level timing triangulation. DRYRUN: pinned
+          Wayback snapshot deferred to human audit.
+  - layer: l3_rpc
+    actor: wallet_provider:consensys_metamask
+    event: snap_internal_rpc_endpoints_gated_via_l4_directory_allowlist
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-09-12T00:00:00Z
+    precision: day
+    window:
+      - 2023-09-12T00:00:00Z
+      - 2023-12-12T00:00:00Z
+    sources:
+      - type: primary_corporate
+        url: https://metamask.io/news/metamask-snaps-our-first-step-on-the-road-to-becoming-fully-permissionless
+        wayback: https://web.archive.org/web/2023/https://metamask.io/news/metamask-snaps-our-first-step-on-the-road-to-becoming-fully-permissionless
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - consensys_metamask
+          domains:
+            - metamask.io
+            - snaps.metamask.io
+          time_window:
+            - 2023-09-12T00:00:00Z
+            - 2023-12-12T00:00:00Z
+        note: |
+          MetaMask companion blog post framing the allowlist as the
+          transitional curation gate. Many of the 30+ audited Snaps at
+          launch bundle their own chain-RPC endpoints (especially the
+          non-EVM-chain Snaps), so the L4 allowlist propagates to L3
+          indirectly: a Snap that the directory does not surface in a
+          jurisdiction cannot inject its RPC endpoint into the wallet
+          user's session in that jurisdiction. attribution=plausible
+          (codebook §1.4) because the L3 propagation is inferential
+          rather than the subject of a per-Snap public blocking
+          announcement by ConsenSys / MetaMask. DRYRUN: pinned Wayback
+          snapshot deferred to human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN WAVE 2.3 P2 2026-05-17**. Comparable-
+  tier empirical case for the 2023-09-12 MetaMask Snaps open-beta
+  launch in the MetaMask Extension stable channel (v11.0). The launch
+  ships the Snaps platform behind an allowlist (npm package name +
+  version + content checksum) curated through the MetaMask Snaps
+  directory; per-Snap regional restrictions (some Snaps unavailable
+  in certain jurisdictions per their own developer's geofencing or
+  per the MetaMask audit gate) propagate to the wallet user through
+  the same L4 directory filter. Authored at status=draft and
+  origin=agent_draft pending human audit of pinned Wayback snapshots
+  and body_hashes for the two MetaMask blog posts, the GitHub
+  Discussion #1411 developer guide, and the contemporaneous The Crypto
+  Times / Bitcoinist coverage.
+
+  Codebook rule applied (§5.1): trigger.type=corporate_policy_change.
+  The Snaps launch and its allowlist gating are unilateral corporate
+  policy decisions by ConsenSys / MetaMask; not an OFAC SDN
+  designation, DOJ action, court order, or nation-state block.
+  research_stratum=S5_corporate per §5.2 stratum-actor map.
+
+  Why empirical_case / comparison (codebook §3, §4): two
+  observed_change layers — L4 frontend (the directory allowlist
+  itself, attribution=direct) and L3 RPC (Snap-internal RPC endpoint
+  gating propagated through the L4 allowlist, attribution=plausible).
+  Per codebook §3, 2 observed_change layers → empirical_shape=
+  comparison; per codebook §4, ≥ 1 strong-attribution observed_change
+  layer → admission_tier=empirical_case. L4 attribution=direct
+  applied per codebook §1.4: the blocking provider (ConsenSys /
+  MetaMask) publicly cites the trigger (the corporate decision to
+  launch Snaps behind an allowlist) in the launch blog post and the
+  filter is implemented at launch (compliance window = 0 days, well
+  within the ≤ 7-day publicly-knowable window). L3 attribution=
+  plausible because the propagation from L4 directory gate to L3
+  Snap-internal-RPC-endpoint availability is inferential — no per-
+  Snap public RPC-blocking announcement by ConsenSys / MetaMask
+  documents the L3 cutover directly.
+
+  Why analysis_use=comparable_analysis: 2023-09-12 is within the
+  2017+ comparable-analysis corpus window. Canonical form per
+  codebook §6.
+
+  Why target.kind=entity / enumeration=subset (codebook §7): the
+  filter addresses the class of MetaMask wallet end-users on the
+  stable channel attempting to install third-party Snaps from the
+  MetaMask Snaps directory; the directory at launch enumerated 30+
+  audited Snaps rather than the complete future Snap population, and
+  per-Snap regional restrictions are surfaced per-Snap rather than
+  as a single enumerable wallet-user cohort. enumeration=subset with
+  class-level rationale in enumeration_note per codebook §7.
+
+  Why jurisdiction=corporate_global: ConsenSys is a US-incorporated
+  entity but the Snaps directory and its allowlist apply globally to
+  all MetaMask Extension stable-channel users; per-Snap regional
+  restrictions are decided per-Snap (some by Snap developers, some
+  by MetaMask audit gate) rather than by a single sanctions-
+  jurisdiction trigger. jurisdiction=[corporate_global] reflects the
+  global user-class scope without a sanctions-jurisdiction anchor.
+  Sibling events with US-sanctions triggers (infura-metamask-
+  donetsk-luhansk-block-2022-03; infura-alchemy-tornado-rpc-block-
+  2022) carry US in jurisdiction because they are driven by US
+  sanctions triggers; this event is not.
+
+  Comparative value: this event extends the ConsenSys / MetaMask /
+  Infura L3-L4 corporate-policy cascade-shape series into the
+  wallet-extension-platform substrate. The 2022 sibling triad
+  (infura-metamask-donetsk-luhansk-block-2022-03, infura-alchemy-
+  tornado-rpc-block-2022, consensys-metamask-infura-rpc-data-
+  collection-2022-11) anchors the L3 RPC substrate's three cascade
+  shapes (IP-geo region block, address-set screening, privacy
+  disclosure). This 2023-09 event anchors the L4 wallet-extension
+  substrate's curation-gate cascade: a corporate-policy allowlist
+  at the wallet-frontend layer becomes the surface through which
+  per-Snap regional / jurisdictional restrictions reach the wallet
+  user. The pattern surfaces the wallet-extension layer as a
+  governance choke point distinct from (but composed with) the L3
+  RPC substrate already documented in the 2022 siblings.
+
+  DRYRUN caveats: the five citations all carry 2023-calendar-folder
+  Wayback pointers rather than pinned snapshots; pinned snapshot
+  timestamps and body_hash captures are deferred to the human-audit
+  pass. For non-DRYRUN release, capture body_hash + body_path for:
+  (1) the MetaMask "Snaps in MetaMask Stable" blog post (2023-09-12);
+  (2) the MetaMask "Our first step on the road to becoming fully
+  permissionless" blog post; (3) the MetaMask/snaps GitHub
+  Discussion #1411; (4) the The Crypto Times and Bitcoinist
+  permalinks. Marked evidence_use=contextual_unarchived on all
+  citations to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "On 2023-09-12 ConsenSys / MetaMask launched the Snaps platform
+  in the MetaMask Extension stable channel (v11.0) behind an
+  allowlist (npm package name + version + content checksum) curated
+  through the MetaMask Snaps directory. Per-Snap regional
+  restrictions (some Snaps unavailable in certain jurisdictions)
+  propagate to the wallet user through the same L4 directory gate;
+  Snap-internal RPC endpoints inherit that gating at L3 indirectly.
+  Two observed_change layers (L4 attribution=direct; L3 attribution=
+  plausible) → empirical_shape=comparison, admission_tier=
+  empirical_case."
+
+scoped_knowledge: |
+  What changed: the MetaMask Extension stable channel (v11.0)
+  shipped a Snaps directory gated by a corporate-policy allowlist
+  (npm package name + version + content checksum). Installation of
+  third-party Snaps on the stable channel is restricted to the
+  allowlist; per-Snap regional restrictions (where a Snap's own
+  developer or the MetaMask audit gate declines availability in
+  certain jurisdictions) surface through the same L4 directory
+  filter. Snap-internal RPC endpoints (especially the non-EVM-chain
+  Snaps that bundle their own chain RPC clients) inherit the L4
+  allowlist gating at L3 indirectly.
+
+  What did not change or could not be measured: L0 network is not
+  applicable (the launch is a wallet-extension software-layer event,
+  not ISP-level blocking); L1 consensus is not applicable (the Snaps
+  platform does not engage PBS / relay / builder block-production
+  censorship); asset_onchain and offramp_cex are not applicable.
+  L3 is partially_measured (the L4-to-L3 propagation is inferential
+  via the curation model documented in the primary-corporate blog
+  posts rather than per-Snap RPC-cutover announcements); L4 is
+  partially_measured (the primary-corporate blog posts pin the
+  curation mechanism at calendar-folder Wayback granularity and the
+  per-Snap regional restriction enumeration at directory launch is
+  not exhaustively captured by replayable artifact).
+
+  Attribution: L4 observation is observed_change with attribution=
+  direct per codebook §1.4 — ConsenSys / MetaMask publicly cite the
+  trigger (the corporate decision to launch behind an allowlist) in
+  the launch blog post and the filter is implemented at launch
+  (compliance window = 0 days). L3 observation is observed_change
+  with attribution=plausible — the propagation from L4 directory
+  gate to L3 Snap-internal RPC endpoint availability is inferential
+  rather than the subject of a per-Snap public RPC-blocking
+  announcement.
+
+  Comparative value: extends the ConsenSys / MetaMask / Infura
+  L3-L4 corporate-policy cascade-shape series into the wallet-
+  extension substrate. The 2022 sibling triad anchors three L3 RPC
+  cascade shapes from the same operator within ~9 months (IP-geo
+  region block, address-set screening, privacy disclosure); this
+  2023-09 event anchors the L4 wallet-extension substrate's
+  curation-gate cascade. Together the four events illustrate the
+  composability of the L3-L4 corporate-policy choke points in a
+  single operator stack.
+
+  DRYRUN risk: the five citations are unarchived at pinned-snapshot
+  granularity. Before paper release the human-audit pass must pin
+  Wayback snapshots and body_hashes for both MetaMask blog posts,
+  the GitHub Discussion #1411, and the The Crypto Times / Bitcoinist
+  permalinks. The per-Snap regional restriction enumeration at
+  directory launch should be reconstructed from the MetaMask Snaps
+  directory's 2023-09 wayback captures during the human-audit pass.
+
+tags:
+  - corporate_policy_change
+  - wallet_extension_platform
+  - snaps_directory_allowlist
+  - per_snap_regional_filtering
+  - metamask
+  - consensys
+  - l4_curation_choke_point
+  - l3_rpc_propagation
+  - empirical_case
+  - dryrun_2026_05_17
+  - dryrun_wave_2_3_p2

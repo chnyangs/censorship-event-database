@@ -1,0 +1,230 @@
+id: iran-government-mining-electricity-restriction-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: regulatory_enforcement
+  actor: IR_TAVANIR
+  timestamp: 2021-05-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
+      wayback: https://web.archive.org/web/2021/https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
+      evidence_use: contextual_unarchived
+      note: |
+        CNBC contemporaneous reporting of President Rouhani's 2021-05-26
+        announcement of a four-month (May–September 2021) ban on all
+        cryptocurrency mining in Iran, including the 50 licensed mining
+        farms operated under Tavanir (Iran Power Generation, Distribution
+        and Transmission Company) authorization. Rationale: relieve summer
+        electricity shortages causing rolling blackouts in major Iranian
+        cities. DRYRUN: wayback stub pending body_hash + body_path capture.
+    - type: supporting_journalism
+      url: https://www.aljazeera.com/economy/2021/5/26/iran-bans-all-crypto-mining-after-summer-power-cuts-strike
+      wayback: https://web.archive.org/web/2021/https://www.aljazeera.com/economy/2021/5/26/iran-bans-all-crypto-mining-after-summer-power-cuts-strike
+      evidence_use: contextual_unarchived
+      note: |
+        Al Jazeera coverage corroborating the 2021-05-26 ban announcement
+        and the Tavanir / Ministry of Energy enforcement role. Notes that
+        the order required licensed bitcoin miners to halt operations
+        until 2021-09-22, with Tavanir conducting enforcement raids on
+        unlicensed operations. DRYRUN: wayback stub.
+    - type: supporting_journalism
+      url: https://fortune.com/2021/05/27/iran-ban-crypto-mining-bitcoin-blackout-energy-use/
+      wayback: https://web.archive.org/web/2021/https://fortune.com/2021/05/27/iran-ban-crypto-mining-bitcoin-blackout-energy-use/
+      evidence_use: contextual_unarchived
+      note: |
+        Fortune coverage of the Rouhani / Tavanir mining ban, noting that
+        licensed mining farms consumed approximately 209 megawatts of
+        power at the time of the order. DRYRUN: wayback stub.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision; CNBC, Al Jazeera, and Fortune all anchor the
+        public announcement to 2021-05-26.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Licensed Iranian bitcoin mining operations as a regulated class — 50
+    Tavanir-authorized mining farms consuming approximately 209 MW at the
+    time of the order. The ban also targeted unlicensed mining as an
+    enforcement priority, but the formal halt order operates against the
+    Tavanir-licensed population. Per-farm enumeration not captured in the
+    public order text; class-level subset coded per codebook §7.
+  protocol: null
+  actor_type: licensed_bitcoin_mining_operators
+  actor_name: Iranian Tavanir-licensed bitcoin mining farms (class)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction: [IR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Electricity-rationing administrative order targeting mining-rig
+      power consumption, not a DNS / connectivity action against
+      bitcoin network access.
+  - layer: l1_consensus
+    status: partially_measured
+    chain: bitcoin
+    scope:
+      - iran_bitcoin_hashrate_share
+    note: |
+      Cambridge Centre for Alternative Finance (CCAF) Bitcoin Mining Map
+      and contemporaneous hashrate trackers showed a temporary dip in
+      Iran's share of Bitcoin hashrate during the May–September 2021
+      ban window. The L1 effect is mining-side (hashrate withdrawal),
+      not validator censorship. DRYRUN: denominator artifact stub
+      pending CCAF body_hash + body_path capture.
+    denominator_artifact:
+      type: supporting_tracker
+      url: https://ccaf.io/cbnsi/cbeci/mining_map
+      wayback: https://web.archive.org/web/2021/https://ccaf.io/cbnsi/cbeci/mining_map
+      note: |
+        CCAF Bitcoin Mining Map as the denominator-anchor reference for
+        Iran's Bitcoin hashrate share during the ban window. DRYRUN
+        stub; pin body_hash on human-review pass.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l1_consensus
+    actor: iranian_licensed_mining_farm_class
+    event: licensed_bitcoin_mining_operations_halted_summer_2021
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-05-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IR
+    sources:
+      - type: supporting_journalism
+        url: https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
+        wayback: https://web.archive.org/web/2021/https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [IR]
+          providers: [tavanir_licensed_mining_farms]
+          time_window:
+            - 2021-05-26T00:00:00Z
+            - 2021-09-22T00:00:00Z
+        note: |
+          CNBC reporting on Rouhani's 2021-05-26 four-month ban on all
+          cryptocurrency mining, with Tavanir enforcing the halt order
+          on 50 licensed mining farms. attribution=direct because the
+          Iranian government / Tavanir publicly references the action
+          and names the licensed-mining-farm class as the target
+          population (codebook §1.5 boundary for nation-state
+          administrative orders citing the regulated class). DRYRUN:
+          wayback stub pending body_hash + body_path capture.
+      - type: supporting_journalism
+        url: https://www.aljazeera.com/economy/2021/5/26/iran-bans-all-crypto-mining-after-summer-power-cuts-strike
+        wayback: https://web.archive.org/web/2021/https://www.aljazeera.com/economy/2021/5/26/iran-bans-all-crypto-mining-after-summer-power-cuts-strike
+        evidence_use: contextual_unarchived
+        note: |
+          Al Jazeera contemporaneous reporting corroborates the
+          2021-05-26 ban scope, Tavanir's enforcement role, and the
+          2021-09-22 ban-window endpoint. DRYRUN: wayback stub.
+
+recovery:
+  - layer: l1_consensus
+    resolved: true
+    resolved_timestamp: 2021-09-22T00:00:00Z
+    citation:
+      - type: supporting_journalism
+        url: https://www.aljazeera.com/economy/2021/5/26/iran-bans-all-crypto-mining-after-summer-power-cuts-strike
+        wayback: https://web.archive.org/web/2021/https://www.aljazeera.com/economy/2021/5/26/iran-bans-all-crypto-mining-after-summer-power-cuts-strike
+        evidence_use: contextual_unarchived
+        note: |
+          Al Jazeera notes the ban window scheduled to end 2021-09-22.
+          DRYRUN: wayback stub.
+    note: |
+      Time-boxed ban with announced end date 2021-09-22 (approximately
+      four months). Subsequent winter 2021–2022 power shortages and
+      late-2022 / 2024 re-imposition rounds tracked as separate events
+      in the corpus extension (out of scope for this 2021-05 record).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 — Wave 2.3 P2 preamble**
+
+  Agent draft of the Iranian government's 2021-05-26 four-month ban on
+  all cryptocurrency mining operations, enforced by Tavanir (Iran Power
+  Generation, Distribution and Transmission Company) and the Ministry
+  of Energy. The ban applied to both the 50 Tavanir-licensed mining
+  farms (which collectively drew approximately 209 MW) and unlicensed
+  operations, with the licensed-farm halt being the formal regulatory
+  action and unlicensed-farm raids the parallel enforcement campaign.
+
+  Coded per codebook §5.1 as `trigger.type: regulatory_enforcement`
+  (non-US national regulator administrative enforcement; Tavanir is a
+  state-owned utility issuing operational halt orders under the
+  Ministry of Energy's authority rather than a domain/payment-rail
+  block or sanctions designation). Per §5.2 this maps to
+  `S4_nation_state`.
+
+  empirical_shape `comparison` reflects a single observed_change layer
+  (l1_consensus mining-side hashrate withdrawal). This is a comparison-
+  shape sibling of the china-sichuan-mining-ban-2021-06 event (Sichuan's
+  2021-06 hydropower-province mining ban followed roughly two weeks
+  after Iran's order, and both targeted licensed mining operations as a
+  utility-coordinated halt). Together they bracket the summer-2021
+  global Bitcoin hashrate redistribution wave. The
+  kazakhstan-internet-shutdown-mining-2022-01 event is a downstream
+  sibling on the same mining-jurisdiction-restriction theme but operates
+  via L0 connectivity rather than utility halt.
+
+  admission_tier `empirical_case` per codebook §4 (>=1 strong-attribution
+  observed_change layer). attribution coded `direct` because the
+  Iranian government / Tavanir publicly references the action and names
+  the licensed-mining-farm class as the target population (codebook
+  §1.5 boundary for nation-state administrative orders citing the
+  regulated class). The L1 measurement is mining-side hashrate
+  withdrawal — not validator/miner censorship of specific transactions
+  or blocks — but the layer assignment follows the corpus convention
+  for hashrate-redistribution events under the mining-restriction
+  family.
+
+  All current citations are `evidence_use: contextual_unarchived`
+  (CNBC, Al Jazeera, Fortune secondary journalism; CCAF tracker page)
+  with DRYRUN wayback stubs; body_hash + body_path captures of the
+  primary Tavanir order text (Persian) and CCAF mining-map snapshot are
+  pending human-review audit. Per repo convention, contextual_unarchived
+  sources cannot support paper claims until promoted to admission_anchor
+  with body_hash + body_path.
+
+related_events:
+  - iran-ransomware-ofac-2018
+  - iran-cbi-crypto-banking-prohibition-2018
+  - china-sichuan-mining-ban-2021-06
+  - kazakhstan-internet-shutdown-mining-2022-01
+
+tags:
+  - regulatory_enforcement
+  - iran
+  - mining_restriction
+  - electricity_rationing
+  - tavanir
+  - bitcoin_hashrate_redistribution
+  - summer_2021_power_crisis
+  - mena_region

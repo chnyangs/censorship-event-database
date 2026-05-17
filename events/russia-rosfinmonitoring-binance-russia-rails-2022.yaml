@@ -1,0 +1,263 @@
+id: russia-rosfinmonitoring-binance-russia-rails-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - russia-cbr-crypto-payment-ban-2022
+  - binance-russia-exit-commex-2023
+
+trigger:
+  type: regulatory_enforcement
+  actor: RU_ROSFINMONITORING
+  timestamp: 2022-01-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: supporting_journalism
+      url: https://www.reuters.com/investigates/special-report/finance-crypto-binance-russia/
+      wayback: https://web.archive.org/web/2022/https://www.reuters.com/investigates/special-report/finance-crypto-binance-russia/
+      evidence_use: contextual_unarchived
+      note: |
+        Reuters Special Report (2022-04-22) "How crypto giant Binance
+        built ties to a Russian FSB-linked agency", reporting on the
+        April 2021 meeting between Binance's Gleb Kostarev and
+        Rosfinmonitoring at which Kostarev reportedly agreed to share
+        client data. The Reuters reporting documents an informal,
+        bilateral data-sharing arrangement preceding 2022 but does NOT
+        evidence any 2022 formal Rosfin enforcement order against
+        Binance ruble-rail / P2P operations. Used here as
+        contextual_unarchived background anchoring the null_event
+        posture. DRYRUN stub; replace with verified Wayback +
+        body_hash / body_path capture during real human audit.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2022/04/22/binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement/
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/04/22/binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement/
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk (2022-04-22) reporting Binance's public denial of the
+        Reuters allegations regarding Rosfinmonitoring data-sharing.
+        Used as a second contextual_unarchived anchor: Binance
+        publicly contests the framing of any formal Rosfin
+        compulsion, and no Rosfin-issued formal order / notice / fine
+        / administrative ruling against Binance ruble rails has been
+        identified in the 2022 calendar window. DRYRUN stub.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        No specific Rosfinmonitoring–Binance formal enforcement date
+        in 2022 has been identified. Timestamp coerced to the start
+        of 2022 with `week` precision purely as a placeholder for
+        the calendar-year scope of the null-event window. The
+        underlying Rosfin–Binance data-sharing arrangement is
+        attributed by Reuters to an April 2021 meeting, predating
+        the 2022 scope of this row. Subsequent Binance Russia P2P
+        sanctioned-bank delistings (2023-08) and ruble-pair
+        discontinuation (effective 2024-01-31) are downstream of
+        external pressure rather than Rosfin order and are out of
+        2022 scope.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Nominal target: Binance's Russia-facing ruble-rail / RUB P2P
+    operations during the 2022 calendar year. Class-level scope:
+    Binance Russia-facing offramp_cex surface (binance.com RUB
+    fiat onramp, Binance P2P RUB pairs, sanctioned-bank rail
+    coverage). Self-custody and non-Binance ruble venues
+    (Bybit, Garantex, ByBit P2P, Russian banks' own
+    crypto-adjacent rails) are outside this row's scope. Per
+    codebook §7 coded `subset` (no `class_level` enumeration
+    value); class-level rationale documented here.
+  protocol: null
+  actor_type: centralized_exchange_ruble_rail_perimeter
+  actor_name: Binance Russia-facing RUB / P2P operations (binance.com)
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction: [RU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No Rosfinmonitoring ISP / DNS block of binance.com is alleged
+      or implied within 2022. This row tests for a Rosfin
+      administrative-enforcement action on ruble rails, not a
+      network-layer block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Rosfinmonitoring is an administrative AML/CFT body without
+      stablecoin-issuer or on-chain freeze authority. No asset-layer
+      effect from any 2022 Rosfin–Binance interaction is asserted.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [binance_russia_rub_p2p]
+    note: |
+      The investigative claim under test is whether Rosfinmonitoring
+      issued a formal enforcement order or applied directed
+      administrative pressure on Binance's RUB / P2P rails during
+      2022 (post-February-2022 EU sanctions wave). Open-source
+      review (Reuters 2022-04-22 Special Report, CoinDesk
+      2022-04-22 denial, Moscow Times / Finance Magnates / BeInCrypto
+      2023 P2P-delisting coverage) surfaces (i) a pre-existing
+      April-2021 Kostarev–Rosfin data-sharing arrangement, (ii)
+      Binance's voluntary EU-sanctions-driven restrictions on
+      Russia-resident accounts in April 2022, and (iii) the
+      August-2023 Binance P2P sanctioned-bank delistings — none of
+      which is a 2022 Rosfin-initiated formal enforcement action
+      against Binance ruble rails. Coded partially_measured anchored
+      by the Reuters Special Report contextual artifact to support
+      the observed_no_change row; revisit if a Rosfin-side primary
+      legal artifact (order, notice, fine, ruling) targeting Binance
+      ruble / P2P operations in the 2022 window subsequently surfaces.
+    denominator_artifact:
+      type: supporting_journalism
+      url: https://www.reuters.com/investigates/special-report/finance-crypto-binance-russia/
+      wayback: https://web.archive.org/web/2022/https://www.reuters.com/investigates/special-report/finance-crypto-binance-russia/
+      note: |
+        Reuters Special Report (2022-04-22) anchor for the
+        Binance-Russia ruble-rail / Rosfin-relationship scope. DRYRUN
+        wayback stub; replace with verified capture during real
+        human audit.
+
+observations:
+  - layer: offramp_cex
+    actor: binance_russia_rub_p2p
+    event: rosfinmonitoring_binance_ruble_rails_no_specific_2022_enforcement_identified
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-01-01T00:00:00Z
+    precision: week
+    delta_hours: 0
+    country: RU
+    window:
+      - 2022-01-01T00:00:00Z
+      - 2022-12-31T23:59:59Z
+    sources:
+      - type: supporting_journalism
+        url: https://www.reuters.com/investigates/special-report/finance-crypto-binance-russia/
+        wayback: https://web.archive.org/web/2022/https://www.reuters.com/investigates/special-report/finance-crypto-binance-russia/
+        scope_descriptor:
+          providers: [binance_russia_rub_p2p]
+          countries: [RU]
+          time_window:
+            - 2022-01-01T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          Reuters Special Report (2022-04-22) documents the April-2021
+          Kostarev–Rosfin meeting and informal data-sharing
+          arrangement; it does NOT report any Rosfin-initiated formal
+          enforcement order against Binance ruble rails in 2022.
+          Used here as contextual_unarchived anchor for the
+          null-event posture.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.coindesk.com/business/2022/04/22/binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement/
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/04/22/binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement/
+        scope_descriptor:
+          providers: [binance_russia_rub_p2p]
+          countries: [RU]
+          time_window:
+            - 2022-01-01T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          CoinDesk (2022-04-22) Binance public denial. Reinforces
+          the null-event posture: Binance contests the existence of
+          a formal Rosfin compulsion and no Rosfin enforcement
+          artifact has surfaced in the 2022 window.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.3 P2 2026-05-17** (P2
+  non_us_state discovery; lean run): authored by LLM agent without
+  personally verifying Wayback / body_hash; origin=agent_draft and
+  status=draft. Real release must replace these DRYRUN markers with
+  human-verified Wayback + body_hash / body_path captures.
+
+  null_event documenting the absence of any specific 2022
+  Rosfinmonitoring formal enforcement order against Binance's
+  Russia-facing RUB / P2P offramp rails. Open-source web review
+  (Reuters 2022-04-22 Special Report; CoinDesk 2022-04-22 denial;
+  Moscow Times / Finance Magnates / BeInCrypto 2023 P2P-delisting
+  coverage) surfaces three adjacent but distinct phenomena, none of
+  which is a 2022 Rosfin-initiated ruble-rail enforcement:
+
+    1. An April-2021 Kostarev–Rosfin data-sharing arrangement
+       (pre-2022, informal / bilateral, not a 2022 ruble-rail order).
+    2. Binance's own EU-sanctions-driven restrictions on Russia-
+       resident accounts in April 2022 (corporate_policy_change
+       triggered by EU sanctions, not by Rosfin order).
+    3. Binance P2P sanctioned-bank delistings in August 2023 and
+       RUB-pair discontinuation effective 2024-01-31 (post-2022,
+       driven by external US/WSJ pressure and DOJ-settlement
+       posture rather than by Rosfin order).
+
+  The investigative hypothesis "Rosfinmonitoring 2022 pressure on
+  Binance ruble-rail / P2P operations following sanctions" therefore
+  fails the admission grade for an empirical_case: no replayable
+  Rosfin-side artifact targeting Binance ruble rails in 2022 has
+  been identified. Coded null_event / null_case to serve as a
+  denominator control on the S4_nation_state Russia axis,
+  sibling to russia-cbr-crypto-payment-ban-2022 (the affirmative
+  CBR-side 2022 action) and to binance-russia-exit-commex-2023
+  (the downstream 2023 Binance Russia exit).
+
+  Codebook compliance: §5.1 trigger.type = regulatory_enforcement
+  (non-US national regulator administrative enforcement); §5.2
+  stratum-actor map (regulatory_enforcement → S4_nation_state);
+  §6 analysis_use (comparable_main_2017_present →
+  comparable_analysis); §7 enumeration (subset + enumeration_note
+  documents class-level rationale, no `class_level` value used);
+  §3 empirical_shape (null_event, 0 observed_change layers); §4
+  admission_tier (null_case, 0 strong-attribution observed_change
+  layers); §8.5 DRYRUN preamble present.
+
+  Attribution posture: all rows are observed_no_change with
+  attribution=none (schema-mandated for observed_no_change). If a
+  Rosfin-issued formal order against Binance ruble rails in the
+  2022 calendar window is later surfaced (e.g. via FOIA-equivalent
+  Russian-regulator publication or via Binance corporate disclosure),
+  this row should be re-opened as a comparison / cascade event with
+  the Rosfin order as a primary_legal trigger anchor.
+
+scoped_claim: |
+  "No replayable Rosfinmonitoring formal enforcement artifact
+  against Binance's Russia-facing RUB / P2P offramp rails during
+  the 2022 calendar window has been identified at the 2026-05-17
+  authoring date. The adjacent Reuters-reported April-2021
+  Kostarev–Rosfin data-sharing arrangement (pre-2022), Binance's
+  voluntary April-2022 EU-sanctions-driven Russia restrictions,
+  and the August-2023 P2P sanctioned-bank delistings do not
+  evidence a 2022 Rosfin-initiated ruble-rail enforcement order.
+  Coded null_event / null_case as a S4_nation_state Russia-axis
+  denominator control, sibling to russia-cbr-crypto-payment-ban-2022
+  and parent to binance-russia-exit-commex-2023."
+
+tags:
+  - regulatory_enforcement
+  - russia
+  - rosfinmonitoring
+  - binance
+  - ruble_rails
+  - p2p_offramp
+  - nation_state_regulator
+  - null_event
+  - dryrun_2026_05_17
+  - dryrun_wave_2_3_p2

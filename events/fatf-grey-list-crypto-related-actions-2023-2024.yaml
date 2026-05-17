@@ -1,0 +1,237 @@
+id: fatf-grey-list-crypto-related-actions-2023-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: supranational_regulation
+  actor: FATF
+  timestamp: 2023-10-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.fatf-gafi.org/en/the-fatf/news.html
+      wayback: https://web.archive.org/web/2023/https://www.fatf-gafi.org/en/the-fatf/news.html
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2
+        supranational backlog sweep): authored by LLM agent without
+        personally verifying Wayback/body_hash; origin=agent_draft per
+        validator hard-rule. Human auditor must replace this DRYRUN
+        marker with pinned archive anchors before release.
+
+        Aggregate event covering 2023-2024 FATF plenary outputs that
+        materially adjusted the "jurisdictions under increased
+        monitoring" (grey) list with explicit crypto / VASP compliance
+        findings. Trigger anchored to the October 2023 plenary date
+        (2023-10-27) at which the FATF recognised UAE progress on
+        AML/CFT (including VASP supervision) leading to the formal UAE
+        removal on 2024-02-23. Additional in-window grey-list actions
+        with explicit VASP framing include the 2024-06-28 removal of
+        Türkiye (preceded by the 2024-06-26 Turkish parliament's
+        crypto-asset law mandating SPK licensing of crypto-asset
+        service providers).
+    - type: primary_legal
+      url: https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
+      wayback: https://web.archive.org/web/2024/https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        June 2024 FATF Targeted Update on VA/VASPs — anchors the
+        grey-list crypto framing across the 2023-2024 window. DRYRUN:
+        archival anchor unverified by LLM agent at authoring time.
+    - type: supporting_journalism
+      url: https://complyadvantage.com/insights/fatf-plenary-june-2024/
+      wayback: https://web.archive.org/web/2024/https://complyadvantage.com/insights/fatf-plenary-june-2024/
+      evidence_use: contextual_unarchived
+      note: |
+        Supporting journalism summarising the June 2024 plenary
+        outcome — Türkiye + Jamaica removed from grey list; explicit
+        reference to Türkiye's crypto-asset supervision deficiency as
+        a 2021 grey-listing factor. DRYRUN unverified.
+    - type: supporting_journalism
+      url: https://www.nortonrosefulbright.com/en/knowledge/publications/eb06aa7c/uae-removed-from-the-fatf-grey-list
+      wayback: https://web.archive.org/web/2024/https://www.nortonrosefulbright.com/en/knowledge/publications/eb06aa7c/uae-removed-from-the-fatf-grey-list
+      evidence_use: contextual_unarchived
+      note: |
+        Supporting law-firm note documenting the 2024-02-23 UAE
+        removal and the VASP-supervision component of the underlying
+        action plan. DRYRUN unverified.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Trigger timestamp anchored to FATF October 2023 plenary
+        (2023-10-27, day precision) at which the UAE action-plan
+        progress was recognised. Aggregate window 2023-02 through
+        2024-10 covers four FATF plenaries (Feb 2023, Jun 2023, Oct
+        2023, Feb 2024, Jun 2024, Oct 2024). DRYRUN authored
+        2026-05-17.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level grey-list adjustment with explicit VASP compliance
+    framing. Per §7 codebook, class-level regulatory updates are
+    encoded as enumeration=subset with class-level rationale here.
+    Named in-scope jurisdictions: United Arab Emirates (removed
+    2024-02-23 after October 2023 plenary recognition) and Türkiye
+    (removed 2024-06-28 after passage of the SPK crypto-asset
+    licensing law on 2024-06-26). Other 2023-2024 grey-list deltas
+    (e.g., 2023-06 additions of Cameroon, Croatia, Vietnam; 2024-02
+    additions of Kenya, Namibia) are not in scope: their FATF action
+    plans do not foreground a VA/VASP compliance finding. Binding
+    force is via member-state VASP licensing / Travel Rule
+    implementation and reputational pressure on correspondent
+    banking; no direct on-chain or off-ramp action is mandated by
+    the FATF grey-list mechanism itself.
+  actor_type: supranational_standard_setting_body
+  actor_name: FATF grey-list member states (UAE, Türkiye in-scope subset)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [UN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Class-level grey-list standards mechanism; no L4 domain-level
+      effect at the FATF supranational layer.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Grey-list inclusion / removal does not itself mandate on-chain
+      asset-level blacklisting. No L_asset effect attributable to
+      the FATF grey-list adjustments in isolation.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Class-level grey-list mechanism produces VASP licensing /
+      supervision pressure on listed jurisdictions (UAE VASP fines
+      2024 totalling >$12M; Türkiye SPK licensing regime enacted
+      2024-06-26). No per-event observed_change cascade attributable
+      to the FATF grey-list adjustments themselves at the corpus's
+      resolution — downstream national VASP enforcement actions are
+      tracked as separate child events. Coded null_event per §3
+      codebook: 0 observed_change layers directly attributable to
+      this aggregate trigger.
+
+observations:
+  - layer: offramp_cex
+    actor: fatf_grey_list_member_state_vasp_aggregate
+    event: fatf_grey_list_crypto_related_actions_2023_2024
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-10-27T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.fatf-gafi.org/en/the-fatf/news.html
+        wayback: https://web.archive.org/web/2023/https://www.fatf-gafi.org/en/the-fatf/news.html
+        scope_descriptor:
+          countries: [AE, TR]
+          providers: [fatf_grey_list_aggregate]
+          time_window:
+            - 2023-02-01T00:00:00Z
+            - 2024-10-31T23:59:59Z
+        note: |
+          Aggregate window covering FATF plenaries Feb 2023 -- Oct
+          2024 with explicit crypto / VASP compliance framing
+          (UAE 2024-02-23 removal, Türkiye 2024-06-28 removal).
+          DRYRUN: no per-event observed_change cascade is
+          attributable to these grey-list deltas at the corpus's
+          resolution — downstream effects manifest via national
+          VASP enforcement (UAE 2024 exchange Travel Rule fines;
+          Türkiye SPK licensing regime) which are tracked separately.
+          Coverage_gap / attribution=none per §1.1 codebook
+          (observed_no_change-style row at the class-level standards
+          layer; admission-grade sources not asserted pending human-
+          auditor anchor pinning).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+
+  Aggregate null_event documenting the 2023-2024 FATF plenary
+  outputs that materially adjusted the "jurisdictions under
+  increased monitoring" (grey) list with explicit crypto / VASP
+  compliance framing. In-scope subset: UAE (October 2023 plenary
+  recognition of action-plan progress; formal removal 2024-02-23,
+  with VASP supervision a named pillar) and Türkiye (originally
+  grey-listed 2021-10 for AML deficiencies including crypto;
+  removed 2024-06-28 after the 2024-06-26 Turkish parliament
+  crypto-asset law mandating SPK licensing of CASPs). Trigger
+  timestamp anchored to the October 2023 plenary date as the
+  earliest unambiguous crypto-tied grey-list signal in the window;
+  June 2024 plenary outputs are captured via the additional
+  citations.
+
+  Per §6 codebook the temporal_tier is comparable_main_2017_present
+  and the canonical analysis_use is comparable_analysis. Per §7
+  codebook the enumeration is `subset` with class-level rationale
+  documented in target.enumeration_note (FATF grey-list mechanism
+  binds via member-state implementation and correspondent-banking
+  pressure; other 2023-2024 grey-list deltas without explicit VASP
+  framing are out of scope). Per §3 codebook the empirical_shape is
+  null_event: 0 observed_change layers directly attributable to the
+  aggregate grey-list adjustments at the corpus's resolution.
+  Downstream national-level cascades (UAE 2024 exchange Travel Rule
+  fines; Türkiye SPK licensing enforcement) are tracked as separate
+  child events. Per §4 codebook admission_tier=null_case (0 strong-
+  attribution observed_change layers).
+
+  Per §1.1 codebook, the single off-ramp row uses
+  attribution=`none` because observation_kind=`coverage_gap` (no
+  direct per-event observed_change at the corpus's resolution).
+  This event functions as a temporal landmark within the parent
+  FATF supranational arc (R.15 2019 → 2021 Updated Guidance → 2023
+  Targeted Update → 2024 Targeted Update) and as a sibling anchor
+  to the 2023 Targeted Update for human auditors tracing the
+  grey-list compliance-pressure channel into national VASP rule
+  cascades. DRYRUN: archival anchors asserted but not personally
+  verified by the LLM agent; human auditor must pin real Wayback /
+  body_hash anchors before release.
+
+scoped_claim: |
+  "Across the 2023-2024 FATF plenary cycle, two grey-list
+  adjustments foregrounded explicit crypto / VASP compliance
+  findings: the United Arab Emirates (action-plan progress
+  recognised at the October 2023 plenary, formal removal
+  2024-02-23) and Türkiye (removed 2024-06-28 following passage of
+  the 2024-06-26 SPK crypto-asset licensing law). Coded as
+  null_event / null_case at the corpus's resolution: no per-event
+  observed_change cascade is directly attributable to the
+  grey-list adjustments themselves; downstream member-state VASP
+  enforcement actions are tracked as separate child events."
+
+related_events:
+  - fatf-r15-vasp-travel-rule-2019
+  - fatf-targeted-update-va-vasp-2021
+  - fatf-targeted-update-va-vasp-2023
+
+tags:
+  - supranational_regulation
+  - fatf
+  - fatf_grey_list
+  - fatf_r15
+  - travel_rule
+  - vasp_metadata_layer
+  - uae
+  - turkey
+  - supranational_trigger
+  - parent_event
+  - aggregate_event
+  - null_event

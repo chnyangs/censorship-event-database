@@ -1,0 +1,265 @@
+id: mtgox-mizuho-wire-pressure-2012
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - mtgox-coinlab-civil-2013
+  - mtgox-dhs-dwolla-wells-fargo-seizure-2013
+  - mtgox-usd-withdrawal-suspension-2013-06
+  - mtgox-bankruptcy-tokyo-2014
+
+trigger:
+  type: corporate_policy_change
+  actor: MIZUHO_BANK
+  timestamp: 2012-12-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/Mt._Gox
+      wayback: https://web.archive.org/web/2012/https://en.wikipedia.org/wiki/Mt._Gox
+      evidence_use: contextual_unarchived
+      note: |
+        Mt. Gox Wikipedia entry — consulted for the Mizuho banking-
+        relationship timeline. The article documents Mizuho Bank's
+        pressure on Mt. Gox to close the corporate banking account
+        as beginning from 20 June 2013 onward (concurrent with the
+        Mt. Gox USD withdrawal suspension), not from December 2012.
+        Used here as a negative-finding anchor for the null_event
+        coding. evidence_use=contextual_unarchived: no body_hash
+        captured this session.
+    - type: supporting_journalism
+      url: https://www.bilzin.com/we-think-big/insights/publications/2019/09/jurisdictional-lessons-from-mt-gox-cryptocurrency
+      wayback: https://web.archive.org/web/2012/https://www.bilzin.com/we-think-big/insights/publications/2019/09/jurisdictional-lessons-from-mt-gox-cryptocurrency
+      evidence_use: contextual_unarchived
+      note: |
+        Bilzin Sumberg "Jurisdictional Lessons from Mt. Gox
+        Cryptocurrency Litigation" (2019-09) — legal practitioner
+        retrospective on Greene v. Mizuho Bank. Locates the
+        substantive Mizuho-Mt.Gox correspondent-banking severance
+        in mid-2013 (post-2013-06-20 USD suspension), not in
+        December 2012. Supports the null_event finding for any
+        2012-12 Mizuho corporate-policy-change trigger.
+        evidence_use=contextual_unarchived.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day precision PLACEHOLDER (2012-12-01) recorded only to
+        anchor the null_event window. No source consulted in this
+        authoring session — Wikipedia, Bilzin Sumberg retrospective,
+        and contemporaneous CoinDesk/Bitcoin News coverage of the
+        Greene v. Mizuho litigation — locates a discrete Mizuho
+        Bank action against Mt. Gox in December 2012. The
+        documented Mizuho correspondent-banking severance window
+        is mid-2013 onward, coincident with the 2013-06-20 USD
+        withdrawal suspension (mtgox-usd-withdrawal-suspension-
+        2013-06).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Hypothetical 2012-12 Mizuho Bank correspondent-banking action
+    against Mt. Gox K.K.'s JPY/USD wire-transfer rails. No
+    enumeration is possible because no such discrete 2012-12
+    action is documented in the consulted sources. Class-level
+    scope would have covered Mt. Gox K.K.'s corporate banking
+    account at Mizuho's Tokyo branch and the international wire-
+    withdrawal flow for Mt. Gox USD customers.
+  entity: Mt. Gox K.K.
+  actor_type: exchange
+  actor_name: Mt. Gox K.K.
+  chains: [bitcoin]
+  canonical_domains:
+    - mtgox.com
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      mtgox.com remained reachable through December 2012; no ISP
+      / DNS-level reachability change is implicated by any alleged
+      2012-12 banking-correspondent action. Standard public-web L0
+      instruments (Censored Planet, OONI) do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2012 has no protocol-level
+      relay-filter primitive analogous to the post-Merge Ethereum
+      PBS relay surface. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not
+      exist in 2012; Flashbots Protect launched 2022-11.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      mtgox.com continued to serve trading-platform pages through
+      December 2012; no frontend takedown is alleged for the
+      2012-12 window. Frontend-enforcement layer not implicated.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze
+      admin method. A banking-correspondent severance operates on
+      fiat wire rails, not on-chain BTC. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - mtgox_jpy_usd_wire_rails
+    note: |
+      partially_measured: the negative finding rests on a
+      bounded secondary-source sweep (Mt. Gox Wikipedia
+      banking-relationship section; Bilzin Sumberg 2019-09
+      retrospective on Greene v. Mizuho, 14 C 1437) over the
+      2012-12 calendar window. Both sources document Mizuho's
+      correspondent-banking severance against Mt. Gox as
+      beginning 2013-06-20 onward; neither locates a discrete
+      2012-12 antecedent action. No replayable on-chain or
+      bank-tape slice is available for 2012-12 Mt. Gox wire
+      flows, so the measurement is partial.
+    denominator_artifact:
+      type: secondary_source_sweep
+      url: https://en.wikipedia.org/wiki/Mt._Gox
+      wayback: https://web.archive.org/web/2012/https://en.wikipedia.org/wiki/Mt._Gox
+      scope_descriptor:
+        providers: [mizuho_bank, mtgox_jpy_usd_wire_rails]
+        countries: [JP]
+        time_window:
+          - 2012-12-01T00:00:00Z
+          - 2012-12-31T23:59:59Z
+      note: |
+        Negative-finding denominator: Wikipedia Mt. Gox article
+        + Bilzin Sumberg retrospective consulted for the 2012-12
+        window. Neither source documents a discrete 2012-12
+        Mizuho Bank action against Mt. Gox's wire rails.
+
+observations:
+  - layer: offramp_cex
+    actor: bank:mizuho_tokyo
+    event: no_documented_2012_12_mizuho_action_against_mtgox_wire_rails
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2012-12-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2012-12-01T00:00:00Z
+      - 2012-12-31T23:59:59Z
+    sources:
+      - type: supporting_journalism
+        url: https://en.wikipedia.org/wiki/Mt._Gox
+        wayback: https://web.archive.org/web/2012/https://en.wikipedia.org/wiki/Mt._Gox
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mizuho_bank, mtgox_jpy_usd_wire_rails]
+          countries: [JP]
+          time_window:
+            - 2012-12-01T00:00:00Z
+            - 2012-12-31T23:59:59Z
+        note: |
+          observation_kind=observed_no_change + attribution=none.
+          Mt. Gox Wikipedia article documents Mizuho's pressure on
+          Mt. Gox as beginning 2013-06-20 onward (concurrent with
+          the USD withdrawal suspension), not in December 2012.
+          No specific 2012-12 Mizuho action against Mt. Gox's
+          wire rails is documented. The 2012-12 trigger asserted
+          by the authoring brief is not corroborated by any
+          consulted source. evidence_use=contextual_unarchived:
+          no body_hash captured this session.
+      - type: supporting_journalism
+        url: https://www.bilzin.com/we-think-big/insights/publications/2019/09/jurisdictional-lessons-from-mt-gox-cryptocurrency
+        wayback: https://web.archive.org/web/2012/https://www.bilzin.com/we-think-big/insights/publications/2019/09/jurisdictional-lessons-from-mt-gox-cryptocurrency
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mizuho_bank, mtgox_jpy_usd_wire_rails]
+          countries: [JP]
+          time_window:
+            - 2012-12-01T00:00:00Z
+            - 2012-12-31T23:59:59Z
+        note: |
+          Bilzin Sumberg 2019-09 retrospective on Greene v. Mizuho
+          litigation places the Mizuho-Mt.Gox correspondent-
+          banking severance in mid-2013. No 2012-12 antecedent
+          action is documented. Corroborates the null_event
+          finding.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-17 (Wave 2.3 P2)**:
+  authored end-to-end by LLM agent under the discovery-tier
+  banking-correspondent-severance hypothesis. The authoring
+  brief posited a 2012-12 Mizuho Bank action against Mt. Gox's
+  USD wire rails as a pre-2013 antecedent of the 2013-05 DHS
+  Dwolla seizure and the 2013-06 Mt. Gox USD withdrawal
+  suspension. Consulted sources (Mt. Gox Wikipedia, Bilzin
+  Sumberg jurisdictional retrospective on Greene v. Mizuho)
+  locate the substantive Mizuho-Mt.Gox correspondent-banking
+  severance in mid-2013 (post-2013-06-20), not in December
+  2012. No discrete 2012-12 Mizuho action is documented in
+  the consulted secondary sources.
+
+  Per the authoring brief: "If no specific 2012-12 Mizuho
+  event found: code null_event." Accordingly, this row is
+  coded null_event / null_case with observation_kind=
+  observed_no_change + attribution=none at offramp_cex, and
+  all other layers not_applicable on construct/scope grounds.
+  The trigger.timestamp 2012-12-01 is a placeholder anchor
+  for the null-event window; it does not assert that any
+  Mizuho action occurred on that date.
+
+  temporal_tier=discovery_only_2008_2012 (2012 calendar year
+  per the discovery-tier cutoff in §6 of the codebook);
+  analysis_use=discovery_ledger_only. evidence_use=
+  contextual_unarchived across all citations: no body_hash
+  has been captured into sources/http_captures/ this session.
+  Status remains draft pending real-archive capture and
+  human review of the negative finding.
+
+  null_event shape: 0 observed_change layers; 1
+  observed_no_change layer (offramp_cex with attribution=
+  none over the 2012-12 calendar month). The Mizuho-Mt.Gox
+  correspondent-banking severance precedent for the 2013-05
+  Dwolla seizure is more accurately anchored on the
+  mid-2013 timeline (mtgox-usd-withdrawal-suspension-
+  2013-06), not on a December 2012 antecedent.
+
+scoped_claim: |
+  "No discrete 2012-12 Mizuho Bank action against Mt. Gox K.K.'s
+  JPY/USD wire-transfer rails is documented in the secondary
+  sources consulted (Mt. Gox Wikipedia, Bilzin Sumberg
+  jurisdictional retrospective on Greene v. Mizuho). The
+  documented Mizuho correspondent-banking severance against
+  Mt. Gox begins 2013-06-20 onward, coincident with the
+  Mt. Gox USD withdrawal suspension. This row records
+  observation_kind=observed_no_change + attribution=none at
+  offramp_cex over the 2012-12 calendar month as a negative
+  finding. null_event shape; discovery-tier; not used in
+  main statistical denominators."
+
+tags:
+  - discovery_only_2008_2012
+  - mtgox
+  - mizuho
+  - banking_correspondent_severance
+  - japan
+  - null_event
+  - dryrun_2026_05_17
+  - wave_2_3_p2

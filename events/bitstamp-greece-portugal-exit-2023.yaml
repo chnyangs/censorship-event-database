@@ -1,0 +1,265 @@
+id: bitstamp-greece-portugal-exit-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - bybit-singapore-exit-2022
+  - kucoin-canada-exit-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: BITSTAMP_EXCHANGE
+  timestamp: 2023-01-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: primary_corporate
+      url: https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/
+      wayback: https://web.archive.org/web/2023/https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/
+      evidence_use: contextual_unarchived
+      note: |
+        Bitstamp's published country-availability FAQ. Used here as a
+        contextual reference for Bitstamp's EU/EEA service footprint;
+        the authoring agent could not pin a specific 2023 announcement
+        of a Greece-or-Portugal exit. Marked
+        evidence_use=contextual_unarchived because no Wayback snapshot
+        was hand-pinned, no body_hash was computed, and — most
+        importantly — the page does not by itself constitute evidence
+        of a specific 2023 Greece/Portugal exit action by Bitstamp.
+    - type: primary_legal
+      url: https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
+      wayback: https://web.archive.org/web/2023/https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
+      evidence_use: contextual_unarchived
+      note: |
+        Banco de Portugal authorized-entity registry entry for Bitstamp
+        Europe S.A. Contradicts the slug's premise: as of the public
+        web search conducted on 2026-05-17, Bitstamp Europe S.A. is
+        listed as an authorized VASP under the Banco de Portugal
+        register, which is inconsistent with a clean 2023 Portugal
+        exit. Recorded here as load-bearing context for the null_event
+        coding: the authoring agent could not pin a specific 2023
+        announcement closing Greek or Portuguese services attributable
+        to MiCA-prep or national-regulator constraints, and the
+        publicly-available regulator registry suggests the opposite
+        (continued Portuguese authorization).
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        No exact 2023 Greece-or-Portugal exit timestamp was located by
+        the authoring agent's WebSearch pass on 2026-05-17. Trigger
+        timestamp is set to a nominal 2023-01-01 week-precision anchor
+        purely to satisfy schema (required field); the actual coding
+        decision is empirical_shape=null_event because no specific
+        exit action is being claimed. Do NOT cite this timestamp as a
+        load-bearing date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Hypothesized Bitstamp Greek-and-Portuguese-resident user cohorts.
+    Subset-enumerated because the slug postulates two specific EU
+    member-state retail cohorts (Greece and Portugal) as targets of a
+    2023 Bitstamp corporate-policy exit ostensibly framed by MiCA-prep
+    and national-regulator constraints. The authoring agent could not
+    pin specific exit-announcement evidence for either jurisdiction in
+    2023; coded as null_event per the authoring instruction's null
+    fallback clause.
+  actor_type: regulated_crypto_service_provider
+  actor_name: Bitstamp (Greece + Portugal user cohorts, hypothesized)
+  chains: []
+  canonical_domains:
+    - bitstamp.net
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Hypothesized corporate-policy market retreat; no ISP / DNS / BGP
+      reachability claim against bitstamp.net from Greek or Portuguese
+      networks is being asserted.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Corporate market-policy hypothesis; no validator / PBS-layer
+      construct is implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change is implicated by a
+      hypothesized CEX market-exit.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      No geo-gated bitstamp.net frontend state diff was captured for
+      Greek or Portuguese geos in 2023. Held not_measured pending
+      future evidence; null_event coding for the event as a whole
+      means this layer is not load-bearing.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN / stablecoin-issuer freeze primitive applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - bitstamp_greece_users
+      - bitstamp_portugal_users
+    note: |
+      Partial replayable evidence for the observed_no_change row
+      attached below: the Banco de Portugal authorized-entity
+      registry affirmatively lists Bitstamp Europe S.A. as
+      authorized across the 2023 window, which is positive (not
+      merely absent) evidence against a clean 2023 Portugal exit.
+      Greek-cohort observability is weaker (no equivalent national
+      registry slice pinned by the authoring agent), so the layer
+      is held partially_measured rather than measured per the
+      Kazakhstan precedent §2 (replayable artifact exists for PT
+      but does not exhaust the slug's GR+PT scope). Coded
+      null_event for the event as a whole; no observed_change row
+      is asserted at this layer.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
+      wayback: https://web.archive.org/web/2023/https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
+      note: |
+        Banco de Portugal authorized-entity registry entry for
+        Bitstamp Europe S.A. — replayable PT-side denominator
+        anchor for the observed_no_change row.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bitstamp_eu
+    event: bitstamp_greece_portugal_exit_2023_unpinned
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-12-31T23:59:59Z
+    precision: day
+    window:
+      - 2023-01-01T00:00:00Z
+      - 2023-12-31T23:59:59Z
+    note: |
+      observed_no_change row recording the authoring agent's failure
+      to pin any specific 2023 Bitstamp Greece-or-Portugal exit action
+      attributable to MiCA-prep or national-regulator constraints.
+      Held as observed_no_change rather than coverage_gap because the
+      publicly-available Banco de Portugal authorized-entity registry
+      affirmatively lists Bitstamp Europe S.A. as authorized, which
+      is positive (not absent) evidence against a clean Portugal
+      exit. attribution=none per §1.1 (reserved for
+      observed_no_change rows).
+    sources:
+      - type: primary_legal
+        url: https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
+        wayback: https://web.archive.org/web/2023/https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [PT]
+          providers: [bitstamp_europe_sa]
+          time_window:
+            - 2023-01-01T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          Banco de Portugal authorized-entity registry entry for
+          Bitstamp Europe S.A. — positive evidence that Bitstamp
+          retained Portuguese VASP authorization, which is the
+          inverse of what the slug's Portugal-exit premise predicts.
+      - type: primary_corporate
+        url: https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/
+        wayback: https://web.archive.org/web/2023/https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [GR, PT]
+          providers: [bitstamp_eu]
+          time_window:
+            - 2023-01-01T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          Bitstamp's published country-availability FAQ; contextual
+          reference for the absence of any pinned 2023 Greece-or-
+          Portugal exclusion announcement attributable to MiCA-prep
+          or national-regulator constraints.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 preamble:
+  Bitstamp Greece/Portugal 2023 hypothesized exit — coded as
+  null_event because the authoring agent could not pin specific
+  GR or PT exit-announcement evidence). Authored by LLM agent
+  without personally verifying Wayback / body_hash; only valid at
+  status=draft / origin=agent_draft. The slug
+  `bitstamp-greece-portugal-exit-2023` is retained verbatim per the
+  authoring instruction but the empirical claim it suggests is NOT
+  admitted: null_event + null_case fallback per the instruction's
+  explicit "If you can't pin specific 2023 GR/PT exit dates: code as
+  null_event with note explaining vague slug" clause.
+
+  Why null_event:
+  - The 2026-05-17 WebSearch pass on "Bitstamp Greece Portugal exit
+    2023" surfaced documented 2023 Bitstamp policy actions (US ETH
+    staking halt 2023-08-24; Canada exit announced 2023-10 effective
+    2024-01-08) but NO Greece-specific or Portugal-specific 2023
+    exit announcement.
+  - The Banco de Portugal authorized-entity registry currently lists
+    Bitstamp Europe S.A. as authorized, which is positive (not
+    merely absent) evidence against a 2023 Portugal exit.
+  - Per §3 codebook: 0 observed_change layers → null_event.
+  - Per §4 codebook: 0 strong-attribution observed_change layers →
+    null_case.
+  - Per §8.4 codebook: ambiguous coding defaults to the more
+    conservative value (null_case over empirical_case).
+
+  Slug retention note: the slug
+  `bitstamp-greece-portugal-exit-2023` is deliberately preserved so
+  that any future evidence surfacing a specific 2023 GR/PT exit
+  action can be admitted under the same id; the current row stands
+  as a documented null search until then. This is the
+  observed_no_change discipline (Kazakhstan precedent §1.5 analogue
+  for corporate-policy retreats): documented-but-uncaptured
+  exit-action claims must be coded as not_measured / null_event
+  until pinned.
+
+  Codebook decisions applied:
+  - trigger.type=corporate_policy_change per §5.1 (hypothesized
+    exchange-initiated market retreat) — kept per authoring
+    instruction even though no specific action is being admitted.
+  - research_stratum=S5_corporate per §5.2 stratum-actor map.
+  - empirical_shape=null_event per §3 (0 observed_change layers).
+  - admission_tier=null_case per §4 (0 strong-attribution
+    observed_change layers).
+  - target.enumeration=subset per §7 — hypothesized Greek-and-
+    Portuguese cohorts are class-level rather than per-address
+    enumerated; rationale documented in enumeration_note.
+  - jurisdiction=[corporate_global] per authoring instruction.
+  - evidence_use=contextual_unarchived on all citations because
+    the authoring agent did not personally pin Wayback or compute
+    body_hash; per the slug's null disposition this is appropriate
+    (these citations are not admission anchors).
+
+scoped_claim: |
+  "As of the 2026-05-17 authoring pass, no specific 2023 Bitstamp
+  Greece-or-Portugal exit action attributable to MiCA-prep or
+  national-regulator constraints could be pinned by the authoring
+  agent; the Banco de Portugal authorized-entity registry continues
+  to list Bitstamp Europe S.A. as authorized, which is positive
+  evidence against a clean Portugal exit. Slug is retained as a
+  documented null_event placeholder for future evidence surfacing."
+
+tags:
+  - corporate_policy_change
+  - bitstamp
+  - greece
+  - portugal
+  - eu
+  - mica_prep
+  - null_event
+  - regulated_crypto_service_provider
+  - dryrun_2026_05_17

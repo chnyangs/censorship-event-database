@@ -1,0 +1,150 @@
+id: circle-usdc-cryptex-freeze-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - cryptex-ofac-2024
+  - circle-usdc-tornado-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: CIRCLE_USDC_ISSUER
+  timestamp: 2024-09-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240926
+      wayback: https://web.archive.org/web/2024/https://ofac.treasury.gov/recent-actions/20240926
+      evidence_use: contextual_unarchived
+      note: |
+        OFAC Recent Actions 2024-09-26: CRYPTEX SDN entry enumerates four digital-currency
+        addresses including USDC-on-Ethereum address 0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7.
+        This is the upstream trigger that the Circle USDC corporate-policy freeze responds to;
+        captured here as contextual_unarchived because the canonical OFAC capture body_hash is
+        pinned in the sibling event cryptex-ofac-2024.
+    - type: primary_onchain
+      url: https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da
+      wayback: https://web.archive.org/web/2024/https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da
+      tx_hash: "0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da"
+      evidence_use: contextual_unarchived
+      note: |
+        Circle USDC Blacklisted() transaction freezing the OFAC-named Cryptex ETH address
+        0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7 at 2024-09-27 03:00 UTC, approximately
+        27 hours after the OFAC SDN designation. On-chain receipt of the corporate-policy
+        compliance action.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Single Cryptex-controlled USDC-on-Ethereum address (0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7)
+    pre-named on the OFAC SDN Cryptex entry. Subset because Cryptex's full address universe is
+    larger than the one ETH address OFAC enumerated; Circle's freeze action targeted only the
+    SDN-named ETH address (no broader cluster sweep observed at this event date).
+  entity: cryptex_exchange
+  protocol: cryptex_exchange
+  actor_type: exchange
+  actor_name: Cryptex
+  chains: [ethereum]
+  addresses:
+    - "0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7"
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: Single-wallet stablecoin-issuer freeze; L1 PBS relay-share is governed by aggregate filter policy, not per-address freezes.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Circle USDC Blacklisted() transaction for Cryptex ETH address 0x0931cA... executed
+      2024-09-27 03:00 UTC (tx 0xa10d4e1a...ffd8da). On-chain receipt is the primary anchor;
+      usdtbanlist community tracker confirms the freeze state for the address.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: usdc_blacklist_cryptex_sdn_address_within_27h
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-27T03:00:00Z
+    precision: minute
+    delta_hours: 27.0
+    target_address: "0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7"
+    action_id: circle-usdc-blacklist-cryptex-2024-0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da
+    sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da
+        wayback: https://web.archive.org/web/2024/https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da
+        tx_hash: "0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da"
+        evidence_use: contextual_unarchived
+        note: |
+          Circle USDC Blacklisted() tx freezing Cryptex ETH address 0x0931cA... at
+          2024-09-27 03:00 UTC, 27 hours after the 2024-09-26 OFAC SDN designation.
+          Direct on-chain receipt of the corporate-policy compliance action.
+      - type: supporting_community
+        url: https://usdtbanlist.com/address/0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7
+        wayback: https://web.archive.org/web/2024/https://usdtbanlist.com/address/0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7
+        body_hash: sha256:145f410f6a396bd596c3dda51ea5040b505b08b5712f23edf8744fe438c48faa
+        body_path: sources/http_captures/cryptex-ofac-2024/asset-layer-check/usdtbanlist.com__address-0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7__169bb88c26.html
+        evidence_use: contextual_unarchived
+        note: |
+          usdtbanlist community tracker page for the Cryptex ETH address. Confirms both
+          Tether and Circle blacklist transactions; reused from the sibling cryptex-ofac-2024
+          capture bundle (same evidence_group_id for both issuer-side rows).
+        evidence_group_id: usdtbanlist-cryptex-eth-address
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 Wave 2.3 P2**
+
+  Sibling S5_corporate event to cryptex-ofac-2024 (S1_ofac_sdn). Isolates Circle's USDC
+  issuer-side compliance freeze as a standalone corporate-policy-change event so that the
+  Circle action can be counted under the S5 stratum independently of the OFAC trigger.
+
+  Codebook §1.2 attribution rule applied: OFAC SDN designation (2024-09-26) pre-named the
+  USDC-on-Ethereum address 0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7 (condition A holds).
+  Circle executed the on-chain Blacklisted() tx within the publicly-knowable compliance
+  window at 2024-09-27 03:00 UTC (~27h post-SDN, condition B holds for on-chain confirmation).
+  Both (A) and (B) → attribution = direct. This matches the coding already applied in the
+  sibling cryptex-ofac-2024 asset_onchain Circle row. Note: Circle did not publish a
+  Cryptex-specific blog post (unlike the 2022 Tornado Cash post); the on-chain blacklist tx
+  itself serves as the public confirmation, consistent with the §1.2 worked example #1 logic.
+
+  Companion to circle-usdc-tornado-2022 in the issuer-compliance-clock S5 thread:
+    - circle-usdc-tornado-2022: protocol-class SDN, ~5.93h Circle response.
+    - circle-usdc-cryptex-freeze-2024: single-address SDN, ~27h Circle response.
+  The 27h vs 5.93h asymmetry is a Wave-2.3 paper-relevant datapoint for issuer-compliance
+  latency conditioned on SDN granularity (protocol-class vs single-address).
+
+scoped_claim: |
+  Circle's 2024-09-27 03:00 UTC USDC blacklist of the OFAC-named Cryptex ETH address
+  0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7 (~27h after the 2024-09-26 SDN) constitutes a
+  distinct corporate-policy-change event documenting Circle's compliance response to a
+  single-address OFAC SDN, sibling to the cryptex-ofac-2024 cascade.
+
+tags:
+  - corporate_policy_change
+  - circle_usdc
+  - stablecoin_freeze
+  - cryptex_thread
+  - ofac_compliance

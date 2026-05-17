@@ -1,0 +1,309 @@
+id: ens-eth-domain-tornado-resolution-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tornado-cash-ofac-2022
+  - tornado-cash-frontend-tornado-cash-eth-block-2022-04
+  - tornado-cash-github-takedown-2022-08
+
+trigger:
+  type: corporate_policy_change
+  actor: ENS_LABS
+  timestamp: 2022-08-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.trustnodes.com/2022/08/09/torn-token-dives-as-us-bans-a-smart-contract
+      wayback: https://web.archive.org/web/2022/https://www.trustnodes.com/2022/08/09/torn-token-dives-as-us-bans-a-smart-contract
+      evidence_use: contextual_unarchived
+      note: |
+        Trustnodes (2022-08-09) "Torn Token Dives as US Bans a Smart
+        Contract, ENS Domain Goes Offline". Headline-level reference to
+        an ENS-domain artefact appearing offline in the immediate
+        aftermath of the 2022-08-08 OFAC SDN designation. The Trustnodes
+        headline refers to the tornado.cash web (DNS) domain captured
+        under tornado-cash-tornadocash-org-seizure-2022, not to an
+        ENS-protocol-level action on the tornadocash.eth name. Cited
+        here as the closest journalistic claim that touches the
+        ENS-domain question and as a negative-result anchor: no source
+        in the search corpus documents an ENS-protocol or ENS Labs
+        frontend (app.ens.domains) action to block resolution,
+        transfer, or management of the tornadocash.eth name or
+        sub-names following the OFAC SDN designation. DRYRUN: pinned
+        Wayback snapshot deferred to human audit.
+    - type: supporting_community
+      url: https://app.ens.domains/tornadocash.eth
+      wayback: https://web.archive.org/web/2022/https://app.ens.domains/tornadocash.eth
+      evidence_use: contextual_unarchived
+      note: |
+        ENS Labs official frontend (app.ens.domains) name-detail page
+        for tornadocash.eth. Cited as the canonical artefact whose
+        post-2022-08-08 state would be the load-bearing observation if
+        an ENS-Labs frontend action had occurred. As of the search
+        evidence available, the name remains resolvable and the detail
+        page remains rendered by app.ens.domains — i.e. no
+        ENS-Labs-level UI block of tornadocash.eth is observed.
+        Sub-name sources.tornadocash.eth and the .eth.limo gateway
+        (tornadocash.eth.limo / sources.tornadocash.eth.limo) likewise
+        continued to resolve. DRYRUN: pinned Wayback snapshot deferred
+        to human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level trigger timestamp anchored to the 2022-08-08 OFAC
+        SDN designation of Tornado Cash (related event
+        tornado-cash-ofac-2022) — the would-be trigger date for any
+        ENS-protocol or ENS Labs response. precision=day reflects the
+        anchor trigger's day-level precision; no ENS-side action is
+        observed, so this event has no independent action timestamp.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Hypothetical target set: the tornadocash.eth ENS name and its
+    sub-names (sources.tornadocash.eth, docs.tornadocash.eth, etc.)
+    that point at Tornado Cash distribution artefacts (IPFS content
+    hashes hosting the dapp UI and source-code mirrors). subset
+    because the full sub-name graph is not enumerated in any single
+    primary source. The target is named here to make the
+    null-event scope falsifiable: if an ENS-Labs frontend or
+    ENS-DAO governance action had blocked resolution / transfer /
+    management of these names, this is the name set it would have
+    acted on.
+  actor_type: name_service_protocol
+  actor_name: ENS (Ethereum Name Service) — tornadocash.eth name set
+  chains: [ethereum]
+  canonical_domains:
+    - tornadocash.eth
+    - sources.tornadocash.eth
+    - app.ens.domains
+    - tornadocash.eth.limo
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      ENS is a smart-contract name-service protocol; no network-layer
+      (DNS / ISP) component is implicated by an ENS-side reaction.
+      DNS-layer reactions to the same upstream OFAC trigger are
+      captured under tornado-cash-tornadocash-org-seizure-2022.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      ENS resolution is read-side state on Ethereum; consensus-layer
+      reactions to the OFAC trigger are captured under
+      tornado-cash-ofac-2022 observations[l1].
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      RPC-layer Tornado Cash reactions are captured under
+      infura-alchemy-tornado-rpc-block-2022. ENS resolution traffic
+      is not the unit of analysis here.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - app.ens.domains
+      - tornadocash.eth (ENS name)
+      - sources.tornadocash.eth (ENS sub-name)
+      - tornadocash.eth.limo (eth.limo gateway)
+    provider_scope: public_only
+    note: |
+      Load-bearing layer for the null-event claim. The L4 frontend
+      vertex under examination is the ENS Labs official resolver UI
+      at app.ens.domains and the .eth.limo gateway that surfaces ENS
+      content-hash records as HTTPS. No ENS-protocol or ENS-Labs
+      frontend action to block resolution, transfer, or management of
+      tornadocash.eth or its sub-names was identified in the search
+      corpus. The tornadocash.eth name continues to resolve via the
+      ENS public resolver and via the eth.limo gateway
+      (sources.tornadocash.eth.limo is a publicly referenced mirror
+      surface for the Tornado Cash dapp UI post-2022-08-08). Coded
+      partially_measured because the negative claim rests on
+      contemporaneously observable rendering of the ENS Labs UI and
+      the eth.limo gateway; the denominator artefact below pins the
+      public-facing resolution surface as the scope. A human-audit
+      pass should add a pinned Wayback capture of
+      app.ens.domains/tornadocash.eth from the 2022-08-09…2022-08-15
+      window with body_hash + body_path to harden the denominator.
+    denominator_artifact:
+      type: supporting_community
+      url: https://app.ens.domains/tornadocash.eth
+      wayback: https://web.archive.org/web/2022/https://app.ens.domains/tornadocash.eth
+      scope_descriptor:
+        domains:
+          - tornadocash.eth
+          - sources.tornadocash.eth
+          - app.ens.domains
+          - tornadocash.eth.limo
+        providers:
+          - ens_labs
+          - eth_limo_gateway
+        time_window:
+          - 2022-08-08T00:00:00Z
+          - 2022-12-31T23:59:59Z
+      note: |
+        ENS Labs official frontend (app.ens.domains) tornadocash.eth
+        name page is the canonical denominator surface for an ENS-Labs
+        UI-level action; the eth.limo gateway is the canonical
+        public HTTPS surface for ENS content-hash resolution of the
+        Tornado Cash artefacts. Both remained reachable post-2022-08-08
+        per the LLM-author search pass. DRYRUN: pinned Wayback
+        snapshot and body_hash deferred to human audit.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin-issuer freeze invoked by an ENS-side reaction.
+      Asset-layer reactions to the same upstream OFAC trigger are
+      captured under circle-usdc-tornado-2022.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No CEX off-ramp action implicated by an ENS-protocol question.
+
+observations:
+  - layer: l4_frontend
+    actor: name_service:ens_labs
+    event: ens_protocol_and_frontend_no_action_on_tornadocash_eth_after_ofac_sdn
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-08-08T00:00:00Z
+    precision: day
+    window:
+      - 2022-08-08T00:00:00Z
+      - 2022-12-31T23:59:59Z
+    sources:
+      - type: supporting_community
+        url: https://app.ens.domains/tornadocash.eth
+        wayback: https://web.archive.org/web/2022/https://app.ens.domains/tornadocash.eth
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - tornadocash.eth
+            - sources.tornadocash.eth
+            - app.ens.domains
+          providers:
+            - ens_labs
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          ENS Labs official frontend (app.ens.domains) tornadocash.eth
+          name-detail page remained rendered post-2022-08-08; no UI
+          block, transfer freeze, or resolver override was observed.
+          observed_no_change row supporting the null-event status.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+      - type: supporting_community
+        url: https://sources.tornadocash.eth.limo/
+        wayback: https://web.archive.org/web/2022/https://sources.tornadocash.eth.limo/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - sources.tornadocash.eth.limo
+          providers:
+            - eth_limo_gateway
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          sources.tornadocash.eth.limo — the eth.limo HTTPS gateway
+          serving the Tornado Cash decentralized-sources surface via
+          ENS content-hash resolution — continued to resolve after
+          2022-08-08, evidencing that neither the ENS protocol nor
+          ENS Labs (nor the eth.limo gateway operator) imposed a
+          resolution-layer block on the tornadocash.eth name set.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 preamble;
+  null-event coding per author instruction "If no clear ENS-level
+  action: code null_event with note"): authored by LLM agent without
+  personally verifying Wayback/body_hash; origin=agent_draft per
+  validator policy. Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors
+  and promote origin to human_reviewed.
+
+  NULL-EVENT RATIONALE: The 2022-08-08 OFAC SDN designation of
+  Tornado Cash produced a documented cascade across L3 RPC providers
+  (Infura, Alchemy), L4 dapp frontends (Aave, Uniswap, Balancer,
+  Cloudflare Ethereum Gateway, Tornado Cash's own UI), the
+  source-code distribution layer (GitHub takedown), the DNS layer
+  (tornado.cash web-domain seizure), and the stablecoin-issuer
+  asset layer (Circle USDC freeze). The author was asked to verify
+  whether an ENS-protocol-level or ENS-Labs-frontend-level reaction
+  also occurred on the tornadocash.eth name and its sub-names. The
+  search evidence available to the LLM author surfaces NO such
+  ENS-side action: (a) no ENS Labs blog post, ENS DAO governance
+  proposal, or app.ens.domains UI changelog was identified that
+  blocks resolution, transfer, or management of tornadocash.eth;
+  (b) the tornadocash.eth and sources.tornadocash.eth names appear
+  to have continued to resolve via the public ENS resolver
+  contracts and via the eth.limo HTTPS gateway in the post-trigger
+  window; (c) the closest journalistic claim ("ENS Domain Goes
+  Offline" in the Trustnodes 2022-08-09 headline) actually refers
+  to the tornado.cash DNS web-domain, not to an ENS-protocol
+  artefact. Coded empirical_shape=null_event and
+  admission_tier=null_case: 0 observed_change layers, 1
+  observed_no_change row at L4 frontend with attribution=none.
+
+  ATTRIBUTION CODING NOTE: attribution=none on the observed_no_change
+  row per §1 and §3; this row is a denominator-control / negative-
+  result anchor and MUST NOT enter strong-attribution numerators or
+  causal prose.
+
+  DRYRUN caveats: the negative claim is supported by
+  absence-of-evidence in the public LLM-accessible search corpus.
+  The human-audit pass should: (1) capture a Wayback snapshot of
+  app.ens.domains/tornadocash.eth from the 2022-08-09 to 2022-08-15
+  window and pin its body_hash + body_path to upgrade L4 coverage
+  to partially_measured; (2) confirm via the ENS DAO discussion
+  forum (discuss.ens.domains) that no governance proposal to act
+  on tornadocash.eth was tabled; (3) confirm via ENS Labs's
+  official blog (medium.com/the-ethereum-name-service) that no
+  compliance announcement on tornadocash.eth was published; (4) if
+  any such artefact is found, re-code this event to
+  empirical_shape=comparison and admission_tier=empirical_case with
+  a real observed_change row.
+
+  RELATED-EVENTS CHAIN: positioned alongside tornado-cash-ofac-2022
+  (the upstream OFAC trigger),
+  tornado-cash-frontend-tornado-cash-eth-block-2022-04 (the
+  Tornado-Cash-operator-side dapp UI block that pre-dated the SDN),
+  and tornado-cash-github-takedown-2022-08 (the source-code-layer
+  takedown). Together with these three, this null-event row
+  delineates the perimeter of the 2022-08-08 cascade: it documents
+  a vertex the cascade did NOT reach, supporting denominator-side
+  comparability for the corpus-level "did every plausible
+  intermediary react?" question.
+
+scoped_claim: |
+  "No ENS-protocol or ENS Labs (app.ens.domains) frontend action
+  to block resolution, transfer, or management of the
+  tornadocash.eth ENS name or its sub-names is documented in the
+  public corpus following the 2022-08-08 OFAC SDN designation of
+  Tornado Cash. The name continued to resolve via the public ENS
+  resolver and via the eth.limo HTTPS gateway through at least
+  end-2022. Recorded as a null_event denominator-control row that
+  delineates the perimeter of the 2022-08-08 cascade at the
+  ENS-name-service vertex."
+
+tags:
+  - corporate_policy_change
+  - ens_name_service
+  - frontend_restriction_absent
+  - tornado_cash_thread
+  - null_event
+  - denominator_control
+  - dryrun_2026_05_17

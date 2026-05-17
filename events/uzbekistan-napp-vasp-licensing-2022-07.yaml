@@ -1,0 +1,254 @@
+id: uzbekistan-napp-vasp-licensing-2022-07
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - kazakhstan-digital-assets-law-2023-02
+
+trigger:
+  type: regulatory_enforcement
+  actor: UZ_NAPP
+  timestamp: 2022-07-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://napp.uz/en/pages/service-providers
+      wayback: https://web.archive.org/web/2022/https://napp.uz/en/pages/service-providers
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 sweep,
+        S4 nation-state Central-Asia VASP-licensing discovery): authored
+        by LLM agent without personally verifying Wayback / body_hash;
+        origin=agent_draft and status=draft pending human review. Real
+        release must replace this DRYRUN marker with a human-verified
+        audit after pinning real archive anchors.
+
+        Order of the Director of the National Agency of Perspective
+        Projects of the Republic of Uzbekistan (NAPP) No. 32 dated
+        2022-07-14, approving the Regulations on the procedure of
+        licensing the activities of service providers in the
+        crypto-assets turnover sphere (Ministry of Justice registration
+        No. 3380 of 2022-08-15). The Regulations establish a mandatory
+        state licensing regime for crypto-asset service providers
+        (including crypto-exchanges, crypto-depositories, crypto-stores,
+        and mining pools), restrict licensure to legal entities
+        resident in Uzbekistan, and set a state-fee schedule (e.g.
+        crypto-exchange license at 73,400 BCV multiples).
+    - type: supporting_journalism
+      url: https://manimama.eu/license-for-virtual-assets-service-providers-in-uzbekistan-prospects-for-crypto-business/
+      wayback: https://web.archive.org/web/2022/https://manimama.eu/license-for-virtual-assets-service-providers-in-uzbekistan-prospects-for-crypto-business/
+      evidence_use: contextual_unarchived
+      note: |
+        Manimama legal advisory describing the NAPP Order No. 32 of
+        2022-07-14 framework: Uzbek-resident legal-entity eligibility,
+        state-fee schedule for crypto-exchange / crypto-depository /
+        crypto-store / mining-pool licences, and NAPP as the sole
+        licensing authority. DRYRUN: Wayback anchor unverified.
+    - type: supporting_journalism
+      url: https://www.lexology.com/library/detail.aspx?g=91e869a9-e800-455a-aa60-52d50e3d6c87
+      wayback: https://web.archive.org/web/2022/https://www.lexology.com/library/detail.aspx?g=91e869a9-e800-455a-aa60-52d50e3d6c87
+      evidence_use: contextual_unarchived
+      note: |
+        Lexology legal note "Regulation and Licensing of Crypto
+        Custodians: Uzbek perspective" describing NAPP as the regulator
+        responsible for licensing crypto-asset service providers under
+        the 2022 framework. DRYRUN: Wayback anchor unverified.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision. 2022-07-14 is the NAPP Director's signing
+        date of Order No. 32; the Regulations entered the Ministry of
+        Justice register on 2022-08-15 (reg. no. 3380), which is the
+        domestic in-force anchor. Multiple secondary advisories
+        (Manimama, Lexology, cryptoguide.uz) agree on the 2022-07-14
+        order date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: crypto-asset service providers operating in
+    or soliciting customers from Uzbekistan, comprising (a)
+    crypto-exchanges, (b) crypto-depositories, (c) crypto-stores
+    (over-the-counter retail), and (d) crypto-mining pools. Subset
+    rather than complete because the framework's enforcement reach is
+    territorially confined to Uzbekistan and to Uzbek-resident legal
+    entities; offshore CEX surfaces remain reachable via consumer-side
+    circumvention and are not enumerated address-by-address.
+  entity: uz_napp_order_32_2022
+  actor_type: nation_state_legal_framework
+  actor_name: Republic of Uzbekistan — NAPP Order No. 32 (VASP licensing framework)
+  chains: []
+  canonical_domains:
+    - napp.uz
+
+jurisdiction:
+  - UZ
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      NAPP Order No. 32 is a domestic administrative licensing
+      framework, not an ISP- or DNS-level domain block. No L0 network
+      block is engaged. not_applicable on construct-not-engaged grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The Order does not impose consensus-layer block-building or
+      validator constraints on any chain. Mining-pool licensing within
+      Uzbekistan is plausibly second-order at L1 but the framework
+      itself operates at the operator-licensing layer, not at the
+      consensus surface. not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No Ethereum public-RPC filter-list (Flashbots Protect, MEV-Blocker)
+      engagement; no RPC-level filtering on Uzbek providers.
+      not_applicable on construct-not-engaged grounds.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Frontend-layer observable effects (e.g. offshore CEX consumer-
+      frontend restrictions for UZ-vantage users, geo-blocks on
+      unlicensed providers) are plausibly second-order to the new
+      licensing perimeter but have not been pinned with per-event
+      Wayback diffs in this draft.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin-issuer admin-method freeze or address-level
+      blacklist; the framework operates at the operator-licensing layer.
+      not_applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - uz_offramp_perimeter
+    denominator_artifact:
+      type: primary_legal
+      url: https://napp.uz/en/pages/service-providers
+      wayback: https://web.archive.org/web/2022/https://napp.uz/en/pages/service-providers
+      scope_descriptor:
+        countries: [UZ]
+        providers: [uz_napp]
+        time_window:
+          - 2022-08-15T00:00:00Z
+          - 2026-05-17T00:00:00Z
+      note: |
+        Denominator anchor for the offramp_cex domestic-licensing
+        perimeter is the NAPP service-providers landing page describing
+        Order No. 32 (2022-07-14) and the Regulations (MoJ reg.
+        No. 3380 of 2022-08-15). DRYRUN: Wayback anchor unverified.
+    note: |
+      Construct-engaged layer (offramp_cex perimeter for UZ-vantage
+      users). Status partially_measured: legal-text anchor pinned via
+      denominator_artifact above, but per-event bracketing snapshots of
+      offshore CEX UZ-vantage frontends and NAPP-licensee enumerations
+      tied to 2022-07-14 have not been pinned. null_event coding for
+      the event-level cascade pending human-reviewer audit.
+
+observations:
+  - layer: offramp_cex
+    actor: nation_state:uz_napp
+    event: vasp_licensing_framework_promulgated_no_admission_grade_cascade_observed
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-08-15T00:00:00Z
+    precision: day
+    country: UZ
+    window:
+      - 2022-07-14T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://napp.uz/en/pages/service-providers
+        wayback: https://web.archive.org/web/2022/https://napp.uz/en/pages/service-providers
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [UZ]
+          providers: [uz_napp]
+          time_window:
+            - 2022-07-14T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          NAPP service-providers landing page describing the Order
+          No. 32 (2022-07-14) framework. observation_kind=
+          observed_no_change at offramp_cex: the framework creates a
+          domestic licensing perimeter but no admission-grade per-event
+          cascade (offshore CEX retreat, named-licensee onboarding tied
+          to this trigger, address-set effects) has been pinned in this
+          DRYRUN draft. attribution=none consistent with §1.1 (reserved
+          for observed_no_change rows). DRYRUN: Wayback anchor
+          unverified.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 sweep, S4
+  nation-state Central-Asia VASP-licensing discovery): authored by LLM
+  agent without personally verifying Wayback / body_hash;
+  origin=agent_draft and status=draft pending human review.
+
+  null_event — S4 nation-state regulatory framework. The Director of
+  the National Agency of Perspective Projects of the Republic of
+  Uzbekistan (NAPP) signed Order No. 32 on 2022-07-14, approving the
+  Regulations on the procedure of licensing the activities of service
+  providers in the crypto-assets turnover sphere (Ministry of Justice
+  registration No. 3380 of 2022-08-15). The Regulations establish a
+  mandatory state licensing regime for crypto-asset service providers
+  (crypto-exchanges, crypto-depositories, crypto-stores, mining pools),
+  with licensure restricted to Uzbek-resident legal entities and a
+  state-fee schedule (crypto-exchange licence at 73,400 BCV multiples).
+
+  trigger.type=regulatory_enforcement per codebook §5.1: NAPP is a
+  non-US national regulator and the action is administrative (not a
+  network/payment-rail block); permitted research_stratum=S4_nation_state
+  per §5.2.
+
+  Coded as empirical_shape=null_event and admission_tier=null_case per
+  codebook §3/§4: zero observed_change layers with strong attribution
+  have been pinned in this DRYRUN draft. The offramp_cex layer is the
+  construct-engaged surface but per-event bracketing of UZ-vantage
+  offshore CEX frontends and NAPP-licensee enumerations tied to the
+  2022-07-14 trigger has not been captured; coded observed_no_change /
+  attribution=none pending human-reviewer audit. L0 / L1 / L3 /
+  asset_onchain coded not_applicable on construct-not-engaged grounds.
+
+  Sibling event: kazakhstan-digital-assets-law-2023-02 (the
+  AIFC-confined Kazakh VASP regime signed 2023-02-06). Both events are
+  S4 nation-state CIS / Central-Asia VASP-licensing frameworks; the
+  Uzbek framework precedes the Kazakh one by ~7 months and is
+  comparatively narrower (administrative-order layer rather than
+  presidential-statute layer), supporting cross-event comparison of
+  Central-Asia regulatory-framework cascade shapes.
+
+  evidence_use=contextual_unarchived across all citations consistent
+  with DRYRUN protocol: Wayback anchors unverified by LLM agent at
+  authoring time; cannot support paper claims until human-verified.
+
+scoped_claim: |
+  "On 2022-07-14 the Director of the National Agency of Perspective
+  Projects of the Republic of Uzbekistan (NAPP) signed Order No. 32
+  approving the Regulations on the procedure of licensing the
+  activities of service providers in the crypto-assets turnover
+  sphere (MoJ registration No. 3380 of 2022-08-15), establishing a
+  mandatory domestic licensing perimeter for crypto-exchanges,
+  crypto-depositories, crypto-stores, and mining pools restricted to
+  Uzbek-resident legal entities. No admission-grade per-event cascade
+  is pinned in this DRYRUN draft; coded null_event pending human
+  audit of the offramp_cex perimeter effects."
+
+tags:
+  - nation_state
+  - uzbekistan
+  - vasp_licensing
+  - regulatory_enforcement
+  - cis_central_asia
+  - null_event

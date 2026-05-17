@@ -1,0 +1,178 @@
+id: tether-tron-philippines-pdea-freeze-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T12:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tether-doj-pig-butchering-freeze-2023
+  - tether-pig-butchering-second-wave-2024
+  - tether-retroactive-sweep-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_usdt_issuer
+  timestamp: 2024-01-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: supporting_journalism
+      url: https://newsbytes.ph/2025/01/29/cicc-pdea-say-crypto-now-being-used-in-local-drug-trade/
+      wayback: https://web.archive.org/web/2024/https://newsbytes.ph/2025/01/29/cicc-pdea-say-crypto-now-being-used-in-local-drug-trade/
+      evidence_use: contextual_unarchived
+      note: |
+        Philippine journalism (Newsbytes.ph, 2025-01-29) reporting PDEA and
+        CICC's joint disclosure that USDT is being used in the Philippine
+        drug trade. Article notes CICC began assisting drug-related
+        cybercrime investigations "early last year" (i.e. early 2024).
+        Article does NOT enumerate any specific Tether freeze coordinated
+        with PDEA; it documents the architectural precondition (CICC/PDEA
+        joint workflow + acknowledgement that USDT is drug-payment rail) but
+        not a discrete freeze action.
+    - type: supporting_journalism
+      url: https://www.pna.gov.ph/articles/1242821
+      wayback: https://web.archive.org/web/2024/https://www.pna.gov.ph/articles/1242821
+      evidence_use: contextual_unarchived
+      note: |
+        Philippine News Agency (2025-01-28) coverage of PDEA-CICC
+        memorandum of agreement, the institutional anchor for any Tether-
+        PDEA freeze workflow. The MoA itself dates 2025-01-28; CICC's
+        operational involvement is reported to have begun in 2024. No
+        Tether-PDEA-specific freeze transaction or press release is cited.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Week-level precision unrecoverable to day. The trigger.timestamp is
+        coded as 2024-01-01 as a conservative lower-bound placeholder for
+        "early 2024" per CICC's reported entry into drug-payment cybercrime
+        tracing. No discrete Tether-PDEA freeze date is documented in any
+        primary source the authoring agent could locate; trigger.timestamp
+        should be revised upon discovery of a primary Tether or PDEA
+        announcement.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    PDEA-flagged USDT-TRC20 wallets associated with Philippine domestic
+    drug-payment cohorts. Class-level enumeration only: no public source
+    enumerates the specific TRC-20 addresses, no Tether blog post names
+    PDEA as the requesting authority, and no PDEA press release names
+    Tether as the freezing party. Listed as subset per §7 codebook
+    convention (class-level rationale documented here, value=subset).
+  protocol: null
+  actor_type: drug_payment_wallet_cluster
+  actor_name: PDEA-flagged Philippine drug-payment USDT-TRC20 wallet cluster
+  chains: [tron]
+  canonical_domains: []
+
+jurisdiction: [corporate_global, PH]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: tron
+    note: Asset-layer issuer freeze; no consensus-layer mechanism involved.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical web presence for a wallet-cluster target.
+  - layer: asset_onchain
+    status: not_measured
+    chain: tron
+    note: |
+      No primary Tether blog post, PDEA press release, or on-chain
+      blacklist tx anchor for a 2024 PDEA-directed USDT-TRC20 freeze has
+      been located. Coverage gap pending discovery of a primary artifact.
+  - layer: offramp_cex
+    status: not_measured
+    scope: [tether_usdt_issuer]
+    note: |
+      Issuer-level offramp denial is the paper-relevant layer for any
+      Tether-PDEA freeze, but no replayable artifact documents it.
+      Remains not_measured until a primary source is located.
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_pdea_directed_usdt_trc20_freeze_2024_undocumented
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2024-01-01T00:00:00Z
+    precision: week
+    country: PH
+    sources:
+      - type: supporting_journalism
+        url: https://newsbytes.ph/2025/01/29/cicc-pdea-say-crypto-now-being-used-in-local-drug-trade/
+        wayback: https://web.archive.org/web/2024/https://newsbytes.ph/2025/01/29/cicc-pdea-say-crypto-now-being-used-in-local-drug-trade/
+        evidence_use: contextual_unarchived
+        note: |
+          Philippine reporting confirms PDEA/CICC awareness that USDT is
+          used in local drug trade and that CICC began tracing crypto
+          payments in 2024, but stops short of documenting a discrete
+          Tether-executed freeze at PDEA's direction.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.3 P2 2026-05-17**
+
+  Foundational-case candidate for a non-OFAC Asian-LE / Tether freeze
+  partnership. The user's authoring brief frames this as a 2024 USDT-TRC20
+  freeze at PDEA's direction. Public reporting located by the authoring
+  agent supports the architectural preconditions (USDT used in PH drug
+  trade; CICC began crypto-payment tracing for drug cases in early 2024;
+  PDEA-CICC formalised the workflow via MoA on 2025-01-28) but does NOT
+  enumerate a specific Tether-PDEA freeze event with a verifiable date,
+  amount, or address set.
+
+  Coding decisions (per §1, §3, §4 codebook):
+    - empirical_shape = null_event: zero observed_change layers; the only
+      retainable row is a coverage_gap.
+    - admission_tier = null_case: zero strong-attribution observed_change
+      layers.
+    - Attribution on the coverage_gap row = none (per schema rule that
+      coverage_gap rows take attribution none).
+    - trigger.timestamp = 2024-01-01 week-precision placeholder. This is
+      conservative and should be revised when a primary artifact (Tether
+      blog, PDEA presser, on-chain blacklist tx) is located.
+
+  Cross-event positioning: this event is the PH-LE-led sibling of the
+  tether-pig-butchering-second-wave-2024 (APAC-LE-led) and
+  tether-doj-pig-butchering-freeze-2023 (US-DOJ-led) freezes. Whereas the
+  APAC and DOJ siblings have public anchors (Chainalysis disclosure;
+  Tether and DOJ blog posts), this PH-PDEA event currently does not. It
+  is admitted to the draft corpus as a placeholder so that the cascade-
+  level cross-jurisdictional "first non-OFAC Asian-LE freeze partnership"
+  argument can be cross-referenced if/when a primary artifact surfaces.
+
+  Wayback discipline: all `url:` paired with stub `wayback:` per task
+  directive; stubs use the year-only form `web.archive.org/web/2024/<url>`
+  pending a real snapshot. Evidence_use is `contextual_unarchived` for
+  every citation, consistent with the not-yet-anchored status.
+
+scoped_claim: |
+  "As of 2026-05-17, no primary public source enumerates a Tether-
+  executed USDT-TRC20 freeze of PDEA-flagged Philippine drug-payment
+  wallets in 2024; the architectural preconditions (CICC's 2024 entry
+  into crypto-payment tracing for drug cases; PDEA-CICC MoA 2025-01-28)
+  are documented, but the discrete freeze event remains a coverage_gap
+  awaiting a primary Tether or PDEA artifact."
+
+tags:
+  - corporate_policy_change
+  - tether_freeze
+  - law_enforcement_request_driven
+  - non_ofac_triggered
+  - philippines
+  - pdea
+  - asian_le_partnership
+  - coverage_gap
+  - dryrun_wave_2_3_p2

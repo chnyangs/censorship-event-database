@@ -1,0 +1,149 @@
+id: tornado-cash-pertsev-doj-indictment-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+related_events:
+  - pertsev-nl-arrest-2022
+  - semenov-ofac-2023
+  - storm-semenov-doj-2023
+  - tornado-cash-storm-conviction-2025
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2023-08-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
+      wayback: https://web.archive.org/web/2023/https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ USAO-SDNY press release "Tornado Cash Founders Charged With Money
+        Laundering And Sanctions Violations" (2023-08-23). The unsealed SDNY
+        indictment names Roman Storm and Roman Semenov as defendants; Alexey
+        Pertsev is referenced as "CC-1" (Co-Conspirator-1), the Dutch-resident
+        Tornado Cash co-developer already in NL FIOD custody since 2022-08-10.
+        Pertsev is NOT charged in this SDNY indictment — DOJ deferred to the
+        ongoing Dutch prosecution. This event captures the US-side CC-1
+        designation of Pertsev as the third major cross-jurisdictional
+        Tornado Cash developer-enforcement node (alongside storm-semenov-doj-2023
+        and pertsev-nl-arrest-2022).
+    - type: supporting_journalism
+      url: https://www.lawfaremedia.org/article/tornado-hit-by-the-department-of-justice
+      wayback: https://web.archive.org/web/2023/https://www.lawfaremedia.org/article/tornado-hit-by-the-department-of-justice
+      evidence_use: contextual_unarchived
+      note: |
+        Lawfare analysis of the 2023-08-23 SDNY indictment, including discussion
+        of Pertsev's status as un-charged co-conspirator in the US filing while
+        being separately prosecuted in the Netherlands.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level press-release timing; unsealing of indictment 2023-08-23.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Alexey Pertsev (Russian national, NL resident) — listed as CC-1 in the SDNY
+    indictment but not charged. Subset: this event documents only the Pertsev-
+    CC-1 slice of the larger indictment; the charged-defendant slice (Storm,
+    Semenov) is captured separately in storm-semenov-doj-2023. No on-chain
+    addresses tied to Pertsev specifically in the DOJ filing.
+  protocol: tornado_cash
+  actor_type: individual_developer
+  actor_name: Alexey Pertsev (CC-1)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: Tornado Cash frontend offline since 2022-08-08 OFAC cascade; no fresh L4 action for Pertsev CC-1 designation.
+  - layer: asset_onchain
+    status: not_applicable
+    note: Asset-layer activity for the same-day OFAC Semenov SDN captured in semenov-ofac-2023; no Pertsev-specific asset action.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_for_pertsev_cc1_designation_2023
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-08-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-08-23T00:00:00Z
+      - 2023-09-06T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
+        wayback: https://web.archive.org/web/2023/https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2023-08-23T00:00:00Z
+            - 2023-09-06T23:59:59Z
+          addresses_cohort: pertsev_cc1_sdny_indictment
+        note: |
+          No CEX policy statement referencing Pertsev individually downstream of the
+          SDNY CC-1 designation. The 2023-08-23 CEX bandwidth was absorbed by the
+          same-day OFAC Semenov SDN (Circle 8/8 USDC batch-freeze; see semenov-ofac-2023);
+          the Pertsev CC-1 slice produced no separately-disclosed exchange action.
+          14-day observation window matches storm-semenov-doj-2023 convention.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 Wave 2.3 P2**: agent_draft authored
+  per Wave 2.3 P2 sweep. Documents the Pertsev-CC-1 slice of the 2023-08-23
+  SDNY Tornado Cash indictment, distinct from:
+  (a) pertsev-nl-arrest-2022 — NL FIOD arrest 2022-08-10 (different trigger,
+      different jurisdiction);
+  (b) storm-semenov-doj-2023 — same-day SDNY indictment but for the charged
+      defendants Storm + Semenov;
+  (c) semenov-ofac-2023 — same-day OFAC SDN designation of Semenov.
+
+  null_event: Pertsev's CC-1 listing in the US indictment is a paper-relevant
+  cross-border enforcement signal (DOJ's public acknowledgment of the NL case
+  as a US-aligned action) but produced no fresh cross-layer cascade. CEX,
+  asset, RPC, and frontend layers either already-collapsed (frontend, RPC) or
+  unrelated to the CC-1 designation per se (asset). Per §1 codebook,
+  attribution=none is correct for observed_no_change rows. Per §5 trigger
+  table, doj_indictment + S3_doj_sec_cftc_fiod is the canonical pairing.
+
+  Per §7 target enumeration: subset (not complete) because this event records
+  one named co-conspirator of a multi-named indictment; the charged-defendant
+  enumeration lives in storm-semenov-doj-2023.
+
+scoped_claim: |
+  "The 2023-08-23 SDNY Tornado Cash indictment named Alexey Pertsev as
+  Co-Conspirator-1 without charging him (deferring to the ongoing Dutch
+  prosecution from pertsev-nl-arrest-2022); the CC-1 designation produced no
+  separately-disclosed cross-layer cascade beyond the same-day OFAC Semenov
+  SDN and storm-semenov-doj-2023 indictment captured in companion events."
+
+tags:
+  - doj_indictment
+  - developer_enforcement
+  - privacy_tool
+  - tornado_cash_thread
+  - co_conspirator_designation
+  - cross_border_enforcement

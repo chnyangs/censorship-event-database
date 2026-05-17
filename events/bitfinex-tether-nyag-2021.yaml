@@ -1,0 +1,333 @@
+id: bitfinex-tether-nyag-2021
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - bitfinex-tether-cftc-2021
+  - tether-retroactive-sweep-2023
+
+trigger:
+  type: regulatory_enforcement
+  actor: US_NY_OAG
+  timestamp: 2021-02-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ag.ny.gov/sites/default/files/2021.02.17_-_settlement_agreement_-_execution_version.b-t_signed-c2_oag_signed.pdf
+      wayback: https://web.archive.org/web/2021/https://ag.ny.gov/sites/default/files/2021.02.17_-_settlement_agreement_-_execution_version.b-t_signed-c2_oag_signed.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        Settlement Agreement (executed 2021-02-17, publicly announced
+        2021-02-23) "In the Matter of Investigation by Letitia James,
+        Attorney General of the State of New York, of iFinex Inc.,
+        BFXNA Inc., BFXWW Inc., Tether Holdings Limited, Tether
+        Operations Limited, Tether Limited, and Tether International
+        Limited." Imposes (a) $18.5M monetary penalty payable to the
+        State of New York, (b) prohibition on any further trading
+        activity with New York persons or entities by Bitfinex and
+        Tether, and (c) two-year quarterly reserve-composition
+        reporting obligation on Tether (per-asset-class breakdown and
+        loans-to-affiliates disclosure). Resolves the NY OAG inquiry
+        initiated 2019-04 under New York Executive Law Section 63(12)
+        and the Martin Act regarding the alleged $850M loss-coverup
+        between Bitfinex and Tether. Settling parties do not admit
+        wrongdoing. Marked evidence_use=contextual_unarchived because
+        the authoring agent did not personally pin a Wayback snapshot
+        timestamp or compute a body_hash; the ag.ny.gov PDF URL is
+        stable and routinely captured by Wayback. Provisional Wayback
+        anchor uses 2021 timestamp prefix pending human-audit re-pin.
+    - type: primary_corporate
+      url: https://tether.io/news/tether-and-bitfinex-reach-settlement-with-new-york-attorney-generals-office/
+      wayback: https://web.archive.org/web/2021/https://tether.io/news/tether-and-bitfinex-reach-settlement-with-new-york-attorney-generals-office/
+      evidence_use: contextual_unarchived
+      note: |
+        Tether corporate response "Tether and Bitfinex reach settlement
+        with New York Attorney General's Office" (2021-02-23) confirming
+        the $18.5M penalty, the cessation of activity with New York
+        persons, and the prospective adoption of the quarterly
+        reserve-composition reporting obligation; reiterates the
+        settling parties' non-admission of wrongdoing. Marked
+        evidence_use=contextual_unarchived pending Wayback re-pin and
+        body_hash capture during human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per NY OAG press release dated 2021-02-23
+        and the matching settlement agreement signed 2021-02-17 (made
+        public 2021-02-23).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Two enforcement-target groups consolidated into a single NY OAG
+    settlement: (a) the Bitfinex operator entities iFinex Inc.,
+    BFXNA Inc., and BFXWW Inc., barred from doing business with New
+    York persons; and (b) the Tether issuer entities Tether Holdings
+    Limited, Tether Operations Limited, Tether Limited, and Tether
+    International Limited, subject to the $18.5M joint penalty, the
+    NY-resident business prohibition, and a two-year quarterly
+    reserve-composition reporting obligation. The row enumerates only
+    the corporate-entity targets named in the settlement; it does not
+    enumerate individual Bitfinex customer accounts, individual USDT
+    holders, or specific on-chain USDT contract addresses. Canonical
+    operator-controlled frontends are bitfinex.com (exchange) and
+    tether.to (issuer transparency page).
+  actor_type: exchange_and_stablecoin_issuer_enforcement
+  actor_name: iFinex / BFXNA / BFXWW (Bitfinex) + Tether Holdings / Tether Operations / Tether Limited / Tether International (USDT issuer)
+  chains: [ethereum, tron, bitcoin]
+  canonical_domains:
+    - bitfinex.com
+    - tether.to
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The NY OAG settlement is a state-level administrative enforcement
+      action, not a network-level block of bitfinex.com or tether.to.
+      ISP reachability of NY or non-NY users to either canonical domain
+      was not altered by the 2021-02-23 settlement; the operator-state
+      change is at the NY-resident-business-prohibition and reserve-
+      disclosure axis, not the L0 reachability layer.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      A state-AG civil enforcement against an exchange operator and a
+      stablecoin issuer. No validator-level or block-construction
+      surface is implicated; the Ethereum Merge (and the MEV-Boost PBS
+      relay-filter surface that L1 measures in this dataset) is still
+      ~19 months downstream. not_applicable on construct-did-not-yet-
+      exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that L3 measures did not exist in 2021-02;
+      Flashbots Protect launched 2022-11. not_applicable on construct-
+      did-not-yet-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The NY OAG settlement did not require shutdown of the bitfinex.com
+      or tether.to public frontends and did not require additional
+      frontend-level NY-resident geofencing beyond what Bitfinex had
+      already implemented after the 2016-06-02 CFTC order and the 2017
+      US-customer service withdrawal. The NY-resident-business
+      prohibition operates at the offramp_cex account-policy layer,
+      not the public frontend layer.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: ethereum
+    note: |
+      The 2021-02-23 NY OAG settlement against the Tether issuer
+      entities targets the USDT reserve-attestation / disclosure regime
+      and the NY-resident business prohibition — both off-chain
+      remedies — and does NOT compel a USDT blacklist or
+      addBlackList() on-chain action against any specific address-set.
+      The USDT freeze primitive exists in 2021 (used in other events
+      such as tether-retroactive-sweep-2023) but is not engaged by
+      this NY OAG settlement. Marked not_applicable rather than
+      not_measured because the regulator-compelled change is
+      definitionally off-chain. The reserve-disclosure regime change
+      is registered as an offramp_cex observation on the Tether
+      issuer actor below.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - bitfinex_ny_resident_trading_prohibition
+      - tether_ny_resident_trading_prohibition
+      - tether_usdt_reserve_attestation_regime
+    note: |
+      Load-bearing layer for this event with two operator-state changes
+      registered as observed_change rows: (1) iFinex / BFXNA / BFXWW
+      and Tether issuer entities barred from any further trading
+      activity with New York persons or entities (NY-resident business
+      prohibition); and (2) Tether issuer-level adoption of the NY OAG-
+      mandated quarterly USDT reserve-composition disclosure regime
+      for two years following the settlement, predating the analogous
+      2021-10-15 CFTC-mandated reserve-disclosure regime by ~8 months.
+      Both are regulator-compelled operator-state changes at offramp_cex
+      venues (Bitfinex spot/margin exchange and Tether issuer fiat-rails
+      interface).
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bitfinex
+    event: nyag_ordered_bitfinex_tether_ny_resident_trading_prohibition_2021
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-02-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://ag.ny.gov/sites/default/files/2021.02.17_-_settlement_agreement_-_execution_version.b-t_signed-c2_oag_signed.pdf
+        wayback: https://web.archive.org/web/2021/https://ag.ny.gov/sites/default/files/2021.02.17_-_settlement_agreement_-_execution_version.b-t_signed-c2_oag_signed.pdf
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [bitfinex_com_offramp_cex, tether_usdt_issuer]
+          countries: [US]
+          time_window:
+            - 2021-02-23T00:00:00Z
+            - 2099-12-31T23:59:59Z
+        note: |
+          NY OAG settlement agreement imposes a prospective prohibition
+          on any further trading activity with New York persons or
+          entities by the Bitfinex operator entities (iFinex / BFXNA /
+          BFXWW) and the Tether issuer entities. attribution=direct
+          because the settlement instrument itself imposes the bar.
+          Bitfinex had previously implemented US-resident exit /
+          geoblock at the frontend level following 2017 advisories,
+          but this state-AG instrument formally pins the NY-resident
+          prohibition as an admission-grade operator-state change at
+          offramp_cex. Provisional Wayback anchor pending human-audit
+          re-pin.
+      - type: primary_corporate
+        url: https://tether.io/news/tether-and-bitfinex-reach-settlement-with-new-york-attorney-generals-office/
+        wayback: https://web.archive.org/web/2021/https://tether.io/news/tether-and-bitfinex-reach-settlement-with-new-york-attorney-generals-office/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [bitfinex_com_offramp_cex, tether_usdt_issuer]
+          countries: [US]
+          time_window:
+            - 2021-02-23T00:00:00Z
+            - 2099-12-31T23:59:59Z
+        note: |
+          Tether corporate response confirming the cessation of activity
+          with New York persons and the $18.5M penalty. Corroborates
+          issuer-side acceptance of the NY-resident business
+          prohibition. Marked evidence_use=contextual_unarchived
+          pending Wayback re-pin.
+  - layer: offramp_cex
+    actor: tether_usdt_issuer
+    event: nyag_ordered_tether_usdt_reserve_attestation_regime_change_2021
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-02-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://ag.ny.gov/sites/default/files/2021.02.17_-_settlement_agreement_-_execution_version.b-t_signed-c2_oag_signed.pdf
+        wayback: https://web.archive.org/web/2021/https://ag.ny.gov/sites/default/files/2021.02.17_-_settlement_agreement_-_execution_version.b-t_signed-c2_oag_signed.pdf
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [tether_usdt_issuer]
+          time_window:
+            - 2021-02-23T00:00:00Z
+            - 2023-02-22T23:59:59Z
+        note: |
+          Settlement imposes a two-year quarterly reserve-composition
+          reporting obligation on the Tether issuer entities, requiring
+          per-asset-class breakdown and loans-to-affiliates disclosure
+          to be filed with NY OAG and released publicly. This is the
+          regulator-compelled reserve-attestation regime change
+          registered as this observation. attribution=direct because
+          the settlement is the legal instrument that imposes the new
+          disclosure regime against the Tether issuer entities. The
+          regime predates the analogous 2021-10-15 CFTC disclosure
+          regime (bitfinex-tether-cftc-2021) by ~8 months and is the
+          first foundational state-AG-level USDT reserve-disclosure
+          requirement. Provisional Wayback anchor pending human-audit
+          re-pin.
+      - type: primary_corporate
+        url: https://tether.io/news/tether-and-bitfinex-reach-settlement-with-new-york-attorney-generals-office/
+        wayback: https://web.archive.org/web/2021/https://tether.io/news/tether-and-bitfinex-reach-settlement-with-new-york-attorney-generals-office/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [tether_usdt_issuer]
+          time_window:
+            - 2021-02-23T00:00:00Z
+            - 2023-02-22T23:59:59Z
+        note: |
+          Tether corporate response confirming prospective adoption of
+          the quarterly reserve-composition disclosure regime.
+          Corroborates issuer-side acceptance of the disclosure-regime
+          change. Marked evidence_use=contextual_unarchived pending
+          Wayback re-pin.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.3 P2 2026-05-17**: authored by
+  LLM agent without personally verifying Wayback / body_hash; origin=
+  agent_draft, status=draft. Human audit must pin verified Wayback
+  snapshots and body_hash / body_path captures of the NY OAG
+  settlement PDF and the Tether corporate response before this row
+  may be promoted to status=admitted with admission-grade citations.
+
+  **Stratum-trigger consistency**: trigger.type=regulatory_enforcement
+  and research_stratum=S4_nation_state per codebook §5.2. NY OAG is a
+  US state-level administrative enforcement actor; not a federal
+  agency (S3 reserved for DOJ/SEC/CFTC/FinCEN/federal court civil
+  orders) and not a corporate or supranational actor. The S4
+  classification preserves the state-level enforcement axis while
+  keeping the federal CFTC sibling (bitfinex-tether-cftc-2021,
+  S3_doj_sec_cftc_fiod) on a distinct stratum for cross-stratum
+  comparison purposes. Codebook §5.1 reserves regulatory_enforcement
+  for non-US national administrative enforcement; this state-AG
+  case is the nearest available cell in the validator-permitted
+  matrix.
+
+  **Comparison shape**: 2 observed_change rows on a single distinct
+  layer (offramp_cex), keyed by two operator actors — the Bitfinex
+  exchange operator entities (iFinex / BFXNA / BFXWW) and the Tether
+  USDT issuer entities — yielding empirical_shape=comparison and
+  admission_tier=empirical_case (2 direct-attribution rows on the
+  offramp_cex layer; both with primary_legal NY OAG settlement and
+  primary_corporate Tether-response sources). L0 / L1 / L3 / L4 /
+  asset_onchain are all not_applicable: the 2021-02-23 settlement
+  did not alter ISP reachability, did not engage Ethereum PBS relays
+  (which did not yet exist), did not implicate the L3 RPC compliance
+  substrate (also did not yet exist), did not require frontend
+  takedown or new geofencing beyond pre-existing US-resident
+  geoblock, and did not compel a USDT addBlackList() on-chain
+  action.
+
+  **Foundational state-AG-level crypto enforcement precedent**:
+  this is the first state-level admin settlement to package
+  (a) a multi-million-dollar penalty, (b) a state-resident
+  business prohibition, and (c) a multi-year reserve-disclosure
+  regime against a major centralized exchange + stablecoin
+  issuer pair. The 2021-10-15 federal CFTC settlement
+  (bitfinex-tether-cftc-2021) extends the same disclosure-regime
+  change to the federal commodities-law axis ~8 months later.
+  The 2023-12-09 tether-retroactive-sweep-2023 on-chain
+  compliance event represents the eventual issuer-level
+  compliance-tooling buildout downstream of this 2021-02-23
+  disclosure-regime initialization.
+
+scoped_claim: |
+  "The 2021-02-23 NY OAG settlement against iFinex / BFXNA / BFXWW
+  and the Tether issuer entities imposes a $18.5M monetary penalty,
+  a prospective prohibition on trading activity with New York
+  persons or entities, and a two-year quarterly USDT reserve-
+  composition reporting obligation. The row registers two
+  direct-attribution observed_change observations at the offramp_cex
+  layer (the NY-resident trading prohibition and the Tether
+  reserve-attestation regime change). The row asserts neither
+  network-layer reachability change nor any USDT addBlackList()
+  on-chain action; the reserve-attestation regime is an off-chain
+  disclosure obligation registered at offramp_cex on the
+  Tether-as-issuer fiat-rails interface."
+
+tags:
+  - state_ag_enforcement
+  - nyag
+  - stablecoin_issuer_disclosure
+  - bitfinex
+  - tether
+  - usdt_reserves
+  - ny_resident_prohibition
+  - cftc_predecessor
+  - centralized_platform_restriction

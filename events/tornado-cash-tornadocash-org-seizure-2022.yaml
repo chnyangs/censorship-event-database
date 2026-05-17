@@ -1,0 +1,317 @@
+id: tornado-cash-tornadocash-org-seizure-2022
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tornado-cash-ofac-2022
+  - tornado-cash-github-takedown-2022-08
+  - tornado-cash-storm-conviction-2025
+
+trigger:
+  type: corporate_policy_change
+  actor: tornado_cash_team
+  timestamp: 2022-08-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://alexbobes.medium.com/crypto-mixers-and-tornado-cash-shutdown-98a6e743b596
+      wayback: https://web.archive.org/web/2022/https://alexbobes.medium.com/crypto-mixers-and-tornado-cash-shutdown-98a6e743b596
+      evidence_use: contextual_unarchived
+      note: |
+        Retrospective coverage stating that following the 2022-08-08
+        OFAC SDN designation of Tornado Cash, "the project's domain
+        was deleted on the same day, and GitHub suspended the
+        developers' accounts." Triangulates the operator-initiated
+        cessation of tornadocash.org at the DNS / web layer. DRYRUN:
+        pinned Wayback snapshot and body_hash deferred to human-audit
+        pass; marked evidence_use=contextual_unarchived per validator
+        policy for unarchived sources.
+    - type: supporting_journalism
+      url: https://www.eff.org/deeplinks/2023/04/update-tornado-cash
+      wayback: https://web.archive.org/web/2023/https://www.eff.org/deeplinks/2023/04/update-tornado-cash
+      evidence_use: contextual_unarchived
+      note: |
+        Electronic Frontier Foundation (2023-04) retrospective on the
+        2022-08-08 OFAC SDN designation of Tornado Cash and its
+        downstream domain- and code-layer consequences. EFF documents
+        the operator-side cessation of the canonical tornadocash.org
+        web entrypoint after the SDN listing and the shift of the
+        frontend to IPFS / Tor mirrors as a community-sustained
+        alternative. DRYRUN: pinned Wayback snapshot deferred to
+        human audit.
+    - type: supporting_journalism
+      url: https://federal-lawyer.com/ofac-and-tornado-cash-a-timeline-of-the-events-leading-to-and-following-ofacs-sanctions/
+      wayback: https://web.archive.org/web/2022/https://federal-lawyer.com/ofac-and-tornado-cash-a-timeline-of-the-events-leading-to-and-following-ofacs-sanctions/
+      evidence_use: contextual_unarchived
+      note: |
+        Federal Lawyer (Oberheiden P.C.) timeline of the OFAC Tornado
+        Cash events documenting the 2022-08-08 SDN designation and
+        immediate downstream effects including the tornadocash.org
+        canonical-domain cessation. Triangulation source for the
+        domain-layer cessation. DRYRUN: pinned Wayback snapshot
+        deferred to human audit.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2022/08/08/crypto-mixing-service-tornado-cash-blacklisted-by-us-treasury
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/08/08/crypto-mixing-service-tornado-cash-blacklisted-by-us-treasury
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk (2022-08-08) contemporaneous reporting of the OFAC
+        SDN designation of Tornado Cash, naming the tornadocash.org
+        canonical domain in the OFAC-listed property roster. Anchors
+        the day-of timing of the trigger and the named-domain scope.
+        DRYRUN: pinned Wayback snapshot deferred to human audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level timing per contemporaneous reporting that the
+        tornadocash.org canonical domain was rendered unreachable /
+        deleted on 2022-08-08, the same day as the OFAC SDN
+        designation. precision=day reflects the LLM-author's
+        inability to pin a sub-day timestamp from publicly available
+        secondary reporting; the Tornado Cash team did not publish a
+        standalone shutdown announcement with a precise timestamp.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the canonical web-domain entrypoint of the Tornado Cash
+    project at tornadocash.org, operator-initiated cessation under
+    OFAC pressure (not government-seized as in silk-road). subset
+    because the action scope covers the canonical apex domain and
+    associated subdomain entrypoints (app.tornadocash.org) but is not
+    exhaustively enumerated in any single primary source — the
+    Tornado Cash team did not publish a domain-shutdown changelog,
+    and reliance is on contemporaneous and retrospective journalism.
+    Community-mirrored IPFS / Tor frontends are downstream artefacts
+    and referenced informationally.
+  actor_type: domain_entrypoint
+  actor_name: Tornado Cash — tornadocash.org canonical domain
+  canonical_domains:
+    - tornadocash.org
+    - app.tornadocash.org
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No nation-state ISP / DNS network-layer block invoked. Domain
+      cessation is operator-initiated at the registrar / DNS-record
+      level following OFAC pressure, not an L0 nation-state block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Domain-layer cessation does not act on consensus-layer
+      validator / relay behaviour. Consensus-layer effects of the
+      upstream OFAC trigger are captured under tornado-cash-ofac-2022
+      observations[l1].
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Distinct from the L3 RPC-provider blocks under
+      infura-alchemy-tornado-rpc-block-2022. The tornadocash.org
+      cessation is a web-frontend / DNS-layer artefact, not a
+      JSON-RPC endpoint block.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - tornadocash.org
+      - app.tornadocash.org
+    provider_scope: unknown
+    note: |
+      Load-bearing layer for this event. The L4 frontend layer here
+      is the canonical web-domain entrypoint at tornadocash.org —
+      the user-facing UI and project portal through which the
+      Tornado Cash mixer was accessed. Contemporaneous reporting
+      (CoinDesk, Federal Lawyer, EFF, Medium retrospective) names the
+      operator-initiated cessation of the tornadocash.org domain on
+      2022-08-08 as the action and the 2022-08-08 OFAC SDN
+      designation as the trigger. Attached below as observed_change
+      at attribution=direct per §1.4 (operator's reported rationale
+      cites the upstream OFAC trigger and the cessation lands within
+      the ≤ 7-day compliance window — same-day, 0h lag).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level asset freeze invoked by domain cessation.
+      Asset-layer reactions to the same upstream OFAC trigger are
+      captured under circle-usdc-tornado-2022.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      CEX off-ramp reactions to the same upstream OFAC trigger are
+      captured under tornado-cash-ofac-2022 observations[offramp_cex].
+
+observations:
+  - layer: l4_frontend
+    actor: domain_entrypoint:tornado_cash_team
+    event: tornadocash_org_canonical_domain_rendered_unreachable_after_ofac_sdn
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-08-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://alexbobes.medium.com/crypto-mixers-and-tornado-cash-shutdown-98a6e743b596
+        wayback: https://web.archive.org/web/2022/https://alexbobes.medium.com/crypto-mixers-and-tornado-cash-shutdown-98a6e743b596
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - tornadocash.org
+            - app.tornadocash.org
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-09T23:59:59Z
+        note: |
+          Retrospective coverage explicitly stating that "the
+          project's domain was deleted on the same day" as the
+          2022-08-08 OFAC SDN designation. Direct narrative
+          confirmation of the operator-initiated cessation of the
+          tornadocash.org canonical web entrypoint. attribution=direct
+          per §1.4: the operator's reported rationale cites the
+          upstream OFAC trigger and the cessation lands within the
+          ≤ 7-day compliance window (same-day, 0h lag). DRYRUN:
+          pinned Wayback snapshot and body_hash deferred to human
+          audit.
+      - type: supporting_journalism
+        url: https://www.eff.org/deeplinks/2023/04/update-tornado-cash
+        wayback: https://web.archive.org/web/2023/https://www.eff.org/deeplinks/2023/04/update-tornado-cash
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - tornadocash.org
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2023-04-30T23:59:59Z
+        note: |
+          Electronic Frontier Foundation (2023-04) retrospective
+          documenting the 2022-08-08 SDN-triggered cessation of the
+          tornadocash.org canonical web entrypoint and the migration
+          of the frontend to IPFS / Tor community-sustained mirrors.
+          Triangulation source for the domain-layer cessation scope.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+      - type: supporting_journalism
+        url: https://federal-lawyer.com/ofac-and-tornado-cash-a-timeline-of-the-events-leading-to-and-following-ofacs-sanctions/
+        wayback: https://web.archive.org/web/2022/https://federal-lawyer.com/ofac-and-tornado-cash-a-timeline-of-the-events-leading-to-and-following-ofacs-sanctions/
+        evidence_use: contextual_unarchived
+        note: |
+          Federal Lawyer (Oberheiden P.C.) timeline triangulating
+          the 2022-08-08 OFAC SDN designation and the immediate
+          downstream domain-layer cessation of tornadocash.org.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    citation:
+      - type: supporting_journalism
+        url: https://www.eff.org/deeplinks/2023/04/update-tornado-cash
+        wayback: https://web.archive.org/web/2023/https://www.eff.org/deeplinks/2023/04/update-tornado-cash
+        evidence_use: contextual_unarchived
+        note: |
+          As of EFF's 2023-04 retrospective and through the
+          subsequent litigation cycle, the canonical tornadocash.org
+          domain entrypoint did not return to operator-run status;
+          community-sustained IPFS / Tor mirrors served as the de
+          facto frontend. Coded resolved=false because the canonical
+          domain did not recover to its pre-trigger operator-run
+          state. The 2025-03-21 OFAC delisting (tornado-cash-ofac-delisting-2025)
+          lifts the upstream sanction but does not by itself restore
+          the canonical tornadocash.org domain.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 Wave 2.3 P2** (Phase F
+  domain-layer discovery; web-entrypoint cessation distinct from the
+  GitHub source-code-host takedown captured under
+  tornado-cash-github-takedown-2022-08): authored by LLM agent
+  without personally verifying Wayback/body_hash; origin=agent_draft
+  per validator policy. Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors and
+  promote origin to human_reviewed.
+
+  Comparison-shape S5 corporate-policy-change event sibling to
+  tornado-cash-github-takedown-2022-08 (source-code distribution
+  sub-layer of L4), aave-tornado-frontend-block-2022-08,
+  uniswap-balancer-tornado-frontend-block-2022-08,
+  cloudflare-ethereum-gateway-tornado-block-2022-08, and
+  infura-alchemy-tornado-rpc-block-2022. This row documents the
+  canonical-web-domain (DNS / web entrypoint) vertex of the
+  2022-08-08 Tornado Cash cascade — operator-initiated cessation of
+  tornadocash.org and app.tornadocash.org under OFAC pressure.
+  Distinct from the GitHub takedown (third-party platform-policy
+  removal of source-code repositories) in that this row is the
+  operator-initiated cessation of the project's own canonical
+  web-entrypoint asset, not a third-party-imposed platform action.
+
+  Actor coding: TORNADO_CASH_TEAM (operator-initiated cessation),
+  not a government seizure (no DOJ seizure warrant against the
+  domain registrar — distinct from silk-road domain seizure pattern
+  where DOJ obtained court-ordered seizure of the registrar record).
+  The action is operator self-cessation under the compliance shadow
+  of the 2022-08-08 OFAC SDN designation; the trigger.type stays
+  corporate_policy_change because the named actor (the Tornado Cash
+  operator collective) unilaterally decided to render the canonical
+  domain unreachable rather than being legally compelled by court
+  order to surrender registrar control. Stratum S5_corporate per
+  §5.2 stratum-actor map (corporate_policy_change → S5_corporate).
+
+  Attribution coding: direct per §1.4 (operator's reported rationale
+  in retrospective coverage cites the OFAC trigger and the cessation
+  lands within the ≤ 7-day compliance window — same-day, 0h lag).
+
+  Empirical shape: comparison (1 observed_change layer — L4 frontend
+  load-bearing at the canonical-web-domain sub-layer). Admission
+  tier: empirical_case (≥1 observed_change layer with direct
+  attribution).
+
+  DRYRUN caveats: all four citations carry calendar-folder Wayback
+  pointers rather than pinned snapshots; pinned snapshot timestamps
+  and body_hash captures are deferred to the human-audit pass. For
+  non-DRYRUN release, capture body_hash + body_path for: (1) the
+  CoinDesk 2022-08-08 article; (2) the EFF Deeplinks 2023-04
+  retrospective; (3) the Federal Lawyer timeline; (4) the Medium
+  retrospective. Optionally, capture archive snapshots of the
+  tornadocash.org and app.tornadocash.org canonical-domain entrypoints
+  in their post-trigger unreachable state (DNS NXDOMAIN / HTTP failure)
+  as physical artefact; Wayback's own coverage of tornadocash.org
+  before/after 2022-08-08 is the best available pinned anchor.
+  Reliance on contemporaneous journalism is structural (the Tornado
+  Cash operator collective did not publish a standalone
+  domain-shutdown announcement), not a DRYRUN artefact. Marked
+  evidence_use=contextual_unarchived on all citations to flag the
+  unarchived state per validator policy.
+
+scoped_claim: |
+  "The operator-initiated cessation of the canonical tornadocash.org
+  web-domain entrypoint on 2022-08-08 — the same day as the OFAC
+  SDN designation of Tornado Cash (related event
+  tornado-cash-ofac-2022) — documents the canonical-web-domain
+  sub-layer of the L4 frontend vertex in the S5_corporate cascade.
+  Distinct from the third-party GitHub source-code-host takedown
+  (tornado-cash-github-takedown-2022-08), this row captures the
+  project's own DNS / web-entrypoint cessation as an
+  operator-self-imposed compliance reaction. Paper-relevant as the
+  canonical-domain analogue to the source-code-platform and
+  application-UI L4 rows in the 2022-08-08 cascade."
+
+tags:
+  - corporate_policy_change
+  - domain_cessation
+  - tornadocash_org
+  - tornado_cash_thread
+  - frontend_restriction
+  - operator_initiated_cessation
+  - dryrun_2026_05_17
+  - wave_2_3_p2

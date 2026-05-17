@@ -1,0 +1,364 @@
+id: uk-hmrc-bitcoin-vat-brief-09-14-2014
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - eba-virtual-currencies-opinion-eba-op-2014-08
+
+trigger:
+  type: regulatory_enforcement
+  actor: UK_HMRC
+  timestamp: 2014-03-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
+      wayback: https://web.archive.org/web/2014/https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.3 P2)**:
+        authored by LLM agent without personally verifying
+        Wayback/body_hash; origin=agent_draft and status=draft
+        pending human review. Real release must replace this DRYRUN
+        marker with a human-verified audit after pinning real
+        archive anchors.
+
+        HMRC Revenue & Customs Brief 09/14 ("Bitcoin and other
+        cryptocurrencies") published 2014-03-03 by HM Revenue &
+        Customs setting out HMRC's position on the tax treatment
+        of income from and charges in connection with activities
+        involving bitcoin and other similar cryptocurrencies,
+        specifically for VAT, Corporation Tax, Income Tax, and
+        Capital Gains Tax. Key VAT positions: (i) income from
+        bitcoin mining is generally outside the scope of VAT
+        because mining is not an economic activity for VAT
+        purposes (insufficient link between services provided and
+        consideration received); (ii) when bitcoin is exchanged
+        for sterling or foreign currencies, no VAT is due on the
+        value of the bitcoins themselves, and exchange-side fees
+        for arranging or carrying out such transactions are also
+        VAT-exempt; (iii) VAT applies in the normal way to
+        suppliers of goods or services sold in exchange for
+        bitcoin, with the supply valued in sterling at the
+        transaction point. HMRC framed the VAT guidance as
+        provisional pending further EU regulatory development;
+        the position was subsequently aligned with the CJEU's
+        2015-10-22 Hedqvist judgment (C-264/14) treating bitcoin
+        exchange as a VAT-exempt financial-services transaction.
+    - type: supporting_journalism
+      url: https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
+      wayback: https://web.archive.org/web/2014/https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
+      evidence_use: contextual_unarchived
+      note: |
+        Tax Journal 2014-03-06 contemporaneous summary "HMRC
+        issues guidance on bitcoin", corroborating the 2014-03-03
+        publication date and the VAT-exemption framing for
+        bitcoin-fiat exchange transactions. evidence_use=
+        contextual_unarchived; Wayback snapshot requires
+        re-pinning during human audit.
+    - type: supporting_journalism
+      url: https://bitcoinmagazine.com/business/hmrc-bitcoin-1394563237
+      wayback: https://web.archive.org/web/2014/https://bitcoinmagazine.com/business/hmrc-bitcoin-1394563237
+      evidence_use: contextual_unarchived
+      note: |
+        Bitcoin Magazine 2014-03 report "HMRC Publicize Pro
+        Bitcoin Stance", contemporaneous English-crypto-press
+        coverage characterising Brief 09/14 as a favourable
+        clarification compared with the 2013 informal HMRC
+        position (which had reportedly treated bitcoin trades
+        as VAT-bearing single-purpose vouchers). Used as
+        corroborating secondary tracker source.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        gov.uk publication carries 2014-03-03 as the issue date
+        of Revenue & Customs Brief 09/14; Tax Journal and
+        Bitcoin Magazine contemporaneous secondary coverage
+        agree. Day-level precision; the brief does not carry
+        intra-day publication timing in the public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: UK-resident persons and businesses
+    engaged in bitcoin and other cryptocurrency activities for
+    UK tax purposes — bitcoin miners, exchange operators
+    (bitcoin-fiat exchange services), and suppliers of goods or
+    services accepting bitcoin as consideration. The brief
+    states a tax-treatment interpretation that applies to the
+    entire class of UK-resident cryptocurrency-transacting
+    parties under the Value Added Tax Act 1994, the Corporation
+    Tax Acts, and the Income / Capital Gains Tax framework.
+    No specific exchange or miner is named as a target;
+    canonical_domains is empty. Class-level subset framing
+    matches the sibling bangladesh-bb-bitcoin-warning-2014 and
+    iceland-cbi-foreign-exchange-bitcoin-2014 treatment.
+  protocol: null
+  actor_type: regulated_resident_class
+  actor_name: UK-resident bitcoin / cryptocurrency transacting parties
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - UK
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-03-03 HMRC brief is a tax-treatment guidance
+      instrument; it does not direct ISP-level domain blocking
+      or DNS interference. not_applicable on
+      construct-not-engaged grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-03 has no
+      protocol-level relay-filter primitive analogous to the
+      post-Merge Ethereum PBS relay surface. The Ethereum Merge
+      itself is ~8 years downstream (2022-09-15).
+      not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not
+      exist in 2014; Flashbots Protect launched 2022-11 and
+      MEV-Blocker launched 2023-03-27. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Brief 09/14 is a tax-treatment notice addressed to UK
+      taxpayers; it does not require frontend changes at any
+      specific exchange or service. No L4 frontend surface
+      within the UK is in scope.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze
+      admin method. The 2014 HMRC brief does not engage a
+      stablecoin-issuer admin path (USDT first issued ~2014-10;
+      chainwide admin freezes arose later). not_applicable on
+      construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      Brief 09/14 is by construction an off-ramp-layer signal at
+      the tax-treatment surface: it clarifies that bitcoin-fiat
+      exchange transactions are VAT-exempt and that mining is
+      outside the scope of VAT. The structural effect is
+      facilitative rather than restrictive (the brief is widely
+      characterised as a pro-bitcoin clarification in the 2014
+      English-crypto press) and does not direct any exchange-
+      side cutoff of UK-resident accounts. The coverage scope
+      for the observed_no_change row below is the public record
+      (gov.uk, Tax Journal, Bitcoin Magazine, accountancydaily)
+      for the 180 days following the 2014-03-03 publication: no
+      UK exchange is documented as having cut off UK-resident
+      accounts in response to the brief, and the dominant
+      UK-serving 2014 bitcoin exchanges (Bitstamp, Coinfloor,
+      LocalBitcoins) did not implement UK-resident-specific
+      compliance flags in the public record traceable to the
+      brief. partially_measured because the public-record search
+      is bounded but not exhaustive.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - UK
+        time_window:
+          - 2014-03-03T00:00:00Z
+          - 2014-08-30T00:00:00Z
+      note: |
+        Coverage scope: UK-resident off-ramp cutoffs documented
+        in the public record during the 180-day window following
+        the HMRC 2014-03-03 brief. No exchange-side UK-specific
+        cutoff was located in this authoring pass; a human-audit
+        pass on contemporaneous UK financial press (FT, Telegraph,
+        Guardian) and English crypto-press (CoinDesk, Bitcoin
+        Magazine) is the gating step for a stronger denominator
+        anchor.
+
+observations:
+  - layer: offramp_cex
+    actor: uk_resident_bitcoin_transacting_parties
+    event: no_measured_exchange_side_cutoff_of_uk_residents_post_hmrc_brief_09_14
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2014-03-03T00:00:00Z
+    precision: day
+    window:
+      - 2014-03-03T00:00:00Z
+      - 2014-08-30T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
+        wayback: https://web.archive.org/web/2014/https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [UK]
+          time_window:
+            - 2014-03-03T00:00:00Z
+            - 2014-08-30T00:00:00Z
+        note: |
+          gov.uk publication of Revenue & Customs Brief 09/14
+          establishes the tax-treatment position (VAT-exempt
+          bitcoin-fiat exchange; mining outside scope of VAT;
+          normal VAT on goods/services sold for bitcoin). The
+          brief is facilitative rather than restrictive — it
+          clarifies tax treatment to enable rather than
+          constrain UK cryptocurrency activity — and does not
+          direct any exchange-side cutoff. observation_kind=
+          observed_no_change at offramp_cex because no UK
+          exchange is documented as cutting off UK-resident
+          accounts within the 180-day window post-publication.
+          attribution=none per validator rule for
+          observed_no_change. Wayback snapshot requires
+          re-pinning in human audit.
+      - type: supporting_journalism
+        url: https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
+        wayback: https://web.archive.org/web/2014/https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
+        evidence_use: contextual_unarchived
+        note: |
+          Tax Journal 2014-03-06 secondary coverage corroborates
+          the VAT-exemption framing and the 2014-03-03
+          publication date, and characterises the brief as a
+          clarifying rather than restrictive instrument. No
+          UK-resident exchange cutoff is reported in this or
+          contemporaneous coverage. Wayback snapshot requires
+          re-pinning in human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.3 P2)**.
+  Historical-baseline contextual case for the UK HMRC Revenue &
+  Customs Brief 09/14 ("Bitcoin and other cryptocurrencies")
+  published 2014-03-03, clarifying the VAT treatment of bitcoin
+  activities (mining outside scope of VAT; bitcoin-fiat exchange
+  VAT-exempt; normal VAT on goods/services sold for bitcoin).
+  Authored at status=draft / origin=agent_draft pending human
+  audit of (i) the gov.uk and Tax Journal URL reachability and
+  Wayback snapshot pinning, (ii) the underlying HMRC internal
+  manuals (VATFIN, CRYPTO) referenced downstream, and (iii) any
+  exchange-side evidence of UK-resident cutoff in contemporaneous
+  press coverage.
+
+  Significance: Brief 09/14 is the foundational UK tax-treatment
+  policy event for cryptocurrency and the first major
+  English-language nation-state pronouncement framing bitcoin
+  exchange as a VAT-exempt financial-services activity. It
+  preceded and shaped the CJEU's 2015-10-22 Hedqvist judgment
+  (C-264/14), which adopted a structurally similar
+  VAT-exemption position at EU level. Sibling to the
+  contemporaneous eba-virtual-currencies-opinion-eba-op-2014-08
+  on the supranational supervisory-guidance axis, with the
+  important contrast that EBA Op 2014/08 is risk-averse /
+  restrictive while HMRC Brief 09/14 is facilitative /
+  clarifying.
+
+  Why trigger.type=regulatory_enforcement (not nation_state_block):
+  per codebook §5.1, regulatory_enforcement is the canonical
+  trigger.type for non-US national regulator administrative
+  enforcement actions that are NOT network-layer or payment-rail
+  blocks. The HMRC brief states a tax-treatment interpretation
+  under the Value Added Tax Act 1994 and the Corporation /
+  Income / Capital Gains Tax framework; it does not direct
+  ISP-level blocking or payment-system severance. This matches
+  the codebook §5.1 carve-out distinguishing
+  regulatory_enforcement from nation_state_block.
+
+  Why temporal_tier=historical_baseline_2013_2016 +
+  analysis_use=historical_baseline: 2014 belongs to the
+  pre-2017 historical-baseline tier per sampling/frame.yaml.
+  analysis_use=historical_baseline excludes this row from the
+  2017+ comparable-analysis denominator. The event is retained
+  as contextual case-study material because (a) it predates the
+  comparable corpus and (b) the policy is facilitative rather
+  than restrictive — distinct from the cascade-generating
+  enforcement actions that dominate the comparable corpus.
+
+  Why null_event / null_case: the offramp_cex observation is
+  observation_kind=observed_no_change with attribution=none,
+  not an observed_change row. Brief 09/14 clarifies tax
+  treatment in a pro-bitcoin direction (VAT exemption) and
+  does not direct any cascade-generating restriction; the
+  expected cascade surface (exchange-side UK-resident cutoffs)
+  is absent in the public record. Without a documented
+  exchange-side cutoff or a measured UK-resident on-chain
+  volume shift attributable to the brief, the event admits
+  only at null_case strength and empirical_shape=null_event.
+  This is exactly the foundational tax-treatment policy event
+  contemplated in the prompt facts as low-cascade / mostly
+  null_event.
+
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the brief
+  is a tax-treatment guidance instrument under the VATA 1994
+  and the CT/IT/CGT framework; it does not direct network-layer
+  blocking, L4 frontend changes, or engage any
+  2014-nonexistent L1/L3 PBS measurement primitive or any
+  asset-issuer admin path. The L0/L1/L3/L4/asset_onchain
+  not_applicable treatment matches the sibling 2014
+  nation-state-warning cluster (Bangladesh BB, Iceland CBI,
+  Bolivia BCB).
+
+  Codebook compliance: per §6 the canonical analysis_use is
+  `historical_baseline` (not the alias `contextual_baseline`);
+  per §7 target.enumeration=subset is used with class-level
+  rationale documented in enumeration_note (not the
+  unsupported `class_level` enum value); per §1.5 no L0
+  observation is admitted because no replayable OONI /
+  Censored Planet / Cloudflare Radar measurement was captured.
+
+scoped_claim: |
+  HMRC Revenue & Customs Brief 09/14 of 2014-03-03 ("Bitcoin
+  and other cryptocurrencies") set HMRC's position that bitcoin
+  mining is outside the scope of VAT, that bitcoin-fiat exchange
+  transactions and the associated arrangement fees are VAT-exempt,
+  and that normal VAT applies to suppliers of goods or services
+  sold in exchange for bitcoin valued in sterling at the
+  transaction point. The instrument is facilitative rather than
+  restrictive; no UK-resident exchange-side cutoff is documented
+  in the 180-day post-publication window, so offramp_cex carries
+  an observation_kind=observed_no_change row with attribution=none.
+
+scoped_knowledge: |
+  This event is the foundational UK tax-treatment policy event
+  for cryptocurrency and a structurally distinctive entry in the
+  2014 nation-state-pronouncement cluster: where the sibling
+  warnings (Bangladesh BB 2014-09-15, Iceland CBI 2014-03-19,
+  Bolivia BCB 2014-05) treat bitcoin under existing FX-control
+  or AML/CFT law in a restrictive direction, HMRC Brief 09/14
+  takes a facilitative direction by clarifying VAT exemption for
+  bitcoin-fiat exchange. It is the direct upstream of the CJEU's
+  2015-10-22 Hedqvist judgment (C-264/14) on the
+  VAT-exemption-for-bitcoin-exchange question at EU level, and
+  contextualises the pre-MiCA UK position on cryptocurrency
+  tax treatment that persisted (with modifications via HMRC's
+  CRYPTO internal manuals from 2018 and the Cryptoassets
+  Taskforce 2018 report) into the post-MiCA / FCA-PR-22-13
+  registration era. Paper-relevant as the earliest UK
+  nation-state pronouncement on cryptocurrency and as a control
+  case for restrictive-versus-facilitative regulatory-instrument
+  comparison within the 2013-2016 historical-baseline tier.
+
+tags:
+  - regulatory_enforcement
+  - uk
+  - hmrc
+  - vat
+  - tax_treatment
+  - bitcoin
+  - historical_baseline
+  - facilitative_policy
+  - foundational_policy

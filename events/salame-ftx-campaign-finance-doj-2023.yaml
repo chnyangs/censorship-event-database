@@ -1,0 +1,222 @@
+id: salame-ftx-campaign-finance-doj-2023
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - ftx-bankman-fried-doj-2022
+  - sec-v-ftx-2022
+  - cftc-v-ftx-2022
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2023-09-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/statement-us-attorney-damian-williams-guilty-plea-ryan-salame-former-ceo-ftx
+      wayback: https://web.archive.org/web/2023/https://www.justice.gov/usao-sdny/pr/statement-us-attorney-damian-williams-guilty-plea-ryan-salame-former-ceo-ftx
+      evidence_use: contextual_unarchived
+      note: |
+        DOJ SDNY press release (2023-09-07): "Statement Of U.S. Attorney
+        Damian Williams On The Guilty Plea Of Ryan Salame, Former CEO Of
+        FTX." Salame, former co-CEO of FTX Digital Markets (the Bahamas
+        FTX entity), pled guilty before Judge Lewis Kaplan to a two-count
+        information charging (1) conspiracy to make unlawful political
+        contributions and defraud the Federal Election Commission, and
+        (2) conspiracy to operate an unlicensed money transmitting
+        business. Salame admitted that from fall 2021 to November 2022
+        he made tens of millions of dollars of political contributions
+        in his own name that were in fact funded by Alameda Research,
+        with Bankman-Fried's support. Plea agreement included forfeiture
+        of approximately $1.5B and restitution of more than $5.5M to FTX
+        debtors. DRYRUN contextual_unarchived stub; the URL slug is
+        stable on justice.gov and routinely captured by Wayback, but the
+        authoring LLM agent did not personally pin a snapshot timestamp
+        or compute a body_hash. Real release must replace with a pinned
+        Wayback timestamp + body_hash during human audit.
+    - type: primary_legal
+      url: https://content.govdelivery.com/attachments/USDOJUSAO/2023/09/07/file_attachments/2607934/U.S.%20v.%20Salame%20Information.pdf
+      wayback: https://web.archive.org/web/2023/https://content.govdelivery.com/attachments/USDOJUSAO/2023/09/07/file_attachments/2607934/U.S.%20v.%20Salame%20Information.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        Charging Information (U.S. v. Salame), filed SDNY 2023-09-07,
+        distributed via DOJ govdelivery PDF attachment. Two-count
+        information that Salame pled guilty to the same day. DRYRUN
+        contextual_unarchived stub; replace with a pinned Wayback /
+        body_hash anchor during real human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2023-09-07 DOJ SDNY press release
+        announcing the guilty plea entered before Judge Lewis Kaplan,
+        corroborated by the same-day filed two-count Information.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Ryan Salame (individual defendant — former co-CEO of FTX Digital
+    Markets, the Bahamas FTX entity). The plea is a downstream
+    individual-accountability action in the FTX-collapse enforcement
+    cascade, with the corporate-entity defendants (FTX Trading Ltd.,
+    Alameda Research LLC) and the lead individual defendant
+    (Bankman-Fried) addressed in the parent ftx-bankman-fried-doj-2022,
+    sec-v-ftx-2022, and cftc-v-ftx-2022 rows. The plea names Alameda
+    Research as the source of the unlawfully-funneled political
+    contributions but Alameda is not coded as a target here; it is the
+    funding-source entity within Salame's admitted conduct rather than
+    a defendant on this charging instrument. Class-level rationale per
+    codebook §7: subset (not complete) because the broader FTX-collapse
+    individual-defendant cluster (Caroline Ellison, Gary Wang, Nishad
+    Singh) is not enumerated here even though those individuals also
+    pled guilty in the SDNY FTX cases on separate dockets.
+  actor_type: individual_defendant_ftx_executive
+  actor_name: Ryan Salame
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      No network-layer (L0) reachability blocking is implicated by an
+      individual-defendant guilty plea. not_applicable on
+      substrate-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No protocol-layer (L1) validator-set or PBS-relay primitive is
+      engaged by an individual-defendant guilty plea downstream of an
+      already-bankrupt platform. not_applicable on substrate-mismatch
+      grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC provider filter-list change attaches to an
+      individual-defendant guilty plea. not_applicable on
+      substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend-layer (L4) UI surface diff is implicated by an
+      individual-defendant guilty plea. The FTX.com / FTX.US notice
+      surfaces are addressed in the parent ftx-bankman-fried-doj-2022
+      row and remain not_measured there. not_applicable on
+      substrate-mismatch grounds for this child accountability row.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No stablecoin-issuer freeze or OFAC SDN-list address designation
+      primitive was engaged by Salame's guilty plea. Forfeiture of
+      approximately $1.5B is administered through the SDNY criminal
+      docket and FTX Chapter 11 estate, not via issuer-level blacklist
+      publications. not_applicable on substrate-mismatch grounds.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - ftx_digital_markets_bahamas
+      - alameda_research_political_contribution_flows
+    note: |
+      The FTX.com / FTX.US / FTX Digital Markets offramp shutdown was
+      already total at the 2022-11-11 Chapter 11 filing and is the
+      load-bearing offramp_cex observation on the parent
+      ftx-bankman-fried-doj-2022 row. Salame's 2023-09-07 guilty plea
+      is a downstream individual-accountability action and does not
+      itself add an attributable offramp_cex layer change beyond the
+      pre-existing bankruptcy freeze. Coded not_measured rather than
+      not_applicable because the offramp substrate is the correct
+      coding axis for the FTX cluster — there is simply no new
+      attributable change to measure at this trigger date. No
+      observation row is admitted for this layer; the row stands as a
+      null_event in the FTX-collapse downstream-enforcement cluster.
+
+observations: []
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.3 P2 preamble 2026-05-17**:
+  authored by LLM agent without personally verifying Wayback /
+  body_hash anchors; status=draft / origin=agent_draft per validator.
+  Real release must replace this DRYRUN marker with a human-verified
+  audit after pinning real archive anchors.
+
+  null_event documenting the 2023-09-07 DOJ SDNY guilty plea by Ryan
+  Salame (former co-CEO, FTX Digital Markets) to conspiracy to make
+  unlawful political contributions and defraud the FEC, and conspiracy
+  to operate an unlicensed money transmitting business. Salame
+  admitted using Alameda Research funds (i.e. FTX customer funds
+  diverted through Alameda) to make tens of millions of dollars in
+  political contributions in his own name from fall 2021 through
+  November 2022. Plea agreement included approximately $1.5B
+  forfeiture and >$5.5M restitution to FTX debtors. Sentenced
+  2024-05-28 to 90 months (7.5 years) imprisonment.
+
+  Coded as empirical_shape=null_event / admission_tier=null_case
+  because zero observed_change layers attach to this trigger date in
+  the dataset's cross-layer cascade frame. The FTX-collapse cross-layer
+  offramp shutdown is load-bearing on the parent
+  ftx-bankman-fried-doj-2022 row at the 2022-11-11 Chapter 11 +
+  2022-12-13 federal-enforcement trigger; Salame's 2023-09-07 plea is
+  a downstream individual-accountability action ~9 months later on an
+  already-frozen offramp and produces no new attributable layer-change
+  observation. Retained in the corpus as a null_case denominator
+  control in the S3 us-federal-enforcement cluster, exposing the
+  pattern that individual-defendant pleas downstream of a collapsed
+  platform do not themselves engage censorship-substrate primitives.
+
+  Sibling positioning: the load-bearing parent is
+  ftx-bankman-fried-doj-2022 (DOJ criminal indictment of
+  Bankman-Fried, 2022-12-13, coded with offramp_cex
+  observed_change/plausible). Companion same-day civil pillars are
+  sec-v-ftx-2022 and cftc-v-ftx-2022. This Salame row joins the
+  downstream FTX-individual-plea cluster (the broader cluster also
+  includes Ellison, Wang, Singh pleas on separate dates not yet
+  authored as standalone rows). All four related_events sit in the
+  S3_doj_sec_cftc_fiod stratum.
+
+  Per codebook §3, null_event requires 0 observed_change layers with
+  admission-grade attribution; per codebook §4, null_case requires 0
+  strong-attribution observed_change layers. Both conditions hold:
+  observations list is empty; offramp_cex layer is not_measured with
+  no observation row. L0 / L1 / L3 / L4 / asset_onchain are
+  not_applicable on substrate-mismatch grounds. The row functions as
+  a denominator control demonstrating that downstream-enforcement
+  pleas in the FTX cascade do not themselves trigger new
+  censorship-layer activity beyond what the parent bankruptcy + federal
+  trigger already produced.
+
+scoped_claim: |
+  "The 2023-09-07 DOJ SDNY guilty plea by Ryan Salame (former co-CEO,
+  FTX Digital Markets) to campaign-finance and unlicensed
+  money-transmitting conspiracies — a downstream individual-defendant
+  accountability action in the FTX-collapse enforcement cascade —
+  produces zero observed_change layers in the cross-layer
+  censorship-substrate frame. The row is retained as a null_case
+  denominator control in the S3 us-federal-enforcement cluster; the
+  load-bearing offramp_cex shutdown is coded on the parent
+  ftx-bankman-fried-doj-2022 row at the 2022-11-11 Chapter 11 +
+  2022-12-13 federal-enforcement trigger, ~9 months prior."
+
+tags:
+  - doj_indictment
+  - guilty_plea
+  - individual_defendant
+  - campaign_finance
+  - unlicensed_money_transmission
+  - ftx
+  - alameda_research
+  - downstream_enforcement
+  - null_case
+  - dryrun_2026_05_17
+  - wave_2_3_p2_2026_05_17
