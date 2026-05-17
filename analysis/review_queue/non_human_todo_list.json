@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-05-17T11:00:33Z",
+  "human_audit_performed": false,
+  "primary_source_verified_mutated": false,
+  "ready_for_future_human_audit": 260,
+  "remaining_source_discovery_rows": 2,
+  "report_kind": "v0.3_non_human_todo_list",
+  "source_discovery_worklist_rows": 2,
+  "tasks": [
+    {
+      "artifact": ".local/ingestion_v03/ingestion.sqlite",
+      "note": "Legacy YAML rows are represented in the internal v0.3 state without mutating YAML verification flags.",
+      "status": "complete",
+      "task_id": "sqlite_bootstrap"
+    },
+    {
+      "artifact": "analysis/review_queue/packets/index.csv",
+      "note": "Machine-prepared review packets only; not human audit.",
+      "status": "complete",
+      "task_id": "review_packets"
+    },
+    {
+      "artifact": "analysis/review_queue/v0_3_review_triage_summary.json",
+      "note": "Separates machine-ready, machine-repaired, and still-blocked rows.",
+      "status": "complete",
+      "task_id": "machine_triage_summary"
+    },
+    {
+      "artifact": "analysis/review_queue/human_audit_worksheet.csv",
+      "note": "Prepared 260 blank rows for future human audit; no audit result recorded.",
+      "status": "complete",
+      "task_id": "human_audit_worksheet_preparation"
+    },
+    {
+      "artifact": "analysis/review_queue/evidence_repair_plan.csv",
+      "note": "Current machine blocker rows: 2.",
+      "status": "complete",
+      "task_id": "evidence_repair_plan"
+    },
+    {
+      "artifact": "analysis/review_queue/evidence_anchor_repair_report.csv",
+      "note": "Direct body_hash/body_path capture attempted for existing URL-bearing missing anchors.",
+      "status": "complete",
+      "status_counts": {
+        "capture_failed": 7,
+        "captured;patched_fields=10": 2,
+        "captured;patched_fields=2": 5,
+        "captured;patched_fields=4": 5,
+        "captured;patched_fields=6": 1,
+        "captured;patched_fields=8": 1,
+        "no_existing_url_missing_anchor": 182
+      },
+      "task_id": "existing_url_anchor_capture"
+    },
+    {
+      "artifact": "analysis/review_queue/source_discovery_worklist.csv",
+      "note": "2 rows still need source discovery or methodology repair before they can enter the human worksheet.",
+      "status": "complete",
+      "task_id": "source_discovery_worklist"
+    },
+    {
+      "artifact": "analysis/review_queue/human_audit_worksheet.csv",
+      "note": "Requires real human confirmation; not performed by this workflow.",
+      "status": "excluded_from_this_request",
+      "task_id": "human_primary_source_audit"
+    }
+  ],
+  "total_queue_items": 262
+}

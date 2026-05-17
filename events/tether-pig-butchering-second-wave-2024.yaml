@@ -1,6 +1,8 @@
 id: tether-pig-butchering-second-wave-2024
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -22,7 +24,7 @@ trigger:
   timestamp: 2024-06-01T00:00:00Z
   timestamp_precision: week
   citation:
-    - type: supporting_tracker
+    - type: semi_primary_measurement
       url: https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
       wayback: https://web.archive.org/web/20260516203540/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
       body_hash: sha256:311e23872a27be62c829f35d88e4a09692aaa7b196d62cf2f6ac21be48140ec8
@@ -127,7 +129,7 @@ observations:
     precision: week
     delta_hours: 0
     sources:
-      - type: supporting_tracker
+      - type: semi_primary_measurement
         url: https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
         wayback: https://web.archive.org/web/20260516203540/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
         body_hash: sha256:311e23872a27be62c829f35d88e4a09692aaa7b196d62cf2f6ac21be48140ec8
@@ -136,9 +138,10 @@ observations:
         note: |
           Chainalysis blog post explicitly states Tether froze the cohort
           funds in June 2024 at APAC law enforcement's direction following
-          Chainalysis-Binance-OKX-developed intelligence. Tether is the
-          executing actor; the action is described directly by the lead
-          intelligence partner.
+          Chainalysis-Binance-OKX-developed intelligence. Coded as
+          semi_primary_measurement: Chainalysis is the lead intelligence
+          partner and measurement/disclosure source, but this is still not
+          a Tether-issued primary corporate freeze report.
       - type: supporting_journalism
         url: https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
         wayback: https://web.archive.org/web/20260516203734/https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
@@ -172,10 +175,11 @@ analysis_notes: |
   Tether is publicly named as the freezer, and the LE-traced wallet cohort
   is the named target.
 
-  Evidence quality: all citations are `contextual_unarchived` because no
-  primary Tether blog post or APAC LE press release has been located that
-  enumerates the freeze transactions. The Chainalysis blog (August 2025)
-  and The Block (August 2025) are the only public anchors. This event
+  Evidence quality: the Chainalysis disclosure is pinned as a
+  semi_primary_measurement source, but no primary Tether blog post or APAC
+  LE press release has been located that enumerates the freeze transactions.
+  The Chainalysis blog (August 2025) and corroborating journalism are the
+  only public anchors. This event
   therefore qualifies as `empirical_case` on the strength of one
   observed_change `direct` row at offramp_cex, but cannot be elevated to
   `anchor_case` without primary corporate / primary onchain anchors.

@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S6_supranational` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `35cd33f` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-25T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -28,6 +28,8 @@
 - **`primary_legal`**
   - URL: <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113>
   - Wayback: <https://web.archive.org/web/20260516000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113>
+  - body_hash: `sha256:6d2fde2549fcf25aca4602a9c693eec1589740e5a83f0cb26d303c7ec90c064e`
+  - body_path: `sources/http_captures/eu-tfr-recast-2023/v0_3_repair/eur-lex.europa.eu__legal-content-EN-TXT__90a91a2c77.html`
   > Regulation (EU) 2023/1113 of the European Parliament and of the
 > Council of 31 May 2023 on information accompanying transfers of funds
 > and certain crypto-assets (the "Transfer of Funds Regulation Recast"
@@ -44,6 +46,8 @@
 > human audit.
 - **`primary_legal`**
   - URL: <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113>
+  - body_hash: `sha256:6d2fde2549fcf25aca4602a9c693eec1589740e5a83f0cb26d303c7ec90c064e`
+  - body_path: `sources/http_captures/eu-tfr-recast-2023/v0_3_repair/eur-lex.europa.eu__legal-content-EN-TXT__90a91a2c77.html`
   > Second citation pointer to the EUR-Lex CELEX:32023R1113 record per
 > brief instruction (evidence_use: contextual_unarchived). Documents
 > TFR Recast articles on originator/beneficiary info (Art. 14),
@@ -81,6 +85,8 @@
 - **`primary_legal`**
   - URL: <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113>
   - Wayback: <https://web.archive.org/web/20260516000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113>
+  - body_hash: `sha256:6d2fde2549fcf25aca4602a9c693eec1589740e5a83f0cb26d303c7ec90c064e`
+  - body_path: `sources/http_captures/eu-tfr-recast-2023/v0_3_repair/eur-lex.europa.eu__legal-content-EN-TXT__90a91a2c77.html`
   > Regulation (EU) 2023/1113 — the TFR Recast — adopted by the
 > European Parliament and Council on 2023-05-31, published in the
 > EU Official Journal on 2023-06-09, with phased application
@@ -97,6 +103,8 @@
 - **`primary_legal`**
   - URL: <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113>
   - Wayback: <https://web.archive.org/web/20260516000001/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1113>
+  - body_hash: `sha256:6d2fde2549fcf25aca4602a9c693eec1589740e5a83f0cb26d303c7ec90c064e`
+  - body_path: `sources/http_captures/eu-tfr-recast-2023/v0_3_repair/eur-lex.europa.eu__legal-content-EN-TXT__90a91a2c77.html`
   > Second anchor to the EUR-Lex CELEX:32023R1113 record. Cross-reference
 > for the zero-threshold provision (Art. 14) and the missing-info
 > procedure (Arts. 19–21) — the structural features that
@@ -122,7 +130,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `35cd33f`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

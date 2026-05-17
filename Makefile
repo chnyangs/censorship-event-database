@@ -32,6 +32,10 @@ COMPARE_OUT ?= -
 .PHONY: help \
     validate schema-check validate-citations validate-archives verify-citations freshness \
     draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry temporal-ledger source-manifest \
+    ingestion-db ingestion-register-sources ingestion-bootstrap ingestion-status ingestion-report \
+    ofac-canary ofac-canary-status review-next review-export review-packets review-triage \
+    human-audit-worksheet evidence-repair-plan source-discovery-worklist non-human-todo-list \
+    er-training-template audit-archive repair-evidence-anchors \
     event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
     admission-sensitivity jurisdiction derived \
     audit-worksheets paper-tables paper-check paper-regenerate-check test \
@@ -61,6 +65,24 @@ help:
 	    'make trigger-registry      # pre-admission trigger registry + sampling-frame gaps' \
 	    'make temporal-ledger       # 2008+ monthly source-frame discovery ledger' \
 	    'make source-manifest       # hash manifest for local source artifacts under sources/' \
+	    'make ingestion-db          # initialize local v0.3 ingestion SQLite state under .local/' \
+	    'make ingestion-register-sources # register v0.3 ingestion source registry without marking fetch success' \
+	    'make ingestion-bootstrap   # bootstrap events/*.yaml into local v0.3 SQLite state' \
+	    'make ingestion-status      # print local v0.3 ingestion status JSON' \
+	    'make ingestion-report      # write v0.3 operating report under analysis/ingestion_reports/' \
+	    'make ofac-canary           # run OFAC SDN canary against local/fetched XML into review queue' \
+	    'make ofac-canary-status    # print OFAC canary 7-day clean-run gate status' \
+	    'make review-next           # print the next v0.3 review queue item as JSON' \
+	    'make review-export         # export v0.3 review queue JSON/CSV/MD under analysis/review_queue/' \
+	    'make review-packets        # write per-item human review packets under analysis/review_queue/packets/' \
+	    'make review-triage         # write pre-human LLM/machine triage summary + worklists' \
+	    'make human-audit-worksheet # write blank worksheet + decision templates for pending human audit' \
+	    'make evidence-repair-plan  # write repair plan for LLM/machine flagged rows' \
+	    'make repair-evidence-anchors # capture missing body_hash/body_path anchors from repair plan' \
+	    'make source-discovery-worklist # write source-discovery worklist for remaining machine blockers' \
+	    'make non-human-todo-list # write non-human task status list; excludes real human audit' \
+	    'make er-training-template  # write blank ER training-set worksheet template' \
+	    'make audit-archive         # archive hot audit_log rows older than 90 days' \
 	    '' \
 	    '### Derived research layer (→ $(DERIVED_DIR)/)' \
 	    'make event-metrics         # per-event metrics panel (cascade breadth/speed/source strength)' \
@@ -149,6 +171,60 @@ temporal-ledger: dataset
 
 source-manifest: dataset
 	$(PYTHON) scripts/build_source_manifest.py --out-prefix $(SOURCE_MANIFEST_PREFIX)
+
+ingestion-db:
+	$(PYTHON) scripts/ingestion_v03.py init-db
+
+ingestion-register-sources:
+	$(PYTHON) scripts/ingestion_v03.py register-sources
+
+ingestion-bootstrap:
+	$(PYTHON) scripts/ingestion_v03.py bootstrap-legacy $(if $(ENQUEUE),--enqueue-reextraction)
+
+ingestion-status:
+	$(PYTHON) scripts/ingestion_v03.py status-report
+
+ingestion-report:
+	$(PYTHON) scripts/ingestion_v03.py ingestion-report
+
+ofac-canary:
+	$(PYTHON) scripts/ingestion_v03.py ofac-canary $(if $(CURRENT_XML),--current-xml $(CURRENT_XML)) $(if $(PREVIOUS_XML),--previous-xml $(PREVIOUS_XML))
+
+ofac-canary-status:
+	$(PYTHON) scripts/ingestion_v03.py ofac-canary-status
+
+review-next:
+	$(PYTHON) scripts/review_queue.py --next
+
+review-export:
+	$(PYTHON) scripts/ingestion_v03.py export-review-queue
+
+review-packets:
+	$(PYTHON) scripts/ingestion_v03.py review-packets $(if $(LIMIT),--limit $(LIMIT))
+
+review-triage:
+	$(PYTHON) scripts/ingestion_v03.py review-triage-summary
+
+human-audit-worksheet:
+	$(PYTHON) scripts/ingestion_v03.py human-audit-worksheet
+
+evidence-repair-plan:
+	$(PYTHON) scripts/ingestion_v03.py evidence-repair-plan
+
+repair-evidence-anchors:
+	$(PYTHON) scripts/repair_evidence_anchors.py $(if $(PRIORITY_MAX),--priority-max $(PRIORITY_MAX)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(EVENT_ID),--event-id $(EVENT_ID)) $(if $(DRY_RUN),--dry-run)
+
+source-discovery-worklist:
+	$(PYTHON) scripts/ingestion_v03.py source-discovery-worklist
+
+non-human-todo-list:
+	$(PYTHON) scripts/ingestion_v03.py non-human-todo-list
+
+er-training-template:
+	$(PYTHON) scripts/ingestion_v03.py er-training-template
+
+audit-archive:
+	$(PYTHON) scripts/ingestion_v03.py archive-audit-log
 
 l3-provider-census:
 	$(PYTHON) scripts/build_l3_provider_census.py --out-dir $(DERIVED_DIR)

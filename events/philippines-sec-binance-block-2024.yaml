@@ -1,6 +1,8 @@
 id: philippines-sec-binance-block-2024
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -75,18 +77,33 @@ jurisdiction: [PH]
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: partially_measured
     scope: [binance.com, binance.org]
     note: |
       ISP-level blocking of Binance domains from Philippine vantage points
-      per NTC order effective 2024-03-25. OONI Probe PH measurements and
-      Censored Planet PH-vantage probes would be the load-bearing
-      replayable artifacts. In this draft the L0 source is annotated
-      evidence_use=contextual_unarchived because the OONI Explorer batch
-      query (api.ooni.io for binance.com from PH, 2024-03-25 to
-      2024-04-25) has not been executed in this session. A follow-up
-      OONI / Censored Planet pull is required to elevate L0 to
-      admission-anchor-grade and pin measurement_ids.
+      per NTC order effective 2024-03-25. OONI PH web_connectivity
+      measurements for https://www.binance.com/ over 2024-03-25 through
+      2024-04-25 include DNS anomaly rows on AS17639 and AS9299, while
+      other PH ASNs in the same query remain non-anomalous. Coded as
+      partially_measured rather than measured: the replayable OONI
+      artifacts establish observed PH-vantage DNS blocking on sampled
+      networks, not universal nationwide blocking across all ISPs.
+    denominator_artifact:
+      type: semi_primary_measurement
+      url: https://api.ooni.io/api/v1/measurements?probe_cc=PH&test_name=web_connectivity&input=https%3A%2F%2Fwww.binance.com%2F&since=2024-03-25&until=2024-04-25&limit=5
+      body_hash: sha256:84c5a6c569687491a273bf4e7a1ff3b1c402552e2d6ca0393908958eaa8c38dc
+      body_path: sources/http_captures/philippines-sec-binance-block-2024/v0_3_primary_repair/api.ooni.io__api-v1-measurements__80d9945fd5.json
+      measurement_ids:
+        - 20240424080618.964439_PH_webconnectivity_3cf0c805db36e199
+        - 20240424072345.919988_PH_webconnectivity_5239edeeffb80f44
+        - 20240423083827.114575_PH_webconnectivity_24d659a5d6f91cd8
+      note: |
+        OONI measurement-index query over PH probes for
+        https://www.binance.com/ after the 2024-03-25 NTC blocking
+        order. The listed raw measurement IDs report DNS blocking
+        anomalies from AS17639 / AS9299. Same query also includes
+        non-anomalous PH rows, so the denominator is the sampled PH
+        OONI measurement set rather than all Philippine networks.
   - layer: l1_consensus
     status: not_applicable
   - layer: l3_rpc
@@ -112,14 +129,65 @@ coverage:
       Binance regional-notice archive lands in sources/http_captures/.
 
 observations:
-  # NOTE: L0 observation row removed 2026-05-16 because L0 coverage
-  # was honestly downgraded to `not_measured` (no real OONI / Censored
-  # Planet batch query was run in this session). The validator
-  # correctly enforces that `observed_change` requires `measured` or
-  # `partially_measured` coverage. Reinstate this row once the OONI
-  # batch query (api.ooni.io for binance.com from PH over
-  # 2024-03-25..2024-04-25) is run and measurement_ids are pinned;
-  # coverage status flips back to partially_measured at that point.
+  - layer: l0_network
+    actor: regulator:ph_ntc
+    event: ph_vantage_dns_blocking_of_binance_domain
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp_range:
+      - 2024-04-23T08:38:26Z
+      - 2024-04-24T08:06:18Z
+    precision: second
+    country: PH
+    delta_hours: 358
+    sources:
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/measurements?probe_cc=PH&test_name=web_connectivity&input=https%3A%2F%2Fwww.binance.com%2F&since=2024-03-25&until=2024-04-25&limit=5
+        body_hash: sha256:84c5a6c569687491a273bf4e7a1ff3b1c402552e2d6ca0393908958eaa8c38dc
+        body_path: sources/http_captures/philippines-sec-binance-block-2024/v0_3_primary_repair/api.ooni.io__api-v1-measurements__80d9945fd5.json
+        measurement_ids:
+          - 20240424080618.964439_PH_webconnectivity_3cf0c805db36e199
+          - 20240424072345.919988_PH_webconnectivity_5239edeeffb80f44
+          - 20240423083827.114575_PH_webconnectivity_24d659a5d6f91cd8
+        scope_descriptor:
+          providers: [binance]
+          countries: [PH]
+          networks:
+            - AS17639
+            - AS9299
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-04-25T23:59:59Z
+        note: |
+          OONI PH web_connectivity query for https://www.binance.com/
+          returns DNS-blocking anomaly rows on AS17639 (2024-04-24
+          07:23:45Z and 08:06:18Z) and AS9299 (2024-04-23
+          08:38:26Z). The same query includes non-anomalous PH rows
+          on AS135582 and AS56099, so attribution is plausible and
+          coverage is partially_measured rather than a universal PH
+          blocking claim.
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/raw_measurement?measurement_uid=20240424080618.964439_PH_webconnectivity_3cf0c805db36e199
+        body_hash: sha256:c3094b9f18502864875a6c2cbb8f33846ce0e37513701d364584cd5b53e20b88
+        body_path: sources/http_captures/philippines-sec-binance-block-2024/v0_3_primary_repair/api.ooni.io__api-v1-raw_measurement__a9835d6578.json
+        measurement_ids:
+          - 20240424080618.964439_PH_webconnectivity_3cf0c805db36e199
+        note: |
+          Raw OONI measurement body for AS17639. The measurement records
+          `dns_nxdomain_error`, `dns_consistency=inconsistent`,
+          `accessible=false`, and `blocking=dns` for
+          https://www.binance.com/.
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/raw_measurement?measurement_uid=20240423083827.114575_PH_webconnectivity_24d659a5d6f91cd8
+        body_hash: sha256:8b8dee0c2ccda2c0325747932d780adff5d586e3e0edda80aaa82ae4eeb469fc
+        body_path: sources/http_captures/philippines-sec-binance-block-2024/v0_3_primary_repair/api.ooni.io__api-v1-raw_measurement__4fe39ba48a.json
+        measurement_ids:
+          - 20240423083827.114575_PH_webconnectivity_24d659a5d6f91cd8
+        note: |
+          Raw OONI measurement body for AS9299. The measurement records
+          `android_dns_cache_no_data`, `dns_consistency=inconsistent`,
+          `accessible=false`, and `blocking=dns` for
+          https://www.binance.com/.
   - layer: offramp_cex
     actor: exchange:binance_ph
     event: php_peso_onramp_offramp_closed_for_ph_users

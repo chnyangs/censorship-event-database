@@ -407,6 +407,7 @@ Converting sources above to the taxonomy in methodology §2.3:
 | OFAC, EU, UN, UK sanctions pages | `primary_legal` |
 | Court filings (PACER, CourtListener) | `primary_legal` |
 | SEC / CFTC / DOJ press releases | `primary_legal` |
+| Non-legal ministry / utility / central-bank notices | `primary_government` |
 | Circle / Tether / Paxos blogs + transparency | `primary_corporate` |
 | Exchange announcements | `primary_corporate` |
 | dApp provider blog / ToS changes | `primary_corporate` |

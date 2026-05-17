@@ -1,6 +1,8 @@
 id: salame-ftx-campaign-finance-doj-2023
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -142,7 +144,26 @@ coverage:
       observation row is admitted for this layer; the row stands as a
       null_event in the FTX-collapse downstream-enforcement cluster.
 
-observations: []
+observations:
+  - layer: offramp_cex
+    actor: ftx_bankruptcy_estate
+    event: no_incremental_offramp_change_from_downstream_salame_guilty_plea
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-09-07T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/statement-us-attorney-damian-williams-guilty-plea-ryan-salame-former-ceo-ftx
+        body_hash: sha256:2cf716cef8f7b2649cc8cc7e4ae1c882619214b11a88a55dd067ec6e710862c0
+        body_path: sources/http_captures/salame-ftx-campaign-finance-doj-2023/v0_3_primary_repair/www.justice.gov__usao-sdny-pr-statement-us-attorney-damian-williams-guilty-plea-ryan-salame-former-ceo-ftx__a4f6faa1da.html
+        evidence_use: contextual_unarchived
+        note: |
+          DOJ's own plea announcement anchors this as a downstream
+          individual-defendant accountability action. The row-local
+          observation is a coverage gap: the Salame plea does not itself
+          document a new exchange/off-ramp operational restriction beyond
+          the FTX bankruptcy/off-ramp freeze captured in the parent row.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN Wave 2.3 P2 preamble 2026-05-17**:

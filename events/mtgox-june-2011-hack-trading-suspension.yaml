@@ -1,6 +1,8 @@
 id: mtgox-june-2011-hack-trading-suspension
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
@@ -22,6 +24,19 @@ trigger:
   timestamp: 2011-06-19T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://mtgox.com/press_release_20110630.html
+      wayback: https://web.archive.org/web/20110919162635/https://mtgox.com/press_release_20110630.html
+      body_hash: sha256:07b38074c76209cced93f984b203250f31e27b35c17f7751a0987233f1b8ccfd
+      body_path: sources/http_captures/mtgox-june-2011-hack-trading-suspension/v0_3_primary_repair/web.archive.org__web-20110919162635-https-mtgox.com-press_release_20110630.html__4b025a9909.html
+      note: |
+        Mt. Gox official 2011-06-30 press release archived by Wayback
+        at 2011-09-19. The release explains the compromised admin
+        account, the 2011-06-20 sell-off, the user-database/password
+        leak, Mt. Gox's responsibility for the site's security, and the
+        plan to launch the new site on 2011-06-26. Used as the primary
+        corporate anchor for the post-hack operator suspension/relaunch
+        chronology; the body_hash is over the timestamped Wayback HTML.
     - type: supporting_journalism
       url: https://en.wikipedia.org/wiki/Mt._Gox
       wayback: https://web.archive.org/web/2011/https://en.wikipedia.org/wiki/Mt._Gox
@@ -120,6 +135,26 @@ observations:
       - 2011-06-20T00:00:00Z
       - 2011-06-26T23:59:59Z
     sources:
+      - type: primary_corporate
+        url: https://mtgox.com/press_release_20110630.html
+        wayback: https://web.archive.org/web/20110919162635/https://mtgox.com/press_release_20110630.html
+        body_hash: sha256:07b38074c76209cced93f984b203250f31e27b35c17f7751a0987233f1b8ccfd
+        body_path: sources/http_captures/mtgox-june-2011-hack-trading-suspension/v0_3_primary_repair/web.archive.org__web-20110919162635-https-mtgox.com-press_release_20110630.html__4b025a9909.html
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [GLOBAL]
+          time_window:
+            - 2011-06-20T00:00:00Z
+            - 2011-06-26T23:59:59Z
+        note: |
+          Primary corporate observation anchor. The archived Mt. Gox
+          release identifies the 2011-06-20 compromised-admin sell-off
+          and states that Mt. Gox would launch the new site on
+          2011-06-26, anchoring the observed trading-suspension /
+          relaunch window. It is a post-event press release, so the
+          event remains discovery_only and draft until human review
+          confirms the exact suspension start from contemporaneous
+          operational records.
       - type: supporting_journalism
         url: https://en.wikipedia.org/wiki/Mt._Gox
         wayback: https://web.archive.org/web/2011/https://en.wikipedia.org/wiki/Mt._Gox
@@ -189,10 +224,11 @@ analysis_notes: |
   - temporal_tier=discovery_only_2008_2012, analysis_use=
     discovery_ledger_only: pre-2013 row; not used in main statistical
     denominators.
-  - evidence_use=contextual_unarchived everywhere; mtgox.com is dead
-    and no operator press release for the 2011 suspension is pinned
-    this session. Wayback memento URL pattern (web.archive.org/web/
-    2011/...) per dryrun wave 2.2D wayback discipline.
+  - v0.3 source repair pinned the Mt. Gox 2011-06-30 official press
+    release via timestamped Wayback body_hash/body_path. The row
+    remains draft because human review still needs to confirm the
+    precise suspension start and the exact transition from halted
+    trading to relaunch on 2011-06-26.
 
   This row is part of the Mt. Gox cross-event chain: it precedes
   mtgox-coinlab-civil-2013 (civil dispute), mtgox-dhs-dwolla-wells-

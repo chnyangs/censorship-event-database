@@ -1,6 +1,8 @@
 id: circle-usdc-svb-policy-statement-2023
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -160,7 +162,27 @@ coverage:
       market-driven and not a Circle off-ramp restriction.
       not_applicable on substrate-mismatch grounds.
 
-observations: []
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: no_address_level_usdc_blacklist_or_freeze_in_svb_reserve_disclosure
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-03-11T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_corporate
+        url: https://www.circle.com/pressroom/3-3-billion-of-usdc-reserve-risk-removed-dollar-de-peg-closes
+        body_hash: sha256:4739b03851b4414fb95e345b07205848f2213503cf3d0f1eeaf673e88b461811
+        body_path: sources/http_captures/circle-usdc-svb-policy-statement-2023/v0_3_primary_repair/www.circle.com__pressroom-3-3-billion-of-usdc-reserve-risk-removed-dollar-de-peg-closes__063c331ff1.html
+        evidence_use: contextual_unarchived
+        note: |
+          Circle's own press-room statement frames the SVB episode as a
+          reserve-risk disclosure and peg-defense commitment, not an
+          address-level blacklist, freeze, holder restriction, or issuer
+          censorship event. This coverage_gap row is intentionally scoped to
+          the absence of a row-local asset-onchain restriction in the
+          corporate statement.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: authored by LLM agent

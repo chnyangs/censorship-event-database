@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <!-- v27381 -->
+
+
+  <title>Address Screening Guide &ndash; Uniswap Labs</title>
+
+  
+
+  <meta name="description" content="Q: How do you monitor actors for illicit activity? We receive and analyze blockchain intelligence provided by TRM Labs. TRM Labs combines..." /><meta property="og:image" content="https://support.uniswap.org/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Uniswap Labs" />
+<meta property="og:title" content="Address Screening Guide" />
+<meta property="og:description" content="Q: How do you monitor actors for illicit activity?
+We receive and analyze blockchain intelligence provided by TRM Labs. TRM Labs combines onchain data and real-world investigations to identify pote..." />
+<meta property="og:url" content="https://support.uniswap.org/hc/en-us/articles/8671777747597-Address-Screening-Guide" />
+<link rel="canonical" href="https://support.uniswap.org/hc/en-us/articles/8671777747597-Address-Screening-Guide">
+<link rel="alternate" hreflang="en-us" href="https://support.uniswap.org/hc/en-us/articles/8671777747597-Address-Screening-Guide">
+<link rel="alternate" hreflang="es-419" href="https://support.uniswap.org/hc/es-419/articles/8671777747597-Gu%C3%ADa-para-la-selecci%C3%B3n-de-direcciones">
+<link rel="alternate" hreflang="pt-br" href="https://support.uniswap.org/hc/pt-br/articles/8671777747597-Guia-de-triagem-de-endere%C3%A7o">
+<link rel="alternate" hreflang="x-default" href="https://support.uniswap.org/hc/en-us/articles/8671777747597-Address-Screening-Guide">
+
+  <link rel="stylesheet" href="//static.zdassets.com/hc/assets/application-4f03043d3b7bad43ce9a304b007cb1a7.css" media="all" id="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/hc/theming_assets/13229305/5291581488781/style.css?digest=45242911129741">
+
+  <link rel="icon" type="image/x-icon" href="/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FX8YYS6SWJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FX8YYS6SWJ');
+</script>
+
+
+  <meta name="color-scheme" content="light">
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<!-- Make the translated search clear button label available for use in JS -->
+<!-- See buildClearSearchButton() in script.js -->
+<script type="text/javascript">window.searchClearButtonLabelLocalized = "Clear search";</script>
+<script type="text/javascript">
+  // Load ES module polyfill only for browsers that don't support ES modules
+  if (!(HTMLScriptElement.supports && HTMLScriptElement.supports('importmap'))) {
+    document.write('<script async src="/hc/theming_assets/01JC64SCR3DA4C8V1RFSQMTSJ9"><\/script>');
+  }
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "new-request-form": "/hc/theming_assets/01KC9NPSQE78MQZ9GDB8262AVX",
+    "flash-notifications": "/hc/theming_assets/01KC9NPSTT4YW29XQSAF03H2JY",
+    "navigation": "/hc/theming_assets/01KC9NPSPF0CA2STRB763FS4B6",
+    "footer": "/hc/theming_assets/01KC9NPSM7TT3MEV5Z2AFSJTHN",
+    "homepage": "/hc/theming_assets/01KC9NPT25ZNS8SJKMXKXM0WDG",
+    "article-page": "/hc/theming_assets/01KC9NPSMA4JC402GEXEVPGB8E",
+    "category-page": "/hc/theming_assets/01KC9NPSWR3BRZJTDY0HFGEG03",
+    "section-page": "/hc/theming_assets/01KC9NPSTHZDFACSBPS8NZM243",
+    "side-nav": "/hc/theming_assets/01KC9NPSPHCY2Y52BYBMTVCFK6",
+    "search-result-page": "/hc/theming_assets/01KC9NPSSPCFDGPT6XXSWQK8F5",
+    "new-request-form-translations": "/hc/theming_assets/01KC9NPSQPBHRY1FWJYHVXTW8K",
+    "shared": "/hc/theming_assets/01KC9NPSVJMYJBMT7P5FBS22QK",
+    "wysiwyg": "/hc/theming_assets/01KC9NPSXABBPNJWG62G6B53SS",
+    "index": "/hc/theming_assets/01KC9NPSZRT94FD41637QM956Q",
+    "localStorage": "/hc/theming_assets/01KC9NPSTM11GH1PYGX5F34VAM"
+  }
+}
+</script>
+
+<style>
+:root {
+  --font-riegraf: 'Riegraf', serif;
+  --font-basel-grotesk: 'Basel Grotesk', sans-serif;
+  --font-fragment-mono: 'Fragment Mono', monospace;
+  --book-asset-path: url('/hc/theming_assets/01KBG5EGD6QJR84TBSK322VB87');
+  --book-asset-path-dark: url('/hc/theming_assets/01KBG5EH5V78HTDZEXWNV1PY1P');
+  --right-arrow-path: url('/hc/theming_assets/01KBG5EGS94MV1J955QSKMXBYG');
+  --right-arrow-path-dark: url('/hc/theming_assets/01KBG5EHJBM6VFJGYCG1AKJ2YJ');
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background-color: #fff;
+}
+
+html.dark, html.dark body {
+  background-color: #131313;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url("/hc/theming_assets/01JC64S9DT3TCGED8V4CHS0SVV") format('woff2'),
+       url("/hc/theming_assets/01JC64SEAZ0ECBFZE2M1WBA9PK") format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url('/hc/theming_assets/01JC64S91G094W1W52PBK7Q1B8') format('woff2'),
+       url('/hc/theming_assets/01JC64SE9GTNY92WZPKBK82QH2') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url("/hc/theming_assets/01JC64SAZVW8X8W4W3ABBCC183") format('woff2'),
+       url("/hc/theming_assets/01JC64SDAXGTJ065G625XMKGA4") format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url('/hc/theming_assets/01JC64SB16VMHP8Y8M64XN21GW') format('woff2'),
+       url('/hc/theming_assets/01JC64SDWYDPSSH313ZAAJPR9W') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Define Basel Grotesk font */
+@font-face {
+  font-family: 'Basel Grotesk';
+  src: url('/hc/theming_assets/01JC64SBJJAHBWAPZJ6XJYE9S1') format('woff2'),
+       url('/hc/theming_assets/01JC64SERDJNK9HPYB1J09QWMQ') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src: url('/hc/theming_assets/01JC64S9DM4R4NH24VSNPGRNDN') format('woff2'),
+       url('/hc/theming_assets/01JC64SEPK4GSXZEDJNBJCZWHX') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src: url('/hc/theming_assets/01JC64S8VCRN62KK6A70H804JE') format('woff2'),
+       url('/hc/theming_assets/01JC64SDWX127XNT8QRB5V1Y0P') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src: url('/hc/theming_assets/01JC64S7VF1EGNMZ6XDAK1QS77') format('woff2'),
+       url('/hc/theming_assets/01JC64SEMC8P2YXN8SJ8JKAAZE') format('woff');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src: url('/hc/theming_assets/01JC64SA3QG1AVB34091B5HA4H') format('woff2'),
+       url('/hc/theming_assets/01JC64SEV79SK6JCKSXMPBW6RE') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src: url('') format('woff2'),
+       url('') format('woff');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src: url('') format('woff2'),
+       url('') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fragment Mono';
+  src: url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap');
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+<link rel="stylesheet" href=/hc/theming_assets/01KJ697X8QQZGSE1AEN2D1SFAY />
+<link rel="stylesheet" href=/hc/theming_assets/01JD407SS39MAW5FRTZAD5VA5G />
+<link rel="sitemap" type="application/xml" href="/hc/theming_assets/01KCRD97EJ7SS895Q5VAG79YNN" />
+
+
+<script type="text/javascript">
+  function getCookie(cname) { // https://www.w3schools.com/js/js_cookies.asp
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+// Apply theme based on the cookie value or system preference
+  let theme = getCookie('uniswap-ui-theme');
+
+  if (theme === 'dark' || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    document.documentElement.classList.add('dark');
+  }
+</script>
+<script type="module">
+  import { renderFlashNotifications } from "flash-notifications";
+
+  const settings = {"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW","show_brand_name":true,"favicon":"/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ","homepage_background_image":"/hc/theming_assets/01J5ZSQK50R05P2G7EKS0NR3G3","community_background_image":"/hc/theming_assets/01J5ZSQKHVG874PJPYSXG2VAWP","community_image":"/hc/theming_assets/01J5ZSQKZXEMZBA3NEK8K6Z61D","instant_search":true,"scoped_kb_search":false,"scoped_community_search":true,"show_recent_activity":true,"show_articles_in_section":true,"show_article_author":true,"show_article_comments":true,"show_follow_article":true,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":true,"request_list_beta":false};
+  const closeLabel = "Close"
+
+  renderFlashNotifications(settings, closeLabel);
+</script>
+  
+</head>
+<body class="">
+  
+  
+  
+
+  <header class="Navigation fixed top-0 left-0 right-0 z-nav w-screen bg-light-surface-1 dark:border-dark-surface-3 dark:bg-dark-surface-1" id="new-navigation">
+  
+  <div id="search-bar-placeholder" class="z-search absolute w-full pointer-events-none hidden md:block">
+    <div class="search-bar-container w-[25rem] m-auto flex flex-row space-x-2 p-3 rounded-[1.25rem] bg-light-surface-3 dark:!bg-dark-surface-3 items-center !pointer-events-auto !mt-4 border border-transparent focus-within:!border-light-surface-3 focus-within:dark:!border-dark-surface-3 focus-within:!bg-transparent focus-within:!text-light-neutral-1 focus-within:dark:!text-dark-neutral-1">
+      <h2 class="sr-only">Search</h2>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.16675 1.66699C5.02461 1.66699 1.66675 5.02486 1.66675 9.16699C1.66675 13.3091 5.02461 16.667 9.16675 16.667C10.9388 16.667 12.5673 16.0524 13.8508 15.0248L17.1126 18.2913C17.4378 18.617 17.9654 18.6174 18.2911 18.2922C18.6168 17.967 18.6172 17.4394 18.292 17.1137L15.0288 13.8458C16.0539 12.5631 16.6667 10.9366 16.6667 9.16699C16.6667 5.02486 13.3089 1.66699 9.16675 1.66699ZM9.16675 3.33366C5.94509 3.33366 3.33341 5.94533 3.33341 9.16699C3.33341 12.3887 5.94509 15.0003 9.16675 15.0003C12.3884 15.0003 15.0001 12.3887 15.0001 9.16699C15.0001 5.94533 12.3884 3.33366 9.16675 3.33366Z" fill="#6B6B6B"/>
+      </svg>
+      <form role="search" class="search search-full peer" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input type="hidden" name="utf8" value="&#x2713;" autocomplete="off" /><input type="search" name="query" id="query" placeholder="Search" autocomplete="off" aria-label="Search" /></form>
+    </div>
+  </div>
+  
+  <div id="search-bar-placeholder-nav-mobile" class="z-search w-full block md:hidden opacity-0">
+    <div class="w-[calc(100vw-7.25rem)] m-auto ml-2 p-3 !px-1 rounded-[1.25rem] items-center !pointer-events-auto focus-within:!text-light-neutral-1 focus-within:dark:!text-dark-neutral-1">
+      <h2 class="sr-only">Search</h2>
+      <div class="search-bar-placeholder-nav-mobile w-screen">
+        <form role="search" class="search search-full" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input type="hidden" name="utf8" value="&#x2713;" autocomplete="off" /><input type="search" name="query" id="query" placeholder="Search" autocomplete="off" aria-label="Search" /></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script type="module">
+  import { renderNavigation } from "navigation";
+
+  const container = document.getElementById("new-navigation");
+  const searchBarPlaceholder = document.getElementById("search-bar-placeholder");
+  const searchBarPlaceholderNavMobile = document.getElementById("search-bar-placeholder-nav-mobile");
+
+  const settings = {"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW","show_brand_name":true,"favicon":"/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ","homepage_background_image":"/hc/theming_assets/01J5ZSQK50R05P2G7EKS0NR3G3","community_background_image":"/hc/theming_assets/01J5ZSQKHVG874PJPYSXG2VAWP","community_image":"/hc/theming_assets/01J5ZSQKZXEMZBA3NEK8K6Z61D","instant_search":true,"scoped_kb_search":false,"scoped_community_search":true,"show_recent_activity":true,"show_articles_in_section":true,"show_article_author":true,"show_article_comments":true,"show_follow_article":true,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":true,"request_list_beta":false};
+
+  renderNavigation(settings, container);
+
+  container.prepend(searchBarPlaceholder);
+  container.prepend(searchBarPlaceholderNavMobile);
+</script>
+
+
+  <main role="main">
+    
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Address Screening Guide",
+  "image": "/hc/theming_assets/01KBG5EJ0BAM79HWRVHYK7GK8M",
+  "url": "https://support.uniswap.org/hc/en-us/articles/8671777747597-Address-Screening-Guide",
+  "datePublished": "2022-08-25 00:39:51 UTC",
+  "dateModified": "2025-06-02 16:50:01 UTC",
+  "author": {
+    "@type": "Organization",
+    "name": "Uniswap Labs",
+    "url": "https://uniswap.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/hc/theming_assets/01KBG5EJ0BAM79HWRVHYK7GK8M",
+      "width": 1200,
+      "height": 600
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Uniswap Labs",
+    "url": "https://uniswap.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/hc/theming_assets/01KBG5EJ0BAM79HWRVHYK7GK8M",
+      "width": 1200,
+      "height": 600
+    }
+  },
+  "inLanguage": "en-us",
+  "keywords": ["blocked","screening","TRM","law enforcement","security","address_screening_uniswap","Address Screening Uniswap","Blocked Uniswap","blocked_uniswap"],
+  "articleSection": "Reporting Scams and Staying Safe",
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": "https://schema.org/LikeAction",
+    "userInteractionCount": 20
+  }
+}
+</script>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Crypto Security and Scams",
+      "item": "https://support.uniswap.org/hc/en-us/categories/32456997609229-Crypto-Security-and-Scams"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Reporting Scams and Staying Safe",
+      "item": "https://support.uniswap.org/hc/en-us/sections/35940296828813-Reporting-Scams-and-Staying-Safe"
+    }
+    
+  ]
+}
+</script>
+
+
+<div class="ArticlePage flex flex-row bg-light-surface-1 dark:bg-dark-surface-1">
+  <div id="new-side-nav" class="min-w-[15rem] max-w-[15rem] hidden md:block relative mt-nav-h"></div>
+
+  <div class="page-wrapper default-grid">
+    <div class="col-span-4 sm:col-span-6">
+
+      <div id="new-article-breadcrumbs"></div>
+
+      <div class="w-full max-w-[43.375rem]">
+        <h1 title="Address Screening Guide" class="article-title heading-2 sm:heading-1 text-light-neutral-1 dark:text-dark-neutral-1">
+          Address Screening Guide
+        </h1>
+        <div id='article-body-element' class="article-body my-5"><div class="content content__narrow">
+<div class="article intercom-force-break">
+<article dir="ltr">
+<h4 id="h_01JKTY2EHQ7W5N7ZJKA7A9CNY1" class="no-margin wysiwyg-text-align-justify"><strong>Q: How do you monitor actors for illicit activity?</strong></h4>
+<p class="no-margin wysiwyg-text-align-justify">We receive and analyze blockchain intelligence provided by <a class="intercom-content-link" href="https://www.trmlabs.com/" target="_blank" rel="nofollow noopener noreferrer">TRM Labs</a>. TRM Labs combines onchain data and real-world investigations to identify potential financial crime and other potentially harmful activities. <br><br>We intend to only block wallets that are owned or associated with potential illegal behavior like sanctions, terrorism financing, hacked or stolen funds, ransomware, human trafficking, and child sexual abuse material (CSAM).</p>
+<p class="no-margin wysiwyg-text-align-justify">&nbsp;</p>
+<h4 id="h_01JKTY2EHQHXJMJZXAVYBDR342" class="no-margin wysiwyg-text-align-justify"><strong>Q: Why are you doing this?</strong></h4>
+<p class="no-margin wysiwyg-text-align-justify"><span class="discussion-level-1 discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover" data-token-index="0">Uniswap Labs’ policy is to prevent people engaged in illegal behavior </span><span class="discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-level-2 discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover" data-token-index="1">from</span><span class="discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-level-2 discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover" data-token-index="2"> using</span> <span class="discussion-level-1 discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover" data-token-index="4">the Uniswap web app or Uniswap Wallet. <br><br>We remain committed to developing products that provide a safe, transparent, and robust financial infrastructure that can empower users around the world.</span></p>
+<p class="no-margin wysiwyg-text-align-justify">&nbsp;</p>
+<h4 id="h_01JKTY2EHQPBGPYG5Y0VQEQ8AQ" class="no-margin wysiwyg-text-align-justify"><strong>Q: Why was my wallet blocked?</strong></h4>
+<p class="no-margin wysiwyg-text-align-justify">If your wallet has been blocked in the Uniswap interface, then it has been flagged with a strong likelihood of being linked to illegal activity.</p>
+<p class="no-margin wysiwyg-text-align-justify">&nbsp;</p>
+<h4 id="h_01JKTY2EHQC5HKGZGA3QT80XQF" class="no-margin wysiwyg-text-align-justify"><strong>Q: My wallet was blocked from using the Uniswap Labs interface and I believe this is a mistake. How do I get unblocked?</strong></h4>
+<p class="no-margin wysiwyg-text-align-left">We do not anticipate many errors, but they are always possible. Please email <a class="intercom-content-link" href="mailto:compliance@uniswap.org" target="_blank" rel="nofollow noopener noreferrer">compliance@uniswap.org</a> if you believe that your wallet address was blocked erroneously.<br><br></p>
+<p class="no-margin wysiwyg-text-align-justify">Please note that we do not control TRM Labs or their independent determinations about risk categories and wallet addresses. <br><br></p>
+<h4 id="h_01JKTY2EHQCWBBTTSTK4JZMW13" class="no-margin wysiwyg-text-align-justify"><strong>Q: Are your data collection and data privacy practices changing?</strong></h4>
+<p class="no-margin wysiwyg-text-align-justify">We will continue to log addresses that use the Uniswap Labs interface. Our <a class="intercom-content-link" href="https://uniswap.org/terms-of-service/" target="_blank" rel="nofollow noopener noreferrer">Terms of Service</a> and <a href="/hc/en-us/articles/30934457771405" target="_blank" rel="noopener noreferrer">Privacy Policy</a> are the most definitive sources on Uniswap Labs' data collection policies.</p>
+</article>
+</div>
+</div>
+<div class="intercom-reaction-picker" dir="ltr">&nbsp;</div></div>
+      </div>
+        
+      <div class="article-info-bottom space-y-4 sm:space-y-0 py-8 flex flex-col sm:flex-row sm:justify-between items-start sm:items-center pt-margin-mobile sm:pt-padding-x-large">
+        
+          <div class="article-votes">
+            <h2 class="article-votes-question" id="article-votes-label">Was this article helpful?</h2>
+            <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
+              <button type="button" class="button article-vote article-vote-up" data-helper="vote" data-item="article" data-type="up" data-id="8671777747597" data-upvote-count="20" data-vote-count="40" data-vote-sum="0" data-vote-url="/hc/en-us/articles/8671777747597/vote" data-value="null" data-label="20 out of 40 found this helpful" data-selected-class="button-primary" aria-label="This article was helpful" aria-pressed="false">Yes</button>
+              <p class="article-vote-divider"> / </p>
+              <button type="button" class="button article-vote article-vote-down" data-helper="vote" data-item="article" data-type="down" data-id="8671777747597" data-upvote-count="20" data-vote-count="40" data-vote-sum="0" data-vote-url="/hc/en-us/articles/8671777747597/vote" data-value="null" data-label="20 out of 40 found this helpful" data-selected-class="button-primary" aria-label="This article was not helpful" aria-pressed="false">No</button>
+            </div>
+          </div>
+        
+
+        <div class="article-updated">
+          <p class="article-updated-text">
+            
+              Updated
+              <time datetime="2025-06-02T16:50:01Z" title="2025-06-02T16:50:01Z" data-datetime="relative">June 02, 2025 16:50</time>
+            
+          </p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      
+      
+  <section class="related-articles">
+    
+      <h2 class="related-articles-title">Related articles</h2>
+    
+    <ul>
+      
+        <li>
+          <a href="/hc/en-us/related/click?data=BAh7CjobZGVzdGluYXRpb25fYXJ0aWNsZV9pZGwrCA0zYALvBzoYcmVmZXJyZXJfYXJ0aWNsZV9pZGwrCI1yOw7jBzoLbG9jYWxlSSIKZW4tdXMGOgZFVDoIdXJsSSI9L2hjL2VuLXVzL2FydGljbGVzLzg3MjMxMTg0MzcxMzMtV2hhdC1hcmUtdG9rZW4td2FybmluZ3MGOwhUOglyYW5raQY%3D--fbead45b8596cc756a7532c032bfd03121e1f859" rel="nofollow">What are token warnings?</a>
+        </li>
+      
+        <li>
+          <a href="/hc/en-us/related/click?data=BAh7CjobZGVzdGluYXRpb25fYXJ0aWNsZV9pZGwrCA3EaWsVEToYcmVmZXJyZXJfYXJ0aWNsZV9pZGwrCI1yOw7jBzoLbG9jYWxlSSIKZW4tdXMGOgZFVDoIdXJsSSI%2FL2hjL2VuLXVzL2FydGljbGVzLzE4NzgzNjk0MDc4OTg5LVVuc3VwcG9ydGVkLVRva2VuLVBvbGljeQY7CFQ6CXJhbmtpBw%3D%3D--20e0dc1c365fdaf0ede3129f761ff18409ea2653" rel="nofollow">Unsupported Token Policy</a>
+        </li>
+      
+        <li>
+          <a href="/hc/en-us/related/click?data=BAh7CjobZGVzdGluYXRpb25fYXJ0aWNsZV9pZGwrCA1p2HIVEToYcmVmZXJyZXJfYXJ0aWNsZV9pZGwrCI1yOw7jBzoLbG9jYWxlSSIKZW4tdXMGOgZFVDoIdXJsSSI9L2hjL2VuLXVzL2FydGljbGVzLzE4NzgzODE4NzcwNzAxLVVuc3VwcG9ydGVkLVRva2VuLUxpc3QGOwhUOglyYW5raQg%3D--199c70a500f9ab8dce5743c47812569ae95d4723" rel="nofollow">Unsupported Token List</a>
+        </li>
+      
+        <li>
+          <a href="/hc/en-us/related/click?data=BAh7CjobZGVzdGluYXRpb25fYXJ0aWNsZV9pZGwrCI1DXvkZFjoYcmVmZXJyZXJfYXJ0aWNsZV9pZGwrCI1yOw7jBzoLbG9jYWxlSSIKZW4tdXMGOgZFVDoIdXJsSSJRL2hjL2VuLXVzL2FydGljbGVzLzI0MzAwODEzNjk3OTMzLVdoeS1kaWQtbXktbGltaXQtb3JkZXItZmFpbC1vci1ub3QtZXhlY3V0ZQY7CFQ6CXJhbmtpCQ%3D%3D--33a339d87abb844b8c2bb6c55cf3b12307b72c00" rel="nofollow">Why did my limit order fail or not execute?</a>
+        </li>
+      
+        <li>
+          <a href="/hc/en-us/related/click?data=BAh7CjobZGVzdGluYXRpb25fYXJ0aWNsZV9pZGwrCI33DzK4GToYcmVmZXJyZXJfYXJ0aWNsZV9pZGwrCI1yOw7jBzoLbG9jYWxlSSIKZW4tdXMGOgZFVDoIdXJsSSJHL2hjL2VuLXVzL2FydGljbGVzLzI4Mjc4OTA0NTg0MDc3LVVuaXN3YXAtV2FsbGV0LVNlY3VyaXR5LU1lYXN1cmVzBjsIVDoJcmFua2kK--cfd473719e9135ba0158c2f9e2d8e75382d51b78" rel="nofollow">Uniswap Wallet Security Measures</a>
+        </li>
+      
+    </ul>
+  </section>
+
+ 
+    </div>
+    <div id="article-content-nav-container" class="hidden sm:block sm:col-span-2">
+      <h2 class="subheading-2 text-light-neutral-1 dark:text-dark-neutral-1 mb-3">On this Page</h2>
+      <ul class="article-content-nav" id="article-content-nav"></ul>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { renderArticleBreadcrumbs } from "article-page";
+
+  const container = document.getElementById("new-article-breadcrumbs");
+
+  const settings = {"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW","show_brand_name":true,"favicon":"/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ","homepage_background_image":"/hc/theming_assets/01J5ZSQK50R05P2G7EKS0NR3G3","community_background_image":"/hc/theming_assets/01J5ZSQKHVG874PJPYSXG2VAWP","community_image":"/hc/theming_assets/01J5ZSQKZXEMZBA3NEK8K6Z61D","instant_search":true,"scoped_kb_search":false,"scoped_community_search":true,"show_recent_activity":true,"show_articles_in_section":true,"show_article_author":true,"show_article_comments":true,"show_follow_article":true,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":true,"request_list_beta":false};
+
+
+  const articlePageData = {
+    article: {"id":8671777747597,"url":"/hc/en-us/articles/8671777747597-Address-Screening-Guide","title":"Address Screening Guide","locale":"en-us","promoted":false,"internal":false,"updated_at":"2026-02-03T20:26:56Z","created_at":"2022-08-25T00:39:51Z","vote_sum":0,"vote_count":40,"upvote_count":20,"comment_count":0,"comments_disabled":false,"follower_count":1,"edited_at":"2025-06-02T16:50:01Z","path_steps":[{"url":"https://support.uniswap.org/hc/en-us/categories/32456997609229-Crypto-Security-and-Scams","name":"Crypto Security and Scams","target":"_self"},{"url":"https://support.uniswap.org/hc/en-us/sections/35940296828813-Reporting-Scams-and-Staying-Safe","name":"Reporting Scams and Staying Safe","target":"_self"}],"labels":[{"identifier":"blocked"},{"identifier":"screening"},{"identifier":"TRM"},{"identifier":"law enforcement"},{"identifier":"security"},{"identifier":"address_screening_uniswap"},{"identifier":"Address Screening Uniswap"},{"identifier":"Blocked Uniswap"},{"identifier":"blocked_uniswap"}],"author":{"name":"Steph","url":null,"agent":false,"avatar_url":"https://support.uniswap.org/system/photos/8710047167117/IMG_1403.jpg","signed_in":false,"id":424399526951,"role":"anonymous","organizations":[],"badges":[]},"content_tags":[],"body":"\u003cdiv class=\"content content__narrow\"\u003e\n\u003cdiv class=\"article intercom-force-break\"\u003e\n\u003carticle dir=\"ltr\"\u003e\n\u003ch4 id=\"h_01JKTY2EHQ7W5N7ZJKA7A9CNY1\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: How do you monitor actors for illicit activity?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003eWe receive and analyze blockchain intelligence provided by \u003ca class=\"intercom-content-link\" href=\"https://www.trmlabs.com/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003eTRM Labs\u003c/a\u003e. TRM Labs combines onchain data and real-world investigations to identify potential financial crime and other potentially harmful activities. \u003cbr\u003e\u003cbr\u003eWe intend to only block wallets that are owned or associated with potential illegal behavior like sanctions, terrorism financing, hacked or stolen funds, ransomware, human trafficking, and child sexual abuse material (CSAM).\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u0026nbsp;\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQHXJMJZXAVYBDR342\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: Why are you doing this?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cspan class=\"discussion-level-1 discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"0\"\u003eUniswap Labs’ policy is to prevent people engaged in illegal behavior \u003c/span\u003e\u003cspan class=\"discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-level-2 discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"1\"\u003efrom\u003c/span\u003e\u003cspan class=\"discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-level-2 discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"2\"\u003e using\u003c/span\u003e \u003cspan class=\"discussion-level-1 discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"4\"\u003ethe Uniswap web app or Uniswap Wallet. \u003cbr\u003e\u003cbr\u003eWe remain committed to developing products that provide a safe, transparent, and robust financial infrastructure that can empower users around the world.\u003c/span\u003e\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u0026nbsp;\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQPBGPYG5Y0VQEQ8AQ\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: Why was my wallet blocked?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003eIf your wallet has been blocked in the Uniswap interface, then it has been flagged with a strong likelihood of being linked to illegal activity.\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u0026nbsp;\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQC5HKGZGA3QT80XQF\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: My wallet was blocked from using the Uniswap Labs interface and I believe this is a mistake. How do I get unblocked?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-left\"\u003eWe do not anticipate many errors, but they are always possible. Please email \u003ca class=\"intercom-content-link\" href=\"mailto:compliance@uniswap.org\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003ecompliance@uniswap.org\u003c/a\u003e if you believe that your wallet address was blocked erroneously.\u003cbr\u003e\u003cbr\u003e\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003ePlease note that we do not control TRM Labs or their independent determinations about risk categories and wallet addresses. \u003cbr\u003e\u003cbr\u003e\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQCWBBTTSTK4JZMW13\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: Are your data collection and data privacy practices changing?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003eWe will continue to log addresses that use the Uniswap Labs interface. Our \u003ca class=\"intercom-content-link\" href=\"https://uniswap.org/terms-of-service/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003eTerms of Service\u003c/a\u003e and \u003ca href=\"/hc/en-us/articles/30934457771405\" target=\"_blank\" rel=\"noopener noreferrer\"\u003ePrivacy Policy\u003c/a\u003e are the most definitive sources on Uniswap Labs' data collection policies.\u003c/p\u003e\n\u003c/article\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003cdiv class=\"intercom-reaction-picker\" dir=\"ltr\"\u003e\u0026nbsp;\u003c/div\u003e"}
+  }
+
+  // Make sure arguments are correctly typed. 
+  renderArticleBreadcrumbs(settings, articlePageData, container);
+</script>
+
+<script type="text/javascript">
+// Add anchor links to article content
+  const articleContentNav = document.getElementById("article-content-nav");
+  const articleBody = document.getElementById("article-body-element");
+  const sideNavItemElements = articleBody.querySelectorAll('h1.side-nav-item, h2.side-nav-item, h3.side-nav-item, h4.side-nav-item, p.side-nav-item');
+
+  const hElements = articleBody.querySelectorAll('h1, h2, h3, h4');
+
+  let articleContentNavHasItems = false;
+
+  ((sideNavItemElements && sideNavItemElements.length > 0) ? sideNavItemElements : hElements).forEach((element) => {
+    const title = element.textContent;
+    const withoutSpaceTitle = title.replaceAll(/\s/g,'');
+
+    if (withoutSpaceTitle && withoutSpaceTitle.length > 0) {
+      const lowerCaseTitle = title.toLowerCase().replaceAll(/\s/g,'-');
+      const id = encodeURI(lowerCaseTitle);
+      element.id = id;
+
+      const li = document.createElement("li");
+      articleContentNav.appendChild(li);
+
+      const link = document.createElement("a");
+      link.setAttribute('href', `#${id}`);
+      link.innerHTML = title;
+
+      li.appendChild(link);
+      articleContentNavHasItems = true;
+    }
+  });
+
+  if (!articleContentNavHasItems) {
+    const articleContentNavContainer = document.getElementById("article-content-nav-container");
+    articleContentNavContainer.remove();
+  }
+</script>
+
+
+<script type="module">
+  import { renderSideNav, renderMobileMenuNav, sideNav } from "side-nav";
+
+  const container = document.getElementById("new-side-nav");
+
+  const settings = {"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW","show_brand_name":true,"favicon":"/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ","homepage_background_image":"/hc/theming_assets/01J5ZSQK50R05P2G7EKS0NR3G3","community_background_image":"/hc/theming_assets/01J5ZSQKHVG874PJPYSXG2VAWP","community_image":"/hc/theming_assets/01J5ZSQKZXEMZBA3NEK8K6Z61D","instant_search":true,"scoped_kb_search":false,"scoped_community_search":true,"show_recent_activity":true,"show_articles_in_section":true,"show_article_author":true,"show_article_comments":true,"show_follow_article":true,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":true,"request_list_beta":false};
+
+  const sideNavData = await sideNav.get();
+
+  const article = {"id":8671777747597,"url":"/hc/en-us/articles/8671777747597-Address-Screening-Guide","title":"Address Screening Guide","locale":"en-us","promoted":false,"internal":false,"updated_at":"2026-02-03T20:26:56Z","created_at":"2022-08-25T00:39:51Z","vote_sum":0,"vote_count":40,"upvote_count":20,"comment_count":0,"comments_disabled":false,"follower_count":1,"edited_at":"2025-06-02T16:50:01Z","path_steps":[{"url":"https://support.uniswap.org/hc/en-us/categories/32456997609229-Crypto-Security-and-Scams","name":"Crypto Security and Scams","target":"_self"},{"url":"https://support.uniswap.org/hc/en-us/sections/35940296828813-Reporting-Scams-and-Staying-Safe","name":"Reporting Scams and Staying Safe","target":"_self"}],"labels":[{"identifier":"blocked"},{"identifier":"screening"},{"identifier":"TRM"},{"identifier":"law enforcement"},{"identifier":"security"},{"identifier":"address_screening_uniswap"},{"identifier":"Address Screening Uniswap"},{"identifier":"Blocked Uniswap"},{"identifier":"blocked_uniswap"}],"author":{"name":"Steph","url":null,"agent":false,"avatar_url":"https://support.uniswap.org/system/photos/8710047167117/IMG_1403.jpg","signed_in":false,"id":424399526951,"role":"anonymous","organizations":[],"badges":[]},"content_tags":[],"body":"\u003cdiv class=\"content content__narrow\"\u003e\n\u003cdiv class=\"article intercom-force-break\"\u003e\n\u003carticle dir=\"ltr\"\u003e\n\u003ch4 id=\"h_01JKTY2EHQ7W5N7ZJKA7A9CNY1\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: How do you monitor actors for illicit activity?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003eWe receive and analyze blockchain intelligence provided by \u003ca class=\"intercom-content-link\" href=\"https://www.trmlabs.com/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003eTRM Labs\u003c/a\u003e. TRM Labs combines onchain data and real-world investigations to identify potential financial crime and other potentially harmful activities. \u003cbr\u003e\u003cbr\u003eWe intend to only block wallets that are owned or associated with potential illegal behavior like sanctions, terrorism financing, hacked or stolen funds, ransomware, human trafficking, and child sexual abuse material (CSAM).\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u0026nbsp;\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQHXJMJZXAVYBDR342\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: Why are you doing this?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cspan class=\"discussion-level-1 discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"0\"\u003eUniswap Labs’ policy is to prevent people engaged in illegal behavior \u003c/span\u003e\u003cspan class=\"discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-level-2 discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"1\"\u003efrom\u003c/span\u003e\u003cspan class=\"discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-level-2 discussion-id-5a8c4685-7c82-47ac-aa6d-045c8cdff4dc discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"2\"\u003e using\u003c/span\u003e \u003cspan class=\"discussion-level-1 discussion-id-93f758f1-119d-4a5c-84a3-b5522b58107a notion-enable-hover\" data-token-index=\"4\"\u003ethe Uniswap web app or Uniswap Wallet. \u003cbr\u003e\u003cbr\u003eWe remain committed to developing products that provide a safe, transparent, and robust financial infrastructure that can empower users around the world.\u003c/span\u003e\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u0026nbsp;\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQPBGPYG5Y0VQEQ8AQ\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: Why was my wallet blocked?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003eIf your wallet has been blocked in the Uniswap interface, then it has been flagged with a strong likelihood of being linked to illegal activity.\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003e\u0026nbsp;\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQC5HKGZGA3QT80XQF\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: My wallet was blocked from using the Uniswap Labs interface and I believe this is a mistake. How do I get unblocked?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-left\"\u003eWe do not anticipate many errors, but they are always possible. Please email \u003ca class=\"intercom-content-link\" href=\"mailto:compliance@uniswap.org\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003ecompliance@uniswap.org\u003c/a\u003e if you believe that your wallet address was blocked erroneously.\u003cbr\u003e\u003cbr\u003e\u003c/p\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003ePlease note that we do not control TRM Labs or their independent determinations about risk categories and wallet addresses. \u003cbr\u003e\u003cbr\u003e\u003c/p\u003e\n\u003ch4 id=\"h_01JKTY2EHQCWBBTTSTK4JZMW13\" class=\"no-margin wysiwyg-text-align-justify\"\u003e\u003cstrong\u003eQ: Are your data collection and data privacy practices changing?\u003c/strong\u003e\u003c/h4\u003e\n\u003cp class=\"no-margin wysiwyg-text-align-justify\"\u003eWe will continue to log addresses that use the Uniswap Labs interface. Our \u003ca class=\"intercom-content-link\" href=\"https://uniswap.org/terms-of-service/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003eTerms of Service\u003c/a\u003e and \u003ca href=\"/hc/en-us/articles/30934457771405\" target=\"_blank\" rel=\"noopener noreferrer\"\u003ePrivacy Policy\u003c/a\u003e are the most definitive sources on Uniswap Labs' data collection policies.\u003c/p\u003e\n\u003c/article\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003cdiv class=\"intercom-reaction-picker\" dir=\"ltr\"\u003e\u0026nbsp;\u003c/div\u003e"};
+  const pathSteps = article.path_steps;
+  const pathnames = pathSteps.map((path) => {
+    const urlObj = new URL(path.url);
+    return urlObj.pathname;
+  });
+  const navState = pathnames.reduce((state, pathname) => {
+    if (pathname.includes('categories')) {
+      const category = pathname.split('/').pop().split('-')[0];
+      state.category = parseInt(category);
+    } else if (pathname.includes('sections')) {
+      const section = pathname.split('/').pop().split('-')[0];
+      state.section = parseInt(section);
+    }
+
+    return state;
+  }, {})
+
+  // Make sure arguments are correctly typed. 
+  renderSideNav(settings, sideNavData, {...navState, article: article.id}, container);
+
+  // Add mobile nav
+  const addMobileNav = (sideNavData) => {
+
+    const container = document.getElementById("new-mobile-nav");
+
+    const settings = {"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW","show_brand_name":true,"favicon":"/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ","homepage_background_image":"/hc/theming_assets/01J5ZSQK50R05P2G7EKS0NR3G3","community_background_image":"/hc/theming_assets/01J5ZSQKHVG874PJPYSXG2VAWP","community_image":"/hc/theming_assets/01J5ZSQKZXEMZBA3NEK8K6Z61D","instant_search":true,"scoped_kb_search":false,"scoped_community_search":true,"show_recent_activity":true,"show_articles_in_section":true,"show_article_author":true,"show_article_comments":true,"show_follow_article":true,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":true,"request_list_beta":false};
+
+    // Make sure arguments are correctly typed. 
+    renderMobileMenuNav(settings, sideNavData, {...navState, article: article.id}, container);
+  }
+
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+    mobileMenuButton.addEventListener("click", (e) => {
+    // add setTimeout to ensure the mobile nav is added after mobile menu appears on DOM first
+    setTimeout(() => addMobileNav(sideNavData), 100);
+  });
+</script>
+  </main>
+
+  <div class="Footer bg-light-surface-1 dark:bg-dark-surface-1 border-t-[1px] border-light-surface-3 dark:border-dark-surface-3" id="new-footer">
+</div>
+
+<script type="module">
+  import { renderFooter } from "footer";
+
+  const container = document.getElementById("new-footer");
+
+  const settings = {"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW","show_brand_name":true,"favicon":"/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ","homepage_background_image":"/hc/theming_assets/01J5ZSQK50R05P2G7EKS0NR3G3","community_background_image":"/hc/theming_assets/01J5ZSQKHVG874PJPYSXG2VAWP","community_image":"/hc/theming_assets/01J5ZSQKZXEMZBA3NEK8K6Z61D","instant_search":true,"scoped_kb_search":false,"scoped_community_search":true,"show_recent_activity":true,"show_articles_in_section":true,"show_article_author":true,"show_article_comments":true,"show_follow_article":true,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":true,"request_list_beta":false};
+
+  // Handles data for the footer. If you would like to update any data within footer, adjust it here.
+  const footerPageData = {
+    footerGithubLink: 'https://github.com/Uniswap',
+    footerXLink: 'https://x.com/Uniswap',
+    footerDiscordLink: 'https://discord.com/invite/uniswap',
+    footerLinksSupport: [
+      {
+        name: 'Frequently Asked Questions',
+        url: '/hc/en-us/categories/32172688959117-Frequently-Asked-Questions',
+      },
+      {
+        name: 'Getting Started Guides',
+        url: '/hc/en-us/categories/32174051347341-Getting-Started-Guides',
+      },
+      {
+        name: 'Uniswap Wallet',
+        url: '/hc/en-us/categories/11301970439565-Uniswap-Wallet',
+      },
+      {
+        name: 'Uniswap Extension',
+        url: '/hc/en-us/categories/25219141467405-Uniswap-Extension',
+      },
+      {
+        name: 'Swapping and Sending Crypto',
+        url: '/hc/en-us/categories/32352201739021',
+      },
+      {
+        name: 'Crypto Basics',
+        url: '/hc/en-us/categories/35883717603597',
+      },
+      {
+        name: 'Crypto Security and Scams',
+        url: '/hc/en-us/categories/32456997609229-Crypto-Security-and-Scams',
+      },
+      
+    ],
+    footerLinksHelp: [
+      {
+        name: 'Help Center',
+        url: '/',
+      },
+      {
+        name: 'Contact Us',
+        url: '/hc/en-us/requests/new',
+      },
+    ],
+    footerLinksCompany: [
+      {
+        name: 'Careers',
+        url: 'https://careers.uniswap.org/',
+      },
+      {
+        name: 'Brand Assets',
+        url: 'https://github.com/Uniswap/brand-assets/raw/main/Uniswap%20Brand%20Assets.zip',
+      },
+      {
+        name: 'Terms of Service',
+        url: '/hc/en-us/articles/30935100859661-Uniswap-Labs-Terms-of-Service',
+      },
+      {
+        name: 'Privacy Policy',
+        url: '/hc/en-us/articles/30934457771405-Uniswap-Labs-Privacy-Policy',
+      },
+      {
+        name: 'Trademark Policy',
+        url: '/hc/en-us/articles/30934762216973-Uniswap-Labs-Trademark-Guidelines',
+      },
+    ],
+    footerLinksEcosystem: [
+      {
+        name: 'Uniswap App',
+        url: 'https://app.uniswap.org/',
+      },
+      {
+        name: 'Governance',
+        url: 'https://www.uniswapfoundation.org/governance',
+      },
+      {
+        name: 'Blog',
+        url: 'https://blog.uniswap.org/',
+      },
+    ]
+  }
+
+  // Make sure arguments are correctly typed. 
+  renderFooter(settings, footerPageData, container);
+</script>
+
+
+  <!-- / -->
+
+  
+  <script src="//static.zdassets.com/hc/assets/en-us.e7778364a6a6c7417df3.js"></script>
+  
+
+  <script type="text/javascript">
+  /*
+
+    Greetings sourcecode lurker!
+
+    This is for internal Zendesk and legacy usage,
+    we don't support or guarantee any of these values
+    so please don't build stuff on top of them.
+
+  */
+
+  HelpCenter = {};
+  HelpCenter.account = {"subdomain":"uniswaplabs","environment":"production","name":"Uniswap Labs"};
+  HelpCenter.user = {"identifier":"da39a3ee5e6b4b0d3255bfef95601890afd80709","email":null,"name":"","role":"anonymous","avatar_url":"https://assets.zendesk.com/hc/assets/default_avatar.png","is_admin":false,"organizations":[],"groups":[]};
+  HelpCenter.internal = {"asset_url":"//static.zdassets.com/hc/assets/","web_widget_asset_composer_url":"https://static.zdassets.com/ekr/snippet.js","current_session":{"locale":"en-us","csrf_token":null,"shared_csrf_token":null},"usage_tracking":{"event":"article_viewed","data":"BAh7CDoLbG9jYWxlSSIKZW4tdXMGOgZFVDoPYXJ0aWNsZV9pZGwrCI1yOw7jBzoKX21ldGF7DDoPYWNjb3VudF9pZGkD+dzJOhNoZWxwX2NlbnRlcl9pZGwrCA25CK4rBToNYnJhbmRfaWRsKwiNvtUK0AQ6DHVzZXJfaWQwOhN1c2VyX3JvbGVfbmFtZUkiDkFOT05ZTU9VUwY7BlQ7AEkiCmVuLXVzBjsGVDoaYW5vbnltb3VzX3RyYWNraW5nX2lkMA==--3829a33d06cd1619f8ab8ece760c7d047d72ba6d","url":"https://support.uniswap.org/hc/activity"},"current_record_id":"8671777747597","current_record_url":"/hc/en-us/articles/8671777747597-Address-Screening-Guide","current_record_title":"Address Screening Guide","current_text_direction":"ltr","current_brand_id":5291581488781,"current_brand_name":"Uniswap Labs","current_brand_url":"https://uniswaplabs.zendesk.com","current_brand_active":true,"current_path":"/hc/en-us/articles/8671777747597-Address-Screening-Guide","show_autocomplete_breadcrumbs":true,"user_info_changing_enabled":false,"has_user_profiles_enabled":false,"has_end_user_attachments":true,"user_aliases_enabled":false,"has_anonymous_kb_voting":true,"has_multi_language_help_center":true,"show_at_mentions":false,"embeddables_config":{"embeddables_web_widget":true,"embeddables_help_center_auth_enabled":false,"embeddables_connect_ipms":false},"answer_bot_subdomain":"static","gather_plan_state":"subscribed","has_article_verification":true,"has_gather":true,"has_ckeditor":true,"has_community_enabled":false,"has_community_badges":true,"has_community_post_content_tagging":false,"has_gather_content_tags":true,"has_guide_content_tags":true,"has_user_segments":true,"has_answer_bot_web_form_enabled":true,"has_garden_modals":false,"theming_cookie_key":"hc-da39a3ee5e6b4b0d3255bfef95601890afd80709-2-preview","is_preview":false,"has_search_settings_in_plan":true,"theming_api_version":4,"theming_settings":{"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01KEFPK3JB3177W1WX26EY28CW","show_brand_name":true,"favicon":"/hc/theming_assets/01JFFB5ZX17XBRK13855DPGSRJ","homepage_background_image":"/hc/theming_assets/01J5ZSQK50R05P2G7EKS0NR3G3","community_background_image":"/hc/theming_assets/01J5ZSQKHVG874PJPYSXG2VAWP","community_image":"/hc/theming_assets/01J5ZSQKZXEMZBA3NEK8K6Z61D","instant_search":true,"scoped_kb_search":false,"scoped_community_search":true,"show_recent_activity":true,"show_articles_in_section":true,"show_article_author":true,"show_article_comments":true,"show_follow_article":true,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":true,"request_list_beta":false},"has_pci_credit_card_custom_field":true,"help_center_restricted":false,"is_assuming_someone_else":false,"flash_messages":[],"user_photo_editing_enabled":true,"user_preferred_locale":"en-us","base_locale":"en-us","login_url":"https://uniswaplabs.zendesk.com/access?locale=en-us\u0026brand_id=5291581488781\u0026return_to=https%3A%2F%2Fsupport.uniswap.org%2Fhc%2Fen-us%2Farticles%2F8671777747597-Address-Screening-Guide","has_alternate_templates":true,"has_custom_statuses_enabled":true,"has_hc_generative_answers_setting_enabled":true,"has_generative_search_with_zgpt_enabled":true,"has_suggested_initial_questions_enabled":false,"has_guide_service_catalog":true,"has_service_catalog_search_poc":true,"has_service_catalog_itam":false,"has_csat_reverse_2_scale_in_mobile":false,"has_knowledge_navigation":false,"has_trial_presumptive_setup":true,"has_unified_navigation":true,"has_unified_navigation_eap_access":true,"has_knowledge_global_nav_ga_banner":false,"has_csat_bet365_branding":false,"has_help_center_gen_search_follow_up_conversation":true,"version":"v27381","dev_mode":false};
+</script>
+
+  
+  
+  <script src="//static.zdassets.com/hc/assets/hc_enduser-1a4636e98aef84ef35d9bdf38dab9ca3.js"></script>
+  <script type="text/javascript" src="/hc/theming_assets/13229305/5291581488781/script.js?digest=45242911129741"></script>
+  
+</body>
+</html>

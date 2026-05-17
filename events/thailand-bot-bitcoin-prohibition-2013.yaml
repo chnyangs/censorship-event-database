@@ -1,6 +1,8 @@
 id: thailand-bot-bitcoin-prohibition-2013
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
@@ -20,6 +22,20 @@ trigger:
   timestamp: 2013-07-29T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://bitcoin.co.th/trading-suspended-due-to-bank-of-thailand-advisement/
+      wayback: https://web.archive.org/web/20140212082550/https://bitcoin.co.th/trading-suspended-due-to-bank-of-thailand-advisement/
+      body_hash: sha256:b46d45646e9277ed4f8fe35c60c07463533d93e8da63edc85ffbbc289c16ddef
+      body_path: sources/http_captures/thailand-bot-bitcoin-prohibition-2013/v0_3_primary_repair/web.archive.org__web-2013-https-bitcoin.co.th-trading-suspended-due-to-bank-of-thailand-advisement__cb8eeb9d82.html
+      note: |
+        Bitcoin Co. Ltd's original corporate statement, "Trading
+        suspended due to Bank of Thailand advisement", captured from
+        Wayback at 2014-02-12 while the 2013-07-29 suspension was still
+        in force. The archived page states the operator's reason for
+        suspending services and quotes the BOT Foreign Exchange
+        Administration and Policy Department advisement. v0.3 repair
+        note: the current live URL returned 404, so the replayable
+        anchor is the timestamped Wayback body_hash/body_path.
     - type: supporting_journalism
       url: https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
       wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
@@ -172,6 +188,28 @@ observations:
     delta_hours: 0
     country: TH
     sources:
+      - type: primary_corporate
+        url: https://bitcoin.co.th/trading-suspended-due-to-bank-of-thailand-advisement/
+        wayback: https://web.archive.org/web/20140212082550/https://bitcoin.co.th/trading-suspended-due-to-bank-of-thailand-advisement/
+        body_hash: sha256:b46d45646e9277ed4f8fe35c60c07463533d93e8da63edc85ffbbc289c16ddef
+        body_path: sources/http_captures/thailand-bot-bitcoin-prohibition-2013/v0_3_primary_repair/web.archive.org__web-2013-https-bitcoin.co.th-trading-suspended-due-to-bank-of-thailand-advisement__cb8eeb9d82.html
+        scope_descriptor:
+          providers: [bitcoin_co_ltd_th]
+          countries: [TH]
+          time_window:
+            - 2013-07-29T00:00:00Z
+            - 2014-02-15T23:59:59Z
+        note: |
+          Primary operator-side observation anchor. The archived Bitcoin
+          Co. Ltd statement says the purpose of the statement is to
+          inform users about the company's choice to suspend services,
+          identifies the 2013-07-29 BOT meeting, enumerates the
+          bitcoin activities the BOT department advised were illegal,
+          and states Bitcoin Co. Ltd had no choice but to suspend
+          operations until Thai law accounted for Bitcoin. This anchors
+          the observed offramp_cex suspension; it does not convert the
+          BOT verbal advisement into a published primary legal
+          instrument.
       - type: supporting_journalism
         url: https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
         wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
@@ -240,9 +278,9 @@ analysis_notes: |
   in this pass at origin=agent_draft and status=draft per the task brief;
   human review required to (i) re-pin Wayback snapshots for the CoinDesk and
   Bangkok Post anchors, (ii) verify the corporate-source Bitcoin Co. Ltd
-  suspension-notice text (the corporate statement is reproduced in CoinDesk
-  rather than captured as a primary_corporate anchor in this pass), and
-  (iii) decide whether to upgrade to origin=human_reviewed.
+  suspension-notice text against the v0.3 Wayback body_hash/body_path
+  primary_corporate anchor, and (iii) decide whether to upgrade to
+  origin=human_reviewed.
 
   Substantive findings:
   - 2013-07-29 Bank of Thailand (BOT) Foreign Exchange Administration and

@@ -1,6 +1,8 @@
 id: cftc-v-ftx-2022
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -111,7 +113,27 @@ coverage:
       offramp_cex artifact has been captured; the parallel-agency row is a
       null_event under codebook §3 (0 observed_change layers).
 
-observations: []
+observations:
+  - layer: offramp_cex
+    actor: ftx_bankruptcy_estate
+    event: no_incremental_cftc_attributable_offramp_change_after_preexisting_chapter_11_freeze
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2022-12-13T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.cftc.gov/PressRoom/PressReleases/8638-22
+        body_hash: sha256:a2000c409763286b290961aadc3a541d520bff3f9ea039fa9aadc6670f4d7ada
+        body_path: sources/http_captures/cftc-v-ftx-2022/v0_3_primary_repair/www.cftc.gov__PressRoom-PressReleases-8638-22__5a31c2a5d9.html
+        evidence_use: contextual_unarchived
+        note: |
+          CFTC's own release anchors the 2022-12-13 civil complaint as a
+          parallel enforcement filing against already-bankrupt FTX / Alameda
+          defendants. The coverage_gap row is limited to the row-local
+          observation that this CFTC filing does not itself supply a new
+          exchange/off-ramp operational action beyond the pre-existing
+          Chapter 11 freeze captured in the FTX parent row.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (parallel-agency sibling

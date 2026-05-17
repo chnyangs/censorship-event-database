@@ -70,7 +70,10 @@ points at the authoritative source of truth in the repo rather than restating it
   local `body_hash` + `body_path` pair (plus `query_hash` for measurement API
   pulls). The weekly `freshness.yml` workflow rechecks reachability.
 - **Instrumentation**: ingestion scripts live under `scripts/`; the `Makefile`
-  wires them into a single `make all` / `make validate` surface.
+  wires them into a single `make all` / `make validate` surface. v0.3
+  monitor ingestion is an internal local workflow documented in
+  [ingestion-v03.md](ingestion-v03.md); candidates from that workflow do not
+  enter paper denominators until primary-source review promotes them.
 
 ## 4. Preprocessing / Cleaning / Labeling
 

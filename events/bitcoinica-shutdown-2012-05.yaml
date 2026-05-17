@@ -1,6 +1,8 @@
 id: bitcoinica-shutdown-2012-05
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
@@ -20,6 +22,30 @@ trigger:
   timestamp: 2012-05-11T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://bitcointalk.org/index.php?topic=81045.0
+      body_hash: sha256:80fa473578d432c6cc17587e137986a6b76cbb01412f5bd9d469678e6f2c2530
+      body_path: sources/http_captures/bitcoinica-shutdown-2012-05/v0_3_primary_repair/bitcointalk.org__index.php__55a567b6fd.html
+      note: |
+        Bitcointalk emergency announcement thread titled "[Emergency ANN]
+        Bitcoinica site is taken offline for security investigation".
+        The opening Zhou Tong post on 2012-05-11 records the suspicious
+        18,547.66867623 BTC transaction, Rackspace server suspension,
+        and operator investigation context. This is the first-party
+        operator/community-forum anchor for the initial platform
+        takedown.
+    - type: primary_corporate
+      url: https://bitcointalk.org/index.php?topic=81045.840
+      body_hash: sha256:da16c8ed0a0056ab469eaf11f79f0d1b297b02b2e2628475b13b723624aa7939
+      body_path: sources/http_captures/bitcoinica-shutdown-2012-05/v0_3_primary_repair/bitcointalk.org__index.php__019b83ef1f.html
+      note: |
+        Later page of the same Bitcointalk emergency thread preserving
+        the Bitcoinica blog post-mortem text. The captured page includes
+        the operator statement that Bitcoinica would remain offline until
+        a rebuilt platform could be created and that availability would
+        likely be measured in months. Human audit should still compare
+        this forum-preserved text with the original archived Bitcoinica
+        blog page if recoverable.
     - type: supporting_journalism
       url: https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
       wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
@@ -160,13 +186,16 @@ coverage:
       timeline and downstream user-balance reconciliation require
       pinning during human audit.
     denominator_artifact:
-      type: contextual_unarchived
-      wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
+      type: primary_corporate
+      url: https://bitcointalk.org/index.php?topic=81045.840
+      body_hash: sha256:da16c8ed0a0056ab469eaf11f79f0d1b297b02b2e2628475b13b723624aa7939
+      body_path: sources/http_captures/bitcoinica-shutdown-2012-05/v0_3_primary_repair/bitcointalk.org__index.php__019b83ef1f.html
       note: |
-        Denominator anchor is the Bitcoin Magazine 2012-05 shutdown
-        coverage (wayback wildcard pointer), corroborated by the
-        Bitdefender / Coinmonks / crypto.bi cluster. Single
-        trading-platform scope.
+        Denominator anchor is the Bitcoinica emergency thread / preserved
+        post-mortem page. The scope is the single bitcoinica.com
+        leveraged-trading platform; the forum-preserved operator text says
+        the platform would remain offline while a new platform was built,
+        with availability likely measured in months.
 
 observations:
   - layer: offramp_cex
@@ -179,6 +208,39 @@ observations:
     delta_hours: 0
     country: corporate_global
     sources:
+      - type: primary_corporate
+        url: https://bitcointalk.org/index.php?topic=81045.0
+        body_hash: sha256:80fa473578d432c6cc17587e137986a6b76cbb01412f5bd9d469678e6f2c2530
+        body_path: sources/http_captures/bitcoinica-shutdown-2012-05/v0_3_primary_repair/bitcointalk.org__index.php__55a567b6fd.html
+        scope_descriptor:
+          providers: [bitcoinica]
+          time_window:
+            - 2012-05-11T00:00:00Z
+            - 2012-05-11T23:59:59Z
+        note: |
+          Bitcointalk emergency announcement thread opened by Zhou Tong
+          on 2012-05-11. The captured page records the suspicious
+          18,547.66867623 BTC transaction, Rackspace server suspension,
+          and the operator investigation. This directly anchors the
+          initial observed platform takedown / security suspension.
+      - type: primary_corporate
+        url: https://bitcointalk.org/index.php?topic=81045.840
+        body_hash: sha256:da16c8ed0a0056ab469eaf11f79f0d1b297b02b2e2628475b13b723624aa7939
+        body_path: sources/http_captures/bitcoinica-shutdown-2012-05/v0_3_primary_repair/bitcointalk.org__index.php__019b83ef1f.html
+        scope_descriptor:
+          providers: [bitcoinica]
+          time_window:
+            - 2012-05-15T00:00:00Z
+            - 2012-08-31T23:59:59Z
+        note: |
+          Later page of the same emergency thread preserving the
+          Bitcoinica blog post-mortem text. The preserved operator text
+          states that Bitcoinica would remain offline until a new platform
+          could be built and tested, with availability likely measured in
+          months, and that a withdrawal process would be set up. This
+          upgrades the shutdown observation from journalism-only to a
+          replayable operator-forum anchor, while leaving original-blog
+          cross-checking for human audit.
       - type: supporting_journalism
         url: https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
         wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again

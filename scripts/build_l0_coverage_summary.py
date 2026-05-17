@@ -6,10 +6,12 @@ from __future__ import annotations
 import argparse
 import collections
 import csv
+import hashlib
 import json
 import pathlib
 import sys
 from typing import Any
+import urllib.parse
 
 import yaml
 
@@ -96,6 +98,31 @@ def result_country(result: dict[str, Any]) -> str:
     return ""
 
 
+def query_hash(params: dict[str, Any]) -> str:
+    payload = json.dumps(params, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode()).hexdigest()[:16]
+
+
+def strip_sha256_prefix(value: Any) -> str:
+    text = str(value or "").strip()
+    return text.split(":", 1)[1] if text.startswith("sha256:") else text
+
+
+def domain_from_input_url(input_url: str) -> str:
+    host = urllib.parse.urlparse(input_url).netloc.lower()
+    return host[4:] if host.startswith("www.") else host
+
+
+def query_params_from_url(url: str) -> dict[str, str]:
+    parsed = urllib.parse.urlparse(url)
+    raw_params = urllib.parse.parse_qs(parsed.query)
+    return {
+        key: values[0]
+        for key, values in raw_params.items()
+        if values
+    }
+
+
 def summarize_row(row: dict[str, Any], repo_root: pathlib.Path = REPO_ROOT) -> dict[str, Any]:
     path = body_path(row, repo_root)
     data: dict[str, Any] = {}
@@ -160,11 +187,96 @@ def summarize_row(row: dict[str, Any], repo_root: pathlib.Path = REPO_ROOT) -> d
     }
 
 
-def build_rows(summary_path: pathlib.Path, repo_root: pathlib.Path = REPO_ROOT) -> list[dict[str, Any]]:
+def event_l0_denominator_rows(
+    events_dir: pathlib.Path = EVENTS_DIR,
+    repo_root: pathlib.Path = REPO_ROOT,
+) -> list[dict[str, Any]]:
+    """Return L0 measurement rows declared directly in event YAML.
+
+    v0.3 repair passes may attach a replayable OONI denominator artifact to an
+    event's `coverage[].denominator_artifact` before that query is folded into
+    the legacy `sources/l0_datasets/_summary.json` registry.  Paper readiness
+    needs those event-scoped denominators to be visible in the L0 summary.
+    """
+    rows: list[dict[str, Any]] = []
+    if not events_dir.exists():
+        return rows
+    for path in sorted(events_dir.glob("*.yaml")):
+        if path.name == "TEMPLATE.yaml" or path.name.startswith("_"):
+            continue
+        event = yaml.safe_load(path.read_text())
+        if not isinstance(event, dict):
+            continue
+        event_id = str(event.get("id") or path.stem)
+        for coverage in event.get("coverage") or []:
+            if not isinstance(coverage, dict):
+                continue
+            if coverage.get("layer") != "l0_network":
+                continue
+            if coverage.get("status") not in {"measured", "partially_measured"}:
+                continue
+            artifact = coverage.get("denominator_artifact")
+            if not isinstance(artifact, dict):
+                continue
+            if artifact.get("type") != "semi_primary_measurement":
+                continue
+            if not artifact.get("measurement_ids"):
+                continue
+            query_url = str(artifact.get("query_url") or artifact.get("url") or "").strip()
+            if not query_url:
+                continue
+            params = query_params_from_url(query_url)
+            input_url = params.get("input") or str(artifact.get("input_url") or "")
+            domain = str(artifact.get("domain") or domain_from_input_url(input_url) or "")
+            normalized_params: dict[str, Any] = {
+                "input": input_url,
+                "since": params.get("since") or artifact.get("since") or "",
+                "until": params.get("until") or artifact.get("until") or "",
+                "limit": int(params.get("limit") or artifact.get("limit") or 100),
+                "test_name": params.get("test_name") or "web_connectivity",
+                "domain": domain,
+            }
+            if params.get("probe_cc") or artifact.get("probe_cc"):
+                normalized_params["probe_cc"] = params.get("probe_cc") or artifact.get("probe_cc")
+            raw_row = {
+                "event_id": event_id,
+                "domain": domain,
+                "input_url": input_url,
+                "probe_cc": normalized_params.get("probe_cc") or "*",
+                "since": normalized_params["since"],
+                "until": normalized_params["until"],
+                "query_hash": artifact.get("query_hash") or query_hash(normalized_params),
+                "query_url": query_url,
+                "body_path": artifact.get("body_path") or "",
+                "body_hash": strip_sha256_prefix(artifact.get("body_hash")),
+                "error": artifact.get("error") or "",
+            }
+            rows.append(summarize_row(raw_row, repo_root))
+    return rows
+
+
+def build_rows(
+    summary_path: pathlib.Path,
+    repo_root: pathlib.Path = REPO_ROOT,
+    events_dir: pathlib.Path = EVENTS_DIR,
+) -> list[dict[str, Any]]:
     raw_rows = load_json(summary_path)
     if not isinstance(raw_rows, list):
         raise SystemExit(f"{summary_path}: expected JSON array")
     rows = [summarize_row(row, repo_root) for row in raw_rows if isinstance(row, dict)]
+    rows.extend(event_l0_denominator_rows(events_dir, repo_root))
+    deduped: dict[tuple[str, str, str, str, str, str], dict[str, Any]] = {}
+    for row in rows:
+        key = (
+            row["event_id"],
+            row["domain"],
+            row["input_url"],
+            row["since"],
+            row["until"],
+            row["body_path"],
+        )
+        deduped[key] = row
+    rows = list(deduped.values())
     rows.sort(key=lambda row: (row["event_id"], row["domain"], row["since"], row["until"]))
     return rows
 

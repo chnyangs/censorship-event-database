@@ -1,6 +1,8 @@
 id: sec-v-ftx-2022
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -139,7 +141,26 @@ coverage:
       observation_no_change row that anchors the null_event admission
       shape.
 
-observations: []
+observations:
+  - layer: offramp_cex
+    actor: ftx_bankruptcy_estate
+    event: no_incremental_sec_attributable_offramp_change_after_preexisting_chapter_11_freeze
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2022-12-13T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2022-219
+        body_hash: sha256:042642a33be6d8349b1e21bc8b600593bccdec31bb6dd91a61bfdbb24b54bddb
+        body_path: sources/http_captures/sec-v-ftx-2022/v0_3_primary_repair/www.sec.gov__newsroom-press-releases-2022-219__923a9a0e93.html
+        evidence_use: contextual_unarchived
+        note: |
+          SEC's own release anchors the 2022-12-13 securities-fraud civil
+          complaint as a parallel filing against Bankman-Fried / FTX. The
+          row-local observation is a coverage gap: the SEC filing does not
+          itself provide a new off-ramp operational action beyond the
+          pre-existing Chapter 11 freeze captured in the FTX parent row.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (origin=agent_draft; codebook

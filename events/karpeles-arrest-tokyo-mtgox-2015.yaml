@@ -1,6 +1,8 @@
 id: karpeles-arrest-tokyo-mtgox-2015
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
@@ -124,6 +126,16 @@ coverage:
       (observable via contemporary Reuters/CNN/NBC reporting that the
       exchange remained shuttered through and beyond the arrest date),
       to support the observed_no_change observation below.
+    denominator_artifact:
+      type: primary_legal
+      url: https://www.mtgox.com/img/pdf/201504_faq_en.pdf
+      body_hash: sha256:670fa6c954b6d3d6bd4d5e9d0d922dbeeeb93c08c896361de056cee13f1814a5
+      body_path: sources/http_captures/karpeles-arrest-tokyo-mtgox-2015/v0_3_primary_repair/www.mtgox.com__img-pdf-201504_faq_en.pdf__f1bf78286c.bin
+      note: |
+        Mt. Gox official English FAQ PDF from the bankruptcy /
+        creditor-claims process, fetched from mtgox.com. This anchors
+        the pre-arrest bankruptcy-administration denominator used for
+        the null observation; it is not a Tokyo MPD arrest notice.
 
 observations:
   - layer: offramp_cex
@@ -138,6 +150,43 @@ observations:
       - 2015-08-01T00:00:00Z
       - 2015-09-30T23:59:59Z
     sources:
+      - type: primary_legal
+        url: https://www.mtgox.com/img/pdf/20150422_report.pdf
+        body_hash: sha256:34043ed3cb1fa7c386366ba4dca8de746d0976dc3f40b1370941e33c0d6ace22
+        body_path: sources/http_captures/karpeles-arrest-tokyo-mtgox-2015/v0_3_primary_repair/www.mtgox.com__img-pdf-20150422_report.pdf__35064f7525.bin
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [JP]
+          time_window:
+            - 2015-04-22T00:00:00Z
+            - 2015-09-30T23:59:59Z
+        note: |
+          Mt. Gox official trustee / bankruptcy-estate PDF, fetched
+          from mtgox.com, with PDF metadata indicating April 2015
+          creation/modification before the 2015-08-01 Karpelès arrest.
+          It provides primary legal-administrative evidence that the
+          Mt. Gox estate was already in post-collapse bankruptcy /
+          investigation administration before the arrest window. This
+          supports the observed_no_change null posture but does not
+          independently evidence the Tokyo MPD arrest.
+      - type: primary_legal
+        url: https://www.mtgox.com/img/pdf/201504_faq_en.pdf
+        body_hash: sha256:670fa6c954b6d3d6bd4d5e9d0d922dbeeeb93c08c896361de056cee13f1814a5
+        body_path: sources/http_captures/karpeles-arrest-tokyo-mtgox-2015/v0_3_primary_repair/www.mtgox.com__img-pdf-201504_faq_en.pdf__f1bf78286c.bin
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [JP]
+          time_window:
+            - 2015-04-22T00:00:00Z
+            - 2015-09-30T23:59:59Z
+        note: |
+          Mt. Gox official English FAQ PDF for the bankruptcy /
+          creditor-claims process, fetched from mtgox.com. It anchors
+          the pre-existing bankruptcy-administration state that makes
+          the 2015 arrest a downstream criminal-enforcement event
+          rather than a new exchange-closure cascade. Human audit
+          should run OCR / manual review before treating this as
+          release-grade primary evidence.
       - type: supporting_journalism
         url: https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801
         wayback: https://web.archive.org/web/20150801120000/https://www.reuters.com/article/us-bitcoin-mtgox-arrest-idUSKCN0Q608B20150801
@@ -177,7 +226,10 @@ analysis_notes: |
   target.kind=entity is the only fit for a natural-person target;
   observation_kind=observed_no_change is the closest schema-valid
   encoding of "no observable cascade beyond the pre-existing
-  bankruptcy freeze."
+  bankruptcy freeze." v0.3 primary-observation repair added Mt. Gox
+  official trustee / bankruptcy-estate PDFs as replayable anchors for
+  the pre-existing bankruptcy posture; status remains draft pending
+  real human audit and Japanese arrest-source reconciliation.
 
 scoped_claim: |
   "Tokyo MPD arrested Mark Karpelès (former Mt. Gox CEO) on 2015-08-01

@@ -106,7 +106,8 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
 
         Methodology §2.5 / §4.1 define `direct` as "a legal or operator source
         names the target or order explicitly", which in the source taxonomy
-        maps to primary_legal, primary_corporate, or primary_onchain. Two
+        maps to primary_legal, primary_corporate, primary_government, or
+        primary_onchain. Two
         semi-primary sources can satisfy admission but cannot by themselves
         earn direct attribution.
         """
@@ -133,8 +134,7 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
             "the direct label is not structurally earned."
         )
         blockers.append(
-            "A direct-attribution changed layer lacks any primary_legal / primary_corporate / "
-            "primary_onchain source."
+            "A direct-attribution changed layer lacks any primary_* source."
         )
         next_actions.append(
             "Upgrade the direct-attribution changed layer with a primary source, or relabel its "

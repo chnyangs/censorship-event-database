@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (2 changed layer(s): `l4_frontend`, `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `35cd33f` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-25T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -49,6 +49,8 @@
 > human audit.
 - **`primary_legal`**
   - URL: <https://complianceconcourse.willkie.com/articles/federal-jury-indicts-blender-io-and-sinbad-io-operators-on-money-laundering-charges/>
+  - body_hash: `sha256:21b3f14cbdc6c0aa5e0088e06b99656b45317029f790115b8ace789a0bce6f39`
+  - body_path: `sources/http_captures/sinbad-doj-2024/v0_3_repair/complianceconcourse.willkie.com__articles-federal-jury-indicts-blender-io-and-sinbad-io-operators-on-money-laundering-charges__ed2df721c1.html`
   > Willkie Compliance Concourse compliance writeup summarizing the
 > 2025-01-07 grand-jury indictment and confirming defendant identities
 > (Ostapenko / Oleynik / Tarasov) plus NDGA venue. Pinned as
@@ -137,7 +139,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `35cd33f`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

@@ -1,6 +1,8 @@
 id: wikileaks-western-union-interdiction-2010-12
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
@@ -23,8 +25,10 @@ trigger:
   timestamp: 2010-12-21T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: supporting_community
+    - type: primary_corporate
       url: https://wikileaks.org/Banking-Blockade.html
+      body_hash: sha256:0e508a4de9c98728b2285a4d0bfb66155b1c5f9396dc5765b6c06ac7c71de647
+      body_path: sources/http_captures/wikileaks-western-union-interdiction-2010-12/v0_3_primary_repair/wikileaks.org__Banking-Blockade.html__9000597c87.html
       wayback: https://web.archive.org/web/2012/https://wikileaks.org/Banking-Blockade.html
       evidence_use: contextual_unarchived
       note: |
@@ -33,7 +37,9 @@ trigger:
         rails in December 2010. The enumeration names Bank of America,
         VISA, MasterCard, PayPal, and Western Union, and dates the
         Western Union action to 2010-12-21 as an addition of WikiLeaks
-        to a Western Union "Interdiction List". This is a counter-
+        to a Western Union "Interdiction List". primary_corporate here
+        denotes WikiLeaks' first-party statement as the affected
+        publishing/donation recipient entity; it is a counter-
         party statement issued by WikiLeaks (the donee), not a
         corporate press release issued by Western Union itself, and
         no primary Western Union corporate disclosure of the action
@@ -161,8 +167,10 @@ observations:
     precision: day
     delta_hours: 0
     sources:
-      - type: supporting_community
+      - type: primary_corporate
         url: https://wikileaks.org/Banking-Blockade.html
+        body_hash: sha256:0e508a4de9c98728b2285a4d0bfb66155b1c5f9396dc5765b6c06ac7c71de647
+        body_path: sources/http_captures/wikileaks-western-union-interdiction-2010-12/v0_3_primary_repair/wikileaks.org__Banking-Blockade.html__9000597c87.html
         wayback: https://web.archive.org/web/2012/https://wikileaks.org/Banking-Blockade.html
         evidence_use: contextual_unarchived
         scope_descriptor:
@@ -174,7 +182,8 @@ observations:
             - 2010-12-21T00:00:00Z
             - 2012-07-18T23:59:59Z
         note: |
-          WikiLeaks Banking Blockade page is the strongest publicly
+          WikiLeaks Banking Blockade page is a first-party WikiLeaks
+          statement and the strongest publicly
           accessible anchor for the 2010-12-21 Western Union
           Interdiction-List addition that this authoring pass located.
           observation_kind=coverage_gap with attribution=unknown
@@ -182,7 +191,8 @@ observations:
           corporate disclosure of the action. The cascade is real but
           the primary acting-party evidence is missing from the public
           record located in this authoring pass; the counterparty-
-          statement anchor cannot bear admission weight. Provisional
+          statement anchor cannot bear direct acting-party attribution
+          weight. Provisional
           year-prefix wayback anchor pending re-pin.
       - type: supporting_journalism
         url: https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business

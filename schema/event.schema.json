@@ -25,6 +25,11 @@
     "schema_version": {
       "type": "string"
     },
+    "codebook_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:[-+][A-Za-z0-9_.-]+)?$",
+      "description": "Codebook revision used for the event's coding decisions. v0.3 ingestion still exports schema_version=0.2.0 YAML, but codebook_version supports targeted re-extraction after rule changes."
+    },
     "status": {
       "type": "string",
       "enum": [
@@ -34,6 +39,10 @@
         "admitted",
         "rejected"
       ]
+    },
+    "primary_source_verified": {
+      "type": "boolean",
+      "description": "True only after v0.3 primary-source verification has confirmed the event against original/replayable evidence. False does not negate v0.2 admission; it means the v0.3 verification pass is incomplete."
     },
     "research_stratum": {
       "type": "string",
@@ -301,6 +310,7 @@
                 "enum": [
                   "primary_legal",
                   "primary_corporate",
+                  "primary_government",
                   "semi_primary_wayback",
                   "supporting_journalism",
                   "supporting_community",
@@ -325,6 +335,7 @@
             "primary_legal",
             "primary_onchain",
             "primary_corporate",
+            "primary_government",
             "semi_primary_measurement",
             "semi_primary_wayback",
             "supporting_journalism",

@@ -1,13 +1,15 @@
 id: augur-v2-us-uk-geofence-2020-07
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
+empirical_shape: null_event
+admission_tier: null_case
 origin: agent_draft
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -21,73 +23,55 @@ trigger:
   timestamp: 2020-07-28T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://augur.net/disclaimer/
+      wayback: https://web.archive.org/web/20200806153113/https://augur.net/disclaimer/
+      body_hash: sha256:d4c71248c4e940cf061df9fd99c5da07577c1fe66a69ab9381ac946b0459bc18
+      body_path: sources/http_captures/augur-v2-us-uk-geofence-2020-07/v0_3_primary_repair/web.archive.org__web-20200801000000-https-www.augur.net-disclaimer__113e5a0d64.html
+      evidence_use: admission_anchor
+      note: |
+        Augur Client Disclaimer, archived 2020-08-06 and internally
+        dated "Last Updated: July 28th, 2020". This primary corporate
+        artifact documents the official Augur v2 client disclaimer:
+        Augur is an open-source protocol, users are responsible for
+        jurisdictional compliance, and use may be illegal depending on
+        jurisdiction and contemplated use. It does not enumerate a
+        US/UK frontend geofence.
     - type: supporting_journalism
       url: https://www.coindesk.com/tech/2020/07/28/5-years-after-launch-predictions-market-platform-augur-releases-version-2
       wayback: https://web.archive.org/web/2020/https://www.coindesk.com/tech/2020/07/28/5-years-after-launch-predictions-market-platform-augur-releases-version-2
       evidence_use: contextual_unarchived
       note: |
-        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E follow-on
-        S5 corporate frontend discovery; discovery-agent flagged
-        needs_check): authored by LLM agent without personally
-        verifying Wayback/body_hash; origin=agent_draft and
-        status=draft pending human review. Discovery flag is honored
-        below by coding attribution as `plausible` (not `direct`) and
-        documenting evidence-pinning uncertainty.
-
-        CoinDesk (2020-07-28) "5 Years After Launch, Predictions
-        Market Platform Augur Releases Version 2" — contemporaneous
-        coverage of the Augur v2 launch date by the Forecast
-        Foundation. Used here as a journalism anchor for the
-        trigger date.
-    - type: supporting_journalism
-      url: https://en.wikipedia.org/wiki/Augur_(software)
-      wayback: https://web.archive.org/web/2020/https://en.wikipedia.org/wiki/Augur_(software)
-      evidence_use: contextual_unarchived
-      note: |
-        Wikipedia "Augur (software)" — used here only as a tertiary
-        corroborator for the launch-date claim, the Forecast
-        Foundation maintainer attribution, the 2018 CFTC binary-
-        options jurisdictional comment on Augur contracts, and the
-        secondary-source claim that "Augur V2 also excluded US and
-        UK residents". DRYRUN: tertiary source only; primary
-        Forecast Foundation ToS / blog post pinning the US+UK
-        geofence on augur.net and predictions.global was not
-        pinnable by the LLM agent at authoring time.
+        CoinDesk 2020-07-28 coverage anchors the Augur v2 launch date.
+        It is retained only as launch-date context; it does not supply
+        primary evidence for a US/UK frontend geofence.
   timestamp_sources:
-    - type: supporting_journalism
+    - type: primary_corporate
       note: |
-        Day-level precision. CoinDesk dates the Augur v2 launch to
-        2020-07-28; matches the Forecast Foundation pre-announcement
-        date (Crowdfund Insider 2020-06) and the multi-source
-        consensus on the v2 deployment day. The US+UK geofence is
-        coupled to the v2 launch as a launch-time policy of the
-        canonical official UIs, so the geofence start carries the
-        same day-level precision as the v2 deployment.
+        Day-level precision follows the Augur Client Disclaimer's own
+        "Last Updated: July 28th, 2020" date and the contemporaneous
+        Augur v2 launch coverage.
 
 target:
   kind: entity
   enumeration: subset
   enumeration_note: |
-    Class-level target: US-vantage and UK-vantage users of the
-    canonical Augur v2 official UIs (augur.net and predictions.global)
-    operated by or canonically associated with the Forecast
-    Foundation. The Augur v2 smart-contract layer on Ethereum is
-    permissionless and remains reachable to US/UK-vantage users via
-    self-hosted UI mirrors, alternative third-party frontends, and
-    direct contract calls — the restriction is exclusively at the
-    canonical-frontend application layer. Enumeration is subset
-    because the LLM agent could not pin a primary Forecast
-    Foundation document explicitly enumerating the exact frontend
-    domains and the exact US+UK country set in the canonical ToS.
+    The prior draft framed the target as US-vantage and UK-vantage
+    users of canonical Augur v2 frontends. This repair pass could not
+    pin a primary Forecast Foundation / PM Research / Augur client
+    artifact that enumerates that country set or an actual geofence.
+    The retained target is therefore the candidate canonical-UI
+    geofence claim itself, pending source discovery or retirement.
   protocol: augur_v2
   actor_type: prediction_market_frontend
-  actor_name: Forecast Foundation (canonical UI operator)
+  actor_name: Forecast Foundation / PM Research Augur v2 client surface
   chains: [ethereum]
   canonical_domains:
     - augur.net
     - predictions.global
 
 jurisdiction:
+  - corporate_global
   - US
   - UK
 
@@ -95,205 +79,97 @@ coverage:
   - layer: l0_network
     status: not_applicable
     note: |
-      augur.net and predictions.global remain globally reachable at
-      the DNS / IP layer; the geofence is a frontend application-
-      layer restriction, not an ISP-level domain block.
-      not_applicable on construct-not-engaged grounds.
+      The retained question is a frontend evidence gap, not an ISP,
+      DNS, or network-layer block.
   - layer: l1_consensus
     status: not_applicable
     note: |
-      Voluntary frontend geofence does not implicate the Ethereum
-      consensus layer. not_applicable.
+      The Augur v2 Ethereum contracts are not alleged to have changed
+      consensus-layer behavior in this record.
   - layer: l3_rpc
     status: not_applicable
     note: |
-      The canonical Augur frontend operators' geofence does not
-      affect public RPC providers; US/UK-vantage users with their
-      own wallet RPC can still reach the Augur v2 smart contracts
-      on Ethereum. not_applicable.
+      No public RPC-provider restriction is alleged or measured for
+      this candidate row.
   - layer: l4_frontend
-    status: partially_measured
+    status: not_measured
     scope: [augur.net, predictions.global]
-    denominator_artifact:
-      type: supporting_journalism
-      url: https://en.wikipedia.org/wiki/Augur_(software)
-      wayback: https://web.archive.org/web/2020/https://en.wikipedia.org/wiki/Augur_(software)
-      scope_descriptor:
-        domains: [augur.net, predictions.global]
-        countries: [US, UK]
-        providers: [forecast_foundation_frontend]
-        time_window:
-          - 2020-07-28T00:00:00Z
-          - 2026-05-17T00:00:00Z
-      note: |
-        Denominator anchor for the l4_frontend US+UK-vantage
-        restriction: Wikipedia "Augur (software)" tertiary
-        corroborator that "Augur V2 also excluded US and UK
-        residents" at the canonical UI level on or around the
-        2020-07-28 v2 launch. DRYRUN: tertiary source; primary
-        Forecast Foundation ToS pinning the exact domain set
-        and exact country set was not retrievable by the LLM
-        agent at authoring time. Coverage is partially_measured
-        rather than measured because no replayable corporate
-        artifact was pinned.
     note: |
-      Load-bearing layer for this event. At the 2020-07-28 Augur
-      v2 launch the Forecast Foundation / canonical UI operators
-      shipped US+UK geofences on the canonical official frontends
-      (augur.net and predictions.global) while leaving the Augur
-      v2 on-chain protocol on Ethereum permissionlessly accessible
-      via alternative frontends and direct contract calls. This is
-      the earliest large-scale DeFi prediction-market frontend-vs-
-      protocol split in the corpus.
+      The previous draft claimed a US/UK canonical-frontend geofence
+      at Augur v2 launch. The primary artifacts located in this repair
+      pass document the official Augur client disclaimer and generic
+      jurisdictional-compliance language, but they do not enumerate a
+      US/UK geofence or show a vantage-specific access denial. The L4
+      frontend layer is therefore not_measured.
   - layer: asset_onchain
     status: not_applicable
     note: |
-      No token-contract-level freeze or blacklist; the Augur v2
-      protocol and REPv2 token on Ethereum are not directly
-      restricted. not_applicable.
+      No token-contract-level freeze or blacklist is in scope.
   - layer: offramp_cex
     status: not_applicable
     note: |
-      Event is purely a frontend-operator geofence; not a
-      CEX-offramp action. not_applicable.
+      This candidate concerns an application/frontend surface, not a
+      centralized-exchange off-ramp action.
 
 observations:
   - layer: l4_frontend
     actor: frontend:forecast_foundation
-    event: augur_v2_canonical_ui_us_uk_geofence_at_v2_launch
-    observation_kind: observed_change
-    attribution: plausible
+    event: augur_v2_us_uk_geofence_primary_confirmation_gap
+    observation_kind: coverage_gap
+    attribution: none
     timestamp: 2020-07-28T00:00:00Z
     precision: day
-    delta_hours: 0
-    country: US
     sources:
-      - type: supporting_journalism
-        url: https://www.coindesk.com/tech/2020/07/28/5-years-after-launch-predictions-market-platform-augur-releases-version-2
-        wayback: https://web.archive.org/web/2020/https://www.coindesk.com/tech/2020/07/28/5-years-after-launch-predictions-market-platform-augur-releases-version-2
-        evidence_use: contextual_unarchived
+      - type: primary_corporate
+        url: https://augur.net/disclaimer/
+        wayback: https://web.archive.org/web/20200806153113/https://augur.net/disclaimer/
+        body_hash: sha256:d4c71248c4e940cf061df9fd99c5da07577c1fe66a69ab9381ac946b0459bc18
+        body_path: sources/http_captures/augur-v2-us-uk-geofence-2020-07/v0_3_primary_repair/web.archive.org__web-20200801000000-https-www.augur.net-disclaimer__113e5a0d64.html
+        evidence_use: admission_anchor
         scope_descriptor:
-          domains: [augur.net, predictions.global]
-          countries: [US, UK]
-          providers: [forecast_foundation_frontend]
+          domains: [augur.net]
           time_window:
             - 2020-07-28T00:00:00Z
-            - 2026-05-17T00:00:00Z
+            - 2020-08-06T15:31:13Z
         note: |
-          CoinDesk (2020-07-28) Augur v2 launch coverage — anchors
-          the v2 deployment date but does not itself enumerate the
-          US+UK geofence; included as the canonical journalism
-          anchor for the launch day. DRYRUN: Wayback unverified.
-      - type: supporting_journalism
+          Primary corporate repair anchor. The 2020 Augur Client
+          Disclaimer supports a conservative coverage_gap: it confirms
+          the official client shipped with jurisdictional-compliance
+          warnings, but it does not confirm the previous draft's US/UK
+          geofence claim. This source is therefore not a positive
+          observed_change anchor.
+      - type: supporting_tracker
         url: https://en.wikipedia.org/wiki/Augur_(software)
         wayback: https://web.archive.org/web/2020/https://en.wikipedia.org/wiki/Augur_(software)
         evidence_use: contextual_unarchived
         note: |
-          Wikipedia "Augur (software)" — tertiary corroborator
-          that the Augur v2 launch excluded US and UK residents
-          at the canonical UI level, and that the CFTC noted
-          (2018) that Augur contracts resembled binary options
-          under its jurisdiction. observation_kind=observed_change
-          at l4_frontend: the canonical Augur v2 UIs add a US+UK
-          geofence at launch while the on-chain protocol stays
-          permissionless. attribution=plausible (NOT direct) per
-          codebook §1.4: the LLM agent could not pin a primary
-          Forecast Foundation blog post or ToS publicly citing the
-          CFTC / UK FCA concern as the trigger of the specific
-          US+UK frontend restriction. The class-level causal
-          inference (US CFTC binary-options posture + UK FCA
-          posture on prediction markets → US+UK canonical-UI
-          geofence) is reasonable but not directly cited by the
-          operator in evidence the agent could pin. Conservative
-          attribution per codebook §8.4. DRYRUN: tertiary source
-          only.
-  - layer: l4_frontend
-    actor: frontend:forecast_foundation
-    event: augur_v2_canonical_ui_uk_geofence_at_v2_launch
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2020-07-28T00:00:00Z
-    precision: day
-    delta_hours: 0
-    country: UK
-    sources:
-      - type: supporting_journalism
-        url: https://en.wikipedia.org/wiki/Augur_(software)
-        wayback: https://web.archive.org/web/2020/https://en.wikipedia.org/wiki/Augur_(software)
-        evidence_use: contextual_unarchived
-        note: |
-          UK-vantage axis of the same canonical-UI geofence.
-          Tertiary source only — same evidence-pinning caveat as
-          the US-vantage observation. attribution=plausible per
-          codebook §1.4. DRYRUN.
+          Tertiary source that motivated the original source-discovery
+          row. It is retained only to explain why the candidate exists;
+          it cannot support a paper observation without a primary Augur
+          or replayable measurement anchor.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E follow-on
-  S5 corporate frontend discovery; discovery agent flagged this
-  event needs_check): authored by LLM agent without personally
-  verifying Wayback/body_hash; origin=agent_draft and status=draft
-  pending human review. The needs_check flag is honored by (a)
-  coding attribution as `plausible` rather than `direct` per
-  codebook §1.4 (no primary Forecast Foundation document pinning
-  the CFTC/FCA concern as the trigger of the specific US+UK
-  canonical-UI geofence was retrievable at authoring time), and
-  (b) partially_measured (not measured) coverage at l4_frontend
-  on account of no pinned replayable corporate artifact.
+  Repair pass 2 recodes this row from a positive empirical_case to a
+  draft null_case / coverage_gap. The prior draft asserted that Augur
+  v2 shipped US-vantage and UK-vantage canonical-frontend geofences at
+  launch. Targeted source discovery located primary Augur artifacts
+  from the launch window, including the official client disclaimer and
+  Augur UI source-code disclaimer text. Those primary artifacts contain
+  generic jurisdictional-compliance warnings but do not enumerate a
+  US/UK geofence or provide a vantage-specific access-denial artifact.
 
-  comparison — S5 voluntary corporate-policy frontend geofence by
-  the Forecast Foundation / canonical Augur v2 UI operators
-  against US-vantage and UK-vantage users of the canonical
-  official UIs (augur.net and predictions.global) at the
-  2020-07-28 v2 launch. The Augur v2 on-chain protocol on Ethereum
-  remained permissionless. This is the *earliest* large-scale
-  DeFi prediction-market frontend-vs-protocol split in the corpus
-  and pre-dates Polymarket's January-2022 CFTC-settlement-driven
-  US geofence (polymarket-cftc-geofence-2022-01) by ~18 months
-  and the 1inch Foundation US-IP frontend geofence of 2021-09-29
-  (1inch-us-geofence-2021-09) by ~14 months.
-
-  empirical_shape=comparison (l4_frontend observed_change on
-  US-vantage and UK-vantage axes with attribution=plausible;
-  other layers not_applicable on construct-not-engaged grounds).
-  admission_tier=empirical_case (≥1 strong-attribution
-  observed_change layer — plausible counts per codebook §4).
-
-  Codebook decisions applied:
-  - §1.4 frontend-block attribution: attribution=plausible because
-    the canonical UI operator's public framing of the geofence as
-    a CFTC + UK FCA compliance step was not pinnable by the LLM
-    agent at authoring time — only the 2018 CFTC binary-options
-    posture and the secondary-source claim of US+UK exclusion at
-    v2 launch are evidence-grade. Conservative attribution
-    default per codebook §8.4.
-  - §3 empirical_shape: comparison (2 observed_change layers ≤ 2,
-    distinct only on country-vantage axis; same layer).
-  - §4 admission_tier: empirical_case.
-  - §5 trigger.type: corporate_policy_change (S5_corporate
-    research_stratum per §5.2 stratum-actor map).
-  - §6 analysis_use: comparable_analysis (canonical form, not
-    the rejected alias "comparative_analysis").
-  - §7 target.enumeration: subset with enumeration_note
-    documenting class-level rationale (no canonical Forecast
-    Foundation enumeration of exact domain + exact country set
-    pinned).
+  Coding decision: no observed_change remains. The row stays in the
+  corpus as a draft source-discovery placeholder so future primary
+  evidence can either repair the US/UK geofence claim or retire the row.
+  It must not be used as the "earliest DeFi frontend-vs-protocol split"
+  claim unless a primary Augur notice, reproducible UI measurement, or
+  other admission-grade source is located.
 
 scoped_claim: |
-  "At the 2020-07-28 Augur v2 launch the Forecast Foundation /
-  canonical Augur v2 UI operators shipped US-vantage and
-  UK-vantage geofences on the canonical official frontends
-  (augur.net and predictions.global) — plausibly in response to
-  the US CFTC's 2018 binary-options jurisdictional posture on
-  Augur contracts and the UK FCA's posture on retail prediction
-  markets — while the Augur v2 on-chain protocol on Ethereum
-  remained permissionlessly accessible via alternative
-  frontends, self-hosted mirrors, and direct contract calls.
-  This is the earliest large-scale DeFi prediction-market
-  frontend-vs-protocol split in the corpus. attribution=plausible
-  because no primary Forecast Foundation document pinning the
-  CFTC/FCA concern as the trigger was retrievable at authoring
-  time; load-bearing axis is l4_frontend on US-vantage and
-  UK-vantage subsets."
+  As of this repair pass, primary Augur launch-window artifacts confirm
+  generic jurisdictional-compliance disclaimer language but do not
+  confirm the previously drafted US/UK Augur v2 frontend geofence; the
+  candidate remains a draft coverage_gap pending primary evidence.
 
 tags:
   - corporate_policy_change
@@ -303,5 +179,6 @@ tags:
   - voluntary_geofence
   - us_vantage
   - uk_vantage
-  - frontend_protocol_split
   - needs_check
+  - coverage_gap
+  - null_event_no_repair_needed

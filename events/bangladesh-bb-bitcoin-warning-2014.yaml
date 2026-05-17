@@ -1,6 +1,8 @@
 id: bangladesh-bb-bitcoin-warning-2014
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
@@ -148,24 +150,19 @@ coverage:
       chainwide admin freezes arose later). not_applicable on
       construct-did-not-exist grounds.
   - layer: offramp_cex
-    status: partially_measured
+    status: not_measured
     note: |
       The BB warning is by construction an off-ramp-layer signal:
       it tells Bangladeshi residents that bitcoin transactions
       could violate the Foreign Exchange Regulation Act 1947 and
       the AML/CFT statutes and carry up to 12 years' prison
-      exposure. The coverage scope for the observed_no_change row
-      below is the public record (English crypto-press, The Daily
-      Star, FutureLaw retrospective) for the 90 days following the
-      2014-09-15 warning: no specific exchange is documented as
-      having cut off Bangladeshi-resident accounts in that window,
-      and the dominant 2014 bitcoin exchanges (Bitstamp, Bitfinex,
-      LocalBitcoins) did not maintain Bangladesh-specific
-      compliance flags in the public record. Class-level
-      Bangladeshi-resident exposure to FX / AML law is real but
-      not exchange-side observable in this authoring pass.
-      partially_measured because the public-record search is
-      bounded but not exhaustive.
+      exposure. However, this authoring pass did not locate a
+      replayable exchange-side cutoff artifact or a falsifiable
+      public-record query that can support an observed_no_change
+      denominator for the 90 days after the warning. Class-level
+      Bangladeshi-resident exposure to FX / AML law is real, but
+      the exchange-side cascade remains not_measured pending a
+      local-language regulator / platform archive pass.
     denominator_artifact:
       type: scope_descriptor
       scope_descriptor:
@@ -187,8 +184,8 @@ coverage:
 observations:
   - layer: offramp_cex
     actor: bangladesh_resident_bitcoin_transacting_parties
-    event: no_measured_exchange_side_cutoff_of_bangladesh_residents
-    observation_kind: observed_no_change
+    event: bangladesh_exchange_side_cutoff_observation_gap_after_bb_warning
+    observation_kind: coverage_gap
     attribution: none
     timestamp: 2014-09-15T00:00:00Z
     precision: day
@@ -207,12 +204,12 @@ observations:
           up-to-12-years prison-exposure framing, but does not name
           any specific exchange as having implemented a Bangladesh-
           resident cutoff in response. The observation_kind=
-          observed_no_change row records that the cascade surface
-          at offramp_cex is class-level (Bangladeshi residents as a
+          coverage_gap row records that the cascade surface at
+          offramp_cex is class-level (Bangladeshi residents as a
           class) rather than exchange-specific in the available
           public record. attribution=none per validator rule for
-          observed_no_change. Specific Wayback snapshot timestamp
-          requires re-pinning in human audit.
+          coverage_gap. Specific Wayback snapshot timestamp requires
+          re-pinning in human audit.
       - type: supporting_tracker
         url: https://www.thedailystar.net/law-our-rights/law-analysis/bitcoin-legality-in-bangladesh-bank-1602583
         wayback: https://web.archive.org/web/2020/https://www.thedailystar.net/law-our-rights/law-analysis/bitcoin-legality-in-bangladesh-bank-1602583
@@ -272,15 +269,15 @@ analysis_notes: |
   row because (a) it predates the comparable corpus and (b) the
   cascade surface is class-level rather than exchange-specific.
 
-  Why null_event / null_case: the offramp_cex observation is
-  observation_kind=observed_no_change with attribution=none,
-  not an observed_change row. The BB warning carries
+  Why null_event / null_case / coverage_gap: the BB warning carries
   direct-attribution force on Bangladeshi-resident bitcoin
-  transacting behaviour as a class, but the cascade surface in
-  the available public record is not exchange-specific. Without
-  a documented exchange-side cutoff or a measured Bangladesh-
-  resident on-chain volume shift, the event admits only at
-  null_case strength and empirical_shape=null_event.
+  transacting behaviour as a class, but the cascade surface in the
+  available public record is not exchange-specific and this pass
+  did not locate a replayable null-observation anchor for a 90-day
+  exchange-side cutoff window. Without a documented exchange-side
+  cutoff, a measured Bangladesh-resident on-chain volume shift, or
+  a falsifiable null-observation query, the event stays draft-only
+  as a coverage_gap with admission_tier=null_case.
 
   Why L0/L1/L3/L4/asset_onchain are not_applicable: the BB
   warning is a legal-interpretation notice under existing
@@ -306,9 +303,10 @@ scoped_claim: |
   (Money Laundering Prevention Act 2012, Anti-Terrorism Act
   2009), carrying up to 12 years' imprisonment. The cascade
   surface is class-level on Bangladeshi residents; no exchange-
-  side Bangladesh-resident cutoff is documented in this authoring
-  pass, so offramp_cex carries an observation_kind=observed_no_change
-  row with attribution=none.
+  side Bangladesh-resident cutoff or falsifiable null-observation
+  query is documented in this authoring pass, so offramp_cex carries
+  a draft-only observation_kind=coverage_gap row with
+  attribution=none.
 
 scoped_knowledge: |
   This event is part of the earliest cluster of nation-state
@@ -325,10 +323,10 @@ scoped_knowledge: |
   the AML/CFT statutes — the most severe announced penalty in
   the 2013-2014 cluster — but the cascade surface remains
   class-level because no specific exchange is named and no
-  exchange-side Bangladesh-resident cutoff is documented in the
-  public record. The event is the canonical historical-baseline
-  comparison row for cross-jurisdiction analysis of pre-Bitcoin-
-  ETF-era nation-state bitcoin warnings.
+  exchange-side Bangladesh-resident cutoff or replayable null-
+  observation query is documented in the public record. The row
+  remains a draft historical-baseline coverage gap until a
+  local-language primary-source pass can repair or retire it.
 
 tags:
   - regulatory_enforcement
@@ -338,3 +336,5 @@ tags:
   - aml_cft
   - historical_baseline
   - contextual_case
+  - coverage_gap
+  - null_event_no_repair_needed

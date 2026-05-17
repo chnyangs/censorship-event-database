@@ -1,6 +1,8 @@
 id: tornado-cash-github-takedown-2022-08
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -174,6 +176,50 @@ observations:
     precision: day
     delta_hours: 0
     sources:
+      - type: semi_primary_wayback
+        url: https://github.com/tornadocash
+        wayback: https://web.archive.org/web/20220808144505/https://github.com/tornadocash
+        body_hash: sha256:2133abf49379a6c9fcc66382c9b454b3482689f234bc3d87a03191c83cc5ebcb
+        body_path: sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220808-https-github.com-tornadocash__dfe0d7708c.html
+        evidence_group_id: github_org_wayback_before_after
+        scope_descriptor:
+          domains:
+            - github.com/tornadocash
+          providers:
+            - github_microsoft
+          time_window:
+            - 2022-08-08T14:45:05Z
+            - 2022-08-09T15:42:43Z
+        note: |
+          v0.3 before-state Wayback anchor. The 2022-08-08 14:45:05Z
+          memento shows the GitHub tornadocash organization and its
+          repositories still visible on the day of the OFAC designation.
+          Paired with the 2022-08-09 15:42:43Z not-found memento below,
+          this provides a replayable before/after platform-surface
+          observation for the source-code-host takedown window.
+      - type: semi_primary_wayback
+        url: https://github.com/tornadocash
+        wayback: https://web.archive.org/web/20220809154243/https://github.com/tornadocash
+        body_hash: sha256:e533e007cf7b48ea5b070febcc8add27e624432988710c11effcb496cc6a422c
+        body_path: sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220809154243-https-github.com-tornadocash__manual404.html
+        evidence_group_id: github_org_wayback_before_after
+        scope_descriptor:
+          domains:
+            - github.com/tornadocash
+          providers:
+            - github_microsoft
+          time_window:
+            - 2022-08-08T14:45:05Z
+            - 2022-08-09T15:42:43Z
+        note: |
+          v0.3 after-state Wayback anchor. The 2022-08-09 15:42:43Z
+          GitHub memento returns the GitHub "Page not found" surface for
+          github.com/tornadocash. Together with the 2022-08-08
+          organization-page memento, this bounds the platform-surface
+          removal to the post-OFAC window without relying solely on
+          journalism. Same evidence_group_id is intentional: the
+          before/after pair is one Wayback surface measurement, not two
+          independent sources for admission.
       - type: supporting_journalism
         url: https://www.theregister.com/AMP/2022/08/24/github_eff_tornado_cash
         wayback: https://web.archive.org/web/2022/https://www.theregister.com/AMP/2022/08/24/github_eff_tornado_cash
@@ -285,11 +331,13 @@ analysis_notes: |
   tier: empirical_case (≥1 observed_change layer with direct
   attribution).
 
-  DRYRUN caveats: the four citations (The Register, Cointelegraph,
-  EFF Deeplinks, Perkins Coie Virtual Currency Report) all carry
-  calendar-folder Wayback pointers rather than pinned snapshots;
-  pinned snapshot timestamps and body_hash captures are deferred to
-  the human-audit pass. For non-DRYRUN release, capture body_hash +
+  v0.3 source repair adds a GitHub Wayback before/after pair:
+  2022-08-08 14:45:05Z shows the tornadocash organization page present,
+  while 2022-08-09 15:42:43Z shows GitHub's not-found page at the same
+  URL. This is a replayable platform-surface observation for the
+  takedown window, but the row remains draft because human review must
+  still confirm the exact takedown timing, repository roster, and
+  GitHub/Microsoft rationale. For non-DRYRUN release, capture body_hash +
   body_path for: (1) the The Register 2022-08-24 article; (2) the
   Cointelegraph 2022-09-23 reinstatement article; (3) the EFF
   Deeplinks 2023-04 retrospective; (4) the Perkins Coie Virtual

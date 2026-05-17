@@ -1,6 +1,8 @@
 id: mtgox-coinlab-civil-2013
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
@@ -58,6 +60,18 @@ trigger:
         et al.). Used as a structured-metadata pointer to the PACER
         docket. evidence_use=contextual_unarchived: no body_hash
         captured in this session.
+    - type: primary_legal
+      url: https://www.courtlistener.com/docket/4537232/coinlab-inc-v-mt-gox-kk/
+      wayback: https://web.archive.org/web/2013/https://www.courtlistener.com/docket/4537232/coinlab-inc-v-mt-gox-kk/
+      note: |
+        CourtListener public docket page for CoinLab, Inc. v. Mt. Gox
+        K.K. et al., Case 2:13-cv-00777 in the Western District of
+        Washington. Per docs/data-sources.md, CourtListener docket
+        mirrors are treated as primary_legal pointers when PACER itself
+        is not accessible in the public artifact. v0.3 repair note:
+        direct body capture returned HTTP 403, so this remains a
+        Wayback-anchored docket pointer until human audit can attach a
+        PACER/RECAP body artifact.
   timestamp_sources:
     - type: supporting_journalism
       note: |
@@ -157,6 +171,26 @@ observations:
       - 2013-05-02T00:00:00Z
       - 2013-05-13T23:59:59Z
     sources:
+      - type: primary_legal
+        url: https://www.courtlistener.com/docket/4537232/coinlab-inc-v-mt-gox-kk/
+        wayback: https://web.archive.org/web/2013/https://www.courtlistener.com/docket/4537232/coinlab-inc-v-mt-gox-kk/
+        scope_descriptor:
+          providers: [mtgox_us_operations]
+          countries: [US]
+          time_window:
+            - 2013-05-02T00:00:00Z
+            - 2013-05-13T23:59:59Z
+        note: |
+          Public federal-docket anchor for the trigger filing and case
+          nature. This source supports the bounded null observation by
+          anchoring the 2013-05-02 W.D. Wash. civil contract complaint
+          rather than an enforcement order, seizure, or injunction.
+          The no-change claim remains deliberately narrow: no USD
+          on/off-ramp closure is attributed to this civil filing in the
+          11-day window before the separate 2013-05-14 Dwolla seizure.
+          Direct capture of CourtListener returned HTTP 403 in v0.3
+          repair, so human audit should attach PACER/RECAP/RECAP-backed
+          body_hash evidence before promotion.
       - type: supporting_journalism
         url: https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court
         wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/05/03/coinlab-sues-mt-gox-in-us-court
@@ -220,13 +254,10 @@ analysis_notes: |
   used by other private-civil events (coinbase-irs-john-doe-summons-
   2016, nydfs-bitlicense-2015-06).
 
-  evidence_use=contextual_unarchived across all citations: PACER
-  access for the canonical 2:13-cv-00777-RSL docket requires login,
-  so CoinDesk contemporaneous press coverage and the Justia docket-
-  metadata landing page are used as supporting_journalism anchors.
-  body_hash has not been captured into sources/http_captures/ in
-  this session. Status remains draft pending real-archive capture
-  and human review.
+  v0.3 source repair adds a CourtListener primary_legal docket pointer
+  for Case 2:13-cv-00777. PACER/RECAP body evidence is still missing:
+  direct CourtListener capture returned HTTP 403, so status remains
+  draft pending real-archive capture and human review.
 
   null_event shape: 0 observed_change layers; 1 observed_no_change
   layer (offramp_cex with attribution=none, window 2013-05-02 to

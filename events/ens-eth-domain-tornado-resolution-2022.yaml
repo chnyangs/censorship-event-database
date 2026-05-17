@@ -1,6 +1,8 @@
 id: ens-eth-domain-tornado-resolution-2022
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -41,8 +43,10 @@ trigger:
         transfer, or management of the tornadocash.eth name or
         sub-names following the OFAC SDN designation. DRYRUN: pinned
         Wayback snapshot deferred to human audit.
-    - type: supporting_community
+    - type: semi_primary_wayback
       url: https://app.ens.domains/tornadocash.eth
+      body_hash: sha256:62b82633fa1b228a7ab2e2dcbc3c44b67af6ced6e68810fec347fea1532406f8
+      body_path: sources/http_captures/ens-eth-domain-tornado-resolution-2022/v0_3_primary_repair/app.ens.domains__tornadocash.eth__f16003fa65.html
       wayback: https://web.archive.org/web/2022/https://app.ens.domains/tornadocash.eth
       evidence_use: contextual_unarchived
       note: |
@@ -139,8 +143,10 @@ coverage:
       app.ens.domains/tornadocash.eth from the 2022-08-09…2022-08-15
       window with body_hash + body_path to harden the denominator.
     denominator_artifact:
-      type: supporting_community
+      type: semi_primary_wayback
       url: https://app.ens.domains/tornadocash.eth
+      body_hash: sha256:62b82633fa1b228a7ab2e2dcbc3c44b67af6ced6e68810fec347fea1532406f8
+      body_path: sources/http_captures/ens-eth-domain-tornado-resolution-2022/v0_3_primary_repair/app.ens.domains__tornadocash.eth__f16003fa65.html
       wayback: https://web.archive.org/web/2022/https://app.ens.domains/tornadocash.eth
       scope_descriptor:
         domains:
@@ -185,8 +191,10 @@ observations:
       - 2022-08-08T00:00:00Z
       - 2022-12-31T23:59:59Z
     sources:
-      - type: supporting_community
+      - type: semi_primary_wayback
         url: https://app.ens.domains/tornadocash.eth
+        body_hash: sha256:62b82633fa1b228a7ab2e2dcbc3c44b67af6ced6e68810fec347fea1532406f8
+        body_path: sources/http_captures/ens-eth-domain-tornado-resolution-2022/v0_3_primary_repair/app.ens.domains__tornadocash.eth__f16003fa65.html
         wayback: https://web.archive.org/web/2022/https://app.ens.domains/tornadocash.eth
         evidence_use: contextual_unarchived
         scope_descriptor:
@@ -204,9 +212,13 @@ observations:
           name-detail page remained rendered post-2022-08-08; no UI
           block, transfer freeze, or resolver override was observed.
           observed_no_change row supporting the null-event status.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-      - type: supporting_community
+          Current-state HTTP body was captured in v0.3 source repair;
+          human audit should still replace the year-prefix Wayback with
+          a timestamped 2022 snapshot before promotion.
+      - type: semi_primary_wayback
         url: https://sources.tornadocash.eth.limo/
+        body_hash: sha256:78782f9fc183a6149afdef6af622a525f0102720d99801092b0233345091dbd8
+        body_path: sources/http_captures/ens-eth-domain-tornado-resolution-2022/v0_3_primary_repair/sources.tornadocash.eth.limo__capture__961748b737.html
         wayback: https://web.archive.org/web/2022/https://sources.tornadocash.eth.limo/
         evidence_use: contextual_unarchived
         scope_descriptor:
@@ -224,7 +236,9 @@ observations:
           2022-08-08, evidencing that neither the ENS protocol nor
           ENS Labs (nor the eth.limo gateway operator) imposed a
           resolution-layer block on the tornadocash.eth name set.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
+          Current-state HTTP body was captured in v0.3 source repair;
+          human audit should still replace the year-prefix Wayback with
+          a timestamped 2022 snapshot before promotion.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 preamble;

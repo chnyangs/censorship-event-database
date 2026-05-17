@@ -34,6 +34,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT_ROOT = REPO_ROOT / "sources" / "http_captures"
 USER_AGENT = "p1-event-db-capture/0.1 (contact: xwy411@gmail.com)"
 WAYBACK_SAVE_BASE = "https://web.archive.org/save/"
+MAX_BASENAME_CHARS = 180
 
 
 class TitleParser(HTMLParser):
@@ -69,6 +70,11 @@ def parse_args() -> argparse.Namespace:
         help="Directory where capture metadata and bodies should be written.",
     )
     parser.add_argument("--timeout", type=float, default=20.0)
+    parser.add_argument(
+        "--user-agent",
+        default=USER_AGENT,
+        help="HTTP User-Agent header for sources that reject the default capture agent.",
+    )
     parser.add_argument(
         "--allow-insecure-tls",
         action="store_true",
@@ -119,6 +125,10 @@ def build_basename(url: str) -> str:
     host = sanitize_filename(parsed.netloc.lower())
     path = sanitize_filename(parsed.path.strip("/")) or "root"
     url_hash = hashlib.sha256(url.encode("utf-8")).hexdigest()[:10]
+    fixed = len(host) + len(url_hash) + len("____")
+    path_budget = max(16, MAX_BASENAME_CHARS - fixed)
+    if len(path) > path_budget:
+        path = path[:path_budget].rstrip("._-") or "capture"
     return f"{host}__{path}__{url_hash}"
 
 
@@ -146,8 +156,13 @@ def extract_title(body: bytes, content_type: str) -> str | None:
     return parser.title
 
 
-def capture_url(url: str, timeout: float, allow_insecure_tls: bool = False) -> dict[str, Any]:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+def capture_url(
+    url: str,
+    timeout: float,
+    allow_insecure_tls: bool = False,
+    user_agent: str = USER_AGENT,
+) -> dict[str, Any]:
+    request = urllib.request.Request(url, headers={"User-Agent": user_agent})
     fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     context = ssl._create_unverified_context() if allow_insecure_tls else None
     with urllib.request.urlopen(request, timeout=timeout, context=context) as response:
@@ -298,7 +313,7 @@ def main() -> int:
         captured_ok = False
 
         try:
-            capture = capture_url(url, args.timeout, args.allow_insecure_tls)
+            capture = capture_url(url, args.timeout, args.allow_insecure_tls, args.user_agent)
             captured_ok = True
         except urllib.error.HTTPError as exc:
             failures += 1
@@ -313,6 +328,8 @@ def main() -> int:
             ext = detect_extension(capture["content_type"])
             body_name = f"{basename}{ext}"
             json_name = f"{basename}.json"
+            if body_name == json_name:
+                json_name = f"{basename}.meta.json"
             body_path = output_dir / body_name
             json_path = output_dir / json_name
 

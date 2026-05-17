@@ -1,6 +1,8 @@
 id: ofac-recent-action-20240111
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -146,7 +148,27 @@ coverage:
       events but are not pinned here because the action does not introduce
       new addresses for the chain-analytics ecosystem to flag.
 
-observations: []
+observations:
+  - layer: asset_onchain
+    actor: US_OFAC
+    event: no_new_crypto_address_set_beyond_chatex_metadata_refresh
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2024-01-11T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20240111
+        body_hash: sha256:f4e2908c430dbd474ab0756472b35634ede9b7f4edd913323a71fd077ff22f22
+        body_path: sources/ofac_sdn_diffs/recent_actions_cache/20240111.html
+        evidence_use: contextual_unarchived
+        note: |
+          The OFAC Recent Actions page is the replayable source for this
+          row-local coverage gap: the crypto-address content is a CHATEX
+          update block for the pre-existing 2021 designation, while the
+          other 2024-01-11 actions do not introduce an independent new
+          crypto-address target set. This remains a draft null row pending
+          human confirmation of the duplicate/metadata-refresh decision.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22

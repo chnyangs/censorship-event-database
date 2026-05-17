@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `35cd33f` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-25T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -34,6 +34,8 @@
 > — SamSam-ransomware facilitators. Each carries one XBT address. Tag [CYBER2].
 - **`primary_legal`**
   - URL: <https://home.treasury.gov/news/press-releases/sm556>
+  - body_hash: `sha256:5237f74b36ca761cd2b6056b69cee173aaf8675de4c037bdb03dfa35fa1fa96b`
+  - body_path: `sources/http_captures/iran-ransomware-ofac-2018/v0_3_repair/home.treasury.gov__news-press-releases-sm556__328e97f0bd.html`
   > Treasury press release "Treasury Designates Iran-Based Financial Facilitators of Malicious Cyber Activity and for the First Time Identifies Associated Digital Currency Addresses" (2018-11-28).
 
 ## 2. Target
@@ -84,7 +86,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `35cd33f`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

@@ -5,6 +5,8 @@ the latest IRR run, or where Phase A-F authoring agents independently surfaced
 ambiguity. It is the **canonical reference** that LLM authoring agents and human
 coders MUST consult before assigning these fields.
 
+**Version**: 1.0.0.
+
 **Effective**: 2026-05-17. Codebook updates require:
 1. A new IRR pass on at least 10 events covering the edge case.
 2. A `**CODEBOOK CHANGE — YYYY-MM-DD**` entry in this file's changelog.

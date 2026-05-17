@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `35cd33f` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-25T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -39,6 +39,8 @@
 > release would replace with a verified snapshot timestamp + body_hash.
 - **`primary_legal`**
   - URL: <https://www.justice.gov/usao-sdny/pr/bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1>
+  - body_hash: `sha256:6162ec33c0cb6d353bf07bd86d04df88ba627da987833f21a9dbc0f375c2856a`
+  - body_path: `sources/http_captures/shrem-faiella-bitcoin-exchange-2014/v0_3_repair/www.justice.gov__usao-sdny-pr-bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1__5c540d1fd5.html`
   > DOJ SDNY press release (2014-09-04): "Bitcoin Exchangers Plead Guilty In
 > Manhattan Federal Court In Connection With Sale Of Approximately
 > $1 Million In Bitcoins For Use On Silk Road." Records Shrem's and
@@ -91,6 +93,8 @@
 - **`primary_legal`**
   - URL: <https://www.justice.gov/usao-sdny/pr/bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1>
   - Wayback: <https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1>
+  - body_hash: `sha256:6162ec33c0cb6d353bf07bd86d04df88ba627da987833f21a9dbc0f375c2856a`
+  - body_path: `sources/http_captures/shrem-faiella-bitcoin-exchange-2014/v0_3_repair/www.justice.gov__usao-sdny-pr-bitcoin-exchangers-plead-guilty-manhattan-federal-court-connection-sale-approximately-1__5c540d1fd5.html`
   > DOJ SDNY guilty-plea press release (2014-09-04) documenting Shrem's
 > plea on the unlicensed-money-transmitter count. This conviction is
 > the legally definitive end-state that made any BitInstant revival
@@ -112,7 +116,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `35cd33f`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

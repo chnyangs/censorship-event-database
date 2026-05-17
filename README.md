@@ -401,7 +401,7 @@ p1-event-db/
 | Release attribution | Monthly CHANGELOG entries carry the editor-in-chief's name on each release line |
 | Escape hatch | If two consecutive months fall below 2 h of actual investment, the repo switches to `maintenance_paused` in the top-level README rather than silently going stale (see [docs/3-TODOs.md Observatory section](../docs/3-TODOs.md)) |
 
-Agent-assisted ingestion (drafts, captures, Wayback submissions) is permitted; admission, adversarial audits, and stakeholder communication remain human responsibilities. See [docs/audit-protocol.md](docs/audit-protocol.md) for the quarterly adversarial audit commitment.
+Agent-assisted ingestion (drafts, captures, Wayback submissions) is permitted; admission, adversarial audits, and stakeholder communication remain human responsibilities. The v0.3 ingestion monitor is documented in [docs/ingestion-v03.md](docs/ingestion-v03.md); it writes local candidates and review-queue entries, not verified paper rows. See [docs/audit-protocol.md](docs/audit-protocol.md) for the quarterly adversarial audit commitment.
 
 ## 11. Explicit non-goals
 

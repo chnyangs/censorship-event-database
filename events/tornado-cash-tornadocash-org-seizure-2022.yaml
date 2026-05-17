@@ -1,6 +1,8 @@
 id: tornado-cash-tornadocash-org-seizure-2022
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -163,6 +165,28 @@ observations:
     precision: day
     delta_hours: 0
     sources:
+      - type: semi_primary_wayback
+        url: https://tornadocash.org/
+        wayback: https://web.archive.org/web/20230130072550/https://tornadocash.org/
+        body_hash: sha256:654eaa265590b54f42386f4882e10541d70708e838b4c3057d936c0619267f2f
+        body_path: sources/http_captures/tornado-cash-tornadocash-org-seizure-2022/v0_3_primary_repair/web.archive.org__web-20220808-https-tornadocash.org__dd3c88fd70.html
+        evidence_group_id: tornadocash_org_wayback_after_state
+        scope_descriptor:
+          domains:
+            - tornadocash.org
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2023-01-30T07:25:50Z
+        note: |
+          v0.3 physical after-state anchor. Wayback timegate capture for
+          tornadocash.org resolved to a 2023-01-30 memento titled "The
+          domain name tornadocash.org is for sale", showing the
+          canonical domain was no longer serving the Tornado Cash
+          project frontend after the 2022-08-08 OFAC-triggered domain
+          cessation. This anchors the post-trigger domain state; the
+          same-day transition timing still rests on the contemporaneous
+          journalism sources below and requires human audit before
+          release-grade promotion.
       - type: supporting_journalism
         url: https://alexbobes.medium.com/crypto-mixers-and-tornado-cash-shutdown-98a6e743b596
         wayback: https://web.archive.org/web/2022/https://alexbobes.medium.com/crypto-mixers-and-tornado-cash-shutdown-98a6e743b596
@@ -276,9 +300,10 @@ analysis_notes: |
   tier: empirical_case (≥1 observed_change layer with direct
   attribution).
 
-  DRYRUN caveats: all four citations carry calendar-folder Wayback
-  pointers rather than pinned snapshots; pinned snapshot timestamps
-  and body_hash captures are deferred to the human-audit pass. For
+  v0.3 source repair adds a body_hash/body_path Wayback after-state
+  capture for tornadocash.org showing the canonical domain parked for
+  sale in 2023-01. That is a physical post-trigger state anchor, not a
+  standalone same-day transition proof. For
   non-DRYRUN release, capture body_hash + body_path for: (1) the
   CoinDesk 2022-08-08 article; (2) the EFF Deeplinks 2023-04
   retrospective; (3) the Federal Lawyer timeline; (4) the Medium

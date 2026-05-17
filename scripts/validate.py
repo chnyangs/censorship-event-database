@@ -32,6 +32,13 @@ VOCAB_PATH = REPO_ROOT / "schema" / "controlled_vocab.yaml"
 SCHEMA_PATH = REPO_ROOT / "schema" / "event.schema.json"
 EVENTS_DIR = REPO_ROOT / "events"
 TX_HASH_RE = re.compile(r"^(0x)?[0-9a-fA-F]{64}$")
+SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+(?:[-+][A-Za-z0-9_.-]+)?$")
+YAML_FORBIDDEN_INTERNAL_FIELDS = {
+    "requires_v0_3_reextraction",
+    "verification_state",
+    "last_pipeline_stage",
+    "last_review_queue_item_id",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -231,6 +238,13 @@ class EventValidator:
             if key not in event:
                 result.error(f"Missing required top-level field: {key}")
 
+        for key in sorted(YAML_FORBIDDEN_INTERNAL_FIELDS):
+            if key in event:
+                result.error(
+                    f"{key} is an internal v0.3 ingestion scheduler field and must not "
+                    "appear in event YAML. Store it in the SQLite ingestion state instead."
+                )
+
         if "id" in event and (
             not isinstance(event["id"], str) or not event["id"] or "_" in event["id"]
         ):
@@ -258,6 +272,28 @@ class EventValidator:
                 f"schema_version={version!r} is not the canonical "
                 f"{CURRENT_SCHEMA_VERSION!r}; accepted with warning to keep "
                 f"migration branches runnable. Tighten this check once the bump settles."
+            )
+
+        codebook_version = event.get("codebook_version")
+        if codebook_version is None:
+            result.warn(
+                "codebook_version is missing; v0.3 ingestion exports should stamp the "
+                "codebook revision used for coding decisions."
+            )
+        elif not isinstance(codebook_version, str) or not SEMVER_RE.match(codebook_version):
+            result.error("codebook_version must be a semver string such as '1.0.0'.")
+
+        if "primary_source_verified" not in event:
+            result.warn(
+                "primary_source_verified is missing; v0.3 ingestion exports should expose "
+                "whether original-source verification has completed."
+            )
+        elif not isinstance(event.get("primary_source_verified"), bool):
+            result.error("primary_source_verified must be a boolean.")
+        elif event.get("origin") == "agent_draft" and event.get("primary_source_verified") is True:
+            result.error(
+                "origin=agent_draft cannot declare primary_source_verified=true; "
+                "primary-source verification requires review promotion."
             )
 
         # research_stratum / empirical_shape / admission_tier enumeration checks

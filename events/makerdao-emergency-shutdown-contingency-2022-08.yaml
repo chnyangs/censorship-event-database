@@ -1,6 +1,8 @@
 id: makerdao-emergency-shutdown-contingency-2022-08
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -22,6 +24,28 @@ trigger:
   timestamp: 2022-08-18T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://forum.makerdao.com/search/query.json?term=USDC%20Tornado%20Cash
+      body_hash: sha256:e734f0cb863bd383c37d603fb8c97b4a0c744a5e836f815c6c6ae7355c8028d7
+      body_path: sources/http_captures/makerdao-emergency-shutdown-contingency-2022-08/v0_3_primary_repair/forum.makerdao.com__search-query.json__b739eca00a.json
+      note: |
+        MakerDAO Discourse search API snapshot for "USDC Tornado Cash".
+        The result set includes the 2022-08-08 governance topic
+        "Circle started freezing USDC which went through Tornado Cash"
+        and the 2022-08-12 topic "The Real Legal Risks", anchoring the
+        Maker governance forum as the first-party discussion surface.
+        This is a governance-surface anchor for the debate, not a
+        substitute for a full on-chain audit of PSM / ESM state.
+    - type: primary_corporate
+      url: https://forum.makerdao.com/t/circle-started-freezing-usdc-which-went-through-tornado-cash/17101.json
+      body_hash: sha256:b6ef9c09a692eafc7774c8bdbd73f15a5a4cdee6532a664e9ba36b97ecd03dbb
+      body_path: sources/http_captures/makerdao-emergency-shutdown-contingency-2022-08/v0_3_primary_repair/forum.makerdao.com__t-circle-started-freezing-usdc-which-went-through-tornado-cash-17101.json__25e3081f17.json
+      note: |
+        MakerDAO forum topic opened 2022-08-08 on Circle freezing USDC
+        that had passed through Tornado Cash. The topic metadata and
+        post stream provide a first-party governance-forum anchor for
+        the USDC/Tornado Cash risk discussion that precedes the
+        emergency-shutdown contingency journalism.
     - type: supporting_journalism
       url: https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
       wayback: https://web.archive.org/web/2022/https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
@@ -178,10 +202,11 @@ coverage:
       are the asset surface to which the governance debate speaks —
       the on-chain state is observably **unchanged** during the
       contingency-discussion window, scoped to the 2022-08-08 to
-      2022-08-31 period — yet no comprehensive replayable on-chain
-      audit slice has been pinned in this DRYRUN session. The
-      observed_no_change row attached below scopes the unchanged
-      state for falsifiability per Kazakhstan-precedent honesty rules.
+      2022-08-31 period. Replayable MakerDAO forum JSON captures now
+      anchor the public governance debate, but they do not replace a
+      comprehensive on-chain audit slice for ESM / PSM state. The
+      observed_no_change row attached below therefore remains
+      conservative and must be human-checked before release use.
   - layer: offramp_cex
     status: not_applicable
     note: |
@@ -202,6 +227,41 @@ observations:
       - 2022-08-08T00:00:00Z
       - 2022-08-31T23:59:59Z
     sources:
+      - type: primary_corporate
+        url: https://forum.makerdao.com/search/query.json?term=USDC%20Tornado%20Cash
+        body_hash: sha256:e734f0cb863bd383c37d603fb8c97b4a0c744a5e836f815c6c6ae7355c8028d7
+        body_path: sources/http_captures/makerdao-emergency-shutdown-contingency-2022-08/v0_3_primary_repair/forum.makerdao.com__search-query.json__b739eca00a.json
+        scope_descriptor:
+          providers: [makerdao_governance_forum]
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          MakerDAO Discourse search API snapshot showing first-party
+          forum topics opened during the Tornado Cash / USDC risk
+          window, including "Circle started freezing USDC which went
+          through Tornado Cash" (2022-08-08) and "The Real Legal Risks"
+          (2022-08-12). This anchors the governance discussion substrate
+          and supports the "debated but not enacted in this row" framing;
+          it is not, by itself, a complete on-chain PSM / ESM no-change
+          proof.
+      - type: primary_corporate
+        url: https://forum.makerdao.com/t/the-real-legal-risks/17207.json
+        body_hash: sha256:13d6d0b007f3da004ce29b5ab2c534fdbdc24fb8c16aa1bfef113ad2371d54f6
+        body_path: sources/http_captures/makerdao-emergency-shutdown-contingency-2022-08/v0_3_primary_repair/forum.makerdao.com__t-the-real-legal-risks-17207.json__2415a7533f.json
+        scope_descriptor:
+          providers: [makerdao_governance_forum]
+          time_window:
+            - 2022-08-12T00:00:00Z
+            - 2022-10-25T23:59:59Z
+        note: |
+          MakerDAO forum topic "The Real Legal Risks" opened 2022-08-12
+          by a former Maker Foundation legal contributor. The post
+          explicitly situates the Tornado Cash sanctions and USDC
+          freeze/blocking risk inside MakerDAO's regulatory-risk debate.
+          It is primary governance-surface evidence for the discussion
+          path; human audit should still pair it with an on-chain
+          state slice before using the no-change claim in release prose.
       - type: supporting_journalism
         url: https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
         wayback: https://web.archive.org/web/2022/https://thedefiant.io/news/defi/tornado-impact-makerdao-dai

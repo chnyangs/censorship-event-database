@@ -125,6 +125,7 @@ Used in every YAML field. Centralized in `schema/controlled_vocab.yaml`.
 | `primary_legal` | Original legal document | OFAC SDN XML, PACER docket PDF, SEC EDGAR filing |
 | `primary_onchain` | Finalized chain data | Tx hash + block number for a freeze event |
 | `primary_corporate` | Issuer's own statement | Circle blog / SEC 8-K, archived |
+| `primary_government` | Official government/agency publication | Ministry notice, utility bulletin, or state-media copy of an agency notice when the agency page is unavailable |
 | `semi_primary_measurement` | Independent measurement data | Censored Planet BQ result, OONI probe, Wahrstätter dataset |
 | `semi_primary_wayback` | Pinned Wayback snapshot of the primary | Frontend screenshot at T+Δ |
 | `supporting_journalism` | Contemporaneous reporting | Reuters / Bloomberg / CoinDesk article |
@@ -375,7 +376,7 @@ The rule from the README, formalized:
 Every admission-grade web observation source gets archived at the moment of admission. The event YAML stores a Wayback URL or a local `body_hash` + `body_path` replay artifact. Trigger citations follow the same rule for at least one primary trigger source; additional trigger URLs may remain as live pointers when an archived trigger anchor is already present.
 
 ```text
-for each source.url where source.type in {primary_corporate, primary_legal,
+for each source.url where source.type in {primary_corporate, primary_government, primary_legal,
                                            semi_primary_wayback, supporting_journalism,
                                            supporting_community}:
     1. POST to https://web.archive.org/save/<url>

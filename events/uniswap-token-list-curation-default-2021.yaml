@@ -1,6 +1,8 @@
 id: uniswap-token-list-curation-default-2021
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -164,7 +166,26 @@ coverage:
       Uniswap-Labs frontend default-token-list curation policy.
       not_applicable on substrate-mismatch grounds.
 
-observations: []
+observations:
+  - layer: l4_frontend
+    actor: frontend:uniswap_labs
+    event: default_token_list_policy_framework_articulated_without_row_local_per_token_cascade
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2021-07-23T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_corporate
+        url: https://blog.uniswap.org/token-access-app?rel=outbound
+        body_hash: sha256:271f576eac76deb87ad97a73936e276e5556d9845696ce89c08c8cfa54d1a14a
+        body_path: sources/http_captures/uniswap-token-list-curation-default-2021/v0_3_primary_repair/blog.uniswap.org__token-access-app__f02db91ba6.html
+        note: |
+          Uniswap Labs' own "Token Access on app.uniswap.org" post is the
+          primary corporate source for the policy framework. This row's
+          observation is deliberately a coverage gap: the post anchors the
+          frontend curation framework, while the per-token delisting cascade
+          is recorded in the sibling tokenized-stocks event to avoid
+          double-counting the same physical UI action.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.2 corporate_policy

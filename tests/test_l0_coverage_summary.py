@@ -95,6 +95,58 @@ def test_l0_summary_counts_measurement_denominator_fields(tmp_path):
     assert rows[0]["failure_count"] == 1
 
 
+def test_l0_summary_includes_event_yaml_denominator_artifact(tmp_path):
+    body = tmp_path / "sources" / "http_captures" / "event-c" / "ooni.json"
+    body.parent.mkdir(parents=True)
+    body.write_text(
+        json.dumps(
+            {
+                "metadata": {"count": 1},
+                "results": [
+                    {
+                        "measurement_uid": "m3",
+                        "probe_cc": "PH",
+                        "anomaly": True,
+                        "confirmed": False,
+                        "failure": None,
+                    }
+                ],
+            }
+        )
+    )
+    summary = tmp_path / "sources" / "l0_datasets" / "_summary.json"
+    summary.parent.mkdir(parents=True)
+    summary.write_text("[]")
+    event = tmp_path / "events" / "event-c.yaml"
+    event.parent.mkdir()
+    event.write_text(
+        """
+id: event-c
+coverage:
+  - layer: l0_network
+    status: partially_measured
+    denominator_artifact:
+      type: semi_primary_measurement
+      url: https://api.ooni.io/api/v1/measurements?probe_cc=PH&test_name=web_connectivity&input=https%3A%2F%2Fwww.example.net%2F&since=2024-03-25&until=2024-04-25&limit=5
+      body_hash: sha256:def
+      body_path: sources/http_captures/event-c/ooni.json
+      measurement_ids:
+        - m3
+"""
+    )
+
+    rows = build_rows(summary, tmp_path, tmp_path / "events")
+
+    assert len(rows) == 1
+    assert rows[0]["event_id"] == "event-c"
+    assert rows[0]["domain"] == "example.net"
+    assert rows[0]["probe_cc"] == "PH"
+    assert rows[0]["query_hash"]
+    assert rows[0]["body_hash"] == "def"
+    assert rows[0]["denominator_class"] == "measurement_denominator"
+    assert rows[0]["measurement_ids"] == "m3"
+
+
 def test_l0_markdown_reports_not_queried_applicable_events():
     rows = [
         {

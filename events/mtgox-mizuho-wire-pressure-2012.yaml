@@ -1,6 +1,8 @@
 id: mtgox-mizuho-wire-pressure-2012
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
@@ -23,6 +25,22 @@ trigger:
   timestamp: 2012-12-01T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_legal
+      url: https://www.govinfo.gov/content/pkg/USCOURTS-ilnd-1_14-cv-01437/pdf/USCOURTS-ilnd-1_14-cv-01437-0.pdf
+      body_hash: sha256:aa699e996b793579856c915cccebbb05ce7036b7073729264528ed8d4dcf9cb1
+      body_path: sources/http_captures/mtgox-mizuho-wire-pressure-2012/v0_3_primary_repair/www.govinfo.gov__content-pkg-USCOURTS-ilnd-1_14-cv-01437-pdf-USCOURTS-ilnd-1_14-cv-01437-0.pdf__4871bc7a90.bin
+      evidence_use: admission_anchor
+      note: |
+        GovInfo copy of the Northern District of Illinois order in
+        Greene v. MtGox Inc. et al., No. 1:14-cv-01437, Doc. 200
+        (2016-03-14). The court summarizes the pleaded Mizuho/Mt.
+        Gox banking facts and states that by mid-2013 Mizuho was no
+        longer processing international wire withdrawals for Mt. Gox.
+        Used as primary legal evidence that the public legal record
+        locates the documented Mizuho wire-withdrawal cutoff in
+        mid-2013, not in the 2012-12 null-event window recorded
+        here. This source supports the negative finding only; it
+        does not create a 2012-12 observed_change event.
     - type: supporting_journalism
       url: https://en.wikipedia.org/wiki/Mt._Gox
       wayback: https://web.archive.org/web/2012/https://en.wikipedia.org/wiki/Mt._Gox
@@ -165,6 +183,26 @@ observations:
       - 2012-12-01T00:00:00Z
       - 2012-12-31T23:59:59Z
     sources:
+      - type: primary_legal
+        url: https://www.govinfo.gov/content/pkg/USCOURTS-ilnd-1_14-cv-01437/pdf/USCOURTS-ilnd-1_14-cv-01437-0.pdf
+        body_hash: sha256:aa699e996b793579856c915cccebbb05ce7036b7073729264528ed8d4dcf9cb1
+        body_path: sources/http_captures/mtgox-mizuho-wire-pressure-2012/v0_3_primary_repair/www.govinfo.gov__content-pkg-USCOURTS-ilnd-1_14-cv-01437-pdf-USCOURTS-ilnd-1_14-cv-01437-0.pdf__4871bc7a90.bin
+        evidence_use: admission_anchor
+        scope_descriptor:
+          providers: [mizuho_bank, mtgox_jpy_usd_wire_rails]
+          countries: [JP]
+          time_window:
+            - 2012-12-01T00:00:00Z
+            - 2012-12-31T23:59:59Z
+        note: |
+          Primary legal anchor for the observed_no_change coding.
+          The court order describes Mizuho's relationship with Mt.
+          Gox and places the documented halt of international wire
+          withdrawals by Mizuho in mid-2013. That placement supports
+          this row's bounded negative finding that no discrete
+          2012-12 Mizuho action was located in the public legal
+          record. It is not coded as direct proof of a 2012-12
+          action.
       - type: supporting_journalism
         url: https://en.wikipedia.org/wiki/Mt._Gox
         wayback: https://web.archive.org/web/2012/https://en.wikipedia.org/wiki/Mt._Gox

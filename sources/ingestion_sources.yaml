@@ -1,0 +1,15 @@
+schema_version: "0.3.0-rc1"
+description: "v0.3 ingestion source registry. Registration does not imply successful fetch; success is recorded only when a worker snapshots a raw document."
+sources:
+  - source_id: ofac_sdn_xml
+    name: OFAC SDN XML
+    kind: ofac_sdn_xml
+    url: https://www.treasury.gov/ofac/downloads/sdn.xml
+    language: en
+    schedule: daily
+    owner: corpus-maintainer
+    pipeline: ofac_sdn_daily_canary
+    phase: phase_0a_canary
+    source_death_policy:
+      alert_after_consecutive_failures: 3
+      deprecate_after_days_without_success: 30

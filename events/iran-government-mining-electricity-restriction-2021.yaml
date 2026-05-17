@@ -1,6 +1,8 @@
 id: iran-government-mining-electricity-restriction-2021
 schema_version: 0.2.0
+codebook_version: "1.0.0"
 status: draft
+primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -14,9 +16,26 @@ last_verified: 2026-05-17
 trigger:
   type: regulatory_enforcement
   actor: IR_TAVANIR
-  timestamp: 2021-05-26T00:00:00Z
+  timestamp: 2021-05-22T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.mehrnews.com/news/5217539/%D9%85%D8%B1%D8%A7%DA%A9%D8%B2-%D9%85%D8%AC%D8%A7%D8%B2-%D8%A7%D8%B3%D8%AA%D8%AE%D8%B1%D8%A7%D8%AC-%D8%B1%D9%85%D8%B2-%D8%A7%D8%B1%D8%B2-%D8%A7%D8%B2-%D8%A7%D9%85%D8%B1%D9%88%D8%B2-%D8%AE%D8%A7%D9%85%D9%88%D8%B4-%D9%85%DB%8C-%D8%B4%D9%88%D9%86%D8%AF
+      body_hash: sha256:793a9ff99ea47395e6279ac1c10dfcfd43947ba505d808b80dfc86dc38e9cf47
+      body_path: sources/http_captures/iran-government-mining-electricity-restriction-2021/v0_3_primary_repair/www.mehrnews.com__news-5217539-D9-85-D8-B1-D8-A7-DA-A9-D8-B2--D9-85-D8-AC-D8-A7-D8-B2--D8-A7-D8-B3-D8-AA-D8-AE-D8-B1-D8-A7-D8-AC--D8-B1-D9-85-D8-B2--D8-A7-D8-B1-D8-B2__0d4b151a2c.html
+      evidence_use: admission_anchor
+      note: |
+        Persian-language Mehr News Agency report dated 2021-05-22
+        citing Tavanir / Iran electricity-industry spokesperson
+        Mostafa Rajabi Mashhadi. The report states that licensed
+        cryptocurrency-mining centers would be switched off from
+        2021-05-22 to reduce peak load and prevent power outages,
+        and gives the licensed-center consumption figure as roughly
+        300 MW. This is state-media reporting of the Tavanir
+        operational order rather than a first-party Tavanir-domain
+        page; retained as primary_government for pre-human source
+        repair and left for human audit to confirm the Persian
+        original and source tier.
     - type: supporting_journalism
       url: https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
       wayback: https://web.archive.org/web/2021/https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
@@ -48,10 +67,14 @@ trigger:
         licensed mining farms consumed approximately 209 megawatts of
         power at the time of the order. DRYRUN: wayback stub.
   timestamp_sources:
-    - type: supporting_journalism
+    - type: primary_government
       note: |
-        Day-level precision; CNBC, Al Jazeera, and Fortune all anchor the
-        public announcement to 2021-05-26.
+        Day-level precision for the Tavanir licensed-center power
+        halt is anchored to the Persian-language Mehr report dated
+        2021-05-22, citing Tavanir / Iran electricity-industry
+        spokesperson Mostafa Rajabi Mashhadi. CNBC, Al Jazeera,
+        and Fortune separately anchor President Rouhani's broader
+        all-mining ban announcement to 2021-05-26.
 
 target:
   kind: entity
@@ -114,11 +137,30 @@ observations:
     event: licensed_bitcoin_mining_operations_halted_summer_2021
     observation_kind: observed_change
     attribution: direct
-    timestamp: 2021-05-26T00:00:00Z
+    timestamp: 2021-05-22T00:00:00Z
     precision: day
     delta_hours: 0
     country: IR
     sources:
+      - type: primary_government
+        url: https://www.mehrnews.com/news/5217539/%D9%85%D8%B1%D8%A7%DA%A9%D8%B2-%D9%85%D8%AC%D8%A7%D8%B2-%D8%A7%D8%B3%D8%AA%D8%AE%D8%B1%D8%A7%D8%AC-%D8%B1%D9%85%D8%B2-%D8%A7%D8%B1%D8%B2-%D8%A7%D8%B2-%D8%A7%D9%85%D8%B1%D9%88%D8%B2-%D8%AE%D8%A7%D9%85%D9%88%D8%B4-%D9%85%DB%8C-%D8%B4%D9%88%D9%86%D8%AF
+        body_hash: sha256:793a9ff99ea47395e6279ac1c10dfcfd43947ba505d808b80dfc86dc38e9cf47
+        body_path: sources/http_captures/iran-government-mining-electricity-restriction-2021/v0_3_primary_repair/www.mehrnews.com__news-5217539-D9-85-D8-B1-D8-A7-DA-A9-D8-B2--D9-85-D8-AC-D8-A7-D8-B2--D8-A7-D8-B3-D8-AA-D8-AE-D8-B1-D8-A7-D8-AC--D8-B1-D9-85-D8-B2--D8-A7-D8-B1-D8-B2__0d4b151a2c.html
+        evidence_use: admission_anchor
+        scope_descriptor:
+          countries: [IR]
+          providers: [tavanir_licensed_mining_farms]
+          time_window:
+            - 2021-05-22T00:00:00Z
+            - 2021-09-22T00:00:00Z
+        note: |
+          Persian state-media report citing Tavanir / Iran electricity-
+          industry spokesperson Mostafa Rajabi Mashhadi that licensed
+          cryptocurrency-mining centers would be switched off from
+          2021-05-22 to reduce peak-load pressure and prevent outages.
+          This source directly supports the licensed-mining-farm halt
+          observation. Because it is not a Tavanir-domain notice, the
+          source-tier assignment remains explicit for human audit.
       - type: supporting_journalism
         url: https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
         wayback: https://web.archive.org/web/2021/https://www.cnbc.com/2021/05/26/iran-bans-bitcoin-mining-as-its-cities-suffer-blackouts.html
@@ -127,7 +169,7 @@ observations:
           countries: [IR]
           providers: [tavanir_licensed_mining_farms]
           time_window:
-            - 2021-05-26T00:00:00Z
+            - 2021-05-22T00:00:00Z
             - 2021-09-22T00:00:00Z
         note: |
           CNBC reporting on Rouhani's 2021-05-26 four-month ban on all

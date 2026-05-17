@@ -123,6 +123,8 @@ def summarize_event(event: dict) -> dict[str, object]:
     return {
         "id": event.get("id"),
         "status": event.get("status"),
+        "codebook_version": event.get("codebook_version"),
+        "primary_source_verified": str(bool(event.get("primary_source_verified"))).lower(),
         "research_stratum": event.get("research_stratum"),
         "temporal_tier": event.get("temporal_tier"),
         "analysis_use": event.get("analysis_use"),
@@ -293,6 +295,11 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
         "paper_corpus_event_count": sum(1 for e in events if e.get("status") == "admitted"),
         "release_surface_scope": "all_event_yaml_records",
         "counts_by_status": counter("status"),
+        "counts_by_codebook_version": counter("codebook_version"),
+        "counts_by_primary_source_verified": {
+            "true": sum(1 for e in events if e.get("primary_source_verified") is True),
+            "false": sum(1 for e in events if e.get("primary_source_verified") is not True),
+        },
         "counts_by_stratum": counter("research_stratum"),
         "counts_by_temporal_tier": counter("temporal_tier"),
         "counts_by_analysis_use": counter("analysis_use"),
@@ -325,7 +332,8 @@ def main() -> int:
 
     rows = [summarize_event(event) for event in events]
     fieldnames = list(rows[0].keys()) if rows else [
-        "id", "status", "research_stratum", "empirical_shape", "admission_tier",
+        "id", "status", "codebook_version", "primary_source_verified",
+        "research_stratum", "empirical_shape", "admission_tier",
         "temporal_tier", "analysis_use",
         "trigger_type", "trigger_actor", "trigger_timestamp", "jurisdiction",
         "changed_layer_count", "changed_layers", "paper_corpus_included", "source_file",
