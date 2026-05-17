@@ -1,6 +1,6 @@
 # L0 OONI coverage summary
 
-Dataset snapshot: v0.2.0-rc-dryrun-10 · cutoff `2026-05-16` · commit `36d266a` · generated `2026-05-24T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-17` · commit `35cd33f` · generated `2026-05-25T00:00:00Z`
 
 This artifact summarizes archived OONI web-connectivity query outputs for candidate L0 network-layer evidence. It is denominator-aware: `no_ooni_measurements` means the public OONI query returned no measurements for that domain/window, not that blocking was absent.
 
@@ -34,10 +34,10 @@ This artifact summarizes archived OONI web-connectivity query outputs for candid
 | class | events |
 | --- | ---: |
 | `queried_no_ooni_measurements` | 14 |
-| `not_queried_yet` | 16 |
-| `cp_not_ingested_v0_1` | 30 |
+| `not_queried_yet` | 18 |
+| `cp_not_ingested_v0_1` | 32 |
 
-`not_queried_yet` events: `bitzlato-doj-2023`, `grinex-garantex-successor-ofac-2025`, `hydra-ofac-2022`, `india-fiu-offshore-vda-block-2023`, `iran-ransomware-ofac-2018`, `kazakhstan-internet-shutdown-mining-2022-01`, `malaysia-sc-binance-disable-2021`, `ofac-hamas-buy-cash-msb-2023-10`, `ofac-recent-action-20240111`, `philippines-sec-binance-block-2024`, `sec-beaxy-platform-shutdown-2023`, `semenov-ofac-2023`, `sinbad-doj-2024`, `tornado-cash-ofac-delisting-2025`, `tornado-cash-ofac-redesignation-2022`, `zservers-ofac-2025`.
+`not_queried_yet` events: `bitzlato-doj-2023`, `grinex-garantex-successor-ofac-2025`, `hydra-ofac-2022`, `india-fiu-offshore-vda-block-2023`, `indonesia-bappebti-illegal-exchange-block-2023`, `iran-ransomware-ofac-2018`, `kazakhstan-internet-shutdown-mining-2022-01`, `malaysia-sc-binance-disable-2021`, `ofac-hamas-buy-cash-msb-2023-10`, `ofac-recent-action-20240111`, `philippines-sec-binance-block-2024`, `sec-beaxy-platform-shutdown-2023`, `semenov-ofac-2023`, `sinbad-doj-2024`, `thailand-sec-binance-bybit-c-and-d-2021`, `tornado-cash-ofac-delisting-2025`, `tornado-cash-ofac-redesignation-2022`, `zservers-ofac-2025`.
 
 
 ## Phrasing lock
