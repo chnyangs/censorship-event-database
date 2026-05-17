@@ -1,0 +1,285 @@
+id: wikileaks-wau-holland-tax-status-challenge-2010-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - wikileaks-paypal-freeze-2010-12
+  - wikileaks-postfinance-account-closure-2010-12
+  - wikileaks-bank-of-america-block-2010-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: DE_FA_KASSEL
+  timestamp: 2010-12-15T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/Wau_Holland_Foundation
+      wayback: https://web.archive.org/web/2010/https://en.wikipedia.org/wiki/Wau_Holland_Foundation
+      evidence_use: contextual_unarchived
+      note: |
+        Wau Holland Foundation Wikipedia entry consolidates the
+        German-tax-authority challenge timeline: the Finanzamt Kassel
+        (Kassel Tax Office), which had certified the Wau Holland
+        Stiftung's gemeinnuetzig (charitable / tax-exempt) status,
+        opened a review in late 2010 of the foundation's project-04
+        ("Enduring Freedom of Information / WikiLeaks") donation
+        forwarding. The eventual administrative outcome (Kassel formally
+        revoking 2010 tax-exempt status "wegen Verstosses gegen das
+        Gebot der Selbstlosigkeit" / "for violation of the principle of
+        altruism") was completed in January 2011, with a later Hamburg
+        Tax Office retroactive revocation 2012-10-25. The 2010-12
+        trigger window pins the *opening* of the Kassel review during
+        the same week as the PayPal / PostFinance / MasterCard / Visa /
+        Bank-of-America cascade; the formal revocation arrives one
+        month later. DRYRUN: wayback wildcard pointer; tertiary source.
+    - type: primary_corporate
+      url: https://wauland.de/en/projects/enduring-freedom-of-information-wikileaks/
+      wayback: https://web.archive.org/web/2010/https://wauland.de/en/projects/enduring-freedom-of-information-wikileaks/
+      evidence_use: contextual_unarchived
+      note: |
+        Wau Holland Stiftung's own project-04 ("Enduring Freedom of
+        Information / WikiLeaks") project page documents the foundation
+        accepting WikiLeaks-earmarked donations during 2010 and the
+        subsequent multi-year negotiation with German tax authorities
+        over gemeinnuetzig status. This is the affected-entity
+        primary-corporate pin for the donation-forwarding-disruption
+        effect, even though the formal Kassel revocation letter is not
+        publicly archived.
+    - type: supporting_journalism
+      url: https://www.weeklystandard.com/john-rosenthal/tax-deductible-wikileaks
+      wayback: https://web.archive.org/web/2010/https://www.weeklystandard.com/john-rosenthal/tax-deductible-wikileaks
+      evidence_use: contextual_unarchived
+      note: |
+        Contemporaneous English-language reporting ("Tax Deductible
+        WikiLeaks") on the Wau Holland Foundation's role as the EU-wide
+        tax-deductible donation channel for WikiLeaks, and on the
+        German-tax-authority pushback that began in late 2010.
+        Independent journalism pin on the actor (Finanzamt Kassel) and
+        the underlying gemeinnuetzig-status question.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Week-level precision (2010-12-15 ±7d) per user-instruction
+        "trigger_date≈2010-12-15 (verify)". The Finanzamt Kassel review
+        of the Wau Holland Stiftung's 2010 gemeinnuetzig status opened
+        during December 2010 in the immediate wake of the diplomatic-
+        cables release and the corporate-blockade cascade; the formal
+        Kassel revocation letter was issued in January 2011. No
+        publicly archived day-precision timestamp for the December
+        opening of the review survives in contemporaneous press; the
+        2010-12-15 anchor reflects the user-supplied estimate pending
+        human archival verification. Timestamp_precision=week records
+        this uncertainty.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Subset: the single affected entity is the Wau Holland Stiftung
+    (Wau Holland Foundation), a German gemeinnuetzige Stiftung based
+    in Hamburg / Kassel that operated project-04 "Enduring Freedom of
+    Information" as the EU-wide tax-deductible donation channel for
+    WikiLeaks during 2009-2010. Not enumerated: other German charitable
+    foundations forwarding WikiLeaks-adjacent donations (no
+    contemporaneous evidence of class-wide Finanzamt sweep beyond Wau
+    Holland). Effect-on-WikiLeaks-donations is one step downstream:
+    the tax-status challenge disrupted the German-jurisdiction
+    tax-deductible donation rail that WikiLeaks had been promoting via
+    the Wau Holland project-04 page.
+  entity: wau_holland_stiftung_project04_wikileaks
+  actor_type: charitable_foundation
+  actor_name: Wau Holland Stiftung (Wau Holland Foundation), project-04 "Enduring Freedom of Information / WikiLeaks"
+
+jurisdiction: [DE]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Administrative tax-status review by a German Finanzamt; no
+      domain-level / ISP-level reachability question is at issue for
+      the trigger action.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    note: |
+      German-jurisdiction tax-deductible donation rail disruption at
+      the fiat-banking / charitable-pass-through offramp layer:
+      Finanzamt Kassel's review and subsequent revocation of the Wau
+      Holland Stiftung's gemeinnuetzig (tax-exempt) status for 2010
+      disrupted the EU-wide tax-deductible WikiLeaks-donation channel
+      the foundation had operated under project-04 "Enduring Freedom
+      of Information." Replayable artifact pinning (Finanzamt letter,
+      pinned Wau Holland project-04 page snapshot, transparency
+      report) deferred to human audit; trigger and effect are
+      contemporaneously attested in foundation self-reporting and
+      independent journalism. Load-bearing observed_change attached
+      below.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:de_fa_kassel
+    event: finanzamt_kassel_challenges_wau_holland_2010_gemeinnuetzig_status_disrupting_wikileaks_donation_channel
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2010-12-15T00:00:00Z
+    precision: week
+    delta_hours: 0
+    country: DE
+    sources:
+      - type: supporting_journalism
+        url: https://en.wikipedia.org/wiki/Wau_Holland_Foundation
+        wayback: https://web.archive.org/web/2010/https://en.wikipedia.org/wiki/Wau_Holland_Foundation
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          countries: [DE]
+          providers: [wau_holland_stiftung]
+          time_window:
+            - 2010-12-01T00:00:00Z
+            - 2011-01-31T23:59:59Z
+        note: |
+          Tertiary-source consolidation of the Finanzamt Kassel review
+          opening (December 2010) and the January 2011 formal
+          revocation letter ("wegen Verstosses gegen das Gebot der
+          Selbstlosigkeit"). attribution=plausible (not direct) per
+          codebook §1: the actor (Finanzamt Kassel) is identified and
+          the effect (disruption of the WikiLeaks donation forwarding
+          channel) is consistent with the trigger, but no primary-
+          legal pin on the Kassel letter itself is publicly archived;
+          the link from review-opening to donation-channel disruption
+          is one-step inferential rather than directly attested in a
+          single primary document.
+      - type: primary_corporate
+        url: https://wauland.de/en/projects/enduring-freedom-of-information-wikileaks/
+        wayback: https://web.archive.org/web/2010/https://wauland.de/en/projects/enduring-freedom-of-information-wikileaks/
+        evidence_use: contextual_unarchived
+        note: |
+          Wau Holland Stiftung project-04 page is the affected-entity
+          primary-corporate pin: the foundation itself documents the
+          WikiLeaks donation-forwarding role and the multi-year
+          tax-status negotiation with German authorities triggered by
+          that role.
+      - type: supporting_journalism
+        url: https://www.weeklystandard.com/john-rosenthal/tax-deductible-wikileaks
+        wayback: https://web.archive.org/web/2010/https://www.weeklystandard.com/john-rosenthal/tax-deductible-wikileaks
+        evidence_use: contextual_unarchived
+        note: |
+          Independent contemporaneous English-language journalism pin
+          on the Finanzamt Kassel review and the gemeinnuetzig-status
+          question.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.2D 2026-05-17** (agent_draft per
+  user instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this drafting session). Authored by LLM
+  agent without personally verifying Wayback/body_hash; human review
+  required to elevate to admitted status.
+
+  Temporal tier: discovery_only_2008_2012 (analysis_use=
+  discovery_ledger_only — the controlled-vocab spelling of the
+  user-instruction's "discovery_only" shorthand per codebook §6). The
+  event predates the 2017+ comparable-analysis tier and the 2013+
+  historical-baseline tier; it is admitted to the discovery ledger
+  only, not to the comparable-denominator corpus.
+
+  Timestamp caveat (key dryrun risk for this row): the user-supplied
+  trigger_date≈2010-12-15 reflects the *opening* of the Finanzamt
+  Kassel review during December 2010. The *formal revocation letter*
+  was issued in January 2011, and a later Hamburg Tax Office
+  retroactive revocation followed on 2012-10-25. The 2010-12-15
+  timestamp pins the cascade-relevant moment (the regulatory pressure
+  arrives during the same week as the PayPal / PostFinance /
+  MasterCard / Visa-Europe / Bank-of-America cascade), but week-level
+  precision is required because no publicly archived day-precision
+  source for the December review opening has been located in this
+  drafting session. Human reviewer should consider (a) splitting this
+  into a 2010-12 "review opened" event and a 2011-01 "revocation
+  issued" event if a primary-legal Kassel-letter pin emerges, and
+  (b) re-checking the 2010-12-15 anchor against any contemporaneous
+  Wau Holland Stiftung transparency-report dating of the review's
+  opening.
+
+  Attribution: plausible (not direct) per codebook §1. The actor
+  (Finanzamt Kassel) is identifiable and the effect (disruption of
+  the German-jurisdiction tax-deductible WikiLeaks donation rail) is
+  causally consistent with the trigger, but: (a) the Kassel review
+  letter is not publicly archived as a primary-legal pin, and (b) the
+  link from review-opening (December 2010) to actual donation-channel
+  disruption is one-step inferential rather than directly attested in
+  a single primary document. Conservative coding per codebook §8.4.
+
+  Stratum + trigger.type: S4_nation_state with trigger.type=
+  regulatory_enforcement per codebook §5.1 (non-US national-regulator
+  administrative enforcement — the Finanzamt Kassel is a German
+  Land-level tax authority issuing an administrative gemeinnuetzig-
+  status determination, not a network/payment-rail block).
+
+  comparison shape: exactly 1 observed_change layer at offramp_cex
+  (attribution=plausible, source-anchored on the Wau Holland project-04
+  page plus tertiary/journalism consolidation of the Kassel review
+  timeline). All other layers (l0_network, l1_consensus, l3_rpc,
+  l4_frontend, asset_onchain) are not_applicable.
+
+  Sibling-event structure (the WikiLeaks 2010-12 financial-isolation
+  cascade): this is the German-Land-tax-authority leg, structurally
+  distinct from the US-payment-processor legs (PayPal, Bank of
+  America) and the Swiss-state-postal-banking leg (PostFinance). It
+  is the only S4_nation_state regulatory leg of the 2010 WikiLeaks
+  blockade and the only leg targeting the *charitable-pass-through*
+  rather than direct-account rail. related_events anchors:
+  wikileaks-paypal-freeze-2010-12, wikileaks-postfinance-account-
+  closure-2010-12, wikileaks-bank-of-america-block-2010-12.
+
+  DRYRUN caveats: all citations carry wayback wildcard pointers and
+  evidence_use=contextual_unarchived because no body_hash+body_path
+  captures have been pinned in this drafting session. For non-DRYRUN
+  release, capture body_hash + body_path for: (1) the Wau Holland
+  Stiftung project-04 page, (2) the Wau Holland transparency-report
+  PDF(s) covering 2010-2012, (3) the en.wikipedia Wau Holland
+  Foundation entry, (4) the Weekly Standard "Tax Deductible WikiLeaks"
+  article, and ideally (5) a primary-legal pin on the Finanzamt
+  Kassel revocation letter if a German-tax-authority archival source
+  can be located.
+
+scoped_claim: |
+  "In December 2010, the German Finanzamt Kassel opened an
+  administrative review of the Wau Holland Stiftung's
+  gemeinnuetzig (tax-exempt) status for 2010 over its project-04
+  forwarding of donations to WikiLeaks, disrupting the EU-wide
+  tax-deductible WikiLeaks donation rail the foundation had operated
+  and presaging the formal January 2011 revocation. One
+  observed_change at offramp_cex (attribution=plausible, anchored on
+  Wau Holland Stiftung self-reporting and contemporaneous
+  journalism). Discovery-ledger-only per temporal_tier=
+  discovery_only_2008_2012."
+
+tags:
+  - regulatory_enforcement
+  - wikileaks
+  - wau_holland
+  - finanzamt_kassel
+  - germany
+  - charitable_foundation
+  - tax_exempt_status
+  - financial_blockade
+  - offramp_cex
+  - s4_nation_state
+  - discovery_only_2008_2012
+  - dryrun_2026_05_17

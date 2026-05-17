@@ -1,0 +1,283 @@
+id: ebullion-doj-fbi-seizure-2008-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - egold-doj-guilty-plea-2008-07
+  - liberty-reserve-costa-rica-license-denial-2011-03
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_CDCA
+  timestamp: 2008-08-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-cdca/pr/united-states-returns-98-million-recovered-e-bullion-illegal-money-transmitting
+      wayback: https://web.archive.org/web/2008/https://www.justice.gov/usao-cdca/pr/united-states-returns-98-million-recovered-e-bullion-illegal-money-transmitting
+      evidence_use: contextual_unarchived
+      note: |
+        US Attorney's Office, Central District of California press
+        release: "United States Returns $9.8 Million Recovered from
+        e-Bullion Illegal Money-Transmitting Business to Victims."
+        Records that James Fayed (founder of e-Bullion / Goldfinger
+        Coin & Bullion of Moorpark, California) was charged in 2008
+        with conducting an unlicensed money-transmitting business in
+        violation of 18 USC s 1960, and that the US Attorney's Office
+        for the Central District of California, working with FBI and
+        IRS-CI, seized the assets of the Goldfinger group of companies
+        — including the gold bullion backing e-Bullion.com on deposit
+        at the Perth Mint and the Fayed family ranch in California.
+        Trigger date 2008-08-01 represents the day-precision opening
+        of the seizure / arrest window (Fayed in federal custody as of
+        2008-08-04 per contemporaneous trade press; e-Bullion.com
+        website pulled 2008-08-05). evidence_use=contextual_unarchived
+        because no body_hash has been independently captured in this
+        DRYRUN authoring pass; the justice.gov press page remains
+        publicly accessible and a 2008 Wayback bracketing is
+        straightforward in follow-up human-audit. Provisional
+        year-prefix wayback anchor pending re-pin.
+    - type: primary_legal
+      url: https://www.fbi.gov/contact-us/field-offices/losangeles/news/press-releases/united-states-returns-nearly-12-million-to-victims-of-illegal-money-transmitting-business-called-e-bullion
+      wayback: https://web.archive.org/web/2008/https://www.fbi.gov/contact-us/field-offices/losangeles/news/press-releases/united-states-returns-nearly-12-million-to-victims-of-illegal-money-transmitting-business-called-e-bullion
+      evidence_use: contextual_unarchived
+      note: |
+        FBI Los Angeles Field Office press release: "United States
+        Returns Nearly $12 Million to Victims of Illegal
+        Money-Transmitting Business Called e-Bullion." Documents the
+        FBI's investigative role alongside the US Attorney's Office
+        CDCA and IRS-CI. Identifies e-Bullion as an internet-based
+        digital-gold-currency platform operated without a money
+        transmitter license, with roughly $35 million/month routed
+        through Goldfinger Coin & Bullion / e-Bullion at the
+        platform's height. Retained as primary_legal corroborating
+        pointer; the CDCA press release above is the load-bearing
+        trigger anchor. evidence_use=contextual_unarchived.
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/E-Bullion
+      wayback: https://web.archive.org/web/2008/https://en.wikipedia.org/wiki/E-Bullion
+      evidence_use: contextual_unarchived
+      note: |
+        Wikipedia article on e-Bullion summarising the 2008-08
+        seizure timeline: Fayed in federal custody by 2008-08-04
+        facing 18 USC s 1960 charges; seizure of $60,000 cash,
+        $24,000,000 in gold bullion, and rental-car credit-card
+        evidence later linked to Pamela Fayed's murder; e-Bullion.com
+        website taken down 2008-08-05. Tertiary corroborating
+        reference for trigger-window dating; not load-bearing.
+        evidence_use=contextual_unarchived.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the CDCA / FBI LA press releases and
+        contemporaneous trade-press dating (Pacific Coast Business
+        Times 2008-08-01; Fayed in federal custody by 2008-08-04;
+        e-Bullion.com pulled 2008-08-05). The 2008-08-01 trigger date
+        is the opening of the public arrest-and-seizure window. Exact
+        warrant-issuance timestamp is not coded; intra-day precision
+        is not necessary for the trigger event.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named target entity: e-Bullion (operated by Goldfinger Coin &
+    Bullion of Moorpark, California; founder James Fayed). e-Bullion
+    was an internet-based digital-gold-currency platform (gold and
+    silver units transferred instantly between customer accounts),
+    a 2001-launched precursor to later digital-currency platforms
+    and a contemporaneous peer of e-Gold. The 2008-08 DOJ/FBI action
+    seized the corporate assets of the Goldfinger group including
+    the Perth-Mint-held bullion backing e-Bullion.com and the Fayed
+    family ranch; e-Bullion.com itself was taken offline 2008-08-05.
+    Marked subset because the action targets the named operator
+    (Goldfinger / e-Bullion / Fayed) rather than an enumerated
+    complete set of e-Bullion account holders. e-Bullion's gold/
+    silver units were off-chain ledger entries administered by
+    Goldfinger; no blockchain addresses are enumerated.
+  actor_type: digital_currency_administrator_msb
+  actor_name: e-Bullion / Goldfinger Coin & Bullion / James Fayed
+  canonical_domains:
+    - e-bullion.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2008-08 DOJ/FBI seizure did not invoke any ISP / DNS /
+      network-layer block of e-bullion.com. The website was taken
+      down 2008-08-05 as a consequence of the corporate seizure of
+      the operator, not as a network-layer order. Public-web L0
+      instruments (Censored Planet, OONI) do not apply to a 2008
+      corporate enforcement event.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      e-Bullion was a centralized digital-gold-currency platform
+      (gold/silver-grams as the unit of account, administered by
+      Goldfinger Coin & Bullion); there is no blockchain and no
+      decentralized consensus layer. Out of scope; consensus-layer
+      filtering surfaces did not exist for any chain in 2008
+      (Bitcoin genesis 2009-01).
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC provider surface is implicated. e-Bullion was a
+      centralized web-account ledger pre-dating any RPC-mediated
+      crypto infrastructure.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      e-bullion.com was taken offline on 2008-08-05 as a downstream
+      corporate consequence of the operator's federal arrest and
+      asset seizure, not via a DOJ-attributed frontend seizure
+      banner. Recording the post-seizure offline state as L4
+      observed_change would conflate corporate wind-down with a
+      DOJ-ordered frontend takedown, so L4 is not coded.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      e-Bullion's gold/silver units were off-chain ledger entries
+      administered by Goldfinger Coin & Bullion (with physical
+      bullion held at the Perth Mint), not blockchain tokens. No
+      asset-layer freeze instrument exists to attach.
+  - layer: offramp_cex
+    status: measured
+    scope: [e_bullion]
+    note: |
+      Load-bearing layer. e-Bullion operated as a centralized
+      digital-currency administrator and gold/silver exchanger.
+      The 2008-08 DOJ/FBI seizure of the Goldfinger group's assets
+      and the federal arrest of founder James Fayed ended the
+      platform's operations; e-bullion.com was pulled 2008-08-05
+      and the platform did not resume. Coverage status `measured`
+      because the platform shutdown is publicly attested in the
+      CDCA / FBI LA press releases, even though this DRYRUN row
+      does not pin per-quarter Wayback-frontend snapshots.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:e_bullion
+    event: ebullion_ceases_operations_following_doj_fbi_seizure_and_founder_arrest
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2008-08-05T00:00:00Z
+    precision: day
+    delta_hours: 96
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-cdca/pr/united-states-returns-98-million-recovered-e-bullion-illegal-money-transmitting
+        wayback: https://web.archive.org/web/2008/https://www.justice.gov/usao-cdca/pr/united-states-returns-98-million-recovered-e-bullion-illegal-money-transmitting
+        scope_descriptor:
+          providers: [e_bullion]
+          time_window:
+            - 2008-08-01T00:00:00Z
+            - 2009-12-31T23:59:59Z
+        note: |
+          CDCA US Attorney's Office press release recording the
+          federal indictment, arrest, and asset seizure against
+          James Fayed and the Goldfinger group operating e-Bullion
+          under 18 USC s 1960 (unlicensed money transmitting). The
+          seizure encompassed Perth-Mint-held bullion backing
+          e-bullion.com and the operator's California ranch;
+          e-bullion.com was taken offline 2008-08-05 and the platform
+          did not resume. attribution=direct under §1.2/§1.4 analogue:
+          the DOJ trigger names the target operator (Goldfinger /
+          e-Bullion / Fayed) and the platform shutdown is within the
+          publicly-knowable compliance window (≤7 days post-seizure).
+          evidence_use=contextual_unarchived for this DRYRUN
+          authoring pass.
+      - type: primary_legal
+        url: https://www.fbi.gov/contact-us/field-offices/losangeles/news/press-releases/united-states-returns-nearly-12-million-to-victims-of-illegal-money-transmitting-business-called-e-bullion
+        wayback: https://web.archive.org/web/2008/https://www.fbi.gov/contact-us/field-offices/losangeles/news/press-releases/united-states-returns-nearly-12-million-to-victims-of-illegal-money-transmitting-business-called-e-bullion
+        scope_descriptor:
+          providers: [e_bullion]
+          time_window:
+            - 2008-08-01T00:00:00Z
+            - 2009-12-31T23:59:59Z
+        note: |
+          FBI Los Angeles Field Office press release corroborating
+          the CDCA seizure and identifying e-Bullion as an
+          internet-based digital-gold-currency platform routing
+          ~$35M/month at peak. Supports the offramp_cex shutdown
+          observation. evidence_use=contextual_unarchived.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-17** (Wave 2.2D discovery-
+  tier authoring): new discovery_only_2008_2012 event for the
+  2008-08 DOJ CDCA / FBI LA seizure of e-Bullion / Goldfinger Coin
+  & Bullion and the federal arrest of founder James Fayed under
+  18 USC s 1960. Authored by LLM agent without personally verifying
+  Wayback/body_hash; origin=agent_draft and status=draft per
+  validator constraint. Real release must replace this DRYRUN
+  marker with a human-verified audit after pinning real archive
+  anchors (the wayback URLs here are 2008 wildcard pointers, not
+  pinned snapshot timestamps). Trigger date 2008-08-01 is the
+  day-precision opening of the public arrest-and-seizure window;
+  the most precise public anchors are 2008-08-04 (Fayed in federal
+  custody per Pacific Coast Business Times 2008-08-01 reporting)
+  and 2008-08-05 (e-bullion.com pulled offline). 2008-08-26 referenced
+  in the prompt as a candidate could not be confirmed in this pass;
+  retained as 2008-08-01 trigger window opening with day precision.
+
+  comparison shape: 1 observed_change layer (offramp_cex, e-Bullion
+  service operations cessation following operator seizure and
+  founder arrest). The 2008-08 DOJ CDCA / FBI LA action against
+  e-Bullion is the immediate sibling to the 2008-07-21 e-Gold DC
+  guilty plea (related_events: egold-doj-guilty-plea-2008-07) and
+  together they establish the pre-Bitcoin 18-USC-1960 enforcement
+  template against digital-gold-currency administrators that
+  predates FinCEN FIN-2013-G001 by ~5 years and the Liberty Reserve
+  Costa Rica license denial (2011-03) by ~3 years. attribution=
+  direct under §1.2/§1.4 analogue: the DOJ trigger names the target
+  operator and the platform shutdown falls within the publicly-
+  knowable compliance window (e-bullion.com pulled within 4 days of
+  the public arrest-and-seizure window opening). L0/L1/L3/L4 and
+  asset_onchain are all not_applicable: e-Bullion was a centralized
+  digital-gold-currency platform (off-chain ledger; physical bullion
+  at Perth Mint), pre-dating any blockchain by ~6 months. Admission
+  tier empirical_case (1 strong-attribution observed_change layer).
+
+  Discovery-tier-only by construction: temporal_tier=
+  discovery_only_2008_2012 and analysis_use=discovery_ledger_only.
+  This row carries no comparable-analysis denominator weight; its
+  purpose is to anchor the 2008+ pre-Bitcoin DOJ MSB enforcement
+  predicate alongside egold-doj-guilty-plea-2008-07 and
+  liberty-reserve-costa-rica-license-denial-2011-03. Founder James
+  Fayed was later convicted (2010) of murder-for-hire of his wife
+  Pamela Fayed; that prosecution is collateral to the e-Bullion
+  shutdown and not coded here.
+
+scoped_claim: |
+  "The 2008-08 DOJ CDCA / FBI LA federal arrest of James Fayed and
+  asset seizure against Goldfinger Coin & Bullion / e-Bullion under
+  18 USC s 1960 (unlicensed money transmitting) produced an
+  offramp_cex cascade (e-Bullion's digital-gold-currency service
+  ceased; e-bullion.com pulled 2008-08-05; platform did not resume).
+  The row claims only this single-layer offramp shutdown observation
+  with attribution=direct; no L0/L1/L3/L4/asset-onchain effects are
+  coded. Discovery-tier only: no comparable-analysis use."
+
+tags:
+  - doj_enforcement
+  - fbi_seizure
+  - unlicensed_money_transmitter
+  - 18_usc_1960
+  - e_bullion
+  - goldfinger_coin_bullion
+  - digital_gold_currency
+  - pre_bitcoin_digital_currency
+  - discovery_ledger
+  - offramp_shutdown

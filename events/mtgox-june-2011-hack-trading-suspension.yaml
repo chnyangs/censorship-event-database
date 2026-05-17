@@ -1,0 +1,220 @@
+id: mtgox-june-2011-hack-trading-suspension
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - mtgox-coinlab-civil-2013
+  - mtgox-usd-withdrawal-suspension-2013-06
+  - mtgox-dhs-dwolla-wells-fargo-seizure-2013
+
+trigger:
+  type: corporate_policy_change
+  actor: MTGOX_OPERATOR
+  timestamp: 2011-06-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/Mt._Gox
+      wayback: https://web.archive.org/web/2011/https://en.wikipedia.org/wiki/Mt._Gox
+      evidence_use: contextual_unarchived
+      note: |
+        Mt. Gox Wikipedia summary documenting the 2011-06-19 incident: a
+        compromised auditor / user-database credential was used to flood
+        the Mt. Gox order book with sell orders that nominally drove the
+        BTC price to ~$0.01, triggering an operator-initiated trading
+        suspension on 2011-06-20 through 2011-06-26 while Mt. Gox rolled
+        back the fraudulent trades. evidence_use=contextual_unarchived:
+        no body_hash captured into sources/http_captures/ in this session.
+    - type: supporting_journalism
+      url: https://blockonomi.com/mt-gox-hack/
+      wayback: https://web.archive.org/web/2011/https://blockonomi.com/mt-gox-hack/
+      evidence_use: contextual_unarchived
+      note: |
+        Blockonomi long-form retrospective on the Mt. Gox 2011-06-19 hack
+        and the trader-account flood that crashed the BTC nominal price
+        to ~$0.01 on Mt. Gox, prompting the operator-initiated trading
+        halt and trade-rollback. evidence_use=contextual_unarchived: no
+        body_hash captured into sources/http_captures/ in this session.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All Mt. Gox trading-platform customers globally during the 2011-06-20
+    to 2011-06-26 suspension window. Mt. Gox suspended all trading after
+    a compromised auditor / user-database credential was used to flood
+    the order book with sell orders and drive the nominal BTC price to
+    ~$0.01. No on-chain BTC address enumeration; the action is an
+    operator-layer offramp trading suspension.
+  actor_type: exchange
+  actor_name: Mt. Gox
+  chains: [bitcoin]
+  canonical_domains:
+    - mtgox.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      mtgox.com itself was not ISP-blocked; the 2011-06-20 suspension was
+      an operator-initiated trading halt published on the operator's own
+      web property. Standard public-web L0 instruments do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin proof-of-work consensus in 2011 has no protocol-level relay-
+      filter primitive analogous to the post-Merge Ethereum PBS relay
+      surface. not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The MEV-Boost / Flashbots Protect public-RPC compliance substrate
+      that the L3 layer measures did not exist in 2011. not_applicable
+      on construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No domain seizure or frontend takedown; mtgox.com continued to
+      serve a status page during the suspension window.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin
+      method. The 2011-06 action operated on Mt. Gox internal trading
+      books, not on-chain BTC.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - mtgox_trading_suspension
+    note: |
+      Mt. Gox trading globally suspended 2011-06-20 through 2011-06-26
+      following the 2011-06-19 compromise. partially_measured because
+      contemporary journalism and Wikipedia memorialize the suspension
+      but no replayable operator-press-release body_hash is pinned
+      this session.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:mtgox
+    event: trading_suspended_post_hack_2011_06
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2011-06-20T00:00:00Z
+    precision: day
+    delta_hours: 24
+    window:
+      - 2011-06-20T00:00:00Z
+      - 2011-06-26T23:59:59Z
+    sources:
+      - type: supporting_journalism
+        url: https://en.wikipedia.org/wiki/Mt._Gox
+        wayback: https://web.archive.org/web/2011/https://en.wikipedia.org/wiki/Mt._Gox
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [GLOBAL]
+          time_window:
+            - 2011-06-20T00:00:00Z
+            - 2011-06-26T23:59:59Z
+        note: |
+          attribution=plausible per §1 codebook: the suspension is an
+          operator-policy choice in response to an internal security
+          incident (user-database compromise + fraudulent sell flood),
+          not externally compelled by a sanction, court order, or
+          regulator action. Coded as a comparison-shape S5_corporate
+          row because the operator-initiated halt is the proximate
+          trigger and the only observed change layer. evidence_use=
+          contextual_unarchived: no body_hash captured into
+          sources/http_captures/ in this session.
+      - type: supporting_journalism
+        url: https://blockonomi.com/mt-gox-hack/
+        wayback: https://web.archive.org/web/2011/https://blockonomi.com/mt-gox-hack/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [mtgox]
+          countries: [GLOBAL]
+          time_window:
+            - 2011-06-20T00:00:00Z
+            - 2011-06-26T23:59:59Z
+        note: |
+          Corroborating retrospective on the suspension window
+          (2011-06-20 to 2011-06-26) and the post-incident operator
+          trade-rollback. evidence_use=contextual_unarchived: no
+          body_hash captured into sources/http_captures/ in this
+          session.
+
+recovery:
+  - layer: offramp_cex
+    resolved: true
+    resolved_timestamp: 2011-06-26T23:59:59Z
+    note: |
+      Mt. Gox resumed trading on 2011-06-26 after rolling back the
+      fraudulent trades executed during the order-book flood.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN Wave 2.2D 2026-05-17**: authored
+  end-to-end by LLM agent for the discovery_only_2008_2012 tier.
+  Mt. Gox's 2011-06-19 hack and the 2011-06-20 to 2011-06-26 operator-
+  initiated trading suspension is the first major exchange trading
+  suspension under operator policy in the Bitcoin offramp record.
+
+  Coding rationale:
+  - research_stratum=S5_corporate, trigger.type=corporate_policy_change:
+    the proximate trigger is Mt. Gox's own decision to halt trading and
+    roll back fraudulent trades, not an external regulator action.
+  - attribution=plausible (per §1 codebook): the operator does cite
+    the hack as the cause, but the "trigger" is an internal security
+    incident rather than a sanction, indictment, or court order. The
+    suspension is an operator-policy choice in response to a hack,
+    not externally compelled censorship. Conservative coding per §8.4.
+  - empirical_shape=comparison: 1 observed_change layer (offramp_cex);
+    L0/L1/L3/L4/asset_onchain all not_applicable on construct-did-not-
+    exist / out-of-scope grounds.
+  - admission_tier=empirical_case: 1 strong-attribution (plausible)
+    observed_change layer.
+  - temporal_tier=discovery_only_2008_2012, analysis_use=
+    discovery_ledger_only: pre-2013 row; not used in main statistical
+    denominators.
+  - evidence_use=contextual_unarchived everywhere; mtgox.com is dead
+    and no operator press release for the 2011 suspension is pinned
+    this session. Wayback memento URL pattern (web.archive.org/web/
+    2011/...) per dryrun wave 2.2D wayback discipline.
+
+  This row is part of the Mt. Gox cross-event chain: it precedes
+  mtgox-coinlab-civil-2013 (civil dispute), mtgox-dhs-dwolla-wells-
+  fargo-seizure-2013 (federal seizure trigger), and mtgox-usd-
+  withdrawal-suspension-2013-06 (downstream operator action). Status
+  remains draft pending real-archive capture and human review.
+
+scoped_claim: |
+  "Mt. Gox suspended all trading globally from 2011-06-20 to
+  2011-06-26 after a 2011-06-19 user-database compromise was used to
+  flood the order book with sell orders and crash the nominal BTC
+  price to ~$0.01. The row claims only this single-layer offramp_cex
+  operator-suspension observation, coded as attribution=plausible
+  because the suspension is an operator-policy choice in response to
+  a hack rather than externally compelled censorship. Discovery-only
+  tier; not used in main statistical denominators."
+
+tags:
+  - discovery_only_2008_2012
+  - mtgox
+  - operator_action
+  - corporate_policy
+  - exchange_hack
+  - trading_suspension
+  - dryrun_wave_2_2d_2026_05_17

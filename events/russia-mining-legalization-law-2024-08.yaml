@@ -1,0 +1,323 @@
+id: russia-mining-legalization-law-2024-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - russia-mining-regional-ban-2024-12
+  - russia-dfa-law-2020
+
+trigger:
+  type: regulatory_enforcement
+  actor: RU_FEDERAL_LAW
+  timestamp: 2024-08-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://tass.com/economy/1826725
+      wayback: https://web.archive.org/web/2024/https://tass.com/economy/1826725
+      evidence_use: contextual_unarchived
+      note: |
+        TASS English-language announcement dated 2024-08-08 reporting
+        that Russian President Vladimir Putin signed Federal Law
+        No. 221-FZ "On Amendments to Certain Legislative Acts of the
+        Russian Federation," legalizing cryptocurrency mining in
+        Russia. The law introduces statutory definitions of "digital
+        currency mining," "mining pool," and "mining infrastructure
+        operator," permits Russian legal entities and individual
+        entrepreneurs registered on a special Federal Tax Service
+        registry to engage in industrial-scale mining, and allows
+        individual non-registered miners to participate within
+        government-set electricity-consumption limits. Effective dates
+        are staggered: most provisions enter into force ten days after
+        publication, and the special-registry provisions take effect
+        2024-11-01. Wayback anchor uses the year-prefix lookup form
+        and requires human-audit re-pinning before any
+        admission-anchor use; evidence_use=contextual_unarchived in
+        the interim.
+    - type: supporting_journalism
+      url: https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
+      wayback: https://web.archive.org/web/2024/https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
+      evidence_use: contextual_unarchived
+      note: |
+        Bitcoin Magazine contemporaneous English-language coverage of
+        the 2024-08-08 Putin signature of Federal Law No. 221-FZ,
+        corroborating the 2024-11-01 effective date for the
+        special-registry regime and the industrial-scale mining
+        framework. Wayback anchor pending human-audit re-pinning;
+        evidence_use=contextual_unarchived.
+    - type: supporting_journalism
+      url: https://interfax.com/newsroom/top-stories/104968/
+      wayback: https://web.archive.org/web/2024/https://interfax.com/newsroom/top-stories/104968/
+      evidence_use: contextual_unarchived
+      note: |
+        Interfax English-language coverage dated 2024-08-08 confirming
+        Putin's signature of the bill legalizing cryptocurrency mining
+        in Russia, corroborating the staggered effective dates and the
+        registration regime. Used as a triangulation anchor for the
+        TASS primary source. Wayback anchor uses the year-prefix
+        lookup form; evidence_use=contextual_unarchived pending
+        human-audit re-pinning.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Federal Law No. 221-FZ carries a signing date of 2024-08-08 by
+        President Putin per TASS, Interfax, Bitcoin Magazine, and
+        other contemporaneous coverage. The special-registry
+        provisions take effect 2024-11-01. Day-level precision is the
+        supportable upper bound for the signing event.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the regulatory class of cryptocurrency-mining
+    activity within Russia: industrial-scale mining performed by
+    Russian legal entities and individual entrepreneurs (subject to
+    inclusion on the Federal Tax Service special registry) and
+    individual-scale mining by Russian citizens (subject to
+    government-set electricity-consumption limits). The law does not
+    enumerate specific named mining operators; enumeration=subset
+    rather than complete because the addressed population is a
+    statutory class (all in-Russia mining activity) rather than a
+    closed roster, matching the convention used by the sibling
+    russia-dfa-law-2020 (Federal Law No. 259-FZ) and the sibling
+    russia-mining-regional-ban-2024-12 (regional-activity-class
+    target).
+  protocol: null
+  actor_type: russia_mining_activity_class
+  actor_name: Cryptocurrency-mining activity within the Russian Federation (industrial-scale registered + individual within consumption limits)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Federal Law No. 221-FZ does not direct ISP-level domain blocking
+      or DNS interference. The law operates at the federal statutory
+      / registration / electricity-consumption layer, not the network
+      layer. not_applicable on construct-not-engaged grounds,
+      consistent with the sibling russia-dfa-law-2020 L0 treatment.
+  - layer: l1_consensus
+    status: not_measured
+    chain: bitcoin
+    note: |
+      Federal Law No. 221-FZ is the permissive framework law that
+      legalizes industrial-scale Bitcoin mining in Russia under a
+      Federal Tax Service registration regime, with most provisions
+      effective ten days after publication and the special-registry
+      provisions effective 2024-11-01. The l1_consensus layer is the
+      semantically relevant layer (mining_hashpower maps to
+      l1_consensus per the authoring brief), but the law itself
+      neither shuts down nor compels any specific hashpower change:
+      it formalizes the prior gray-market mining activity into a
+      regulated registered class. No observed_change is recorded at
+      this layer in this authoring pass; the post-effective-date
+      hashrate redistribution attributable specifically to the
+      legalization (versus concurrent regulatory moves, electricity
+      pricing changes, and the 2024-12-23 regional ban that
+      counter-balanced the federal legalization) has not been
+      quantitatively measured here. not_measured pending replayable
+      hashrate-share evidence; a coverage_gap observation row is
+      recorded below to signal the null_event posture.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The law is a Bitcoin-mining federal framework statute; it does
+      not engage the MEV-Boost / Flashbots Protect / MEV-Blocker
+      public-Ethereum RPC compliance substrate. not_applicable on
+      construct-not-engaged / scope-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The law targets mining activity at the federal registration /
+      electricity-consumption layer, not crypto-exchange or
+      crypto-application frontends. No L4 frontend takedown is
+      directed or implied. not_applicable on construct-not-engaged
+      grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The law is a mining-activity framework statute; it does not
+      engage stablecoin-issuer admin-freeze primitives or any other
+      on-chain issuer-side mechanism. not_applicable on
+      construct-not-engaged grounds.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The law targets mining at the federal registration /
+      electricity-consumption layer. It does not direct Russian or
+      foreign-licensed exchanges to retire Russian-user accounts or
+      to suspend service. The separate Russian crypto-payments /
+      circulation regime is the subject of the sibling
+      russia-cbr-crypto-payment-ban-2022 and russia-dfa-law-2020;
+      this 2024-08-08 federal mining-legalization statute does not
+      engage the offramp_cex layer. not_applicable on
+      construct-not-engaged grounds.
+
+observations:
+  - layer: l1_consensus
+    actor: russia_mining_activity_class
+    event: russia_federal_law_221_fz_legalizes_industrial_mining_under_registration_regime
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2024-08-08T00:00:00Z
+    precision: day
+    note: |
+      Federal Law No. 221-FZ "On Amendments to Certain Legislative
+      Acts of the Russian Federation" was signed by President Putin
+      on 2024-08-08, with most provisions effective ten days after
+      publication and the special-registry provisions effective
+      2024-11-01. The law is permissive: it legalizes (does not
+      prohibit) industrial-scale Bitcoin mining in Russia under a
+      Federal Tax Service registration regime, recognizes mining as
+      statutory turnover, and routes operators through a special
+      registry. The l1_consensus layer is the semantically relevant
+      mining_hashpower substrate, but no measured Russian
+      hashpower-share shock attributable specifically to the
+      2024-08-08 signing or 2024-11-01 effective date (versus the
+      counter-balancing 2024-12-23 regional ban) has been pinned in
+      this authoring pass. Recorded as coverage_gap with
+      attribution=unknown to signal the null_event posture: the law
+      established the federal mining-legalization frame but did not
+      produce a per-event consensus-layer cascade. This observation
+      row does NOT count toward empirical_shape or admission_tier
+      (coverage_gap rows are excluded by codebook §3 / §4).
+    sources:
+      - type: primary_legal
+        url: https://tass.com/economy/1826725
+        wayback: https://web.archive.org/web/2024/https://tass.com/economy/1826725
+        evidence_use: contextual_unarchived
+        note: |
+          TASS reporting establishes that Federal Law No. 221-FZ is a
+          permissive framework law: it legalizes (does not prohibit)
+          industrial-scale Bitcoin mining in Russia, recognizes
+          mining as part of statutory turnover, and routes
+          industrial-scale operators through a Federal Tax Service
+          registry. Wayback anchor uses the year-prefix lookup form;
+          evidence_use=contextual_unarchived pending human-audit
+          re-pinning.
+      - type: supporting_journalism
+        url: https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
+        wayback: https://web.archive.org/web/2024/https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
+        evidence_use: contextual_unarchived
+        note: |
+          Bitcoin Magazine contemporaneous coverage corroborates the
+          permissive (legalization) character of the statute and the
+          staggered effective-date schedule (most provisions T+10
+          days, special-registry provisions 2024-11-01). Retained as a
+          triangulation anchor; evidence_use=contextual_unarchived
+          pending human-audit re-pinning of the Wayback snapshot.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.2D 2026-05-17** (P1 backlog
+  sweep for the Russia 2024-08-08 Federal Law No. 221-FZ mining
+  legalization): authored by LLM agent without personally verifying
+  Wayback / body_hash anchors; origin=agent_draft and status=draft per
+  the validator's agent-draft pathway. Real release must replace this
+  DRYRUN marker with a human-verified audit after pinning real
+  archive anchors and re-verifying the Russian-language official
+  publication of Federal Law No. 221-FZ on pravo.gov.ru / kremlin.ru.
+
+  S4_nation_state null_case anchored on the 2024-08-08 Russian
+  Federation Federal Law No. 221-FZ "On Amendments to Certain
+  Legislative Acts of the Russian Federation," signed by President
+  Vladimir Putin, legalizing cryptocurrency mining in Russia. Most
+  provisions take effect ten days after publication; the
+  special-registry provisions (Federal Tax Service registry of
+  industrial-scale miners and mining-infrastructure operators) take
+  effect 2024-11-01. Dual character: the law is permissive at the
+  federal level (it legalizes industrial mining and formalizes prior
+  gray-market activity under a registration regime), and is
+  counter-balanced by the subsequent 2024-12-23 Council of Ministers
+  regional ban (sibling event russia-mining-regional-ban-2024-12)
+  which carved out ten regions where mining is prohibited from
+  2025-01-01 through 2031-03-15.
+
+  Why trigger.type=regulatory_enforcement: per codebook §5.1, the
+  trigger.type=regulatory_enforcement enum value covers non-US
+  national-regulator administrative actions; for a Russian federal
+  framework statute issued by RU_FEDERAL_LAW (the Federal Assembly
+  acting through presidential signature) regulating the
+  mining-activity class, regulatory_enforcement is the closest
+  available enum value. The same trigger.type / actor pairing is used
+  by the sibling russia-dfa-law-2020 for the 2020-07-31 Federal Law
+  No. 259-FZ (DFA law), maintaining cross-event consistency for
+  Russian federal framework statutes that regulate the crypto
+  perimeter without engaging the network or payment-rail layer.
+
+  Why empirical_shape=null_event / admission_tier=null_case: the law
+  is a permissive framework statute that legalizes (does not
+  prohibit) industrial-scale mining. No observed_change is recorded
+  at any layer; the single observation row at l1_consensus is
+  observed_no_change with attribution=none. Per codebook §3,
+  null_event requires 0 observed_change layers with admission-grade
+  observed_no_change support; admission_tier=null_case follows from
+  0 strong-attribution observed_change layers (codebook §4). This is
+  a denominator-control row for the Russia federal mining-regulatory
+  arc rather than a paper-anchor cascade row.
+
+  Why target.kind=entity / enumeration=subset: the schema
+  target_kinds enum does not include "mining_activity_class" or
+  "regulated_industry_class"; entity is the closest enum for a
+  statutory class target, matching the convention used by sibling
+  russia-dfa-law-2020 (entity / subset for the Russian crypto-user
+  population class) and russia-mining-regional-ban-2024-12 (entity /
+  subset for the regional-mining-activity class). enumeration=subset
+  because the law addresses a statutory class (all in-Russia mining)
+  rather than an enumerated roster of named operators.
+
+  Why jurisdiction=[RU]: single-jurisdiction federal statute. The
+  Federal Tax Service registry is a domestic Russian instrument
+  without cross-border target enumeration.
+
+  Why all other layers are not_applicable / l1 is not_measured: the
+  law does not direct L0 ISP / DNS blocking, L3 RPC compliance,
+  L4 frontend takedowns, asset_onchain admin freezes, or
+  offramp_cex restrictions. The semantically relevant l1_consensus
+  layer is coded not_measured rather than not_applicable because
+  mining is the law's subject matter, but the law is permissive
+  rather than restrictive at the consensus / hashpower substrate;
+  no replayable hashpower-share artifact is pinned in this authoring
+  pass to support a measured / partially_measured coverage claim
+  (codebook §2 Kazakhstan precedent).
+
+  Dual-character cross-event framing: this 2024-08-08 federal
+  legalization and the 2024-12-23 regional ban (sibling
+  russia-mining-regional-ban-2024-12) together form a within-year
+  permissive-then-counterbalanced regulatory pair: the federal
+  legalization opens the registration regime, and the Council of
+  Ministers regional decision (acting on authority delegated by the
+  221-FZ framework) carves out ten regions of permanent prohibition
+  plus seasonal Siberian restrictions. Within-jurisdiction
+  longitudinal context: russia-cbr-bitcoin-information-letter-2014
+  (CBR advisory) → russia-dfa-law-2020 (Federal Law 259-FZ defining
+  digital currency and prohibiting payment use) →
+  russia-cbr-crypto-payment-ban-2022 (CBR payment-rail prohibition)
+  → russia-mining-legalization-law-2024-08 (this event) →
+  russia-mining-regional-ban-2024-12 (regional counter-balance).
+
+tags:
+  - regulatory_enforcement
+  - russia
+  - federal_law
+  - mining
+  - bitcoin
+  - l1_consensus
+  - legalization
+  - registration_regime
+  - dual_character
+  - null_event

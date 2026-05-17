@@ -1,0 +1,363 @@
+id: makerdao-emergency-shutdown-contingency-2022-08
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tornado-cash-ofac-2022
+  - circle-usdc-tornado-2022
+  - aave-arc-fireblocks-whitelist-2022-01
+
+trigger:
+  type: corporate_policy_change
+  actor: MAKERDAO_GOVERNANCE
+  timestamp: 2022-08-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
+      wayback: https://web.archive.org/web/2022/https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
+      evidence_use: contextual_unarchived
+      note: |
+        The Defiant 2022-08-18 coverage "MakerDAO May Execute 'Emergency
+        Shutdown' If Sanctions Hit DAI" — the primary contemporaneous
+        anchor for the MakerDAO governance debate triggered by the
+        2022-08-08 OFAC Tornado Cash SDN designation and Circle's
+        2022-08-08 USDC freeze of Tornado Cash addresses. Reports
+        Rune Christensen's Discord-posted contingency plan to execute
+        an Emergency Shutdown of the Maker Protocol if its core
+        USDC-PSM (Peg Stability Module) contracts were sanctioned, and
+        the parallel proposal to migrate DAI collateral away from
+        USDC/USDP toward ETH and to consider de-pegging DAI from the
+        US dollar. The "Endgame Plan" framing on the MakerDAO governance
+        forum is the canonical contemporaneous discussion locus.
+        DRYRUN: wayback wildcard pointer in lieu of pinned-timestamp
+        snapshot; evidence_use=contextual_unarchived because no
+        body_hash+body_path pair has been captured into
+        sources/http_captures/makerdao-emergency-shutdown-contingency-2022-08/
+        in this session.
+    - type: supporting_journalism
+      url: https://decrypt.co/107273/makerdao-founder-dai-drop-dollar-peg-tornado-cash-usdc
+      wayback: https://web.archive.org/web/2022/https://decrypt.co/107273/makerdao-founder-dai-drop-dollar-peg-tornado-cash-usdc
+      evidence_use: contextual_unarchived
+      note: |
+        Decrypt 2022-08-12 coverage "MakerDAO Founder Calls on DAI to
+        Drop Dollar Peg Amid Tornado Cash Fallout" — quotes Rune
+        Christensen's Discord posts arguing for de-pegging DAI from the
+        USD to insulate the protocol from Circle / USDC sanctions
+        exposure (USDC PSM held ~$3.56B / ~33% of DAI collateral at the
+        time). DRYRUN: wayback wildcard pointer in lieu of pinned
+        snapshot.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2022/08/18/makerdao-prepares-emergency-shutdown-contingency-in-case-of-usdc-sanctions
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/08/18/makerdao-prepares-emergency-shutdown-contingency-in-case-of-usdc-sanctions
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk 2022-08-18 contemporaneous coverage of the MakerDAO
+        governance debate over Emergency Shutdown contingency planning
+        in response to the Tornado Cash OFAC SDN designation and the
+        Circle USDC PSM exposure. Triangulation source on the day-level
+        anchor (2022-08-18) for the Christensen Discord posts and
+        forum-thread escalation. DRYRUN: wayback wildcard pointer
+        pending body_hash capture.
+    - type: supporting_journalism
+      url: https://cryptoslate.com/makerdao-plans-against-sanctions-from-usdc-exposure/
+      wayback: https://web.archive.org/web/2022/https://cryptoslate.com/makerdao-plans-against-sanctions-from-usdc-exposure/
+      evidence_use: contextual_unarchived
+      note: |
+        CryptoSlate contemporaneous coverage of the same MakerDAO
+        governance debate, retained for community-reaction context on
+        the USDC-PSM collateral exposure (~33% of DAI backing) and the
+        proposed asset-allocation migration toward ETH. DRYRUN: wayback
+        wildcard pointer pending body_hash capture.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision (2022-08-18) per the cluster of The Defiant
+        / CoinDesk / CryptoSlate coverage and Christensen's
+        contemporaneous Discord posts in the MakerDAO governance
+        channels. The Decrypt 2022-08-12 piece anchors the earlier
+        de-pegging proposal; the 2022-08-18 day is the canonical
+        anchor for the formal Emergency Shutdown contingency framing
+        on the MakerDAO governance forum. Sub-day precision not pinned
+        because Discord and forum-post timestamps were not captured
+        in this DRYRUN session.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the MakerDAO governance community + the MKR / DAI holder
+    class — the population that holds MKR governance tokens (voting
+    rights over Maker Protocol parameters including PSM collateral
+    composition, Emergency Shutdown trigger, and surplus-buffer policy)
+    and the DAI holder class whose redemption / peg backing depends on
+    the underlying collateral pool (~33% USDC PSM exposure at the time).
+    enumeration=subset because the affected class is an open-ended
+    population (all MKR voters and DAI holders during the 2022-08
+    Tornado-Cash-fallout governance window) rather than a closed
+    enumerable set; the governance debate addresses the class
+    collectively via the Discord channel and governance.makerdao.com
+    forum.
+
+    This row codes the **governance-debate / contingency-discussion
+    action** — MakerDAO governance publicly weighing Emergency
+    Shutdown, USDC-collateral migration toward ETH, and DAI USD-peg
+    abandonment as contingency responses to the 2022-08-08 OFAC
+    Tornado Cash SDN designation and Circle's parallel USDC freeze of
+    Tornado Cash addresses. No protocol parameter is changed during
+    the August 2022 debate window — neither Emergency Shutdown is
+    executed, nor is USDC collateral materially divested, nor is the
+    DAI USD peg abandoned. The debate itself is the artifact; the
+    counterfactual contingency framing is the analytical interest.
+  entity: makerdao_governance
+  actor_type: dao_governance
+  actor_name: MakerDAO governance community (MKR voters + Maker Foundation contributors)
+  asset: dai
+  protocol: makerdao
+  chains: [ethereum]
+  canonical_domains:
+    - makerdao.com
+    - forum.makerdao.com
+    - vote.makerdao.com
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      MakerDAO governance domains (makerdao.com, forum.makerdao.com,
+      vote.makerdao.com) remained reachable globally throughout the
+      2022-08 debate window; no ISP / DNS / network-filter surface is
+      engaged by an internal DAO governance discussion about
+      contingency planning. not_applicable on substrate-mismatch
+      grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Ethereum validator consensus surface is not engaged by a
+      MakerDAO governance debate. not_applicable on substrate-
+      mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public RPC provider filter lists are not implicated by a
+      MakerDAO governance debate. not_applicable on substrate-
+      mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend UI restriction follows from a DAO governance
+      contingency debate; MakerDAO's own governance properties
+      (forum.makerdao.com, vote.makerdao.com) continued to operate
+      and the debate itself is the public-policy anchor rather than
+      a separable frontend-restriction observation. not_applicable
+      on substrate-mismatch grounds.
+  - layer: asset_onchain
+    status: partially_measured
+    chain: ethereum
+    scope: [dai_erc20_contract, maker_psm_usdc_a, maker_psm_usdp_a]
+    note: |
+      No protocol-parameter change is enacted during the 2022-08
+      debate window — Emergency Shutdown is NOT triggered, the
+      USDC-PSM and USDP-PSM debt ceilings are NOT materially reduced
+      in August 2022, and the DAI USD peg is NOT abandoned. The
+      MakerDAO Emergency Shutdown Module (ESM) remains in standby
+      state; the PSM-USDC-A contract continues to operate at ~$3.56B
+      / ~33% of DAI collateral exposure throughout the debate window.
+      status=partially_measured because the DAI / MKR / PSM contracts
+      are the asset surface to which the governance debate speaks —
+      the on-chain state is observably **unchanged** during the
+      contingency-discussion window, scoped to the 2022-08-08 to
+      2022-08-31 period — yet no comprehensive replayable on-chain
+      audit slice has been pinned in this DRYRUN session. The
+      observed_no_change row attached below scopes the unchanged
+      state for falsifiability per Kazakhstan-precedent honesty rules.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No centralized-exchange off-ramp action is taken; the MakerDAO
+      governance debate addresses Maker Protocol contingency planning
+      only. Secondary-market DAI trading on CEXes was unaffected by
+      the debate. not_applicable on substrate-mismatch grounds.
+
+observations:
+  - layer: asset_onchain
+    actor: protocol:makerdao
+    event: makerdao_emergency_shutdown_not_triggered_collateral_composition_unchanged_during_tornado_cash_fallout_debate
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-08-18T00:00:00Z
+    precision: day
+    window:
+      - 2022-08-08T00:00:00Z
+      - 2022-08-31T23:59:59Z
+    sources:
+      - type: supporting_journalism
+        url: https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
+        wayback: https://web.archive.org/web/2022/https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [makerdao, maker_psm_usdc_a, maker_psm_usdp_a]
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          The Defiant 2022-08-18 coverage documents the MakerDAO
+          governance contingency debate — Christensen's Emergency
+          Shutdown proposal, the USDC-collateral migration discussion,
+          and the DAI USD-peg abandonment proposal — while
+          contemporaneously confirming that no Emergency Shutdown is
+          executed and the USDC-PSM ~33% collateral exposure remains
+          materially unchanged through the 2022-08 window. The article
+          serves as the falsifiability anchor for the observed_no_change
+          claim: a discretionary protocol-level censorship-response
+          action was publicly debated, but the protocol parameters
+          governing DAI backing and Emergency Shutdown remained
+          unchanged during the debate window. attribution=none per
+          codebook §1 (observed_no_change rows require
+          attribution=none). DRYRUN: wayback wildcard pointer in lieu
+          of pinned-timestamp snapshot.
+      - type: supporting_journalism
+        url: https://decrypt.co/107273/makerdao-founder-dai-drop-dollar-peg-tornado-cash-usdc
+        wayback: https://web.archive.org/web/2022/https://decrypt.co/107273/makerdao-founder-dai-drop-dollar-peg-tornado-cash-usdc
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [makerdao]
+          time_window:
+            - 2022-08-12T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          Decrypt 2022-08-12 piece anchors the de-pegging proposal as
+          a governance-debate artifact rather than an enacted policy
+          — confirms that no peg-abandonment vote was advanced through
+          on-chain governance during the August 2022 window. Companion
+          falsifiability source for the observed_no_change row.
+          DRYRUN: wayback wildcard pointer pending body_hash capture.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.2D re-author preamble 2026-05-17**:
+  authored by LLM agent without personally verifying Wayback /
+  body_hash anchors; status=draft / origin=agent_draft per validator.
+  Real release must replace this DRYRUN marker with a human-verified
+  audit after pinning real archive anchors (The Defiant 2022-08-18,
+  Decrypt 2022-08-12, CoinDesk 2022-08-18, CryptoSlate coverage; ideally
+  also a forum.makerdao.com "Endgame Plan" thread snapshot and a
+  governance.makerdao.com Emergency Shutdown Module / PSM-USDC-A debt-
+  ceiling history excerpt scoped to the 2022-08 window).
+
+  null_event — S5 corporate-governance counterfactual-contingency row
+  documenting the MakerDAO governance community's public 2022-08-18
+  debate over Emergency Shutdown contingency planning in response to
+  the 2022-08-08 OFAC Tornado Cash SDN designation and Circle's
+  parallel USDC freeze of Tornado Cash addresses. The debate canvassed
+  three discretionary protocol-level censorship-response postures:
+  (1) executing the Maker Protocol Emergency Shutdown Module to wind
+  down DAI if core PSM contracts were OFAC-sanctioned; (2) migrating
+  ~33% of DAI collateral from USDC/USDP toward ETH; (3) abandoning the
+  DAI USD peg entirely (Christensen's de-pegging proposal). None of
+  the three discretionary responses was enacted in the 2022-08 window:
+  Emergency Shutdown was not triggered, USDC-PSM collateral composition
+  remained materially unchanged, and the DAI USD peg was preserved.
+
+  Why null_event / null_case: this is a governance-debate /
+  counterfactual-contingency action, not a censorship cascade.
+  MakerDAO did NOT execute Emergency Shutdown, did NOT divest USDC
+  collateral, did NOT depeg DAI from USD, and did NOT impose any
+  discretionary holder restriction or address-level freeze during
+  the August 2022 debate window. The debate itself is the artifact;
+  the counterfactual contingency framing is the analytical interest.
+  Codebook §3: 0 observed_change layers → empirical_shape=null_event;
+  codebook §4: 0 strong-attribution observed_change layers →
+  admission_tier=null_case.
+
+  observed_no_change construction: attribution=none per codebook §1.1
+  (`none` is reserved for observed_no_change and coverage_gap rows).
+  Coverage at asset_onchain is partially_measured because the Maker
+  Protocol DAI / MKR / PSM-USDC-A / PSM-USDP-A / Emergency Shutdown
+  Module contracts are the asset surface the debate speaks to and
+  their observable on-chain state is **unchanged** during the
+  2022-08-08 to 2022-08-31 scoped window — but no comprehensive
+  replayable on-chain audit slice (e.g., a Dune query hash for
+  PSM-USDC-A debt-ceiling history or an ESM-trigger transaction
+  absence proof) has been pinned in this DRYRUN session. Per
+  Kazakhstan-precedent honesty rules, partially_measured is the
+  conservative coverage code given the unpinned audit slice.
+
+  Why this row exists despite carrying no observed_change: it
+  documents a **foundational DAO-governance-response-to-sanctions
+  case** — the first publicly debated discretionary protocol-level
+  censorship-response posture by a major DeFi protocol in the wake
+  of the OFAC Tornado Cash SDN designation. The row scopes the
+  denominator for "S5 DAO-governance counterfactual responses to
+  upstream OFAC triggers" so that the numerator enacted-response
+  rows in S5 (e.g., the parallel Aave Tornado frontend block
+  2022-08, the dYdX Tornado account block 2022-08, the Circle USDC
+  Tornado freeze 2022-08) can be compared against a "debated but
+  not enacted" baseline in which a major DeFi governance community
+  weighed Emergency Shutdown and de-pegging but ultimately
+  preserved protocol parameters. Sibling-event linkage to
+  tornado-cash-ofac-2022 (the upstream trigger), circle-usdc-
+  tornado-2022 (the parallel S5 enacted freeze that motivated the
+  contingency debate), and aave-arc-fireblocks-whitelist-2022-01
+  (the earlier S5 protocol-architecture permissioning case that
+  contrasts with MakerDAO's "preserve-the-protocol" posture).
+
+  L0 / L1 / L3 / l4_frontend / offramp_cex are not_applicable on
+  substrate-mismatch grounds — a DAO governance contingency debate
+  engages no network / consensus / RPC / frontend / CEX off-ramp
+  surface. asset_onchain is partially_measured rather than
+  not_applicable because the Maker Protocol contracts ARE the
+  asset surface the debate speaks to, but no row-local on-chain
+  change is captured: the protocol continues operating with the
+  same USDC-PSM collateral composition, the same DAI USD peg, and
+  the Emergency Shutdown Module in standby.
+
+  Promotion path: this row stays at admission_tier=null_case /
+  empirical_shape=null_event by design — it is a governance-debate
+  counterfactual-contingency denominator-control row. Human audit
+  should focus on pinning body_hash captures of The Defiant /
+  Decrypt / CoinDesk pieces, ideally adding (a) a
+  forum.makerdao.com "Endgame Plan" thread snapshot from August
+  2022, and (b) a governance.makerdao.com Emergency Shutdown
+  Module status / PSM-USDC-A debt-ceiling history excerpt scoped
+  to the 2022-08 window as the falsifiability anchor for the
+  observed_no_change claim.
+
+scoped_claim: |
+  "Between 2022-08-08 (OFAC Tornado Cash SDN designation) and
+  2022-08-31, the MakerDAO governance community publicly debated
+  three discretionary protocol-level censorship-response postures
+  — Emergency Shutdown of the Maker Protocol, migration of ~33%
+  of DAI collateral away from USDC/USDP toward ETH, and
+  abandonment of the DAI USD peg — none of which was enacted in
+  the debate window. The row carries no observed_change and
+  functions as a counterfactual-contingency denominator control
+  for the S5 DAO-governance-response-to-sanctions stratum,
+  scoping the 'debated but not enacted' baseline against which
+  contemporaneous S5 enacted-response rows (Circle USDC Tornado
+  freeze, Aave Tornado frontend block, dYdX Tornado account
+  block) can be compared. Foundational DAO-governance-response-to-
+  sanctions case."
+
+tags:
+  - corporate_policy_change
+  - dao_governance
+  - makerdao
+  - dai
+  - usdc_collateral_exposure
+  - tornado_cash_fallout
+  - emergency_shutdown_contingency
+  - counterfactual_contingency
+  - null_event
+  - denominator_control
+  - dryrun_2026_05_17

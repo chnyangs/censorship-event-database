@@ -1,0 +1,363 @@
+id: bitcoinica-shutdown-2012-05
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - mtgox-june-2011-hack-trading-suspension
+
+trigger:
+  type: corporate_policy_change
+  actor: BITCOINICA_OPERATOR
+  timestamp: 2012-05-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
+      wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
+      evidence_use: contextual_unarchived
+      note: |
+        Bitcoin Magazine coverage of the 2012-05-11 Bitcoinica hot-wallet
+        intrusion (~18,547 BTC, worth ~$87,000-$92,500 at the time) and
+        the operator's decision to shutter the trading platform shortly
+        after the intrusion. Provides the canonical journalism anchor
+        for the date and the operator's shutdown framing.
+        DRYRUN: wayback wildcard pointer in lieu of pinned-timestamp
+        snapshot; evidence_use=contextual_unarchived because no
+        body_hash+body_path pair has been captured into
+        sources/http_captures/ in this session.
+    - type: supporting_journalism
+      url: https://www.bitdefender.com/en-us/blog/hotforsecurity/exchange-site-bitcoinica-hacked-us90000-stolen
+      wayback: https://web.archive.org/web/2012/https://www.bitdefender.com/en-us/blog/hotforsecurity/exchange-site-bitcoinica-hacked-us90000-stolen
+      evidence_use: contextual_unarchived
+      note: |
+        Bitdefender HotForSecurity 2012-05 coverage ("Exchange Site
+        Bitcoinica Hacked, US$90,000 Stolen") corroborating the May-2012
+        intrusion magnitude (~18,500 BTC / ~$90,000) and the resulting
+        platform shutdown. Independent security-press confirmation.
+        evidence_use=contextual_unarchived; body_hash capture deferred.
+    - type: supporting_journalism
+      url: https://medium.com/coinmonks/bitcoinica-40bed6569354
+      wayback: https://web.archive.org/web/2012/https://medium.com/coinmonks/bitcoinica-40bed6569354
+      evidence_use: contextual_unarchived
+      note: |
+        Coinmonks / Kevin Finnerty retrospective ("Bitcoinica. The Rise
+        and Fall of a Pioneering Exchange") narrating the full arc:
+        Zhou Tong launches Bitcoinica 2011-09, Intersango/Tihan Seale
+        acquires operational control early 2012, 2012-03 Linode hot-wallet
+        breach (~43,000 BTC / ~$220,000) targeting Bitcoin-flagged
+        Linode customers, 2012-05-11 second intrusion (~18,547 BTC via
+        compromised Rackspace-hosted email) and platform closure shortly
+        after with the operator citing insolvency. evidence_use=
+        contextual_unarchived; body_hash capture deferred.
+    - type: supporting_journalism
+      url: https://crypto.bi/2012-hacks/
+      wayback: https://web.archive.org/web/2012/https://crypto.bi/2012-hacks/
+      evidence_use: contextual_unarchived
+      note: |
+        crypto.bi "2012 Bitcoin and Altcoin Hacks" retrospective
+        recording the 2012-03 Linode hack and 2012-05-11 second
+        Bitcoinica intrusion, plus the operator-led shutdown decision.
+        Also notes the related Mt. Gox-account compromise impacting
+        Bitcoinica's exchange balances. Secondary journalism corroboration
+        for the date and the operator-shutdown framing. evidence_use=
+        contextual_unarchived; body_hash capture deferred.
+    - type: supporting_journalism
+      url: https://bitcoinmagazine.com/business/tihan-seale-announces-bitcoinica-liquidation-1343945511
+      wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/tihan-seale-announces-bitcoinica-liquidation-1343945511
+      evidence_use: contextual_unarchived
+      note: |
+        Bitcoin Magazine 2012-08-02 follow-up ("Tihan Seale Announces
+        Bitcoinica Liquidation") confirming that Intersango/Tihan Seale,
+        the operational acquirer after Zhou Tong stepped back, proceeded
+        to formal liquidation of Bitcoinica downstream of the 2012-05-11
+        shutdown. Establishes the operator-led closure trajectory.
+        evidence_use=contextual_unarchived; body_hash capture deferred.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision. Bitcoin Magazine, Bitdefender, Coinmonks,
+        and crypto.bi all date the second Bitcoinica intrusion and the
+        operator-led shutdown to 2012-05-11. The platform's public
+        trading interface was taken offline that day.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the Bitcoinica leveraged-trading platform (bitcoinica.com)
+    as operated under Zhou Tong / subsequently Intersango (Tihan Seale)
+    operational control. subset because the enumerated target is the
+    single bitcoinica.com operator-entity and trading platform rather
+    than the broader class of 2012-era leveraged-bitcoin exchanges. The
+    operator-led shutdown action is jurisdictionally global (no national
+    regulator named) and operates on the Bitcoinica corporate-entity
+    surface.
+  entity: Bitcoinica (bitcoinica.com) - Zhou Tong / Intersango (Tihan Seale) operator
+  actor_name: Bitcoinica
+  actor_type: leveraged_trading_platform
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Operator-led platform shutdown; no nation-state ISP/DNS block
+      involved. l0_network not_applicable on construct-not-in-scope
+      grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain consensus action; Bitcoinica's shutdown operates on
+      the trading-platform layer, not on Bitcoin L1 consensus.
+      not_applicable on construct-not-in-scope grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No blockchain RPC layer in scope. MEV-Boost / Flashbots Protect
+      compliance substrates did not exist in 2012; not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The bitcoinica.com trading-UI takedown is downstream UI consequent
+      on the operator's shutdown decision and is not a separately
+      measured L4-frontend action in this authoring pass. The single
+      load-bearing cascade axis is offramp_cex (operator-led
+      centralized-exchange closure), so l4_frontend not_applicable to
+      avoid double-counting the same physical action.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-asset freeze; the on-chain BTC outflows from
+      Bitcoinica's hot wallet were attacker-directed, not operator-
+      directed compliance action. asset_onchain not_applicable on
+      construct-not-in-scope grounds.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - bitcoinica_trading_platform
+    note: |
+      offramp_cex is the load-bearing cascade axis: Bitcoinica operated
+      as a centralized leveraged-trading venue (a CEX-class offramp for
+      bitcoin trading and margin) and the 2012-05-11 operator-led
+      shutdown removes that offramp surface for its user base. The
+      shutdown is a comparison-class corporate-policy action: the
+      operator (Zhou Tong / Intersango / Tihan Seale) elected to
+      close the platform after the second material intrusion rather than
+      continue trading at known insolvency. partially_measured because
+      the journalism cluster well-attests the shutdown date and the
+      operator-shutdown framing but the precise withdrawal-suspension
+      timeline and downstream user-balance reconciliation require
+      pinning during human audit.
+    denominator_artifact:
+      type: contextual_unarchived
+      wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
+      note: |
+        Denominator anchor is the Bitcoin Magazine 2012-05 shutdown
+        coverage (wayback wildcard pointer), corroborated by the
+        Bitdefender / Coinmonks / crypto.bi cluster. Single
+        trading-platform scope.
+
+observations:
+  - layer: offramp_cex
+    actor: bitcoinica_operator
+    event: operator_led_shutdown_of_bitcoinica_trading_platform_after_hack
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2012-05-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: corporate_global
+    sources:
+      - type: supporting_journalism
+        url: https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
+        wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [bitcoinica]
+          time_window:
+            - 2012-05-11T00:00:00Z
+            - 2012-05-31T23:59:59Z
+        note: |
+          Bitcoin Magazine 2012-05 coverage records the second
+          Bitcoinica intrusion (~18,547 BTC / ~$87,000-$92,500 at the
+          time) and the operator-led shutdown shortly thereafter.
+          attribution=plausible per §1 codebook: the operator (Zhou
+          Tong / Intersango) publicly cites the hack as proximate cause
+          of the closure, but the trigger (the intrusion itself) is an
+          attacker-driven security event rather than a regulator-named
+          target — the operator-shutdown action is causally consistent
+          with the hack but not a regulator-attributed compliance
+          action. observation_kind=observed_change because the
+          offramp_cex surface moves from open to closed on 2012-05-11.
+          DRYRUN: wayback wildcard pointer in lieu of pinned-timestamp
+          snapshot.
+      - type: supporting_journalism
+        url: https://medium.com/coinmonks/bitcoinica-40bed6569354
+        wayback: https://web.archive.org/web/2012/https://medium.com/coinmonks/bitcoinica-40bed6569354
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [bitcoinica]
+          time_window:
+            - 2012-05-11T00:00:00Z
+            - 2012-08-31T23:59:59Z
+        note: |
+          Coinmonks retrospective narrates the operator transition
+          (Zhou Tong → Intersango/Tihan Seale) prior to the
+          2012-05-11 shutdown, the 2012-03 Linode hot-wallet breach
+          (~43,000 BTC), the second 2012-05-11 intrusion via
+          compromised Rackspace email, and the operator-led closure
+          citing insolvency. Independent corroboration of the
+          operator-shutdown framing.
+      - type: supporting_journalism
+        url: https://crypto.bi/2012-hacks/
+        wayback: https://web.archive.org/web/2012/https://crypto.bi/2012-hacks/
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [bitcoinica]
+          time_window:
+            - 2012-05-11T00:00:00Z
+            - 2012-08-31T23:59:59Z
+        note: |
+          crypto.bi 2012-hacks retrospective also records a parallel
+          Mt. Gox-account compromise (~$200,000+) impacting Bitcoinica's
+          exchange-held balances during the same closure window, layered
+          on top of the 2012-05-11 hot-wallet intrusion. Together these
+          establish the operator's stated insolvency rationale for
+          closure.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.2D; agent_draft per
+  user instruction; status=draft because no body_hash+body_path archive
+  anchors have been pinned in this session). Authored by LLM agent
+  without personally verifying Wayback/body_hash snapshots; human
+  review required to elevate to admitted status.
+
+  Structural framing: this is an operator-led shutdown of a
+  pioneering leveraged-bitcoin trading platform following two
+  successive 2012 intrusions (2012-03 Linode hot-wallet breach
+  ~43,000 BTC / ~$220,000, then 2012-05-11 second intrusion
+  ~18,547 BTC / ~$87,000-$92,500 plus a parallel Mt. Gox-account
+  compromise of $200,000+ affecting Bitcoinica's exchange-held
+  balances). The trigger.type=corporate_policy_change captures the
+  operator's elective closure decision rather than the upstream
+  security incidents themselves. The operator transition (Zhou Tong
+  founded Bitcoinica 2011-09; Intersango/Tihan Seale acquired
+  operational control early 2012) means the final shutdown decision
+  was executed under the Intersango operator umbrella, with formal
+  liquidation announced 2012-08-02.
+
+  Attribution coding (§1 codebook): observed_change at offramp_cex
+  is attribution=plausible per user instruction. The operator
+  publicly cites the hack as proximate cause of the closure, but
+  the trigger here is an attacker-driven security event rather
+  than a regulator-named target — the operator-shutdown action is
+  causally consistent with the hack but is not a regulator-attributed
+  compliance action. Conservative coding per §8.4 defaults to the
+  more conservative `plausible` over `direct`.
+
+  Stratum coding: trigger.type=corporate_policy_change forces
+  research_stratum=S5_corporate per §5.2 validator-enforced
+  stratum-actor map. jurisdiction=[corporate_global] because the
+  shutdown is jurisdictionally global (no national regulator named)
+  and operates on the Bitcoinica corporate-entity surface.
+
+  Layer coverage: l0_network, l1_consensus, l3_rpc, l4_frontend,
+  and asset_onchain all not_applicable. l3_rpc on
+  construct-did-not-exist grounds (MEV-Boost / Flashbots Protect
+  compliance substrates did not exist in 2012). l1/asset_onchain on
+  construct-not-in-scope grounds (no Bitcoin L1 consensus action;
+  no issuer-asset freeze — the hot-wallet outflows were
+  attacker-directed, not operator-directed compliance action).
+  l4_frontend not_applicable to avoid double-counting the
+  bitcoinica.com trading-UI takedown as a separately measured
+  action; it is downstream UI consequent on the operator's
+  offramp_cex closure decision. l0_network not_applicable because
+  no nation-state ISP/DNS block.
+
+  empirical_shape=comparison: 1 observed_change layer (offramp_cex).
+  admission_tier=empirical_case: ≥1 strong-attribution (plausible)
+  observed_change layer, but only one load-bearing axis so does not
+  reach anchor_case threshold (which requires ≥2 strong-attribution
+  observed_change layers).
+
+  temporal_tier=discovery_only_2008_2012 + analysis_use=
+  discovery_ledger_only: the trigger date 2012-05-11 falls in the
+  pre-2013 discovery window. This event enters the discovery
+  ledger as a pre-Mt-Gox-collapse exchange-closure anchor and as
+  a sibling of the 2011-06 Mt. Gox hack-trading-suspension event
+  (related_events: mtgox-june-2011-hack-trading-suspension): both
+  are operator-led trading-platform halts triggered by intrusion
+  events in the early Bitcoin-exchange era.
+
+  DRYRUN caveats: all citations carry wayback wildcard pointers
+  (web/2012/...) and evidence_use=contextual_unarchived. For
+  non-DRYRUN release, capture body_hash + body_path for: (1)
+  Bitcoin Magazine 2012-05 "Bitcoinica Stolen From... Again"
+  shutdown coverage, (2) Bitdefender HotForSecurity 2012-05
+  coverage, (3) Coinmonks/Kevin Finnerty retrospective, (4)
+  crypto.bi 2012-hacks retrospective, (5) Bitcoin Magazine
+  2012-08-02 "Tihan Seale Announces Bitcoinica Liquidation"
+  follow-up. The canonical primary anchor would be the
+  Bitcoinica corporate shutdown announcement (Bitcointalk
+  operator thread / archived bitcoinica.com notice); pinning that
+  primary-corporate anchor is the strongest path to admission-
+  anchor strength.
+
+scoped_claim: |
+  "On 2012-05-11, the Bitcoinica operator (Zhou Tong / Intersango /
+  Tihan Seale) closed the bitcoinica.com leveraged-bitcoin trading
+  platform following a second hot-wallet intrusion (~18,547 BTC /
+  ~$87,000-$92,500) layered on top of the 2012-03 Linode hot-wallet
+  breach (~43,000 BTC) and a parallel Mt. Gox-account compromise of
+  $200,000+ affecting Bitcoinica's exchange-held balances. The
+  operator-led shutdown is a comparison-class corporate-policy event
+  at the offramp_cex cascade axis (attribution=plausible: causally
+  consistent with the hack but not a regulator-attributed compliance
+  action). Admission-anchor-grade promotion pending pinned archive
+  captures."
+
+scoped_knowledge: |
+  Bitcoinica is the pre-Mt-Gox-collapse anchor for operator-led
+  exchange shutdowns triggered by security incidents rather than
+  regulatory pressure. The case illustrates the early-era pattern
+  in which leveraged-bitcoin trading venues, operating without
+  the cold-storage hygiene, insurance backstops, or regulatory
+  recovery mechanisms that would later emerge, were closed
+  unilaterally by their operators after intrusion events outpaced
+  the platform's solvency reserves. The Bitcoinica shutdown
+  trajectory — Zhou Tong founds 2011-09, Intersango acquires
+  operational control early 2012, 2012-03 Linode breach, 2012-05-11
+  second intrusion and operator-led shutdown, 2012-08-02 formal
+  liquidation announcement — is conceptually the ancestor of later
+  CEX-failure cascades (Mt. Gox 2014, FTX 2022, etc.) in which
+  the offramp_cex surface is removed by operator-initiated closure
+  rather than by regulator order. As a discovery-ledger event, this
+  row provides the pre-2013 baseline observation that the
+  offramp_cex cascade axis is subject to operator-initiated closure
+  independent of any regulator-named trigger.
+
+tags:
+  - corporate_policy_change
+  - bitcoinica
+  - zhou_tong
+  - intersango
+  - tihan_seale
+  - operator_shutdown
+  - leveraged_trading
+  - hot_wallet_hack
+  - linode_breach
+  - offramp_cex
+  - s5_corporate
+  - discovery_ledger_only
+  - dryrun_2026_05_17

@@ -1,0 +1,224 @@
+id: ofac-dprk-it-worker-sim-hyon-sop-2023-04
+schema_version: 0.2.0
+status: draft
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - lazarus-entity-ofac-2019
+  - lazarus-laundering-ofac-2020
+  - dprk-usdt-network-ofac-2025
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-04-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20230424
+      wayback: https://web.archive.org/web/2023/https://ofac.treasury.gov/recent-actions/20230424
+      evidence_use: contextual_unarchived
+      note: |
+        OFAC Recent Actions page for 2023-04-24. Three individuals designated under
+        DPRK-related authorities (DPRK3 / EO 13382): Sim Hyon Sop (DPRK national, KKBC
+        deputy representative), Wu Huihui (PRC OTC trader), and Cheng Hung Man (HK OTC
+        facilitator). Sim Hyon Sop's SDN entry carries named digital-currency addresses
+        on ETH / ARB / BSC. Wu Huihui entry carries 17 BTC addresses. This is the first
+        major OFAC SDN action naming an individual DPRK-state IT-worker financial proxy
+        with enumerated cryptocurrency wallets.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1435
+      wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy1435
+      evidence_use: contextual_unarchived
+      note: |
+        Treasury press release jy1435 "Treasury Targets Actors Facilitating Illicit DPRK
+        Financial Activity in Support of Weapons Programs" (2023-04-24). Names Sim Hyon
+        Sop's role as KKBC deputy representative coordinating millions in financial
+        transfers (including virtual currency from DPRK IT workers fraudulently employed
+        overseas) on behalf of the DPRK regime's WMD / ballistic-missile programs.
+    - type: primary_legal
+      url: https://www.federalregister.gov/documents/2023/04/27/2023-08944/notice-of-ofac-sanctions-actions
+      wayback: https://web.archive.org/web/2023/https://www.federalregister.gov/documents/2023/04/27/2023-08944/notice-of-ofac-sanctions-actions
+      evidence_use: contextual_unarchived
+      note: Federal Register Notice 2023-08944 (published 2023-04-27) formalizing the 2023-04-24 OFAC sanctions actions.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per OFAC Recent Actions page + Treasury press release jy1435.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Sim Hyon Sop SDN entry (DPRK national, KKBC deputy representative). The OFAC
+    designation enumerates digital-currency addresses across multiple chains. Per
+    public reporting (Chainalysis, TRM, OpenSanctions), Sim's entry carries the same
+    EVM-format wallet duplicated across ETH / ARB / BSC chain prefixes (treated as
+    three distinct SDN-list entries). The user's facts cite "4 crypto addresses" for
+    Sim — only 3 EVM entries are independently confirmable from public reporting at
+    draft time. Subset enumeration with class-level rationale: Sim individual + KKBC
+    proxy role + named EVM wallet (one canonical hex across ETH/ARB/BSC). Companion
+    Wu Huihui (17 BTC) and Cheng Hung Man entries are out of scope for this event's
+    target (Sim is the primary DPRK-state-proxy individual; Wu/Cheng are PRC/HK OTC
+    facilitators on the same RA page and could be split into sibling events).
+  protocol: null
+  actor_type: individual
+  actor_name: Sim Hyon Sop (KKBC deputy representative)
+  chains:
+    - ethereum
+    - arbitrum
+    - bsc
+  canonical_domains: []
+  addresses:
+    - "0x4f47bc496083c727c5fbe3ce9cdf2b0f6496270c"
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Individual-level DPRK proxy designation; no nation-state ISP/DNS block instrument involved.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Designation is 2023-04-24, post-Merge by 213 days. Wahrstätter relay-censorship
+      datasets exist for this period but a single individual-wallet SDN entry of a
+      non-protocol DPRK proxy is not expected to move aggregate relay-share metrics.
+      Not measured at draft time; promotable to partially_measured if a per-window
+      relay-share slice is pinned later.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: ethereum
+    note: |
+      No public Infura / Alchemy / Cloudflare RPC-block statement specifically naming
+      Sim Hyon Sop's wallet was issued in the post-designation window. RPC-provider
+      compliance for individual SDN wallets runs through Chainalysis Oracle KYT flags
+      rather than per-wallet public announcements.
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical web presence for an individual DPRK financial proxy.
+  - layer: asset_onchain
+    status: not_measured
+    chain: ethereum
+    note: |
+      Sim's named EVM wallet (0x4f47bc49...96270c) is a USDC / USDT / stablecoin-eligible
+      address on three EVM chains. Per Codebook §1.2: SDN designation explicitly names
+      the address (condition A holds); whether Tether/Circle publicly confirmed a freeze
+      on the named wallet within the publicly-knowable compliance window is not yet
+      pinned at draft time. Status not_measured; if a public Tether/Circle freeze tx
+      against this address is pinned with body_hash + tx_hash, the observation upgrades
+      to observed_change with attribution direct (both A and B). If only inferred
+      compliance with generic issuer statement, upgrades to plausible (A only).
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      14-day post-event public-CEX-announcement scan not yet completed. Sim's profile as
+      a DPRK-state IT-worker financial proxy is exchange-relevant (Binance, Huobi, OKX
+      Asia-pacific corridors) but no public CEX policy statement explicitly citing the
+      Sim Hyon Sop SDN entry has been pinned at draft time. Following lazarus-laundering-
+      ofac-2020 / lazarus-entity-ofac-2019 precedent: industry preference for private
+      chain-analytics KYT-flag workflows over public per-wallet disclosure makes the
+      observed_no_change at public-disclosure level the most likely empirical pattern
+      for this event class. Promotable when a 14d window scan is pinned.
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_at_draft_time
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2023-04-24T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-04-24T00:00:00Z
+      - 2023-05-08T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20230424
+        wayback: https://web.archive.org/web/2023/https://ofac.treasury.gov/recent-actions/20230424
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2023-04-24T00:00:00Z
+            - 2023-05-08T23:59:59Z
+          addresses_cohort: sim_hyon_sop_evm_wallet
+        note: |
+          Coverage gap at draft time: no public CEX policy statement explicitly naming
+          Sim Hyon Sop's SDN entry has been pinned. Observation recorded for
+          completeness; attribution=none until either (a) a 14d post-event public CEX
+          announcement scan is completed and observed_no_change can be substantiated, or
+          (b) a specific CEX deposit-block / account-freeze cite is pinned.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.2D)**
+
+  null_event documenting the 2023-04-24 OFAC SDN designation of Sim Hyon Sop, a DPRK
+  national serving as deputy representative of the OFAC-designated Korea Kwangson
+  Banking Corp (KKBC). The action is the **first major individual-IT-worker SDN
+  designation with named cryptocurrency wallets** — Sim's role is the DPRK-state
+  financial proxy receiving virtual-currency revenue from IT workers fraudulently
+  employed at companies in the US and abroad, then routing it through PRC/HK OTC
+  traders (Wu Huihui, Cheng Hung Man, same RA page) to fund DPRK WMD / ballistic-
+  missile programs.
+
+  **Codebook §1.2 application (attribution for prospective asset_onchain freeze)**:
+  The SDN designation explicitly names Sim's EVM wallet (condition A holds). At
+  draft time, no Tether/Circle public freeze confirmation specifically citing the
+  Sim Hyon Sop SDN entry has been pinned (condition B not yet evaluated). Per
+  codebook conservative default, future asset_onchain observation will be coded
+  `plausible` unless an issuer public statement specifically naming the wallet
+  surfaces within the publicly-knowable compliance window (≤ 24h post-SDN), in
+  which case `direct` applies.
+
+  **Structural significance for the corpus**: This event sits between
+  lazarus-laundering-ofac-2020 (BTC-only, two PRC nationals as DPRK proxies) and
+  dprk-usdt-network-ofac-2025 (53 USDT-TRC20 addresses, full institutional
+  network). Sim 2023-04 is the **transition case**: individual-level DPRK proxy
+  named with EVM wallets on three chains, but no Tron/USDT footprint yet. The
+  2023→2025 progression in target chain composition (EVM-multi-chain → USDT-TRC20-
+  concentrated) is a paper-worthy substrate observation.
+
+  **Open items for promotion to status=admitted**:
+  1. Pin OFAC RA page 2023-04-24 with body_hash + body_path (currently
+     contextual_unarchived, needs replayable archive anchor).
+  2. Reconcile address count (user-facts says 4; public reporting confirms 3 EVM
+     entries). Possible 4th address: companion XBT entry attributed to Sim
+     specifically (vs. Wu Huihui's 17 BTC). Re-check Federal Register notice
+     2023-08944 full text.
+  3. 14d post-event Tether/Circle freeze scan against 0x4f47bc49...96270c on
+     ETH / Arbitrum / BSC (etherscan + arbiscan + bscscan blacklist tx lookups).
+  4. 14d post-event public CEX policy statement scan (Binance / Coinbase /
+     Kraken / OKX / Huobi).
+
+  empirical_shape=null_event / admission_tier=null_case at draft time per
+  Codebook §3-§4: 0 observed_change layers. Promotes to comparison /
+  empirical_case if any of items 3-4 above yield a strong-attribution
+  observed_change row.
+
+scoped_claim: |
+  "OFAC's 2023-04-24 SDN designation of Sim Hyon Sop (DPRK national, KKBC deputy
+  representative) named a single EVM wallet (0x4f47bc49...96270c) duplicated across
+  ETH / Arbitrum / BSC chain entries. First major individual-IT-worker DPRK proxy
+  SDN with named cryptocurrency wallets. Cross-layer cascade not yet measured at
+  draft time; serves as the EVM-multi-chain transition datapoint between
+  lazarus-laundering-ofac-2020 (BTC-only) and dprk-usdt-network-ofac-2025 (USDT-TRON
+  concentrated)."
+
+tags:
+  - sanctions
+  - dprk_linked
+  - individual_designation
+  - it_worker_proxy
+  - kkbc
+  - evm_multi_chain
+  - dryrun_wave_2_2d

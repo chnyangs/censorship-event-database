@@ -1,0 +1,221 @@
+id: eu-15th-russia-sanctions-2024
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: non_us_sanctions
+  actor: EU_Council
+  timestamp: 2024-12-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
+      wayback: https://web.archive.org/web/2024/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
+      evidence_use: contextual_unarchived
+      note: |
+        Council Regulation (EU) 2024/3192 of 16 December 2024 amending
+        Regulation (EU) No 833/2014 concerning restrictive measures in view
+        of Russia's actions destabilising the situation in Ukraine. The 15th
+        EU Russia-sanctions package. Focus is on (1) Russia's "shadow fleet"
+        of oil-transport vessels: 52 additional third-country-flagged
+        vessels listed (bringing the cumulative total to 79); (2) 84 new
+        individual / entity listings (54 natural persons + 30 entities),
+        including the first fully-fledged sanctions on Chinese actors
+        supplying drone and microelectronic components to Russia; and
+        (3) 32 new companies added to the military-industrial support list
+        (20 Russian, 7 Chinese/HK, 2 Serbian, 1 each Iranian, Indian, UAE).
+        The package is described by the Council and outside counsel
+        (Mayer Brown, White & Case, Curtis, Ashurst) as "mostly technical,"
+        consolidating circumvention-focused tooling on top of the
+        14th-package SPFS and crypto-services prohibitions; it does NOT
+        introduce material new on-chain or CASP-level provisions beyond
+        the 14th package. DRYRUN contextual_unarchived stub; replace with
+        a verified Wayback / body_hash / body_path capture during real
+        human audit.
+    - type: primary_legal
+      url: https://www.consilium.europa.eu/en/press/press-releases/2024/12/16/russia-s-war-of-aggression-against-ukraine-eu-adopts-15th-package-of-restrictive-measures/
+      wayback: https://web.archive.org/web/2024/https://www.consilium.europa.eu/en/press/press-releases/2024/12/16/russia-s-war-of-aggression-against-ukraine-eu-adopts-15th-package-of-restrictive-measures/
+      evidence_use: contextual_unarchived
+      note: |
+        Council of the EU press release of 2024-12-16 announcing adoption of
+        the 15th package. Confirms shadow-fleet (52 vessels), individual
+        / entity listings (54 persons + 30 entities), and military-
+        industrial company list expansion (32 firms). Confirms scope is
+        entity / vessel listing rather than new horizontal crypto-services
+        prohibition.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level adoption date 2024-12-16 per Council press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    84 newly designated natural / legal persons (54 individuals + 30
+    entities) plus 52 newly listed third-country shadow-fleet vessels and
+    32 newly listed military-industrial support companies (20 Russian,
+    7 Chinese/HK, 2 Serbian, 1 Iranian, 1 Indian, 1 UAE) under EU
+    Regulation 833/2014 and 269/2014. Target class is fundamentally
+    entity-level (persons, legal entities, vessels) — no on-chain
+    wallet-address enumeration, no new horizontal CASP user-class
+    prohibition (the user-class crypto prohibition is already in place
+    from the 12th package via Article 5aa of Reg. 833/2014; the SPFS /
+    crypto-services tightenings are in the 14th package). subset because
+    the 84 + 52 + 32 entries are not exhaustively enumerated in this
+    record at the natural-person level.
+  protocol: null
+  actor_type: entity_listing_sanctions
+  actor_name: 15th-package designees (persons / entities / vessels / companies)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [EU, RU]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No new asset-issuer-level freeze provision; package is entity-listing
+      and vessel-targeting. The standing 12th-package Article 5aa CASP
+      user-class prohibition and the 14th-package SPFS prohibition remain
+      in force but are NOT extended by this package.
+  - layer: offramp_cex
+    status: not_measured
+    scope: [eu_casp_ecosystem]
+    note: |
+      15th package is mostly technical entity-listing and shadow-fleet
+      targeting; it does NOT introduce a new CASP-facing prohibition
+      beyond what the 12th and 14th packages already operationalize. No
+      replayable offramp_cex measurement of CASP behavioral change
+      attributable to the 15th package has been captured at this dataset
+      snapshot. Coded as coverage_gap with attribution=none per codebook
+      §3 (null_event admission rules).
+
+observations:
+  - layer: offramp_cex
+    actor: eu_casp_ecosystem
+    event: eu_15th_package_entity_listings_no_new_casp_provisions
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2024-12-16T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-12-16T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_legal
+        url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
+        wayback: https://web.archive.org/web/2024/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [eu_casp_aggregate]
+          time_window:
+            - 2024-12-16T00:00:00Z
+            - 2026-05-17T23:59:59Z
+        note: |
+          Council Regulation (EU) 2024/3192 — the 15th EU Russia-sanctions
+          package — adopted 2024-12-16. The package focuses on shadow-fleet
+          vessel listings (52 new), individual / entity listings (84 new),
+          and military-industrial support company listings (32 new). No
+          new horizontal crypto-asset-service-provider provisions are
+          introduced beyond those already enacted in the 12th package
+          (Article 5aa CASP user-class prohibition, 2023-12-18) and 14th
+          package (SPFS / further crypto-services tightening, 2024-06-24).
+          observation_kind=coverage_gap with attribution=none because no
+          replayable artifact of CASP behavioral change attributable
+          specifically to the 15th package has been captured at this
+          dataset snapshot — the package's crypto-relevant footprint is
+          marginal (entity / vessel listings absorbed via standing CASP
+          OFAC-/EU-listing screening). DRYRUN contextual_unarchived stub;
+          replace with a verified capture during real human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** Wave 2.2D re-author preamble
+  (note: replaces dropped rate-limit-partial). Authored by LLM agent
+  without personally verifying Wayback / body_hash. origin=agent_draft at
+  status=draft. Real release must replace this DRYRUN marker with a
+  human-verified audit after pinning real archive anchors.
+
+  null_event documenting the EU Council's 2024-12-16 adoption of Council
+  Regulation (EU) 2024/3192 — the 15th package of restrictive measures
+  against Russia. Per Council press release and outside-counsel
+  summaries (Mayer Brown, White & Case, Curtis, Ashurst, Lexology), the
+  15th package is "mostly technical" and focuses on three vectors:
+  (1) shadow-fleet vessel targeting — 52 new third-country vessel
+  listings (cumulative 79); (2) individual / entity listings — 84 new
+  designations (54 persons + 30 entities), including the first fully-
+  fledged sanctions on Chinese actors supplying drone / microelectronic
+  components to Russia; (3) military-industrial support companies — 32
+  new firms (20 Russian, 7 Chinese/HK, 2 Serbian, 1 Iranian, 1 Indian,
+  1 UAE).
+
+  CRITICAL coding decision: the 15th package introduces NO material new
+  on-chain or CASP-level provisions beyond the 12th-package Article 5aa
+  CASP user-class prohibition (eu-12th-russia-sanctions-2023) and the
+  14th-package SPFS / crypto-services tightenings
+  (eu-14th-russia-sanctions-spfs-2024). The crypto-relevant footprint is
+  therefore the absorption of the 84 new entity designees into standing
+  EU-/OFAC-listing screening at EU CASPs — a class-level action that is
+  not separately replayable as an observed_change at this snapshot.
+
+  empirical_shape=null_event and admission_tier=null_case per codebook
+  §3 / §4: 0 observed_change layers. Per codebook §1 + §8.4 (default to
+  more-conservative value), the offramp_cex row is coded as
+  coverage_gap / attribution=none rather than observed_no_change because
+  coverage is not_measured — no replayable artifact of CASP behavioral
+  change attributable specifically to the 15th package has been
+  captured. This follows the codebook §3 null_event admission rule
+  branch: coverage_gap with attribution in {unknown, none} and
+  coverage=not_measured (not mixed with observed_no_change). The
+  package's role in the corpus is as a circumvention-tightening
+  supranational anchor sibling to the 12th and 14th packages.
+
+  evidence_use=contextual_unarchived on the trigger.citation and
+  observation.sources per brief instruction; per dataset convention
+  (cf. eu-amla-anti-money-laundering-authority-regulation-2024,
+  eu-amlr-eu-single-rulebook-2024) contextual_unarchived is acceptable
+  on null_case draft rows; real human audit must replace with verified
+  captures.
+
+scoped_claim: |
+  "EU Council Regulation 2024/3192 (15th Russia-sanctions package),
+  adopted 2024-12-16, is a mostly-technical entity-listing / shadow-fleet
+  package: 84 new individual / entity designations, 52 new third-country
+  vessel listings, and 32 new military-industrial support company
+  listings. It introduces NO new horizontal CASP-level or on-chain
+  provisions beyond the 12th-package Article 5aa user-class prohibition
+  and the 14th-package SPFS / crypto-services tightenings. null_event in
+  this corpus: the crypto-relevant footprint is the absorption of 84
+  designees into standing CASP screening, which is not separately
+  replayable as observed_change at this snapshot."
+
+related_events:
+  - eu-12th-russia-sanctions-2023
+  - eu-14th-russia-sanctions-spfs-2024
+
+tags:
+  - supranational_framework
+  - eu_sanctions
+  - russia_related
+  - shadow_fleet
+  - entity_listing
+  - circumvention_tightening
+  - null_event

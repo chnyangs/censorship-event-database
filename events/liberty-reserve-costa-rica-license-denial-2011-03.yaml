@@ -1,0 +1,281 @@
+id: liberty-reserve-costa-rica-license-denial-2011-03
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - egold-doj-guilty-plea-2008-07
+
+trigger:
+  type: regulatory_enforcement
+  actor: CR_SUGEF
+  timestamp: 2011-03-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://ticotimes.net/2013/05/27/liberty-reserve-a-cyberweb-of-intrigue
+      wayback: https://web.archive.org/web/2011/https://ticotimes.net/2013/05/27/liberty-reserve-a-cyberweb-of-intrigue
+      evidence_use: contextual_unarchived
+      note: |
+        Tico Times (San José, Costa Rica) feature reporting (2013-05-27):
+        "Liberty Reserve: A cyberweb of intrigue." Documents that
+        Costa Rica's Superintendencia General de Entidades Financieras
+        (SUGEF) refused to license Liberty Reserve in 2011, citing
+        lack of transparency and accounting of funding management.
+        State prosecutor José Pablo González is quoted attributing
+        the denial to opaque sourcing of the firm's funds. Reports
+        that a criminal investigation in Costa Rica was opened
+        2011-03-07 following "suspicious" bank activity surfaced by
+        the local banking system. evidence_use=contextual_unarchived:
+        no body_hash captured in this DRYRUN authoring pass and the
+        wayback URL is a 2011 wildcard pointer pending human-audit
+        re-pin against a snapshotted timestamp.
+    - type: supporting_journalism
+      url: https://ticotimes.net/2013/05/24/millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve
+      wayback: https://web.archive.org/web/2011/https://ticotimes.net/2013/05/24/millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve
+      evidence_use: contextual_unarchived
+      note: |
+        Tico Times reporting (2013-05-24) "Millions of dollars in
+        limbo after shuttering of digital currency site Liberty
+        Reserve" — corroborates the 2011 SUGEF license refusal and
+        documents that Liberty Reserve continued operating without
+        SUGEF certification, funneling activity through five other
+        Costa Rican corporate vehicles controlled by founder Arthur
+        Budovsky. This unlicensed-operation status became the
+        predicate for the May 2013 US DOJ unsealed indictment (18
+        USC s 1960 — operation of an unlicensed money transmitting
+        business — and 18 USC s 1956 conspiracy to engage in money
+        laundering). evidence_use=contextual_unarchived for the
+        DRYRUN pass.
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/Liberty_Reserve
+      wayback: https://web.archive.org/web/2011/https://en.wikipedia.org/wiki/Liberty_Reserve
+      evidence_use: contextual_unarchived
+      note: |
+        Wikipedia "Liberty Reserve" entry — secondary tertiary
+        consolidation citing the 2011 SUGEF denial, the 2011-03-07
+        Costa Rican criminal-investigation opening, and the
+        downstream 2013 US DOJ sealed indictment. Retained as
+        tertiary pointer only; not load-bearing for admission.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision (2011-03-07) per Tico Times reporting
+        of the Costa Rican criminal-investigation opening date that
+        immediately followed and was triggered by the SUGEF license
+        refusal. No SUGEF administrative-resolution document has
+        been pinned in this DRYRUN pass; the 2011-03-07 anchor is
+        the contemporaneously-reported public-facing date of the
+        Costa Rican enforcement posture against Liberty Reserve.
+        Human-audit must re-pin against the underlying SUGEF
+        resolution if/when located.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named target: Liberty Reserve S.A. (Costa Rica corporate
+    vehicle of the Liberty Reserve digital-currency service,
+    operated by Arthur Budovsky). SUGEF refused to license the
+    firm to operate as a regulated financial entity in Costa Rica.
+    Marked subset because the SUGEF action targets the named
+    Liberty Reserve corporate entity and does not enumerate the
+    five additional Costa Rican shell companies through which
+    Budovsky subsequently continued operations (those surface in
+    the 2013 US DOJ indictment, not the 2011-03-07 SUGEF denial).
+    No on-chain addresses: Liberty Reserve was a centralized
+    off-chain digital-currency ledger ("LR" units backed by USD/
+    EUR/gold-grams), not a blockchain token.
+  actor_type: digital_currency_administrator_msb
+  actor_name: Liberty Reserve S.A. (Arthur Budovsky)
+  canonical_domains:
+    - libertyreserve.com
+
+jurisdiction:
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2011-03-07 SUGEF license refusal did not invoke any
+      ISP / DNS / network-layer block of libertyreserve.com. The
+      2013 L4 frontend takedown of the libertyreserve.com domain
+      following the US DOJ unsealed indictment is a downstream
+      action recorded against the separate 2013 event row, not
+      this 2011 predicate event.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Liberty Reserve was a centralized off-chain digital-currency
+      ledger administered by Liberty Reserve S.A. (Costa Rica);
+      there is no blockchain and no decentralized consensus layer.
+      Out of scope.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC provider surface implicated. Liberty Reserve
+      pre-dates Ethereum (genesis 2015-07) by ~4 years and operated
+      as a centralized web-account ledger.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No SUGEF-attributed L4 takedown of libertyreserve.com on
+      2011-03-07. The libertyreserve.com domain remained
+      operationally accessible after the SUGEF license refusal;
+      Budovsky continued operations through five additional Costa
+      Rican corporate vehicles. The 2013-05 US DOJ-ordered frontend
+      seizure of libertyreserve.com is a separate downstream event.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Liberty Reserve's "LR" units were off-chain ledger entries
+      administered by Liberty Reserve S.A., not a blockchain token.
+      No asset-layer freeze instrument exists to attach.
+  - layer: offramp_cex
+    status: measured
+    scope: [liberty_reserve]
+    note: |
+      Load-bearing layer. SUGEF's 2011-03-07 license refusal denied
+      Liberty Reserve S.A. authorization to operate as a regulated
+      financial entity in Costa Rica. The firm continued operating
+      without SUGEF certification — an unlicensed-operation status
+      that became the explicit predicate for the May 2013 US DOJ
+      18-USC-1960 ("operation of an unlicensed money transmitting
+      business") count in the unsealed indictment. Coverage status
+      is `measured` because the SUGEF posture is publicly attested
+      in contemporaneous Tico Times reporting and the downstream
+      DOJ indictment, even though this DRYRUN row does not pin per-
+      quarter Wayback snapshots of libertyreserve.com.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:CR_SUGEF
+    event: sugef_refuses_to_license_liberty_reserve_creating_unlicensed_operation_status
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2011-03-07T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: CR
+    sources:
+      - type: supporting_journalism
+        url: https://ticotimes.net/2013/05/27/liberty-reserve-a-cyberweb-of-intrigue
+        wayback: https://web.archive.org/web/2011/https://ticotimes.net/2013/05/27/liberty-reserve-a-cyberweb-of-intrigue
+        scope_descriptor:
+          providers: [liberty_reserve]
+          countries: [CR]
+          time_window:
+            - 2011-03-07T00:00:00Z
+            - 2013-05-31T23:59:59Z
+        note: |
+          Tico Times reporting (2013-05-27) recording that SUGEF
+          (Superintendencia General de Entidades Financieras) refused
+          to license Liberty Reserve in 2011 for lack of transparency
+          and accounting of funding management. State prosecutor
+          José Pablo González named as the public-facing source for
+          the licensing-denial framing. The 2011-03-07 anchor is the
+          contemporaneously reported Costa Rican criminal-investigation
+          opening date triggered by the SUGEF posture. attribution=
+          direct under §1.1: the regulator (CR_SUGEF) is named as the
+          actor of the licensing refusal and Liberty Reserve S.A. is
+          the named target. evidence_use=contextual_unarchived for the
+          DRYRUN pass; human-audit must replace with a pinned SUGEF
+          resolution or a snapshotted Wayback bracket of the Tico
+          Times piece.
+      - type: supporting_journalism
+        url: https://ticotimes.net/2013/05/24/millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve
+        wayback: https://web.archive.org/web/2011/https://ticotimes.net/2013/05/24/millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve
+        scope_descriptor:
+          providers: [liberty_reserve]
+          countries: [CR]
+          time_window:
+            - 2011-03-07T00:00:00Z
+            - 2013-05-31T23:59:59Z
+        note: |
+          Tico Times (2013-05-24) corroborating reporting that
+          Liberty Reserve continued operating without SUGEF
+          certification after the 2011 license refusal, funneling
+          activity through five additional Costa Rican corporate
+          vehicles controlled by Budovsky. Establishes the
+          unlicensed-operation status that the 2013 US DOJ used as
+          the 18-USC-1960 predicate. evidence_use=contextual_
+          unarchived.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-17 (Wave 2.2D)** (Phase E
+  discovery-tier authoring): new discovery_only_2008_2012 event for
+  the 2011-03-07 Costa Rica SUGEF license refusal against Liberty
+  Reserve S.A. Authored by LLM agent without personally verifying
+  Wayback/body_hash; origin=agent_draft and status=draft per
+  validator constraint (agent_draft incompatible with admitted).
+  Real release must replace this DRYRUN marker with a human-verified
+  audit after pinning real archive anchors (the wayback URLs here
+  are 2011 wildcard pointers, not pinned snapshot timestamps).
+
+  **Jurisdiction coding caveat**: Costa Rica (CR) is the actual
+  jurisdiction of this SUGEF administrative action, but `CR` is not
+  in the schema's jurisdiction enum. Coded as `corporate_global` as
+  the least-misleading available value in the present enum; this is
+  a known mis-coding that should be resolved by adding `CR` to the
+  jurisdiction enum in the next schema update. The observation row
+  uses `country: CR` to preserve the true jurisdiction signal in a
+  field where the schema is open-form, and `enumeration_note` /
+  `target.actor_name` make the Costa Rican corporate vehicle
+  explicit.
+
+  comparison shape: 1 observed_change layer (offramp_cex, SUGEF
+  refusal creating Liberty Reserve's unlicensed-operation status in
+  Costa Rica). This 2011 SUGEF denial is the load-bearing predicate
+  that the 2013 US DOJ unsealed indictment cited under 18 USC s 1960
+  (operation of an unlicensed money transmitting business). It sits
+  alongside egold-doj-guilty-plea-2008-07 in the pre-Bitcoin
+  digital-currency-administrator enforcement lineage (e-Gold 2008
+  → Liberty Reserve SUGEF 2011 → Liberty Reserve DOJ 2013 →
+  FinCEN-2013-G001 → Shrem 2014 → Coin.mx 2015 → BTC-e 2017),
+  hence related_events:[egold-doj-guilty-plea-2008-07].
+
+  attribution=direct under §1.1 of codebook: the named regulator
+  (CR_SUGEF) is the public actor of the licensing refusal and
+  Liberty Reserve S.A. is the named target of that refusal.
+  trigger.type=regulatory_enforcement under §5.1 (non-US national
+  regulator administrative enforcement; the action is administrative
+  — a license-application denial — not a network/payment-rail block).
+  research_stratum=S4_nation_state per §5.2 mapping. Admission tier
+  empirical_case (1 strong-attribution observed_change layer).
+
+  Discovery-tier-only by construction: temporal_tier=
+  discovery_only_2008_2012 and analysis_use=discovery_ledger_only.
+  This row carries no comparable-analysis denominator weight; its
+  purpose is to anchor the 2011 SUGEF predicate for the 2013 US DOJ
+  Liberty Reserve takedown narrative.
+
+scoped_claim: |
+  "Costa Rica's SUGEF refused on 2011-03-07 to grant Liberty Reserve
+  S.A. authorization to operate as a regulated financial entity for
+  lack of transparency in funding management, creating the
+  unlicensed-operation status in Costa Rica that the May 2013 US
+  DOJ unsealed indictment used as the 18-USC-1960 predicate. The
+  row claims only this single-layer offramp regulatory observation
+  with attribution=direct; no L0/L1/L3/L4/asset-onchain effects are
+  coded. Discovery-tier only: no comparable-analysis use."
+
+tags:
+  - regulatory_enforcement
+  - license_denial
+  - sugef
+  - costa_rica
+  - liberty_reserve
+  - pre_bitcoin_digital_currency
+  - unlicensed_money_transmitter
+  - discovery_ledger
+  - offramp_shutdown
+  - doj_predicate

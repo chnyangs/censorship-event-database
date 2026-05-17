@@ -1,0 +1,305 @@
+id: japan-fsa-binance-sakura-acquisition-2022-11
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - japan-fsa-binance-warning-2018
+  - france-amf-binance-psan-2022
+  - germany-bafin-binance-licence-withdrawal-2023
+
+trigger:
+  type: regulatory_enforcement
+  actor: JP_FSA
+  timestamp: 2022-11-30T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://www.binance.com/en/blog/markets/binance-acquires-sakura-exchange-bitcoin-marking-its-official-entry-into-japan-3556095942303204167
+      wayback: https://web.archive.org/web/2022/https://www.binance.com/en/blog/markets/binance-acquires-sakura-exchange-bitcoin-marking-its-official-entry-into-japan-3556095942303204167
+      evidence_use: contextual_unarchived
+      note: |
+        Binance corporate blog post dated 2022-11-30 announcing the
+        acquisition of a 100% stake in Sakura Exchange BitCoin (SEBC), a
+        Japan Financial Services Agency (JFSA)-registered Crypto-Asset
+        Exchange Service Provider (CAESP). Sakura was at the time one of
+        ~31 CAESPs registered under the Payment Services Act (資金決済法)
+        with the JFSA. The acquisition is the permissive counter-example
+        to the 2018-03-23 JFSA public warning against Binance
+        (japan-fsa-binance-warning-2018): rather than refusing market
+        access, the JFSA-registered-VASP regime permitted Binance to
+        re-enter Japan via acquisition of an already-licensed local
+        operator. The trigger is the FSA-permitted change-of-control of
+        a registered CAESP (not a public-warning / business-improvement
+        order), and is coded as the regulatory_enforcement family per
+        codebook §5.1 because the underlying authority is the JFSA's
+        registered-CAESP supervisory perimeter. DRYRUN: pinned snapshot
+        timestamp and body_hash capture for the Binance blog post is
+        deferred to non-DRYRUN release.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous reporting dated 2022-11-30 corroborates
+        the acquisition date and notes Binance's prior FSA warning
+        history (2018, 2021). DRYRUN pinned snapshot anchor deferred to
+        human audit.
+    - type: supporting_journalism
+      url: https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+      wayback: https://web.archive.org/web/2022/https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+      evidence_use: contextual_unarchived
+      note: |
+        Decrypt contemporaneous reporting dated 2022-11-30 corroborating
+        the acquisition and JFSA-registered status of Sakura Exchange
+        BitCoin. DRYRUN pinned snapshot anchor deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per Binance's 2022-11-30 corporate blog post.
+        Day-level precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Binance (via acquisition vehicle) and Sakura Exchange BitCoin
+    (SEBC) — the JFSA-registered Crypto-Asset Exchange Service Provider
+    whose 100% equity was acquired by Binance, the change-of-control
+    permitted under the Payment Services Act registered-VASP regime.
+    Subset enumeration: only the Binance/SEBC entity pair is enumerated
+    here. The ~30 other JFSA-registered CAESPs in 2022-11 are not
+    enumerated; this row's null_event posture applies specifically to
+    the Binance-via-SEBC change-of-control transaction, not to the
+    broader CAESP cohort. The acquisition contrasts with the 2018-03-23
+    FSA warning to Binance (japan-fsa-binance-warning-2018) under the
+    same registered-VASP regime, making the pair a clean permissive /
+    enforcement counterfactual for the same regulator-target dyad.
+  protocol: null
+  actor_type: regulated_crypto_exchange_change_of_control
+  actor_name: Binance Holdings + Sakura Exchange BitCoin (SEBC)
+  chains: []
+  canonical_domains:
+    - binance.com
+    - sebcoin.co.jp
+
+jurisdiction: [JP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Change-of-control permission is a licensing-perimeter event, not
+      an ISP / DNS connectivity action. No JP-level network blocking of
+      binance.com or sebcoin.co.jp is implicated.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend-domain takedown is implicated. The acquisition is the
+      legal vehicle by which Binance gains JFSA-registered access; no
+      operator-side frontend disable flows from the trigger.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No asset-layer freeze, blacklist, or issuer action is implicated.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - binance_jp_via_sebc_change_of_control
+    note: |
+      Load-bearing axis for this null_event row. The JFSA-permitted
+      acquisition is the permissive counter-example to a JFSA
+      enforcement action: rather than a JP-resident-access deprecation
+      (the 2018-03-23 outcome), the registered-VASP regime accommodates
+      Binance's re-entry via change-of-control of a licensed CAESP. As
+      of the 2026-05-17 authoring date no enforcement-driven
+      offramp_cex restriction attributable to this 2022-11-30 trigger
+      is observed; the underlying operational change (Binance Japan
+      full-service launch) materialised in 2023-08 as a positive
+      access-expansion event, not a censorship/blocking event. Coded
+      partially_measured anchored by the Binance corporate
+      announcement to support the observed_no_change row.
+    denominator_artifact:
+      type: primary_corporate
+      url: https://www.binance.com/en/blog/markets/binance-acquires-sakura-exchange-bitcoin-marking-its-official-entry-into-japan-3556095942303204167
+      note: |
+        Binance corporate announcement anchor for the JP-via-SEBC
+        change-of-control scope. DRYRUN wayback stub; replace with
+        verified capture during real human audit.
+
+observations:
+  - layer: offramp_cex
+    actor: cex:binance_jp_via_sebc
+    event: jfsa_permitted_change_of_control_no_observed_restriction
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-11-30T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: JP
+    window:
+      - 2022-11-30T00:00:00Z
+      - 2026-05-17T00:00:00Z
+    sources:
+      - type: primary_corporate
+        url: https://www.binance.com/en/blog/markets/binance-acquires-sakura-exchange-bitcoin-marking-its-official-entry-into-japan-3556095942303204167
+        wayback: https://web.archive.org/web/2022/https://www.binance.com/en/blog/markets/binance-acquires-sakura-exchange-bitcoin-marking-its-official-entry-into-japan-3556095942303204167
+        scope_descriptor:
+          providers: [binance, sebc]
+          countries: [JP]
+          time_window:
+            - 2022-11-30T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          Binance corporate blog 2022-11-30: acquisition of 100% stake
+          in Sakura Exchange BitCoin (JFSA-registered CAESP) is the
+          permissive change-of-control under the registered-VASP
+          regime. attribution=none is required by schema for
+          observed_no_change rows. No JP-resident-access restriction
+          or operator-side market exit is asserted — this is the
+          counter-example to the 2018-03-23 JFSA Binance warning where
+          the same regulator-target dyad produced an exit. DRYRUN:
+          pinned snapshot anchor deferred to human audit.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+        scope_descriptor:
+          providers: [binance, sebc]
+          countries: [JP]
+          time_window:
+            - 2022-11-30T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          CoinDesk 2022-11-30 contemporaneous reporting corroborates
+          the acquisition date and Binance's FSA-warning history
+          (2018, 2021). DRYRUN pinned snapshot anchor deferred to
+          human audit.
+        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+        wayback: https://web.archive.org/web/2022/https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+        scope_descriptor:
+          providers: [binance, sebc]
+          countries: [JP]
+          time_window:
+            - 2022-11-30T00:00:00Z
+            - 2026-05-17T00:00:00Z
+        note: |
+          Decrypt 2022-11-30 contemporaneous reporting corroborates
+          the acquisition and SEBC's JFSA-registered status. DRYRUN
+          pinned snapshot anchor deferred to human audit.
+        evidence_use: contextual_unarchived
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 Wave 2.2D** (P1
+  permissive-counterexample sweep; lean run): authored by LLM agent
+  without personally verifying Wayback / body_hash; status=draft and
+  origin=agent_draft. Real release must replace this DRYRUN marker
+  with a human-verified audit after pinning real archive anchors for
+  the Binance corporate blog, CoinDesk, and Decrypt URLs.
+
+  null_event documenting the JFSA-permitted change-of-control by which
+  Binance acquired 100% of Sakura Exchange BitCoin (SEBC), a registered
+  CAESP under the Payment Services Act, on 2022-11-30. This row is the
+  permissive counter-example to JP_FSA enforcement actions against
+  Binance (japan-fsa-binance-warning-2018) and to non-US national
+  regulators denying Binance market access (france-amf-binance-psan-
+  2022, germany-bafin-binance-licence-withdrawal-2023). The same
+  regulator-target dyad (JP_FSA × Binance) produced two opposite
+  outcomes under the same registered-VASP regime: a 2018 unregistered-
+  operations warning forcing market exit, and a 2022 permitted change-
+  of-control via licensed-VASP acquisition enabling market re-entry.
+
+  Structural contribution to the dataset: serves as a S4_nation_state
+  permissive denominator control. The corpus's S4_nation_state stratum
+  is heavily weighted toward enforcement-positive actions (warnings,
+  cease-and-desist, licence withdrawal, market-access denial); this row
+  documents the JFSA's accommodation pathway (licensed-VASP acquisition)
+  to anchor the null/permissive end of the distribution. Pairs cleanly
+  with the 2018 Binance warning row for direct same-regulator same-
+  target counterfactual analysis.
+
+  Codebook compliance:
+  - §5.1 trigger.type = regulatory_enforcement (non-US national
+    regulator administrative action under the registered-VASP regime,
+    including permissive accommodations such as change-of-control
+    approval; coded under regulatory_enforcement because the
+    underlying authority is the JFSA's CAESP supervisory perimeter
+    rather than a network/payment-rail block).
+  - §5.2 stratum-actor map (regulatory_enforcement → S4_nation_state).
+  - §6 analysis_use (comparable_main_2017_present →
+    comparable_analysis).
+  - §7 target.enumeration = subset (Binance + SEBC entity pair is the
+    single named target dyad; no `class_level` value used).
+  - §3 empirical_shape = null_event (0 observed_change layers; row is
+    admitted via observed_no_change with admission-grade sources).
+  - §4 admission_tier = null_case (0 strong-attribution
+    observed_change layers).
+  - §8 DRYRUN preamble present per LLM-authoring-agent compliance
+    requirement.
+
+  Attribution posture: all rows are observed_no_change with
+  attribution=none (schema-mandated). No direct / plausible
+  attribution is asserted because no censorship/blocking behavioral
+  change is being claimed — the entire point of this row is to
+  document the permissive null outcome. Any subsequent JFSA
+  enforcement action against Binance Japan (e.g., a business-
+  improvement order under the Payment Services Act) would be authored
+  as a separate event with this row as the permissive-counterfactual
+  parent.
+
+  DRYRUN caveats: trigger primary citation (Binance corporate blog
+  2022-11-30) and supporting journalism (CoinDesk, Decrypt) are
+  asserted with year-folder Wayback pointers; pinned snapshot
+  timestamp and body_hash captures for the specific permalinks are
+  deferred to human audit. For non-DRYRUN release, capture body_hash
+  + body_path for: (1) the Binance 2022-11-30 corporate blog, (2) any
+  JFSA notification of the SEBC change-of-control on the JFSA's
+  registered-CAESP roster (kanto-local-finance-bureau registry), (3)
+  the SEBC corporate disclosure, (4) the 2023-08 Binance Japan
+  full-service launch announcement (downstream operational
+  materialisation). Marked evidence_use=contextual_unarchived on all
+  citations to flag the unarchived state per validator policy.
+
+scoped_claim: |
+  "Japan FSA's registered-VASP regime under the Payment Services Act
+  permitted Binance's 2022-11-30 acquisition of 100% of Sakura
+  Exchange BitCoin (SEBC), a JFSA-registered Crypto-Asset Exchange
+  Service Provider, enabling Binance's re-entry into the Japanese
+  market via licensed-VASP change-of-control. As of the 2026-05-17
+  authoring date no enforcement-driven JP-resident-access restriction
+  attributable specifically to the 2022-11-30 trigger has been
+  observed. Coded null_event / null_case as the permissive counter-
+  example to JP_FSA enforcement actions against Binance
+  (japan-fsa-binance-warning-2018) and to non-US national regulator
+  Binance-market-access denials (france-amf-binance-psan-2022,
+  germany-bafin-binance-licence-withdrawal-2023), and as a
+  S4_nation_state permissive denominator control."
+
+tags:
+  - regulatory_enforcement
+  - japan
+  - fsa
+  - binance
+  - sakura_exchange_bitcoin
+  - sebc
+  - change_of_control
+  - registered_vasp_regime
+  - payment_services_act
+  - permissive_counterexample
+  - null_event
+  - dryrun_2026_05_17
+  - wave_2_2d

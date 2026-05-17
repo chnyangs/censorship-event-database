@@ -1,0 +1,328 @@
+id: fbi-bitcoin-intelligence-assessment-2012-04
+schema_version: 0.2.0
+status: draft
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - silk-road-doj-seizure-2013
+  - sec-shavers-btcst-2013
+  - ripple-fincen-xrp-2015
+
+trigger:
+  type: doj_indictment
+  actor: US_FBI
+  timestamp: 2012-04-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justsecurity.org/wp-content/uploads/2014/04/FBI.CyberIntelligenceCriminalIntelligence.2012.pdf
+      wayback: https://web.archive.org/web/2012/https://www.justsecurity.org/wp-content/uploads/2014/04/FBI.CyberIntelligenceCriminalIntelligence.2012.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        FBI Cyber Intelligence Section and Criminal Intelligence
+        Section intelligence assessment, "(U) Bitcoin Virtual
+        Currency: Unique Features Present Distinct Challenges for
+        Deterring Illicit Activity," dated 2012-04-24 (with
+        contributions from the FBI Detroit Division). The assessment
+        was originally classified (U//LES // FOUO) and was leaked to
+        WikiLeaks where it became publicly available ~2013-03;
+        Just Security re-hosted a PDF copy in 2014-04. The assessment
+        characterizes Bitcoin as a decentralized peer-to-peer virtual
+        currency providing "a venue for individuals to generate,
+        transfer, launder, and steal illicit funds with some
+        anonymity," and judges with "medium confidence" that cyber
+        criminals would increasingly treat Bitcoin as an alternative
+        payment option alongside more traditional virtual currencies.
+        The document is the first major US federal intelligence
+        assessment of Bitcoin as a policy concern and is widely
+        cited as a precedent for the subsequent 2013-2016 US
+        enforcement era (Silk Road 2013, SEC v. Shavers/BTCST 2013,
+        FinCEN FIN-2013-G001, Ripple/XRP I 2015). The trigger.type
+        enum has no "intelligence_assessment" value; doj_indictment
+        is the closest available match within the S3 stratum because
+        the FBI is a DOJ component agency and the assessment is the
+        intelligence-cycle predicate for subsequent DOJ enforcement.
+        evidence_use=contextual_unarchived because no body_hash has
+        been pinned in this DRYRUN authoring pass; the Just Security
+        PDF host and WikiLeaks mirror remain publicly accessible and
+        a 2012/2013 Wayback bracketing is straightforward in a
+        follow-up human-audit pass. Provisional year-prefix wayback
+        anchor pending re-pin.
+    - type: supporting_journalism
+      url: https://wikispooks.com/w/index.php?title=File:Bitcoin-FBI.pdf
+      wayback: https://web.archive.org/web/2012/https://wikispooks.com/w/index.php?title=File:Bitcoin-FBI.pdf
+      evidence_use: contextual_unarchived
+      note: |
+        WikiSpooks mirror of the leaked FBI intelligence assessment
+        PDF, hosting the same 2012-04-24 document. Retained as a
+        corroborating mirror anchor for the primary Just Security
+        PDF; the leaked-document provenance dates the public
+        availability to ~2013-03 via WikiLeaks. evidence_use=
+        contextual_unarchived for this DRYRUN authoring pass.
+    - type: supporting_community
+      url: https://bitcointalk.org/index.php?topic=216248.0
+      wayback: https://web.archive.org/web/2012/https://bitcointalk.org/index.php?topic=216248.0
+      evidence_use: contextual_unarchived
+      note: |
+        Bitcointalk.org community thread (started 2013-05) discussing
+        the leaked FBI 2012-04-24 intelligence assessment, recording
+        the contemporaneous Bitcoin-community reception of the
+        assessment. Retained as a supporting_community anchor for
+        the document's reception trajectory, not as a load-bearing
+        legal anchor.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2012-04-24 internal-date stamp on
+        the FBI intelligence-assessment cover page. The public-
+        availability date via WikiLeaks is ~2013-03; this event
+        codes the assessment-authorship date (2012-04-24) as the
+        trigger timestamp because the discovery-tier analytical
+        question is when the US federal intelligence community
+        formed a class-level posture on Bitcoin, not when that
+        posture became publicly leaked.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target of this assessment is the regulatory / policy
+    class "Bitcoin and Bitcoin-using cyber criminals" rather than any
+    named exchange, mixer, or address set. The assessment surveys
+    Bitcoin's protocol-level properties (decentralization, pseudo-
+    anonymity, P2P transfer) and the illicit-finance threat surface
+    that those properties present to US federal law enforcement, but
+    it does not designate, indict, sanction, or otherwise act against
+    any specific entity, wallet, or domain. Marked enumeration=subset
+    (per codebook §7: class_level is not a valid enumeration value)
+    with this enumeration_note recording the class-level posture.
+    actor_name labels the regulated/surveilled class; no on-chain
+    addresses or canonical_domains are enumerated because the
+    assessment does not name any.
+  actor_type: regulatory_class
+  actor_name: "Bitcoin protocol and Bitcoin-using illicit actors (US federal intelligence-assessment class)"
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2012-04-24 FBI intelligence assessment is an internal
+      analytical product. It does not direct, request, or contemplate
+      any ISP-level domain blocking or DNS interference against
+      bitcoin.org or any Bitcoin-related host. not_applicable on
+      construct-out-of-scope grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2012-04 has no protocol-
+      level relay-filter primitive analogous to the post-Merge
+      Ethereum PBS relay surface that the L1 layer was constructed
+      to measure. The Ethereum Merge itself is ~10 years downstream
+      (2022-09-15). not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
+      compliance substrate that the L3 layer measures did not exist
+      in 2012 (Flashbots Protect launched 2022-11; MEV-Blocker
+      launched 2023-03-27). not_applicable on construct-did-not-
+      exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The assessment does not require, name, or contemplate any
+      Bitcoin-related frontend takedown or geo-blocking. It is an
+      internal intelligence product, not an operational order.
+      not_applicable on construct-out-of-scope grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The assessment does not engage stablecoin-issuer or token-
+      issuer admin-key freeze primitives. USDT was first issued
+      ~2014-10; chain-wide issuer admin freezes arose later; the
+      2012-04 FBI assessment pre-dates the stablecoin admin-freeze
+      regulatory frame entirely. not_applicable on construct-out-
+      of-scope grounds.
+  - layer: offramp_cex
+    status: not_measured
+    scope:
+      - us_federal_intelligence_assessment_class
+    note: |
+      The substantive policy effect of the 2012-04-24 FBI assessment
+      is class-level: it establishes the US federal intelligence
+      community's first formal posture toward Bitcoin as an illicit-
+      finance concern. The cascade, however, is dispersed across the
+      2013-2016 enforcement era (Silk Road 2013, SEC v. Shavers/
+      BTCST 2013, FinCEN FIN-2013-G001, Ripple/XRP I 2015) rather
+      than localized to any single point-in-time CEX or offramp
+      event. Marked not_measured because the load-bearing cascade
+      is class-level and posture-establishing rather than point-in-
+      time observable; the corresponding observation row records
+      this as a coverage_gap.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:fbi
+    event: us_federal_intelligence_community_forms_class_level_posture_on_bitcoin
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2012-04-24T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justsecurity.org/wp-content/uploads/2014/04/FBI.CyberIntelligenceCriminalIntelligence.2012.pdf
+        wayback: https://web.archive.org/web/2012/https://www.justsecurity.org/wp-content/uploads/2014/04/FBI.CyberIntelligenceCriminalIntelligence.2012.pdf
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers:
+            - us_federal_intelligence_assessment_class
+          countries:
+            - US
+          time_window:
+            - 2012-04-24T00:00:00Z
+            - 2016-12-31T23:59:59Z
+        note: |
+          FBI Cyber Intelligence Section / Criminal Intelligence
+          Section assessment dated 2012-04-24 is the analytical
+          instrument. observation_kind=coverage_gap with attribution=
+          none honestly represents the load-bearing role of this
+          assessment as a class-level intelligence-posture predicate
+          whose cascade is dispersed across multiple downstream
+          enforcement actions (Silk Road 2013, SEC v. Shavers/BTCST
+          2013, FinCEN FIN-2013-G001, Ripple/XRP I 2015) rather than
+          a single observable point-in-time CEX cessation directly
+          attributable to the assessment alone. The cited downstream
+          enforcement actions carry their own load-bearing
+          observed_change rows in their own event files; this event
+          records the policy-precedent role only. Provisional year-
+          prefix wayback anchor pending re-pin in a follow-up human-
+          audit pass.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN Wave 2.2D 2026-05-17**. Discovery-tier
+  authoring (discovery_only_2008_2012). Authored by LLM agent without
+  personally verifying Wayback/body_hash; origin=agent_draft and
+  status=draft per validator constraint (agent_draft incompatible
+  with admitted). Real release must replace this DRYRUN marker with
+  a human-verified audit after pinning real archive anchors (the
+  wayback URLs here are 2012 wildcard pointers, not pinned snapshot
+  timestamps).
+
+  This event records the FBI Cyber Intelligence Section and Criminal
+  Intelligence Section intelligence assessment "(U) Bitcoin Virtual
+  Currency: Unique Features Present Distinct Challenges for Deterring
+  Illicit Activity" dated 2012-04-24, with contributions from the
+  FBI Detroit Division. The assessment was originally classified
+  (U//LES // FOUO) and was leaked to WikiLeaks ~2013-03, then re-
+  hosted by Just Security in 2014-04. It is the first major US
+  federal intelligence assessment of Bitcoin as a policy concern
+  and is widely cited as the precedent / posture-formation event
+  for the subsequent 2013-2016 US enforcement era.
+
+  Why null_event / null_case / coverage_gap: this event's load-
+  bearing function is policy-precedent / intelligence-posture-
+  forming rather than cascade-producing. The assessment is an
+  internal analytical product, not an enforcement action. It names
+  no entity, no wallet, no domain; it orders no block, no seizure,
+  no takedown. The substantive cascade — US federal intelligence-
+  community attention to Bitcoin as illicit-finance vector —
+  unfolds dispersedly across the 2013-2016 enforcement era rather
+  than as a single observable point-in-time offramp event. The
+  cascade-shape grammar of the schema does not natively express
+  class-level policy-precedent intelligence assessments, so this
+  event is coded honestly as null_event (0 observed_change layers)
+  / null_case (0 strong-attribution observed_change), with the
+  single observation row expressing the class-level coverage_gap.
+  The downstream enforcement events (silk-road-doj-seizure-2013,
+  sec-shavers-btcst-2013, ripple-fincen-xrp-2015) carry the load-
+  bearing observed_change rows in their own event files.
+
+  Why discovery_only_2008_2012 tier: per the 2008+ tiered frame in
+  sampling/frame.yaml, the 2012-04-24 authorship date places this
+  event in the discovery_only_2008_2012 temporal tier.
+  analysis_use=discovery_ledger_only excludes this row from the
+  2017+ comparable-analysis denominator, matching the validator's
+  tier-vs-analysis-use consistency rule. This row carries no
+  comparable-analysis denominator weight; its purpose is to anchor
+  the 2008+ pre-Bitcoin-enforcement intelligence-posture predicate
+  for the FBI-2012 → Silk-Road-2013 → FinCEN-2013-G001 → Shrem-2014
+  lineage already in corpus.
+
+  Schema-enum surprises encountered during authoring:
+  - trigger.type has no "intelligence_assessment" enum; per the
+    authoring brief the closest enum match within the S3 stratum is
+    doj_indictment because the FBI is a DOJ component agency and
+    the assessment is the intelligence-cycle predicate for
+    subsequent DOJ enforcement. court_civil_order was considered
+    and rejected as a worse fit (the assessment is not a court
+    action). The stratum-actor map in codebook §5.2 permits
+    doj_indictment within S3_doj_sec_cftc_fiod.
+  - target.kind has no regulatory_class enum; fell back to
+    target.kind=entity with target.enumeration=subset and an
+    enumeration_note that records the class-level character (per
+    codebook §7: class_level is not a valid enumeration value).
+  - empirical_shape has no case_study enum; mapped the class-level
+    policy-precedent posture to null_event + null_case +
+    observation_kind=coverage_gap.
+  - observation_kind has no not_observed enum; used coverage_gap
+    with attribution=none, which is the same pattern used by
+    fincen-virtual-currency-msb-guidance-2013 for class-level
+    regulatory-predicate events.
+
+  status remains draft until a human review decides whether to:
+  (1) admit the event as null_case at empirical_shape=null_event
+      after rewriting the predicate observation as
+      observed_no_change with a falsifiable 2012-04-24 to 2016-12-31
+      scope_descriptor and a replayable archival anchor (since
+      coverage_gap is not admitted at status=admitted), or
+  (2) retire this event entirely and let the downstream enforcement
+      events (Silk Road 2013, SEC v. Shavers/BTCST 2013, FinCEN
+      FIN-2013-G001, Ripple/XRP I 2015) carry the discovery-tier
+      anchor function on their own, with the FBI 2012 assessment
+      cited as policy precedent in their analysis_notes rather
+      than as a free-standing event.
+
+  Origin=agent_draft and status=draft per the agent-authoring
+  convention.
+
+scoped_claim: |
+  The FBI Cyber Intelligence Section / Criminal Intelligence Section
+  assessment "Bitcoin Virtual Currency: Unique Features Present
+  Distinct Challenges for Deterring Illicit Activity" (2012-04-24,
+  leaked via WikiLeaks ~2013-03) is the first major US federal
+  intelligence assessment of Bitcoin as an illicit-finance policy
+  concern. observation_kind=coverage_gap with attribution=none
+  because the substantive cascade is dispersed across downstream
+  enforcement actions (Silk Road 2013, SEC v. Shavers/BTCST 2013,
+  FinCEN FIN-2013-G001, Ripple/XRP I 2015) that inherit the
+  intelligence-posture predicate, rather than localized to a single
+  observable point-in-time CEX cessation. Discovery-tier only; not
+  used in main statistical denominators.
+
+tags:
+  - discovery_only_2008_2012
+  - fbi
+  - intelligence_assessment
+  - bitcoin
+  - policy_precedent
+  - class_level_assessment
+  - wikileaks
+  - pre_silk_road
+  - dryrun_2026_05_17
+  - wave_2_2d_2026_05_17

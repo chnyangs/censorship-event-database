@@ -1,0 +1,270 @@
+id: unsc-resolution-2371-dprk-crypto-2017
+schema_version: 0.2.0
+status: draft
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+trigger:
+  type: non_us_sanctions
+  actor: UN_SECURITY_COUNCIL
+  timestamp: 2017-08-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://main.un.org/securitycouncil/en/s/res/2371-(2017)
+      wayback: https://web.archive.org/web/2017/https://main.un.org/securitycouncil/en/s/res/2371-(2017)
+      evidence_use: contextual_unarchived
+      note: |
+        **NEW EVENT AUTHORED — DRYRUN 2026-05-17 — Wave 2.2D
+        re-author preamble (note: replaces dropped rate-limit-
+        partial)**: authored by LLM agent without personally
+        verifying Wayback / body_hash; origin=agent_draft per
+        validator hard-rule. Human auditor must replace this DRYRUN
+        marker with a pinned archive anchor before release.
+
+        UN Security Council Resolution 2371 (2017), adopted
+        unanimously by the Security Council at its 8019th meeting
+        on 2017-08-05 in response to the DPRK's 2017-07-03 and
+        2017-07-28 intercontinental ballistic missile tests. The
+        resolution tightens the DPRK sanctions regime by (i)
+        prohibiting export of DPRK coal, iron, iron ore, seafood,
+        lead and lead ore; (ii) banning new or expanded joint
+        ventures and cooperative commercial entities with DPRK;
+        (iii) capping the number of overseas DPRK laborers; and
+        (iv) expanding financial-sector reach by clarifying that
+        companies performing financial services are treated as
+        financial institutions for sanctions purposes and by
+        adding the DPRK Foreign Trade Bank to the asset-freeze
+        list. The resolution does NOT explicitly name
+        "cryptocurrency" or "virtual currency" — that explicit
+        framing appears in later DPRK-track resolutions (2397
+        of 2017-12-22, 2407 of 2018-03, and the 1718 Panel of
+        Experts reports from 2018 onward). 2371 is included here
+        as the foundational 2017 financial-sanctions instrument
+        whose expanded financial-institution definition and
+        Foreign Trade Bank designation supply the legal
+        scaffolding subsequently used to frame DPRK crypto-
+        laundering (Lazarus / APT38) as sanctions-evasion under
+        the 1718 regime. DRYRUN: framing as "first UN resolution
+        explicitly mentioning DPRK cryptocurrency" is NOT
+        supported by the text of 2371 itself — coded conservatively
+        as null_event with the historical-scaffolding rationale
+        documented in analysis_notes.
+    - type: primary_legal
+      url: https://www.un.org/press/en/2017/sc12945.doc.htm
+      wayback: https://web.archive.org/web/2017/https://www.un.org/press/en/2017/sc12945.doc.htm
+      evidence_use: contextual_unarchived
+      note: |
+        UN Meetings Coverage SC/12945 (2017-08-05): "Security
+        Council Toughens Sanctions Against Democratic People's
+        Republic of Korea, Unanimously Adopting Resolution 2371
+        (2017)". Press release accompanying the resolution;
+        enumerates the export bans, joint-venture prohibition,
+        labor cap, and financial-system tightening (Foreign Trade
+        Bank asset freeze; financial-institution clarification).
+        DRYRUN: archival anchor unverified by LLM agent at
+        authoring time.
+    - type: supporting_tracker
+      url: https://www.armscontrol.org/factsheets/un-security-council-resolutions-north-korea
+      wayback: https://web.archive.org/web/2017/https://www.armscontrol.org/factsheets/un-security-council-resolutions-north-korea
+      evidence_use: contextual_unarchived
+      note: |
+        Arms Control Association factsheet on UN Security Council
+        resolutions on North Korea. Provides the canonical
+        chronology placing 2371 (2017-08-05) within the DPRK
+        sanctions track that subsequently extended to virtual-
+        asset / cryptocurrency sanctions-evasion framing in 2018+
+        Panel of Experts work. DRYRUN: tracker source, not
+        admission-grade.
+  timestamp_sources:
+    - type: primary_legal
+      url: https://main.un.org/securitycouncil/en/s/res/2371-(2017)
+      wayback: https://web.archive.org/web/2017/https://main.un.org/securitycouncil/en/s/res/2371-(2017)
+      note: |
+        Adoption date 2017-08-05 (8019th meeting of the Security
+        Council). Day-level precision. DRYRUN authored 2026-05-17.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level UNSC sanctions resolution targeting the Democratic
+    People's Republic of Korea (DPRK) as the sanctioned state and,
+    by operation of the 1718 Sanctions Committee framework, DPRK-
+    affiliated entities and persons engaged in proliferation
+    finance and sanctions-evasion. Per §7 codebook, class-level
+    sanctions instruments are encoded as enumeration=subset with
+    the class-level rationale documented here. Named entity
+    additions in 2371 include the DPRK Foreign Trade Bank
+    (asset-freeze designation). 2371 itself does not enumerate
+    cryptocurrency addresses or virtual-asset service providers;
+    downstream DPRK crypto-laundering operations (Lazarus Group,
+    APT38) are designated under derivative US/UN actions tracked
+    as separate child events (lazarus-entity-ofac-2019, lazarus-
+    laundering-ofac-2020, dprk-usdt-network-ofac-2025).
+  actor_type: sanctioned_state
+  actor_name: Democratic People's Republic of Korea (DPRK)
+  entity: DPRK
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [UN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      Class-level UNSC sanctions resolution. 2371 does not name
+      on-chain addresses or virtual-asset service providers;
+      derivative asset_onchain effects (Tether / Circle freezes
+      of Lazarus-controlled addresses) are attributable to later
+      OFAC SDN actions, not to 2371 directly. No
+      observed_change cascade attributable to the 2017-08-05
+      adoption date at this layer.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Class-level UNSC sanctions resolution at the off-ramp
+      layer. 2371 expanded DPRK financial-system reach (Foreign
+      Trade Bank asset freeze; financial-services-as-financial-
+      institution clarification) but did not enumerate
+      cryptocurrency exchanges. Downstream off-ramp effects on
+      DPRK-linked crypto laundering manifest via the 2019/2020/
+      2025 OFAC SDN actions tracked as separate child events.
+      Coded null_event per §3 codebook: 0 observed_change layers
+      directly attributable to the 2017-08-05 trigger date at the
+      corpus's resolution.
+
+observations:
+  - layer: offramp_cex
+    actor: dprk_crypto_aggregate
+    event: unsc_2371_dprk_sanctions_adoption_2017
+    observation_kind: coverage_gap
+    attribution: none
+    timestamp: 2017-08-05T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://main.un.org/securitycouncil/en/s/res/2371-(2017)
+        wayback: https://web.archive.org/web/2017/https://main.un.org/securitycouncil/en/s/res/2371-(2017)
+        scope_descriptor:
+          providers: [dprk_crypto_aggregate]
+          time_window:
+            - 2017-08-05T00:00:00Z
+            - 2018-12-31T23:59:59Z
+        note: |
+          UNSC Resolution 2371 (2017-08-05) is a class-level
+          DPRK-sanctions coordination instrument. No per-event
+          observed_change cascade at the offramp_cex or
+          asset_onchain layers is directly attributable to the
+          2017-08-05 adoption date at the corpus's resolution.
+          Downstream effects on DPRK crypto-laundering off-ramp
+          flows manifest via subsequent OFAC SDN actions (Lazarus
+          2019, Lazarus laundering 2020, DPRK USDT network 2025)
+          tracked as separate child events. Coverage_gap /
+          attribution=none per §1.1 codebook. DRYRUN: archival
+          anchor unverified by LLM agent.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 — Wave 2.2D
+  re-author preamble (note: replaces dropped rate-limit-partial)**
+
+  null_event documenting UN Security Council Resolution 2371,
+  adopted unanimously on 2017-08-05 in response to DPRK's July
+  2017 ICBM tests. 2371 tightens the DPRK sanctions regime via
+  (i) export bans on coal, iron, iron ore, seafood, lead and lead
+  ore; (ii) prohibition of new or expanded DPRK joint ventures;
+  (iii) overseas-labor caps; and (iv) financial-system
+  tightening (Foreign Trade Bank asset freeze; clarification that
+  financial-services companies are treated as financial
+  institutions for sanctions purposes).
+
+  **Honest-coding note on the cryptocurrency framing**: the
+  authoring brief described 2371 as "the first UN resolution
+  explicitly mentioning DPRK cryptocurrency operations as
+  sanctions evasion vector". The text of 2371 itself does NOT
+  explicitly use the words "cryptocurrency" or "virtual currency"
+  — that explicit framing first appears in later DPRK-track
+  instruments (UNSCR 2397 of 2017-12-22 and 1718 Panel of
+  Experts reports from 2018 onward, which document DPRK
+  cryptocurrency-exchange attacks as a sanctions-evasion vector).
+  2371 is admitted here as the foundational 2017 financial-
+  sanctions resolution whose expanded financial-institution
+  definition supplies the legal scaffolding subsequently used by
+  the 1718 Sanctions Committee to frame DPRK crypto-laundering
+  as sanctions-evasion. Per CLAUDE.md §1 (Think Before Coding),
+  this conservative framing is preferred over the brief's stronger
+  claim; human auditor should adjudicate before release.
+
+  Per §5 codebook trigger.type=non_us_sanctions maps to
+  research_stratum=S6_supranational; the actor is the UN Security
+  Council. Per §6 codebook the temporal_tier is
+  comparable_main_2017_present and the canonical analysis_use is
+  comparable_analysis. Per §7 codebook the enumeration is `subset`
+  with the class-level rationale documented in
+  target.enumeration_note (UNSC framework resolution; no
+  cryptocurrency-address enumeration in 2371 itself). Per §3
+  codebook the empirical_shape is null_event: 0 observed_change
+  layers directly attributable to the 2017-08-05 adoption date;
+  downstream cascades (2018+ Panel of Experts crypto-evasion
+  framing; OFAC Lazarus / APT38 SDN designations 2019/2020/2025)
+  are tracked as separate child events. Per §4 codebook
+  admission_tier=null_case (0 strong-attribution observed_change
+  layers).
+
+  Per §1.1 codebook, the single coverage_gap row uses
+  attribution=`none` because observation_kind=`coverage_gap` (no
+  direct per-event observed_change at the corpus's resolution).
+  This event functions as the foundational 2017 anchor for the
+  DPRK / Lazarus crypto-sanctions track and as a temporal landmark
+  for the 2017-2025 sequence of DPRK-related crypto enforcement.
+  DRYRUN: archival anchors asserted but not personally verified
+  by the LLM agent; human auditor must pin real Wayback /
+  body_hash anchors before release.
+
+scoped_claim: |
+  "UN Security Council Resolution 2371, adopted unanimously on
+  2017-08-05, is the foundational 2017 DPRK-sanctions instrument
+  whose expanded financial-institution reach (Foreign Trade Bank
+  asset freeze; financial-services-as-financial-institution
+  clarification) supplies the legal scaffolding subsequently used
+  by the 1718 Sanctions Committee and US OFAC to frame DPRK
+  crypto-laundering as sanctions evasion. Coded as null_event /
+  null_case at the corpus's resolution: 2371 does not itself
+  enumerate cryptocurrency addresses or virtual-asset service
+  providers, and no per-event observed_change cascade is directly
+  attributable to the 2017-08-05 adoption date; downstream
+  Lazarus / DPRK-USDT enforcement actions are tracked as separate
+  child events."
+
+related_events:
+  - lazarus-entity-ofac-2019
+  - lazarus-laundering-ofac-2020
+  - dprk-usdt-network-ofac-2025
+
+tags:
+  - non_us_sanctions
+  - unsc
+  - unscr_2371
+  - dprk
+  - north_korea
+  - lazarus_track
+  - sanctions_evasion
+  - supranational_trigger
+  - parent_event
+  - null_event

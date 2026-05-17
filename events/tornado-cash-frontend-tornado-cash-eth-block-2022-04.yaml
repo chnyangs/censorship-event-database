@@ -1,0 +1,358 @@
+id: tornado-cash-frontend-tornado-cash-eth-block-2022-04
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - tornado-cash-ofac-2022
+  - tornado-cash-storm-conviction-2025
+  - aave-tornado-frontend-block-2022-08
+  - uniswap-balancer-tornado-frontend-block-2022-08
+
+trigger:
+  type: corporate_policy_change
+  actor: tornado_cash_team
+  timestamp: 2022-04-15T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://twitter.com/TornadoCash/status/1514904975037210632
+      wayback: https://web.archive.org/web/2022/https://twitter.com/TornadoCash/status/1514904975037210632
+      evidence_use: contextual_unarchived
+      note: |
+        Tornado Cash official Twitter (@TornadoCash) announcement of
+        2022-04-15 stating that "Tornado Cash uses Chainalysis oracle
+        contract to block OFAC sanctioned addresses from accessing the
+        dapp" and that "maintaining financial privacy is essential to
+        preserving our freedom, however, it should not come at the cost
+        of non-compliance." The team's own corporate statement names
+        the action (frontend dapp block of OFAC SDN addresses), the
+        mechanism (on-chain Chainalysis sanctions-screening oracle
+        contract queried at the frontend), and that the block is
+        scoped to the user-facing dapp only — the underlying smart
+        contract remains permissionless. DRYRUN: pinned Wayback
+        snapshot and body_hash for this tweet are deferred to the
+        human-audit pass; marked evidence_use=contextual_unarchived
+        per validator policy for unarchived sources.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/tech/2022/04/15/tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp
+      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/04/15/tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk contemporaneous coverage (2022-04-15) of the Tornado
+        Cash team's adoption of the Chainalysis sanctions-screening
+        oracle contract at the tornado.cash frontend. Triangulation
+        source for day-level timing and the Chainalysis oracle
+        mechanism. Notes the action followed the 2022-04-14 OFAC
+        attribution of the Ronin Bridge hack to the DPRK Lazarus
+        Group — but the Tornado Cash team's action is a voluntary
+        corporate-policy step, not compelled by any OFAC designation
+        of Tornado Cash itself (which came 4 months later, on
+        2022-08-08; see related event tornado-cash-ofac-2022).
+        DRYRUN: pinned Wayback snapshot deferred to human audit.
+    - type: supporting_journalism
+      url: https://cryptopotato.com/tornado-cash-reveals-using-chainalysis-oracle-contract/
+      wayback: https://web.archive.org/web/2022/https://cryptopotato.com/tornado-cash-reveals-using-chainalysis-oracle-contract/
+      evidence_use: contextual_unarchived
+      note: |
+        CryptoPotato contemporaneous coverage of the 2022-04-15
+        Tornado Cash announcement describing the Chainalysis oracle
+        contract integration at the tornado.cash dapp and quoting
+        co-founder Roman Semenov's subsequent clarification that the
+        block applies only to the frontend, not the smart contract.
+        Triangulation source for the frontend-only scope of the
+        block. DRYRUN: pinned Wayback snapshot deferred to human
+        audit.
+    - type: supporting_journalism
+      url: https://chainbulletin.com/tornado-cash-to-use-chainalysis-to-block-ofac-sanctioned-addresses
+      wayback: https://web.archive.org/web/2022/https://chainbulletin.com/tornado-cash-to-use-chainalysis-to-block-ofac-sanctioned-addresses
+      evidence_use: contextual_unarchived
+      note: |
+        Chain Bulletin contemporaneous coverage of the 2022-04-15
+        Tornado Cash voluntary frontend block, retained as
+        triangulation for the actor (Tornado Cash team), the
+        mechanism (Chainalysis on-chain sanctions oracle), and the
+        narrow frontend-only scope. DRYRUN: pinned Wayback snapshot
+        deferred to human audit.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level timing per the Tornado Cash team's 2022-04-15
+        Twitter announcement and same-day CoinDesk coverage. The
+        block became publicly visible at the tornado.cash dapp on
+        2022-04-15 when the team published the integration;
+        precision=day reflects the LLM-author's inability to pin a
+        sub-day timestamp from the public corporate statement.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Tornado Cash team operates the tornado.cash frontend UI (the
+    user-facing dapp at app.tornado.cash / tornado.cash). On
+    2022-04-15 the team integrated the Chainalysis on-chain
+    sanctions-screening oracle contract at the dapp's wallet-connect
+    flow, blocking any address listed on the Chainalysis-maintained
+    OFAC SDN sanctions list from depositing or withdrawing through
+    the official frontend. Target is the operator entity (Tornado
+    Cash frontend) rather than an enumerated address set because the
+    blocklist is a moving reference maintained by the Chainalysis
+    oracle (snapshotting OFAC SDN cryptocurrency addresses), not a
+    static published roster; subset because only the team-operated
+    tornado.cash UI is in scope (the Tornado Cash smart contracts on
+    Ethereum mainnet remained permissionless and unaffected, and
+    third-party frontends / direct contract calls bypassed the
+    block).
+  protocol: tornado_cash
+  actor_type: defi_frontend
+  actor_name: Tornado Cash team (frontend operator)
+  chains: [ethereum]
+  canonical_domains:
+    - tornado.cash
+    - app.tornado.cash
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      tornado.cash remained reachable globally on 2022-04-15; the
+      restriction is client-side wallet-connection filtering via an
+      on-chain Chainalysis oracle contract call, not a DNS or
+      ISP-level block. The 2022-08 GitHub takedown of the Tornado
+      Cash frontend repository (see tornado-cash-github-takedown-
+      2022-08) is a distinct downstream L0-adjacent action.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      Pre-Merge Ethereum (Paris was 2022-09-15, 5 months after this
+      event); PBS relay-censorship infrastructure did not exist yet.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Distinct from the L3 RPC-provider blocks that followed the
+      2022-08-08 OFAC designation (see infura-alchemy-tornado-rpc-
+      block-2022). The Tornado Cash team's 2022-04-15 block is an
+      L4 wallet-connect screening at the dapp UI, not an L3 JSON-RPC
+      response policy.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - tornado.cash
+      - app.tornado.cash
+    provider_scope: unknown
+    note: |
+      Load-bearing layer for this event. The Tornado Cash team's
+      own Twitter statement and contemporaneous journalism name the
+      Chainalysis on-chain sanctions-screening oracle contract
+      integration at the team-operated tornado.cash dapp as the
+      mechanism that blocks OFAC SDN addresses from depositing or
+      withdrawing through the official frontend. The Tornado Cash
+      smart contracts on Ethereum remained reachable directly and
+      via third-party frontends; the block is exclusively at the
+      team-operated frontend UI layer. partially_measured rather
+      than measured because no replayable client-side capture of the
+      tornado.cash dapp's pre/post-2022-04-15 wallet-connect
+      behavior is pinned in this repo (only the operator's public
+      announcement is captured); a full measured rating would
+      require a sources/http_captures/ slice of the dapp UI behavior
+      against a known SDN address. Attached below as observed_change
+      at attribution=direct (Tornado Cash team's own statement names
+      the action and mechanism).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-level asset freeze invoked by the Tornado Cash team's
+      frontend policy. The Chainalysis oracle is queried at the
+      dapp UI; it is not a token-contract blacklist.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      CEX off-ramp reactions to Tornado Cash are captured under
+      tornado-cash-ofac-2022 observations[offramp_cex], downstream
+      of the 2022-08-08 OFAC SDN designation rather than this
+      voluntary 2022-04-15 frontend block.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:tornado_cash_team
+    event: tornado_cash_team_integrated_chainalysis_oracle_blocking_ofac_sdn_addresses_at_dapp
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-04-15T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://twitter.com/TornadoCash/status/1514904975037210632
+        wayback: https://web.archive.org/web/2022/https://twitter.com/TornadoCash/status/1514904975037210632
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - tornado.cash
+            - app.tornado.cash
+          providers:
+            - chainalysis
+          time_window:
+            - 2022-04-15T00:00:00Z
+            - 2022-04-16T23:59:59Z
+        note: |
+          Tornado Cash team's own Twitter announcement of 2022-04-15
+          is the canonical corporate-policy source for this L4
+          frontend block. The operator names: (a) the action (OFAC
+          SDN addresses are blocked from depositing/withdrawing
+          through tornado.cash), (b) the mechanism (Chainalysis
+          on-chain sanctions-screening oracle contract queried at
+          the dapp UI), and (c) the voluntary character ("it should
+          not come at the cost of non-compliance"). attribution=
+          direct because the source is the operator naming the
+          action and its motivation under codebook §1.4 (frontend
+          block, operator publicly cites compliance posture within
+          the immediate publication window). DRYRUN: pinned Wayback
+          snapshot and body_hash for this tweet are deferred to the
+          human-audit pass; marked evidence_use=contextual_unarchived
+          per validator policy.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/tech/2022/04/15/tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp
+        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/04/15/tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          domains:
+            - tornado.cash
+          time_window:
+            - 2022-04-15T00:00:00Z
+            - 2022-04-16T23:59:59Z
+        note: |
+          CoinDesk contemporaneous coverage of the 2022-04-15
+          Tornado Cash team announcement, retained for day-level
+          timing triangulation and independent confirmation of the
+          Chainalysis oracle mechanism and frontend-only scope.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+      - type: supporting_journalism
+        url: https://cryptopotato.com/tornado-cash-reveals-using-chainalysis-oracle-contract/
+        wayback: https://web.archive.org/web/2022/https://cryptopotato.com/tornado-cash-reveals-using-chainalysis-oracle-contract/
+        evidence_use: contextual_unarchived
+        note: |
+          CryptoPotato contemporaneous coverage retained for the
+          co-founder Roman Semenov clarification that the block
+          applies only to the team-operated frontend, not the smart
+          contract — load-bearing for the L4-only scope claim.
+          DRYRUN: pinned Wayback snapshot deferred to human audit.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: |
+      The Chainalysis oracle integration at tornado.cash remained in
+      place from 2022-04-15 onward; the 2022-08-08 OFAC SDN
+      designation of Tornado Cash (tornado-cash-ofac-2022) then
+      superseded this voluntary frontend block with mandatory
+      US-jurisdiction compliance pressure on the entire ecosystem.
+      The frontend itself was taken offline shortly after via the
+      2022-08 GitHub takedown of the Tornado Cash repository (see
+      tornado-cash-github-takedown-2022-08). No recovery anchor
+      applies to this voluntary 2022-04 action.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.2D)**: authored
+  by LLM agent without personally verifying Wayback/body_hash;
+  origin=agent_draft per validator policy. Real release must replace
+  this DRYRUN marker with a human-verified audit after pinning real
+  archive anchors and promote origin to human_reviewed.
+
+  Foundational comparison-shape S5 corporate-policy-change event:
+  this is the earliest documented L4 DeFi-frontend voluntary self-
+  censorship action in the corpus, predating the 2022-08-08 OFAC SDN
+  designation of Tornado Cash (tornado-cash-ofac-2022) by 116 days
+  (~4 months). Paper-relevant precisely because it isolates the
+  protocol-team-initiated frontend filtering archetype before any
+  government compulsion existed. The Tornado Cash team — the same
+  team that would later be criminally targeted (see
+  tornado-cash-storm-conviction-2025) — chose voluntarily to deploy
+  the Chainalysis on-chain sanctions-screening oracle contract at
+  the tornado.cash dapp, blocking OFAC SDN addresses from the
+  user-facing frontend while leaving the underlying smart contracts
+  permissionless. This is the seed instance of the "frontend /
+  protocol-layer split" archetype later instantiated by the
+  2022-08 cascade: aave-tornado-frontend-block-2022-08,
+  uniswap-balancer-tornado-frontend-block-2022-08,
+  infura-alchemy-tornado-rpc-block-2022, and
+  circle-usdc-tornado-2022. The 2022-04-15 timing follows the
+  2022-04-14 OFAC redesignation of the DPRK Lazarus Group with the
+  Ronin Bridge hack address universe — Tornado Cash's voluntary
+  action is causally consistent with that upstream OFAC pressure on
+  the broader address space, but Tornado Cash itself was not named
+  in any OFAC action until 2022-08-08.
+
+  Empirical shape: comparison (1 observed_change layer — L4
+  frontend load-bearing). Admission tier: empirical_case (≥1
+  observed_change layer with direct attribution). Stratum coding:
+  S5_corporate per codebook §5.2 (corporate_policy_change → S5).
+  Trigger.type=corporate_policy_change rather than
+  ofac_sdn_designation because no OFAC action named Tornado Cash on
+  2022-04-15; the operator chose the policy unilaterally. Coverage
+  for l4_frontend coded partially_measured (not measured) per
+  codebook §2: the operator's public announcement is captured but
+  no replayable client-side dapp-behavior capture is pinned in
+  sources/http_captures/ for this event.
+
+  Attribution=direct under codebook §1.4: the blocking provider
+  (Tornado Cash team itself) publicly cites the compliance motivation
+  in a primary corporate statement, and the block is implemented in
+  the same publication window. Note this is unusual relative to
+  §1.4's typical fact pattern: there is no upstream sanctioning
+  trigger naming this actor — the actor is self-applying compliance
+  posture preemptively. The codebook §1.4 "operator publicly cites
+  the trigger" condition is satisfied vacuously / by self-reference
+  here; flagged for human-reviewer attention.
+
+  DRYRUN caveats: the four citations (Tornado Cash Twitter status +
+  three contemporaneous journalism pieces) all carry 2022-calendar-
+  folder Wayback pointers rather than pinned snapshots; pinned
+  snapshot timestamps and body_hash captures are deferred to the
+  human-audit pass. For non-DRYRUN release, capture body_hash +
+  body_path for: (1) the Tornado Cash Twitter status anchor of
+  2022-04-15; (2) the CoinDesk, CryptoPotato, and Chain Bulletin
+  article permalinks; optionally (3) the Chainalysis sanctions-
+  screening oracle contract on Etherscan (verified contract source)
+  as primary_onchain evidence of the mechanism, and (4) a pre/post-
+  2022-04-15 sources/http_captures/ slice of the tornado.cash dapp's
+  wallet-connect flow tested against a known SDN address (would
+  elevate l4_frontend coverage from partially_measured to measured).
+  Marked evidence_use=contextual_unarchived on all citations to flag
+  the unarchived state per validator policy.
+
+scoped_claim: |
+  "The Tornado Cash team's 2022-04-15 integration of the Chainalysis
+  on-chain sanctions-screening oracle contract at the tornado.cash
+  frontend — blocking OFAC SDN addresses from depositing or
+  withdrawing through the team-operated dapp while leaving the
+  Tornado Cash smart contracts on Ethereum permissionless —
+  documents the earliest L4 DeFi-frontend voluntary self-censorship
+  action in the corpus, predating the 2022-08-08 OFAC SDN
+  designation of Tornado Cash (tornado-cash-ofac-2022) by 116 days
+  and seeding the 'frontend / protocol-layer split' archetype later
+  instantiated in the 2022-08 cascade siblings
+  (aave-tornado-frontend-block-2022-08,
+  uniswap-balancer-tornado-frontend-block-2022-08)."
+
+tags:
+  - corporate_policy_change
+  - frontend_restriction
+  - tornado_cash
+  - chainalysis_oracle
+  - tornado_cash_thread
+  - voluntary_self_censorship
+  - frontend_protocol_split
+  - pre_ofac_compliance
+  - dryrun_2026_05_17

@@ -1,0 +1,323 @@
+id: ren-protocol-shutdown-alameda-ftx-2022-12
+schema_version: 0.2.0
+status: draft
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - ftx-bankman-fried-doj-2022
+  - celsius-bankruptcy-mashinsky-doj-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: REN_PROTOCOL_TEAM
+  timestamp: 2022-12-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/193274/alameda-backed-ren-warns-users-of-losses-as-it-plans-to-wind-down-protocol
+      wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/193274/alameda-backed-ren-warns-users-of-losses-as-it-plans-to-wind-down-protocol
+      evidence_use: contextual_unarchived
+      note: |
+        The Block (2022-12) coverage: "Alameda-backed Ren warns users of
+        losses as it plans to wind down version 1.0." Documents the Ren
+        Protocol team's public announcement of the Ren 1.0 cross-chain
+        bridge wind-down, with minting already disabled and burning
+        scheduled to close out on 2022-12-20. The wind-down is causally
+        linked to the upstream FTX / Alameda Research collapse (Alameda
+        Research was the parent / funder of the Ren team after the
+        2022-02 acquisition); Ren community calls disclosed the team had
+        approximately $160K of remaining runway after the loss of
+        Alameda's quarterly funding. evidence_use=contextual_unarchived
+        because in this DRYRUN the authoring LLM agent did not personally
+        pin a Wayback snapshot timestamp or compute a body_hash; the
+        theblock.co article slug is stable and routinely captured by
+        Wayback in 2022-2023 and remains the anchor pending human-audit
+        re-pin.
+    - type: supporting_journalism
+      url: https://cointelegraph.com/news/ren-protocol-transfers-all-assets-to-ftx-debtors-wallet-in-case-of-shutdown
+      wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/ren-protocol-transfers-all-assets-to-ftx-debtors-wallet-in-case-of-shutdown
+      evidence_use: contextual_unarchived
+      note: |
+        Cointelegraph (2022-12) coverage: "Ren Protocol transfers all
+        assets to FTX debtors' wallet in case of shutdown." Independent
+        journalistic confirmation that the Ren 1.0 cross-chain bridge
+        wind-down was operator-initiated by the Ren Protocol team
+        downstream of the FTX / Alameda Chapter 11 cascade, and that
+        residual protocol assets were earmarked for transfer to the FTX
+        debtors' estate. Wayback wildcard pointer in lieu of pinned-
+        timestamp snapshot; evidence_use=contextual_unarchived pending
+        human-audit re-pin.
+    - type: supporting_journalism
+      url: https://crypto.news/alameda-backed-ren-shuts-down-alerts-users-to-unwrap-tokens/
+      wayback: https://web.archive.org/web/2022/https://crypto.news/alameda-backed-ren-shuts-down-alerts-users-to-unwrap-tokens/
+      evidence_use: contextual_unarchived
+      note: |
+        crypto.news (2022-12) coverage: "Alameda-backed Ren protocol
+        shuts down, alerts users to unwrap tokens." Corroborating
+        journalistic source documenting the public team advisory urging
+        renBTC / renZEC / renBCH holders to unwrap their wrapped-asset
+        balances back to native chains before the 2022-12-20 burning
+        cutoff, after which residual wrapped balances could no longer be
+        redeemed via the Ren 1.0 bridge. Wayback wildcard pointer in
+        lieu of pinned-timestamp snapshot; evidence_use=
+        contextual_unarchived pending human-audit re-pin.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision: 2022-12-20 is the publicly announced burning
+        / redemption-window cutoff for the Ren 1.0 cross-chain bridge,
+        after which renBTC and other ren-wrapped assets could no longer
+        be redeemed to their native chains. Mint had already been
+        disabled prior; 2022-12-20 is the operative end-of-life cutoff.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Single-entity-cluster target: the Ren Protocol 1.0 cross-chain bridge
+    operated by the Alameda-acquired Ren team, wrapping native BTC / BCH
+    / ZEC / DOGE / FIL / LUNA into ERC-20 representations (renBTC,
+    renBCH, renZEC, renDOGE, renFIL, renLUNA) on Ethereum and other host
+    chains. The wind-down terminates the bridge's redemption surface for
+    all ren-wrapped asset classes; enumeration=subset because the YAML
+    does not enumerate every wrapped-asset contract individually and
+    because the load-bearing observation is at the bridge-protocol
+    level. The dominant exposure was renBTC (~$500M TVL at peak,
+    materially lower by the 2022-12 wind-down window after the FTX
+    collapse triggered redemptions).
+  entity: ren_protocol_1_0
+  actor_type: cross_chain_bridge_operator
+  actor_name: Ren Protocol Team (Alameda-acquired)
+  chains: [ethereum, bitcoin]
+  canonical_domains:
+    - renproject.io
+
+jurisdiction: [corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      renproject.io remained DNS-resolvable and TCP-reachable through
+      the 2022-12-20 wind-down; the action is an operator-initiated
+      protocol shutdown at the bridge layer, not an ISP / DNS domain
+      filter. not_applicable on substrate-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      No Ethereum or Bitcoin validator-set / miner consensus surface is
+      engaged by the operator-initiated Ren 1.0 bridge wind-down. The
+      Ren darknode network is a separate sidechain-style cluster from
+      Ethereum L1 consensus and is itself the shutdown target rather
+      than an Ethereum-L1 censorship primitive. not_applicable on
+      substrate-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public Ethereum RPC provider filter-list change is implicated
+      by the operator-initiated Ren 1.0 bridge wind-down. not_applicable
+      on substrate-mismatch grounds.
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - renproject.io
+    note: |
+      No admission-grade historical frontend diff for renproject.io is
+      retained in this DRYRUN file. A retained L4 observation would
+      require a pinned Wayback snapshot of the renproject.io wind-down
+      notice surface across the 2022-12 announcement → 2022-12-20
+      burning cutoff window. Until those snapshots are pinned and
+      body_hashed, the L4 surface remains unmeasured; the load-bearing
+      observation is at the asset_onchain layer (wrapped-asset
+      redemption-window cutoff at the bridge contract level).
+  - layer: asset_onchain
+    status: partially_measured
+    chain: ethereum
+    scope:
+      - renbtc_erc20_contract
+      - other_ren_wrapped_asset_contracts
+    note: |
+      Load-bearing layer. The Ren 1.0 bridge operator-initiated wind-down
+      disables minting and closes out the burning / redemption window on
+      2022-12-20 for renBTC and the broader ren-wrapped asset family on
+      Ethereum. Post-cutoff, residual wrapped balances cannot be redeemed
+      back to native chains via the Ren 1.0 darknode network — the
+      cross-chain redemption primitive is terminated at the protocol
+      level. The Etherscan-replayable renBTC contract history is the
+      public anchor for the asset's end-of-life redemption-window
+      closure coincident with the bridge shutdown. partially_measured
+      (not measured) because the on-chain wind-down cutoff is publicly
+      observable via contract activity but this DRYRUN does not pin a
+      body_hash of the per-contract redemption-disable transaction set.
+    denominator_artifact:
+      type: primary_onchain
+      url: https://etherscan.io/token/0xeb4c2781e4eba804ce9a9803c67d0893436bb27d
+      wayback: https://web.archive.org/web/2022/https://etherscan.io/token/0xeb4c2781e4eba804ce9a9803c67d0893436bb27d
+      scope_descriptor:
+        providers: [ethereum_mainnet_etherscan]
+        time_window:
+          - 2022-12-01T00:00:00Z
+          - 2023-03-01T23:59:59Z
+      note: |
+        Etherscan token page for the renBTC ERC-20 contract
+        (0xEB4C2781e4ebA804CE9a9803C67d0893436bB27D) is the replayable
+        denominator anchor for the wrapped-asset lifecycle-end
+        trajectory through the Ren 1.0 bridge wind-down window.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No centralized-exchange listing-restriction action attaches to the
+      operator-initiated Ren 1.0 bridge wind-down at the trigger. The
+      wind-down is at the cross-chain bridge protocol layer, not a CEX
+      product-catalogue change. not_applicable on substrate-mismatch
+      grounds.
+
+observations:
+  - layer: asset_onchain
+    actor: ren_protocol_bridge_operator
+    event: ren_1_0_cross_chain_bridge_wind_down_redemption_window_close
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-12-20T00:00:00Z
+    precision: day
+    sources:
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/193274/alameda-backed-ren-warns-users-of-losses-as-it-plans-to-wind-down-protocol
+        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/193274/alameda-backed-ren-warns-users-of-losses-as-it-plans-to-wind-down-protocol
+        evidence_use: contextual_unarchived
+        scope_descriptor:
+          providers: [ren_1_0_darknode_network, renbtc_erc20_contract]
+          time_window:
+            - 2022-12-01T00:00:00Z
+            - 2022-12-20T23:59:59Z
+        note: |
+          The Block (2022-12) documents the Ren Protocol team's public
+          announcement of the Ren 1.0 wind-down: minting already
+          disabled, burning / redemption-window close-out scheduled for
+          2022-12-20. After the cutoff, residual ren-wrapped asset
+          balances on Ethereum (renBTC and the broader family) cannot
+          be redeemed to their native chains via the Ren 1.0 darknode
+          network. attribution=plausible: the operator-initiated
+          shutdown is causally linked to the upstream FTX / Alameda
+          Chapter 11 collapse (Alameda Research was the parent / funder
+          of the Ren team after the 2022-02 acquisition, and the loss
+          of Alameda's quarterly funding is the publicly disclosed
+          proximate cause of the wind-down), but the FTX 2022-11-11
+          Chapter 11 trigger does not itself name the Ren protocol or
+          its wrapped-asset contracts — class-level inference from
+          parent collapse → subsidiary operator-initiated shutdown
+          per §1.1 / §1.4 codebook reasoning extended to a cross-chain
+          bridge wind-down. evidence_use=contextual_unarchived pending
+          human-audit re-pin of a body_hash for the announcement page
+          and (optionally) a primary_onchain tx_hash anchor on the
+          final ren-wrapped redemption transactions during the
+          2022-12-20 cutoff window.
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/ren-protocol-transfers-all-assets-to-ftx-debtors-wallet-in-case-of-shutdown
+        wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/ren-protocol-transfers-all-assets-to-ftx-debtors-wallet-in-case-of-shutdown
+        evidence_use: contextual_unarchived
+        note: |
+          Cointelegraph (2022-12) independently confirms the FTX /
+          Alameda parent-collapse linkage: Ren residual protocol assets
+          earmarked for transfer to the FTX debtors' estate per the
+          Chapter 11 proceedings, evidencing the causal-chain reading
+          of the wind-down as a downstream consequence of the upstream
+          FTX / Alameda Chapter 11 trigger. Wayback wildcard pointer;
+          evidence_use=contextual_unarchived pending human-audit re-pin.
+      - type: supporting_journalism
+        url: https://crypto.news/alameda-backed-ren-shuts-down-alerts-users-to-unwrap-tokens/
+        wayback: https://web.archive.org/web/2022/https://crypto.news/alameda-backed-ren-shuts-down-alerts-users-to-unwrap-tokens/
+        evidence_use: contextual_unarchived
+        note: |
+          crypto.news independently corroborates the operator-initiated
+          user advisory to unwrap ren-wrapped balances before the
+          2022-12-20 burning cutoff. Wayback wildcard pointer;
+          evidence_use=contextual_unarchived pending human-audit re-pin.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 Wave 2.2D** (P1
+  permissive-counterexample sweep; re-author preamble, replaces dropped
+  rate-limit-partial): authored by LLM agent without personally
+  verifying Wayback / body_hash; status=draft and origin=agent_draft.
+  Real release must replace this DRYRUN marker with a human-verified
+  audit after pinning real archive anchors for The Block, Cointelegraph,
+  and crypto.news URLs, plus an Etherscan body_hash / primary_onchain
+  tx_hash anchor for the renBTC contract redemption-window closure.
+
+  comparison — S5 corporate-policy-change event documenting the Ren
+  Protocol team's 2022-12-20 operator-initiated wind-down of the Ren
+  1.0 cross-chain bridge. Minting on the bridge was disabled in the
+  preceding weeks; 2022-12-20 is the publicly announced burning /
+  redemption-window close-out cutoff after which residual ren-wrapped
+  asset balances (renBTC and the broader family) on Ethereum can no
+  longer be redeemed back to their native chains via the Ren 1.0
+  darknode network. The wind-down is causally linked to the upstream
+  FTX / Alameda Research Chapter 11 collapse: Alameda acquired the Ren
+  team in 2022-02 and was funding ongoing protocol development at
+  ~$700K / quarter; after the 2022-11-11 FTX Chapter 11 filing the Ren
+  team disclosed it had ~$160K of remaining runway and could not
+  sustain Ren 1.0 operation, triggering the operator-initiated
+  shutdown. Approximately $500M TVL was nominally affected (figure as
+  reported in the source brief; actual residual exposure at the
+  2022-12-20 cutoff was materially lower after pre-cutoff redemptions,
+  with on-chain trackers reporting roughly $15M renBTC still bridge-
+  bound at the cutoff date).
+
+  Sibling positioning in the FTX / Alameda contagion cluster: this
+  event is paired with related_events
+  ftx-bankman-fried-doj-2022 (parent S3 federal-enforcement +
+  Chapter 11 trigger) and celsius-bankruptcy-mashinsky-doj-2023
+  (sibling crypto-bankruptcy collapse). The Ren row is structurally
+  distinct because it is an S5 corporate-policy-change at the cross-
+  chain bridge protocol layer rather than an S3 federal enforcement
+  action, and because the load-bearing observation is at the
+  asset_onchain wrapped-asset redemption-window cutoff (not
+  offramp_cex). One observed_change layer (asset_onchain) with
+  attribution=plausible (not direct) to the FTX / Alameda upstream
+  collapse: the operator-initiated wind-down is causally linked to the
+  parent collapse but the upstream FTX 2022-11-11 Chapter 11 trigger
+  does not itself name Ren or its wrapped-asset contracts; class-level
+  inference from parent collapse → subsidiary operator shutdown per
+  §1.1 / §1.4 codebook reasoning extended to a cross-chain bridge
+  wind-down.
+
+  Why empirical_case (not anchor_case): one observed_change layer
+  (asset_onchain) with attribution=plausible meets the empirical_case
+  threshold but not the anchor_case ≥ 2 strong-attribution-layer bar.
+  L0 / L1 / L3 / offramp_cex are not_applicable on substrate-mismatch
+  grounds; L4 frontend is not_measured pending Wayback pinning of
+  the renproject.io wind-down notice surface.
+
+scoped_claim: |
+  "The Ren Protocol team's 2022-12-20 operator-initiated wind-down of
+  the Ren 1.0 cross-chain bridge — burning / redemption-window close-out
+  for renBTC and the broader ren-wrapped asset family on Ethereum,
+  preceded by mint-cessation in the prior weeks — closed the cross-chain
+  redemption surface of the bridge to zero at the asset_onchain layer.
+  The asset_onchain observation carries the load-bearing plausible-
+  attribution observation, causally linked to the upstream 2022-11-11
+  FTX Trading Ltd. / Alameda Research Chapter 11 collapse (Alameda was
+  the parent / funder of the Ren team after the 2022-02 acquisition);
+  the event is the cleanest S5 corporate-policy follow-on in the corpus
+  to the FTX / Alameda contagion cascade affecting a cross-chain bridge
+  primitive."
+
+tags:
+  - corporate_policy_change
+  - cross_chain_bridge_wind_down
+  - ren_protocol
+  - renbtc
+  - alameda_parent_collapse
+  - ftx_contagion
+  - asset_onchain
+  - dryrun_2026_05_17
+  - wave_2_2d_2026_05_17

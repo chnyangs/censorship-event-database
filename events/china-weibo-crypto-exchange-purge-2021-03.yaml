@@ -1,0 +1,392 @@
+id: china-weibo-crypto-exchange-purge-2021-03
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - china-pboc-crypto-ban-2021
+  - china-state-council-mining-crackdown-2021-05
+
+trigger:
+  type: nation_state_block
+  actor: CN_WEIBO_CAC
+  timestamp: 2021-03-11T07:15:00Z
+  timestamp_precision: minute
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+      wayback: https://web.archive.org/web/2021/https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+      evidence_use: contextual_unarchived
+      note: |
+        CoinDesk report dated 2021-03-11 titled "Weibo Suspends Huobi,
+        Binance, OKEx Accounts After Bitcoin Surge". Documents that the
+        official Chinese-language Weibo accounts of Huobi, Binance and
+        OKEx were rendered inaccessible the morning of 2021-03-11 with
+        a Weibo system notice stating the accounts violated "relevant
+        laws and regulations" (the standard Weibo takedown formula
+        used to enforce Cyberspace Administration of China — CAC —
+        content directives). Timestamp anchor 2021-03-11T07:15Z
+        (~02:15 ET / 15:15 Beijing) is taken from contemporaneous
+        coverage citing the morning of 2021-03-11 Beijing time as the
+        outage window. Wayback snapshot URL given as year-resolved
+        prefix per codebook wayback-discipline; precise snapshot
+        timestamp requires re-pinning in human audit.
+    - type: supporting_journalism
+      url: https://www.globaltimes.cn/page/202103/1218100.shtml
+      wayback: https://web.archive.org/web/2021/https://www.globaltimes.cn/page/202103/1218100.shtml
+      evidence_use: contextual_unarchived
+      note: |
+        Global Times (PRC state-affiliated English-language outlet)
+        report dated 2021-03-11 titled "Weibo deactivates major
+        Bitcoin trading platforms in China". State-affiliated framing
+        is corroborative on the actor-side: the article notes that
+        the accounts had "violated laws and community rules" per
+        Weibo's notice. Used as state-press corroboration of the
+        takedown window and content-directive framing typical of
+        CAC-coordinated platform enforcement. Specific Wayback
+        snapshot timestamp requires re-pinning in human audit.
+    - type: supporting_journalism
+      url: https://forkast.news/weibo-takedown-huobi-binance-okex-crypto-china/
+      wayback: https://web.archive.org/web/2021/https://forkast.news/weibo-takedown-huobi-binance-okex-crypto-china/
+      evidence_use: contextual_unarchived
+      note: |
+        Forkast News analysis (2021-03) titled "What Weibo's takedown
+        of Binance & Huobi means for crypto in China". Provides
+        regional-press context on the policy reading that the
+        platform-level takedown was consistent with prior CAC
+        content directives against crypto-trading promotion. Specific
+        Wayback snapshot timestamp requires re-pinning in human
+        audit.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        CoinDesk and Global Times both date the account outages to
+        the morning of 2021-03-11 (Beijing time). Minute-level
+        precision is taken from the CoinDesk-reported ~02:15 ET
+        outage window (= 07:15 UTC = 15:15 Beijing).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named targets are the official Chinese-language Weibo accounts of
+    three major crypto exchanges — Binance, Huobi (HTX) and OKEx
+    (OKX) — that were rendered inaccessible on 2021-03-11. Finance
+    Magnates reporting indicates the purge extended to 12+ crypto-
+    related Weibo accounts in the surrounding window, so subset
+    rather than complete: the three named exchange accounts are a
+    defensible slice of the broader Weibo crypto-account purge but
+    do not enumerate every affected account. canonical_domains lists
+    the Weibo profile URLs of the three named exchanges; the
+    underlying off-exchange brand domains are tracked separately on
+    sibling events.
+  entity: cn_weibo_crypto_exchange_account_purge
+  actor_type: discovery_layer_social_media_account_set
+  actor_name: Sina Weibo official accounts of Binance / Huobi / OKEx
+  chains: []
+  canonical_domains:
+    - weibo.com/binancezh
+    - weibo.com/huobiglobalofficial
+    - weibo.com/okexchina
+
+jurisdiction:
+  - CN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The action is a platform-internal account takedown on Sina
+      Weibo (weibo.com), not an ISP-level domain block or DNS
+      interference against the exchange brand domains. L0 network
+      reachability of binance.com / huobi.com / okx.com from CN
+      vantage is a separate measurement question tracked under
+      china-pboc-crypto-ban-2021 (where OONI returned zero CN
+      measurements in the relevant window). Not the cascade surface
+      for this discovery-layer event.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-
+      compliance-adjacent post-Merge PBS relay-filtering substrate
+      did not exist at event time. not_applicable on construct-did-
+      not-exist grounds, consistent with sibling 2021 China
+      regulatory events.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Flashbots Protect (launched 2022-11) and MEV-Blocker (launched
+      2023-03-27) did not exist in 2021-03. The L3 public-RPC
+      compliance substrate that this layer measures is not
+      constructible for this event. not_applicable on construct-
+      did-not-exist grounds.
+  - layer: l4_frontend
+    status: partially_measured
+    scope:
+      - weibo.com/binancezh
+      - weibo.com/huobiglobalofficial
+      - weibo.com/okexchina
+    note: |
+      The cascade surface is the discovery layer: Sina Weibo as a
+      Chinese-language social-media gateway by which prospective
+      users locate official exchange announcements. The three named
+      exchange Weibo accounts were rendered inaccessible on
+      2021-03-11, eliminating the search/social discovery path to
+      official exchange content for Chinese-language users.
+      Contemporaneous press (CoinDesk, Global Times, Forkast,
+      Finance Magnates, Invezz, AMBCrypto) corroborates the
+      takedown. partially_measured because the public-record
+      enumeration covers the three named accounts plus the Finance-
+      Magnates-reported "12+ accounts" framing but does not
+      exhaustively enumerate every affected handle, and no Wayback
+      pre-takedown / post-takedown body-hash diff has been pinned in
+      this authoring pass.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - CN
+        providers:
+          - sina_weibo
+        domains:
+          - weibo.com/binancezh
+          - weibo.com/huobiglobalofficial
+          - weibo.com/okexchina
+        time_window:
+          - 2021-03-10T00:00:00Z
+          - 2021-03-31T00:00:00Z
+      note: |
+        Coverage scope: official Chinese-language Weibo accounts of
+        Binance, Huobi and OKEx in the 2021-03-10..2021-03-31
+        window. A Wayback pre/post body-hash diff and an enumeration
+        of the broader Finance-Magnates-reported "12+ accounts" set
+        are gating steps for a stronger denominator anchor.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      A Weibo platform-level account takedown does not engage any
+      stablecoin-issuer admin freeze path at any specific address
+      level. not_applicable.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      The 2021-03-11 Weibo purge is a discovery-layer signal and
+      did not, on its own, force exchange-side cutoff of mainland-
+      Chinese accounts. The subsequent exchange-side cutoffs are
+      attributed to the 2021-09-24 PBOC joint notice (see related
+      event china-pboc-crypto-ban-2021). Not the cascade surface
+      for this event.
+
+observations:
+  - layer: l4_frontend
+    actor: platform:sina_weibo
+    event: binance_official_weibo_account_inaccessible
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-03-11T07:15:00Z
+    precision: minute
+    delta_hours: 0.0
+    country: CN
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+        wayback: https://web.archive.org/web/2021/https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2021-03-11 report documents that Binance's
+          official Chinese-language Weibo account returned a Weibo
+          takedown notice on 2021-03-11 morning, with the standard
+          "violated relevant laws and regulations" formula. The
+          CAC-direction inference is plausible rather than direct:
+          neither CAC nor Weibo publicly published a per-account
+          directive linking the takedown to a specific CAC content
+          order, but the formula and the simultaneity across three
+          exchange accounts are consistent with CAC-coordinated
+          content enforcement under §1.4 codebook reasoning for
+          discovery-layer attribution.
+      - type: supporting_journalism
+        url: https://ambcrypto.com/china-weibo-deactivates-accounts-of-huobi-okex-binance/
+        wayback: https://web.archive.org/web/2021/https://ambcrypto.com/china-weibo-deactivates-accounts-of-huobi-okex-binance/
+        evidence_use: contextual_unarchived
+        note: |
+          AMBCrypto corroboration of the 2021-03-11 Binance Weibo
+          account deactivation.
+  - layer: l4_frontend
+    actor: platform:sina_weibo
+    event: huobi_official_weibo_account_inaccessible
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-03-11T07:15:00Z
+    precision: minute
+    delta_hours: 0.0
+    country: CN
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+        wayback: https://web.archive.org/web/2021/https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2021-03-11 report documents that Huobi's official
+          Chinese-language Weibo account returned a Weibo notice
+          stating the account had "abnormal practices" and
+          contained safety risks — a slightly different Weibo
+          takedown phrasing than Binance/OKEx but the same
+          inaccessibility outcome on the same day.
+      - type: supporting_journalism
+        url: https://www.globaltimes.cn/page/202103/1218100.shtml
+        wayback: https://web.archive.org/web/2021/https://www.globaltimes.cn/page/202103/1218100.shtml
+        evidence_use: contextual_unarchived
+        note: |
+          Global Times (PRC state-affiliated) report quotes a Huobi
+          spokesperson stating the issue had just come to their
+          attention and that they were "actively communicating with
+          Weibo".
+  - layer: l4_frontend
+    actor: platform:sina_weibo
+    event: okex_official_weibo_account_inaccessible
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-03-11T07:15:00Z
+    precision: minute
+    delta_hours: 0.0
+    country: CN
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+        wayback: https://web.archive.org/web/2021/https://www.coindesk.com/policy/2021/03/11/weibo-suspends-huobi-binance-okex-accounts-after-bitcoin-surge
+        evidence_use: contextual_unarchived
+        note: |
+          CoinDesk 2021-03-11 report documents that OKEx's official
+          Chinese-language Weibo account was rendered inaccessible
+          on 2021-03-11 morning with the same Weibo takedown
+          framing.
+      - type: supporting_journalism
+        url: https://www.financemagnates.com/cryptocurrency/news/weibo-bans-more-than-12-crypto-related-accounts-amid-chinas-crypto-crackdown/
+        wayback: https://web.archive.org/web/2021/https://www.financemagnates.com/cryptocurrency/news/weibo-bans-more-than-12-crypto-related-accounts-amid-chinas-crypto-crackdown/
+        evidence_use: contextual_unarchived
+        note: |
+          Finance Magnates reporting frames the 2021-03-11 OKEx /
+          Binance / Huobi Weibo account takedowns as part of a
+          broader purge of 12+ crypto-related Weibo accounts in the
+          same window — useful as the subset-enumeration rationale
+          for target.enumeration=subset.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.2D)**. Discovery-
+  layer censorship case: on 2021-03-11 morning (Beijing time) the
+  official Chinese-language Sina Weibo accounts of three major
+  crypto exchanges — Binance, Huobi (HTX) and OKEx (OKX) — were
+  rendered inaccessible with the standard Weibo takedown formula
+  ("violated relevant laws and regulations" / "abnormal practices").
+  Contemporaneous international press (CoinDesk, Forkast, AMBCrypto,
+  Finance Magnates, Invezz) and PRC state-affiliated press (Global
+  Times) corroborate the outage window and framing.
+
+  Codebook rules applied:
+  - §5.1 trigger.type=nation_state_block: Weibo platform-level
+    account takedowns under PRC content-directive enforcement are
+    grouped under the nation_state_block trigger family alongside
+    the 2021 PBOC notice and the State Council mining crackdown.
+    Cyberspace Administration of China (CAC) is the typical
+    PRC actor coordinating cross-platform content takedowns of this
+    shape; CAC-direction is inferred rather than evidenced by a
+    public per-account directive.
+  - §5.2 research_stratum=S4_nation_state: matches the trigger.type
+    stratum-actor map for nation_state_block.
+  - §1.4 attribution=plausible (not direct): the blocking provider
+    (Sina Weibo) did not publicly cite a specific CAC directive
+    naming the three exchange accounts; the standard "violated
+    relevant laws and regulations" formula is consistent with CAC-
+    coordinated content enforcement but does not name an upstream
+    trigger document. Per §1.4 frontend-block attribution rule,
+    absent a public-statement-citing-the-trigger linkage, the
+    correct call is plausible. Three observed_change rows
+    (Binance, Huobi, OKEx) all carry attribution=plausible.
+  - §3 empirical_shape=comparison: three observed_change rows but
+    all at the same L4 frontend layer → 1 distinct observed_change
+    layer → comparison (not cascade, which requires ≥3 distinct
+    layers).
+  - §4 admission_tier=empirical_case: ≥1 strong-attribution
+    (plausible) observed_change layer (l4_frontend).
+  - §7 target.enumeration=subset: three named exchange accounts are
+    a defensible slice of the broader Finance-Magnates-reported
+    "12+ accounts" purge; class-level rationale recorded in
+    enumeration_note per codebook §7 guidance.
+  - §6 analysis_use=comparable_analysis (canonical form) for the
+    comparable_main_2017_present tier.
+
+  Status=draft with origin=agent_draft pending human audit of:
+  (i) per-account Wayback pre/post body-hash diffs of the three
+  Weibo URLs (binancezh, huobiglobalofficial, okexchina) for the
+  2021-03-10..2021-03-31 window;
+  (ii) enumeration of the broader Finance-Magnates-reported "12+
+  affected crypto Weibo accounts" set;
+  (iii) any publicly-archived CAC content directive that names
+  the takedown (would promote attribution from plausible to
+  direct under §1.4);
+  (iv) precise Wayback snapshot timestamps for all citation URLs
+  (currently year-resolved prefix per codebook wayback-discipline).
+
+  Significance: this is the earliest 2021 PRC discovery-layer
+  censorship event in the dataset, preceding the China State
+  Council 2021-05-21 mining crackdown by ~10 weeks and the
+  2021-09-24 PBOC joint notice by ~6 months. It demonstrates that
+  Chinese platform-level content-directive enforcement of crypto
+  exchange brand presence is independent of and chronologically
+  prior to the exchange-side mainland-China cutoffs triggered by
+  the September 2021 PBOC notice. As a discovery-layer case it
+  measures the search/social gateway component of cross-layer
+  censorship, complementing the L0 network-layer and offramp-CEX
+  cascade surfaces of the related events.
+
+scoped_claim: |
+  On 2021-03-11 morning (Beijing time), the official Chinese-
+  language Sina Weibo accounts of Binance, Huobi (HTX) and OKEx
+  (OKX) were rendered inaccessible with the standard PRC content-
+  takedown formula, eliminating the search/social discovery path
+  to those exchanges' Chinese-language official content. The
+  takedowns are coded attribution=plausible (CAC-coordinated
+  inference) per codebook §1.4 because no public per-account CAC
+  directive was archived; the cascade surface is L4 frontend at
+  the discovery layer only.
+
+scoped_knowledge: |
+  This event extends the dataset's cross-layer censorship coverage
+  to the discovery layer (search/social), complementing the L0
+  network-layer measurement and offramp-CEX cascade surfaces of
+  sibling 2021 China events. The Weibo takedowns are
+  chronologically prior to both the State Council 2021-05-21
+  mining crackdown and the PBOC 2021-09-24 joint notice, which
+  indicates that PRC platform-level content-directive enforcement
+  of crypto exchange brand presence on domestic social media
+  operates independently of and earlier than the eventual
+  exchange-side cutoffs of mainland-China users. The pattern is
+  consistent with CAC's broader cross-platform content-takedown
+  playbook: a coordinated, same-day, multi-account takedown using
+  a uniform "violated relevant laws and regulations" notice
+  formula. Strengthening attribution from plausible to direct
+  would require either (a) the CAC publishing a content directive
+  that names the three exchange accounts, or (b) Sina Weibo
+  publishing a compliance statement citing a specific CAC order —
+  neither is in the publicly-archived record as of this authoring
+  pass.
+
+tags:
+  - nation_state
+  - china
+  - cac
+  - weibo
+  - discovery_layer
+  - social_media_takedown
+  - binance
+  - huobi
+  - okex
+  - comparable_analysis

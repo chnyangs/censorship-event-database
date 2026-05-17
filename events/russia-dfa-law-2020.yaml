@@ -1,0 +1,291 @@
+id: russia-dfa-law-2020
+schema_version: 0.2.0
+status: draft
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-17T00:00:00Z
+last_verified: 2026-05-17
+
+related_events:
+  - russia-cbr-crypto-payment-ban-2022
+  - russia-mining-regional-ban-2024-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: RU_FEDERAL_LAW
+  timestamp: 2020-07-31T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/
+      wayback: https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/
+      evidence_use: contextual_unarchived
+      note: |
+        US Library of Congress Global Legal Monitor entry summarizing
+        Russian Federal Law No. 259-FZ "On Digital Financial Assets,
+        Digital Currency, and Amendments to Certain Legislative Acts
+        of the Russian Federation" signed by President Vladimir Putin
+        on 2020-07-31 and effective 2021-01-01. The law defines
+        "digital currency" (cryptocurrency) and "digital financial
+        assets" (tokenized rights), legalizes their issuance and
+        circulation under prescribed conditions, and prohibits the
+        use of digital currency as a means of payment for goods,
+        works, and services by Russian legal entities, Russian
+        individual tax residents, and Russian branches of foreign
+        organizations. Provisional Wayback anchor; specific snapshot
+        timestamp requires human-audit re-pinning.
+    - type: supporting_journalism
+      url: https://www.crowdfundinsider.com/2020/08/164885-russia-federal-law-addresses-digital-assets-differentiates-between-digital-securities-and-digital-currencies/
+      wayback: https://web.archive.org/web/2020/https://www.crowdfundinsider.com/2020/08/164885-russia-federal-law-addresses-digital-assets-differentiates-between-digital-securities-and-digital-currencies/
+      evidence_use: contextual_unarchived
+      note: |
+        Crowdfund Insider 2020-08 coverage of Federal Law 259-FZ,
+        differentiating "digital financial assets" (tokenized
+        securities) from "digital currency" (cryptocurrency) and
+        noting the 2021-01-01 effective date and the payment-use
+        prohibition. Contextual journalism anchor; Wayback snapshot
+        pinning required at human audit.
+    - type: supporting_journalism
+      url: https://eurasiangroup.org/en/a-law-on-digital-financial-assets-and-digital-currency-has-been-signed-in-the-russian-federation
+      wayback: https://web.archive.org/web/2020/https://eurasiangroup.org/en/a-law-on-digital-financial-assets-and-digital-currency-has-been-signed-in-the-russian-federation
+      evidence_use: contextual_unarchived
+      note: |
+        Eurasian Group on Combating Money Laundering (EAG)
+        announcement confirming Putin's signature of the DFA law on
+        2020-07-31. Used as a contextual regional-organization
+        anchor. Wayback re-pin required at human audit.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Federal Law No. 259-FZ carries a signing date of 2020-07-31
+        by President Putin, with effective date 2021-01-01. Multiple
+        secondary sources (Library of Congress, Crowdfund Insider,
+        Dechert, IBA, Lexology) corroborate the 2020-07-31 signing.
+        Day-level precision is appropriate.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the regulatory class of cryptocurrency
+    activity within Russia: digital currency issuance, circulation,
+    and use as a means of payment by Russian legal entities, Russian
+    individual tax residents (including foreigners residing in Russia
+    >183 days), and Russian branches/representative offices of
+    foreign organizations. The law does not enumerate specific
+    exchanges, addresses, or domains as targets; it is a class-level
+    foundational regulatory framework. enumeration=subset rather than
+    complete because the law addresses an activity class without a
+    fixed roster of named entities. Matches the sibling
+    russia-cbr-crypto-payment-ban-2022 pattern.
+  protocol: null
+  actor_type: russia_crypto_activity_class
+  actor_name: Russia-resident crypto activity (259-FZ regulatory class)
+  chains:
+    - bitcoin
+    - ethereum
+  canonical_domains: []
+
+jurisdiction:
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Federal Law 259-FZ is a foundational regulatory framework, not
+      an ISP-level domain block or DNS directive. Roskomnadzor
+      enforcement of crypto-exchange domain blocking is a separate
+      enforcement track not actuated by this law. L0 not_applicable
+      on scope-mismatch grounds.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No protocol-level relay-filter primitive is engaged by a
+      national regulatory framework. not_applicable on
+      construct-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      Public-RPC compliance substrate (Flashbots Protect / MEV-
+      Blocker) is not engaged by a national regulatory framework.
+      not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The law does not direct frontend takedowns. not_applicable on
+      scope-mismatch grounds.
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      The 2020-07-31 DFA law defines and circumscribes cryptocurrency
+      activity within Russia, including a prohibition on payment use
+      by Russian residents. No issuer-side admin freeze primitive is
+      directly engaged by 259-FZ itself; the law is foundational
+      regulatory text. No measured asset-level shock attributable to
+      the 2020-07-31 signing or 2021-01-01 effective date has been
+      pinned in this authoring pass. Marked not_measured to leave
+      room for future coverage_gap rows if subsequent enforcement
+      sub-events are authored.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      The DFA law prohibits Russian residents from accepting or
+      making payments in digital currency for goods/services, which
+      class-level constrains crypto-payment off-ramping within
+      Russia. However, the law is foundational regulatory text that
+      did not actuate a per-event Russian off-ramp shock cascade
+      (the subsequent 2022 CBR payment ban and 2024 mining laws are
+      the downstream enforcement vectors). No enumerated measured
+      Russian off-ramp shock attributable to the 2020-07-31 signing
+      or 2021-01-01 effective date has been pinned in this authoring
+      pass. Marked not_measured with a coverage_gap observation row
+      below; this is the null_event-shaped empirical posture flagged
+      in the task brief.
+
+observations:
+  - layer: offramp_cex
+    actor: russia_resident_crypto_offramp_class
+    event: dfa_law_259_fz_payment_ban_enacted_no_per_event_cascade
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2020-07-31T00:00:00Z
+    precision: day
+    note: |
+      Federal Law 259-FZ "On Digital Financial Assets, Digital
+      Currency, and Amendments to Certain Legislative Acts of the
+      Russian Federation" was signed by President Putin on
+      2020-07-31 and entered into force on 2021-01-01. The law
+      defines cryptocurrency ("digital currency") legal status in
+      Russia and prohibits Russian residents from accepting or
+      making payments in digital currency for goods/services. It is
+      foundational framework law preceding the 2022-01-20 CBR
+      consultation paper proposing a fuller crypto ban and the
+      2024-12 regional mining ban. No measured Russian off-ramp
+      shock attributable to the 2020-07-31 signing or 2021-01-01
+      effective date itself has been pinned in this authoring pass.
+      Recorded as coverage_gap with attribution=unknown to signal
+      the null_event posture: the law established the regulatory
+      frame but did not produce a per-event payment-rail cascade.
+      This observation row does NOT count toward empirical_shape or
+      admission_tier (coverage_gap rows are excluded by codebook
+      §3 / §4).
+    sources:
+      - type: primary_legal
+        url: https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/
+        wayback: https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/
+        evidence_use: contextual_unarchived
+        note: |
+          Library of Congress Global Legal Monitor summary of
+          Federal Law 259-FZ, confirming the 2020-07-31 signing,
+          2021-01-01 effective date, and payment-use prohibition.
+          Provisional Wayback anchor; specific snapshot timestamp
+          to be re-pinned at human audit.
+      - type: supporting_journalism
+        url: https://www.crowdfundinsider.com/2020/08/164885-russia-federal-law-addresses-digital-assets-differentiates-between-digital-securities-and-digital-currencies/
+        wayback: https://web.archive.org/web/2020/https://www.crowdfundinsider.com/2020/08/164885-russia-federal-law-addresses-digital-assets-differentiates-between-digital-securities-and-digital-currencies/
+        evidence_use: contextual_unarchived
+        note: |
+          Crowdfund Insider 2020-08 coverage corroborating the
+          payment-use prohibition and DFA/digital-currency
+          differentiation. Contextual journalism anchor; Wayback
+          re-pin required at human audit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Phase Wave 2.2D
+  comparable-main authoring pass for Russian Federal Law No. 259-FZ
+  "On Digital Financial Assets, Digital Currency, and Amendments to
+  Certain Legislative Acts of the Russian Federation", signed by
+  President Vladimir Putin on 2020-07-31 and effective 2021-01-01.
+  origin=agent_draft and status=draft; human re-verification of
+  (i) the Library of Congress source URL reachability and Wayback
+  snapshot pinning, (ii) the Crowdfund Insider and Eurasian Group
+  journalism snapshots, and (iii) any contemporaneous Russian
+  asset-onchain or offramp class-level measurement is required
+  before this event may be promoted to human_reviewed.
+
+  Why comparable_main / comparable_analysis tier: 2020 falls inside
+  the 2017+ comparable analysis frame. analysis_use=comparable_
+  analysis is the canonical form (codebook §6); aliases
+  "comparative_analysis" / "contextual_baseline" are not accepted
+  by the validator.
+
+  Why empirical_shape=null_event / admission_tier=null_case: zero
+  observed_change observations. 259-FZ is foundational framework
+  law that defines and circumscribes crypto activity in Russia but
+  did not actuate a per-event L0/L1/L3/L4/asset_onchain/offramp_cex
+  cascade on the 2020-07-31 signing or 2021-01-01 effective date.
+  The downstream Russian enforcement vectors (2022-01-20 CBR
+  consultation paper, 2024-12 regional mining ban) are sibling
+  events. The single observation row is observation_kind=
+  coverage_gap with attribution=unknown, which does not contribute
+  toward empirical_shape or admission_tier per codebook §3 / §4.
+  null_event is the conservative shape consistent with the task-
+  brief hint.
+
+  Why trigger.type=regulatory_enforcement (NOT nation_state_block):
+  per codebook §5.1, regulatory_enforcement is the canonical trigger
+  type for non-US national regulator administrative enforcement that
+  is NOT a network-layer or payment-rail block. 259-FZ is
+  foundational federal law defining cryptocurrency status and
+  circumscribing payment use; it is not itself a Roskomnadzor
+  ISP/DNS block directive nor an enacted payment-rail severance.
+  nation_state_block is reserved for actuated ISP/DNS or payment-
+  rail blocks (KZ shutdown, CN PBoC banking-rail severance, NG CBN,
+  IN RBI, TR CBRT). research_stratum=S4_nation_state is permitted
+  for both trigger types per codebook §5.2.
+
+  Why target.kind=entity / enumeration=subset: schema target_kinds
+  does not include "regulatory_class"; entity is the closest enum
+  for a population/activity-class target. enumeration=subset rather
+  than complete because the law addresses an activity class
+  (issuance, circulation, payment use) without a fixed roster of
+  named entities. Matches the sibling russia-cbr-crypto-payment-
+  ban-2022 pattern.
+
+  Why all coverage layers are not_applicable except asset_onchain
+  and offramp_cex: L0 — no Roskomnadzor blocking directive in the
+  law; L1 — no consensus-layer primitive engaged; L3 — no public-
+  RPC compliance substrate engaged; L4 — no frontend takedown
+  directive. asset_onchain (not_measured) — the law constrains
+  cryptocurrency activity by Russian residents but does not
+  directly actuate issuer-side admin freezes; future enforcement
+  sub-events could populate. offramp_cex (not_measured) — the law
+  prohibits payment use by Russian residents but did not actuate
+  a per-event off-ramp shock; coverage_gap row recorded.
+
+  Cross-temporal context: 259-FZ is the upstream foundational
+  anchor for the Russian crypto regulatory regime. The 2022-01-20
+  CBR consultation paper (russia-cbr-crypto-payment-ban-2022)
+  proposed a fuller ban that was not enacted; the 2024-12 regional
+  mining ban (russia-mining-regional-ban-2024-12) implemented a
+  partial mining restriction. Together these three events form a
+  within-jurisdiction longitudinal anchor for Russian federal
+  crypto-disposition. The task brief explicitly identifies 259-FZ
+  as "foundational law preceding the 2022 CBR payment ban and
+  2024 mining laws".
+
+  Evidence-use posture: all three citations are marked
+  evidence_use=contextual_unarchived because Wayback anchors are
+  provisional (year-prefix wildcard per codebook convention) and
+  require specific snapshot timestamp re-pinning at human audit.
+  Per task brief evidence_use=contextual_unarchived applies to all
+  sources.
+
+tags:
+  - regulatory_enforcement
+  - russia
+  - federal_law
+  - dfa
+  - 259-fz
+  - bitcoin
+  - ethereum
+  - null_event
+  - comparable_main
+  - crypto_payment_ban
+  - foundational_framework
