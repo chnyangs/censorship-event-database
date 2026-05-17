@@ -1,201 +1,184 @@
-# FINAL_COLLECTION_SUMMARY — 2026-05-16 lean-run multi-Phase pipeline
+# FINAL_COLLECTION_SUMMARY — 2026-05-16/17 lean-run + Wave 2 collect-all-first
 
-**Session date**: 2026-05-16
+**Session window**: 2026-05-16 to 2026-05-17
 **Starting state**: 87 admitted events at `v0.2.0-rc-dryrun-3` (commit `8948e69`)
-**Ending state**: 167 admitted events at `v0.2.0-rc-dryrun-9` (commit `eee9eeb`)
-**Net delta**: **+80 admitted events** (92% growth) across 6 lean-run Phases and 6 DRYRUN sign-off cycles.
+**Ending state**: 262 events at `v0.2.0-rc-dryrun-11` (commit `86a9859`)
+**Net delta**: **+175 events (+201% growth)** across 10 lean-run Phases + 11 DRYRUN sign-off cycles.
 
 ---
 
-## Per-Phase event counts
+## Two-stage workflow
 
-| Phase | Frame | Discovery candidates | Authored | Net admitted | DRYRUN | Cumulative |
-|-------|-------|---------------------|----------|--------------|--------|------------|
-| **A** | comprehensive (us_federal_enforcement, corporate_policy, supranational, non_us_state) | 24+24+17+25 = 90 | 22 | +22 | -4 | 87 → 109 |
-| **B** | historical_baseline 2013-2016 | 26 (7 P0 + 16 P1 + 3 P2) | 13 | +13 | -5 | 109 → 122 |
-| **D** | DeFi + wallet + app-store + L3 RPC | 22 (13 P0 + 7 P1 + 2 P2) | 12 | +12 | -6 | 122 → 134 |
-| **C** | China + Russia + CIS frames | 17 (12 P0 + 4 P1 + 1 P2) | 12 | +12 | -7 | 134 → 146 |
-| **E** | pre-Bitcoin baseline 2008-2012 | 22 (10 P0 + 7 P1 + 5 P2) | 10 | +10 | -8 | 146 → 156 |
-| **F** | Japan FSA + OFAC RA density | 15 (10 P0 + 3 P1 + 2 P2) | 11 | +11 | -9 | 156 → 167 |
-| **Total** | | **192 candidates** | **80 admitted** | **+80** | 4→9 | **+92%** |
+The session ran a deliberate two-stage workflow, validating both `lean-run-then-audit` and `collect-all-then-audit` strategies:
+
+**Stage 1: Lean-run Phases A-F (2026-05-16)** — 87 → 167 (+80 events)
+- Phase A: comprehensive 4-frame discovery + 22 P0 authored (87 → 109; DRYRUN-4)
+- Phase B: historical_baseline 2013-2016 — 13 events (109 → 122; DRYRUN-5)
+- Phase D: DeFi + wallet + app-store + L3 RPC — 12 events (122 → 134; DRYRUN-6)
+- Phase C: China + Russia + CIS frames — 12 events (134 → 146; DRYRUN-7)
+- Phase E: pre-Bitcoin baseline 2008-2012 — 10 events (146 → 156; DRYRUN-8)
+- Phase F: Japan FSA + OFAC RA density — 11 events (156 → 167; DRYRUN-9)
+
+**Upstream protection checkpoint (2026-05-17)** — DRYRUN-10 at 167 events
+- `schema/codebook.md` formalizing attribution decision rules (§1.2 resolves the κ=0.5833 stablecoin-freeze ambiguity)
+- Schema freeze: `trigger.type=regulatory_enforcement` added; 14 jurisdictions added (AR, BD, BO, BR, ID, TH, UZ, KG, TJ, TM, IL, AE, FR, ZA); 6 JP FSA events migrated to clean enum
+- Per-Phase commit pattern preserved; corpus byte-stable
+
+**Stage 2: Collect-all-first Wave 2 (2026-05-17)** — 167 → 262 (+95 events)
+- Wave 2.1: 16 P0 backlog sweep across all frames (167 → 183)
+- Wave 2.2A: 13 P1 federal_enforcement + historical_baseline (183 → 196)
+- Wave 2.2B: 21 P1 corporate_policy + non_us_state (196 → 217)
+- Wave 2.2C: 6 P1 supranational + DeFi (217 → 223; 5 rate-limit partials dropped)
+- Wave 2.2D: 19 P1 recovery + remaining (223 → 242)
+- Wave 2.3: 20 P2 events across all frames (242 → 262)
+- DRYRUN-11 SIGN-OFF READY at 262
 
 ---
 
-## Decision-gate verdicts (all 6 DRYRUNs)
+## Final corpus inventory (262 events)
 
-Every Phase passed:
-- Clean-tree status ✓
-- `SOURCE_DATE_EPOCH`-pinned regeneration (exit 0) ✓
-- Strict paper-readiness gate (`--strict-repro --strict-reliability --strict-null-audit --strict-audit --allow-soft-attribution --allow-dryrun-human-gates`): exit 0 ✓
-- Byte-stable round-trip across 25 artifacts ✓
-- **Verdict**: `SIGN-OFF READY` ✓
+| Dimension | Distribution |
+|-----------|--------------|
+| **status** | 105 admitted, 156 draft, 1 rejected |
+| **origin** | 54 human_authored, 52 human_reviewed, 156 agent_draft |
+| **temporal_tier** | 18 discovery_only_2008_2012, 33 historical_baseline_2013_2016, 211 comparable_main_2017_present |
+| **analysis_use** | 18 discovery_ledger_only, 33 historical_baseline, 211 comparable_analysis |
+| **research_stratum** | S1 ofac_sdn: 34, S2 ofac_removal: 1, S3 doj/sec/cftc/fincen: 65, S4 nation_state: 73, S5 corporate: 65, S6 supranational: 24 |
+| **admission_tier** | 4 anchor_case, 182 empirical_case, 76 null_case |
+| **empirical_shape** | 2 cascade, 184 comparison, 76 null_event |
 
-Three documented WARNs persist across all DRYRUN cycles (intentional pipeline-rehearsal markers, not blocking):
+---
+
+## Decision-gate verdicts (all 8 sign-off cycles in this session)
+
+All passed strict paper-readiness gate (`--strict-repro --strict-reliability --strict-null-audit --strict-audit --allow-soft-attribution --allow-dryrun-human-gates`): exit 0, byte-stable across 25 artifacts. Three documented WARNs persist across all DRYRUN cycles (intentional pipeline-rehearsal markers, not blocking):
 1. 12 null-denominator cases carry DRYRUN `last_human_audit` stamps (pipeline-rehearsal markers, not real human audit).
 2. IRR `coder_provenance.mode = independent_human_dryrun_llm_simulated` (LLM-simulated reliability, not real independent-human reliability).
-3. Attribution κ=0.5833 below 0.6 threshold (soft attribution gating: claims depending on attribution must stay at named-row / audit level).
+3. Attribution κ=0.5833 below 0.6 threshold (soft attribution gating per codebook §1.2 disposition).
+
+---
+
+## Codebook + schema freeze (DRYRUN-10 mid-session checkpoint)
+
+User-approved upstream protection installed after the lean-run Stage 1 to prevent codebook drift and schema-gap mass-rework downstream:
+
+### `schema/codebook.md` (NEW)
+
+Formalizes coding rules for fuzzy edges. Key sections:
+- **§1.2 Stablecoin-issuer compliance freezes**: Hard decision rule — `direct` requires (A) OFAC names addresses controlled by issuer's asset AND (B) issuer publicly confirms freeze on named addresses within compliance window. Only (A) or only (B) → `plausible`.
+- **§1.3 Worked examples** resolving the 3 IRR disagreement rows: cryptex-ofac-2024 row 3 stays `direct`; semenov-ofac-2023 rows 9-10 should flip key to `plausible`.
+- **§5/§6/§7**: canonical enum aliasing for `trigger.type`, `analysis_use`, `target.enumeration`.
+- **§8**: LLM authoring agent compliance protocol.
+
+### Schema freeze (`controlled_vocab.yaml` + `event.schema.json` + `validate.py`)
+
+- Added `trigger.type = regulatory_enforcement` for non-US national regulator administrative enforcement (JP FSA, KR FSC, IS CBI, etc.). Validator maps to S4_nation_state.
+- Migrated 6 JP FSA events from awkward fallbacks (`nation_state_block` × 3, `sec_action` × 1, `fincen_action` × 2) to canonical `regulatory_enforcement`. Stratum corrected S3→S4 where needed.
+- Added 14 jurisdictions: AR, BD, BO, BR, ID, TH, UZ, KG, TJ, TM, IL, AE, FR, ZA.
+
+---
+
+## Honesty discipline preserved (all 156 agent_draft events)
+
+- **Status discipline**: `status: draft` ✓ (validator hard-rule paired with `origin: agent_draft`)
+- **DRYRUN preamble** in `analysis_notes` ✓ (Phase A-F + Wave 2.1-2.3 markers for downstream grep filtering)
+- **Honest `evidence_use`**: `contextual_unarchived` everywhere — zero invented `body_hash` values ✓
+- **Wayback discipline**: year-prefix wildcard URLs `https://web.archive.org/web/YYYY/<url>` per codebook convention
+- **L0 honesty rule**: events claiming `partially_measured`/`measured` L0 coverage REQUIRE corresponding `derived/l0_coverage_summary.csv` denominator row. Kazakhstan precedent: documented-but-uncaptured measurement claims downgraded to `not_measured` (commit `5e28a89`).
+- **5 rate-limit-partial files dropped** (commit `6fa0631`) rather than fabricating wayback URLs or papering over coverage mismatches; re-authored cleanly in Wave 2.2D.
 
 ---
 
 ## Agent-quality observations
 
 ### Net positive
-
-1. **Schema convergence**: Each phase's authoring agents independently discovered the same enum constraints (target.kind=`entity`, target.enumeration=`subset`, observation_kind must be `observed_change`/`observed_no_change`/`coverage_gap`). Resolution time per phase dropped (Phase A agents ~6 min each; Phase F agents ~3 min each).
-
-2. **Sibling-pattern learning**: Late-phase authoring agents proactively templated from prior-phase siblings (Phase F DMM agent referenced Phase A coincheck event; Phase F OFAC Gaza Now agent referenced Phase A aeza-group + Phase F sibling DMM-bitcoin). Cross-phase pattern transfer worked without explicit instruction.
-
-3. **Honesty discipline preserved**: Zero invented body_hash. All citations marked `evidence_use: contextual_unarchived` where no real archive captured. All Phase A-F events at `status: draft` + `origin: agent_draft` per validator hard rule.
-
-4. **Cross-phase deduplication**: Discovery agents consistently checked against `events/*.yaml` to avoid duplicates. Two duplicates flagged and skipped:
-   - Phase C: `china-pboc-ten-agencies-crypto-illegal-2021-09` already covered by existing `china-pboc-crypto-ban-2021`.
-   - Phase E: `egold-secret-service-indictment-2007-04` deferred (outside 2008-2012 tier).
+1. **Schema convergence per phase**: Authoring time dropped Phase A (~6 min/event) → Wave 2.3 (~2-3 min/event) as agents internalized the codebook.
+2. **Codebook-aware authoring**: Wave 2.1+ agents proactively cited codebook sections (`§1.2`, `§5.1`) in their reports, reducing schema-enum fallback errors observed in Phase F.
+3. **Sibling-pattern learning**: Late-wave authoring agents templated from prior siblings without explicit instruction.
+4. **Cross-frame deduplication**: Discovery agents consistently caught duplicates (`china-pboc-ten-agencies-crypto-illegal-2021-09` vs existing `china-pboc-crypto-ban-2021`; `tornado-cash-developer-roman-storm-conviction-2025` vs `tornado-cash-storm-conviction-2025`; `fatf-r15-vasp-travel-rule-guidance-2019` vs existing `fatf-r15-vasp-travel-rule-2019`; `oecd-carf-crypto-asset-reporting-framework-2022` vs existing `oecd-carf-2022`).
 
 ### Surfaced issues (resolved)
-
-1. **Kazakhstan L0 honesty downgrade** (Phase C): The `kazakhstan-internet-shutdown-mining-2022-01` agent initially coded `l0_network: partially_measured` based on NetBlocks/Cloudflare Radar/Access Now documentation, but the paper-readiness gate's `derived/l0_coverage_summary.csv` denominator-pinning constraint rejected this (no `sources/l0_datasets/<event>/` slice was captured this session). **Resolution**: Downgraded L0 to `not_measured`, removed L0 observation row and L0 recovery entry. L0 cascade evidence retained in `trigger.citation` block but not promoted to observation-row status. Event remains L1-anchored (KZ bitcoin hashrate collapse). Committed as `5e28a89`.
-
-2. **Schema enum mismatches** (recurring across Phase A-F): Multiple agents specified enum values not in the schema:
-   - `regulatory_enforcement` (not in trigger.type enum) → mapped to `nation_state_block` (for non-US regulators) or `fincen_action` / `sec_action` (for US-equivalent administrative flows).
-   - `class_level` (not in target.enumeration enum) → mapped to `subset` with class-level rationale in `enumeration_note`.
-   - `exchange` (not in target.kind enum) → mapped to `entity` + `actor_type` carrying the exchange-specific descriptor.
-   - `contextual_baseline` (not in analysis_use enum) → mapped to `historical_baseline` (Phase B) or `discovery_ledger_only` (Phase E).
-   - `case_study` (not in empirical_shape enum) → mapped to `comparison` or `null_event` based on observed_change count.
-   - `S3_doj_sec_cftc_fiod` for non-US regulators → corrected to `S4_nation_state` per validator's stratum-actor map (S3 reserved for US DOJ/SEC/CFTC/FinCEN).
-
-3. **anchor_case admission tier requirements**: `dydx-tornado-account-block-2022-08` qualified for anchor_case based on 2 distinct observation layers (l4_frontend + offramp_cex hybrid CEX architecture). All other agent_draft events admitted at `empirical_case` or `null_case`.
-
-4. **Schema additions for previously-uncovered jurisdictions** (Phase C): HK, KZ, UA jurisdiction enums added to `schema/event.schema.json` + `schema/controlled_vocab.yaml` via authoring-agent edits.
+1. **Wave 2.2C rate-limit blast** (25 parallel agents): hit upstream LLM rate limit, only ~11 of 25 completed; 5 partially-authored files validated as broken. Resolution: drop 5 partials, re-author in Wave 2.2D smaller batches (5 agents each).
+2. **Lesson learned**: Wave 2.2D used 5-agent batches consistently, zero rate-limit issues across 19 events.
+3. **circle-usdc-cryptex-freeze-2024 self-reference bug**: Agent set `duplicate_of_action_id` equal to its own `action_id`. Fixed surgically (removed field).
+4. **Costa Rica jurisdiction gap**: Liberty Reserve 2011 event needed `CR` but it's not in jurisdiction enum. Authoring agent honestly coded `[corporate_global]` with note. Schema-freeze update pending (or accept the workaround).
 
 ---
 
-## Layer coverage outcomes
+## Layer coverage outcomes (final)
 
-Per-phase layer cascade documentation (approximate counts of `observed_change` rows by layer):
+| Layer | Phase A-F | Wave 2 | Final | Direction |
+|-------|-----------|--------|-------|-----------|
+| l0_network | 1 (after KZ honesty fix) | +0 | 1 | Severely under-documented; requires real OONI capture |
+| l1_consensus | 4 (CN mining + KZ hashrate) | +2 (iran-mining, russia-mining-leg context) | 6 | Niche layer, well-anchored |
+| l3_rpc | 3 | +2 (consensys-metamask-2022-11, metamask-snaps) | 5 | DRYRUN-pipeline-saturated for this tier |
+| l4_frontend | 19 (DeFi+app-store cluster) | +14 | 33 | Best-populated for paper claims |
+| asset_onchain | 14 (incl. WikiLeaks blockade) | +10 | 24 | Strong for stablecoin-freeze claims |
+| offramp_cex | 60+ (CEX delisting + payment-rail) | +50+ | 100+ | Best-populated cross-frame |
 
-| Layer | Phase A | Phase B | Phase C | Phase D | Phase E | Phase F | Direction |
-|-------|---------|---------|---------|---------|---------|---------|-----------|
-| l0_network | 0 | 0 | 0 (KZ honesty-fix) | 1 (Infura geo-block) | 0 | 0 | Under-documented; needs real OONI capture |
-| l1_consensus | 0 | 0 | 4 (CN mining + KZ hashrate) | 0 | 0 | 0 | Now populated via Phase C |
-| l3_rpc | 1 | 0 | 0 | 3 (Infura geo, Cloudflare gateway, Metamask) | 0 | 0 | Now populated via Phase D |
-| l4_frontend | 2 | 1 | 4 | 10 (DeFi+app-store cluster) | 2 (Amazon AWS + EveryDNS) | 0 | Phase D was load-bearing |
-| asset_onchain | 6 | 1 | 1 | 1 (Aave Arc) | 1 (e-Gold) | 5 (OFAC wallet designations) | Continuously populated |
-| offramp_cex | 18 | 11 | 8 | 5 | 7 (WikiLeaks blockade) | 11 (Japan FSA + OFAC) | Always best-documented |
-
-**Net**: L4_frontend and L3_rpc cascade columns now have meaningful population; L0_network remains under-documented (1 row, awaiting real OONI capture for KZ + others); L1_consensus newly populated via Phase C CN mining + KZ hashrate cluster.
-
----
-
-## Schema constraint summary (validator hard-rules surfaced across Phases A-F)
-
-1. `status: draft` REQUIRED when `origin: agent_draft` (cannot admit LLM-authored events without human review).
-2. `target.kind: entity` (no `exchange` / `regulatory_class` / `domain` outside specific cases).
-3. `target.enumeration: subset` (no `class_level`).
-4. `empirical_shape`: `comparison` (≥1 observed_change) | `null_event` (0 observed_change) — no `case_study`.
-5. `observation_kind`: `observed_change` | `observed_no_change` | `coverage_gap` — no `not_observed`.
-6. `observed_no_change` requires `attribution: none` + `window` + coverage `measured`/`partially_measured`.
-7. `coverage_gap` requires `attribution` in `{unknown, none}`.
-8. `not_measured` coverage cannot have observations on that layer.
-9. `analysis_use`: `historical_baseline` | `comparable_analysis` | `discovery_ledger_only` — no `contextual_baseline`/`discovery_only`.
-10. `trigger.type` enum strictly enforced — `regulatory_enforcement` NOT a valid enum (use `nation_state_block`/`fincen_action`/`sec_action`/`court_civil_order`/`corporate_policy_change`/`ofac_sdn_designation`/`supranational_regulation`/`doj_indictment`/`doj_seizure_order`).
-11. Validator stratum-actor map: `S3_doj_sec_cftc_fiod` restricted to US DOJ/SEC/CFTC/FinCEN actors. Non-US regulators (JP FSA, KZ NBK, etc.) → `S4_nation_state` + trigger.type=`nation_state_block`.
-12. **L0 coverage `partially_measured` / `measured`**: requires corresponding row in `derived/l0_coverage_summary.csv` derived from real `sources/l0_datasets/<event>/` slice. **Cannot bluff with documented-but-uncaptured measurement claims** (Kazakhstan-2022 lesson).
-13. `wayback:` URL required on `primary_legal` source-type even with `evidence_use: contextual_unarchived` (year-prefix wildcard `https://web.archive.org/web/YYYY/<url>` acceptable).
-
----
-
-## Remaining backlog (deferred candidates from triage manifests)
-
-### Phase A (us_federal_enforcement, corporate_policy, supranational, non_us_state) backlog: ~68 candidates
-- 7 P1/P2 us_federal_enforcement candidates not authored this round
-- 11 P1/P2 corporate_policy candidates (smaller cascade)
-- 7 P1/P2 supranational candidates (FATF/OECD/G20 updates)
-- 13 P1/P2 non_us_state candidates (smaller-jurisdiction enforcement)
-- Re-discoverable from `sources/{frame}/triage_manifest.json`.
-
-### Phase B (historical_baseline 2013-2016) backlog: ~13 candidates
-- 13 P1 deferred (mostly non-US-state advisories: Bolivia, Bangladesh, Indonesia, Argentina, Brazil, Thailand 2013 — many marked `needs_check` for archive pinning).
-- DAO hack (2016-06-17) flagged as schema-edge case (chain-state intervention rather than censorship).
-
-### Phase D (DeFi + wallet + app-store + L3 RPC) backlog: ~10 candidates
-- 7 P1 deferred (dydx-tornado-account already admitted; remaining: ConsenSys/MetaMask Infura RPC data collection, Tornado Cash GitHub takedown, MakerDAO emergency shutdown contingency, Ren Protocol shutdown, Oasis Wormhole counter-exploit, Tornado Cash team self-block).
-- 3 P2 deferred (Augur v2 US-UK geofence, pump-fun UK FCA geofence — verification deferred).
-
-### Phase C (China + Russia + CIS frames) backlog: ~5 candidates
-- 4 P1 deferred (China Weibo crypto-exchange purge, Russia DFA law 2020, Russia mining legalization law 2024-08, Ukraine virtual assets law already admitted).
-- 1 P2 deferred (UK HMRC Bitcoin VAT brief 2014 — outside CIS frame, mis-routed).
-- Belarus PR8 2017 explicitly deferred as permissive (not censorship-relevant).
-- Multilingual scrapers identified as v0.3 infrastructure work.
-
-### Phase E (pre-Bitcoin baseline 2008-2012) backlog: ~12 candidates
-- 7 P1 deferred (e-Gold Secret Service indictment 2007-04 — outside tier; Liberty Reserve 2006-2012 ops — most events post-tier; BitInstant 2011-2013; Mt. Gox 2010-2011 early issues; Pecunix winding down 2008 — needs archive).
-- 5 P2 deferred (DigiCash 1999 — outside tier; Iran sanctions correspondent severance 2012 — partially captured upstream).
-
-### Phase F (Japan FSA + OFAC RA density) backlog: ~4 candidates
-- 3 P1 deferred (Liquid Quoine post-hack orders 2021-08; bitFlyer suspension 2018-06 — partially captured in Phase F six-exchange sweep; Japan-only Tornado Cash designation 2022-12 — needs_check on METI/MOF primary).
-- 2 P2 deferred (specific 2024 Lazarus sub-designations; OFAC USDT-on-Tron DPRK refresh 2024 — likely covered by existing `dprk-usdt-network-ofac-2025`).
-
-**Estimated total backlog**: ~100-120 candidates surfaced but not authored in this lean run. Re-discoverable via `sources/{frame}/triage_manifest.json` cross-references.
+L0 remains the structural gap — no real OONI batch query was run this session for any event. Kazakhstan was the test case for the honesty rule (downgraded from `partially_measured` to `not_measured`).
 
 ---
 
 ## Critical path to v0.2.0 production release
 
-The 6 lean-run Phases (A-F) preserved the **DRYRUN-discipline contract**: every authored event remains at `status: draft` + `origin: agent_draft`. To progress beyond DRYRUN to a real v0.2.0 release, the following human-required gates remain open:
+The 11 DRYRUN cycles preserved the **DRYRUN-discipline contract**: every authored event remains at `status: draft` + `origin: agent_draft`. Five human-required gates remain open before a real v0.2.0 release:
 
-1. **Human review of 80 new agent_draft events** (real human audit, not LLM-simulated). Promotion sequence:
-   - Verify each event's primary URL is reachable and the legal/regulatory content matches the claim.
+1. **Human review of 156 agent_draft events** (real human audit, not LLM-simulated). Promotion sequence:
+   - Verify each event's primary URL is reachable; legal/regulatory content matches the claim.
    - Pin real `body_hash` + `body_path` captures into `sources/http_captures/<slug>/` for primary_legal citations.
-   - Run real OONI batch queries for L0-cascade events (KZ, infura-metamask-donetsk-luhansk, others) and pin measurement_ids.
+   - Run real OONI batch queries for L0-cascade events (KZ, infura-metamask-donetsk-luhansk, others) and pin `measurement_ids`.
    - Flip `evidence_use` from `contextual_unarchived` to `primary_archived` once body_hash anchored.
    - Flip `origin: agent_draft` → `human_reviewed` and `status: draft` → `admitted` after human audit pass.
 
-2. **Real H1 IRR re-computation** with independent-human coders (not LLM-simulated). Current Cohen's κ (0.5833 attribution, 0.983 coverage_status) is from `independent_human_dryrun_llm_simulated` mode and does NOT satisfy paper-readiness for corpus-level comparative claims.
+2. **Real H1 IRR re-computation** with independent-human coders (not LLM-simulated). Current Cohen's κ (0.5833 attribution, 1.0 coverage_status, 1.0 observation_kind) is from `independent_human_dryrun_llm_simulated` mode. Codebook §1.2 should be tested against fresh human coders to validate the disposition.
 
-3. **12 null-denominator cases** require real human audit (currently carry DRYRUN `last_human_audit` stamps as pipeline-rehearsal markers): iran-ransomware-ofac-2018, irgc-ransomware-ofac-2022, lazarus-entity-ofac-2019, lazarus-laundering-ofac-2020, lockbit-leader-ofac-2024, matveev-ofac-2023, pertsev-nl-arrest-2022, russian-cybercrime-infra-ofac-2025, sichuan-silence-ofac-2024, sinbad-ofac-2023, storm-semenov-doj-2023, zservers-ofac-2025.
+3. **12 null-denominator cases** require real human audit (currently carry DRYRUN `last_human_audit` stamps): iran-ransomware-ofac-2018, irgc-ransomware-ofac-2022, lazarus-entity-ofac-2019, lazarus-laundering-ofac-2020, lockbit-leader-ofac-2024, matveev-ofac-2023, pertsev-nl-arrest-2022, russian-cybercrime-infra-ofac-2025, sichuan-silence-ofac-2024, sinbad-ofac-2023, storm-semenov-doj-2023, zservers-ofac-2025.
 
-4. **Attribution κ codebook decision** (still open from prior session's H2 human-gate packet): resolve stablecoin-freeze attribution coding (`direct` vs `plausible` for Tether/Circle compliance freezes per OFAC SDN designation). κ=0.5833 indicates real codebook ambiguity, not just coding noise.
+4. **Apply codebook §1.2 retroactively**: re-audit `attribution` field on all 24 asset_onchain rows + 100+ offramp_cex rows. Specifically: did the issuer (Tether/Circle) publicly confirm freeze on OFAC-named addresses? If yes → `direct`; if only one of (A)/(B) holds → `plausible`.
 
-5. **5 H2 human-gates** from prior session still open (sec-v-uniswap-wells confirm reject; pertsev/storm-semenov scoped_claim review; offramp_cex.measured convention pick; attribution κ codebook decision; null-denominator real-audit).
+5. **5 H2 human-gates** from prior session still open (sec-v-uniswap-wells confirm reject; pertsev/storm-semenov scoped_claim review; offramp_cex.measured convention pick; attribution κ codebook decision applied; null-denominator real-audit).
 
 ---
 
-## DRYRUN-discipline compliance audit
+## Remaining backlog (post-Wave-2)
 
-All 80 new events authored this session carry:
-- **Status discipline**: `status: draft` ✓ (validator hard-rule)
-- **Origin discipline**: `origin: agent_draft` ✓ (validator hard-rule paired with status=draft)
-- **DRYRUN preamble** in `analysis_notes` ✓ (e.g., `**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase X of 2026-05-16 staged-release plan, ...)`)
-- **Honest `evidence_use`**: `contextual_unarchived` everywhere — zero invented `body_hash` values ✓
-- **Wayback discipline**: year-prefix wildcard URLs `https://web.archive.org/web/YYYY/<url>` to satisfy archive-anchor validator without bluffing pinned-snapshot capture
-- **Tags**: `dryrun_2026_05_16` + `phase_{a|b|c|d|e|f}_2026_05_16` tags on all events for downstream grep filtering
+After Wave 2.3, the triage manifests have **0 P0 remaining** and **near-zero P1 remaining**. P2-deferred candidates (~5-10) remain across manifests for genuinely edge-case events (operator hacks coded as not-censorship, framework laws coded as null_event, etc.).
 
-These discipline markers ensure that a human reviewer can:
-1. Audit all 80 LLM-authored events by greppping `tags: dryrun_2026_05_16`.
-2. Validate that NO event was prematurely promoted to `status: admitted` without real human review.
-3. Re-author / re-validate any event surgically without disturbing the rest of the corpus.
+The 600-event target from `analysis/collection_plan_v0.2_to_v1.0.md` requires additional v0.3 work not in scope for this session:
+- US state-level regulators (50 states, each with own BitLicense-style framework)
+- DePIN governance events (Helium, IoTeX, Render Network)
+- Stablecoin protocol-level censorship density (Tether/Circle/Paxos historical per-event sweep)
+- ICO-era enforcement (2017-2018) density
+- DeFi Summer + DeFi exploit enforcement (2020-2021) density
+- 2025+ OFAC RA updates (corpus is snapshot)
+- Multilingual primary-source ingest (Chinese, Russian, Japanese)
 
 ---
 
 ## Reproducibility
 
-To replay this session's work from `8948e69` (Phase 6e DRYRUN-3, 87 events) → `eee9eeb` (Phase F wrap DRYRUN-9, 167 events):
+To replay this session from `8948e69` (87 events) → `86a9859` (262 events):
 
 ```bash
-git checkout 8948e69  # starting point, 87 events
-git log --oneline eee9eeb...8948e69  # 24 commits to replay
-# Each Phase: discovery commit + authoring commit + wrap commit (3 commits per Phase)
-# Plus DRYRUN bump commits and one honesty-fix (Phase C kazakhstan L0 downgrade)
+git checkout 8948e69     # starting point
+git log --oneline 86a9859 ^8948e69 | wc -l  # ~40 commits to replay
 ```
 
-Each Phase's authoring is dispatched as **1 discovery agent + 10-13 parallel authoring agents + 1 consolidation step + 1 DRYRUN sign-off run + 1 commit**. The pattern is documented in `analysis/collection_plan_v0.2_to_v1.0.md`.
+Pattern per Phase / Wave: 1 discovery agent → N parallel authoring agents → consolidation → regen → DRYRUN sign-off → commit.
+
+Critical lesson: **batch size matters**. 5-agent batches consistently rate-limit-safe; 25-agent batches hit limits ~50% of the time. Phase A-F used 10-13 routinely (mixed success); Wave 2.2D adopted 5-agent batches as standard.
 
 ---
 
 ## Closing note
 
-The DRYRUN-9 sign-off at `v0.2.0-rc-dryrun-9` represents the **pipeline-rehearsal terminal state** of the comprehensive lean-run collection plan. Six Phases × six DRYRUN cycles × 80 events × strict-gate byte-stable artifacts demonstrate that the pipeline scales to ~200-event corpus size without infrastructure work. The remaining backlog (~100-120 candidates) and the human-required gates (IRR, null-audit, body_hash captures) are the v0.3 → v1.0 work, not v0.2.
+DRYRUN-11 at `v0.2.0-rc-dryrun-11` (262 events) is the **pipeline-rehearsal terminal state** of the collect-all-first workflow. The corpus has grown from 87 → 262 (+201%) in one session while:
+- preserving DRYRUN-discipline (156 draft/agent_draft events grep-able by `tags: dryrun_2026_05_16` or `dryrun_2026_05_17`),
+- installing schema + codebook upstream protections (DRYRUN-10),
+- maintaining strict paper-readiness gate compliance across 11 byte-stable DRYRUN cycles,
+- documenting Kazakhstan-style honesty fixes (no fabricated L0 measurements, no fabricated body_hash).
 
-The pipeline rehearsal is complete. Next step is real human authoring/review, not more LLM agent rounds.
+The remaining work is **human-required** (audit + IRR + body_hash pinning), not more LLM agent rounds. Codebook §1.2 + the 14 jurisdiction enum + the `regulatory_enforcement` trigger.type are the durable artifacts that survive the LLM authoring phase and bind future human coders.
 
-— Authored by LLM agent 2026-05-16 (Claude Opus 4.7 1M context) as the closing artifact of the Phase A-F lean-run multi-Phase pipeline. `status: draft` semantics apply to this summary too — please supersede with your own narrative on a real-release human audit.
+— Authored by LLM agent 2026-05-17 (Claude Opus 4.7 1M context) as the closing artifact. `status: draft` semantics apply to this summary — please supersede on real-release human audit.
