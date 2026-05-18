@@ -2591,6 +2591,47 @@ def render_signal_cards(events: list[dict], shape_counts: collections.Counter, t
   </div>"""
 
 
+def load_review_queue_dashboard() -> dict[str, Any]:
+    """Load the lightweight v0.3 review queue snapshot, if generated."""
+    path = REPO_ROOT / "analysis/review_queue/non_human_todo_list.json"
+    try:
+        data = json.loads(path.read_text())
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def render_review_queue_dashboard() -> str:
+    snapshot = load_review_queue_dashboard()
+    if not snapshot:
+        return ""
+
+    total = snapshot.get("total_queue_items", "n/a")
+    ready = snapshot.get("ready_for_future_human_audit", "n/a")
+    remaining = snapshot.get("remaining_source_discovery_rows", "n/a")
+    human_done = snapshot.get("human_audit_performed")
+    verified_mutated = snapshot.get("primary_source_verified_mutated")
+
+    human_label = "no human audit recorded" if human_done is False else str(human_done)
+    verified_label = "primary_source_verified unchanged" if verified_mutated is False else str(verified_mutated)
+
+    return f"""
+  <section class="boundary-note" id="v0-3-review-queue">
+    <strong>v0.3 review queue.</strong>
+    The ingestion review surface tracks <strong>{escape(str(total))}</strong> queue rows:
+    <strong>{escape(str(ready))}</strong> are machine-prepared for future human audit and
+    <strong>{escape(str(remaining))}</strong> still require source discovery or methodology repair.
+    This is pre-human workflow state: {escape(human_label)}; {escape(verified_label)}.
+    <div class="hero-actions" style="margin-top:.85rem">
+      <a class="button secondary" href="analysis/review_queue/non_human_todo_list.md">Non-human todo list</a>
+      <a class="button secondary" href="analysis/review_queue/v0_3_review_triage_summary.md">Triage summary</a>
+      <a class="button secondary" href="analysis/review_queue/source_discovery_worklist.md">Source worklist</a>
+      <a class="button secondary" href="analysis/review_queue/human_audit_worksheet.md">Human worksheet</a>
+    </div>
+  </section>
+"""
+
+
 def render_layer_board(events: list[dict]) -> str:
     coverage: dict[str, collections.Counter] = {
         layer: collections.Counter() for layer in LAYER_ORDER
@@ -2700,6 +2741,26 @@ def render_artifact_cards() -> str:
             "Human audit queue",
             "Open human-only blockers for strict submission mode.",
             "human-audit.md",
+        ),
+        (
+            "v0.3 review queue",
+            "Machine-prepared review queue over the expanded 262-row ingestion corpus.",
+            "analysis/review_queue/review_queue.md",
+        ),
+        (
+            "v0.3 triage summary",
+            "Pre-human split between machine-ready rows and rows still needing source repair.",
+            "analysis/review_queue/v0_3_review_triage_summary.md",
+        ),
+        (
+            "Source discovery worklist",
+            "Rows still blocked on primary observation evidence or methodology repair.",
+            "analysis/review_queue/source_discovery_worklist.md",
+        ),
+        (
+            "Non-human todo list",
+            "Completed non-human tasks and the remaining handoff boundary before audit.",
+            "analysis/review_queue/non_human_todo_list.md",
         ),
     ]
     html_cards = []
@@ -2877,6 +2938,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
   </section>
 
   {render_signal_cards(events, shape_counts, tier_counts)}
+  {render_review_queue_dashboard()}
 
   <section class="boundary-note">
     <strong>Interpretation boundary.</strong>
@@ -3034,6 +3096,13 @@ def copy_dashboard_artifacts(site_dir: pathlib.Path) -> int:
         "analysis/audit_worksheets/*.md",
         "analysis/llm_expert_audit/*.md",
         "analysis/paper_tables/*",
+        "analysis/review_queue/*.csv",
+        "analysis/review_queue/*.json",
+        "analysis/review_queue/*.jsonl",
+        "analysis/review_queue/*.md",
+        "analysis/review_queue/packets/*.csv",
+        "analysis/review_queue/packets/*.json",
+        "analysis/review_queue/packets/*.md",
         "analysis/trigger_registry/*",
         "derived/*.md",
         "derived/*.csv",
