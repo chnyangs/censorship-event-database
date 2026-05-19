@@ -135,11 +135,16 @@ analysis_notes: |
 
 scoped_claim: |
   "OFAC designation of Garantex on 2022-04-05 (co-designated with Hydra)
-  documents a Russia-operated exchange SDN. Canonical garantex.io domain
-  remained operational post-designation (observed_no_change at L4,
-  reflecting absence of US infrastructure dependency for the Russian-
-  operated frontend). Establishes the foreign-operated-exchange
-  persistence pattern that recurs in Sinbad 2023, Grinex 2025."
+  documents a Russia-operated exchange SDN. L4 frontend persistence is
+  hypothesized but not asserted in this release: l4_frontend coverage
+  status is `not_measured` and no L4 observation row is attached.
+  Future revision should add l4_frontend pre/post Wayback bracketing of
+  garantex.io to test the foreign-operated-exchange persistence pattern
+  observed in related events (sinbad-ofac-2023, grinex-garantex-
+  successor-ofac-2025). v0.3 audit 2026-05-19: scoped_claim repaired
+  per audit_log row 218 (qid=93 garantex needs_recheck) which flagged
+  the original wording for asserting L4 observed_no_change without
+  supporting observation row."
 
 tags:
   - sanctions

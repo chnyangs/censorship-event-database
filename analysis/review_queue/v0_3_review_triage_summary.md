@@ -257,7 +257,7 @@ No event was promoted, no human audit was recorded, and no `primary_source_verif
 
 | Blocker | Count |
 | --- | ---: |
-| `none_detected` | 198 |
+| `none_detected` | 196 |
 | `no_observation_primary_source_detected` | 2 |
 
 ## Work Files

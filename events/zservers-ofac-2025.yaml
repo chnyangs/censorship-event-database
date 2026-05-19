@@ -70,8 +70,16 @@ coverage:
     status: not_applicable
     chain: bitcoin
   - layer: l4_frontend
-    status: not_applicable
-    note: No canonical domain listed in SDN entries; infrastructure provider.
+    status: not_measured
+    note: |
+      Zservers.ru is listed as the canonical website in the ZSERVERS
+      entity OFAC SDN entry. Wayback CDX bracketing of Zservers.ru
+      around 2025-02-11 has not been performed in this release. v0.3
+      audit 2026-05-19 repaired status from not_applicable to
+      not_measured for consistency with peer bulletproof-hosting
+      events (aeza-group-ofac-2025 + funnull-cdn-ofac-2025 both use
+      not_measured for listed-but-unbracketed canonical domains). See
+      audit_log row 238 (qid=262 zservers verified).
   - layer: asset_onchain
     status: not_applicable
     chain: bitcoin
