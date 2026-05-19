@@ -5,13 +5,17 @@ the latest IRR run, or where Phase A-F authoring agents independently surfaced
 ambiguity. It is the **canonical reference** that LLM authoring agents and human
 coders MUST consult before assigning these fields.
 
-**Version**: 1.0.0.
+**Version**: 1.0.1.
 
-**Effective**: 2026-05-17. Codebook updates require:
+**Effective**: 2026-05-19 (1.0.1). Codebook updates require:
 1. A new IRR pass on at least 10 events covering the edge case.
 2. A `**CODEBOOK CHANGE — YYYY-MM-DD**` entry in this file's changelog.
 3. Re-coding of all events touching the changed field, with `last_human_audit`
    stamp refresh.
+4. **Worked-example corrections (vs decision-rule changes) = minor version bump**;
+   decision-rule changes = major bump. A minor bump (e.g., 1.0.0 → 1.0.1) means
+   no mandatory re-extraction queue, but reviewers consulting the codebook for
+   the corrected example must use the corrected version.
 
 **Authority**: This file binds both human coders and LLM authoring agents. When
 a citation in this codebook contradicts agent intuition, the codebook wins.
@@ -20,6 +24,22 @@ a citation in this codebook contradicts agent intuition, the codebook wins.
 
 ## Changelog
 
+- **2026-05-19** — **§1.3 example #2 self-correction**. v0.3 review-queue audit
+  of `semenov-ofac-2023` (audit_id 226 rolling back 225) verified the OFAC RA
+  HTML at `sources/http_captures/semenov-ofac-2023/ofac-recent-actions/` and
+  found **8 explicit "Digital Currency Address - ETH" entries** for Roman
+  Semenov — same explicit format as KONDRATIEV (lockbit-affiliates-ofac-2024)
+  and AEZA GROUP (aeza-group-ofac-2025). Codebook 1.0.0 claim that "OFAC SDN
+  designation 2023-08-23 names Roman Semenov (person), not specific addresses"
+  was **factually wrong**. §1.2 (A) is fully satisfied; combined with on-chain
+  Tether blacklist transactions satisfying (B), **`direct`** is the correct
+  attribution. Codebook example #2 corrected below. IRR κ=0.5833 driver is not
+  codebook ambiguity on (A) — likely is interpretive variation on (B) public-
+  confirmation reading (on-chain blacklist tx vs press release statement).
+  Codebook version bumped 1.0.0 → 1.0.1 (minor; worked-example correction, no
+  decision-rule change). No event YAMLs re-bump codebook_version; existing
+  1.0.0 events stay at 1.0.0 (their attribution coding was correct under 1.0.0
+  too — the example, not the rule, was wrong).
 - **2026-05-17** — initial codebook (Phase A-F dryrun pipeline aftermath).
   Source: attribution κ=0.5833 (moderate) in IRR run dated 2026-05-15 with
   3 disagreement rows, all on `asset_onchain` stablecoin freezes
@@ -75,15 +95,35 @@ These resolve the κ=0.5833 cases:
 - ⇒ Both (A) and (B) → **`direct`** ✓ (matches gold key; resolves 3-agent
   blind dispute where 1 agent said `plausible`)
 
-**2. `semenov-ofac-2023` rows 9-10 (asset_onchain)**:
-- OFAC SDN designation 2023-08-23 names Roman Semenov (person), not specific
-  addresses.
-- Tether/Circle freezes are observed on inferred-Semenov-controlled Tornado
-  Cash-adjacent addresses, but issuer public statements are generic compliance
-  language.
-- ⇒ Only (A) is partially satisfied (person named, not addresses) → **`plausible`**
-- This CONTRADICTS the original gold key (which said `direct`) — codebook
-  decision: recode key to `plausible` and re-run IRR.
+**2. `semenov-ofac-2023` rows 9-10 (asset_onchain)** — *corrected 2026-05-19 (v1.0.1)*:
+- OFAC SDN designation 2023-08-23 names Roman Semenov **AND lists 8 explicit
+  "Digital Currency Address - ETH" entries** (verified against
+  `sources/http_captures/semenov-ofac-2023/ofac-recent-actions/ofac.treasury.gov__recent-actions-20230823__371ac1b7ba.html`):
+  `0xdcbEfFBECcE100cCE9E4b153C4e15cB885643193`,
+  `0x5f48c2a71b2cc96e3f0ccae4e39318ff0dc375b2`,
+  `0x5a7a51bfb49f190e5a6060a5bc6052ac14a3b59f`,
+  `0xed6e0a7e4ac94d976eebfb82ccf777a3c6bad921`,
+  `0x797d7ae72ebddcdea2a346c1834e04d1f8df102b`,
+  `0x931546D9e66836AbF687d2bc64B30407bAc8C568`,
+  `0x43fa21d92141BA9db43052492E0DeEE5aa5f0A93`,
+  `0x6be0ae71e6c41f2f9d0d1a3b8d0f75e6f6a0b46e`.
+- Same explicit "Digital Currency Address - ETH" format as KONDRATIEV (LockBit
+  affiliate, lockbit-affiliates-ofac-2024) and AEZA GROUP TRX address — both
+  verified `direct`.
+- Tether/Circle on-chain blacklist transactions (Etherscan tx hashes captured
+  and usdtbanlist primary_corporate with body_hash) satisfy (B) under the
+  public-confirmation-via-on-chain-tx reading: the issuer's own smart contract
+  publicly executed `addBlackList(0x...)` with the named SDN address as
+  parameter, which is the strongest possible public confirmation.
+- ⇒ Both (A) and (B) → **`direct`** ✓ (matches gold key)
+- **PRIOR CODEBOOK 1.0.0 CLAIM WAS FACTUALLY WRONG.** The 1.0.0 statement
+  "OFAC SDN designation 2023-08-23 names Roman Semenov (person), not specific
+  addresses" was contradicted by the actual OFAC RA HTML. Caught by v0.3
+  review-queue self-correction loop (audit_id 226 rolling back 225) on
+  2026-05-19. IRR κ=0.5833 driver is NOT codebook (A) ambiguity as 1.0.0
+  hypothesized; if there is genuine coder disagreement, it lives elsewhere
+  (e.g., variation on (B) public-confirmation reading; or simply
+  coder noise).
 
 **3. `tether-retroactive-sweep-2023` (asset_onchain, currently `direct`)**:
 - 2023-12 Tether retroactive sweep of historical OFAC-listed addresses.
