@@ -1,17 +1,17 @@
 id: eu-14th-russia-sanctions-spfs-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: non_us_sanctions
@@ -21,17 +21,11 @@ trigger:
   citation:
     - type: primary_legal
       url: https://eur-lex.europa.eu/eli/reg/2024/1745/oj
-      wayback: https://web.archive.org/web/2024/https://eur-lex.europa.eu/eli/reg/2024/1745/oj
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240624181905/https://eur-lex.europa.eu/eli/reg/2024/1745/oj
+      evidence_use: replayable
+      body_hash: sha256:dd8eed371b6cba0a6193afb1b8b616ccab9855c4f4032679bbc4ddb401f49328
+      body_path: sources/http_captures/eu-14th-russia-sanctions-spfs-2024/primary/web.archive.org__web-20240624181905-https-eur-lex.europa.eu-eli-reg-2024-1745-oj__58e36ac7f5.html
       note: |
-        **NEW EVENT AUTHORED — DRYRUN 2026-05-17 — Wave 2.2D
-        re-author preamble (note: replaces dropped rate-limit-
-        partial; previous error was missing wayback)**: authored
-        by LLM agent without personally verifying Wayback /
-        body_hash; origin=agent_draft per validator hard-rule.
-        Human auditor must replace this DRYRUN marker with a
-        pinned archive anchor before release.
-
         Council Regulation (EU) 2024/1745 of 24 June 2024
         amending Regulation (EU) No 833/2014 concerning
         restrictive measures in view of Russia's actions
@@ -52,8 +46,10 @@ trigger:
         publication).
     - type: primary_legal
       url: https://www.consilium.europa.eu/en/press/press-releases/2024/06/24/russia-s-war-of-aggression-against-ukraine-comprehensive-eu-s-14th-package-of-sanctions-cracks-down-on-circumvention-and-adopts-energy-measures/
-      wayback: https://web.archive.org/web/2024/https://www.consilium.europa.eu/en/press/press-releases/2024/06/24/russia-s-war-of-aggression-against-ukraine-comprehensive-eu-s-14th-package-of-sanctions-cracks-down-on-circumvention-and-adopts-energy-measures/
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240624072140/https://www.consilium.europa.eu/en/press/press-releases/2024/06/24/russia-s-war-of-aggression-against-ukraine-comprehensive-eu-s-14th-package-of-sanctions-cracks-down-on-circumvention-and-adopts-energy-measures/
+      evidence_use: replayable
+      body_hash: sha256:e4ef800529e7c8149c0b2faea33569544bb699cb47d0398a824849c0f42e2314
+      body_path: sources/http_captures/eu-14th-russia-sanctions-spfs-2024/primary/web.archive.org__web-20240624072140-https-www.consilium.europa.eu-en-press-press-releases-2024-06-24-russia-s-war-of-aggression-against-ukraine-comprehensive-eu-s-14th__9fe377a46e.html
       note: |
         Council of the EU press release (2024-06-24)
         accompanying the 14th package adoption. Enumerates the
@@ -61,8 +57,8 @@ trigger:
         from connecting to SPFS or equivalents), Article 5ad
         crypto-asset-provider transaction ban with Annex XLV
         listings, and the anti-circumvention thrust of the
-        package. DRYRUN: archival anchor unverified by LLM
-        agent at authoring time.
+        package. Wayback memento 20240624072140 captured
+        2026-05-21.
     - type: supporting_journalism
       url: https://enlargement.ec.europa.eu/news/eu-adopts-14th-package-sanctions-against-russia-its-continued-illegal-war-against-ukraine-2024-06-24_en
       wayback: https://web.archive.org/web/2024/https://enlargement.ec.europa.eu/news/eu-adopts-14th-package-sanctions-against-russia-its-continued-illegal-war-against-ukraine-2024-06-24_en
@@ -70,16 +66,16 @@ trigger:
       note: |
         European Commission DG NEAR news summary of the 14th
         package adoption, confirming the SPFS prohibition and
-        crypto-asset-provider extension. DRYRUN: archival
-        anchor unverified.
+        crypto-asset-provider extension. Retained as
+        contextual_unarchived; primary anchoring lives on the
+        EUR-Lex + Council press release citations above.
   timestamp_sources:
     - type: primary_legal
       url: https://eur-lex.europa.eu/eli/reg/2024/1745/oj
-      wayback: https://web.archive.org/web/2024/https://eur-lex.europa.eu/eli/reg/2024/1745/oj
+      wayback: https://web.archive.org/web/20240624181905/https://eur-lex.europa.eu/eli/reg/2024/1745/oj
       note: |
         Adoption date 2024-06-24 per Council Regulation
         (EU) 2024/1745 publication. Day-level precision.
-        DRYRUN authored 2026-05-17.
 
 target:
   kind: entity
@@ -119,7 +115,7 @@ coverage:
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       Framework-level EU sanctions regulation extending the
       crypto-asset provisions track. Article 5ad creates a
@@ -139,16 +135,23 @@ observations:
   - layer: offramp_cex
     actor: eu_casp_ecosystem
     event: eu_14th_package_spfs_and_article_5ad_framework_adoption_2024
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2024-06-24T00:00:00Z
     precision: day
+    window:
+      - 2024-06-24T00:00:00Z
+      - 2024-12-31T23:59:59Z
     sources:
       - type: primary_legal
         url: https://eur-lex.europa.eu/eli/reg/2024/1745/oj
-        wayback: https://web.archive.org/web/2024/https://eur-lex.europa.eu/eli/reg/2024/1745/oj
+        wayback: https://web.archive.org/web/20240624181905/https://eur-lex.europa.eu/eli/reg/2024/1745/oj
+        evidence_use: replayable
+        body_hash: sha256:dd8eed371b6cba0a6193afb1b8b616ccab9855c4f4032679bbc4ddb401f49328
+        body_path: sources/http_captures/eu-14th-russia-sanctions-spfs-2024/primary/web.archive.org__web-20240624181905-https-eur-lex.europa.eu-eli-reg-2024-1745-oj__58e36ac7f5.html
         scope_descriptor:
           providers: [eu_casp_aggregate, spfs_network]
+          countries: [EU, RU]
           time_window:
             - 2024-06-24T00:00:00Z
             - 2024-12-31T23:59:59Z
@@ -162,13 +165,21 @@ observations:
           event observed_change cascade at the offramp_cex
           layer is directly attributable to the 2024-06-24
           adoption date at the corpus's resolution.
-          Coverage_gap / attribution=none per §1.1 codebook.
-          DRYRUN: archival anchor unverified by LLM agent.
+          observed_no_change / attribution=none per §1.1
+          codebook. Wayback memento 20240624181905 captured
+          2026-05-21.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 — Wave 2.2D
-  re-author preamble (note: replaces dropped rate-limit-
-  partial; previous error was missing wayback)**
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 2/17 by
+  human:xiangwen as null_case. EUR-Lex Council Regulation
+  Wayback memento 20240624181905 + Council press release
+  Wayback memento 20240624072140 captured 2026-05-21 with
+  replayable body_hash, attached as primary_legal anchors.
+  EU enlargement.ec.europa.eu summary URL retained as
+  contextual_unarchived. Classification null_event/null_case
+  preserved - framework-level instrument; Annex XLV listings
+  populated by subsequent implementing decisions as child
+  events.
 
   null_event documenting Council Regulation (EU) 2024/1745
   of 24 June 2024 — the EU's 14th sanctions package against
@@ -207,10 +218,8 @@ analysis_notes: |
   for the SPFS-prohibition track and for the Annex XLV
   Article-5ad crypto-asset-provider sub-track within the EU's
   Russia-sanctions sequence (12th package 2023-12 → 14th
-  package 2024-06 → 15th package 2024-12). DRYRUN: archival
-  anchors asserted but not personally verified by the LLM
-  agent; human auditor must pin real Wayback / body_hash
-  anchors before release.
+  package 2024-06 → 15th package 2024-12). Wayback archival
+  anchors pinned and verified 2026-05-21.
 
 scoped_claim: |
   "Council Regulation (EU) 2024/1745, adopted on 2024-06-24

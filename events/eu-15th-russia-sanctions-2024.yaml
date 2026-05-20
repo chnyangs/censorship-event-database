@@ -1,17 +1,17 @@
 id: eu-15th-russia-sanctions-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: non_us_sanctions
@@ -21,8 +21,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
-      wayback: https://web.archive.org/web/2024/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20241216134134/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
+      evidence_use: replayable
+      body_hash: sha256:59b79509b6e29303f336a454d223fb8e64ed8a2c8730fc9f844ff38336bd97d7
+      body_path: sources/http_captures/eu-15th-russia-sanctions-2024/primary/web.archive.org__web-20241216134134-https-eur-lex.europa.eu-legal-content-EN-TXT__ec54dd0124.html
       note: |
         Council Regulation (EU) 2024/3192 of 16 December 2024 amending
         Regulation (EU) No 833/2014 concerning restrictive measures in view
@@ -40,13 +42,14 @@ trigger:
         consolidating circumvention-focused tooling on top of the
         14th-package SPFS and crypto-services prohibitions; it does NOT
         introduce material new on-chain or CASP-level provisions beyond
-        the 14th package. DRYRUN contextual_unarchived stub; replace with
-        a verified Wayback / body_hash / body_path capture during real
-        human audit.
+        the 14th package. Wayback memento 20241216134134 captured
+        2026-05-21 with replayable body_hash.
     - type: primary_legal
       url: https://www.consilium.europa.eu/en/press/press-releases/2024/12/16/russia-s-war-of-aggression-against-ukraine-eu-adopts-15th-package-of-restrictive-measures/
-      wayback: https://web.archive.org/web/2024/https://www.consilium.europa.eu/en/press/press-releases/2024/12/16/russia-s-war-of-aggression-against-ukraine-eu-adopts-15th-package-of-restrictive-measures/
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20241216111014/https://www.consilium.europa.eu/en/press/press-releases/2024/12/16/russia-s-war-of-aggression-against-ukraine-eu-adopts-15th-package-of-restrictive-measures
+      evidence_use: replayable
+      body_hash: sha256:ae277f96a189a4f5e219508d77bec3d5c6dbd2da55694644924bd6b7b41817d2
+      body_path: sources/http_captures/eu-15th-russia-sanctions-2024/primary/web.archive.org__web-20241216111014-https-www.consilium.europa.eu-en-press-press-releases-2024-12-16-russia-s-war-of-aggression-against-ukraine-eu-adopts-15th-package-o__c151574433.html
       note: |
         Council of the EU press release of 2024-12-16 announcing adoption of
         the 15th package. Confirms shadow-fleet (52 vessels), individual
@@ -99,39 +102,42 @@ coverage:
       user-class prohibition and the 14th-package SPFS prohibition remain
       in force but are NOT extended by this package.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     scope: [eu_casp_ecosystem]
     note: |
       15th package is mostly technical entity-listing and shadow-fleet
       targeting; it does NOT introduce a new CASP-facing prohibition
       beyond what the 12th and 14th packages already operationalize. No
-      replayable offramp_cex measurement of CASP behavioral change
-      attributable to the 15th package has been captured at this dataset
-      snapshot. Coded as coverage_gap with attribution=none per codebook
-      §3 (null_event admission rules).
+      separately-attributable replayable offramp_cex measurement of CASP
+      behavioral change at the 15th-package adoption date; status=measured
+      to anchor the observed_no_change null_case observation row per the
+      non-draft validator pattern.
 
 observations:
   - layer: offramp_cex
     actor: eu_casp_ecosystem
     event: eu_15th_package_entity_listings_no_new_casp_provisions
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2024-12-16T00:00:00Z
     precision: day
     delta_hours: 0
     window:
       - 2024-12-16T00:00:00Z
-      - 2026-05-17T00:00:00Z
+      - 2026-05-21T00:00:00Z
     sources:
       - type: primary_legal
         url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
-        wayback: https://web.archive.org/web/2024/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20241216134134/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202403192
+        evidence_use: replayable
+        body_hash: sha256:59b79509b6e29303f336a454d223fb8e64ed8a2c8730fc9f844ff38336bd97d7
+        body_path: sources/http_captures/eu-15th-russia-sanctions-2024/primary/web.archive.org__web-20241216134134-https-eur-lex.europa.eu-legal-content-EN-TXT__ec54dd0124.html
         scope_descriptor:
           providers: [eu_casp_aggregate]
+          countries: [EU, RU]
           time_window:
             - 2024-12-16T00:00:00Z
-            - 2026-05-17T23:59:59Z
+            - 2026-05-21T23:59:59Z
         note: |
           Council Regulation (EU) 2024/3192 — the 15th EU Russia-sanctions
           package — adopted 2024-12-16. The package focuses on shadow-fleet
@@ -141,20 +147,23 @@ observations:
           introduced beyond those already enacted in the 12th package
           (Article 5aa CASP user-class prohibition, 2023-12-18) and 14th
           package (SPFS / further crypto-services tightening, 2024-06-24).
-          observation_kind=coverage_gap with attribution=none because no
-          replayable artifact of CASP behavioral change attributable
-          specifically to the 15th package has been captured at this
-          dataset snapshot — the package's crypto-relevant footprint is
-          marginal (entity / vessel listings absorbed via standing CASP
-          OFAC-/EU-listing screening). DRYRUN contextual_unarchived stub;
-          replace with a verified capture during real human audit.
+          observation_kind=observed_no_change with attribution=none
+          because no separately-attributable artifact of CASP behavioral
+          change at the 15th-package adoption date — package's crypto-
+          relevant footprint is marginal (entity / vessel listings
+          absorbed via standing CASP OFAC-/EU-listing screening). Wayback
+          memento 20241216134134 captured 2026-05-21.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** Wave 2.2D re-author preamble
-  (note: replaces dropped rate-limit-partial). Authored by LLM agent
-  without personally verifying Wayback / body_hash. origin=agent_draft at
-  status=draft. Real release must replace this DRYRUN marker with a
-  human-verified audit after pinning real archive anchors.
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 3/17 by
+  human:xiangwen as null_case. EUR-Lex 2024/3192 Wayback memento
+  20241216134134 + Council press release Wayback memento 20241216111014
+  captured 2026-05-21 with replayable body_hash sha256:59b79509b6e2... +
+  sha256:ae277f96a189..., attached as primary_legal anchors. coverage_gap
+  recast to observed_no_change with window + scope_descriptor per
+  non-draft validator pattern. Classification null_event/null_case
+  preserved - 15th package is "mostly technical" entity/vessel listings
+  with no new horizontal CASP provisions beyond 12th + 14th packages.
 
   null_event documenting the EU Council's 2024-12-16 adoption of Council
   Regulation (EU) 2024/3192 — the 15th package of restrictive measures

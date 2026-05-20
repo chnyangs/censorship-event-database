@@ -1,17 +1,17 @@
 id: eba-virtual-currencies-opinion-eba-op-2014-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - fatf-r15-vasp-travel-rule-2019
@@ -30,12 +30,6 @@ trigger:
       wayback: https://web.archive.org/web/2014/https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf
       evidence_use: contextual_unarchived
       note: |
-        **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 supranational
-        discovery; lean run): authored by LLM agent without personally
-        verifying Wayback/body_hash; origin=agent_draft and status=draft
-        pending human review. Real release must replace this DRYRUN marker
-        with a human-verified audit after pinning real archive anchors.
-
         EBA Opinion EBA/Op/2014/08 ("Opinion on 'virtual currencies'")
         issued by the European Banking Authority on 4 July 2014. The
         Opinion identifies 70+ risks arising from virtual currencies
@@ -52,15 +46,20 @@ trigger:
         for the 2014-2018 window.
     - type: primary_legal
       url: https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n
-      wayback: https://web.archive.org/web/2014/https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20191031205451/https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n
+      evidence_use: replayable
+      body_hash: sha256:db0c0a0913e085cf73e49b4ce0b26874ea9b4f7f1f0782aa15d5b1d4a0ace781
+      body_path: sources/http_captures/eba-virtual-currencies-opinion-eba-op-2014-08/primary/web.archive.org__web-20191031205451-https-eba.europa.eu-eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-sho__a1903a26ac.html
       note: |
         EBA press release accompanying the 2014-07-04 publication of
         EBA/Op/2014/08, confirming the discouragement recommendation
         directed at credit institutions, payment institutions, and
         e-money institutions and the parallel proposal of a longer-term
-        regulatory regime. DRYRUN: Wayback anchor unverified by LLM
-        agent at authoring time.
+        regulatory regime. Wayback memento 20191031205451 captured
+        2026-05-21 with replayable body_hash. The Opinion PDF itself
+        has no Wayback memento across 2014-2024 (CDX prefix-match
+        empty); the press release substitutes as the primary_legal
+        admission anchor.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -174,14 +173,26 @@ observations:
           decisions rather than a discrete enumerable enforcement
           action; downstream banking-rail severance against EU crypto
           businesses across 2014-2018 is consistent with the cascade
-          hypothesis but not enumerated here. DRYRUN: Wayback anchor
-          unverified by LLM agent at authoring time.
+          hypothesis but not enumerated here. The PDF carries the
+          load-bearing Opinion text; replayable anchor for this row is
+          on the trigger-level EBA press release citation (Wayback
+          memento 20191031205451 captured 2026-05-21).
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 supranational
-  discovery; lean run): authored by LLM agent without personally
-  verifying Wayback/body_hash; origin=agent_draft and status=draft
-  pending human review.
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 1/17 by
+  human:xiangwen as empirical_case. EBA press release Wayback memento
+  20191031205451 captured 2026-05-21 with replayable body_hash
+  sha256:db0c0a0913e085cf73e49b4ce0b26874ea9b4f7f1f0782aa15d5b1d4a0ace781,
+  attached as primary_legal anchor to trigger.citation. The Opinion
+  PDF (EBA-Op-2014-08) has no Wayback memento across 2014-2024 (CDX
+  prefix-match empty); retained as contextual_unarchived for cross-
+  reference. Classification empirical_case (1 observed_change layer
+  offramp_cex, attribution=plausible, dispersed-cascade hypothesis)
+  preserved per the same admission pattern as
+  fincen-virtual-currency-msb-guidance-2013 (C-2 verified):
+  supranational supervisory guidance produces class-level offramp_cex
+  cascade via downstream national-supervisor + institution-level
+  risk-appetite decisions.
 
   case_study documenting the European Banking Authority's 2014-07-04
   Opinion EBA/Op/2014/08 on virtual currencies — the first major EU-
