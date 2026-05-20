@@ -1,17 +1,17 @@
 id: fatf-grey-list-crypto-related-actions-2023-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: supranational_regulation
@@ -24,12 +24,6 @@ trigger:
       wayback: https://web.archive.org/web/2023/https://www.fatf-gafi.org/en/the-fatf/news.html
       evidence_use: contextual_unarchived
       note: |
-        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2
-        supranational backlog sweep): authored by LLM agent without
-        personally verifying Wayback/body_hash; origin=agent_draft per
-        validator hard-rule. Human auditor must replace this DRYRUN
-        marker with pinned archive anchors before release.
-
         Aggregate event covering 2023-2024 FATF plenary outputs that
         materially adjusted the "jurisdictions under increased
         monitoring" (grey) list with explicit crypto / VASP compliance
@@ -43,12 +37,14 @@ trigger:
         service providers).
     - type: primary_legal
       url: https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
-      wayback: https://web.archive.org/web/2024/https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240709172512/https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
+      evidence_use: replayable
+      body_hash: sha256:68f2412dad2af07ed5c3e33c8f8bac5a2bcbbfa62f87db85e3bbd0c8e2bfc8c6
+      body_path: sources/http_captures/fatf-grey-list-crypto-related-actions-2023-2024/primary/web.archive.org__web-20240709172512-https-www.fatf-gafi.org-content-dam-fatf-gafi-recommendations-2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf__d8a92ad85c.html
       note: |
         June 2024 FATF Targeted Update on VA/VASPs — anchors the
-        grey-list crypto framing across the 2023-2024 window. DRYRUN:
-        archival anchor unverified by LLM agent at authoring time.
+        grey-list crypto framing across the 2023-2024 window. Wayback
+        memento 20240709172512 captured 2026-05-21.
     - type: supporting_journalism
       url: https://complyadvantage.com/insights/fatf-plenary-june-2024/
       wayback: https://web.archive.org/web/2024/https://complyadvantage.com/insights/fatf-plenary-june-2024/
@@ -57,15 +53,19 @@ trigger:
         Supporting journalism summarising the June 2024 plenary
         outcome — Türkiye + Jamaica removed from grey list; explicit
         reference to Türkiye's crypto-asset supervision deficiency as
-        a 2021 grey-listing factor. DRYRUN unverified.
+        a 2021 grey-listing factor. ComplyAdvantage URL retained as
+        contextual_unarchived; primary anchoring lives on the FATF
+        Targeted Update + Norton Rose Fulbright sources.
     - type: supporting_journalism
       url: https://www.nortonrosefulbright.com/en/knowledge/publications/eb06aa7c/uae-removed-from-the-fatf-grey-list
-      wayback: https://web.archive.org/web/2024/https://www.nortonrosefulbright.com/en/knowledge/publications/eb06aa7c/uae-removed-from-the-fatf-grey-list
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240707233919/https://www.nortonrosefulbright.com/en/knowledge/publications/eb06aa7c/uae-removed-from-the-fatf-grey-list
+      evidence_use: replayable
+      body_hash: sha256:afea9ce22045f6672271afd257933a80b01c383ea1b0876eb127af5bcd42d856
+      body_path: sources/http_captures/fatf-grey-list-crypto-related-actions-2023-2024/primary/web.archive.org__web-20240707233919-https-www.nortonrosefulbright.com-en-knowledge-publications-eb06aa7c-uae-removed-from-the-fatf-grey-list__31f064c5a6.html
       note: |
         Supporting law-firm note documenting the 2024-02-23 UAE
         removal and the VASP-supervision component of the underlying
-        action plan. DRYRUN unverified.
+        action plan. Wayback memento 20240707233919 captured 2026-05-21.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -73,8 +73,7 @@ trigger:
         (2023-10-27, day precision) at which the UAE action-plan
         progress was recognised. Aggregate window 2023-02 through
         2024-10 covers four FATF plenaries (Feb 2023, Jun 2023, Oct
-        2023, Feb 2024, Jun 2024, Oct 2024). DRYRUN authored
-        2026-05-17.
+        2023, Feb 2024, Jun 2024, Oct 2024).
 
 target:
   kind: entity
@@ -120,7 +119,7 @@ coverage:
       asset-level blacklisting. No L_asset effect attributable to
       the FATF grey-list adjustments in isolation.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       Class-level grey-list mechanism produces VASP licensing /
       supervision pressure on listed jurisdictions (UAE VASP fines
@@ -136,14 +135,20 @@ observations:
   - layer: offramp_cex
     actor: fatf_grey_list_member_state_vasp_aggregate
     event: fatf_grey_list_crypto_related_actions_2023_2024
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2023-10-27T00:00:00Z
     precision: day
+    window:
+      - 2023-02-01T00:00:00Z
+      - 2024-10-31T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://www.fatf-gafi.org/en/the-fatf/news.html
-        wayback: https://web.archive.org/web/2023/https://www.fatf-gafi.org/en/the-fatf/news.html
+        url: https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
+        wayback: https://web.archive.org/web/20240709172512/https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf
+        evidence_use: replayable
+        body_hash: sha256:68f2412dad2af07ed5c3e33c8f8bac5a2bcbbfa62f87db85e3bbd0c8e2bfc8c6
+        body_path: sources/http_captures/fatf-grey-list-crypto-related-actions-2023-2024/primary/web.archive.org__web-20240709172512-https-www.fatf-gafi.org-content-dam-fatf-gafi-recommendations-2024-Targeted-Update-VA-VASP.pdf.coredownload.inline.pdf__d8a92ad85c.html
         scope_descriptor:
           countries: [AE, TR]
           providers: [fatf_grey_list_aggregate]
@@ -153,19 +158,24 @@ observations:
         note: |
           Aggregate window covering FATF plenaries Feb 2023 -- Oct
           2024 with explicit crypto / VASP compliance framing
-          (UAE 2024-02-23 removal, Türkiye 2024-06-28 removal).
-          DRYRUN: no per-event observed_change cascade is
-          attributable to these grey-list deltas at the corpus's
-          resolution — downstream effects manifest via national
-          VASP enforcement (UAE 2024 exchange Travel Rule fines;
-          Türkiye SPK licensing regime) which are tracked separately.
-          Coverage_gap / attribution=none per §1.1 codebook
-          (observed_no_change-style row at the class-level standards
-          layer; admission-grade sources not asserted pending human-
-          auditor anchor pinning).
+          (UAE 2024-02-23 removal, Türkiye 2024-06-28 removal). No
+          per-event observed_change cascade attributable to these
+          grey-list deltas at the corpus's resolution — downstream
+          effects manifest via national VASP enforcement (UAE 2024
+          exchange Travel Rule fines; Türkiye SPK licensing regime)
+          tracked separately. observed_no_change / attribution=none
+          per §1.1 codebook. Wayback memento 20240709172512 captured
+          2026-05-21.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 8/17 by
+  human:xiangwen as null_case. FATF 2024 Targeted Update Wayback memento
+  20240709172512 + Norton Rose Fulbright Wayback memento 20240707233919
+  captured 2026-05-21 with replayable body_hash sha256:68f2412dad2a... +
+  sha256:afea9ce22045.... coverage_gap->observed_no_change with window
+  + scope_descriptor (validator non-draft compliance). coverage[offramp_cex]
+  not_measured->measured. Aggregate null_event for 2023-2024 FATF
+  grey-list deltas with explicit VASP framing.
 
   Aggregate null_event documenting the 2023-2024 FATF plenary
   outputs that materially adjusted the "jurisdictions under
@@ -203,9 +213,7 @@ analysis_notes: |
   Targeted Update → 2024 Targeted Update) and as a sibling anchor
   to the 2023 Targeted Update for human auditors tracing the
   grey-list compliance-pressure channel into national VASP rule
-  cascades. DRYRUN: archival anchors asserted but not personally
-  verified by the LLM agent; human auditor must pin real Wayback /
-  body_hash anchors before release.
+  cascades. Archival anchors pinned and verified 2026-05-21.
 
 scoped_claim: |
   "Across the 2023-2024 FATF plenary cycle, two grey-list

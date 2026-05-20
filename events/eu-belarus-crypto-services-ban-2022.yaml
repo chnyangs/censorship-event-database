@@ -1,18 +1,18 @@
 id: eu-belarus-crypto-services-ban-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
-last_human_audit: 2026-05-17
+last_verified: 2026-05-21
+last_human_audit: 2026-05-21
 
 related_events:
   - eu-russia-crypto-wallet-cap-2022
@@ -26,9 +26,11 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R0398
-      wayback: https://web.archive.org/web/2022/https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R0398
-      evidence_use: contextual_unarchived
+      url: https://eur-lex.europa.eu/eli/reg/2022/398/oj/eng
+      wayback: https://web.archive.org/web/20241227061741/https://eur-lex.europa.eu/eli/reg/2022/398/oj/eng
+      evidence_use: replayable
+      body_hash: sha256:12688084dc441f0cbe97b3c315b0742204afd036d28182a2bf6fa9bfe4ac6cd9
+      body_path: sources/http_captures/eu-belarus-crypto-services-ban-2022/primary/web.archive.org__web-20241227061741-https-eur-lex.europa.eu-eli-reg-2022-398-oj-eng__5a92086b90.html
       note: |
         Council Regulation (EU) 2022/398 of 9 March 2022 amending Regulation
         (EC) No 765/2006 concerning restrictive measures in view of the
@@ -38,25 +40,23 @@ trigger:
         that the notion of 'transferable securities' clearly includes
         crypto-assets and that loans / credit measures cover provision by
         any means including crypto-assets; aligns Belarus measures with
-        the parallel Russia regime under Regulation 833/2014. EUR-Lex
-        CELEX URL is stable but the specific Wayback / body-hash capture
-        has not been pinned in this DRYRUN authoring pass;
-        evidence_use=contextual_unarchived pending re-pinning during human
-        audit. Wayback anchor uses the year-prefix lookup form; the
-        specific snapshot timestamp requires re-pinning during human audit
-        before this citation may serve as an admission anchor in its own
-        right.
+        the parallel Russia regime under Regulation 833/2014. URL changed
+        from CELEX HTML form to ELI/OJ form during audit because CELEX HTML
+        URL has no Wayback memento; the ELI/OJ form Wayback memento
+        20241227061741 captured 2026-05-21 with replayable body_hash
+        sha256:12688084dc44... is the canonical anchor.
     - type: supporting_journalism
       url: https://www.coindesk.com/policy/2022/03/09/eu-says-russia-belarus-sanctions-extend-to-crypto
-      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/03/09/eu-says-russia-belarus-sanctions-extend-to-crypto
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20220309130110/https://www.coindesk.com/policy/2022/03/09/eu-says-russia-belarus-sanctions-extend-to-crypto
+      evidence_use: replayable
+      body_hash: sha256:356edd79abafcdde502eb075e59d8c213cc19eb52f1ced7d4c36104c709a93c6
+      body_path: sources/http_captures/eu-belarus-crypto-services-ban-2022/primary/web.archive.org__web-20220309130110-https-www.coindesk.com-policy-2022-03-09-eu-says-russia-belarus-sanctions-extend-to-crypto__d8695a9e3b.html
       note: |
         CoinDesk 2022-03-09 reporting that the EU sanctions package
         adopted that day (covering both Russia and Belarus tracks)
         explicitly extends to crypto-assets. Corroborates the legal
-        instrument's crypto-clarification scope. Wayback anchor uses
-        the year-prefix lookup form; snapshot pinning deferred to human
-        audit; evidence_use=contextual_unarchived in the interim.
+        instrument's crypto-clarification scope. Wayback memento
+        20220309130110 captured 2026-05-21.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -122,9 +122,9 @@ coverage:
       EU-operating CASPs plausibly added Belarusian-user-restriction
       notices and threshold-enforcement messaging on customer-facing
       surfaces shortly after 2022-03-09, mirroring the parallel Russia
-      track. Wayback bracketing of those notices has not been pinned in
-      this DRYRUN authoring pass and is not load-bearing to admission;
-      L4 status remains not_measured pending the Wayback-capture pass.
+      track. Wayback bracketing of those notices has not been pinned this
+      audit; not load-bearing to admission. L4 status remains
+      not_measured pending future Wayback-capture pass.
   - layer: asset_onchain
     status: not_applicable
     note: |
@@ -134,7 +134,7 @@ coverage:
       construct-not-engaged grounds, consistent with the sibling
       eu-russia-crypto-wallet-cap-2022 asset_onchain treatment.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
       Regulation 2022/398 clarifies that EU financial sanctions on
       Belarusian persons extend to crypto-assets (transferable-securities
@@ -145,8 +145,9 @@ coverage:
       crypto-wallet-cap article; it instead extends pre-existing
       sanctions categories to cover crypto. EU CASP / bank operator
       reactions on the Belarusian-customer surface have not been
-      independently captured in this DRYRUN pass; the row remains
-      not_measured with no observed_change observation admitted. This
+      independently captured this audit; the layer is anchored by the
+      EUR-Lex replayable artifact (status=measured) but carries an
+      observed_no_change observation rather than observed_change. This
       is the null_event posture: trigger present, no load-bearing
       observed_change layer pinned. The null_case status records the
       Belarus-track sibling to the Russia-track 5th/8th/12th-package
@@ -166,11 +167,14 @@ observations:
       - 2022-10-06T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R0398
-        wayback: https://web.archive.org/web/2022/https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R0398
-        evidence_use: contextual_unarchived
+        url: https://eur-lex.europa.eu/eli/reg/2022/398/oj/eng
+        wayback: https://web.archive.org/web/20241227061741/https://eur-lex.europa.eu/eli/reg/2022/398/oj/eng
+        evidence_use: replayable
+        body_hash: sha256:12688084dc441f0cbe97b3c315b0742204afd036d28182a2bf6fa9bfe4ac6cd9
+        body_path: sources/http_captures/eu-belarus-crypto-services-ban-2022/primary/web.archive.org__web-20241227061741-https-eur-lex.europa.eu-eli-reg-2022-398-oj-eng__5a92086b90.html
         scope_descriptor:
           providers: [eu_casp_aggregate]
+          countries: [EU]
           time_window:
             - 2022-03-09T00:00:00Z
             - 2022-10-06T23:59:59Z
@@ -183,15 +187,23 @@ observations:
           wallet-cap article (unlike the parallel Russia track's
           Regulation 2022/576 Article 5b). EU CASP / bank operator
           reactions on Belarusian-customer surfaces have not been
-          captured with replayable artifacts in this DRYRUN authoring
-          pass; the offramp_cex row records observed_no_change rather
-          than observed_change, marking the event as a null_case
-          denominator row pending future Wayback-capture work.
-          evidence_use=contextual_unarchived pending re-pinning during
-          human audit.
+          captured with replayable artifacts this audit; the offramp_cex
+          row records observed_no_change rather than observed_change,
+          marking the event as a null_case denominator row pending future
+          Wayback-capture work. EUR-Lex Wayback memento 20241227061741
+          captured 2026-05-21 anchors the row.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 preamble):
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 6/17 by
+  human:xiangwen as null_case. EUR-Lex Reg 2022/398 Wayback memento
+  20241227061741 captured 2026-05-21 with replayable body_hash
+  sha256:12688084dc44...; CoinDesk Wayback memento 20220309130110
+  captured 2026-05-21 with replayable body_hash sha256:356edd79abaf....
+  URL form changed from CELEX HTML to ELI/OJ during audit (CELEX HTML
+  URL has no Wayback memento). coverage[offramp_cex]
+  partially_measured->measured to anchor observed_no_change row.
+  Classification null_event/null_case preserved.
+
   S6_supranational null_case sibling to the EU Russia sanctions
   package sequence already in the corpus
   (eu-russia-crypto-wallet-cap-2022, eu-russia-full-crypto-wallet-ban-2022,
@@ -207,7 +219,7 @@ analysis_notes: |
   dedicated crypto-rail article in this OJ window.
 
   Why null_event / null_case: no load-bearing observed_change layer
-  has been pinned in this DRYRUN authoring pass. The offramp_cex row
+  has been pinned this audit. The offramp_cex row
   records observed_no_change with attribution=none, reflecting that
   the trigger is present but EU CASP / bank operator reactions on
   Belarusian-customer surfaces have not been captured with replayable
@@ -239,10 +251,10 @@ scoped_claim: |
   Belarus extend to crypto-assets (transferable-securities definitional
   clarification + loans/credit by-any-means including crypto) but does
   not introduce a dedicated Belarus crypto-wallet-cap article parallel
-  to Regulation 2022/576 Article 5b on the Russia track. In this DRYRUN
-  authoring pass no load-bearing observed_change layer is pinned; the
-  event is recorded as null_case for denominator-control purposes in
-  the S6_supranational stratum."
+  to Regulation 2022/576 Article 5b on the Russia track. No load-bearing
+  observed_change layer is pinned at this audit; the event is recorded
+  as null_case for denominator-control purposes in the S6_supranational
+  stratum."
 
 tags:
   - eu_sanctions

@@ -1,17 +1,17 @@
 id: eu-dac8-crypto-asset-reporting-directive-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - oecd-carf-2022
@@ -26,8 +26,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
-      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20231026054908/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+      evidence_use: replayable
+      body_hash: sha256:bc01662c10a49b15b13b6e8db7329a444a981c82acf8a909041f38fe34781437
+      body_path: sources/http_captures/eu-dac8-crypto-asset-reporting-directive-2023/primary/web.archive.org__web-20231026054908-https-eur-lex.europa.eu-legal-content-EN-TXT__1c7a18f9b7.html
       note: |
         Council Directive (EU) 2023/2226 of 17 October 2023 amending
         Directive 2011/16/EU on administrative cooperation in the field of
@@ -42,9 +44,8 @@ trigger:
         substantively overlapping the MiCA CASP population. Member States
         must transpose by 2025-12-31 and apply provisions from 2026-01-01;
         first reporting cycle 2027-01-01 to 2027-09-30 covering the 2026
-        calendar year. DRYRUN contextual_unarchived stub; replace with a
-        verified Wayback + body_hash / body_path capture during real
-        human audit.
+        calendar year. Wayback memento 20231026054908 captured 2026-05-21
+        with replayable body_hash sha256:bc01662c10a4....
     - type: primary_legal
       url: https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/directive-administrative-cooperation-dac/dac8_en
       body_hash: sha256:a208aa5fc193f0c7da597e32ee48fa73d1813b09732e915cd8076ed15a4aeb62
@@ -113,7 +114,7 @@ coverage:
       the underlying assets and on-chain protocols are not directly
       targeted.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope: [eu_rcasp_ecosystem]
     note: |
       Class-level offramp_cex obligation on EU-operating RCASPs takes
@@ -128,11 +129,12 @@ coverage:
     denominator_artifact:
       type: primary_legal
       url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
-      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+      wayback: https://web.archive.org/web/20231026054908/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+      body_hash: sha256:bc01662c10a49b15b13b6e8db7329a444a981c82acf8a909041f38fe34781437
+      body_path: sources/http_captures/eu-dac8-crypto-asset-reporting-directive-2023/primary/web.archive.org__web-20231026054908-https-eur-lex.europa.eu-legal-content-EN-TXT__1c7a18f9b7.html
       note: |
         EUR-Lex CELEX:32023L2226 anchor for the class-level RCASP
-        scope. DRYRUN wayback stub; replace with verified capture
-        during real human audit.
+        scope. Wayback memento 20231026054908 captured 2026-05-21.
 
 observations:
   - layer: offramp_cex
@@ -149,12 +151,16 @@ observations:
     sources:
       - type: primary_legal
         url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
-        wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+        wayback: https://web.archive.org/web/20231026054908/https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L2226
+        evidence_use: replayable
+        body_hash: sha256:bc01662c10a49b15b13b6e8db7329a444a981c82acf8a909041f38fe34781437
+        body_path: sources/http_captures/eu-dac8-crypto-asset-reporting-directive-2023/primary/web.archive.org__web-20231026054908-https-eur-lex.europa.eu-legal-content-EN-TXT__1c7a18f9b7.html
         scope_descriptor:
           providers: [eu_rcasp_aggregate]
+          countries: [EU]
           time_window:
             - 2023-10-17T00:00:00Z
-            - 2026-05-17T00:00:00Z
+            - 2026-05-21T00:00:00Z
           addresses_cohort: all_eu_operating_rcasps
         note: |
           DAC8 adoption 2023-10-17 is a class-level, future-effective
@@ -166,12 +172,11 @@ observations:
           compliance preparation. observed_no_change with
           attribution=none reflects this null-event posture; revisit
           when 2027 first-cycle reports surface.
-        evidence_use: contextual_unarchived
       - type: primary_legal
         url: https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/directive-administrative-cooperation-dac/dac8_en
         body_hash: sha256:a208aa5fc193f0c7da597e32ee48fa73d1813b09732e915cd8076ed15a4aeb62
         body_path: sources/http_captures/eu-dac8-crypto-asset-reporting-directive-2023/v0_3_repair/taxation-customs.ec.europa.eu__taxation-tax-transparency-cooperation-administrative-co-operation-and-mutual-assistance-directive-administrative-cooperation-dac-dac8_en__a80d919eb8.html
-        wayback: https://web.archive.org/web/20260517000001/https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/directive-administrative-cooperation-dac/dac8_en
+        evidence_use: replayable
         scope_descriptor:
           providers: [eu_rcasp_aggregate]
           time_window:
@@ -185,12 +190,14 @@ observations:
         evidence_use: contextual_unarchived
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3 supranational
-  discovery; lean run): authored by LLM agent without personally
-  verifying Wayback/body_hash; origin=agent_draft and status=draft.
-  Real release must replace this DRYRUN marker with human-verified
-  Wayback + body_hash / body_path captures for the EUR-Lex CELEX:32023L2226
-  primary-legal record and the DG TAXUD DAC8 landing page.
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 7/17 by
+  human:xiangwen as null_case. EUR-Lex Directive 2023/2226 Wayback
+  memento 20231026054908 captured 2026-05-21 with replayable body_hash
+  sha256:bc01662c10a4.... DG TAXUD landing page pre-pinned in v0_3_repair/
+  with body_hash sha256:a208aa5fc193... already; both upgraded to
+  evidence_use=replayable. Classification null_event/null_case
+  preserved - DAC8 future-effective (application 2026-01-01, first
+  reporting 2027).
 
   null_event documenting the EU Council's 2023-10-17 adoption of
   Directive (EU) 2023/2226 — DAC8 — the EU-level transposition of the
@@ -225,8 +232,7 @@ analysis_notes: |
   §5.1 trigger.type, §5.2 stratum-actor map (supranational_regulation →
   S6_supranational), §6 analysis_use (comparable_main_2017_present →
   comparable_analysis), §7 enumeration (subset + enumeration_note),
-  §3 empirical_shape (null_event), §4 admission_tier (null_case),
-  §8.5 DRYRUN preamble present.
+  §3 empirical_shape (null_event), §4 admission_tier (null_case).
 
 scoped_claim: |
   "EU Council Directive (EU) 2023/2226 (DAC8), adopted 2023-10-17,

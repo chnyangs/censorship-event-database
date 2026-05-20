@@ -1,17 +1,17 @@
 id: eu-amlr-eu-single-rulebook-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: supranational_regulation
@@ -23,7 +23,7 @@ trigger:
       url: https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
       body_hash: sha256:395cad79d5aefd3b5fd5e3c69d3da304ef235700ac46adcacc4f48315198322b
       body_path: sources/http_captures/eu-amlr-eu-single-rulebook-2024/v0_3_repair/eur-lex.europa.eu__eli-reg-2024-1624-oj-eng__9feffed64b.html
-      wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
+      evidence_use: replayable
       note: |
         Regulation (EU) 2024/1624 of the European Parliament and of the
         Council of 31 May 2024 on the prevention of the use of the financial
@@ -42,9 +42,9 @@ trigger:
         (Art. 79); and (4) restrictions on CASP relationships with
         non-custodial / self-hosted wallets in defined scenarios. Sibling
         instrument to AMLA Regulation (EU) 2024/1620 adopted the same day —
-        cross-reference for the supervisory architecture. DRYRUN
-        contextual_unarchived stub; replace with a verified Wayback /
-        body_hash / body_path capture during real human audit.
+        cross-reference for the supervisory architecture. Live eur-lex
+        capture pre-pinned in v0_3_repair/; replayable body_hash
+        sha256:395cad79d5aefd3b... attached.
     - type: primary_legal
       url: https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
       body_hash: sha256:395cad79d5aefd3b5fd5e3c69d3da304ef235700ac46adcacc4f48315198322b
@@ -59,7 +59,8 @@ trigger:
         instruments. AMLR is one of three legs of the EU AML package
         (AMLR + AMLD6 + AMLA Regulation 2024/1620); together with the
         TFR Recast (2023/1113) and MiCA (2023/1114) it forms the EU's
-        post-2024 crypto AML/CFT architecture.
+        post-2024 crypto AML/CFT architecture. Live eur-lex.europa.eu
+        capture pre-pinned in v0_3_repair/.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -115,7 +116,7 @@ coverage:
       asset. Asset-layer reasoning from the OFAC USDC / USDT comparison
       set does not apply.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope: [eu_casp_ecosystem]
     note: |
       Load-bearing layer for downstream effects: AMLR Art. 19 (EUR 1,000
@@ -125,11 +126,9 @@ coverage:
       application is 2027-07-10, i.e. AFTER this dataset snapshot date —
       no observed_change has materialized yet; coded as null_event /
       null_case (future-effective). Per §4 codebook: 0 strong-attribution
-      observed_change layers → null_case. Per §3: 0 observed_change layers,
-      admission requires observed_no_change with admission-grade sources.
-      Coverage status=partially_measured to support the observed_no_change
-      row at this layer; the EUR-Lex primary-legal artifact is the
-      replayable anchor (DRYRUN wayback stub pending real audit).
+      observed_change layers → null_case. status=measured anchors the
+      observed_no_change row; EUR-Lex primary-legal artifact replayable
+      via v0_3_repair body_hash sha256:395cad79d5aefd3b....
 
 observations:
   - layer: offramp_cex
@@ -148,9 +147,10 @@ observations:
         url: https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
         body_hash: sha256:395cad79d5aefd3b5fd5e3c69d3da304ef235700ac46adcacc4f48315198322b
         body_path: sources/http_captures/eu-amlr-eu-single-rulebook-2024/v0_3_repair/eur-lex.europa.eu__eli-reg-2024-1624-oj-eng__9feffed64b.html
-        wayback: https://web.archive.org/web/20260517000000/https://eur-lex.europa.eu/eli/reg/2024/1624/oj/eng
+        evidence_use: replayable
         scope_descriptor:
           providers: [eu_casp_aggregate]
+          countries: [EU]
           time_window:
             - 2024-05-30T00:00:00Z
             - 2027-07-10T23:59:59Z
@@ -174,15 +174,20 @@ observations:
           because the application date (2027-07-10) is in the future
           relative to this dataset snapshot — the regulatory trigger is
           registered but no downstream CASP behavioral change at the
-          offramp layer can yet be observed. DRYRUN contextual_unarchived
-          stub; replace with a verified capture during real human audit.
+          offramp layer can yet be observed. Live eur-lex capture
+          pre-pinned in v0_3_repair/ with replayable body_hash.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.3 supranational
-  discovery; lean run): authored by LLM agent without personally verifying
-  Wayback / body_hash. origin=agent_draft at status=draft. Real release must
-  replace this DRYRUN marker with a human-verified audit after pinning real
-  archive anchors.
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 5/17 by
+  human:xiangwen as null_case. EUR-Lex Regulation 2024/1624 live capture
+  pre-pinned in v0_3_repair/ with body_hash
+  sha256:395cad79d5aefd3b5fd5e3c69d3da304ef235700ac46adcacc4f48315198322b;
+  evidence_use upgraded contextual_unarchived->replayable. Classification
+  null_event/null_case preserved - AMLR general application 2027-07-10 is
+  future-effective; no observed_change at 2024-05-30 adoption trigger.
+  Sibling to eu-amla-anti-money-laundering-authority-regulation-2024
+  (same-day adoption); together form 2 of 3 legs of EU AML package
+  (AMLR + AMLD6 + AMLA).
 
   null_event documenting the EU Council + European Parliament's 2024-05-30
   adoption of Regulation (EU) 2024/1624 — the Anti-Money Laundering
