@@ -115,9 +115,20 @@ analysis_notes: |
 scoped_claim: |
   "DOJ indictment of Bitzlato and its founder on 2023-01-18 — paired with
   FinCEN's Section 9714 special measure designation of Bitzlato as a
-  'primary money laundering concern' — produced a same-day L4 seizure of
-  bitzlato.com. First application of FinCEN Section 9714 to a crypto
-  exchange; structurally distinct from pure-OFAC or pure-DOJ paths."
+  'primary money laundering concern' — directly disrupted Bitzlato's
+  exchange operations at the offramp_cex layer (observed_change, direct
+  attribution via FinCEN 9714 order). First application of FinCEN
+  Section 9714 to a crypto exchange; structurally distinct from
+  pure-OFAC or pure-DOJ paths. L4 frontend takedown of bitzlato.com is
+  hypothesized but not asserted in this release: coverage.l4_frontend
+  status is `not_measured` and no L4 observation row is attached.
+  Future revision should add l4_frontend pre/post Wayback bracketing of
+  bitzlato.com to test the FinCEN-9714 + DOJ-indictment frontend
+  seizure pattern. v0.3 audit 2026-05-20: scoped_claim repaired per
+  Session 2 Block D NO decision (qid=26 bitzlato needs_recheck) which
+  flagged original wording for asserting L4 same-day seizure without
+  supporting observation row — same defect class as garantex-ofac-2022
+  audit_log row 218."
 
 tags:
   - doj
