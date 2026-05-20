@@ -1,17 +1,17 @@
 id: fatf-virtual-currencies-key-definitions-2014
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - fatf-r15-vasp-travel-rule-2019
@@ -28,8 +28,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf
-      wayback: https://web.archive.org/web/2014/https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf
-      evidence_use: contextual_unarchived
+      body_hash: sha256:c2aed2a0bb4233b1f743110618ed5e4d530ef74483a187c7d76fd1a530215c2e
+      body_path: sources/http_captures/fatf-virtual-currencies-key-definitions-2014/primary/www.fatf-gafi.org__content-dam-fatf-gafi-reports-Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf__40c190be0a.bin
+      evidence_use: replayable
       note: |
         FATF report "Virtual Currencies — Key Definitions and Potential
         AML/CFT Risks," published 2014-06-26 by the Financial Action Task
@@ -53,10 +54,9 @@ trigger:
         Note to Recommendation 15 extending the Travel Rule to VASPs
         (fatf-r15-vasp-travel-rule-2019). This 2014 report is therefore
         the predicate guidance for the global FATF VASP regime.
-        evidence_use=contextual_unarchived because body_hash + body_path
-        archival capture was not pinned in this agent-authoring pass.
-        Wayback anchor is a year-prefix bracket pending re-pin by the
-        human auditor.
+        Live fatf-gafi.org PDF captured 2026-05-21 with replayable
+        body_hash sha256:c2aed2a0bb42... (558KB, no Wayback memento
+        accessible across 2014-2024).
     - type: primary_legal
       url: https://www.fatf-gafi.org/en/publications/Methodsandtrends/Virtual-currency-definitions-aml-cft-risk.html
       wayback: https://web.archive.org/web/2014/https://www.fatf-gafi.org/en/publications/Methodsandtrends/Virtual-currency-definitions-aml-cft-risk.html
@@ -64,17 +64,14 @@ trigger:
       note: |
         FATF publication landing page for the same June 2014 report,
         retained as a secondary anchor for the publication record. The
-        landing page provides the canonical FATF citation metadata and
-        served as the primary discovery surface in WebSearch verification
-        for this authoring pass. evidence_use=contextual_unarchived;
-        Wayback anchor is a year-prefix bracket pending re-pin.
+        landing page provides the canonical FATF citation metadata.
+        Retained as contextual_unarchived; primary anchoring lives on
+        the PDF citation above.
   timestamp_sources:
     - type: primary_legal
       note: |
         Day-level precision per the 2014-06-26 publication date carried
-        on the FATF report. DRYRUN: timestamp asserted from FATF public
-        communications and corroborated via WebSearch; not personally
-        archive-verified by the LLM agent at authoring time.
+        on the FATF report.
 
 target:
   kind: entity
@@ -155,26 +152,22 @@ coverage:
       admin-freeze regulatory frame entirely. not_applicable on
       construct-out-of-scope grounds.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - global_vc_exchanger_class
     note: |
       The substantive supranational effect of the 2014 FATF report
       is to introduce a shared taxonomy ("exchanger", "administrator",
       "convertible VC") at the FATF standard-setting layer. The
-      cascade, however, is dispersed across the five-year regulatory
-      development arc (2014 risk report → 2015 RBA guidance → 2018
-      VASP definition added to Recommendations glossary → 2019-06-21
-      R.15 INR adopting the Travel Rule for VASPs) rather than
-      localized to a single point-in-time off-ramp event. Marked
-      partially_measured (rather than not_measured, which the
-      validator forbids on observed_no_change observations) because
-      the load-bearing effect is class-level and predicate-
-      establishing, observable only at the class / regulatory-standard
-      layer; the corresponding observation row below records this as
-      observed_no_change with attribution=none at the supranational
-      standard-setting layer, scoped to the 2014-06-26 to 2019-06-21
-      pre-regime window.
+      cascade is dispersed across the five-year regulatory development
+      arc (2014 risk report → 2015 RBA guidance → 2018 VASP definition
+      added to Recommendations glossary → 2019-06-21 R.15 INR adopting
+      the Travel Rule for VASPs) rather than localized to a single
+      point-in-time off-ramp event. status=measured because the load-
+      bearing PDF is anchored with replayable body_hash; the observation
+      row records this as observed_no_change with attribution=none at
+      the supranational standard-setting layer, scoped to the
+      2014-06-26 to 2019-06-21 pre-regime window.
 
 observations:
   - layer: offramp_cex
@@ -191,8 +184,9 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf
-        wayback: https://web.archive.org/web/2014/https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf
-        evidence_use: contextual_unarchived
+        body_hash: sha256:c2aed2a0bb4233b1f743110618ed5e4d530ef74483a187c7d76fd1a530215c2e
+        body_path: sources/http_captures/fatf-virtual-currencies-key-definitions-2014/primary/www.fatf-gafi.org__content-dam-fatf-gafi-reports-Virtual-currency-key-definitions-and-potential-aml-cft-risks.pdf__40c190be0a.bin
+        evidence_use: replayable
         scope_descriptor:
           providers:
             - global_vc_exchanger_class
@@ -223,16 +217,17 @@ observations:
           guidance," which is documented in analysis_notes but cannot
           be expressed at the observation-row level under the
           schema's observed_no_change attribution constraint.
-          Provisional year-prefix Wayback anchor pending re-pin in a
-          follow-up human-audit pass.
+          Live fatf-gafi.org PDF captured 2026-05-21.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase B of the 2026-05-16
-  staged-release plan, historical_baseline_2013_2016 tier fill;
-  agent_draft). Authored by LLM agent without personally verifying
-  Wayback/body_hash; status=draft and origin=agent_draft. Real release
-  must replace this DRYRUN marker with a human-verified audit after
-  pinning real archive anchors via scripts/capture_http_artifact.py.
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 11/17 by
+  human:xiangwen as null_case. FATF 2014 VC report PDF captured live
+  2026-05-21 with browser UA bypass - replayable body_hash
+  sha256:c2aed2a0bb42... (558KB). FATF publication landing page URL
+  retained as contextual_unarchived. coverage[offramp_cex]
+  partially_measured->measured. Classification null_event/null_case
+  preserved - predicate-establishing supranational guidance; cascade
+  dispersed across 2014→2019 regulatory arc.
 
   FATF "Virtual Currencies — Key Definitions and Potential AML/CFT
   Risks" (2014-06-26) is the foundational supranational risk-framing
