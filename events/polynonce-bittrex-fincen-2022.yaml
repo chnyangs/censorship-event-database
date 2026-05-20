@@ -1,17 +1,17 @@
 id: polynonce-bittrex-fincen-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-20
 
 related_events:
   - sec-v-bittrex-2023
@@ -26,7 +26,7 @@ trigger:
       url: https://www.fincen.gov/news/news-releases/fincen-announces-29-million-enforcement-action-against-virtual-asset-service
       body_hash: sha256:3fad20a38bc90c2e69c4b8cabcc7326e8c01c39c4f264d3842202155851d5d3a
       body_path: sources/http_captures/polynonce-bittrex-fincen-2022/v0_3_repair/www.fincen.gov__news-news-releases-fincen-announces-29-million-enforcement-action-against-virtual-asset-service__19564bb342.html
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         FinCEN press release (2022-10-11): "FinCEN Announces $29 Million
         Enforcement Action Against Virtual Asset Service Provider Bittrex for
@@ -41,18 +41,20 @@ trigger:
         penalty so net cash to Treasury was $29M).
     - type: primary_legal
       url: https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
-      wayback: https://web.archive.org/web/2022/https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
-      evidence_use: contextual_unarchived
+      body_hash: sha256:1800f0add8fa668173861bc695f482bace51868bb6db2f93dd8499bd35e8690e
+      body_path: sources/http_captures/polynonce-bittrex-fincen-2022/primary/www.fincen.gov__system-files-enforcement_action-2023-04-04-Bittrex_Consent_Order_10.11.2022.pdf__67076fec6c.bin
+      evidence_use: replayable
       note: |
         Bittrex Inc. FinCEN Consent Order dated 2022-10-11. Documents
         approximately $263 million in virtual-currency-related transactions
         from users in Crimea, Cuba, Iran, Sudan, and Syria between March
         2014 and December 2017 that Bittrex failed to prevent or report.
+        Live fincen.gov PDF captured 2026-05-20 (no Wayback memento exists).
     - type: supporting_journalism
       url: https://www.cnbc.com/2022/10/11/crypto-company-fined-29point3-million-for-violating-multiple-us-sanctions-.html
       body_hash: sha256:d039a9ba782d9c448f5c8d67ce4c6c2497b920e70ca795352b9ac4c1c071df99
       body_path: sources/http_captures/polynonce-bittrex-fincen-2022/v0_3_repair/www.cnbc.com__2022-10-11-crypto-company-fined-29point3-million-for-violating-multiple-us-sanctions-.html__5dc35e52b2.html
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         CNBC (2022-10-11) contemporaneous coverage of the parallel
         FinCEN/OFAC settlement: "Treasury fines crypto company $29.3 million
@@ -108,7 +110,8 @@ coverage:
     denominator_artifact:
       type: primary_legal
       url: https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
-      wayback: https://web.archive.org/web/2022/https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+      body_hash: sha256:1800f0add8fa668173861bc695f482bace51868bb6db2f93dd8499bd35e8690e
+      body_path: sources/http_captures/polynonce-bittrex-fincen-2022/primary/www.fincen.gov__system-files-enforcement_action-2023-04-04-Bittrex_Consent_Order_10.11.2022.pdf__67076fec6c.bin
       scope_descriptor:
         providers: [bittrex_us_exchange]
         countries: [US]
@@ -118,8 +121,8 @@ coverage:
       note: |
         Bittrex Inc. FinCEN Consent Order (2022-10-11) — primary legal
         denominator anchor for the Bittrex US offramp surface and the
-        enumerated sanctioned jurisdictions. Replayable bittrex.com geoblock
-        diff capture deferred to human review.
+        enumerated sanctioned jurisdictions. Live fincen.gov PDF captured
+        2026-05-20 (no Wayback memento).
 
 observations:
   - layer: offramp_cex
@@ -144,7 +147,9 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
-        wayback: https://web.archive.org/web/2022/https://www.fincen.gov/system/files/enforcement_action/2023-04-04/Bittrex_Consent_Order_10.11.2022.pdf
+        body_hash: sha256:1800f0add8fa668173861bc695f482bace51868bb6db2f93dd8499bd35e8690e
+        body_path: sources/http_captures/polynonce-bittrex-fincen-2022/primary/www.fincen.gov__system-files-enforcement_action-2023-04-04-Bittrex_Consent_Order_10.11.2022.pdf__67076fec6c.bin
+        evidence_use: replayable
         scope_descriptor:
           providers: [bittrex_us_exchange]
           countries: [US, IR]
@@ -154,9 +159,8 @@ observations:
         note: |
           Bittrex Inc. Consent Order (2022-10-11) — primary legal anchor for
           the AML/OFAC failures and the remediation obligations covering
-          sanctioned-jurisdiction users. Used here as contextual evidence;
-          replayable Wayback / measurement of the actual geoblocking diff at
-          bittrex.com has not been pinned at draft stage.
+          sanctioned-jurisdiction users. Live fincen.gov PDF captured
+          2026-05-20 (no Wayback memento).
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase F discovery; FinCEN

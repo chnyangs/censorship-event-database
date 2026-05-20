@@ -1,17 +1,17 @@
 id: polymarket-cftc-geofence-2022-01
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-20
 
 trigger:
   type: cftc_action
@@ -21,8 +21,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.cftc.gov/PressRoom/PressReleases/8478-22
-      wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8478-22
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20220103203805/https://www.cftc.gov/PressRoom/PressReleases/8478-22
+      evidence_use: replayable
+      body_hash: sha256:ced129f8b43464ae9b2a24d4375187c2f7fa14a963347375c13394c5163f500f
+      body_path: sources/http_captures/polymarket-cftc-geofence-2022-01/primary/web.archive.org__web-20220103203805-https-www.cftc.gov-PressRoom-PressReleases-8478-22__afc6e83fb6.html
       note: |
         CFTC press release 8478-22 (2022-01-03): "CFTC Orders Event-Based
         Binary Options Markets Operator to Pay $1.4 Million Penalty." The
@@ -116,22 +118,24 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.cftc.gov/PressRoom/PressReleases/8478-22
-        wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8478-22
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220103203805/https://www.cftc.gov/PressRoom/PressReleases/8478-22
+        evidence_use: replayable
+        body_hash: sha256:ced129f8b43464ae9b2a24d4375187c2f7fa14a963347375c13394c5163f500f
+        body_path: sources/http_captures/polymarket-cftc-geofence-2022-01/primary/web.archive.org__web-20220103203805-https-www.cftc.gov-PressRoom-PressReleases-8478-22__afc6e83fb6.html
         scope_descriptor:
           providers: [polymarket_com_frontend]
           countries: [US]
           time_window:
             - 2022-01-03T00:00:00Z
-            - 2026-05-16T23:59:59Z
+            - 2026-05-20T23:59:59Z
         note: |
           CFTC settlement order (2022-01-03) requires Polymarket to wind
           down all non-compliant event markets on polymarket.com and to
           cease-and-desist further CEA violations. The operator-side
           implementation is the US-vantage geofence on polymarket.com.
           attribution=direct because the CFTC order is the legal
-          instrument compelling the frontend change. Wayback URL is a
-          DRYRUN stub pending scripts/capture_http_artifact.py.
+          instrument compelling the frontend change. Wayback memento
+          20220103203805 captured 2026-05-20.
       - type: supporting_journalism
         url: https://thedefiant.io/news/defi/polymarket-settlement-cftc
         wayback: https://web.archive.org/web/20260516000000/https://thedefiant.io/news/defi/polymarket-settlement-cftc
@@ -143,8 +147,10 @@ observations:
           URL is a DRYRUN stub pending capture.
       - type: supporting_journalism
         url: https://www.justice.gov/opa/pr/us-soldier-charged-using-classified-information-profit-prediction-market-bets
-        wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/opa/pr/us-soldier-charged-using-classified-information-profit-prediction-market-bets
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20260424003623/https://www.justice.gov/opa/pr/us-soldier-charged-using-classified-information-profit-prediction-market-bets
+        evidence_use: replayable
+        body_hash: sha256:d9ca9a1d0ca42055bfb0a09a1bb5d8637e1e3a1b979e5d9a4f33893cd50b6692
+        body_path: sources/http_captures/polymarket-cftc-geofence-2022-01/primary/web.archive.org__web-20260424003623-https-www.justice.gov-opa-pr-us-soldier-charged-using-classified-information-profit-prediction-market-bets__32c90e5988.html
         scope_descriptor:
           providers: [polymarket_com_frontend]
           countries: [US]
