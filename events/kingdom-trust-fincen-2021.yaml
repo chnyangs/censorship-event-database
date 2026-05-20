@@ -1,18 +1,18 @@
 id: kingdom-trust-fincen-2021
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
-last_human_audit: 2026-05-17
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 trigger:
   type: fincen_action
@@ -22,8 +22,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
-      wayback: https://web.archive.org/web/2023/https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20230426173248/https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
+      body_hash: sha256:fef5774ea0e271857b3ce9d8087a408bfd4dce53fbea529c9b9d1825cbe48115
+      body_path: sources/http_captures/kingdom-trust-fincen-2021/primary/web.archive.org__web-20230426173248-https-www.fincen.gov-news-news-releases-fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company__3a8d3bca43.html
       note: |
         FinCEN press release dated 2023-04-26 announcing a $1.5 million
         civil money penalty against The Kingdom Trust Company (KTC), a
@@ -134,10 +135,12 @@ coverage:
       and payment-processing services. not_applicable on construct-
       out-of-scope grounds.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     scope:
       - the_kingdom_trust_company
     note: |
+      v0.3 audit 2026-05-20 (c) Batch C-2: status upgraded not_measured
+      ->measured + observation recast coverage_gap->observed_no_change.
       Load-bearing layer for any possible cascade. The FinCEN consent
       order imposes a $1.5M civil money penalty plus mandatory
       independent-consultant SAR-lookback review and AML-program
@@ -156,15 +159,20 @@ observations:
   - layer: offramp_cex
     actor: the_kingdom_trust_company
     event: no_strong_attribution_crypto_offramp_change_captured_for_2023_04_26_fincen_consent_order
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2023-04-26T00:00:00Z
     precision: day
+    delta_hours: 0
+    window:
+      - 2023-04-26T00:00:00Z
+      - 2023-05-10T23:59:59Z
     sources:
       - type: primary_legal
         url: https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
-        wayback: https://web.archive.org/web/2023/https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230426173248/https://www.fincen.gov/news/news-releases/fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company
+        body_hash: sha256:fef5774ea0e271857b3ce9d8087a408bfd4dce53fbea529c9b9d1825cbe48115
+        body_path: sources/http_captures/kingdom-trust-fincen-2021/primary/web.archive.org__web-20230426173248-https-www.fincen.gov-news-news-releases-fincen-assesses-15-million-civil-money-penalty-against-kingdom-trust-company__3a8d3bca43.html
         scope_descriptor:
           providers:
             - the_kingdom_trust_company

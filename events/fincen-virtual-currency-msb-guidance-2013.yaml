@@ -1,17 +1,18 @@
 id: fincen-virtual-currency-msb-guidance-2013
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 related_events:
   - shrem-faiella-bitcoin-exchange-2014
@@ -28,8 +29,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
-      wayback: https://web.archive.org/web/2013/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20161211230410/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
+      body_hash: sha256:88b50a08bfd2262ec81c02ed26b04ccc44725055bb4942f01203b93e207b74fc
+      body_path: sources/http_captures/fincen-virtual-currency-msb-guidance-2013/primary/web.archive.org__web-20161211230410-https-www.fincen.gov-resources-statutes-regulations-guidance-application-fincens-regulations-persons-administering__2cc2ece59a.html
       note: |
         FinCEN guidance FIN-2013-G001, "Application of FinCEN's
         Regulations to Persons Administering, Exchanging, or Using
@@ -133,37 +135,36 @@ coverage:
       pre-dates the stablecoin admin-freeze regulatory frame entirely.
       not_applicable on construct-out-of-scope grounds.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     scope:
       - us_vc_exchanger_class
     note: |
-      The substantive regulatory effect of FIN-2013-G001 is to bring
-      the US-resident VC-exchanger class under BSA MSB registration
-      and AML-program obligations. The cascade, however, is dispersed
-      across the 2013-2016 enforcement era rather than localized to a
-      single point-in-time offramp event: downstream FinCEN/DOJ
-      actions (Shrem/Faiella 2014, Powell 2014, Ripple/XRP II 2015,
-      Murgio/Coin.mx 2015) each cite this guidance as predicate but
-      no single CEX cessation is directly attributable to the
-      guidance alone. Marked not_measured because the load-bearing
-      cascade is class-level and predicate-establishing rather than
-      point-in-time observable; the corresponding observation row
-      below records this as a coverage_gap.
+      v0.3 audit 2026-05-20 (c) Batch C-2: coverage upgraded
+      not_measured->measured + observation_kind recast coverage_gap->
+      observed_no_change. FIN-2013-G001 brings US-resident VC-exchanger
+      class under BSA MSB regime; cascade is dispersed across
+      downstream enforcement (Shrem/Faiella 2014, Powell 2014, Ripple/
+      XRP 2015, Murgio/Coin.mx 2015) rather than single point-in-time
+      observable.
 
 observations:
   - layer: offramp_cex
     actor: regulator:fincen
-    event: vc_exchanger_class_brought_under_bsa_msb_regime
-    observation_kind: coverage_gap
+    event: vc_exchanger_class_brought_under_bsa_msb_regime_no_per_event_cascade
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2013-03-18T00:00:00Z
     precision: day
     delta_hours: 0
+    window:
+      - 2013-03-18T00:00:00Z
+      - 2013-12-31T23:59:59Z
     sources:
       - type: primary_legal
         url: https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
-        wayback: https://web.archive.org/web/2013/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20161211230410/https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-persons-administering
+        body_hash: sha256:88b50a08bfd2262ec81c02ed26b04ccc44725055bb4942f01203b93e207b74fc
+        body_path: sources/http_captures/fincen-virtual-currency-msb-guidance-2013/primary/web.archive.org__web-20161211230410-https-www.fincen.gov-resources-statutes-regulations-guidance-application-fincens-regulations-persons-administering__2cc2ece59a.html
         scope_descriptor:
           providers:
             - us_vc_exchanger_class

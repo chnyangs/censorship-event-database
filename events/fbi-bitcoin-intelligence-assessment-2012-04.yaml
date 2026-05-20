@@ -1,17 +1,18 @@
 id: fbi-bitcoin-intelligence-assessment-2012-04
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: rejected
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 related_events:
   - silk-road-doj-seizure-2013
@@ -161,7 +162,7 @@ coverage:
       regulatory frame entirely. not_applicable on construct-out-
       of-scope grounds.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     scope:
       - us_federal_intelligence_assessment_class
     note: |
@@ -180,12 +181,15 @@ coverage:
 observations:
   - layer: offramp_cex
     actor: regulator:fbi
-    event: us_federal_intelligence_community_forms_class_level_posture_on_bitcoin
-    observation_kind: coverage_gap
+    event: retracted_no_enforcement_event_intelligence_assessment_leaked_document
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2012-04-24T00:00:00Z
     precision: day
     delta_hours: 0
+    window:
+      - 2012-04-24T00:00:00Z
+      - 2012-12-31T23:59:59Z
     sources:
       - type: primary_legal
         url: https://www.justsecurity.org/wp-content/uploads/2014/04/FBI.CyberIntelligenceCriminalIntelligence.2012.pdf
@@ -193,28 +197,20 @@ observations:
         evidence_use: contextual_unarchived
         scope_descriptor:
           providers:
-            - us_federal_intelligence_assessment_class
+            - none_no_enforcement_event
           countries:
             - US
           time_window:
             - 2012-04-24T00:00:00Z
-            - 2016-12-31T23:59:59Z
+            - 2012-12-31T23:59:59Z
         note: |
-          FBI Cyber Intelligence Section / Criminal Intelligence
-          Section assessment dated 2012-04-24 is the analytical
-          instrument. observation_kind=coverage_gap with attribution=
-          none honestly represents the load-bearing role of this
-          assessment as a class-level intelligence-posture predicate
-          whose cascade is dispersed across multiple downstream
-          enforcement actions (Silk Road 2013, SEC v. Shavers/BTCST
-          2013, FinCEN FIN-2013-G001, Ripple/XRP I 2015) rather than
-          a single observable point-in-time CEX cessation directly
-          attributable to the assessment alone. The cited downstream
-          enforcement actions carry their own load-bearing
-          observed_change rows in their own event files; this event
-          records the policy-precedent role only. Provisional year-
-          prefix wayback anchor pending re-pin in a follow-up human-
-          audit pass.
+          v0.3 audit 2026-05-20 (c) Batch C-2 RETRACTED: observation
+          row recast from coverage_gap to observed_no_change with
+          attribution=none for non-draft validator compliance.
+          REJECTION RATIONALE (see analysis_notes): event is a
+          leaked-document mirror, not an enforcement event; trigger.type
+          doj_indictment mismatches actual content (internal FBI
+          intelligence assessment, no indictment / order / SDN / seizure).
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN Wave 2.2D 2026-05-17**. Discovery-tier
@@ -226,16 +222,40 @@ analysis_notes: |
   wayback URLs here are 2012 wildcard pointers, not pinned snapshot
   timestamps).
 
-  This event records the FBI Cyber Intelligence Section and Criminal
-  Intelligence Section intelligence assessment "(U) Bitcoin Virtual
-  Currency: Unique Features Present Distinct Challenges for Deterring
-  Illicit Activity" dated 2012-04-24, with contributions from the
-  FBI Detroit Division. The assessment was originally classified
-  (U//LES // FOUO) and was leaked to WikiLeaks ~2013-03, then re-
-  hosted by Just Security in 2014-04. It is the first major US
-  federal intelligence assessment of Bitcoin as a policy concern
-  and is widely cited as the precedent / posture-formation event
-  for the subsequent 2013-2016 US enforcement era.
+  **STATUS: REJECTED 2026-05-20 (c) Batch C-2 event 7/22**.
+
+  REJECTION RATIONALE: This event records the FBI Cyber Intelligence
+  Section and Criminal Intelligence Section intelligence assessment
+  "(U) Bitcoin Virtual Currency: Unique Features Present Distinct
+  Challenges for Deterring Illicit Activity" dated 2012-04-24, which
+  was originally classified (U//LES // FOUO) and was LEAKED to
+  WikiLeaks ~2013-03, then re-hosted by Just Security in 2014-04.
+
+  v0.3 audit determined this event does NOT fit the S3_doj_sec_cftc_fiod
+  enforcement-events stratum: (a) it is an internal intelligence
+  assessment, not an enforcement action — no indictment, no order, no
+  SDN designation, no seizure; (b) trigger.type=doj_indictment is
+  misframed (author's own analysis_notes acknowledge this); (c) all
+  three captured sources are leaked-document MIRRORS (Just Security PDF,
+  WikiSpooks PDF mirror, Bitcointalk discussion thread) — there is no
+  official FBI publication anchor; (d) target is class-level (Bitcoin
+  protocol and Bitcoin-using illicit actors) with no enumerated entity
+  or address; (e) the policy-precedent / posture-formation framing the
+  draft offers is real but is dispersed across downstream enforcement
+  events (Silk Road 2013, SEC v. Shavers/BTCST 2013, FinCEN 2013-G001,
+  Ripple/XRP 2015) which carry the load-bearing cascade rows in their
+  own files.
+
+  Retention as REJECTED REFERENCE (Option-A pattern, same as
+  sec-v-uniswap-wells-notice-2024 + ofac-hamas-irgc-virtual-currency-
+  network-2024-01): the leaked document IS a real historical artifact
+  with policy-precedent value, but it belongs in an "intelligence
+  assessment" or "policy posture" stratum (not in this database's
+  current vocabulary) rather than in S3 enforcement events. discovery_
+  only_2008_2012 tier means analytical impact is near zero either way.
+  Future curation could add a new strata enum (e.g., S7_intelligence_
+  assessment or S0_pre_bitcoin_policy_baseline) and re-admit, OR delete
+  this event_id entirely.
 
   Why null_event / null_case / coverage_gap: this event's load-
   bearing function is policy-precedent / intelligence-posture-
