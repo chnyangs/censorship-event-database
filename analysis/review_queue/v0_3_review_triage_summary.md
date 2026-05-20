@@ -6,10 +6,10 @@ This is a pre-human LLM/machine triage artifact. It does not constitute human au
 
 | State | Count | Meaning |
 | --- | ---: | --- |
-| `llm_prescreen_no_machine_blocker` | 39 | No machine blocker detected; awaiting human primary-source confirmation. |
-| `llm_prescreen_repaired_awaiting_human_audit` | 196 | Earlier LLM flag now has no current machine blocker after evidence repair; awaiting human confirmation. |
+| `llm_prescreen_no_machine_blocker` | 31 | No machine blocker detected; awaiting human primary-source confirmation. |
+| `llm_prescreen_repaired_awaiting_human_audit` | 187 | Earlier LLM flag now has no current machine blocker after evidence repair; awaiting human confirmation. |
 | `llm_prescreen_before_human_audit` | 2 | LLM/machine flagged missing anchors or sources before human audit; repair evidence before confirmation. |
-| `human_review_recorded` | 25 | A non-agent review decision is already recorded in the local audit log. |
+| `human_review_recorded` | 42 | A non-agent review decision is already recorded in the local audit log. |
 
 No event was promoted, no human audit was recorded, and no `primary_source_verified` flag was changed by this triage.
 
@@ -26,12 +26,8 @@ No event was promoted, no human audit was recorded, and no `primary_source_verif
 | 38 | `legacy_admitted_primary_source_recheck` | `cftc-v-ooki-dao-2022` | [packet](packets/0038-cftc-v-ooki-dao-2022.md) |
 | 44 | `legacy_admitted_primary_source_recheck` | `china-pboc-crypto-ban-2021` | [packet](packets/0044-china-pboc-crypto-ban-2021.md) |
 | 49 | `legacy_admitted_primary_source_recheck` | `chipmixer-doj-2023` | [packet](packets/0049-chipmixer-doj-2023.md) |
-| 52 | `legacy_admitted_primary_source_recheck` | `circle-usdc-tornado-2022` | [packet](packets/0052-circle-usdc-tornado-2022.md) |
-| 55 | `legacy_admitted_primary_source_recheck` | `coinbase-india-exit-2022` | [packet](packets/0055-coinbase-india-exit-2022.md) |
 | 56 | `legacy_admitted_primary_source_recheck` | `coinbase-irs-john-doe-summons-2016` | [packet](packets/0056-coinbase-irs-john-doe-summons-2016.md) |
 | 60 | `legacy_admitted_primary_source_recheck` | `cryptex-ofac-2024` | [packet](packets/0060-cryptex-ofac-2024.md) |
-| 69 | `legacy_admitted_primary_source_recheck` | `eu-12th-russia-sanctions-2023` | [packet](packets/0069-eu-12th-russia-sanctions-2023.md) |
-| 76 | `legacy_admitted_primary_source_recheck` | `eu-mica-2023` | [packet](packets/0076-eu-mica-2023.md) |
 | 104 | `legacy_admitted_primary_source_recheck` | `hydra-doj-2022` | [packet](packets/0104-hydra-doj-2022.md) |
 | 108 | `legacy_admitted_primary_source_recheck` | `india-rbi-crypto-ban-2018` | [packet](packets/0108-india-rbi-crypto-ban-2018.md) |
 | 133 | `legacy_admitted_primary_source_recheck` | `korea-travel-rule-2022` | [packet](packets/0133-korea-travel-rule-2022.md) |
@@ -49,19 +45,12 @@ No event was promoted, no human audit was recorded, and no `primary_source_verif
 | 212 | `legacy_admitted_primary_source_recheck` | `silk-road-doj-seizure-2013` | [packet](packets/0212-silk-road-doj-seizure-2013.md) |
 | 218 | `legacy_admitted_primary_source_recheck` | `storm-semenov-doj-2023` | [packet](packets/0218-storm-semenov-doj-2023.md) |
 | 221 | `legacy_admitted_primary_source_recheck` | `teraexchange-cftc-bitcoin-swap-2015` | [packet](packets/0221-teraexchange-cftc-bitcoin-swap-2015.md) |
-| 222 | `legacy_admitted_primary_source_recheck` | `tether-doj-pig-butchering-freeze-2023` | [packet](packets/0222-tether-doj-pig-butchering-freeze-2023.md) |
-| 223 | `legacy_admitted_primary_source_recheck` | `tether-dprk-precommit-freeze-2025` | [packet](packets/0223-tether-dprk-precommit-freeze-2025.md) |
-| 225 | `legacy_admitted_primary_source_recheck` | `tether-retroactive-sweep-2023` | [packet](packets/0225-tether-retroactive-sweep-2023.md) |
 | 231 | `legacy_admitted_primary_source_recheck` | `tornado-cash-ofac-2022` | [packet](packets/0231-tornado-cash-ofac-2022.md) |
 | 238 | `legacy_admitted_primary_source_recheck` | `turkey-cbrt-crypto-ban-2021` | [packet](packets/0238-turkey-cbrt-crypto-ban-2021.md) |
-| 246 | `legacy_admitted_primary_source_recheck` | `uniswap-frontend-delisting-2023` | [packet](packets/0246-uniswap-frontend-delisting-2023.md) |
 | 207 | `legacy_rejected_reference_review` | `sec-v-uniswap-wells-notice-2024` | [packet](packets/0207-sec-v-uniswap-wells-notice-2024.md) |
 | 10 | `legacy_admitted_primary_source_recheck` | `australia-asic-binance-derivatives-2023` | [packet](packets/0010-australia-asic-binance-derivatives-2023.md) |
 | 12 | `legacy_admitted_primary_source_recheck` | `belgium-fsma-binance-cease-2023` | [packet](packets/0012-belgium-fsma-binance-cease-2023.md) |
 | 15 | `legacy_admitted_primary_source_recheck` | `binance-cftc-2023` | [packet](packets/0015-binance-cftc-2023.md) |
-| 16 | `legacy_admitted_primary_source_recheck` | `binance-privacy-coin-delisting-2023` | [packet](packets/0016-binance-privacy-coin-delisting-2023.md) |
-| 17 | `legacy_admitted_primary_source_recheck` | `binance-russia-exit-commex-2023` | [packet](packets/0017-binance-russia-exit-commex-2023.md) |
-| 18 | `legacy_admitted_primary_source_recheck` | `binance-us-staking-end-2023` | [packet](packets/0018-binance-us-staking-end-2023.md) |
 | 20 | `legacy_admitted_primary_source_recheck` | `bitfinex-cftc-retail-commodity-2016` | [packet](packets/0020-bitfinex-cftc-retail-commodity-2016.md) |
 | 21 | `legacy_admitted_primary_source_recheck` | `bitfinex-tether-cftc-2021` | [packet](packets/0021-bitfinex-tether-cftc-2021.md) |
 | 23 | `legacy_admitted_primary_source_recheck` | `bitmex-cftc-doj-2020` | [packet](packets/0023-bitmex-cftc-doj-2020.md) |
@@ -69,10 +58,6 @@ No event was promoted, no human audit was recorded, and no `primary_source_verif
 | 36 | `legacy_admitted_primary_source_recheck` | `celsius-bankruptcy-mashinsky-doj-2023` | [packet](packets/0036-celsius-bankruptcy-mashinsky-doj-2023.md) |
 | 43 | `legacy_admitted_primary_source_recheck` | `china-pboc-crypto-ban-2013-12` | [packet](packets/0043-china-pboc-crypto-ban-2013-12.md) |
 | 58 | `legacy_admitted_primary_source_recheck` | `coinflip-cftc-derivabit-2015` | [packet](packets/0058-coinflip-cftc-derivabit-2015.md) |
-| 77 | `legacy_admitted_primary_source_recheck` | `eu-russia-crypto-wallet-cap-2022` | [packet](packets/0077-eu-russia-crypto-wallet-cap-2022.md) |
-| 78 | `legacy_admitted_primary_source_recheck` | `eu-russia-full-crypto-wallet-ban-2022` | [packet](packets/0078-eu-russia-full-crypto-wallet-ban-2022.md) |
-| 79 | `legacy_admitted_primary_source_recheck` | `eu-tfr-recast-2023` | [packet](packets/0079-eu-tfr-recast-2023.md) |
-| 81 | `legacy_admitted_primary_source_recheck` | `fatf-r15-vasp-travel-rule-2019` | [packet](packets/0081-fatf-r15-vasp-travel-rule-2019.md) |
 | 89 | `legacy_admitted_primary_source_recheck` | `ftx-bankman-fried-doj-2022` | [packet](packets/0089-ftx-bankman-fried-doj-2022.md) |
 | 94 | `legacy_admitted_primary_source_recheck` | `genesis-sec-gemini-earn-2023` | [packet](packets/0094-genesis-sec-gemini-earn-2023.md) |
 | 95 | `legacy_admitted_primary_source_recheck` | `germany-bafin-binance-licence-withdrawal-2023` | [packet](packets/0095-germany-bafin-binance-licence-withdrawal-2023.md) |
@@ -85,8 +70,6 @@ No event was promoted, no human audit was recorded, and no `primary_source_verif
 | 139 | `legacy_admitted_primary_source_recheck` | `kucoin-doj-2024` | [packet](packets/0139-kucoin-doj-2024.md) |
 | 147 | `legacy_admitted_primary_source_recheck` | `malaysia-sc-binance-disable-2021` | [packet](packets/0147-malaysia-sc-binance-disable-2021.md) |
 | 158 | `legacy_admitted_primary_source_recheck` | `netherlands-dnb-binance-warning-2021` | [packet](packets/0158-netherlands-dnb-binance-warning-2021.md) |
-| 163 | `legacy_admitted_primary_source_recheck` | `oecd-carf-2022` | [packet](packets/0163-oecd-carf-2022.md) |
-| 173 | `legacy_admitted_primary_source_recheck` | `okx-privacy-token-delist-2024` | [packet](packets/0173-okx-privacy-token-delist-2024.md) |
 | 197 | `legacy_admitted_primary_source_recheck` | `sec-burnside-bitcoin-stock-exchange-2014` | [packet](packets/0197-sec-burnside-bitcoin-stock-exchange-2014.md) |
 | 199 | `legacy_admitted_primary_source_recheck` | `sec-shavers-btcst-2013` | [packet](packets/0199-sec-shavers-btcst-2013.md) |
 | 205 | `legacy_admitted_primary_source_recheck` | `sec-v-ripple-2020` | [packet](packets/0205-sec-v-ripple-2020.md) |
@@ -257,7 +240,7 @@ No event was promoted, no human audit was recorded, and no `primary_source_verif
 
 | Blocker | Count |
 | --- | ---: |
-| `none_detected` | 196 |
+| `none_detected` | 188 |
 | `no_observation_primary_source_detected` | 2 |
 
 ## Work Files
