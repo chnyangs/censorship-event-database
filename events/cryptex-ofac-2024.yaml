@@ -210,12 +210,16 @@ observations:
         url: https://tronscan.org/#/transaction/dad0d1dabad6f1727c6ebb3961053f66dd2add3b78def6360e5c2a2a6121cad9
         tx_hash: "dad0d1dabad6f1727c6ebb3961053f66dd2add3b78def6360e5c2a2a6121cad9"
         note: Tether USDT-TRC20 addBlackList transaction on TRON for address TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr, executed 2024-09-26 03:35 UTC. 2 minutes before the ETH USDT freeze (03:37 UTC); batch action across chains.
-      - type: primary_corporate
+      - type: supporting_community
         url: https://usdtbanlist.com/address/TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr
         body_hash: sha256:fcabacd285697808aa10ed9de3cbe9030acb295aa8e1c3a30cbbbdd2d4b50cf0
         body_path: sources/http_captures/cryptex-ofac-2024/asset-layer-check/usdtbanlist.com__address-TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr.html
         note: |
           usdtbanlist.com community tracker anchor for the TRX freeze above.
+          v0.3 audit 2026-05-20: source type CORRECTED from primary_corporate
+          to supporting_community to match the parallel USDT-ETH row's
+          treatment of the same source kind (usdtbanlist.com is community-
+          maintained, not Tether/Tron-issuer-published).
   - layer: asset_onchain
     actor: circle_usdc_issuer
     event: usdc_blacklist_next_day_event

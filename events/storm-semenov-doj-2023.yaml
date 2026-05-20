@@ -27,17 +27,27 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
-      body_hash: sha256:67150f102ecdf7f6cfc3ff9a0cfd1b8c97f6bba41c9ac65250dd637652e0ff34
-      body_path: sources/http_captures/storm-semenov-doj-2023/primary/www.justice.gov__usao-sdny-pr-tornado-cash-founders-charged-money-laundering-and-sanctions-violations__6b7b0d611f.html
+      wayback: https://web.archive.org/web/20230823170656/https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
+      body_hash: sha256:21a46072ff95909fa240c324573502f77ce5d60044a6b0f120fdd7a8bf2b8de2
+      body_path: sources/http_captures/storm-semenov-doj-2023/wayback_doj_press_snapshot/web.archive.org__web-20230823170656-https-www.justice.gov-usao-sdny-pr-tornado-cash-founders-charged-money-laundering-and-sanctions-violations__7a19009784.html
       note: |
-        DOJ USAO-SDNY press release "Tornado Cash Founders Charged With Money
-        Laundering And Sanctions Violations" (2023-08-23). Unsealed indictment
-        against Roman Storm and Roman Semenov — co-founders of Tornado Cash —
-        charging: conspiracy to commit money laundering; conspiracy to commit
-        sanctions violations (IEEPA); conspiracy to operate an unlicensed
-        money-transmitting business. Storm arrested in US (WA); Semenov at
-        large in Dubai, UAE. **Same-day as the 2023-08-23 OFAC designation
-        of Semenov** — coordinated OFAC + DOJ action.
+        Wayback memento (2023-08-23 17:06 UTC, ~event-day publishing
+        window) of DOJ USAO-SDNY press release "Tornado Cash Founders
+        Charged With Money Laundering And Sanctions Violations"
+        (2023-08-23). Unsealed indictment against Roman Storm and Roman
+        Semenov — co-founders of Tornado Cash — charging: conspiracy
+        to commit money laundering; conspiracy to commit sanctions
+        violations (IEEPA); conspiracy to operate an unlicensed
+        money-transmitting business. Storm arrested in US (WA);
+        Semenov at large in Dubai, UAE. **Same-day as the 2023-08-23
+        OFAC designation of Semenov** — coordinated OFAC + DOJ action.
+        v0.3 audit 2026-05-20 repair: body_path swapped to Wayback
+        memento (166567 bytes real content) replacing prior Akamai-stub
+        capture (sha256:67150f10..., 2879 bytes, retained on-disk as
+        sources/http_captures/storm-semenov-doj-2023/primary/...__6b7b0d611f.html
+        but no longer cited). Grep confirms: 73xsdny + 47xTornado/tornado
+        + 47xCash/cash + 40xsanctions variants + 31xfounder variants +
+        22xMoney Laundering + 10xconspiracy + 8xSTORM + 8xSEMENOV.
   timestamp_sources:
     - type: primary_legal
       note: Day-level press-release timing; unsealing of indictment.
@@ -90,8 +100,9 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
-        body_hash: sha256:67150f102ecdf7f6cfc3ff9a0cfd1b8c97f6bba41c9ac65250dd637652e0ff34
-        body_path: sources/http_captures/storm-semenov-doj-2023/primary/www.justice.gov__usao-sdny-pr-tornado-cash-founders-charged-money-laundering-and-sanctions-violations__6b7b0d611f.html
+        wayback: https://web.archive.org/web/20230823170656/https://www.justice.gov/usao-sdny/pr/tornado-cash-founders-charged-money-laundering-and-sanctions-violations
+        body_hash: sha256:21a46072ff95909fa240c324573502f77ce5d60044a6b0f120fdd7a8bf2b8de2
+        body_path: sources/http_captures/storm-semenov-doj-2023/wayback_doj_press_snapshot/web.archive.org__web-20230823170656-https-www.justice.gov-usao-sdny-pr-tornado-cash-founders-charged-money-laundering-and-sanctions-violations__7a19009784.html
         scope_descriptor:
           providers: [counterparty_cex_aggregate]
           time_window:
@@ -103,7 +114,12 @@ observations:
           the same-day OFAC Semenov SDN, which triggered the Circle 8/8 USDC
           batch-freeze within 24h — see semenov-ofac-2023). CEX cascade bandwidth
           on 2023-08-23 was absorbed by the OFAC side; the DOJ side alone produced
-          no separately-disclosed exchange action.
+          no separately-disclosed exchange action. v0.3 audit 2026-05-20 repair:
+          body_path swapped to Wayback memento (166567 bytes real content) which
+          substantiates the DOJ indictment trigger event itself (grep-verified
+          73xsdny + 47xTornado + 40xsanctions + 31xfounder + 22xMoney Laundering +
+          10xconspiracy + 8xSTORM + 8xSEMENOV); the observed_no_change null
+          finding remains the same.
 
 analysis_notes: |
   **LAST_HUMAN_AUDIT STAMP — DRYRUN 2026-05-15**: stamped by automated pipeline-demo per `analysis/null_audits/AGGREGATE.md`. Both LLM cross-audit agents (A,B) converged on `pass` or `pass_with_concerns`; this stamp records that the case has been pre-screened by 2 LLM agents and would be a human-audit candidate for the next iteration. The corpus-wide `offramp_cex.measured` convention concern is unresolved (see AGGREGATE.md P2). For a real release, replace this DRYRUN marker with a human-verified audit.

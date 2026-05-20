@@ -161,7 +161,7 @@ observations:
     actor: frontend:shapeshift
     event: shapeshift_ny_exit_announcement
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2015-06-25T00:00:00Z
     precision: day
     delta_hours: 24
@@ -181,8 +181,16 @@ observations:
           day after Erik Voorhees's same-day public statement that
           ShapeShift would cease serving NY residents in response to the
           BitLicense final rule). The captured page is the post-exit
-          state of the blog index. attribution=direct: Voorhees's public
-          statement and ShapeShift's blog both name BitLicense as cause.
+          state of the blog index. v0.3 audit 2026-05-20: attribution
+          DOWNGRADED from direct to plausible per Session 2 Block D NO
+          decision (qid=160 nydfs needs_recheck). Reason: Voorhees's
+          public statement that names BitLicense as cause is NOT in the
+          captured body_path (the blog INDEX snapshot doesn't carry the
+          exit-announcement post content). Matches the Bitfinex row's
+          honest attribution=plausible treatment within this same YAML
+          (CDX index without per-event banner content). Future capture
+          of Voorhees's actual 2015-06-25 statement (likely via Reddit
+          AMA Wayback) would support re-upgrading to attribution=direct.
   - layer: l4_frontend
     actor: frontend:bitfinex
     event: bitfinex_ny_exit_geofence
@@ -246,7 +254,11 @@ analysis_notes: |
   observed_change, so empirical_shape=comparison rather than cascade,
   even though four separate operators are affected. Admission tier is
   empirical_case (≥1 strong-attribution observed_change layer; Kraken
-  and ShapeShift carry attribution=direct).
+  carries attribution=direct with body_path grep-verified BitLicense +
+  NYDFS naming, while ShapeShift and Bitfinex carry attribution=plausible
+  because cited body_paths capture post-event blog INDEX state but not
+  the cause-naming exit-announcement content itself; ShapeShift was
+  downgraded from direct to plausible per v0.3 audit 2026-05-20).
 
   Related events: coinbase-india-exit-2022 (structural sibling:
   exchange market-exit responding to regulator informal/formal pressure)
