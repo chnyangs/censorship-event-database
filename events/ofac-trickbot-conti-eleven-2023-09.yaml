@@ -1,17 +1,18 @@
 id: ofac-trickbot-conti-eleven-2023-09
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 related_events:
   - lockbit-leader-ofac-2024
@@ -20,51 +21,69 @@ related_events:
 
 trigger:
   type: ofac_sdn_designation
-  actor: US_OFAC + UK_NCA + US_DOJ
+  actor: US_OFAC
   timestamp: 2023-09-07T00:00:00Z
   timestamp_precision: day
   citation:
     - type: primary_legal
       url: https://home.treasury.gov/news/press-releases/jy1714
-      wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy1714
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20230907134103/https://home.treasury.gov/news/press-releases/jy1714
+      body_hash: sha256:12dc6c434283c19acfc560c6883a486cd6fcca16e2121433f6ebf6bc49cc6994
+      body_path: sources/http_captures/ofac-trickbot-conti-eleven-2023-09/primary/web.archive.org__web-20230907134103-https-home.treasury.gov-news-press-releases-jy1714__e5c3eed7aa.html
       note: |
-        Treasury press release jy1714 (2023-09-07): "United States and United
-        Kingdom Sanction Additional Members of the Russia-Based Trickbot
-        Cybercrime Gang." Tripartite US-UK joint action designating 11
-        Russian nationals materially assisting the Trickbot group
-        (administrators, managers, developers, coders) with downstream
-        operational ties to the Conti ransomware variant. Concurrent DOJ
-        unsealing of indictments against 9 individuals (7 overlapping with
-        the OFAC SDN designations). First major US-UK joint cyber-financial
-        sanctions package following the February 2023 inaugural joint
-        Trickbot designation (which was the first action under the UK's
-        new cyber-sanctions authority). DRYRUN: anchor is a press-release
-        URL with a year-folder Wayback pointer; pinned snapshot timestamp
-        and body_hash capture for the specific 2023-09-07 jy1714 permalink
-        deferred to human audit. Marked evidence_use=contextual_unarchived
-        per validator policy.
+        Treasury press release jy1714 (2023-09-07): "United States and
+        United Kingdom Sanction Additional Members of the Russia-Based
+        Trickbot Cybercrime Gang." US-UK joint action designating 11
+        Russian nationals materially assisting Trickbot (with downstream
+        operational ties to Conti ransomware). Concurrent DOJ unsealing
+        of indictments against 9 individuals (7 overlapping with OFAC
+        SDN). v0.3 audit 2026-05-20 (c) Batch C-1: Wayback memento
+        20230907134103 pinned (166112 bytes), grep verifies 52xTrickbot
+        + 14xjy1714 + 6xconti + 2xTRICKBOT + 2xConti + 3xSeptember 7 +
+        3x2023-09-07. NOTE: Treasury narrative discusses crypto-extorted
+        ransoms ($180M+ cumulative; £27M from 149 UK victims) but does
+        NOT enumerate per-individual crypto wallet addresses.
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20230907
+      wayback: https://web.archive.org/web/20230907131120/https://ofac.treasury.gov/recent-actions/20230907
+      body_hash: sha256:1adf2e8a22657565f11873aa9d3be06aac6e764f59f691e136ff8cb4ed6503a1
+      body_path: sources/http_captures/ofac-trickbot-conti-eleven-2023-09/primary/web.archive.org__web-20230907131120-https-ofac.treasury.gov-recent-actions-20230907__7c77224a99.html
+      note: |
+        OFAC Recent Actions page for 2023-09-07. v0.3 audit 2026-05-20:
+        Wayback memento 20230907131120 pinned (85228 bytes), confirms
+        SDN entries for 10 of 11 named individuals (Zhuykov, Rudenskiy,
+        Putilin, Mozhaev, Loguntsov, Kurov, Khaliullin, Tsarev,
+        Valiakhmetov + 1 missing/case variant). CRITICAL FINDING:
+        direct grep confirms ZERO `Digital Currency Address` entries
+        for any of the 11 individuals on this RA page. OFAC's standard
+        practice of attaching digital-currency identifiers to SDN
+        entries was NOT applied to this 2023-09-07 designation —
+        likely because the per-wallet enumeration was held in OFAC's
+        internal SDN-XML feed but not published on the RA page, OR
+        because OFAC chose not to enumerate individual ransomware-actor
+        wallets at all for this action. Either way, this event lacks
+        per-wallet asset_onchain evidence and is classified as null_case.
     - type: primary_legal
       url: https://www.nationalcrimeagency.gov.uk/news/russian-ransomware-group-hit-with-new-sanctions
-      wayback: https://web.archive.org/web/2023/https://www.nationalcrimeagency.gov.uk/news/russian-ransomware-group-hit-with-new-sanctions
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20230907180310/https://www.nationalcrimeagency.gov.uk/news/russian-ransomware-group-hit-with-new-sanctions
+      body_hash: sha256:caa78dde4a9d3e7f4dce24c93436b21573d1a24a9952446c8da0775d661b5c73
+      body_path: sources/http_captures/ofac-trickbot-conti-eleven-2023-09/primary/web.archive.org__web-20230907180310-https-www.nationalcrimeagency.gov.uk-news-russian-ransomware-group-hit-with-new-sanctions__517cbff75c.html
       note: |
-        UK National Crime Agency (NCA) 2023-09-07 press release announcing
-        the parallel UK sanctions designation, with NCA/FBI assessment that
-        the Trickbot/Conti group was responsible for at least USD 180M+ in
-        cumulative worldwide ransomware extortion, including at least £27M
-        from 149 UK victims. Identifies the 11 designees as developers,
-        administrators handling ransom-fund flows, and recruiters from
-        cyber-crime forums.
+        UK National Crime Agency (NCA) 2023-09-07 press release
+        announcing the parallel UK sanctions designation. v0.3 audit
+        2026-05-20: Wayback memento 20230907180310 pinned (16275 bytes).
     - type: primary_legal
       url: https://www.justice.gov/opa/pr/us-and-uk-disrupt-trickbot-malware
       wayback: https://web.archive.org/web/2023/https://www.justice.gov/opa/pr/us-and-uk-disrupt-trickbot-malware
       evidence_use: contextual_unarchived
       note: |
         DOJ Office of Public Affairs 2023-09-07 press release on unsealed
-        indictments against 9 individuals connected to Trickbot malware and
-        Conti ransomware (7 overlap with that day's OFAC SDN package).
-        Companion criminal-enforcement leg of the tripartite action.
+        indictments. v0.3 audit 2026-05-20: CDX query returned no
+        mementos for this URL form (Akamai-DOJ corpus-wide capture defect
+        — see Block D evidence_repair_plan for the 5-event sister cluster
+        of btc-e/hydra-doj/storm-semenov/binance/bitzlato/ripple-fincen).
+        Retained as evidence_use=contextual_unarchived pending future
+        URL research.
     - type: supporting_journalism
       url: https://www.bleepingcomputer.com/news/security/us-and-uk-sanction-11-trickbot-and-conti-cybercrime-gang-members/
       wayback: https://web.archive.org/web/2023/https://www.bleepingcomputer.com/news/security/us-and-uk-sanction-11-trickbot-and-conti-cybercrime-gang-members/
@@ -117,29 +136,40 @@ coverage:
   - layer: l4_frontend
     status: not_applicable
   - layer: asset_onchain
-    status: partially_measured
+    status: not_applicable
     note: |
-      Per-individual SDN XML entries for the 11 designees carry any
-      attached digital-currency addresses; precise per-address enumeration
-      and freeze/flag evaluation deferred to non-DRYRUN release.
-      partially_measured pending pinned anchors for the SDN XML entries
-      and downstream chain-analytics (Chainalysis/Elliptic/TRM)
-      sanctioned-address feed updates.
+      v0.3 audit 2026-05-20 (c) Batch C-1: status downgraded from
+      partially_measured to not_applicable. Direct OFAC RA Wayback grep
+      confirms ZERO Digital Currency Address entries for any of the 11
+      Trickbot/Conti individuals on the 2023-09-07 SDN listing — OFAC's
+      standard practice of attaching per-wallet identifiers was NOT
+      applied to this designation (either wallets are in OFAC's internal
+      SDN-XML feed only, or OFAC chose not to enumerate). Original draft
+      asset_onchain observation row REMOVED at promotion (validator
+      requires primary_onchain for asset_onchain observed_change; no
+      addresses to anchor).
   - layer: offramp_cex
     status: measured
-    note: >-
-      Measured against the OFAC jy1714 / UK NCA / DOJ tripartite press
-      package as the substrate, scoped to the 14-day public-disclosure
-      window. Load-bearing axis given individual-target shape; see
-      offramp_cex observation for the cascade-relevant observed_change
-      against the sanctioned-person ramp-blocking surface.
+    note: |
+      v0.3 audit 2026-05-20 (c) Batch C-1: substantiated by Treasury
+      jy1714 + OFAC RA 20230907 + UK NCA Wayback denominators. Following
+      sim-hyon-sop / hamas-gaza-now / al-Jamal precedent for OFAC SDN of
+      crypto-relevant individuals without per-wallet enumeration: no
+      fresh public CEX policy statement explicitly citing the 11
+      Trickbot/Conti SDN entries in 14d post-event window. Original
+      draft's offramp_cex observation row attribution downgraded from
+      observed_change direct (sanctioned-person blocking obligation) to
+      observed_no_change attribution=none — consistent with how generic
+      sanctioned-person blocking is treated for individual-target SDN
+      events across this batch (the legal obligation exists but is not
+      a per-event observable cascade).
 
 observations:
   - layer: offramp_cex
     actor: counterparty_cex_ecosystem
-    event: sanctioned_person_ramp_blocking_obligation_attached_to_11_designees_us_uk_joint
-    observation_kind: observed_change
-    attribution: direct
+    event: no_public_cex_cascade_documented_for_individual_trickbot_designees_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2023-09-07T00:00:00Z
     precision: day
     delta_hours: 0
@@ -149,80 +179,34 @@ observations:
     sources:
       - type: primary_legal
         url: https://home.treasury.gov/news/press-releases/jy1714
-        wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy1714
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230907134103/https://home.treasury.gov/news/press-releases/jy1714
+        body_hash: sha256:12dc6c434283c19acfc560c6883a486cd6fcca16e2121433f6ebf6bc49cc6994
+        body_path: sources/http_captures/ofac-trickbot-conti-eleven-2023-09/primary/web.archive.org__web-20230907134103-https-home.treasury.gov-news-press-releases-jy1714__e5c3eed7aa.html
         scope_descriptor:
           providers: [counterparty_cex_aggregate]
           time_window:
             - 2023-09-07T00:00:00Z
             - 2023-09-21T23:59:59Z
-          addresses_cohort: trickbot_conti_eleven_individuals_2023_09_07
+          addresses_cohort: trickbot_conti_eleven_individuals_no_addresses_enumerated
         note: |
-          The 2023-09-07 OFAC SDN designation of the 11 Trickbot/Conti
-          individuals attaches an automatic sanctioned-person blocking
-          obligation on all US-nexus exchanges (and, via the parallel UK
-          NCA designation, on UK-nexus exchanges): any account, deposit,
-          or withdrawal traceable to a designee must be frozen/rejected.
-          attribution=direct because the operator-state change at the
-          offramp_cex layer (sanctioned-person ramp blocking) is the
-          legally-compelled consequence of SDN listing, not a downstream
-          cascade. Observation records the legal-instrument trigger and
-          the resulting blocking-obligation surface; per-exchange
-          enforcement disclosures (Binance/Kraken/Coinbase/Bybit) in the
-          14-day window are not separately surveyed here.
-      - type: primary_legal
-        url: https://www.nationalcrimeagency.gov.uk/news/russian-ransomware-group-hit-with-new-sanctions
-        wayback: https://web.archive.org/web/2023/https://www.nationalcrimeagency.gov.uk/news/russian-ransomware-group-hit-with-new-sanctions
-        evidence_use: contextual_unarchived
-        note: |
-          UK NCA 2023-09-07 release confirming the parallel UK-side
-          designations, which produce the UK-jurisdiction half of the
-          sanctioned-person ramp-blocking obligation surface for the same
-          11 designees. Records the NCA/FBI investigative finding that
-          the group caused USD 180M+ cumulative ransomware extortion
-          worldwide (and at least £27M from 149 UK victims) as the
-          underlying-conduct context.
-  - layer: asset_onchain
-    actor: us_ofac_uk_nca
-    event: specific_wallet_designation_for_subset_of_eleven_individuals
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2023-09-07T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_legal
-        url: https://home.treasury.gov/news/press-releases/jy1714
-        wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy1714
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [ofac_sdn_xml]
-          time_window:
-            - 2023-09-07T00:00:00Z
-            - 2023-09-21T23:59:59Z
-          addresses_cohort: trickbot_conti_eleven_sdn_xml_addresses_2023_09_07
-        note: |
-          Treasury jy1714 references specific wallet-address attachments
-          for the Trickbot/Conti designees (per OFAC's standard practice
-          of attaching digital-currency identifiers to SDN entries for
-          ransomware-actor designations from 2018 onward).
-          attribution=plausible rather than direct because the
-          per-individual address inventory lives in the SDN XML entries
-          (not on the press-release page), and a precise enumeration plus
-          on-chain freeze/flag evaluation is deferred to the human-audit /
-          non-DRYRUN release. Recorded as observed_change at the
-          asset_onchain layer because address-level designation is the
-          standard OFAC primitive that propagates to chain-analytics
-          (Chainalysis/Elliptic/TRM) sanctioned-address feeds used by
-          downstream exchanges and wallets.
+          v0.3 audit 2026-05-20: observation row recast from draft's
+          observed_change direct (sanctioned-person blocking obligation)
+          to observed_no_change attribution=none. Treasury jy1714 + OFAC
+          RA 20230907 + UK NCA denominators substantiate the trigger
+          event (11 individuals SDN-designated, USD 180M+ ransomware
+          context, US-UK joint action) but absence of per-wallet
+          enumeration + absence of fresh public CEX policy statement in
+          14d window = null finding. Generic sanctioned-person blocking
+          obligation IS legally compelled but is not a per-event
+          observable cascade (matches industry private-KYT-flagging
+          pattern for individual-target SDN events).
       - type: supporting_journalism
         url: https://www.bleepingcomputer.com/news/security/us-and-uk-sanction-11-trickbot-and-conti-cybercrime-gang-members/
         wayback: https://web.archive.org/web/2023/https://www.bleepingcomputer.com/news/security/us-and-uk-sanction-11-trickbot-and-conti-cybercrime-gang-members/
         evidence_use: contextual_unarchived
         note: |
           BleepingComputer 2023-09-07 coverage corroborating the SDN
-          package including reference to cryptocurrency-address
-          attachments for the designees.
+          package. Wayback pinning deferred.
 
 analysis_notes: |
   **DRYRUN PREAMBLE — Phase F 2026-05-16**: authored by LLM agent

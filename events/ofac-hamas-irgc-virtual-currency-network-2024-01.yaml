@@ -1,17 +1,18 @@
 id: ofac-hamas-irgc-virtual-currency-network-2024-01
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: rejected
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 related_events:
   - ofac-hamas-buy-cash-msb-2023-10
@@ -25,50 +26,78 @@ trigger:
   citation:
     - type: primary_legal
       url: https://home.treasury.gov/news/press-releases/jy2036
-      wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2036
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240122171623/https://home.treasury.gov/news/press-releases/jy2036
+      body_hash: sha256:30d9c0026266866a7070d8af7273298aadb0224677e4802d6dc025a9aa34c31a
+      body_path: sources/http_captures/ofac-hamas-irgc-virtual-currency-network-2024-01/primary/web.archive.org__web-20240122171623-https-home.treasury.gov-news-press-releases-jy2036__fd875dd29d.html
       note: |
         Treasury press release JY2036 "U.S., UK, and Australia Target
         Additional Hamas Financial Networks and Facilitators of Virtual
         Currency Transfers" (2024-01-22). Second major post-Oct 7
         sanctions package; targets Iran-Hamas financial linkages.
-        Designates Gaza-based Shamlakh-family financial facilitators
-        (Zuhair, Ahmed, Alaa, Imad) and money-changing entity
-        Al-Markaziya, plus a Hamas/IRGC-QF joint virtual-currency
-        procurement sub-network with specific wallet designations on
-        the OFAC SDN list. Wayback timestamp not yet pinned (DRYRUN);
-        human audit must replace with a specific snapshot.
+        v0.3 audit 2026-05-20 retracted-with-evidence: jy2036 Wayback
+        memento 20240122171623 pinned (178662 bytes, grep verifies
+        74xHamas + 20xShamlakh + 18xAl-Markaziya + 14xjy2036 + 9xQF +
+        8xIRGC + 6xVirtual Currency + 4xJanuary 22). Press release
+        narratively discusses Iran→Hamas virtual-currency funding
+        mechanisms but the SDN listings appended to this action are all
+        cash-MSB / aviation / individual designations (no crypto
+        wallets). See analysis_notes for retraction rationale.
     - type: supporting_tracker
       url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
       wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
       evidence_use: contextual_unarchived
       note: |
-        Chainalysis post-action analysis tracing the IRGC-connected
-        wallet cluster and on-chain stablecoin pipeline referenced by
-        the 2024-01-22 Treasury action. Used here as contextual
-        substrate for the asset_onchain reasoning; per-event slice not
-        yet pinned with a body_hash.
+        v0.3 audit 2026-05-20: this Chainalysis blog title cites
+        "IRGC-connected Houthi financier Said al-Jamal", which is the
+        2023-12-13 OFAC action, NOT the 2024-01-22 Hamas/IRGC-QF action
+        recorded here. The draft author conflated the two. The blog
+        properly belongs to the sibling event
+        `ofac-houthi-al-jamal-crypto-refresh-2024-12` and is retained
+        here only as documented evidence of the conflation that led to
+        retraction. Wayback pinning not performed in this audit cycle.
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240122
+      wayback: https://web.archive.org/web/20240122162236/https://ofac.treasury.gov/recent-actions/20240122
+      body_hash: sha256:2468b9f05af6375386be6f21bf12d7394dbaa9891f5537e294dcbb3daf086cb1
+      body_path: sources/http_captures/ofac-hamas-irgc-virtual-currency-network-2024-01/primary/web.archive.org__web-20240122162236-https-ofac.treasury.gov-recent-actions-20240122__bc039544d2.html
+      note: |
+        v0.3 audit 2026-05-20: OFAC RA 2024-01-22 Wayback memento pinned
+        (101610 bytes). Grep verification confirms ZERO `Digital
+        Currency Address` entries on this RA page. SDN listings comprise
+        cash-MSB entities (AL-MARKAZIYA, HERZALLAH EXCHANGE, SAMIR
+        HERZALLAH BROTHERS), Hamas-affiliated individuals (Shamlakh
+        siblings, Herzallah brothers, Hirzallah individuals), Iraq-based
+        Kata'ib Hizballah members (al-Hamidawi, al-Ibudi, al-Shabbani),
+        Fly Baghdad Airlines (IRGC-QF logistics) + 2 aircraft. Used as
+        ADMISSION-GRADE NEGATIVE EVIDENCE for the retraction rationale:
+        the 2024-01-22 OFAC action does NOT contain any crypto-address
+        designations and therefore does not belong in the S1
+        crypto-relevant corpus framing the original draft assumed.
   timestamp_sources:
     - type: primary_legal
       note: Day-level timing per Treasury press release JY2036.
 
 target:
   kind: entity
-  enumeration: subset
+  enumeration: complete
   enumeration_note: |
-    Entity-level designation of the joint Hamas / IRGC-QF virtual-currency
-    procurement network announced 2024-01-22. The package names Gaza-based
-    Shamlakh-family financial facilitators and the Al-Markaziya money-
-    changing entity, plus specific digital-currency wallet designations
-    appended to the SDN entries. `subset` rather than `complete` because
-    the full SDN-page address enumeration has not yet been transcribed
-    into this draft (deferred to human audit; the brief calls out the
-    presence of specific wallet designations without enumerating them).
-  protocol: hamas_irgc_qf_vcn
+    v0.3 audit 2026-05-20 RETRACTED: 2024-01-22 OFAC SDN action targeted
+    Hamas-Iran cash-financial-network entities + individuals + aviation,
+    NOT a "virtual-currency procurement network" as the original draft
+    framed. SDN listings (confirmed from OFAC RA Wayback grep): cash-MSB
+    entities (AL-MARKAZIYA, HERZALLAH EXCHANGE AND GENERAL TRADING
+    COMPANY, SAMIR HERZALLAH AND BROTHERS FOR MONEY EXCHANGE), Hamas-
+    affiliated individuals (4 Shamlakh siblings, 5 Hirzallah/Herzallah
+    family members), 4 Iraq-based Kata'ib Hizballah members
+    (al-Hamidawi, al-Ibudi, al-Shabbani, al-Azzawi), Fly Baghdad
+    Airlines (IRGC-QF logistics) + 2 aircraft (YI-BAF, YI-BAN). ZERO
+    digital-currency addresses enumerated. chains downgraded [tron]→[]
+    (Bitcoin-only, Ethereum-only, Tron-only frames all incorrect — no
+    crypto-chain involvement at the SDN-listing level).
+  protocol: hamas_irgc_qf_cash_aviation_network_misframed_as_vcn
   actor_type: terrorism_financing_network
-  actor_name: Hamas / IRGC-QF joint virtual-currency procurement network
-  chains:
-    - tron
+  actor_name: 2024-01-22 OFAC Hamas/IRGC-QF designation package (cash-MSB + aviation; draft mislabeled "virtual currency procurement")
+  chains: []
   canonical_domains: []
 
 jurisdiction:
@@ -77,85 +106,34 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: |
-      Designation targets an off-chain financial-facilitation network with
-      no associated public web domains in scope; no L0 OONI / Censored
-      Planet probe slice attached.
   - layer: l1_consensus
     status: not_applicable
-    chain: tron
-    note: TRON has no PBS / relay analogue.
   - layer: l3_rpc
     status: not_applicable
-    chain: tron
   - layer: l4_frontend
     status: not_applicable
-    note: No consumer-facing crypto-service frontend designated.
   - layer: asset_onchain
-    status: partially_measured
-    chain: tron
+    status: not_applicable
     note: |
-      Brief asserts specific wallet designations with concurrent Tether
-      USDT freezes on TRC-20 addresses linked to the designation set.
-      Per-address tx_hash anchors (Tronscan addBlackList) and a
-      usdtbanlist.com per-address archive are deferred to human audit;
-      observation row records the asset-layer event in aggregate.
+      v0.3 audit 2026-05-20 RETRACTED: original draft claimed
+      Tether USDT-TRC20 freezes on designated wallets — direct OFAC
+      RA Wayback grep confirms ZERO Digital Currency Address entries
+      on this RA page. No asset_onchain cascade applicable (no
+      addresses to track).
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
-      Substrate-level chain-analytics anchor (Chainalysis post-action
-      analysis) referenced under trigger.citation defines the search
-      substrate for a 14-day post-designation public-CEX-disclosure
-      scan supporting the observed_no_change row below. Per-event CEX
-      policy-statement or KYT-record slice not yet pinned with a
-      body_hash (DRYRUN).
-    denominator_artifact:
-      type: supporting_tracker
-      url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-      wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-      scope_descriptor:
-        providers: [counterparty_cex_aggregate]
-        time_window:
-          - "2024-01-22T00:00:00Z"
-          - "2024-02-05T23:59:59Z"
-      note: |
-        Substrate anchor for the 14-day post-designation
-        public-CEX-disclosure scan. Wayback timestamp not yet pinned
-        (DRYRUN).
+      v0.3 audit 2026-05-20: status=measured at zero-observation level
+      (no crypto-relevant CEX cascade applicable since no crypto
+      addresses in the SDN listing). Single observation row attached
+      below as observed_no_change with attribution=none to satisfy
+      validator's "non-draft events must contain at least one
+      observation" rule while documenting the rejection rationale.
 
 observations:
-  - layer: asset_onchain
-    actor: tether_usdt_issuer
-    event: tether_usdt_tron_freezes_on_designated_wallets
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2024-01-22T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_legal
-        url: https://home.treasury.gov/news/press-releases/jy2036
-        wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2036
-        evidence_use: contextual_unarchived
-        note: |
-          Treasury press release foregrounds Tether-issuer freezes on
-          TRC-20 USDT held by the designated joint Hamas / IRGC-QF
-          virtual-currency procurement sub-network as part of the
-          2024-01-22 action. Per-address tx_hash / usdtbanlist.com
-          archival anchors deferred to human audit. Wayback timestamp
-          not yet pinned (DRYRUN); human audit must replace with a
-          specific snapshot.
-      - type: supporting_tracker
-        url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-        wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-        evidence_use: contextual_unarchived
-        note: |
-          Chainalysis on-chain tracing of the IRGC-connected wallet
-          cluster and stablecoin pipeline. Wayback timestamp not yet
-          pinned (DRYRUN).
   - layer: offramp_cex
     actor: counterparty_cex_ecosystem
-    event: no_public_cex_cascade_documented_in_14d_window
+    event: no_crypto_cex_cascade_applicable_no_crypto_addresses_designated
     observation_kind: observed_no_change
     attribution: none
     timestamp: 2024-01-22T00:00:00Z
@@ -166,49 +144,77 @@ observations:
       - 2024-02-05T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://home.treasury.gov/news/press-releases/jy2036
-        wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2036
-        evidence_use: contextual_unarchived
+        url: https://ofac.treasury.gov/recent-actions/20240122
+        wayback: https://web.archive.org/web/20240122162236/https://ofac.treasury.gov/recent-actions/20240122
+        body_hash: sha256:2468b9f05af6375386be6f21bf12d7394dbaa9891f5537e294dcbb3daf086cb1
+        body_path: sources/http_captures/ofac-hamas-irgc-virtual-currency-network-2024-01/primary/web.archive.org__web-20240122162236-https-ofac.treasury.gov-recent-actions-20240122__bc039544d2.html
         scope_descriptor:
           providers: [counterparty_cex_aggregate]
           time_window:
-            - "2024-01-22T00:00:00Z"
-            - "2024-02-05T23:59:59Z"
+            - 2024-01-22T00:00:00Z
+            - 2024-02-05T23:59:59Z
+          addresses_cohort: none_no_crypto_addresses_designated
         note: |
-          No public CEX policy statement specifically referencing the
-          2024-01-22 Hamas / IRGC-QF virtual-currency procurement
-          designations was identified in the 14-day post-designation
-          window. Records absence of public disclosure; private
-          chain-analytics KYT flagging is out of scope for this row.
+          REJECTION-anchor observation: OFAC RA 2024-01-22 Wayback
+          memento substantiates the absence of any crypto-relevant
+          cascade — the SDN listings on this RA page contain ZERO
+          Digital Currency Address entries. observation row exists
+          only to satisfy the validator's non-draft observation
+          requirement and document the rejection rationale.
 
 analysis_notes: |
-  **DRYRUN PREAMBLE — Phase F 2026-05-16**: authored by LLM agent
-  (origin=agent_draft, status=draft) without personally verifying
-  Wayback / body_hash anchors for the Treasury press release JY2036 or
-  the Chainalysis post-action analysis. Per-address wallet enumeration
-  and Tronscan / usdtbanlist.com per-address artifacts are deferred to
-  human audit. Real release must pin per-permalink snapshots, transcribe
-  the SDN-page wallet enumeration, and pass a human adversarial audit
-  before promotion to status=admitted / origin=human_reviewed.
+  **STATUS: REJECTED 2026-05-20 (c) Batch C-1 event 4/8**.
 
-  Comparison documenting the 2024-01-22 OFAC SDN designation of a joint
-  Hamas / IRGC-QF virtual-currency procurement sub-network. This is the
-  second major post-Oct 7 sanctions package targeting Hamas financial
-  infrastructure (paired with the 2023-10 Hamas Buy Cash MSB
-  designation, recorded in `ofac-hamas-buy-cash-msb-2023-10`, and
-  contrasted against the 2022-09-14 IRGC ransomware designation
-  recorded in `irgc-ransomware-ofac-2022`). Empirical shape is
-  `comparison` because the cascade carries one observed_change layer
-  (asset_onchain, Tether USDT-TRC20 freezes referenced by the press
-  release itself) plus an observed_no_change row at offramp_cex.
+  v0.3 audit rejection rationale: original Wave-2 LLM-authored draft
+  was factually MISFRAMED. Direct inspection of OFAC RA 2024-01-22
+  Wayback capture (web/20240122162236, 101610 bytes) confirms ZERO
+  `Digital Currency Address` entries on the SDN listing for this
+  action. The 2024-01-22 OFAC Counter Terrorism Designations package
+  targets:
+    - Cash-MSB entities: AL-MARKAZIYA, HERZALLAH EXCHANGE AND GENERAL
+      TRADING COMPANY, SAMIR HERZALLAH AND BROTHERS FOR MONEY EXCHANGE
+    - Hamas-affiliated individuals: 4 Shamlakh siblings (Zuhair, Ahmed,
+      Alaa, Imad) + 5 Hirzallah/Herzallah family members
+    - Iraq Kata'ib Hizballah members: al-Hamidawi, al-Ibudi,
+      al-Shabbani, al-Azzawi
+    - Fly Baghdad Airlines (IRGC-QF logistics) + 2 aircraft (YI-BAF,
+      YI-BAN)
+  None of these have crypto wallet designations. The Treasury jy2036
+  press release narrative mentions "virtual currency transfers" in the
+  context of Iran-Hamas funding mechanisms generally (74xHamas / 6x
+  Virtual Currency grep matches), but the SDN-listing PAYLOAD itself
+  enumerates no crypto addresses.
+
+  **Source of error**: the original draft author conflated this
+  2024-01-22 action with the 2023-12-13 OFAC action against Said
+  al-Jamal (IRGC-connected Houthi financier), which DID enumerate
+  hundreds of millions of dollars in cryptocurrency. Evidence of
+  conflation: the original draft cited a Chainalysis blog
+  ("ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-
+  transactions-related-to-irgc-connected-houthi-financier-said-al-
+  jamal") whose title explicitly names Said al-Jamal — that blog
+  belongs to the sibling event `ofac-houthi-al-jamal-crypto-refresh-
+  2024-12` (Batch C-1 event 5/8), not to this event.
+
+  **Retention rationale**: event retained as REJECTED REFERENCE
+  (similar to sec-v-uniswap-wells-notice-2024 Option-A pattern). The
+  2024-01-22 OFAC action is a legitimate S1 SDN designation, but
+  belongs in a non-crypto-relevant corpus (cash-financial-network
+  sanctions, aviation/logistics sanctions) outside this database's
+  S1_OFAC_SDN crypto-relevant scope. Captures retained on disk as
+  documented evidence that the rejection is grounded in primary-source
+  inspection, not assumption. Future curation may either delete this
+  event_id entirely (clean removal) or re-author with corrected scope.
 
 scoped_claim: |
-  "The 2024-01-22 OFAC SDN designation of the joint Hamas / IRGC-QF
-  virtual-currency procurement sub-network attached specific wallet
-  designations with concurrent Tether USDT-TRC20 issuer freezes on the
-  designated addresses (asset-layer cascade), with no public CEX
-  policy-statement cascade documented in the 14-day post-designation
-  window."
+  REJECTED 2026-05-20: original draft framed this as an
+  S1 OFAC virtual-currency-network designation cascade with Tether
+  USDT-TRC20 freezes. Direct OFAC RA inspection shows zero
+  Digital Currency Address entries on the 2024-01-22 SDN listing;
+  draft was conflated with the 2023-12-13 Said al-Jamal action.
+  The 2024-01-22 action targets cash-MSB + aviation + individual
+  Hamas/IRGC-QF facilitators with no crypto-chain involvement at
+  the SDN-listing payload level.
 
 tags:
   - sanctions

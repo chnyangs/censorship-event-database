@@ -1,17 +1,18 @@
 id: ofac-hamas-buy-cash-msb-2023-10
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 related_events:
   - tether-doj-pig-butchering-freeze-2023
@@ -26,8 +27,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://home.treasury.gov/news/press-releases/jy1816
-      wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy1816
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20231018131253/https://home.treasury.gov/news/press-releases/jy1816
+      body_hash: sha256:a043b8acb03268236237950413f59e2c5fafcfb6c3436209e80a7a7fc672eb2c
+      body_path: sources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/web.archive.org__web-20231018131253-https-home.treasury.gov-news-press-releases-jy1816__2acb79624c.html
       note: |
         US Treasury press release jy1816 (2023-10-18): "Following Terrorist
         Attack on Israel, Treasury Sanctions Hamas Operatives and Financial
@@ -36,30 +38,34 @@ trigger:
         plus the Gaza-based virtual-currency MSB "Buy Cash Money and Money
         Transfer Company" (Khan Yunis) with at least one attached digital-
         currency address. Cleanest geopolitical-trigger sanctions cascade
-        since Tornado Cash 2022-08. DRYRUN: pinned Wayback snapshot and
-        body_hash for the press release are deferred to the human-audit
-        pass; marked evidence_use=contextual_unarchived per validator
-        policy for unarchived sources.
+        since Tornado Cash 2022-08. v0.3 audit 2026-05-20 (c) Batch C-1:
+        Wayback memento 20231018131253 pinned (176777 bytes), grep verifies
+        115xHamas variants + 20xBuy Cash + 14xjy1816 + 14xGaza + 12xvirtual
+        currency + 11xSDN variants.
     - type: primary_legal
       url: https://ofac.treasury.gov/recent-actions/20231018
-      wayback: https://web.archive.org/web/2023/https://ofac.treasury.gov/recent-actions/20231018
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20231018160335/https://ofac.treasury.gov/recent-actions/20231018
+      body_hash: sha256:33326cbd390fe44b26bd87803ad887f81b660aaf82221baac68a694430f415f0
+      body_path: sources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/web.archive.org__web-20231018160335-https-ofac.treasury.gov-recent-actions-20231018__acf8500722.html
       note: |
         OFAC Recent Actions page for 2023-10-18 (Counter Terrorism
         Designations). Companion to jy1816; carries the SDN list entries
-        and the attached digital-currency address roster (full enumeration
-        deferred to human audit). DRYRUN: pinned Wayback snapshot deferred
-        to human audit.
+        and the attached digital-currency address roster. v0.3 audit
+        2026-05-20 (c) Batch C-1: Wayback memento 20231018160335 pinned
+        (86493 bytes), grep verifies 16xSDN + 10xHAMAS + 5xGaza + 3xKhan
+        Yunis + 3xBUY CASH + 1xjy1816.
     - type: supporting_journalism
       url: https://www.trmlabs.com/resources/blog/us-doj-charges-hamas-leaders-with-october-7-attacks-details-hamas-use-of-cryptocurrencies
-      wayback: https://web.archive.org/web/2024/https://www.trmlabs.com/resources/blog/us-doj-charges-hamas-leaders-with-october-7-attacks-details-hamas-use-of-cryptocurrencies
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20250328082128/https://www.trmlabs.com/resources/blog/us-doj-charges-hamas-leaders-with-october-7-attacks-details-hamas-use-of-cryptocurrencies
+      body_hash: sha256:0cfc282602b581e4c0351be29591f98af9d80acfa1d34bebce6249837550d706
+      body_path: sources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/web.archive.org__web-20250328082128-https-www.trmlabs.com-resources-blog-us-doj-charges-hamas-leaders-with-october-7-attacks-details-hamas-use-of-cryptocurrencies__16d300ec9d.html
       note: |
         TRM Labs chain-analytics blog summarising the OFAC 2023-10-18
         designation and subsequent enforcement context (Buy Cash MSB,
         Hamas-linked USDT wallets). Triangulation source for the
-        designation's chain-analytics framing. DRYRUN: pinned Wayback
-        snapshot deferred to human audit.
+        designation's chain-analytics framing. v0.3 audit 2026-05-20
+        (c) Batch C-1: Wayback memento 20250328082128 pinned (138465 bytes),
+        grep verifies 112xhamas variants + 17xGaza + 2xOctober 18 + 1xjy1816.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -70,26 +76,31 @@ trigger:
 
 target:
   kind: entity
-  enumeration: subset
+  enumeration: complete
   enumeration_note: |
     The 2023-10-18 SDN action enumerates ten Hamas-affiliated individuals
     plus the Gaza-based virtual-currency MSB "Buy Cash Money and Money
-    Transfer Company" (Khan Yunis), with at least one attached digital-
-    currency address. This event scopes the target to the Buy Cash MSB
-    entity (the virtual-currency / off-ramp node of the action) because
-    that is the load-bearing actor for the offramp_cex and asset_onchain
-    cascade layers. The ten individual operatives are listed in the same
-    press release but are not the focal target here; enumeration=subset
-    reflects that intentional scoping. Full per-address enumeration of
-    the Buy Cash digital-currency roster is deferred to the human-audit
-    pass.
+    Transfer Company" (Khan Yunis). v0.3 audit 2026-05-20 (c) Batch C-1
+    factual correction: full enumeration confirmed from OFAC RA HTML —
+    Buy Cash MSB carries EXACTLY ONE digital-currency address, a Bitcoin
+    XBT address `19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW`. The original draft
+    incorrectly inferred Ethereum/USDT chain involvement from contemporary
+    Tether freeze sweeps (those sweeps target OTHER Hamas-affiliated
+    addresses across the broader RA, NOT Buy Cash's single XBT address).
+    enumeration=complete (was subset) now reflects the correct 1-address
+    scope. This event scopes the target to the Buy Cash MSB entity (the
+    virtual-currency / off-ramp node of the action) because that is the
+    load-bearing actor for the offramp_cex severance layer. The ten
+    individual operatives are listed in the same press release but are
+    not the focal target here.
   entity: buy_cash_money_and_money_transfer_company
   actor_type: virtual_currency_msb
   actor_name: Buy Cash Money and Money Transfer Company (Khan Yunis, Gaza)
   chains:
     - bitcoin
-    - ethereum
   canonical_domains: []
+  addresses:
+    - "19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW"
 
 jurisdiction:
   - US
@@ -103,42 +114,45 @@ coverage:
       bracketed without a confirmed domain. Status remains not_measured
       pending human-audit pinning of any Buy Cash-affiliated domain.
   - layer: l1_consensus
-    status: not_measured
-    chain: ethereum
+    status: not_applicable
+    chain: bitcoin
     note: |
-      Post-Merge event (Ethereum Merge was 2022-09-15; 398 days prior).
-      PBS / MEV-Boost relay infrastructure exists at event time, so the
-      construct is observable; per-event L1 consensus-layer relay-filter
-      bracketing snapshots are not pinned at draft time. Status remains
-      not_measured.
+      Buy Cash MSB target is Bitcoin-only (single XBT address per OFAC RA);
+      Bitcoin has no PBS/MEV-Boost-equivalent L1 consensus filtering layer
+      to bracket. v0.3 audit 2026-05-20 factual correction: status changed
+      from not_measured (Ethereum-framed) to not_applicable (Bitcoin-native).
   - layer: l3_rpc
-    status: not_measured
+    status: not_applicable
+    chain: bitcoin
     note: |
-      Post-Merge event; MEV-Blocker (2023-03-27) and Flashbots Protect
-      are operational L3 RPC-layer compliance substrates at event time.
-      Per-event provider filter-list bracketing snapshots are not pinned
-      at draft time. Status remains not_measured.
+      Buy Cash MSB target is Bitcoin-only; MEV-Blocker / Flashbots Protect
+      are Ethereum-side RPC compliance substrates not applicable to a
+      Bitcoin-only target. v0.3 audit 2026-05-20 factual correction:
+      status changed from not_measured to not_applicable (Bitcoin-native).
   - layer: l4_frontend
     status: not_measured
     note: |
-      No canonical Buy Cash MSB frontend pinned at draft time. Status
-      remains not_measured pending human-audit identification of any
-      operator-controlled UI surface.
+      No canonical Buy Cash MSB frontend pinned. Status remains
+      not_measured pending identification of any operator-controlled UI
+      surface (likely never had a public clearnet web presence given the
+      MSB's Gaza-based informal-finance profile).
   - layer: asset_onchain
-    status: partially_measured
-    chain: ethereum
+    status: not_applicable
+    chain: bitcoin
     note: |
-      Load-bearing layer (1 of 2). Contemporaneous chain-analytics
-      reporting (TRM Labs, Elliptic) and Tether's own October 2023
-      announcement document USDT issuer-level freezes on wallet
-      clusters tagged to the Buy Cash / Hamas roster following the
-      2023-10-18 OFAC designation. Tether's 2023-10-16 announcement of
-      32-address freeze (~$900k USDT) and subsequent OFAC-coordinated
-      sweeps reach Buy-Cash-affiliated wallets. Status is
-      partially_measured rather than measured because per-address
-      Etherscan freeze-tx anchors and a full usdtbanlist.com per-address
-      sweep against the Buy Cash roster are deferred to the human-audit
-      pass. DRYRUN.
+      v0.3 audit 2026-05-20 (c) Batch C-1 FACTUAL CORRECTION: status
+      changed from partially_measured (Ethereum-framed) to not_applicable
+      (Bitcoin-native). Buy Cash MSB's only OFAC-named address is the
+      Bitcoin XBT `19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW`. Bitcoin has no
+      issuer-level freeze primitive (no UTXO clawback / blacklist method),
+      so asset_onchain layer is structurally not_applicable for this
+      target. The original draft incorrectly attributed Tether 32/41-wallet
+      freeze sweeps to Buy Cash; those sweeps target OTHER Hamas-affiliated
+      EVM addresses (from the same RA's individual designations or
+      independent chain-analytics clusters), NOT Buy Cash's XBT address.
+      The Tether sweeps remain notable contextual background for the
+      post-Oct-7 enforcement window (see analysis_notes) but are NOT
+      load-bearing evidence for this event's asset_onchain layer.
   - layer: offramp_cex
     status: partially_measured
     scope:
@@ -169,8 +183,9 @@ observations:
     sources:
       - type: primary_legal
         url: https://home.treasury.gov/news/press-releases/jy1816
-        wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy1816
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20231018131253/https://home.treasury.gov/news/press-releases/jy1816
+        body_hash: sha256:a043b8acb03268236237950413f59e2c5fafcfb6c3436209e80a7a7fc672eb2c
+        body_path: sources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/web.archive.org__web-20231018131253-https-home.treasury.gov-news-press-releases-jy1816__2acb79624c.html
         scope_descriptor:
           providers:
             - buy_cash_money_and_money_transfer_company
@@ -182,64 +197,38 @@ observations:
           of Buy Cash MSB) and the mechanism (US-property block + 50%
           rule + secondary-sanctions exposure for any non-US ramp that
           services the entity). attribution=direct because the source is
-          the designating authority naming the action. DRYRUN: pinned
-          Wayback snapshot deferred to human audit.
+          the designating authority naming the action.
       - type: primary_legal
         url: https://ofac.treasury.gov/recent-actions/20231018
-        wayback: https://web.archive.org/web/2023/https://ofac.treasury.gov/recent-actions/20231018
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20231018160335/https://ofac.treasury.gov/recent-actions/20231018
+        body_hash: sha256:33326cbd390fe44b26bd87803ad887f81b660aaf82221baac68a694430f415f0
+        body_path: sources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/web.archive.org__web-20231018160335-https-ofac.treasury.gov-recent-actions-20231018__acf8500722.html
         note: |
           OFAC Recent Actions page (2023-10-18) carries the Buy Cash SDN
           entry and at least one attached digital-currency address.
           Independent legal-source anchor for the offramp_cex severance
-          claim. DRYRUN: pinned Wayback snapshot deferred to human
-          audit.
-  - layer: asset_onchain
-    actor: tether_usdt_issuer
-    event: tether_freezes_hamas_linked_wallet_clusters_post_ofac_designation
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2023-10-18T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: supporting_journalism
-        url: https://www.coindesk.com/business/2023/12/09/tether-freezes-41-crypto-wallets-tied-to-sanctions
-        wayback: https://web.archive.org/web/2023/https://www.coindesk.com/business/2023/12/09/tether-freezes-41-crypto-wallets-tied-to-sanctions
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - tether_usdt_issuer
-          time_window:
-            - 2023-10-16T00:00:00Z
-            - 2023-12-09T23:59:59Z
-        note: |
-          CoinDesk coverage of Tether's 2023-12 41-wallet freeze sweep
-          (preceded by the 2023-10-16 32-wallet announcement covering
-          Hamas/Ukraine-linked clusters worth ~$900k USDT). Triangulates
-          asset_onchain issuer response in the post-October-7 window
-          that overlaps the Buy Cash designation. attribution=plausible
-          rather than direct because the cited freeze sweeps name
-          Hamas-affiliated clusters without per-address mapping to the
-          Buy Cash roster at this draft stage. DRYRUN: pinned Wayback
-          snapshot deferred to human audit.
-      - type: supporting_journalism
-        url: https://www.trmlabs.com/resources/blog/us-doj-charges-hamas-leaders-with-october-7-attacks-details-hamas-use-of-cryptocurrencies
-        wayback: https://web.archive.org/web/2024/https://www.trmlabs.com/resources/blog/us-doj-charges-hamas-leaders-with-october-7-attacks-details-hamas-use-of-cryptocurrencies
-        evidence_use: contextual_unarchived
-        note: |
-          TRM Labs chain-analytics writeup summarising Hamas's heavy USDT
-          use (Bitok-cited $41M cluster) and the Buy Cash MSB role.
-          Triangulation source for the asset_onchain freeze attribution.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
+          claim.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F S1_ofac_sdn
-  discovery; lean run): authored by LLM agent without personally
-  verifying Wayback / body_hash anchors; origin=agent_draft per
-  validator policy. Real release must replace this DRYRUN marker with
-  a human-verified audit after pinning real archive anchors and
-  promote origin to human_reviewed.
+  **v0.3 audit 2026-05-20 (c) Batch C-1 promoted draft→admitted with
+  FACTUAL CORRECTION**: original Wave-2 draft incorrectly framed this
+  event as 2-layer cascade (offramp_cex direct + asset_onchain plausible
+  with Tether USDT freezes). Direct inspection of the OFAC RA Wayback
+  capture (web/20231018160335) shows Buy Cash MSB carries EXACTLY ONE
+  digital-currency address — Bitcoin XBT `19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW`,
+  not any Ethereum/USDT address. Bitcoin has no issuer-level freeze
+  primitive. The Tether 32/41-wallet freeze sweeps documented in
+  contemporary chain-analytics reporting (CoinDesk, TRM Labs) target
+  OTHER Hamas-affiliated EVM addresses from the same RA's individual
+  designations or independent cluster analysis — NOT Buy Cash's XBT
+  address. Repair: asset_onchain layer changed to not_applicable
+  (Bitcoin-native, no freeze primitive); chains downgraded
+  [bitcoin, ethereum] → [bitcoin]; asset_onchain observation row
+  REMOVED. Event remains comparison/empirical_case at 1-layer
+  (offramp_cex direct via SDN US-property block) rather than 2-layer.
+  audit_log iteration: audit_id 307 recorded initial YES based on
+  draft's 2-layer claim; this analysis_notes update captures the
+  factual-correction amendment performed during YAML patching.
 
   Comparison-shape S1 ofac_sdn_designation event sibling to
   suex-ofac-2021 (first exchange-level SDN), chatex-ofac-2021, and
@@ -247,13 +236,10 @@ analysis_notes: |
   Paper-relevant because this is the cleanest geopolitical-trigger
   sanctions cascade since Tornado Cash 2022-08: a single
   press-release-level action (jy1816) targets a virtual-currency MSB
-  (Buy Cash, Khan Yunis) and triggers (a) US-ramp severance at the
+  (Buy Cash, Khan Yunis) and triggers US-ramp severance at the
   offramp_cex layer by construction (SDN + 50% rule + secondary
-  sanctions) and (b) asset_onchain issuer compliance freezes (Tether
-  2023-10-16 32-wallet sweep covering ~$900k USDT in
-  Hamas/Ukraine-linked clusters; subsequent 2023-12-09 41-wallet
-  precautionary sweep). Two observed_change layers at attribution
-  direct + plausible -> empirical_case admission tier.
+  sanctions). Single observed_change layer at attribution direct →
+  empirical_case admission tier.
 
   Distinguishing features vs. siblings: (a) trigger is a
   geopolitical-emergency post-attack designation (vs. ransomware
@@ -262,10 +248,22 @@ analysis_notes: |
   foreign-operated virtual-currency MSB with no US-hosted
   infrastructure dependency — direct US ramp closure is the action
   itself, but no canonical Buy Cash frontend has been pinned for the
-  L0/L4 layers; (c) Tether's October 2023 freeze actions were
-  contemporaneous with the OFAC designation rather than the delayed
-  responses observed in suex-ofac-2021 (Tether retroactively swept
-  the SUEX ETH addresses 27 months later on 2023-12-09).
+  L0/L4 layers; (c) target is Bitcoin-only (single XBT address), which
+  structurally rules out issuer-level asset_onchain freeze cascades
+  available to EVM-targeting siblings (cryptex-ofac-2024,
+  tornado-cash-ofac-2022).
+
+  Contextual background (NOT load-bearing for this event's
+  asset_onchain layer): Tether's 2023-10-16 32-wallet announcement
+  (~$900k USDT) and subsequent 2023-12-09 41-wallet precautionary
+  sweep targeted Hamas-affiliated EVM addresses from the same RA's
+  broader designations. These sweeps illustrate post-Oct-7 issuer
+  compliance posture but cannot be cited as asset_onchain evidence
+  for Buy Cash specifically (no per-address mapping to the XBT
+  address). CoinDesk + TRM Labs captures remain in
+  sources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/ as
+  contextual artifacts but are no longer cited as load-bearing
+  evidence in this YAML.
 
   Follow-up directions (post-admission): (1) human-audit Wayback +
   body_hash pin of jy1816 and the OFAC Recent Actions 2023-10-18

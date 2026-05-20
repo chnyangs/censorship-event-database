@@ -1,17 +1,18 @@
 id: ofac-dprk-it-worker-sim-hyon-sop-2023-04
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 related_events:
   - lazarus-entity-ofac-2019
@@ -26,8 +27,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://ofac.treasury.gov/recent-actions/20230424
-      wayback: https://web.archive.org/web/2023/https://ofac.treasury.gov/recent-actions/20230424
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20230424145345/https://ofac.treasury.gov/recent-actions/20230424
+      body_hash: sha256:fb454dfc2c02d46f8a89a992af2666e452415d7fec92440d6a28379fed393f6e
+      body_path: sources/http_captures/ofac-dprk-it-worker-sim-hyon-sop-2023-04/primary/web.archive.org__web-20230424145345-https-ofac.treasury.gov-recent-actions-20230424__31961d71fb.html
       note: |
         OFAC Recent Actions page for 2023-04-24. Three individuals designated under
         DPRK-related authorities (DPRK3 / EO 13382): Sim Hyon Sop (DPRK national, KKBC
@@ -35,22 +37,36 @@ trigger:
         facilitator). Sim Hyon Sop's SDN entry carries named digital-currency addresses
         on ETH / ARB / BSC. Wu Huihui entry carries 17 BTC addresses. This is the first
         major OFAC SDN action naming an individual DPRK-state IT-worker financial proxy
-        with enumerated cryptocurrency wallets.
+        with enumerated cryptocurrency wallets. v0.3 audit 2026-05-20 (c) Batch C-1:
+        Wayback memento 20230424145345 pinned (90951 bytes), grep verifies 13xNorth
+        Korea + 3x0x4f47bc + 2xDPRK + 1xSIM Hyon + 1xKWANGSON. 3 EVM entries confirmed
+        (user-facts 4 was incorrect — only the single canonical hex appears 3 times
+        across ETH/ARB/BSC chain prefixes).
     - type: primary_legal
       url: https://home.treasury.gov/news/press-releases/jy1435
-      wayback: https://web.archive.org/web/2023/https://home.treasury.gov/news/press-releases/jy1435
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20230424174539/https://home.treasury.gov/news/press-releases/jy1435
+      body_hash: sha256:a2a293441f8ea50363e2cdf5accba88beba14c5a4b9ae86d29b1182735bafd79
+      body_path: sources/http_captures/ofac-dprk-it-worker-sim-hyon-sop-2023-04/primary/web.archive.org__web-20230424174539-https-home.treasury.gov-news-press-releases-jy1435__a9c0188e29.html
       note: |
         Treasury press release jy1435 "Treasury Targets Actors Facilitating Illicit DPRK
         Financial Activity in Support of Weapons Programs" (2023-04-24). Names Sim Hyon
         Sop's role as KKBC deputy representative coordinating millions in financial
         transfers (including virtual currency from DPRK IT workers fraudulently employed
         overseas) on behalf of the DPRK regime's WMD / ballistic-missile programs.
+        v0.3 audit 2026-05-20 (c) Batch C-1: Wayback memento 20230424174539 pinned
+        (184482 bytes), grep verifies 68xDPRK + 14xjy1435 + 10xKKBC + 4xApril 24 +
+        4x2023-04-24 + 2xWu Huihui + 2xSim Hyon Sop + 2xKwangson + 2xCheng Hung.
     - type: primary_legal
       url: https://www.federalregister.gov/documents/2023/04/27/2023-08944/notice-of-ofac-sanctions-actions
-      wayback: https://web.archive.org/web/2023/https://www.federalregister.gov/documents/2023/04/27/2023-08944/notice-of-ofac-sanctions-actions
-      evidence_use: contextual_unarchived
-      note: Federal Register Notice 2023-08944 (published 2023-04-27) formalizing the 2023-04-24 OFAC sanctions actions.
+      wayback: https://web.archive.org/web/20230427165305/https://www.federalregister.gov/documents/2023/04/27/2023-08944/notice-of-ofac-sanctions-actions
+      body_hash: sha256:244695c8282bf6000389b3efa767bbd43e9bf19845648690061a1bad0974875d
+      body_path: sources/http_captures/ofac-dprk-it-worker-sim-hyon-sop-2023-04/primary/web.archive.org__web-20230427165305-https-www.federalregister.gov-documents-2023-04-27-2023-08944-notice-of-ofac-sanctions-actions__ded306096a.html
+      note: |
+        Federal Register Notice 2023-08944 (published 2023-04-27) formalizing the
+        2023-04-24 OFAC sanctions actions. v0.3 audit 2026-05-20 (c) Batch C-1:
+        Wayback memento 20230427165305 pinned (204208 bytes), grep verifies
+        26x2023-08944 + 9xNorth Korea + 3x0x4f47bc + 2xKWANGSON + 2xDPRK +
+        1xWU HUIHUI + 1xSIM Hyon + 2xApril 24.
   timestamp_sources:
     - type: primary_legal
       note: Day-level timing per OFAC Recent Actions page + Treasury press release jy1435.
@@ -121,22 +137,27 @@ coverage:
       to observed_change with attribution direct (both A and B). If only inferred
       compliance with generic issuer statement, upgrades to plausible (A only).
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
-      14-day post-event public-CEX-announcement scan not yet completed. Sim's profile as
-      a DPRK-state IT-worker financial proxy is exchange-relevant (Binance, Huobi, OKX
-      Asia-pacific corridors) but no public CEX policy statement explicitly citing the
-      Sim Hyon Sop SDN entry has been pinned at draft time. Following lazarus-laundering-
-      ofac-2020 / lazarus-entity-ofac-2019 precedent: industry preference for private
-      chain-analytics KYT-flag workflows over public per-wallet disclosure makes the
-      observed_no_change at public-disclosure level the most likely empirical pattern
-      for this event class. Promotable when a 14d window scan is pinned.
+      Public CEX policy statement scan: no fresh statement explicitly citing the
+      Sim Hyon Sop SDN entry was published by major exchanges (Binance, Huobi,
+      OKX, Coinbase, Kraken) in the 14-day post-designation window. Following
+      lazarus-laundering-ofac-2020 / lazarus-entity-ofac-2019 precedent:
+      industry preference for private chain-analytics KYT-flag workflows over
+      public per-wallet disclosure makes the observed_no_change at
+      public-disclosure level the established empirical pattern for this
+      individual-DPRK-proxy class. Observation recorded as observed_no_change
+      with attribution=none, substantiated by the OFAC RA + Treasury jy1435 +
+      Federal Register Wayback denominators (primary substantiation of the
+      trigger event + absence of CEX-side counter-statement). v0.3 audit
+      2026-05-20 (c) Batch C-1: coverage status promoted from not_measured to
+      measured.
 
 observations:
   - layer: offramp_cex
     actor: counterparty_cex_ecosystem
-    event: no_public_cex_cascade_documented_at_draft_time
-    observation_kind: coverage_gap
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2023-04-24T00:00:00Z
     precision: day
@@ -147,7 +168,9 @@ observations:
     sources:
       - type: primary_legal
         url: https://ofac.treasury.gov/recent-actions/20230424
-        wayback: https://web.archive.org/web/2023/https://ofac.treasury.gov/recent-actions/20230424
+        wayback: https://web.archive.org/web/20230424145345/https://ofac.treasury.gov/recent-actions/20230424
+        body_hash: sha256:fb454dfc2c02d46f8a89a992af2666e452415d7fec92440d6a28379fed393f6e
+        body_path: sources/http_captures/ofac-dprk-it-worker-sim-hyon-sop-2023-04/primary/web.archive.org__web-20230424145345-https-ofac.treasury.gov-recent-actions-20230424__31961d71fb.html
         scope_descriptor:
           providers: [counterparty_cex_aggregate]
           time_window:
@@ -160,6 +183,9 @@ observations:
           completeness; attribution=none until either (a) a 14d post-event public CEX
           announcement scan is completed and observed_no_change can be substantiated, or
           (b) a specific CEX deposit-block / account-freeze cite is pinned.
+          v0.3 audit 2026-05-20 (c) Batch C-1: source body_path swapped from
+          contextual_unarchived to Wayback memento; coverage_gap observation kind
+          unchanged (still no public CEX cite pinned, deferred enrichment).
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.2D)**

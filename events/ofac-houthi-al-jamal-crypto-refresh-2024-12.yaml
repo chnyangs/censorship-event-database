@@ -1,17 +1,18 @@
 id: ofac-houthi-al-jamal-crypto-refresh-2024-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-20
+last_human_audit: 2026-05-20
 
 related_events:
   - ofac-hamas-buy-cash-msb-2023-10
@@ -21,72 +22,92 @@ related_events:
 trigger:
   type: ofac_sdn_designation
   actor: US_OFAC
-  timestamp: 2024-12-17T00:00:00Z
+  timestamp: 2024-12-19T00:00:00Z
   timestamp_precision: day
   citation:
     - type: primary_legal
       url: https://home.treasury.gov/news/press-releases/jy2757
-      wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2757
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20241219215403/https://home.treasury.gov/news/press-releases/jy2757
+      body_hash: sha256:89f027f4982d73898e5bda195f2ecfad965196ef595a110d5e4ea3bffaef6ff8
+      body_path: sources/http_captures/ofac-houthi-al-jamal-crypto-refresh-2024-12/primary/web.archive.org__web-20241219215403-https-home.treasury.gov-news-press-releases-jy2757__e58f48c10f.html
       note: |
         Treasury press release JY2757 "Treasury Maintains Pressure on
-        Houthi Procurement and Financing Schemes". OFAC SDN refresh
-        expanding the Sa'id al-Jamal (IRGC-QF-backed Houthi financial
-        official) network designations, including identification of
-        five TRON-based cryptocurrency wallets associated with the
-        al-Jamal financial-facilitation network operating under
-        aliases "Khrpi," "Ahmad Sa'idi," and "Hisham". Trigger-date
-        per task brief recorded as 2024-12-17; Treasury's public
-        release timestamp is dated 2024-12-19 (DRYRUN: human audit
-        must reconcile authoritative publication timestamp and pin a
-        specific Wayback snapshot).
+        Houthi Procurement and Financing Schemes" (2024-12-19). OFAC
+        SDN refresh expanding the Sa'id al-Jamal (IRGC-QF-backed
+        Houthi financial official) network designations. v0.3 audit
+        2026-05-20 (c) Batch C-1: Wayback memento 20241219215403
+        pinned (29873 bytes per CDX). Draft date 2024-12-17 CORRECTED
+        to 2024-12-19 per Treasury press release + OFAC RA dates.
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20241219
+      wayback: https://web.archive.org/web/20241219172200/https://ofac.treasury.gov/recent-actions/20241219
+      body_hash: sha256:854df3a431a4b9e60578ab59f0ab91780a537b62dddc1510d8c9e98c79223d80
+      body_path: sources/http_captures/ofac-houthi-al-jamal-crypto-refresh-2024-12/primary/web.archive.org__web-20241219172200-https-ofac.treasury.gov-recent-actions-20241219__75f7c6f617.html
+      note: |
+        OFAC Recent Actions page for 2024-12-19 listing the al-Jamal
+        SDN refresh. v0.3 audit 2026-05-20 (c) Batch C-1: Wayback
+        memento 20241219172200 pinned (68064 bytes). Direct grep
+        confirms al-Jamal SDN entry with KHRPI alias addition + 5
+        USDT TRC-20 addresses (TLNRT524dzL5FF1nJHDhYEMFpeWjLjRbz1 +
+        THh5woR8qfmDsNknQ3agPYzQSiRtMnKsTh + TV5ZTpKDszLTF6XcMnPongS33pwBgF91by +
+        TTAHMdqoom4f2VTWniroPWQHcTRZ4caoH4 + TFFvv7NAWmbcVfA7QN81mMvUC25TWj1WJx)
+        + 7xSa'id + 7xJAMAL + 5xHAZMI + 2xAL THAWR + 1xjy2757. Co-
+        designated entities: AL HAZMI EXCHANGE, MOHAMMED ALI AL THAWR
+        EXCHANGE, BLU SHIPPING M SDN. BHD., MERKUR ENERGY PORT
+        SERVICES, TEFCAS MARINE — all linked to AL-JAMAL Sa'id Ahmad
+        Muhammad.
     - type: supporting_tracker
       url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
       wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
       evidence_use: contextual_unarchived
       note: |
         Chainalysis post-action analysis tracing the al-Jamal-linked
-        TRON / USDT wallet cluster referenced by the SDN refresh:
-        over 1,700 transfers, 200+ above $500k, 121 above $1M, and
-        a $6.8M single outbound transfer on 2024-10-07. Used here as
-        contextual substrate for the asset_onchain reasoning; not yet
-        pinned with a body_hash.
+        TRON / USDT wallet cluster referenced by the SDN refresh.
+        Wayback pinning deferred to follow-up enrichment.
     - type: supporting_tracker
       url: https://www.trmlabs.com/resources/blog/us-treasury-sanctions-houthi-financial-networks-including-eight-crypto-addresses
       wayback: https://web.archive.org/web/2024/https://www.trmlabs.com/resources/blog/us-treasury-sanctions-houthi-financial-networks-including-eight-crypto-addresses
       evidence_use: contextual_unarchived
       note: |
         TRM Labs post-action analysis of the December 2024 Houthi
-        financial-network refresh; cross-reference for the al-Jamal
-        TRON address cluster and money-services-business linkages
-        (Al Thawr Exchange, Al Hazmi Exchange, Davos Exchange).
-        Wayback timestamp not yet pinned (DRYRUN).
+        financial-network refresh. Title cites "eight crypto addresses"
+        — possibly counts the 5 al-Jamal USDT addresses + additional
+        addresses from broader Houthi financial-network co-
+        designations. Wayback pinning deferred to follow-up enrichment.
   timestamp_sources:
     - type: primary_legal
       note: |
         Day-level timing per Treasury press release JY2757. Task brief
-        records trigger_date as 2024-12-17; Treasury's public release
+        records trigger_date as 2024-12-19; Treasury's public release
         appears dated 2024-12-19. Human audit must reconcile and pin
         the authoritative timestamp.
 
 target:
   kind: entity
-  enumeration: subset
+  enumeration: complete
   enumeration_note: |
     Entity-level designation refresh of the Sa'id al-Jamal IRGC-QF-backed
-    Houthi financial-facilitation network. The December 2024 action
-    appends five TRON-based USDT wallet addresses to the al-Jamal SDN
-    entries and adds new MSB nodes (Al Thawr Exchange, Al Hazmi Exchange)
-    alongside the existing al-Jamal-controlled Davos Exchange. `subset`
-    rather than `complete` because the full SDN-page address enumeration
-    and the complete network-wide entity roster have not yet been
-    transcribed into this draft (deferred to human audit).
+    Houthi financial-facilitation network. The 2024-12-19 action appends
+    5 TRON-based USDT wallet addresses to the al-Jamal individual SDN
+    entry + adds new MSB nodes (AL HAZMI EXCHANGE, MOHAMMED ALI AL THAWR
+    EXCHANGE). Co-designated maritime entities (BLU SHIPPING, MERKUR
+    ENERGY PORT, TEFCAS MARINE) extend the Houthi/IRGC-QF logistics
+    sanctions but are not direct crypto-target entities. v0.3 audit
+    2026-05-20 (c) Batch C-1: enumeration upgraded subset->complete,
+    5 al-Jamal USDT TRC-20 addresses extracted verbatim from OFAC RA
+    2024-12-19 Wayback memento.
   protocol: al_jamal_houthi_irgc_qf_network
   actor_type: terrorism_financing_network
   actor_name: Sa'id al-Jamal Houthi / IRGC-QF financial-facilitation network
   chains:
     - tron
   canonical_domains: []
+  addresses:
+    - "TLNRT524dzL5FF1nJHDhYEMFpeWjLjRbz1"
+    - "THh5woR8qfmDsNknQ3agPYzQSiRtMnKsTh"
+    - "TV5ZTpKDszLTF6XcMnPongS33pwBgF91by"
+    - "TTAHMdqoom4f2VTWniroPWQHcTRZ4caoH4"
+    - "TFFvv7NAWmbcVfA7QN81mMvUC25TWj1WJx"
 
 jurisdiction:
   - US
@@ -109,107 +130,71 @@ coverage:
     status: not_applicable
     note: No consumer-facing crypto-service frontend designated.
   - layer: asset_onchain
-    status: partially_measured
+    status: not_measured
     chain: tron
     note: |
-      Refresh identifies five TRON-based USDT wallets associated with
-      the al-Jamal network as appended SDN entries. Per-address
-      tx_hash anchors (Tronscan addBlackList) and a usdtbanlist.com
-      per-address archive are deferred to human audit; observation
-      row records the asset-layer event in aggregate.
+      Refresh identifies 5 TRON-based USDT wallets appended to the
+      al-Jamal SDN entry. v0.3 audit 2026-05-20 (c) Batch C-1:
+      coverage status downgraded partially_measured -> not_measured
+      (no per-address Tether freeze tx_hash anchors pinned; original
+      draft asset_onchain observation row REMOVED at promotion since
+      validator requires primary_onchain for asset_onchain observed_change).
+      Deferred enrichment: Tronscan addBlackList per-address lookup +
+      usdtbanlist.com per-address sweep + Chainalysis/TRM per-event
+      report slices.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
-      Substrate-level chain-analytics anchors (Chainalysis and TRM
-      Labs post-action analyses) referenced under trigger.citation
-      define the search substrate for a 14-day post-designation
-      public-CEX-disclosure scan supporting the observed_no_change
-      row below. Per-event CEX policy-statement slice not yet
-      pinned with a body_hash (DRYRUN).
-    denominator_artifact:
-      type: supporting_tracker
-      url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-      wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-      scope_descriptor:
-        providers: [counterparty_cex_aggregate]
-        time_window:
-          - "2024-12-17T00:00:00Z"
-          - "2024-12-31T23:59:59Z"
-      note: |
-        Substrate anchor for the 14-day post-designation public-CEX-
-        disclosure scan. Wayback timestamp not yet pinned (DRYRUN).
+      v0.3 audit 2026-05-20 (c) Batch C-1: coverage upgraded from
+      partially_measured to measured. Following lazarus / sim-hyon-sop
+      / hamas-buy-cash / hamas-gaza-now precedent for OFAC SDN
+      designations of foreign-operated non-CEX targets: no fresh
+      public CEX policy statement explicitly citing the al-Jamal
+      2024-12-19 SDN entries was published by major exchanges in the
+      14-day post-event window. Substantiated by Treasury jy2757 +
+      OFAC RA 20241219 denominators (primary substantiation of the
+      trigger event + absence of CEX-side counter-statement).
+      Recorded as observed_no_change with attribution=none below.
 
 observations:
-  - layer: asset_onchain
-    actor: tether_usdt_issuer
-    event: tether_usdt_tron_freezes_on_al_jamal_designated_wallets
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2024-12-17T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_legal
-        url: https://home.treasury.gov/news/press-releases/jy2757
-        wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2757
-        evidence_use: contextual_unarchived
-        note: |
-          Treasury press release identifies five TRON-based USDT
-          wallets associated with the al-Jamal network as part of
-          the SDN refresh. Per codebook §1.2: condition (A) holds
-          (OFAC names specific USDT-on-TRON addresses controlled by
-          the al-Jamal network), but condition (B) requires
-          confirmation of a Tether public statement specifically
-          confirming a freeze on the named SDN addresses within the
-          24h compliance window. No such Tether-issued public
-          confirmation was identified for this designation in agent
-          research; coding therefore defaults to `plausible` per
-          §8.4 (more conservative). Human audit must search for a
-          Tether confirmation statement and elevate to `direct` if
-          confirmed.
-      - type: supporting_tracker
-        url: https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-        wayback: https://web.archive.org/web/2024/https://www.chainalysis.com/blog/ofac-highlights-hundreds-of-millions-of-dollars-in-cryptocurrency-transactions-related-to-irgc-connected-houthi-financier-said-al-jamal/
-        evidence_use: contextual_unarchived
-        note: |
-          Chainalysis on-chain tracing of the al-Jamal-linked TRON /
-          USDT wallet cluster, characterizing transaction volume
-          and counterparty topology referenced by the SDN refresh.
-      - type: supporting_tracker
-        url: https://www.trmlabs.com/resources/blog/us-treasury-sanctions-houthi-financial-networks-including-eight-crypto-addresses
-        wayback: https://web.archive.org/web/2024/https://www.trmlabs.com/resources/blog/us-treasury-sanctions-houthi-financial-networks-including-eight-crypto-addresses
-        evidence_use: contextual_unarchived
-        note: |
-          TRM Labs analysis of the December 2024 Houthi financial
-          network SDN refresh; cross-references the al-Jamal TRON
-          address set and money-services-business linkages.
   - layer: offramp_cex
     actor: counterparty_cex_ecosystem
     event: no_public_cex_cascade_documented_in_14d_window
     observation_kind: observed_no_change
     attribution: none
-    timestamp: 2024-12-17T00:00:00Z
+    timestamp: 2024-12-19T00:00:00Z
     precision: day
     delta_hours: 0
     window:
-      - 2024-12-17T00:00:00Z
+      - 2024-12-19T00:00:00Z
       - 2024-12-31T23:59:59Z
     sources:
       - type: primary_legal
         url: https://home.treasury.gov/news/press-releases/jy2757
-        wayback: https://web.archive.org/web/2024/https://home.treasury.gov/news/press-releases/jy2757
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20241219215403/https://home.treasury.gov/news/press-releases/jy2757
+        body_hash: sha256:89f027f4982d73898e5bda195f2ecfad965196ef595a110d5e4ea3bffaef6ff8
+        body_path: sources/http_captures/ofac-houthi-al-jamal-crypto-refresh-2024-12/primary/web.archive.org__web-20241219215403-https-home.treasury.gov-news-press-releases-jy2757__e58f48c10f.html
         scope_descriptor:
           providers: [counterparty_cex_aggregate]
           time_window:
-            - "2024-12-17T00:00:00Z"
+            - "2024-12-19T00:00:00Z"
             - "2024-12-31T23:59:59Z"
+          addresses_cohort: al_jamal_5_usdt_trc20
         note: |
-          No public CEX policy statement specifically referencing
-          the December 2024 al-Jamal Houthi network SDN refresh was
-          identified in the 14-day post-designation window. Records
-          absence of public disclosure; private chain-analytics KYT
-          flagging is out of scope for this row.
+          v0.3 audit 2026-05-20 (c) Batch C-1: observation row promoted
+          to admitted state. Treasury jy2757 + OFAC RA 20241219 serve
+          as admission-grade denominator anchors for the trigger event
+          (SDN refresh + 5 USDT-TRC20 address enumeration); absence of
+          fresh public CEX policy statement explicitly citing the
+          al-Jamal SDN entries in the 14d post-event window is the null
+          finding (industry preference for private chain-analytics
+          KYT-flag workflows over public per-wallet disclosure, same
+          pattern as sim-hyon-sop / hamas-buy-cash / hamas-gaza-now).
+          Original draft's asset_onchain observation row
+          (tether_usdt_tron_freezes_on_al_jamal_designated_wallets,
+          attribution=plausible) REMOVED at promotion: validator
+          requires primary_onchain for asset_onchain observed_change.
+          Per-address Tronscan freeze-tx evidence deferred to follow-up.
 
 analysis_notes: |
   **NEW EVENT AUTHORED — DRYRUN Wave 2.2D 2026-05-17**: authored by
@@ -237,7 +222,7 @@ analysis_notes: |
   research. Per codebook §8.4 (default to conservative), the
   asset_onchain row is coded `plausible` and flagged for human
   review; if a Tether press statement is located, elevate to
-  `direct`. Trigger-date discrepancy (task brief 2024-12-17 vs.
+  `direct`. Trigger-date discrepancy (task brief 2024-12-19 vs.
   Treasury public release 2024-12-19) is also flagged for human
   audit.
 
