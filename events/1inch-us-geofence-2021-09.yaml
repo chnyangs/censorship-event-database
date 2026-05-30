@@ -1,17 +1,17 @@
 id: 1inch-us-geofence-2021-09
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - uniswap-frontend-delisting-2023
@@ -152,48 +152,39 @@ observations:
     actor: frontend:1inch_foundation
     event: 1inch_network_geofenced_us_vantage_users_from_app_1inch_io
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2021-09-29T00:00:00Z
     precision: day
     delta_hours: 0
     country: US
     sources:
-      - type: primary_corporate
-        url: https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
-        wayback: https://web.archive.org/web/2021/https://help.1inch.io/en/articles/5099197-which-countries-are-restricted-from-using-the-1inch-dapp
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains: [app.1inch.io]
-          countries: [US]
-          providers: [1inch_foundation_frontend]
-          time_window:
-            - 2021-09-29T00:00:00Z
-            - 2026-05-16T00:00:00Z
-        note: |
-          1inch Help Center "Which countries are restricted from using
-          the 1inch dApp" article — canonical corporate-statement
-          source documenting the US-vantage frontend restriction.
-          observation_kind=observed_change at l4_frontend: the 1inch
-          Network frontend operator chose to add an IP-based geofence
-          gate against US-vantage users on app.1inch.io.
-          attribution=direct because the frontend operator publicly
-          claimed ownership of the restriction as a voluntary
-          terms-of-use compliance step. DRYRUN: Wayback anchor
-          unverified by LLM agent at authoring time.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://cryptoslate.com/1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep/
-        wayback: https://web.archive.org/web/2021/https://cryptoslate.com/1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210930195439/https://cryptoslate.com/1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep/
+        body_hash: sha256:87ad7bd98fcbbe6a4e6be4640ac3cbdf7e8577970bac02469ab9d48445ad86c9
+        body_path: sources/http_captures/1inch-us-geofence-2021-09/primary/web.archive.org__web-20210901000000-https-cryptoslate.com-1inch-geofences-us-ip-addresses-says-new-product-for-the-american-market-is-in-prep__c72e4057ad.html
+        evidence_use: replayable
         note: |
-          CryptoSlate (2021-09-30) confirms the geofence pop-up and
-          IP-detection layer on app.1inch.io against US IP addresses
-          and reports 1inch's own framing of the action as a
-          voluntary terms-of-use compliance step pending the launch
-          of a US-targeted 1inch Pro product. Independent
-          contemporaneous journalism corroborating the Help Center
-          statement. DRYRUN: Wayback anchor unverified.
-
+          CryptoSlate 2021-09-30: 1inch began geofencing US IP addresses from
+          the 1inch dApp (effective ~2021-09-29), pending a separate US-market
+          product. Independent semi-primary anchor (the help.1inch.io restricted-
+          countries primary URL has no Wayback memento).
+      - type: semi_primary_wayback
+        url: https://www.theblock.co/linked/119055/dex-aggregator-1inch-blocks-out-us-trades-in-preparation-for-separate-american-platform
+        wayback: https://web.archive.org/web/20211001000000/https://www.theblock.co/linked/119055/dex-aggregator-1inch-blocks-out-us-trades-in-preparation-for-separate-american-platform
+        body_hash: sha256:4af48ed8d37143a6efaad103fe89456aa9963e4ea1e56c52a3494cfd96f58b58
+        body_path: sources/http_captures/1inch-us-geofence-2021-09/primary/web.archive.org__web-20211001000000-https-www.theblock.co-linked-119055-dex-aggregator-1inch-blocks-out-us-trades-in-preparation-for-separate-american-platform__a0864347cd.html
+        evidence_use: replayable
+        note: |
+          The Block 2021-09-30 corroboration of the 1inch US geofence ahead of
+          a separate American platform. Independent second semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, geofence) by
+  human:xiangwen. help.1inch.io restricted-countries primary unarchivable
+  -> 2 semi_primary_wayback (CryptoSlate + The Block, Wayback 20210930195439
+  / 20211001...). attribution direct->plausible. l4_frontend
+  observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 S5
   corporate-frontend discovery; lean run): authored by LLM agent
   without personally verifying Wayback/body_hash; origin=agent_draft

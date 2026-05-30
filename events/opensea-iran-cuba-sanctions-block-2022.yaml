@@ -1,21 +1,17 @@
-# DRYRUN: agent_draft authored without live source archival. All citations
-# below are evidence_use: contextual_unarchived; Wayback links are wildcard
-# placeholders pending human review and replayable archival. This draft does
-# NOT support admission-tier claims.
 id: opensea-iran-cuba-sanctions-block-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 trigger:
   type: corporate_policy_change
@@ -32,8 +28,8 @@ trigger:
         publicly confirmed via Twitter on 2022-03-03 that as a US-based
         company it complies with US sanctions law and blocks users in
         OFAC-sanctioned jurisdictions (Iran, Cuba, etc.). Reports of mass
-        Iranian-account terminations begin same day. Wayback wildcard
-        placeholder pending replayable archival.
+        Iranian-account terminations begin same day. Replayable Wayback
+        anchors pinned in observation sources (CoinDesk + Decrypt).
   timestamp_sources:
     - type: supporting_journalism
       url: https://www.coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up
@@ -90,38 +86,31 @@ observations:
     actor: frontend:opensea
     event: opensea_terminated_iranian_user_accounts_under_ofac_compliance
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-03-03T00:00:00Z
     precision: day
     delta_hours: 0
     country: IR
     sources:
-      - type: primary_corporate
-        url: https://opensea.io/blog
-        wayback: https://web.archive.org/web/2022*/opensea.io/blog
-        evidence_use: contextual_unarchived
-        note: |
-          OpenSea public statement (Twitter / blog, 2022-03-03):
-          "We're a US-based company and comply with US sanctions law,
-          meaning we're required to block people in places on the US
-          sanctions lists from using OpenSea." Direct corporate attribution
-          for the Iranian-account terminations.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up
-        wayback: https://web.archive.org/web/2022*/coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up
-        evidence_use: contextual_unarchived
-        note: CoinDesk 2022-03-03 — OpenSea bars Iranian users; reports of accounts terminated without prior notice and verified collections removed.
-      - type: supporting_journalism
+        wayback: https://web.archive.org/web/20220303190923/https://www.coindesk.com/policy/2022/03/03/opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up/
+        body_hash: sha256:9c5c1b99e54c8e83ffcd85a6cd7e174404cb385188ef5aa1d84359c11921ad4f
+        body_path: sources/http_captures/opensea-iran-cuba-sanctions-block-2022/primary/web.archive.org__web-20220304000000-https-www.coindesk.com-policy-2022-03-03-opensea-bars-iranian-users-as-us-sanctions-talk-ramps-up__a05d5c04bc.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2022-03-03: OpenSea barred Iranian users amid US-sanctions
+          pressure. Independent semi-primary anchor (replaces generic opensea.io/blog
+          primary).
+      - type: semi_primary_wayback
         url: https://decrypt.co/94365/opensea-deletes-iranian-users-accounts-citing-sanctions
-        wayback: https://web.archive.org/web/2022*/decrypt.co/*opensea*iran*
-        evidence_use: contextual_unarchived
-        note: Decrypt 2022-03 coverage of mass Iranian-account terminations including artist Parin Heidari (resident outside Iran 13+ years).
-      - type: supporting_journalism
-        url: https://www.artnews.com/art-news/news/opensea-deplatforms-iranian-users-us-sanctions-1234621105/
-        wayback: https://web.archive.org/web/2022*/artnews.com/*opensea*iran*
-        evidence_use: contextual_unarchived
-        note: ARTnews 2022-03 — OpenSea deplatforms Iranian users in compliance with US sanctions.
-
+        wayback: https://web.archive.org/web/20220306181511/https://decrypt.co/94365
+        body_hash: sha256:4f995a6ba2f5537b22045a2934c24326aac441910c47d5719a49b76390d3e769
+        body_path: sources/http_captures/opensea-iran-cuba-sanctions-block-2022/primary/web.archive.org__web-20220306181511-https-decrypt.co-94365__71d7fa78b7.html
+        evidence_use: replayable
+        note: |
+          Decrypt 2022-03 coverage of OpenSea deleting Iranian users' accounts
+          citing sanctions compliance. Independent second semi-primary anchor.
   - layer: l4_frontend
     actor: frontend:opensea
     event: opensea_terminated_cuban_artist_accounts_including_diaspora_passport_holders
@@ -163,6 +152,12 @@ observations:
         note: Washington Times 2022-12-20 — Cuban artists blocked from OpenSea.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, geofence) by
+  human:xiangwen. opensea.io/blog generic primary -> 2 semi_primary_wayback
+  (CoinDesk + Decrypt, Wayback 20220303190923 / 20220306181511).
+  attribution direct->plausible. l4_frontend observed_change/plausible.
+  comparison/empirical_case preserved.
+
   comparison — S5 corporate compliance event mirroring the Uniswap-Labs
   L4-only frontend split, but with two distinct sub-actions: (1) Iranian
   user-account terminations from 2022-03-03 in the wake of US-sanctions
