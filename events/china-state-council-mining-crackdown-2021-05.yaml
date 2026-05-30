@@ -1,17 +1,17 @@
 id: china-state-council-mining-crackdown-2021-05
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - china-pboc-crypto-ban-2021
@@ -26,6 +26,9 @@ trigger:
   citation:
     - type: primary_legal
       url: http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
+      wayback: https://web.archive.org/web/20210521153842/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
+      body_hash: sha256:0dc104d32ebe49522590e6f1b999aac1a88304a93c84b85db74857499d6bb2c4
+      body_path: sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521153842-http-www.gov.cn-guowuyuan-2021-05-21-content_5610192.htm__a4e95ada52.html
       wayback: https://web.archive.org/web/2021/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
       evidence_use: contextual_unarchived
       note: |
@@ -183,6 +186,23 @@ observations:
     precision: day
     country: CN
     sources:
+      - type: primary_legal
+        url: http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
+        wayback: https://web.archive.org/web/20210521153842/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
+        body_hash: sha256:0dc104d32ebe49522590e6f1b999aac1a88304a93c84b85db74857499d6bb2c4
+        body_path: sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521153842-http-www.gov.cn-guowuyuan-2021-05-21-content_5610192.htm__a4e95ada52.html
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [CN]
+          time_window:
+            - 2021-05-21T00:00:00Z
+            - 2021-09-30T23:59:59Z
+        note: |
+          State Council Financial Stability and Development Committee
+          (FSDC) statement 2021-05-21 calling to "crack down on Bitcoin
+          mining and trading behavior". Primary directive anchor for the
+          hashrate-share collapse cascade. Wayback memento 20210521153842
+          captured 2026-05-21.
       - type: semi_primary_measurement
         url: https://ccaf.io/cbnsi/cbeci/mining_map
         wayback: https://web.archive.org/web/2021/https://ccaf.io/cbnsi/cbeci/mining_map
@@ -240,6 +260,31 @@ observations:
     precision: day
     country: CN
     sources:
+      - type: primary_legal
+        url: http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
+        wayback: https://web.archive.org/web/20210521153842/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
+        body_hash: sha256:0dc104d32ebe49522590e6f1b999aac1a88304a93c84b85db74857499d6bb2c4
+        body_path: sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521153842-http-www.gov.cn-guowuyuan-2021-05-21-content_5610192.htm__a4e95ada52.html
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [CN]
+          providers: [huobi, hashcow, btc_top]
+          time_window:
+            - 2021-05-21T00:00:00Z
+            - 2021-06-30T23:59:59Z
+        note: |
+          State Council FSDC 2021-05-21 statement is the primary directive
+          driving the mining-service + trading pause announcements.
+          Wayback memento 20210521153842 captured 2026-05-21.
+      - type: semi_primary_wayback
+        url: https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html
+        wayback: https://web.archive.org/web/20210521160706/https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html
+        body_hash: sha256:dd0f548582f23ecad905039c1e4aeba7fbb49a7aac10482edc94a059fcd5f47c
+        body_path: sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521160706-https-www.cnbc.com-2021-05-21-bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html__1d9eaab499.html
+        evidence_use: replayable
+        note: |
+          CNBC 2021-05-21 contemporaneous coverage of the FSDC crackdown
+          call and the Bitcoin price drop. Independent semi-primary anchor.
       - type: supporting_journalism
         url: https://www.aljazeera.com/economy/2021/5/24/china-crackdown-forces-crypto-mining-operators-to-end-operations
         wayback: https://web.archive.org/web/2021/https://www.aljazeera.com/economy/2021/5/24/china-crackdown-forces-crypto-mining-operators-to-end-operations
@@ -287,6 +332,16 @@ observations:
       announcement body_hashes are already attached.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/China cluster)
+  by human:xiangwen as empirical_case. State Council FSDC gov.cn statement
+  Wayback 20210521153842 (primary_legal, contemporaneous) added as primary
+  anchor to both l1_consensus + offramp_cex observations; CNBC Wayback
+  20210521160706 semi_primary_wayback. CCAF mining-map measurement retained.
+  Both observed_change attribution=plausible (joint cause with province bans).
+  State Council 2021-05-21 "crack down on Bitcoin mining and trading" ->
+  CN hashrate share 46%->0% + Huobi/HashCow/BTC.TOP service pauses.
+  comparison/empirical_case preserved.
+
   NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase C of the
   2026-05-16 staged-release plan, S4 nation-state precursor
   fill for the PRC 2021 mining-and-trading crackdown cascade.
