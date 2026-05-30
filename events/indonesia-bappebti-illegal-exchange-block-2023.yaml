@@ -1,17 +1,17 @@
 id: indonesia-bappebti-illegal-exchange-block-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - malaysia-sc-binance-disable-2021
@@ -20,7 +20,7 @@ related_events:
 trigger:
   type: nation_state_block
   actor: ID_BAPPEBTI
-  timestamp: 2023-07-25T00:00:00Z
+  timestamp: 2023-04-21T00:00:00Z
   timestamp_precision: day
   citation:
     - type: primary_legal
@@ -40,7 +40,7 @@ trigger:
         BAPPEBTI-licensed (CPFAK) traders. Indonesian users must use
         BAPPEBTI-licensed local exchanges (Tokocrypto, Indodax, et al.).
         DRYRUN: pinned snapshot timestamp and body_hash capture deferred
-        to non-DRYRUN release; the 2023-07-25 day-level anchor approximates
+        to non-DRYRUN release; the 2023-04-21 day-level anchor approximates
         BAPPEBTI's mid-2023 PASTI Task Force enforcement wave reported in
         Indonesian press (detik.com "Ratusan Exchanger Kripto 'Nakal'
         Diblokir Kominfo" wave) and follows the July 2022 binance.com PSE
@@ -69,7 +69,7 @@ trigger:
   timestamp_sources:
     - type: supporting_journalism
       note: |
-        Day-level approximation 2023-07-25 anchored to the BAPPEBTI-Kominfo
+        Day-level approximation 2023-04-21 anchored to the BAPPEBTI-Kominfo
         mid-2023 enforcement wave. Precise daily ordinance is deferred to
         the human-audit pass.
 
@@ -114,7 +114,7 @@ coverage:
       row is admitted. For non-DRYRUN release: capture OONI web-
       connectivity measurement IDs for the named domains across major
       Indonesian ASNs (Telkomsel, Indosat, XL Axiata, Telkom Indonesia)
-      spanning a pre/post window around 2023-07-25.
+      spanning a pre/post window around 2023-04-21.
   - layer: l1_consensus
     status: not_applicable
   - layer: l3_rpc
@@ -162,14 +162,16 @@ observations:
     event: offshore_cex_frontends_blocked_id_via_kominfo
     observation_kind: observed_change
     attribution: direct
-    timestamp: 2023-07-25T00:00:00Z
+    timestamp: 2023-04-21T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
       - type: primary_legal
         url: https://bappebti.go.id/
-        wayback: https://web.archive.org/web/2023/https://bappebti.go.id/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230128094038/https://bappebti.go.id/
+        body_hash: sha256:e01b8550f8c09ad60f34ad155707003fc2b680ccfa95520e670397acd2f0bca1
+        body_path: sources/http_captures/indonesia-bappebti-illegal-exchange-block-2023/primary/web.archive.org__web-20230128094038-https-bappebti.go.id__3e3508bf50.html
+        evidence_use: replayable
         note: |
           BAPPEBTI enforcement order (operationalized via Kominfo ISP-
           level domain blocking) is the legal instrument compelling the
@@ -180,27 +182,33 @@ observations:
           DRYRUN: 2023-calendar-folder Wayback pointer; pinned Wayback /
           body_hash anchors for BAPPEBTI press release enumerating the
           blocked domains deferred to human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://inet.detik.com/law-and-policy/d-6685046/ratusan-exchanger-kripto-nakal-diblokir-kominfo
-        wayback: https://web.archive.org/web/2023/https://inet.detik.com/law-and-policy/d-6685046/ratusan-exchanger-kripto-nakal-diblokir-kominfo
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230425201141/https://inet.detik.com/law-and-policy/d-6685046/ratusan-exchanger-kripto-nakal-diblokir-kominfo
+        body_hash: sha256:d74c0ed2a12a34bb21882eb4a859c0c09c2106209917804268f41071ac4af59b
+        body_path: sources/http_captures/indonesia-bappebti-illegal-exchange-block-2023/primary/web.archive.org__web-20230425201141-https-inet.detik.com-law-and-policy-d-6685046-ratusan-exchanger-kripto-nakal-diblokir-kominfo__48f00e04c6.html
+        evidence_use: replayable
         note: |
-          detik.com reporting confirms Kominfo's coordinated block of
-          hundreds of unlicensed crypto exchanges per BAPPEBTI request.
-          DRYRUN: 2023-calendar-folder Wayback pointer.
+          detik.com reporting (published 2023-04-21) confirms Kominfo's
+          coordinated block of hundreds of unlicensed crypto exchangers
+          (incl. Binance) per BAPPEBTI request. This is the verifiable,
+          memento-backed April 2023 enforcement wave the event is
+          re-scoped to; Wayback 20230425201141 pinned.
   - layer: offramp_cex
     actor: cex:offshore_cex_id_cohort
     event: offshore_cex_idr_rail_severance_cascade
     observation_kind: observed_change
     attribution: plausible
-    timestamp: 2023-07-25T00:00:00Z
+    timestamp: 2023-04-21T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
       - type: primary_legal
         url: https://bappebti.go.id/
-        wayback: https://web.archive.org/web/2023/https://bappebti.go.id/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230128094038/https://bappebti.go.id/
+        body_hash: sha256:e01b8550f8c09ad60f34ad155707003fc2b680ccfa95520e670397acd2f0bca1
+        body_path: sources/http_captures/indonesia-bappebti-illegal-exchange-block-2023/primary/web.archive.org__web-20230128094038-https-bappebti.go.id__3e3508bf50.html
+        evidence_use: replayable
         note: |
           BAPPEBTI-Kominfo block cascades into IDR-rail severance at the
           offshore-CEX cohort because the blocked frontends are the
@@ -215,17 +223,21 @@ observations:
           banking-prohibition directive). DRYRUN: 2023-calendar-folder
           Wayback pointer; pinned anchors for offshore-CEX IDR-rail
           withdrawal flow deferred to human audit.
-      - type: supporting_journalism
-        url: https://kumparan.com/kumparanbisnis/bappebti-gandeng-kominfo-blokir-platform-kripto-luar-negeri-239TA5gFYDn
-        wayback: https://web.archive.org/web/2023/https://kumparan.com/kumparanbisnis/bappebti-gandeng-kominfo-blokir-platform-kripto-luar-negeri-239TA5gFYDn
-        evidence_use: contextual_unarchived
-        note: |
-          Kumparan reporting confirms BAPPEBTI's channeling of Indonesian
-          crypto users to licensed local exchanges (Tokocrypto, Indodax)
-          via the foreign-platform block. DRYRUN: 2023-calendar-folder
-          Wayback pointer.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison, others
+  9/11) by human:xiangwen as empirical_case. RE-DATED 2023-07-25 ->
+  2023-04-21 after human audit: the agent draft conflated two distinct
+  enforcement waves (detik d-6685046 = 2023-04 wave; kumparan = 2024-07
+  Instagram-account block) under a non-existent 2023-07-25 date. Re-scoped
+  to the verifiable April 2023 BAPPEBTI-Kominfo block of hundreds of
+  unlicensed exchangers (incl. Binance). Anchored: bappebti.go.id
+  (primary_legal, Wayback 20230128094038, body_hash e01b8550...) + detik
+  d-6685046 (semi_primary_wayback, published 2023-04-21, Wayback
+  20230425201141, body_hash d74c0ed2...). DROPPED kumparan (2024-07-18,
+  wrong wave). l4_frontend observed_change/direct + offramp_cex
+  observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: agent-drafted candidate
   documenting BAPPEBTI's 2023 enforcement wave (in coordination with
   Kominfo) blocking unlicensed offshore cryptocurrency exchanges
@@ -270,14 +282,14 @@ analysis_notes: |
   Kominfo TRUST+ Positif page or domain-block enumeration showing the
   named domains, (3) BAPPEBTI Regulation No. 8/2021 Article 5 text, and
   (4) OONI web-connectivity measurement IDs across major Indonesian
-  ASNs for the named domains spanning a pre/post 2023-07-25 window —
+  ASNs for the named domains spanning a pre/post 2023-04-21 window —
   the OONI slice is the precondition for elevating l0_network from
   `not_measured` to `partially_measured` per the Kazakhstan honesty
   rule. Marked evidence_use=contextual_unarchived on all citations to
   flag the unarchived state per validator policy.
 
 scoped_claim: |
-  "BAPPEBTI's 2023-07-25 enforcement order, routed via Kominfo ISP-level
+  "BAPPEBTI's 2023-04-21 enforcement wave, routed via Kominfo ISP-level
   domain blocking, directly compelled Indonesian-geo unreachability of
   unlicensed offshore crypto-exchange frontends (binance.com, bybit.com,
   okx.com, kucoin.com, mexc.com) under BAPPEBTI Regulation No. 8/2021
