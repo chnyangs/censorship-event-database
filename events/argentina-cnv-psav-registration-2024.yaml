@@ -1,17 +1,17 @@
 id: argentina-cnv-psav-registration-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - argentina-uif-resolution-300-2014
@@ -25,8 +25,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
-      wayback: https://web.archive.org/web/2024/https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240326083716/https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
+      body_hash: sha256:0ef4637e4a3961a2061738616706166f0e46058fbb912c1f01d1a856d1fa7144
+      body_path: sources/http_captures/argentina-cnv-psav-registration-2024/primary/web.archive.org__web-20240326083716-https-www.boletinoficial.gob.ar-detalleAviso-primera-305110-20240325__6c05882b65.html
+      evidence_use: replayable
       note: |
         Boletín Oficial de la República Argentina — publication of
         Comisión Nacional de Valores (CNV) Resolución General N°
@@ -49,20 +51,19 @@ trigger:
         applicants resident, domiciled, or incorporated in
         jurisdictions on the FATF non-cooperative / high-risk list
         or in non-cooperative tax-transparency jurisdictions.
-        Specific Wayback snapshot timestamp requires re-pinning in
-        human audit before this citation may serve as an admission
-        anchor.
+        Wayback memento 20240326083716 captured 2026-05-21.
     - type: supporting_tracker
       url: https://digitalpolicyalert.org/event/18948-implemented-cnv-resolution-on-registry-of-virtual-asset-service-providers-resolution-9942024
-      wayback: https://web.archive.org/web/2024/https://digitalpolicyalert.org/event/18948-implemented-cnv-resolution-on-registry-of-virtual-asset-service-providers-resolution-9942024
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20250430212451/https://digitalpolicyalert.org/event/18948-implemented-cnv-resolution-on-registry-of-virtual-asset-service-providers-resolution-9942024
+      body_hash: sha256:0035b97d15f8cfd67f7350593bf57b741f400fbf7a98c867af43e26cdbecbed4
+      body_path: sources/http_captures/argentina-cnv-psav-registration-2024/primary/web.archive.org__web-20250430212451-https-digitalpolicyalert.org-event-18948-implemented-cnv-resolution-on-registry-of-virtual-asset-service-providers-resolution-994202__95ba618c7c.html
+      evidence_use: replayable
       note: |
         Digital Policy Alert tracker entry for "Argentina: Implemented
         CNV Resolution on Registry of Virtual Asset Service Providers
         (Resolution 994/2024)", indexing the 2024-03-25 effective
         date and the FATF-aligned AML/CFT scope of the PSAV regime.
-        Specific Wayback snapshot timestamp requires re-pinning in
-        human audit.
+        Wayback memento 20250430212451 captured 2026-05-21.
     - type: supporting_journalism
       url: https://www.marval.com/publicacion/se-reglamenta-la-inscripcion-de-los-proveedores-de-servicios-de-activos-virtuales-15792?lang=en
       wayback: https://web.archive.org/web/2024/https://www.marval.com/publicacion/se-reglamenta-la-inscripcion-de-los-proveedores-de-servicios-de-activos-virtuales-15792?lang=en
@@ -141,7 +142,7 @@ coverage:
       Argentine PSAV-registry regime; the resolution does not
       direct stablecoin issuers to freeze addresses.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
       CNV RG 994/2024 is by construction an off-ramp-layer signal:
       it imposes a registration prerequisite on PSAVs (exchanges,
@@ -193,8 +194,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
-        wayback: https://web.archive.org/web/2024/https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20240326083716/https://www.boletinoficial.gob.ar/detalleAviso/primera/305110/20240325
+        body_hash: sha256:0ef4637e4a3961a2061738616706166f0e46058fbb912c1f01d1a856d1fa7144
+        body_path: sources/http_captures/argentina-cnv-psav-registration-2024/primary/web.archive.org__web-20240326083716-https-www.boletinoficial.gob.ar-detalleAviso-primera-305110-20240325__6c05882b65.html
+        evidence_use: replayable
         note: |
           Resolución General CNV N° 994/2024 is the legal
           instrument. It imposes a class-level PSAV registration
@@ -205,11 +208,18 @@ observations:
           records that the cascade surface at offramp_cex is class-
           level (PSAVs as a class) rather than exchange-specific in
           the available public record. attribution=none consistent
-          with observed_no_change rows per codebook §1.1. Specific
-          Wayback snapshot timestamp requires re-pinning in human
-          audit.
+          with observed_no_change rows per codebook §1.1. Wayback
+          memento 20240326083716 captured 2026-05-21.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. Boletín Oficial Wayback memento
+  20240326083716 (contemporaneous) + Digital Policy Alert tracker
+  Wayback memento 20250430212451 captured 2026-05-21 with replayable
+  body_hash. Marval law-firm summary retained as contextual_unarchived.
+  coverage[offramp_cex] partially_measured->measured. Classification
+  null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-tier
   contextual case for Resolución General CNV N° 994/2024, issued
   by Argentina's Comisión Nacional de Valores (CNV / National

@@ -1,17 +1,17 @@
 id: bolivia-bcb-crypto-prohibition-2014
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - thailand-bot-bitcoin-prohibition-2013
@@ -23,6 +23,19 @@ trigger:
   timestamp: 2014-05-06T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.bcb.gob.bo/webdocs/files_noticias/NP%2062%20Uso%20de%20Monedas%20Virtuales.pdf
+      body_hash: sha256:9bfff6619c90767577289a870b5c5278ae432994e1f019cf510236d51e3e171d
+      body_path: sources/http_captures/bolivia-bcb-crypto-prohibition-2014/primary/www.bcb.gob.bo__webdocs-files_noticias-NP-2062-20Uso-20de-20Monedas-20Virtuales.pdf__251b4ea430.bin
+      evidence_use: replayable
+      note: |
+        Banco Central de Bolivia press release "NP 62 — Uso de Monedas
+        Virtuales" (official BCB communiqué reiterating the Resolution
+        044/2014 prohibition on non-state-issued currencies). Live
+        bcb.gob.bo capture 2026-05-21 (2-page PDF). The original
+        Resolucion_044_2014.pdf URL is no longer live (404) and has no
+        Wayback memento; this official BCB press release is the
+        primary_government anchor.
     - type: primary_legal
       url: https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
       wayback: https://web.archive.org/web/2014/https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
@@ -52,10 +65,12 @@ trigger:
         prohibition and authorized regulated crypto transactions via
         the Bolivian banking system; that reversal is recorded in a
         separate event file when authored.)
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/
-      wayback: https://web.archive.org/web/2014/https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20201112040703/https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/
+      body_hash: sha256:6562c5b3f764c25e85a4bc68ea10e8cf4af01af1253c37bcaf992f94712144ad
+      body_path: sources/http_captures/bolivia-bcb-crypto-prohibition-2014/primary/web.archive.org__web-20201112040703-https-www.cityam.com-bitcoin-banned-bolivian-central-bank-threat-national-currency__d6abb0b57c.html
+      evidence_use: replayable
       note: |
         City A.M. contemporaneous (2014-06) English-language coverage
         of BCB Resolution 044/2014, naming the Banco Central de
@@ -143,7 +158,7 @@ coverage:
       admin path (USDT first issued ~2014-10; chain-wide admin freezes
       arose later). not_applicable on construct-did-not-exist grounds.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     scope:
       - bolivian_crypto_user_class
     note: |
@@ -164,16 +179,20 @@ observations:
   - layer: offramp_cex
     actor: regulator:bcb
     event: bolivian_class_level_crypto_prohibition_no_observable_offramp_cascade
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2014-05-06T00:00:00Z
     precision: day
     delta_hours: 0
+    window:
+      - 2014-05-06T00:00:00Z
+      - 2016-12-31T23:59:59Z
     sources:
-      - type: primary_legal
-        url: https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
-        wayback: https://web.archive.org/web/2014/https://www.bcb.gob.bo/webdocs/resoluciones_directorio/Resolucion_044_2014.pdf
-        evidence_use: contextual_unarchived
+      - type: primary_government
+        url: https://www.bcb.gob.bo/webdocs/files_noticias/NP%2062%20Uso%20de%20Monedas%20Virtuales.pdf
+        body_hash: sha256:9bfff6619c90767577289a870b5c5278ae432994e1f019cf510236d51e3e171d
+        body_path: sources/http_captures/bolivia-bcb-crypto-prohibition-2014/primary/www.bcb.gob.bo__webdocs-files_noticias-NP-2062-20Uso-20de-20Monedas-20Virtuales.pdf__251b4ea430.bin
+        evidence_use: replayable
         scope_descriptor:
           providers:
             - bolivian_crypto_user_class
@@ -190,8 +209,8 @@ observations:
           exchange of meaningful scale existed in 2014-05 to cease
           operating in response. The scope_descriptor records the
           falsifiable 2014-05-06 to 2016-12-31 window for the class-
-          level scope (Bolivian crypto-user class). coverage_gap is
-          only retained on status=draft per the validator; this event
+          level scope (Bolivian crypto-user class). observed_no_change
+          anchors the null_case posture for this event
           stays draft until a human reviewer decides whether to admit
           the row as observed_no_change (which would require an
           admission-grade replayable anchor) or to retire the event
@@ -202,6 +221,16 @@ observations:
           human-audit pass.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. BCB press release NP-62 captured live
+  2026-05-21 as primary_government (sha256:9bfff6619c90...; the original
+  Resolucion_044_2014.pdf is 404 with no Wayback). CityAM Wayback
+  20201112040703 reclassified semi_primary_wayback. observation
+  coverage_gap->observed_no_change. coverage[offramp_cex]
+  not_measured->measured. Bolivia 2014-05-06 became world's first total
+  crypto ban; class-level prospective prohibition, no domestic exchange
+  to cease. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Phase E follow-on
   authoring pass after the 2026-05-16 pre-Bitcoin baseline 2008-2012
   lean run. This event populates the historical_baseline_2013_2016
