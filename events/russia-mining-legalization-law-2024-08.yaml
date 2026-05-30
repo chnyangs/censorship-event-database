@@ -1,17 +1,17 @@
 id: russia-mining-legalization-law-2024-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - russia-mining-regional-ban-2024-12
@@ -23,9 +23,11 @@ trigger:
   timestamp: 2024-08-08T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: primary_legal
+    - type: semi_primary_wayback
       url: https://tass.com/economy/1826725
-      wayback: https://web.archive.org/web/2024/https://tass.com/economy/1826725
+      wayback: https://web.archive.org/web/20240808183801/https://tass.com/economy/1826725
+      body_hash: sha256:86e1df49cc1a8f46eb4ae6af5fa30153edd8834806cb237971da4c00aca7a4ab
+      body_path: sources/http_captures/russia-mining-legalization-law-2024-08/primary/web.archive.org__web-20240808183801-https-tass.com-economy-1826725__265b736651.html
       evidence_use: contextual_unarchived
       note: |
         TASS English-language announcement dated 2024-08-08 reporting
@@ -45,9 +47,11 @@ trigger:
         and requires human-audit re-pinning before any
         admission-anchor use; evidence_use=contextual_unarchived in
         the interim.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
-      wayback: https://web.archive.org/web/2024/https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
+      wayback: https://web.archive.org/web/20240808145931/https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
+      body_hash: sha256:5baf01f176986fa9e9f1006fc0353e58c5623ce7a786bdeb7693e999e96a536c
+      body_path: sources/http_captures/russia-mining-legalization-law-2024-08/primary/web.archive.org__web-20240808145931-https-bitcoinmagazine.com-business-putin-signs-law-legalizing-cryptocurrency-mining-in-russia__f9146cd7b5.html
       evidence_use: contextual_unarchived
       note: |
         Bitcoin Magazine contemporaneous English-language coverage of
@@ -114,7 +118,7 @@ coverage:
       layer. not_applicable on construct-not-engaged grounds,
       consistent with the sibling russia-dfa-law-2020 L0 treatment.
   - layer: l1_consensus
-    status: not_measured
+    status: measured
     chain: bitcoin
     note: |
       Federal Law No. 221-FZ is the permissive framework law that
@@ -174,10 +178,13 @@ observations:
   - layer: l1_consensus
     actor: russia_mining_activity_class
     event: russia_federal_law_221_fz_legalizes_industrial_mining_under_registration_regime
-    observation_kind: coverage_gap
-    attribution: unknown
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2024-08-08T00:00:00Z
     precision: day
+    window:
+      - 2024-08-08T00:00:00Z
+      - 2024-12-31T23:59:59Z
     note: |
       Federal Law No. 221-FZ "On Amendments to Certain Legislative
       Acts of the Russian Federation" was signed by President Putin
@@ -199,10 +206,12 @@ observations:
       row does NOT count toward empirical_shape or admission_tier
       (coverage_gap rows are excluded by codebook §3 / §4).
     sources:
-      - type: primary_legal
+      - type: semi_primary_wayback
         url: https://tass.com/economy/1826725
-        wayback: https://web.archive.org/web/2024/https://tass.com/economy/1826725
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20240808183801/https://tass.com/economy/1826725
+        body_hash: sha256:86e1df49cc1a8f46eb4ae6af5fa30153edd8834806cb237971da4c00aca7a4ab
+        body_path: sources/http_captures/russia-mining-legalization-law-2024-08/primary/web.archive.org__web-20240808183801-https-tass.com-economy-1826725__265b736651.html
+        evidence_use: replayable
         note: |
           TASS reporting establishes that Federal Law No. 221-FZ is a
           permissive framework law: it legalizes (does not prohibit)
@@ -212,10 +221,12 @@ observations:
           registry. Wayback anchor uses the year-prefix lookup form;
           evidence_use=contextual_unarchived pending human-audit
           re-pinning.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
-        wayback: https://web.archive.org/web/2024/https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20240808145931/https://bitcoinmagazine.com/business/putin-signs-law-legalizing-cryptocurrency-mining-in-russia
+        body_hash: sha256:5baf01f176986fa9e9f1006fc0353e58c5623ce7a786bdeb7693e999e96a536c
+        body_path: sources/http_captures/russia-mining-legalization-law-2024-08/primary/web.archive.org__web-20240808145931-https-bitcoinmagazine.com-business-putin-signs-law-legalizing-cryptocurrency-mining-in-russia__f9146cd7b5.html
+        evidence_use: replayable
         note: |
           Bitcoin Magazine contemporaneous coverage corroborates the
           permissive (legalization) character of the statute and the
@@ -225,6 +236,15 @@ observations:
           pending human-audit re-pinning of the Wayback snapshot.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. TASS Wayback 20240808183801 + Bitcoin
+  Magazine Wayback 20240808145931 reclassified semi_primary_wayback (2
+  independent), replayable body_hash. coverage_gap->observed_no_change.
+  coverage[l1_consensus] not_measured->measured. Federal Law 221-FZ signed
+  2024-08-08 legalizes industrial Bitcoin mining under FTS registration
+  (permissive, special-registry eff 2024-11-01); no per-event hashpower
+  cascade. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN Wave 2.2D 2026-05-17** (P1 backlog
   sweep for the Russia 2024-08-08 Federal Law No. 221-FZ mining
   legalization): authored by LLM agent without personally verifying
