@@ -1,17 +1,17 @@
 id: uk-hmrc-bitcoin-vat-brief-09-14-2014
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - eba-virtual-currencies-opinion-eba-op-2014-08
@@ -22,10 +22,12 @@ trigger:
   timestamp: 2014-03-03T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: primary_legal
+    - type: primary_government
       url: https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
-      wayback: https://web.archive.org/web/2014/https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20150213042659/https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
+      body_hash: sha256:10b1c7cd21bbd80ace15a00ff6ba9917c933293966020a973300d0973422244f
+      body_path: sources/http_captures/uk-hmrc-bitcoin-vat-brief-09-14-2014/primary/web.archive.org__web-20150213042659-https-www.gov.uk-government-publications-revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies-revenue-and-customs-bri__c23be9b633.html
+      evidence_use: replayable
       note: |
         **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.3 P2)**:
         authored by LLM agent without personally verifying
@@ -59,7 +61,7 @@ trigger:
     - type: supporting_journalism
       url: https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
       wayback: https://web.archive.org/web/2014/https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         Tax Journal 2014-03-06 contemporaneous summary "HMRC
         issues guidance on bitcoin", corroborating the 2014-03-03
@@ -70,7 +72,7 @@ trigger:
     - type: supporting_journalism
       url: https://bitcoinmagazine.com/business/hmrc-bitcoin-1394563237
       wayback: https://web.archive.org/web/2014/https://bitcoinmagazine.com/business/hmrc-bitcoin-1394563237
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         Bitcoin Magazine 2014-03 report "HMRC Publicize Pro
         Bitcoin Stance", contemporaneous English-crypto-press
@@ -155,7 +157,7 @@ coverage:
       chainwide admin freezes arose later). not_applicable on
       construct-did-not-exist grounds.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
       Brief 09/14 is by construction an off-ramp-layer signal at
       the tax-treatment surface: it clarifies that bitcoin-fiat
@@ -205,10 +207,12 @@ observations:
       - 2014-03-03T00:00:00Z
       - 2014-08-30T00:00:00Z
     sources:
-      - type: primary_legal
+      - type: primary_government
         url: https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
-        wayback: https://web.archive.org/web/2014/https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20150213042659/https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies/revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies
+        body_hash: sha256:10b1c7cd21bbd80ace15a00ff6ba9917c933293966020a973300d0973422244f
+        body_path: sources/http_captures/uk-hmrc-bitcoin-vat-brief-09-14-2014/primary/web.archive.org__web-20150213042659-https-www.gov.uk-government-publications-revenue-and-customs-brief-9-2014-bitcoin-and-other-cryptocurrencies-revenue-and-customs-bri__c23be9b633.html
+        evidence_use: replayable
         scope_descriptor:
           countries: [UK]
           time_window:
@@ -232,7 +236,7 @@ observations:
       - type: supporting_journalism
         url: https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
         wayback: https://web.archive.org/web/2014/https://www.taxjournal.com/articles/hmrc-issues-guidance-bitcoin-06032014
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
           Tax Journal 2014-03-06 secondary coverage corroborates
           the VAT-exemption framing and the 2014-03-03
@@ -243,6 +247,13 @@ observations:
           re-pinning in human audit.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. HMRC gov.uk Revenue & Customs Brief 9 (2014)
+  Wayback 20150213042659 (primary_government) replayable body_hash.
+  coverage[offramp_cex] partially_measured->measured. HMRC 2014-03-03 VAT
+  brief - bitcoin VAT/tax treatment guidance; permissive tax clarification,
+  no per-event cascade. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.3 P2)**.
   Historical-baseline contextual case for the UK HMRC Revenue &
   Customs Brief 09/14 ("Bitcoin and other cryptocurrencies")

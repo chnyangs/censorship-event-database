@@ -1,17 +1,17 @@
 id: uzbekistan-napp-vasp-licensing-2022-07
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - kazakhstan-digital-assets-law-2023-02
@@ -22,9 +22,11 @@ trigger:
   timestamp: 2022-07-14T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: primary_legal
+    - type: primary_government
       url: https://napp.uz/en/pages/service-providers
-      wayback: https://web.archive.org/web/2022/https://napp.uz/en/pages/service-providers
+      wayback: https://web.archive.org/web/20230320220554/https://napp.uz/en/pages/service-providers
+      body_hash: sha256:d6ded0214e6373a3164f2d5a40f589f95c91e5b1a130b4aee8002a16f305a386
+      body_path: sources/http_captures/uzbekistan-napp-vasp-licensing-2022-07/primary/web.archive.org__web-20230320220554-https-napp.uz-en-pages-service-providers__dbe062377c.html
       evidence_use: contextual_unarchived
       note: |
         **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 sweep,
@@ -45,9 +47,11 @@ trigger:
         and mining pools), restrict licensure to legal entities
         resident in Uzbekistan, and set a state-fee schedule (e.g.
         crypto-exchange license at 73,400 BCV multiples).
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://manimama.eu/license-for-virtual-assets-service-providers-in-uzbekistan-prospects-for-crypto-business/
-      wayback: https://web.archive.org/web/2022/https://manimama.eu/license-for-virtual-assets-service-providers-in-uzbekistan-prospects-for-crypto-business/
+      wayback: https://web.archive.org/web/20231129050624/https://manimama.eu/license-for-virtual-assets-service-providers-in-uzbekistan-prospects-for-crypto-business/
+      body_hash: sha256:2936b2f7bb05390290b750e8aab384574d3a9b0d1028f72ed1d8eaec5d0439be
+      body_path: sources/http_captures/uzbekistan-napp-vasp-licensing-2022-07/primary/web.archive.org__web-20231129050624-https-manimama.eu-license-for-virtual-assets-service-providers-in-uzbekistan-prospects-for-crypto-business__62dcb5e029.html
       evidence_use: contextual_unarchived
       note: |
         Manimama legal advisory describing the NAPP Order No. 32 of
@@ -132,13 +136,15 @@ coverage:
       blacklist; the framework operates at the operator-licensing layer.
       not_applicable.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - uz_offramp_perimeter
     denominator_artifact:
-      type: primary_legal
+      type: primary_government
       url: https://napp.uz/en/pages/service-providers
-      wayback: https://web.archive.org/web/2022/https://napp.uz/en/pages/service-providers
+      wayback: https://web.archive.org/web/20230320220554/https://napp.uz/en/pages/service-providers
+      body_hash: sha256:d6ded0214e6373a3164f2d5a40f589f95c91e5b1a130b4aee8002a16f305a386
+      body_path: sources/http_captures/uzbekistan-napp-vasp-licensing-2022-07/primary/web.archive.org__web-20230320220554-https-napp.uz-en-pages-service-providers__dbe062377c.html
       scope_descriptor:
         countries: [UZ]
         providers: [uz_napp]
@@ -171,10 +177,12 @@ observations:
       - 2022-07-14T00:00:00Z
       - 2026-05-17T00:00:00Z
     sources:
-      - type: primary_legal
+      - type: primary_government
         url: https://napp.uz/en/pages/service-providers
-        wayback: https://web.archive.org/web/2022/https://napp.uz/en/pages/service-providers
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230320220554/https://napp.uz/en/pages/service-providers
+        body_hash: sha256:d6ded0214e6373a3164f2d5a40f589f95c91e5b1a130b4aee8002a16f305a386
+        body_path: sources/http_captures/uzbekistan-napp-vasp-licensing-2022-07/primary/web.archive.org__web-20230320220554-https-napp.uz-en-pages-service-providers__dbe062377c.html
+        evidence_use: replayable
         scope_descriptor:
           countries: [UZ]
           providers: [uz_napp]
@@ -188,11 +196,19 @@ observations:
           domestic licensing perimeter but no admission-grade per-event
           cascade (offshore CEX retreat, named-licensee onboarding tied
           to this trigger, address-set effects) has been pinned in this
-          DRYRUN draft. attribution=none consistent with §1.1 (reserved
-          for observed_no_change rows). DRYRUN: Wayback anchor
-          unverified.
+          audit. attribution=none consistent with §1.1 (reserved
+          for observed_no_change rows). Wayback memento 20230320220554
+          captured 2026-05-21.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group;
+  FINAL null_event 22/22) by human:xiangwen as null_case. NAPP
+  service-providers page Wayback 20230320220554 (primary_government) +
+  Manimama law alert Wayback 20231129050624 (semi_primary_wayback)
+  replayable body_hash. coverage[offramp_cex] partially_measured->measured.
+  Uzbekistan NAPP Order No. 32 (2022-07-14) VASP licensing framework;
+  domestic licensing perimeter, no per-event cascade. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2 sweep, S4
   nation-state Central-Asia VASP-licensing discovery): authored by LLM
   agent without personally verifying Wayback / body_hash;
