@@ -1,17 +1,17 @@
 id: china-inner-mongolia-mining-ban-2021-05
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - china-pboc-crypto-ban-2021
@@ -178,7 +178,7 @@ observations:
     actor: mining_pool_cohort:inner_mongolia
     event: inner_mongolia_provincial_mining_ban_enforcement_notice_published_with_public_reporting_hotline
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2021-05-25T00:00:00Z
     precision: day
     delta_hours: 0
@@ -209,25 +209,36 @@ observations:
           in lieu of pinned snapshot of the Inner Mongolia NDRC origin
           page; pinned-snapshot + body_hash capture deferred to human
           audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/
-        wayback: https://web.archive.org/web/2021/https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20211009120544/https://www.coindesk.com/policy/2021/05/25/inner-mongolia-outlines-how-it-may-ban-crypto-mining/
+        body_hash: sha256:3653ba7dd17cb7227fd62bbb1afcf73cfc291620fb8124aa77899f6457f44b6f
+        body_path: sources/http_captures/china-inner-mongolia-mining-ban-2021-05/primary/web.archive.org__web-20211009120544-https-www.coindesk.com-policy-2021-05-25-inner-mongolia-outlines-how-it-may-ban-crypto-mining__a6d5cd5aca.html
+        evidence_use: replayable
         note: |
           CoinDesk 2021-05-25 contemporaneous coverage confirming notice
           date, target classes, public-comment window, and reporting
           channel. DRYRUN wayback wildcard pointer.
-      - type: supporting_journalism
-        url: https://cryptopotato.com/chinese-crack-down-on-crypto-intensifies-over-10000-mining-rigs-confiscated-in-inner-mongolia/
-        wayback: https://web.archive.org/web/2021/https://cryptopotato.com/chinese-crack-down-on-crypto-intensifies-over-10000-mining-rigs-confiscated-in-inner-mongolia/
-        evidence_use: contextual_unarchived
+      - type: semi_primary_wayback
+        url: https://www.cnbc.com/2021/05/26/major-china-bitcoin-mining-hub-lays-out-harsher-crackdown-measures.html
+        wayback: https://web.archive.org/web/20210526031619/https://www.cnbc.com/2021/05/26/major-china-bitcoin-mining-hub-lays-out-harsher-crackdown-measures.html
+        body_hash: sha256:39cc001b9025c12bceebf5ed9ab2474d22db86b24c318cce8dab746b0b177c02
+        body_path: sources/http_captures/china-inner-mongolia-mining-ban-2021-05/primary/web.archive.org__web-20210526031619-https-www.cnbc.com-2021-05-26-major-china-bitcoin-mining-hub-lays-out-harsher-crackdown-measures.html__b5996837bb.html
+        evidence_use: replayable
         note: |
-          Downstream-cascade reporting on >10,000 mining rigs confiscated
-          in Inner Mongolia, attributing the seizures to the regional
-          enforcement framework anchored by the 2021-05-25 notice.
-          DRYRUN wayback wildcard pointer.
+          CNBC 2021-05-26 contemporaneous coverage of the Inner Mongolia
+          harsher-crackdown measures. Independent semi-primary anchor.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/China cluster)
+  by human:xiangwen as empirical_case. CoinDesk Wayback 20211009120544 +
+  CNBC Wayback 20210526031619 reclassified semi_primary_wayback (2 independent)
+  replayable body_hash. l1_consensus observed_change attribution direct->
+  plausible (NDRC notice itself not pinned as primary; cascade anchored via
+  press). Inner Mongolia NDRC 2021-05-25 draft mining-ban enforcement notice
+  (reporting hotline, penalties, >10k rigs confiscated). comparison/
+  empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent
