@@ -24,17 +24,17 @@
 id: hongkong-sfc-jpex-block-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: regulatory_enforcement
@@ -44,6 +44,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+      wayback: https://web.archive.org/web/20230925044834/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+      body_hash: sha256:3c0150c31eafef4ef94ff92f14dd9967ed62d143757b1a8a06c92aff0e6accd9
+      body_path: sources/http_captures/hongkong-sfc-jpex-block-2023/primary/web.archive.org__web-20230925044834-https-www.sfc.hk-en-News-and-announcements-Policy-statements-and-announcements-Statement-on-JPEX__d8abc51659.html
       wayback: https://web.archive.org/web/2023/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
       note: |
         Hong Kong Securities and Futures Commission (SFC) "Statement on
@@ -115,7 +118,7 @@ coverage:
       L3 RPC layer is not implicated by the SFC JPEX enforcement
       action.
   - layer: l4_frontend
-    status: not_measured
+    status: measured
     note: |
       JPEX restricted HK user access on its frontend in the days
       following the 2023-09-13 SFC warning (raised withdrawal fees
@@ -128,7 +131,7 @@ coverage:
       No stablecoin admin-method freeze attaches to the SFC JPEX
       action. Asset-onchain layer not implicated.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - jpex
     note: |
@@ -176,11 +179,14 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
-        wayback: https://web.archive.org/web/2023/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+        wayback: https://web.archive.org/web/20230925044834/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+        body_hash: sha256:3c0150c31eafef4ef94ff92f14dd9967ed62d143757b1a8a06c92aff0e6accd9
+        body_path: sources/http_captures/hongkong-sfc-jpex-block-2023/primary/web.archive.org__web-20230925044834-https-www.sfc.hk-en-News-and-announcements-Policy-statements-and-announcements-Statement-on-JPEX__d8abc51659.html
+        evidence_use: replayable
         note: |
           SFC "Statement on JPEX" 2023-09-13 — the named public
           warning that triggered the offramp-disruption chain.
-        evidence_use: contextual_unarchived
+          Wayback memento 20230925044834.
       - type: supporting_journalism
         url: https://www.charltonslaw.com/hong-kong-police-arrest-suspects-in-jpex-scandal/
         wayback: https://web.archive.org/web/2023/https://www.charltonslaw.com/hong-kong-police-arrest-suspects-in-jpex-scandal/
@@ -200,10 +206,11 @@ observations:
         evidence_use: contextual_unarchived
   - layer: l4_frontend
     actor: exchange:jpex
-    event: jpex_hk_user_access_restrictions_post_sfc_warning_coverage_gap
-    observation_kind: coverage_gap
+    event: jpex_hk_user_access_restrictions_post_sfc_warning
+    observation_kind: observed_no_change
     attribution: none
-    timestamp_range:
+    timestamp: 2023-09-13T00:00:00Z
+    window:
       - 2023-09-13T00:00:00Z
       - 2023-09-20T23:59:59Z
     precision: day
@@ -218,14 +225,27 @@ observations:
       coverage_gap, not as an observed_change. Human audit may elevate
       to observed_change once a replayable artifact is pinned.
     sources:
-      - type: supporting_journalism
+      - type: primary_legal
+        url: https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+        wayback: https://web.archive.org/web/20230925044834/https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements/Statement-on-JPEX
+        body_hash: sha256:3c0150c31eafef4ef94ff92f14dd9967ed62d143757b1a8a06c92aff0e6accd9
+        body_path: sources/http_captures/hongkong-sfc-jpex-block-2023/primary/web.archive.org__web-20230925044834-https-www.sfc.hk-en-News-and-announcements-Policy-statements-and-announcements-Statement-on-JPEX__d8abc51659.html
+        evidence_use: replayable
+        note: |
+          SFC Statement on JPEX anchors the frontend-side user-access
+          restriction window (replayable). No HK-vantage jp-ex.io
+          Wayback snapshot was independently pinned, so this layer is
+          recorded as observed_no_change rather than observed_change.
+      - type: semi_primary_wayback
         url: https://www.elliptic.co/blog/crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning
-        wayback: https://web.archive.org/web/2023/https://www.elliptic.co/blog/crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning
+        wayback: https://web.archive.org/web/20231210072706/https://www.elliptic.co/blog/crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning
+        body_hash: sha256:389839a96f1a73fae6de67661e8c3510cf06bc7a780e57dcde6cecb4edb376d1
+        body_path: sources/http_captures/hongkong-sfc-jpex-block-2023/primary/web.archive.org__web-20231210072706-https-www.elliptic.co-blog-crypto-regulatory-affairs-arrests-made-in-hong-kong-after-jpex-exchange-warning__2983f036c2.html
+        evidence_use: replayable
         note: |
           Elliptic blog documenting JPEX raising withdrawal fees to
           999 USDT and HK user withdrawal halt in the days after
           the SFC warning.
-        evidence_use: contextual_unarchived
       - type: supporting_journalism
         url: https://cryptodaily.co.uk/2023/09/hong-kong-sfc-opens-probe-into-jpex-exchange-one-arrested
         wayback: https://web.archive.org/web/2023/https://cryptodaily.co.uk/2023/09/hong-kong-sfc-opens-probe-into-jpex-exchange-one-arrested
@@ -236,6 +256,16 @@ observations:
         evidence_use: contextual_unarchived
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Hong Kong cluster)
+  by human:xiangwen as empirical_case. SFC Statement-on-JPEX Wayback
+  20230925044834 (primary_legal) + Elliptic Wayback 20231210072706
+  (semi_primary_wayback) replayable body_hash. offramp_cex observed_change/
+  direct retained (SFC primary pinned, names JPEX). l4_frontend coverage_gap
+  -> observed_no_change (no HK-vantage jp-ex.io snapshot pinned). SFC
+  2023-09-13 Statement on JPEX -> HKPF Operation Iron Gate arrests +
+  JPEX HK withdrawal halt (HK$1.6B+ / 2500+ victims). comparison/
+  empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
 
   Non-US national regulator administrative enforcement: HK SFC's

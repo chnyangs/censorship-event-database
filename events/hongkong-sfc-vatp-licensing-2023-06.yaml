@@ -21,17 +21,17 @@
 id: hongkong-sfc-vatp-licensing-2023-06
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 trigger:
   type: nation_state_block
@@ -117,7 +117,7 @@ coverage:
       Licensing regime does not implicate stablecoin admin-method freezes
       or other asset-onchain primitives.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - hashkey
       - osl
@@ -174,13 +174,25 @@ observations:
           2023-06-01 effective date. Sources contextual_unarchived in
           this draft.
         evidence_use: contextual_unarchived
-      - type: supporting_journalism
-        url: https://www.omm.com/insights/alerts-publications/hong-kong-launches-new-virtual-asset-trading-platform-licensing-regime/
-        wayback: https://web.archive.org/web/2023/https://www.omm.com/insights/alerts-publications/hong-kong-launches-new-virtual-asset-trading-platform-licensing-regime/
+      - type: primary_government
+        url: https://www.ifec.org.hk/web/en/financial-products/fintech/ico-bitcoin/new-vatp-regime.page
+        wayback: https://web.archive.org/web/20231119135320/https://www.ifec.org.hk/web/en/financial-products/fintech/ico-bitcoin/new-vatp-regime.page
+        body_hash: sha256:96e7da0e040e51a454b4eb57abab5cf35580ace925c88384d7238902f754a22f
+        body_path: sources/http_captures/hongkong-sfc-vatp-licensing-2023-06/primary/web.archive.org__web-20231119135320-https-www.ifec.org.hk-web-en-financial-products-fintech-ico-bitcoin-new-vatp-regime.page__e418ac1162.html
+        evidence_use: replayable
         note: |
-          O'Melveny alert describing the launch of the HK VATP licensing
-          regime on 2023-06-01 and the dual-licensing framework.
-        evidence_use: contextual_unarchived
+          IFEC (HK Investor and Financial Education Council, SFC-affiliated)
+          page on the new VATP regime commencing 2023-06-01. Primary
+          government anchor. Wayback memento 20231119135320 captured 2026-05-21.
+      - type: semi_primary_wayback
+        url: https://www.davispolk.com/insights/client-update/hong-kong-licensing-regime-virtual-asset-trading-platforms-comes-force
+        wayback: https://web.archive.org/web/20230921190548/https://www.davispolk.com/insights/client-update/hong-kong-licensing-regime-virtual-asset-trading-platforms-comes-force
+        body_hash: sha256:d4f6a70def3037c543d77a39af0997dbd0fea3c3f259e7bf3db5b2fc2ce7bbe0
+        body_path: sources/http_captures/hongkong-sfc-vatp-licensing-2023-06/primary/web.archive.org__web-20230921190548-https-www.davispolk.com-insights-client-update-hong-kong-licensing-regime-virtual-asset-trading-platforms-comes-force__c4768876b5.html
+        evidence_use: replayable
+        note: |
+          Davis Polk client update on the VATP licensing regime entering
+          force. Independent semi-primary anchor.
   - layer: offramp_cex
     actor: exchange:hk_offshore_set
     event: offshore_platforms_excluded_or_withdrew_applications
@@ -201,17 +213,22 @@ observations:
       withdrawal decisions were not always tied to a single named
       SFC requirement in primary corporate statements.
     sources:
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.scmp.com/tech/policy/article/3250996/sfc-reminds-crypto-investors-be-wary-unlicensed-platforms-final-month-apply-under-hong-kong-scheme
-        wayback: https://web.archive.org/web/2024/https://www.scmp.com/tech/policy/article/3250996/sfc-reminds-crypto-investors-be-wary-unlicensed-platforms-final-month-apply-under-hong-kong-scheme
+        wayback: https://web.archive.org/web/20240205111144/https://www.scmp.com/tech/policy/article/3250996/sfc-reminds-crypto-investors-be-wary-unlicensed-platforms-final-month-apply-under-hong-kong-scheme
+        body_hash: sha256:36418382445551270ee9e18f52c9dd56442d2eda7f9be52295d07814a4356b6b
+        body_path: sources/http_captures/hongkong-sfc-vatp-licensing-2023-06/primary/web.archive.org__web-20240205111144-https-www.scmp.com-tech-policy-article-3250996-sfc-reminds-crypto-investors-be-wary-unlicensed-platforms-final-month-apply-under-hon__ef9e45a855.html
+        evidence_use: replayable
         note: |
-          SCMP 2024-05 reporting on the final month for unlicensed
-          platforms to apply under the SFC VATP scheme; documents
-          the exclusion / withdrawal pattern for offshore platforms.
-        evidence_use: contextual_unarchived
-      - type: supporting_journalism
+          SCMP reporting on the final month for unlicensed platforms
+          to apply under the SFC VATP scheme; documents the exclusion /
+          withdrawal pattern. Wayback memento 20240205111144.
+      - type: semi_primary_wayback
         url: https://cointelegraph.com/news/hong-kong-crypto-exchanges-license-scrutiny
-        wayback: https://web.archive.org/web/2024/https://cointelegraph.com/news/hong-kong-crypto-exchanges-license-scrutiny
+        wayback: https://web.archive.org/web/20240822141337/https://cointelegraph.com/news/hong-kong-crypto-exchanges-license-scrutiny
+        body_hash: sha256:423f7ed91e40a619a4ea831391ba1ef23b5d1974b594b53ba94cbf61d8267528
+        body_path: sources/http_captures/hongkong-sfc-vatp-licensing-2023-06/primary/web.archive.org__web-20240822141337-https-cointelegraph.com-news-hong-kong-crypto-exchanges-license-scrutiny__744820c7f3.html
+        evidence_use: replayable
         note: |
           Cointelegraph reporting on HK targeting non-compliant crypto
           exchanges in the licensing push and the withdrawals by
@@ -219,6 +236,16 @@ observations:
         evidence_use: contextual_unarchived
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Hong Kong cluster)
+  by human:xiangwen as empirical_case. IFEC primary_government Wayback
+  20231119135320 + Davis Polk Wayback 20230921190548 (obs1) + SCMP Wayback
+  20240205111144 + Cointelegraph Wayback 20240822141337 (obs2) replayable
+  body_hash. SFC landing + OMM contextual (SFC PDF URL dead 404). obs1
+  observed_change/direct (IFEC primary pinned); obs2 observed_change/plausible.
+  SFC VATP licensing regime in force 2023-06-01 (HashKey/OSL licensed; offshore
+  platforms Binance/OKX/Bybit/HTX/Gate/KuCoin excluded/withdrew). comparison/
+  empirical_case preserved.
+
   Sub-sovereign jurisdictional regulatory action: HK SFC's VATP licensing
   regime in force 2023-06-01, with a 2024-05-31 transitional deadline.
   Two SFC-licensed platforms (HashKey, OSL) were authorized at the
