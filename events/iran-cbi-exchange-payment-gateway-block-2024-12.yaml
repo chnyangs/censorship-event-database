@@ -1,0 +1,185 @@
+id: iran-cbi-exchange-payment-gateway-block-2024-12
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - iran-cbi-crypto-banking-prohibition-2018
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: IR_CBI
+  timestamp: 2024-12-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://web.archive.org/web/20251226045735/https://www.intellinews.com/iran-central-bank-blocks-crypto-payments-amid-industry-backlash-359655/
+      wayback: https://web.archive.org/web/20251226045735/https://www.intellinews.com/iran-central-bank-blocks-crypto-payments-amid-industry-backlash-359655/
+      body_hash: sha256:057a38614a03a5546d2264c6ddd4f97bc91cef7c3dfa8e860adae87e2b087952
+      body_path: sources/http_captures/iran-cbi-exchange-freeze-2024-10/secondary/web.archive.org__web-20251226045735-https-www.intellinews.com-iran-central-bank-blocks-crypto-payments-amid-industry-backlash-359655__60b8322af4.html
+      evidence_use: replayable
+      note: |
+        bne IntelliNews, "Iran central bank blocks crypto payments amid industry
+        backlash." Captured body confirms the Central Bank of Iran (CBI) abruptly
+        blocked the Iranian-rial payment channels used by digital-currency
+        exchanges as the rial hit a record low against the US dollar on
+        December 28 (2024), and that withdrawal functions remained operational.
+        Crypto-platform operators warned in an open letter to President Pezeshkian
+        that the restrictions threatened skilled jobs and knowledge-based
+        companies. Carries the trigger date.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        nobsbitcoin (2025-01-14) corroborates: CBI "abruptly blocked payment
+        gateways for cryptocurrency exchanges without prior notice," following the
+        rial's 37% 2024 devaluation. The action escalated a rial-defense campaign
+        the CBI began in October 2024 (Shaparak rial-to-crypto restriction);
+        captured primary sources here pin the late-December 2024 payment-gateway
+        block specifically.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Cryptocurrency exchanges operating in Iran with rial payment gateways, as a
+    class. No specific exchange enumerated in the captured sources; the CBI action
+    targets the rial deposit/payment rail used by the domestic exchange ecosystem
+    at large. Class-level (codebook §7 subset).
+  protocol: null
+  actor_type: iranian_crypto_ecosystem
+  actor_name: Iranian crypto exchanges (rial payment-gateway class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [IR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The CBI action severs rial payment gateways/banking rails to exchanges; it
+      is not an ISP-level domain/DNS block. L0 not_applicable, consistent with
+      sibling nation-state payment-rail severance events (Nigeria CBN 2021).
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The action engages no issuer-side blacklist or on-chain freeze method; it
+      operates on the fiat rial payment rail. not_applicable (codebook §1.6).
+  - layer: offramp_cex
+    status: measured
+    scope: [iranian_rial_payment_gateways_to_crypto_exchanges]
+    note: |
+      The CBI blocked the Iranian-rial payment-gateway channels that domestic
+      cryptocurrency exchanges depend on for deposits, restricting users to the
+      depreciating national currency (withdrawal functions reportedly remained
+      operational). This is a payment-rail severance at the fiat off-ramp surface,
+      carried at offramp_cex as the load-bearing layer. Observation attached below
+      as observed_change with plausible attribution.
+
+observations:
+  - layer: offramp_cex
+    actor: iranian_crypto_exchange_ecosystem
+    event: rial_payment_gateways_to_crypto_exchanges_blocked
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-12-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://web.archive.org/web/20260115120806/https://www.nobsbitcoin.com/iran-central-bank-blocks-payment-gateways-to-cryptocurrency-exchanges-amid-currency-crisis/
+        wayback: https://web.archive.org/web/20260115120806/https://www.nobsbitcoin.com/iran-central-bank-blocks-payment-gateways-to-cryptocurrency-exchanges-amid-currency-crisis/
+        body_hash: sha256:ff9701436ebf8cf9f79379e4bfa4a0b2a5a4808d169e50703ae2c9b6d7119e22
+        body_path: sources/http_captures/iran-cbi-exchange-freeze-2024-10/primary/web.archive.org__web-20260115120806-https-www.nobsbitcoin.com-iran-central-bank-blocks-payment-gateways-to-cryptocurrency-exchanges-amid-currency-crisis__910c1da0f2.html
+        evidence_use: replayable
+        note: |
+          nobsbitcoin (2025-01-14), "Iran's Central Bank Blocks Payment Gateways to
+          Cryptocurrency Exchanges Amid Currency Crisis." Captured body confirms the
+          CBI "abruptly blocked payment gateways for cryptocurrency exchanges
+          without prior notice," following the rial's 37% 2024 devaluation, and
+          references a government plan for a centralized crypto-management system
+          "similar to Shaparak." attribution=plausible (codebook §1.5/§8.4): the
+          load-bearing captured prose is contemporaneous journalism, not the CBI
+          directive text, and the target is class-level (no exchange enumerated).
+      - type: supporting_journalism
+        url: https://web.archive.org/web/20251226045735/https://www.intellinews.com/iran-central-bank-blocks-crypto-payments-amid-industry-backlash-359655/
+        wayback: https://web.archive.org/web/20251226045735/https://www.intellinews.com/iran-central-bank-blocks-crypto-payments-amid-industry-backlash-359655/
+        body_hash: sha256:057a38614a03a5546d2264c6ddd4f97bc91cef7c3dfa8e860adae87e2b087952
+        body_path: sources/http_captures/iran-cbi-exchange-freeze-2024-10/secondary/web.archive.org__web-20251226045735-https-www.intellinews.com-iran-central-bank-blocks-crypto-payments-amid-industry-backlash-359655__60b8322af4.html
+        evidence_use: replayable
+        note: |
+          bne IntelliNews corroboration: CBI intervention "specifically targets the
+          Iranian rial payment channels used by digital currency exchanges, though
+          withdrawal functions remain operational"; announcement coincided with the
+          rial's record low on December 28 and the government's foreign-currency
+          rate reunification.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison documenting the late-December 2024 Central Bank of Iran (CBI) block
+  of the Iranian-rial payment gateways that domestic cryptocurrency exchanges use
+  for deposits. The action coincided with the rial's record low against the US
+  dollar on 2024-12-28 and the government's foreign-currency rate reunification,
+  and was explicitly a rial-defense measure (curbing flight into USDT/bitcoin).
+  Same nation-state payment-rail severance family as Iran CBI 2018 and
+  Nigeria CBN 2021.
+
+  Date discipline (anti-fabrication): the original census candidate dated this
+  2024-10-23 (the October Shaparak rial-to-crypto restriction). The sources I
+  could verify+capture document the late-December 2024 payment-gateway block of
+  exchanges specifically (rial record low on December 28; bne IntelliNews +
+  nobsbitcoin), so the trigger timestamp is set to 2024-12-28 to match captured
+  evidence. The October Shaparak step is described as antecedent campaign context
+  in timestamp_sources, NOT asserted as the trigger date.
+
+  Per codebook §5.1, trigger.type=nation_state_block is the canonical fit (a
+  central-bank severance of the fiat payment rail to crypto exchanges). Per §5.2,
+  research_stratum=S4_nation_state is permitted.
+
+  Per §9 inclusion boundary: in scope — a deliberate state action debanking /
+  severing the rial payment rail of legitimate crypto exchanges, restricting user
+  access, distinct from a fraud prosecution or a pure soft advisory.
+
+  Why offramp_cex plausible (not direct): the load-bearing captured prose is
+  contemporaneous journalism (nobsbitcoin / bne IntelliNews); no CBI directive
+  text was captured, and the target is class-level (no exchange enumerated).
+  Conservative-default rule (§8.4) -> plausible. A human reviewer may elevate to
+  direct once the primary CBI directive is pinned.
+
+  Why L0/L1/L3/L4/asset_onchain not_applicable: a fiat payment-rail / banking
+  action; no ISP-level domain block, on-chain issuer freeze, or frontend directive.
+
+  Why temporal_tier=comparable_main_2017_present / analysis_use=
+  comparable_analysis: 2024-12-28 sits in the 2017+ comparable corpus.
+
+scoped_claim: |
+  "On/around 2024-12-28 the Central Bank of Iran blocked the Iranian-rial payment
+  gateways used by domestic cryptocurrency exchanges for deposits, as a rial-defense
+  measure amid the currency's record low (withdrawal functions reportedly remained
+  operational). The offramp_cex layer carries the load-bearing plausible-attribution
+  observation at class level."
+
+tags:
+  - nation_state_block
+  - iran
+  - banking_rail_severance
+  - cbi_payment_gateway_block

@@ -1,0 +1,212 @@
+id: sec-lbry-lbc-unregistered-securities-2021-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - sec-v-telegram-ton-2020
+  - sec-kik-interactive-kin-unregistered-offering-2020-10
+  - sec-v-ripple-2020
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2021-03-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25573
+      wayback: https://web.archive.org/web/20241207235421/https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25573
+      body_hash: sha256:4b5f930697a111c534f596767de2147c9c3f2457277fba8bd3418c4789451c06
+      body_path: sources/http_captures/sec-lbry-lbc-unregistered-securities-2021-03/primary/web.archive.org__web-20241207235421-https-www.sec.gov-enforcement-litigation-litigation-releases-lr-25573__4db1f7573e.html
+      evidence_use: replayable
+      note: |
+        SEC litigation release LR-25573 (SEC v. LBRY, Inc.): the SEC's
+        complaint (filed 2021-03-29 in the U.S. District Court for the
+        District of New Hampshire) charged LBRY, Inc. with conducting an
+        unregistered offering and sale of crypto asset securities. The
+        complaint alleged that from at least July 2016 to February 2021,
+        LBRY (a video-sharing application) sold crypto asset securities
+        called "LBRY Credits" (LBC) to numerous investors including U.S.
+        investors, without filing a registration statement and without an
+        exemption. The captured litigation-release page records that LBRY
+        received approximately $12.2 million in proceeds in U.S. dollars
+        and crypto assets from its LBC sales, and that the Court found
+        LBRY violated the charged provisions (reserving relief for a later
+        date). Wayback 20241207235421 pinned (the 2021 SEC URL path was
+        retired in the 2024 SEC.gov site migration; this is the live
+        archived copy at the current /enforcement-litigation/ path).
+        Verified facts present in captured HTML: "LBRY", "LBRY Credits",
+        "LBC", "unregistered", "July 2016", "February 2021", "$12.2
+        million", "the Court found that LBRY violated".
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the SEC complaint filing date 2021-03-29
+        in SEC v. LBRY, Inc. (No. 21-cv-260, D.N.H.), corroborated by
+        contemporaneous reporting (CoinDesk 2021-03-30).
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    LBRY, Inc. (New Hampshire-based issuer of the LBRY Credits / LBC token
+    and operator of the LBRY protocol and the Odysee video platform;
+    named in SEC v. LBRY, Inc., No. 21-cv-260, D.N.H.). Subject-matter
+    scope: the LBC token and the July 2016 - February 2021 sale of LBC
+    (~$12.2M proceeds per the SEC filing). enumeration=complete: the row
+    enumerates the single named issuer entity and the LBC instrument as
+    the offering charged/ruled unregistered. No on-chain addresses are
+    enumerated: the action is a securities-law charge and ruling against
+    the issuer, not an on-chain freeze of an LBC address.
+  actor_type: token_issuer_securities_enforcement
+  actor_name: LBRY, Inc.
+  chains: []
+  canonical_domains:
+    - lbry.com
+    - odysee.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The SEC civil action and D.N.H. ruling are securities-law remedies
+      against the LBRY issuer; they did not alter ISP-level reachability
+      of lbry.com or odysee.com. not_applicable on the L0 layer.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The LBRY blockchain is an independent proof-of-work chain; the L1
+      layer this dataset measures (post-Merge Ethereum PBS relay surface /
+      validator-set filtering) has no LBRY-specific consensus surface
+      engaged by a securities-law charge. not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface is engaged by the SEC charge.
+      not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The SEC charge did not require shutdown of lbry.com or odysee.com;
+      it operates at the token-offering / issuer-conduct layer. The 2023
+      LBRY wind-down followed the November 2022 liability ruling and the
+      cost of the litigation, but the SEC filing itself did not order a
+      frontend takedown. not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The §1.6 asset_onchain evidence floor requires a primary_onchain
+      tx_hash; the SEC remedy is an issuer-level charge/ruling, not an
+      on-chain freeze/blacklist of any LBC address (LBC is a native
+      proof-of-work coin with no issuer freeze primitive), so no on-chain
+      receipt exists or can exist. Per §1.6 routing, the enforceable
+      effect is carried at offramp_cex. not_applicable on asset_onchain.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - lbc_token_offering
+      - lbry_inc_issuer_conduct
+    note: |
+      Load-bearing layer. The 2021-03-29 SEC charge and the subsequent
+      finding that LBRY violated the registration provisions is the
+      operator/issuer-state-change endpoint of the episode: LBRY's LBC
+      offering was ruled an unregistered securities offering. This is the
+      closest analogue this dataset has to an issuer/offramp restriction
+      acting on the issuer's ability to offer the asset. Attached below as
+      observed_change / attribution=direct (the unregistered-offering
+      ruling is the direct legal effect of the SEC charge against the
+      named issuer and named asset).
+
+observations:
+  - layer: offramp_cex
+    actor: issuer:lbry_inc
+    event: sec_charges_lbry_unregistered_lbc_securities_offering_and_court_finds_violation
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-03-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25573
+        wayback: https://web.archive.org/web/20241207235421/https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25573
+        body_hash: sha256:4b5f930697a111c534f596767de2147c9c3f2457277fba8bd3418c4789451c06
+        body_path: sources/http_captures/sec-lbry-lbc-unregistered-securities-2021-03/primary/web.archive.org__web-20241207235421-https-www.sec.gov-enforcement-litigation-litigation-releases-lr-25573__4db1f7573e.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [lbry_inc]
+          countries: [US]
+          time_window:
+            - 2021-03-29T00:00:00Z
+            - 2022-12-31T23:59:59Z
+        note: |
+          SEC litigation release LR-25573: the SEC charged LBRY, Inc. with
+          an unregistered offering/sale of LBC crypto asset securities
+          (complaint filed 2021-03-29, D.N.H.), and the Court found LBRY
+          violated the charged provisions. attribution=direct: the SEC
+          charge and ruling are the direct legal instrument acting on the
+          named issuer and the named LBC asset. Facts verified present in
+          captured HTML ("LBRY", "LBRY Credits", "$12.2 million", "the
+          Court found that LBRY violated").
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). S3 SEC securities-
+  enforcement event, comparable_main tier. Codebook §9 explicitly lists
+  the "LBRY suit" as an INCLUDE example. The 2021-03-29 SEC complaint
+  (SEC v. LBRY, Inc., No. 21-cv-260, D.N.H.) charged LBRY with an
+  unregistered offering of LBC crypto asset securities sold July 2016 -
+  February 2021 (~$12.2M proceeds); the November 2022 court ruling that
+  LBC was a security — even outside an ICO, including for consumptive use
+  — and the litigation cost led LBRY to wind down operations in 2023.
+  comparison shape: 1 observed_change layer (offramp_cex, issuer-conduct
+  restriction), attribution=direct (the unregistered-offering charge and
+  ruling name the issuer and the LBC asset and are the direct legal
+  effect). asset_onchain is not_applicable per §1.6: LBC is a native PoW
+  coin with no issuer freeze primitive and the remedy is an issuer-level
+  charge/ruling — no primary_onchain tx_hash exists or can exist — so the
+  effect is routed to offramp_cex. L0/L1/L3/L4 not_applicable (the SEC
+  filing did not touch network reachability, the LBRY PoW consensus
+  surface, RPC, or order a frontend takedown — the 2023 site wind-down
+  followed the ruling and was the company's response, not an ordered L4
+  block). Primary anchor is litigation release LR-25573, captured at the
+  current /enforcement-litigation/ SEC.gov path (the 2021-era URL was
+  retired in the 2024 site migration); the live archived copy
+  (20241207235421) records the charge AND the Court's liability finding.
+  Sources verified via WebSearch 2026-05-31; body_hash-pinned and grep-
+  confirmed (no fabrication). Awaiting human audit before promotion from
+  draft.
+
+scoped_claim: |
+  "The 2021-03-29 SEC charge in SEC v. LBRY, Inc. (D.N.H.) and the
+  Court's finding that LBRY's LBC sales were an unregistered securities
+  offering are recorded as a single-layer offramp_cex issuer-conduct
+  restriction, attribution=direct. The row does not claim ISP-level
+  blocking, an SEC-ordered frontend takedown (the 2023 LBRY wind-down was
+  the company's own response to the ruling and litigation cost), or an
+  on-chain LBC freeze (no such on-chain receipt exists)."
+
+tags:
+  - sec_enforcement
+  - securities_law
+  - unregistered_offering
+  - lbry_lbc
+  - token_issuer
+  - issuer_restriction
+  - howey_test
+  - offramp_restriction

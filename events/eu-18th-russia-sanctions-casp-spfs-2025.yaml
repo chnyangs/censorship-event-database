@@ -1,0 +1,174 @@
+id: eu-18th-russia-sanctions-casp-spfs-2025
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - eu-14th-russia-sanctions-spfs-2024
+  - eu-15th-russia-sanctions-2024
+  - eu-16th-russia-sanctions-2025
+
+trigger:
+  type: non_us_sanctions
+  actor: EU_Council
+  timestamp: 2025-07-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://finance.ec.europa.eu/news/eu-adopts-18th-package-sanctions-against-russia-2025-07-18_en
+      wayback: https://web.archive.org/web/20250805164642/https://finance.ec.europa.eu/news/eu-adopts-18th-package-sanctions-against-russia-2025-07-18_en
+      body_hash: sha256:48205d9d6c844e0ae49f09c880e95ec65ac77c978e557d801861f1b6919dfcb1
+      body_path: sources/http_captures/eu-18th-russia-sanctions-casp-spfs-2025/primary/web.archive.org__web-20250801000000-https-finance.ec.europa.eu-news-eu-adopts-18th-package-sanctions-against-russia-2025-07-18_en__17e8fac1f5.html
+      evidence_use: replayable
+      note: |
+        European Commission / Council, 18th sanctions package against Russia
+        (adopted 2025-07-18). The captured page states verbatim: "Broadening
+        the transaction ban for third-country financial operators, including
+        crypto-asset providers who help circumvent sanctions, support Russia's
+        war of aggression against Ukraine, or are connected to Russia's
+        financial messaging service. EU operators are banned from carrying out
+        transactions with any of those financial operators." The package
+        lowers the threshold to impose a full transaction ban on third-country
+        crypto-asset service providers connected to Russia's SPFS (System for
+        Transfer of Financial Messages) or otherwise frustrating EU sanctions,
+        widening the grounds for listing such entities. Wayback memento
+        20250805164642 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-07-18 EU 18th-package adoption.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Third-country crypto-asset service providers (and other third-country
+    financial operators) connected to Russia's SPFS financial-messaging
+    system or otherwise helping circumvent EU sanctions. The 18th package
+    broadens the transaction ban so that EU operators are prohibited from
+    transacting with any such listed CASP/financial operator, and widens the
+    grounds for listing. subset because the listable CASP/operator class is
+    defined by criteria (SPFS connection / circumvention) rather than an
+    exhaustively enumerated address or provider list in this record.
+  protocol: null
+  actor_type: sanctions_transaction_ban
+  actor_name: EU 18th-package CASP/SPFS transaction-ban broadening
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - EU
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A legal transaction-prohibition instrument, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The package prohibits transactions with a listed CASP/operator class; it
+      does not itself freeze specific on-chain assets/addresses (no enumerated
+      addresses; no issuer freeze tx in the captured source).
+  - layer: offramp_cex
+    status: measured
+    scope: [eu_operators_to_spfs_connected_casps]
+    note: |
+      Load-bearing layer. The 18th package broadens the EU transaction ban so
+      EU operators cannot transact with third-country crypto-asset providers
+      connected to Russia's SPFS or circumventing sanctions, debanking that
+      CASP class from the EU off-ramp/transaction surface. The legal
+      instrument is the operative prohibition; attested in the EU primary
+      source (verbatim crypto-asset-provider transaction-ban language).
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:eu_council
+    event: eu_18th_package_broadens_transaction_ban_on_spfs_connected_casps
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-07-18T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://finance.ec.europa.eu/news/eu-adopts-18th-package-sanctions-against-russia-2025-07-18_en
+        wayback: https://web.archive.org/web/20250805164642/https://finance.ec.europa.eu/news/eu-adopts-18th-package-sanctions-against-russia-2025-07-18_en
+        body_hash: sha256:48205d9d6c844e0ae49f09c880e95ec65ac77c978e557d801861f1b6919dfcb1
+        body_path: sources/http_captures/eu-18th-russia-sanctions-casp-spfs-2025/primary/web.archive.org__web-20250801000000-https-finance.ec.europa.eu-news-eu-adopts-18th-package-sanctions-against-russia-2025-07-18_en__17e8fac1f5.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [eu_operators_aggregate]
+          countries: [EU, RU]
+          time_window:
+            - 2025-07-18T00:00:00Z
+            - 2026-05-31T23:59:59Z
+        note: |
+          EU 18th package (2025-07-18): broadens the transaction ban for
+          third-country financial operators "including crypto-asset providers
+          who help circumvent sanctions ... or are connected to Russia's
+          financial messaging service" (SPFS); EU operators are banned from
+          transacting with any such operator. attribution=direct: the EU legal
+          instrument directly and explicitly names crypto-asset providers as
+          the prohibited transaction counterparty class. Verbatim language
+          confirmed in the captured body (body_hash-pinned).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). The EU 18th sanctions package
+  (adopted 2025-07-18) broadens the transaction ban for third-country
+  financial operators to expressly include crypto-asset service providers
+  that help circumvent EU sanctions or are connected to Russia's SPFS
+  financial-messaging system; EU operators are banned from transacting with
+  any such listed CASP. This continues the crypto/financial-messaging
+  restriction track flagged in the 8th-package template note (later packages
+  18th/19th/20th expand the crypto bans). The corpus previously stopped at the
+  15th package (null_event) plus the new 16th package; this 18th-package event
+  is a direct CASP-facing transaction-ban broadening (a debanking of an
+  SPFS-connected CASP class from the EU off-ramp/transaction surface) and is
+  therefore §9-IN-SCOPE as a censorship action (vs the soft G20/FATF
+  status-report candidates in this batch, which are out of scope).
+  comparison shape, single offramp_cex observed_change/direct. asset_onchain
+  not_applicable (a transaction-counterparty ban, not an enumerated-address
+  freeze; the captured EU press source lists no addresses, so none are
+  asserted). attribution=direct per codebook §1.1: the EU instrument publicly
+  references the prohibited target class (crypto-asset providers) explicitly.
+  Sources verified via WebSearch + capture 2026-05-31; verbatim CASP/SPFS
+  transaction-ban language grep-confirmed in the captured body (no
+  fabrication). NOTE for human audit: the consilium.europa.eu 18th-package
+  press release was not Wayback-archived at capture time (403 on live fetch);
+  the finance.ec.europa.eu mirror (archived 20250805164642) is used as the
+  primary anchor and carries the same CASP/SPFS language.
+
+scoped_claim: |
+  "The EU's 18th sanctions package (2025-07-18) broadened the transaction ban
+  for third-country financial operators to expressly include crypto-asset
+  service providers connected to Russia's SPFS or circumventing sanctions,
+  banning EU operators from transacting with any such listed CASP; single-layer
+  offramp_cex observed_change with attribution=direct."
+
+tags:
+  - supranational_regulation
+  - eu_sanctions
+  - russia_related
+  - crypto_services_ban
+  - spfs
+  - offramp_shutdown
+  - eu_18th_package

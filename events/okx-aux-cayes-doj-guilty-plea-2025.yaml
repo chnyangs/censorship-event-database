@@ -1,0 +1,173 @@
+id: okx-aux-cayes-doj-guilty-plea-2025
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2025-02-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties
+      wayback: https://web.archive.org/web/20250224212930/https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties
+      body_hash: sha256:9a71e4203f28303ac9ef8fb8f4670358c52e5ba48efb287dfc2884e412e4cf9b
+      body_path: sources/http_captures/okx-aux-cayes-doj-guilty-plea-2025/primary/web.archive.org__web-20250224000000-https-www.justice.gov-usao-sdny-pr-okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties__4a9f16c414.html
+      evidence_use: replayable
+      note: |
+        DOJ SDNY press release (2025-02-24): "OKX Pleads Guilty To Violating
+        U.S. Anti-Money Laundering Laws And Agrees To Pay Penalties Totaling
+        More Than $500 Million." Aux Cayes Fintech Co. Ltd. (operator of the
+        OKX exchange) pleaded guilty to operating an unlicensed money
+        transmitting business and agreed to pay >$504M (a $84M penalty +
+        ~$421M forfeiture). The release states OKX served US retail and
+        institutional customers who engaged in >$1 trillion of transactions,
+        and that OKX was used to facilitate >$5 billion of suspicious
+        transactions/criminal proceeds; in early 2024 OKX retained an external
+        compliance consultant to advise on controls to prevent US persons from
+        transacting on the platform. Wayback 20250224212930 pinned. Grep of
+        the captured body confirms "OKX", "Aux Cayes", "guilty", "unlicensed
+        money transmitting", "504", "421", "five billion", "trillion",
+        "U.S. customers", "prevent U.S. persons".
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the DOJ SDNY press release dated
+        February 24, 2025.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Aux Cayes Fintech Co. Ltd. (Seychelles entity operating the OKX
+    cryptocurrency exchange). Marked subset: the named corporate operator + the
+    OKX platform's US-customer access surface, not an enumerated set of
+    customers. No on-chain addresses named in the captured release (a
+    money-transmission guilty plea, not an on-chain freeze).
+  actor_type: digital_currency_exchange_msb
+  actor_name: Aux Cayes Fintech Co. Ltd. (OKX)
+  canonical_domains:
+    - okx.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Criminal money-transmission guilty plea + corporate resolution, not an
+      ISP/DNS network-layer block. L0 instruments do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain/consensus surface targeted; OKX is a centralized exchange.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend-domain seizure; the resolution restricts US-person access to
+      the OKX platform rather than seizing okx.com. The load-bearing effect is
+      at offramp_cex.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain token freeze; the action is a money-transmission guilty plea
+      against the operator, so no §1.6 asset_onchain tx_hash floor applies.
+  - layer: offramp_cex
+    status: measured
+    scope: [okx]
+    note: |
+      Load-bearing layer. The guilty plea (operating an unlicensed money
+      transmitting business) + >$504M resolution restricts OKX's service to US
+      persons; per the release OKX retained a compliance consultant to advise
+      on controls to prevent US persons from transacting on the platform. This
+      is a US-market restriction on a major exchange/off-ramp. Attested in the
+      DOJ SDNY release.
+
+observations:
+  - layer: offramp_cex
+    actor: us_doj_sdny
+    event: okx_aux_cayes_guilty_plea_unlicensed_money_transmission_us_restriction
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-02-24T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties
+        wayback: https://web.archive.org/web/20250224212930/https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties
+        body_hash: sha256:9a71e4203f28303ac9ef8fb8f4670358c52e5ba48efb287dfc2884e412e4cf9b
+        body_path: sources/http_captures/okx-aux-cayes-doj-guilty-plea-2025/primary/web.archive.org__web-20250224000000-https-www.justice.gov-usao-sdny-pr-okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties__4a9f16c414.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [okx]
+          countries: [US]
+          time_window:
+            - 2025-02-24T00:00:00Z
+            - 2025-02-24T23:59:59Z
+        note: |
+          DOJ SDNY 2025-02-24: Aux Cayes Fintech (OKX) pleaded guilty to
+          operating an unlicensed money transmitting business, agreed to
+          >$504M, and (per the release) engaged a compliance consultant to
+          prevent US persons from transacting on the platform.
+          attribution=direct: the named state action names the specific target
+          (Aux Cayes / OKX) and its US-customer access being restricted.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2025-02-24 the DOJ
+  (Southern District of New York) announced that Aux Cayes Fintech Co. Ltd.,
+  operator of the OKX cryptocurrency exchange, pleaded guilty to operating an
+  unlicensed money transmitting business and agreed to pay >$504M (a $84M
+  penalty + ~$421M forfeiture). The release states OKX served US retail and
+  institutional customers transacting >$1 trillion, was used to facilitate
+  >$5 billion of suspicious transactions, and in early 2024 retained a
+  compliance consultant to advise on controls to prevent US persons from
+  transacting on the platform. This is a DOJ enforcement resolution against a
+  legitimate major exchange that restricts its US-person access — in scope per
+  codebook §9 (enforcement restricting a legitimate operator's market access;
+  the KuCoin/Binance pattern). comparison shape, 1 observed_change layer
+  (offramp_cex), attribution=direct (the resolution names the specific
+  target). asset_onchain not_applicable: a money-transmission guilty plea, no
+  on-chain freeze, so no §1.6 tx_hash floor applies. Sources verified via
+  WebSearch 2026-05-31; the real DOJ SDNY press release captured +
+  body_hash-pinned; grep of the captured body confirms "OKX", "Aux Cayes",
+  "guilty", "unlicensed money transmitting", "504", "421", "five billion",
+  "trillion", "U.S. customers", "prevent U.S. persons" (no fabrication).
+  Distinct from the S5_corporate okx delisting events already in corpus
+  (okx-privacy-token-delist-2024, okx-monero-global-delisting-2024), which are
+  corporate-policy delistings, not this DOJ criminal resolution.
+
+scoped_claim: |
+  "The 2025-02-24 DOJ SDNY resolution — Aux Cayes Fintech (OKX) pleading guilty
+  to operating an unlicensed money transmitting business and paying >$504M,
+  with controls to prevent US persons from transacting — is a single-layer
+  offramp_cex restriction on a legitimate major exchange's US-market access,
+  attribution=direct. comparable_main tier."
+
+tags:
+  - doj_enforcement
+  - unlicensed_money_transmitter
+  - anti_money_laundering
+  - guilty_plea
+  - offramp_restriction
+  - okx
+  - comparable_main

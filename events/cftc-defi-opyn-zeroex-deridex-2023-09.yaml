@@ -1,0 +1,220 @@
+id: cftc-defi-opyn-zeroex-deridex-2023-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - cftc-v-ooki-dao-2022
+  - binance-cftc-2023
+
+trigger:
+  type: cftc_action
+  actor: US_CFTC
+  timestamp: 2023-09-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.cftc.gov/PressRoom/PressReleases/8774-23
+      wayback: https://web.archive.org/web/20230908043407/https://www.cftc.gov/PressRoom/PressReleases/8774-23
+      body_hash: sha256:a013f296efc95d37f306e1a41c1f9cacb9510e4eab2745b4cf4eaed40b535918
+      body_path: sources/http_captures/cftc-defi-opyn-zeroex-deridex-2023-09/primary/web.archive.org__web-20230908000000-https-www.cftc.gov-PressRoom-PressReleases-8774-23__1c73b942d5.html
+      evidence_use: replayable
+      note: |
+        CFTC press release 8774-23 (dated "September 07, 2023"): "CFTC Issues
+        Orders Against Operators of Three DeFi Protocols for Offering Illegal
+        Digital Asset Derivatives Trading." The CFTC simultaneously filed and
+        settled charges against Opyn, Inc., ZeroEx, Inc. (0x), and Deridex,
+        Inc., requiring each to "cease and desist from violating the Commodity
+        Exchange Act" and pay civil monetary penalties of $250,000, $200,000,
+        and $100,000 respectively. Charges include operating unregistered
+        platforms that allow U.S. persons to trade leveraged/margined retail
+        commodity transactions and digital-asset derivatives, and failing to
+        register as a swap execution facility (SEF) / designated contract
+        market (DCM) / futures commission merchant (FCM). Captured body notes
+        that Opyn "took certain steps to exclude U.S. persons from accessing
+        the Opyn Protocol, such as block[ing US IP addresses]" (found
+        insufficient) while Deridex "took no steps to exclude U.S. persons."
+        Grep-confirmed in captured body: "Opyn", "ZeroEx", "Deridex", "cease
+        and desist", "$250,000", "$200,000", "$100,000", "September 07, 2023",
+        "swap execution facility", "U.S. persons", "register". Wayback memento
+        20230908043407 captured 2026-05-31.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Three DeFi-protocol operating companies named in CFTC press release
+    8774-23: Opyn, Inc. (Delaware-registered, California-based; operator of the
+    Opyn Protocol), ZeroEx, Inc. (operator of the 0x / Matcha protocol), and
+    Deridex, Inc. (operator of the Deridex perpetual-contracts protocol). The
+    CFTC orders name these three operators as respondents; the underlying
+    smart-contract protocols and their broader user cohorts are not enumerated
+    address-by-address, so the enumeration is coded subset.
+  actor_type: defi_protocol_operator_enforcement
+  actor_name: Opyn, Inc. + ZeroEx, Inc. (0x) + Deridex, Inc.
+  chains: [ethereum]
+  canonical_domains:
+    - opyn.co
+    - 0x.org
+    - deridex.io
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The CFTC orders are commodities-law settlements, not a DNS / ISP
+      connectivity action. No network-level blocking of the protocol domains is
+      asserted.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Commodities / derivatives civil enforcement; no validator-level or
+      block-construction cascade implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No RPC-provider filter-list mechanism implicated; the cascade surface is
+      the operator-controlled DeFi protocol frontend / U.S.-person access gate.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - opyn_protocol_us
+      - zeroex_0x_protocol_us
+      - deridex_protocol_us
+    note: |
+      Load-bearing layer. The CFTC orders compel the three DeFi-protocol
+      operators to cease and desist from offering their leveraged/margined
+      digital-asset-derivatives products to U.S. persons absent registration —
+      effectively a register-or-geoblock-US-users mandate at the operator-
+      controlled frontend / access layer. The captured release explicitly
+      frames the U.S.-person access gate: Opyn already "took certain steps to
+      exclude U.S. persons from accessing the Opyn Protocol, such as
+      block[ing]" U.S. IP addresses (deemed insufficient), and Deridex "took no
+      steps to exclude U.S. persons." Observed_change with direct attribution
+      attached below (the CFTC orders are the legal instruments naming the
+      operators as respondents and ordering the cessation toward U.S. persons).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN listing and no token-contract-level freeze / blacklist primitive is
+      implicated by the CFTC orders; the protocols' on-chain surface is not
+      directly frozen.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The respondents are non-custodial DeFi-protocol operators, not centralized
+      exchange off-ramps; the load-bearing restriction is the operator frontend /
+      U.S.-person access gate, carried at l4_frontend.
+
+observations:
+  - layer: l4_frontend
+    actor: defi_operators:opyn_zeroex_deridex_us
+    event: cftc_orders_three_defi_operators_to_cease_offering_to_us_persons
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-09-07T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_government
+        url: https://www.cftc.gov/PressRoom/PressReleases/8774-23
+        wayback: https://web.archive.org/web/20230908043407/https://www.cftc.gov/PressRoom/PressReleases/8774-23
+        body_hash: sha256:a013f296efc95d37f306e1a41c1f9cacb9510e4eab2745b4cf4eaed40b535918
+        body_path: sources/http_captures/cftc-defi-opyn-zeroex-deridex-2023-09/primary/web.archive.org__web-20230908000000-https-www.cftc.gov-PressRoom-PressReleases-8774-23__1c73b942d5.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [opyn_protocol_us, zeroex_0x_protocol_us, deridex_protocol_us]
+          countries: [US]
+          time_window:
+            - 2023-09-07T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          CFTC press release 8774-23 ("September 07, 2023") is the set of legal
+          instruments naming Opyn, Inc., ZeroEx, Inc. (0x), and Deridex, Inc. as
+          respondents and ordering each to cease and desist from violating the
+          Commodity Exchange Act — i.e. to stop offering their unregistered
+          leveraged/margined digital-asset-derivatives protocols to U.S.
+          persons absent registration. Penalties: $250,000 (Opyn), $200,000
+          (ZeroEx), $100,000 (Deridex). The captured body anchors the
+          U.S.-person access gate (Opyn IP-block steps deemed insufficient;
+          Deridex took none). attribution=direct per codebook §1.1 — the named
+          actor (CFTC) issues the orders and the orders name the targets (the
+          three operators) being acted upon. delta_hours=0 (orders filed and
+          settled simultaneously at the order date).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison shape: 1 observed_change layer (l4_frontend, attribution=direct).
+  On 2023-09-07 the CFTC simultaneously filed and settled orders against three
+  DeFi-protocol operators — Opyn, Inc., ZeroEx, Inc. (0x), and Deridex, Inc. —
+  for offering illegal leveraged/margined digital-asset-derivatives trading to
+  U.S. persons on unregistered platforms, requiring each to cease and desist
+  from violating the Commodity Exchange Act and pay civil penalties of
+  $250,000 / $200,000 / $100,000 respectively. The orders operationalize a
+  register-or-geoblock-US-users mandate against legitimate DeFi protocol
+  operators; the captured release explicitly contrasts Opyn (which "took
+  certain steps to exclude U.S. persons from accessing the Opyn Protocol, such
+  as block[ing]" U.S. IPs, found insufficient) with Deridex (which "took no
+  steps to exclude U.S. persons").
+
+  §9 inclusion: in scope — a federal commodities regulator deliberately
+  restricting legitimate DeFi protocols' service to U.S. persons (geofence /
+  access denial), not a scam prosecution. These were operating DeFi protocols
+  (0x/Matcha is a major DEX-aggregation protocol; Opyn an options protocol;
+  Deridex a perpetuals protocol) ruled to be offering unregistered derivatives.
+  This is the §9 "CFTC enforcement that restricts a legitimate platform/operator"
+  category, expressed as a frontend / U.S.-person access restriction.
+
+  trigger.type=cftc_action and research_stratum=S3_doj_sec_cftc_fiod per codebook
+  §5: the CFTC is a US federal commodities regulator (S3). Sibling DeFi-
+  commodities enforcement is cftc-v-ooki-dao-2022 (the CFTC's earlier DeFi/DAO
+  derivatives action); binance-cftc-2023 is the contemporaneous CFTC
+  derivatives action against a centralized off-ramp.
+
+  Layer choice: load-bearing axis is l4_frontend (the operator-controlled U.S.-
+  person access gate / register-or-geoblock mandate), not offramp_cex — the
+  respondents are non-custodial DeFi protocol operators, not CEX off-ramps. No
+  on-chain freeze primitive is implicated, so asset_onchain is not_applicable.
+
+  attribution=direct per §1.1: the CFTC orders name the actor (CFTC) and the
+  targets (the three operators) and are the instruments compelling the
+  cessation toward U.S. persons. admission_tier=empirical_case (≥1
+  strong-attribution observed_change layer). Sources verified via WebSearch +
+  WebFetch 2026-05-31; real CFTC page captured + body_hash-pinned, all
+  load-bearing facts grep-confirmed (no fabrication).
+
+scoped_claim: |
+  "The CFTC's 2023-09-07 simultaneous settlement orders (press release 8774-23)
+  against three DeFi-protocol operators — Opyn, Inc. ($250,000), ZeroEx, Inc. /
+  0x ($200,000), and Deridex, Inc. ($100,000) — ordered each to cease and
+  desist from offering unregistered leveraged digital-asset-derivatives trading
+  to U.S. persons, operationalizing a register-or-geoblock-US-users restriction
+  on legitimate DeFi protocols at the operator frontend / U.S.-person access
+  layer (l4_frontend load-bearing, attribution=direct). The row does not claim
+  ISP-level blocking, on-chain asset freeze, or a CEX off-ramp action."
+
+tags:
+  - cftc_enforcement
+  - united_states
+  - defi
+  - opyn
+  - zeroex_0x
+  - deridex
+  - digital_asset_derivatives
+  - register_or_geoblock
+  - dryrun_2026_05_31

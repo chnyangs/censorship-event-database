@@ -1,0 +1,217 @@
+id: korea-fsc-privacy-coin-delisting-mandate-2021-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - korea-fsc-institutional-restriction-2017
+  - korea-travel-rule-2022
+  - binance-privacy-coin-delisting-2023
+
+trigger:
+  type: regulatory_enforcement
+  actor: KR_FSC
+  timestamp: 2021-03-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
+      wayback: https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
+      body_hash: sha256:0db6fbd0fde1a06682603c614aa565696119b03b0ab32e6f954305843b85f62a
+      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary/web.archive.org__web-20260114063228-https-cointelegraph.com-news-south-korean-financial-watchdog-to-ban-privacy-coins__3faf32edcd.html
+      evidence_use: replayable
+      note: |
+        Cointelegraph "South Korean financial watchdog will ban privacy coins from
+        exchanges". Captured page confirms the FSC (Financial Services Commission)
+        amendment to the enforcement decree of the Special Financial Transactions /
+        reporting act bars virtual-asset service providers from handling "dark
+        coins" / privacy coins (names Monero and Dash), taking effect March 2021.
+    - type: supporting_journalism
+      url: https://www.cpomagazine.com/data-privacy/south-koreas-new-crypto-aml-law-bans-trading-of-privacy-coins-monero-zcash/
+      wayback: https://web.archive.org/web/20260105125739/https://www.cpomagazine.com/data-privacy/south-koreas-new-crypto-aml-law-bans-trading-of-privacy-coins-monero-zcash/
+      body_hash: sha256:4a401cc50c7d3ea4f5ad5e0be211885e2e76f98c6097f32df87a35d5866c6070
+      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary/web.archive.org__web-20260105125739-https-www.cpomagazine.com-data-privacy-south-koreas-new-crypto-aml-law-bans-trading-of-privacy-coins-monero-zcash__fcf7d78321.html
+      evidence_use: replayable
+      note: |
+        CPO Magazine "South Korea's New Crypto AML Law Bans Trading of 'Privacy
+        Coins' (Monero, Zcash)". Captured page confirms the FSC enforcement-decree
+        amendment forbids licensed exchanges from offering "dark coins" / privacy
+        coins (names Monero and Zcash), citing money-laundering / ransomware
+        traceability risk, effective March 2021.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level anchor 2021-03-25 = effective date of the amended Special
+        Financial Transactions Information Act enforcement decree (the act's
+        amendments commenced 2021-03-25). The captured journalism sources state
+        the privacy-coin handling ban took effect "March 2021"; the specific
+        2021-03-25 commencement date is the act's widely-reported effective date.
+        Human audit should pin the FSC enforcement-decree text (English) as a
+        primary_legal anchor confirming the exact day.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level subset: all South Korean licensed virtual-asset service providers
+    (crypto exchanges) and the privacy-coin / "dark coin" asset class they are
+    barred from handling (named in sources: Monero (XMR), Dash, Zcash (ZEC)). The
+    mandate is a handling/delisting prohibition over the exchange class; no
+    address-level or per-exchange enumeration is asserted.
+  protocol: null
+  actor_type: korean_exchange_class
+  actor_name: South Korean licensed crypto exchanges (VASP class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [KR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The mechanism is an exchange-handling/delisting prohibition, not an on-chain
+      freeze of the privacy-coin contracts (Monero/Dash/Zcash are independent L1
+      chains with no issuer freeze entrypoint). Per codebook §1.6 the effect is
+      carried at offramp_cex, not asset_onchain; no primary_onchain tx_hash exists
+      or is asserted.
+  - layer: offramp_cex
+    status: measured
+    scope: [korean_exchange_class, privacy_coin_asset_class]
+    note: |
+      Load-bearing layer. The FSC enforcement-decree amendment bars South Korean
+      licensed exchanges from handling privacy / "dark" coins (Monero, Dash, Zcash),
+      forcing domestic delisting and severing the regulated off-ramp for that asset
+      class. Captured at class level via two replayable journalism anchors.
+    denominator_artifact:
+      type: supporting_journalism
+      url: https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
+      wayback: https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
+      body_hash: sha256:0db6fbd0fde1a06682603c614aa565696119b03b0ab32e6f954305843b85f62a
+      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary/web.archive.org__web-20260114063228-https-cointelegraph.com-news-south-korean-financial-watchdog-to-ban-privacy-coins__3faf32edcd.html
+      scope_descriptor:
+        providers: [korean_exchange_class]
+        countries: [KR]
+        time_window:
+          - 2021-03-25T00:00:00Z
+          - 2021-12-31T23:59:59Z
+      note: |
+        Cointelegraph report as class-level denominator anchor for the FSC
+        privacy-coin handling prohibition scope.
+
+observations:
+  - layer: offramp_cex
+    actor: korean_exchange_class
+    event: privacy_coin_handling_prohibited_exchanges
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-03-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
+        wayback: https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
+        body_hash: sha256:0db6fbd0fde1a06682603c614aa565696119b03b0ab32e6f954305843b85f62a
+        body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary/web.archive.org__web-20260114063228-https-cointelegraph.com-news-south-korean-financial-watchdog-to-ban-privacy-coins__3faf32edcd.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [korean_exchange_class]
+          countries: [KR]
+          time_window:
+            - 2021-03-25T00:00:00Z
+            - 2021-12-31T23:59:59Z
+        note: |
+          observed_change at class level: FSC enforcement-decree amendment bars
+          Korean exchanges from handling privacy/dark coins (Monero, Dash).
+          attribution=plausible — the decree targets the exchange / asset class,
+          not enumerated operators (codebook §1.1).
+      - type: supporting_journalism
+        url: https://www.cpomagazine.com/data-privacy/south-koreas-new-crypto-aml-law-bans-trading-of-privacy-coins-monero-zcash/
+        wayback: https://web.archive.org/web/20260105125739/https://www.cpomagazine.com/data-privacy/south-koreas-new-crypto-aml-law-bans-trading-of-privacy-coins-monero-zcash/
+        body_hash: sha256:4a401cc50c7d3ea4f5ad5e0be211885e2e76f98c6097f32df87a35d5866c6070
+        body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary/web.archive.org__web-20260105125739-https-www.cpomagazine.com-data-privacy-south-koreas-new-crypto-aml-law-bans-trading-of-privacy-coins-monero-zcash__fcf7d78321.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [korean_exchange_class]
+          countries: [KR]
+          time_window:
+            - 2021-03-25T00:00:00Z
+            - 2021-12-31T23:59:59Z
+        note: |
+          Companion anchor naming Monero and Zcash as barred privacy coins under
+          the FSC enforcement-decree amendment.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-2 adversarial verify):** captured source supports the
+  action + general nexus, but a specific claim (exact addresses / asset types / source-attribution
+  detail) is not fully substantiated by the captured page. Refine the source + soften unsupported
+  specifics before admission. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison documenting South Korea's FSC enforcement-decree amendment (Special
+  Financial Transactions Information Act / reporting-and-use-of-specified-financial-
+  transaction-information regulation) that bars licensed Korean exchanges from
+  handling privacy / "dark" coins (Monero, Dash, Zcash), forcing domestic delisting
+  and severing the regulated off-ramp for that asset class, effective March 2021
+  (act commencement 2021-03-25). §9 scope: a deliberate state-mandated delisting
+  restriction of a legitimate asset class on legitimate exchanges — IN scope.
+
+  LAYER ROUTING (codebook §1.6): the candidate lead suggested asset_onchain, but the
+  mechanism is an exchange-handling/delisting prohibition (Monero/Dash/Zcash are
+  independent L1 chains with no issuer freeze entrypoint — no on-chain tx_hash can
+  exist for this action). The effect is therefore carried at offramp_cex (the
+  regulated off-ramp / exchange-handling surface) and asset_onchain is set
+  not_applicable, exactly per the §1.6 route-to-another-layer rule.
+
+  trigger.type=regulatory_enforcement per codebook §5.1 (KR FSC administrative
+  enforcement). Stratum-actor map §5.2 maps regulatory_enforcement → S4_nation_state.
+  attribution=plausible per §1.1 (decree targets the exchange/asset class, not
+  enumerated operators). empirical_shape=comparison / admission_tier=empirical_case:
+  one strong-attribution (plausible) observed_change layer (offramp_cex).
+
+  DRYRUN caveats: the two captured anchors are journalism (Cointelegraph, CPO
+  Magazine) — both replayable (body_hash+body_path) — and state the ban took effect
+  "March 2021"; the precise 2021-03-25 day is the Special-Act amendment commencement
+  date and should be hardened against the FSC enforcement-decree text at human
+  audit. This is distinct from korea-fsc-institutional-restriction-2017 (earlier FSC
+  action) and from the corporate privacy-coin delistings (binance-privacy-coin-
+  delisting-2023, huobi-htx-privacy-coin-delisting-2024), which are issuer/exchange-
+  initiated S5 events rather than a state mandate.
+
+scoped_claim: |
+  "South Korea's FSC enforcement-decree amendment, effective March 2021 (Special
+  Financial Transactions Information Act commencement 2021-03-25), bars licensed
+  Korean crypto exchanges from handling privacy / 'dark' coins (Monero, Dash,
+  Zcash), forcing domestic delisting of that asset class. Captured at class level
+  at the offramp_cex layer; no per-exchange or on-chain enumeration claimed."
+
+tags:
+  - regulatory_enforcement
+  - south_korea
+  - fsc
+  - privacy_coins
+  - dark_coins
+  - delisting_mandate
+  - offramp_cex
+  - dryrun_2026_05_31
+  - agent_draft

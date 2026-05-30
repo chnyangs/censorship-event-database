@@ -1,0 +1,166 @@
+id: sec-etoro-cease-crypto-trading-2024-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2024-09-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/newsroom/press-releases/2024-125
+      wayback: https://web.archive.org/web/20240912140445/https://www.sec.gov/newsroom/press-releases/2024-125
+      body_hash: sha256:e0308b141b3c67a33041186574d9450d15c89aa275729e4811eb19e4bdcdbdd5
+      body_path: sources/http_captures/sec-etoro-cease-crypto-trading-2024-09/primary/web.archive.org__web-20240912000000-https-www.sec.gov-newsroom-press-releases-2024-125__41be25e11d.html
+      evidence_use: replayable
+      note: |
+        SEC press release 2024-125 (2024-09-12): "eToro Reaches Settlement
+        with SEC and Will Cease Trading Activity in Nearly All Crypto Assets."
+        eToro USA LLC settled charges of operating as an unregistered broker
+        and clearing agency, agreed to a cease-and-desist plus a $1.5M penalty,
+        and agreed to cease trading in nearly all crypto assets for US
+        customers — restricting them to Bitcoin, Bitcoin Cash, and Ether — and
+        to liquidate other crypto-asset securities it could not transfer to
+        customers within ~180 days. Wayback 20240912140445 pinned. Grep of the
+        captured body confirms "eToro", "1.5 million", "Bitcoin",
+        "Bitcoin Cash", "Ether", "cease", "liquidate", "180 days", "broker",
+        "clearing".
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the SEC press release dated September 12, 2024.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    eToro USA LLC and its US crypto-trading service. Marked subset: the named
+    operator + its US crypto-trading surface, not an enumerated set of the
+    delisted crypto assets or affected customers. The BTC/ETH/BCH whitelist is
+    named in the order; the broad set of removed assets is not individually
+    enumerated. No on-chain addresses named (a securities cease-and-desist, not
+    an on-chain freeze).
+  actor_type: exchange_securities_enforcement
+  actor_name: eToro USA LLC
+  canonical_domains:
+    - etoro.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      SEC administrative cease-and-desist, not an ISP/DNS network-layer block.
+      L0 instruments do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain/consensus surface targeted; eToro USA was a centralized
+      trading platform.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend-domain seizure; the order restricts the operator's crypto-
+      trading conduct rather than seizing etoro.com. The load-bearing effect
+      is at offramp_cex.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain token freeze; the action is a securities cease-and-desist
+      against the operator, so no §1.6 asset_onchain tx_hash floor applies.
+  - layer: offramp_cex
+    status: measured
+    scope: [etoro_usa]
+    note: |
+      Load-bearing layer. The SEC order forced eToro USA to cease trading in
+      nearly all crypto assets for US customers — restricting them to Bitcoin,
+      Bitcoin Cash, and Ether — and to liquidate other crypto-asset securities
+      within ~180 days (cease-and-desist + $1.5M penalty). This is a US
+      exchange/off-ramp delisting/restriction. Attested in the SEC press
+      release.
+
+observations:
+  - layer: offramp_cex
+    actor: us_sec
+    event: sec_settles_etoro_cease_nearly_all_crypto_trading_us_customers
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2024-125
+        wayback: https://web.archive.org/web/20240912140445/https://www.sec.gov/newsroom/press-releases/2024-125
+        body_hash: sha256:e0308b141b3c67a33041186574d9450d15c89aa275729e4811eb19e4bdcdbdd5
+        body_path: sources/http_captures/sec-etoro-cease-crypto-trading-2024-09/primary/web.archive.org__web-20240912000000-https-www.sec.gov-newsroom-press-releases-2024-125__41be25e11d.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [etoro_usa]
+          countries: [US]
+          time_window:
+            - 2024-09-12T00:00:00Z
+            - 2024-09-12T23:59:59Z
+        note: |
+          SEC press release 2024-125 (2024-09-12): eToro USA settled
+          unregistered-broker/clearing-agency charges and agreed to cease
+          trading in nearly all crypto assets for US customers (restricting to
+          BTC/BCH/ETH) + liquidate other holdings within ~180 days
+          (cease-and-desist + $1.5M). attribution=direct: the SEC names the
+          specific target (eToro USA) and its crypto-trading service being
+          restricted.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2024-09-12 the US SEC
+  (press release 2024-125) settled with eToro USA LLC over operating as an
+  unregistered broker and clearing agency: eToro agreed to a cease-and-desist
+  plus a $1.5M penalty and to cease trading in nearly all crypto assets for US
+  customers, restricting them to Bitcoin, Bitcoin Cash, and Ether and
+  liquidating other crypto-asset securities within ~180 days. This is SEC
+  enforcement forcing a US exchange/off-ramp to delist/restrict nearly all
+  crypto trading for US users — in scope per codebook §9 (SEC action
+  restricting a legitimate operator + a delisting). comparison shape,
+  1 observed_change layer (offramp_cex), attribution=direct (the order names
+  the specific target). asset_onchain not_applicable: a securities
+  cease-and-desist, no on-chain freeze, so no §1.6 tx_hash floor applies.
+  Sources verified via WebSearch 2026-05-31; the real SEC.gov press release
+  captured + body_hash-pinned; grep of the captured body confirms "eToro",
+  "1.5 million", "Bitcoin", "Bitcoin Cash", "Ether", "cease", "liquidate",
+  "180 days", "broker", "clearing" (no fabrication).
+
+scoped_claim: |
+  "The 2024-09-12 SEC settlement (press release 2024-125) forced eToro USA to
+  cease trading in nearly all crypto assets for US customers (restricting to
+  BTC/BCH/ETH + liquidating other holdings within ~180 days; cease-and-desist
+  + $1.5M): a single-layer offramp_cex delisting/restriction on a legitimate
+  US trading platform, attribution=direct. comparable_main tier."
+
+tags:
+  - sec_enforcement
+  - unregistered_broker
+  - clearing_agency
+  - delisting
+  - offramp_restriction
+  - etoro
+  - comparable_main

@@ -1,0 +1,226 @@
+id: garantex-besciokov-mira-serda-doj-2025
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: anchor_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - bitzlato-doj-2023
+  - garantex-ofac-2022
+  - grinex-garantex-successor-ofac-2025
+  - liberty-reserve-coordinated-takedown-2013-05
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ
+  timestamp: 2025-03-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://web.archive.org/web/20250307000000/https://www.justice.gov/opa/pr/garantex-cryptocurrency-exchange-disrupted-international-operation
+      wayback: https://web.archive.org/web/20250307191431/https://www.justice.gov/opa/pr/garantex-cryptocurrency-exchange-disrupted-international-operation
+      body_hash: sha256:ec3f812163ed57d80e8af1d4a66cb9d3d156008e80556df0833e6061bfbb8d8a
+      body_path: sources/http_captures/garantex-besciokov-mira-serda-doj-2025/primary/web.archive.org__web-20250307000000-https-www.justice.gov-opa-pr-garantex-cryptocurrency-exchange-disrupted-international-operation__d76e9d3a2a.html
+      evidence_use: replayable
+      note: |
+        DOJ Office of Public Affairs press release (2025-03-07): "Garantex
+        Cryptocurrency Exchange Disrupted in International Operation." Federal
+        prosecutors in the Eastern District of Virginia unsealed a three-count
+        indictment charging two Garantex administrators — Aleksej Besciokov
+        (primary technical administrator) and Aleksandr Mira Serda (co-founder
+        and chief commercial officer) — with money laundering conspiracy;
+        Besciokov was additionally charged with conspiracy to violate the
+        International Emergency Economic Powers Act (IEEPA) and conspiracy to
+        operate an unlicensed money transmitting business. The U.S. Secret
+        Service seized the online infrastructure used to operate Garantex,
+        including three domains (Garantex.org, Garantex.io, Garantex.academy),
+        and U.S. law enforcement froze more than $26 million in funds. Garantex
+        processed at least $96 billion in cryptocurrency transactions since 2019.
+        Wayback memento 20250307191431 pinned; captured body grep-confirmed
+        "Besciokov", "Mira Serda", "Garantex.org", "Garantex.io",
+        "Garantex.academy", "26 million", "Secret Service", "Eastern District
+        of Virginia", "International Emergency Economic Powers Act", "96 billion"
+        (no on-chain wallet addresses present in the release; none asserted).
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-03-07 DOJ OPA press release announcing
+        the coordinated international takedown and domain seizure.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Garantex (Russia-based centralized cryptocurrency exchange) and two named
+    administrators — Aleksej Besciokov and Aleksandr Mira Serda. The Secret
+    Service seized three operational domains (Garantex.org, Garantex.io,
+    Garantex.academy). Marked subset: targets the named defendants + the
+    Garantex corporate operation + its seized domains rather than an enumerated
+    complete set of Garantex account holders or on-chain addresses.
+  actor_type: centralized_virtual_currency_exchange
+  actor_name: Garantex + Aleksej Besciokov & Aleksandr Mira Serda
+  canonical_domains:
+    - garantex.org
+    - garantex.io
+    - garantex.academy
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The takedown operated via domain-name seizure + criminal indictment, not
+      an ISP/DNS network-layer block. L0 measurement instruments do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Garantex was a centralized off-chain exchange operator; no consensus-layer
+      filtering instrument applies.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface; Garantex was a centralized web exchange.
+  - layer: l4_frontend
+    status: measured
+    scope: [garantex_org, garantex_io, garantex_academy]
+    note: |
+      Load-bearing layer. The 2025-03-07 coordinated action seized three domains
+      (Garantex.org, Garantex.io, Garantex.academy), taking the operational
+      frontend infrastructure offline. The domain seizure is the directly
+      DOJ/Secret-Service-attributed frontend takedown, attested in the DOJ OPA
+      release.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The captured DOJ release describes a >$26M fund freeze but lists no
+      on-chain wallet addresses or transaction hashes; per codebook §1.6 the
+      asset_onchain evidence floor (a real primary_onchain tx_hash) is not met,
+      so no asset_onchain observation is asserted. The frozen-funds effect is
+      not carried as a distinct on-chain row; the operative censorship action is
+      the domain seizure (l4_frontend) and operational disruption (offramp_cex).
+  - layer: offramp_cex
+    status: measured
+    scope: [garantex]
+    note: |
+      Load-bearing layer. Garantex operated as a centralized cryptocurrency
+      exchange; the indictment + Secret Service infrastructure seizure +
+      >$26M freeze disrupted Garantex's exchange/off-ramp operations. Attested
+      in the DOJ OPA release.
+
+observations:
+  - layer: l4_frontend
+    actor: us_secret_service
+    event: secret_service_seizes_three_garantex_domains
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-03-07T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20250307000000/https://www.justice.gov/opa/pr/garantex-cryptocurrency-exchange-disrupted-international-operation
+        wayback: https://web.archive.org/web/20250307191431/https://www.justice.gov/opa/pr/garantex-cryptocurrency-exchange-disrupted-international-operation
+        body_hash: sha256:ec3f812163ed57d80e8af1d4a66cb9d3d156008e80556df0833e6061bfbb8d8a
+        body_path: sources/http_captures/garantex-besciokov-mira-serda-doj-2025/primary/web.archive.org__web-20250307000000-https-www.justice.gov-opa-pr-garantex-cryptocurrency-exchange-disrupted-international-operation__d76e9d3a2a.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [garantex_org, garantex_io, garantex_academy]
+          countries: [US]
+          time_window:
+            - 2025-03-07T00:00:00Z
+            - 2025-12-31T23:59:59Z
+        note: |
+          DOJ OPA 2025-03-07: U.S. Secret Service seized the online
+          infrastructure operating Garantex, including the domains Garantex.org,
+          Garantex.io, and Garantex.academy. attribution=direct: a named state
+          action against the named operational domains.
+  - layer: offramp_cex
+    actor: us_doj
+    event: garantex_exchange_operations_disrupted_by_indictment_and_seizure
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-03-07T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20250307000000/https://www.justice.gov/opa/pr/garantex-cryptocurrency-exchange-disrupted-international-operation
+        wayback: https://web.archive.org/web/20250307191431/https://www.justice.gov/opa/pr/garantex-cryptocurrency-exchange-disrupted-international-operation
+        body_hash: sha256:ec3f812163ed57d80e8af1d4a66cb9d3d156008e80556df0833e6061bfbb8d8a
+        body_path: sources/http_captures/garantex-besciokov-mira-serda-doj-2025/primary/web.archive.org__web-20250307000000-https-www.justice.gov-opa-pr-garantex-cryptocurrency-exchange-disrupted-international-operation__d76e9d3a2a.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [garantex]
+          countries: [US]
+          time_window:
+            - 2025-03-07T00:00:00Z
+            - 2025-12-31T23:59:59Z
+        note: |
+          DOJ OPA 2025-03-07: the EDVA indictment of Besciokov and Mira Serda +
+          Secret Service infrastructure seizure + >$26M freeze disrupted
+          Garantex's centralized exchange / off-ramp operations.
+          attribution=direct: the coordinated DOJ/Secret Service action is the
+          operative state instrument and names the Garantex operation directly.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2025-03-07 the DOJ (E.D. Va.)
+  unsealed a three-count indictment charging Garantex administrators Aleksej
+  Besciokov (money laundering conspiracy + IEEPA + unlicensed money transmitting)
+  and Aleksandr Mira Serda (money laundering conspiracy); concurrently the U.S.
+  Secret Service seized Garantex's online infrastructure incl. three domains
+  (Garantex.org, Garantex.io, Garantex.academy) and froze >$26M. Garantex is a
+  legitimate-form centralized exchange (processed ~$96B since 2019), so the
+  takedown of its operational infrastructure is IN scope under §9 (federal
+  enforcement that seizes/shuts a legitimate operating platform; sibling to
+  Bitzlato 2023 and Liberty Reserve 2013) — NOT a §9-excluded scam prosecution.
+  Two observed_change layers: l4_frontend (domain seizure, attribution=direct,
+  the Secret Service seized the named domains) and offramp_cex (operational
+  disruption, attribution=direct, the named coordinated state action) ->
+  empirical_shape comparison, admission_tier anchor_case (§4: 2 direct
+  observed_change layers). asset_onchain set not_applicable per codebook §1.6:
+  the release describes a >$26M freeze but lists NO on-chain addresses or
+  tx_hashes (grep-confirmed absent), so the on-chain evidence floor is
+  structurally unmet from this source — the freeze effect is not asserted as a
+  distinct asset_onchain row, and no wallet address is fabricated. Corpus
+  already holds garantex-ofac-2022 (S1 OFAC SDN) and grinex-garantex-successor-
+  ofac-2025 (S1, the successor); this is the distinct 2025-03 DOJ/Secret Service
+  criminal indictment + domain-seizure action, not a dup of either OFAC event.
+  Sources verified via WebSearch 2026-05-31; real DOJ OPA page captured +
+  body_hash-pinned (Besciokov / Mira Serda / three domains / $26M / Secret
+  Service / EDVA / IEEPA / $96B grep-confirmed; no fabrication).
+
+scoped_claim: |
+  "The 2025-03-07 coordinated U.S. takedown of Garantex (DOJ E.D. Va.
+  indictment of administrators Besciokov and Mira Serda for money laundering
+  conspiracy / IEEPA / unlicensed money transmitting + U.S. Secret Service
+  seizure of three domains Garantex.org/.io/.academy + >$26M fund freeze)
+  produced a 2-layer cascade: l4_frontend (domain seizure) and offramp_cex
+  (exchange operational disruption), both attribution=direct. No asset_onchain
+  row is asserted (release lists no on-chain addresses/tx_hashes; §1.6 floor
+  unmet). Comparable-main tier."
+
+tags:
+  - doj_enforcement
+  - domain_seizure
+  - secret_service_seizure
+  - money_laundering
+  - sanctions_evasion
+  - unlicensed_money_transmitter
+  - garantex
+  - exchange_takedown
+  - frontend_seizure
+  - offramp_shutdown

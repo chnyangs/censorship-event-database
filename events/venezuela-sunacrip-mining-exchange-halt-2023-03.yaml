@@ -1,0 +1,212 @@
+id: venezuela-sunacrip-mining-exchange-halt-2023-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - china-sichuan-mining-ban-2021-06
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: VE_SUNACRIP
+  timestamp: 2023-03-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://decrypt.co/124525/shut-down-mining-farms-exchanges-venezuela
+      wayback: https://web.archive.org/web/20230324212438/https://decrypt.co/124525/shut-down-mining-farms-exchanges-venezuela
+      body_hash: sha256:6212c4c67fb167ce0222dd865cd2d37eb62d0cebcd575f5ca219186ff1de3c18
+      body_path: sources/http_captures/venezuela-sunacrip-mining-exchange-halt-2023-03/primary/web.archive.org__web-20230324212438-https-decrypt.co-124525-shut-down-mining-farms-exchanges-venezuela__ed95e252dd.html
+      evidence_use: replayable
+      note: |
+        Decrypt, captured 2023-03-24, reports that amid the SUNACRIP
+        corruption scandal (SUNACRIP reorganized/closed March 2023; ≥10
+        people arrested incl. former superintendent Joselit Ramirez
+        Camacho) the new superintendent ordered the closure of large
+        cryptocurrency mining farms — the captured body confirms
+        shutdowns of mining farms in the states of Carabobo, Lara and
+        Bolívar, affecting licensed, tax-paying operations (per
+        Asonacrip, the National Association of Cryptocurrencies). The
+        captured body ALSO reports a separate order to close "all
+        cryptocurrency exchanges registered in Venezuela," but states
+        this has "not been officially confirmed"; the exchange-closure
+        claim is therefore contested and is NOT carried as an
+        observed_change (see analysis_notes). Wayback snapshot
+        2023-03-24 21:24 UTC. body_hash pinned in this census wave.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level timing approximate: the SUNACRIP reorganization and
+        the mining-farm closures cluster in mid-to-late March 2023 per
+        Decrypt (captured 2023-03-24, reporting actions "at the
+        beginning of the week"). 2023-03-17 is used as the
+        representative trigger date for the SUNACRIP reorganization /
+        enforcement sweep; precision=day.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Venezuelan licensed cryptocurrency mining operations as a class,
+    with confirmed facility shutdowns in the states of Carabobo, Lara
+    and Bolívar per the captured source. enumeration=subset because the
+    affected facilities are recorded at the state/class level rather
+    than as a complete enumeration of every shut-down operation. The
+    separately-reported (and officially-unconfirmed) order against
+    registered exchanges is excluded from the enumerated target.
+  protocol: null
+  actor_type: venezuelan_licensed_mining_operations
+  actor_name: Venezuelan licensed crypto mining operations (Carabobo / Lara / Bolívar, class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [VE]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      SUNACRIP's enforcement sweep ordered physical closure of mining
+      facilities; it is not a network-layer (DNS/BGP/TLS) reachability
+      block of crypto domains.
+  - layer: l1_consensus
+    status: partially_measured
+    scope: [venezuelan_licensed_mining_facilities]
+    note: |
+      The load-bearing censorship primitive is the state-ordered
+      physical shutdown of licensed crypto mining facilities in
+      Carabobo, Lara and Bolívar. partially_measured: the shutdown order
+      and the affected states are documented by a replayable archived
+      source (the Decrypt body, body_hash pinned on the observation),
+      but no quantitative hashrate/facility-count denominator exhausts
+      the scope in this draft (Venezuela was not a material global
+      hashrate hub, so no global consensus-layer signal is attributed).
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change is implicated by a
+      mining-facility closure order.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No named exchange-frontend block is captured.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN-style issuer freeze or on-chain blacklist primitive is
+      implicated.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      Decrypt reports a separate order to close "all cryptocurrency
+      exchanges registered in Venezuela," but states it has "not been
+      officially confirmed"; a registered exchange (Cryptobuyer) later
+      denied any cessation order. Because the exchange-closure action is
+      officially unconfirmed/disputed, offramp_cex is not_measured and
+      no observed_change is attached at this layer — only the confirmed
+      mining-facility closures are carried (at l1_consensus).
+
+observations:
+  - layer: l1_consensus
+    actor: venezuelan_licensed_mining_facilities
+    event: state_ordered_mining_facility_shutdown_carabobo_lara_bolivar
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-03-17T00:00:00Z
+    precision: day
+    country: VE
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://decrypt.co/124525/shut-down-mining-farms-exchanges-venezuela
+        wayback: https://web.archive.org/web/20230324212438/https://decrypt.co/124525/shut-down-mining-farms-exchanges-venezuela
+        body_hash: sha256:6212c4c67fb167ce0222dd865cd2d37eb62d0cebcd575f5ca219186ff1de3c18
+        body_path: sources/http_captures/venezuela-sunacrip-mining-exchange-halt-2023-03/primary/web.archive.org__web-20230324212438-https-decrypt.co-124525-shut-down-mining-farms-exchanges-venezuela__ed95e252dd.html
+        evidence_use: replayable
+        note: |
+          Decrypt archived body confirms SUNACRIP-ordered closures of
+          large mining farms in Carabobo, Lara and Bolívar, affecting
+          licensed, tax-paying operations (per Asonacrip). attribution=
+          plausible (not direct): the closures are reported by Asonacrip
+          and contemporaneous journalism rather than by a pinned
+          SUNACRIP primary order, and SUNACRIP made contradictory public
+          statements during the reorganization (it did not publicly
+          confirm a cessation order). Conservative per codebook §8.4.
+    note: |
+      Direction-of-effect: during the March 2023 SUNACRIP corruption
+      reorganization, the agency ordered physical closure of licensed
+      crypto mining facilities in three Venezuelan states. The
+      enforcement primitive is the state-ordered shutdown of legitimate,
+      tax-paying mining operations.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-2 adversarial verify):** captured source supports the
+  action + general nexus, but a specific claim (exact addresses / asset types / source-attribution
+  detail) is not fully substantiated by the captured page. Refine the source + soften unsupported
+  specifics before admission. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured, awaiting human admission).
+
+  In March 2023, amid a corruption scandal that led to SUNACRIP's
+  reorganization/closure and ≥10 arrests (incl. former superintendent
+  Joselit Ramirez Camacho), Venezuela's crypto regulator ordered the
+  physical shutdown of licensed crypto mining facilities. The captured
+  Decrypt body (body_hash pinned) confirms mining-farm closures in
+  Carabobo, Lara and Bolívar affecting licensed, tax-paying operations.
+
+  Scope (§9): IN scope — the load-bearing action is a deliberate
+  state-ordered shutdown of legitimate (licensed, tax-paying) crypto
+  mining operations, i.e. a censorship/restriction action, not a fraud
+  prosecution of the operators themselves. The corruption probe targeted
+  SUNACRIP officials; the mining facilities that were shut down were
+  legitimate licensees, so their forced closure is a censorship action
+  against legitimate operators.
+
+  ANTI-FABRICATION / contested claim: the candidate lead framed this as an
+  exchange (offramp_cex) shutdown, but the captured source states the order
+  to close "all cryptocurrency exchanges registered in Venezuela" was "not
+  been officially confirmed," and the registered exchange Cryptobuyer
+  publicly denied any cessation order. The exchange-closure claim is
+  therefore NOT carried as an observed_change; offramp_cex is not_measured.
+  Only the CONFIRMED mining-facility closures are carried, at l1_consensus.
+
+  Coding: trigger.type=nation_state_block (§5.1), research_stratum=
+  S4_nation_state (§5.2). attribution=plausible for the l1_consensus
+  observed_change (closures reported by Asonacrip / journalism, no pinned
+  SUNACRIP primary order, agency made contradictory statements — §8.4
+  conservative default). empirical_shape=comparison (1 observed_change
+  layer); admission_tier=empirical_case (1 strong-attribution
+  observed_change). Structural sibling of china-sichuan-mining-ban-2021-06
+  (state-ordered mining-facility shutdown).
+
+  Human-audit follow-up before promotion to admitted: (i) pin a SUNACRIP
+  primary order / official Venezuelan-government source for the
+  mining-facility closures and, if obtained, upgrade attribution to direct;
+  (ii) resolve the exchange-closure dispute with a primary source before
+  any offramp_cex observation may be added.
+
+scoped_claim: |
+  "During the March 2023 SUNACRIP corruption reorganization, Venezuela's
+  crypto regulator ordered the physical shutdown of licensed crypto mining
+  facilities in Carabobo, Lara and Bolívar (l1_consensus observed_change,
+  plausible attribution). A separately-reported order to close all
+  registered exchanges was officially unconfirmed/denied and is not carried
+  as an observed_change."
+
+tags:
+  - nation_state_block
+  - venezuela
+  - sunacrip
+  - mining_facility_shutdown
+  - contested_exchange_closure
+  - dryrun_2026_05_31

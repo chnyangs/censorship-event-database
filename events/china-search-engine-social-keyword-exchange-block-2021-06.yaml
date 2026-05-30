@@ -1,0 +1,172 @@
+id: china-search-engine-social-keyword-exchange-block-2021-06
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - china-weibo-crypto-exchange-purge-2021-03
+  - china-pboc-crypto-ban-2021
+  - china-state-council-mining-crackdown-2021-05
+
+trigger:
+  type: nation_state_block
+  actor: CN_CAC
+  timestamp: 2021-06-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.aljazeera.com/economy/2021/6/9/searches-for-crypto-exchanges-currently-blocked-in-china
+      wayback: https://web.archive.org/web/20210609164859/https://www.aljazeera.com/economy/2021/6/9/searches-for-crypto-exchanges-currently-blocked-in-china
+      body_hash: sha256:e8573402493c3e3443a340e27eec4231f07bde2ec659cd3ede9c374dec9cd419
+      body_path: sources/http_captures/china-search-engine-social-keyword-exchange-block-2021-06/primary/web.archive.org__web-20210609164859-https-www.aljazeera.com-economy-2021-6-9-searches-for-crypto-exchanges-currently-blocked-in-china__c4c365caac.html
+      evidence_use: replayable
+      note: |
+        Al Jazeera, "Searches for crypto exchanges currently blocked in China"
+        (dated 2021-06-09, Wayback snapshot captured same day 16:48 UTC).
+        Reports that on China's major search engines and social platforms —
+        Baidu, Weibo, Sogou and Zhihu — searches for the Chinese or English
+        names of Binance, Huobi and OKEx returned zero / suppressed results,
+        with Weibo's search page citing "relevant laws, regulations, and
+        policies" as the reason results were not displayed. State-directed
+        keyword censorship (CAC content directive) during the June-2021 PRC
+        crypto crackdown. Captured HTML verified to contain Baidu / Weibo /
+        Sogou / Zhihu and Binance / Huobi / OKEx references.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Both captured reports (Al Jazeera 2021-06-09, CoinDesk 2021-06-09) date
+        the onset of the keyword suppression to 2021-06-09. Day precision.
+
+target:
+  kind: domain
+  enumeration: subset
+  enumeration_note: |
+    Keyword/search queries for the three named crypto exchanges (Binance, Huobi,
+    OKEx) on the four named PRC search/social platforms (Baidu, Weibo, Sogou,
+    Zhihu). The suppression is keyword-class-level; no exhaustive enumeration of
+    all affected queries exists in the sources.
+  protocol: null
+  actor_type: cn_search_social_platforms
+  actor_name: Baidu / Weibo / Sogou / Zhihu (state-directed keyword suppression)
+  chains: []
+  canonical_domains:
+    - binance.com
+    - huobi.com
+    - okex.com
+
+jurisdiction: [CN]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No replayable OONI / Censored Planet / Cloudflare Radar slice captured for
+      this event. Per codebook §1.5, L0 cannot be elevated above not_measured
+      without a replayable network-vantage artifact. The observed mechanism here
+      is search-result keyword suppression (an application/frontend-layer block
+      on Baidu/Weibo/Sogou/Zhihu), not a confirmed DNS/IP network block — so the
+      load-bearing effect is carried at l4_frontend, and L0 is left not_measured.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [cn_search_social_platform_query_results_for_exchange_names]
+    note: |
+      The observable censorship action is at the search/social-platform frontend:
+      queries for Binance/Huobi/OKEx on Baidu/Weibo/Sogou/Zhihu returned zero or
+      suppressed results, with Weibo's search page citing "relevant laws,
+      regulations, and policies". Two same-day journalism captures document the
+      suppression. Carried here as observed_change.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l4_frontend
+    actor: cn_search_social_platforms
+    event: exchange_name_search_results_suppressed
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-06-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://www.aljazeera.com/economy/2021/6/9/searches-for-crypto-exchanges-currently-blocked-in-china
+        wayback: https://web.archive.org/web/20210609164859/https://www.aljazeera.com/economy/2021/6/9/searches-for-crypto-exchanges-currently-blocked-in-china
+        body_hash: sha256:e8573402493c3e3443a340e27eec4231f07bde2ec659cd3ede9c374dec9cd419
+        body_path: sources/http_captures/china-search-engine-social-keyword-exchange-block-2021-06/primary/web.archive.org__web-20210609164859-https-www.aljazeera.com-economy-2021-6-9-searches-for-crypto-exchanges-currently-blocked-in-china__c4c365caac.html
+        evidence_use: replayable
+        note: |
+          Al Jazeera same-day report documenting suppressed search results for
+          Binance/Huobi/OKEx on Baidu/Weibo/Sogou/Zhihu, with Weibo citing
+          "relevant laws, regulations, and policies". attribution=plausible: the
+          platforms implemented the suppression consistent with a CAC content
+          directive, but no public order naming the specific queries is captured
+          (class-level inference per §1.1).
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2021/06/09/chinese-internet-services-are-censoring-binance-huobi-and-okex-related-keywords
+        wayback: https://web.archive.org/web/20210924222230/https://www.coindesk.com/markets/2021/06/09/chinese-internet-services-are-censoring-binance-huobi-and-okex-related-keywords/
+        body_hash: sha256:6d652d18d15f2b3ca09e5b364deb68a749707c490bf26ef13e5a51f17ca4ca99
+        body_path: sources/http_captures/china-search-engine-social-keyword-exchange-block-2021-06/primary/web.archive.org__web-20210924222230-https-www.coindesk.com-markets-2021-06-09-chinese-internet-services-are-censoring-binance-huobi-and-okex-related-keywords__33292c0ec4.html
+        evidence_use: replayable
+        note: |
+          CoinDesk corroboration (article dated 2021-06-09; Wayback 2021-09-24
+          snapshot — the earliest archived 200 capture of the article). Confirms
+          Baidu/Weibo/Zhihu/Sogou keyword censorship of the three exchanges.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-2 adversarial verify):** captured source supports the
+  action + general nexus, but a specific claim (exact addresses / asset types / source-attribution
+  detail) is not fully substantiated by the captured page. Refine the source + soften unsupported
+  specifics before admission. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured, awaiting human admission)
+
+  China state-directed search/social keyword censorship of crypto exchanges. IN
+  SCOPE (codebook §9): a deliberate access/information block — the four major PRC
+  search/social platforms (Baidu, Weibo, Sogou, Zhihu) suppressed search results
+  for Binance/Huobi/OKEx, with Weibo citing "relevant laws, regulations, and
+  policies" (the standard CAC content-directive formula). Distinct from the
+  existing china-weibo-crypto-exchange-purge-2021-03 event (2021-03-11 Weibo
+  ACCOUNT suspensions, a different mechanism and date). Not a dup.
+
+  Layer routing: the observable mechanism is search-result suppression at the
+  platform frontend, so the load-bearing effect is carried at l4_frontend
+  (observed_change), NOT at L0 — per codebook §1.5, L0 may not be elevated above
+  not_measured without a replayable network-vantage (OONI/Censored Planet) slice,
+  which is not captured here. Attribution=plausible (§1.1): the platforms acted
+  consistent with a CAC directive but no public order naming the specific queries
+  is captured (class-level inference). Single observed_change layer ⇒
+  empirical_shape=comparison; one strong-attribution (plausible) layer ⇒
+  admission_tier=empirical_case.
+
+  Source caveat: both captures are supporting_journalism (no primary CAC/platform
+  order is publicly archivable for keyword-suppression directives). Kept as draft
+  awaiting human admission.
+
+scoped_claim: |
+  "On 2021-06-09, China's major search and social platforms (Baidu, Weibo,
+  Sogou, Zhihu) suppressed search results for the crypto exchanges Binance,
+  Huobi and OKEx, with Weibo citing 'relevant laws, regulations, and policies'.
+  Effect captured at the l4_frontend layer via two same-day journalism sources;
+  attribution plausible (state-directed, class-level)."
+
+tags:
+  - nation_state_block
+  - china
+  - keyword_censorship
+  - search_engine_block
+  - cac_directive

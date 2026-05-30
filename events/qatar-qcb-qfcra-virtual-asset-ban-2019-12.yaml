@@ -1,0 +1,224 @@
+id: qatar-qcb-qfcra-virtual-asset-ban-2019-12
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - egypt-cbe-banking-law-194-prohibition-2020
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: regulatory_enforcement
+  actor: QA_QFCRA
+  timestamp: 2019-12-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.qfcra.com/wp-content/uploads/2022/07/QFC-VASPS-ALERT-pdf.pdf
+      wayback: https://web.archive.org/web/20250215180029id_/https://www.qfcra.com/wp-content/uploads/2022/07/QFC-VASPS-ALERT-pdf.pdf
+      body_hash: sha256:0ca883a722644025bc4a119a3fc8dbf036fdade33c9eb169714dbec3f1912d57
+      body_path: sources/http_captures/qatar-qcb-qfcra-virtual-asset-ban-2019-12/primary/web.archive.org__web-20250215180029id_-https-www.qfcra.com-wp-content-uploads-2022-07-QFC-VASPS-ALERT-pdf.pdf__6d8181e270.bin
+      evidence_use: replayable
+      note: |
+        QFC Regulatory Authority official ALERT "QFC Regulatory Authority affirms
+        that Virtual Asset Services may not be conducted in or from the QFC",
+        dated "Doha, Qatar, 26 December 2019" (PDF text). Verbatim: "the
+        Regulatory Authority is issuing this email alert to affirm that Virtual
+        Asset Services may not be conducted in or from the QFC at this time" and
+        "all Authorised Firms ... are not currently permitted to provide and/or
+        facilitate the provision of Virtual Asset Services or otherwise exchange,
+        trade or deal in Virtual Assets, until further notice." Banned services
+        enumerated: exchange between virtual assets and fiat; exchange between
+        forms of virtual assets; transfer; safekeeping/administration; and
+        participation in financial services related to a virtual-asset offering.
+        Carve-out for digital securities/financial instruments regulated by the
+        QFCRA, Qatar Central Bank, or Qatar Financial Markets Authority. Penalties
+        per QFC Law No. 7 of 2005.
+    - type: supporting_journalism
+      url: https://www.theblock.co/linked/52087/qatar-bans-crypto-trading-report
+      wayback: https://web.archive.org/web/20240620125924/https://www.theblock.co/linked/52087/qatar-bans-crypto-trading-report
+      body_hash: sha256:269f59abca981420c4c8fc13b9a862a09a57b52b6f84309e8325b33bf091f75e
+      body_path: sources/http_captures/qatar-qcb-qfcra-virtual-asset-ban-2019-12/primary/web.archive.org__web-20240620125924-https-www.theblock.co-linked-52087-qatar-bans-crypto-trading-report__33e30814aa.html
+      evidence_use: replayable
+      note: |
+        The Block "Qatar Financial Centre bans crypto trading, confirms its
+        regulator" (datePublished 2020-01-06) reporting the QFCRA QFC virtual-asset
+        services prohibition. Contemporaneous journalism anchor.
+    - type: semi_primary_wayback
+      url: https://blogs.loc.gov/law/2025/01/regulation-of-cryptocurrencies-in-the-gulf-cooperation-council-gcc-countries-part-two/
+      wayback: https://web.archive.org/web/20260111122810/https://blogs.loc.gov/law/2025/01/regulation-of-cryptocurrencies-in-the-gulf-cooperation-council-gcc-countries-part-two/
+      body_hash: sha256:24e4f1c4f40f88a3e5403432b9cfebdfbcb275cf2c926fbdabd83808dae521b4
+      body_path: sources/http_captures/qatar-qcb-qfcra-virtual-asset-ban-2019-12/primary/web.archive.org__web-20260111000000-https-blogs.loc.gov-law-2025-01-regulation-of-cryptocurrencies-in-the-gulf-cooperation-council-gcc-countries-part-two__4a6aef3133.html
+      evidence_use: replayable
+      note: |
+        US Library of Congress (In Custodia Legis) GCC crypto-regulation survey,
+        Part Two. Captured text: "in December of 2019, the Qatar Financial Centre
+        Regulatory Authority (QFCRA) issued an alert prohibiting the conduct of
+        virtual asset services within or from the Qatar Financial Centre (QFC).
+        Penalties for violators are imposed according to QFC Law No. (7) of 2005."
+        Authoritative confirmation of the December-2019 date (corrects the
+        candidate-lead 2020-12-26).
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level. The QFCRA ALERT PDF is dated "26 December 2019". The
+        candidate-lead date 2020-12-26 was incorrect; the LOC survey independently
+        confirms a December-2019 issuance. Event id and trigger date corrected to
+        2019-12-26.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level subset: all Authorised Firms and Virtual Asset Service Providers
+    conducting (or facilitating) Virtual Asset Services in or from the Qatar
+    Financial Centre (QFC) — exchange between virtual assets and fiat, exchange
+    between virtual-asset forms, transfer, safekeeping/administration, and
+    provision of financial services related to a virtual-asset offering. Excludes
+    digital securities/financial instruments regulated by the QFCRA, Qatar Central
+    Bank, or Qatar Financial Markets Authority. No address-level enumeration.
+  protocol: null
+  actor_type: qfc_virtual_asset_service_class
+  actor_name: QFC Authorised Firms / VASPs (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [QA]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [qfc_virtual_asset_service_class]
+    note: |
+      Load-bearing layer. The QFCRA ALERT bars all Authorised Firms from providing
+      or facilitating Virtual Asset Services (incl. fiat-crypto exchange, custody,
+      transfer) in or from the QFC, until further notice, under QFC Law No. 7 of
+      2005 penalties. Captured at class level via the QFCRA primary_government ALERT
+      PDF (replayable body_hash anchor).
+    denominator_artifact:
+      type: primary_government
+      url: https://www.qfcra.com/wp-content/uploads/2022/07/QFC-VASPS-ALERT-pdf.pdf
+      wayback: https://web.archive.org/web/20250215180029id_/https://www.qfcra.com/wp-content/uploads/2022/07/QFC-VASPS-ALERT-pdf.pdf
+      body_hash: sha256:0ca883a722644025bc4a119a3fc8dbf036fdade33c9eb169714dbec3f1912d57
+      body_path: sources/http_captures/qatar-qcb-qfcra-virtual-asset-ban-2019-12/primary/web.archive.org__web-20250215180029id_-https-www.qfcra.com-wp-content-uploads-2022-07-QFC-VASPS-ALERT-pdf.pdf__6d8181e270.bin
+      scope_descriptor:
+        providers: [qfc_virtual_asset_service_class]
+        countries: [QA]
+        time_window:
+          - 2019-12-26T00:00:00Z
+          - 2020-12-31T23:59:59Z
+      note: |
+        QFCRA ALERT PDF as class-level denominator anchor for the QFC virtual-asset
+        services prohibition scope.
+
+observations:
+  - layer: offramp_cex
+    actor: qfc_virtual_asset_service_class
+    event: virtual_asset_services_prohibited_in_qfc
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2019-12-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_government
+        url: https://www.qfcra.com/wp-content/uploads/2022/07/QFC-VASPS-ALERT-pdf.pdf
+        wayback: https://web.archive.org/web/20250215180029id_/https://www.qfcra.com/wp-content/uploads/2022/07/QFC-VASPS-ALERT-pdf.pdf
+        body_hash: sha256:0ca883a722644025bc4a119a3fc8dbf036fdade33c9eb169714dbec3f1912d57
+        body_path: sources/http_captures/qatar-qcb-qfcra-virtual-asset-ban-2019-12/primary/web.archive.org__web-20250215180029id_-https-www.qfcra.com-wp-content-uploads-2022-07-QFC-VASPS-ALERT-pdf.pdf__6d8181e270.bin
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [qfc_virtual_asset_service_class]
+          countries: [QA]
+          time_window:
+            - 2019-12-26T00:00:00Z
+            - 2020-12-31T23:59:59Z
+        note: |
+          observed_change at class level: the QFCRA ALERT prohibits all Authorised
+          Firms from conducting/facilitating Virtual Asset Services in or from the
+          QFC. attribution=plausible — the alert targets the Authorised-Firm /
+          VASP class, not enumerated operators (codebook §1.1).
+      - type: semi_primary_wayback
+        url: https://blogs.loc.gov/law/2025/01/regulation-of-cryptocurrencies-in-the-gulf-cooperation-council-gcc-countries-part-two/
+        wayback: https://web.archive.org/web/20260111122810/https://blogs.loc.gov/law/2025/01/regulation-of-cryptocurrencies-in-the-gulf-cooperation-council-gcc-countries-part-two/
+        body_hash: sha256:24e4f1c4f40f88a3e5403432b9cfebdfbcb275cf2c926fbdabd83808dae521b4
+        body_path: sources/http_captures/qatar-qcb-qfcra-virtual-asset-ban-2019-12/primary/web.archive.org__web-20260111000000-https-blogs.loc.gov-law-2025-01-regulation-of-cryptocurrencies-in-the-gulf-cooperation-council-gcc-countries-part-two__4a6aef3133.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [qfc_virtual_asset_service_class]
+          countries: [QA]
+          time_window:
+            - 2019-12-26T00:00:00Z
+            - 2020-12-31T23:59:59Z
+        note: |
+          LOC GCC survey confirming the December-2019 QFCRA prohibition and QFC Law
+          No. 7 of 2005 penalty basis.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison documenting the Qatar Financial Centre Regulatory Authority (QFCRA)
+  ALERT prohibiting all Virtual Asset Services in or from the Qatar Financial Centre
+  (QFC). The QFCRA ALERT PDF is dated "26 December 2019". §9 scope: a deliberate
+  regulator prohibition (ban) of a legitimate virtual-asset-service class — IN
+  scope.
+
+  DATE CORRECTION: the candidate lead gave 2020-12-26, but the primary QFCRA ALERT
+  PDF is dated 26 December 2019, and the Library of Congress GCC survey independently
+  confirms "in December of 2019, the QFCRA issued an alert prohibiting the conduct
+  of virtual asset services within or from the QFC." The event id and trigger date
+  are corrected to 2019-12-26. The candidate also referenced QCB Circular No. 6 of
+  2018 (barring Qatari banks from crypto dealing) — that is a separate, earlier
+  Qatar Central Bank instrument and is NOT authored here (no primary source captured
+  for it in this pass); this event scopes only the QFCRA QFC prohibition.
+
+  trigger.type=regulatory_enforcement per codebook §5.1 (non-US national/sub-state
+  financial-centre regulator administrative prohibition; the QFCRA regulates the QFC
+  free-zone, structurally analogous to the UAE SCA / VARA framework rows). Stratum-
+  actor map §5.2 maps regulatory_enforcement → S4_nation_state. attribution=plausible
+  per §1.1 (alert targets the Authorised-Firm/VASP class, not enumerated operators).
+  empirical_shape=comparison / admission_tier=empirical_case: one strong-attribution
+  (plausible) observed_change layer (offramp_cex).
+
+  Note: Qatar later (September 2024) introduced a Digital Assets Framework treating
+  cryptocurrencies as "Excluded Tokens"; that is a separate downstream development
+  outside this event's window.
+
+scoped_claim: |
+  "The QFC Regulatory Authority issued an ALERT dated 26 December 2019 affirming
+  that Virtual Asset Services may not be conducted in or from the Qatar Financial
+  Centre, barring all Authorised Firms from providing or facilitating VASP services
+  (fiat-crypto exchange, custody, transfer) under QFC Law No. 7 of 2005, with a
+  carve-out for regulated digital securities. Captured at class level at the
+  offramp_cex layer; no specific operator enumeration claimed."
+
+tags:
+  - regulatory_enforcement
+  - qatar
+  - qfcra
+  - qfc
+  - virtual_asset_ban
+  - offramp_cex
+  - dryrun_2026_05_31
+  - agent_draft

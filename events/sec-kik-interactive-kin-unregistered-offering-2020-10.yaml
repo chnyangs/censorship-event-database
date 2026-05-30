@@ -1,0 +1,216 @@
+id: sec-kik-interactive-kin-unregistered-offering-2020-10
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - sec-v-telegram-ton-2020
+  - sec-v-ripple-2020
+  - blockfi-sec-lending-2022
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2020-10-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2020-262
+      wayback: https://web.archive.org/web/20201024175913/https://www.sec.gov/news/press-release/2020-262
+      body_hash: sha256:6332c524c28b2de0cf159b37ee280a698c5cf22ffb6d12052c5775edad41b1b2
+      body_path: sources/http_captures/sec-kik-interactive-kin-unregistered-offering-2020-10/primary/web.archive.org__web-20201022000000-https-www.sec.gov-news-press-release-2020-262__bc9a3c2def.html
+      evidence_use: replayable
+      note: |
+        SEC press release 2020-262 (2020-10-21): "SEC Obtains Final
+        Judgment Against Kik Interactive For Unregistered Offering." The
+        U.S. District Court for the Southern District of New York entered
+        a final judgment on consent against Kik Interactive Inc. resolving
+        the SEC's charges (complaint filed 2019-06-04) that Kik's 2017
+        unregistered offering of digital "Kin" tokens violated the federal
+        securities laws. The court granted the SEC's motion for summary
+        judgment on 2020-09-30, finding that Kik's sales of "Kin" were
+        sales of investment contracts and therefore securities, and that
+        the private and public token sales were a single integrated
+        offering. The final judgment permanently enjoins Kik from §5(a)/
+        §5(c) Securities Act violations, requires a $5 million civil
+        penalty, and requires Kik for three years to give the Commission
+        prior notice before participating in any issuance/offer/sale/
+        transfer of Kin or any new digital asset. Wayback 20201024175913
+        pinned. Verified facts present in captured HTML: title, "Kin",
+        "Final Judgment Against Kik", "$5 million", "Unregistered Offering",
+        summary-judgment date 2020-09-30, complaint date 2019-06-04.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2020-10-21 SEC press release 2020-262
+        announcing entry of the final judgment on consent in SEC v. Kik
+        Interactive Inc. (No. 19-cv-5244, SDNY).
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Kik Interactive Inc. (the corporate issuer named in SEC v. Kik
+    Interactive Inc., No. 19-cv-5244, SDNY). Subject-matter scope: the
+    Kin token and the 2017 ~$100M offering (the SEC complaint alleged
+    Kik raised over $100 million selling Kin to U.S. and other investors
+    in a private pre-sale and a public sale). enumeration=complete: the
+    row enumerates the single named issuer entity and the Kin instrument
+    as the offering enjoined at the issuer level. No on-chain addresses
+    are enumerated: the final judgment is a securities-law remedy against
+    the issuer (injunction + $5M penalty + 3-year prior-notice
+    obligation), not an on-chain freeze of any Kin contract address.
+  actor_type: token_issuer_securities_enforcement
+  actor_name: Kik Interactive Inc.
+  chains: []
+  canonical_domains:
+    - kin.org
+    - kik.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The SEC civil action and SDNY final judgment are securities-law
+      remedies against the Kik corporate issuer; they did not alter
+      ISP-level reachability of kin.org or kik.com. not_applicable on the
+      L0 network-reachability layer.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Kin migrated across ledgers (ERC-20, then Stellar, then its own
+      chain), but the L1 layer this dataset measures (post-Merge Ethereum
+      PBS relay surface / validator-set filtering) has no Kin-specific
+      consensus surface engaged by a securities-law injunction.
+      not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface is engaged by the final judgment.
+      not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The final judgment did not require shutdown of kin.org or kik.com;
+      it operates at the token-issuance / issuer-conduct layer (injunction
+      + penalty + prior-notice obligation), not the public-web frontend.
+      not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The §1.6 asset_onchain evidence floor requires a primary_onchain
+      tx_hash; the SEC remedy is an issuer-level injunction and penalty,
+      not an on-chain freeze/blacklist of any Kin contract address, so no
+      on-chain receipt exists or can exist for this mechanism. Per §1.6
+      routing, the enforceable effect is carried at offramp_cex (the
+      issuer-conduct restriction on future Kin offerings/transfers).
+      not_applicable on the asset_onchain layer.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - kin_token_offering
+      - kik_interactive_issuer_conduct
+    note: |
+      Load-bearing layer. The 2020-10-21 final judgment on consent is the
+      operator/issuer-state-change endpoint: Kik is permanently enjoined
+      from unregistered Kin offerings, must pay a $5M penalty, and for
+      three years must give the Commission prior notice before any
+      issuance/offer/sale/transfer of Kin or any new digital asset. This
+      is the closest analogue this dataset has to an issuer/offramp
+      restriction when the restriction acts on the issuer's ability to
+      distribute the asset. Attached below as observed_change /
+      attribution=direct (the issuer restriction is the direct legal
+      effect of the SDNY judgment).
+
+observations:
+  - layer: offramp_cex
+    actor: issuer:kik_interactive
+    event: sec_final_judgment_enjoins_kik_kin_offering_and_imposes_5m_penalty_and_3yr_prior_notice
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-10-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2020-262
+        wayback: https://web.archive.org/web/20201024175913/https://www.sec.gov/news/press-release/2020-262
+        body_hash: sha256:6332c524c28b2de0cf159b37ee280a698c5cf22ffb6d12052c5775edad41b1b2
+        body_path: sources/http_captures/sec-kik-interactive-kin-unregistered-offering-2020-10/primary/web.archive.org__web-20201022000000-https-www.sec.gov-news-press-release-2020-262__bc9a3c2def.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [kik_interactive]
+          countries: [US]
+          time_window:
+            - 2020-10-21T00:00:00Z
+            - 2023-10-21T23:59:59Z
+        note: |
+          SEC press release 2020-262 (2020-10-21): SDNY final judgment on
+          consent permanently enjoins Kik from §5 Securities Act
+          violations, imposes a $5 million civil penalty, and imposes a
+          3-year prior-notice obligation on any Kin or new-digital-asset
+          issuance/offer/sale/transfer. attribution=direct: the SDNY
+          judgment is the direct legal instrument restricting the issuer's
+          conduct around the Kin asset, and the SEC press release names the
+          issuer and the restriction. Facts verified present in captured
+          HTML (title, "Kin", "$5 million", summary-judgment 2020-09-30).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). S3 SEC securities-
+  enforcement event, comparable_main tier. The 2020-10-21 SDNY final
+  judgment on consent in SEC v. Kik Interactive Inc. (No. 19-cv-5244)
+  resolved the SEC's June 2019 charge that Kik's 2017 ~$100M Kin token
+  offering was an unregistered securities offering: §5 injunction, $5M
+  civil penalty, and a 3-year prior-notice obligation on future Kin/new-
+  digital-asset distributions. comparison shape: 1 observed_change layer
+  (offramp_cex, issuer-conduct restriction), attribution=direct per
+  codebook §1.4/§1.2 reasoning by analogy to the issuer-cancellation
+  precedent in sec-v-telegram-ton-2020 (the issuer restriction is the
+  direct legal effect of the federal-court judgment, which names the
+  issuer and the asset). asset_onchain is not_applicable per §1.6: the
+  remedy is an issuer-level injunction/penalty, not an on-chain
+  freeze/blacklist of any Kin contract — no primary_onchain tx_hash
+  exists or can exist for this mechanism, so the effect is routed to
+  offramp_cex. L0/L1/L3/L4 not_applicable (securities remedy did not
+  touch network reachability, consensus, RPC, or the public frontend).
+  §9 in scope: a state enforcement action restricting a legitimate
+  token issuer's ability to offer/transfer the asset (not a scam
+  prosecution — Kin was a functioning consumer token, and the charge was
+  registration-failure, not fraud). Sources verified via WebSearch
+  2026-05-31; real SEC press release 2020-262 captured + body_hash-
+  pinned and grep-confirmed (no fabrication). Awaiting human audit before
+  promotion from draft.
+
+scoped_claim: |
+  "The 2020-10-21 SDNY final judgment on consent in SEC v. Kik
+  Interactive Inc. is recorded as a single-layer offramp_cex issuer-
+  conduct restriction: a §5 injunction, $5M civil penalty, and 3-year
+  prior-notice obligation on Kin / new-digital-asset offerings,
+  attribution=direct. The row does not claim ISP-level blocking, a
+  frontend takedown, or an on-chain Kin freeze (no such on-chain
+  receipt exists)."
+
+tags:
+  - sec_enforcement
+  - securities_law
+  - unregistered_offering
+  - kik_kin
+  - token_issuer
+  - issuer_restriction
+  - howey_test
+  - offramp_restriction

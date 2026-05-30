@@ -1,0 +1,199 @@
+id: blockfi-multistate-cease-desist-bia-2021-07
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - blockfi-sec-lending-2022
+  - bitfinex-tether-nyag-2021
+
+trigger:
+  type: regulatory_enforcement
+  actor: US_NJ_BUREAU_OF_SECURITIES
+  timestamp: 2021-07-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.nj.gov/oag/newsreleases21/BlockFi-Cease-and-Desist-Order.pdf
+      wayback: https://web.archive.org/web/20210731004209id_/https://www.nj.gov/oag/newsreleases21/BlockFi-Cease-and-Desist-Order.pdf
+      body_hash: sha256:b235ce2adf08dcfd40e5f38fc9c262407c0dc60cfbddd1d887baa75f67209771
+      body_path: sources/http_captures/blockfi-multistate-cease-desist-bia-2021-07/primary/web.archive.org__web-20210801000000id_-https-www.nj.gov-oag-newsreleases21-BlockFi-Cease-and-Desist-Order.pdf__5e0feb98af.bin
+      evidence_use: replayable
+      note: |
+        State of New Jersey Bureau of Securities Summary Cease and Desist Order
+        (Bureau Chief Christopher W. Gerold, Uniform Securities Law N.J.S.A.
+        49:3-47 et seq.) "In the Matter of: BlockFi Inc., BlockFi Lending, LLC,
+        and BlockFi Trading, LLC." Captured PDF (15 pages) text reads: "THEREFORE,
+        it is on this 19th day of July 2021, ORDERED that: 39. Effective on July
+        22, 2021, BlockFi, Trading and BFI ... shall CEASE AND DESIST from: a)
+        offering for sale any security, including any BIA [BlockFi Interest
+        Account], to or from New Jersey unless the security is registered ... or
+        is exempt from registration under the Securities Law." Findings: since
+        2019-03-04 BlockFi funded its lending/proprietary-trading through the
+        sale of unregistered securities (the interest-earning accounts).
+        Wayback memento 20210731004209 captured 2026-05-31.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision. 2021-07-19 is the date the NJ Bureau of Securities
+        Summary Cease and Desist Order was entered ("on this 19th day of July
+        2021"). The cease-and-desist takes effect 2021-07-22 (new-client
+        onboarding halt). Public announcement by the NJ Office of Attorney
+        General followed 2021-07-20.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    BlockFi Inc. and its affiliates BlockFi Lending, LLC and BlockFi Trading,
+    LLC — specifically the BlockFi Interest Account (BIA) product offered to New
+    Jersey residents. Named as the immediate addressee of the NJ order. The
+    candidate's multi-state framing (additional cease/show-cause actions by
+    Texas, Alabama, Kentucky, Vermont regulators in the same July 2021 window)
+    is carried as context only; the load-bearing captured instrument is the NJ
+    order, so the enumeration is coded subset and the multi-state cohort is not
+    enumerated order-by-order in this draft.
+  actor_type: regulated_crypto_lending_platform
+  actor_name: BlockFi (BlockFi Interest Account / BIA)
+  chains: []
+  canonical_domains:
+    - blockfi.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The NJ Bureau of Securities order is a securities-law cease-and-desist,
+      not a DNS / ISP connectivity action. No network-level blocking of
+      blockfi.com is asserted.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend DOM block captured; the order operates at the
+      product-offering / securities-registration layer.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer admin freeze applicable.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - blockfi_interest_account_new_jersey
+    note: |
+      The NJ order directly compels BlockFi to cease offering its BIA
+      interest-earning crypto product for sale to or from New Jersey effective
+      2021-07-22. This is a regulator-mandated severance of a crypto on-ramp /
+      yield product at the NJ-customer perimeter. Observed_change with direct
+      attribution attached below (the NJ order itself is the legal instrument
+      and names BlockFi as addressee).
+
+observations:
+  - layer: offramp_cex
+    actor: lending_platform:blockfi_interest_accounts_nj
+    event: blockfi_interest_account_offering_ordered_to_cease_new_jersey
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-07-22T00:00:00Z
+    precision: day
+    delta_hours: 72
+    sources:
+      - type: primary_legal
+        url: https://www.nj.gov/oag/newsreleases21/BlockFi-Cease-and-Desist-Order.pdf
+        wayback: https://web.archive.org/web/20210731004209id_/https://www.nj.gov/oag/newsreleases21/BlockFi-Cease-and-Desist-Order.pdf
+        body_hash: sha256:b235ce2adf08dcfd40e5f38fc9c262407c0dc60cfbddd1d887baa75f67209771
+        body_path: sources/http_captures/blockfi-multistate-cease-desist-bia-2021-07/primary/web.archive.org__web-20210801000000id_-https-www.nj.gov-oag-newsreleases21-BlockFi-Cease-and-Desist-Order.pdf__5e0feb98af.bin
+        evidence_use: replayable
+        note: |
+          NJ Bureau of Securities Summary Cease and Desist Order is the legal
+          instrument naming BlockFi as addressee and ordering it to cease
+          offering the BIA for sale to/from New Jersey effective 2021-07-22.
+          attribution=direct per codebook §1.1 — the named actor (NJ Bureau of
+          Securities) issues the order and the order names the target (BlockFi /
+          BIA) being acted upon. delta_hours=72 from the order-entry timestamp
+          (2021-07-19) to the effective severance (2021-07-22).
+      - type: primary_government
+        url: https://www.njoag.gov/new-jersey-bureau-of-securities-orders-cryptocurrency-company-blockfi-to-stop-offering-interest-bearing-accounts/
+        wayback: https://web.archive.org/web/20210721210617/https://www.njoag.gov/new-jersey-bureau-of-securities-orders-cryptocurrency-company-blockfi-to-stop-offering-interest-bearing-accounts/
+        body_hash: sha256:a4248a370d087feaf5bbdaa79493dc041013d07033f7df178624a5ea9a5f3a22
+        body_path: sources/http_captures/blockfi-multistate-cease-desist-bia-2021-07/primary/web.archive.org__web-20210722000000-https-www.njoag.gov-new-jersey-bureau-of-securities-orders-cryptocurrency-company-blockfi-to-stop-offering-interest-bearing-accounts__6397a0cfdd.html
+        evidence_use: replayable
+        note: |
+          NJ Office of Attorney General press release corroborating the Summary
+          Cease and Desist Order against BlockFi for selling unregistered
+          securities (interest-earning crypto accounts; $14.7 billion raised
+          worldwide). Captured HTML grep-confirms "Summary Cease and Desist",
+          "BlockFi", "unregistered securities", "14.7". Wayback memento
+          20210721210617 captured 2026-05-31.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison shape: 1 observed_change layer (offramp_cex, attribution=direct).
+  On 2021-07-19 the New Jersey Bureau of Securities (Bureau Chief Christopher W.
+  Gerold) entered a Summary Cease and Desist Order against BlockFi Inc., BlockFi
+  Lending, LLC and BlockFi Trading, LLC, finding that BlockFi had funded its
+  crypto lending and proprietary trading since 2019-03-04 through the sale of
+  unregistered securities in the form of interest-earning crypto accounts
+  (BlockFi Interest Account / BIA). Effective 2021-07-22 BlockFi was ordered to
+  CEASE AND DESIST from offering the BIA for sale to or from New Jersey. The NJ
+  order was the first of a July 2021 multi-state wave (Texas, Alabama, Kentucky,
+  Vermont securities regulators issued parallel cease / show-cause actions);
+  only the NJ order is captured and load-bearing here.
+
+  §9 inclusion: in scope — a state securities regulator deliberately restricting
+  the offering of a legitimate crypto yield/off-ramp product (not a scam
+  prosecution; BlockFi was a registered, operating platform whose product was
+  ruled an unregistered security). This is the corporate-platform-restriction
+  category of §9 ("DOJ/SEC/CFTC/FinCEN enforcement that restricts a legitimate
+  platform/operator"), here at the US-state-regulator level.
+
+  trigger.type=regulatory_enforcement and research_stratum=S4_nation_state per
+  codebook §5.1/§5.2, following the bitfinex-tether-nyag-2021 precedent (a US
+  state regulator — NY OAG — coded regulatory_enforcement + S4). A US state
+  securities regulator is neither OFAC (S1/S2), nor a federal DOJ/SEC/CFTC/FinCEN
+  actor (S3), nor a non-US national regulator; the closest-fit corpus precedent
+  places state-regulator administrative enforcement in S4.
+
+  attribution=direct per §1.1: the NJ order names the actor (NJ Bureau of
+  Securities) and the target (BlockFi / BIA) and is the instrument compelling
+  the cessation. admission_tier=empirical_case (≥1 strong-attribution
+  observed_change layer).
+
+  Sibling: blockfi-sec-lending-2022 (the 2022-02 SEC/state $100M settlement that
+  this state action presaged, coded S3); this NJ order is the earlier
+  state-level enforcement in the same BlockFi-BIA regulatory trajectory.
+
+scoped_claim: |
+  "The New Jersey Bureau of Securities Summary Cease and Desist Order of
+  2021-07-19 (effective 2021-07-22) directly ordered BlockFi to cease offering
+  its BlockFi Interest Account (BIA) — ruled an unregistered security — for sale
+  to or from New Jersey, producing a regulator-mandated severance of the BIA
+  crypto yield/off-ramp at the NJ-customer perimeter (offramp_cex load-bearing,
+  attribution=direct). The row does not claim ISP-level blocking, on-chain asset
+  freeze, or the full enumeration of the parallel multi-state (TX/AL/KY/VT)
+  actions."
+
+tags:
+  - regulatory_enforcement
+  - united_states
+  - new_jersey_bureau_of_securities
+  - blockfi
+  - unregistered_securities
+  - crypto_lending_cease_desist
+  - dryrun_2026_05_31

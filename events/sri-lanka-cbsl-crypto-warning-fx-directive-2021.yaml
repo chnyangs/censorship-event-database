@@ -1,0 +1,157 @@
+id: sri-lanka-cbsl-crypto-warning-fx-directive-2021
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - nigeria-cbn-crypto-ban-2021
+  - india-rbi-crypto-ban-2018
+
+trigger:
+  type: nation_state_block
+  actor: LK_CBSL
+  timestamp: 2021-04-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cbsl.gov.lk/sites/default/files/cbslweb_documents/laws/cdg/Foreign_Exchange_Act_Direction_No_3_of_2021_e.pdf
+      wayback: https://web.archive.org/web/20210629054616id_/https://www.cbsl.gov.lk/sites/default/files/cbslweb_documents/laws/cdg/Foreign_Exchange_Act_Direction_No_3_of_2021_e.pdf
+      body_hash: sha256:b0a69b01b22e82e323f5fd477806f7e5c1520f93a437921d5ca6bcefad8f3a2c
+      body_path: sources/http_captures/sri-lanka-cbsl-crypto-warning-fx-directive-2021/primary/web.archive.org__web-20210601000000id_-https-www.cbsl.gov.lk-sites-default-files-cbslweb_documents-laws-cdg-Foreign_Exchange_Act_Direction_No_3_of_2021_e.pdf__ac4a9178d0.bin
+      evidence_use: replayable
+      note: |
+        Central Bank of Sri Lanka, Department of Foreign Exchange, "Directions to
+        Authorized Dealers on Electronic Fund Transfer Cards (EFTCs)", Directions
+        No. 03 of 2021 under the Foreign Exchange Act, No. 12 of 2017, dated
+        2021-03-18. Paragraph 10.1 enumerates uses for which Authorized Dealers
+        (banks) shall ensure EFTCs (debit/credit cards) shall NOT be used; item
+        (b) is "Payments related to virtual currency transactions". This is the
+        binding payment-rail instrument that prohibits bank-card payments for
+        crypto. Captured PDF (8 pages, version 1.7) verified via pdftotext to
+        contain the Paragraph 10.1.b virtual-currency restriction text and the
+        "Virtual currency" definition (item vii). The CBSL publicised the
+        restriction in its 2021-04-09 public-awareness notice (see second
+        citation). Archived via Wayback 2021-06-29 (id_ raw capture).
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        FX Direction No. 03 of 2021 dated 2021-03-18 (binding instrument);
+        CBSL public-awareness notice publicising the prohibition dated
+        2021-04-09 (event-id date). Day precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Sri Lankan banks (Authorized Dealers) and their card-holding crypto users as
+    a class. The FX Direction binds all ADs issuing EFTCs; no specific exchange
+    or user is enumerated in the instrument. Target treated as entity-class-level.
+  protocol: null
+  actor_type: sri_lanka_crypto_banking_ecosystem
+  actor_name: Sri Lankan banks (Authorized Dealers) / card-holding crypto users (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [LK]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [sri_lanka_bank_card_payment_channels_to_crypto]
+    note: |
+      FX Direction No. 03 of 2021 Para 10.1.b directly prohibits debit/credit
+      card (EFTC) payments for virtual-currency transactions, severing the
+      bank-card off-ramp/on-ramp channel for crypto in Sri Lanka. CBSL further
+      stated no ICOs, mining operations or Virtual Currency Exchanges are
+      licensed/authorized, and that purchasing virtual currency from abroad
+      violates the Foreign Exchange Act (not a permitted investment category).
+      Attached as observed_change. Attribution direct: the FX Direction text
+      itself is the mandate prohibiting the card-payment channel.
+
+observations:
+  - layer: offramp_cex
+    actor: sri_lanka_bank_card_payment_ecosystem
+    event: bank_card_payment_channel_for_crypto_prohibited
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-04-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.cbsl.gov.lk/sites/default/files/cbslweb_documents/laws/cdg/Foreign_Exchange_Act_Direction_No_3_of_2021_e.pdf
+        wayback: https://web.archive.org/web/20210629054616id_/https://www.cbsl.gov.lk/sites/default/files/cbslweb_documents/laws/cdg/Foreign_Exchange_Act_Direction_No_3_of_2021_e.pdf
+        body_hash: sha256:b0a69b01b22e82e323f5fd477806f7e5c1520f93a437921d5ca6bcefad8f3a2c
+        body_path: sources/http_captures/sri-lanka-cbsl-crypto-warning-fx-directive-2021/primary/web.archive.org__web-20210601000000id_-https-www.cbsl.gov.lk-sites-default-files-cbslweb_documents-laws-cdg-Foreign_Exchange_Act_Direction_No_3_of_2021_e.pdf__ac4a9178d0.bin
+        evidence_use: replayable
+        note: |
+          FX Direction No. 03 of 2021 Para 10.1.b is the legal instrument
+          prohibiting EFTC (debit/credit card) payments for virtual-currency
+          transactions. attribution=direct because the directive explicitly
+          mandates the card-payment-channel cut-off.
+      - type: primary_government
+        url: https://www.cbsl.gov.lk/en/news/public-awareness-on-risks-in-investing-in-virtual-currencies-in-sri-lanka
+        wayback: https://web.archive.org/web/20210412052323/https://www.cbsl.gov.lk/en/news/public-awareness-on-risks-in-investing-in-virtual-currencies-in-sri-lanka
+        body_hash: sha256:1b758b8a26b5417c39f47b62c77d060de13e6676e386160a33fdec7e5f1a464d
+        body_path: sources/http_captures/sri-lanka-cbsl-crypto-warning-fx-directive-2021/primary/web.archive.org__web-20210420000000-https-www.cbsl.gov.lk-en-news-public-awareness-on-risks-in-investing-in-virtual-currencies-in-sri-lanka__f675477cdb.html
+        evidence_use: replayable
+        note: |
+          CBSL public-awareness notice (Wayback 2021-04-12 snapshot, page itself
+          dated April 2021) that publicises the EFTC card-payment prohibition,
+          states no ICOs/mining/Virtual Currency Exchanges are authorized, and
+          that buying virtual currency from abroad violates the Foreign Exchange
+          Act. Corroborates the binding FX Direction at the public-notice layer.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured, awaiting human admission)
+
+  Sri Lanka nation-state payment-rail restriction. The IN-SCOPE action (codebook
+  §9) is the binding Foreign Exchange Act Direction No. 03 of 2021 (Para 10.1.b),
+  which prohibits Authorized-Dealer banks from allowing EFTC (debit/credit card)
+  payments for virtual-currency transactions — a deliberate payment-rail
+  prohibition / partial debanking of the crypto on-/off-ramp. The accompanying
+  "not legal tender / no regulatory safeguards" language in the 2021-04-09
+  CBSL public-awareness notice is, on its own, a soft non-recognition statement
+  (§9 EXCLUDE); it is recorded here only as corroborating context, NOT as the
+  scoped censorship action. The scoped action is the card-payment prohibition.
+
+  Attribution=direct per §1.5: the FX Direction is the regulator's own binding
+  instrument naming the prohibited payment use. Single observed_change layer
+  (offramp_cex) ⇒ empirical_shape=comparison, admission_tier=empirical_case.
+  No L0/RPC/onchain measurement attached (none claimed). Both sources captured
+  from cbsl.gov.lk via Wayback with body_hash; the FX Direction PDF text was
+  verified (pdftotext) to contain the Para 10.1.b virtual-currency clause.
+
+scoped_claim: |
+  "Sri Lanka's CBSL Foreign Exchange Act Direction No. 03 of 2021 (publicised
+  2021-04-09) prohibited debit/credit card (EFTC) payments for virtual-currency
+  transactions, severing the bank-card payment channel for crypto in Sri Lanka.
+  Effect captured at the offramp_cex layer at class level via the binding FX
+  Direction text."
+
+tags:
+  - nation_state_block
+  - sri_lanka
+  - cbsl
+  - payment_rail_restriction
+  - card_payment_prohibition

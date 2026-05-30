@@ -1,0 +1,169 @@
+id: eu-16th-russia-sanctions-2025
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - eu-14th-russia-sanctions-spfs-2024
+  - eu-15th-russia-sanctions-2024
+  - eu-18th-russia-sanctions-casp-spfs-2025
+
+trigger:
+  type: non_us_sanctions
+  actor: EU_Council
+  timestamp: 2025-02-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://finance.ec.europa.eu/news/eu-adopts-16th-package-sanctions-against-russia-2025-02-24_en
+      wayback: https://web.archive.org/web/20250318121030/https://finance.ec.europa.eu/news/eu-adopts-16th-package-sanctions-against-russia-2025-02-24_en
+      body_hash: sha256:e635751e58a561c556ba39ccac4a6b8ffbc0c249c5833e5530cbe8bbcb82dac6
+      body_path: sources/http_captures/eu-16th-russia-sanctions-2025/primary/web.archive.org__web-20250301000000-https-finance.ec.europa.eu-news-eu-adopts-16th-package-sanctions-against-russia-2025-02-24_en__ef32c394a1.html
+      evidence_use: replayable
+      note: |
+        European Commission / Council, 16th sanctions package against Russia
+        (adopted 2025-02-24). The captured page records two crypto-relevant
+        measures: (1) addition of banks to the transaction ban "due to their
+        use of the Financial Messaging System of the Central Bank of Russia
+        (SPFS) system to circumvent EU sanctions"; and (2) extension of the
+        transaction ban to enable the EU to list financial institutions and
+        crypto-asset providers that participate in circumventing the Oil Price
+        Cap / facilitate transactions with shadow-fleet vessels, with listings
+        including "Russian crypto assets exchanges." Wayback memento
+        20250318121030 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-02-24 EU 16th-package adoption.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Financial institutions and crypto-asset providers (including Russian
+    crypto-asset exchanges) listable under the extended transaction ban for
+    participating in sanctions circumvention (Oil Price Cap / shadow fleet),
+    plus banks added to the transaction ban for SPFS use. subset because the
+    listable CASP/financial-operator class is defined by criteria and the
+    individual designations are not exhaustively enumerated in this record.
+  protocol: null
+  actor_type: sanctions_transaction_ban
+  actor_name: EU 16th-package CASP/SPFS transaction-ban extension
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - EU
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A legal transaction-prohibition / listing instrument, not an ISP/DNS
+      network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The package extends a transaction ban / listing power over a
+      CASP/financial-operator class; it does not itself freeze specific
+      on-chain assets/addresses (no enumerated addresses; no issuer freeze tx
+      in the captured source).
+  - layer: offramp_cex
+    status: measured
+    scope: [eu_operators_to_circumvention_casps]
+    note: |
+      Load-bearing layer. The 16th package extends the EU transaction ban to
+      enable listing of financial institutions and crypto-asset providers
+      (including Russian crypto-asset exchanges) participating in sanctions
+      circumvention, and adds SPFS-using banks to the transaction ban —
+      debanking that CASP/operator class from the EU transaction surface. The
+      legal instrument is the operative prohibition; attested in the EU
+      primary source (verbatim crypto-asset-provider and SPFS language).
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:eu_council
+    event: eu_16th_package_extends_transaction_ban_to_casps_and_spfs_banks
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-02-24T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://finance.ec.europa.eu/news/eu-adopts-16th-package-sanctions-against-russia-2025-02-24_en
+        wayback: https://web.archive.org/web/20250318121030/https://finance.ec.europa.eu/news/eu-adopts-16th-package-sanctions-against-russia-2025-02-24_en
+        body_hash: sha256:e635751e58a561c556ba39ccac4a6b8ffbc0c249c5833e5530cbe8bbcb82dac6
+        body_path: sources/http_captures/eu-16th-russia-sanctions-2025/primary/web.archive.org__web-20250301000000-https-finance.ec.europa.eu-news-eu-adopts-16th-package-sanctions-against-russia-2025-02-24_en__ef32c394a1.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [eu_operators_aggregate]
+          countries: [EU, RU]
+          time_window:
+            - 2025-02-24T00:00:00Z
+            - 2026-05-31T23:59:59Z
+        note: |
+          EU 16th package (2025-02-24): extends the transaction ban to enable
+          listing of "financial institutions and crypto asset providers" that
+          participate in sanctions circumvention, lists "Russian crypto assets
+          exchanges," and adds banks to the transaction ban for use of the
+          "Financial Messaging System of the Central Bank of Russia (SPFS)."
+          attribution=direct: the EU legal instrument directly and explicitly
+          names crypto-asset providers / exchanges and SPFS as the operative
+          targets. Verbatim language confirmed in the captured body
+          (body_hash-pinned).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). The EU 16th sanctions package
+  (adopted 2025-02-24) extends the EU transaction ban to enable listing of
+  financial institutions and crypto-asset providers participating in sanctions
+  circumvention (Oil Price Cap / shadow fleet), lists Russian crypto-asset
+  exchanges, and adds banks to the transaction ban for SPFS use. This bridges
+  the corpus gap between the 15th package (null_event, no new CASP provisions)
+  and the new 18th-package CASP/SPFS transaction-ban broadening. §9-IN-SCOPE:
+  a direct CASP-facing transaction-ban extension + crypto-exchange listings
+  (debanking a CASP/operator class from the EU transaction surface), distinct
+  from the soft G20/FATF status-report candidates in this batch (out of scope).
+  comparison shape, single offramp_cex observed_change/direct. asset_onchain
+  not_applicable (a transaction-counterparty / listing ban, not an
+  enumerated-address freeze; the captured EU press source lists no addresses,
+  so none are asserted). attribution=direct per codebook §1.1: the EU
+  instrument publicly references the prohibited target class (crypto-asset
+  providers / exchanges and SPFS) explicitly. Sources verified via WebSearch +
+  capture 2026-05-31; verbatim crypto-asset-provider + SPFS language
+  grep-confirmed in the captured body (no fabrication).
+
+scoped_claim: |
+  "The EU's 16th sanctions package (2025-02-24) extended the transaction ban
+  to enable listing of financial institutions and crypto-asset providers
+  (including Russian crypto-asset exchanges) participating in sanctions
+  circumvention, and added banks to the transaction ban for SPFS use,
+  debanking that class from the EU transaction surface; single-layer
+  offramp_cex observed_change with attribution=direct."
+
+tags:
+  - supranational_regulation
+  - eu_sanctions
+  - russia_related
+  - crypto_services_ban
+  - spfs
+  - offramp_shutdown
+  - eu_16th_package

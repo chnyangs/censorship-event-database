@@ -1,0 +1,172 @@
+id: sec-consensys-metamask-staking-swaps-2024-06
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2024-06-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/newsroom/press-releases/2024-79
+      wayback: https://web.archive.org/web/20240629094936/https://www.sec.gov/newsroom/press-releases/2024-79
+      body_hash: sha256:3e14ed53e6026439354070c4725a41112c0c360f09863e629f7045a6dfa24567
+      body_path: sources/http_captures/sec-consensys-metamask-staking-swaps-2024-06/primary/web.archive.org__web-20240628000000-https-www.sec.gov-newsroom-press-releases-2024-79__71103c869f.html
+      evidence_use: replayable
+      note: |
+        SEC press release 2024-79 (2024-06-28): "SEC Charges Consensys
+        Software for Unregistered Offers and Sales of Securities Through Its
+        MetaMask Staking Service." The SEC filed suit alleging Consensys
+        Software, Inc. (developer of the MetaMask self-custody wallet) acted
+        as an unregistered broker through MetaMask's Swaps and Staking
+        services, and engaged in unregistered offers and sales of securities
+        with respect to the Lido and Rocket Pool liquid-staking programs.
+        Wayback 20240629094936 pinned. Grep of the captured body confirms
+        "MetaMask", "Broker", "Staking", "Lido", "Rocket Pool",
+        "Unregistered".
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the SEC press release dated June 28, 2024.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Consensys Software, Inc. (developer of the MetaMask self-custody Ethereum
+    wallet) and the MetaMask Swaps and Staking services. Marked subset: the
+    named operator + its in-wallet swap/staking surfaces, not an enumerated
+    set of users or routed staking programs. No on-chain addresses named in
+    the complaint (a securities suit against the operator, not an on-chain
+    freeze).
+  actor_type: exchange_securities_enforcement
+  actor_name: Consensys Software Inc. (MetaMask)
+  canonical_domains:
+    - metamask.io
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      SEC civil securities suit, not an ISP/DNS network-layer block. L0
+      instruments do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain/consensus surface targeted; the suit concerns the
+      MetaMask wallet's swap/staking interface conduct.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The suit targets the wallet's Swaps/Staking broker conduct, not a
+      hosted RPC-provider surface.
+  - layer: l4_frontend
+    status: measured
+    scope: [metamask_io]
+    note: |
+      Load-bearing layer. The SEC suit seeks to restrict the MetaMask wallet
+      frontend's in-app Swaps and Staking services as unregistered
+      broker/underwriter conduct. The named target is the MetaMask
+      swap/staking frontend surface. Attested directly in the SEC press
+      release.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain token freeze; the action is a securities suit against the
+      software operator, so no §1.6 asset_onchain tx_hash floor applies.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      MetaMask is a self-custody wallet, not a centralized-exchange off-ramp;
+      the load-bearing restriction is the in-wallet swap/staking frontend
+      surface (l4_frontend).
+
+observations:
+  - layer: l4_frontend
+    actor: us_sec
+    event: sec_sues_consensys_metamask_unregistered_broker_swaps_staking
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-06-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/newsroom/press-releases/2024-79
+        wayback: https://web.archive.org/web/20240629094936/https://www.sec.gov/newsroom/press-releases/2024-79
+        body_hash: sha256:3e14ed53e6026439354070c4725a41112c0c360f09863e629f7045a6dfa24567
+        body_path: sources/http_captures/sec-consensys-metamask-staking-swaps-2024-06/primary/web.archive.org__web-20240628000000-https-www.sec.gov-newsroom-press-releases-2024-79__71103c869f.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [metamask_io]
+          countries: [US]
+          time_window:
+            - 2024-06-28T00:00:00Z
+            - 2024-06-28T23:59:59Z
+        note: |
+          SEC press release 2024-79 (2024-06-28): suit charging Consensys with
+          operating MetaMask Swaps/Staking as an unregistered broker and with
+          unregistered offers/sales of Lido and Rocket Pool liquid-staking
+          securities. attribution=direct: the SEC names the specific target
+          (Consensys / MetaMask) and its swap/staking frontend conduct being
+          acted upon.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2024-06-28 the US SEC
+  (press release 2024-79) sued Consensys Software, Inc., alleging the MetaMask
+  self-custody wallet's Swaps and Staking services made Consensys an
+  unregistered broker, and that Consensys engaged in unregistered offers and
+  sales of securities with respect to the Lido and Rocket Pool liquid-staking
+  programs. This is SEC enforcement seeking to restrict a legitimate
+  crypto-stack platform (the dominant Ethereum wallet's in-app swap/staking
+  surface) — in scope per codebook §9 (SEC action restricting a legitimate
+  operator/platform). comparison shape, 1 observed_change layer (l4_frontend),
+  attribution=direct per §1.4 reasoning (the SEC names the specific target).
+  offramp_cex not_applicable: MetaMask is self-custody, not a CEX off-ramp; the
+  load-bearing surface is the wallet frontend. asset_onchain not_applicable: a
+  securities suit, no on-chain freeze, so no §1.6 tx_hash floor applies.
+  Sources verified via WebSearch 2026-05-31; the real SEC.gov press release
+  captured + body_hash-pinned; grep of the captured body confirms "MetaMask",
+  "Broker", "Staking", "Lido", "Rocket Pool", "Unregistered", "June 28, 2024"
+  (no fabrication). NOTE for human reviewer: the SEC voluntarily dismissed
+  this suit in 2025 (post-administration enforcement shift); the 2024-06-28
+  filing is the coded censorship ACTION (the later dismissal is a downstream
+  reversal a reviewer may wish to record as a related event). Distinct from the
+  S5_corporate consensys/metamask events already in corpus
+  (consensys-metamask-infura-rpc-data-collection-2022-11, etc.), which are
+  corporate-policy events, not this SEC enforcement suit.
+
+scoped_claim: |
+  "The 2024-06-28 SEC suit (press release 2024-79) charging Consensys with
+  operating MetaMask Swaps/Staking as an unregistered broker and as
+  underwriter of Lido/Rocket Pool liquid-staking securities is a single-layer
+  l4_frontend restriction targeting the dominant Ethereum wallet's in-app
+  swap/staking surface, attribution=direct. comparable_main tier."
+
+tags:
+  - sec_enforcement
+  - unregistered_broker
+  - liquid_staking
+  - crypto_asset_securities
+  - frontend_restriction
+  - metamask
+  - consensys
+  - comparable_main

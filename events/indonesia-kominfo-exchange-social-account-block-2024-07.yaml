@@ -1,0 +1,179 @@
+id: indonesia-kominfo-exchange-social-account-block-2024-07
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - indonesia-bappebti-illegal-exchange-block-2023
+  - malaysia-sc-binance-disable-2021
+
+trigger:
+  type: nation_state_block
+  actor: ID_KOMINFO_BAPPEBTI
+  timestamp: 2024-07-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://web.archive.org/web/20240824083712/https://bisnis.tempo.co/read/1893370/kominfo-blokir-akun-medsos-binance-dan-kucoin-ini-penjelasan-bappebti-hingga-tokocrypto
+      wayback: https://web.archive.org/web/20240824083712/https://bisnis.tempo.co/read/1893370/kominfo-blokir-akun-medsos-binance-dan-kucoin-ini-penjelasan-bappebti-hingga-tokocrypto
+      body_hash: sha256:c2ff1ea82fa3d2d1b54029f1146d986fe21d3897474058d260f1ed57602efd1a
+      body_path: sources/http_captures/indonesia-kominfo-exchange-social-account-block-2024-07/primary/web.archive.org__web-20240824083712-https-bisnis.tempo.co-read-1893370-kominfo-blokir-akun-medsos-binance-dan-kucoin-ini-penjelasan-bappebti-hingga-tokocrypto__e32ab4134f.html
+      evidence_use: replayable
+      note: |
+        Tempo (Bisnis), "Kominfo Blokir Akun Medsos Binance dan Kucoin, Ini
+        Penjelasan Bappebti hingga Tokocrypto." Captured body confirms the
+        Ministry of Communication and Informatics (Kominfo) blocked the social-media
+        (medsos) accounts — including Instagram — of foreign cryptocurrency
+        exchanges Binance, Kucoin, Bybit and Bitget that operate in Indonesia
+        without Bappebti (CoFTRA) registration, and that Bappebti supports / coordinates
+        the blocking of domains and social accounts of unlicensed entities.
+        Blocking began the week of 2024-07-16.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        VOI (2024-07-18) and DFX corroborate the timing: foreign-exchange Instagram
+        accounts (Binance, Bybit, Bitget Indonesia, KuCoin, MEXC) became inaccessible
+        starting Tuesday 2024-07-16 due to lack of Bappebti registration; captured
+        Tempo body pins the Binance/Kucoin/Bybit/Bitget social-account block.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Foreign (offshore) cryptocurrency exchanges operating in Indonesia without
+    Bappebti (CoFTRA) registration. Captured Tempo body names Binance, Kucoin,
+    Bybit and Bitget as having social-media (Instagram) accounts blocked; the wave
+    targeted the unlicensed-foreign-exchange class. MEXC is named in corroborating
+    journalism (VOI/DFX) but is NOT asserted from the captured primary body.
+    Class-level (codebook §7 subset).
+  protocol: null
+  actor_type: foreign_unlicensed_crypto_exchanges
+  actor_name: Foreign unlicensed crypto exchanges (Indonesia cohort)
+  chains: []
+  canonical_domains:
+    - binance.com
+    - kucoin.com
+    - bybit.com
+    - bitget.com
+
+jurisdiction: [ID]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      This wave is a takedown of the exchanges' social-media accounts (Instagram)
+      and is coordinated with domain blocking, but no replayable OONI/Censored
+      Planet L0 slice is captured for this event, so L0 is not_applicable here.
+      The load-bearing surface is the platform-facing account/frontend takedown.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope: [foreign_exchange_social_media_instagram_accounts_indonesia]
+    note: |
+      Kominfo, coordinating with Bappebti, blocked the Indonesian-facing social-media
+      (Instagram) accounts of unlicensed foreign exchanges (Binance, Kucoin, Bybit,
+      Bitget), removing a public-facing user-acquisition / frontend channel. Carried
+      at l4_frontend as the load-bearing layer (a platform-facing public surface
+      takedown). Observation attached below as observed_change, plausible attribution.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The 2024-07 wave targets the exchanges' social-media accounts/domains, not the
+      rupiah banking rail directly. The banking/off-ramp severance of unlicensed
+      foreign exchanges is the subject of the sibling 2023 Bappebti-Kominfo event
+      (indonesia-bappebti-illegal-exchange-block-2023); not re-asserted here.
+
+observations:
+  - layer: l4_frontend
+    actor: kominfo_bappebti
+    event: foreign_exchange_social_media_accounts_blocked
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-07-16T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://web.archive.org/web/20240824083712/https://bisnis.tempo.co/read/1893370/kominfo-blokir-akun-medsos-binance-dan-kucoin-ini-penjelasan-bappebti-hingga-tokocrypto
+        wayback: https://web.archive.org/web/20240824083712/https://bisnis.tempo.co/read/1893370/kominfo-blokir-akun-medsos-binance-dan-kucoin-ini-penjelasan-bappebti-hingga-tokocrypto
+        body_hash: sha256:c2ff1ea82fa3d2d1b54029f1146d986fe21d3897474058d260f1ed57602efd1a
+        body_path: sources/http_captures/indonesia-kominfo-exchange-social-account-block-2024-07/primary/web.archive.org__web-20240824083712-https-bisnis.tempo.co-read-1893370-kominfo-blokir-akun-medsos-binance-dan-kucoin-ini-penjelasan-bappebti-hingga-tokocrypto__e32ab4134f.html
+        evidence_use: replayable
+        note: |
+          Tempo (Bisnis) captured body confirms Kominfo blocked the social-media
+          (medsos/Instagram) accounts of Binance, Kucoin, Bybit and Bitget for
+          operating without Bappebti registration, with Bappebti supporting the
+          domain/social-account blocking of unlicensed entities.
+          attribution=plausible (codebook §1.4/§8.4): the load-bearing captured prose
+          is contemporaneous journalism rather than the Kominfo blocking order, and
+          the target is class-level. A primary Kominfo/Bappebti order capture would
+          be required to elevate to direct.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison documenting the July 2024 Kominfo wave (coordinated with Bappebti)
+  blocking the Indonesian-facing social-media (Instagram) accounts of unlicensed
+  foreign crypto exchanges — Binance, Kucoin, Bybit, Bitget — for operating
+  without Bappebti registration. Accounts became inaccessible starting the week of
+  2024-07-16.
+
+  Dedup vs indonesia-bappebti-illegal-exchange-block-2023: that prior event covers
+  the 2023-04 Bappebti-Kominfo block of foreign-exchange WEB/APP DOMAINS at the
+  ISP level. This 2024-07 event is a distinct, later wave on a distinct surface —
+  the exchanges' SOCIAL-MEDIA (Instagram) accounts — and is therefore authored as a
+  separate event rather than a duplicate. The two are cross-linked via related_events.
+
+  Per codebook §5.1, trigger.type=nation_state_block is the canonical fit (a
+  nation-state platform-access takedown). Per §5.2, S4_nation_state is permitted.
+
+  Per §9 inclusion boundary: in scope — a deliberate state action geofencing/blocking
+  the Indonesian-facing public channels of legitimate (if locally-unlicensed)
+  exchanges, restricting their access to Indonesian users.
+
+  Why l4_frontend (not offramp_cex): the captured action is a takedown of the
+  exchanges' public-facing social-media accounts, a frontend/public-surface block —
+  not a rupiah banking-rail severance (that is the 2023 sibling event). asset_onchain
+  and offramp_cex therefore not_applicable here.
+
+  Why plausible (not direct): load-bearing captured prose is contemporaneous
+  journalism (Tempo), not the Kominfo order; target is class-level. Conservative
+  default (§8.4) -> plausible.
+
+  Source discipline (anti-fabrication): the captured Tempo body names Binance,
+  Kucoin, Bybit and Bitget; MEXC appears only in corroborating VOI/DFX journalism
+  and is NOT asserted from the captured primary, so canonical_domains lists only the
+  four confirmed in the captured body.
+
+  Why temporal_tier=comparable_main_2017_present / analysis_use=
+  comparable_analysis: 2024-07 sits in the 2017+ comparable corpus.
+
+scoped_claim: |
+  "Starting the week of 2024-07-16, Indonesia's Kominfo, coordinating with Bappebti,
+  blocked the Indonesian-facing social-media (Instagram) accounts of unlicensed
+  foreign crypto exchanges Binance, Kucoin, Bybit and Bitget. The l4_frontend layer
+  carries the load-bearing plausible-attribution observation at class level. Distinct
+  from the 2023 domain-block event."
+
+tags:
+  - nation_state_block
+  - indonesia
+  - kominfo
+  - social_media_account_block

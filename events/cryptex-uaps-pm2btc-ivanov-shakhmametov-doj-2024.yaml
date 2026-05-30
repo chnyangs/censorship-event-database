@@ -1,0 +1,212 @@
+id: cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_EDVA
+  timestamp: 2024-09-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-edva/pr/two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering
+      wayback: https://web.archive.org/web/20240926181943/https://www.justice.gov/usao-edva/pr/two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering
+      body_hash: sha256:c5c9eace590dee38f8593a4d597471e844caf7d670e914be663e5d0ff02f9213
+      body_path: sources/http_captures/cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024/primary/web.archive.org__web-20240926000000-https-www.justice.gov-usao-edva-pr-two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering__a7acbbf27a.html
+      evidence_use: replayable
+      note: |
+        DOJ EDVA press release (2024-09-26): "Two Russian nationals charged in
+        connection with operating billion-dollar money laundering services;
+        Justice Department seizes web domains for multiple illicit crypto
+        exchanges." The U.S. Secret Service obtained court authorization to
+        seize domains associated with the UAPS and PM2BTC websites, and a
+        District of Maryland seizure order took the Cryptex.net and Cryptex.one
+        domains (the cryptocurrency money-laundering exchange "Cryptex");
+        working with Dutch partners the action shut down Cryptex. Sergey
+        Sergeevich Ivanov (operator of UAPS / PinPays / PM2BTC, associated with
+        Cryptex) and Timur Kamilevich Shakhmametov (Joker's Stash) were charged.
+        Wayback 20240926181943 pinned. Grep of the captured body confirms
+        "seizes web domains", "Secret Service has obtained court authorization
+        to seize domains associated with the UAPS and PM2BTC websites",
+        "Cryptex.net", "Cryptex.one", "shut down Cryptex".
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the DOJ EDVA press release dated
+        September 26, 2024.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Cryptex (Cryptex.net / Cryptex.one cryptocurrency money-laundering
+    exchange), the UAPS and PM2BTC payment/exchange services, and named
+    operators Sergey Sergeevich Ivanov and Timur Kamilevich Shakhmametov.
+    Marked subset: the named operators + their crypto-exchange/payment vehicles
+    + the seized domains, not an enumerated set of users. The press release
+    references blockchain-traced addresses (~$1.15B in flows) but does not
+    enumerate specific on-chain addresses in the captured body, so none are
+    asserted here.
+  actor_type: digital_currency_exchange_msb
+  actor_name: Cryptex / UAPS / PM2BTC (Ivanov & Shakhmametov)
+  canonical_domains:
+    - cryptex.net
+    - cryptex.one
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The action operated via domain-name seizure + criminal charges, not an
+      ISP/DNS network-layer block. L0 instruments do not apply.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain/consensus surface targeted; Cryptex/UAPS/PM2BTC were
+      centralized crypto-exchange/payment services.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface.
+  - layer: l4_frontend
+    status: measured
+    scope: [cryptex_net, cryptex_one, uaps, pm2btc]
+    note: |
+      Load-bearing layer. The U.S. Secret Service seized the UAPS and PM2BTC
+      website domains, and a District of Maryland seizure order took
+      Cryptex.net and Cryptex.one — the operational frontends of the
+      crypto-exchange/laundering services — taking them offline. The domain
+      seizure is the directly DOJ/Secret-Service-attributed frontend takedown,
+      attested in the DOJ EDVA release.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The captured DOJ release references blockchain-traced flows but does not
+      enumerate specific on-chain addresses, and no primary_onchain tx_hash is
+      asserted; per §1.6 the asset_onchain floor is not invoked and the
+      load-bearing effect is carried at l4_frontend / offramp_cex.
+  - layer: offramp_cex
+    status: measured
+    scope: [cryptex, uaps, pm2btc]
+    note: |
+      Load-bearing layer. The coordinated seizure + charges shut down the
+      Cryptex crypto exchange and the UAPS/PM2BTC payment-exchange services
+      ("we shut down Cryptex, an illicit crypto exchange"). Attested in the
+      DOJ EDVA release.
+
+observations:
+  - layer: l4_frontend
+    actor: us_secret_service
+    event: doj_secret_service_seizes_cryptex_uaps_pm2btc_domains
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-edva/pr/two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering
+        wayback: https://web.archive.org/web/20240926181943/https://www.justice.gov/usao-edva/pr/two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering
+        body_hash: sha256:c5c9eace590dee38f8593a4d597471e844caf7d670e914be663e5d0ff02f9213
+        body_path: sources/http_captures/cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024/primary/web.archive.org__web-20240926000000-https-www.justice.gov-usao-edva-pr-two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering__a7acbbf27a.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [cryptex_net, cryptex_one, uaps, pm2btc]
+          countries: [US]
+          time_window:
+            - 2024-09-26T00:00:00Z
+            - 2024-09-26T23:59:59Z
+        note: |
+          DOJ EDVA 2024-09-26: Secret Service seized the UAPS and PM2BTC
+          domains and a District of Maryland order took Cryptex.net/Cryptex.one.
+          attribution=direct: the named state action seized the named
+          operational frontend domains.
+  - layer: offramp_cex
+    actor: us_doj_edva
+    event: cryptex_uaps_pm2btc_exchange_services_shut_down
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-09-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-edva/pr/two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering
+        wayback: https://web.archive.org/web/20240926181943/https://www.justice.gov/usao-edva/pr/two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering
+        body_hash: sha256:c5c9eace590dee38f8593a4d597471e844caf7d670e914be663e5d0ff02f9213
+        body_path: sources/http_captures/cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024/primary/web.archive.org__web-20240926000000-https-www.justice.gov-usao-edva-pr-two-russian-nationals-charged-connection-operating-billion-dollar-money-laundering__a7acbbf27a.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [cryptex, uaps, pm2btc]
+          countries: [US]
+          time_window:
+            - 2024-09-26T00:00:00Z
+            - 2024-09-26T23:59:59Z
+        note: |
+          DOJ EDVA 2024-09-26: the coordinated US/Dutch action shut down the
+          Cryptex crypto exchange and the UAPS/PM2BTC payment-exchange
+          services. attribution=direct: the named state action terminated the
+          named exchange services.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2024-09-26 the DOJ
+  (Eastern District of Virginia), with the U.S. Secret Service and Dutch
+  partners, charged Sergey Sergeevich Ivanov (operator of UAPS/PinPays/PM2BTC,
+  associated with the Cryptex crypto exchange) and Timur Kamilevich
+  Shakhmametov (Joker's Stash) and seized the operational domains: the Secret
+  Service seized the UAPS and PM2BTC website domains and a District of Maryland
+  seizure order took Cryptex.net and Cryptex.one, shutting down the Cryptex
+  exchange. This is a coordinated law-enforcement crypto-exchange takedown via
+  domain seizure — in scope per codebook §9 (the Liberty Reserve / btc-e /
+  bitzlato pattern: state seizure of a crypto-exchange platform's
+  frontends/services). comparison shape, 2 observed_change layers
+  (l4_frontend domain seizure + offramp_cex service shutdown), both
+  attribution=direct (named state action against the named domains/services).
+  asset_onchain not_applicable per §1.6: the captured DOJ release references
+  blockchain-traced flows (~$1.15B) but enumerates NO specific on-chain
+  address and no primary_onchain tx_hash is available, so no on-chain
+  observation is asserted (anti-fabrication). Sources verified via WebSearch
+  2026-05-31; the real DOJ EDVA press release captured + body_hash-pinned; grep
+  of the captured body confirms "seizes web domains", "UAPS and PM2BTC
+  websites", "Cryptex.net", "Cryptex.one", "shut down Cryptex", "Secret
+  Service" (no fabrication). NOTE: corpus already holds cryptex-ofac-2024 (the
+  same-day S1 OFAC SDN designation of Ivanov/Cryptex) and
+  circle-usdc-cryptex-freeze-2024 (the S5 issuer freeze) — this is the DISTINCT
+  S3 DOJ/Secret-Service criminal-charge + domain-seizure action, not the OFAC
+  designation.
+
+scoped_claim: |
+  "The 2024-09-26 DOJ EDVA / U.S. Secret Service coordinated action seized the
+  Cryptex.net/Cryptex.one, UAPS, and PM2BTC domains and shut down the Cryptex
+  crypto exchange and UAPS/PM2BTC payment-exchange services, producing a
+  2-layer cascade: l4_frontend (domain seizure) and offramp_cex (service
+  shutdown), both attribution=direct. comparable_main tier."
+
+tags:
+  - doj_enforcement
+  - domain_seizure
+  - money_laundering
+  - unlicensed_money_transmitter
+  - crypto_exchange_takedown
+  - cryptex
+  - frontend_seizure
+  - offramp_shutdown
+  - comparable_main

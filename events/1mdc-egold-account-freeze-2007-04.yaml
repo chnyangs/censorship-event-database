@@ -1,0 +1,219 @@
+id: 1mdc-egold-account-freeze-2007-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: discovery_only_2007_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - egold-doj-guilty-plea-2008-07
+  - goldage-ny-state-indictment-2006-07
+  - liberty-reserve-coordinated-takedown-2013-05
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_DC
+  timestamp: 2007-04-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+      wayback: https://web.archive.org/web/20210401004405/https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+      body_hash: sha256:61540013bbabcf9330f52f862e9b625f96a821af3ffd882c40631ee17815dd50
+      body_path: sources/http_captures/1mdc-egold-account-freeze-2007-04/primary/web.archive.org__web-20210401004405-https-www.justice.gov-archive-criminal-cybercrime-press-releases-2007-egoldIndict.htm__9c96372596.html
+      evidence_use: replayable
+      note: |
+        DOJ press release (2007-04-27, unsealed): "Digital Currency
+        Business E-Gold Indicted For Money Laundering And Illegal Money
+        Transmitting." A federal grand jury in the District of Columbia
+        indicted e-gold Ltd., Gold & Silver Reserve Inc. and their
+        principals; the action precipitated court-mandated restrictions
+        on e-gold's operations including the freeze/liquidation of e-gold
+        accounts. This is the operative federal state instrument behind
+        the collateral freeze of the 1mdc-backing e-gold accounts.
+        Wayback 20210401004405 pinned. (This page indicts e-gold; it does
+        not itself name 1mdc — the 1mdc-specific freeze is carried by the
+        secondary source below.)
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/1mdc
+      wayback: https://web.archive.org/web/20251129151946/https://en.wikipedia.org/wiki/1mdc
+      body_hash: sha256:688c3732c0bfff067b7f2cfd6ae537748d47fa42a4880c6d9bd31e9847cf7fca
+      body_path: sources/http_captures/1mdc-egold-account-freeze-2007-04/primary/web.archive.org__web-20251129000000-https-en.wikipedia.org-wiki-1mdc__7048e5fe3c.html
+      evidence_use: replayable
+      note: |
+        Encyclopedic secondary source for the 1mdc-specific effect: "As
+        of April 27, 2007, a US court order has forced e-gold to
+        liquidate a large number of e-gold accounts totalling some 10 to
+        20 million US dollars' worth of gold." A part of this seizure was
+        1mdc's accounts and assets; "Once e-gold Ltd. was instructed by
+        the US government to freeze and liquidate all 1mdc accounts, 1mdc
+        became insolvent by default." 1mdc was a digital gold currency
+        (2001-2007) whose units were backed by reserves of e-gold rather
+        than physical bullion. Wayback 20251129151946 pinned.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision per the 2007-04-27 US court order forcing
+        e-gold to freeze/liquidate the 1mdc-backing accounts (Wikipedia
+        1mdc article, Wayback-pinned), coincident with the 2007-04-27
+        unsealing of the e-gold D.D.C. indictment.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    1mdc (a digital gold currency, 2001-2007, whose units were backed by
+    reserves held in e-gold accounts rather than physical bullion) and
+    the pool of e-gold accounts that backed it. Marked subset: targets
+    the 1mdc-backing e-gold reserve accounts collaterally frozen/
+    liquidated under the 2007-04-27 court order, not an enumerated set of
+    individual 1mdc holders. No blockchain / on-chain addresses (1mdc
+    units were off-ledger entries backed by the centralized e-gold
+    ledger).
+  actor_type: digital_currency_administrator_msb
+  actor_name: 1mdc (e-gold-backed digital gold currency)
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A 2007 US court-ordered freeze/liquidation of e-gold reserve
+      accounts; no ISP/DNS network-layer instrument applies.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      1mdc units were off-ledger entries backed by the centralized e-gold
+      ledger; no blockchain, no decentralized consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface; 1mdc was a centralized
+      digital-gold-currency service.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The operative 2007-04-27 instrument was an account freeze/
+      liquidation order, not a domain-name seizure; no l4 takedown
+      instrument is directly attributed to the court order.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      1mdc units were off-ledger e-gold-backed entries on the centralized
+      e-gold ledger, not a blockchain token; there is no on-chain tx_hash
+      for the freeze, so per codebook §1.6 the freeze effect is carried at
+      offramp_cex rather than asset_onchain.
+  - layer: offramp_cex
+    status: measured
+    scope: [1mdc]
+    note: |
+      Load-bearing layer. 1mdc operated as a centralized digital-gold-
+      currency administrator backed by e-gold reserves; the 2007-04-27 US
+      court order forcing e-gold to freeze/liquidate the 1mdc-backing
+      accounts (~$10-20M) rendered 1mdc insolvent and ended its service.
+      Attested in the e-gold DOJ indictment release (the federal
+      instrument) + the 1mdc secondary source (the 1mdc-specific effect).
+
+observations:
+  - layer: offramp_cex
+    actor: us_district_court_ddc
+    event: court_order_froze_and_liquidated_1mdc_backing_egold_accounts_ending_service
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2007-04-27T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: supporting_journalism
+        url: https://en.wikipedia.org/wiki/1mdc
+        wayback: https://web.archive.org/web/20251129151946/https://en.wikipedia.org/wiki/1mdc
+        body_hash: sha256:688c3732c0bfff067b7f2cfd6ae537748d47fa42a4880c6d9bd31e9847cf7fca
+        body_path: sources/http_captures/1mdc-egold-account-freeze-2007-04/primary/web.archive.org__web-20251129000000-https-en.wikipedia.org-wiki-1mdc__7048e5fe3c.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [1mdc]
+          countries: [US]
+          time_window:
+            - 2007-04-27T00:00:00Z
+            - 2007-12-31T23:59:59Z
+        note: |
+          "As of April 27, 2007, a US court order has forced e-gold to
+          liquidate a large number of e-gold accounts totalling some 10
+          to 20 million US dollars' worth of gold." A part of this
+          seizure was 1mdc's accounts; the forced freeze/liquidation of
+          all 1mdc accounts rendered 1mdc insolvent and ended its
+          service. attribution=plausible: the operative state instrument
+          is the federal e-gold court order, and the 1mdc-specific freeze
+          effect is documented via this encyclopedic secondary source
+          (no 1mdc-naming primary legal text captured).
+      - type: primary_legal
+        url: https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+        wayback: https://web.archive.org/web/20210401004405/https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+        body_hash: sha256:61540013bbabcf9330f52f862e9b625f96a821af3ffd882c40631ee17815dd50
+        body_path: sources/http_captures/1mdc-egold-account-freeze-2007-04/primary/web.archive.org__web-20210401004405-https-www.justice.gov-archive-criminal-cybercrime-press-releases-2007-egoldIndict.htm__9c96372596.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [1mdc]
+          countries: [US]
+          time_window:
+            - 2007-04-27T00:00:00Z
+            - 2007-12-31T23:59:59Z
+        note: |
+          DOJ 2007-04-27 e-gold indictment release ("Digital Currency
+          Business E-Gold Indicted For Money Laundering And Illegal Money
+          Transmitting"): the federal D.D.C. action that precipitated the
+          court-mandated freeze/liquidation of e-gold accounts (the pool
+          that included the 1mdc-backing reserves). Primary-legal anchor
+          for the operative state instrument.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2;
+  sources verified+captured, awaiting human admission). As a knock-on of
+  the 2007-04-27 e-gold federal indictment (D.D.C.), a US court order
+  forced e-gold to freeze and liquidate the pool of e-gold accounts
+  (~$10-20M) that backed 1mdc — an e-gold-reserve-backed digital gold
+  currency (2001-2007) — rendering 1mdc insolvent by default and ending
+  its service. §9 IN SCOPE: a court-ordered freeze/seizure of a
+  legitimate digital-currency operator's reserves (1mdc was a real
+  digital-gold-currency service, not a scam/Ponzi). One observed_change
+  layer (offramp_cex service termination via reserve freeze),
+  attribution=plausible (the federal e-gold court order is the operative
+  state instrument; the 1mdc-specific freeze effect is carried by the
+  Wayback-pinned 1mdc encyclopedic source — the DOJ release indicts
+  e-gold but does not itself name 1mdc). comparison shape /
+  empirical_case tier / discovery_only_2007_2012. asset_onchain
+  not_applicable and the freeze effect carried at offramp_cex per
+  codebook §1.6 (1mdc units were off-ledger e-gold-backed entries, not a
+  blockchain token; no on-chain tx_hash exists). L0/L1/L3/l4
+  not_applicable. Sources verified via WebSearch 2026-05-31; DOJ e-gold
+  indictment release + Wikipedia 1mdc article captured + body_hash-
+  pinned (no fabrication; no on-chain addresses or tx hashes asserted).
+
+scoped_claim: |
+  "As a knock-on of the 2007-04-27 e-gold federal indictment, a US court
+  order forced e-gold to freeze/liquidate the ~$10-20M pool of e-gold
+  accounts backing 1mdc (an e-gold-reserve-backed digital gold
+  currency), rendering 1mdc insolvent and ending its service
+  (offramp_cex), attribution=plausible. Discovery-period (pre-2013)
+  tier; collateral to the e-gold takedown lineage."
+
+tags:
+  - doj_enforcement
+  - account_freeze
+  - asset_seizure
+  - 1mdc
+  - egold
+  - pre_bitcoin_digital_currency
+  - discovery_period
+  - offramp_shutdown

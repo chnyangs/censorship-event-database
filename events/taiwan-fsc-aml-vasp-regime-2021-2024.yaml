@@ -1,0 +1,211 @@
+id: taiwan-fsc-aml-vasp-regime-2021-2024
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - uzbekistan-napp-vasp-licensing-2022-07
+  - turkey-cmb-casp-licensing-law-7518-2024
+  - fatf-r15-vasp-travel-rule-2019
+
+trigger:
+  type: regulatory_enforcement
+  actor: TW_FSC
+  timestamp: 2024-07-31T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.loc.gov/item/global-legal-monitor/2024-11-17/taiwan-money-laundering-control-act-revised/
+      wayback: https://web.archive.org/web/20241127044221/https://www.loc.gov/item/global-legal-monitor/2024-11-17/taiwan-money-laundering-control-act-revised/
+      body_hash: sha256:656925a31719529c22ffeeed1d66a1baf078e2a2a5b3d256e26761ce84687882
+      body_path: sources/http_captures/taiwan-fsc-aml-vasp-regime-2021-2024/primary/web.archive.org__web-20241201000000-https-www.loc.gov-item-global-legal-monitor-2024-11-17-taiwan-money-laundering-control-act-revised__3a376f6636.html
+      evidence_use: replayable
+      note: |
+        US Library of Congress Global Legal Monitor (2024-11-17), "Taiwan: Money
+        Laundering Control Act Revised." Captured HTML grep-confirms: "On July
+        31, 2024, Taiwan's Money Laundering Control Act (MLCA) was amended. Key
+        modifications ... include adjusted penalties and the establishment of a
+        registration regime for virtual asset service providers (VASPs)";
+        "VASPs that have not completed the registration are not allowed to
+        provide virtual asset services. Violation of article 6 by natural
+        persons will result in imprisonment to a maximum of two years or
+        detention, and/or fines up to NT$5 million." This is the load-bearing
+        mandate: a binding registration gate (no FSC AML registration → may not
+        operate) backed by criminal penalty, administered by the Financial
+        Supervisory Commission (FSC). Wayback memento 20241127044221 captured
+        2026-05-31.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level precision. 2024-07-31 is the date the amended Money Laundering
+        Control Act (incl. the new Article 6 VASP-registration regime) was
+        announced. The FSC's implementing "Anti-Money Laundering Registration
+        Regulations for Virtual Asset Service Providers" took effect 2024-11-30;
+        the predecessor AML compliance-declaration framework had been in force
+        since 2021-07-01. The 2024-07-31 amendment is the trigger anchor because
+        it converts the prior administrative-penalty regime into a criminal-
+        penalty mandatory-registration regime.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: all businesses and individuals providing virtual asset
+    services in Taiwan (domestic VASPs and foreign VASPs serving Taiwan, the
+    latter required to incorporate a Taiwan company/branch). The MLCA Article 6
+    regime operates against the VASP activity class rather than enumerating
+    named operators; coded subset with class-level rationale per codebook §7.
+  actor_type: nation_state_legal_framework
+  actor_name: Taiwan — FSC mandatory VASP AML-registration regime (MLCA Art. 6)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [TW]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The MLCA Article 6 regime is an operator-registration mandate, not an
+      ISP-/DNS-level domain block. No L0 network block is engaged.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Frontend-layer effects (unregistered-VASP geo-restrictions / exits from
+      the Taiwan-facing surface) are plausibly second-order to the registration
+      perimeter but no per-event Wayback bracket is pinned in this draft.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No stablecoin-issuer admin freeze or address-level blacklist applicable.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - taiwan_vasp_registration_perimeter
+    denominator_artifact:
+      type: primary_government
+      url: https://www.loc.gov/item/global-legal-monitor/2024-11-17/taiwan-money-laundering-control-act-revised/
+      wayback: https://web.archive.org/web/20241127044221/https://www.loc.gov/item/global-legal-monitor/2024-11-17/taiwan-money-laundering-control-act-revised/
+      body_hash: sha256:656925a31719529c22ffeeed1d66a1baf078e2a2a5b3d256e26761ce84687882
+      body_path: sources/http_captures/taiwan-fsc-aml-vasp-regime-2021-2024/primary/web.archive.org__web-20241201000000-https-www.loc.gov-item-global-legal-monitor-2024-11-17-taiwan-money-laundering-control-act-revised__3a376f6636.html
+      scope_descriptor:
+        countries: [TW]
+        providers: [tw_fsc]
+        time_window:
+          - 2024-07-31T00:00:00Z
+          - 2026-05-31T00:00:00Z
+      note: |
+        Denominator anchor for the Taiwan offramp_cex VASP-registration
+        perimeter: the LOC Global Legal Monitor description of the MLCA Art. 6
+        criminal-penalty registration regime (announced 2024-07-31; FSC
+        regulations effective 2024-11-30).
+    note: |
+      Construct-engaged layer (Taiwan VASP-registration perimeter). The MLCA
+      Art. 6 mandate prohibits unregistered VASPs from operating with criminal
+      penalty — a binding restriction — but no admission-grade per-event cascade
+      (named-VASP exit / onboarding halt tied to the 2024-07-31 trigger) is
+      pinned in this draft; coded observed_no_change / attribution=none below
+      pending human audit.
+
+observations:
+  - layer: offramp_cex
+    actor: nation_state:tw_fsc
+    event: vasp_mandatory_registration_regime_enacted_no_admission_grade_cascade_observed
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-07-31T00:00:00Z
+    precision: day
+    country: TW
+    window:
+      - 2024-07-31T00:00:00Z
+      - 2026-05-31T00:00:00Z
+    sources:
+      - type: primary_government
+        url: https://www.loc.gov/item/global-legal-monitor/2024-11-17/taiwan-money-laundering-control-act-revised/
+        wayback: https://web.archive.org/web/20241127044221/https://www.loc.gov/item/global-legal-monitor/2024-11-17/taiwan-money-laundering-control-act-revised/
+        body_hash: sha256:656925a31719529c22ffeeed1d66a1baf078e2a2a5b3d256e26761ce84687882
+        body_path: sources/http_captures/taiwan-fsc-aml-vasp-regime-2021-2024/primary/web.archive.org__web-20241201000000-https-www.loc.gov-item-global-legal-monitor-2024-11-17-taiwan-money-laundering-control-act-revised__3a376f6636.html
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [TW]
+          providers: [tw_fsc]
+          time_window:
+            - 2024-07-31T00:00:00Z
+            - 2026-05-31T00:00:00Z
+        note: |
+          LOC Global Legal Monitor describing the MLCA Art. 6 mandatory VASP
+          registration regime (no registration → may not operate; criminal
+          penalty). observation_kind=observed_no_change at offramp_cex: the
+          framework creates a binding registration perimeter but no admission-
+          grade per-event cascade (named-VASP retreat / onboarding halt tied to
+          the 2024-07-31 trigger) has been pinned in this draft.
+          attribution=none consistent with §1.1 (reserved for observed_no_change
+          rows). Wayback memento 20241127044221 captured 2026-05-31.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  null_event — S4 nation-state mandatory VASP-registration regime. Taiwan first
+  brought VASPs under AML obligations via the FSC's 2021-06 AML/CFT regulations
+  effective 2021-07-01 (administrative-penalty compliance-declaration regime).
+  The 2024-07-31 amendment to the Money Laundering Control Act added Article 6,
+  establishing a mandatory FSC AML-registration regime: VASPs that have not
+  completed registration are not allowed to provide virtual asset services, and
+  operating in violation carries criminal penalties (imprisonment up to two
+  years and/or fines up to NT$5 million for natural persons; larger fines for
+  legal persons). The FSC's implementing registration regulations took effect
+  2024-11-30.
+
+  §9 inclusion: borderline soft-governance framework promoted to IN-scope under
+  the §9 test "INCLUDE only when the instrument directly mandates a restriction."
+  Unlike a pure AML advisory, the MLCA Art. 6 regime self-executingly PROHIBITS
+  unregistered VASPs from operating (criminal penalty), which is a binding
+  restriction of service — directly analogous to the admitted
+  uzbekistan-napp-vasp-licensing-2022-07 mandatory-licensing event and
+  turkey-cmb-casp-licensing-law-7518-2024.
+
+  trigger.type=regulatory_enforcement + research_stratum=S4_nation_state per
+  codebook §5.1/§5.2 (TW FSC is a non-US national regulator; the action is an
+  administrative registration mandate, not an ISP/payment-rail block).
+
+  Coded empirical_shape=null_event / admission_tier=null_case per codebook
+  §3/§4, following the uzbekistan-napp-vasp-licensing-2022-07 precedent: the
+  offramp_cex layer is the construct-engaged surface but no admission-grade
+  per-event cascade (named-VASP exit / onboarding halt tied to the 2024-07-31
+  trigger) has been captured; coded observed_no_change / attribution=none
+  pending human audit. The conservative null coding is preferred (§4) over
+  asserting an unmeasured cascade. L0/L1/L3/asset_onchain coded not_applicable
+  on construct-not-engaged grounds; L4 not_measured.
+
+scoped_claim: |
+  "On 2024-07-31 Taiwan amended its Money Laundering Control Act to add Article 6,
+  establishing a mandatory FSC AML-registration regime under which VASPs that
+  have not completed registration may not provide virtual asset services and
+  violators face criminal penalties (FSC implementing regulations effective
+  2024-11-30), building on the 2021-07-01 AML compliance-declaration regime.
+  This created a binding domestic VASP-registration perimeter at offramp_cex; no
+  admission-grade per-event cascade is pinned in this DRYRUN draft, coded
+  null_event pending human audit."
+
+tags:
+  - regulatory_enforcement
+  - taiwan
+  - fsc
+  - vasp_registration
+  - money_laundering_control_act
+  - null_event
+  - dryrun_2026_05_31

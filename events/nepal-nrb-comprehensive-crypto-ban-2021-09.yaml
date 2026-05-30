@@ -1,0 +1,209 @@
+id: nepal-nrb-comprehensive-crypto-ban-2021-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - nepal-nrb-bitcoin-ban-2017-08
+  - india-rbi-crypto-ban-2018
+  - china-pboc-crypto-ban-2021
+
+trigger:
+  type: regulatory_enforcement
+  actor: NP_NRB
+  timestamp: 2021-09-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.nrb.org.np/contents/uploads/2021/09/FXMD-Notice-03-207879-Cryptocurrency.pdf
+      wayback: https://web.archive.org/web/20211018205117id_/https://www.nrb.org.np/contents/uploads/2021/09/FXMD-Notice-03-207879-Cryptocurrency.pdf
+      body_hash: sha256:964daea861bc92d42116c37158b9cbbd989671a8c8066d190eb12296c0647b7f
+      body_path: sources/http_captures/nepal-nrb-comprehensive-crypto-ban-2021-09/primary/web.archive.org__web-20211001000000id_-https-www.nrb.org.np-contents-uploads-2021-09-FXMD-Notice-03-207879-Cryptocurrency.pdf__1d830a68b4.bin
+      evidence_use: replayable
+      note: |
+        Official Nepal Rastra Bank (central bank) Foreign Exchange Management
+        Department notice "FXMD-Notice-03-2078/79 — Cryptocurrency कारोबार
+        गैरकानूनी रहेको सम्बन्धी सूचना" ("Notice that cryptocurrency dealings are
+        illegal"), published on the NRB website under 2021/09. Single-page
+        Nepali-language PDF; the document is image/scan-based so its body text is
+        not machine-extractable, hence specific scope wording is not asserted
+        from this file directly — the English-language scope (transaction, usage,
+        and mining of cryptocurrency declared illegal) is carried by the
+        contemporaneous Himalayan Times report below. This citation anchors the
+        existence and date of the official NRB notice. Wayback memento
+        20211018205117 captured 2026-05-31.
+    - type: semi_primary_wayback
+      url: https://thehimalayantimes.com/business/nrb-issues-notice-on-cryptocurrency
+      wayback: https://web.archive.org/web/20210910161805/https://thehimalayantimes.com/business/nrb-issues-notice-on-cryptocurrency
+      body_hash: sha256:442eb013011dc622a1c94621d9ef30bef6fc2e5ca626a9b0b0e921fd3191cf0d
+      body_path: sources/http_captures/nepal-nrb-comprehensive-crypto-ban-2021-09/primary/web.archive.org__web-20210915000000-https-thehimalayantimes.com-business-nrb-issues-notice-on-cryptocurrency__ee4de17895.html
+      evidence_use: replayable
+      note: |
+        The Himalayan Times (2021-09-10): "Nepal Rastra Bank, the banking sector
+        regulator and supervisor, has issued a notice on Thursday warning that
+        the transaction, usage and mining of cryptocurrency is illegal in the
+        country." Grep-confirmed in captured HTML. Contemporaneous English-
+        language report of the 2021-09-09 NRB notice; carries the load-bearing
+        scope claim (transaction + usage + mining all declared illegal),
+        escalating the 2017 banking/exchange prohibition into a comprehensive
+        prohibition. Wayback memento 20210910161805 captured 2026-05-31.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level precision. 2021-09-09 (Bikram Sambat 2078/05/24) is the NRB
+        notice date; the Himalayan Times report dated 2021-09-10 describes the
+        notice issued "on Thursday" (2021-09-09).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: all persons, firms, companies, institutions and
+    agencies inside Nepal (and Nepalis abroad) engaging in cryptocurrency
+    transaction, usage, or mining. The NRB notice operates against the activity
+    class rather than enumerating named exchanges/wallets; coded subset with the
+    class-level rationale per codebook §7. This escalates the 2017 bitcoin/
+    exchange prohibition (nepal-nrb-bitcoin-ban-2017-08) to a comprehensive
+    prohibition covering trading, usage, and mining of all cryptocurrency.
+  actor_type: nation_state_legal_framework
+  actor_name: Nepal — NRB comprehensive cryptocurrency prohibition notice
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [NP]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The NRB notice is a central-bank prohibition of crypto activity, not an
+      ISP-/DNS-level domain block. Nepal Telecommunications Authority later
+      directed ISPs to block crypto sites, but that is a separate downstream
+      action not captured here; no replayable L0 measurement is pinned, so no
+      L0 observation is admitted (codebook §1.5).
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: No stablecoin-issuer admin freeze or address-level blacklist applicable.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - nepal_crypto_activity_perimeter
+    note: |
+      The NRB notice declares the transaction, usage, and mining of all
+      cryptocurrency illegal in Nepal and subject to prosecution under the
+      Foreign Exchange (Regulation) Act and the Act Restricting Investment
+      Abroad — a nation-state severance of the legal crypto on/off-ramp surface
+      for Nepali residents. Observed_change attached below at
+      attribution=plausible (the prohibition is documented in the official NRB
+      notice + contemporaneous press; the official PDF text is image-only so the
+      scope wording is carried by the English-language report).
+
+observations:
+  - layer: offramp_cex
+    actor: nation_state:nepal_crypto_perimeter
+    event: nepal_crypto_transaction_usage_mining_declared_illegal_comprehensive
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-09-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: semi_primary_wayback
+        url: https://thehimalayantimes.com/business/nrb-issues-notice-on-cryptocurrency
+        wayback: https://web.archive.org/web/20210910161805/https://thehimalayantimes.com/business/nrb-issues-notice-on-cryptocurrency
+        body_hash: sha256:442eb013011dc622a1c94621d9ef30bef6fc2e5ca626a9b0b0e921fd3191cf0d
+        body_path: sources/http_captures/nepal-nrb-comprehensive-crypto-ban-2021-09/primary/web.archive.org__web-20210915000000-https-thehimalayantimes.com-business-nrb-issues-notice-on-cryptocurrency__ee4de17895.html
+        evidence_use: replayable
+        note: |
+          The Himalayan Times (2021-09-10) reports the NRB 2021-09-09 notice
+          declaring transaction, usage and mining of cryptocurrency illegal in
+          Nepal. attribution=plausible per codebook §1.5: the prohibition is
+          documented in the official NRB notice and contemporaneous press, but
+          the load-bearing scope claim is sourced from the English-language
+          report (the official NRB PDF is image-only / non-machine-readable) and
+          per-event downstream cascade (exchange retreat, ISP blocking) is not
+          separately measured in this draft.
+      - type: primary_government
+        url: https://www.nrb.org.np/contents/uploads/2021/09/FXMD-Notice-03-207879-Cryptocurrency.pdf
+        wayback: https://web.archive.org/web/20211018205117id_/https://www.nrb.org.np/contents/uploads/2021/09/FXMD-Notice-03-207879-Cryptocurrency.pdf
+        body_hash: sha256:964daea861bc92d42116c37158b9cbbd989671a8c8066d190eb12296c0647b7f
+        body_path: sources/http_captures/nepal-nrb-comprehensive-crypto-ban-2021-09/primary/web.archive.org__web-20211001000000id_-https-www.nrb.org.np-contents-uploads-2021-09-FXMD-Notice-03-207879-Cryptocurrency.pdf__1d830a68b4.bin
+        evidence_use: replayable
+        note: |
+          Official NRB FXMD cryptocurrency-illegality notice (PDF) anchoring the
+          existence and date of the prohibition. Image-only PDF; no specific
+          text claims are asserted from this file beyond its identity as the
+          official notice.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison shape: 1 observed_change layer (offramp_cex, attribution=plausible).
+  On 2021-09-09 the Nepal Rastra Bank (central bank) issued an official Foreign
+  Exchange Management Department notice declaring the transaction, usage, and
+  mining of all cryptocurrency illegal in Nepal, with violators subject to
+  prosecution under the Foreign Exchange (Regulation) Act and the Act
+  Restricting Investment Abroad. This escalates the 2017 bitcoin/exchange
+  prohibition (sibling event nepal-nrb-bitcoin-ban-2017-08) into a comprehensive
+  prohibition covering trading, usage, and mining of all crypto.
+
+  §9 inclusion: in scope — a nation-state deliberately prohibiting and
+  criminalizing access to crypto for an entire population (a comprehensive ban,
+  the §9 "INCLUDE: nation-state bans / payment-rail prohibitions" category). Not
+  a scam prosecution and not a soft advisory — it is a binding prohibition with
+  criminal consequence, distinct from the earlier (excluded) 2014 central-bank
+  warning class.
+
+  Distinct from the 2017 sibling: the 2017 notice (nepal-nrb-bitcoin-ban-2017-08)
+  banned bitcoin/exchange transactions and was enforced via arrests of exchange
+  operators; this 2021-09-09 notice broadens the prohibited surface to usage and
+  mining of ALL cryptocurrency. Different date, different (broader) scope, own
+  primary instrument — not a dup.
+
+  trigger.type=regulatory_enforcement + research_stratum=S4_nation_state per
+  codebook §5.1/§5.2, matching the sibling nepal-2017 coding (NRB is a non-US
+  national regulator issuing an administrative prohibition notice, not an ISP/DNS
+  block per se).
+
+  attribution=plausible per §1.5: the official NRB PDF is image-only (its body
+  text is not machine-extractable), so the load-bearing scope claim (transaction
+  + usage + mining declared illegal) is carried by the contemporaneous Himalayan
+  Times report; per-event downstream cascade (named-exchange retreat, ISP-level
+  blocking) is not separately measured here. admission_tier=empirical_case (≥1
+  strong-attribution observed_change layer). L0 coded not_applicable: no
+  replayable network-measurement slice is pinned for any later ISP block.
+
+scoped_claim: |
+  "On 2021-09-09 the Nepal Rastra Bank issued an official notice declaring the
+  transaction, usage, and mining of all cryptocurrency illegal in Nepal (subject
+  to prosecution under the Foreign Exchange Regulation Act and the Act
+  Restricting Investment Abroad), a nation-state comprehensive prohibition
+  severing the legal crypto on/off-ramp surface for Nepali residents
+  (offramp_cex load-bearing, attribution=plausible). The row does not claim a
+  measured ISP-level block, on-chain freeze, or per-exchange withdrawal
+  enumeration."
+
+tags:
+  - regulatory_enforcement
+  - nepal
+  - nepal_rastra_bank
+  - comprehensive_crypto_ban
+  - mining_prohibition
+  - dryrun_2026_05_31

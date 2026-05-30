@@ -1,0 +1,209 @@
+id: eu-20th-russia-sanctions-crypto-sectoral-ban-2026
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - eu-19th-russia-sanctions-a7a5-crypto-ban-2025
+  - eu-18th-russia-sanctions-casp-spfs-2025
+  - eu-8th-package-russia-crypto-services-ban-2022-10
+
+trigger:
+  type: non_us_sanctions
+  actor: EU_Council
+  timestamp: 2026-04-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.consilium.europa.eu/en/press/press-releases/2026/04/23/russia-s-war-of-aggression-against-ukraine-20th-round-of-stern-eu-sanctions-hits-energy-military-industrial-complex-trade-and-financial-services-including-crypto/
+      wayback: https://web.archive.org/web/20260428125431/https://www.consilium.europa.eu/en/press/press-releases/2026/04/23/russia-s-war-of-aggression-against-ukraine-20th-round-of-stern-eu-sanctions-hits-energy-military-industrial-complex-trade-and-financial-services-including-crypto/
+      body_hash: sha256:dde0761ac107026002e4d2785237be0ae0fbfa45a06401a4b41c134e696e09e7
+      body_path: sources/http_captures/eu-20th-russia-sanctions-crypto-sectoral-ban-2026/primary/web.archive.org__web-20260429000000-https-www.consilium.europa.eu-en-press-press-releases-2026-04-23-russia-s-war-of-aggression-against-ukraine-20th-round-of-stern-eu-s__d537f28bcf.html
+      evidence_use: replayable
+      note: |
+        Council of the EU, 20th sanctions package against Russia (adopted
+        2026-04-23). The captured press release states verbatim: "the EU is
+        introducing a total sectoral ban on providers and platforms
+        established in Russia that allow the transfer and exchange of crypto
+        assets. The EU is also banning transactions in another crypto
+        currency (RUBx) and all EU support for the development of the digital
+        rouble." It also designates "a Kyrgyz entity which operates a
+        platform where significant amounts of the government-backed stablecoin
+        A7A5 are traded." This is the EU's first categorical sectoral
+        (class-wide) ban on Russia-established crypto-asset providers and
+        platforms, plus a transaction ban on the RUBx stablecoin and a cut of
+        EU support for the digital-rouble CBDC. Wayback memento
+        20260428125431 pinned.
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2026/04/27/eu-s-largest-measures-against-russia-yet-include-escalation-of-crypto-sanctions-evasion
+      wayback: https://web.archive.org/web/20260427194653/https://www.coindesk.com/policy/2026/04/27/eu-s-largest-measures-against-russia-yet-include-escalation-of-crypto-sanctions-evasion
+      body_hash: sha256:e500e7176dd644a35d65c3bb48c3c0cfdb646520e3b2d1ce2a2be8cb2bb62992
+      body_path: sources/http_captures/eu-20th-russia-sanctions-crypto-sectoral-ban-2026/primary/web.archive.org__web-20260428000000-https-www.coindesk.com-policy-2026-04-27-eu-s-largest-measures-against-russia-yet-include-escalation-of-crypto-sanctions-evasion__07ea43a18f.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2026-04-27 corroborating the 20th-package crypto measures,
+        quoting the EU's April 23 statement on the "total sectoral ban on
+        providers and platforms established in Russia that allow the transfer
+        and exchange of crypto assets" and noting the bloc "also banned
+        Russia's central bank digital currency (CBDC), the ruble-pegged RUBx
+        stablecoin" and designated the Kyrgyz exchange TengriCoin.
+        Independent corroborating anchor.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2026-04-23 EU 20th-package adoption.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    All crypto-asset providers and platforms established in Russia that allow
+    the transfer and exchange of crypto assets (a class-wide / sectoral ban),
+    plus a transaction ban on the RUBx stablecoin, a cut of EU support for the
+    digital-rouble CBDC, and designation of a Kyrgyz entity operating an
+    A7A5-trading platform. subset because the sectoral ban targets the
+    Russia-established provider/platform CLASS by criteria rather than an
+    exhaustively enumerated provider/address list in this record.
+  protocol: null
+  actor_type: sanctions_transaction_ban
+  actor_name: EU 20th-package sectoral ban on Russia-established crypto providers/platforms
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - EU
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A legal sectoral transaction-prohibition instrument, not an ISP/DNS
+      network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The package bans transactions in the RUBx stablecoin and cuts EU
+      support for the digital rouble, but enumerates no specific on-chain
+      address or issuer-freeze tx hash in the captured sources (codebook
+      §1.6); the operative measure is a sectoral provider/platform and
+      transaction prohibition carried at offramp_cex.
+  - layer: offramp_cex
+    status: measured
+    scope: [eu_persons_to_russia_established_crypto_providers_platforms]
+    note: |
+      Load-bearing layer. The 20th package imposes a total sectoral ban on
+      providers and platforms established in Russia that allow the transfer
+      and exchange of crypto assets - debanking that entire provider/platform
+      class from the EU off-ramp/transaction surface regardless of whether an
+      individual provider is separately listed - plus a transaction ban on the
+      RUBx stablecoin. The legal instrument is the operative prohibition;
+      attested verbatim in the EU primary source.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:eu_council
+    event: eu_20th_package_total_sectoral_ban_on_russia_crypto_providers_platforms
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2026-04-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.consilium.europa.eu/en/press/press-releases/2026/04/23/russia-s-war-of-aggression-against-ukraine-20th-round-of-stern-eu-sanctions-hits-energy-military-industrial-complex-trade-and-financial-services-including-crypto/
+        wayback: https://web.archive.org/web/20260428125431/https://www.consilium.europa.eu/en/press/press-releases/2026/04/23/russia-s-war-of-aggression-against-ukraine-20th-round-of-stern-eu-sanctions-hits-energy-military-industrial-complex-trade-and-financial-services-including-crypto/
+        body_hash: sha256:dde0761ac107026002e4d2785237be0ae0fbfa45a06401a4b41c134e696e09e7
+        body_path: sources/http_captures/eu-20th-russia-sanctions-crypto-sectoral-ban-2026/primary/web.archive.org__web-20260429000000-https-www.consilium.europa.eu-en-press-press-releases-2026-04-23-russia-s-war-of-aggression-against-ukraine-20th-round-of-stern-eu-s__d537f28bcf.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [eu_persons_aggregate]
+          countries: [EU, RU]
+          time_window:
+            - 2026-04-23T00:00:00Z
+            - 2026-05-31T23:59:59Z
+        note: |
+          EU 20th package (2026-04-23): "the EU is introducing a total
+          sectoral ban on providers and platforms established in Russia that
+          allow the transfer and exchange of crypto assets. The EU is also
+          banning transactions in another crypto currency (RUBx) and all EU
+          support for the development of the digital rouble." attribution=
+          direct: the EU legal instrument directly imposes a class-wide ban on
+          Russia-established crypto providers/platforms and names the
+          prohibited RUBx stablecoin. Verbatim language grep-confirmed in the
+          captured body (body_hash-pinned).
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2026/04/27/eu-s-largest-measures-against-russia-yet-include-escalation-of-crypto-sanctions-evasion
+        wayback: https://web.archive.org/web/20260427194653/https://www.coindesk.com/policy/2026/04/27/eu-s-largest-measures-against-russia-yet-include-escalation-of-crypto-sanctions-evasion
+        body_hash: sha256:e500e7176dd644a35d65c3bb48c3c0cfdb646520e3b2d1ce2a2be8cb2bb62992
+        body_path: sources/http_captures/eu-20th-russia-sanctions-crypto-sectoral-ban-2026/primary/web.archive.org__web-20260428000000-https-www.coindesk.com-policy-2026-04-27-eu-s-largest-measures-against-russia-yet-include-escalation-of-crypto-sanctions-evasion__07ea43a18f.html
+        evidence_use: replayable
+        note: |
+          CoinDesk corroboration quoting the EU's "total sectoral ban on
+          providers and platforms established in Russia that allow the
+          transfer and exchange of crypto assets" and the blocking of the
+          digital ruble CBDC and RUBx stablecoin. Independent semi-primary
+          anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). The EU 20th sanctions
+  package (adopted 2026-04-23) introduces a total sectoral (class-wide) ban
+  on providers and platforms established in Russia that allow the transfer
+  and exchange of crypto assets - the most crypto-specific EU enforcement to
+  date, targeting an entire category of evasion infrastructure rather than
+  individually listed entities - plus a transaction ban on the RUBx
+  stablecoin and a cut of all EU support for the digital-rouble CBDC. This
+  is a §9-IN-SCOPE censorship action (a deliberate sectoral debanking/denial
+  of a legitimate-on-its-face crypto provider/platform class), the apex of
+  the EU Russia-sanctions crypto track (8th -> 18th -> 19th -> 20th).
+  comparison shape, single offramp_cex observed_change/direct. asset_onchain
+  not_applicable: the captured EU + CoinDesk sources name RUBx and the
+  digital rouble but enumerate NO specific on-chain address or issuer-freeze
+  tx hash, so per codebook §1.6 the effect is carried at the
+  offramp_cex/transaction layer (no fabricated tx_hash). attribution=direct:
+  the EU instrument itself imposes the sectoral ban. Sources verified via
+  WebSearch + capture 2026-05-31; verbatim "total sectoral ban on providers
+  and platforms established in Russia" language grep-confirmed in both the
+  captured Consilium body and the CoinDesk corroboration. NOTE for human
+  audit: secondary legal-analysis sources report the transaction bans apply
+  from 2026-05-24 (one-month wind-down) and extend to Belarus and to
+  "decentralized" platforms; those effective-date / Belarus / decentralized
+  specifics are NOT in the captured Consilium press release (which says
+  "platforms established in Russia"), so they are NOT asserted here - only
+  the press-release-attested Russia-established-provider sectoral ban + RUBx
+  ban + digital-rouble support cut are claimed.
+
+scoped_claim: |
+  "The EU's 20th sanctions package (2026-04-23) imposed a total sectoral ban
+  on crypto-asset providers and platforms established in Russia that allow
+  the transfer and exchange of crypto assets, plus a transaction ban on the
+  RUBx stablecoin and a cut of EU support for the digital rouble - the EU's
+  first class-wide sectoral crypto provider ban; single-layer offramp_cex
+  observed_change with attribution=direct."
+
+tags:
+  - supranational_regulation
+  - eu_sanctions
+  - russia_related
+  - crypto_services_ban
+  - sectoral_ban
+  - rubx
+  - offramp_shutdown
+  - eu_20th_package

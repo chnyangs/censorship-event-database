@@ -1,0 +1,193 @@
+id: thailand-sec-crypto-payment-ban-2022-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - thailand-sec-binance-bybit-c-and-d-2021
+  - thailand-bot-bitcoin-prohibition-2013
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: TH_SEC
+  timestamp: 2022-04-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://web.archive.org/web/20220716015641/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9366
+      wayback: https://web.archive.org/web/20220716015641/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9366
+      body_hash: sha256:11a67a6d0eafe3d93ddcda40594af9082fb4e8c3892bffa2cf9bdd7bef454da3
+      body_path: sources/http_captures/thailand-sec-crypto-payment-ban-2022-04/primary/web.archive.org__web-20220716015641-https-www.sec.or.th-EN-Pages-News_Detail.aspx__b7b092d9f9.html
+      evidence_use: replayable
+      note: |
+        SEC Thailand press release "SEC issues regulation prohibiting digital asset
+        business operators from facilitating the use of digital assets as a means of
+        payment", dated Bangkok 23 March 2022 (No. 39/2022). Captured body verifies the
+        operative text: the SEC issued regulation requiring "digital asset business
+        operators to avert support or promotion of the use of digital assets as a means
+        of payment for goods and services. This is to prevent potential impacts on the
+        country's financial system and economy." Existing operators "are required to
+        comply with the regulations within 30 days as from 1 April 2022." The body also
+        records that "The BOT [Bank of Thailand] and the SEC previously discussed and
+        reviewed the benefits and risks of digital assets" — confirming the joint
+        SEC/BOT origin. The regulation is SEC Notification No. Gor Tor. 5/2565.
+        Effective date 1 April 2022 used as the trigger timestamp.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        SEC press release dated 23 March 2022; regulation effective 1 April 2022 with a
+        30-day compliance window for existing operators (to 1 May 2022). Trigger
+        timestamp pinned to the 1 April 2022 effective date at day precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is SEC Notification No. Gor Tor. 5/2565, addressed as a class-level
+    prohibition to all licensed Thai digital-asset business operators (cryptocurrency and
+    digital-token exchanges, brokers, dealers, fund managers and advisors), barring them
+    from providing services that support the use of digital assets as a means of payment
+    for goods or services. The notification does not name specific operators, addresses,
+    or domains; enumeration=subset because the prohibition addresses a licensed-operator
+    class without a fixed enumerated roster, matching the China 2013 / Nigeria 2021
+    payment-rail-severance convention.
+  protocol: null
+  actor_type: thai_licensed_digital_asset_operators
+  actor_name: Thai licensed digital-asset business operators (SEC Gor Tor 5/2565 class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - TH
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The SEC notification is a licensed-operator service prohibition (barring crypto-as-
+      payment services), not an ISP-level domain block or DNS interference. L0
+      not_applicable, consistent with the Nigeria 2021 / India 2018 payment-rail
+      treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No protocol-level consensus surface is engaged by a licensed-operator payment-
+      service prohibition. not_applicable on scope-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance substrate is engaged by this national service
+      prohibition. not_applicable on scope-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The notification targets the payment-service feature set of licensed digital-asset
+      operators, not specific Thai crypto frontends as enumerated block targets.
+      not_applicable on scope-mismatch grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-side blacklist / freeze admin method is engaged; the prohibition operates
+      against licensed operators' payment-service offerings, not on-chain asset state.
+      not_applicable on scope-mismatch grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - thai_licensed_operator_crypto_payment_services
+    note: |
+      The notification is by construction an off-ramp / regulated-operator event: it
+      prohibits all licensed Thai digital-asset business operators from supporting or
+      facilitating the use of digital assets as a means of payment for goods or services.
+      This severed the licensed crypto-as-payment channel in Thailand. The SEC press
+      release (the regulatory mandate itself) names the prohibition, giving direct
+      attribution at this layer. Marked measured; load-bearing observation attached below.
+
+observations:
+  - layer: offramp_cex
+    actor: thai_licensed_digital_asset_operator_ecosystem
+    event: crypto_as_means_of_payment_services_prohibited_class_wide
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-04-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_government
+        url: https://web.archive.org/web/20220716015641/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9366
+        wayback: https://web.archive.org/web/20220716015641/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9366
+        body_hash: sha256:11a67a6d0eafe3d93ddcda40594af9082fb4e8c3892bffa2cf9bdd7bef454da3
+        body_path: sources/http_captures/thailand-sec-crypto-payment-ban-2022-04/primary/web.archive.org__web-20220716015641-https-www.sec.or.th-EN-Pages-News_Detail.aspx__b7b092d9f9.html
+        evidence_use: replayable
+        note: |
+          SEC Thailand press release (No. 39/2022, 23 March 2022): the SEC issued
+          regulation requiring digital-asset business operators "to avert support or
+          promotion of the use of digital assets as a means of payment for goods and
+          services", effective 1 April 2022 with a 30-day compliance window.
+          attribution=direct because the SEC press release is the regulatory mandate
+          and names the licensed-operator payment-service prohibition.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured,
+  awaiting human admission).
+
+  Comparable-main authoring pass for the Thai SEC's 2022-04-01 prohibition (SEC Notification
+  No. Gor Tor. 5/2565, announced 23 March 2022) barring all licensed Thai digital-asset
+  business operators from supporting or facilitating the use of digital assets as a means of
+  payment for goods and services. This is a payment-rail / service-denial action (a censorship
+  action under codebook §9 INCLUDE: a deliberate restriction of a crypto payment service by a
+  state actor), not a soft advisory. The captured SEC body carries the operative regulation
+  language ("avert support or promotion of the use of digital assets as a means of payment")
+  and confirms the joint SEC/BOT origin.
+
+  Why §9 INCLUDE: the SEC notification ORDERS licensed operators not to provide crypto-as-
+  payment services — a deliberate restriction of access to a service surface, parallel to
+  payment-rail prohibitions like Nigeria 2021. That is a censorship action, not advisory.
+
+  Why trigger.type=nation_state_block: the action is a national payment-rail / service
+  prohibition directed at the licensed-operator class (codebook §5.1 "Nation-state ISP/DNS
+  block / payment-rail prohibition" family). Per §5.2 the permitted research_stratum is
+  S4_nation_state. (The SEC is acting here as a market authority issuing a payment-rail
+  prohibition, not a per-firm administrative-enforcement order, so nation_state_block fits
+  better than regulatory_enforcement.)
+
+  Why comparable_main tier: 2022 belongs to comparable_main_2017_present; analysis_use=
+  comparable_analysis.
+
+  Why empirical_shape=comparison / admission_tier=empirical_case: one direct-attribution
+  observed_change layer (offramp_cex). The other five layers are scope-mismatched. Single
+  load-bearing strong-attribution layer -> comparison / empirical_case.
+
+  Why attribution=direct: the SEC press release (the regulatory mandate itself) names the
+  licensed-operator payment-service prohibition, satisfying the §1.5 nation-state-mandate
+  reading at the off-ramp rail.
+
+  Source note: the captured anchor is the SEC Thailand official press release via Wayback
+  (memento 2022-07-16, the closest archived copy of News_Detail SECID=9366). The underlying
+  SEC Notification Gor Tor 5/2565 PDF (Thai) was not separately pinned; human audit may attach
+  it before admission.
+
+scoped_claim: |
+  SEC Thailand Notification No. Gor Tor. 5/2565 (announced 23 March 2022, effective 1 April
+  2022) prohibited all licensed Thai digital-asset business operators from supporting or
+  facilitating the use of digital assets as a means of payment for goods or services,
+  severing the licensed crypto-as-payment channel in Thailand. The offramp_cex layer carries
+  the load-bearing direct-attribution observation.
+
+tags:
+  - nation_state_block
+  - thailand
+  - sec_thailand
+  - bank_of_thailand
+  - crypto_payment_prohibition
+  - payment_rail_prohibition

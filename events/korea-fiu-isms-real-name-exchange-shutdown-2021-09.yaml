@@ -1,0 +1,167 @@
+id: korea-fiu-isms-real-name-exchange-shutdown-2021-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - korea-fsc-institutional-restriction-2017
+  - korea-fsc-ico-ban-2017
+  - korea-travel-rule-2022
+
+trigger:
+  type: regulatory_enforcement
+  actor: KR_FIU
+  timestamp: 2021-09-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2021/09/24/hours-before-s-korean-registration-deadline-only-10-exchanges-have-submitted-applications
+      wayback: https://web.archive.org/web/20210924170155/https://www.coindesk.com/policy/2021/09/24/hours-before-s-korean-registration-deadline-only-10-exchanges-have-submitted-applications/
+      body_hash: sha256:a3bea46c09710a5d4288bbe4da6f74afbb1517ebb1d4441072178eee2c036b5f
+      body_path: sources/http_captures/korea-fiu-isms-real-name-exchange-shutdown-2021-09/primary/web.archive.org__web-20210924170155-https-www.coindesk.com-policy-2021-09-24-hours-before-s-korean-registration-deadline-only-10-exchanges-have-submitted-applications__84cac51a04.html
+      evidence_use: replayable
+      note: |
+        CoinDesk, 2021-09-24, reporting the 2021-09-24 South Korean Financial Intelligence
+        Unit (FIU) registration deadline under the amended Act on Reporting and Use of Specific
+        Financial Information. Virtual-asset service providers had to register with the FIU,
+        secure real-name verified bank accounts and a security certification, and meet AML
+        requirements to keep operating. Exchanges failing to register had to shut down (or, for
+        those with certification but no bank partnership, cease Korean-won fiat trading). The
+        captured article documents that only the four exchanges with bank partnerships
+        (Upbit, Bithumb, Coinone, Korbit) could continue full won-settlement services, and
+        ~40 exchanges faced shutdown. Wayback snapshot 20210924170155 (replayable body_hash).
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        FIU registration deadline 2021-09-24 (grace period under the amended Specific Financial
+        Information Act, in force 2021-03-25, expiring 2021-09-24). Day-level precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The class of South Korean virtual-asset exchanges subject to the FIU registration regime.
+    The captured source names the four survivors with full won-settlement (Upbit, Bithumb,
+    Coinone, Korbit) and reports ~40 exchanges facing shutdown; the full roster of shut-down
+    exchanges is not enumerated in the captured source. enumeration=subset (class-level).
+  protocol: null
+  actor_type: korean_crypto_exchange_industry
+  actor_name: South Korean virtual-asset exchanges subject to FIU registration (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [KR]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An FIU registration/AML regime is not an ISP/DNS network block; the primitive is an
+      administrative licensing requirement whose failure forces exchange shutdown / fiat-rail
+      severance. not_applicable.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [korean_won_exchange_fiat_rails_and_unregistered_exchange_operations]
+    note: |
+      The 2021-09-24 FIU deadline forced unregistered exchanges to shut down and forced
+      certified-but-unbanked exchanges to cease Korean-won fiat deposit/withdrawal — a
+      severance of the off-ramp / fiat-rail surface for ~40 exchanges, leaving four full-service
+      survivors. Replayable anchor is the captured CoinDesk report (supporting_journalism,
+      body_hash + body_path on the observation source); not exhaustively measured (no per-venue
+      counterfactual slice), hence partially_measured.
+
+observations:
+  - layer: offramp_cex
+    actor: korean_crypto_exchange_industry
+    event: fiu_registration_deadline_forced_exchange_shutdown_and_fiat_rail_severance
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-09-24T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2021/09/24/hours-before-s-korean-registration-deadline-only-10-exchanges-have-submitted-applications
+        wayback: https://web.archive.org/web/20210924170155/https://www.coindesk.com/policy/2021/09/24/hours-before-s-korean-registration-deadline-only-10-exchanges-have-submitted-applications/
+        body_hash: sha256:a3bea46c09710a5d4288bbe4da6f74afbb1517ebb1d4441072178eee2c036b5f
+        body_path: sources/http_captures/korea-fiu-isms-real-name-exchange-shutdown-2021-09/primary/web.archive.org__web-20210924170155-https-www.coindesk.com-policy-2021-09-24-hours-before-s-korean-registration-deadline-only-10-exchanges-have-submitted-applications__84cac51a04.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2021-09-24: at the FIU deadline, unregistered exchanges had to shut down and
+          certified-but-unbanked exchanges had to cease won fiat trading; four exchanges
+          (Upbit, Bithumb, Coinone, Korbit) had secured bank partnerships for full service,
+          ~40 faced shutdown. attribution=plausible (per §1.5/§8.4): the anchor is journalism
+          reporting the FIU regime, not the FIU's own primary order, and the target is the
+          exchange industry as a class. Conservative default.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured,
+  awaiting human admission).
+
+  Event: South Korea's 2021-09-24 Financial Intelligence Unit (FIU) registration deadline under
+  the amended Act on Reporting and Use of Specific Financial Information. Virtual-asset
+  exchanges had to register with the FIU, hold a security certification (ISMS) and a real-name
+  verified bank-account partnership, and meet AML requirements to keep operating. At the
+  deadline, unregistered exchanges had to shut down and certified-but-unbanked exchanges had to
+  cease Korean-won fiat trading; ~40 exchanges faced shutdown, leaving four full-service
+  survivors (Upbit, Bithumb, Coinone, Korbit). §9 INCLUDE: a state-imposed licensing regime
+  that forces shutdown / fiat-rail severance of legitimate exchanges is a deliberate
+  restriction of service, not a mere advisory.
+
+  Scope discipline: the captured CoinDesk source substantiates the FIU registration deadline,
+  the real-name verified bank-account requirement, security certification, AML requirement, the
+  four full-service survivors, and the ~40-exchange shutdown. It does NOT spell out the acronym
+  "ISMS" verbatim (it says "security certification"); the id retains the candidate slug and the
+  body of the claim uses the source's "security certification" wording, with ISMS noted as the
+  certification's name (well-established) for human audit. Human audit TODO: pin the FSC/KoFIU
+  primary press release to support the explicit ISMS terminology and the precise shut-down
+  count, and consider elevation to direct.
+
+  Why trigger.type=regulatory_enforcement: a non-US national regulator (KR FIU/FSC)
+  administrative enforcement regime, not an L0/payment-rail network block. Per codebook §5.1
+  regulatory_enforcement is the canonical enum for non-US national-regulator administrative
+  action (cf. korea-fsc-institutional-restriction-2017). §5.2 maps regulatory_enforcement →
+  S4_nation_state.
+
+  Why empirical_shape=comparison / admission_tier=empirical_case: exactly one observed_change
+  layer (offramp_cex) with strong attribution (plausible).
+
+  Why attribution=plausible (not direct): per §1.5/§8.4 the action is documented by
+  contemporaneous journalism, not the FIU's own primary order, and the target is class-level.
+  Conservative default.
+
+  DEDUP NOTE: distinct from korea-fsc-institutional-restriction-2017 / korea-fsc-ico-ban-2017
+  (2017 FSC actions) and from korea-travel-rule-2022 (2022 travel-rule implementation). This is
+  the 2021-09-24 FIU registration-deadline exchange-shutdown event.
+
+scoped_claim: |
+  "South Korea's 2021-09-24 FIU registration deadline (amended Specific Financial Information
+  Act) forced unregistered exchanges to shut down and certified-but-unbanked exchanges to cease
+  Korean-won fiat trading; ~40 exchanges faced shutdown, four (Upbit/Bithumb/Coinone/Korbit)
+  survived with full service. Effect carried at offramp_cex (class-level, partially measured)."
+
+tags:
+  - regulatory_enforcement
+  - south_korea
+  - fiu
+  - exchange_shutdown
+  - real_name_account
+  - fiat_rail_severance

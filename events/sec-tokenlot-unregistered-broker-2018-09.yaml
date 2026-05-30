@@ -1,0 +1,149 @@
+id: sec-tokenlot-unregistered-broker-2018-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - sec-etherdelta-coburn-unregistered-exchange-2018-11
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2018-09-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://web.archive.org/web/20181001000000/https://www.sec.gov/news/press-release/2018-185
+      wayback: https://web.archive.org/web/20180918060505/https://www.sec.gov/news/press-release/2018-185
+      body_hash: sha256:cb8bea72cdfe48dfc8ae7bfd30c99868d12adb61100442231b864700606b9711
+      body_path: sources/http_captures/sec-tokenlot-unregistered-broker-2018-09/primary/web.archive.org__web-20181001000000-https-www.sec.gov-news-press-release-2018-185__25dbcfa7c3.html
+      evidence_use: replayable
+      note: |
+        SEC press release 2018-185 (2018-09-11): "SEC Charges ICO Superstore
+        and Owners With Operating As Unregistered Broker-Dealers." The settled
+        cease-and-desist order found that TokenLot LLC (a self-described "ICO
+        Superstore") and owners Lenny Kugel and Eli L. Lewitt acted as
+        unregistered broker-dealers, taking orders from 6,100+ retail investors
+        and handling 200+ different digital tokens (including securities).
+        Settlement: $471,000 disgorgement + interest, owner penalties, industry
+        and penny-stock bars, AND retention of an independent third party to
+        destroy TokenLot's remaining inventory of digital assets. TokenLot is
+        winding down. First SEC case charging unregistered broker-dealers for
+        selling digital tokens after the 2017 DAO Report. Wayback memento
+        20180918060505 pinned; captured body contains "TokenLot", "ICO
+        Superstore", "broker-dealer", "winding down", "6,100", "200 different".
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level precision per the SEC press release dated 2018-09-11.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    TokenLot LLC (Michigan-based "ICO Superstore" secondary-token trading
+    platform) and its two owners Lenny Kugel and Eli L. Lewitt. Subset: the
+    named corporate vehicle + two named principals, not an enumerated set of
+    the 6,100+ retail customers or 200+ token issuers transacted.
+  protocol: null
+  actor_type: unregistered_broker_dealer_token_platform
+  actor_name: TokenLot LLC (Kugel / Lewitt)
+  chains: []
+  canonical_domains:
+    - tokenlot.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [tokenlot]
+    note: |
+      Load-bearing layer. The SEC cease-and-desist order ended TokenLot's
+      secondary-token trading / ICO-distribution service (the platform is
+      winding down) and ordered destruction of its remaining digital-asset
+      inventory. Carried as observed_change at offramp_cex (token-trading /
+      off-ramp surface). Replayable anchor is the captured SEC press release
+      (primary_government, body_hash + body_path on the observation source);
+      partially_measured because no per-token volume slice is captured.
+
+observations:
+  - layer: offramp_cex
+    actor: us_sec
+    event: tokenlot_token_trading_platform_wound_down_inventory_destroyed
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-09-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_government
+        url: https://web.archive.org/web/20181001000000/https://www.sec.gov/news/press-release/2018-185
+        wayback: https://web.archive.org/web/20180918060505/https://www.sec.gov/news/press-release/2018-185
+        body_hash: sha256:cb8bea72cdfe48dfc8ae7bfd30c99868d12adb61100442231b864700606b9711
+        body_path: sources/http_captures/sec-tokenlot-unregistered-broker-2018-09/primary/web.archive.org__web-20181001000000-https-www.sec.gov-news-press-release-2018-185__25dbcfa7c3.html
+        evidence_use: replayable
+        note: |
+          SEC press release 2018-185 (2018-09-11). attribution=direct: the SEC's
+          own settled order is the operative instrument that ended TokenLot's
+          service (winding down) and ordered destruction of its remaining
+          digital-asset inventory, and the order names TokenLot LLC and its two
+          owners directly.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2018-09-11 the US SEC
+  (press release 2018-185) settled cease-and-desist charges against TokenLot
+  LLC, a self-described "ICO Superstore" secondary-token trading platform, and
+  owners Lenny Kugel and Eli L. Lewitt, for acting as unregistered
+  broker-dealers (Section 15(a) Exchange Act) and unregistered securities
+  offerings (Section 5 Securities Act). The order forced the platform to wind
+  down and ordered destruction of its remaining digital-asset inventory —
+  i.e. a state-mandated shutdown of a legitimate (registration-deficient)
+  crypto-token trading service. In scope under §9 (enforcement that restricts/
+  shuts a legitimate platform; sibling to the EtherDelta DEX charge). Single
+  observed_change layer (offramp_cex token-trading surface) -> empirical_shape
+  comparison, admission_tier empirical_case. attribution=direct: the SEC order
+  is the operative instrument and names the targets. L0/L1/L3/l4_frontend/
+  asset_onchain not_applicable: this is a securities-law platform shutdown, not
+  a network/DNS block or an on-chain freeze. Sources verified via WebSearch
+  2026-05-31; real SEC press-release page captured + body_hash-pinned (claims
+  "TokenLot", "ICO Superstore", "broker-dealer", "winding down" grep-confirmed
+  in the captured body; no fabrication).
+
+scoped_claim: |
+  "The 2018-09-11 SEC settled order against TokenLot LLC (the 'ICO Superstore')
+  and its owners for unregistered broker-dealer activity forced the secondary-
+  token trading platform to wind down and ordered destruction of its remaining
+  digital-asset inventory. Effect carried at offramp_cex (token-trading surface
+  shutdown), attribution=direct. Comparable-main tier."
+
+tags:
+  - sec_action
+  - sec_enforcement
+  - unregistered_broker_dealer
+  - ico_superstore
+  - tokenlot
+  - token_platform_shutdown
+  - offramp_shutdown

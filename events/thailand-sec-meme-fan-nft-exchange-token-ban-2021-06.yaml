@@ -1,0 +1,146 @@
+id: thailand-sec-meme-fan-nft-exchange-token-ban-2021-06
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - thailand-sec-binance-bybit-c-and-d-2021
+  - thailand-bot-bitcoin-prohibition-2013
+
+trigger:
+  type: regulatory_enforcement
+  actor: TH_SEC
+  timestamp: 2021-06-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts
+      wayback: https://web.archive.org/web/20210927215039/https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts/
+      body_hash: sha256:c51487aa44a751e3b92c62bfbd98f861ceb2d9fa661dc2a7e987eb907ad314d9
+      body_path: sources/http_captures/thailand-sec-meme-fan-nft-exchange-token-ban-2021-06/primary/web.archive.org__web-20210612000000-https-www.coindesk.com-markets-2021-06-12-no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts__d3f6abfc5f.html
+      evidence_use: replayable
+      note: |
+        CoinDesk, "No DOGE Allowed? Thai SEC Bans Meme, Fan and Exchange Tokens
+        as Well as NFTs" (article dated 2021-06-12, reporting the Thai SEC's
+        2021-06-11 board decision). Thailand's Securities and Exchange Commission
+        prohibited SEC-licensed digital-asset exchanges from listing or trading
+        four token categories: (1) meme tokens (no clear objective/substance,
+        price driven by social-media trends), (2) fan tokens tokenising the fame
+        of influencers, (3) non-fungible tokens (NFTs), and (4) digital tokens
+        issued by digital-asset exchanges or related persons (exchange tokens).
+        Licensed exchanges were given 30 days from the effective date to revise
+        their listing rules to comply (i.e. delist non-compliant tokens). The ban
+        is prospective (no retroactive effect on tokens already listed prior).
+        Captured HTML verified to contain "Thai SEC", the four token categories,
+        and the 30-day compliance window. Archived via Wayback 2021-09-27.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Thai SEC-licensed digital-asset exchanges as a class, and the meme / fan /
+    NFT / exchange-issued token categories they could previously list. No
+    individual exchange or token is enumerated in the order; the prohibition
+    binds all licensed exchanges. Treated as entity-class-level.
+  protocol: null
+  actor_type: thai_licensed_digital_asset_exchanges
+  actor_name: Thai SEC-licensed digital-asset exchanges (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [TH]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [thai_licensed_exchange_listings_meme_fan_nft_exchange_tokens]
+    note: |
+      The Thai SEC order forces SEC-licensed exchanges (the regulated off-ramp
+      surface in Thailand) to delist / refuse listing of meme, fan, NFT and
+      exchange-issued tokens within 30 days. This is a delisting mandate at the
+      offramp_cex layer. Attached as observed_change. Attribution direct: the
+      SEC is the named regulator and the order names the prohibited token
+      categories and the regulated exchanges that must comply.
+
+observations:
+  - layer: offramp_cex
+    actor: thai_licensed_digital_asset_exchanges
+    event: meme_fan_nft_exchange_tokens_delisting_mandated
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-06-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts
+        wayback: https://web.archive.org/web/20210927215039/https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts/
+        body_hash: sha256:c51487aa44a751e3b92c62bfbd98f861ceb2d9fa661dc2a7e987eb907ad314d9
+        body_path: sources/http_captures/thailand-sec-meme-fan-nft-exchange-token-ban-2021-06/primary/web.archive.org__web-20210612000000-https-www.coindesk.com-markets-2021-06-12-no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts__d3f6abfc5f.html
+        evidence_use: replayable
+        note: |
+          CoinDesk report on the Thai SEC's 2021-06-11 prohibition ordering
+          licensed exchanges to delist/refuse meme, fan, NFT and exchange-issued
+          tokens within 30 days. attribution=direct: the SEC is the named
+          regulator and the order names the prohibited token categories and the
+          regulated exchanges that must comply. Primary SEC release not separately
+          captured; the journalism source is the load-bearing evidence for this
+          draft.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured, awaiting human admission)
+
+  Thailand nation-state delisting mandate. IN SCOPE (codebook §9): the Thai SEC
+  ordered all SEC-licensed digital-asset exchanges to delist / refuse listing of
+  four token categories (meme, fan, NFT, exchange-issued) within 30 days — a
+  deliberate delisting restriction on a regulated off-ramp surface. Distinct from
+  the existing thailand-sec-binance-bybit-c-and-d-2021 event (which is a
+  cease-and-desist against unlicensed exchanges, a different action). Not a dup.
+
+  trigger.type=regulatory_enforcement (per §5.1: non-US national regulator
+  administrative action that is not a network/payment-rail block), matching the
+  convention of the two existing TH events (TH_SEC, TH_BOT). Attribution=direct
+  per §1.5 reasoning (the regulator's own order names the prohibited categories
+  and the regulated exchanges). Single observed_change layer (offramp_cex) ⇒
+  empirical_shape=comparison, admission_tier=empirical_case.
+
+  Source caveat: the captured evidence is the CoinDesk report (same-week,
+  supporting_journalism), not the primary Thai SEC release (the SEC PDF was not
+  separately archivable in this pass). The draft is honest about this — the
+  journalism source quotes the SEC decision and the four categories + 30-day
+  window directly. Kept as draft awaiting human admission / primary-source
+  upgrade.
+
+scoped_claim: |
+  "On 2021-06-11 the Thai SEC prohibited SEC-licensed digital-asset exchanges
+  from listing or trading meme tokens, fan tokens, NFTs and exchange-issued
+  tokens, requiring delisting / listing-rule revision within 30 days. Effect
+  captured at the offramp_cex layer at class level via same-week journalism
+  reporting the SEC decision."
+
+tags:
+  - regulatory_enforcement
+  - thailand
+  - thai_sec
+  - delisting_mandate
+  - nft_meme_token_ban

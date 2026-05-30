@@ -1,0 +1,199 @@
+id: argentina-bcra-banks-crypto-services-ban-2022-05
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - argentina-uif-resolution-300-2014
+  - argentina-cnv-psav-registration-2024
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: AR_BCRA
+  timestamp: 2022-05-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://web.archive.org/web/20220510051130/https://www.coindesk.com/policy/2022/05/05/argentinas-central-bank-bans-lenders-from-offering-crypto-services/
+      wayback: https://web.archive.org/web/20220510051130/https://www.coindesk.com/policy/2022/05/05/argentinas-central-bank-bans-lenders-from-offering-crypto-services/
+      body_hash: sha256:4ff33339e508064b7a6a279bc3219e43b8f1585904fcf15d425910526b6e0db9
+      body_path: sources/http_captures/argentina-bcra-banks-crypto-services-ban-2022-05/primary/web.archive.org__web-20220510051130-https-www.coindesk.com-policy-2022-05-05-argentinas-central-bank-bans-lenders-from-offering-crypto-services__700217215a.html
+      evidence_use: replayable
+      note: |
+        CoinDesk report (URL-dated 2022-05-05, "Thursday afternoon" = 2022-05-05) titled
+        "Argentina's Central Bank Bans Lenders From Offering Crypto Services". Captured
+        body verifies the operative facts: "The Central Bank of the Argentine Republic
+        (BCRA) announced Thursday afternoon that it has barred banks in the country from
+        facilitating for clients the use of crypto assets"; "banks are prohibited from
+        offering services for any digital assets not regulated by the central bank, and
+        since there currently are no digital assets thus regulated, the move amounts to a
+        de facto ban"; and notes the move "comes just days after Banco Galicia ... added
+        the option to buy and sell cryptocurrencies on its platform." The underlying
+        instrument is BCRA Communication "A" 7506 (2022-05-05). The official BCRA news
+        page (https://www.bcra.gob.ar/en/news/the-bcra-discourages-the-offer-of-crypto-
+        assets-through-the-financial-system/) carries the same operative language
+        ("Financial institutions may not carry out transactions or allow their customers
+        to make transactions with digital assets ... not regulated by a national authority
+        and authorized by the BCRA") but is not Wayback-archivable; the archived CoinDesk
+        report is the replayable anchor.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        CoinDesk publication date 2022-05-05 (URL path /2022/05/05/; "Thursday afternoon"
+        = 2022-05-05). Matches the BCRA Communication "A" 7506 issuance date of
+        2022-05-05 reported by legal alerts (Dentons, O'Farrell). Day-level precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is BCRA Communication "A" 7506, addressed as a class-level
+    prohibition to all financial institutions in Argentina, barring them from carrying out
+    or facilitating client transactions in digital/crypto assets not regulated by a
+    national authority and authorized by the BCRA (a de facto ban, since no such assets
+    are BCRA-authorized). The communication does not name specific banks, addresses, or
+    domains; enumeration=subset because the prohibition addresses the regulated financial-
+    institution class without a fixed enumerated roster, matching the China 2013 /
+    Nigeria 2021 banking-rail-severance convention. (Banco Galicia, Brubank and Ualá had
+    just launched bank crypto trading, prompting the action, but they are contextual
+    rather than named enumerated targets in the communication.)
+  protocol: null
+  actor_type: argentine_financial_institution_ecosystem
+  actor_name: Argentine financial institutions (BCRA Communication A 7506 class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - AR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      BCRA Communication "A" 7506 is a banking-rail prohibition, not an ISP-level domain
+      block or DNS interference. L0 not_applicable, consistent with the Nigeria 2021 CBN /
+      India 2018 RBI banking-rail-severance treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No protocol-level consensus surface is engaged by a banking-rail prohibition.
+      not_applicable on scope-mismatch grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance substrate is engaged by this national banking prohibition.
+      not_applicable on scope-mismatch grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The communication targets regulated financial institutions, not specific Argentine
+      crypto frontends as enumerated block targets. not_applicable on scope-mismatch
+      grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-side blacklist / freeze admin method is engaged; the prohibition operates
+      against financial institutions' crypto-service offerings, not on-chain asset state.
+      not_applicable on scope-mismatch grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - argentine_bank_channels_to_crypto_assets
+    note: |
+      The communication is by construction an off-ramp / banking-rail event: it prohibits
+      all Argentine financial institutions from carrying out or facilitating client
+      transactions in unauthorized digital/crypto assets, a de facto ban that severed the
+      bank channel between Argentine users and crypto (days after Banco Galicia, Brubank
+      and Ualá launched bank crypto trading). The BCRA statement (the regulatory mandate)
+      names the prohibition, giving direct attribution at this layer. Marked measured;
+      load-bearing observation attached below.
+
+observations:
+  - layer: offramp_cex
+    actor: argentine_financial_institution_ecosystem
+    event: bank_crypto_services_prohibited_class_wide_de_facto_ban
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-05-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://web.archive.org/web/20220510051130/https://www.coindesk.com/policy/2022/05/05/argentinas-central-bank-bans-lenders-from-offering-crypto-services/
+        wayback: https://web.archive.org/web/20220510051130/https://www.coindesk.com/policy/2022/05/05/argentinas-central-bank-bans-lenders-from-offering-crypto-services/
+        body_hash: sha256:4ff33339e508064b7a6a279bc3219e43b8f1585904fcf15d425910526b6e0db9
+        body_path: sources/http_captures/argentina-bcra-banks-crypto-services-ban-2022-05/primary/web.archive.org__web-20220510051130-https-www.coindesk.com-policy-2022-05-05-argentinas-central-bank-bans-lenders-from-offering-crypto-services__700217215a.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2022-05-05 report: the BCRA "barred banks in the country from
+          facilitating for clients the use of crypto assets"; "banks are prohibited from
+          offering services for any digital assets not regulated by the central bank ...
+          the move amounts to a de facto ban." attribution=direct because the BCRA
+          statement quoted (Communication "A" 7506, the regulatory mandate) names the
+          financial-institution prohibition. The official BCRA primary page is not
+          Wayback-archivable; this archived report is the replayable anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured,
+  awaiting human admission).
+
+  Comparable-main authoring pass for the 2022-05-05 Banco Central de la República Argentina
+  (BCRA) Communication "A" 7506 prohibiting all Argentine financial institutions from carrying
+  out or facilitating client transactions in digital/crypto assets not regulated by a national
+  authority and authorized by the BCRA — a de facto ban (no such assets are BCRA-authorized).
+  This is a banking-rail prohibition / institutional debanking of crypto (a censorship action
+  under codebook §9 INCLUDE: a deliberate restriction of banking service to crypto), not a soft
+  advisory. The action came days after Banco Galicia, Brubank and Ualá launched bank crypto
+  trading, which lasted ~48h before the BCRA shut it down.
+
+  Why §9 INCLUDE: Communication "A" 7506 ORDERS regulated financial institutions not to deal in
+  or facilitate crypto transactions — a deliberate restriction of access to banking rails,
+  parallel to Nigeria 2021 CBN and China 2013 PBOC. That is a censorship action, not advisory.
+
+  Why trigger.type=nation_state_block: a central-bank banking-rail prohibition directed at the
+  regulated financial-institution class (codebook §5.1 "Nation-state ISP/DNS block / payment-
+  rail prohibition" family, alongside NG CBN, India RBI). Per §5.2 the permitted
+  research_stratum is S4_nation_state.
+
+  Why comparable_main tier: 2022 belongs to comparable_main_2017_present; analysis_use=
+  comparable_analysis.
+
+  Why empirical_shape=comparison / admission_tier=empirical_case: one direct-attribution
+  observed_change layer (offramp_cex). The other five layers are scope-mismatched. Single
+  load-bearing strong-attribution layer -> comparison / empirical_case.
+
+  Why attribution=direct: the BCRA statement (Communication "A" 7506, the regulatory mandate
+  itself) names the financial-institution prohibition, satisfying the §1.5 nation-state-mandate
+  reading at the banking rail.
+
+  Source note: the official BCRA news page carries identical operative language but is not
+  Wayback-archivable (returns no memento); the archived CoinDesk report (memento 2022-05-10) is
+  the replayable anchor, and it directly quotes the BCRA prohibition. The Communication "A" 7506
+  PDF was not separately pinned; human audit may attach a BCRA-domain primary copy before
+  admission.
+
+scoped_claim: |
+  BCRA Communication "A" 7506 of 2022-05-05 prohibited all Argentine financial institutions
+  from carrying out or facilitating client transactions in digital/crypto assets not regulated
+  by a national authority and authorized by the BCRA — a de facto ban that severed the bank
+  channel between Argentine users and crypto. The offramp_cex layer carries the load-bearing
+  direct-attribution observation; the prohibition remained in force well beyond 2022.
+
+tags:
+  - nation_state_block
+  - argentina
+  - bcra
+  - banking_rail_severance
+  - communication_a_7506
+  - de_facto_ban

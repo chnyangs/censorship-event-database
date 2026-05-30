@@ -1,0 +1,152 @@
+id: sec-etherdelta-coburn-unregistered-exchange-2018-11
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - sec-tokenlot-unregistered-broker-2018-09
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2018-11-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://web.archive.org/web/20181109000000/https://www.sec.gov/news/press-release/2018-258
+      wayback: https://web.archive.org/web/20181109010148/https://www.sec.gov/news/press-release/2018-258
+      body_hash: sha256:79bb92ec4ab7497cfdc9461c1c3f26311760b1e398c09efee9ef0e690745ca4b
+      body_path: sources/http_captures/sec-etherdelta-coburn-unregistered-exchange-2018-11/primary/web.archive.org__web-20181109000000-https-www.sec.gov-news-press-release-2018-258__5a2a0563a9.html
+      evidence_use: replayable
+      note: |
+        SEC press release 2018-258 (2018-11-08): "SEC Charges EtherDelta
+        Founder With Operating an Unregistered Exchange." Settled charges
+        against Zachary Coburn, founder of EtherDelta — an online platform for
+        secondary-market trading of ERC20 tokens combining an order book, a
+        website that displayed orders, and a smart contract on Ethereum. The
+        SEC found EtherDelta operated as an unregistered national securities
+        exchange; over ~18 months users executed 3.6 million+ orders for ERC20
+        tokens including securities. Coburn consented (without admit/deny) to
+        $300,000 disgorgement + $13,000 interest + $75,000 penalty. First SEC
+        enforcement action treating a decentralized token-trading platform /
+        DEX as an unregistered exchange. Wayback memento 20181109010148 pinned;
+        captured body contains "EtherDelta", "Coburn", "unregistered national
+        securities exchange", "ERC20", "3.6 million", "smart contract".
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level precision per the SEC press release dated 2018-11-08.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Zachary Coburn (founder/operator of EtherDelta) and the EtherDelta
+    trading platform (order book + order-display website + Ethereum smart
+    contract). Subset: the named founder + the platform he operated, not an
+    enumeration of the platform's users or the ERC20 token set traded.
+  protocol: etherdelta
+  actor_type: unregistered_dex_exchange_operator
+  actor_name: EtherDelta / Zachary Coburn
+  chains:
+    - ethereum
+  canonical_domains:
+    - etherdelta.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: partially_measured
+    scope: [etherdelta]
+    note: |
+      Load-bearing layer. The SEC settled order found EtherDelta's operator
+      ran an unregistered national securities exchange via the order-book
+      website / frontend (plus the Ethereum smart contract); the action against
+      the founder is the operative restriction on the trading frontend. Carried
+      as observed_change at l4_frontend. Replayable anchor is the captured SEC
+      press release (primary_government, body_hash + body_path on the
+      observation source); partially_measured because no per-order frontend
+      slice is captured.
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: l4_frontend
+    actor: us_sec
+    event: sec_charges_etherdelta_operator_unregistered_securities_exchange
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-11-08T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_government
+        url: https://web.archive.org/web/20181109000000/https://www.sec.gov/news/press-release/2018-258
+        wayback: https://web.archive.org/web/20181109010148/https://www.sec.gov/news/press-release/2018-258
+        body_hash: sha256:79bb92ec4ab7497cfdc9461c1c3f26311760b1e398c09efee9ef0e690745ca4b
+        body_path: sources/http_captures/sec-etherdelta-coburn-unregistered-exchange-2018-11/primary/web.archive.org__web-20181109000000-https-www.sec.gov-news-press-release-2018-258__5a2a0563a9.html
+        evidence_use: replayable
+        note: |
+          SEC press release 2018-258 (2018-11-08). attribution=direct: the SEC's
+          own settled order is the operative instrument and names Coburn /
+          EtherDelta directly as having operated an unregistered national
+          securities exchange (order-book website + Ethereum smart contract).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2018-11-08 the US SEC
+  (press release 2018-258) settled charges against Zachary Coburn, founder of
+  EtherDelta, for operating an unregistered national securities exchange — a
+  decentralized ERC20-token trading platform built from an order book, an
+  order-display website, and an Ethereum smart contract (3.6M+ orders over
+  ~18 months). This is the SEC's first enforcement action treating a DEX /
+  smart-contract order book as an unregistered exchange and is explicitly
+  named in codebook §9 as an in-scope censorship action (enforcement that
+  restricts a legitimate trading platform). Single observed_change layer
+  (l4_frontend trading frontend) -> empirical_shape comparison, admission_tier
+  empirical_case. attribution=direct: the SEC order is the operative instrument
+  and names the target. l3_rpc not applicable (the matched trading surface is
+  the frontend/smart-contract, not a hosted RPC provider); asset_onchain
+  not_applicable (no on-chain freeze instrument — the action is a securities
+  registration charge, no tx_hash exists); offramp_cex not_applicable (no CEX
+  off-ramp involved). Sources verified via WebSearch 2026-05-31; real SEC
+  press-release page captured + body_hash-pinned (claims "EtherDelta",
+  "Coburn", "unregistered national securities exchange", "ERC20", "3.6 million"
+  grep-confirmed; no fabrication).
+
+scoped_claim: |
+  "The 2018-11-08 SEC settled order against Zachary Coburn for operating
+  EtherDelta as an unregistered national securities exchange (order-book
+  website + Ethereum smart contract) is the first SEC action treating a DEX /
+  smart-contract order book as an unregistered exchange. Effect carried at
+  l4_frontend (trading-frontend restriction), attribution=direct.
+  Comparable-main tier."
+
+tags:
+  - sec_action
+  - sec_enforcement
+  - unregistered_securities_exchange
+  - dex
+  - etherdelta
+  - smart_contract_order_book
+  - frontend_restriction

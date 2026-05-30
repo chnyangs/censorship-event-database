@@ -159,3 +159,13 @@ Workflow: 12 author agents (verified-draft authoring) -> adversarial verify (sou
 - **4 DROPPED** (deleted): fayzimatov + nordic-resistance (FABRICATED crypto nexus — the OFAC press release has ZERO crypto mention; these are terror designations the gap-discovery wrongly tagged as crypto), jordan-cbj dup, kyrgyzstan.
 - **33 SKIPPED by authors** (§9 working): soft warnings / non-recognition statements (France/Norway/Lebanon/India-2013/Malaysia/Belgium/Mexico/Denmark/Russia-2014 "not currency" statements), dups, out-of-scope (Kimsuky espionage, Schumer-Manchin letter).
 **Lesson confirmed:** parallel fresh agents OVERCLAIM crypto specifics (addresses/asset-types not in the captured source). The author-as-DRAFT + adversarial-verify + human-admission pattern is essential and works. Corpus now 305 events (261 admitted / 37 draft / 7 rejected).
+
+### Bulk-author WAVE 2 (S4 remaining + S3 + S6) — 2026-05-31 (user: 继续 wave 2)
+Workflow: 23 author agents (anti-fabrication rule strengthened) -> adversarial verify. 43 agents, ~2.67M tokens.
+**Result: +42 verified census DRAFTS** (32 clean keep + 10 fix-flagged, after dedup). Corpus now 347 events (261 admitted / 79 draft / 7 rejected).
+- **S4 (clean)**: myanmar-2020, egypt-194-2020, qatar-qfcra-2019, korea-fsc-privacy-delisting-2021, uae-sca-2020, sri-lanka-2021, thailand-meme-nft-2021 + thailand-payment-ban-2022, china-2021-cluster (search-engine block, alipay payment-channel block, NDRC mining elimination, FIU real-name shutdown), nepal-comprehensive-2021, taiwan-aml-vasp, argentina-bcra-2022, indonesia-kominfo-2024-07, iran-cbi-2024.
+- **S3 (clean, §9 enforcement subset)**: SEC EtherDelta(first DEX)/TokenLot/Kik/LBRY/Poloniex/Nexo/Consensys/eToro/TradeStation/Abra, CFTC DeFi (Opyn/ZeroEx/Deridex), DOJ Cryptex/OKX-plea/Garantex, FinCEN Powers, + goldage-2006 (REVIEW-FLAG: pre-2007) + 1mdc-egold-freeze-2007.
+- **S6 (clean, §9 mandating-only)**: BCBS SCO60, EU 16th/18th/19th/20th Russia sanctions crypto bans.
+**§9 worked excellently — 88 SKIPPED**: India SC *reversal* 2020 (de-restriction!), Japan leverage cap (prudential), MUI fatwa (religious not state), Celsius/BlockFi US-state stratum-misfits (flagged for a US-enforcement stratum), soft governance (IOSCO/FSB), + many dups.
+**Verify caught**: nigeria-binance-detention (DUP of my nigeria-binance-network-block-2024-02), kuwait/shapeshift/eu-tfr drops, egypt/argentina cross-batch dup-variants.
+**Note for admission audit**: the 10 wave-2 fix-flags + 11 wave-1 fix-flags need source-refinement (specific addresses in SDN-list not captured press release) before admission. US-state enforcement (Celsius/BlockFi/Coinbase-state) surfaced as a stratum gap — consider an S7 or fold into S3.

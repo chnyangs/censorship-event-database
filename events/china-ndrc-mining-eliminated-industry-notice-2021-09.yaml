@@ -1,0 +1,186 @@
+id: china-ndrc-mining-eliminated-industry-notice-2021-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - china-state-council-mining-crackdown-2021-05
+  - china-sichuan-mining-ban-2021-06
+  - china-pboc-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: CN_NDRC
+  timestamp: 2021-09-24T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2021/09/24/china-tightens-crypto-mining-crackdown-bans-trading
+      wayback: https://web.archive.org/web/20210925053628/https://www.coindesk.com/policy/2021/09/24/china-tightens-crypto-mining-crackdown-bans-trading/
+      body_hash: sha256:b505020728a83401e6239e5abc8dffcf164838a7254c78a93d8af14abf8541a9
+      body_path: sources/http_captures/china-ndrc-mining-eliminated-industry-notice-2021-09/primary/web.archive.org__web-20210925053628-https-www.coindesk.com-policy-2021-09-24-china-tightens-crypto-mining-crackdown-bans-trading__98e697480d.html
+      evidence_use: replayable
+      note: |
+        CoinDesk, 2021-09-24, "China Tightens Crypto Mining Crackdown, Bans Trading."
+        Reports that China's top state-planning body, the National Development and Reform
+        Commission (NDRC), posted a separate "Notice on Rectifying Virtual Currency Mining."
+        The notice aims to dispose of the "hidden risks" in crypto mining as China pursues
+        its carbon-neutrality goals; while it does not outlaw mining outright, it orders local
+        authorities to clamp down on illegal mining and to gradually phase out the industry —
+        mining is to be deemed an "outdated" industry. The captured article additionally
+        documents that the same day a parallel inter-agency PBOC notice declared all crypto
+        transactions illegal (that parallel action is a SEPARATE corpus event,
+        china-pboc-crypto-ban-2021; this event is scoped strictly to the NDRC mining notice).
+        Wayback snapshot 20210925053628 (replayable body_hash).
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        NDRC "Notice on Rectifying / Regulating Virtual Currency Mining" issued 2021-09-24;
+        reported same day by CoinDesk. Day-level precision; intra-day publication timing not
+        in the captured public record.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The Chinese cryptocurrency-mining industry as a class — operators, and the financial /
+    investment / electricity / tax support channels that sustain them. The NDRC notice
+    directs the industry to be phased out (deemed an "outdated" industry) and orders local
+    authorities to cut off support to mining enterprises. Class-level target; no enumerated
+    roster of mining firms in the captured source. enumeration=subset.
+  protocol: null
+  actor_type: chinese_crypto_mining_industry
+  actor_name: Chinese cryptocurrency mining enterprises + their financial/energy support channels (class)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction: [CN]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A national industrial-policy phase-out notice does not direct ISP/DNS-level blocking of
+      crypto-infrastructure domains; the primitive is severance of financial/energy/tax
+      support to mining enterprises, not network-layer filtering. not_applicable.
+  - layer: l1_consensus
+    status: not_measured
+    chain: bitcoin
+    note: |
+      The notice's downstream effect manifests in global Bitcoin hashrate (China-hosted
+      hashpower exit), but NO replayable hashrate-denominator slice is pinned in this draft
+      pass. Per the §2 measurement floor, a documented-but-uncaptured measurement claim is
+      coded not_measured until the dataset slice is pinned. The May/June 2021 hashrate
+      collapse is already carried (measured) by the sibling China mining-ban events
+      (china-sichuan-mining-ban-2021-06, china-state-council-mining-crackdown-2021-05); this
+      event records the September NDRC national instrument, not a fresh hashrate measurement.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [chinese_mining_enterprise_financial_investment_and_energy_support_channels]
+    note: |
+      The NDRC notice orders local authorities to phase out the mining industry and to cut off
+      its support channels (financial services, new investment, electricity, tax support) —
+      a class-level severance of the financial/service surface sustaining Chinese mining
+      enterprises. Replayable anchor is the captured CoinDesk report (supporting_journalism,
+      body_hash + body_path on the observation source); not exhaustively measured (no
+      per-enterprise slice), hence partially_measured.
+
+observations:
+  - layer: offramp_cex
+    actor: chinese_crypto_mining_industry
+    event: ndrc_ordered_phase_out_and_support_severance_for_mining_industry
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-09-24T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2021/09/24/china-tightens-crypto-mining-crackdown-bans-trading
+        wayback: https://web.archive.org/web/20210925053628/https://www.coindesk.com/policy/2021/09/24/china-tightens-crypto-mining-crackdown-bans-trading/
+        body_hash: sha256:b505020728a83401e6239e5abc8dffcf164838a7254c78a93d8af14abf8541a9
+        body_path: sources/http_captures/china-ndrc-mining-eliminated-industry-notice-2021-09/primary/web.archive.org__web-20210925053628-https-www.coindesk.com-policy-2021-09-24-china-tightens-crypto-mining-crackdown-bans-trading__98e697480d.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2021-09-24: NDRC "Notice on Rectifying Virtual Currency Mining" orders the
+          industry phased out (deemed "outdated") and support channels (financial, investment,
+          electricity, tax) cut. attribution=plausible (per codebook §1.5/§8.4): the anchor is
+          journalism reporting the NDRC notice, not the NDRC's own Chinese-language primary
+          notice text, and the target is the mining industry as a class rather than named
+          enterprises. Conservative default applied.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured,
+  awaiting human admission).
+
+  Event: On 2021-09-24 China's National Development and Reform Commission (NDRC) issued a
+  "Notice on Rectifying / Regulating Virtual Currency Mining," ordering local authorities to
+  phase out the cryptocurrency-mining industry (deemed an "outdated" industry) and to cut off
+  its financial / investment / electricity / tax support channels. §9 INCLUDE: this is a
+  deliberate state restriction debanking/de-supporting a legitimate industry class — not a
+  mere non-recognition statement.
+
+  Scope discipline: the candidate one-liner referenced the NDRC notice classifying mining as
+  an industry to be ELIMINATED under the Industrial Structure Adjustment Catalogue, citing
+  "nine other agencies." The captured CoinDesk source supports the NDRC mining notice, the
+  phase-out / "outdated"-industry framing, and the financial/energy/tax support cutoff, but
+  does NOT itself state the "Industrial Structure Adjustment Catalogue / eliminated category"
+  classification nor enumerate the co-signing agencies for the NDRC mining notice
+  specifically. I therefore softened the claim to what the captured source substantiates
+  ("outdated"/"phase-out") and flagged the Catalogue framing for human audit. Human audit
+  TODO: pin the Library of Congress Global Legal Monitor article (loc.gov, 2022-02-08) and/or
+  the NDRC primary notice to support the "eliminated industry / Industrial Structure
+  Adjustment Catalogue" wording and the co-signing-agency count, then consider elevation.
+
+  Why trigger.type=nation_state_block: closest enum for a single-country state-planning-body
+  industrial-restriction/support-severance action (same enum as the sibling China mining-ban
+  events). §5.2 maps nation_state_block → S4_nation_state.
+
+  Why offramp_cex carries the effect (not l1_consensus): the notice's mechanism is severance
+  of the financial/service/energy support surface sustaining mining enterprises (a debanking-
+  style class action), which routes to offramp_cex. l1_consensus left not_measured per §2 — no
+  replayable hashrate-denominator slice pinned in this draft; the 2021 hashrate collapse is
+  already carried (measured) by the May/June sibling events.
+
+  Why empirical_shape=comparison / admission_tier=empirical_case: exactly one observed_change
+  layer (offramp_cex) with strong attribution (plausible).
+
+  Why attribution=plausible (not direct): per §1.5/§8.4 the action is documented by
+  contemporaneous journalism (supporting_journalism) reporting the NDRC notice, not the NDRC's
+  own primary notice text, and the target is class-level. Conservative default.
+
+  DEDUP NOTE: distinct from china-pboc-crypto-ban-2021 (the parallel same-day inter-agency
+  PBOC notice declaring all crypto transactions illegal — a trading/transaction ban, different
+  instrument and actor) and from the May/June 2021 mining-ban cluster (different instrument
+  and dates). This event is the September NDRC national mining-industry phase-out notice.
+
+scoped_claim: |
+  "On 2021-09-24 China's NDRC issued a notice ordering the cryptocurrency-mining industry
+  phased out (deemed an 'outdated' industry) and its financial/investment/electricity/tax
+  support channels cut. Effect carried at offramp_cex (class-level support severance, partially
+  measured via captured journalism); l1_consensus hashrate effect not measured in this draft."
+
+tags:
+  - nation_state_block
+  - china
+  - ndrc
+  - mining_phase_out
+  - support_severance
+  - 2021_crackdown

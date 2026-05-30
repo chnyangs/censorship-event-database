@@ -1,0 +1,219 @@
+id: philippines-bsp-vasp-license-moratorium-2022-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - philippines-sec-binance-block-2024
+  - argentina-cnv-psav-registration-2024
+
+trigger:
+  type: regulatory_enforcement
+  actor: PH_BSP
+  timestamp: 2022-09-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/
+      wayback: https://web.archive.org/web/20220819111117/https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/
+      body_hash: sha256:48f70da56ca561fbfd2be23bf44d47450f3e7398e927b8812c26e0540073bb99
+      body_path: sources/http_captures/philippines-bsp-vasp-license-moratorium-2022-09/primary/web.archive.org__web-20220819111117-https-www.rappler.com-business-bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing__a29fc115f0.html
+      evidence_use: replayable
+      note: |
+        Rappler, "BSP imposes 3-year moratorium on virtual asset service
+        providers licensing" (announced by the BSP 2022-08-12). Captured
+        text confirms: "The Bangko Sentral ng Pilipinas (BSP) has imposed
+        a three-year moratorium on granting licenses to new virtual asset
+        service providers (VASPs)"; "Under Resolution No. 1141, dated
+        August 4, the regular application window for new VASP licenses
+        shall be closed for three years starting September 1, 2022,
+        subject to reassessment based on market developments"; quotes BSP
+        Governor Felipe Medalla. Used as the semi-primary anchor because
+        the BSP's own MediaDisp.aspx press page is a JavaScript/SharePoint
+        shell whose archived HTML body is not content-bearing. Wayback
+        memento 20220819111117 captured 2026-05-31.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        BSP Resolution No. 1141 is dated 2022-08-04; the moratorium was
+        publicly announced 2022-08-12 and is effective 2022-09-01 (the
+        date the regular VASP application window closes). Day-level
+        precision; trigger.timestamp pinned to the 2022-09-01 effective
+        date of the window closure.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the class of prospective new Virtual Asset Service
+    Providers (VASPs) — crypto exchanges and custodians — seeking a BSP
+    license to operate in the Philippines. The moratorium closes the
+    regular application window for new VASP licenses; it does not name
+    specific applicants and carves out existing BSP-supervised financial
+    institutions (BSFIs) with a stable-or-better SAFr rating and
+    applications already past Stage 2 by 2022-08-31. subset enumeration
+    with class-level rationale per codebook §7. No specific exchange
+    domain is named, so canonical_domains is empty.
+  protocol: null
+  actor_type: prospective_vasp_licensee_class
+  actor_name: New VASP-license applicants in the Philippines (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - PH
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The BSP moratorium is an administrative market-entry restriction
+      (closure of the VASP licensing window); it does not direct
+      ISP-level domain blocking or any network-layer action.
+      not_applicable. (Contrast the sibling philippines-sec-binance-
+      block-2024, which IS an L0 block.)
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No L1 consensus / PBS relay-filter surface is engaged by a VASP
+      licensing moratorium. not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The public-RPC compliance substrate is not engaged by a BSP
+      licensing moratorium. not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The moratorium addresses the licensing pipeline, not any specific
+      exchange frontend. not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-side blacklist / freeze admin path is engaged.
+      not_applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [ph_new_vasp_licensing_window]
+    note: |
+      The moratorium is by construction an off-ramp-layer market-entry
+      restriction: it denies new crypto exchanges / VASPs the BSP license
+      required to operate in the Philippines for three years from
+      2022-09-01 (later extended indefinitely from 2025-09-01). The
+      anchor is the Rappler semi-primary report (Resolution No. 1141,
+      window closure, Medalla quote) carried on the observation below
+      with a replayable body_hash. partially_measured rather than
+      measured: the regulatory action is documented and contemporaneous,
+      but no structured enumeration of the affected applicant set or an
+      independent measurement slice was pinned in this authoring pass.
+
+observations:
+  - layer: offramp_cex
+    actor: ph_new_vasp_licensing_window
+    event: new_vasp_license_window_closed_three_year_moratorium
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-09-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/
+        wayback: https://web.archive.org/web/20220819111117/https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/
+        body_hash: sha256:48f70da56ca561fbfd2be23bf44d47450f3e7398e927b8812c26e0540073bb99
+        body_path: sources/http_captures/philippines-bsp-vasp-license-moratorium-2022-09/primary/web.archive.org__web-20220819111117-https-www.rappler.com-business-bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing__a29fc115f0.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [ph_new_vasp_licensing_window]
+          countries: [PH]
+          time_window:
+            - 2022-09-01T00:00:00Z
+            - 2025-09-01T00:00:00Z
+        note: |
+          BSP Resolution No. 1141 (2022-08-04) closes the regular VASP
+          license application window for three years from 2022-09-01.
+          attribution=direct per codebook §1.1: the named actor (BSP)
+          publicly issued the moratorium resolution and the action names
+          the target class (new VASP licensees) and the restriction
+          (window closure). The Rappler report is semi-primary because the
+          BSP's own MediaDisp.aspx page is a non-content-bearing JS shell;
+          the report quotes BSP Governor Medalla and cites Resolution No.
+          1141 directly.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-2 adversarial verify):** captured source supports the
+  action + general nexus, but a specific claim (exact addresses / asset types / source-attribution
+  detail) is not fully substantiated by the captured page. Refine the source + soften unsupported
+  specifics before admission. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison documenting the BSP's three-year moratorium on new VASP
+  (virtual asset service provider) license applications, effective
+  2022-09-01 under Resolution No. 1141 (dated 2022-08-04, announced
+  2022-08-12), later extended indefinitely from 2025-09-01. This is a
+  market-entry censorship action: it denies new crypto exchanges the BSP
+  license required to operate in the Philippines, restricting access to a
+  legitimate service class (§9 INCLUDE — a deliberate restriction of
+  market entry by a state actor). Carried at offramp_cex.
+
+  Codebook rules applied: trigger.type=regulatory_enforcement (§5.1 — the
+  BSP is a non-US national regulator and the moratorium is an
+  administrative licensing restriction, not a network/payment-rail block,
+  not a court order); research_stratum=S4_nation_state per §5.2.
+  attribution=direct per §1.1: the BSP publicly issued the resolution and
+  the action names the target class (new VASP licensees) and the
+  restriction (window closure). empirical_shape=comparison /
+  admission_tier=empirical_case: one offramp_cex observed_change layer
+  with direct attribution (§3, §4).
+
+  Why comparable_main_2017_present: 2022-09-01 is in the 2017+ comparable-
+  analysis window. analysis_use=comparable_analysis (canonical per §6).
+
+  Why offramp_cex is partially_measured (not measured): the action is
+  documented and contemporaneous, but no structured enumeration of the
+  affected applicant set / measurement slice was pinned (§2 honesty rule).
+  Why L0/L1/L3/L4/asset_onchain are not_applicable: the moratorium is an
+  administrative licensing-window closure that engages no network block,
+  no L1/L3 PBS primitive, no third-party frontend, and no asset-issuer
+  admin path. (The sibling philippines-sec-binance-block-2024 is the L0
+  block in the corpus; this event is the market-entry restriction.)
+
+  Verification: WebSearch confirmed Resolution No. 1141 (dated 2022-08-04),
+  the three-year window closure effective 2022-09-01, the 2025 indefinite
+  extension, and BSP Governor Medalla's quote across Rappler, Philstar,
+  Manila Bulletin, and CNN Philippines. The captured anchor is the Rappler
+  report (Wayback memento 20220819111117); the BSP's own MediaDisp.aspx
+  press page was rejected as a capture target because its archived HTML is
+  a non-content-bearing JavaScript shell. Human audit should attempt to
+  pin the BSP primary press release (correct ItemId) or the Official
+  Gazette text, and may add the 2025 indefinite-extension release
+  (MediaDisp ItemId 7647) as a follow-on observation.
+
+scoped_claim: |
+  BSP Resolution No. 1141 (2022-08-04, effective 2022-09-01) closed the
+  regular application window for new VASP licenses in the Philippines for
+  three years (later extended indefinitely from 2025-09-01), denying new
+  crypto exchanges market entry. Effect carried at offramp_cex as an
+  observed_change with direct attribution; the affected applicant set is
+  not enumerated and no exchange-side measurement slice is pinned in this
+  authoring pass.
+
+tags:
+  - regulatory_enforcement
+  - philippines
+  - bsp
+  - vasp_licensing_moratorium
+  - market_entry_restriction
+  - comparable_analysis
+  - dryrun_2026_05_31

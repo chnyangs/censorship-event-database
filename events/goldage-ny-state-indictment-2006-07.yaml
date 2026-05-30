@@ -1,0 +1,209 @@
+id: goldage-ny-state-indictment-2006-07
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: discovery_only_2007_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - egold-doj-guilty-plea-2008-07
+  - liberty-reserve-costa-rica-license-denial-2011-03
+  - liberty-reserve-coordinated-takedown-2013-05
+
+trigger:
+  type: court_civil_order
+  actor: NY_COUNTY_DISTRICT_ATTORNEY
+  timestamp: 2006-07-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/founder-liberty-reserve-arthur-budovsky-pleads-guilty-manhattan-federal-court
+      wayback: https://web.archive.org/web/20260404131500/https://www.justice.gov/usao-sdny/pr/founder-liberty-reserve-arthur-budovsky-pleads-guilty-manhattan-federal-court
+      body_hash: sha256:a5e4d287f9572a9f3c5139c68271e2b7794dd268f7ed21bd122fba2c5b80c9eb
+      body_path: sources/http_captures/goldage-ny-state-indictment-2006-07/primary/web.archive.org__web-20260404000000-https-www.justice.gov-usao-sdny-pr-founder-liberty-reserve-arthur-budovsky-pleads-guilty-manhattan-federal-court__bdf9cb2c85.html
+      evidence_use: replayable
+      note: |
+        DOJ SDNY press release (Budovsky Liberty Reserve guilty plea):
+        primary-legal anchor that states verbatim "In or about 2006,
+        BUDOVSKY was convicted in New York State of operating GoldAge as
+        an unlicensed money transmitting business." GoldAge, Inc. was a
+        third-party digital-currency exchange service for E-Gold; the New
+        York State enforcement ended Budovsky/Kats's operation of it.
+        Wayback 20260404131500 pinned.
+    - type: supporting_journalism
+      url: https://en.wikipedia.org/wiki/Gold_Age
+      wayback: https://web.archive.org/web/20251124080834/https://en.wikipedia.org/wiki/Gold_Age
+      body_hash: sha256:d8ce09080c22a9b28abda810f1e7c6b9963b29569e608ba7da473d90c6b51583
+      body_path: sources/http_captures/goldage-ny-state-indictment-2006-07/primary/web.archive.org__web-20251124000000-https-en.wikipedia.org-wiki-Gold_Age__fb4cc0848b.html
+      evidence_use: replayable
+      note: |
+        Encyclopedic secondary source for the trigger detail: "On July
+        27, 2006 the New York County District Attorney's office announced
+        the indictment of Arthur Budovsky and Vladimir Kats for allegedly
+        violating Article 13-B of New York State Banking Law, after a six
+        month sting operation that began in January 2006." Describes Gold
+        Age as "a digital currency exchange and one of the first
+        independent e-gold exchanges" trading e-gold, e-Bullion and 1mdc;
+        defendants were found guilty (sentence reduced to probation).
+        Wayback 20251124080834 pinned.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        Day-level precision per the 2006-07-27 New York County District
+        Attorney indictment announcement (Wikipedia Gold Age article,
+        Wayback-pinned).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    GoldAge, Inc. (an early independent third-party digital-currency
+    exchanger, operated from Brooklyn, NY, that bought/sold/traded
+    e-gold, e-Bullion and 1mdc units) and its two principals Arthur
+    Budovsky and Vladimir Kats. Marked subset: targets the named
+    operators + the GoldAge corporate vehicle rather than an enumerated
+    set of GoldAge customers. No blockchain / on-chain addresses (GoldAge
+    brokered centralized digital-currency units).
+  actor_type: digital_currency_administrator_msb
+  actor_name: GoldAge Inc. + Arthur Budovsky + Vladimir Kats
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A 2006 New York State criminal indictment of an unlicensed
+      money-transmitting exchange operator; no ISP/DNS network-layer
+      instrument applies.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      GoldAge brokered centralized digital-currency units (e-gold,
+      e-Bullion, 1mdc); no blockchain, no decentralized consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface; GoldAge was a centralized exchange
+      service.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The enforcement was a criminal indictment/conviction of the
+      operators, not a domain-name seizure of a frontend; no l4 takedown
+      instrument is attested.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      GoldAge brokered off-ledger centralized digital-currency units; no
+      blockchain token, so no asset-onchain freeze instrument applies.
+  - layer: offramp_cex
+    status: measured
+    scope: [goldage]
+    note: |
+      Load-bearing layer. GoldAge operated as a centralized
+      digital-currency exchanger/money-transmitter; the 2006 New York
+      State indictment + conviction of its principals for operating it as
+      an unlicensed money-transmitting business ended GoldAge's exchange
+      operation. Attested in the DOJ SDNY release (GoldAge conviction)
+      and the Gold Age secondary source (indictment + guilty verdict).
+
+observations:
+  - layer: offramp_cex
+    actor: ny_county_district_attorney
+    event: goldage_digital_currency_exchange_operation_ended_by_ny_state_prosecution
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2006-07-27T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/founder-liberty-reserve-arthur-budovsky-pleads-guilty-manhattan-federal-court
+        wayback: https://web.archive.org/web/20260404131500/https://www.justice.gov/usao-sdny/pr/founder-liberty-reserve-arthur-budovsky-pleads-guilty-manhattan-federal-court
+        body_hash: sha256:a5e4d287f9572a9f3c5139c68271e2b7794dd268f7ed21bd122fba2c5b80c9eb
+        body_path: sources/http_captures/goldage-ny-state-indictment-2006-07/primary/web.archive.org__web-20260404000000-https-www.justice.gov-usao-sdny-pr-founder-liberty-reserve-arthur-budovsky-pleads-guilty-manhattan-federal-court__bdf9cb2c85.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [goldage]
+          countries: [US]
+          time_window:
+            - 2006-07-27T00:00:00Z
+            - 2007-12-31T23:59:59Z
+        note: |
+          DOJ SDNY release states verbatim that "In or about 2006,
+          BUDOVSKY was convicted in New York State of operating GoldAge
+          as an unlicensed money transmitting business." attribution=
+          direct: a named New York State prosecution of the named
+          operators that ended GoldAge's exchange operation.
+      - type: supporting_journalism
+        url: https://en.wikipedia.org/wiki/Gold_Age
+        wayback: https://web.archive.org/web/20251124080834/https://en.wikipedia.org/wiki/Gold_Age
+        body_hash: sha256:d8ce09080c22a9b28abda810f1e7c6b9963b29569e608ba7da473d90c6b51583
+        body_path: sources/http_captures/goldage-ny-state-indictment-2006-07/primary/web.archive.org__web-20251124000000-https-en.wikipedia.org-wiki-Gold_Age__fb4cc0848b.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [goldage]
+          countries: [US]
+          time_window:
+            - 2006-07-27T00:00:00Z
+            - 2007-12-31T23:59:59Z
+        note: |
+          Secondary source: 2006-07-27 New York County District Attorney
+          indictment of Budovsky and Kats for violating Article 13-B of
+          New York State Banking Law (six-month sting); both found guilty.
+          Corroborates the offramp_cex service termination.
+
+analysis_notes: |
+  **REVIEW-FLAG 2026-05-31:** dated 2006 — PRE-2007, just outside the "since 2007" census window
+  (and the discovery_only_2007_2012 tier nominally starts 2007). Decide at admission whether to
+  include this GoldAge 2006 predecessor case or set the window boundary at 2007 (e-gold indictment).
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2;
+  sources verified+captured, awaiting human admission). The 2006-07-27
+  New York County District Attorney indictment (and subsequent
+  conviction) of Arthur Budovsky and Vladimir Kats for operating
+  GoldAge, Inc. — an early independent third-party digital-currency
+  exchanger for e-gold/e-Bullion/1mdc — as an unlicensed money-
+  transmitting business is the earliest U.S. enforcement in the
+  pre-Bitcoin digital-currency lineage that directly produced Liberty
+  Reserve (Budovsky relocated to Costa Rica after the GoldAge
+  conviction). §9 IN SCOPE: a named state prosecution that shut a
+  legitimate digital-currency exchange operator (not a scam/Ponzi). One
+  observed_change layer (offramp_cex service termination),
+  attribution=direct. comparison shape / empirical_case tier /
+  discovery_only_2007_2012 (earliest discovery-period bucket; 2006
+  precedes the corpus's earliest tier boundary). L0/L1/L3/l4/
+  asset_onchain not_applicable: GoldAge was a centralized off-ledger
+  digital-currency exchanger and the enforcement was a criminal
+  prosecution of the operators, not a network/domain/on-chain
+  instrument. Sources verified via WebSearch 2026-05-31; DOJ SDNY plea
+  release (carries the verbatim GoldAge-conviction sentence) + Wikipedia
+  Gold Age article captured + body_hash-pinned (no fabrication; no
+  on-chain addresses asserted).
+
+scoped_claim: |
+  "The 2006-07-27 New York County District Attorney indictment and
+  conviction of Arthur Budovsky and Vladimir Kats for operating GoldAge,
+  Inc. as an unlicensed money-transmitting digital-currency exchange
+  ended GoldAge's exchange operation (offramp_cex), attribution=direct.
+  Discovery-period (pre-2013) tier; the seminal precursor enforcement to
+  E-Gold and Liberty Reserve."
+
+tags:
+  - doj_enforcement
+  - state_prosecution
+  - unlicensed_money_transmitter
+  - goldage
+  - pre_bitcoin_digital_currency
+  - discovery_period
+  - offramp_shutdown

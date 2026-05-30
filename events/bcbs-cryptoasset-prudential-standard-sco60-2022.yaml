@@ -1,0 +1,184 @@
+id: bcbs-cryptoasset-prudential-standard-sco60-2022
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: supranational_regulation
+  actor: bcbs
+  timestamp: 2022-12-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.bis.org/bcbs/publ/d545.pdf
+      wayback: https://web.archive.org/web/20221216235557id_/https://www.bis.org/bcbs/publ/d545.pdf
+      body_hash: sha256:9acfcc4667ea2c1eaa4aa10433f9b3bf686ec6dd3ca4c50b182a94d9a0bda09b
+      body_path: sources/http_captures/bcbs-cryptoasset-prudential-standard-sco60-2022/primary/web.archive.org__web-20221216235557id_-https-www.bis.org-bcbs-publ-d545.pdf__008d2f6e87.bin
+      evidence_use: replayable
+      note: |
+        BCBS final standard "Prudential treatment of cryptoasset exposures"
+        (d545, consolidated as SCO60), published 2022-12-16. Establishes a
+        two-group classification and applies a punitive prudential treatment
+        to Group 2 cryptoassets (unbacked cryptoassets and stablecoins with
+        ineffective stabilisation mechanisms): a 1250% risk weight and an
+        aggregate exposure limit of 1% of a bank's Tier 1 capital. The
+        captured PDF contains the strings "1250", "Tier 1", "1%", "Group 2",
+        "exposure limit", and "unbacked" (grep-verified). GHOS-endorsed;
+        implementation requested by 1 January 2025. Wayback 20221216235557
+        pinned (id_ raw-content snapshot).
+    - type: primary_government
+      url: https://www.bis.org/press/p221216.htm
+      wayback: https://web.archive.org/web/20260210113309/https://www.bis.org/press/p221216.htm
+      body_hash: sha256:fb7a445e01395325401976ed8932c8383e7199694ef9490a47347716c89f8815
+      body_path: sources/http_captures/bcbs-cryptoasset-prudential-standard-sco60-2022/primary/web.archive.org__web-20260210113309-https-www.bis.org-press-p221216.htm__fa704df9ff.html
+      evidence_use: replayable
+      note: |
+        BIS press release (2022-12-16): "Governors and Heads of Supervision
+        endorse global bank prudential standard for cryptoassets". Confirms
+        the date, actor (Basel Committee / GHOS), the conservative prudential
+        treatment of unbacked cryptoassets, and the 1 January 2025
+        implementation date. Captured HTML contains "16 December 2022",
+        "Basel Committee", "cryptoasset", "unbacked", "1 january 2025",
+        "ghos" (grep-verified).
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2022-12-16 BCBS publication / GHOS
+        endorsement.
+
+target:
+  kind: asset
+  enumeration: complete
+  enumeration_note: |
+    The prudential restriction targets the class of "Group 2" cryptoassets
+    (unbacked cryptoassets and stablecoins with ineffective stabilisation
+    mechanisms) held by internationally-active banks. Complete enumeration of
+    the prohibited/penalised asset class (the standard defines Group 2 by
+    failure of the Group 1 classification conditions); the 1250% risk weight
+    and 1%-of-Tier-1 exposure cap apply to all such exposures.
+  actor_type: prudential_capital_standard
+  actor_name: BCBS Group 2 cryptoasset prudential treatment (1250% risk weight + 1% Tier 1 cap)
+
+jurisdiction:
+  - UN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A bank-capital prudential standard, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The standard penalises bank EXPOSURE to a defined cryptoasset class via
+      capital charges; it does not itself freeze specific on-chain
+      assets/addresses (no enumerated addresses; no issuer freeze tx).
+  - layer: offramp_cex
+    status: measured
+    scope: [internationally_active_banks_holding_group2_cryptoassets]
+    note: |
+      Load-bearing layer. The Group 2 prudential treatment (1250% risk weight
+      = full capital deduction, plus a 1%-of-Tier-1 aggregate exposure cap)
+      makes it economically prohibitive for internationally-active banks to
+      hold or provide banking services against unbacked cryptoassets,
+      constricting the bank/off-ramp surface for the penalised asset class.
+      §9 borderline rule: included because the BCBS standard directly mandates
+      a punitive capital restriction (not a mere recommendation).
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:bcbs
+    event: bcbs_imposes_punitive_capital_treatment_on_group2_cryptoassets
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-12-16T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.bis.org/bcbs/publ/d545.pdf
+        wayback: https://web.archive.org/web/20221216235557id_/https://www.bis.org/bcbs/publ/d545.pdf
+        body_hash: sha256:9acfcc4667ea2c1eaa4aa10433f9b3bf686ec6dd3ca4c50b182a94d9a0bda09b
+        body_path: sources/http_captures/bcbs-cryptoasset-prudential-standard-sco60-2022/primary/web.archive.org__web-20221216235557id_-https-www.bis.org-bcbs-publ-d545.pdf__008d2f6e87.bin
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [internationally_active_banks]
+          countries: [UN]
+          time_window:
+            - 2022-12-16T00:00:00Z
+            - 2025-01-01T00:00:00Z
+        note: |
+          BCBS d545 (SCO60): 1250% risk weight and 1%-of-Tier-1 exposure cap
+          for Group 2 cryptoassets. attribution=plausible: the standard
+          mandates the punitive capital framework supranationally, but the
+          binding debanking/exposure restriction is operationalised through
+          national regulator implementation (requested by 1 Jan 2025), so the
+          causal link to a specific access denial is mediated rather than
+          self-executing.
+      - type: primary_government
+        url: https://www.bis.org/press/p221216.htm
+        wayback: https://web.archive.org/web/20260210113309/https://www.bis.org/press/p221216.htm
+        body_hash: sha256:fb7a445e01395325401976ed8932c8383e7199694ef9490a47347716c89f8815
+        body_path: sources/http_captures/bcbs-cryptoasset-prudential-standard-sco60-2022/primary/web.archive.org__web-20260210113309-https-www.bis.org-press-p221216.htm__fa704df9ff.html
+        evidence_use: replayable
+        note: |
+          BIS press release corroborating the GHOS endorsement, the
+          conservative treatment of unbacked cryptoassets, and the
+          1 January 2025 implementation date.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). The Basel Committee on
+  Banking Supervision finalised its standard "Prudential treatment of
+  cryptoasset exposures" (d545, consolidated as SCO60) on 2022-12-16,
+  endorsed by GHOS. Group 2 cryptoassets (unbacked cryptoassets and
+  stablecoins with ineffective stabilisation mechanisms) receive a 1250%
+  risk weight (equivalent to full capital deduction) and are subject to an
+  aggregate exposure limit of 1% of a bank's Tier 1 capital; implementation
+  was requested by 1 January 2025. Under §9's borderline rule for
+  supranational governance frameworks, this is INCLUDED (not context-only)
+  because the standard directly MANDATES a punitive capital restriction —
+  the canonical "BCBS punitive capital weights that force debanking" example
+  cited in §9 — as opposed to the soft FATF/FSB/IOSCO recommendations and
+  consumer warnings that remain out of scope. comparison shape, single
+  offramp_cex observed_change with attribution=plausible (the standard
+  mandates the capital framework supranationally; binding exposure
+  restriction is mediated through national implementation). asset_onchain
+  not_applicable (a bank-capital prudential charge on an exposure class, not
+  an enumerated-address freeze). Anti-fabrication: every claimed figure
+  (1250% / 1% Tier 1 / Group 2 / unbacked) is grep-confirmed present in the
+  captured d545 PDF; date/actor/implementation-date confirmed in the
+  captured BIS press release. Sources verified via WebSearch + capture
+  2026-05-31 (no fabrication).
+
+scoped_claim: |
+  "The BCBS final cryptoasset prudential standard (d545/SCO60, 2022-12-16)
+  imposed a 1250% risk weight and a 1%-of-Tier-1-capital exposure cap on
+  Group 2 (unbacked) cryptoassets for internationally-active banks,
+  economically constricting the bank/off-ramp surface for the penalised
+  asset class; single-layer offramp_cex observed_change with
+  attribution=plausible."
+
+tags:
+  - supranational_regulation
+  - bcbs_basel
+  - prudential_capital_standard
+  - group2_cryptoasset_treatment
+  - offramp_constraint
+  - sco60

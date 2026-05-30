@@ -1,0 +1,207 @@
+id: sec-poloniex-unregistered-exchange-2021-08
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - sec-v-bittrex-2023
+  - sec-beaxy-platform-shutdown-2023
+  - kraken-sec-unregistered-exchange-2023
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2021-08-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.sec.gov/news/press-release/2021-147
+      wayback: https://web.archive.org/web/20210809221853/https://www.sec.gov/news/press-release/2021-147
+      body_hash: sha256:7a8609e539db3f398d98d4b8c592604766f8fcbb4902355928659020edc57cde
+      body_path: sources/http_captures/sec-poloniex-unregistered-exchange-2021-08/primary/web.archive.org__web-20210810000000-https-www.sec.gov-news-press-release-2021-147__07b5f92445.html
+      evidence_use: replayable
+      note: |
+        SEC press release 2021-147 (2021-08-09): "SEC Charges Poloniex for
+        Operating Unregistered Digital Asset Exchange." The SEC announced
+        that Poloniex LLC agreed to pay more than $10 million to settle
+        charges for operating an unregistered online digital asset
+        exchange. The SEC's order finds that from July 2017 through
+        November 2019 (when Poloniex sold its platform), Poloniex operated
+        a web-based trading platform that facilitated buying and selling
+        of digital assets including digital assets that were investment
+        contracts and therefore securities, meeting the definition of an
+        "exchange" under the securities laws while not registering as a
+        national securities exchange or operating under an exemption.
+        Poloniex agreed to disgorgement of ~$8.5M, prejudgment interest
+        of ~$400K, and a $1.5M civil penalty (~$10.4M total). Wayback
+        20210809221853 pinned (same-day capture). Verified facts present
+        in captured HTML: title, "Poloniex" (x19), "Unregistered Digital
+        Asset Exchange", "Aug. 9, 2021", "July 2017 through November 2019",
+        "sold its platform", "disgorgement", "civil penalty", "$1.5
+        million".
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2021-08-09 SEC press release 2021-147
+        announcing the settled administrative order against Poloniex LLC.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Poloniex LLC (operator of the Poloniex web-based digital asset trading
+    platform; respondent in the settled SEC administrative order announced
+    2021-08-09). Subject-matter scope: the Poloniex trading platform's
+    operation as an unregistered national securities exchange from July
+    2017 through November 2019 (when the platform was sold). enumeration=
+    complete: the row enumerates the single named exchange operator entity
+    and the platform's unregistered-exchange operation. No on-chain
+    addresses are enumerated: the remedy is a settled monetary order and
+    cease-and-desist against the operator, not an on-chain action.
+  actor_type: digital_asset_exchange_securities_enforcement
+  actor_name: Poloniex LLC
+  chains: []
+  canonical_domains:
+    - poloniex.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The SEC settled order is a securities-law remedy (disgorgement +
+      penalty + cease-and-desist) against the Poloniex operator; it did
+      not alter ISP-level reachability of poloniex.com. not_applicable on
+      the L0 layer.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Poloniex was a centralized off-chain trading venue; there is no
+      Poloniex-specific consensus surface for the L1 layer this dataset
+      measures. not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface is engaged by the SEC order.
+      not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The SEC settled order did not require shutdown of poloniex.com; it
+      operates at the exchange-registration / operator-conduct layer.
+      not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The §1.6 asset_onchain evidence floor requires a primary_onchain
+      tx_hash; the SEC remedy is a settled monetary order and cease-and-
+      desist against the exchange operator, not an on-chain freeze of any
+      asset, so no on-chain receipt exists or can exist. The enforceable
+      effect is carried at offramp_cex. not_applicable on asset_onchain.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - poloniex_unregistered_exchange_operation
+    note: |
+      Load-bearing layer. Poloniex IS a centralized digital-asset exchange
+      / off-ramp, so the offramp_cex layer is the direct subject of the
+      action: the 2021-08-09 settled order found Poloniex operated an
+      unregistered national securities exchange (July 2017 - November
+      2019), imposed ~$10.4M in disgorgement + interest + civil penalty,
+      and ordered the operator to cease and desist. This is a direct
+      named-operator restriction at the off-ramp layer. Attached below as
+      observed_change / attribution=direct.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:poloniex
+    event: sec_settled_order_charges_poloniex_unregistered_securities_exchange_104m
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2021-08-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2021-147
+        wayback: https://web.archive.org/web/20210809221853/https://www.sec.gov/news/press-release/2021-147
+        body_hash: sha256:7a8609e539db3f398d98d4b8c592604766f8fcbb4902355928659020edc57cde
+        body_path: sources/http_captures/sec-poloniex-unregistered-exchange-2021-08/primary/web.archive.org__web-20210810000000-https-www.sec.gov-news-press-release-2021-147__07b5f92445.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [poloniex]
+          countries: [US]
+          time_window:
+            - 2021-08-09T00:00:00Z
+            - 2021-08-09T23:59:59Z
+        note: |
+          SEC press release 2021-147 (2021-08-09): settled administrative
+          order finding Poloniex LLC operated an unregistered digital asset
+          securities exchange (July 2017 - November 2019), with ~$8.5M
+          disgorgement, ~$400K prejudgment interest, and a $1.5M civil
+          penalty (~$10.4M total) plus cease-and-desist. attribution=
+          direct: the SEC order names the operator and restricts the
+          unregistered-exchange operation directly. Facts verified present
+          in captured HTML ("Poloniex", "Unregistered Digital Asset
+          Exchange", "sold its platform", "$1.5 million", "disgorgement").
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). S3 SEC securities-
+  enforcement event, comparable_main tier. The 2021-08-09 settled SEC
+  order found Poloniex LLC operated an unregistered national securities
+  exchange (July 2017 - November 2019, when the platform was sold), with
+  ~$10.4M in disgorgement + prejudgment interest + civil penalty and a
+  cease-and-desist. comparison shape: 1 observed_change layer
+  (offramp_cex), attribution=direct — Poloniex is itself a centralized
+  off-ramp and the order names the operator and directly restricts the
+  unregistered-exchange operation. asset_onchain not_applicable per §1.6
+  (settled monetary order / cease-and-desist, not an on-chain action —
+  no primary_onchain tx_hash exists or can exist). L0/L1/L3/L4
+  not_applicable (no network reachability, consensus, RPC, or frontend-
+  takedown remedy; the order did not shut poloniex.com). §9 in scope: a
+  state enforcement action restricting a legitimate operating exchange
+  (registration-failure charge, not a fraud/scam prosecution). NOTE for
+  human audit: the candidate one_line asserted the action "contributed to
+  the platform's exit from the US market and delisting of tokens deemed
+  securities" — the captured SEC press release does NOT state a US-market
+  exit or specific token delistings as a consequence of this order (it
+  notes Poloniex had already sold its platform in Nov 2019); those
+  downstream claims are therefore NOT carried in this row to avoid
+  fabrication. The row asserts only what the order states: the
+  unregistered-exchange finding + monetary remedy + cease-and-desist.
+  Sources verified via WebSearch 2026-05-31; SEC press release 2021-147
+  captured (same-day Wayback) + body_hash-pinned and grep-confirmed (no
+  fabrication). Awaiting human audit before promotion from draft.
+
+scoped_claim: |
+  "The 2021-08-09 settled SEC order against Poloniex LLC (unregistered
+  digital asset securities exchange, July 2017 - November 2019; ~$10.4M
+  disgorgement + interest + penalty + cease-and-desist) is recorded as a
+  single-layer offramp_cex named-operator restriction, attribution=
+  direct. The row does not claim ISP-level blocking, a frontend takedown,
+  an on-chain freeze, a US-market exit, or specific token delistings
+  (none of which are stated in the captured SEC order)."
+
+tags:
+  - sec_enforcement
+  - securities_law
+  - unregistered_exchange
+  - poloniex
+  - digital_asset_exchange
+  - operator_restriction
+  - settled_order
+  - offramp_restriction

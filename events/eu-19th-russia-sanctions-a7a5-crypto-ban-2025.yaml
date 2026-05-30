@@ -1,0 +1,199 @@
+id: eu-19th-russia-sanctions-a7a5-crypto-ban-2025
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - eu-18th-russia-sanctions-casp-spfs-2025
+  - eu-8th-package-russia-crypto-services-ban-2022-10
+
+trigger:
+  type: non_us_sanctions
+  actor: EU_Council
+  timestamp: 2025-10-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.consilium.europa.eu/en/press/press-releases/2025/10/23/19th-package-of-sanctions-against-russia-eu-targets-russian-energy-third-country-banks-and-crypto-providers/
+      wayback: https://web.archive.org/web/20251023125146/https://www.consilium.europa.eu/en/press/press-releases/2025/10/23/19th-package-of-sanctions-against-russia-eu-targets-russian-energy-third-country-banks-and-crypto-providers/
+      body_hash: sha256:405b69089a485505187b39ad3b3c07f3fdb305d340e70eabba1c46f12bb81a8d
+      body_path: sources/http_captures/eu-19th-russia-sanctions-a7a5-crypto-ban-2025/primary/web.archive.org__web-20251024000000-https-www.consilium.europa.eu-en-press-press-releases-2025-10-23-19th-package-of-sanctions-against-russia-eu-targets-russian-energy__cd341e65af.html
+      evidence_use: replayable
+      note: |
+        Council of the EU, 19th sanctions package against Russia (adopted
+        2025-10-23). The captured press release states verbatim: "the
+        stablecoin A7A5 - created with Russian state support - has emerged
+        as a prominent tool for financing activities supporting the war of
+        aggression. Therefore, today's package introduces sanctions on the
+        developer of A7A5, the Kyrgyz issuer of that coin, and the operator
+        of a platform where significant volumes of A7A5 is traded.
+        Transactions involving this stablecoin have also been prohibited
+        across the EU." This is the EU's first prohibition on transacting a
+        specific named crypto-asset (the A7A5 rouble-backed stablecoin),
+        plus designations of its developer / Kyrgyz issuer / trading-platform
+        operator. Wayback memento 20251023125146 pinned.
+    - type: supporting_journalism
+      url: https://www.elliptic.co/blog/crypto-regulatory-affairs-eu-sanctions-target-a7a5-ruble-backed-stablecoin
+      wayback: https://web.archive.org/web/20260207172617/https://www.elliptic.co/blog/crypto-regulatory-affairs-eu-sanctions-target-a7a5-ruble-backed-stablecoin
+      body_hash: sha256:489642274d0efd48b47f7c5941630e7455583e6005c71e7138a71fa97538fabc
+      body_path: sources/http_captures/eu-19th-russia-sanctions-a7a5-crypto-ban-2025/primary/web.archive.org__web-20260207000000-https-www.elliptic.co-blog-crypto-regulatory-affairs-eu-sanctions-target-a7a5-ruble-backed-stablecoin__fdc0f33728.html
+      evidence_use: replayable
+      note: |
+        Elliptic analysis corroborating the 19th-package A7A5 prohibition:
+        "the EU's sanctions prohibit persons within the EU from engaging in
+        any transactions, directly or indirectly, involving the A7A5
+        ruble-backed stablecoin." Captured body further notes A7A5 is a
+        stablecoin available on the Ethereum and Tron blockchains, issued by
+        a Kyrgyzstan-based company (Old Vector LLC). Independent corroborating
+        anchor.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-10-23 EU 19th-package adoption.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The A7A5 rouble-backed stablecoin (transactions involving it prohibited
+    across the EU), plus the designated developer of A7A5, its Kyrgyz issuer,
+    and the operator of a platform where significant volumes of A7A5 are
+    traded. subset because the captured EU primary names the target class /
+    designees descriptively (A7A5 + developer/issuer/platform-operator)
+    rather than enumerating specific on-chain addresses in this record.
+  protocol: null
+  actor_type: sanctions_transaction_ban
+  actor_name: EU 19th-package A7A5 stablecoin transaction ban + designations
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - EU
+  - RU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A legal transaction-prohibition / designation instrument, not an
+      ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The package prohibits EU persons from transacting in the A7A5
+      stablecoin and designates its developer/issuer/platform operator; it
+      is carried as a transaction/service prohibition. No specific on-chain
+      address or issuer-freeze tx hash is enumerated in the captured sources
+      (codebook §1.6), so no primary_onchain observed_change is asserted; the
+      effect is carried at offramp_cex instead.
+  - layer: offramp_cex
+    status: measured
+    scope: [eu_persons_transactions_in_a7a5_stablecoin]
+    note: |
+      Load-bearing layer. The 19th package prohibits transactions involving
+      the A7A5 rouble-backed stablecoin across the EU and designates its
+      developer, Kyrgyz issuer, and trading-platform operator, severing the
+      EU off-ramp/transaction surface for that named crypto-asset and its
+      service infrastructure. The legal instrument is the operative
+      prohibition; attested verbatim in the EU primary source.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:eu_council
+    event: eu_19th_package_prohibits_transactions_in_a7a5_stablecoin
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-10-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.consilium.europa.eu/en/press/press-releases/2025/10/23/19th-package-of-sanctions-against-russia-eu-targets-russian-energy-third-country-banks-and-crypto-providers/
+        wayback: https://web.archive.org/web/20251023125146/https://www.consilium.europa.eu/en/press/press-releases/2025/10/23/19th-package-of-sanctions-against-russia-eu-targets-russian-energy-third-country-banks-and-crypto-providers/
+        body_hash: sha256:405b69089a485505187b39ad3b3c07f3fdb305d340e70eabba1c46f12bb81a8d
+        body_path: sources/http_captures/eu-19th-russia-sanctions-a7a5-crypto-ban-2025/primary/web.archive.org__web-20251024000000-https-www.consilium.europa.eu-en-press-press-releases-2025-10-23-19th-package-of-sanctions-against-russia-eu-targets-russian-energy__cd341e65af.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [eu_persons_aggregate]
+          countries: [EU, RU]
+          time_window:
+            - 2025-10-23T00:00:00Z
+            - 2026-05-31T23:59:59Z
+        note: |
+          EU 19th package (2025-10-23): "Transactions involving this
+          stablecoin [A7A5] have also been prohibited across the EU"; the
+          package "introduces sanctions on the developer of A7A5, the Kyrgyz
+          issuer of that coin, and the operator of a platform where
+          significant volumes of A7A5 is traded." attribution=direct: the EU
+          legal instrument directly names the prohibited crypto-asset (A7A5)
+          and its service infrastructure. Verbatim language grep-confirmed in
+          the captured body (body_hash-pinned).
+      - type: supporting_journalism
+        url: https://www.elliptic.co/blog/crypto-regulatory-affairs-eu-sanctions-target-a7a5-ruble-backed-stablecoin
+        wayback: https://web.archive.org/web/20260207172617/https://www.elliptic.co/blog/crypto-regulatory-affairs-eu-sanctions-target-a7a5-ruble-backed-stablecoin
+        body_hash: sha256:489642274d0efd48b47f7c5941630e7455583e6005c71e7138a71fa97538fabc
+        body_path: sources/http_captures/eu-19th-russia-sanctions-a7a5-crypto-ban-2025/primary/web.archive.org__web-20260207000000-https-www.elliptic.co-blog-crypto-regulatory-affairs-eu-sanctions-target-a7a5-ruble-backed-stablecoin__fdc0f33728.html
+        evidence_use: replayable
+        note: |
+          Elliptic corroboration: "the EU's sanctions prohibit persons within
+          the EU from engaging in any transactions, directly or indirectly,
+          involving the A7A5 ruble-backed stablecoin." Independent
+          semi-primary anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). The EU 19th sanctions
+  package (adopted 2025-10-23) is the EU's first prohibition on transacting
+  a specific named crypto-asset: it bans transactions involving the A7A5
+  rouble-backed stablecoin across the EU and designates A7A5's developer,
+  its Kyrgyz issuer, and the operator of a platform where significant
+  volumes of A7A5 are traded. This is a §9-IN-SCOPE censorship action (a
+  deliberate freeze/denial of a named crypto-asset + its service
+  infrastructure), continuing the EU Russia-sanctions crypto track
+  (8th -> 18th -> 19th -> 20th). comparison shape, single offramp_cex
+  observed_change/direct. asset_onchain is marked not_applicable rather than
+  carrying a primary_onchain observed_change: the captured EU and Elliptic
+  sources name A7A5 (on Ethereum/Tron, issuer Old Vector LLC) but enumerate
+  NO specific on-chain address or issuer-freeze tx hash, so per codebook
+  §1.6 the effect is carried at the offramp_cex/transaction layer (no
+  fabricated tx_hash). attribution=direct: the EU instrument explicitly
+  names the prohibited crypto-asset. Sources verified via WebSearch +
+  capture 2026-05-31; verbatim A7A5 transaction-ban language grep-confirmed
+  in the captured Consilium body. NOTE for human audit: legal-analysis
+  secondary sources (Matheson/Elliptic) report the prohibition is keyed to
+  Annex LIII effective 2025-11-25; those Annex/effective-date specifics are
+  NOT present in the captured Consilium press release, so they are NOT
+  asserted in this record (only the press-release-attested prohibition +
+  designations are claimed).
+
+scoped_claim: |
+  "The EU's 19th sanctions package (2025-10-23) prohibited transactions
+  involving the A7A5 rouble-backed stablecoin across the EU and designated
+  its developer, Kyrgyz issuer, and trading-platform operator - the EU's
+  first transaction ban on a specific named crypto-asset; single-layer
+  offramp_cex observed_change with attribution=direct."
+
+tags:
+  - supranational_regulation
+  - eu_sanctions
+  - russia_related
+  - stablecoin_ban
+  - a7a5
+  - offramp_shutdown
+  - eu_19th_package

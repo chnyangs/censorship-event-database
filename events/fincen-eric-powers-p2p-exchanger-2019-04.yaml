@@ -1,0 +1,152 @@
+id: fincen-eric-powers-p2p-exchanger-2019-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - liberty-reserve-coordinated-takedown-2013-05
+
+trigger:
+  type: fincen_action
+  actor: US_FinCEN
+  timestamp: 2019-04-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://web.archive.org/web/20190419000000/https://www.fincen.gov/news/news-releases/fincen-penalizes-peer-peer-virtual-currency-exchanger-violations-anti-money
+      wayback: https://web.archive.org/web/20190418184452/https://www.fincen.gov/news/news-releases/fincen-penalizes-peer-peer-virtual-currency-exchanger-violations-anti-money
+      body_hash: sha256:e659ccd83ccf34bd79c7f6d13bc5f9ef638eae731d1643ada13ff9ea0c0e389c
+      body_path: sources/http_captures/fincen-eric-powers-p2p-exchanger-2019-04/primary/web.archive.org__web-20190419000000-https-www.fincen.gov-news-news-releases-fincen-penalizes-peer-peer-virtual-currency-exchanger-violations-anti-money__358b1c9f9a.html
+      evidence_use: replayable
+      note: |
+        FinCEN news release (2019-04-18): "FinCEN Penalizes Peer-to-Peer
+        Virtual Currency Exchanger for Violations of Anti-Money Laundering
+        Laws." FinCEN assessed its first-ever civil money penalty against an
+        individual peer-to-peer convertible-virtual-currency exchanger (Eric
+        Powers) for willfully violating the Bank Secrecy Act's MSB
+        registration, AML-program, and reporting (CTR/SAR) requirements. The
+        action includes a $35,000 penalty AND an industry bar prohibiting
+        Powers from engaging in any activity that would make him a money
+        services business. First FinCEN enforcement against a P2P virtual-
+        currency exchanger. Wayback memento 20190418184452 pinned; captured
+        body contains "Eric Powers", "Peer-to-Peer", "exchanger", "Money
+        Services Business", "industry bar", "registration".
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level precision per the FinCEN news release dated 2019-04-18.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Eric Powers, an individual operating as a peer-to-peer exchanger of
+    convertible virtual currency (bitcoin). Complete: the action names the
+    single individual operator who is the entire target.
+  protocol: null
+  actor_type: peer_to_peer_virtual_currency_exchanger
+  actor_name: Eric Powers
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [eric_powers_p2p_exchanger]
+    note: |
+      Load-bearing layer. The FinCEN assessment imposed an industry bar
+      prohibiting Powers from any money-services-business activity — i.e. a
+      state-mandated termination of his peer-to-peer bitcoin exchange / off-ramp
+      service. Carried as observed_change at offramp_cex (P2P fiat<->bitcoin
+      conversion surface). Replayable anchor is the captured FinCEN news release
+      (primary_government, body_hash + body_path on the observation source);
+      partially_measured because no volume slice of the exchanger is captured.
+
+observations:
+  - layer: offramp_cex
+    actor: us_fincen
+    event: fincen_industry_bar_terminates_p2p_bitcoin_exchanger
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2019-04-18T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_government
+        url: https://web.archive.org/web/20190419000000/https://www.fincen.gov/news/news-releases/fincen-penalizes-peer-peer-virtual-currency-exchanger-violations-anti-money
+        wayback: https://web.archive.org/web/20190418184452/https://www.fincen.gov/news/news-releases/fincen-penalizes-peer-peer-virtual-currency-exchanger-violations-anti-money
+        body_hash: sha256:e659ccd83ccf34bd79c7f6d13bc5f9ef638eae731d1643ada13ff9ea0c0e389c
+        body_path: sources/http_captures/fincen-eric-powers-p2p-exchanger-2019-04/primary/web.archive.org__web-20190419000000-https-www.fincen.gov-news-news-releases-fincen-penalizes-peer-peer-virtual-currency-exchanger-violations-anti-money__358b1c9f9a.html
+        evidence_use: replayable
+        note: |
+          FinCEN news release (2019-04-18). attribution=direct: the FinCEN
+          assessment is the operative instrument and names Eric Powers directly;
+          the industry bar prohibits him from any MSB activity, terminating his
+          P2P virtual-currency exchange service.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-2 adversarial verify):** captured source supports the
+  action + general nexus, but a specific claim (exact addresses / asset types / source-attribution
+  detail) is not fully substantiated by the captured page. Refine the source + soften unsupported
+  specifics before admission. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission). On 2019-04-18 US FinCEN
+  assessed its first-ever civil money penalty against an individual
+  peer-to-peer convertible-virtual-currency exchanger (Eric Powers, $35,350)
+  for willful Bank Secrecy Act registration, AML-program, and CTR/SAR
+  reporting violations, AND imposed an industry bar prohibiting him from any
+  money-services-business activity. The industry bar is the operative
+  censorship action: a state-mandated termination of a legitimate (if
+  unlicensed) crypto off-ramp operator's service — in scope under §9 (federal
+  enforcement that shuts a legitimate operator; sibling to the Liberty Reserve
+  unlicensed-MSB takedown). Powers was exchanging legitimate bitcoin, not
+  running a fraud scheme, so this is NOT a §9-excluded scam prosecution.
+  Single observed_change layer (offramp_cex P2P conversion surface) ->
+  empirical_shape comparison, admission_tier empirical_case. attribution=direct:
+  the FinCEN assessment names the target and the bar is the operative
+  instrument. asset_onchain not_applicable (no on-chain freeze instrument; the
+  bar is an administrative restriction, no tx_hash exists). Sources verified
+  via WebSearch 2026-05-31; real FinCEN news-release page captured + body_hash-
+  pinned (claims "Eric Powers", "Peer-to-Peer", "exchanger", "industry bar"
+  grep-confirmed; no fabrication).
+
+scoped_claim: |
+  "The 2019-04-18 FinCEN assessment against Eric Powers — its first-ever civil
+  penalty against an individual peer-to-peer convertible-virtual-currency
+  exchanger — imposed a $35,350 penalty and an industry bar prohibiting any
+  money-services-business activity, terminating his P2P bitcoin exchange
+  service. Effect carried at offramp_cex (off-ramp operator termination),
+  attribution=direct. Comparable-main tier."
+
+tags:
+  - fincen_action
+  - fincen_enforcement
+  - bank_secrecy_act
+  - peer_to_peer_exchanger
+  - unlicensed_money_transmitter
+  - industry_bar
+  - offramp_shutdown

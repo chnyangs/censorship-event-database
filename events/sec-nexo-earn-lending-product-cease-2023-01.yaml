@@ -1,0 +1,203 @@
+id: sec-nexo-earn-lending-product-cease-2023-01
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - blockfi-sec-lending-2022
+  - blockfi-multistate-cease-desist-bia-2021-07
+
+trigger:
+  type: sec_action
+  actor: US_SEC
+  timestamp: 2023-01-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.sec.gov/newsroom/press-releases/2023-11
+      wayback: https://web.archive.org/web/20240704131027/https://www.sec.gov/newsroom/press-releases/2023-11
+      body_hash: sha256:ef328758b02afdc231dc972516c5a3644eee0d63ad7b89c2127a125e9d851614
+      body_path: sources/http_captures/sec-nexo-earn-lending-product-cease-2023-01/primary/web.archive.org__web-20230120000000-https-www.sec.gov-newsroom-press-releases-2023-11__77d9b92c8e.html
+      evidence_use: replayable
+      note: |
+        SEC press release 2023-11 (dated "Jan. 19, 2023"): "Nexo Agrees to
+        Pay $45 Million in Penalties and Cease Unregistered Offering of Crypto
+        Asset Lending Product." The SEC charged Nexo Capital Inc. with failing
+        to register the offer and sale of its retail crypto asset lending
+        product, the Earn Interest Product (EIP). Captured page text reads
+        that Nexo agreed "to pay a $22.5 million penalty and cease its
+        unregistered offer and sale of the EIP to U.S. investors" (a parallel
+        $22.5 million in state penalties brings the total to $45 million), and
+        that Nexo "announced ... permanently ceasing to offer the EIP to all
+        U.S. investors" and "phasing out all of its products and services in
+        the United States." Grep-confirmed in captured body: "Nexo", "Earn
+        Interest Product", "45 Million", "U.S. investors", "cease its
+        unregistered offer and sale of the EIP", "Jan. 19, 2023". Wayback
+        memento 20240704131027 captured 2026-05-31 (earliest available memento
+        of the SEC press-release URL; SEC newsroom paths were reorganized after
+        2023, so no 2023-dated memento of this canonical path exists).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Nexo Capital Inc. — specifically the Nexo Earn Interest Product (EIP), the
+    retail crypto-asset lending/yield product offered to U.S. investors from
+    around June 2020. The SEC order names Nexo Capital Inc. as the respondent
+    and the EIP as the unregistered security being ceased. The parallel
+    multistate component (a NASAA-coordinated $22.5 million settlement across
+    state securities regulators) is carried as context; the load-bearing
+    captured instrument is the SEC press release, so the enumeration is coded
+    subset and the per-state cohort is not enumerated order-by-order in this
+    draft.
+  actor_type: regulated_crypto_lending_platform
+  actor_name: Nexo Capital Inc. (Nexo Earn Interest Product / EIP)
+  chains: []
+  canonical_domains:
+    - nexo.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The SEC settlement is a securities-law administrative order, not a DNS /
+      ISP connectivity action. No network-level blocking of nexo.com is
+      asserted.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend DOM block captured; the order operates at the
+      product-offering / securities-registration layer.
+  - layer: asset_onchain
+    status: not_applicable
+    note: No SDN listing; no stablecoin-issuer admin freeze applicable.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - nexo_earn_interest_product_us
+    note: |
+      The SEC settlement directly compels Nexo to cease its unregistered offer
+      and sale of the Earn Interest Product to U.S. investors and (per the
+      captured release) to permanently cease offering the EIP to all U.S.
+      investors while phasing out all of its products and services in the
+      United States. This is a regulator-mandated severance of a crypto
+      lending/yield off-ramp product at the U.S.-customer perimeter, ending
+      Nexo's U.S. retail market presence. Observed_change with direct
+      attribution attached below (the SEC order is the legal instrument and
+      names Nexo / the EIP as respondent and product).
+
+observations:
+  - layer: offramp_cex
+    actor: lending_platform:nexo_earn_interest_product_us
+    event: nexo_earn_interest_product_ordered_to_cease_us_investors
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-01-19T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_government
+        url: https://www.sec.gov/newsroom/press-releases/2023-11
+        wayback: https://web.archive.org/web/20240704131027/https://www.sec.gov/newsroom/press-releases/2023-11
+        body_hash: sha256:ef328758b02afdc231dc972516c5a3644eee0d63ad7b89c2127a125e9d851614
+        body_path: sources/http_captures/sec-nexo-earn-lending-product-cease-2023-01/primary/web.archive.org__web-20230120000000-https-www.sec.gov-newsroom-press-releases-2023-11__77d9b92c8e.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [nexo_earn_interest_product_us]
+          countries: [US]
+          time_window:
+            - 2023-01-19T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          SEC press release 2023-11 ("Jan. 19, 2023") is the legal instrument
+          naming Nexo Capital Inc. as respondent and ordering it to cease its
+          unregistered offer and sale of the Earn Interest Product to U.S.
+          investors, against a $22.5 million SEC penalty (plus $22.5 million in
+          parallel state penalties = $45 million total). The captured body also
+          records Nexo "permanently ceasing to offer the EIP to all U.S.
+          investors" and "phasing out all of its products and services in the
+          United States." attribution=direct per codebook §1.1 — the named
+          actor (SEC) issues the order and the order names the target (Nexo /
+          EIP) being acted upon. delta_hours=0 (settlement announced and
+          effective at the order date).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
+  verified+captured, awaiting human admission).
+
+  comparison shape: 1 observed_change layer (offramp_cex, attribution=direct).
+  On 2023-01-19 the SEC settled with Nexo Capital Inc. over its retail
+  crypto-asset lending product, the Earn Interest Product (EIP), charging Nexo
+  with failing to register the offer and sale of the EIP. Nexo agreed to a
+  $22.5 million SEC penalty (with a parallel NASAA-coordinated $22.5 million in
+  state penalties, $45 million total) and to cease its unregistered offer and
+  sale of the EIP to U.S. investors; per the captured SEC release, Nexo was
+  permanently ceasing to offer the EIP to all U.S. investors and phasing out
+  all of its products and services in the United States — i.e. a full U.S.
+  retail-market exit.
+
+  §9 inclusion: in scope — a federal securities regulator deliberately
+  restricting the offering of a legitimate crypto yield/off-ramp product, and
+  forcing the platform's exit from the U.S. retail market (not a scam
+  prosecution; Nexo was an operating lending platform whose product was ruled an
+  unregistered security). This is the corporate-platform-restriction category of
+  §9 ("DOJ/SEC/CFTC/FinCEN enforcement that restricts a legitimate
+  platform/operator"), here a US-market exit forced by the SEC.
+
+  trigger.type=sec_action and research_stratum=S3_doj_sec_cftc_fiod per codebook
+  §5: the SEC is a US federal securities regulator (S3). Sibling enforcement
+  actions in the same crypto-lending-product trajectory are
+  blockfi-sec-lending-2022 (the Feb-2022 SEC/state $100M BlockFi BIA settlement
+  this Nexo settlement closely parallels) and blockfi-multistate-cease-desist-
+  bia-2021-07 (the earlier state-level BlockFi cease-and-desist). The SEC's
+  February 2022 BlockFi charges are the "similar crypto investment product"
+  action the captured Nexo release references as the trigger for Nexo's
+  voluntary wind-down of new-investor EIP sales.
+
+  attribution=direct per §1.1: the SEC order names the actor (SEC) and the
+  target (Nexo / EIP) and is the instrument compelling the cessation.
+  admission_tier=empirical_case (≥1 strong-attribution observed_change layer).
+
+  Capture note: the SEC reorganized its newsroom URL paths after 2023, so the
+  canonical press-release path (/newsroom/press-releases/2023-11) has no 2023-
+  dated Wayback memento; the earliest available memento (20240704131027) was
+  captured and grep-confirms all load-bearing facts (Nexo, EIP, $45M, cease to
+  U.S. investors, "Jan. 19, 2023"). No fabrication.
+
+scoped_claim: |
+  "The SEC settlement of 2023-01-19 ($22.5M SEC penalty; $45M total with
+  parallel state penalties) directly ordered Nexo Capital Inc. to cease its
+  unregistered offer and sale of the Earn Interest Product (ruled an
+  unregistered security) to U.S. investors and led Nexo to permanently cease
+  offering the EIP to all U.S. investors and phase out all of its products and
+  services in the United States — a regulator-forced U.S. retail-market exit at
+  the off-ramp/yield-product perimeter (offramp_cex load-bearing,
+  attribution=direct). The row does not claim ISP-level blocking, on-chain asset
+  freeze, frontend DOM block, or the full enumeration of the parallel
+  multistate (NASAA) state orders."
+
+tags:
+  - sec_enforcement
+  - united_states
+  - nexo
+  - earn_interest_product
+  - unregistered_securities
+  - crypto_lending_cease_desist
+  - us_market_exit
+  - dryrun_2026_05_31
