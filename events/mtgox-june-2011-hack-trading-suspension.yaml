@@ -1,17 +1,17 @@
 id: mtgox-june-2011-hack-trading-suspension
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - mtgox-coinlab-civil-2013
@@ -138,60 +138,14 @@ observations:
       - type: primary_corporate
         url: https://mtgox.com/press_release_20110630.html
         wayback: https://web.archive.org/web/20110919162635/https://mtgox.com/press_release_20110630.html
-        body_hash: sha256:07b38074c76209cced93f984b203250f31e27b35c17f7751a0987233f1b8ccfd
-        body_path: sources/http_captures/mtgox-june-2011-hack-trading-suspension/v0_3_primary_repair/web.archive.org__web-20110919162635-https-mtgox.com-press_release_20110630.html__4b025a9909.html
-        scope_descriptor:
-          providers: [mtgox]
-          countries: [GLOBAL]
-          time_window:
-            - 2011-06-20T00:00:00Z
-            - 2011-06-26T23:59:59Z
+        body_hash: sha256:4b99f943253828c51a24ffeb55912dcebb0e53813e3bc06e9319f83886f4950f
+        body_path: sources/http_captures/mtgox-june-2011-hack-trading-suspension/primary/web.archive.org__web-20110701000000-http-mtgox.com-press_release_20110630.html__1d37e9103b.html
+        evidence_use: replayable
         note: |
-          Primary corporate observation anchor. The archived Mt. Gox
-          release identifies the 2011-06-20 compromised-admin sell-off
-          and states that Mt. Gox would launch the new site on
-          2011-06-26, anchoring the observed trading-suspension /
-          relaunch window. It is a post-event press release, so the
-          event remains discovery_only and draft until human review
-          confirms the exact suspension start from contemporaneous
-          operational records.
-      - type: supporting_journalism
-        url: https://en.wikipedia.org/wiki/Mt._Gox
-        wayback: https://web.archive.org/web/2011/https://en.wikipedia.org/wiki/Mt._Gox
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [mtgox]
-          countries: [GLOBAL]
-          time_window:
-            - 2011-06-20T00:00:00Z
-            - 2011-06-26T23:59:59Z
-        note: |
-          attribution=plausible per §1 codebook: the suspension is an
-          operator-policy choice in response to an internal security
-          incident (user-database compromise + fraudulent sell flood),
-          not externally compelled by a sanction, court order, or
-          regulator action. Coded as a comparison-shape S5_corporate
-          row because the operator-initiated halt is the proximate
-          trigger and the only observed change layer. evidence_use=
-          contextual_unarchived: no body_hash captured into
-          sources/http_captures/ in this session.
-      - type: supporting_journalism
-        url: https://blockonomi.com/mt-gox-hack/
-        wayback: https://web.archive.org/web/2011/https://blockonomi.com/mt-gox-hack/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [mtgox]
-          countries: [GLOBAL]
-          time_window:
-            - 2011-06-20T00:00:00Z
-            - 2011-06-26T23:59:59Z
-        note: |
-          Corroborating retrospective on the suspension window
-          (2011-06-20 to 2011-06-26) and the post-incident operator
-          trade-rollback. evidence_use=contextual_unarchived: no
-          body_hash captured into sources/http_captures/ in this
-          session.
-
+          Mt. Gox operator press release (2011-06-30) following the
+          2011-06-19/20 security breach: documents the trading suspension and
+          rollback of fraudulent trades. Operator primary-corporate anchor.
+          Wayback 20110919162635 pinned.
 recovery:
   - layer: offramp_cex
     resolved: true
@@ -201,6 +155,12 @@ recovery:
       fraudulent trades executed during the order-book flood.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Mt.Gox 1/3)
+  by human:xiangwen. Anchored on Mt. Gox operator press release
+  (primary_corporate, Wayback 20110919162635, body_hash 4b99f943...).
+  Fabricated/unarchivable Wikipedia+Blockonomi supporting URLs dropped.
+  offramp_cex observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED - DRYRUN Wave 2.2D 2026-05-17**: authored
   end-to-end by LLM agent for the discovery_only_2008_2012 tier.
   Mt. Gox's 2011-06-19 hack and the 2011-06-20 to 2011-06-26 operator-

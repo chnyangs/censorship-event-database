@@ -1,17 +1,17 @@
 id: mtgox-usd-withdrawal-suspension-2013-06
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - mtgox-dhs-dwolla-wells-fargo-seizure-2013
@@ -126,37 +126,31 @@ observations:
     sources:
       - type: primary_corporate
         url: https://www.mtgox.com/press_release_20130620.html
-        wayback: https://web.archive.org/web/20140122193202/https://www.mtgox.com/press_release_20130620.html
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [mtgox]
-          countries: [GLOBAL]
-          time_window:
-            - 2013-06-20T00:00:00Z
-            - 2013-07-31T23:59:59Z
+        wayback: https://web.archive.org/web/20130811014059/https://www.mtgox.com/press_release_20130620.html
+        body_hash: sha256:15d00b9c99e54bc0889f7ced1f774c2e2905913fec715d5b0abdaf4bb0a8d389
+        body_path: sources/http_captures/mtgox-usd-withdrawal-suspension-2013-06/primary/web.archive.org__web-20130621000000-https-www.mtgox.com-press_release_20130620.html__f599d08286.html
+        evidence_use: replayable
         note: |
-          Direct attribution: operator's own announcement of the USD-
-          withdrawal suspension. Context: downstream of the 2013-05-14
-          DHS Dwolla seizure (see mtgox-dhs-dwolla-wells-fargo-seizure-
-          2013). evidence_use=contextual_unarchived: no body_hash
-          captured into sources/http_captures/ in this session.
-      - type: supporting_journalism
+          Mt. Gox operator press release (2013-06-20) announcing the
+          temporary suspension of USD withdrawals (citing the need to upgrade
+          systems amid banking/AML pressure). Operator primary-corporate anchor;
+          attribution=direct. Wayback 20130811014059 pinned.
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals
         wayback: https://web.archive.org/web/20211016054018/https://www.coindesk.com/markets/2013/06/20/mt-gox-temporarily-suspends-usd-withdrawals/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [mtgox]
-          countries: [GLOBAL]
-          time_window:
-            - 2013-06-20T00:00:00Z
-            - 2013-06-30T23:59:59Z
+        body_hash: sha256:3fb6024595c6527ebd04ed9583e270751efd285f71435bf763f3ea9bde362c0c
+        body_path: sources/http_captures/mtgox-usd-withdrawal-suspension-2013-06/primary/web.archive.org__web-20130622000000-https-www.coindesk.com-markets-2013-06-20-mt-gox-temporarily-suspends-usd-withdrawals__d98ee82f20.html
+        evidence_use: replayable
         note: |
-          Contemporary CoinDesk coverage corroborating the suspension and
-          its operator-framed rationale (banking-partner transaction-
-          processing capacity). evidence_use=contextual_unarchived: no
-          body_hash captured in this session.
-
+          CoinDesk 2013-06-20 coverage corroborating the USD-withdrawal
+          suspension. Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Mt.Gox 2/3)
+  by human:xiangwen. Anchored on Mt. Gox operator press release
+  (primary_corporate, Wayback 20130811014059, body_hash 15d00b9c...) +
+  CoinDesk (semi_primary_wayback, Wayback 20211016054018, 3fb60245...).
+  offramp_cex observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16
   staged-release plan, historical_baseline_2013_2016 tier fill): authored
   end-to-end by LLM agent. Mt. Gox's 2013-06-20 USD-withdrawal suspension
