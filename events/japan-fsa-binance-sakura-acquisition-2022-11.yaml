@@ -1,17 +1,17 @@
 id: japan-fsa-binance-sakura-acquisition-2022-11
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - japan-fsa-binance-warning-2018
@@ -46,18 +46,22 @@ trigger:
         registered-CAESP supervisory perimeter. DRYRUN: pinned snapshot
         timestamp and body_hash capture for the Binance blog post is
         deferred to non-DRYRUN release.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
-      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+      wayback: https://web.archive.org/web/20221130111500/https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+      body_hash: sha256:88253a63121aaed9d78e9b9045eeeef8a4ee4c128f795e71b8a413853136812f
+      body_path: sources/http_captures/japan-fsa-binance-sakura-acquisition-2022-11/primary/web.archive.org__web-20221130111500-https-www.coindesk.com-business-2022-11-30-binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura__bcff3ae886.html
       evidence_use: contextual_unarchived
       note: |
         CoinDesk contemporaneous reporting dated 2022-11-30 corroborates
         the acquisition date and notes Binance's prior FSA warning
         history (2018, 2021). DRYRUN pinned snapshot anchor deferred to
         human audit.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
-      wayback: https://web.archive.org/web/2022/https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+      wayback: https://web.archive.org/web/20221130173511/https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+      body_hash: sha256:205cd9e88ea4329762d96523055f9f4b0645f62fc816429e8b15afcbfaad2a82
+      body_path: sources/http_captures/japan-fsa-binance-sakura-acquisition-2022-11/primary/web.archive.org__web-20221130173511-https-decrypt.co-116013-binance-acquires-japanese-crypto-exchange-sakura__757ca5c37b.html
       evidence_use: contextual_unarchived
       note: |
         Decrypt contemporaneous reporting dated 2022-11-30 corroborating
@@ -117,7 +121,7 @@ coverage:
     note: |
       No asset-layer freeze, blacklist, or issuer action is implicated.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - binance_jp_via_sebc_change_of_control
     note: |
@@ -172,7 +176,10 @@ observations:
           observed_no_change rows. No JP-resident-access restriction
           or operator-side market exit is asserted — this is the
           counter-example to the 2018-03-23 JFSA Binance warning where
-          the same regulator-target dyad produced an exit. DRYRUN:
+          the same regulator-target dyad produced an exit. The Binance
+          blog URL has no Wayback memento; effective-date detail is
+          anchored via the two semi_primary_wayback sources below.
+          NOTE:
           pinned snapshot anchor deferred to human audit.
         evidence_use: contextual_unarchived
       - type: supporting_journalism
@@ -205,7 +212,47 @@ observations:
           pinned snapshot anchor deferred to human audit.
         evidence_use: contextual_unarchived
 
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+        wayback: https://web.archive.org/web/20221130111500/https://www.coindesk.com/business/2022/11/30/binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura
+        body_hash: sha256:88253a63121aaed9d78e9b9045eeeef8a4ee4c128f795e71b8a413853136812f
+        body_path: sources/http_captures/japan-fsa-binance-sakura-acquisition-2022-11/primary/web.archive.org__web-20221130111500-https-www.coindesk.com-business-2022-11-30-binance-enters-japan-with-acquisition-of-regulated-crypto-exchange-sakura__bcff3ae886.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance, sebc]
+          countries: [JP]
+          time_window:
+            - 2022-11-30T00:00:00Z
+            - 2026-05-21T00:00:00Z
+        note: |
+          CoinDesk 2022-11-30 contemporaneous report. Independent
+          semi-primary anchor 1 of 2. Wayback memento 20221130111500.
+      - type: semi_primary_wayback
+        url: https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+        wayback: https://web.archive.org/web/20221130173511/https://decrypt.co/116013/binance-acquires-japanese-crypto-exchange-sakura
+        body_hash: sha256:205cd9e88ea4329762d96523055f9f4b0645f62fc816429e8b15afcbfaad2a82
+        body_path: sources/http_captures/japan-fsa-binance-sakura-acquisition-2022-11/primary/web.archive.org__web-20221130173511-https-decrypt.co-116013-binance-acquires-japanese-crypto-exchange-sakura__757ca5c37b.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance, sebc]
+          countries: [JP]
+          time_window:
+            - 2022-11-30T00:00:00Z
+            - 2026-05-21T00:00:00Z
+        note: |
+          Decrypt 2022-11-30 contemporaneous report. Independent
+          semi-primary anchor 2 of 2. Wayback memento 20221130173511.
+
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. Binance blog URL has no Wayback memento;
+  anchored via CoinDesk Wayback 20221130111500 + Decrypt Wayback
+  20221130173511 semi_primary_wayback (2 independent meets admission).
+  coverage[offramp_cex] partially_measured->measured. Binance acquires
+  Sakura Exchange BitCoin (JFSA-registered CAESP) 2022-11-30 - permissive
+  change-of-control, no restriction; counter-example to 2018 JFSA Binance
+  warning. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17 Wave 2.2D** (P1
   permissive-counterexample sweep; lean run): authored by LLM agent
   without personally verifying Wayback / body_hash; status=draft and

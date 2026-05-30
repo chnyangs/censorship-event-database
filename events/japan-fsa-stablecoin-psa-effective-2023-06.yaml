@@ -38,15 +38,15 @@
 id: japan-fsa-stablecoin-psa-effective-2023-06
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
 last_verified: 2026-05-16
 
@@ -62,7 +62,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
-      wayback: https://web.archive.org/web/2023/https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
+      wayback: https://web.archive.org/web/20230608144659/https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
+      body_hash: sha256:0d10b62ea6b24448602ee0707c59ef7494256cb83a277ded8eaa83d48740d7b0
+      body_path: sources/http_captures/japan-fsa-stablecoin-psa-effective-2023-06/primary/web.archive.org__web-20230608144659-https-www.fsa.go.jp-en-newsletter-weekly2023-540.html__1b6ee49783.html
       evidence_use: contextual_unarchived
       note: |
         Japan Financial Services Agency (金融庁 / FSA) Weekly Review No.540
@@ -85,9 +87,11 @@ trigger:
         the specific FSA Weekly Review No.540 permalink, plus the FSA's
         Japanese-language press notice for the 2023-06-01 commencement,
         deferred to non-DRYRUN release.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://cryptoforinnovation.org/policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework/
-      wayback: https://web.archive.org/web/2023/https://cryptoforinnovation.org/policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework/
+      wayback: https://web.archive.org/web/20230923150331/https://cryptoforinnovation.org/policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework/
+      body_hash: sha256:287ba1d1b81f0f4ab6da0eb6a0115d119b90d4380e81476f16c6412696a459d6
+      body_path: sources/http_captures/japan-fsa-stablecoin-psa-effective-2023-06/primary/web.archive.org__web-20230923150331-https-cryptoforinnovation.org-policy-brief-summary-of-japanese-fsa-crypto-asset-and-stablecoins-framework__989a557b96.html
       evidence_use: contextual_unarchived
       note: |
         Crypto Council for Innovation policy brief "Summary of Japanese
@@ -189,7 +193,7 @@ coverage:
       not_measured rather than partially_measured because no
       observation is anchored in this DRYRUN pass.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope: [jp_registered_vasp_stablecoin_listings, jp_epiesp_registration_class]
     note: |
       Load-bearing axis for null_event coding. Pre-existing JP-registered
@@ -222,8 +226,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
-        wayback: https://web.archive.org/web/2023/https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230608144659/https://www.fsa.go.jp/en/newsletter/weekly2023/540.html
+        body_hash: sha256:0d10b62ea6b24448602ee0707c59ef7494256cb83a277ded8eaa83d48740d7b0
+        body_path: sources/http_captures/japan-fsa-stablecoin-psa-effective-2023-06/primary/web.archive.org__web-20230608144659-https-www.fsa.go.jp-en-newsletter-weekly2023-540.html__1b6ee49783.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [jp_registered_vasp_cohort, jp_epi_issuer_class]
           countries: [JP]
@@ -264,6 +270,13 @@ observations:
           observed_no_change coding for the 2023-06-01 → 2023-12 window.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. FSA Weekly Review 540 Wayback 20230608144659
+  (primary_legal) + Crypto for Innovation policy brief Wayback 20230923150331
+  (semi_primary_wayback) replayable body_hash. coverage[offramp_cex]
+  partially_measured->measured. PSA Amendment Act EPI regime commenced
+  2023-06-01 - framework, no immediate listing cascade. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F agent_draft
   preamble): authored by LLM agent without personally verifying
   Wayback/body_hash archives; origin=agent_draft + status=draft per
