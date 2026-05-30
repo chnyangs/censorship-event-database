@@ -27,17 +27,17 @@
 id: wikileaks-bank-of-america-block-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-paypal-freeze-2010-12
@@ -237,58 +237,26 @@ observations:
     country: US
     sources:
       - type: primary_corporate
-        url: https://newsroom.bankofamerica.com/
-        wayback: https://web.archive.org/web/2010/https://newsroom.bankofamerica.com/
-        evidence_use: contextual_unarchived
-        note: |
-          Bank of America public statement of 2010-12-18 is the
-          direct off-ramp-rail observation: the bank declares it
-          "will not process any transactions of any type that we
-          have reason to believe are intended for WikiLeaks". The
-          stated rationale is the bank's "reasonable belief that
-          WikiLeaks may be engaged in activities that are, among
-          other things, inconsistent with our internal policies for
-          processing payments". attribution=direct because the
-          corporate statement is itself the policy action; Bank of
-          America is the US-bank rail and its statement is the
-          off-ramp-rail closure for WikiLeaks USD donations.
-          Specific Wayback snapshot timestamp requires re-pinning
-          in human audit.
-      - type: supporting_journalism
-        url: https://www.reuters.com/article/idUSTRE6BH0NQ/
-        wayback: https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6BH0NQ/
-        evidence_use: contextual_unarchived
-        note: |
-          Reuters wire copy of 2010-12-18 carrying the canonical
-          Bank of America statement quote. Reuters is the
-          originating public source of the "inconsistent with our
-          internal policies" sentence reproduced across downstream
-          coverage. Specific Wayback snapshot timestamp requires
-          re-pinning in human audit.
-      - type: supporting_journalism
-        url: https://www.nbcnews.com/id/wbna40728284
-        wayback: https://web.archive.org/web/2010/https://www.nbcnews.com/id/wbna40728284
-        evidence_use: contextual_unarchived
-        note: |
-          NBC News 2010-12-18 syndication "Bank of America cuts
-          off WikiLeaks payments" reproducing the canonical
-          corporate statement. Cross-confirms the same-day
-          announcement. Specific Wayback snapshot timestamp
-          requires re-pinning in human audit.
-      - type: supporting_community
         url: https://wikileaks.org/Banking-Blockade.html
-        wayback: https://web.archive.org/web/2011/https://wikileaks.org/Banking-Blockade.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20110630203331/http://wikileaks.org/Banking-Blockade.html
+        body_hash: sha256:f43fbbf0ffec01ac89e02b2a36a332851099a64e56ccfe53b5a6e0a26e5d9f0a
+        body_path: sources/http_captures/wikileaks-bank-of-america-block-2010-12/primary/web.archive.org__web-20110601000000-http-www.wikileaks.org-Banking-Blockade.html__c0a0319be1.html
+        evidence_use: replayable
         note: |
-          WikiLeaks Banking Blockade page listing Bank of America's
-          2010-12-18 refusal as the fifth constituent action of the
-          coordinated December 2010 "banking blockade" alongside
-          PayPal, Mastercard, Visa Europe, and Western Union.
-          Target self-report; corroborated by the corporate /
-          journalism anchors above. Specific Wayback snapshot
-          timestamp requires re-pinning in human audit.
-
+          WikiLeaks canonical Banking-Blockade record (affected-org primary)
+          documenting Bank of America's 2010-12-18 announcement that it would
+          stop processing transactions intended for WikiLeaks. attribution=direct:
+          BofA publicly confirmed the action. The agent-drafted newsroom.
+          bankofamerica.com homepage URL was non-specific. Wayback 20110630203331
+          pinned.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 4/8) by human:xiangwen. Agent primary (BofA newsroom homepage)
+  non-specific + fabricated Reuters/NBC journalism URLs (no mementos)
+  -> replaced with WikiLeaks Banking-Blockade primary record (Wayback
+  20110630203331, body_hash f43fbbf0...; page documents BofA 3x).
+  offramp_cex observed_change/direct. comparison/empirical_case preserved.
+
   NEW EVENT AUTHORED — agent_draft 2026-05-16. Phase E
   discovery-only contextual case for the 2010-12-18 Bank of America
   public statement announcing the bank's refusal to process any

@@ -1,17 +1,17 @@
 id: wikileaks-visa-europe-suspension-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-paypal-freeze-2010-12
@@ -222,58 +222,26 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_corporate
-        url: https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
-        wayback: https://web.archive.org/web/2010/https://www.visaeurope.com/media/pdf/wikileaks_statement.pdf
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          countries: [EU, IS]
-          providers: [visa_europe, teller_korta]
-          time_window:
-            - 2010-12-07T00:00:00Z
-            - 2011-06-30T00:00:00Z
+        url: https://wikileaks.org/Banking-Blockade.html
+        wayback: https://web.archive.org/web/20110630203331/http://wikileaks.org/Banking-Blockade.html
+        body_hash: sha256:f43fbbf0ffec01ac89e02b2a36a332851099a64e56ccfe53b5a6e0a26e5d9f0a
+        body_path: sources/http_captures/wikileaks-visa-europe-suspension-2010-12/primary/web.archive.org__web-20110601000000-http-www.wikileaks.org-Banking-Blockade.html__c0a0319be1.html
+        evidence_use: replayable
         note: |
-          Visa Europe's own corporate statement of 2010-12-07
-          announcing the suspension of WikiLeaks-class donations
-          pending an investigation of whether the WikiLeaks
-          website contravenes Visa operating rules. The downstream
-          operational effect on the same day was Teller A/S
-          terminating the DataCell ehf merchant agreement under
-          Visa Europe instruction. observation_kind=observed_change
-          at offramp_cex (card-network acquirer rail).
-          attribution=direct because the source is the operator
-          itself naming the action. DRYRUN: pinned Wayback snapshot
-          and body_hash capture for the visaeurope.com PDF deferred
-          to human audit.
-      - type: supporting_journalism
-        url: https://www.reuters.com/article/idUSTRE6B65T420101207
-        wayback: https://web.archive.org/web/2010/https://www.reuters.com/article/idUSTRE6B65T420101207
-        evidence_use: contextual_unarchived
-        note: |
-          Reuters (2010-12-07) places the Visa Europe action at
-          this day and corroborates the cutoff of WikiLeaks
-          donations via the DataCell-Teller acquirer chain.
-          Independent contemporaneous journalism source. DRYRUN:
-          Wayback anchor unverified.
-      - type: supporting_journalism
-        url: https://www.bbc.co.uk/news/world-us-canada-11935539
-        wayback: https://web.archive.org/web/2010/https://www.bbc.co.uk/news/world-us-canada-11935539
-        evidence_use: contextual_unarchived
-        note: |
-          BBC (2010-12-07/08) "Wikileaks: Visa, Mastercard move
-          to block payments" — independent corroboration of the
-          Visa Europe card-network suspension placed at 2010-12-07
-          alongside MasterCard Europe. DRYRUN: Wayback anchor
-          unverified.
-      - type: supporting_journalism
-        url: https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back
-        wayback: https://web.archive.org/web/2010/https://www.theguardian.com/media/2010/dec/07/visa-mastercard-wikileaks-back
-        evidence_use: contextual_unarchived
-        note: |
-          The Guardian (2010-12-07) confirms the Visa Europe
-          suspension and the DataCell-Teller-Korta acquirer chain
-          context. DRYRUN: Wayback anchor unverified.
-
+          WikiLeaks canonical Banking-Blockade record (affected-org primary)
+          documenting Visa Europe's 2010-12-07 suspension of WikiLeaks card
+          payments (processed via the Icelandic acquirer Teller/Korta).
+          The agent-drafted visaeurope.com PDF URL was fabricated (no Wayback
+          memento). attribution=direct: Visa publicly confirmed the suspension;
+          this page records it. Wayback 20110630203331 pinned.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 2/8) by human:xiangwen. Agent primary URL (visaeurope.com PDF)
+  FABRICATED -> replaced with WikiLeaks Banking-Blockade primary record
+  (Wayback 20110630203331, body_hash f43fbbf0...). Fabricated Reuters/BBC/
+  Guardian journalism URLs (no mementos) dropped. offramp_cex
+  observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase E S5
   corporate-card-network discovery; lean run): authored by LLM
   agent without personally verifying Wayback/body_hash;

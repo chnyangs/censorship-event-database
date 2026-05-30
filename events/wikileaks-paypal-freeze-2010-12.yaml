@@ -1,17 +1,17 @@
 id: wikileaks-paypal-freeze-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-visa-europe-suspension-2010-12
@@ -179,54 +179,57 @@ observations:
     country: US
     sources:
       - type: primary_corporate
-        url: https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/
-        wayback: https://web.archive.org/web/2010/https://www.thepaypalblog.com/2010/12/why-paypal-restricted-wikileaks-account/
-        evidence_use: contextual_unarchived
+        url: https://www.wikileaks.org/PayPal-freezes-WikiLeaks-donations.html
+        wayback: https://web.archive.org/web/20110527212402/http://www.wikileaks.org/PayPal-freezes-WikiLeaks-donations.html
+        body_hash: sha256:176da1f635a85725bb3971a31c4a97abc29e332b7a7a84d092aa2417282ace67
+        body_path: sources/http_captures/wikileaks-paypal-freeze-2010-12/primary/web.archive.org__web-20110527212402-http-www.wikileaks.org-PayPal-freezes-WikiLeaks-donations.html__e523effd2c.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [paypal]
           time_window:
             - 2010-12-04T00:00:00Z
             - 2010-12-31T23:59:59Z
         note: |
-          PayPal corporate blog post 2010-12-04 ("Why PayPal
-          restricted WikiLeaks account") is the corporate-statement
-          anchor for the freeze. attribution=direct because the
-          observed change (permanent merchant-account restriction) is
-          self-attested by the actor in the same corporate statement
-          that records the action. DRYRUN: wayback wildcard pointer
-          in lieu of pinned-timestamp snapshot.
-      - type: supporting_journalism
-        url: https://techcrunch.com/2010/12/08/paypal-wikileaks/
-        wayback: https://web.archive.org/web/2010/https://techcrunch.com/2010/12/08/paypal-wikileaks/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [paypal]
-          time_window:
-            - 2010-12-08T00:00:00Z
-            - 2010-12-31T23:59:59Z
+          WikiLeaks official statement page documenting PayPal's
+          2010-12-04 permanent restriction of the WikiLeaks donation
+          merchant account (operated by the Wau Holland Stiftung).
+          Affected-org primary account of the offramp_cex freeze.
+          attribution=direct: PayPal publicly confirmed the action; this
+          page records it contemporaneously. The original PayPal corporate
+          blog post is no longer in the Wayback Machine. Wayback
+          20110527212402 pinned.
+      - type: semi_primary_wayback
+        url: https://www.bloomberg.com/news/articles/2010-12-04/paypal-restricts-wikileaks-account-as-website-comes-under-global-scrutity
+        wayback: https://web.archive.org/web/20150413182628/http://www.bloomberg.com/news/articles/2010-12-04/paypal-restricts-wikileaks-account-as-website-comes-under-global-scrutity
+        body_hash: sha256:df106cc72bf4a547cb815aa1420f505d1019160a90396c7b602addbc460dffb5
+        body_path: sources/http_captures/wikileaks-paypal-freeze-2010-12/primary/web.archive.org__web-20101205000000-https-www.bloomberg.com-news-articles-2010-12-04-paypal-restricts-wikileaks-account-as-website-comes-under-global-scrutity__b6ac26fa6c.html
+        evidence_use: replayable
         note: |
-          TechCrunch 2010-12-08 coverage of PayPal VP Osama Bedier's
-          Le Web Paris conference admission: the State Department had
-          determined WikiLeaks' activities to be illegal under US law
-          (via a 2010-11-27 letter to WikiLeaks itself, not to
-          PayPal), and that determination informed PayPal's
-          Acceptable-Use-Policy enforcement decision. This is the
-          single most-cited corporate-statement anchor in academic
-          literature on the 2010 WikiLeaks payment-rail blockade.
-      - type: supporting_journalism
-        url: https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html
-        wayback: https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/04/wikileaks.pay.pal/index.html
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [paypal]
-          time_window:
-            - 2010-12-04T00:00:00Z
-            - 2010-12-05T23:59:59Z
+          Bloomberg 2010-12-04 coverage: PayPal cut WikiLeaks' access to
+          funds, citing Acceptable-Use-Policy violation. Independent
+          first semi-primary anchor.
+      - type: semi_primary_wayback
+        url: https://www.csmonitor.com/Technology/Horizons/2010/1208/Why-did-PayPal-ditch-WikiLeaks-The-State-Department-asked-it-to
+        wayback: https://web.archive.org/web/20150911222850/http://www.csmonitor.com/Technology/Horizons/2010/1208/Why-did-PayPal-ditch-WikiLeaks-The-State-Department-asked-it-to
+        body_hash: sha256:467aa4a7ba4a4a60d9fa775a99e9b4d63ce7567268b6ddd13e4a4c63a9ae4555
+        body_path: sources/http_captures/wikileaks-paypal-freeze-2010-12/primary/web.archive.org__web-20101209000000-https-www.csmonitor.com-Technology-Horizons-2010-1208-Why-did-PayPal-ditch-WikiLeaks-The-State-Department-asked-it-to__7e9b4f2d48.html
+        evidence_use: replayable
         note: |
-          CNN 2010-12-04 coverage. Independent journalism confirmation
-          of the trigger date and platform action scope.
-
+          Christian Science Monitor 2010-12-08 coverage recording PayPal
+          VP Osama Bedier's Le Web admission that the US State Department
+          determination informed the AUP enforcement decision. Independent
+          second semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 1/8) by human:xiangwen as empirical_case. Agent-drafted
+  primary URL (thepaypalblog.com/.../why-paypal-restricted-wikileaks-
+  account) was fabricated (zero Wayback mementos) and REPLACED with real
+  archived sources: WikiLeaks official statement (primary_corporate,
+  Wayback 20110527212402, body_hash 176da1f6...) + Bloomberg 2010-12-04
+  (semi_primary_wayback, 20150413182628, df106cc7...) + CSMonitor
+  2010-12-08 (semi_primary_wayback, 20150911222850, 467aa4a7...). offramp_cex
+  observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent

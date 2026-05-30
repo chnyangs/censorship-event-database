@@ -1,17 +1,17 @@
 id: wikileaks-mastercard-suspension-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-paypal-freeze-2010-12
@@ -196,52 +196,33 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_corporate
-        url: https://www.mastercard.com/
-        wayback: https://web.archive.org/web/2010/https://www.mastercard.com/
-        evidence_use: contextual_unarchived
+        url: https://wikileaks.org/Banking-Blockade.html
+        wayback: https://web.archive.org/web/20110630203331/http://wikileaks.org/Banking-Blockade.html
+        body_hash: sha256:f43fbbf0ffec01ac89e02b2a36a332851099a64e56ccfe53b5a6e0a26e5d9f0a
+        body_path: sources/http_captures/wikileaks-mastercard-suspension-2010-12/primary/web.archive.org__web-20110601000000-http-www.wikileaks.org-Banking-Blockade.html__c0a0319be1.html
+        evidence_use: replayable
         note: |
-          MasterCard Worldwide spokesman Chris Monteiro statement,
-          delivered to press 2010-12-06: "MasterCard is in the
-          process of working to suspend the acceptance of MasterCard
-          cards on WikiLeaks until the situation is resolved …
-          MasterCard rules prohibit customers from directly or
-          indirectly engaging in or facilitating any action that is
-          illegal." attribution=direct because the operator itself
-          declares the policy change; the statement is the operative
-          act of severance. The MasterCard newsroom has no
-          contemporaneous standalone press release, so the operator-
-          domain root is used as the canonical operator anchor.
-          Marked evidence_use=contextual_unarchived because the
-          spokesman quotation surface was not pinned to a specific
-          Wayback snapshot or body_hash+body_path during this
-          authoring pass.
-      - type: supporting_journalism
+          WikiLeaks canonical Banking-Blockade record (affected-org primary)
+          documenting MasterCard's 2010-12-07 suspension of WikiLeaks payments.
+          attribution=direct: MasterCard publicly confirmed the action.
+          Wayback 20110630203331 pinned.
+      - type: semi_primary_wayback
         url: https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm
-        wayback: https://web.archive.org/web/2010/https://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20101209234220/http://money.cnn.com/2010/12/08/news/companies/mastercard_wiki/index.htm
+        body_hash: sha256:d57757d55469868e201a480f0653c80d46e1e6efbb7ec26b7fa93da15d9b049c
+        body_path: sources/http_captures/wikileaks-mastercard-suspension-2010-12/primary/web.archive.org__web-20101209000000-http-money.cnn.com-2010-12-08-news-companies-mastercard_wiki-index.htm__100baa7e23.html
+        evidence_use: replayable
         note: |
-          CNN Money 2010-12-08 carries the MasterCard spokesman
-          statement and reports the operational effect (acceptance
-          suspended; mastercard.com itself subsequently DDoSed by
-          Operation Payback on 2010-12-08 in retaliation). Used as
-          contemporaneous third-party corroboration of the operator
-          statement. Marked evidence_use=contextual_unarchived
-          pending Wayback re-pin and body_hash capture during human
-          audit.
-      - type: supporting_journalism
-        url: https://www.france24.com/en/20101209-hackers-attack-mastercard-visa-support-wikileaks
-        wayback: https://web.archive.org/web/2010/https://www.france24.com/en/20101209-hackers-attack-mastercard-visa-support-wikileaks
-        evidence_use: contextual_unarchived
-        note: |
-          France 24 2010-12-09 reporting that cross-references the
-          MasterCard processing suspension and the Visa Europe leg
-          (sibling event wikileaks-visa-europe-suspension-2010-12)
-          and frames the Operation Payback DDoS as third-party
-          retaliation against the card-network operators. Marked
-          evidence_use=contextual_unarchived pending Wayback re-pin
-          and body_hash capture during human audit.
-
+          CNNMoney 2010-12-08 coverage of MasterCard halting WikiLeaks
+          payments. Independent semi-primary anchor. Wayback 20101209234220 pinned.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 3/8) by human:xiangwen. Agent primary URL (mastercard.com
+  homepage) weak/non-specific -> replaced with WikiLeaks Banking-Blockade
+  primary record (f43fbbf0...) + CNNMoney 2010-12-08 (semi_primary_wayback,
+  Wayback 20101209234220, d57757d5...). Fabricated france24 URL dropped.
+  offramp_cex observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase E pre-Bitcoin
   baseline discovery pass per
   sources/pre_bitcoin_baseline_2008_2012/triage_manifest.json

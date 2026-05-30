@@ -1,17 +1,17 @@
 id: wikileaks-amazon-aws-eviction-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-everydns-domain-termination-2010-12
@@ -134,60 +134,41 @@ observations:
     sources:
       - type: primary_corporate
         url: https://aws.amazon.com/message/65348/
-        wayback: https://web.archive.org/web/2010/https://aws.amazon.com/message/65348/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [amazon_aws]
-          countries: [US]
-          time_window:
-            - 2010-12-01T00:00:00Z
-            - 2010-12-02T23:59:59Z
+        wayback: https://web.archive.org/web/20101203190043/http://aws.amazon.com/message/65348/
+        body_hash: sha256:0d7f1f8f509c9d4dbce3726d25078e49ae1a63ece43bcc269b047ec58abffe0d
+        body_path: sources/http_captures/wikileaks-amazon-aws-eviction-2010-12/primary/web.archive.org__web-20101203000000-https-aws.amazon.com-message-65348__517c15f209.html
+        evidence_use: replayable
         note: |
-          Amazon Web Services official statement "WikiLeaks" (2010-12-02)
-          confirming the WikiLeaks account was terminated for terms-of-
-          service violations: "AWS does not pre-screen its customers, but
-          it does have terms of service that must be followed. WikiLeaks
-          was not following them." AWS explicitly denies that government
-          inquiry or DDoS prompted the termination. Attribution annotated
-          plausible because Senator Lieberman's office publicly took
-          credit for prompting the action while AWS denies political
-          pressure; no internal AWS communication has been disclosed
-          that would harden the attribution to direct. No archived
-          AWS account-termination internal record pinned in this
-          session.
-      - type: supporting_journalism
+          Amazon Web Services official statement ("WikiLeaks") explaining
+          its 2010-12-01 termination of WikiLeaks hosting on AWS for AUP/terms
+          violations. Iconic primary-corporate anchor (still live; Wayback
+          20101203190043 pinned).
+      - type: semi_primary_wayback
+        url: https://www.theregister.co.uk/2010/12/01/wikileaks_disappers_from_amazon_us/
+        wayback: https://web.archive.org/web/20101203062456/http://www.theregister.co.uk/2010/12/01/wikileaks_disappers_from_amazon_us/
+        body_hash: sha256:bdc06e1dff16bd05b9fe94395749977cc01f3297c5b67a94998a6b76a818d2fa
+        body_path: sources/http_captures/wikileaks-amazon-aws-eviction-2010-12/primary/web.archive.org__web-20101202000000-http-www.theregister.co.uk-2010-12-01-wikileaks_disappers_from_amazon_us__d735e9558b.html
+        evidence_use: replayable
+        note: |
+          The Register 2010-12-01 coverage of WikiLeaks' eviction from
+          Amazon US hosting. Independent semi-primary anchor.
+      - type: semi_primary_wayback
         url: https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html
-        wayback: https://web.archive.org/web/2010/https://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [amazon_aws]
-          countries: [US]
-          time_window:
-            - 2010-12-01T00:00:00Z
-            - 2010-12-02T23:59:59Z
+        wayback: https://web.archive.org/web/20101202040945/http://www.cnn.com/2010/US/12/01/wikileaks.amazon/index.html
+        body_hash: sha256:7fe56f12ed53641ccd916ebee1f6623bf60c6128dcf67dd2ad65e25b5fc3fab6
+        body_path: sources/http_captures/wikileaks-amazon-aws-eviction-2010-12/primary/web.archive.org__web-20101202000000-http-www.cnn.com-2010-US-12-01-wikileaks.amazon-index.html__8ba2fd3e9f.html
+        evidence_use: replayable
         note: |
-          CNN 2010-12-01 reporting that Amazon dropped WikiLeaks after
-          contact from Senator Joe Lieberman's office. Quotes
-          Lieberman's press statement: "This morning Amazon informed my
-          staff that it has ceased to host the WikiLeaks website."
-      - type: supporting_journalism
-        url: https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/
-        wayback: https://web.archive.org/web/2010/https://www.theregister.com/2010/12/01/wikileaks_disappers_from_amazon_us/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [amazon_aws]
-          countries: [US]
-          time_window:
-            - 2010-12-01T00:00:00Z
-            - 2010-12-02T23:59:59Z
-        note: |
-          The Register 2010-12-01 contemporaneous reporting that
-          WikiLeaks vanished from Amazon EC2 hosting on the afternoon
-          of 2010-12-01. Establishes the ~2-day AWS-hosting window
-          (2010-11-29/30 migration after DDoS against PRQ → 2010-12-01
-          AWS termination).
-
+          CNN 2010-12-01 coverage confirming Amazon dropped WikiLeaks from
+          its servers. Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 6/8) by human:xiangwen. Anchored by Amazon AWS official
+  statement (primary_corporate, aws.amazon.com/message/65348, Wayback
+  20101203190043) + The Register + CNN (semi_primary_wayback, real .co.uk
+  URL substituted for fabricated .com). l4_frontend observed_change/plausible.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED -- DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent

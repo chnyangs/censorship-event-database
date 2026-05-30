@@ -1,17 +1,17 @@
 id: wikileaks-postfinance-account-closure-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-paypal-freeze-2010-12
@@ -163,41 +163,26 @@ observations:
     country: CH
     sources:
       - type: primary_corporate
-        url: https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html
-        wayback: https://web.archive.org/web/2010/https://www.postfinance.ch/en/about-us/media/news-archive/2010/wikileaks.html
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          countries: [CH]
-          providers: [postfinance]
-          time_window:
-            - 2010-12-06T00:00:00Z
-            - 2010-12-31T23:59:59Z
+        url: https://wikileaks.org/Banking-Blockade.html
+        wayback: https://web.archive.org/web/20110630203331/http://wikileaks.org/Banking-Blockade.html
+        body_hash: sha256:f43fbbf0ffec01ac89e02b2a36a332851099a64e56ccfe53b5a6e0a26e5d9f0a
+        body_path: sources/http_captures/wikileaks-postfinance-account-closure-2010-12/primary/web.archive.org__web-20110601000000-http-www.wikileaks.org-Banking-Blockade.html__c0a0319be1.html
+        evidence_use: replayable
         note: |
-          PostFinance same-day media statement is the corporate-statement
-          anchor for the closure: the bank itself announces termination
-          of the "Assange Julian Paul, Geneve" customer relationship on
-          stated grounds of false residency information / failure to
-          meet customer-relationship criteria. attribution=direct: the
-          observed change (account termination) is the action stated by
-          the actor itself in a primary-corporate communication. DRYRUN:
-          wayback wildcard pointer in lieu of pinned-timestamp snapshot.
-      - type: supporting_journalism
-        url: https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question
-        wayback: https://web.archive.org/web/2010/https://www.bloomberg.com/news/articles/2010-12-06/wikileaks-founder-assange-s-swisspost-account-closed-on-residency-question
-        evidence_use: contextual_unarchived
-        note: |
-          Bloomberg same-day independent pin on the closure date, the
-          PostFinance rationale, and the broader-blockade interpretation.
-      - type: supporting_journalism
-        url: https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account
-        wayback: https://web.archive.org/web/2010/https://www.aljazeera.com/news/2010/12/6/swiss-bank-closes-wikileaks-account
-        evidence_use: contextual_unarchived
-        note: |
-          Al Jazeera same-day independent pin situating the PostFinance
-          closure within the PayPal / MasterCard / Visa Europe blockade
-          cluster.
-
+          WikiLeaks canonical Banking-Blockade record (affected-org primary)
+          documenting Swiss PostFinance's 2010-12-06 closure of Julian Assange's
+          defence-fund account (citing a false-residency pretext). attribution=
+          direct: PostFinance publicly confirmed the closure. The agent-drafted
+          postfinance.ch news-archive URL was fabricated (no Wayback memento).
+          Wayback 20110630203331 pinned.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 5/8) by human:xiangwen. Agent primary URL (postfinance.ch
+  news-archive) FABRICATED + fabricated Bloomberg/AlJazeera journalism URLs
+  -> replaced with WikiLeaks Banking-Blockade primary record (Wayback
+  20110630203331, body_hash f43fbbf0...; page documents PostFinance).
+  offramp_cex observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this drafting session). Authored by LLM

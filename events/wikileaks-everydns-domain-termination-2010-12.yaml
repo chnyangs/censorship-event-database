@@ -1,17 +1,17 @@
 id: wikileaks-everydns-domain-termination-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-amazon-aws-eviction-2010-12
@@ -168,66 +168,34 @@ observations:
     actor: dns_provider:everydns
     event: everydns_terminated_authoritative_dns_for_wikileaks_org_under_tos
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2010-12-02T22:00:00Z
     precision: hour
     delta_hours: 0
     sources:
-      - type: primary_corporate
-        url: http://everydns.com/
-        wayback: https://web.archive.org/web/2010/http://everydns.com/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - wikileaks.org
-          providers:
-            - everydns
-          time_window:
-            - 2010-12-02T00:00:00Z
-            - 2010-12-03T23:59:59Z
+      - type: semi_primary_wayback
+        url: https://www.theregister.co.uk/2010/12/03/wikileaks_loses_dns/
+        wayback: https://web.archive.org/web/20101204054939/http://www.theregister.co.uk/2010/12/03/wikileaks_loses_dns/
+        body_hash: sha256:65efe345e934bf4d05e9e9b6f96332c23b67865960fbf8e783817da00416b083
+        body_path: sources/http_captures/wikileaks-everydns-domain-termination-2010-12/primary/web.archive.org__web-20101204000000-http-www.theregister.co.uk-2010-12-03-wikileaks_loses_dns__3de29cd81a.html
+        evidence_use: replayable
         note: |
-          EveryDNS's own 2010-12-02 public statement is the canonical
-          corporate-policy source for this L4 (DNS-layer) termination.
-          The DNS-provider operator names: (a) the action
-          (authoritative-DNS termination for wikileaks.org), (b) the
-          TOS clause invoked (interference-with-other-members'-use),
-          and (c) the proximate cause (DDoS traffic against the
-          wikileaks.org records). attribution=direct because the
-          source is the operator naming the action. DRYRUN: pinned
-          Wayback snapshot and body_hash for the EveryDNS statement
-          page are deferred to the human-audit pass; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: supporting_journalism
-        url: https://www.theregister.com/2010/12/03/wikileaks_loses_dns/
-        wayback: https://web.archive.org/web/2010/https://www.theregister.com/2010/12/03/wikileaks_loses_dns/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - wikileaks.org
-          providers:
-            - everydns
-          time_window:
-            - 2010-12-02T00:00:00Z
-            - 2010-12-03T23:59:59Z
-        note: |
-          The Register contemporaneous coverage (2010-12-03) of the
-          EveryDNS termination, retained for hour-level timing
-          triangulation and independent confirmation of the TOS
-          clause / DDoS rationale. DRYRUN: pinned Wayback snapshot
-          deferred to human audit.
-      - type: supporting_journalism
+          The Register 2010-12-03 coverage of EveryDNS terminating
+          wikileaks.org authoritative DNS (effective 2010-12-02 23:00 EST),
+          citing DDoS-driven ToS violation. Independent semi-primary anchor.
+          The agent-drafted everydns.com homepage primary URL was non-archivable;
+          attribution downgraded direct->plausible (no archived EveryDNS
+          statement pinned).
+      - type: semi_primary_wayback
         url: https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/
-        wayback: https://web.archive.org/web/2010/https://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20101204140314/http://thenextweb.com/media/2010/12/03/wikileaks-resolves-dns-moves-to-switzerland/
+        body_hash: sha256:718e6dcbb245bccfccf694780b3a66c2a02df596b529d3c57e0c9afc367113df
+        body_path: sources/http_captures/wikileaks-everydns-domain-termination-2010-12/primary/web.archive.org__web-20101204000000-http-thenextweb.com-media-2010-12-03-wikileaks-resolves-dns-moves-to-switzerland__7adb278f4a.html
+        evidence_use: replayable
         note: |
-          The Next Web follow-up documenting the immediate mirror-
-          network response — wikileaks.org relocated to wikileaks.ch
-          (Swiss Pirate Party hosting) and a global mirror network
-          within ~24 hours. Confirms the effect of the EveryDNS
-          termination at the domain-resolution layer and the
-          subsequent multi-jurisdictional domain-mirroring response.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-
+          The Next Web 2010-12-03 coverage confirming the EveryDNS
+          termination and WikiLeaks' relocation to the Swiss wikileaks.ch domain.
+          Independent second semi-primary anchor.
 recovery:
   - layer: l4_frontend
     resolved: true
@@ -244,6 +212,14 @@ recovery:
       domain and mirror network.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 7/8) by human:xiangwen. Agent primary URL (everydns.com homepage)
+  non-archivable -> dropped; anchored by 2 independent semi_primary_wayback
+  (The Register + The Next Web, real .co.uk URLs, Wayback 20101204054939 /
+  20101204140314). attribution direct->plausible (no archived EveryDNS
+  statement). l4_frontend observed_change/plausible. comparison/empirical_case
+  preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (discovery_only_2008_2012
   tier; lean run): authored by LLM agent without personally verifying
   Wayback/body_hash; origin=agent_draft per validator policy. Real
