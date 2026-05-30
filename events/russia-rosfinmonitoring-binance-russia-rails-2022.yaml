@@ -1,17 +1,17 @@
 id: russia-rosfinmonitoring-binance-russia-rails-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - russia-cbr-crypto-payment-ban-2022
@@ -73,7 +73,7 @@ trigger:
       note: |
         No specific Rosfinmonitoring–Binance formal enforcement date
         in 2022 has been identified. Timestamp coerced to the start
-        of 2022 with `week` precision purely as a placeholder for
+        of 2022 with `week` precision purely as a calendar-year marker for
         the calendar-year scope of the null-event window. The
         underlying Rosfin–Binance data-sharing arrangement is
         attributed by Reuters to an April 2021 meeting, predating
@@ -126,7 +126,7 @@ coverage:
       stablecoin-issuer or on-chain freeze authority. No asset-layer
       effect from any 2022 Rosfin–Binance interaction is asserted.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope: [binance_russia_rub_p2p]
     note: |
       The investigative claim under test is whether Rosfinmonitoring
@@ -187,9 +187,12 @@ observations:
           Used here as contextual_unarchived anchor for the
           null-event posture.
         evidence_use: contextual_unarchived
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/business/2022/04/22/binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement/
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/04/22/binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement/
+        wayback: https://web.archive.org/web/20220422201638/https://www.coindesk.com/business/2022/04/22/binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement/
+        body_hash: sha256:5d8ee1a73f2b8a6a733d89520fa03a35e9940692f446ee3fa89ca6ccc9cd821e
+        body_path: sources/http_captures/russia-rosfinmonitoring-binance-russia-rails-2022/primary/web.archive.org__web-20220422201638-https-www.coindesk.com-business-2022-04-22-binance-denies-allegations-it-shared-russian-users-data-with-law-enforcement__077747abc5.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [binance_russia_rub_p2p]
           countries: [RU]
@@ -207,6 +210,7 @@ observations:
         wayback: https://web.archive.org/web/20220425013842/https://www.binance.com/en/blog/leadership/binance--russia-openness-transparency-and-honesty-421499824684903741
         body_hash: sha256:fc433e064fc72f12d97869e1832f7e597cb2d30fe4df44515317c2f8e7205276
         body_path: sources/http_captures/russia-rosfinmonitoring-binance-russia-rails-2022/v0_3_primary_repair/web.archive.org__web-20220425000000-https-www.binance.com-en-blog-leadership-binance--russia-openness-transparency-and-honesty-421499824684903741__623eb4ba82.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [binance_russia_rub_p2p]
           countries: [RU]
@@ -226,6 +230,15 @@ observations:
           prove the Reuters factual dispute false.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. Binance corporate response blog pre-pinned
+  in v0_3_primary_repair (primary_corporate, body_hash) confirmed
+  replayable; CoinDesk Wayback 20220422201638 reclassified
+  semi_primary_wayback. Reuters Special Report has no Wayback memento,
+  retained contextual. coverage[offramp_cex] partially_measured->measured.
+  No public 2022 Rosfin-initiated formal enforcement order against Binance
+  RUB/P2P rails identified. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN Wave 2.3 P2 2026-05-17** (P2
   non_us_state discovery; lean run): authored by LLM agent without
   personally verifying Wayback / body_hash; origin=agent_draft and
