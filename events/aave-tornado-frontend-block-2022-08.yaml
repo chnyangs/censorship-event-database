@@ -1,17 +1,17 @@
 id: aave-tornado-frontend-block-2022-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - tornado-cash-ofac-2022
@@ -163,63 +163,30 @@ observations:
     actor: frontend:aave_companies_dao
     event: aave_frontend_integrated_trm_labs_api_blocking_tornado_tainted_wallets
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-08-13T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
-      - type: primary_corporate
-        url: https://twitter.com/AaveAave/status/1558414985380536321
-        wayback: https://web.archive.org/web/2022/https://twitter.com/AaveAave/status/1558414985380536321
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - app.aave.com
-          providers:
-            - trm_labs
-          time_window:
-            - 2022-08-13T00:00:00Z
-            - 2022-08-14T23:59:59Z
-        note: |
-          Aave's own Twitter statement of 2022-08-13 is the canonical
-          corporate-policy source for this L4 frontend block. The
-          frontend operator names: (a) the action (wallets that
-          interacted with Tornado Cash contracts post-sanction are
-          blocked from app.aave.com), (b) the mechanism (TRM Labs
-          risk-parameter API integrated on the Aave IPFS frontend),
-          and (c) the upstream cause (compliance with the 2022-08-08
-          OFAC SDN designation, per related event
-          tornado-cash-ofac-2022). attribution=direct because the
-          source is the operator naming the action. DRYRUN: pinned
-          Wayback snapshot and body_hash for this tweet are deferred
-          to the human-audit pass; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: supporting_journalism
-        url: https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
-        wayback: https://web.archive.org/web/2022/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - app.aave.com
-          time_window:
-            - 2022-08-13T00:00:00Z
-            - 2022-08-14T23:59:59Z
-        note: |
-          Blockworks contemporaneous coverage (2022-08-13) of the Aave
-          frontend block, retained for day-level timing triangulation
-          and independent confirmation of the TRM Labs mechanism.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://cryptoslate.com/aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored/
-        wayback: https://web.archive.org/web/2022/https://cryptoslate.com/aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220814221048/https://cryptoslate.com/aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored/
+        body_hash: sha256:e88c85a98c8a2ac17f71f50577b21f6d792dcdb21c8fcf41a91c92566cfd3c69
+        body_path: sources/http_captures/aave-tornado-frontend-block-2022-08/primary/web.archive.org__web-20220815000000-https-cryptoslate.com-aave-confirms-trm-labs-api-blocked-dusted-ethereum-wallets-access-restored__8ef9258569.html
+        evidence_use: replayable
         note: |
-          CryptoSlate contemporaneous coverage documenting Aave's
-          confirmation that the TRM Labs API integration on the Aave
-          IPFS frontend was responsible for the wallet blocks, and
-          the partial rollback of dust-flagged addresses. DRYRUN:
-          pinned Wayback snapshot deferred to human audit.
-
+          CryptoSlate 2022-08 confirming Aave's TRM Labs API blocked
+          Tornado-dusted Ethereum wallets from the app frontend (later restored).
+          Independent semi-primary anchor (replaces unarchivable Aave tweet).
+      - type: semi_primary_wayback
+        url: https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+        wayback: https://web.archive.org/web/20221121141935/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+        body_hash: sha256:0f471941c9c5143b13e359562ec7e079a06b2291236c22c5776b9f3cbee52baa
+        body_path: sources/http_captures/aave-tornado-frontend-block-2022-08/primary/web.archive.org__web-20220815000000-https-blockworks.co-news-defi-web-apps-block-users-hit-by-tornado-cash-dust-attack__e4493a1e17.html
+        evidence_use: replayable
+        note: |
+          Blockworks coverage of DeFi web apps (incl. Aave) blocking users
+          hit by the Tornado-Cash dust attack. Independent second semi-primary.
 recovery:
   - layer: l4_frontend
     resolved: false
@@ -236,6 +203,12 @@ recovery:
       recovery anchor and is tracked separately.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado) by
+  human:xiangwen. Aave tweet (primary) unarchivable -> 2 semi_primary_wayback
+  (CryptoSlate + Blockworks, Wayback 20220814221048 / 20221121141935).
+  attribution direct->plausible. l4_frontend observed_change/plausible.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2
   corporate_policy discovery; lean run): authored by LLM agent
   without personally verifying Wayback/body_hash; origin=agent_draft

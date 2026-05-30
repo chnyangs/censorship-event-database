@@ -1,15 +1,15 @@
 id: tornado-cash-frontend-tornado-cash-eth-block-2022-04
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -190,67 +190,31 @@ observations:
     actor: frontend:tornado_cash_team
     event: tornado_cash_team_integrated_chainalysis_oracle_blocking_ofac_sdn_addresses_at_dapp
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-04-15T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
-      - type: primary_corporate
-        url: https://twitter.com/TornadoCash/status/1514904975037210632
-        wayback: https://web.archive.org/web/2022/https://twitter.com/TornadoCash/status/1514904975037210632
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - tornado.cash
-            - app.tornado.cash
-          providers:
-            - chainalysis
-          time_window:
-            - 2022-04-15T00:00:00Z
-            - 2022-04-16T23:59:59Z
-        note: |
-          Tornado Cash team's own Twitter announcement of 2022-04-15
-          is the canonical corporate-policy source for this L4
-          frontend block. The operator names: (a) the action (OFAC
-          SDN addresses are blocked from depositing/withdrawing
-          through tornado.cash), (b) the mechanism (Chainalysis
-          on-chain sanctions-screening oracle contract queried at
-          the dapp UI), and (c) the voluntary character ("it should
-          not come at the cost of non-compliance"). attribution=
-          direct because the source is the operator naming the
-          action and its motivation under codebook §1.4 (frontend
-          block, operator publicly cites compliance posture within
-          the immediate publication window). DRYRUN: pinned Wayback
-          snapshot and body_hash for this tweet are deferred to the
-          human-audit pass; marked evidence_use=contextual_unarchived
-          per validator policy.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/tech/2022/04/15/tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/04/15/tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - tornado.cash
-          time_window:
-            - 2022-04-15T00:00:00Z
-            - 2022-04-16T23:59:59Z
+        wayback: https://web.archive.org/web/20220415140448/https://www.coindesk.com/tech/2022/04/15/tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp/
+        body_hash: sha256:d72eac8c9ced5e98835bde3651b0267b8e2e3b937bf77232685afbc79b4b39b0
+        body_path: sources/http_captures/tornado-cash-frontend-tornado-cash-eth-block-2022-04/primary/web.archive.org__web-20220416000000-https-www.coindesk.com-tech-2022-04-15-tornado-cash-adds-chainalysis-tool-for-blocking-ofac-sanctioned-wallets-from-dapp__a006914c35.html
+        evidence_use: replayable
         note: |
-          CoinDesk contemporaneous coverage of the 2022-04-15
-          Tornado Cash team announcement, retained for day-level
-          timing triangulation and independent confirmation of the
-          Chainalysis oracle mechanism and frontend-only scope.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-      - type: supporting_journalism
+          CoinDesk 2022-04-15: Tornado Cash added a Chainalysis oracle to its
+          own dapp frontend to block OFAC-sanctioned wallets (self-imposed
+          frontend filtering). Independent semi-primary anchor (replaces
+          unarchivable TornadoCash tweet).
+      - type: semi_primary_wayback
         url: https://cryptopotato.com/tornado-cash-reveals-using-chainalysis-oracle-contract/
-        wayback: https://web.archive.org/web/2022/https://cryptopotato.com/tornado-cash-reveals-using-chainalysis-oracle-contract/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220416160427/https://cryptopotato.com/tornado-cash-reveals-using-chainalysis-oracle-contract/
+        body_hash: sha256:1f730593d3376f8028aa5a38e26e656489e89df75577e592be88b7323b33caab
+        body_path: sources/http_captures/tornado-cash-frontend-tornado-cash-eth-block-2022-04/primary/web.archive.org__web-20220416000000-https-cryptopotato.com-tornado-cash-reveals-using-chainalysis-oracle-contract__16657ac18f.html
+        evidence_use: replayable
         note: |
-          CryptoPotato contemporaneous coverage retained for the
-          co-founder Roman Semenov clarification that the block
-          applies only to the team-operated frontend, not the smart
-          contract — load-bearing for the L4-only scope claim.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-
+          CryptoPotato 2022-04-16 corroborating the Chainalysis-oracle
+          frontend block. Independent second semi-primary anchor.
 recovery:
   - layer: l4_frontend
     resolved: false
@@ -266,6 +230,13 @@ recovery:
       applies to this voluntary 2022-04 action.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado) by
+  human:xiangwen. TornadoCash tweet (primary) unarchivable -> 2
+  semi_primary_wayback (CoinDesk + CryptoPotato, Wayback 20220415140448 /
+  20220416160427). attribution direct->plausible. l4_frontend
+  observed_change/plausible (self-imposed frontend filter). comparison
+  preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17 (Wave 2.2D)**: authored
   by LLM agent without personally verifying Wayback/body_hash;
   origin=agent_draft per validator policy. Real release must replace
