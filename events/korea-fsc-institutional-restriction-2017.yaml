@@ -1,17 +1,17 @@
 id: korea-fsc-institutional-restriction-2017
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 last_human_audit: 2026-05-17
 
 related_events:
@@ -26,8 +26,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.fsc.go.kr/eng/pr010101/22173
-      wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/pr010101/22173
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20210627154808/https://www.fsc.go.kr/eng/pr010101/22173
+      body_hash: sha256:f4e8ebd1f268d3ca53fe8f17ebf9b937a5500385969a340e6340610f003f6138
+      body_path: sources/http_captures/korea-fsc-institutional-restriction-2017/primary/web.archive.org__web-20210627154808-https-www.fsc.go.kr-eng-pr010101-22173__76c46bcbb5.html
+      evidence_use: replayable
       note: |
         South Korea Financial Services Commission (FSC) press release index
         (English site). Joint government emergency measure announced
@@ -46,10 +48,12 @@ trigger:
         re-pinning during human audit before this citation may serve as
         an admission anchor in its own right. Marked
         evidence_use=contextual_unarchived pending that re-pin.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
-      wayback: https://web.archive.org/web/2018/https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20180123164626/https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
+      body_hash: sha256:02320b41a323d7ba4ff520f8c3ee976855f986de08077ad01ae31b0d588c8e63
+      body_path: sources/http_captures/korea-fsc-institutional-restriction-2017/primary/web.archive.org__web-20180123164626-https-www.welivesecurity.com-2018-01-23-south-korea-moves-ban-anonymous-cryptocurrency-trading__c3f8e2a8ef.html
+      evidence_use: replayable
       note: |
         Secondary reporting of the FSC 2018-01-23 confirmation that the
         real-name mandate would take effect 2018-01-30. Used as a
@@ -169,8 +173,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.fsc.go.kr/eng/pr010101/22173
-        wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/pr010101/22173
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210627154808/https://www.fsc.go.kr/eng/pr010101/22173
+        body_hash: sha256:f4e8ebd1f268d3ca53fe8f17ebf9b937a5500385969a340e6340610f003f6138
+        body_path: sources/http_captures/korea-fsc-institutional-restriction-2017/primary/web.archive.org__web-20210627154808-https-www.fsc.go.kr-eng-pr010101-22173__76c46bcbb5.html
+        evidence_use: replayable
         note: |
           KR FSC is the named financial-sector regulator within the
           joint government emergency measure of 2017-12-13. The package
@@ -187,10 +193,12 @@ observations:
           across the regulated-financial-institution sector.
           Provisional wayback anchor uses year-prefix lookup; specific
           snapshot timestamp requires re-pinning during human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
-        wayback: https://web.archive.org/web/2018/https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20180123164626/https://www.welivesecurity.com/2018/01/23/south-korea-moves-ban-anonymous-cryptocurrency-trading/
+        body_hash: sha256:02320b41a323d7ba4ff520f8c3ee976855f986de08077ad01ae31b0d588c8e63
+        body_path: sources/http_captures/korea-fsc-institutional-restriction-2017/primary/web.archive.org__web-20180123164626-https-www.welivesecurity.com-2018-01-23-south-korea-moves-ban-anonymous-cryptocurrency-trading__c3f8e2a8ef.html
+        evidence_use: replayable
         note: |
           Secondary anchor to the FSC 2018-01-23 confirmation of the
           2018-01-30 effective date for the real-name banking mandate.
@@ -199,6 +207,14 @@ observations:
           Wayback timestamp requires re-pinning during human audit.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison) by
+  human:xiangwen as empirical_case. FSC press release Wayback 20210627154808
+  (primary_legal) + WeLiveSecurity Wayback 20180123164626 (semi_primary_wayback)
+  replayable body_hash. offramp_cex observed_change/direct retained (FSC primary
+  pinned). Korea FSC 2017-12-28 / 2018-01 real-name-account + institutional
+  restriction (no anonymous virtual-accounts; banks blocked from crypto-exchange
+  virtual accounts). comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.4 non_us_state
   discovery; lean run): authored by LLM agent without personally
   verifying Wayback/body_hash anchors; status=draft, origin=agent_draft.
