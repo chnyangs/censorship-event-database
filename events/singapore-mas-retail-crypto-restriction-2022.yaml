@@ -1,17 +1,17 @@
 id: singapore-mas-retail-crypto-restriction-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - singapore-mas-binance-services-2021
@@ -25,8 +25,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.mas.gov.sg/news/media-releases/2022/mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public
-      wayback: https://web.archive.org/web/2022*/mas.gov.sg/news/media-releases/2022/mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20220117093725/https://www.mas.gov.sg/news/media-releases/2022/mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public
+      body_hash: sha256:30120aa224be1cfab16a625973a3a9d0faa2ee818f3281264f7207f208fa05fa
+      body_path: sources/http_captures/singapore-mas-retail-crypto-restriction-2022/primary/web.archive.org__web-20220117093725-https-www.mas.gov.sg-news-media-releases-2022-mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public__e920350241.html
+      evidence_use: replayable
       note: |
         Monetary Authority of Singapore (MAS) media release dated
         2022-01-17 announcing guidelines that Digital Payment Token
@@ -92,7 +94,7 @@ coverage:
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: partially_measured
+    status: measured
     scope:
       - sg_dpt_marketing_surfaces
     note: |
@@ -107,7 +109,7 @@ coverage:
     status: not_applicable
     note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - sg_retail_dpt_onboarding
     note: |
@@ -134,8 +136,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.mas.gov.sg/news/media-releases/2022/mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public
-        wayback: https://web.archive.org/web/2022*/mas.gov.sg/news/media-releases/2022/mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220117093725/https://www.mas.gov.sg/news/media-releases/2022/mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public
+        body_hash: sha256:30120aa224be1cfab16a625973a3a9d0faa2ee818f3281264f7207f208fa05fa
+        body_path: sources/http_captures/singapore-mas-retail-crypto-restriction-2022/primary/web.archive.org__web-20220117093725-https-www.mas.gov.sg-news-media-releases-2022-mas-issues-guidelines-to-discourage-cryptocurrency-trading-by-general-public__e920350241.html
+        evidence_use: replayable
         note: |
           MAS 2022-01-17 guidelines forbid DPT service providers from
           promoting DPT services to the Singapore general public via
@@ -153,10 +157,12 @@ observations:
           Wayback captures of representative DPT-provider SG-geo
           landing pages and physical-ATM removal photographs
           deferred.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.morganlewis.com/pubs/2022/01/new-guidelines-discourage-cryptocurrency-trading-by-general-public-in-singapore
-        wayback: https://web.archive.org/web/2022*/morganlewis.com/pubs/2022/01/new-guidelines-discourage-cryptocurrency-trading-by-general-public-in-singapore
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220119220822/https://www.morganlewis.com/pubs/2022/01/new-guidelines-discourage-cryptocurrency-trading-by-general-public-in-singapore
+        body_hash: sha256:793116a281346bd1365b04f7838bf9b5a8e59788f007d03bf211c2baadd73b62
+        body_path: sources/http_captures/singapore-mas-retail-crypto-restriction-2022/primary/web.archive.org__web-20220119220822-https-www.morganlewis.com-pubs-2022-01-new-guidelines-discourage-cryptocurrency-trading-by-general-public-in-singapore__233a5bb278.html
+        evidence_use: replayable
         note: |
           Morgan Lewis 2022-01 client alert summarising the MAS
           guidelines and the immediate-effect compliance expectation.
@@ -176,7 +182,7 @@ observations:
       - type: primary_legal
         url: https://www.mas.gov.sg/news/media-releases/2022/mas-proposes-measures-to-reduce-risks-to-consumers-from-cryptocurrency-trading-and-enhance-standards-of-stablecoin-related-activities
         wayback: https://web.archive.org/web/2022*/mas.gov.sg/news/media-releases/2022/mas-proposes-measures-to-reduce-risks-to-consumers-from-cryptocurrency-trading-and-enhance-standards-of-stablecoin-related-activities
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
           MAS 2022-07-06 consultation paper proposing retail-investor
           access measures including customer-suitability assessment,
@@ -193,6 +199,14 @@ observations:
           anchors deferred.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison) by
+  human:xiangwen as empirical_case. MAS media release Wayback 20220117093725
+  (primary_legal) + Morgan Lewis Wayback 20220119220822 (semi_primary_wayback)
+  replayable body_hash. l4_frontend observed_change/direct + offramp_cex
+  observed_change/plausible. MAS 2022-01-17 Guidelines to discourage
+  cryptocurrency trading by general public (no public ads/promotion of
+  crypto services in SG). comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (agent draft authored
   by LLM authoring agent without personally verifying Wayback /
   body_hash anchors; origin=agent_draft per codebook §8 and
