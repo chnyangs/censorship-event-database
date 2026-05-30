@@ -1,15 +1,15 @@
 id: kraken-monero-eu-delisting-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -170,52 +170,30 @@ observations:
     sources:
       - type: primary_corporate
         url: https://support.kraken.com/articles/support-for-monero-xmr-in-europe
-        wayback: https://web.archive.org/web/2024/https://support.kraken.com/articles/support-for-monero-xmr-in-europe
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - kraken_spot_xmr_usd_eea_cohort
-            - kraken_spot_xmr_eur_eea_cohort
-            - kraken_spot_xmr_btc_eea_cohort
-            - kraken_spot_xmr_usdt_eea_cohort
-          countries: [EU]
-          time_window:
-            - 2024-10-31T15:00:00Z
-            - 2025-01-06T23:59:59Z
+        wayback: https://web.archive.org/web/20250614041853/https://support.kraken.com/articles/support-for-monero-xmr-in-europe
+        body_hash: sha256:abd500560cc8bf13d3316204c8c90ec53335e1c12205296b64bd0edd2aa0ca68
+        body_path: sources/http_captures/kraken-monero-eu-delisting-2024/primary/web.archive.org__web-20241101000000-https-support.kraken.com-articles-support-for-monero-xmr-in-europe__7645eb428c.html
+        evidence_use: replayable
         note: |
-          Kraken customer-support article is the corporate-policy
-          anchor. The notice names the XMR spot pairs slated for
-          removal in the EEA-cohort batch (XMR/USD, XMR/EUR,
-          XMR/BTC, XMR/USDT) and gives Kraken-direct attribution
-          for the off-ramp catalogue change. attribution=direct
-          per codebook §1.4 corporate-self-cite-of-trigger logic
-          extended to S5 offramp_cex: the actor (Kraken) is both
-          the announcing entity and the operator of the affected
-          spot-trading product, AND the corporate notice publicly
-          cites the regulatory substrate (MiCA / TFR recast) as
-          the compliance rationale. The geofenced EEA scope plus
-          the documented 2024-12-31 withdrawal deadline and
-          2025-01-06 force-conversion-to-BTC mechanic underline
-          the operational completeness of the off-ramp narrowing
-          within the Kraken EEA corridor. Provisional Wayback
-          wildcard pointer (web/2024/) in lieu of a pinned-
-          timestamp snapshot; evidence_use=contextual_unarchived
-          pending human-audit re-pin of the precise
-          support-article URL and body_hash.
-      - type: supporting_journalism
+          Kraken support article announcing the end of Monero (XMR) support
+          for European Economic Area clients (2024 delisting). primary_corporate
+          anchor; attribution=direct. Wayback 20250614041853 pinned.
+      - type: semi_primary_wayback
         url: https://cryptobriefing.com/kraken-monero-delisting-eea/
-        wayback: https://web.archive.org/web/2024/https://cryptobriefing.com/kraken-monero-delisting-eea/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20241011170704/https://cryptobriefing.com/kraken-monero-delisting-eea/
+        body_hash: sha256:127621aad7ec764fce7c9398df1ddc9f59a9573dd64f650374652acfe7e8cbf8
+        body_path: sources/http_captures/kraken-monero-eu-delisting-2024/primary/web.archive.org__web-20241101000000-https-cryptobriefing.com-kraken-monero-delisting-eea__a748e3869a.html
+        evidence_use: replayable
         note: |
-          Crypto Briefing reporting (2024-10) on the Kraken EEA
-          Monero delisting, corroborating the 2024-10-31 cutover
-          date, the four affected spot pairs, the
-          2024-12-31 withdrawal deadline, and the MiCA / Travel-
-          Rule regulatory rationale. Supporting-journalism
-          tier with provisional Wayback anchor; supports the
-          primary-corporate notice rather than replacing it.
-
+          Crypto Briefing 2024-10 coverage of the Kraken Monero EEA delisting.
+          Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, delistings)
+  by human:xiangwen. Kraken Monero-XMR-Europe support article
+  (primary_corporate, Wayback 20250614041853) + Crypto Briefing
+  (semi_primary_wayback, 20241011170704). offramp_cex observed_change/direct.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E follow-on
   S5 corporate-policy candidate authored from the
   binance-privacy-coin-delisting-2023 /

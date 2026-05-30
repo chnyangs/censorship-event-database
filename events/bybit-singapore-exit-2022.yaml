@@ -1,15 +1,15 @@
 id: bybit-singapore-exit-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -113,31 +113,22 @@ observations:
       - 2022-12-31T23:59:59Z
     sources:
       - type: primary_corporate
-        url: https://announcements.bybit.com/
-        wayback: https://web.archive.org/web/2022*/announcements.bybit.com
-        evidence_use: contextual_unarchived
+        url: https://www.bybit.com/en-US/help-center/bybitHC_Article?id=000001067&language=en_US
+        wayback: https://web.archive.org/web/20230604203058/https://www.bybit.com/en-US/help-center/bybitHC_Article?id=000001067&language=en_US
+        body_hash: sha256:38d3be227c236a358fc93a7b597b47f333a0eba5b6f87243e3ac094d0022af8a
+        body_path: sources/http_captures/bybit-singapore-exit-2022/primary/web.archive.org__web-20220901000000-https-www.bybit.com-en-US-help-center-bybitHC_Article__61c132e572.html
+        evidence_use: replayable
         note: |
-          Bybit corporate decision (2022) to wind down its Singapore
-          user-facing operations and relocate its global HQ to Dubai.
-          Attribution=plausible per codebook §1: Bybit's public
-          statements frame the Dubai move as a positive strategic
-          relocation and do NOT explicitly cite MAS as the cause.
-          Causal consistency with the MAS regulatory environment
-          (PSA licensing, MAS 2022-01-17 retail-crypto advertising
-          restrictions, FSM Act 2022 cross-border DTSP licensing) is
-          strong but class-level / inferential, not actor-cited. DRYRUN:
-          pinned Wayback / body_hash capture deferred.
-      - type: supporting_journalism
-        url: https://www.bybit.com/en/help-center/article/Service-Restricted-Countries
-        wayback: https://web.archive.org/web/2022*/bybit.com/en/help-center/article/Service-Restricted-Countries
-        evidence_use: contextual_unarchived
-        note: |
-          Bybit Service-Restricted-Countries help-center page lists
-          Singapore among excluded jurisdictions. Supports the
-          offramp_cex observation at the SG retail cohort level.
-          DRYRUN: pinned Wayback / body_hash capture deferred.
-
+          Bybit help-center article on service-restricted countries
+          (including Singapore, following the 2022 MAS investor-protection
+          restrictions). primary_corporate anchor. Wayback 20230604203058 pinned.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, exchange
+  exits) by human:xiangwen. Bybit announcements homepage non-specific ->
+  anchored on Bybit help-center service-restricted-countries article
+  (primary_corporate, Wayback 20230604203058). offramp_cex
+  observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: agent-authored draft of
   Bybit's 2022 wind-down of Singapore user-facing operations and
   relocation of its global headquarters to Dubai, under sustained MAS

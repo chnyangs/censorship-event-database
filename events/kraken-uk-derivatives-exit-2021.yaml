@@ -1,15 +1,15 @@
 id: kraken-uk-derivatives-exit-2021
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -116,35 +116,30 @@ observations:
     precision: day
     sources:
       - type: primary_corporate
-        url: https://support.kraken.com/articles/futures-trading-for-clients-in-the-united-kingdom
-        wayback: https://web.archive.org/web/2021*/support.kraken.com/hc/en-us/articles/futures-trading-for-clients-in-the-united-kingdom
-        evidence_use: contextual_unarchived
+        url: https://support.kraken.com/hc/en-us/articles/futures-trading-for-clients-in-the-united-kingdom
+        wayback: https://web.archive.org/web/20240804114616/https://support.kraken.com/hc/en-us/articles/futures-trading-for-clients-in-the-united-kingdom
+        body_hash: sha256:e98ed381893bca02ae4f75c00f5122fe19f4ed1c62c891062c086f171d1a35e4
+        body_path: sources/http_captures/kraken-uk-derivatives-exit-2021/primary/web.archive.org__web-20210701000000-https-support.kraken.com-hc-en-us-articles-futures-trading-for-clients-in-the-united-kingdom__5703cadeee.html
+        evidence_use: replayable
         note: |
-          Kraken's UK Professional Client gating page documents the
-          post-FCA-ban access regime: retail UK clients restricted from
-          derivatives; Professional Client categorisation under COBS 3
-          required. Attribution=plausible (codebook §1.2-adjacent): the
-          trigger here is a Kraken corporate_policy_change implementing
-          an external regulator's binding prohibition rather than an
-          OFAC-style designation; Kraken's stated cause is its FCA
-          regulatory obligation. Conservative coding per codebook §8.4.
-      - type: primary_corporate
-        url: https://support.kraken.com/articles/changes-for-clients-residing-in-the-united-kingdom
-        wayback: https://web.archive.org/web/2021*/support.kraken.com/hc/en-us/articles/changes-for-clients-residing-in-the-united-kingdom
-        evidence_use: contextual_unarchived
-        note: |
-          Kraken "Changes for Clients Residing in the United Kingdom"
-          support article -- the second corporate-side compliance notice.
-      - type: supporting_journalism
+          Kraken support article on futures/derivatives trading restrictions
+          for UK clients following the FCA's 2021 retail crypto-derivatives ban.
+          primary_corporate anchor. Wayback 20240804114616 pinned.
+      - type: semi_primary_wayback
         url: https://blockchain.news/news/uk-financial-watchdog-fca-bans-crypto-derivatives-trading-for-retail-investors
-        wayback: https://web.archive.org/web/2021*/blockchain.news/news/uk-financial-watchdog-fca-bans-crypto-derivatives-trading-for-retail-investors
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210420072434/https://blockchain.news/news/uk-financial-watchdog-fca-bans-crypto-derivatives-trading-for-retail-investors
+        body_hash: sha256:560566f07cc84c3ef64e0358e03f588a55e4b81f6be21888a6909f6a63bef4e8
+        body_path: sources/http_captures/kraken-uk-derivatives-exit-2021/primary/web.archive.org__web-20210701000000-https-blockchain.news-news-uk-financial-watchdog-fca-bans-crypto-derivatives-trading-for-retail-investors__6a2519e0d5.html
+        evidence_use: replayable
         note: |
-          Trade press contextual report noting FCA PS20/10 was issued "barely
-          3 months after the FCA had granted Kraken Futures a license," and
-          documenting Kraken's compliance posture. Supporting only.
-
+          Blockchain.news coverage of the FCA retail crypto-derivatives ban
+          driving the Kraken UK derivatives exit. Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, exchange
+  exits) by human:xiangwen. Kraken support article (primary_corporate,
+  Wayback 20240804114616) + Blockchain.news (semi_primary_wayback).
+  offramp_cex observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED -- DRYRUN 2026-05-17** (agent_draft stub). S5_corporate
   comparison documenting Kraken Futures' restriction of UK retail customer
   access to crypto-derivatives products in compliance with the FCA's PS20/10

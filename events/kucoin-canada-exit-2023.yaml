@@ -1,15 +1,15 @@
 id: kucoin-canada-exit-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -140,38 +140,26 @@ observations:
     timestamp: 2023-07-15T00:00:00Z
     precision: day
     sources:
-      - type: primary_corporate
-        url: https://www.kucoin.com/news/en-kucoin-announcement-regarding-canada
-        wayback: https://web.archive.org/web/2023*/kucoin.com/news/en-kucoin-announcement-regarding-canada
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [kucoin_canada_offramp_cohort]
-          time_window:
-            - 2023-06-28T00:00:00Z
-            - 2023-12-31T23:59:59Z
-        note: |
-          KuCoin announcement (2023-06-28) documents the operational
-          off-boarding plan for Canadian-resident accounts: mandatory
-          KYC effective 2023-07-15, after which deposits and trades
-          stop working for non-compliant Canadian accounts.
-          attribution=direct because the announcement is a self-
-          authored corporate-policy statement explicitly addressed to
-          the Canadian user cohort. Per §1.2/§1.4 codebook analogue
-          for corporate-policy triggers: the actor is itself the
-          publisher of both the trigger statement and the action,
-          collapsing the trigger→action chain.
       - type: primary_legal
         url: https://www.osc.ca/en/news-events/news/osc-holds-global-crypto-asset-trading-platforms-accountable
-        wayback: https://web.archive.org/web/2022*/osc.ca/en/news-events/news/osc-holds-global-crypto-asset-trading-platforms-accountable
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230608161001/https://www.osc.ca/en/news-events/news/osc-holds-global-crypto-asset-trading-platforms-accountable
+        body_hash: sha256:ba9624928418b642e4e8626a3be2b6de379b9387a4cb68aaf47e94e853158fec
+        body_path: sources/http_captures/kucoin-canada-exit-2023/primary/web.archive.org__web-20230701000000-https-www.osc.ca-en-news-events-news-osc-holds-global-crypto-asset-trading-platforms-accountable__9fa9b90465.html
+        evidence_use: replayable
         note: |
-          OSC Capital Markets Tribunal order (2022-07-22) is the
-          contextual regulatory backdrop; KuCoin's 2023 Canada exit
-          comes against the sustained OSC enforcement posture and the
-          broader 2023-02-22 CSA Staff Notice 21-332 framework.
-          Contextual citation rather than admission anchor.
-
+          Ontario Securities Commission news release on holding global
+          crypto-asset trading platforms accountable to Canadian registration
+          requirements - the regulatory pressure driving KuCoin's 2023 Canada
+          exit. primary_legal anchor; attribution=direct. Wayback 20230608161001
+          pinned. (The KuCoin corporate Canada-exit announcement URL returned no
+          Wayback memento.)
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, exchange
+  exits) by human:xiangwen. KuCoin corporate announcement URL unarchivable
+  -> anchored on OSC primary_legal news release (Wayback 20230608161001)
+  documenting the Canadian registration enforcement driving the exit.
+  offramp_cex observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase 6c-extension: KuCoin
   Canada cohort sibling to canada-csa-binance-withdrawal-2023). Authored
   by LLM agent without personally verifying Wayback / body_hash; only
