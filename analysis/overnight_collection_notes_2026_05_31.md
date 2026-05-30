@@ -97,3 +97,10 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 ### Tick 8 — 2026-05-31 03:08 Melbourne — focus: S5 author (privacy delisting)
 **Authored 1 full event (validates [OK]):**
 - **bittrex-privacy-coin-delisting-2021-01** (S5, comparable, comparison/empirical_case). XMR/ZEC/DASH removed from Bittrex (announced 2021-01-01, effective 2021-01-15) — the FIRST US-exchange privacy-coin delisting, early node in the wave (Kraken/Huobi/OKX/Binance followed). offramp_cex observed_change/plausible (Bittrex stated no explicit reason). 2 semi_primary_wayback (CoinDesk + Decrypt), body_hash-pinned, verified. delta_hours 336 (announce->effective). audit_id 468. Corpus now 258 admitted.
+
+### Tick 9 — 2026-05-31 03:38 Melbourne — focus: S4 nation-state census (registry, vocab-blocked era)
+**+10 S4 registry rows** (deduped, scope+vocab tagged) — the under-collected 2013-2017 national-action era:
+- **HARD BANS (censorship)**: china-pboc-bank-account-closure-2014-04 (AUTHORABLE, CN in-vocab; distinct from corpus 2013-12 notice), bangladesh-bb-2017 (AUTHORABLE, BD), vietnam-sbv-2014, ecuador-2014, jordan-cbj-2014, nepal-2017, morocco-2017, iraq-2017 (all VOCAB-BLOCKED -> morning author after ISO-code blessing).
+- **SOFT WARNINGS (borderline)**: india-rbi-caution-2013 (soft precursor to the corpus 2018 hard ban), + an EU central-bank "not-currency" warning cluster (France/Norway/Belgium/Denmark 2013-14) -> context-only per scope.
+**Dedup discipline:** caught internal gap-discovery dups (Jordan x2, Iraq x2, Bangladesh x2 -> single events each).
+**Key for morning:** S4 is the largest gap (~106 cands) but mostly VOCAB-BLOCKED — bulk-add ISO-3166 codes (VN/EC/JO/NP/MA/IQ/CR/KE/LB/MX/NO/DK/...) then batch-author. A handful (CN/BD/IN) are already authorable. Hard-ban vs soft-warning tagging is ready to drive the scope decision. Registry now 39 rows.
