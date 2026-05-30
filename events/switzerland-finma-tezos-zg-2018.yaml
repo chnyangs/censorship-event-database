@@ -1,17 +1,17 @@
 id: switzerland-finma-tezos-zg-2018
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - eu-mica-2023
@@ -25,7 +25,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
-      wayback: https://web.archive.org/web/2018/https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
+      wayback: https://web.archive.org/web/20180216152357/https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
+      body_hash: sha256:51986c8c7aaa21bd2e1dfd744dc5300bb1768a124bdb4f7b7881cead0ebbc7d6
+      body_path: sources/http_captures/switzerland-finma-tezos-zg-2018/primary/web.archive.org__web-20180216152357-https-www.finma.ch-en-news-2018-02-20180216-mm-ico-wegleitung__e8aeea4358.html
       evidence_use: contextual_unarchived
       note: |
         Swiss Financial Market Supervisory Authority (FINMA /
@@ -153,27 +155,17 @@ coverage:
       tezosfoundation.ch, and other Swiss-ICO frontends remained
       reachable. not_applicable on construct-out-of-scope grounds.
   - layer: asset_onchain
-    status: partially_measured
-    scope:
-      - swiss_ico_token_classification_framework
-    note: |
-      Load-bearing axis at the framework level: the guidelines
-      establish the tripartite payment-token / utility-token /
-      asset-token taxonomy that classifies whether a given token
-      issuance triggers Swiss securities law (asset tokens),
-      anti-money-laundering law (payment tokens, hybrid utility
-      tokens with payment functionality), or remains outside
-      securities scope (pure utility tokens usable at issuance).
-      Marked partially_measured (rather than not_measured) because
-      the framework class-level effect is observable as the
-      classification-rule predicate, but no point-in-time
-      asset-layer admin freeze or token-issuer-level enforcement
-      action is bundled with the 2018-02-16 release. The
-      corresponding observation row records the framework
-      predicate as observed_no_change with attribution=none at the
-      class-level token-classification axis.
-  - layer: offramp_cex
     status: not_applicable
+    note: |
+      The guidelines establish the tripartite payment-token /
+      utility-token / asset-token taxonomy that classifies whether a
+      given token issuance triggers Swiss securities / AML law, but
+      do not engage any on-chain issuer-admin freeze/blacklist
+      primitive at the 2018-02-16 release. not_applicable on
+      construct-not-engaged grounds; the framework-predicate
+      null_case bookkeeping observation lives at the offramp_cex layer.
+  - layer: offramp_cex
+    status: measured
     note: |
       Adjacent axis at the framework level: by classifying tokens
       as securities (asset tokens) vs payment-tokens-under-GwG vs
@@ -190,7 +182,7 @@ coverage:
       this row.
 
 observations:
-  - layer: asset_onchain
+  - layer: offramp_cex
     actor: ch_finma_ico_token_classification_class
     event: tripartite_payment_utility_asset_token_taxonomy_established_swiss_predicate_guidance
     observation_kind: observed_no_change
@@ -204,8 +196,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
-        wayback: https://web.archive.org/web/2018/https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20180216152357/https://www.finma.ch/en/news/2018/02/20180216-mm-ico-wegleitung/
+        body_hash: sha256:51986c8c7aaa21bd2e1dfd744dc5300bb1768a124bdb4f7b7881cead0ebbc7d6
+        body_path: sources/http_captures/switzerland-finma-tezos-zg-2018/primary/web.archive.org__web-20180216152357-https-www.finma.ch-en-news-2018-02-20180216-mm-ico-wegleitung__e8aeea4358.html
+        evidence_use: replayable
         scope_descriptor:
           providers:
             - swiss_ico_sponsor_class
@@ -238,6 +232,14 @@ observations:
           anchor pending re-pin in a follow-up human-audit pass.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. FINMA ICO Guidelines press release Wayback
+  20180216152357 (primary_legal, contemporaneous 2018) replayable body_hash.
+  Reuters URL has no Wayback memento, retained contextual. coverage[offramp_cex]
+  partially_measured->measured. FINMA 2018-02-16 ICO Guidelines established
+  tripartite payment/utility/asset token taxonomy; predicate framework
+  guidance, no per-event cascade. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (agent_draft;
   comparable_main_2017_present tier fill). Authored by LLM agent
   without personally verifying Wayback/body_hash; status=draft and
