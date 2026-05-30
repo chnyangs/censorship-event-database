@@ -350,7 +350,7 @@ class EventValidator:
                 f"analysis_use must be one of {sorted(self.analysis_uses)} "
                 f"(got {analysis_use!r})."
             )
-        if temporal_tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"} and analysis_use == "comparable_analysis":
+        if temporal_tier in {"discovery_only_2007_2012", "historical_baseline_2013_2016"} and analysis_use == "comparable_analysis":
             result.error(
                 f"temporal_tier={temporal_tier} cannot use analysis_use=comparable_analysis; "
                 "keep early-period rows out of 2017+ comparable denominators."

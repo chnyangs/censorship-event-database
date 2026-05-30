@@ -175,7 +175,7 @@ def infer_temporal_tier(record: dict[str, Any]) -> str:
     if year is None:
         return ""
     if year <= 2012:
-        return "discovery_only_2008_2012"
+        return "discovery_only_2007_2012"
     if year <= 2016:
         return "historical_baseline_2013_2016"
     return "comparable_main_2017_present"
@@ -186,7 +186,7 @@ def infer_analysis_use(record: dict[str, Any], temporal_tier: str) -> str:
     if explicit:
         return scalar(explicit)
     return {
-        "discovery_only_2008_2012": "discovery_ledger_only",
+        "discovery_only_2007_2012": "discovery_ledger_only",
         "historical_baseline_2013_2016": "historical_baseline",
         "comparable_main_2017_present": "comparable_analysis",
     }.get(temporal_tier, "")
@@ -363,7 +363,7 @@ def validate_rows(rows: list[dict[str, str]], frame: dict[str, Any]) -> list[str
             errors.append(f"{trigger_id}: analysis_use={analysis_use} not in sampling frame")
 
         if (
-            temporal_tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"}
+            temporal_tier in {"discovery_only_2007_2012", "historical_baseline_2013_2016"}
             and analysis_use == "comparable_analysis"
         ):
             errors.append(

@@ -332,7 +332,7 @@ def check_temporal_tier_contract(
         if not analysis_use:
             errors.append(f"{event_id}: missing analysis_use")
         if (
-            temporal_tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"}
+            temporal_tier in {"discovery_only_2007_2012", "historical_baseline_2013_2016"}
             and analysis_use == "comparable_analysis"
         ):
             errors.append(
@@ -479,7 +479,7 @@ def check_temporal_ledger(
         tier = row.get("temporal_tier") or ""
         analysis_use = row.get("analysis_use") or ""
         if (
-            tier in {"discovery_only_2008_2012", "historical_baseline_2013_2016"}
+            tier in {"discovery_only_2007_2012", "historical_baseline_2013_2016"}
             and analysis_use == "comparable_analysis"
         ):
             errors.append(

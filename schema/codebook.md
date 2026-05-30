@@ -5,9 +5,9 @@ the latest IRR run, or where Phase A-F authoring agents independently surfaced
 ambiguity. It is the **canonical reference** that LLM authoring agents and human
 coders MUST consult before assigning these fields.
 
-**Version**: 2.0.0.
+**Version**: 3.0.0.
 
-**Effective**: 2026-05-30 (2.0.0); 2026-05-19 (1.0.1). Codebook updates require:
+**Effective**: 2026-05-31 (3.0.0); 2026-05-30 (2.0.0); 2026-05-19 (1.0.1). Codebook updates require:
 1. A new IRR pass on at least 10 events covering the edge case.
 2. A `**CODEBOOK CHANGE — YYYY-MM-DD**` entry in this file's changelog.
 3. Re-coding of all events touching the changed field, with `last_human_audit`
@@ -24,6 +24,23 @@ a citation in this codebook contradicts agent intuition, the codebook wins.
 
 ## Changelog
 
+- **CODEBOOK CHANGE — 2026-05-31** — **§9 added (inclusion boundary) + temporal-tier rename +
+  jurisdiction vocab expansion** (comprehensive since-2007 census; user-blessed 2026-05-31).
+  (1) **§9 inclusion boundary**: a case is in scope only if it is a deliberate *censorship action*
+  (deny/block/seize/freeze/delist/geofence/debank a legitimate platform/asset/user); EXCLUDES
+  platform failures (fraud/hack/insolvency), fraud/Ponzi prosecutions of scams, and soft
+  warnings/non-recognition statements; soft governance frameworks are context-only unless they
+  mandate a restriction. (2) **temporal_tier rename** `discovery_only_2008_2012` →
+  `discovery_only_2007_2012` (schema/controlled_vocab.yaml + event.schema.json + validate.py +
+  build scripts + 19 events) so the census can represent 2007 (e.g. the e-gold 2007 indictment).
+  (3) **+25 ISO-3166 jurisdiction codes** added to controlled_vocab.yaml (CR/DK/DZ/EC/EG/IQ/JO/KE/
+  KH/KW/LB/LK/MA/MM/MX/NO/NP/PK/QA/SA/TN/TW/VE/VN/ZW) to unblock the S4 nation-state census.
+  **Version 2.0.0 → 3.0.0 (major)** per the §"Effective" convention (decision-rule addition).
+  Re-coding: the tier rename is mechanical (events keep their tier, renamed in place — all 268
+  events validate); the §9 boundary governs *future* authoring + the morning audit of borderline
+  candidates (tagged in census_gap_registry). IRR precondition N/A (mechanical rename + an
+  inclusion rule that is a definitional scope choice, not a κ-driver). Existing events keep their
+  `codebook_version`.
 - **CODEBOOK CHANGE — 2026-05-30** — **§1.6 added: `asset_onchain` evidence floor
   & off-chain-mechanism exception**. Codifies the validator-enforced rule
   (`scripts/validate.py`: every non-draft `asset_onchain` observation needs ≥1
@@ -321,7 +338,7 @@ Phase B/E agents kept asking for `contextual_baseline` and `discovery_only`
 
 | Temporal tier | Canonical analysis_use | Aliases agents attempted |
 |---------------|------------------------|--------------------------|
-| `discovery_only_2008_2012` | `discovery_ledger_only` | `discovery_only` |
+| `discovery_only_2007_2012` | `discovery_ledger_only` | `discovery_only` |
 | `historical_baseline_2013_2016` | `historical_baseline` | `contextual_baseline` |
 | `comparable_main_2017_present` | `comparable_analysis` | `comparative_analysis` |
 
@@ -361,3 +378,38 @@ When an LLM agent authors a new event YAML:
    flag in `analysis_notes` for human reviewer.
 5. **DRYRUN preamble** is REQUIRED in `analysis_notes` for all
    `origin: agent_draft` events: `**NEW EVENT AUTHORED — DRYRUN YYYY-MM-DD**`.
+
+---
+
+## §9 Inclusion boundary — what counts as a *censorship* case
+
+The corpus is a census of **crypto-stack censorship**. A case is IN scope only if it is an
+**action that denies, blocks, seizes, freezes, delists, geofences, or debanks** a *legitimate*
+crypto platform / asset / user — i.e. a deliberate restriction of access or service by a state
+or corporate actor. (User-blessed 2026-05-31.)
+
+**INCLUDE** (censorship actions):
+- Nation-state bans / ISP-DNS blocks / payment-rail prohibitions / account-closure orders.
+- OFAC SDN designations + sanctions-package service bans (S1/S6).
+- DOJ/SEC/CFTC/FinCEN enforcement **that restricts or shuts a legitimate platform/operator**
+  (e.g. EtherDelta DEX charge, LBRY suit, Liberty Reserve takedown).
+- Corporate denials: exchange delistings, jurisdiction exits/geofences, issuer freezes
+  (Tether/Circle/Paxos), frontend/RPC blocks, payment-processor/bank debanking.
+
+**EXCLUDE** (not censorship):
+- **Platform FAILURES** — fraud, hacks, theft, insolvency, voluntary collapse (e.g. Cryptsy,
+  Mt.Gox-collapse-*as-such*, QuadrigaCX). A platform failing ≠ being censored.
+- **Fraud/Ponzi prosecutions** of inherently-illegitimate schemes (e.g. OneCoin, Centra Tech,
+  BitConnect, HyperFund). The state is prosecuting a scam, not censoring a legitimate service.
+- **Soft warnings / non-recognition statements / consumer advisories** that neither deny nor
+  block a service (e.g. CFPB 2014 advisory, ESA 2013 warning, India RBI 2013 caution,
+  central-bank "not legal tender" statements). Record only as null/context if at all.
+
+**BORDERLINE — soft governance frameworks** (FATF/IOSCO/FSB/BCBS recommendations): these are
+censorship-*enabling* infrastructure, not censorship *actions*. INCLUDE only when the instrument
+directly **mandates** a restriction (e.g. FATF Travel Rule operationalization, EU TFR, BCBS
+punitive capital weights that force debanking); otherwise context-only.
+
+**Test:** "Did a state/corporate actor deliberately restrict access to or service of a
+legitimate crypto platform/asset/user?" If yes → include. If the platform merely failed, or the
+target was a pure scam, or the instrument is only advisory → exclude (or null/context).
