@@ -1,15 +1,15 @@
 id: pump-fun-uk-fca-geofence-2024-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -176,57 +176,38 @@ observations:
     actor: frontend:pump_fun_operators
     event: pump_fun_geofenced_uk_vantage_users_from_pump_fun_frontend
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2024-12-06T00:00:00Z
     precision: day
     delta_hours: 0
     country: UK
     sources:
-      - type: primary_corporate
-        url: https://pump.fun/
-        wayback: https://web.archive.org/web/2024/https://pump.fun/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains: [pump.fun]
-          countries: [UK]
-          providers: [pump_fun_frontend]
-          time_window:
-            - 2024-12-06T00:00:00Z
-            - 2026-05-17T00:00:00Z
-        note: |
-          Pump.fun frontend / terms-of-service is the canonical
-          corporate-statement source documenting the UK-vantage
-          frontend restriction. observation_kind=observed_change at
-          l4_frontend: the Pump.fun frontend operators added an
-          IP-based geofence gate and a terms-of-service exclusion
-          clause against UK-vantage users on pump.fun.
-          attribution=direct under §1.4: the blocking provider
-          (Pump.fun operators) publicly cited the FCA warning as
-          the trigger via contemporaneous press statements, and
-          the block was implemented within the publicly-knowable
-          compliance window (3 days post-trigger, well inside the
-          ≤7-day §1.4 frontend window). DRYRUN: Wayback anchor
-          unverified.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://cryptoslate.com/pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning/
-        wayback: https://web.archive.org/web/2024/https://cryptoslate.com/pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20241207231750/https://cryptoslate.com/pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning/
+        body_hash: sha256:c89e8a19841cb5f02b437f51e6ebd165397c02fbacf2fcbbc458dbc905ff6282
+        body_path: sources/http_captures/pump-fun-uk-fca-geofence-2024-12/primary/web.archive.org__web-20241207000000-https-cryptoslate.com-pump-fun-updates-terms-to-block-uk-users-days-after-fca-warning__eabad3caba.html
+        evidence_use: replayable
         note: |
-          CryptoSlate (2024-12-06) confirms the Pump.fun terms-of-
-          service update excluding UK users and the UK-vantage
-          geofence pop-up, citing the FCA warning as the trigger.
-          DRYRUN: Wayback anchor unverified.
-      - type: supporting_journalism
+          CryptoSlate 2024-12-07: Pump.fun updated its terms to block UK
+          users days after the FCA warning. Independent semi-primary anchor
+          (replaces non-specific pump.fun homepage primary).
+      - type: semi_primary_wayback
         url: https://www.cryptotimes.io/2024/12/06/pump-fun-bans-uk-traders-in-response-to-fca-warning/
-        wayback: https://web.archive.org/web/2024/https://www.cryptotimes.io/2024/12/06/pump-fun-bans-uk-traders-in-response-to-fca-warning/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20250904185529/https://www.cryptotimes.io/2024/12/06/pump-fun-bans-uk-traders-in-response-to-fca-warning/
+        body_hash: sha256:771240e85b52250fb07f3ff3388fc0e177ba1f4bc1fb9739e52237295158ba5e
+        body_path: sources/http_captures/pump-fun-uk-fca-geofence-2024-12/primary/web.archive.org__web-20241207000000-https-www.cryptotimes.io-2024-12-06-pump-fun-bans-uk-traders-in-response-to-fca-warning__7c3039752d.html
+        evidence_use: replayable
         note: |
-          Crypto Times (2024-12-06) independent contemporaneous
-          journalism corroborating the Pump.fun UK ban and naming
-          the FCA warning as the proximate trigger. DRYRUN:
-          Wayback anchor unverified.
-
+          The Crypto Times 2024-12-06 corroboration of the Pump.fun UK
+          geofence. Independent second semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, geofence) by
+  human:xiangwen. pump.fun homepage primary non-specific -> 2
+  semi_primary_wayback (CryptoSlate + The Crypto Times, Wayback
+  20241207231750 / 20250904185529). attribution direct->plausible.
+  l4_frontend observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E S5
   corporate-frontend discovery): authored by LLM agent without
   personally verifying Wayback/body_hash; origin=agent_draft and

@@ -1,17 +1,17 @@
 id: apple-india-crypto-exchange-removal-2024-01
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - india-fiu-offshore-vda-block-2023
@@ -137,65 +137,31 @@ observations:
     delta_hours: 0
     country: IN
     sources:
-      - type: primary_corporate
-        url: https://twitter.com/BinanceDesi/status/1744995162957513194
-        wayback: https://web.archive.org/web/20240110000000/https://twitter.com/BinanceDesi/status/1744995162957513194
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [apple_app_store_in]
-          countries: [IN]
-          time_window:
-            - 2024-01-09T00:00:00Z
-            - 2024-01-15T23:59:59Z
-        note: |
-          Binance South Asia target-party statement responding to the
-          India iOS App Store access impact. This is primary_corporate
-          evidence for the affected exchange's user-facing access state,
-          not an Apple acting-party takedown disclosure. Moneycontrol
-          quotes Binance's X statement that the iOS App Store change
-          impacted the Binance app and that existing users would not be
-          affected. This source supports a Binance-specific Apple App
-          Store IN observation; it does not independently verify the full
-          multi-exchange Apple removal cohort or Apple's causal rationale.
-          Human audit must verify the tweet/archive text before any
-          promotion.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://techcrunch.com/2024/01/09/apple-crypto-apps-binance-india/
-        wayback: https://web.archive.org/web/2024/https://techcrunch.com/2024/01/09/apple-crypto-apps-binance-india/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [apple_app_store_in]
-          countries: [IN]
-          time_window:
-            - 2024-01-09T00:00:00Z
-            - 2024-01-15T23:59:59Z
+        wayback: https://web.archive.org/web/20240110032452/https://techcrunch.com/2024/01/09/apple-crypto-apps-binance-india/
+        body_hash: sha256:7591234aa85b03f5be1fb5dc4f0628874f9817430e21e6404a052aab7d25210f
+        body_path: sources/http_captures/apple-india-crypto-exchange-removal-2024-01/primary/web.archive.org__web-20240110000000-https-techcrunch.com-2024-01-09-apple-crypto-apps-binance-india__ba5097b1f3.html
+        evidence_use: replayable
         note: |
-          TechCrunch 2024-01-09/10 reporting that Binance, KuCoin, OKX,
-          Kraken, and other offshore VDA exchange apps were removed from
-          the Apple App Store India regional storefront. Attribution
-          annotated plausible because the FIU-IND show-cause notice and
-          MEITY URL block are the load-bearing regulatory anchors but
-          Apple did not publicly publish a corporate notice tying the
-          removals to a specific MEITY order, and OKX was removed
-          although not on the FIU-IND named-nine list. No archived
-          App Store IN regional-availability snapshot pinned in this
-          session.
-      - type: supporting_journalism
+          TechCrunch 2024-01-09: Apple removed Binance and other crypto
+          exchange apps from its India App Store following the Indian FIU notice.
+          Independent semi-primary anchor (replaces unarchivable Binance tweet).
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/policy/2024/01/10/binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-store
-        wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/01/10/binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-store
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [apple_app_store_in]
-          countries: [IN]
-          time_window:
-            - 2024-01-10T00:00:00Z
-            - 2024-01-15T23:59:59Z
+        wayback: https://web.archive.org/web/20240110205329/https://www.coindesk.com/policy/2024/01/10/binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-store/
+        body_hash: sha256:136d065ee7b942d7be875ce6bbb904ddb214acc49ac804fca7a66ced6f0dbb0a
+        body_path: sources/http_captures/apple-india-crypto-exchange-removal-2024-01/primary/web.archive.org__web-20240111000000-https-www.coindesk.com-policy-2024-01-10-binance-kucoin-other-exchanges-served-notice-by-indian-government-removed-from-apples-app-s__dafb2ced4f.html
+        evidence_use: replayable
         note: |
-          CoinDesk 2024-01-10 confirmation of the Apple App Store India
-          removal cohort, naming Binance, KuCoin, and the broader
-          FIU-IND show-cause class.
-
+          CoinDesk 2024-01-10 corroboration of the Apple App Store India
+          crypto-exchange removals per the FIU notice. Independent second semi-primary.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, geofence) by
+  human:xiangwen. Binance tweet primary unarchivable -> 2 semi_primary_wayback
+  (TechCrunch + CoinDesk, Wayback 20240110032452 / 20240110205329).
+  l4_frontend observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent

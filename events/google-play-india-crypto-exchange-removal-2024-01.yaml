@@ -1,17 +1,17 @@
 id: google-play-india-crypto-exchange-removal-2024-01
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - india-fiu-offshore-vda-block-2023
@@ -136,67 +136,31 @@ observations:
     delta_hours: 0
     country: IN
     sources:
-      - type: primary_corporate
-        url: https://twitter.com/BinanceHelpDesk/status/1745850479241036291
-        wayback: https://web.archive.org/web/20240113000000/https://twitter.com/BinanceHelpDesk/status/1745850479241036291
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [google_play_in]
-          countries: [IN]
-          time_window:
-            - 2024-01-13T00:00:00Z
-            - 2024-01-20T23:59:59Z
-        note: |
-          Binance Customer Support target-party statement on X describing
-          the India IP/access block affecting crypto firms including
-          Binance. Moneycontrol quotes the statement as affecting users
-          attempting to access the Indian iOS App Store, the Binance
-          website, and later reporting frames the Google Play Store as the
-          companion storefront block. This is primary_corporate evidence
-          for Binance's user-facing India access state, not a Google
-          acting-party Play Store takedown notice. It supports a
-          Binance-specific Google Play/App access impact but does not
-          verify the full seven-app cohort or Google's causal rationale.
-          Human audit must verify the tweet/archive text before any
-          promotion.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://techcrunch.com/2024/01/13/google-pulls-binance-other-global-crypto-apps-from-india-store/
-        wayback: https://web.archive.org/web/2024/https://techcrunch.com/2024/01/13/google-pulls-binance-other-global-crypto-apps-from-india-store/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [google_play_in]
-          countries: [IN]
-          time_window:
-            - 2024-01-13T00:00:00Z
-            - 2024-01-20T23:59:59Z
+        wayback: https://web.archive.org/web/20240114014815/https://techcrunch.com/2024/01/13/google-pulls-binance-other-global-crypto-apps-from-india-store/
+        body_hash: sha256:376d00b85813d34b9cdbb57aa1d59767e2c8ac0aaffc907928a2f890f56a5ea5
+        body_path: sources/http_captures/google-play-india-crypto-exchange-removal-2024-01/primary/web.archive.org__web-20240114000000-https-techcrunch.com-2024-01-13-google-pulls-binance-other-global-crypto-apps-from-india-store__a736d71074.html
+        evidence_use: replayable
         note: |
-          TechCrunch (2024-01-13) confirms Google Play India removed Binance,
-          Kraken, KuCoin, Huobi, Gate.io, Bittrex, Bitfinex apps; comparable
-          to Apple action four days earlier. Attribution=plausible because
-          Google has not published a public corporate notice naming the
-          FIU-IND / MEITY enforcement action as the cause; press attribution
-          to the FIU notice is consistent but not directly anchored in a
-          primary_corporate Google takedown notice. delta_hours=0 because
-          this observation co-occurs with the trigger timestamp (corporate
-          compliance action observed on the same day as the storefront
-          removal); cross-event comparator gap to apple-india-crypto-
-          exchange-removal-2024-01 (approx 96h, four days) recorded in
-          analysis_notes rather than delta_hours.
-      - type: supporting_journalism
+          TechCrunch 2024-01-13: Google pulled Binance and other global
+          crypto apps from its India Play Store following the Indian FIU notice.
+          Independent semi-primary anchor (replaces unarchivable Binance tweet).
+      - type: semi_primary_wayback
         url: https://cointelegraph.com/news/google-play-store-removes-binance-others-in-response-to-indian-fiu-notice
-        wayback: https://web.archive.org/web/2024/https://cointelegraph.com/news/google-play-store-removes-binance-others-in-response-to-indian-fiu-notice
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [google_play_in]
-          countries: [IN]
-          time_window:
-            - 2024-01-13T00:00:00Z
-            - 2024-01-20T23:59:59Z
+        wayback: https://web.archive.org/web/20240114074027/https://cointelegraph.com/news/google-play-store-removes-binance-others-in-response-to-indian-fiu-notice
+        body_hash: sha256:9239322b05528164da8f7a565c08936ac08ea04199cebf977bd747bcb6796f96
+        body_path: sources/http_captures/google-play-india-crypto-exchange-removal-2024-01/primary/web.archive.org__web-20240114000000-https-cointelegraph.com-news-google-play-store-removes-binance-others-in-response-to-indian-fiu-notice__426c891ab1.html
+        evidence_use: replayable
         note: |
-          Cointelegraph (2024-01-14) anchors the Google Play IN regional
-          removal to the FIU-IND 2023-12-28 show-cause cascade.
-
+          Cointelegraph 2024-01 corroboration of the Google Play India
+          crypto-app removals per the FIU notice. Independent second semi-primary.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, geofence) by
+  human:xiangwen. Binance tweet primary unarchivable -> 2 semi_primary_wayback
+  (TechCrunch + Cointelegraph, Wayback 20240114014815 / 20240114074027).
+  l4_frontend observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT DRAFTED — DRYRUN 2026-05-16** by LLM agent under
   origin=agent_draft, status=draft. Real release must (a) pin a body_hash +
   body_path Wayback snapshot for at least one of the TechCrunch /
