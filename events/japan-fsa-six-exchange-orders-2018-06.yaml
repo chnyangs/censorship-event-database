@@ -32,17 +32,17 @@
 id: japan-fsa-six-exchange-orders-2018-06
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - japan-fsa-coincheck-orders-2018
@@ -173,7 +173,7 @@ coverage:
       No SDN-style asset-layer freeze primitive applies; the FSA orders
       are operator-supervisory in nature.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - bitflyer
       - quoine
@@ -218,7 +218,7 @@ observations:
     actor: regulator:jp_fsa
     event: six_exchange_aml_cft_business_improvement_orders_issued_simultaneously
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2018-06-22T00:00:00Z
     precision: day
     delta_hours: 0
@@ -252,18 +252,22 @@ observations:
           press-release index folder; pinned snapshot timestamp and
           body_hash capture for the specific 2018-06-22 release
           permalinks deferred to human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
-        wayback: https://web.archive.org/web/2018/https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210923064637/https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+        body_hash: sha256:58ed1bceab4d3bb1dc64def18ec456f4cb5eb26d2036a778200579aaf480347e
+        body_path: sources/http_captures/japan-fsa-six-exchange-orders-2018-06/primary/web.archive.org__web-20210923064637-https-www.coindesk.com-markets-2018-06-22-japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges__68d4362819.html
+        evidence_use: replayable
         note: |
           CoinDesk 2018-06-22 contemporaneous reporting enumerating
           the six addressee exchanges and the AML/CFT framework-
           deficiency basis of the FSA's orders.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://cointelegraph.com/news/japan-hits-6-more-crypto-exchanges-with-business-improvement-orders
-        wayback: https://web.archive.org/web/2018/https://cointelegraph.com/news/japan-hits-6-more-crypto-exchanges-with-business-improvement-orders
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20180622154214/https://cointelegraph.com/news/japan-hits-6-more-crypto-exchanges-with-business-improvement-orders
+        body_hash: sha256:afa5b71e2fe008ccb52d68f9d6a02303ee6798ca251ebe5519e5d11e986afaf7
+        body_path: sources/http_captures/japan-fsa-six-exchange-orders-2018-06/primary/web.archive.org__web-20180622154214-https-cointelegraph.com-news-japan-hits-6-more-crypto-exchanges-with-business-improvement-orders__797301cacf.html
+        evidence_use: replayable
         note: |
           Cointelegraph 2018-06-22 corroborating coverage; same
           six-exchange enumeration and 2018-07-23 plan-filing deadline.
@@ -271,7 +275,7 @@ observations:
     actor: cex:bitflyer
     event: bitflyer_voluntary_new_customer_registration_suspension
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2018-06-22T00:00:00Z
     precision: day
     delta_hours: 0
@@ -286,24 +290,38 @@ observations:
       operator suspension); only the new-customer onramp suspension
       is coded.
     sources:
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
-        wayback: https://web.archive.org/web/2018/https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210923064637/https://www.coindesk.com/markets/2018/06/22/japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges/
+        body_hash: sha256:58ed1bceab4d3bb1dc64def18ec456f4cb5eb26d2036a778200579aaf480347e
+        body_path: sources/http_captures/japan-fsa-six-exchange-orders-2018-06/primary/web.archive.org__web-20210923064637-https-www.coindesk.com-markets-2018-06-22-japans-financial-watchdog-orders-aml-shake-up-at-6-crypto-exchanges__68d4362819.html
+        evidence_use: replayable
         note: |
           CoinDesk coverage of bitFlyer's same-day announcement
           voluntarily suspending new-customer registrations and
           re-examining existing-customer ID verification.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://news.bitcoin.com/japanese-crypto-exchanges-regulators-improvement-orders/
-        wayback: https://web.archive.org/web/2018/https://news.bitcoin.com/japanese-crypto-exchanges-regulators-improvement-orders/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20180626142058/https://news.bitcoin.com/japanese-crypto-exchanges-regulators-improvement-orders/
+        body_hash: sha256:abca7fc1a99e54d5ccd54982889af2831e297d525d9efdfc056687c114316832
+        body_path: sources/http_captures/japan-fsa-six-exchange-orders-2018-06/primary/web.archive.org__web-20180626142058-https-news.bitcoin.com-japanese-crypto-exchanges-regulators-improvement-orders__7680a5bd33.html
+        evidence_use: replayable
         note: |
           Bitcoin.com summary of each of the six exchanges' responses
           to the FSA improvement orders, including bitFlyer's
           new-customer-onboarding suspension.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Japan FSA cluster)
+  by human:xiangwen as empirical_case. CoinDesk Wayback 20210923064637 +
+  Cointelegraph Wayback 20180622154214 + Bitcoin.com Wayback 20180626142058
+  reclassified semi_primary_wayback (each observation 2 independent). FSA
+  news index contextual (403/no Wayback). Both observed_change direct->
+  plausible (no FSA primary_* pinned). FSA 2018-06-22 simultaneous
+  業務改善命令 to 6 registered VASPs (bitFlyer/Quoine/BTCBox/bitbank/BITPoint/
+  Zaif); bitFlyer voluntarily paused new-customer registration. comparison/
+  empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F single-day six-way
   enforcement-sweep discovery; lean run): authored by LLM agent without
   personally verifying Wayback / body_hash; status=draft, origin=agent_draft.

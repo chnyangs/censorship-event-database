@@ -1,17 +1,17 @@
 id: japan-fsa-binance-warning-2018
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - japan-fsa-coincheck-orders-2018
@@ -98,7 +98,7 @@ coverage:
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - binance_jp_resident_user_access
     note: |
@@ -118,7 +118,7 @@ observations:
     actor: cex:binance
     event: binance_jp_resident_access_deprecation_and_hq_relocation_to_malta
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2018-03-23T00:00:00Z
     precision: day
     delta_hours: 0
@@ -137,7 +137,7 @@ observations:
         note: |
           FSA's 2018-03-23 public warning is the legal instrument that
           named Binance and compelled the operator-side exit from the
-          Japanese market. attribution=direct per codebook §1.4: the
+          Japanese market. attribution=plausible (no pinned FSA primary_* source; FSA index is 403/no-Wayback): the
           actor (Binance) publicly cited the trigger (FSA warning) via
           CEO Changpeng Zhao's public statement that company lawyers
           called JFSA immediately, AND the JP-resident access wind-down
@@ -148,19 +148,23 @@ observations:
           fsa.go.jp/news/29/sonota; pinned snapshot timestamp and
           body_hash capture for the specific 2018-03-23 release
           permalink deferred to human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://cointelegraph.com/news/binance-served-warning-by-japan-s-fsa-for-operating-without-authorization
-        wayback: https://web.archive.org/web/2018/https://cointelegraph.com/news/binance-served-warning-by-japan-s-fsa-for-operating-without-authorization
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210625160823/https://cointelegraph.com/news/binance-served-warning-by-japan-s-fsa-for-operating-without-authorization
+        body_hash: sha256:df79ae5ec58b8dbb331bfb7c68c1d0c1d2e34f8967dbed77eb879be5621b702b
+        body_path: sources/http_captures/japan-fsa-binance-warning-2018/primary/web.archive.org__web-20210625160823-https-cointelegraph.com-news-binance-served-warning-by-japan-s-fsa-for-operating-without-authorization__41cf65184a.html
+        evidence_use: replayable
         note: |
           Cointelegraph contemporaneous reporting dated 2018-03-23
           corroborates the FSA warning and Binance's announced response
           (CEO statement, intent to relocate). DRYRUN: pinned snapshot
           anchor deferred to human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.cnbc.com/2018/03/23/japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.html
-        wayback: https://web.archive.org/web/2018/https://www.cnbc.com/2018/03/23/japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20180325055254/https://www.cnbc.com/2018/03/23/japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.html
+        body_hash: sha256:d30eaaa00b67baeda8e11e91bf11554f71bb2950ffaa584694d1a4a51f2e361d
+        body_path: sources/http_captures/japan-fsa-binance-warning-2018/primary/web.archive.org__web-20180325055254-https-www.cnbc.com-2018-03-23-japanese-regulator-warns-major-cryptocurrency-exchange-for-operating-without-a-license-bitcoin-falls.h__4ef3720a1f.html
+        evidence_use: replayable
         note: |
           CNBC contemporaneous reporting dated 2018-03-23: Japan FSA
           warned Binance of criminal charges if it continued operating
@@ -168,6 +172,15 @@ observations:
           deferred to human audit.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Japan FSA cluster)
+  by human:xiangwen as empirical_case. CNBC Wayback 20180325055254
+  (contemporaneous) + Cointelegraph Wayback 20210625160823 reclassified
+  semi_primary_wayback (2 independent). FSA news index is 403 bot-blocked
+  with no Wayback memento; retained contextual. offramp_cex observed_change
+  attribution direct->plausible (no FSA primary_* pinned). FSA 2018-03-23
+  warned Binance for unregistered operation -> Binance exited Japan to Malta.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E/F non_us_state
   cohort; lean run): authored by LLM agent without personally verifying
   Wayback/body_hash; status=draft and origin=agent_draft. Real release
