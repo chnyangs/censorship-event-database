@@ -39,8 +39,19 @@ Current corpus: 262 events (254 admitted / 1 draft / 7 rejected) — see
    **S4** (nation-state, per-country full timelines), **S6** (FATF/EU/G7/BIS/IOSCO/FSB).
 4. **S5 corporate** saturation (exchange delistings/exits/freezes, DeFi/infra blocks).
 
-If `analysis/census_gap_list.md` exists (written when the gap-discovery workflow finishes),
-PREFER its prioritized candidates as the work-list.
+**WORK-LIST (use these):** `analysis/census_gap_candidates.tsv` = 264 structured candidate
+cases (id, date, actor, stratum, layer, one_line, source_urls) from the gap-discovery sweep;
+`analysis/census_gap_list.md` = the prioritized synthesis (dedup notes, per-stratum×era
+breakdown, top tier). Work through the candidates in PRIORITY ORDER below.
+
+**CRITICAL — verify before trusting (C-5 lesson):** the candidate `source_urls` are
+agent-provided LEADS and may be partly fabricated or wrong. For EVERY candidate you act on:
+re-verify the date + actor via your own WebSearch, and confirm a source actually exists
+(it resolves / has a Wayback memento) BEFORE recording it as verified in the registry or
+authoring an event. Never copy a candidate's URL into the registry/event without confirming
+it. Drop or downgrade candidates you cannot verify; note them. Also re-check `in_corpus`
+against `corpus_inventory` (the synthesis flagged some near-dups, e.g. huobi-2022 is the
+mis-dated corpus entry; semenov S2 collapses into tornado-cash-ofac-delisting-2025).
 
 ## PER-TICK PROCEDURE (one batch ≈ 10-20 min of work)
 **TIER 1 — extend the gap registry (do this every tick, it is the core deliverable).**

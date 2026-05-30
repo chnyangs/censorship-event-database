@@ -28,3 +28,9 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - **egold-doj-indictment-2007-04** (S3, 2007-04-27): the canonical "since 2007" anchor. DOJ/USSS indictment of e-gold, unsealed 2007-04-27 (verified via justice.gov archive PR #07-301). Corpus had only the 2008 plea. Real DOJ sources pinned. This is the #1 priority full-event to author (highest-value 2007 anchor).
 - Pipeline validated: WebSearch -> verify date+source -> registry row, no fabrication.
 - Cron 1ddafe54 active; first autonomous tick fires ~23:37 Melbourne.
+
+### Gap-discovery integrated — 2026-05-30 23:40 Melbourne
+- Gap-discovery workflow (wf_7fa15316, 12 agents, ~1.06M tokens) finished: **238 raw candidates -> ~230 net new** after dedup.
+- Wrote `analysis/census_gap_list.md` (prioritized synthesis) + extracted `analysis/census_gap_candidates.tsv` (**264 structured candidates with source_urls**: S4=106, S5=56, S3=53, S6=24, S1=24, S2=1).
+- Key: **S2_ofac_removal is census-complete** (Semenov collapses into tornado-cash-ofac-delisting-2025). Priority back-fill = proto-2007-2012 (13) + early-bitcoin-2013-2016 (23).
+- MISSION updated: ticks now work from census_gap_candidates.tsv in priority order, but MUST re-verify each candidate's date+source before trusting (agent URLs may be fabricated, per C-5).
