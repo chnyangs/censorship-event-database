@@ -77,3 +77,11 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - **bitriver-russia-mining-ofac-2022-04** (S1, null_case). The FIRST OFAC designation of a crypto-MINING company (BitRiver AG + 10 RU subsidiaries, 2022-04-20, Treasury jy0731). Coded null_case per S1 convention (entity target, no addresses, offramp_cex observed_no_change/none, 14d window). Sources Treasury jy0731 + The Record, body_hash-pinned, verified. audit_id 467. Corpus now 257 admitted.
 **+5 S1 registry rows** (Genesis Market, Netex24/Bitpapa, Evil Corp, Task Force Rusich, + BitRiver-as-authored). Treasury press-release URL pattern (home.treasury.gov/news/press-releases/jyXXXX) is consistent + verifiable; spot-verify each jyXXXX before authoring.
 **Note:** S1 events follow a repetitive null_case template (designation = trigger; offramp_cex observed_no_change since downstream CEX cascade is unmeasured). The 24 S1 gaps are well-suited to fast batch-authoring in the morning using bitriver + zservers as templates.
+
+### Tick 6 — 2026-05-31 02:08 Melbourne — focus: S3 DOJ/SEC census (registry breadth)
+**+6 S3 registry rows**, scope-tagged:
+- **ENFORCEMENT-CENSORSHIP**: sec-etherdelta-coburn-2018 (FIRST SEC action vs a DEX), sec-lbry-2021 (SEC suit forced LBRY to wind down), sec-kik-kin-2020 (token-offering crackdown).
+- **ASSET-ONCHAIN SEIZURE**: colonial-pipeline-darkside-clawback-2021 (DOJ/FBI seized 63.7 BTC ransom). AUTHORING NOTE: needs a primary_onchain seizure tx_hash before authoring (codebook §1.6) — flagged in the row.
+- **BORDERLINE/SOFT** (scope-boundary lens): onecoin-doj-2019 (fraud prosecution, not censorship of a legit service), sec-dao-report-2017 (regulatory framework report, not an action).
+**Judgment:** continued scope-tagging — the S3 stratum mixes genuine enforcement-censorship (DEX/operator shutdowns) with fraud prosecutions (OneCoin/Centra = scams) and regulatory reports (DAO Report). Recommend the morning scope decision: include enforcement that restricts/shuts a *legitimate* platform; exclude pure fraud prosecutions + soft reports. EtherDelta (first DEX enforcement) is a strong author-next candidate.
+**Registry now 24 rows** spanning S1/S3/S5/S6 + the 2007-2016 era. S4 nation-state (~106 cands) deferred — vocab-blocked, queued for morning ISO-code blessing then bulk-author.
