@@ -1,17 +1,17 @@
 id: france-amf-binance-psan-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - uk-fca-binance-markets-2021
@@ -24,9 +24,10 @@ trigger:
   timestamp: 2022-05-04T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: primary_legal
+    - type: primary_government
       url: https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
-      wayback: https://web.archive.org/web/20260517000000/https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+      body_hash: sha256:7151127edae427d38cbeb3b117120c85f45dc84637b6be50d88270b8cd21c15c
+      body_path: sources/http_captures/france-amf-binance-psan-2022/primary/www.amf-france.org__en-warnings-white-lists-daspcasp-binance-france-sas__1cb688d206.html
       evidence_use: contextual_unarchived
       note: |
         AMF (Autorité des Marchés Financiers) public white-list entry for
@@ -40,9 +41,11 @@ trigger:
         PERMISSIVE regulatory recognition (counter-example to
         enforcement-driven cascades), not a censorship trigger. DRYRUN:
         Wayback URL pattern asserted; body-hash capture deferred.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://siecledigital.fr/2022/05/05/binance-enfin-reconnu-psan-en-france/
-      wayback: https://web.archive.org/web/20220505000000/https://siecledigital.fr/2022/05/05/binance-enfin-reconnu-psan-en-france/
+      wayback: https://web.archive.org/web/20220505091331/https://siecledigital.fr/2022/05/05/binance-enfin-reconnu-psan-en-france/
+      body_hash: sha256:fa06586b35a3e6ad8c46b309cbbc2236674e29aae57c85a3df9a10c7f27940bc
+      body_path: sources/http_captures/france-amf-binance-psan-2022/primary/web.archive.org__web-20220505091331-https-siecledigital.fr-2022-05-05-binance-enfin-reconnu-psan-en-france__85c0e78c4b.html
       evidence_use: contextual_unarchived
       note: |
         Siècle Digital (2022-05-05) "Binance enfin reconnu PSAN en France"
@@ -121,9 +124,10 @@ coverage:
       artifact is the AMF white-list entry itself, which exhaustively
       enumerates the four authorized service scopes.
     denominator_artifact:
-      type: primary_legal
+      type: primary_government
       url: https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
-      wayback: https://web.archive.org/web/20260517000000/https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
+      body_hash: sha256:7151127edae427d38cbeb3b117120c85f45dc84637b6be50d88270b8cd21c15c
+      body_path: sources/http_captures/france-amf-binance-psan-2022/primary/www.amf-france.org__en-warnings-white-lists-daspcasp-binance-france-sas__1cb688d206.html
       scope_descriptor:
         countries: [FR]
         providers: [binance_france_sas_offramp_cex]
@@ -151,10 +155,11 @@ observations:
       - 2023-12-31T23:59:59Z
     country: FR
     sources:
-      - type: primary_legal
+      - type: primary_government
         url: https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
-        wayback: https://web.archive.org/web/20260517000000/https://www.amf-france.org/en/warnings/white-lists/daspcasp/binance-france-sas
-        evidence_use: contextual_unarchived
+        body_hash: sha256:7151127edae427d38cbeb3b117120c85f45dc84637b6be50d88270b8cd21c15c
+        body_path: sources/http_captures/france-amf-binance-psan-2022/primary/www.amf-france.org__en-warnings-white-lists-daspcasp-binance-france-sas__1cb688d206.html
+        evidence_use: replayable
         scope_descriptor:
           countries: [FR]
           providers: [binance_france_sas_offramp_cex]
@@ -169,6 +174,14 @@ observations:
           permissive regulatory recognition.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. AMF white-list entry captured live as
+  primary_government (sha256:7151127edae4...; no Wayback memento for AMF
+  page). Siecle Digital Wayback 20220505091331 reclassified
+  semi_primary_wayback. Permissive regulatory recognition (Binance France
+  SAS PSAN registration E2022-037, eff 2022-05-04) - affirmatively
+  authorizes, no rail severance. observed_no_change/null_case preserved.
+
   **NEW EVENT AUTHORED -- DRYRUN 2026-05-17**: 2022-05-04 France AMF
   registration of Binance France SAS as a PSAN (Prestataire de Services
   sur Actifs Numériques) / Digital Asset Service Provider under

@@ -1,15 +1,15 @@
 id: iceland-cbi-foreign-exchange-bitcoin-2014
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
 last_verified: 2026-05-16
 
@@ -24,7 +24,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
-      wayback: https://web.archive.org/web/2014/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
+      wayback: https://web.archive.org/web/20160805033808/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
+      body_hash: sha256:a8490a684ca0d0dc7c6eff4d03bbbe48e886531e5016aaff0be068237083edea
+      body_path: sources/http_captures/iceland-cbi-foreign-exchange-bitcoin-2014/primary/web.archive.org__web-20160805033808-https-www.cb.is-publications-news-news-2014-03-19-Significant-risk-attached-to-use-of-virtual-currency__5a6c7ba2df.html
       evidence_use: contextual_unarchived
       note: |
         Central Bank of Iceland (Seðlabanki Íslands / CBI) news release
@@ -62,9 +64,11 @@ trigger:
         substantive content to the cb.is English statement. Marked
         evidence_use=contextual_unarchived; specific Wayback snapshot
         timestamp requires re-pinning in human audit.
-    - type: supporting_tracker
+    - type: semi_primary_wayback
       url: https://www.loc.gov/item/global-legal-monitor/2014-08-12/iceland-national-digital-currency-auroracoin-launched/
-      wayback: https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2014-08-12/iceland-national-digital-currency-auroracoin-launched/
+      wayback: https://web.archive.org/web/20210725132621/https://www.loc.gov/item/global-legal-monitor/2014-08-12/iceland-national-digital-currency-auroracoin-launched/
+      body_hash: sha256:2ad2cf61ac52cac177460d2c601bb1c038f1edf05cc2fdb08a0598815710007a
+      body_path: sources/http_captures/iceland-cbi-foreign-exchange-bitcoin-2014/primary/web.archive.org__web-20210725132621-https-www.loc.gov-item-global-legal-monitor-2014-08-12-iceland-national-digital-currency-auroracoin-launched__ed151a598b.html
       evidence_use: contextual_unarchived
       note: |
         US Library of Congress Global Legal Monitor entry titled
@@ -146,7 +150,7 @@ coverage:
       freezes arose later). not_applicable on construct-did-not-exist
       grounds.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
       The CBI statement is by construction an off-ramp-layer signal:
       it tells Icelandic residents that purchasing bitcoin from
@@ -195,24 +199,29 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
-        wayback: https://web.archive.org/web/2014/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20160805033808/https://www.cb.is/publications/news/news/2014/03/19/Significant-risk-attached-to-use-of-virtual-currency/
+        body_hash: sha256:a8490a684ca0d0dc7c6eff4d03bbbe48e886531e5016aaff0be068237083edea
+        body_path: sources/http_captures/iceland-cbi-foreign-exchange-bitcoin-2014/primary/web.archive.org__web-20160805033808-https-www.cb.is-publications-news-news-2014-03-19-Significant-risk-attached-to-use-of-virtual-currency__5a6c7ba2df.html
+        evidence_use: replayable
         note: |
           The CBI 2014-03-19 statement is the legal instrument. It
           states the FX-Act interpretation that bitcoin purchases by
           Icelandic residents are prohibited under the capital-controls
           regime, but it does not name any specific exchange as having
           implemented an Iceland-resident-cutoff in response. The
-          observation_kind=not_observed row records that the cascade
+          observation_kind=observed_no_change row records that the cascade
           surface at offramp_cex is class-level (Icelandic residents
           as a class) rather than exchange-specific in the available
-          public record. attribution=plausible because the FX-Act
-          interpretation plausibly affected Icelandic-resident
-          bitcoin-buying behaviour even though no exchange-level
-          cutoff is documented. Specific Wayback snapshot timestamp
-          requires re-pinning in human audit.
+          public record. attribution=none per §1.1 for observed_no_change. Wayback memento 20160805033808 captured 2026-05-21.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. CBI cb.is statement Wayback 20160805033808
+  + LoC Global Legal Monitor Wayback 20210725132621 replayable body_hash.
+  coverage[offramp_cex] partially_measured->measured. CBI 2014-03-19
+  FX-Act capital-controls interpretation (bitcoin purchases by Icelandic
+  residents prohibited); class-level, no exchange cutoff. null_event/null_case preserved.
+
   NEW EVENT AUTHORED — agent_draft 2026-05-16. Historical-baseline
   contextual case for the 2014-03-19 Central Bank of Iceland
   (Seðlabanki Íslands / CBI) statement "Significant risk attached

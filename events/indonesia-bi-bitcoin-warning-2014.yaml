@@ -1,17 +1,17 @@
 id: indonesia-bi-bitcoin-warning-2014
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - indonesia-bappebti-illegal-exchange-block-2023
@@ -22,9 +22,10 @@ trigger:
   timestamp: 2014-02-06T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: primary_legal
+    - type: primary_government
       url: https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
-      wayback: https://web.archive.org/web/2014/https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
+      body_hash: sha256:05873b354ce37efb8320aca28a82c99f4a2ddabf1b3107ca25c8d99714520571
+      body_path: sources/http_captures/indonesia-bi-bitcoin-warning-2014/primary/www.bi.go.id__id-publikasi-ruang-media-news-release-Pages-sp_160614.aspx__273672b3e5.html
       evidence_use: contextual_unarchived
       note: |
         Bank Indonesia (BI) Siaran Pers (press release) No. 16/6/Dkom
@@ -46,9 +47,11 @@ trigger:
         publication anchor; specific Wayback snapshot timestamp and
         body_hash require re-pinning in human audit before this
         citation may serve as an admission anchor.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://en.antaranews.com/news/168747/bitcoin-is-not-lawfully-accepted-payment-instrument-in-indonesia-bi
-      wayback: https://web.archive.org/web/2018/https://en.antaranews.com/news/168747/bitcoin-is-not-lawfully-accepted-payment-instrument-in-indonesia-bi
+      wayback: https://web.archive.org/web/20210225073817/https://en.antaranews.com/news/168747/bitcoin-is-not-lawfully-accepted-payment-instrument-in-indonesia-bi
+      body_hash: sha256:4c49217f2b6cc408379ad151fe6e6f05f9b1317e957d512a5941684fbe170f3b
+      body_path: sources/http_captures/indonesia-bi-bitcoin-warning-2014/primary/web.archive.org__web-20210225073817-https-en.antaranews.com-news-168747-bitcoin-is-not-lawfully-accepted-payment-instrument-in-indonesia-bi__a7b45fe427.html
       evidence_use: contextual_unarchived
       note: |
         ANTARA News (Indonesian state news agency) English-language
@@ -125,7 +128,7 @@ coverage:
       admin path (USDT first issued ~2014-10; chainwide admin freezes
       arose later). not_applicable on construct-did-not-exist grounds.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
       The BI statement is by construction an off-ramp-layer signal:
       it tells Indonesian residents/businesses that Bitcoin is not a
@@ -171,10 +174,11 @@ observations:
       - 2014-02-06T00:00:00Z
       - 2014-05-07T00:00:00Z
     sources:
-      - type: primary_legal
+      - type: primary_government
         url: https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
-        wayback: https://web.archive.org/web/2014/https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_160614.aspx
-        evidence_use: contextual_unarchived
+        body_hash: sha256:05873b354ce37efb8320aca28a82c99f4a2ddabf1b3107ca25c8d99714520571
+        body_path: sources/http_captures/indonesia-bi-bitcoin-warning-2014/primary/www.bi.go.id__id-publikasi-ruang-media-news-release-Pages-sp_160614.aspx__273672b3e5.html
+        evidence_use: replayable
         note: |
           BI press release No. 16/6/Dkom is the administrative
           instrument. It states the class-level position that
@@ -186,10 +190,17 @@ observations:
           offramp_cex is class-level (Indonesian residents as a class)
           rather than exchange-specific in the available public record.
           attribution=none per schema convention for observed_no_change
-          rows. Specific Wayback snapshot timestamp requires re-pinning
-          in human audit.
+          rows. Live bi.go.id capture 2026-05-21.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. BI Siaran Pers No. 16/6/Dkom captured live
+  as primary_government (sha256:05873b354ce3...; no Wayback memento).
+  Antara News Wayback 20210225073817 semi_primary_wayback. coverage[offramp_cex]
+  partially_measured->measured. BI 2014-02-06 advisory - bitcoin/VC not
+  legal tender under Law 7/2011; class-level, no exchange cutoff.
+  null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: agent-drafted candidate
   documenting Bank Indonesia (BI) Siaran Pers No. 16/6/Dkom dated
   2014-02-06, "Pernyataan Bank Indonesia Terkait Bitcoin dan Virtual
