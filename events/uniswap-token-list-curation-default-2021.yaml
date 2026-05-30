@@ -1,17 +1,17 @@
 id: uniswap-token-list-curation-default-2021
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - uniswap-tokenized-stocks-delisting-2021-07
@@ -131,7 +131,7 @@ coverage:
       Uniswap-Labs frontend default-token-list curation policy.
       not_applicable on substrate-mismatch grounds.
   - layer: l4_frontend
-    status: not_measured
+    status: partially_measured
     scope: [app.uniswap.org]
     note: |
       The default-token-list curation policy formalized 2021-07-23
@@ -170,10 +170,11 @@ observations:
   - layer: l4_frontend
     actor: frontend:uniswap_labs
     event: default_token_list_policy_framework_articulated_without_row_local_per_token_cascade
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
-    timestamp: 2021-07-23T00:00:00Z
-    precision: day
+    window:
+      - 2021-07-23T00:00:00Z
+      - 2021-12-31T23:59:59Z
     sources:
       - type: primary_corporate
         url: https://blog.uniswap.org/token-access-app?rel=outbound
@@ -188,6 +189,13 @@ observations:
           double-counting the same physical UI action.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, null_case) by
+  human:xiangwen. RECLASSIFIED coverage_gap -> observed_no_change per user
+  "reclassify by evidence": Uniswap's default-token-list is editorial
+  curation (policy framework), NOT a discrete per-token censorship cascade
+  in this window -> genuine null. body_hash-anchored Uniswap blog retained.
+  null_event/null_case preserved; observed_no_change/none with window.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.2 corporate_policy
   framework row; lean run): authored by LLM agent without personally
   verifying Wayback / body_hash; status=draft / origin=agent_draft per

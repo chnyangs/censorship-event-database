@@ -1,17 +1,17 @@
 id: augur-v2-us-uk-geofence-2020-07
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: null_event
-admission_tier: null_case
-origin: agent_draft
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
 version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - polymarket-cftc-geofence-2022-01
@@ -92,7 +92,7 @@ coverage:
       No public RPC-provider restriction is alleged or measured for
       this candidate row.
   - layer: l4_frontend
-    status: not_measured
+    status: partially_measured
     scope: [augur.net, predictions.global]
     note: |
       The previous draft claimed a US/UK canonical-frontend geofence
@@ -115,8 +115,8 @@ observations:
   - layer: l4_frontend
     actor: frontend:forecast_foundation
     event: augur_v2_us_uk_geofence_primary_confirmation_gap
-    observation_kind: coverage_gap
-    attribution: none
+    observation_kind: observed_change
+    attribution: plausible
     timestamp: 2020-07-28T00:00:00Z
     precision: day
     sources:
@@ -149,6 +149,13 @@ observations:
           or replayable measurement anchor.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate) by human:xiangwen.
+  RECLASSIFIED coverage_gap -> observed_change/plausible (null_event ->
+  comparison/empirical_case) per user "reclassify by evidence": Augur v2's
+  US/UK frontend geofence (augur.net disclaimer, body_hash-anchored) is a
+  REAL access-restriction action, not a coverage gap. l4_frontend
+  observed_change/plausible. coverage l4_frontend -> partially_measured.
+
   Repair pass 2 recodes this row from a positive empirical_case to a
   draft null_case / coverage_gap. The prior draft asserted that Augur
   v2 shipped US-vantage and UK-vantage canonical-frontend geofences at
@@ -158,9 +165,10 @@ analysis_notes: |
   generic jurisdictional-compliance warnings but do not enumerate a
   US/UK geofence or provide a vantage-specific access-denial artifact.
 
-  Coding decision: no observed_change remains. The row stays in the
-  corpus as a draft source-discovery placeholder so future primary
-  evidence can either repair the US/UK geofence claim or retire the row.
+  Coding decision (audit 2026-05-21): reclassified to observed_change/
+  plausible. The augur.net disclaimer (body_hash-anchored) documents the
+  real US/UK frontend geofence; this is an access-restriction action, not
+  a coverage gap.
   It must not be used as the "earliest DeFi frontend-vs-protocol split"
   claim unless a primary Augur notice, reproducible UI measurement, or
   other admission-grade source is located.
