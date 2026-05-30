@@ -22,3 +22,9 @@ rows. Morning review converts remaining registry rows to full events.
 
 (Each cron tick appends an entry below: tick #, time, focus, registry rows added, events
 authored, judgment calls + why, skips + why, anything needing human review.)
+
+### Tick 0 (seed) — 2026-05-30 23:31 Melbourne — focus: 2007-2016 backfill (validation seed)
+- Created `analysis/census_gap_registry.tsv` (header + 1 verified row).
+- **egold-doj-indictment-2007-04** (S3, 2007-04-27): the canonical "since 2007" anchor. DOJ/USSS indictment of e-gold, unsealed 2007-04-27 (verified via justice.gov archive PR #07-301). Corpus had only the 2008 plea. Real DOJ sources pinned. This is the #1 priority full-event to author (highest-value 2007 anchor).
+- Pipeline validated: WebSearch -> verify date+source -> registry row, no fabrication.
+- Cron 1ddafe54 active; first autonomous tick fires ~23:37 Melbourne.
