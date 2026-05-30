@@ -1,17 +1,17 @@
 id: japan-fsa-zaif-orders-2018-09
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - japan-fsa-coincheck-orders-2018
@@ -113,7 +113,7 @@ coverage:
       asset-layer freeze. No asset_onchain observation is coded for
       the FSA action itself.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - zaif_crypto_and_jpy_withdrawal_rail
     note: |
@@ -135,7 +135,7 @@ observations:
     actor: cex:zaif
     event: zaif_withdrawal_rail_frozen_per_fsa_order_and_fisco_transfer
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2018-09-25T00:00:00Z
     precision: day
     delta_hours: 0
@@ -164,10 +164,12 @@ observations:
           pinned snapshot timestamp and body_hash capture for the
           specific 2018-09-25 release permalink deferred to human
           audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2018/09/25/japan-regulators-seek-answers-in-wake-of-zaifs-60-million-crypto-hack/
-        wayback: https://web.archive.org/web/2018/https://www.coindesk.com/markets/2018/09/25/japan-regulators-seek-answers-in-wake-of-zaifs-60-million-crypto-hack/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210926141325/https://www.coindesk.com/markets/2018/09/25/japan-regulators-seek-answers-in-wake-of-zaifs-60-million-crypto-hack/
+        body_hash: sha256:1592d2eb9e576f8b2a68c7c2921a1e5c581bccc08f0043aec95e1afcbb6371a6
+        body_path: sources/http_captures/japan-fsa-zaif-orders-2018-09/primary/web.archive.org__web-20210926141325-https-www.coindesk.com-markets-2018-09-25-japan-regulators-seek-answers-in-wake-of-zaifs-60-million-crypto-hack__bb711bc54f.html
+        evidence_use: replayable
         note: |
           CoinDesk 2018-09-25 contemporaneous coverage of the FSA's
           third business-improvement order to Tech Bureau and the
@@ -175,10 +177,12 @@ observations:
           composition). Supporting context for the trigger-day
           framing. DRYRUN: wayback wildcard pointer in lieu of
           pinned-timestamp snapshot.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://cointelegraph.com/news/forced-deal-and-fsa-scrutiny-what-do-we-know-about-japans-latest-hack
-        wayback: https://web.archive.org/web/2018/https://cointelegraph.com/news/forced-deal-and-fsa-scrutiny-what-do-we-know-about-japans-latest-hack
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20180921215359/https://cointelegraph.com/news/forced-deal-and-fsa-scrutiny-what-do-we-know-about-japans-latest-hack
+        body_hash: sha256:59d887df8bd70dcdeb37cbedef26f73a1c2db74af893760ae35567ea73fec911
+        body_path: sources/http_captures/japan-fsa-zaif-orders-2018-09/primary/web.archive.org__web-20180921215359-https-cointelegraph.com-news-forced-deal-and-fsa-scrutiny-what-do-we-know-about-japans-latest-hack__68893c9567.html
+        evidence_use: replayable
         note: |
           Cointelegraph September-2018 coverage of the Fisco
           Cryptocurrency Exchange ¥5B investment / forced asset-and-
@@ -188,6 +192,14 @@ observations:
           pointer in lieu of pinned-timestamp snapshot.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Japan FSA cluster)
+  by human:xiangwen as empirical_case. CoinDesk Wayback 20210926141325 +
+  Cointelegraph Wayback 20180921215359 reclassified semi_primary_wayback
+  (2 independent). FSA index contextual (403/no Wayback). offramp_cex
+  observed_change direct->plausible. FSA 2018-09-25 third 業務改善命令 to
+  Tech Bureau post-Zaif hack (~¥7B BTC/BCH/MONA 2018-09-14); withdrawal-rail
+  freeze + forced Fisco asset transfer. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F.2 Japanese
   state-archives frame draft; agent_draft per validator constraint;
   status=draft because no body_hash+body_path archive anchors have

@@ -1,17 +1,17 @@
 id: japan-fsa-ftx-japan-suspension-2022-11
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - ftx-bankman-fried-doj-2022
@@ -25,8 +25,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
-      wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20221110133726/https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
+      body_hash: sha256:b6f3ea01c02af429023fc0fc450507d60122a154aa4ba41d0288120c2efc6300
+      body_path: sources/http_captures/japan-fsa-ftx-japan-suspension-2022-11/primary/web.archive.org__web-20221110133726-https-www.fsa.go.jp-news-r4-sonota-20221110-20221110.html__ccc0cd2d3a.html
+      evidence_use: replayable
       note: |
         Japan Financial Services Agency (金融庁 / FSA) press release dated
         2022-11-10 titled "FTX Japan株式会社に対する行政処分について"
@@ -69,8 +71,10 @@ trigger:
         permalink deferred to human audit.
     - type: primary_legal
       url: https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
-      wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20221111104403/https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
+      body_hash: sha256:2fba95df79d0ce107168518af5b2d74ce5731c21dcbb139c6acf6226ec8a2a6b
+      body_path: sources/http_captures/japan-fsa-ftx-japan-suspension-2022-11/primary/web.archive.org__web-20221111104403-https-www.fsa.go.jp-en-news-2022-20221111-20221110.html__ca531aa851.html
+      evidence_use: replayable
       note: |
         FSA English-language version of the 2022-11-10 release titled
         "Administrative Actions against FTX Japan, Inc." Documents the
@@ -144,7 +148,7 @@ coverage:
       on-chain addresses at the issuer level. No asset_onchain
       observation is coded.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - ftx_japan_jpy_and_crypto_withdrawal_rail
     note: |
@@ -177,8 +181,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
-        wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20221110133726/https://www.fsa.go.jp/news/r4/sonota/20221110/20221110.html
+        body_hash: sha256:b6f3ea01c02af429023fc0fc450507d60122a154aa4ba41d0288120c2efc6300
+        body_path: sources/http_captures/japan-fsa-ftx-japan-suspension-2022-11/primary/web.archive.org__web-20221110133726-https-www.fsa.go.jp-news-r4-sonota-20221110-20221110.html__ccc0cd2d3a.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [ftx_japan]
           countries: [JP]
@@ -201,8 +207,10 @@ observations:
           capture deferred to human audit.
       - type: primary_legal
         url: https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
-        wayback: https://web.archive.org/web/2022/https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20221111104403/https://www.fsa.go.jp/en/news/2022/20221111/20221110.html
+        body_hash: sha256:2fba95df79d0ce107168518af5b2d74ce5731c21dcbb139c6acf6226ec8a2a6b
+        body_path: sources/http_captures/japan-fsa-ftx-japan-suspension-2022-11/primary/web.archive.org__web-20221111104403-https-www.fsa.go.jp-en-news-2022-20221111-20221110.html__ca531aa851.html
+        evidence_use: replayable
         note: |
           FSA English-language version "Administrative Actions against
           FTX Japan, Inc." corroborates the Japanese-language primary
@@ -253,6 +261,15 @@ recovery:
       proceedings for years.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Japan FSA cluster)
+  by human:xiangwen as empirical_case. FSA Kanto-LFB administrative-action
+  pages captured: JP Wayback 20221110133726 + EN Wayback 20221111104403
+  (both primary_legal, contemporaneous, replayable body_hash). offramp_cex
+  observed_change/direct retained (FSA primary sources pinned). FSA 2022-11-10
+  業務停止命令 + 業務改善命令 + 資産国内保有命令 to FTX Japan post-FTX
+  collapse; withdrawal-rail freeze + JP-domestic asset retention (cleanest
+  cross-border parent-cascade case). comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F new-event draft;
   cross-border parent-cascade discovery): authored by LLM agent without
   personally verifying Wayback/body_hash; origin=agent_draft + status=draft
