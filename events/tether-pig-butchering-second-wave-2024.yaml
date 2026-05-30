@@ -1,17 +1,17 @@
 id: tether-pig-butchering-second-wave-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T12:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - tether-doj-pig-butchering-freeze-2023
@@ -26,10 +26,10 @@ trigger:
   citation:
     - type: semi_primary_measurement
       url: https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
-      wayback: https://web.archive.org/web/20260516203540/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
-      body_hash: sha256:311e23872a27be62c829f35d88e4a09692aaa7b196d62cf2f6ac21be48140ec8
-      body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/contextual/www.chainalysis.com__blog-apac-law-enforcement-freezes-pig-butchering-funds-august-2025__3d1717bde7.html
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20250901072225/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
+      body_hash: sha256:c71999bbf6bfdb3989d73fcbe74acd37581667887fd42159dc8c06061d8fca04
+      body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/primary/web.archive.org__web-20250901000000-https-www.chainalysis.com-blog-apac-law-enforcement-freezes-pig-butchering-funds-august-2025__b74ed93cf2.html
+      evidence_use: replayable
       note: |
         Chainalysis blog (August 2025) disclosing a June 2024 APAC-based
         law-enforcement operation in which Tether froze ~$46.9M (reported
@@ -38,11 +38,30 @@ trigger:
         victim deposits (Nov 2022 - Jul 2023) through intermediary wallets
         to five terminal wallets; Binance and OKX co-developed the
         intelligence; Tether executed the freeze at law-enforcement direction.
-        Distinct from tether-doj-pig-butchering-freeze-2023 ($225M, US DOJ /
-        USSS / EDVA civil forfeiture lead, 2023-11-20): different lead
-        jurisdiction (APAC vs US), different lead intelligence partner
-        (Chainalysis vs DOJ), different cohort, different magnitude, and
-        different timing (June 2024 vs November 2023).
+        Date split: the freeze event itself occurred in June 2024 — the blog
+        states verbatim "Tether froze funds in June 2024 at the agency's
+        direction" — whereas the August-2025 dateline of this Chainalysis
+        post is only the retroactive public disclosure date, not the freeze
+        date. The trigger.timestamp (2024-06-01, week precision) therefore
+        records the June-2024 freeze, NOT the August-2025 disclosure; no
+        day-level anchor exists because the operation was disclosed only
+        retroactively. Distinct from tether-doj-pig-butchering-freeze-2023
+        ($225M, US DOJ / USSS / EDVA civil forfeiture lead, 2023-11-20):
+        different lead jurisdiction (APAC vs US), different lead intelligence
+        partner (Chainalysis vs DOJ), different cohort, different magnitude,
+        and different timing (June 2024 vs November 2023).
+    - type: semi_primary_wayback
+      url: https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
+      wayback: https://web.archive.org/web/20250828090302/https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
+      body_hash: sha256:d4301688adf7a0396e366cc0e651035a58d433cc78f636840206edd5b14c1e60
+      body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/primary/web.archive.org__web-20250101000000-https-www.infosecurity-magazine.com-news-crypto-freeze-47m-romance-baiting__aca160050e.html
+      evidence_use: replayable
+      note: |
+        Infosecurity Magazine coverage of the Chainalysis disclosure;
+        independent semi-primary anchor. Corroborates the June-2024 freeze
+        timing ("froze the funds in June 2024 at its direction") and the
+        ~$46.9M / $47M figure with Tether-as-actor framing and APAC law
+        enforcement as the lead. Pinned Wayback memento (2025-08-28).
     - type: supporting_journalism
       url: https://crypto.news/tether-binance-chainalysis-aid-47m-pig-butchering-crackdown-in-apac/
       wayback: https://web.archive.org/web/20260516203715/https://crypto.news/tether-binance-chainalysis-aid-47m-pig-butchering-crackdown-in-apac/
@@ -53,6 +72,29 @@ trigger:
         crypto.news coverage of the Chainalysis disclosure; corroborates
         June 2024 freeze timing and ~$47M figure with Tether/Binance/OKX
         as crypto-firm collaborators and APAC law enforcement as the lead.
+    - type: supporting_journalism
+      url: https://www.theblock.co/post/368611/chainalysis-tether-binance-okx-police-freeze-nearly-50-million-usd-pig-butchering-scam-funds
+      wayback: https://web.archive.org/web/20250829225833/https://www.theblock.co/post/368611/chainalysis-tether-binance-okx-police-freeze-nearly-50-million-usd-pig-butchering-scam-funds
+      body_hash: sha256:fca19f79138c970865c899af01ee45606796c1f02b2f6014203053b5c71516bd
+      body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/primary/web.archive.org__web-20250901000000-https-www.theblock.co-post-368611-chainalysis-tether-binance-okx-police-freeze-nearly-50-million-usd-pig-butchering-scam-funds__25f0473f84.html
+      evidence_use: replayable
+      note: |
+        The Block coverage of the Chainalysis disclosure. States verbatim
+        "Tether subsequently froze the funds in June 2024 at the agency's
+        direction" and records both the $49.6M total and the $46.9M
+        consolidation-wallet figure, with Binance/OKX/APAC police as
+        collaborators. Pinned Wayback memento (2025-08-29).
+    - type: supporting_journalism
+      url: https://cryptonews.com/news/tether-freezes-49-6m-in-pig-butchering-funds-chainalysis-binance-okx-join-apac-crackdown/
+      wayback: https://web.archive.org/web/20250828210418/https://cryptonews.com/news/tether-freezes-49-6m-in-pig-butchering-funds-chainalysis-binance-okx-join-apac-crackdown/
+      body_hash: sha256:0b9424750d1d42fb1e8741b150325dec44eabcab229ab18282c4c95779b9d852
+      body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/primary/web.archive.org__web-20250901000000-https-cryptonews.com-news-tether-freezes-49-6m-in-pig-butchering-funds-chainalysis-binance-okx-join-apac-crackdown__19be29660e.html
+      evidence_use: replayable
+      note: |
+        cryptonews.com coverage of the Chainalysis disclosure. States
+        "Tether froze the funds in June 2024 at the request of Asia-Pacific
+        (APAC) authorities" and records the $49.6M total and $46.9M
+        consolidation-wallet figure. Pinned Wayback memento (2025-08-28).
   timestamp_sources:
     - type: supporting_tracker
       note: |
@@ -116,44 +158,63 @@ coverage:
       cohort is only documented at aggregate (~$46.9M-$49.6M, five terminal
       wallets) and the specific address set is not enumerated in any
       replayable primary artifact. Observation attached below as
-      observed_change direct attribution (Tether is the actor; the freeze
-      was executed under its corporate compliance policy at LE request).
+      observed_change plausible attribution (Tether is the actor; the freeze
+      was executed under its corporate compliance policy at LE request;
+      plausible rather than direct because only semi-primary anchors exist).
 
 observations:
   - layer: offramp_cex
     actor: tether_usdt_issuer
     event: tether_froze_apac_pig_butchering_cohort_june_2024
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2024-06-01T00:00:00Z
     precision: week
     delta_hours: 0
     sources:
       - type: semi_primary_measurement
         url: https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
-        wayback: https://web.archive.org/web/20260516203540/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
-        body_hash: sha256:311e23872a27be62c829f35d88e4a09692aaa7b196d62cf2f6ac21be48140ec8
-        body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/contextual/www.chainalysis.com__blog-apac-law-enforcement-freezes-pig-butchering-funds-august-2025__3d1717bde7.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20250901072225/https://www.chainalysis.com/blog/apac-law-enforcement-freezes-pig-butchering-funds-august-2025/
+        body_hash: sha256:c71999bbf6bfdb3989d73fcbe74acd37581667887fd42159dc8c06061d8fca04
+        body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/primary/web.archive.org__web-20250901000000-https-www.chainalysis.com-blog-apac-law-enforcement-freezes-pig-butchering-funds-august-2025__b74ed93cf2.html
+        evidence_use: replayable
         note: |
           Chainalysis blog post explicitly states Tether froze the cohort
           funds in June 2024 at APAC law enforcement's direction following
           Chainalysis-Binance-OKX-developed intelligence. Coded as
           semi_primary_measurement: Chainalysis is the lead intelligence
           partner and measurement/disclosure source, but this is still not
-          a Tether-issued primary corporate freeze report.
-      - type: supporting_journalism
+          a Tether-issued primary corporate freeze report. The June-2024
+          freeze date is the recorded event date; the August-2025 blog
+          dateline is only the retroactive disclosure.
+      - type: semi_primary_wayback
         url: https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
-        wayback: https://web.archive.org/web/20260516203734/https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
-        body_hash: sha256:903087b1b628c521af4214926f92d4d340c62a5fc2b24bd97e8e66b2418826d6
-        body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/contextual/www.infosecurity-magazine.com__news-crypto-freeze-47m-romance-baiting__5b90088eb4.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20250828090302/https://www.infosecurity-magazine.com/news/crypto-freeze-47m-romance-baiting/
+        body_hash: sha256:d4301688adf7a0396e366cc0e651035a58d433cc78f636840206edd5b14c1e60
+        body_path: sources/http_captures/tether-pig-butchering-second-wave-2024/primary/web.archive.org__web-20250101000000-https-www.infosecurity-magazine.com-news-crypto-freeze-47m-romance-baiting__aca160050e.html
+        evidence_use: replayable
         note: |
-          Infosecurity Magazine independent journalism corroboration of the
-          June 2024 freeze (~$47M figure) with Tether-as-actor framing and
-          APAC law-enforcement lead.
+          Infosecurity Magazine independent corroboration of the June 2024
+          freeze (~$46.9M / $47M figure) with Tether-as-actor framing and
+          APAC law-enforcement lead. Second independent semi-primary anchor;
+          pinned Wayback memento (2025-08-28).
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tether
+  pig-butchering second wave) by human:xiangwen. Verified-YES, promoted
+  as-is: the trigger date 2024-06-01 (week precision) is CORRECT — the
+  freeze occurred June 2024; the August-2025 Chainalysis dateline is only
+  the retroactive disclosure date. NOT re-dated, NOT retracted. Admission
+  rests on two independent semi-primary anchors at offramp_cex: Chainalysis
+  (semi_primary_measurement, Wayback 20250901072225, c71999bb...) +
+  Infosecurity Magazine (semi_primary_wayback, Wayback 20250828090302,
+  d4301688...), supported by The Block (Wayback 20250829225833, fca19f79...)
+  and cryptonews (Wayback 20250828210418, 0b942475...). offramp_cex
+  observed_change attribution downgraded direct -> plausible: no Tether
+  primary corporate freeze report or APAC-LE primary release was located,
+  and semi-primary measurements alone warrant plausible, not direct.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
 
   Second-wave Tether pig-butchering freeze, distinct from the
@@ -166,14 +227,18 @@ analysis_notes: |
     - Cohort: APAC-traced five-terminal-wallet cluster (vs 37-39 wallets
       in the 2023 cohort).
 
-  Attribution: `direct` per §1.2 logic applied to a non-OFAC freeze: Tether
-  is named as the executing actor in the Chainalysis primary disclosure;
-  the disclosure explicitly states the freeze was executed at law-
-  enforcement direction. The §1.2 OFAC-specific (A)/(B) test does not
-  apply (no OFAC SDN involved); we apply the more general "actor publicly
-  references trigger AND trigger names target" test from §1.1. Both hold:
-  Tether is publicly named as the freezer, and the LE-traced wallet cohort
-  is the named target.
+  Attribution: `plausible`. Tether is named as the executing actor in the
+  Chainalysis disclosure and the disclosure explicitly states the freeze
+  was executed at law-enforcement direction, so the qualitative "actor
+  publicly references trigger AND trigger names target" test from §1.1
+  holds (Tether is publicly named as the freezer, the LE-traced wallet
+  cohort is the named target). However, the evidence base is two
+  independent semi-primary anchors (Chainalysis measurement + Infosecurity
+  Wayback) with no primary_* source — no Tether-issued primary corporate
+  freeze report or APAC-LE primary release enumerating the freeze
+  transactions has been located. Per the admission rule that semi-primary
+  measurements alone warrant `plausible` rather than `direct`, the
+  observed_change is coded `plausible`.
 
   Evidence quality: the Chainalysis disclosure is pinned as a
   semi_primary_measurement source, but no primary Tether blog post or APAC
@@ -181,7 +246,7 @@ analysis_notes: |
   The Chainalysis blog (August 2025) and corroborating journalism are the
   only public anchors. This event
   therefore qualifies as `empirical_case` on the strength of one
-  observed_change `direct` row at offramp_cex, but cannot be elevated to
+  observed_change `plausible` row at offramp_cex, but cannot be elevated to
   `anchor_case` without primary corporate / primary onchain anchors.
 
   Cascade shape: 1 observed_change layer (offramp_cex) → `comparison`.

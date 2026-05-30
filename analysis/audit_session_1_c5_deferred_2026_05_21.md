@@ -1,6 +1,18 @@
-# C-5 Deferred Events — need human decision (2026-05-21)
+# C-5 Deferred Events — RESOLVED (2026-05-21)
 
-State at handoff: **249 admitted / 7 draft / 6 rejected** (262 total). Audit log `analysis/audit_log_session_1.jsonl` through `audit_id` 455.
+**RESOLUTION (user "YES全部", executed via investigate+verify+execute workflows, audit_id 457-464):**
+All 7 resolved. New state: **254 admitted / 1 draft / 7 rejected** (262 total).
+- huobi-htx → **re-dated 2024→2022-09-19**, rescoped to the real 7-coin Huobi delisting, 4 real body_hash-pinned sources → admitted.
+- tether-pig → **promoted as-is** (premise was wrong: June-2024 freeze, Aug-2025 = disclosure only) → admitted.
+- circle-svb → reclassified asset_onchain→offramp_cex observed_no_change → admitted (null_case).
+- makerdao → pinned **on-chain-verified** primary_onchain PSM-USDC-A tx 0xdb1f3c8c… (block 15360471) → admitted (null_case).
+- tether-tron → re-dated 2024→2025-01-28, asset_onchain→offramp_cex observed_no_change → admitted (null_case).
+- ren-protocol → **kept draft** (structurally un-promotable: off-chain darknode signature cessation, no primary_onchain tx can exist); factual corrections applied (decoupled the 2023-04-12 BTC FTX-debtor transfer).
+- okx-monero → **retracted as duplicate** of canonical sibling okx-privacy-token-delist-2024 (which was enriched with the verified sources).
+
+---
+
+State at handoff (pre-resolution): **249 admitted / 7 draft / 6 rejected** (262 total). Audit log `analysis/audit_log_session_1.jsonl` through `audit_id` 455.
 
 C-4 comparison COMPLETE (33/33). C-5 S5 corporate: 47/54 promoted; the 7 below were deferred rather than forced through, because each needs a judgment call (per the standing per-item YES/NO rule). Grouped by issue:
 

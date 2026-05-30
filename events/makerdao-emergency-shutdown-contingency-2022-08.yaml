@@ -1,17 +1,17 @@
 id: makerdao-emergency-shutdown-contingency-2022-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
-primary_source_verified: false
+status: admitted
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - tornado-cash-ofac-2022
@@ -205,8 +205,9 @@ coverage:
       2022-08-31 period. Replayable MakerDAO forum JSON captures now
       anchor the public governance debate, but they do not replace a
       comprehensive on-chain audit slice for ESM / PSM state. The
-      observed_no_change row attached below therefore remains
-      conservative and must be human-checked before release use.
+      observed_no_change row attached below is anchored by a verified
+      PSM-USDC-A sellGem transaction (block 15360471, 2022-08-17) and
+      remains conservative as a human-reviewed record.
   - layer: offramp_cex
     status: not_applicable
     note: |
@@ -227,6 +228,23 @@ observations:
       - 2022-08-08T00:00:00Z
       - 2022-08-31T23:59:59Z
     sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xdb1f3c8c48762feea71745c114d7ba0be1ae8019618f8bf3afd12f3762edc97b
+        tx_hash: "0xdb1f3c8c48762feea71745c114d7ba0be1ae8019618f8bf3afd12f3762edc97b"
+        block: 15360471
+        scope_descriptor:
+          providers: [maker_psm_usdc_a]
+          time_window:
+            - 2022-08-08T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          MakerDAO PSM-USDC-A (MCD_PSM_USDC_A 0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A)
+          sellGem tx 2022-08-17 (~325,947 USDC -> DAI), one day before the 2022-08-18
+          Emergency-Shutdown-contingency debate. Demonstrates the PSM minting DAI against
+          USDC normally during the Tornado/USDC sanctions fallout window; Emergency Shutdown
+          was NOT triggered and the USDC-PSM was NOT cut. Companion reverse-direction buyGem
+          tx 0xf559861f5f79061876122aa89f1937fbd9b64a25db1d005e7f3eb08c85d85116 (block 15399442,
+          2022-08-23) confirms two-way operation through the debate window.
       - type: primary_corporate
         url: https://forum.makerdao.com/search/query.json?term=USDC%20Tornado%20Cash
         body_hash: sha256:e734f0cb863bd383c37d603fb8c97b4a0c744a5e836f815c6c6ae7355c8028d7
@@ -260,8 +278,8 @@ observations:
           explicitly situates the Tornado Cash sanctions and USDC
           freeze/blocking risk inside MakerDAO's regulatory-risk debate.
           It is primary governance-surface evidence for the discussion
-          path; human audit should still pair it with an on-chain
-          state slice before using the no-change claim in release prose.
+          path, now paired with the verified PSM-USDC-A sellGem on-chain
+          anchor that grounds the no-change claim for release prose.
       - type: supporting_journalism
         url: https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
         wayback: https://web.archive.org/web/2022/https://thedefiant.io/news/defi/tornado-impact-makerdao-dai
@@ -305,6 +323,18 @@ observations:
           DRYRUN: wayback wildcard pointer pending body_hash capture.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit: promoted draft ->
+  admitted as a genuine null_case after pinning a verified on-chain
+  primary_onchain anchor. The MakerDAO PSM-USDC-A sellGem tx
+  0xdb1f3c8c48762feea71745c114d7ba0be1ae8019618f8bf3afd12f3762edc97b
+  (block 15360471, 2022-08-17, to=0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A,
+  verified on-chain via eth_getTransactionByHash) plus the companion
+  reverse-direction buyGem tx 0xf559861f5f79061876122aa89f1937fbd9b64a25db1d005e7f3eb08c85d85116
+  (block 15399442, 2022-08-23) confirm the USDC-PSM operating two-way and
+  normally through the Tornado/USDC sanctions fallout window: Emergency
+  Shutdown was NOT triggered and the USDC-PSM was NOT cut. empirical_shape
+  stays null_event and admission_tier stays null_case by design.
+
   **NEW EVENT AUTHORED — DRYRUN Wave 2.2D re-author preamble 2026-05-17**:
   authored by LLM agent without personally verifying Wayback /
   body_hash anchors; status=draft / origin=agent_draft per validator.

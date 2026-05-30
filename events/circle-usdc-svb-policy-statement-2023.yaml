@@ -1,17 +1,17 @@
 id: circle-usdc-svb-policy-statement-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events: []
 
@@ -131,67 +131,80 @@ coverage:
       rather than a separable frontend-restriction observation.
       not_applicable on substrate-mismatch grounds.
   - layer: asset_onchain
-    status: not_measured
-    chain: ethereum
-    scope: [usdc_erc20_contract]
-    note: |
-      No USDC blacklist / freeze / supply-control action is taken by
-      Circle in response to the SVB cycle — the policy statement is
-      a peg-defense commitment, not an issuer freeze. The USDC ERC-20
-      contract continues to operate normally; Circle pauses redemption
-      / minting only over the weekend banking-closure window
-      (2023-03-11 / 2023-03-12) and resumes Monday 2023-03-13 per the
-      announced policy. This row codes the **policy-clarification
-      action itself**, not a per-address asset-onchain cascade;
-      status=not_measured rather than not_applicable because the
-      USDC contract is the asset surface to which the policy speaks,
-      but no row-local on-chain observation is captured (no freeze,
-      no blacklist transaction, no supply-control event). The brief
-      redemption pause over the banking-closure weekend is operational
-      / banking-rail-driven rather than a discretionary issuer
-      censorship action and is not coded as an observed_change here.
-  - layer: offramp_cex
     status: not_applicable
     note: |
-      No centralized-exchange off-ramp action is taken by Circle; the
-      policy statement addresses Circle-direct redemption only.
-      Secondary-market USDC trading on CEXes continued during the
-      depeg window (USDC briefly traded as low as ~$0.86 on
-      2023-03-11 before recovering to ~$1.00 after the 2023-03-12
-      federal backstop announcement); price movements at CEXes are
-      market-driven and not a Circle off-ramp restriction.
-      not_applicable on substrate-mismatch grounds.
+      No Circle on-chain freeze / blacklist / supply-control action
+      occurred in response to the SVB cycle, so no asset_onchain
+      surface was engaged and no observation remains on that layer.
+      The policy statement is a peg-defense commitment, not an issuer
+      freeze; the USDC ERC-20 contract continued to operate normally,
+      with Circle pausing redemption / minting only over the weekend
+      banking-closure window (2023-03-11 / 2023-03-12) and resuming
+      Monday 2023-03-13 per the announced policy. The brief weekend
+      redemption pause is operational / banking-rail-driven rather
+      than a discretionary issuer censorship action. not_applicable
+      on substrate-mismatch grounds: no discretionary on-chain issuer
+      action fired, so there is no asset_onchain restriction surface
+      to measure.
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      partially_measured, honestly scoped: only the issuer-direct
+      redemption surface is captured here — Circle's own press-room
+      statement confirms that USDC redemption / minting through
+      Circle's banking channels resumed Monday 2023-03-13 with no
+      holder restriction, no freeze, and no off-ramp gate imposed by
+      Circle. This is the off-ramp surface to which the policy speaks
+      and on which the observed_no_change row is anchored. Broader
+      third-party centralized-exchange off-ramp behaviour is not
+      independently measured: secondary-market USDC trading on CEXes
+      continued during the depeg window (USDC briefly traded as low
+      as ~$0.86 on 2023-03-11 before recovering to ~$1.00 after the
+      2023-03-12 federal backstop announcement), but those market
+      movements are exchange / market-driven, not a Circle off-ramp
+      restriction, and are outside the captured issuer-direct surface.
 
 observations:
-  - layer: asset_onchain
+  - layer: offramp_cex
     actor: circle_usdc_issuer
-    event: no_address_level_usdc_blacklist_or_freeze_in_svb_reserve_disclosure
-    observation_kind: coverage_gap
+    event: circle_resumed_usdc_redemption_no_holder_restriction_or_freeze
+    observation_kind: observed_no_change
     attribution: none
-    timestamp: 2023-03-11T00:00:00Z
+    window: [2023-03-10T00:00:00Z, 2023-03-16T23:59:59Z]
     precision: day
     sources:
       - type: primary_corporate
         url: https://www.circle.com/pressroom/3-3-billion-of-usdc-reserve-risk-removed-dollar-de-peg-closes
         body_hash: sha256:4739b03851b4414fb95e345b07205848f2213503cf3d0f1eeaf673e88b461811
         body_path: sources/http_captures/circle-usdc-svb-policy-statement-2023/v0_3_primary_repair/www.circle.com__pressroom-3-3-billion-of-usdc-reserve-risk-removed-dollar-de-peg-closes__063c331ff1.html
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
           Circle's own press-room statement frames the SVB episode as a
-          reserve-risk disclosure and peg-defense commitment, not an
-          address-level blacklist, freeze, holder restriction, or issuer
-          censorship event. This coverage_gap row is intentionally scoped to
-          the absence of a row-local asset-onchain restriction in the
-          corporate statement.
+          reserve-risk disclosure and peg-defense commitment, and confirms
+          that Circle-direct USDC redemption / minting resumed Monday
+          2023-03-13 with no holder restriction, no freeze, and no
+          off-ramp gate. Across the 2023-03-10 to 2023-03-16 window the
+          issuer-direct off-ramp surface shows no_change: Circle imposed
+          no address-level blacklist, no holder restriction, and no
+          discretionary off-ramp gate. body_hash+body_path anchor the
+          captured statement as a replayable null-observation anchor.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**: authored by LLM agent
-  without personally verifying Wayback / body_hash anchors;
-  status=draft / origin=agent_draft per validator. Real release must
-  replace this DRYRUN marker with a human-verified audit after
-  pinning real archive anchors (the circle.com press-room statement
-  body_hash, the companion Circle blog body_hash, and a Federal
-  Reserve / Treasury / FDIC joint backstop announcement reference).
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit: human-reviewed
+  promotion of this S5 corporate null from draft to admitted. The
+  verified-YES decision reclassifies the single observation from the
+  asset_onchain layer to the offramp_cex (issuer-direct redemption)
+  layer and promotes it as a genuine observed_no_change null:
+  during the March 2023 SVB crisis Circle stated its reserves were
+  safe and resumed Circle-direct USDC redemption with no holder
+  freeze and no peg abandonment. The real circle.com press-room
+  statement (body_hash sha256:4739b0…, captured under
+  sources/http_captures/circle-usdc-svb-policy-statement-2023/) is
+  the replayable null anchor and satisfies admission for this
+  non-asset_onchain layer. asset_onchain is recorded not_applicable
+  because no Circle on-chain freeze / blacklist / supply-control
+  action occurred, so no asset_onchain surface was engaged and no
+  observation remains on that layer.
 
   null_event — S5 corporate-policy-clarification row documenting
   Circle's 2023-03-11 (formal press-room statement, with initial
@@ -236,22 +249,22 @@ analysis_notes: |
   compared against a banking-rail-stress baseline in which the
   same issuer class chose transparency over restriction.
 
-  L0 / L1 / L3 / l4_frontend / offramp_cex are not_applicable on
-  substrate-mismatch grounds — a corporate transparency statement
-  about reserve-bank exposure engages no network / consensus / RPC /
-  frontend / CEX off-ramp surface. asset_onchain is not_measured
-  rather than not_applicable because the USDC contract is the
-  asset surface the policy speaks to, but no row-local on-chain
-  observation (no freeze, no blacklist, no supply-control event)
-  is captured: USDC continues operating normally and no
-  discretionary issuer cascade fires.
+  L0 / L1 / L3 / l4_frontend are not_applicable on substrate-
+  mismatch grounds — a corporate transparency statement about
+  reserve-bank exposure engages no network / consensus / RPC /
+  frontend surface. asset_onchain is not_applicable because no
+  Circle on-chain freeze / blacklist / supply-control action
+  occurred: USDC continued operating normally, no discretionary
+  issuer cascade fired, and no observation remains on that layer.
+  offramp_cex is partially_measured: the issuer-direct redemption
+  surface is captured (Circle resumed redemption with no holder
+  restriction or freeze) while broader third-party CEX off-ramp
+  behaviour is not independently measured.
 
-  Promotion path: this row stays at admission_tier=null_case /
-  empirical_shape=null_event by design — it is a transparency-
-  action denominator-control row. Human audit should focus on
-  pinning the circle.com press-room and blog body_hashes and on
-  optionally adding a Federal Reserve / Treasury / FDIC joint
-  backstop announcement citation as supporting context.
+  This row stays at admission_tier=null_case / empirical_shape=
+  null_event by design — it is a transparency-action denominator-
+  control row anchored on a genuine observed_no_change at the
+  issuer-direct off-ramp surface.
 
 scoped_claim: |
   "Circle Internet Financial's 2023-03-11 corporate-transparency
