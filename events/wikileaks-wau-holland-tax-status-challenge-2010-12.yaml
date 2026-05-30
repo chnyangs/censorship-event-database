@@ -1,17 +1,17 @@
 id: wikileaks-wau-holland-tax-status-challenge-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-paypal-freeze-2010-12
@@ -146,10 +146,12 @@ observations:
     delta_hours: 0
     country: DE
     sources:
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://en.wikipedia.org/wiki/Wau_Holland_Foundation
-        wayback: https://web.archive.org/web/2010/https://en.wikipedia.org/wiki/Wau_Holland_Foundation
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20110107193603/https://en.wikipedia.org/wiki/Wau_Holland_Foundation
+        body_hash: sha256:e4004ff8935de24162d30709abeb01177562b3e6e7960aaf893a4b625f3d2351
+        body_path: sources/http_captures/wikileaks-wau-holland-tax-status-challenge-2010-12/primary/web.archive.org__web-20110107193603-https-en.wikipedia.org-wiki-Wau_Holland_Foundation__23d5498fbe.html
+        evidence_use: replayable
         scope_descriptor:
           countries: [DE]
           providers: [wau_holland_stiftung]
@@ -169,25 +171,34 @@ observations:
           is one-step inferential rather than directly attested in a
           single primary document.
       - type: primary_corporate
-        url: https://wauland.de/en/projects/enduring-freedom-of-information-wikileaks/
-        wayback: https://web.archive.org/web/2010/https://wauland.de/en/projects/enduring-freedom-of-information-wikileaks/
-        evidence_use: contextual_unarchived
+        url: http://www.wauland.de/de/projekte/WikiLeaks/2017-12-26_Statement.html
+        wayback: https://web.archive.org/web/20171227213018/http://www.wauland.de/de/projekte/WikiLeaks/2017-12-26_Statement.html
+        body_hash: sha256:29ae37cefe648f3306e8bd6f8fe0358ad230da3de3d26fb572a7baf8c65c69c3
+        body_path: sources/http_captures/wikileaks-wau-holland-tax-status-challenge-2010-12/primary/web.archive.org__web-20171227213018-http-www.wauland.de-de-projekte-WikiLeaks-2017-12-26_Statement.html__8c034d015d.html
+        evidence_use: replayable
         note: |
-          Wau Holland Stiftung project-04 page is the affected-entity
-          primary-corporate pin: the foundation itself documents the
-          WikiLeaks donation-forwarding role and the multi-year
-          tax-status negotiation with German authorities triggered by
-          that role.
-      - type: supporting_journalism
-        url: https://www.weeklystandard.com/john-rosenthal/tax-deductible-wikileaks
-        wayback: https://web.archive.org/web/2010/https://www.weeklystandard.com/john-rosenthal/tax-deductible-wikileaks
-        evidence_use: contextual_unarchived
-        note: |
-          Independent contemporaneous English-language journalism pin
-          on the Finanzamt Kassel review and the gemeinnuetzig-status
-          question.
+          Wau Holland Stiftung WikiLeaks-project statement page (affected-
+          entity primary-corporate pin). The foundation documents its
+          WikiLeaks donation-forwarding role, the Finanzamt Kassel
+          gemeinnuetzig (charitable-status) challenge, and the donation
+          handling. The original 2010 /en/ project page is not in the
+          Wayback Machine; this 2017-12-26 foundation statement (Wayback
+          20171227213018) is the earliest archivable foundation-authored
+          page substantiating the same WikiLeaks/tax-status facts.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison, others
+  11/11 FINAL) by human:xiangwen as empirical_case (discovery_ledger_only
+  tier). Single offramp_cex observed_change/plausible. Anchored by Wau
+  Holland Stiftung WikiLeaks-project statement (primary_corporate,
+  Wayback 20171227213018, body_hash 29ae37ce...) + Wikipedia Wau Holland
+  Foundation (semi_primary_wayback, Wayback 20110107193603, body_hash
+  e4004ff8...). The 2010 /en/ wauland project page is not in Wayback;
+  Weekly Standard source dropped (outlet defunct 2018, no memento,
+  unanchorable). Date 2010-12-15 (precision week) = Finanzamt
+  Kassel review opening; formal revocation Jan 2011 (documented in notes).
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN Wave 2.2D 2026-05-17** (agent_draft per
   user instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this drafting session). Authored by LLM
