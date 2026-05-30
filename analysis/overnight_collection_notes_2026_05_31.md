@@ -85,3 +85,11 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - **BORDERLINE/SOFT** (scope-boundary lens): onecoin-doj-2019 (fraud prosecution, not censorship of a legit service), sec-dao-report-2017 (regulatory framework report, not an action).
 **Judgment:** continued scope-tagging — the S3 stratum mixes genuine enforcement-censorship (DEX/operator shutdowns) with fraud prosecutions (OneCoin/Centra = scams) and regulatory reports (DAO Report). Recommend the morning scope decision: include enforcement that restricts/shuts a *legitimate* platform; exclude pure fraud prosecutions + soft reports. EtherDelta (first DEX enforcement) is a strong author-next candidate.
 **Registry now 24 rows** spanning S1/S3/S5/S6 + the 2007-2016 era. S4 nation-state (~106 cands) deferred — vocab-blocked, queued for morning ISO-code blessing then bulk-author.
+
+### Tick 7 — 2026-05-31 02:38 Melbourne — focus: S5 corporate saturation (registry breadth)
+**+5 S5 registry rows**, scope/dup-tagged:
+- **AUTHOR-READY**: bittrex-privacy-coin-delisting-2021-01 (XMR/ZEC/DASH delisting, clean offramp_cex; template = kraken-monero-eu-delisting-2024).
+- **DUPLICATE CAUGHT**: infura-metamask-venezuela-overbroad-geoblock-2022-03 = the corpus event infura-metamask-donetsk-luhansk-block-2022-03 (the Venezuela over-block was part of that same 2022-03-03 Infura geoblock I audited in C-5). Flagged DROP-as-dup (in_corpus=true) — avoids double-counting.
+- **asset_onchain issuer freezes (need onchain tx before authoring)**: tether-garantex-usdt-freeze-2025-03 (~$28M frozen post-EU-sanction, clear censorship), tether-okx-225m-freeze (cross-stratum).
+- **POLICY/BORDERLINE**: tether-voluntary-ofac-sdn-freeze-policy-2023-12 (a policy announcement, not a single action), bittrex-global-shutdown-2023-11 (SEC-driven vs business wind-down).
+**Judgment:** dedup vigilance paid off (caught the Infura-Venezuela near-dup vs corpus). Tether issuer-freeze cases (Garantex etc.) are clear asset_onchain censorship but gated on locating the on-chain freeze tx (§1.6) — queued with explicit notes. Registry now 29 rows.
