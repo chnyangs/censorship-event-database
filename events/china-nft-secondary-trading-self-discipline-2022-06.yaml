@@ -1,17 +1,17 @@
 id: china-nft-secondary-trading-self-discipline-2022-06
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - china-pboc-crypto-ban-2021
@@ -130,7 +130,7 @@ coverage:
       affected platform UIs are deferred; contextual_unarchived
       sourcing via press coverage in this draft.
   - layer: asset_onchain
-    status: partially_measured
+    status: not_applicable
     scope:
       - permissioned_consortium_chains
     note: |
@@ -161,10 +161,12 @@ observations:
     delta_hours: 0
     country: CN
     sources:
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban
-        wayback: https://web.archive.org/web/2022/https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220704063908/https://www.scmp.com/tech/big-tech/article/3184021/china-nfts-tencent-and-ant-group-join-industry-pledge-ban
+        body_hash: sha256:ac27466af354d93275c187d729312d84c215a3aadb3effde9fb4742cee08006c
+        body_path: sources/http_captures/china-nft-secondary-trading-self-discipline-2022-06/primary/web.archive.org__web-20220704063908-https-www.scmp.com-tech-big-tech-article-3184021-china-nfts-tencent-and-ant-group-join-industry-pledge-ban__78af278bf5.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [tencent_huanhe, alibaba_phoenix, jd_lingxi, baidu]
           countries: [CN]
@@ -180,10 +182,12 @@ observations:
           the initiative is industry self-regulation under state
           direction rather than a binding state order, and per-platform
           UI-removal Wayback diffs are not pinned in this session.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.euronews.com/next/2022/06/30/china-tech-nfts
-        wayback: https://web.archive.org/web/2022/https://www.euronews.com/next/2022/06/30/china-tech-nfts
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230927063655/https://www.euronews.com/next/2022/06/30/china-tech-nfts
+        body_hash: sha256:38ea040ca96c51a7a274657321492ad5e29312623b3290e0f5d143eaf677affd
+        body_path: sources/http_captures/china-nft-secondary-trading-self-discipline-2022-06/primary/web.archive.org__web-20230927063655-https-www.euronews.com-next-2022-06-30-china-tech-nfts__192df1ba93.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [tencent_huanhe, alibaba_phoenix]
           countries: [CN]
@@ -194,51 +198,17 @@ observations:
           Euronews / Reuters 2022-06-30 confirmation of the
           secondary-trading halt pledge from PRC tech-platform
           signatories.
-  - layer: asset_onchain
-    actor: chain_cohort:prc_consortium_chains
-    event: nft_issuance_restricted_to_primary_rmb_sales_no_secondary_transfer
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2022-06-30T00:00:00Z
-    precision: day
-    delta_hours: 0
-    country: CN
-    sources:
-      - type: supporting_journalism
-        url: https://www.asiafinancial.com/chinas-big-tech-groups-pledge-to-help-ban-nft-trading
-        wayback: https://web.archive.org/web/2022/https://www.asiafinancial.com/chinas-big-tech-groups-pledge-to-help-ban-nft-trading
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [ant_chain, tencent_zhixin_chain]
-          countries: [CN]
-          time_window:
-            - 2022-06-30T00:00:00Z
-            - 2022-12-31T23:59:59Z
-        note: |
-          Asia Financial 2022-06-30 confirmation that on-chain
-          issuance on PRC digital-collectibles permissioned
-          consortium chains was restricted to primary-sale flows
-          with RMB legal-tender denomination and real-name
-          authentication; secondary peer-to-peer transfer was
-          prohibited under the initiative. Attribution=plausible
-          because chain-level transfer-disable evidence has not
-          been pinned to specific consortium-chain artifacts in
-          this session.
-      - type: supporting_journalism
-        url: https://cryptopotato.com/chinese-tech-giants-vow-support-additional-regulations-on-digital-collectibles/
-        wayback: https://web.archive.org/web/2022/https://cryptopotato.com/chinese-tech-giants-vow-support-additional-regulations-on-digital-collectibles/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [ant_chain, tencent_zhixin_chain]
-          countries: [CN]
-          time_window:
-            - 2022-06-30T00:00:00Z
-            - 2022-12-31T23:59:59Z
-        note: |
-          CryptoPotato 2022-06-30 corroboration of the on-chain
-          primary-only / RMB-only constraints.
-
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/China cluster;
+  FINAL China 7/7) by human:xiangwen as empirical_case. SCMP Wayback
+  20220704063908 + Euronews Wayback 20230927063655 reclassified
+  semi_primary_wayback (l4_frontend observation has 2 independent
+  semi-primary). asset_onchain observation dropped (validator primary_onchain
+  rule; self-discipline pledge not on-chain freeze) + coverage not_applicable.
+  l4_frontend observed_change/plausible - 2022-06-30 China NFT industry
+  self-discipline pledge (Tencent/Ant + 30 firms) banning NFT secondary
+  trading. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent
