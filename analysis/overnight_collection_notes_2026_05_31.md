@@ -118,3 +118,10 @@ Rather than register 106 S4 rows one-by-one (the candidates file already lists t
 **Authored 1 full event (validates [OK]):**
 - **nigeria-binance-network-block-2024-02** (S4, comparable, comparison/empirical_case). Nigeria's Feb-2024 crackdown: NCC ordered telcos to BLOCK Binance/Coinbase/Kraken websites (l0_network — OONI-anchored, 4 NG binance.com measurements anomaly=True 2024-02-26..29, re-queried live) + detained 2 Binance executives (offramp_cex). 2-layer comparison, both observed_change/plausible. Sources OONI API (4 measurement_ids) + CoinDesk, body_hash-pinned. DISTINCT from corpus nigeria-cbn-crypto-ban-2021 (the 2021 banking ban). Structurally parallel to philippines-sec-binance-block-2024. audit_id 469. Corpus now 259 admitted.
 **Note:** This is the high-quality S4 pattern — an OONI-measurement-anchored l0_network block (satisfies codebook §1.5 without OONI the l0 layer would be unadmittable). Many 2024 S4 nation-state blocks (e.g. India app-store, Pakistan, etc.) may have similar OONI anchoring — worth checking OONI per-event during morning S4 authoring.
+
+### Tick 12 — 2026-05-31 05:09 Melbourne — focus: S4 dedup + distinct authorable cases
+**+5 S4 registry rows** (dedup-disciplined):
+- **DUP CAUGHT**: philippines-ntc-sec-binance-app-isp-block-2024-04 = corpus philippines-sec-binance-block-2024 (the OONI-anchored NTC ISP block I audited in C-5) -> DROP-as-dup.
+- **NET-NEW AUTHORABLE** (in-vocab, dedup-noted vs corpus): indonesia-kominfo-social-account-block-2024-07 (the 2024 Instagram block — the kumparan source from my C-5 indonesia re-date belongs HERE), indonesia-bi-payment-prohibition-2018-01, philippines-bsp-vasp-moratorium-2022-09, canada-csa-pre-registration-exodus-2023-02 (relates to corpus kucoin-canada-exit-2023).
+- Deduped 3 more internal gap-discovery dups (Indonesia-BI/Canada-CSA ×2 each).
+**Judgment:** continued cross-checking candidates against corpus events I personally audited this session (Philippines/Indonesia/Canada Binance cases) — high-confidence dedup. These 4 distinct S4 cases are clean morning-author targets. Registry now 44 rows. No event authored (dedup/registry tick).
