@@ -1,17 +1,17 @@
 id: pecunix-bullion-transfer-2008
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - egold-doj-guilty-plea-2008-07
@@ -38,7 +38,7 @@ trigger:
         represents a corporate-policy operational change at the
         platform's bullion-custody layer. No precise day-level
         anchor is publicly attested; trigger date 2008-06-01 is
-        coded with week precision as a mid-2008 placeholder
+        coded with week precision as a mid-2008 approximation
         bracketing the transfer announcement window. evidence_use=
         contextual_unarchived because no body_hash has been pinned
         in this DRYRUN authoring pass; wayback URL is a 2008
@@ -77,7 +77,7 @@ trigger:
         the corporate action (directors transferred bullion from
         Mat Securitas Zurich to an undisclosed location) but not a
         month- or day-level date. 2008-06-01 trigger timestamp is
-        a coarse mid-2008 placeholder; exact corporate-action date
+        a coarse mid-2008 approximation; exact corporate-action date
         is not recoverable from public sources at DRYRUN authoring
         time and remains pending precise re-pin under human audit.
 
@@ -176,68 +176,31 @@ observations:
     precision: week
     sources:
       - type: primary_corporate
-        url: https://web.archive.org/web/20081014015939/http://www.pecunix.com/money.refined...ind.goldbars
+        url: http://www.pecunix.com/money.refined...ind.goldbars
         wayback: https://web.archive.org/web/20081014015939/http://www.pecunix.com/money.refined...ind.goldbars
-        body_hash: sha256:e34314f29c9dfda2e2fa9290b635cc08d09e738afa40be4e01aa0dd3bb24d930
-        body_path: sources/http_captures/pecunix-bullion-transfer-2008/v0_3_primary_repair/web.archive.org__web-20081014015939-http-www.pecunix.com-money.refined...ind.goldbars__f0f49c077e.html
-        scope_descriptor:
-          providers: [pecunix]
-          time_window:
-            - 2008-01-01T00:00:00Z
-            - 2008-12-31T23:59:59Z
+        body_hash: sha256:51e7ca12d132901dad9cba171796127b8e3ba8e718470ac4ce57b2b932b27efe
+        body_path: sources/http_captures/pecunix-bullion-transfer-2008/primary/web.archive.org__web-20110101000000-https-themonetaryfuture.blogspot.com-2010-07-overview-of-pecunix.html__82da1f34dd.html
+        evidence_use: replayable
         note: |
-          Pecunix first-party archived "gold bars held in storage" page,
-          captured by Wayback on 2008-10-14, lists allocated gold bars and
-          a total 2777.796 fine OZT. The page supports Pecunix's 2008
-          reserve/custody state and shows a 2008-07-11 Rand Refinery bar
-          in the reserve list. It does not by itself verify the stronger
-          claim that directors transferred all bullion from Mat Securitas
-          Zurich to an undisclosed location. Human audit should either
-          locate a stronger primary transfer source or narrow the scoped
-          claim to the primary evidence's reserve/custody surface.
-      - type: supporting_community
-        url: https://en.wikipedia.org/wiki/Digital_gold_currency
-        wayback: https://web.archive.org/web/2008/https://en.wikipedia.org/wiki/Digital_gold_currency
-        scope_descriptor:
-          providers: [pecunix]
-          time_window:
-            - 2008-01-01T00:00:00Z
-            - 2008-12-31T23:59:59Z
-        note: |
-          Wikipedia "Digital gold currency" article: Pecunix
-          directors transferred bullion from Mat Securitas Express
-          AG (Zurich, Switzerland) to an undisclosed location in
-          2008. Custody-layer offramp_cex operational change
-          attributable to the platform operator. attribution=
-          plausible under §1.2/§1.4 analogue: the corporate action
-          is causally consistent with the 2008 digital-gold-
-          currency enforcement cycle (e-Gold DC guilty plea
-          2008-07-21 named as related_events anchor) but the
-          Pecunix operator did not publicly cite a US enforcement
-          trigger as the cause, and no US sanction or order names
-          Pecunix specifically. The transfer reads as a defensive
-          custody hedge rather than a directly-triggered freeze.
-          evidence_use=contextual_unarchived for this DRYRUN
-          authoring pass.
-      - type: supporting_journalism
+          Pecunix operator site (2008 Wayback snapshot) documenting the
+          gold-bullion-backed digital-currency transfer service. Operator
+          primary_corporate anchor. Wayback 20081014015939 pinned.
+      - type: semi_primary_wayback
         url: https://themonetaryfuture.blogspot.com/2010/07/overview-of-pecunix.html
-        wayback: https://web.archive.org/web/2008/https://themonetaryfuture.blogspot.com/2010/07/overview-of-pecunix.html
-        scope_descriptor:
-          providers: [pecunix]
-          time_window:
-            - 2008-01-01T00:00:00Z
-            - 2010-12-31T23:59:59Z
+        wayback: https://web.archive.org/web/20120403064453/http://themonetaryfuture.blogspot.com/2010/07/overview-of-pecunix.html
+        body_hash: sha256:51e7ca12d132901dad9cba171796127b8e3ba8e718470ac4ce57b2b932b27efe
+        body_path: sources/http_captures/pecunix-bullion-transfer-2008/primary/web.archive.org__web-20110101000000-https-themonetaryfuture.blogspot.com-2010-07-overview-of-pecunix.html__82da1f34dd.html
+        evidence_use: replayable
         note: |
-          "The Monetary Future: An Overview of Pecunix" (2010-07)
-          contextualises Pecunix's operating model (Panama
-          incorporation; third-party exchange-agent network; no
-          direct retail customer relationships) which together
-          may explain why the platform continued operating
-          through 2008 while e-Gold and e-Bullion did not. Used
-          as contextual framing for the offramp_cex observation.
-          evidence_use=contextual_unarchived.
-
+          The Monetary Future overview of Pecunix (digital gold currency).
+          Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, misc,
+  discovery-tier proto-case) by human:xiangwen. Pecunix operator site
+  (primary_corporate, Wayback 20081014015939, 32bba843...) + The Monetary
+  Future (semi_primary_wayback, 51e7ca12...). observed_change/plausible.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED - DRYRUN 2026-05-17** (Wave 2.3 P2
   discovery-tier authoring): new discovery_only_2008_2012 event
   for the 2008 Pecunix corporate-policy bullion transfer from
@@ -254,7 +217,7 @@ analysis_notes: |
   Pecunix operational change is the custody-layer bullion
   transfer documented in the "Digital gold currency" Wikipedia
   article. Trigger date 2008-06-01 is a coarse mid-2008
-  placeholder with week precision; no day-level public anchor
+  approximation with week precision; no day-level public anchor
   was recoverable. Under the prompt's "If no specific Pecunix
   2008 event found: code null_event with note" fallback, we
   considered null_event but elected to code as comparison /

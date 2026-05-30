@@ -1,17 +1,17 @@
 id: aave-arc-fireblocks-whitelist-2022-01
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - aave-tornado-frontend-block-2022-08
@@ -147,34 +147,16 @@ observations:
     sources:
       - type: primary_corporate
         url: https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
-        wayback: https://web.archive.org/web/2022/https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [aave_arc, fireblocks]
-          time_window:
-            - 2022-01-05T00:00:00Z
-            - 2022-01-31T23:59:59Z
+        wayback: https://web.archive.org/web/20240613130657/https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc/
+        body_hash: sha256:7f7255026aa31498113ef97e30d9c1155b6e167e19513c7d471f6fd9cbc72672
+        body_path: sources/http_captures/aave-arc-fireblocks-whitelist-2022-01/primary/web.archive.org__web-20220110000000-https-www.fireblocks.com-press-fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the__30e6368e01.html
+        evidence_use: replayable
         note: |
-          Fireblocks press release is the corporate-statement anchor for
-          the Aave Arc launch event: a permissioned pool with
-          PermissionManager-enforced address whitelist at the protocol
-          contract layer, 30 KYC-vetted institutional addresses onboarded
-          at launch. attribution=direct: the architectural decision to
-          deploy a permissioned-pool fork with on-chain whitelist is the
-          observed change itself (the protocol contracts only accept
-          whitelisted addresses by design). DRYRUN: wayback wildcard
-          pointer in lieu of pinned-timestamp snapshot.
-      - type: supporting_community
-        url: https://aave-arc.gitbook.io/docs/contracts-interacting-with-protocol/permissionmanager
-        wayback: https://web.archive.org/web/2022/https://aave-arc.gitbook.io/docs/contracts-interacting-with-protocol/permissionmanager
-        evidence_use: contextual_unarchived
-        note: |
-          Aave Arc PermissionManager contract documentation (GitBook) —
-          technical substrate confirming that whitelisting is enforced at
-          the protocol-contract layer via permissionAdmins (whitelisters
-          approved by Aave Governance). Wayback wildcard pointer in lieu
-          of pinned snapshot; community docs source pending body_hash
-          capture.
+          Fireblocks press release announcing the Aave Arc permissioned-DeFi
+          launch with 30 whitelisted (KYC'd) licensed financial institutions -
+          the access-restriction (whitelist-gated participation) that defines
+          this permissioned-pool event. primary_corporate anchor; attribution=
+          direct. Wayback 20240613130657 pinned.
   - layer: l4_frontend
     actor: frontend:app_aave_com_arc_view
     event: aave_arc_frontend_surface_reflects_protocol_whitelist_inclusion_class
@@ -203,6 +185,11 @@ observations:
           app.aave.com Aave Arc subview deferred to human audit.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, misc) by
+  human:xiangwen. Anchored on Fireblocks Aave-Arc whitelist press release
+  (primary_corporate, Wayback 20240613130657, 7f725502...). observed_change/
+  direct (permissioned/whitelist-gated pool). comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent

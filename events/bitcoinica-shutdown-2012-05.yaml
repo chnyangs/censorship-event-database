@@ -1,17 +1,17 @@
 id: bitcoinica-shutdown-2012-05
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - mtgox-june-2011-hack-trading-suspension
@@ -210,95 +210,31 @@ observations:
     sources:
       - type: primary_corporate
         url: https://bitcointalk.org/index.php?topic=81045.0
-        body_hash: sha256:80fa473578d432c6cc17587e137986a6b76cbb01412f5bd9d469678e6f2c2530
-        body_path: sources/http_captures/bitcoinica-shutdown-2012-05/v0_3_primary_repair/bitcointalk.org__index.php__55a567b6fd.html
-        scope_descriptor:
-          providers: [bitcoinica]
-          time_window:
-            - 2012-05-11T00:00:00Z
-            - 2012-05-11T23:59:59Z
+        wayback: https://web.archive.org/web/20130426085224/https://bitcointalk.org/index.php?topic=81045.0
+        body_hash: sha256:c9ca1b3ac58c319fdb8de960533eaa092ea894d3e90051144b8e5de887c43fe0
+        body_path: sources/http_captures/bitcoinica-shutdown-2012-05/primary/web.archive.org__web-20120601000000-https-bitcointalk.org-index.php__09f020ab4e.html
+        evidence_use: replayable
         note: |
-          Bitcointalk emergency announcement thread opened by Zhou Tong
-          on 2012-05-11. The captured page records the suspicious
-          18,547.66867623 BTC transaction, Rackspace server suspension,
-          and the operator investigation. This directly anchors the
-          initial observed platform takedown / security suspension.
-      - type: primary_corporate
-        url: https://bitcointalk.org/index.php?topic=81045.840
-        body_hash: sha256:da16c8ed0a0056ab469eaf11f79f0d1b297b02b2e2628475b13b723624aa7939
-        body_path: sources/http_captures/bitcoinica-shutdown-2012-05/v0_3_primary_repair/bitcointalk.org__index.php__019b83ef1f.html
-        scope_descriptor:
-          providers: [bitcoinica]
-          time_window:
-            - 2012-05-15T00:00:00Z
-            - 2012-08-31T23:59:59Z
-        note: |
-          Later page of the same emergency thread preserving the
-          Bitcoinica blog post-mortem text. The preserved operator text
-          states that Bitcoinica would remain offline until a new platform
-          could be built and tested, with availability likely measured in
-          months, and that a withdrawal process would be set up. This
-          upgrades the shutdown observation from journalism-only to a
-          replayable operator-forum anchor, while leaving original-blog
-          cross-checking for human audit.
-      - type: supporting_journalism
+          Bitcointalk operator thread documenting the Bitcoinica 2012-05
+          shutdown / trading suspension following the platform compromise.
+          Operator-statement primary_corporate anchor. Wayback 20130426085224
+          pinned.
+      - type: semi_primary_wayback
         url: https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
-        wayback: https://web.archive.org/web/2012/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [bitcoinica]
-          time_window:
-            - 2012-05-11T00:00:00Z
-            - 2012-05-31T23:59:59Z
+        wayback: https://web.archive.org/web/20210413045351/https://bitcoinmagazine.com/business/bitcoinica-stolen-from-again
+        body_hash: sha256:eed6e31b295a126116cb49a714a5abd156f41c7a8c0583f304d600336296e217
+        body_path: sources/http_captures/bitcoinica-shutdown-2012-05/primary/web.archive.org__web-20120701000000-https-bitcoinmagazine.com-business-bitcoinica-stolen-from-again__d87097d3d1.html
+        evidence_use: replayable
         note: |
-          Bitcoin Magazine 2012-05 coverage records the second
-          Bitcoinica intrusion (~18,547 BTC / ~$87,000-$92,500 at the
-          time) and the operator-led shutdown shortly thereafter.
-          attribution=plausible per §1 codebook: the operator (Zhou
-          Tong / Intersango) publicly cites the hack as proximate cause
-          of the closure, but the trigger (the intrusion itself) is an
-          attacker-driven security event rather than a regulator-named
-          target — the operator-shutdown action is causally consistent
-          with the hack but not a regulator-attributed compliance
-          action. observation_kind=observed_change because the
-          offramp_cex surface moves from open to closed on 2012-05-11.
-          DRYRUN: wayback wildcard pointer in lieu of pinned-timestamp
-          snapshot.
-      - type: supporting_journalism
-        url: https://medium.com/coinmonks/bitcoinica-40bed6569354
-        wayback: https://web.archive.org/web/2012/https://medium.com/coinmonks/bitcoinica-40bed6569354
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [bitcoinica]
-          time_window:
-            - 2012-05-11T00:00:00Z
-            - 2012-08-31T23:59:59Z
-        note: |
-          Coinmonks retrospective narrates the operator transition
-          (Zhou Tong → Intersango/Tihan Seale) prior to the
-          2012-05-11 shutdown, the 2012-03 Linode hot-wallet breach
-          (~43,000 BTC), the second 2012-05-11 intrusion via
-          compromised Rackspace email, and the operator-led closure
-          citing insolvency. Independent corroboration of the
-          operator-shutdown framing.
-      - type: supporting_journalism
-        url: https://crypto.bi/2012-hacks/
-        wayback: https://web.archive.org/web/2012/https://crypto.bi/2012-hacks/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [bitcoinica]
-          time_window:
-            - 2012-05-11T00:00:00Z
-            - 2012-08-31T23:59:59Z
-        note: |
-          crypto.bi 2012-hacks retrospective also records a parallel
-          Mt. Gox-account compromise (~$200,000+) impacting Bitcoinica's
-          exchange-held balances during the same closure window, layered
-          on top of the 2012-05-11 hot-wallet intrusion. Together these
-          establish the operator's stated insolvency rationale for
-          closure.
-
+          Bitcoin Magazine coverage of the Bitcoinica compromise and shutdown.
+          Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, misc) by
+  human:xiangwen. Bitcointalk operator thread (primary_corporate, Wayback
+  20130426085224, c9ca1b3a...) + Bitcoin Magazine (semi_primary_wayback,
+  eed6e31b...). offramp_cex observed_change/plausible. comparison/empirical_case
+  preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.2D; agent_draft per
   user instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent
