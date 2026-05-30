@@ -1,0 +1,162 @@
+id: eu-8th-package-russia-crypto-services-ban-2022-10
+schema_version: 0.2.0
+codebook_version: "2.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S6_supranational
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.2"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - mica-l2-esma-eba-rts-2024
+
+trigger:
+  type: supranational_regulation
+  actor: eu_council
+  timestamp: 2022-10-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://finance.ec.europa.eu/news/eu-agrees-eighth-package-sanctions-against-russia-2022-10-06_en
+      wayback: https://web.archive.org/web/20250530212527/https://finance.ec.europa.eu/news/eu-agrees-eighth-package-sanctions-against-russia-2022-10-06_en
+      body_hash: sha256:25f907f04ba923199960626483b6dcb00b7c79ad39ff73ac2fe13947b6b19b17
+      body_path: sources/http_captures/eu-8th-package-russia-crypto-services-ban-2022-10/primary/web.archive.org__web-20221015000000-https-finance.ec.europa.eu-news-eu-agrees-eighth-package-sanctions-against-russia-2022-10-06_en__916ffa41ed.html
+      evidence_use: replayable
+      note: |
+        European Commission / Council, 8th sanctions package against Russia
+        (adopted 2022-10-06): a COMPLETE ban on the provision of crypto-asset
+        wallet, account, or custody services to Russian persons and residents,
+        removing the prior EUR 10,000 threshold (5th package, April 2022). The
+        provision of these crypto-asset services is now entirely prohibited
+        regardless of value. Wayback 20250530212527 pinned.
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/policy/2022/10/06/eus-russian-crypto-ban-confirmed-as-bloc-tightens-sanctions
+      wayback: https://web.archive.org/web/20221007045409/https://www.coindesk.com/policy/2022/10/06/eus-russian-crypto-ban-confirmed-as-bloc-tightens-sanctions/
+      body_hash: sha256:4c49f5d6214ffd0c8bce614116e817c76a65a1b25d7dfacc7832abdc67ba588f
+      body_path: sources/http_captures/eu-8th-package-russia-crypto-services-ban-2022-10/primary/web.archive.org__web-20221008000000-https-www.coindesk.com-policy-2022-10-06-eus-russian-crypto-ban-confirmed-as-bloc-tightens-sanctions__6292511487.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2022-10-06 confirming the EU 8th-package total crypto-services
+        ban on Russian persons. Independent corroborating anchor.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2022-10-06 EU 8th-package adoption.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    All crypto-asset wallet / account / custody services provided to Russian
+    persons and residents (the prohibited service-to-target-class). Complete
+    enumeration of the prohibited service class; the ban applies to all EU
+    crypto-asset service providers vis-a-vis Russian persons regardless of
+    asset value (removing the prior EUR 10k threshold).
+  actor_type: sanctions_service_prohibition
+  actor_name: EU 8th-package crypto-services ban (Russian persons)
+
+jurisdiction:
+  - EU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A legal services-prohibition instrument, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The ban prohibits SERVICE PROVISION (wallets/accounts/custody) to a
+      sanctioned person-class; it does not itself freeze specific on-chain
+      assets/addresses (no enumerated addresses; no issuer freeze tx).
+  - layer: offramp_cex
+    status: measured
+    scope: [eu_crypto_service_providers_to_russian_persons]
+    note: |
+      Load-bearing layer. The 8th-package prohibition severs the EU
+      crypto-asset off-ramp/custody surface for Russian persons and
+      residents (complete ban, no value threshold). The legal instrument
+      is the operative prohibition; attested in the EU primary source.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:eu_council
+    event: eu_prohibits_all_crypto_services_to_russian_persons
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-10-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://finance.ec.europa.eu/news/eu-agrees-eighth-package-sanctions-against-russia-2022-10-06_en
+        wayback: https://web.archive.org/web/20250530212527/https://finance.ec.europa.eu/news/eu-agrees-eighth-package-sanctions-against-russia-2022-10-06_en
+        body_hash: sha256:25f907f04ba923199960626483b6dcb00b7c79ad39ff73ac2fe13947b6b19b17
+        body_path: sources/http_captures/eu-8th-package-russia-crypto-services-ban-2022-10/primary/web.archive.org__web-20221015000000-https-finance.ec.europa.eu-news-eu-agrees-eighth-package-sanctions-against-russia-2022-10-06_en__916ffa41ed.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [eu_crypto_service_providers]
+          countries: [EU]
+          time_window:
+            - 2022-10-06T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          EU 8th-package: complete prohibition on crypto-asset wallet/account/
+          custody services to Russian persons (removed the EUR 10k threshold).
+          attribution=direct: the EU legal instrument directly and explicitly
+          prohibits the offramp/custody service for the named target class.
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2022/10/06/eus-russian-crypto-ban-confirmed-as-bloc-tightens-sanctions
+        wayback: https://web.archive.org/web/20221007045409/https://www.coindesk.com/policy/2022/10/06/eus-russian-crypto-ban-confirmed-as-bloc-tightens-sanctions/
+        body_hash: sha256:4c49f5d6214ffd0c8bce614116e817c76a65a1b25d7dfacc7832abdc67ba588f
+        body_path: sources/http_captures/eu-8th-package-russia-crypto-services-ban-2022-10/primary/web.archive.org__web-20221008000000-https-www.coindesk.com-policy-2022-10-06-eus-russian-crypto-ban-confirmed-as-bloc-tightens-sanctions__6292511487.html
+        evidence_use: replayable
+        note: |
+          CoinDesk corroboration of the EU total crypto-services ban.
+          Independent semi-primary anchor.
+
+analysis_notes: |
+  **AUTHORED 2026-05-31** (overnight census tick 14, human:xiangwen
+  autonomous mandate). The EU 8th sanctions package (adopted 2022-10-06)
+  imposed a COMPLETE ban on providing crypto-asset wallet/account/custody
+  services to Russian persons and residents, removing the EUR 10,000
+  threshold from the 5th package (April 2022). The clearest S6
+  supranational CENSORSHIP action (vs the softer S6 governance frameworks
+  like FATF/IOSCO recommendations): a direct legal prohibition severing the
+  EU crypto off-ramp/custody surface for a sanctioned person-class.
+  comparison shape, single offramp_cex observed_change/direct (the EU
+  instrument is the operative prohibition; primary EU source + CoinDesk
+  corroboration, body_hash-pinned). asset_onchain not_applicable (a
+  service-provision ban, not an enumerated-address freeze). NOTE for
+  morning: later packages (18th 2025-07, 19th 2025-10, 20th 2026-04)
+  expanded the crypto bans (registered in census_gap_registry) — author as
+  distinct events.
+  Sources verified via WebSearch + capture 2026-05-31 (no fabrication).
+
+scoped_claim: |
+  "The EU's 8th sanctions package (2022-10-06) completely banned the
+  provision of crypto-asset wallet/account/custody services to Russian
+  persons (removing the prior EUR 10k cap), severing the EU crypto
+  offramp/custody surface for the sanctioned class; single-layer
+  offramp_cex observed_change with attribution=direct."
+
+tags:
+  - supranational_regulation
+  - eu_sanctions
+  - russia_related
+  - crypto_services_ban
+  - offramp_shutdown
+  - eu_8th_package
