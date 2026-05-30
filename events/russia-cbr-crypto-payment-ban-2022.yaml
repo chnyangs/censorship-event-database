@@ -1,17 +1,17 @@
 id: russia-cbr-crypto-payment-ban-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - russia-cbr-bitcoin-information-letter-2014
@@ -25,7 +25,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.cbr.ru/eng/press/event/?id=12627
-      wayback: https://web.archive.org/web/2022/https://www.cbr.ru/eng/press/event/?id=12627
+      wayback: https://web.archive.org/web/20220121022021/https://www.cbr.ru/eng/press/event/?id=12627
+      body_hash: sha256:7e96fa79328d46d820d9c72b7eb5a81113f5d3b8328b1da3808408f56a398b31
+      body_path: sources/http_captures/russia-cbr-crypto-payment-ban-2022/primary/web.archive.org__web-20220121022021-https-www.cbr.ru-eng-press-event__d0318360b2.html
       evidence_use: contextual_unarchived
       note: |
         Bank of Russia (Central Bank of the Russian Federation / CBR)
@@ -61,9 +63,11 @@ trigger:
         Department director presenting the report. Used here as a
         contextual journalism anchor. Specific Wayback snapshot
         timestamp requires re-pinning during human audit.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
-      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
+      wayback: https://web.archive.org/web/20220120125334/https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
+      body_hash: sha256:d9efb21a618fea2641124ffe7a2b08cfdc98b11a21e52e233bdf033380dc8511
+      body_path: sources/http_captures/russia-cbr-crypto-payment-ban-2022/primary/web.archive.org__web-20220120125334-https-www.coindesk.com-policy-2022-01-20-bank-of-russia-calls-for-full-ban-on-crypto__ba6358ebd5.html
       evidence_use: contextual_unarchived
       note: |
         CoinDesk 2022-01-20 same-day coverage of the Bank of Russia
@@ -141,7 +145,7 @@ coverage:
       is class-level Russian-jurisdiction regulatory text without
       stablecoin-issuer or chain-admin engagement. not_applicable.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       The CBR consultation paper proposed banning dedicated crypto
       exchanges, P2P platforms, and crypto payments in Russia, but
@@ -160,10 +164,13 @@ observations:
   - layer: offramp_cex
     actor: russia_resident_crypto_offramp_class
     event: cbr_consultation_paper_proposed_but_not_enacted
-    observation_kind: coverage_gap
-    attribution: unknown
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2022-01-20T00:00:00Z
     precision: day
+    window:
+      - 2022-01-20T00:00:00Z
+      - 2022-12-31T23:59:59Z
     note: |
       The 2022-01-20 CBR consultation paper proposed a full ban on
       crypto trading, mining, and crypto payments inside Russia,
@@ -184,23 +191,35 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.cbr.ru/eng/press/event/?id=12627
-        wayback: https://web.archive.org/web/2022/https://www.cbr.ru/eng/press/event/?id=12627
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220121022021/https://www.cbr.ru/eng/press/event/?id=12627
+        body_hash: sha256:7e96fa79328d46d820d9c72b7eb5a81113f5d3b8328b1da3808408f56a398b31
+        body_path: sources/http_captures/russia-cbr-crypto-payment-ban-2022/primary/web.archive.org__web-20220121022021-https-www.cbr.ru-eng-press-event__d0318360b2.html
+        evidence_use: replayable
         note: |
           CBR English-language press event page for the 2022-01-20
           consultation paper "Cryptocurrency risks and possible
           regulation measures". Provisional Wayback anchor; specific
           snapshot timestamp to be re-pinned at human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220120125334/https://www.coindesk.com/policy/2022/01/20/bank-of-russia-calls-for-full-ban-on-crypto/
+        body_hash: sha256:d9efb21a618fea2641124ffe7a2b08cfdc98b11a21e52e233bdf033380dc8511
+        body_path: sources/http_captures/russia-cbr-crypto-payment-ban-2022/primary/web.archive.org__web-20220120125334-https-www.coindesk.com-policy-2022-01-20-bank-of-russia-calls-for-full-ban-on-crypto__ba6358ebd5.html
+        evidence_use: replayable
         note: |
           CoinDesk 2022-01-20 coverage corroborating the full-ban
           scope and consultation-window framing. Contextual
           journalism anchor; Wayback re-pin required at human audit.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. CBR press event page Wayback 20220121022021
+  (primary_legal) + CoinDesk Wayback 20220120125334 (semi_primary_wayback)
+  replayable body_hash. coverage_gap->observed_no_change. coverage[offramp_cex]
+  not_measured->measured. CBR 2022-01-20 consultation paper proposed full
+  crypto ban but NOT enacted (MinFin countered with regulate-not-ban; 259-FZ
+  + 2024 mining law implemented partial restriction). null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-main
   authoring pass for the 2022-01-20 Bank of Russia consultation
   paper "Cryptocurrencies: trends, risks, measures" ("Криптовалюты:

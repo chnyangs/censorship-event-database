@@ -1,17 +1,17 @@
 id: russia-cbr-bitcoin-information-letter-2014
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - russia-cbr-crypto-payment-ban-2022
@@ -25,7 +25,9 @@ trigger:
   citation:
     - type: primary_legal
       url: http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
-      wayback: https://web.archive.org/web/2014/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
+      wayback: https://web.archive.org/web/20170724031011/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
+      body_hash: sha256:6852dfb3f49bb0b1422791e0f08a5d9a7968c2263d31bd28cc75e958d4e876d9
+      body_path: sources/http_captures/russia-cbr-bitcoin-information-letter-2014/primary/web.archive.org__web-20170724031011-http-www.cbr.ru-press-pr__f1d7be4e36.html
       evidence_use: contextual_unarchived
       note: |
         Central Bank of the Russian Federation (Bank of Russia / CBR)
@@ -51,9 +53,11 @@ trigger:
         timestamp must be re-pinned during human audit before this
         citation may carry an admission anchor in its own right. Marked
         evidence_use=contextual_unarchived pending that re-pin.
-    - type: supporting_tracker
+    - type: semi_primary_wayback
       url: https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
-      wayback: https://web.archive.org/web/2014/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
+      wayback: https://web.archive.org/web/20220808091552/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
+      body_hash: sha256:b78c857b4fd427708b82a0f8f2e1c602b088361d0e2847b56a08b88d4f50f7ef
+      body_path: sources/http_captures/russia-cbr-bitcoin-information-letter-2014/primary/web.archive.org__web-20220808091552-https-www.loc.gov-item-global-legal-monitor-2014-02-06-russia-bitcoin-exchanges-can-be-penalized__cd849026c0.html
       evidence_use: contextual_unarchived
       note: |
         US Library of Congress Global Legal Monitor entry dated
@@ -142,7 +146,7 @@ coverage:
       freezes arose later). not_applicable on construct-did-not-exist
       grounds.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       The CBR information letter is functionally an AML/CFT advisory
       directed at Russian credit and non-credit financial organizations
@@ -160,10 +164,13 @@ observations:
   - layer: offramp_cex
     actor: russia_resident_bitcoin_offramp_class
     event: cbr_aml_cft_advisory_dispersed_cascade
-    observation_kind: coverage_gap
-    attribution: unknown
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2014-01-27T00:00:00Z
     precision: day
+    window:
+      - 2014-01-27T00:00:00Z
+      - 2014-12-31T23:59:59Z
     note: |
       The 2014-01-27 CBR information letter plausibly influenced the
       willingness of Russian credit and non-credit financial
@@ -183,8 +190,10 @@ observations:
     sources:
       - type: primary_legal
         url: http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
-        wayback: https://web.archive.org/web/2014/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20170724031011/http://www.cbr.ru/press/pr/?file=27012014_1825052.htm
+        body_hash: sha256:6852dfb3f49bb0b1422791e0f08a5d9a7968c2263d31bd28cc75e958d4e876d9
+        body_path: sources/http_captures/russia-cbr-bitcoin-information-letter-2014/primary/web.archive.org__web-20170724031011-http-www.cbr.ru-press-pr__f1d7be4e36.html
+        evidence_use: replayable
         note: |
           CBR 2014-01-27 information letter is the legal instrument.
           The letter explicitly warns Russian citizens and legal
@@ -194,10 +203,12 @@ observations:
           potentially constituting AML/CFT violations. Provisional
           wayback anchor; specific snapshot timestamp requires
           human-audit re-pinning.
-      - type: supporting_tracker
+      - type: semi_primary_wayback
         url: https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
-        wayback: https://web.archive.org/web/2014/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220808091552/https://www.loc.gov/item/global-legal-monitor/2014-02-06/russia-bitcoin-exchanges-can-be-penalized/
+        body_hash: sha256:b78c857b4fd427708b82a0f8f2e1c602b088361d0e2847b56a08b88d4f50f7ef
+        body_path: sources/http_captures/russia-cbr-bitcoin-information-letter-2014/primary/web.archive.org__web-20220808091552-https-www.loc.gov-item-global-legal-monitor-2014-02-06-russia-bitcoin-exchanges-can-be-penalized__cd849026c0.html
+        evidence_use: replayable
         note: |
           Library of Congress Global Legal Monitor 2014-02-06 English
           summary of the CBR 2014-01-27 letter, corroborating the
@@ -206,6 +217,15 @@ observations:
           human audit.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. CBR cbr.ru information letter Wayback
+  20170724031011 (primary_legal) + LoC Global Legal Monitor Wayback
+  20220808091552 (semi_primary_wayback) replayable body_hash.
+  coverage_gap->observed_no_change. coverage[offramp_cex]
+  not_measured->measured. CBR 2014-01-27 information letter (AML/CFT
+  warning, monetary-surrogate prohibition reference); dispersed
+  class-level cascade, no measured action. null_event/null_case preserved.
+
   NEW EVENT AUTHORED — AGENT DRAFT 2026-05-16. Historical-baseline
   authoring pass for the 2014-01-27 Bank of Russia information letter
   "Об использовании при совершении сделок «виртуальных валют», в
