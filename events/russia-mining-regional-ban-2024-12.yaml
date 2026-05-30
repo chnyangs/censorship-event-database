@@ -1,17 +1,17 @@
 id: russia-mining-regional-ban-2024-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - russia-cbr-crypto-payment-ban-2022
@@ -217,8 +217,10 @@ observations:
     sources:
       - type: primary_legal
         url: http://government.ru/news/53954/
-        wayback: https://web.archive.org/web/2024/http://government.ru/news/53954/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20250113152211/http://government.ru/news/53954/
+        body_hash: sha256:c7d0294cb278ade29aa4daca9a68c091f965a63fb8781f0a81181f9233785a11
+        body_path: sources/http_captures/russia-mining-regional-ban-2024-12/primary/web.archive.org__web-20250113152211-http-government.ru-news-53954__07e782326f.html
+        evidence_use: replayable
         scope_descriptor:
           countries: [RU]
           providers:
@@ -250,10 +252,12 @@ observations:
           uses the year-prefix lookup form and requires human-audit
           re-pinning before any admission-anchor use;
           evidence_use=contextual_unarchived in the interim.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass
-        wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20241224104001/https://www.coindesk.com/policy/2024/12/24/russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass
+        body_hash: sha256:9438d0dc1b5497740c7113b647c23478b3f52e305b0e60fd5001890d0744755c
+        body_path: sources/http_captures/russia-mining-regional-ban-2024-12/primary/web.archive.org__web-20241224104001-https-www.coindesk.com-policy-2024-12-24-russia-imposes-6-year-ban-on-crypto-mining-in-10-regions-citing-energy-use-tass__9ef5702021.html
+        evidence_use: replayable
         note: |
           CoinDesk English-language coverage dated 2024-12-24
           corroborates the ten-region enumeration, the 2025-01-01 to
@@ -277,6 +281,18 @@ observations:
           re-pinning of the specific Wayback snapshot.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison, others
+  8/11) by human:xiangwen as empirical_case. Single l1_consensus
+  observed_change/plausible (regional mining prohibition -> consensus-
+  layer hashpower geography). government.ru decree 53954 captured
+  replayable (Wayback 20250113152211, body_hash c7d0294c...); CoinDesk
+  reclassified semi_primary_wayback (Wayback 20241224104001, body_hash
+  9438d0dc...). Meduza retained supporting (jurisdiction-context for
+  occupied-territory subset). l1_consensus coverage stays
+  partially_measured: no post-ban hashrate-share measurement pinned
+  (attribution plausible, not direct). comparison/empirical_case
+  preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C
   comparable_main_2017_present authoring pass for the Russia 2024
   regional mining ban): authored by LLM agent without personally
