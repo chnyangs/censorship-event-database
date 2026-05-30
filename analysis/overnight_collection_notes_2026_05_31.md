@@ -134,3 +134,9 @@ Instead produced the high-value endgame deliverable: **analysis/MORNING_REVIEW_2
 **Authored 1 full event (validates [OK]):**
 - **eu-8th-package-russia-crypto-services-ban-2022-10** (S6, comparable, comparison/empirical_case). EU 8th sanctions package (2022-10-06): COMPLETE ban on crypto wallet/account/custody services to Russian persons, removing the 5th-package EUR 10k threshold. The clearest S6 supranational CENSORSHIP action (a direct legal prohibition — distinct from the soft FATF/IOSCO/FSB governance frameworks I tagged earlier). offramp_cex observed_change/direct, primary EU source + CoinDesk, body_hash-pinned, verified. audit_id 470. Corpus now 260 admitted.
 **Note:** Later EU packages (18th 2025-07, 19th 2025-10, 20th 2026-04) expanded the crypto bans (registered) — author as distinct events in the morning. This 8th-package event sets the EU-sanctions template.
+
+### Tick 15 — 2026-05-31 06:39 Melbourne — focus: validation sweep + EU-sanctions series (user "继续")
+- **FULL VALIDATION SWEEP: 268 OK / 0 FAIL.** All 6 overnight-authored events + the whole corpus validate clean. Tally 260 admitted / 1 draft (ren) / 7 rejected. Git clean.
+- Did NOT author BitFloor (only 1 cleanly-verified source near the deadline — left registered; thin for a dedicated event).
+- **+3 EU-sanctions registry rows** (author-ready, EU in-vocab, template = the 8th-package event authored tonight): eu-5th-package-crypto-cap-2022-04 (the FOUNDATIONAL first EU crypto restriction), eu-18th-package-2025-07, eu-19th-package-a7a5-2025-10. These form a clean EU-sanctions-escalation series for fast morning authoring.
+- User awake (~06:39). The 3 gating decisions (scope-boundary, 2007-tier, ISO-codes) in MORNING_REVIEW are ready — blessing them unblocks the big S4/S1 batch-authoring.
