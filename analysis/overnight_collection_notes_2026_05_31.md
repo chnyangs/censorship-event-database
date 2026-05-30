@@ -93,3 +93,7 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - **asset_onchain issuer freezes (need onchain tx before authoring)**: tether-garantex-usdt-freeze-2025-03 (~$28M frozen post-EU-sanction, clear censorship), tether-okx-225m-freeze (cross-stratum).
 - **POLICY/BORDERLINE**: tether-voluntary-ofac-sdn-freeze-policy-2023-12 (a policy announcement, not a single action), bittrex-global-shutdown-2023-11 (SEC-driven vs business wind-down).
 **Judgment:** dedup vigilance paid off (caught the Infura-Venezuela near-dup vs corpus). Tether issuer-freeze cases (Garantex etc.) are clear asset_onchain censorship but gated on locating the on-chain freeze tx (§1.6) — queued with explicit notes. Registry now 29 rows.
+
+### Tick 8 — 2026-05-31 03:08 Melbourne — focus: S5 author (privacy delisting)
+**Authored 1 full event (validates [OK]):**
+- **bittrex-privacy-coin-delisting-2021-01** (S5, comparable, comparison/empirical_case). XMR/ZEC/DASH removed from Bittrex (announced 2021-01-01, effective 2021-01-15) — the FIRST US-exchange privacy-coin delisting, early node in the wave (Kraken/Huobi/OKX/Binance followed). offramp_cex observed_change/plausible (Bittrex stated no explicit reason). 2 semi_primary_wayback (CoinDesk + Decrypt), body_hash-pinned, verified. delta_hours 336 (announce->effective). audit_id 468. Corpus now 258 admitted.

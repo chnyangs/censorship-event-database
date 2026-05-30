@@ -1,0 +1,177 @@
+id: bittrex-privacy-coin-delisting-2021-01
+schema_version: 0.2.0
+codebook_version: "2.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.2"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - kraken-monero-eu-delisting-2024
+  - huobi-htx-privacy-coin-delisting-2024
+  - okx-privacy-token-delist-2024
+
+trigger:
+  type: corporate_policy_change
+  actor: bittrex
+  timestamp: 2021-01-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/markets/2021/01/01/bittrex-to-delist-privacy-coins-monero-dash-and-zcash
+      wayback: https://web.archive.org/web/20210924223600/https://www.coindesk.com/markets/2021/01/01/bittrex-to-delist-privacy-coins-monero-dash-and-zcash/
+      body_hash: sha256:ba86a3e7b95a384c04b8e01c605aa340bd79d92ad1860e9b9cd27e996a379da5
+      body_path: sources/http_captures/bittrex-privacy-coin-delisting-2021-01/primary/web.archive.org__web-20210105000000-https-www.coindesk.com-markets-2021-01-01-bittrex-to-delist-privacy-coins-monero-dash-and-zcash__20b4279319.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2021-01-01: Bittrex announced it will delist privacy
+        coins Monero (XMR), Zcash (ZEC), and Dash (DASH); markets removed
+        2021-01-15 23:00 UTC. The first U.S.-based exchange to delist
+        privacy coins, amid the KYC/AML compliance trend. Bittrex gave no
+        explicit reason. Wayback 20210924223600 pinned.
+    - type: semi_primary_wayback
+      url: https://decrypt.co/53012/bittrex-to-delist-privacy-coins-monero-zcash-and-dash-in-two-weeks
+      wayback: https://web.archive.org/web/20210104061602/https://decrypt.co/53012/bittrex-to-delist-privacy-coins-monero-zcash-and-dash-in-two-weeks
+      body_hash: sha256:109fe61b58409e5e047339f2c04bef8419be3b144b219cd9f00b8603019880cd
+      body_path: sources/http_captures/bittrex-privacy-coin-delisting-2021-01/primary/web.archive.org__web-20210105000000-https-decrypt.co-53012-bittrex-to-delist-privacy-coins-monero-zcash-and-dash-in-two-weeks__c2b9ffb649.html
+      evidence_use: replayable
+      note: |
+        Decrypt 2021-01 corroboration of the Bittrex XMR/ZEC/DASH
+        delisting (effective 2021-01-15). Independent semi-primary anchor.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: announced 2021-01-01, effective 2021-01-15
+        23:00 UTC per the cited coverage.
+
+target:
+  kind: asset
+  enumeration: complete
+  enumeration_note: |
+    Three privacy-coin markets removed from Bittrex: Monero (XMR), Zcash
+    (ZEC), Dash (DASH). Complete enumeration of the delisted asset set;
+    the action removes the Bittrex trading/offramp markets for these
+    base-chain assets (no contract; the assets remain on their own chains).
+  actor_type: privacy_asset_class
+  actor_name: Monero (XMR) + Zcash (ZEC) + Dash (DASH) on Bittrex
+  chains:
+    - monero
+    - zcash
+    - dash
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An exchange listing decision, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The delisting acts on Bittrex's markets, not on any chain's
+      consensus layer; XMR/ZEC/DASH continue on their own chains.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The removal is of the trading markets (offramp), not a frontend
+      domain/UI block.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      XMR/ZEC/DASH are independent base-chain assets (no issuer/contract);
+      Bittrex cannot freeze them on-chain. The action is an offramp
+      market removal, not an asset-onchain freeze.
+  - layer: offramp_cex
+    status: measured
+    scope: [bittrex_xmr, bittrex_zec, bittrex_dash]
+    note: |
+      Load-bearing layer. Bittrex removed the XMR/ZEC/DASH trading markets
+      on 2021-01-15, severing the Bittrex centralized-exchange off-ramp
+      for these privacy assets. Attested in contemporaneous trade press.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bittrex
+    event: bittrex_removes_xmr_zec_dash_privacy_coin_markets
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-01-15T00:00:00Z
+    precision: day
+    delta_hours: 336
+    country: US
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/markets/2021/01/01/bittrex-to-delist-privacy-coins-monero-dash-and-zcash
+        wayback: https://web.archive.org/web/20210924223600/https://www.coindesk.com/markets/2021/01/01/bittrex-to-delist-privacy-coins-monero-dash-and-zcash/
+        body_hash: sha256:ba86a3e7b95a384c04b8e01c605aa340bd79d92ad1860e9b9cd27e996a379da5
+        body_path: sources/http_captures/bittrex-privacy-coin-delisting-2021-01/primary/web.archive.org__web-20210105000000-https-www.coindesk.com-markets-2021-01-01-bittrex-to-delist-privacy-coins-monero-dash-and-zcash__20b4279319.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bittrex]
+          countries: [US]
+          time_window:
+            - 2021-01-01T00:00:00Z
+            - 2021-01-31T23:59:59Z
+        note: |
+          CoinDesk 2021-01-01: Bittrex XMR/ZEC/DASH market removal
+          (effective 2021-01-15). attribution=plausible: the delisting is
+          directly observed, but Bittrex gave no explicit reason, so the
+          KYC/AML-compliance motive is the contextual inference rather
+          than a stated rationale.
+      - type: semi_primary_wayback
+        url: https://decrypt.co/53012/bittrex-to-delist-privacy-coins-monero-zcash-and-dash-in-two-weeks
+        wayback: https://web.archive.org/web/20210104061602/https://decrypt.co/53012/bittrex-to-delist-privacy-coins-monero-zcash-and-dash-in-two-weeks
+        body_hash: sha256:109fe61b58409e5e047339f2c04bef8419be3b144b219cd9f00b8603019880cd
+        body_path: sources/http_captures/bittrex-privacy-coin-delisting-2021-01/primary/web.archive.org__web-20210105000000-https-decrypt.co-53012-bittrex-to-delist-privacy-coins-monero-zcash-and-dash-in-two-weeks__c2b9ffb649.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bittrex]
+          countries: [US]
+          time_window:
+            - 2021-01-01T00:00:00Z
+            - 2021-01-31T23:59:59Z
+        note: |
+          Decrypt corroboration of the Bittrex privacy-coin delisting.
+          Independent second semi-primary anchor.
+
+analysis_notes: |
+  **AUTHORED 2026-05-31** (overnight census tick 8, human:xiangwen
+  autonomous mandate). Bittrex's 2021-01-01 announcement to delist
+  privacy coins Monero/Zcash/Dash (markets removed 2021-01-15 23:00 UTC)
+  — the FIRST U.S.-based exchange to delist privacy coins, an early node
+  in the privacy-coin-delisting wave later joined by Kraken/Huobi/OKX/
+  Binance (cf. related_events). comparison shape, single offramp_cex
+  observed_change, attribution=plausible (the delisting is directly
+  observed but Bittrex stated no explicit reason; the KYC/AML compliance
+  motive is contextual). XMR/ZEC/DASH are independent base-chain assets,
+  so l0/l1/l3/l4/asset_onchain are not_applicable. Sources verified via
+  WebSearch + capture 2026-05-31 (CoinDesk + Decrypt, body_hash-pinned;
+  no fabrication).
+
+scoped_claim: |
+  "Bittrex's 2021-01-15 removal of the Monero/Zcash/Dash trading markets
+  (the first U.S.-exchange privacy-coin delisting) severed the Bittrex
+  offramp for these assets; single-layer offramp_cex observed_change with
+  attribution=plausible (no explicit Bittrex rationale stated)."
+
+tags:
+  - corporate_policy_change
+  - privacy_coin_delisting
+  - monero
+  - zcash
+  - dash
+  - bittrex
+  - offramp_shutdown
+  - first_us_exchange
