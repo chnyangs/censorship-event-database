@@ -1,17 +1,17 @@
 id: coinbase-japan-exit-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - coinbase-india-exit-2022
@@ -32,7 +32,7 @@ trigger:
         announcing the wind-down of Coinbase KK retail operations. Cited as
         contextual_unarchived per evidence_use rule; not used to support
         admission claims at this draft stage. Wayback anchor pinned at year-
-        level; per-snapshot body_hash to be captured before admission promotion.
+        level; per-snapshot body_hash pinned in the observation sources.
   timestamp_sources:
     - type: supporting_journalism
       url: https://www.coindesk.com/business/2023/01/18/coinbase-confirms-it-is-halting-operations-in-japan
@@ -109,30 +109,41 @@ observations:
     country: JP
     sources:
       - type: primary_corporate
-        url: https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
-        wayback: https://web.archive.org/web/2023/https://www.coinbase.com/en-gb/blog/halting-operations-in-japan
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [coinbase_kk]
-          countries: [JP]
-          time_window:
-            - 2023-01-18T00:00:00Z
-            - 2023-02-17T23:59:59Z
+        url: https://www.coinbase.com/blog/halting-operations-in-japan
+        wayback: https://web.archive.org/web/20230119233917/https://www.coinbase.com/blog/halting-operations-in-japan
+        body_hash: sha256:b8fc687804f4d4a623e3ac85660dc4c95c64d5187a7aeee8b47735728cd56dff
+        body_path: sources/http_captures/coinbase-japan-exit-2023/primary/web.archive.org__web-20230120000000-https-www.coinbase.com-blog-halting-operations-in-japan__f443c99105.html
+        evidence_use: replayable
         note: |
-          Coinbase corporate blog announcing Japan operations halt. Fiat
-          deposit functionality removed 2023-01-20; customer withdrawal
-          deadline 2023-02-16; residual JPY deposited with Legal Affairs
-          Bureau after 2023-02-17. attribution=direct because Coinbase
-          (the CEX subject of the corporate policy) made and announced the
-          decision itself; the trigger and the acting entity are the same
-          firm.
-      - type: supporting_journalism
+          Coinbase official blog (2023-01-18) announcing the decision to halt
+          operations in Japan, remove fiat deposits 2023-01-20 JST, and require
+          customer withdrawals by 2023-02-16. primary_corporate anchor;
+          attribution=direct. Wayback 20230119233917 pinned.
+      - type: semi_primary_wayback
         url: https://www.bloomberg.com/news/articles/2023-01-18/coinbase-stops-japan-operations-after-slump-in-digital-assets
-        wayback: https://web.archive.org/web/2023/https://www.bloomberg.com/news/articles/2023-01-18/coinbase-stops-japan-operations-after-slump-in-digital-assets
-        evidence_use: contextual_unarchived
-        note: Bloomberg corroboration; cites crypto-winter cost-cutting context.
-
+        wayback: https://web.archive.org/web/20230118133921/https://www.bloomberg.com/news/articles/2023-01-18/coinbase-stops-japan-operations-after-slump-in-digital-assets
+        body_hash: sha256:5a056053ead4fc5bdbd355805c2ee780cf88b5aa2ffd5568236ddbca797344ba
+        body_path: sources/http_captures/coinbase-japan-exit-2023/primary/web.archive.org__web-20230119000000-https-www.bloomberg.com-news-articles-2023-01-18-coinbase-stops-japan-operations-after-slump-in-digital-assets__7f818d23ab.html
+        evidence_use: replayable
+        note: |
+          Bloomberg 2023-01-18 coverage of the Coinbase Japan operations halt.
+          Independent semi-primary anchor.
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/business/2023/01/18/coinbase-confirms-it-is-halting-operations-in-japan
+        wayback: https://web.archive.org/web/20230120164642/https://www.coindesk.com/business/2023/01/18/coinbase-confirms-it-is-halting-operations-in-japan/
+        body_hash: sha256:690cbaa26c428aca877ee8272b259122ba8cbaddb239994ba87e71c8fcaa18dc
+        body_path: sources/http_captures/coinbase-japan-exit-2023/primary/web.archive.org__web-20230120000000-https-www.coindesk.com-business-2023-01-18-coinbase-confirms-it-is-halting-operations-in-japan__399e2c1572.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2023-01-18 confirmation of the Coinbase Japan shutdown.
+          Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, exchange
+  exits) by human:xiangwen. Agent blog URL (/en-gb/ path) FABRICATED ->
+  real Coinbase blog (primary_corporate, Wayback 20230119233917) +
+  Bloomberg + CoinDesk (2 semi_primary_wayback). offramp_cex
+  observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
 
   comparison documenting Coinbase KK's 2023-01-18 wind-down of Japan retail
