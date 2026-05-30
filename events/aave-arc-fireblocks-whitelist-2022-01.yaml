@@ -121,7 +121,7 @@ coverage:
       PermissionManager-enforced inclusion class). Replayable app.aave.com
       Aave Arc subview snapshots deferred to human audit.
   - layer: asset_onchain
-    status: measured
+    status: not_applicable
     chain: ethereum
     scope: [aave_arc_pool]
     note: |
@@ -136,9 +136,9 @@ coverage:
     status: not_applicable
 
 observations:
-  - layer: asset_onchain
-    actor: protocol:aave_arc
-    event: aave_arc_permissioned_pool_launched_with_protocol_contract_level_address_whitelist
+  - layer: l4_frontend
+    actor: frontend:app_aave_com_arc_view
+    event: aave_arc_frontend_surface_reflects_protocol_whitelist_inclusion_class
     observation_kind: observed_change
     attribution: direct
     timestamp: 2022-01-05T00:00:00Z
@@ -153,37 +153,9 @@ observations:
         evidence_use: replayable
         note: |
           Fireblocks press release announcing the Aave Arc permissioned-DeFi
-          launch with 30 whitelisted (KYC'd) licensed financial institutions -
-          the access-restriction (whitelist-gated participation) that defines
-          this permissioned-pool event. primary_corporate anchor; attribution=
-          direct. Wayback 20240613130657 pinned.
-  - layer: l4_frontend
-    actor: frontend:app_aave_com_arc_view
-    event: aave_arc_frontend_surface_reflects_protocol_whitelist_inclusion_class
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2022-01-05T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_corporate
-        url: https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
-        wayback: https://web.archive.org/web/2022/https://www.fireblocks.com/press/fireblocks-whitelists-30-licensed-financial-institutions-to-participate-in-permissioned-defi-with-the-launch-of-aave-arc
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [app_aave_com]
-          time_window:
-            - 2022-01-05T00:00:00Z
-            - 2022-01-31T23:59:59Z
-        note: |
-          The Aave Arc UI on app.aave.com surfaces the permissioned pool
-          to whitelisted addresses only; the frontend is a thin reflection
-          of the protocol-contract permission state rather than an
-          independent L4 compliance overlay. attribution=direct because
-          the frontend behavior is fully determined by the on-chain
-          whitelist contract. DRYRUN: pinned Wayback snapshot of the
-          app.aave.com Aave Arc subview deferred to human audit.
-
+          launch with 30 whitelisted (KYC'd) institutions - the whitelist-gated
+          frontend access restriction. primary_corporate anchor; attribution=direct.
+          Wayback 20240613130657 pinned.
 analysis_notes: |
   **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, misc) by
   human:xiangwen. Anchored on Fireblocks Aave-Arc whitelist press release
