@@ -1,17 +1,17 @@
 id: wikileaks-western-union-interdiction-2010-12
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
-empirical_shape: null_event
-admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - wikileaks-paypal-freeze-2010-12
@@ -137,7 +137,7 @@ coverage:
       bitcoin donations in 2011-06, ~6 months after the WU action.
       not_applicable on construct-did-not-exist grounds.
   - layer: offramp_cex
-    status: not_measured
+    status: partially_measured
     scope:
       - western_union_money_transfer_rail
     note: |
@@ -161,8 +161,8 @@ observations:
   - layer: offramp_cex
     actor: western_union
     event: wikileaks_added_to_western_union_interdiction_list
-    observation_kind: coverage_gap
-    attribution: unknown
+    observation_kind: observed_change
+    attribution: plausible
     timestamp: 2010-12-21T00:00:00Z
     precision: day
     delta_hours: 0
@@ -171,8 +171,8 @@ observations:
         url: https://wikileaks.org/Banking-Blockade.html
         body_hash: sha256:0e508a4de9c98728b2285a4d0bfb66155b1c5f9396dc5765b6c06ac7c71de647
         body_path: sources/http_captures/wikileaks-western-union-interdiction-2010-12/v0_3_primary_repair/wikileaks.org__Banking-Blockade.html__9000597c87.html
-        wayback: https://web.archive.org/web/2012/https://wikileaks.org/Banking-Blockade.html
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20110630203331/http://wikileaks.org/Banking-Blockade.html
+        evidence_use: replayable
         scope_descriptor:
           providers:
             - western_union
@@ -194,10 +194,12 @@ observations:
           statement anchor cannot bear direct acting-party attribution
           weight. Provisional
           year-prefix wayback anchor pending re-pin.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business
-        wayback: https://web.archive.org/web/2012/https://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20111025083916/http://www.csmonitor.com/World/Latest-News-Wires/2011/1024/Wikilieaks-says-financial-blockade-could-put-it-out-of-business
+        body_hash: sha256:5e1cf2f9e45d5a8f220ff0d746e115575189a21f7e2a7ea5b20c78fb4812bc23
+        body_path: sources/http_captures/wikileaks-western-union-interdiction-2010-12/primary/web.archive.org__web-20111025083916-http-www.csmonitor.com-World-Latest-News-Wires-2011-1024-Wikilieaks-says-financial-blockade-could-put-it-out-of-business__a2679c1080.html
+        evidence_use: replayable
         scope_descriptor:
           providers:
             - western_union
@@ -213,6 +215,17 @@ observations:
           for the missing primary Western Union corporate disclosure.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, WikiLeaks
+  blockade 8/8) by human:xiangwen. RECLASSIFIED null_event/null_case/
+  coverage_gap -> comparison/empirical_case/observed_change(plausible)
+  per user "reclassify by evidence" decision: the WU 2010-12-21
+  Interdiction-List addition is a REAL blockade leg (consistent with its
+  5 confirmed sibling legs), attested by the WikiLeaks Banking-Blockade
+  record (primary_corporate, body_hash 0e508a4d..., Wayback 20110630203331)
+  + CSMonitor 2011-10-24 (semi_primary_wayback, Wayback 20111025083916).
+  attribution=plausible (no WU primary self-disclosure). offramp_cex
+  coverage -> partially_measured.
+
   NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase E of the 2026-05-16
   staged-release plan, discovery_only_2008_2012 tier fill, WikiLeaks
   December-2010 financial-blockade family.
@@ -303,11 +316,10 @@ scoped_claim: |
   Western Union added WikiLeaks to its money-transfer "Interdiction
   List" on 2010-12-21, blocking WikiLeaks from receiving donations
   through the Western Union rail as one of five legs of the
-  December-2010 financial blockade. observation_kind=coverage_gap
-  with attribution=unknown because no primary Western Union
-  corporate disclosure was located in this authoring pass; the
-  action is attested only via counterparty statement (WikiLeaks
-  Banking Blockade page) and contemporaneous journalism. Discovery-
+  December-2010 financial blockade. observation_kind=observed_change
+  with attribution=plausible: the action is attested via the WikiLeaks
+  Banking Blockade counterparty statement and contemporaneous journalism
+  but no primary Western Union corporate disclosure was located. Discovery-
   ledger tier; not used in main statistical denominators.
 
 scoped_knowledge: |
