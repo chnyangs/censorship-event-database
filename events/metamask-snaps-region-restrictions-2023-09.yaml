@@ -1,15 +1,15 @@
 id: metamask-snaps-region-restrictions-2023-09
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -192,51 +192,23 @@ observations:
     sources:
       - type: primary_corporate
         url: https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
-        wayback: https://web.archive.org/web/2023/https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - consensys_metamask
-          domains:
-            - metamask.io
-            - snaps.metamask.io
-          time_window:
-            - 2023-09-12T00:00:00Z
-            - 2023-12-12T00:00:00Z
+        wayback: https://web.archive.org/web/20250320210842/https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
+        body_hash: sha256:a42fb7b1bec4fe891e0a7b46d21427527b9cbe4af213f0d77b1f4d0886ce59d8
+        body_path: sources/http_captures/metamask-snaps-region-restrictions-2023-09/primary/web.archive.org__web-20230914000000-https-metamask.io-news-snaps-in-metamask-stable-and-where-we-go-from-here__6d3b8ec255.html
+        evidence_use: replayable
         note: |
-          MetaMask blog post announcing the 2023-09-12 Snaps launch in
-          the MetaMask Extension stable channel (v11.0). The post
-          documents the allowlist mechanism (npm package name +
-          version + content checksum) as the corporate-policy filter
-          gating Snap installation; per-Snap regional restrictions
-          surface through the same L4 directory gate. Codebook §1.4:
-          attribution=direct because (i) the blocking provider
-          (ConsenSys / MetaMask) publicly cites the trigger
-          (corporate policy decision to launch behind an allowlist) in
-          the blog post and (ii) the L4 filter is implemented at
-          launch (compliance window = 0 days, well within the ≤ 7-day
-          publicly-knowable window). DRYRUN: pinned Wayback snapshot
-          and body_hash deferred to human audit; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: supporting_community
-        url: https://github.com/MetaMask/snaps/discussions/1411
-        wayback: https://web.archive.org/web/2023/https://github.com/MetaMask/snaps/discussions/1411
-        evidence_use: contextual_unarchived
-        note: |
-          MetaMask Snaps Open Beta Readiness Guide developer
-          discussion thread documenting the npm-package + version +
-          checksum allowlist constraint. Triangulation source for the
-          curation mechanism. DRYRUN: pinned Wayback snapshot deferred
-          to human audit.
-      - type: supporting_journalism
+          MetaMask official news post on the Snaps platform (the permissioned
+          extension framework whose availability/region gating defines this
+          event). primary_corporate anchor. Wayback 20250320210842 pinned.
+      - type: semi_primary_wayback
         url: https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
-        wayback: https://web.archive.org/web/2023/https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20240523031402/https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
+        body_hash: sha256:7cdf704ab6b184c62af02f7ea09d20d2fe334e543e70d77a4399bbcd62557815
+        body_path: sources/http_captures/metamask-snaps-region-restrictions-2023-09/primary/web.archive.org__web-20230914000000-https-www.cryptotimes.io-2023-09-13-metamask-launches-snaps-to-enable-in-wallet-enhancements__d3bd35d805.html
+        evidence_use: replayable
         note: |
-          The Crypto Times contemporaneous (2023-09-13) coverage
-          confirming the 2023-09-12 launch and the allowlist-curation
-          framing. Day-level timing triangulation. DRYRUN: pinned
-          Wayback snapshot deferred to human audit.
+          The Crypto Times 2023-09-13 coverage of the MetaMask Snaps launch.
+          Independent semi-primary anchor.
   - layer: l3_rpc
     actor: wallet_provider:consensys_metamask
     event: snap_internal_rpc_endpoints_gated_via_l4_directory_allowlist
@@ -249,32 +221,31 @@ observations:
       - 2023-12-12T00:00:00Z
     sources:
       - type: primary_corporate
-        url: https://metamask.io/news/metamask-snaps-our-first-step-on-the-road-to-becoming-fully-permissionless
-        wayback: https://web.archive.org/web/2023/https://metamask.io/news/metamask-snaps-our-first-step-on-the-road-to-becoming-fully-permissionless
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - consensys_metamask
-          domains:
-            - metamask.io
-            - snaps.metamask.io
-          time_window:
-            - 2023-09-12T00:00:00Z
-            - 2023-12-12T00:00:00Z
+        url: https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
+        wayback: https://web.archive.org/web/20250320210842/https://metamask.io/news/snaps-in-metamask-stable-and-where-we-go-from-here
+        body_hash: sha256:a42fb7b1bec4fe891e0a7b46d21427527b9cbe4af213f0d77b1f4d0886ce59d8
+        body_path: sources/http_captures/metamask-snaps-region-restrictions-2023-09/primary/web.archive.org__web-20230914000000-https-metamask.io-news-snaps-in-metamask-stable-and-where-we-go-from-here__6d3b8ec255.html
+        evidence_use: replayable
         note: |
-          MetaMask companion blog post framing the allowlist as the
-          transitional curation gate. Many of the 30+ audited Snaps at
-          launch bundle their own chain-RPC endpoints (especially the
-          non-EVM-chain Snaps), so the L4 allowlist propagates to L3
-          indirectly: a Snap that the directory does not surface in a
-          jurisdiction cannot inject its RPC endpoint into the wallet
-          user's session in that jurisdiction. attribution=plausible
-          (codebook §1.4) because the L3 propagation is inferential
-          rather than the subject of a per-Snap public blocking
-          announcement by ConsenSys / MetaMask. DRYRUN: pinned Wayback
-          snapshot deferred to human audit.
-
+          MetaMask official news post on the Snaps platform (the permissioned
+          extension framework whose availability/region gating defines this
+          event). primary_corporate anchor. Wayback 20250320210842 pinned.
+      - type: semi_primary_wayback
+        url: https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
+        wayback: https://web.archive.org/web/20240523031402/https://www.cryptotimes.io/2023/09/13/metamask-launches-snaps-to-enable-in-wallet-enhancements/
+        body_hash: sha256:7cdf704ab6b184c62af02f7ea09d20d2fe334e543e70d77a4399bbcd62557815
+        body_path: sources/http_captures/metamask-snaps-region-restrictions-2023-09/primary/web.archive.org__web-20230914000000-https-www.cryptotimes.io-2023-09-13-metamask-launches-snaps-to-enable-in-wallet-enhancements__d3bd35d805.html
+        evidence_use: replayable
+        note: |
+          The Crypto Times 2023-09-13 coverage of the MetaMask Snaps launch.
+          Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, misc) by
+  human:xiangwen. Both obs (l4_frontend + l3_rpc) anchored on MetaMask Snaps
+  official news post (primary_corporate, Wayback 20250320210842, a42fb7b1...)
+  + The Crypto Times (semi_primary_wayback, 7cdf704a...). observed_change.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN WAVE 2.3 P2 2026-05-17**. Comparable-
   tier empirical case for the 2023-09-12 MetaMask Snaps open-beta
   launch in the MetaMask Extension stable channel (v11.0). The launch
