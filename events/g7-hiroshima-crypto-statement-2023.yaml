@@ -1,17 +1,17 @@
 id: g7-hiroshima-crypto-statement-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: supranational_regulation
@@ -21,16 +21,11 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.mofa.go.jp/policy/economy/summit/hiroshima23/documents/pdf/Leaders_Communique_01_en.pdf
-      wayback: https://web.archive.org/web/2023/https://www.mofa.go.jp/policy/economy/summit/hiroshima23/documents/pdf/Leaders_Communique_01_en.pdf
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240315111921id_/https://www.mofa.go.jp/policy/economy/summit/hiroshima23/documents/pdf/Leaders_Communique_01_en.pdf
+      body_hash: sha256:dbadd7042f21aabf09f9d0545d340a7f1a1e7fcfe3972264459953ea392903df
+      body_path: sources/http_captures/g7-hiroshima-crypto-statement-2023/primary/web.archive.org__web-20240315111921id_-https-www.mofa.go.jp-policy-economy-summit-hiroshima23-documents-pdf-Leaders_Communique_01_en.pdf__8325dd9829.bin
+      evidence_use: replayable
       note: |
-        **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Wave 2.3 P2
-        supranational sweep; lean run): authored by LLM agent
-        without personally verifying Wayback/body_hash; origin=
-        agent_draft per validator hard-rule. Human auditor must
-        replace this DRYRUN marker with a pinned archive anchor
-        before release.
-
         G7 Hiroshima Leaders' Communiqué (issued 2023-05-20 at the
         G7 Hiroshima Summit, Japan, 19-21 May 2023). The communiqué
         addresses crypto-asset regulation, expressing G7 support for
@@ -50,14 +45,14 @@ trigger:
         Mirror of the G7 Hiroshima Leaders' Communiqué hosted by the
         Council of the European Union (consilium.europa.eu). Used as
         secondary primary_legal anchor; same instrument as the MOFA
-        version. DRYRUN: archival anchor unverified by LLM agent at
-        authoring time.
+        version. Retained as contextual_unarchived (no CDX memento);
+        primary anchoring lives on the MOFA PDF above.
   timestamp_sources:
     - type: primary_legal
       note: |
         G7 Hiroshima Leaders' Communiqué release date 2023-05-20
         (G7 Summit, Hiroshima, Japan, 19-21 May 2023). Day-level
-        precision. DRYRUN authored 2026-05-17.
+        precision.
 
 target:
   kind: entity
@@ -102,7 +97,7 @@ coverage:
       level blacklisting. No L_asset effect attributable to the
       2023-05-20 communiqué date as such.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       Class-level G7 coordination instrument at the off-ramp layer
       (endorses FATF Travel Rule + OECD CARF + FSB recommendations
@@ -120,16 +115,23 @@ observations:
   - layer: offramp_cex
     actor: g7_member_state_crypto_aggregate
     event: g7_2023_hiroshima_communique_crypto_asset_statement
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2023-05-20T00:00:00Z
     precision: day
+    window:
+      - 2023-05-20T00:00:00Z
+      - 2024-12-31T23:59:59Z
     sources:
       - type: primary_legal
         url: https://www.mofa.go.jp/policy/economy/summit/hiroshima23/documents/pdf/Leaders_Communique_01_en.pdf
-        wayback: https://web.archive.org/web/2023/https://www.mofa.go.jp/policy/economy/summit/hiroshima23/documents/pdf/Leaders_Communique_01_en.pdf
+        wayback: https://web.archive.org/web/20240315111921id_/https://www.mofa.go.jp/policy/economy/summit/hiroshima23/documents/pdf/Leaders_Communique_01_en.pdf
+        body_hash: sha256:dbadd7042f21aabf09f9d0545d340a7f1a1e7fcfe3972264459953ea392903df
+        body_path: sources/http_captures/g7-hiroshima-crypto-statement-2023/primary/web.archive.org__web-20240315111921id_-https-www.mofa.go.jp-policy-economy-summit-hiroshima23-documents-pdf-Leaders_Communique_01_en.pdf__8325dd9829.bin
+        evidence_use: replayable
         scope_descriptor:
           providers: [g7_member_state_crypto_aggregate]
+          countries: [UN]
           time_window:
             - 2023-05-20T00:00:00Z
             - 2024-12-31T23:59:59Z
@@ -138,18 +140,22 @@ observations:
           FATF Standards on virtual assets including the Travel Rule
           and the OECD Crypto-Asset Reporting Framework for tax
           transparency is a class-level coordination instrument. No
-          per-event observed_change cascade is attributable to this
-          trigger at the corpus's resolution — downstream effects
+          per-event observed_change cascade attributable to this
+          trigger at the corpus's resolution; downstream effects
           manifest via FATF R.15 INR updates, OECD CARF national
           implementations, and the September 2023 G20 endorsement
-          which are tracked as separate child events. Coverage_gap /
-          attribution=none per §1.1 codebook (observed_no_change-
-          style row at the class-level coordination layer; admission
-          requires admission-grade sources, which are not asserted
-          here pending human-auditor anchor pinning).
+          tracked as separate child events. Wayback memento
+          20240315111921 (raw-resource form) captured 2026-05-21.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 14/17 by
+  human:xiangwen as null_case. G7 Hiroshima Leaders' Communiqué PDF
+  (40 pages, 515KB) captured via Wayback raw-resource form
+  20240315111921id_ 2026-05-21 with replayable body_hash
+  sha256:dbadd7042f21... (standard memento URL returned a Wayback
+  wrapper page; id_ suffix needed for the raw PDF). consilium.europa.eu
+  mirror retained as contextual_unarchived. coverage_gap->
+  observed_no_change. coverage[offramp_cex] not_measured->measured.
 
   null_event documenting the G7 Hiroshima Leaders' Communiqué (issued
   2023-05-20 at the G7 Hiroshima Summit, Japan, 19-21 May 2023). The
@@ -183,10 +189,8 @@ analysis_notes: |
   as a parent / coordination-layer anchor for the 2023 G7 supranational
   endorsement of the FATF Travel Rule and OECD CARF and as a temporal
   landmark for the 2023 wave of G7-coordinated crypto-asset policy
-  work culminating in the G20 New Delhi endorsement. DRYRUN: archival
-  anchors asserted but not personally verified by the LLM agent;
-  human auditor must pin real Wayback / body_hash anchors before
-  release.
+  work culminating in the G20 New Delhi endorsement. Archival anchors
+  pinned 2026-05-21 (Wayback raw-resource memento).
 
 scoped_claim: |
   "The G7 Hiroshima Leaders' Communiqué, issued at the Hiroshima

@@ -1,17 +1,17 @@
 id: unsc-resolution-2371-dprk-crypto-2017
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: non_us_sanctions
@@ -24,13 +24,6 @@ trigger:
       wayback: https://web.archive.org/web/2017/https://main.un.org/securitycouncil/en/s/res/2371-(2017)
       evidence_use: contextual_unarchived
       note: |
-        **NEW EVENT AUTHORED — DRYRUN 2026-05-17 — Wave 2.2D
-        re-author preamble (note: replaces dropped rate-limit-
-        partial)**: authored by LLM agent without personally
-        verifying Wayback / body_hash; origin=agent_draft per
-        validator hard-rule. Human auditor must replace this DRYRUN
-        marker with a pinned archive anchor before release.
-
         UN Security Council Resolution 2371 (2017), adopted
         unanimously by the Security Council at its 8019th meeting
         on 2017-08-05 in response to the DPRK's 2017-07-03 and
@@ -54,15 +47,17 @@ trigger:
         Foreign Trade Bank designation supply the legal
         scaffolding subsequently used to frame DPRK crypto-
         laundering (Lazarus / APT38) as sanctions-evasion under
-        the 1718 regime. DRYRUN: framing as "first UN resolution
+        the 1718 regime. Note: framing as "first UN resolution
         explicitly mentioning DPRK cryptocurrency" is NOT
         supported by the text of 2371 itself — coded conservatively
         as null_event with the historical-scaffolding rationale
         documented in analysis_notes.
     - type: primary_legal
       url: https://www.un.org/press/en/2017/sc12945.doc.htm
-      wayback: https://web.archive.org/web/2017/https://www.un.org/press/en/2017/sc12945.doc.htm
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20170811165745/https://www.un.org/press/en/2017/sc12945.doc.htm
+      body_hash: sha256:7f70b59ebc0d092dc661a7dbcb88868eceb9d5485e8fb7ef7b6f6d5fedf52b2d
+      body_path: sources/http_captures/unsc-resolution-2371-dprk-crypto-2017/primary/web.archive.org__web-20170811165745-https-www.un.org-press-en-2017-sc12945.doc.htm__dac9628ca4.html
+      evidence_use: replayable
       note: |
         UN Meetings Coverage SC/12945 (2017-08-05): "Security
         Council Toughens Sanctions Against Democratic People's
@@ -71,27 +66,29 @@ trigger:
         enumerates the export bans, joint-venture prohibition,
         labor cap, and financial-system tightening (Foreign Trade
         Bank asset freeze; financial-institution clarification).
-        DRYRUN: archival anchor unverified by LLM agent at
-        authoring time.
+        Wayback memento 20170811165745 (contemporaneous, 2017)
+        captured 2026-05-21.
     - type: supporting_tracker
       url: https://www.armscontrol.org/factsheets/un-security-council-resolutions-north-korea
-      wayback: https://web.archive.org/web/2017/https://www.armscontrol.org/factsheets/un-security-council-resolutions-north-korea
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20240810065619/https://www.armscontrol.org/factsheets/un-security-council-resolutions-north-korea
+      body_hash: sha256:bd055f3a303db593e5df9bdd6c9465674dcf715aaa497d9780fb373999ae64e8
+      body_path: sources/http_captures/unsc-resolution-2371-dprk-crypto-2017/primary/web.archive.org__web-20240810065619-https-www.armscontrol.org-factsheets-un-security-council-resolutions-north-korea__e7136327a9.html
+      evidence_use: replayable
       note: |
         Arms Control Association factsheet on UN Security Council
         resolutions on North Korea. Provides the canonical
         chronology placing 2371 (2017-08-05) within the DPRK
         sanctions track that subsequently extended to virtual-
         asset / cryptocurrency sanctions-evasion framing in 2018+
-        Panel of Experts work. DRYRUN: tracker source, not
-        admission-grade.
+        Panel of Experts work. Wayback memento 20240810065619
+        captured 2026-05-21.
   timestamp_sources:
     - type: primary_legal
       url: https://main.un.org/securitycouncil/en/s/res/2371-(2017)
       wayback: https://web.archive.org/web/2017/https://main.un.org/securitycouncil/en/s/res/2371-(2017)
       note: |
         Adoption date 2017-08-05 (8019th meeting of the Security
-        Council). Day-level precision. DRYRUN authored 2026-05-17.
+        Council). Day-level precision.
 
 target:
   kind: entity
@@ -139,7 +136,7 @@ coverage:
       observed_change cascade attributable to the 2017-08-05
       adoption date at this layer.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       Class-level UNSC sanctions resolution at the off-ramp
       layer. 2371 expanded DPRK financial-system reach (Foreign
@@ -156,16 +153,23 @@ observations:
   - layer: offramp_cex
     actor: dprk_crypto_aggregate
     event: unsc_2371_dprk_sanctions_adoption_2017
-    observation_kind: coverage_gap
+    observation_kind: observed_no_change
     attribution: none
     timestamp: 2017-08-05T00:00:00Z
     precision: day
+    window:
+      - 2017-08-05T00:00:00Z
+      - 2018-12-31T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://main.un.org/securitycouncil/en/s/res/2371-(2017)
-        wayback: https://web.archive.org/web/2017/https://main.un.org/securitycouncil/en/s/res/2371-(2017)
+        url: https://www.un.org/press/en/2017/sc12945.doc.htm
+        wayback: https://web.archive.org/web/20170811165745/https://www.un.org/press/en/2017/sc12945.doc.htm
+        body_hash: sha256:7f70b59ebc0d092dc661a7dbcb88868eceb9d5485e8fb7ef7b6f6d5fedf52b2d
+        body_path: sources/http_captures/unsc-resolution-2371-dprk-crypto-2017/primary/web.archive.org__web-20170811165745-https-www.un.org-press-en-2017-sc12945.doc.htm__dac9628ca4.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [dprk_crypto_aggregate]
+          countries: [UN]
           time_window:
             - 2017-08-05T00:00:00Z
             - 2018-12-31T23:59:59Z
@@ -178,13 +182,25 @@ observations:
           Downstream effects on DPRK crypto-laundering off-ramp
           flows manifest via subsequent OFAC SDN actions (Lazarus
           2019, Lazarus laundering 2020, DPRK USDT network 2025)
-          tracked as separate child events. Coverage_gap /
-          attribution=none per §1.1 codebook. DRYRUN: archival
-          anchor unverified by LLM agent.
+          tracked as separate child events. observed_no_change /
+          attribution=none per §1.1 codebook. UN press release
+          SC/12945 Wayback memento 20170811165745 captured
+          2026-05-21.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-17 — Wave 2.2D
-  re-author preamble (note: replaces dropped rate-limit-partial)**
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 17/17 (FINAL C-3)
+  by human:xiangwen as null_case. UN press release SC/12945 Wayback
+  memento 20170811165745 (contemporaneous 2017) + Arms Control
+  Association factsheet Wayback memento 20240810065619 captured
+  2026-05-21 with replayable body_hash sha256:7f70b59ebc0d... +
+  sha256:bd055f3a303d.... The UNSC resolution-text URL
+  (main.un.org/securitycouncil) retained as contextual_unarchived.
+  coverage_gap->observed_no_change. coverage[offramp_cex]
+  not_measured->measured. Honest-coding note preserved: 2371 does NOT
+  explicitly mention cryptocurrency (that framing appears in later
+  2397/Panel-of-Experts work); admitted as foundational 2017
+  financial-sanctions scaffolding for the DPRK/Lazarus crypto-evasion
+  track.
 
   null_event documenting UN Security Council Resolution 2371,
   adopted unanimously on 2017-08-05 in response to DPRK's July
@@ -229,15 +245,14 @@ analysis_notes: |
   admission_tier=null_case (0 strong-attribution observed_change
   layers).
 
-  Per §1.1 codebook, the single coverage_gap row uses
-  attribution=`none` because observation_kind=`coverage_gap` (no
-  direct per-event observed_change at the corpus's resolution).
-  This event functions as the foundational 2017 anchor for the
-  DPRK / Lazarus crypto-sanctions track and as a temporal landmark
-  for the 2017-2025 sequence of DPRK-related crypto enforcement.
-  DRYRUN: archival anchors asserted but not personally verified
-  by the LLM agent; human auditor must pin real Wayback /
-  body_hash anchors before release.
+  Per §1.1 codebook, the single observed_no_change row uses
+  attribution=`none` (no direct per-event observed_change at the
+  corpus's resolution). This event functions as the foundational
+  2017 anchor for the DPRK / Lazarus crypto-sanctions track and as
+  a temporal landmark for the 2017-2025 sequence of DPRK-related
+  crypto enforcement. Archival anchors pinned 2026-05-21 (UN press
+  release SC/12945 contemporaneous Wayback memento + Arms Control
+  Association factsheet).
 
 scoped_claim: |
   "UN Security Council Resolution 2371, adopted unanimously on

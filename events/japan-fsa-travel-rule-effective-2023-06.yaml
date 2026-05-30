@@ -1,17 +1,17 @@
 id: japan-fsa-travel-rule-effective-2023-06
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 trigger:
   type: supranational_regulation
@@ -19,52 +19,60 @@ trigger:
   timestamp: 2023-06-01T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: primary_legal
-      url: https://www.fsa.go.jp/en/news/2023/index.html
-      evidence_use: contextual_unarchived
+    - type: primary_government
+      url: https://www.fsa.go.jp/en/laws_regulations/index.html
+      body_hash: sha256:1c357c9cc30c03fdce6b8bf5cdab98386f20c215918159aeaf1ef1ed49b53cf4
+      body_path: sources/http_captures/japan-fsa-travel-rule-effective-2023-06/primary/www.fsa.go.jp__en-laws_regulations-index.html__e848e1f222.html
+      evidence_use: replayable
       note: |
-        **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F supranational
-        Travel Rule cascade; lean run): authored by LLM agent without
-        personally verifying Wayback/body_hash. origin=agent_draft and
-        status=draft pending human audit.
-
-        Japan FSA Travel Rule implementation effective 2023-06-01. The
-        revised Act on Prevention of Transfer of Criminal Proceeds (APTCP /
-        犯罪収益移転防止法) entered into force on this date, requiring
-        Crypto-Asset Exchange Service Providers (CAESPs / 暗号資産交換業者)
-        registered with the FSA in Japan to collect and transmit
-        originator + beneficiary information for crypto-asset transfers
-        between VASPs (the FATF Travel Rule). The Foreign Exchange and
-        Foreign Trade Act and the International Terrorist Asset-Freezing
-        Act were updated in tandem. Implements FATF Recommendation 15
-        (2019 INR) at the national level in Japan. After 2023-06-01 the
-        APTCP regime applies without the transitional JPY 100,000
-        threshold (i.e. all CAESP-to-CAESP crypto-asset transfers carry
-        the originator/beneficiary metadata obligation regardless of
-        amount). Originally drafted brief referenced a ≥¥30,000 (~$200)
-        threshold; that figure corresponds to a separate cash-equivalent
-        reporting trigger under the broader AML/CFT framework, not the
-        post-2023-06-01 CAESP Travel Rule itself, which is unconditional.
-        Human auditor must pin a verified FSA / JAFIC primary-legal URL
-        and reconcile the threshold framing before promotion.
-    - type: primary_legal
-      url: https://www.fsa.go.jp/en/news/2023/index.html
-      wayback: https://web.archive.org/web/20260516000000/https://www.fsa.go.jp/en/news/2023/index.html
+        FSA Laws & Regulations index — the regulator-of-record's
+        official legal-framework hub for the Act on Prevention of
+        Transfer of Criminal Proceeds (APTCP / 犯罪収益移転防止法)
+        amendment package that implemented the FATF Travel Rule for
+        FSA-registered Crypto-Asset Exchange Service Providers (CAESPs /
+        暗号資産交換業者) effective 2023-06-01. The APTCP amendment was
+        promulgated by the Cabinet Secretariat in December 2022; the FSA
+        ran a public consultation on the APTCP guidelines through
+        2023-03-03; the Travel Rule entered into force 2023-06-01 without
+        a de-minimis threshold (all CAESP-to-CAESP crypto-asset transfers
+        carry the originator/beneficiary metadata obligation regardless
+        of amount). Live fsa.go.jp capture 2026-05-21. The specific
+        2023-era APTCP cabinet-order URL on the FSA news index is no
+        longer live (404) and has no Wayback memento; the contemporaneous
+        effective-date detail is anchored via the two semi_primary_wayback
+        sources below.
+    - type: semi_primary_wayback
+      url: https://www.sygna.io/blog/japan-travel-rule-starts-1-june-an-in-depth-guide-for-vasps/
+      wayback: https://web.archive.org/web/20230716104514/https://www.sygna.io/blog/japan-travel-rule-starts-1-june-an-in-depth-guide-for-vasps/
+      body_hash: sha256:a75232e7c102060a11e91fb13f36bf58a8e75ed293b2879ad9832e96d32b7218
+      body_path: sources/http_captures/japan-fsa-travel-rule-effective-2023-06/primary/web.archive.org__web-20230716104514-https-www.sygna.io-blog-japan-travel-rule-starts-1-june-an-in-depth-guide-for-vasps__081e9666a3.html
+      evidence_use: replayable
       note: |
-        Second pointer to the FSA English news index 2023 as a placeholder
-        primary-legal anchor for the APTCP amendment package effective
-        2023-06-01. Human auditor should replace with the specific FSA
-        press release / cabinet order URL (and the JAFIC notice on
-        Travel Rule operationalization), plus the JVCEA self-regulatory
-        rule update that operationalized the obligation at the
-        exchange-association level.
+        Sygna (Travel Rule compliance solution provider) in-depth guide
+        documenting the 2023-06-01 Japan APTCP Travel Rule effective date
+        and the no-threshold CAESP obligation. Wayback memento
+        20230716104514 (contemporaneous with the event) captured
+        2026-05-21. Independent semi-primary anchor 1 of 2.
+    - type: semi_primary_wayback
+      url: https://www.shyft.network/newsroom/japan-to-enforce-crypto-travel-rule-from-june-1st
+      wayback: https://web.archive.org/web/20230529181004/https://www.shyft.network/newsroom/japan-to-enforce-crypto-travel-rule-from-june-1st
+      body_hash: sha256:36dbb5976073bac7b9ba5444b387f5d894b829d0c3033fd8d3b295535e1a3cea
+      body_path: sources/http_captures/japan-fsa-travel-rule-effective-2023-06/primary/web.archive.org__web-20230529181004-https-www.shyft.network-newsroom-japan-to-enforce-crypto-travel-rule-from-june-1st__303f881e1a.html
+      evidence_use: replayable
+      note: |
+        Shyft Network (blockchain compliance infrastructure) newsroom
+        post (2023-05-29, three days before the effective date)
+        documenting the 2023-06-01 Japan APTCP Travel Rule enforcement.
+        Wayback memento 20230529181004 captured 2026-05-21. Independent
+        semi-primary anchor 2 of 2.
   timestamp_sources:
     - type: primary_legal
       note: |
         Effective date 2023-06-01 per FSA / APTCP revision implementation
         timeline (publicly reported by Sygna, Shyft, Notabene, CoinDesk,
-        Bitcoin.com). Day-level precision. DRYRUN: not personally
-        archive-verified by the LLM agent.
+        Bitcoin.com). Day-level precision. Anchored via two
+        semi_primary_wayback captures (Sygna 20230716104514, Shyft
+        20230529181004) pinned 2026-05-21.
 
 target:
   kind: entity
@@ -109,28 +117,30 @@ coverage:
       freeze or on-chain blacklisting; it governs CAESP metadata
       handling, not the underlying asset.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope: [jp_caesp_ecosystem]
     note: |
       null_event observation row: the regulator-decreed KYC / metadata-
       collection requirement is the substantive trigger, but the corpus
       has no replayable on-chain or measurement-platform signal of
-      downstream CAESP transfer behavior change at authoring time. The
+      downstream CAESP transfer behavior change at this audit. The
       primary observable would be a change in CAESP withdrawal acceptance
       behavior to/from non-compliant counterparties, which is not
-      captured by any open measurement dataset in this corpus. Anchor is
-      the FSA primary-legal artifact. Human auditor may upgrade to
-      measured if a CAESP behavioral signal (e.g. published withdrawal-
-      restriction list) is later pinned.
+      captured by any open measurement dataset in this corpus.
+      status=measured: the regulatory effective date is anchored by the
+      FSA primary_government artifact plus two semi_primary_wayback
+      sources (Sygna, Shyft). Human auditor may revisit with a CAESP
+      behavioral signal (e.g. published withdrawal-restriction list) if
+      one is later pinned.
     denominator_artifact:
-      type: primary_legal
-      url: https://www.fsa.go.jp/en/news/2023/index.html
-      wayback: https://web.archive.org/web/20260516000000/https://www.fsa.go.jp/en/news/2023/index.html
+      type: primary_government
+      url: https://www.fsa.go.jp/en/laws_regulations/index.html
+      body_hash: sha256:1c357c9cc30c03fdce6b8bf5cdab98386f20c215918159aeaf1ef1ed49b53cf4
+      body_path: sources/http_captures/japan-fsa-travel-rule-effective-2023-06/primary/www.fsa.go.jp__en-laws_regulations-index.html__e848e1f222.html
       note: |
-        DRYRUN denominator anchor: FSA English news index 2023 as the
-        placeholder for the APTCP revision effective 2023-06-01. Human
-        auditor must replace with the specific FSA / JAFIC primary-legal
-        URL and pin a verified Wayback / body_hash.
+        FSA Laws & Regulations index as the regulator-of-record anchor
+        for the APTCP revision effective 2023-06-01. Live fsa.go.jp
+        capture 2026-05-21.
 
 observations:
   - layer: offramp_cex
@@ -144,11 +154,14 @@ observations:
       - 2023-06-01T00:00:00Z
       - 2023-12-31T23:59:59Z
     sources:
-      - type: primary_legal
-        url: https://www.fsa.go.jp/en/news/2023/index.html
-        wayback: https://web.archive.org/web/20260516000000/https://www.fsa.go.jp/en/news/2023/index.html
+      - type: primary_government
+        url: https://www.fsa.go.jp/en/laws_regulations/index.html
+        body_hash: sha256:1c357c9cc30c03fdce6b8bf5cdab98386f20c215918159aeaf1ef1ed49b53cf4
+        body_path: sources/http_captures/japan-fsa-travel-rule-effective-2023-06/primary/www.fsa.go.jp__en-laws_regulations-index.html__e848e1f222.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [jp_caesp_aggregate]
+          countries: [JP]
           time_window:
             - 2023-06-01T00:00:00Z
             - 2023-12-31T23:59:59Z
@@ -162,15 +175,40 @@ observations:
           regulator-decreed information-collection requirement as a
           metadata-layer null_event in the Travel Rule cascade alongside
           fatf-r15-vasp-travel-rule-2019 (parent), korea-travel-rule-2022
-          (Asia sibling), and eu-tfr-recast-2023 (EU sibling). DRYRUN
-          Wayback stub; replace with a verified FSA / JAFIC primary-legal
-          capture during human audit.
+          (Asia sibling), and eu-tfr-recast-2023 (EU sibling). FSA
+          primary_government anchor; live fsa.go.jp capture 2026-05-21.
+      - type: semi_primary_wayback
+        url: https://www.sygna.io/blog/japan-travel-rule-starts-1-june-an-in-depth-guide-for-vasps/
+        wayback: https://web.archive.org/web/20230716104514/https://www.sygna.io/blog/japan-travel-rule-starts-1-june-an-in-depth-guide-for-vasps/
+        body_hash: sha256:a75232e7c102060a11e91fb13f36bf58a8e75ed293b2879ad9832e96d32b7218
+        body_path: sources/http_captures/japan-fsa-travel-rule-effective-2023-06/primary/web.archive.org__web-20230716104514-https-www.sygna.io-blog-japan-travel-rule-starts-1-june-an-in-depth-guide-for-vasps__081e9666a3.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [jp_caesp_aggregate]
+          countries: [JP]
+          time_window:
+            - 2023-06-01T00:00:00Z
+            - 2023-12-31T23:59:59Z
+        note: |
+          Sygna contemporaneous guide (Wayback 20230716104514)
+          documenting the no-threshold 2023-06-01 CAESP Travel Rule.
+          Independent semi-primary anchor 1 of 2.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase F supranational
-  Travel Rule cascade; lean run): authored by LLM agent without
-  personally verifying Wayback / body_hash. status=draft and
-  origin=agent_draft pending human review.
+  **PROMOTED 2026-05-21** (c) Batch C-3 audit event 15/17 by
+  human:xiangwen as null_case. Original draft cited the FSA news index
+  (now 404 live, no Wayback memento) as a provisional primary_legal
+  anchor. Re-anchored at audit: (1) FSA Laws & Regulations index
+  captured live 2026-05-21 as primary_government
+  (sha256:1c357c9cc30c...) — the regulator-of-record's legal-framework
+  hub; (2) two contemporaneous semi_primary_wayback sources
+  documenting the specific 2023-06-01 effective date and no-threshold
+  CAESP obligation — Sygna (Wayback 20230716104514) and Shyft Network
+  (Wayback 20230529181004). The two independent semi_primary_wayback
+  sources satisfy the validator admission threshold; the FSA
+  primary_government source corroborates at the regulator level.
+  coverage[offramp_cex] partially_measured->measured. Classification
+  null_event/null_case preserved.
 
   null_event documenting Japan's 2023-06-01 effective date for the
   revised Act on Prevention of Transfer of Criminal Proceeds (APTCP /
