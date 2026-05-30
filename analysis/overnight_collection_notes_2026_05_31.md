@@ -57,3 +57,9 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 **⚠️ SCOPE-BOUNDARY DECISION FLAGGED:** the census needs a clear inclusion rule separating CENSORSHIP (state/corporate denial/blocking/seizure/freeze) from exchange FAILURES (fraud/hack/insolvency) and soft WARNINGS. RECOMMEND excluding pure failures/frauds (Cryptsy, Mt.Gox-collapse-as-such) and treating advisories (CFPB) as null/context only. I recorded the borderline cases with explicit scope flags rather than silently in/excluding them. Please bless the boundary in the morning.
 
 **Bounded:** no new event authored this tick (registry breadth prioritized); tradehill-dwolla + bitfloor are author-ready (US, schema-fitting) for a later tick / morning. The 2007-tier + jurisdiction-vocab blocks from tick 1 still await your blessing.
+
+### Tick 3 — 2026-05-31 00:40 Melbourne — focus: 2007-2016 S5 financial-rail debanking
+**Authored 1 full event (validates [OK]):**
+- **tradehill-dwolla-payment-cutoff-2012-02** (S5, discovery_only_2008_2012, comparison/empirical_case). Payment processor Dwolla severed early US Bitcoin exchange TradeHill's fiat rail (early 2012) -> exchange ceased; TradeHill v. Dwolla suit. Earliest-tier financial-rail de-risking censorship case (offramp_cex/plausible). 2 semi_primary_wayback (VentureBeat + American Banker), body_hash-pinned, verified. audit_id 466. (precision: month not in enum -> used week, coarsest available.)
+- bitfloor-capital-one-debanking-2013-04 left registered/author-ready for a later tick (sibling case).
+- Corpus now 256 admitted.

@@ -1,0 +1,189 @@
+id: tradehill-dwolla-payment-cutoff-2012-02
+schema_version: 0.2.0
+codebook_version: "2.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: discovery_only_2008_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.2"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - bitcoinica-shutdown-2012-05
+  - bitfloor-capital-one-debanking-2013-04
+  - mtgox-dhs-dwolla-wells-fargo-seizure-2013
+
+trigger:
+  type: corporate_policy_change
+  actor: dwolla_payment_processor
+  timestamp: 2012-02-13T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: semi_primary_wayback
+      url: https://venturebeat.com/2012/03/07/tradehill-sues-suing-dwolla-bitcoin/
+      wayback: https://web.archive.org/web/20211026183118/https://venturebeat.com/2012/03/07/tradehill-sues-suing-dwolla-bitcoin/
+      body_hash: sha256:2a5326490ca22c4e42abdb9d64d4d26038a72ed276c9a8da6b653896fd8f1cb0
+      body_path: sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary/web.archive.org__web-20211026183118-https-venturebeat.com-2012-03-07-tradehill-sues-suing-dwolla-bitcoin__512fa258ef.html
+      evidence_use: replayable
+      note: |
+        VentureBeat (2012-03-07): TradeHill, an early U.S. Bitcoin
+        exchange, sued payment processor Dwolla, alleging Dwolla
+        reversed/withheld ~$94k of payments and cut off service,
+        contributing to TradeHill ceasing operations in early 2012.
+        Wayback 20211026183118 pinned.
+    - type: semi_primary_wayback
+      url: https://www.americanbanker.com/news/dwolla-put-us-out-of-business-bitcoin-exchange-says-in-suit
+      wayback: https://web.archive.org/web/20260410131031/https://www.americanbanker.com/news/dwolla-put-us-out-of-business-bitcoin-exchange-says-in-suit
+      body_hash: sha256:43b4702a95855ad5650bc47a8caa4f51e73b3baf190982878a1421faca89a5fd
+      body_path: sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary/web.archive.org__web-20260410131031-https-www.americanbanker.com-news-dwolla-put-us-out-of-business-bitcoin-exchange-says-in-suit__40e7218451.html
+      evidence_use: replayable
+      note: |
+        American Banker: "Dwolla Put Us Out of Business, Bitcoin
+        Exchange Says in Suit." Frames the Dwolla payment-rail cutoff
+        of TradeHill in the context of compliance/FinCEN pressure on
+        payment processors serving Bitcoin businesses (early
+        financial-rail de-risking). Independent semi-primary anchor.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Week-level precision (coarsest available): TradeHill's Dwolla-related payment
+        problems and wind-down occurred in early 2012 (exchange
+        ceased ~Feb 2012; lawsuit filed 2012-03). No exact sub-day
+        cutoff timestamp is documented in public sources.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    TradeHill, Inc. (early U.S.-based Bitcoin exchange) as the affected
+    entity whose Dwolla-mediated fiat payment rail was severed. Single
+    named affected exchange; no on-chain addresses (the action is a
+    payment-processor service cutoff at the fiat off-ramp).
+  actor_type: payment_processor_service_denial
+  actor_name: Dwolla (payment processor) vs TradeHill
+  canonical_domains:
+    - tradehill.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A payment-processor service cutoff, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No blockchain consensus layer is implicated; this is a fiat
+      payment-rail (Dwolla) denial to a Bitcoin exchange.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No RPC-provider surface; 2012 pre-dates RPC-mediated crypto infra.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend seizure/takedown; TradeHill's site went offline as a
+      corporate wind-down consequence, not a DOJ/operator frontend block.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain asset freeze; the severed rail is the fiat (USD)
+      deposit/withdrawal channel via Dwolla.
+  - layer: offramp_cex
+    status: measured
+    scope: [tradehill]
+    note: |
+      Load-bearing layer. Dwolla's withdrawal of payment-processing
+      service severed TradeHill's primary fiat on/off-ramp, a major
+      factor in the exchange ceasing operations in early 2012. Attested
+      in contemporaneous trade press and the TradeHill v. Dwolla suit.
+
+observations:
+  - layer: offramp_cex
+    actor: payment_processor:dwolla
+    event: dwolla_severs_tradehill_fiat_payment_rail
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2012-02-13T00:00:00Z
+    precision: week
+    delta_hours: 0
+    country: US
+    sources:
+      - type: semi_primary_wayback
+        url: https://venturebeat.com/2012/03/07/tradehill-sues-suing-dwolla-bitcoin/
+        wayback: https://web.archive.org/web/20211026183118/https://venturebeat.com/2012/03/07/tradehill-sues-suing-dwolla-bitcoin/
+        body_hash: sha256:2a5326490ca22c4e42abdb9d64d4d26038a72ed276c9a8da6b653896fd8f1cb0
+        body_path: sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary/web.archive.org__web-20211026183118-https-venturebeat.com-2012-03-07-tradehill-sues-suing-dwolla-bitcoin__512fa258ef.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tradehill]
+          countries: [US]
+          time_window:
+            - 2012-02-01T00:00:00Z
+            - 2012-03-31T23:59:59Z
+        note: |
+          VentureBeat 2012-03-07 reporting on TradeHill v. Dwolla:
+          Dwolla's reversal/withholding of payments and service cutoff
+          severed TradeHill's fiat rail. attribution=plausible: the
+          cutoff is documented but its characterization as
+          compliance/regulatory-pressure-driven (vs a private business
+          dispute) is the suit's allegation, not a direct admission.
+      - type: semi_primary_wayback
+        url: https://www.americanbanker.com/news/dwolla-put-us-out-of-business-bitcoin-exchange-says-in-suit
+        wayback: https://web.archive.org/web/20260410131031/https://www.americanbanker.com/news/dwolla-put-us-out-of-business-bitcoin-exchange-says-in-suit
+        body_hash: sha256:43b4702a95855ad5650bc47a8caa4f51e73b3baf190982878a1421faca89a5fd
+        body_path: sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary/web.archive.org__web-20260410131031-https-www.americanbanker.com-news-dwolla-put-us-out-of-business-bitcoin-exchange-says-in-suit__40e7218451.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tradehill]
+          countries: [US]
+          time_window:
+            - 2012-02-01T00:00:00Z
+            - 2012-03-31T23:59:59Z
+        note: |
+          American Banker coverage framing the Dwolla cutoff within the
+          early financial-rail de-risking of Bitcoin businesses.
+          Independent second semi-primary anchor.
+
+analysis_notes: |
+  **AUTHORED 2026-05-31** (overnight census tick 3, human:xiangwen
+  autonomous mandate) as a discovery_only_2008_2012 S5 event. TradeHill
+  (early U.S. Bitcoin exchange) had its Dwolla fiat payment rail severed
+  in early 2012, a major factor in the exchange ceasing operations;
+  TradeHill sued Dwolla (2012-03). One of the earliest documented
+  financial-rail de-risking / payment-processor-denial censorship cases
+  against a crypto exchange (offramp_cex), predating the 2013 banking
+  de-risking wave (cf. bitfloor-capital-one-debanking-2013-04,
+  registered). comparison shape, single offramp_cex observed_change,
+  attribution=plausible (the payment cutoff is documented; its
+  characterization as regulatory-pressure-driven is the lawsuit's
+  allegation rather than a direct admission of a compliance mandate).
+  Sources verified via WebSearch + capture 2026-05-31 (VentureBeat +
+  American Banker, both body_hash-pinned; no fabrication).
+  Discovery-tier-only (analysis_use=discovery_ledger_only).
+
+scoped_claim: |
+  "Payment processor Dwolla's early-2012 severance of TradeHill's fiat
+  payment rail (reversing/withholding payments and cutting off service)
+  produced an offramp_cex cascade (TradeHill ceased operations); the
+  row claims a single-layer offramp shutdown with attribution=plausible.
+  Discovery-tier only; no comparable-analysis use."
+
+tags:
+  - corporate_policy_change
+  - payment_processor_denial
+  - financial_rail_de_risking
+  - debanking
+  - tradehill
+  - dwolla
+  - pre_2013_baseline
+  - discovery_ledger
+  - offramp_shutdown
