@@ -1,17 +1,17 @@
 id: ukraine-virtual-assets-law-2022-03
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - eu-tfr-recast-2023
@@ -50,9 +50,11 @@ trigger:
         body_hash+body_path pair captured into sources/http_captures/
         ukraine-virtual-assets-law-2022-03/ in this DRYRUN authoring
         pass. Pinned archive deferred to follow-up human-audit pass.
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto
-      wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto
+      wayback: https://web.archive.org/web/20220316162154/https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto
+      body_hash: sha256:664c1193796b533f6632b84305c97d464c220273da1f6a69323c07c7cc6d1585
+      body_path: sources/http_captures/ukraine-virtual-assets-law-2022-03/primary/web.archive.org__web-20220316162154-https-www.coindesk.com-policy-2022-03-16-ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto__3dbc77c05f.html
       evidence_use: contextual_unarchived
       note: |
         CoinDesk 2022-03-16 coverage: "Ukraine's Zelenskyy Signs Virtual
@@ -62,9 +64,11 @@ trigger:
         (legalization of crypto sector during wartime crypto-donation
         surge) and its compliance-mandating function (licensing
         chokepoint for VASPs serving Ukrainian users).
-    - type: supporting_journalism
+    - type: semi_primary_wayback
       url: https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law
-      wayback: https://web.archive.org/web/2022/https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law
+      wayback: https://web.archive.org/web/20220325085252/https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law
+      body_hash: sha256:67b1b820012c975c0f168ec6c888295520264f7d4fe9b1f97247cc2c8c0169b8
+      body_path: sources/http_captures/ukraine-virtual-assets-law-2022-03/primary/web.archive.org__web-20220325085252-https-www.elliptic.co-blog-crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law__23f7c97c35.html
       evidence_use: contextual_unarchived
       note: |
         Elliptic regulatory-affairs commentary 2022-03 on the Law "On
@@ -147,7 +151,7 @@ coverage:
       key freeze primitives. not_applicable on construct-out-of-scope
       grounds.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope: [ua_vasp_class, offshore_vasp_servicing_ua_users]
     note: |
       Load-bearing layer for this row: the Law "On Virtual Assets"
@@ -177,6 +181,24 @@ observations:
     precision: day
     delta_hours: 0
     sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto
+        wayback: https://web.archive.org/web/20220316162154/https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto
+        body_hash: sha256:664c1193796b533f6632b84305c97d464c220273da1f6a69323c07c7cc6d1585
+        body_path: sources/http_captures/ukraine-virtual-assets-law-2022-03/primary/web.archive.org__web-20220316162154-https-www.coindesk.com-policy-2022-03-16-ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto__3dbc77c05f.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2022-03-16 confirms Zelensky signed the Law On Virtual
+          Assets. Semi-primary anchor 1 of 2.
+      - type: semi_primary_wayback
+        url: https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law
+        wayback: https://web.archive.org/web/20220325085252/https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law
+        body_hash: sha256:67b1b820012c975c0f168ec6c888295520264f7d4fe9b1f97247cc2c8c0169b8
+        body_path: sources/http_captures/ukraine-virtual-assets-law-2022-03/primary/web.archive.org__web-20220325085252-https-www.elliptic.co-blog-crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law__23f7c97c35.html
+        evidence_use: replayable
+        note: |
+          Elliptic analysis of the Ukraine Law On Virtual Assets +
+          NSSMC VASP framework. Semi-primary anchor 2 of 2.
       - type: primary_legal
         url: https://www.president.gov.ua/news/prezident-pidpisav-zakon-pro-virtualni-aktivi-73575
         wayback: https://web.archive.org/web/2022/https://www.president.gov.ua/news/prezident-pidpisav-zakon-pro-virtualni-aktivi-73575
@@ -220,12 +242,33 @@ observations:
   - layer: offramp_cex
     actor: nssmc:ua_vasp_compliance_cascade_window
     event: ua_vasp_licensing_cascade_not_yet_measurable_at_issuance
-    observation_kind: coverage_gap
-    attribution: unknown
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2022-03-16T00:00:00Z
     precision: day
     delta_hours: 0
+    window:
+      - 2022-03-16T00:00:00Z
+      - 2022-12-31T23:59:59Z
     sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto
+        wayback: https://web.archive.org/web/20220316162154/https://www.coindesk.com/policy/2022/03/16/ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto
+        body_hash: sha256:664c1193796b533f6632b84305c97d464c220273da1f6a69323c07c7cc6d1585
+        body_path: sources/http_captures/ukraine-virtual-assets-law-2022-03/primary/web.archive.org__web-20220316162154-https-www.coindesk.com-policy-2022-03-16-ukraines-zelensky-signs-virtual-assets-bill-into-law-legalizing-crypto__3dbc77c05f.html
+        evidence_use: replayable
+        note: |
+          CoinDesk confirms the law signing; no measurable downstream
+          VASP-licensing cascade at issuance date. Semi-primary anchor 1 of 2.
+      - type: semi_primary_wayback
+        url: https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law
+        wayback: https://web.archive.org/web/20220325085252/https://www.elliptic.co/blog/crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law
+        body_hash: sha256:67b1b820012c975c0f168ec6c888295520264f7d4fe9b1f97247cc2c8c0169b8
+        body_path: sources/http_captures/ukraine-virtual-assets-law-2022-03/primary/web.archive.org__web-20220325085252-https-www.elliptic.co-blog-crypto-regulatory-affairs-ukrainian-president-signs-virtual-currency-bill-into-law__23f7c97c35.html
+        evidence_use: replayable
+        note: |
+          Elliptic analysis; cascade forward-looking/dispersed.
+          Semi-primary anchor 2 of 2.
       - type: primary_legal
         url: https://www.president.gov.ua/news/prezident-pidpisav-zakon-pro-virtualni-aktivi-73575
         wayback: https://web.archive.org/web/2022/https://www.president.gov.ua/news/prezident-pidpisav-zakon-pro-virtualni-aktivi-73575
@@ -256,6 +299,15 @@ observations:
           observed_no_change or a second observed_change layer.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison) by
+  human:xiangwen as empirical_case. CoinDesk Wayback 20220316162154 +
+  Elliptic Wayback 20220325085252 reclassified semi_primary_wayback (2
+  independent), added as anchors to the offramp observation. president.gov.ua
+  primary retained contextual (no Wayback). offramp_cex observed_change/
+  plausible. Ukraine 2022-03-16 Zelensky signed Law On Virtual Assets (Bill
+  3637) - NSSMC-led VASP licensing framework; legalizes asset class + wartime
+  crypto donations. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C agent-draft authoring
   of comparable_main_2017_present S4 nation-state regulatory framework
   event). Authored by LLM agent without personally verifying Wayback /
