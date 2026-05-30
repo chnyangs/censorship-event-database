@@ -1,17 +1,17 @@
 id: thailand-bot-bitcoin-prohibition-2013
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - china-pboc-crypto-ban-2013-12
@@ -159,7 +159,7 @@ coverage:
       admin path (USDT first issued ~2014-10). not_applicable on
       construct-did-not-exist grounds.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - bitcoin_co_ltd_thailand
     note: |
@@ -193,6 +193,7 @@ observations:
         wayback: https://web.archive.org/web/20140212082550/https://bitcoin.co.th/trading-suspended-due-to-bank-of-thailand-advisement/
         body_hash: sha256:b46d45646e9277ed4f8fe35c60c07463533d93e8da63edc85ffbbc289c16ddef
         body_path: sources/http_captures/thailand-bot-bitcoin-prohibition-2013/v0_3_primary_repair/web.archive.org__web-2013-https-bitcoin.co.th-trading-suspended-due-to-bank-of-thailand-advisement__cb8eeb9d82.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [bitcoin_co_ltd_th]
           countries: [TH]
@@ -210,10 +211,12 @@ observations:
           the observed offramp_cex suspension; it does not convert the
           BOT verbal advisement into a published primary legal
           instrument.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
-        wayback: https://web.archive.org/web/2013/https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20211020132827/https://www.coindesk.com/markets/2013/07/29/bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading
+        body_hash: sha256:08c86630fd782a881e0738342dc88392d4c57b5d3845b77044177adae0a008dd
+        body_path: sources/http_captures/thailand-bot-bitcoin-prohibition-2013/primary/web.archive.org__web-20211020132827-https-www.coindesk.com-markets-2013-07-29-bank-of-thailand-allegedly-declares-bitcoin-illegal-thai-exchange-suspends-trading__b8cd63044c.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [bitcoin_co_ltd_th]
           countries: [TH]
@@ -272,6 +275,15 @@ recovery:
       in analysis_notes.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Thailand cluster)
+  by human:xiangwen as empirical_case. Bitcoin Co. Ltd suspension notice
+  (primary_corporate, pre-pinned v0_3_repair body_hash) evidence_use upgraded
+  ->replayable; CoinDesk Wayback 20211020132827 reclassified semi_primary_wayback.
+  offramp_cex observed_change/direct retained (exchange suspension notice
+  citing BOT advisement is primary_corporate). BOT 2013-07-29 verbal advisement
+  -> Bitcoin Co. Ltd suspended exchange services (resumed 2014-02-15 after BOT
+  out-of-scope clarification). comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Phase E pre-Bitcoin-baseline
   follow-on / Phase B historical-baseline 2013-2016 admit-pass: foundational
   pre-2017 non-US central-bank action against Bitcoin. Authored by LLM agent
