@@ -113,3 +113,8 @@ Rather than register 106 S4 rows one-by-one (the candidates file already lists t
 - **Scope rule** (hard-ban=include vs soft-warning=context-only) + recommended workflow + templates.
 - Estimate: **~50-70 net-new S4 events** after dedup+scope (of 106 candidates), weighted to 2013-2020.
 **Judgment:** this single prep doc is worth more than 10 more registry rows — it converts the biggest gap into a morning batch-authoring plan gated only on your ISO-code + scope blessing. No event authored (analysis tick).
+
+### Tick 11 — 2026-05-31 04:39 Melbourne — focus: S4 author (net-new, OONI-anchored)
+**Authored 1 full event (validates [OK]):**
+- **nigeria-binance-network-block-2024-02** (S4, comparable, comparison/empirical_case). Nigeria's Feb-2024 crackdown: NCC ordered telcos to BLOCK Binance/Coinbase/Kraken websites (l0_network — OONI-anchored, 4 NG binance.com measurements anomaly=True 2024-02-26..29, re-queried live) + detained 2 Binance executives (offramp_cex). 2-layer comparison, both observed_change/plausible. Sources OONI API (4 measurement_ids) + CoinDesk, body_hash-pinned. DISTINCT from corpus nigeria-cbn-crypto-ban-2021 (the 2021 banking ban). Structurally parallel to philippines-sec-binance-block-2024. audit_id 469. Corpus now 259 admitted.
+**Note:** This is the high-quality S4 pattern — an OONI-measurement-anchored l0_network block (satisfies codebook §1.5 without OONI the l0 layer would be unadmittable). Many 2024 S4 nation-state blocks (e.g. India app-store, Pakistan, etc.) may have similar OONI anchoring — worth checking OONI per-event during morning S4 authoring.
