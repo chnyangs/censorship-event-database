@@ -1,17 +1,17 @@
 id: liberty-reserve-costa-rica-license-denial-2011-03
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: discovery_only_2008_2012
 analysis_use: discovery_ledger_only
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - egold-doj-guilty-plea-2008-07
@@ -187,6 +187,7 @@ observations:
         url: https://www.justice.gov/sites/default/files/usao-sdny/legacy/2015/03/25/Liberty%20Reserve%2C%20et%20al.%20Redacted%20AUSA%20Appln%20with%20exhibits.pdf
         body_hash: sha256:c68ed7755959ea657e5a3a95bc66403546527626173902275aa5b4995665731f
         body_path: sources/http_captures/liberty-reserve-costa-rica-license-denial-2011-03/v0_3_primary_repair/www.justice.gov__sites-default-files-usao-sdny-legacy-2015-03-25-Liberty-20Reserve-2C-20et-20al.-20Redacted-20AUSA-20Appln-20with-20exhibits.pdf__0d5df2a97c.bin
+        evidence_use: replayable
         scope_descriptor:
           providers: [liberty_reserve]
           countries: [CR]
@@ -205,9 +206,12 @@ observations:
           2011-03-07 investigation-opening date. Human audit should
           run OCR and reconcile the Tico Times date with the court
           exhibit text.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://ticotimes.net/2013/05/27/liberty-reserve-a-cyberweb-of-intrigue
-        wayback: https://web.archive.org/web/2011/https://ticotimes.net/2013/05/27/liberty-reserve-a-cyberweb-of-intrigue
+        wayback: https://web.archive.org/web/20140115164543/https://ticotimes.net/2013/05/27/liberty-reserve-a-cyberweb-of-intrigue
+        body_hash: sha256:530f9f2ebc4f742103e96b87d088857806638b76def7cd0fb9574b48be0eeaf7
+        body_path: sources/http_captures/liberty-reserve-costa-rica-license-denial-2011-03/primary/web.archive.org__web-20140115164543-https-ticotimes.net-2013-05-27-liberty-reserve-a-cyberweb-of-intrigue__ed891a322c.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [liberty_reserve]
           countries: [CR]
@@ -229,9 +233,12 @@ observations:
           DRYRUN pass; human-audit must replace with a pinned SUGEF
           resolution or a snapshotted Wayback bracket of the Tico
           Times piece.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://ticotimes.net/2013/05/24/millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve
-        wayback: https://web.archive.org/web/2011/https://ticotimes.net/2013/05/24/millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve
+        wayback: https://web.archive.org/web/20140115165052/https://ticotimes.net/2013/05/24/millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve
+        body_hash: sha256:3d8deb79fc0bd577a03412eb2ab682cbb240e2672ce9ba670b41ed7e420991ef
+        body_path: sources/http_captures/liberty-reserve-costa-rica-license-denial-2011-03/primary/web.archive.org__web-20140115165052-https-ticotimes.net-2013-05-24-millions-of-dollars-in-limbo-after-shuttering-of-digital-currency-site-liberty-reserve__ddcf819897.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [liberty_reserve]
           countries: [CR]
@@ -249,6 +256,17 @@ observations:
           unarchived.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison, others
+  10/11) by human:xiangwen as empirical_case. Single offramp_cex
+  observed_change/direct (SUGEF license refusal -> unlicensed-operation
+  status). Anchored by pre-captured DOJ/SDNY AUSA court-record PDF
+  (primary_legal, body_hash c68ed775..., evidence_use replayable) +
+  2 Tico Times articles reclassified semi_primary_wayback with pinned
+  mementos: 2013-05-27 (Wayback 20140115164543, body_hash 530f9f2e...)
+  + 2013-05-24 (Wayback 20140115165052, body_hash 3d8deb79...).
+  Historical proto-case (Liberty Reserve centralized e-currency,
+  pre-blockchain). comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED - DRYRUN 2026-05-17 (Wave 2.2D)** (Phase E
   discovery-tier authoring): new discovery_only_2008_2012 event for
   the 2011-03-07 Costa Rica SUGEF license refusal against Liberty
