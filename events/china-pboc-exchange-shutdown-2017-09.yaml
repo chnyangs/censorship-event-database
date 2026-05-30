@@ -1,17 +1,17 @@
 id: china-pboc-exchange-shutdown-2017-09
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - china-ico-ban-2017-09
@@ -43,7 +43,7 @@ trigger:
         administratively to named exchanges and corroborated via the
         exchanges' own shutdown announcements and contemporaneous
         Chinese-language and English-language press coverage. The PBOC
-        primary URL is a placeholder anchor pending a human re-pin of
+        primary URL is a provisional anchor (homepage) pending a re-pin of
         the original 2017-09 PBOC business-management-department
         communication or its archival surrogate. Marked
         evidence_use=contextual_unarchived.
@@ -196,7 +196,7 @@ observations:
     actor: prc_domestic_crypto_exchange_cluster
     event: cny_paired_trading_ceased_domestic_shutdown
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2017-09-29T00:00:00Z
     precision: day
     country: CN
@@ -212,8 +212,11 @@ observations:
       OKCoin spinoff OKEx → offshore; Binance moved from China to
       Malta in early 2018). attribution=direct because the
       exchange-shutdown announcements and contemporaneous press
-      coverage explicitly cite the PBOC-led regulator instruction
-      as the proximate cause.
+      coverage cite the PBOC-led regulator instruction as the
+      proximate cause; coded attribution=plausible (not direct)
+      because the PBOC instruction itself is not pinned as a
+      primary_* source — the cascade is anchored via the BTCChina
+      platform-state captures and CoinDesk reporting.
     sources:
       - type: semi_primary_wayback
         url: https://web.archive.org/web/20170928090826id_/https://www.btcchina.com/
@@ -257,19 +260,25 @@ observations:
           intentionally grouped with the 2017-09-28 memento as a single
           evidence group, because both artifacts come from the same domain
           and do not independently establish the full exchange triad.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/
-        wayback: https://web.archive.org/web/2017/https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210919090731/https://www.coindesk.com/markets/2017/09/15/chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline/
+        body_hash: sha256:a9aee20a19c03500e416cfdb15f8762bffb16f0358978cc14f19584d767e1189
+        body_path: sources/http_captures/china-pboc-exchange-shutdown-2017-09/primary/web.archive.org__web-20210919090731-https-www.coindesk.com-markets-2017-09-15-chinas-bitcoin-exchanges-receive-shutdown-orders-and-closure-timeline__a7913f1395.html
+        evidence_use: replayable
+        evidence_group_id: coindesk_pboc_shutdown_orders
         note: |
           CoinDesk 2017-09-15 report giving the staged closure-deadline
           timeline communicated by Chinese regulators to BTCC, OKCoin,
           and Huobi. Specific Wayback snapshot timestamp requires
           re-pinning in human audit.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2017/09/15/huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end/
-        wayback: https://web.archive.org/web/2017/https://www.coindesk.com/markets/2017/09/15/huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20210920212107/https://www.coindesk.com/markets/2017/09/15/huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end/
+        body_hash: sha256:f4c6e516a5e12e75595c3e53352ba979cfc0cb99c069f1f61482bd4a9c0eaca2
+        body_path: sources/http_captures/china-pboc-exchange-shutdown-2017-09/primary/web.archive.org__web-20210920212107-https-www.coindesk.com-markets-2017-09-15-huobi-okcoin-to-stop-yuan-to-bitcoin-trading-by-octobers-end__48e43adec1.html
+        evidence_use: replayable
+        evidence_group_id: coindesk_huobi_okcoin_cessation
         note: |
           CoinDesk 2017-09-15 report documenting Huobi and OKCoin's
           commitment to halt yuan-paired bitcoin trading by end of
@@ -298,6 +307,16 @@ observations:
           snapshot timestamp requires re-pinning in human audit.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/China cluster)
+  by human:xiangwen as empirical_case. Pre-pinned BTCChina platform-state
+  Wayback captures (2017-09-28 + 2017-10-14, 1 evidence group) retained;
+  added CoinDesk shutdown-orders Wayback 20210919090731 + Huobi/OKCoin
+  cessation Wayback 20210920212107 as independent semi_primary_wayback
+  groups. offramp_cex observed_change/direct - PBOC-led mid-Sep 2017
+  instruction; BTCC/Huobi/OKCoin ceased CNY-paired trading within ~2 weeks
+  (BTCC 2017-09-30; Huobi/OKCoin end-Oct). Classification comparison/
+  empirical_case preserved.
+
   DRYRUN 2026-05-16. Phase C agent-drafted event covering the 2017-09
   PBOC-led shutdown of all domestic Chinese cryptocurrency exchanges,
   which ordered BTCC, OKCoin, Huobi, and smaller venues to cease
@@ -348,7 +367,7 @@ analysis_notes: |
   exist in 2017; Bitcoin native asset has no issuer-side admin freeze
   primitive. Consistent with the 2013 and 2021 sibling treatments.
 
-  Why the primary PBOC URL is a placeholder: unlike the 2013-12 and
+  Why the primary PBOC URL is provisional: unlike the 2013-12 and
   2021-09 PBOC notices, the 2017-09 exchange-shutdown directive was
   issued administratively / verbally via the PBOC Business Management
   Department (Beijing) and the Shanghai Municipal Financial Services
