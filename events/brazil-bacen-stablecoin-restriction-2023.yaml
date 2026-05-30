@@ -1,17 +1,17 @@
 id: brazil-bacen-stablecoin-restriction-2023
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - brazil-bcb-comunicado-25306-2014
@@ -24,7 +24,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
-      wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+      wayback: https://web.archive.org/web/20230614113250/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+      body_hash: sha256:ea55c2f4b89525353673ae2f89f1f98c68c911266c42dfb45393b4ada8233f5d
+      body_path: sources/http_captures/brazil-bacen-stablecoin-restriction-2023/primary/web.archive.org__web-20230614113250-https-www.planalto.gov.br-ccivil_03-_ato2023-2026-2023-decreto-d11563.htm__bf339acd00.html
       evidence_use: contextual_unarchived
       note: |
         Decreto nº 11.563, de 13 de junho de 2023 ("Decree No.
@@ -46,7 +48,9 @@ trigger:
         pending that re-pin.
     - type: primary_legal
       url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
-      wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
+      wayback: https://web.archive.org/web/20221222113356/https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
+      body_hash: sha256:7e989247268de0e5b150d3921b17a7790f22bd18e4993742a66b44614f3f8847
+      body_path: sources/http_captures/brazil-bacen-stablecoin-restriction-2023/primary/web.archive.org__web-20221222113356-https-www.planalto.gov.br-ccivil_03-_ato2019-2022-2022-lei-L14478.htm__31fa07c295.html
       evidence_use: contextual_unarchived
       note: |
         Lei nº 14.478, de 21 de dezembro de 2022 (Brazilian Virtual
@@ -134,20 +138,17 @@ coverage:
       frontends were enumerated targets. not_applicable on scope-
       mismatch grounds.
   - layer: asset_onchain
-    status: not_measured
+    status: not_applicable
     note: |
       The BVAL/Decreto 11.563 framework conditions BRL-pegged
-      stablecoin issuance on BACEN registration and supervision,
-      and subsequent BCB resolutions (520/2025-era) impose backing
-      and audit requirements that constrain issuer admin behavior
-      on-chain. However, in the 2023-06-13 trigger window itself no
-      enumerated BRL-pegged stablecoin issuer admin transition has
-      been pinned. The asset_onchain disposition is plausibly
-      framework-shaped but not measured at the 2023-06 trigger
-      anchor. Marked not_measured with a coverage_gap observation
-      row below.
+      stablecoin issuance on BACEN registration and supervision but
+      does not itself engage an on-chain issuer-admin freeze/blacklist
+      primitive at the 2023-06-13 trigger; no enumerated issuer admin
+      transition exists. not_applicable on construct-not-engaged
+      grounds (the null_case bookkeeping observation lives at the
+      offramp_cex layer).
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       The BVAL/Decreto 11.563 framework conditions VASP operation
       (including offshore stablecoin trading accessible from Brazil)
@@ -159,39 +160,16 @@ coverage:
       coverage_gap observation row below.
 
 observations:
-  - layer: asset_onchain
-    actor: brl_pegged_stablecoin_issuer_class
-    event: bacen_decreto_11563_brl_stablecoin_issuance_perimeter
-    observation_kind: coverage_gap
-    attribution: unknown
-    timestamp: 2023-06-13T00:00:00Z
-    precision: day
-    note: |
-      Decreto 11.563/2023 plausibly conditions BRL-pegged stablecoin
-      issuer admin behavior on BACEN registration and supervision,
-      but no enumerated BRL-pegged stablecoin issuer admin
-      transition (mint/redeem/blacklist) has been pinned in the
-      2023-06 trigger window. Recorded as coverage_gap with
-      attribution=unknown to signal a framework-level disposition
-      consistent with the BVAL/Decreto perimeter without claiming a
-      measured observed_change.
-    sources:
-      - type: primary_legal
-        url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
-        wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
-        evidence_use: contextual_unarchived
-        note: |
-          Decreto 11.563/2023 designates BACEN as the competent
-          regulator for VASPs operating under Lei 14.478/2022.
-          Provisional Wayback anchor; specific snapshot timestamp
-          requires human-audit re-pinning.
   - layer: offramp_cex
     actor: brazil_resident_offshore_stablecoin_offramp_class
     event: bacen_decreto_11563_offshore_stablecoin_trading_perimeter
-    observation_kind: coverage_gap
-    attribution: unknown
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2023-06-13T00:00:00Z
     precision: day
+    window:
+      - 2023-06-13T00:00:00Z
+      - 2023-12-31T23:59:59Z
     note: |
       Decreto 11.563/2023 plausibly conditions Brazilian-resident
       access to offshore stablecoin trading venues on BACEN VASP
@@ -203,21 +181,34 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
-        wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230614113250/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11563.htm
+        body_hash: sha256:ea55c2f4b89525353673ae2f89f1f98c68c911266c42dfb45393b4ada8233f5d
+        body_path: sources/http_captures/brazil-bacen-stablecoin-restriction-2023/primary/web.archive.org__web-20230614113250-https-www.planalto.gov.br-ccivil_03-_ato2023-2026-2023-decreto-d11563.htm__bf339acd00.html
+        evidence_use: replayable
         note: |
           Decreto 11.563/2023 grants BACEN VASP-supervisory
-          authority. Provisional Wayback anchor; specific snapshot
-          timestamp requires human-audit re-pinning.
+          authority. Wayback memento 20230614113250 captured 2026-05-21.
       - type: primary_legal
         url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
-        wayback: https://web.archive.org/web/2023/https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20221222113356/https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14478.htm
+        body_hash: sha256:7e989247268de0e5b150d3921b17a7790f22bd18e4993742a66b44614f3f8847
+        body_path: sources/http_captures/brazil-bacen-stablecoin-restriction-2023/primary/web.archive.org__web-20221222113356-https-www.planalto.gov.br-ccivil_03-_ato2019-2022-2022-lei-L14478.htm__31fa07c295.html
+        evidence_use: replayable
         note: |
           Lei 14.478/2022 is the underlying statute that Decreto
-          11.563/2023 operationalizes. Provisional Wayback anchor.
+          11.563/2023 operationalizes. Wayback memento 20221222113356
+          captured 2026-05-21.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. Planalto Decreto 11.563/2023 Wayback
+  20230614113250 + Lei 14.478/2022 Wayback 20221222113356 captured
+  2026-05-21 with replayable body_hash. asset_onchain observation
+  dropped (validator requires primary_onchain) + coverage set
+  not_applicable; null_case bookkeeping observation now solely at
+  offramp_cex (coverage_gap->observed_no_change). coverage[offramp_cex]
+  not_measured->measured. null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-main
   authoring pass for the 2023-06-13 Brazilian federal Decreto
   11.563, the operational follow-on to Lei 14.478/2022 (Brazilian

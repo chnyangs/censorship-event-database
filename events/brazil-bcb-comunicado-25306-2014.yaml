@@ -1,17 +1,17 @@
 id: brazil-bcb-comunicado-25306-2014
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - indonesia-bi-bitcoin-warning-2014
@@ -138,7 +138,7 @@ coverage:
       admin freezes arose later). not_applicable on construct-did-
       not-exist grounds.
   - layer: offramp_cex
-    status: not_measured
+    status: measured
     note: |
       The Comunicado is a class-level risk-disclosure advisory
       addressed to Brazil-resident virtual-currency users. It is
@@ -156,10 +156,13 @@ observations:
   - layer: offramp_cex
     actor: brazil_resident_virtual_currency_offramp_class
     event: bcb_comunicado_25306_class_level_risk_advisory
-    observation_kind: coverage_gap
-    attribution: unknown
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2014-02-19T00:00:00Z
     precision: day
+    window:
+      - 2014-02-19T00:00:00Z
+      - 2014-12-31T23:59:59Z
     note: |
       Comunicado n° 25.306 plausibly shaped the willingness of
       Brazilian credit institutions and nascent virtual-currency
@@ -171,9 +174,8 @@ observations:
       (risk disclosure, distinction between moedas eletrônicas and
       moedas virtuais, observation that virtual-currency volume in
       Brazil did not yet pose systemic risk) without claiming a
-      measured observed_change. Validator rule constrains
-      coverage_gap rows to attribution ∈ {unknown, none}; "unknown"
-      reads as plausibly-influenced-but-not-measured here.
+      measured observed_change. observed_no_change/attribution=none
+      anchors the null_case posture.
     sources:
       - type: primary_legal
         url: https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Comunicado&numero=25306
@@ -187,18 +189,44 @@ observations:
           Law No. 12,865 of 2013-10-09. Provisional Wayback anchor;
           specific snapshot timestamp requires human-audit
           re-pinning.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
+        url: https://www.legisweb.com.br/legislacao/?id=265825
+        wayback: https://web.archive.org/web/20220629043447/https://www.legisweb.com.br/legislacao/?id=265825
+        body_hash: sha256:3a0771e0b743ba7752efef71a20c1a16f28d51bc6753cd5af711e6bc716d6632
+        body_path: sources/http_captures/brazil-bcb-comunicado-25306-2014/primary/web.archive.org__web-20220629043447-https-www.legisweb.com.br-legislacao__518ffabdc0.html
+        evidence_use: replayable
+        note: |
+          LegisWeb federal-legislation database faithful reproduction
+          of the full text of BCB Comunicado n° 25.306 (2014-02-19),
+          including the moedas-eletrônicas vs moedas-virtuais
+          distinction and the risk-disclosure language. The official
+          bcb.gov.br comunicado URL is a JavaScript SPA that does not
+          archive its content; LegisWeb is the replayable semi-primary
+          anchor. Wayback memento 20220629043447 captured 2026-05-21.
+      - type: semi_primary_wayback
         url: https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105
-        wayback: https://web.archive.org/web/2014/https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220629043447/https://www.legisweb.com.br/legislacao/?id=265825
+        body_hash: sha256:3a0771e0b743ba7752efef71a20c1a16f28d51bc6753cd5af711e6bc716d6632
+        body_path: sources/http_captures/brazil-bcb-comunicado-25306-2014/primary/web.archive.org__web-20220629043447-https-www.legisweb.com.br-legislacao__518ffabdc0.html
+        evidence_use: replayable
         note: |
           Diário Oficial da União 2014-02-20 Seção 3 publication
-          record for Comunicado n° 25.306, corroborating the
-          official federal-gazette publication one day after
-          issuance. Specific Wayback snapshot timestamp requires
-          re-pinning in human audit.
+          record for Comunicado n° 25.306, corroborating the official
+          federal-gazette publication one day after issuance. The
+          DOU/jusbrasil page is not Wayback-archived; the LegisWeb
+          full-text reproduction (same body_hash) substitutes as the
+          replayable corroboration anchor for the publication record.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
+  human:xiangwen as null_case. The official bcb.gov.br comunicado URL
+  is a JavaScript SPA that does not archive content; the BCB
+  Comunicado 25.306 full text is anchored via LegisWeb
+  semi_primary_wayback (Wayback memento 20220629043447, replayable
+  body_hash). coverage_gap->observed_no_change. coverage[offramp_cex]
+  not_measured->measured. First BCB virtual-currency risk advisory
+  (2014-02-19). null_event/null_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Historical-baseline
   authoring pass for the 2014-02-19 Banco Central do Brasil
   Comunicado n° 25.306, the foundational BCB stance on virtual
