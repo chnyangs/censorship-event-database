@@ -34,3 +34,13 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - Wrote `analysis/census_gap_list.md` (prioritized synthesis) + extracted `analysis/census_gap_candidates.tsv` (**264 structured candidates with source_urls**: S4=106, S5=56, S3=53, S6=24, S1=24, S2=1).
 - Key: **S2_ofac_removal is census-complete** (Semenov collapses into tornado-cash-ofac-delisting-2025). Priority back-fill = proto-2007-2012 (13) + early-bitcoin-2013-2016 (23).
 - MISSION updated: ticks now work from census_gap_candidates.tsv in priority order, but MUST re-verify each candidate's date+source before trusting (agent URLs may be fabricated, per C-5).
+
+### Tick 1 — 2026-05-30 23:40 Melbourne — focus: 2007-2016 back-fill (S3)
+**Authored 1 full event (validates [OK]):**
+- **liberty-reserve-coordinated-takedown-2013-05** (S3, historical_baseline, comparison/empirical_case). The seminal 2013-05-28 takedown: DOJ SDNY indicted 7 Liberty Reserve principals (founder Budovsky), seized 5 domains incl. LibertyReserve.com (l4_frontend), + first-ever FinCEN §311 against a virtual-currency provider (offramp_cex). Both observations attribution=direct, real DOJ/Treasury/FinCEN sources body_hash-pinned (verified via WebSearch, no fabrication). Corpus previously had only the 2011 license-denial. audit_id 465.
+
+**⚠️ TWO SCHEMA/VOCAB DECISIONS FLAGGED FOR YOUR BLESSING (not changed overnight):**
+1. **No 2007 temporal_tier.** `temporal_tier` enum earliest = `discovery_only_2008_2012` (starts 2008). The "since 2007" census needs a 2007 tier → **RECOMMEND** rename `discovery_only_2008_2012` → `discovery_only_2007_2012` (in schema/event.schema.json + validate.py refs + codebook). The **e-gold 2007 indictment** (egold-doj-indictment-2007-04, THE #1 anchor, sources already captured: 44f71f8a/3f32e6096b) is registered + ready to author the moment you bless this.
+2. **controlled_vocab jurisdiction enum too small for S4 census.** Only ~42 country codes; the S4 work-list (~106 candidates) spans many missing (CR, KE, LB, JO, KH, EC, MA, DZ, IQ, EG, QA, SA, ...). I used `US` (lead jurisdiction) for Liberty Reserve 2013 + noted CR in prose. **RECOMMEND** bulk-add the missing ISO-3166 codes before authoring S4 events. Overnight, vocab-blocked S4 cases go to the registry (free-text) for morning authoring; I author only schema-fitting cases (US S1/S3, S5, S6).
+
+**Skips/notes:** kept the tick bounded (1 high-value event + 2 flagged decisions). The registry stays at the e-gold 2007 anchor; future ticks extend it (each verifying its own sources). Next tick will work schema-fitting S3/S5/S6 candidates while the 2007-tier + jurisdiction-vocab decisions await morning blessing.

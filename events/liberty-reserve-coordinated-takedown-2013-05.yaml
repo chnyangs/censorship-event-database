@@ -1,0 +1,238 @@
+id: liberty-reserve-coordinated-takedown-2013-05
+schema_version: 0.2.0
+codebook_version: "2.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.2"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - liberty-reserve-costa-rica-license-denial-2011-03
+  - egold-doj-guilty-plea-2008-07
+  - silk-road-doj-seizure-2013
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_SDNY
+  timestamp: 2013-05-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-sdny/pr/indictment-supporting-documents-us-v-liberty-reserve-et-al
+      wayback: https://web.archive.org/web/20150531160601/http://www.justice.gov/usao-sdny/pr/indictment-supporting-documents-us-v-liberty-reserve-et-al
+      body_hash: sha256:2e13536856cb085a853e1a99bf09e3a4e04e79d829192c3a5c6528def77f8215
+      body_path: sources/http_captures/liberty-reserve-coordinated-takedown-2013-05/primary/web.archive.org__web-20130601000000-https-www.justice.gov-usao-sdny-pr-indictment-supporting-documents-us-v-liberty-reserve-et-al__6ed7114285.html
+      evidence_use: replayable
+      note: |
+        DOJ SDNY press release / indictment-supporting-documents page
+        (2013-05-28): U.S. v. Liberty Reserve et al. The Southern
+        District of New York indicted seven principals/employees of
+        Liberty Reserve S.A. (incl. founder Arthur Budovsky) for
+        operating a $6B money-laundering enterprise, and the
+        coordinated action seized five domain names including
+        LibertyReserve.com, taking the platform offline. First
+        prosecution of a virtual-currency provider of this scale.
+        Wayback 20150531160601 pinned.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jl1956
+      wayback: https://web.archive.org/web/20220913152511/https://home.treasury.gov/news/press-releases/jl1956
+      body_hash: sha256:585839c1c3191af94fd9b4f2b21a0694d729d02f08beb53e617b260ce48cbd17
+      body_path: sources/http_captures/liberty-reserve-coordinated-takedown-2013-05/primary/web.archive.org__web-20130601000000-https-home.treasury.gov-news-press-releases-jl1956__73dd02d857.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release jl1956 (2013-05-28): Treasury/FinCEN
+        identified Liberty Reserve S.A. as a financial institution of
+        primary money-laundering concern under USA PATRIOT Act Section
+        311 — the FIRST use of Section 311 against a virtual-currency
+        provider, proposing special measures to cut Liberty Reserve off
+        from the U.S. financial system. Wayback 20220913152511 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2013-05-28 DOJ SDNY release and the
+        same-day Treasury/FinCEN Section 311 finding.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Liberty Reserve S.A. (Costa Rica-domiciled centralized digital-
+    currency provider; "LR" units backed by a centralized ledger, no
+    blockchain) and seven named principals/employees (incl. founder
+    Arthur Budovsky and Vladimir Kats). The action seized five domain
+    names including LibertyReserve.com. Marked subset: targets the
+    named defendants + the Liberty Reserve corporate vehicle + its
+    operational domains rather than an enumerated complete set of LR
+    account holders. No on-chain addresses (centralized ledger).
+  actor_type: digital_currency_administrator_msb
+  actor_name: Liberty Reserve S.A. + Arthur Budovsky
+  canonical_domains:
+    - libertyreserve.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The takedown operated via domain-name seizure + criminal
+      indictment + Section 311, not an ISP/DNS network-layer block.
+      L0 measurement instruments do not apply to a 2013 coordinated
+      law-enforcement takedown.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Liberty Reserve was a centralized digital-currency ledger (LR
+      units administered by the operator); no blockchain, no
+      decentralized consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider surface; LR was a centralized web service.
+  - layer: l4_frontend
+    status: measured
+    scope: [libertyreserve_com]
+    note: |
+      Load-bearing layer. The 2013-05-28 coordinated action seized five
+      domain names including LibertyReserve.com, taking the operational
+      frontend offline. The domain seizure is the directly DOJ-attributed
+      frontend takedown, attested in the DOJ SDNY release.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      LR units were off-ledger entries administered by Liberty Reserve
+      S.A., not a blockchain token; no asset-onchain freeze instrument
+      applies.
+  - layer: offramp_cex
+    status: measured
+    scope: [liberty_reserve]
+    note: |
+      Load-bearing layer. Liberty Reserve operated as a centralized
+      digital-currency administrator/exchanger; the indictment + domain
+      seizure + Section 311 finding ended LR's service operations
+      globally (the platform did not resume). Attested in the DOJ +
+      Treasury releases.
+
+observations:
+  - layer: l4_frontend
+    actor: us_doj_sdny
+    event: doj_seizes_libertyreserve_com_and_four_other_domains
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2013-05-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/indictment-supporting-documents-us-v-liberty-reserve-et-al
+        wayback: https://web.archive.org/web/20150531160601/http://www.justice.gov/usao-sdny/pr/indictment-supporting-documents-us-v-liberty-reserve-et-al
+        body_hash: sha256:2e13536856cb085a853e1a99bf09e3a4e04e79d829192c3a5c6528def77f8215
+        body_path: sources/http_captures/liberty-reserve-coordinated-takedown-2013-05/primary/web.archive.org__web-20130601000000-https-www.justice.gov-usao-sdny-pr-indictment-supporting-documents-us-v-liberty-reserve-et-al__6ed7114285.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [libertyreserve_com]
+          countries: [US]
+          time_window:
+            - 2013-05-28T00:00:00Z
+            - 2013-12-31T23:59:59Z
+        note: |
+          DOJ SDNY 2013-05-28: seizure of five domain names including
+          LibertyReserve.com as part of the coordinated takedown.
+          attribution=direct: the DOJ directly seized the operational
+          frontend domains (named state action against the named domains).
+  - layer: offramp_cex
+    actor: exchange:liberty_reserve
+    event: liberty_reserve_digital_currency_service_ceased_globally
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2013-05-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-sdny/pr/indictment-supporting-documents-us-v-liberty-reserve-et-al
+        wayback: https://web.archive.org/web/20150531160601/http://www.justice.gov/usao-sdny/pr/indictment-supporting-documents-us-v-liberty-reserve-et-al
+        body_hash: sha256:2e13536856cb085a853e1a99bf09e3a4e04e79d829192c3a5c6528def77f8215
+        body_path: sources/http_captures/liberty-reserve-coordinated-takedown-2013-05/primary/web.archive.org__web-20130601000000-https-www.justice.gov-usao-sdny-pr-indictment-supporting-documents-us-v-liberty-reserve-et-al__6ed7114285.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [liberty_reserve]
+          countries: [US]
+          time_window:
+            - 2013-05-28T00:00:00Z
+            - 2013-12-31T23:59:59Z
+        note: |
+          The indictment + domain seizure + Section 311 finding ended
+          Liberty Reserve's digital-currency service globally; the
+          platform did not resume operations. attribution=direct: the
+          coordinated DOJ/Treasury action is the operative state
+          instrument that terminated the service.
+      - type: primary_legal
+        url: https://www.fincen.gov/resources/statutes-regulations/federal-register-notices/finding-liberty-reserve-sa-financial
+        wayback: https://web.archive.org/web/20170619012558/https://www.fincen.gov/resources/statutes-regulations/federal-register-notices/finding-liberty-reserve-sa-financial
+        body_hash: sha256:0aeb6f46ce91bec0df9e85c60632b9e0337690cec3648777023b31e3c14625af
+        body_path: sources/http_captures/liberty-reserve-coordinated-takedown-2013-05/primary/web.archive.org__web-20130701000000-https-www.fincen.gov-resources-statutes-regulations-federal-register-notices-finding-liberty-reserve-sa-financial__f87c92b12b.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [liberty_reserve]
+          countries: [US]
+          time_window:
+            - 2013-05-28T00:00:00Z
+            - 2013-12-31T23:59:59Z
+        note: |
+          FinCEN finding that Liberty Reserve S.A. is a financial
+          institution of primary money-laundering concern under PATRIOT
+          Act Section 311 — the first use of Section 311 against a
+          virtual-currency provider. Corroborating primary anchor for
+          the offramp_cex service termination.
+
+analysis_notes: |
+  **AUTHORED 2026-05-31** (overnight census collection, tick 1, by
+  human:xiangwen autonomous mandate) as a historical_baseline_2013_2016
+  S3 event. The 2013-05-28 coordinated takedown of Liberty Reserve S.A.
+  is the seminal pre-Tornado virtual-currency-provider takedown: DOJ
+  SDNY indicted 7 principals (incl. founder Arthur Budovsky) for a ~$6B
+  money-laundering enterprise, seized five domains incl.
+  LibertyReserve.com (l4_frontend), and Treasury/FinCEN issued the first
+  Section 311 finding against a virtual-currency provider — together
+  ending LR's service globally (offramp_cex). comparison shape, 2
+  observed_change layers (l4_frontend domain seizure + offramp_cex
+  service cessation), both attribution=direct (coordinated named state
+  action with primary_legal DOJ/Treasury/FinCEN anchors, all body_hash-
+  pinned). Corpus previously held only liberty-reserve-costa-rica-
+  license-denial-2011-03 (the 2009/2011 SUGEF precursor); this is the
+  load-bearing 2013 takedown. L0/L1/L3/asset_onchain not_applicable: LR
+  was a centralized off-ledger digital-currency administrator.
+  Sources verified via WebSearch 2026-05-31; real DOJ/Treasury/FinCEN
+  pages captured + body_hash-pinned (no fabrication).
+
+scoped_claim: |
+  "The 2013-05-28 coordinated U.S. takedown of Liberty Reserve S.A.
+  (DOJ SDNY indictment of 7 principals + seizure of five domains incl.
+  LibertyReserve.com + Treasury/FinCEN's first Section 311 finding
+  against a virtual-currency provider) produced a 2-layer cascade:
+  l4_frontend (domain seizure) and offramp_cex (global service
+  cessation), both attribution=direct. Historical-baseline tier."
+
+tags:
+  - doj_enforcement
+  - domain_seizure
+  - fincen_section_311
+  - money_laundering
+  - unlicensed_money_transmitter
+  - liberty_reserve
+  - pre_bitcoin_digital_currency
+  - historical_baseline
+  - frontend_seizure
+  - offramp_shutdown

@@ -104,3 +104,12 @@ Only for cases where you have ≥1 real, capturable source. Method:
 - If rate-limited mid-tick, the commit may be partial — that's fine; the next tick resumes.
 - If anything feels destructive or outward-facing, STOP and log it for human review instead.
 - Keep each tick BOUNDED (don't run forever in one tick; one batch then end).
+- **DO NOT edit schema enums overnight** (schema/event.schema.json, schema/controlled_vocab.yaml,
+  validate.py, codebook). These define the dataset's vocabulary and are the user's to bless.
+  Two known gaps (flagged in progress.json `flagged_for_review`): (a) `temporal_tier` has no 2007
+  tier — so 2007 events (e.g. e-gold 2007 indictment) CANNOT be authored yet; register them and
+  wait. (b) `controlled_vocab` jurisdiction enum (~42 values) is missing many S4 countries (CR, KE,
+  LB, JO, KH, EC, MA, DZ, IQ, EG, QA, SA, ...). If a full-event author is BLOCKED by a missing
+  enum value, DO NOT add the value — instead record the case (verified, sourced) in
+  `census_gap_registry.tsv` for morning authoring, and move on. Authoring is only for cases that
+  fit the EXISTING schema (plenty: US-jurisdiction S1/S3, S5 corporate, S6, etc.).
