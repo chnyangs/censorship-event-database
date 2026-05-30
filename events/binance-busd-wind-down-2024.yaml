@@ -1,17 +1,17 @@
 id: binance-busd-wind-down-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: corporate_policy_change
@@ -123,37 +123,14 @@ coverage:
       binance-privacy-coin-delisting-2023 and
       okx-privacy-token-delist-2024.
   - layer: asset_onchain
-    status: measured
-    chain: ethereum
-    scope: [busd_erc20_contract]
+    status: not_applicable
     note: |
-      The BUSD ERC-20 contract
-      (0x4Fabb145d64652a948d72533023f6E7A623C7C53) continues to
-      execute redemption-driven `decreaseSupply` burns through the
-      Binance wind-down window; total supply monotonically declines
-      and the lifecycle terminus of the BUSD asset is realized as
-      Binance — the dominant venue for BUSD trading and redemption —
-      exits the product. Etherscan-replayable contract history is
-      the public anchor for the asset's end-of-life supply
-      trajectory. The mint-cessation cutoff itself is attributed in
-      paxos-busd-nydfs-minting-stop-2023; here the on-chain
-      observation records the lifecycle-end pattern (supply-only-
-      decreases through the wind-down window) coincident with the
-      Binance off-ramp removal.
-    denominator_artifact:
-      type: primary_onchain
-      url: https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
-      wayback: https://web.archive.org/web/20240222000000/https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
-      scope_descriptor:
-        providers: [ethereum_mainnet_etherscan]
-        time_window:
-          - 2024-02-22T00:00:00Z
-          - 2024-08-22T23:59:59Z
-      note: |
-        Etherscan contract page for the BUSD ERC-20 token
-        (0x4Fabb145d64652a948d72533023f6E7A623C7C53) is the
-        replayable denominator anchor for the asset's lifecycle-end
-        supply trajectory through the Binance wind-down window.
+      BUSD supply-decline lifecycle (Etherscan contract history) is real
+      but no pinnable primary_onchain tx_hash (a specific decreaseSupply
+      burn) was anchored at audit time; per audit precedent the asset_onchain
+      layer is set not_applicable and the censorship effect is carried at
+      offramp_cex (Binance BUSD product removal). The BUSD contract
+      0x4Fabb145... remains documented in the notes.
   - layer: offramp_cex
     status: measured
     scope:
@@ -170,44 +147,6 @@ coverage:
       observed_change with attribution=direct.
 
 observations:
-  - layer: asset_onchain
-    actor: paxos_busd_supply_controller
-    event: busd_lifecycle_end_supply_only_decreases_through_binance_wind_down_window
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2024-02-22T00:00:00Z
-    precision: day
-    sources:
-      - type: primary_corporate
-        url: https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
-        wayback: https://web.archive.org/web/20240222000000/https://etherscan.io/address/0x4Fabb145d64652a948d72533023f6E7A623C7C53
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [ethereum_mainnet_etherscan]
-          time_window:
-            - 2024-02-22T00:00:00Z
-            - 2024-08-22T23:59:59Z
-        note: |
-          Etherscan contract page for the BUSD ERC-20 token
-          (0x4Fabb145d64652a948d72533023f6E7A623C7C53). Through the
-          Binance 2024-02-22 wind-down window the contract continues
-          to execute redemption-driven `decreaseSupply` burns and no
-          `increaseSupply` mint calls are observed (mint cessation
-          cutoff 2023-02-21 attributed in paxos-busd-nydfs-minting-
-          stop-2023). Total supply monotonically declines through
-          and beyond 2024-02-22, realizing the lifecycle terminus
-          of the BUSD asset coincident with Binance — the dominant
-          venue for BUSD trading and redemption — ending product
-          support. attribution=direct: Binance's 2024-02-22
-          customer-support announcement publicly cites the upstream
-          Paxos / NYDFS BUSD cessation (which names the BUSD asset
-          and its contract) as the cause, and the on-chain supply-
-          only-decreases pattern is the literal execution of the
-          asset-class lifecycle end. evidence_use=contextual_
-          unarchived pending body_hash pin and / or a primary_onchain
-          tx_hash anchor on the final redemption-driven burn during
-          human audit.
-
   - layer: offramp_cex
     actor: exchange:binance
     event: binance_busd_spot_pair_removal_and_balance_auto_conversion_to_fdusd
@@ -219,44 +158,33 @@ observations:
     sources:
       - type: primary_corporate
         url: https://www.binance.com/en/support/announcement/notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422dbbaeda7066ae445b
-        wayback: https://web.archive.org/web/20240222000000/https://www.binance.com/en/support/announcement/notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422dbbaeda7066ae445b
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [binance_spot_busd_pairs_global]
-          time_window:
-            - 2024-02-22T00:00:00Z
-            - 2024-08-22T23:59:59Z
+        wayback: https://web.archive.org/web/20231212193137/https://www.binance.com/en/support/announcement/notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422dbbaeda7066ae445b
+        body_hash: sha256:64e42f5fc0ebf0b45bb5c80c1bf3f97dc2f5fc1b325f67067637ccf3739848f1
+        body_path: sources/http_captures/binance-busd-wind-down-2024/primary/web.archive.org__web-20240101000000-https-www.binance.com-en-support-announcement-notice-regarding-the-removal-of-busd-and-conversion-of-busd-to-fdusd-1c98ce7bb464422db__19fe3d27b2.html
+        evidence_use: replayable
         note: |
-          Binance customer-support announcement is the corporate-policy
-          anchor for the wind-down. The notice names BUSD as the
-          asset losing product support, specifies the auto-conversion
-          to FDUSD at 1:1 for remaining Spot and Funding Wallet
-          balances, and explicitly cites Paxos's NYDFS-directed
-          cessation of new BUSD minting (2023-02-13; see
-          paxos-busd-nydfs-minting-stop-2023) as the upstream cause.
-          attribution=direct under §1.2 reasoning extended to a CEX
-          off-ramp action: the actor (Binance) publicly cites the
-          trigger (Paxos / NYDFS BUSD cessation) and the trigger
-          names the specific target (BUSD) being acted upon at the
-          actor's product layer. The 2023-02-13 NYDFS / Paxos action
-          is the cleanest upstream cascade origin in the corpus for
-          which this 2024-02-22 row is the downstream S5 corporate
-          follow-on. evidence_use=contextual_unarchived pending human-
-          audit re-pin of the precise notice-page snapshot timestamp
-          and body_hash.
-      - type: supporting_journalism
+          Binance official announcement on removing BUSD and auto-converting
+          user BUSD balances to FDUSD (wind-down following Paxos/NYDFS mint
+          cessation). primary_corporate anchor; attribution=direct. Wayback
+          20231212193137 pinned.
+      - type: semi_primary_wayback
         url: https://www.theblock.co/post/248301/binance-ends-busd-support-fdusd
-        wayback: https://web.archive.org/web/2023/https://www.theblock.co/post/248301/binance-ends-busd-support-fdusd
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20231010072759/https://www.theblock.co/post/248301/binance-ends-busd-support-fdusd
+        body_hash: sha256:67f027b7c64203a51d4ef876e5d66c8b4d90cd7cbc4198a62e0f9575858f9413
+        body_path: sources/http_captures/binance-busd-wind-down-2024/primary/web.archive.org__web-20231215000000-https-www.theblock.co-post-248301-binance-ends-busd-support-fdusd__5d71382cd6.html
+        evidence_use: replayable
         note: |
-          The Block coverage of the 2023-08-30 Binance announcement
-          confirming the February-2024 BUSD wind-down and FDUSD
-          conversion plan. Independent journalistic confirmation of
-          the Binance-direct attribution. evidence_use=
-          contextual_unarchived in this DRYRUN pending body_hash
-          pin during human audit.
-
+          The Block coverage of Binance ending BUSD support and converting
+          to FDUSD. Independent semi-primary anchor.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, stablecoin)
+  by human:xiangwen. asset_onchain observation dropped -> coverage
+  not_applicable (etherscan ADDRESS page is not primary_onchain; no pinnable
+  burn tx) per audit precedent. Censorship effect carried at offramp_cex:
+  Binance BUSD-removal announcement (primary_corporate, Wayback
+  20231212193137, 64e42f5f...) + The Block (semi_primary_wayback). offramp_cex
+  observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E follow-on to
   paxos-busd-nydfs-minting-stop-2023): authored by LLM agent without
   personally verifying Wayback / body_hash anchors; real release must
