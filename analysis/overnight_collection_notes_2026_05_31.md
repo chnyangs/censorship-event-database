@@ -140,3 +140,12 @@ Instead produced the high-value endgame deliverable: **analysis/MORNING_REVIEW_2
 - Did NOT author BitFloor (only 1 cleanly-verified source near the deadline — left registered; thin for a dedicated event).
 - **+3 EU-sanctions registry rows** (author-ready, EU in-vocab, template = the 8th-package event authored tonight): eu-5th-package-crypto-cap-2022-04 (the FOUNDATIONAL first EU crypto restriction), eu-18th-package-2025-07, eu-19th-package-a7a5-2025-10. These form a clean EU-sanctions-escalation series for fast morning authoring.
 - User awake (~06:39). The 3 gating decisions (scope-boundary, 2007-tier, ISO-codes) in MORNING_REVIEW are ready — blessing them unblocks the big S4/S1 batch-authoring.
+
+### RUN COMPLETE + DECISIONS EXECUTED — 2026-05-31 ~07:30 Melbourne (user awake, drove the decisions)
+User woke ~06:40 and **blessed all 3 gating decisions** (enforcement-only scope · rename tier to 2007_2012 · add ISO codes). Executed immediately (no longer "deferred"):
+1. **§9 inclusion boundary** added to codebook (enforcement-only: censorship actions IN; platform failures / fraud prosecutions / soft warnings OUT). Codebook 2.0.0 -> 3.0.0.
+2. **temporal_tier renamed** discovery_only_2008_2012 -> discovery_only_2007_2012 (schema + validator + 4 scripts + 19 events). **e-gold 2007 indictment is now authorable.**
+3. **+25 ISO-3166 codes** added to controlled_vocab.yaml (fixed the NO/Norway YAML-boolean trap). **S4 census (~106 cands, ~50-70 net-new) now unblocked.**
+ALL 268 events validate (0 fail). Cron 1ddafe54 RETIRED (CronDelete) — user now driving interactively.
+
+**Overnight final tally:** 6 events authored (254->260 admitted, corpus 262->268), 47-row registry, S4 roadmap, MORNING_REVIEW dashboard, codebook v3.0.0 with §9 scope rule. Next: bulk-author e-gold 2007 + the S4/S1/EU-sanctions batches now that schema is unblocked.
