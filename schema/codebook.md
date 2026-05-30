@@ -5,9 +5,9 @@ the latest IRR run, or where Phase A-F authoring agents independently surfaced
 ambiguity. It is the **canonical reference** that LLM authoring agents and human
 coders MUST consult before assigning these fields.
 
-**Version**: 1.0.1.
+**Version**: 2.0.0.
 
-**Effective**: 2026-05-19 (1.0.1). Codebook updates require:
+**Effective**: 2026-05-30 (2.0.0); 2026-05-19 (1.0.1). Codebook updates require:
 1. A new IRR pass on at least 10 events covering the edge case.
 2. A `**CODEBOOK CHANGE — YYYY-MM-DD**` entry in this file's changelog.
 3. Re-coding of all events touching the changed field, with `last_human_audit`
@@ -24,6 +24,27 @@ a citation in this codebook contradicts agent intuition, the codebook wins.
 
 ## Changelog
 
+- **CODEBOOK CHANGE — 2026-05-30** — **§1.6 added: `asset_onchain` evidence floor
+  & off-chain-mechanism exception**. Codifies the validator-enforced rule
+  (`scripts/validate.py`: every non-draft `asset_onchain` observation needs ≥1
+  `primary_onchain` `tx_hash`) plus the routing for effects whose mechanism is
+  structurally off-chain (no tx can ever exist): carry at another layer, or stay
+  `draft`; never reclassify a non-custodial bridge to `offramp_cex`; never
+  fabricate a `tx_hash`. Surfaced by the C-5 audit (audit_id 460-462):
+  `ren-protocol-shutdown-alameda-ftx-2022-12` is the terminal-`draft` precedent
+  (off-chain RenVM darknode signature cessation), `makerdao-emergency-shutdown-
+  contingency-2022-08` the representative-receipt null precedent, `binance-busd` /
+  `paxos-busd` / `circle-usdc-svb` the route-to-another-layer precedents.
+  **Version 1.0.1 → 2.0.0 (major).** Per the §"Effective" convention, any
+  decision-rule change — here a decision-rule ADDITION — is a major bump. The two
+  process preconditions are satisfied/N-A for this specific change: (3) re-coding
+  is *vacuously satisfied* — zero events change coding, because §1.6 documents
+  behavior `scripts/validate.py` already enforces and the routing precedents
+  (binance-busd, paxos-busd, circle-usdc-svb, makerdao, ren-protocol) are already
+  applied; (1) the IRR-pass precondition is N/A — the edge case is mechanically
+  determined (a `tx_hash` either exists or cannot exist), not an interpretive
+  κ-driver. Existing events keep their current `codebook_version` (per the 1.0.1
+  precedent).
 - **2026-05-19** — **§1.3 example #2 self-correction**. v0.3 review-queue audit
   of `semenov-ofac-2023` (audit_id 226 rolling back 225) verified the OFAC RA
   HTML at `sources/http_captures/semenov-ofac-2023/ofac-recent-actions/` and
@@ -166,6 +187,49 @@ the order itself). Replayable OONI / Censored Planet / Cloudflare Radar
 measurement is REQUIRED to elevate L0 coverage to `partially_measured` or
 better — without it, the row is `not_measured` and no L0 observation can be
 admitted. (See Kazakhstan 2022-01 honesty fix as precedent.)
+
+### §1.6 `asset_onchain` evidence floor & the off-chain-mechanism exception
+
+The on-chain analogue of the §1.5 L0 measurement floor: an on-chain claim must
+point at an on-chain receipt.
+
+**Evidence floor (validator-enforced).** Every `asset_onchain` observation —
+`observed_change` AND `observed_no_change` — REQUIRES ≥ 1 `primary_onchain`
+source carrying a real transaction hash (`tx_hash`). Drafts may defer it;
+non-draft (`admitted`) events cannot. NEVER fabricate or guess a `tx_hash` to
+clear the floor.
+
+- For `observed_no_change` nulls the floor is met by a *representative* on-chain
+  receipt showing the asset/contract operated normally inside the window (the
+  absence-of-action anchor). Precedent: `makerdao-emergency-shutdown-
+  contingency-2022-08` pins a PSM-USDC-A `sellGem` tx to show the peg module ran
+  normally and Emergency Shutdown was NOT triggered.
+
+**Off-chain-mechanism exception.** Some effects manifest in on-chain *state*
+(an asset becomes frozen / unredeemable) but are produced by a mechanism with
+NO on-chain transaction — e.g. a non-custodial bridge whose off-chain
+darknode/relayer network stops signing, or a contract with no on-chain
+pause/freeze entrypoint. For these the floor is *structurally unsatisfiable*: no
+`tx_hash` can ever exist. Route, in order:
+
+1. If the enforceable effect ALSO manifests at another layer with admission-grade
+   evidence, code it THERE and set `asset_onchain: not_applicable`. Precedent:
+   `binance-busd-wind-down-2024` / `paxos-busd-nydfs-minting-stop-2023` dropped
+   the asset_onchain row and carried the issuer action at `offramp_cex` /
+   `l4_frontend`; `circle-usdc-svb-policy-statement-2023` moved its null from
+   `asset_onchain` to `offramp_cex` (the claim is about the redemption / off-ramp
+   surface, not an on-chain action).
+2. A non-custodial bridge is NOT a centralized-exchange off-ramp. Do NOT
+   reclassify `asset_onchain → offramp_cex` merely to escape the floor — that
+   corrupts the six-layer semantics (a darknode network ≠ a CEX).
+3. If no other layer carries the effect with admission-grade evidence, the event
+   REMAINS `draft`. This is an honest, structurally-terminal state — NOT a
+   backlog item awaiting a `tx_hash` that can never be produced. Record a
+   machine-visible `note` on the observation stating the floor is structurally
+   unsatisfiable and the event is intentionally un-promotable. Precedent:
+   `ren-protocol-shutdown-alameda-ftx-2022-12` (RenVM 1.0 wind-down via off-chain
+   `mintAuthority` signature cessation; `MintGatewayLogicV1` has no on-chain
+   pause).
 
 ---
 
