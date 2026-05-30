@@ -1,15 +1,15 @@
 id: etherscan-tornado-cash-ui-label-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -66,10 +66,11 @@ trigger:
         captures of the Tornado Cash contract Etherscan pages bearing
         the "OFAC Blocked" / "OFAC SDN" nametag are in the days
         following the 2022-08-08 OFAC SDN designation; 2022-08-10 is
-        used as the day-precision placeholder pending pinned Wayback
-        diff between pre- and post-label snapshots in the human-audit
-        pass. precision=day reflects the LLM-author's inability to
-        sub-day-pin the label-addition transition from public sources.
+        used as the day-precision anchor for the label-addition transition.
+        A post-label snapshot is pinned in observations (Etherscan address
+        page 2022-10-11 bearing the OFAC-sanctioned label).
+        precision=day reflects the inability to sub-day-pin the
+        label-addition transition from public sources.
 
 target:
   kind: entity
@@ -156,50 +157,35 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_corporate
-        url: https://etherscan.io/address/0x7ff9cfad3877f21d41da833e2f775db0569ee3d9
-        wayback: https://web.archive.org/web/2022/https://etherscan.io/address/0x7ff9cfad3877f21d41da833e2f775db0569ee3d9
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - etherscan.io
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-08-31T23:59:59Z
-        note: |
-          Etherscan address page for the Tornado Cash 0.1 ETH pool
-          contract showing the "OFAC Blocked" nametag in the address
-          header. Canonical operator-side primary source for the
-          UI-layer label action. attribution=direct because the label
-          is applied by the operator and explicitly cites the OFAC
-          SDN class as the rationale via the nametag text itself.
-          DRYRUN: pinned Wayback snapshot and body_hash deferred to
-          human audit; marked evidence_use=contextual_unarchived.
-      - type: primary_corporate
         url: https://etherscan.io/address/0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b
-        wayback: https://web.archive.org/web/2022/https://etherscan.io/address/0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - etherscan.io
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-08-31T23:59:59Z
+        wayback: https://web.archive.org/web/20221011000838/https://etherscan.io/address/0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b
+        body_hash: sha256:d4fabeddcc224dac5f5c4a27288f8c83639a0cd8888d1e695e6fabdb5dd95dbe
+        body_path: sources/http_captures/etherscan-tornado-cash-ui-label-2022/primary/web.archive.org__web-20221101000000-https-etherscan.io-address-0xa0e1c89ef1a489c9c7de96311ed5ce5d32c20e4b__08a9651b65.html
+        evidence_use: replayable
         note: |
-          Second Etherscan Tornado Cash contract page (0xa0e1...E4B)
-          showing the "OFAC Blocked" nametag, triangulating that the
-          label was applied class-wide across the OFAC-listed Tornado
-          Cash address universe. DRYRUN: pinned Wayback snapshot
-          deferred to human audit.
+          Etherscan address page for a Tornado-Cash-related address,
+          2022-10-11 snapshot showing the OFAC-sanctioned UI label applied at
+          the Etherscan frontend. primary_corporate direct evidence of the UI
+          label; attribution=direct. Wayback 20221011000838 pinned.
       - type: primary_corporate
         url: https://info.etherscan.com/public-name-tags-labels/
-        wayback: https://web.archive.org/web/2022/https://info.etherscan.com/public-name-tags-labels/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220930202433/https://info.etherscan.com/public-name-tags-labels/
+        body_hash: sha256:cbcbc71fc222f13c54a5ae46c2f469336bd9c8b5846f9474e699864d025c5bac
+        body_path: sources/http_captures/etherscan-tornado-cash-ui-label-2022/primary/web.archive.org__web-20221001000000-https-info.etherscan.com-public-name-tags-labels__3000416fbc.html
+        evidence_use: replayable
         note: |
-          Etherscan Information Center documentation of the public
-          name-tags / labels mechanism, supporting the operator-side
-          attribution of the OFAC-label class. DRYRUN: pinned Wayback
-          snapshot deferred to human audit.
-
+          Etherscan public name-tags / labels documentation page describing
+          the labeling system by which OFAC/SDN tags are applied. Corroborating
+          primary_corporate anchor. Wayback 20220930202433 pinned.
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
+        wayback: https://web.archive.org/web/20220817122318/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored/
+        body_hash: sha256:eb14e16c338197232bb7a1ef02ae0ec7263a14a279d13c960b329603b9daf861
+        body_path: sources/http_captures/etherscan-tornado-cash-ui-label-2022/primary/web.archive.org__web-20220818000000-https-www.coindesk.com-tech-2022-08-17-tornado-cash-fallout-can-ethereum-be-censored__340cca4a5f.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2022-08-17 analysis of the Tornado-Cash censorship
+          fallout. Independent semi-primary anchor.
 recovery:
   - layer: l4_frontend
     resolved: false
@@ -212,6 +198,13 @@ recovery:
       labels post-delisting is deferred to the human-audit pass.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado) by
+  human:xiangwen. Anchored on Etherscan address-page 2022-10-11 snapshot
+  showing the OFAC-sanctioned UI label (primary_corporate, Wayback
+  20221011000838, d4fabedd...) + Etherscan labels-doc page (cbcbc71f) +
+  CoinDesk (semi_primary_wayback, eb14e16c...). l4_frontend
+  observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** Wave 2.3 P2 preamble
   (Phase A.2 corporate_policy discovery): authored by LLM agent
   without personally verifying Wayback/body_hash anchors;
