@@ -1,0 +1,166 @@
+id: al-law-hezbollah-crypto-ofac-2024-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-03-26T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2209
+      wayback: https://web.archive.org/web/20240326154347/https://home.treasury.gov/news/press-releases/jy2209
+      body_hash: sha256:604a162d4136ca4ec092e06ebcc6d950e844db40c4451096febb3b5035764ba5
+      body_path: sources/http_captures/al-law-hezbollah-crypto-ofac-2024-03/primary/web.archive.org__web-20240326000000-https-home.treasury.gov-news-press-releases-jy2209__314cf7a7bf.html
+      evidence_use: replayable
+      note: |
+        Treasury press release jy2209 (2024-03-26) "Treasury Targets Qods Force,
+        Houthi, and Hizballah Finance and Trade Facilitators". OFAC designated
+        Lebanon-based Syrian money exchanger Tawfiq Muhammad Sa'id al-Law under
+        EO 13224 for providing Hizballah with digital wallets to receive funds
+        from IRGC-QF commodity sales and for facilitating cryptocurrency
+        transfers for sanctioned Hizballah operators. Wayback 20240326154347
+        pinned; grep verifies 8xal-Law, 4xAl-Law, 5x"March 26, 2024".
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240326
+      wayback: https://web.archive.org/web/20240326151735/https://ofac.treasury.gov/recent-actions/20240326
+      body_hash: sha256:0908e9a28cbb264de13f22a0e57a6b2d8e0eb1ae906e7669dcef96747abcb15e
+      body_path: sources/http_captures/al-law-hezbollah-crypto-ofac-2024-03/primary/web.archive.org__web-20240326000000-https-ofac.treasury.gov-recent-actions-20240326__cf3fe7dad6.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2024-03-26, the formal SDN-list publication
+        accompanying jy2209. Al-Law's SDN entry carries a USDT-on-Tron address
+        identifier (TWBAPzpPiZarfVsY2BLXeaLhNHurn4wkWG), previously seized by
+        Israel's NBCTF (~$1.7M, July 2023). Independent primary anchor for the
+        designation.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level precision per the 2024-03-26 Treasury press release jy2209.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Tawfiq Muhammad Sa'id al-Law (Lebanon-based Syrian money exchanger),
+    Hizballah/IRGC-QF crypto financier. His SDN entry names a single USDT-on-Tron
+    address identifier. Subset enumeration: al-Law is the crypto-financier node
+    within the broader jy2209 Qods-Force/Houthi/Hizballah action; the
+    transportation/tanker co-designees are out of this event's target scope.
+  actor_type: individual
+  actor_name: Tawfiq Muhammad Sa'id al-Law (Hizballah/IRGC-QF crypto financier)
+  chains:
+    - tron
+  canonical_domains: []
+  addresses:
+    - "TWBAPzpPiZarfVsY2BLXeaLhNHurn4wkWG"
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Individual SDN designation; no nation-state ISP/DNS block instrument
+      involved.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      An individual crypto-financier SDN entry does not act on any chain's
+      consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical crypto-platform web presence for the designated individual.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Al-Law's SDN entry names one USDT-on-Tron address. Per codebook §1.6, this
+      event makes no on-chain claim absent a captured primary_onchain freeze
+      tx_hash; the measurable surface is carried at offramp_cex. (A future
+      Tether-on-Tron freeze confirmation against the named address could upgrade
+      to an asset_onchain observed_change under §1.2; not pinned at draft time.)
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-03-26T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-03-26T00:00:00Z
+      - 2024-04-09T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20240326
+        wayback: https://web.archive.org/web/20240326151735/https://ofac.treasury.gov/recent-actions/20240326
+        body_hash: sha256:0908e9a28cbb264de13f22a0e57a6b2d8e0eb1ae906e7669dcef96747abcb15e
+        body_path: sources/http_captures/al-law-hezbollah-crypto-ofac-2024-03/primary/web.archive.org__web-20240326000000-https-ofac.treasury.gov-recent-actions-20240326__cf3fe7dad6.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2024-03-26T00:00:00Z
+            - 2024-04-09T23:59:59Z
+          addresses_cohort: al_law_usdt_tron_wallet
+        note: |
+          No public CEX policy statement explicitly naming al-Law's SDN entry
+          was published by major exchanges in the 14-day post-designation
+          window. Records absence of public disclosure; private chain-analytics
+          KYT flagging is outside this observation's scope.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission).
+
+  null_event documenting the 2024-03-26 OFAC SDN designation (EO 13224; jy2209)
+  of Lebanon-based Syrian money exchanger Tawfiq Muhammad Sa'id al-Law, a
+  Hizballah/IRGC-QF crypto financier who provided Hizballah with digital wallets
+  to receive IRGC-QF commodity-sale proceeds. His SDN entry carries a
+  USDT-on-Tron address (TWBAPzpPiZarfVsY2BLXeaLhNHurn4wkWG), previously seized
+  by Israel's NBCTF (~$1.7M, July 2023).
+
+  Coded null_event / null_case per the S1 convention: the designation is the
+  trigger, but no public CEX cascade was documented in the 14-day window. Per
+  codebook §1.6 the named Tron address is not coded as an asset_onchain
+  observation absent a captured primary_onchain freeze tx_hash; the measurable
+  surface is carried at offramp_cex (observed_no_change / none). Codebook §1.2
+  note: the SDN names the specific USDT-Tron address (condition A); a captured
+  Tether freeze confirmation would satisfy condition B and could upgrade a
+  future asset_onchain row to direct. Sources verified + captured 2026-05-31
+  (Treasury jy2209 + OFAC RA 20240326, both body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "OFAC's 2024-03-26 SDN designation (jy2209) of Hizballah/IRGC-QF crypto
+  financier Tawfiq Muhammad Sa'id al-Law named a single USDT-on-Tron address
+  (TWBAPzpP...wkWG). No public CEX cascade was documented in the 14-day window.
+  null_case: individual crypto-financier target with limited measurable
+  cross-layer surface at draft time; a future Tether-Tron freeze confirmation
+  could elevate an asset_onchain row to direct under codebook §1.2."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - hezbollah
+  - terrorism_financing
+  - usdt_tron
+  - null_event
+  - dryrun_bulk_wave_1

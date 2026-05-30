@@ -1,0 +1,148 @@
+id: botnet-911-s5-ofac-2024-05
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-05-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2375
+      wayback: https://web.archive.org/web/20240528232624/https://home.treasury.gov/news/press-releases/jy2375
+      body_hash: sha256:291f54f8b94689ff177e9d71baf66793b663990f4484ecd7e3c38bf42c1134f5
+      body_path: sources/http_captures/botnet-911-s5-ofac-2024-05/primary/web.archive.org__web-20240529000000-https-home.treasury.gov-news-press-releases-jy2375__708636ae49.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release jy2375 (2024-05-28): OFAC designated three
+        Chinese nationals — Yunhe Wang, Jingping Liu, and Yanni Zheng — and
+        three Thailand-based entities (Spicy Code Company Limited, Tulip Biz
+        Pattaya Group Company Limited, Lily Suites Company Limited) for their
+        roles in the 911 S5 residential-proxy botnet (~19M compromised IPs).
+        The SDN entry for Yunhe Wang attaches 49 cryptocurrency addresses as
+        identifiers. Wayback 20240528232624 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2024-05-28 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Three individuals (Yunhe Wang, Jingping Liu, Yanni Zheng) and three Thai
+    entities designated as SDNs; 49 crypto addresses attached to Yunhe Wang as
+    identifiers. Coded subset: the action targets the named cybercrime network
+    plus the attached address set rather than an exhaustively enumerated
+    complete on-chain footprint.
+  actor_type: cybercrime_network
+  actor_name: 911 S5 botnet network (Yunhe Wang et al.)
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 911 S5 botnet was a residential-proxy service, but the designation
+      acts on the SDN/sanctions surface; no nation-state network-layer block of
+      a domain is asserted, and no OONI / Censored Planet replay slice was
+      captured, so no L0 observation is admitted (codebook §1.5 measurement
+      floor).
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      49 crypto addresses were attached to Yunhe Wang's SDN entry, but no
+      stablecoin-issuer freeze or other on-chain enforcement transaction was
+      captured for those addresses in this authoring pass; no primary_onchain
+      tx_hash is held, so no asset_onchain observation is asserted (codebook
+      §1.6 evidence floor; draft defers the check).
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-05-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-05-28T00:00:00Z
+      - 2024-06-11T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy2375
+        wayback: https://web.archive.org/web/20240528232624/https://home.treasury.gov/news/press-releases/jy2375
+        body_hash: sha256:291f54f8b94689ff177e9d71baf66793b663990f4484ecd7e3c38bf42c1134f5
+        body_path: sources/http_captures/botnet-911-s5-ofac-2024-05/primary/web.archive.org__web-20240529000000-https-home.treasury.gov-news-press-releases-jy2375__708636ae49.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2024-05-28T00:00:00Z
+            - 2024-06-11T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the 911 S5 / Yunhe Wang
+          SDN designation was published by major exchanges in the 14-day post-
+          designation window. Records the absence of public disclosure; private
+          chain-analytics KYT flagging of the 49 attached addresses is outside
+          this observation's scope.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
+  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
+  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
+  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
+  unsupported specifics. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). On 2024-05-28 OFAC designated
+  the 911 S5 residential-proxy botnet network (Yunhe Wang, Jingping Liu, Yanni
+  Zheng + three Thai entities; Treasury jy2375), attaching 49 cryptocurrency
+  addresses to Yunhe Wang's SDN entry, alongside the DOJ takedown of the
+  botnet (~19M compromised IPs). In scope under codebook §9 (OFAC SDN
+  designation). Coded null_event/null_case per the S1 convention (cf. bitriver-
+  russia-mining-ofac-2022-04): the designation is the trigger, but no public
+  CEX cascade was documented in the 14-day window, no OONI/Censored Planet L0
+  replay slice was captured, and no primary_onchain freeze tx was captured for
+  the attached addresses, so the measurable cross-layer surface is limited
+  (offramp_cex observed_no_change/none). The candidate lead tagged this
+  l0_network for the proxy infrastructure, but the censorship action coded here
+  is the SDN designation, not a network-layer block; L0 is not_applicable
+  absent a replayable measurement. Source verified + captured 2026-05-31
+  (Treasury jy2375, body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "The 2024-05-28 OFAC SDN designation of the 911 S5 botnet network (Yunhe Wang
+  et al., 49 crypto addresses attached) is confirmed against Treasury jy2375;
+  no public CEX cascade and no captured on-chain freeze were documented in the
+  14-day window. null_case: limited measurable cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - cybercrime
+  - botnet
+  - residential_proxy
+  - null_event

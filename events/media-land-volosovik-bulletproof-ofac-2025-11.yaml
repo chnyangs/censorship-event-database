@@ -1,0 +1,182 @@
+id: media-land-volosovik-bulletproof-ofac-2025-11
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-11-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20251119
+      wayback: https://web.archive.org/web/20251121174519/https://ofac.treasury.gov/recent-actions/20251119
+      body_hash: sha256:b1c32ad349917087f7302dff5f55585648ee9e6f26eef207a298087d83a80c34
+      body_path: sources/http_captures/media-land-volosovik-bulletproof-ofac-2025-11/primary/web.archive.org__web-20251121174519-https-ofac.treasury.gov-recent-actions-20251119__e8171e48aa.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2025-11-19 (Cyber-related / CAATSA
+        Russia-related designations): designation of Russian
+        bulletproof-hosting provider Media Land LLC (St. Petersburg) and
+        executives Aleksandr Volosovik (alias "Yalishanda"), Kirill
+        Zatolokin, and Yulia Pankova, for enabling ransomware (LockBit,
+        BlackSuit, Play) and DDoS infrastructure. One Bitcoin address is
+        listed for Volosovik. Coordinated with the U.K. and Australia.
+        Wayback memento 20251121174519 pinned.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0319
+      wayback: https://web.archive.org/web/20260114090608/https://home.treasury.gov/news/press-releases/sb0319
+      body_hash: sha256:d21345ccc5aeb4b7b5f8653c375c55173c53423a3ae347c5eff20d586d670ad0
+      body_path: sources/http_captures/media-land-volosovik-bulletproof-ofac-2025-11/primary/web.archive.org__web-20260114090608-https-home.treasury.gov-news-press-releases-sb0319__f4d38a4e5b.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release sb0319 (2025-11-19): "United States,
+        Australia, and United Kingdom Sanction Russian Cybercrime
+        Infrastructure Supporting Ransomware" — the tri-lateral Media
+        Land designation. Wayback memento 20260114090608 pinned
+        (archived later than the action; corroborating anchor for the
+        OFAC recent-actions primary).
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-11-19 OFAC action / Treasury
+        press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Media Land LLC plus executives Aleksandr Volosovik, Kirill
+    Zatolokin, and Yulia Pankova (and associated front companies),
+    designated as SDNs. One Bitcoin address is listed for Volosovik.
+    Marked subset because the action targets the named hosting company /
+    individuals and a single attached address rather than an enumerated
+    complete address set.
+  actor_type: bulletproof_hosting_provider
+  actor_name: Media Land LLC + Aleksandr Volosovik
+  chains: [bitcoin]
+  canonical_domains: []
+
+jurisdiction:
+  - US
+  - UK
+  - AU
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      Media Land is a bulletproof-hosting provider, but this event codes
+      the OFAC SDN designation (asset-blocking), not a network-layer
+      block of its infrastructure. No OONI / Censored Planet / Cloudflare
+      Radar replayable measurement of Media Land AS-sets was captured, so
+      per codebook §1.5 the L0 row stays not_measured and no L0
+      observation is admitted.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The designation acts on a named hosting company / individuals and
+      one Bitcoin address; it does not act on any chain's consensus
+      layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The designation targets a hosting operator's corporate/personal
+      SDN status, not a crypto web-service operator's canonical frontend.
+  - layer: asset_onchain
+    status: not_measured
+    chain: bitcoin
+    note: |
+      One Bitcoin address is attached to the Volosovik SDN entry, but
+      native BTC has no issuer-level freeze primitive, so there is no
+      on-chain freeze receipt to capture. No primary_onchain tx_hash
+      pinned in this draft authoring pass (codebook §1.6 defers the floor
+      for drafts).
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-11-19T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-11-19T00:00:00Z
+      - 2025-12-03T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20251119
+        wayback: https://web.archive.org/web/20251121174519/https://ofac.treasury.gov/recent-actions/20251119
+        body_hash: sha256:b1c32ad349917087f7302dff5f55585648ee9e6f26eef207a298087d83a80c34
+        body_path: sources/http_captures/media-land-volosovik-bulletproof-ofac-2025-11/primary/web.archive.org__web-20251121174519-https-ofac.treasury.gov-recent-actions-20251119__e8171e48aa.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2025-11-19T00:00:00Z
+            - 2025-12-03T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the Media Land /
+          Volosovik designation was pinned in the 14-day post-designation
+          window in this authoring pass. Records the absence of pinned
+          public disclosure; private KYT flagging is outside scope. The
+          on-chain footprint is a single native-BTC address (no issuer
+          freeze primitive), limiting the measurable cross-layer surface.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1;
+  sources verified+captured, awaiting human admission). OFAC SDN
+  designation 2025-11-19 (OFAC recent-actions 20251119 / Treasury
+  sb0319), coordinated with the U.K. and Australia, of Russian
+  bulletproof-hosting provider Media Land LLC and executives Aleksandr
+  Volosovik ("Yalishanda"), Kirill Zatolokin, and Yulia Pankova, for
+  enabling ransomware (LockBit / BlackSuit / Play) and DDoS
+  infrastructure; one Bitcoin address is listed for Volosovik. In-scope
+  per §9 INCLUDE (OFAC SDN designation). NOTE: the candidate lead
+  proposed an l0_network layer, but this event codes the SDN
+  asset-blocking action, not a measured network block — no OONI /
+  Censored Planet measurement of Media Land infrastructure was captured,
+  so per §1.5 the L0 row stays not_measured. Coded null_event /
+  null_case per the S1 convention (cf.
+  bitriver-russia-mining-ofac-2022-04): the on-chain footprint is a
+  single native-BTC address (no issuer freeze primitive) and no
+  per-event CEX cascade was pinned in the 14-day window, so the
+  measurable cross-layer surface is limited (offramp_cex
+  observed_no_change / none). Primary sources verified + captured
+  2026-05-31 (OFAC recent-actions 20251119 + Treasury sb0319,
+  body_hash-pinned; no fabrication). Conservative coding per codebook
+  §8.4 pending human review.
+
+scoped_claim: |
+  "The 2025-11-19 OFAC + U.K. + Australia designation of Media Land LLC
+  / Aleksandr Volosovik (OFAC recent-actions 20251119, ransomware
+  bulletproof hosting) attached one Bitcoin address; native BTC has no
+  issuer freeze primitive, no replayable L0 measurement was captured,
+  and no public CEX cascade was pinned in the 14-day window. null_case:
+  limited measurable cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - russia_related
+  - bulletproof_hosting
+  - ransomware
+  - bitcoin
+  - null_event

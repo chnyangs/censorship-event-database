@@ -1,0 +1,137 @@
+id: oko-design-bureau-russia-drone-ofac-2024-05
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-05-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240501
+      wayback: https://web.archive.org/web/20240501233749/https://ofac.treasury.gov/recent-actions/20240501
+      body_hash: sha256:d86b78737856f92eb040d3fa50142a4beb6f14e9224ff9dfdbc24d431beb4332
+      body_path: sources/http_captures/oko-design-bureau-russia-drone-ofac-2024-05/primary/web.archive.org__web-20240502000000-https-ofac.treasury.gov-recent-actions-20240501__211173fbf1.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2024-05-01 (Russia-related Designations,
+        part of a ~300-target Russia sanctions tranche under EO 14024). OKO
+        DESIGN BUREAU (OOO "KB OKO"), a St. Petersburg UAV developer founded in
+        2022, was designated; the SDN entry attaches crypto addresses the firm
+        used to solicit donations via a Telegram channel to fund drone
+        production for the war in Ukraine. Wayback 20240501233749 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2024-05-01 OFAC Recent Actions listing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    OKO Design Bureau (a Russian UAV developer) designated as an SDN, with a
+    small set of crypto addresses attached as identifiers for the donation-
+    solicitation wallets. Coded subset: the action targets the named entity
+    plus its attached addresses rather than an exhaustively enumerated complete
+    address set.
+  actor_type: drone_developer
+  actor_name: OKO Design Bureau (OOO KB OKO)
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The designation acts on the SDN/sanctions surface, not on any network-
+      layer reachability of a domain; no L0 block is asserted.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      Crypto donation addresses were attached to the OKO SDN entry, but no
+      stablecoin-issuer freeze or other on-chain enforcement transaction was
+      captured for those addresses in this authoring pass; no primary_onchain
+      tx_hash is held, so no asset_onchain observation is asserted (codebook
+      §1.6 evidence floor; draft defers the check).
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-05-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-05-01T00:00:00Z
+      - 2024-05-15T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20240501
+        wayback: https://web.archive.org/web/20240501233749/https://ofac.treasury.gov/recent-actions/20240501
+        body_hash: sha256:d86b78737856f92eb040d3fa50142a4beb6f14e9224ff9dfdbc24d431beb4332
+        body_path: sources/http_captures/oko-design-bureau-russia-drone-ofac-2024-05/primary/web.archive.org__web-20240502000000-https-ofac.treasury.gov-recent-actions-20240501__211173fbf1.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2024-05-01T00:00:00Z
+            - 2024-05-15T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the OKO Design Bureau SDN
+          designation was published by major exchanges in the 14-day post-
+          designation window. Records the absence of public disclosure; private
+          chain-analytics KYT flagging is outside this observation's scope. The
+          attached donation wallets raised well under USD 1,000, so the
+          measurable offramp-cascade surface is structurally limited.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). On 2024-05-01 OFAC designated
+  the Russian UAV developer OKO Design Bureau as an SDN within a ~300-target
+  Russia tranche under EO 14024; the SDN entry attached crypto addresses used
+  to solicit donations via Telegram to fund drone production for the war in
+  Ukraine. In scope under codebook §9 (OFAC SDN designation). Coded
+  null_event/null_case per the S1 convention (cf. bitriver-russia-mining-ofac-
+  2022-04): the designation is the trigger, but no public CEX cascade was
+  documented in the 14-day window and no primary_onchain freeze tx was captured
+  for the attached addresses, so the measurable cross-layer surface is limited
+  (offramp_cex observed_no_change/none). Source verified + captured 2026-05-31
+  (OFAC Recent Actions 20240501, body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "The 2024-05-01 OFAC SDN designation of OKO Design Bureau (Russian drone
+  developer soliciting crypto donations) is confirmed against the OFAC Recent
+  Actions page; no public CEX cascade and no captured on-chain freeze were
+  documented in the 14-day window. null_case: limited measurable cross-layer
+  surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - russia_related
+  - drone_developer
+  - crypto_donations
+  - null_event

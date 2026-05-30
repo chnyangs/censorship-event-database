@@ -1,0 +1,140 @@
+id: nemesis-parsarad-darknet-ofac-2025-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-03-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20250304
+      wayback: https://web.archive.org/web/20250304201959/https://ofac.treasury.gov/recent-actions/20250304
+      body_hash: sha256:fb6757db855c58916726cfa1b22ebea67f912d7ff24597db6585ffd7fa27b495
+      body_path: sources/http_captures/nemesis-parsarad-darknet-ofac-2025-03/primary/web.archive.org__web-20250305000000-https-ofac.treasury.gov-recent-actions-20250304__b643fa30bc.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2025-03-04 (Counter Narcotics
+        Designation). Iran-based Behrouz Parsarad, the administrator of the
+        Nemesis darknet marketplace, was designated for facilitating fentanyl
+        and other drug sales; the SDN entry attaches 49 virtual-currency
+        addresses (44 BTC, 5 XMR) used by Parsarad. Nemesis had ~30,000 users /
+        1,000 vendors before its servers were seized in March 2024. Wayback
+        20250304201959 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-03-04 OFAC Recent Actions listing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Behrouz Parsarad (Nemesis darknet-market administrator) designated as an
+    SDN, with 49 crypto addresses (44 BTC, 5 XMR) attached as identifiers.
+    Coded subset: the action targets the named individual plus the attached
+    address set rather than an exhaustively enumerated complete on-chain
+    footprint.
+  actor_type: darknet_market_operator
+  actor_name: Behrouz Parsarad (Nemesis Market administrator)
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The designation acts on the SDN/sanctions surface; the Nemesis servers
+      had already been seized (March 2024), and no nation-state network-layer
+      block of a live domain is asserted. No OONI / Censored Planet replay slice
+      was captured, so no L0 observation is admitted (codebook §1.5).
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      49 crypto addresses (44 BTC, 5 XMR) were attached to Parsarad's SDN entry,
+      but BTC/XMR have no issuer-level freeze mechanism and no on-chain
+      enforcement transaction was captured for those addresses; no
+      primary_onchain tx_hash is held, so no asset_onchain observation is
+      asserted (codebook §1.6 evidence floor; draft defers the check).
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-03-04T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-03-04T00:00:00Z
+      - 2025-03-18T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20250304
+        wayback: https://web.archive.org/web/20250304201959/https://ofac.treasury.gov/recent-actions/20250304
+        body_hash: sha256:fb6757db855c58916726cfa1b22ebea67f912d7ff24597db6585ffd7fa27b495
+        body_path: sources/http_captures/nemesis-parsarad-darknet-ofac-2025-03/primary/web.archive.org__web-20250305000000-https-ofac.treasury.gov-recent-actions-20250304__b643fa30bc.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2025-03-04T00:00:00Z
+            - 2025-03-18T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the Behrouz Parsarad /
+          Nemesis SDN designation was published by major exchanges in the
+          14-day post-designation window. Records the absence of public
+          disclosure; private chain-analytics KYT flagging of the 49 attached
+          BTC/XMR addresses is outside this observation's scope.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). On 2025-03-04 OFAC designated
+  Iran-based Behrouz Parsarad, administrator of the Nemesis darknet
+  marketplace, as an SDN under counter-narcotics authority (OFAC Recent Actions
+  20250304), attaching 49 virtual-currency addresses (44 BTC, 5 XMR) for
+  facilitating fentanyl and other drug sales. In scope under codebook §9 (OFAC
+  SDN designation). Coded null_event/null_case per the S1 convention (cf.
+  bitriver-russia-mining-ofac-2022-04): the designation is the trigger, but no
+  public CEX cascade was documented in the 14-day window and the attached
+  addresses are BTC/XMR (no issuer-level freeze mechanism; no primary_onchain
+  tx captured), so the measurable cross-layer surface is limited (offramp_cex
+  observed_no_change/none). Source verified + captured 2026-05-31 (OFAC Recent
+  Actions 20250304, body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "The 2025-03-04 OFAC SDN designation of Behrouz Parsarad (Nemesis darknet-
+  market administrator; 49 BTC/XMR addresses attached) is confirmed against the
+  OFAC Recent Actions page; no public CEX cascade and no captured on-chain
+  enforcement were documented in the 14-day window. null_case: limited
+  measurable cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - counter_narcotics
+  - darknet_market
+  - fentanyl
+  - null_event

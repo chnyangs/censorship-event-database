@@ -1,0 +1,145 @@
+id: china-pboc-exchange-access-block-2019-06
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - china-pboc-exchange-shutdown-2017-09
+  - china-ico-ban-2017-09
+  - china-pboc-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: CN_PBOC_SHANGHAI
+  timestamp: 2019-11-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://web.archive.org/web/20191126000000/https://technode.com/2019/11/25/chinas-regulators-launch-all-around-crackdown-on-cryptocurrency/
+      wayback: https://web.archive.org/web/20191128215110/https://technode.com/2019/11/25/chinas-regulators-launch-all-around-crackdown-on-cryptocurrency/
+      body_hash: sha256:a037751523e22bd2292daa22aacfa2b359fe8d39880f39f2b2474b8351155227
+      body_path: sources/http_captures/china-pboc-exchange-access-block-2019-06/primary/web.archive.org__web-20191126000000-https-technode.com-2019-11-25-chinas-regulators-launch-all-around-crackdown-on-cryptocurrency__300169d4f1.html
+      note: |
+        PBOC Shanghai issued a notice on 2019-11-14 ordering regulators in each district
+        of Shanghai to thoroughly probe local cryptocurrency-related services and entities
+        promoting/distributing tokens from overseas ICOs, as part of an "all-around"
+        crackdown campaign led by China's internet-financial-risk rectification group
+        (Beijing Youth Daily / state media reporting). The campaign re-enforced the 2017
+        exchange/ICO ban against venues and services that had resurged. Captured via
+        TechNode (Wayback memento 2019-11-28).
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        PBOC Shanghai notice dated 2019-11-14; reported 2019-11-25. NOTE: candidate
+        lead loosely dated this "2019-06" (the June 2019 PBOC stated-intent reaffirmation
+        to block exchange/ICO websites). This event is pinned to the concrete, datable
+        2019-11-14 PBOC Shanghai rectification notice rather than the June statement of
+        intent; the id retains the candidate slug.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Local Shanghai-district cryptocurrency-related service providers and overseas-ICO
+    token promoters/distributors as a class. The PBOC Shanghai notice ordered district
+    regulators to probe and rectify these services; no specific exchange is named in the
+    reporting (class-level target).
+  protocol: null
+  actor_type: chinese_crypto_service_ecosystem
+  actor_name: Shanghai-district crypto trading/promotion services + overseas-ICO promoters (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [CN]
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      Candidate framed this as a Great-Firewall website-access block (June 2019 PBOC
+      stated intent to block domestic/foreign exchange + ICO websites). No replayable
+      OONI / Censored Planet / Cloudflare Radar measurement captured, so per codebook
+      §1.5 no l0_network observation can be admitted; status remains not_measured.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [shanghai_local_crypto_trading_and_promotion_services]
+    note: |
+      PBOC Shanghai 2019-11-14 notice ordered district regulators to probe and rectify
+      local crypto trading-related services and overseas-ICO promoters — a clearing of
+      the off-ramp/trading-service surface that had resurged after the 2017 ban. Replayable
+      anchor is the captured crackdown reporting (supporting_journalism, body_hash +
+      body_path on the observation source); not exhaustively measured (no per-venue slice),
+      hence partially_measured.
+
+observations:
+  - layer: offramp_cex
+    actor: shanghai_crypto_service_ecosystem
+    event: pboc_shanghai_ordered_probe_rectification_of_local_crypto_services
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2019-11-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://web.archive.org/web/20191126000000/https://technode.com/2019/11/25/chinas-regulators-launch-all-around-crackdown-on-cryptocurrency/
+        body_hash: sha256:a037751523e22bd2292daa22aacfa2b359fe8d39880f39f2b2474b8351155227
+        body_path: sources/http_captures/china-pboc-exchange-access-block-2019-06/primary/web.archive.org__web-20191126000000-https-technode.com-2019-11-25-chinas-regulators-launch-all-around-crackdown-on-cryptocurrency__300169d4f1.html
+        note: |
+          attribution=plausible (not direct): the strong source is journalism reporting
+          the PBOC Shanghai notice, not the primary Chinese-language notice text, and the
+          notice orders a probe/rectification of local services as a class rather than
+          naming specific exchanges. Conservative coding per codebook §8.4.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
+  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
+  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
+  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
+  unsupported specifics. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission). 2019 reaffirmation crackdown: the PBOC Shanghai Bureau issued
+  a notice on 2019-11-14 ordering district regulators to probe and rectify local
+  cryptocurrency trading/promotion services and overseas-ICO token distributors, part of an
+  "all-around" campaign led by China's internet-financial-risk rectification leading group.
+  Distinct from the 2017 exchange-shutdown / ICO-ban events (different date and instrument);
+  this is a re-enforcement against venues that resurged. CODING NOTES: (1) candidate loosely
+  dated "2019-06" (the June 2019 PBOC stated intent to GFW-block exchange/ICO websites); I
+  pinned the concrete 2019-11-14 PBOC Shanghai notice instead, since the June item is a
+  statement of intent rather than a datable executed action. (2) L0 left not_measured per
+  §1.5 (no replayable OONI/Censored Planet/Cloudflare Radar slice for any 2019 GFW block).
+  (3) Effect carried at offramp_cex (probe/rectification of the local trading-service
+  surface); attribution=plausible because the anchor is journalism and the target is
+  class-level. Flagged for human reviewer: borderline overlap with the 2017 China ban
+  cluster as a re-enforcement action.
+
+scoped_claim: |
+  "On 2019-11-14 the PBOC Shanghai Bureau ordered district regulators to probe and rectify
+  local cryptocurrency trading/promotion services and overseas-ICO distributors, a 2019
+  re-enforcement of China's 2017 exchange/ICO ban. Effect carried at offramp_cex
+  (class-level, partially measured); no replayable L0 measurement captured."
+
+tags:
+  - nation_state_block
+  - china
+  - pboc_shanghai
+  - 2019_crackdown
+  - trading_service_rectification

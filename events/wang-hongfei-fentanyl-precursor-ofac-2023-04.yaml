@@ -1,0 +1,155 @@
+id: wang-hongfei-fentanyl-precursor-ofac-2023-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-04-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1413
+      wayback: https://web.archive.org/web/20230414185648/https://home.treasury.gov/news/press-releases/jy1413
+      body_hash: sha256:a21590abd62b77e12a3daf32d2dedf18faaa8bc26cbc95bc63d76a4106068386
+      body_path: sources/http_captures/wang-hongfei-fentanyl-precursor-ofac-2023-04/primary/web.archive.org__web-20230414185648-https-home.treasury.gov-news-press-releases-jy1413__1506ea8818.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release jy1413 (2023-04-14), "U.S. Sanctions
+        Suppliers of Precursor Chemicals for Fentanyl Production." OFAC
+        designated two PRC chemical firms (Wuhan Shuokang Biological
+        Technology / WSBT and Suzhou Xiaoli Pharmatech / SXPC) and five
+        individuals, including Wang Hongfei, a WSBT collaborator who
+        controlled a Bitcoin address used to receive payments for illicit
+        fentanyl-precursor sales: 3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML.
+        Wayback memento 20230414185648 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2023-04-14 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Wang Hongfei and PRC chemical firms WSBT/SXPC designated as SDNs under
+    the fentanyl/counter-narcotics authority, with one Bitcoin address
+    (3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML) attributed to Wang Hongfei.
+    Marked subset because the target is the named individuals/firms; the
+    on-chain address is not separately re-listed in this draft pending a
+    primary_onchain freeze receipt (deferred per codebook §1.6).
+  actor_type: narcotics_precursor_network
+  actor_name: Wang Hongfei / WSBT / SXPC
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No OONI / Censored Planet probe in scope; the designees are
+      individuals/firms, not a hosted platform with a canonical domain.
+      Substrate-shaped gap, not a coverage_gap observation.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      A narcotics-precursor SDN designation does not act on any chain's
+      consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No canonical web frontend attached to the designated parties.
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      The SDN entry attaches Bitcoin address
+      3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML, but no primary_onchain freeze/
+      blacklist receipt has been captured for this draft (BTC has no
+      issuer-level freeze mechanism analogous to USDT/USDC blacklisting).
+      asset_onchain effect deferred per codebook §1.6; the measurable
+      cross-layer surface is carried at offramp_cex below.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-04-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-04-14T00:00:00Z
+      - 2023-04-28T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy1413
+        wayback: https://web.archive.org/web/20230414185648/https://home.treasury.gov/news/press-releases/jy1413
+        body_hash: sha256:a21590abd62b77e12a3daf32d2dedf18faaa8bc26cbc95bc63d76a4106068386
+        body_path: sources/http_captures/wang-hongfei-fentanyl-precursor-ofac-2023-04/primary/web.archive.org__web-20230414185648-https-home.treasury.gov-news-press-releases-jy1413__1506ea8818.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2023-04-14T00:00:00Z
+            - 2023-04-28T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the Wang Hongfei BTC
+          address was published by major exchanges in the 14-day post-
+          designation window. Observation records the absence of public
+          disclosure; private chain-analytics KYT flagging is outside this
+          observation's scope.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
+  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
+  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
+  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
+  unsupported specifics. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). OFAC designated Wang Hongfei
+  and PRC chemical firms WSBT/SXPC on 2023-04-14 (Treasury jy1413) for the
+  Bitcoin-based sale of fentanyl precursor chemicals; Bitcoin address
+  3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML, controlled by Wang Hongfei, was
+  attached to his SDN entry. Coded null_event/null_case per the S1
+  convention (cf. zservers-ofac-2025, bitriver-russia-mining-ofac-2022-04):
+  no public CEX cascade was documented in the 14-day window and the
+  attached address is Bitcoin with no issuer-level freeze mechanism
+  (offramp_cex observed_no_change/none; asset_onchain deferred per §1.6).
+  Source verified + captured 2026-05-31 (Treasury jy1413, body_hash-pinned;
+  no fabrication). Candidate src (jy1413) confirmed correct; BTC address
+  verified against the press release.
+
+scoped_claim: |
+  "The 2023-04-14 OFAC designation of Wang Hongfei and PRC chemical firms
+  WSBT/SXPC (fentanyl-precursor suppliers) attached Bitcoin address
+  3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML; no public CEX cascade was documented
+  in the 14-day window. null_case: precursor-network target with limited
+  measurable cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - narcotics
+  - fentanyl
+  - precursor_chemicals
+  - china_related
+  - null_event

@@ -1,0 +1,244 @@
+id: webmoney-ukraine-tax-police-freeze-2013-06
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - liberty-reserve-costa-rica-license-denial-2011-03
+
+trigger:
+  type: regulatory_enforcement
+  actor: UA_MINISTRY_OF_INCOMES_AND_FEES
+  timestamp: 2013-06-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://rapsinews.com/news/20130613/267751619.html
+      wayback: https://web.archive.org/web/20130616045519/http://rapsinews.com/news/20130613/267751619.html
+      body_hash: sha256:0b6b74a691a1d13da47cc7f65a939e59d793fafd7cf85451f131761f9b252365
+      body_path: sources/http_captures/webmoney-ukraine-tax-police-freeze-2013-06/primary/web.archive.org__web-20130615000000-https-rapsinews.com-news-20130613-267751619.html__6577a90155.html
+      evidence_use: replayable
+      note: |
+        RAPSI (Russian Legal Information Agency) report dated 2013-06-13
+        11:25 (KIEV): "Ukraine freezes $7.5 million in Web Money-linked
+        companies' bank accounts." Quotes the Ukrainian Ministry of Incomes
+        and Fees (tax authorities) statement: tax police searched the
+        WebMoney guarantor company's Kiev office, "revealed a high number of
+        violations," found the company "failed to coordinate its work with
+        the National Bank of Ukraine," seized a large amount of computer
+        equipment used for the system's operation, and froze "over 60 million
+        Hryvnas ($7.5 million) held in the bank accounts of companies which
+        were part of [the] illegal system." Captured via Wayback memento
+        20130616045519 (nearest to the 2013-06-15 date-prefix request);
+        body_hash verified against the saved HTML.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision (2013-06-13) from the RAPSI report timestamp
+        (11:25 13/06/2013) announcing the Ministry of Incomes and Fees
+        statement. The underlying office search / raid occurred on or about
+        2013-06-11; the 2013-06-13 anchor is the contemporaneously reported
+        public-facing date of the freeze + seizure being announced. No
+        Ministry administrative resolution document has been pinned in this
+        DRYRUN pass; human audit should re-pin against the underlying
+        Ministry of Incomes and Fees / tax-police order if located.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named target: the WebMoney payment system's Ukrainian operation — the
+    local guarantor company / corporate vehicles operating WebMoney Transfer
+    settlement in Ukraine. The Ministry of Incomes and Fees froze ~UAH 60M
+    (~$7.5M) held across the bank accounts of the local companies forming the
+    WebMoney system and seized the system's operating computer equipment.
+    Marked subset because the action targets the (un-enumerated) set of
+    Ukrainian corporate vehicles forming the WebMoney guarantor rather than a
+    single named legal entity. WebMoney Transfer was a global centralized
+    settlement system (WM-units backed by reserves); not a blockchain token —
+    no on-chain addresses to enumerate. The frozen funds were released and the
+    accounts reopened in March 2014 per later reporting.
+  protocol: null
+  actor_type: digital_currency_payment_system
+  actor_name: WebMoney Ukraine (WebMoney Transfer Ukrainian guarantor companies)
+  chains: []
+  canonical_domains:
+    - webmoney.ru
+
+jurisdiction:
+  - UA
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2013-06 tax-police action was an account freeze + equipment seizure,
+      not an ISP/DNS/network-layer block of WebMoney domains. No L0 primitive
+      applies.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      WebMoney Transfer was a centralized off-chain settlement system
+      administered by its guarantor companies; there is no blockchain and no
+      decentralized consensus layer. Out of scope.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC provider surface implicated; WebMoney pre-dates and is
+      unrelated to Ethereum RPC infrastructure.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No tax-authority-attributed takedown of WebMoney's web frontend on
+      2013-06-13. The action operated on bank accounts and physical operating
+      equipment, not the customer-facing website. No frontend-disable
+      observation coded.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      WebMoney WM-units were off-chain ledger balances administered centrally,
+      not a blockchain token. No on-chain asset-layer freeze primitive exists
+      to attach.
+  - layer: offramp_cex
+    status: measured
+    scope: [webmoney_ukraine]
+    note: |
+      Load-bearing layer. The Ukrainian Ministry of Incomes and Fees (tax
+      police) froze ~UAH 60M (~$7.5M) across the bank accounts of the local
+      companies forming the WebMoney payment system and seized the computer
+      equipment running the system's operation — severing WebMoney's Ukrainian
+      fiat settlement/off-ramp rails. Coverage status `measured` because the
+      freeze + seizure is directly attested in the contemporaneous 2013-06-13
+      RAPSI report (semi_primary_wayback, body_hash captured). DRYRUN row does
+      not pin the underlying Ministry administrative order.
+    denominator_artifact:
+      type: semi_primary_wayback
+      url: https://rapsinews.com/news/20130613/267751619.html
+      wayback: https://web.archive.org/web/20130616045519/http://rapsinews.com/news/20130613/267751619.html
+      body_hash: sha256:0b6b74a691a1d13da47cc7f65a939e59d793fafd7cf85451f131761f9b252365
+      body_path: sources/http_captures/webmoney-ukraine-tax-police-freeze-2013-06/primary/web.archive.org__web-20130615000000-https-rapsinews.com-news-20130613-267751619.html__6577a90155.html
+      scope_descriptor:
+        providers: [webmoney_ukraine]
+        countries: [UA]
+        time_window:
+          - 2013-06-13T00:00:00Z
+          - 2014-03-31T23:59:59Z
+      note: |
+        RAPSI 2013-06-13 report as the denominator anchor for the Ukrainian
+        WebMoney guarantor account freeze + equipment seizure.
+
+observations:
+  - layer: offramp_cex
+    actor: regulator:UA_MINISTRY_OF_INCOMES_AND_FEES
+    event: webmoney_ukraine_bank_accounts_frozen_and_operating_equipment_seized
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2013-06-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: UA
+    sources:
+      - type: semi_primary_wayback
+        url: https://rapsinews.com/news/20130613/267751619.html
+        wayback: https://web.archive.org/web/20130616045519/http://rapsinews.com/news/20130613/267751619.html
+        body_hash: sha256:0b6b74a691a1d13da47cc7f65a939e59d793fafd7cf85451f131761f9b252365
+        body_path: sources/http_captures/webmoney-ukraine-tax-police-freeze-2013-06/primary/web.archive.org__web-20130615000000-https-rapsinews.com-news-20130613-267751619.html__6577a90155.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [webmoney_ukraine]
+          countries: [UA]
+          time_window:
+            - 2013-06-13T00:00:00Z
+            - 2014-03-31T23:59:59Z
+        note: |
+          RAPSI 2013-06-13 report quoting the Ministry of Incomes and Fees:
+          office search, "high number of violations," failure to coordinate
+          with the National Bank of Ukraine, seizure of operating computer
+          equipment, and the freeze of "over 60 million Hryvnas ($7.5 million)"
+          across the WebMoney-linked company bank accounts. attribution=
+          plausible under §1.1: the freeze is causally consistent with and
+          announced by the named tax authority, but the row is anchored on
+          contemporaneous reporting rather than a captured primary Ministry
+          administrative order, so the conservative value is retained per §8.4.
+      - type: semi_primary_wayback
+        url: https://rapsinews.com/news/20130614/267768004.html
+        wayback: https://web.archive.org/web/20130618025849/http://rapsinews.com/news/20130614/267768004.html
+        body_hash: sha256:bb07f9f1aff13a0498af55fb8ea4cc91000af3a6d17f4e9b10e42a68e4b91545
+        body_path: sources/http_captures/webmoney-ukraine-tax-police-freeze-2013-06/secondary/web.archive.org__web-20130620000000-https-rapsinews.com-news-20130614-267768004.html__2cb597dbb6.html
+        evidence_use: replayable
+        note: |
+          RAPSI 2013-06-14 follow-up "WebMoney Ukraine says tax evasion
+          charges are 'absurd'" — independent corroboration of the freeze and
+          the tax-evasion / unlicensed-operation basis, carrying WebMoney's
+          own contestation of the charges. Second independent semi-primary
+          group anchoring the same action.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). Authored by LLM agent;
+  status=draft, origin=agent_draft. Real release must replace this DRYRUN
+  marker with a human-verified audit after pinning the underlying Ukrainian
+  Ministry of Incomes and Fees / tax-police administrative order.
+
+  Comparison documenting the 2013-06 Ukrainian tax-authority (Ministry of
+  Incomes and Fees) freeze of ~UAH 60M (~$7.5M) across WebMoney's Ukrainian
+  guarantor company bank accounts plus seizure of the system's operating
+  computer equipment, after a Kiev office search that the ministry said
+  revealed violations including failure to coordinate with the National Bank
+  of Ukraine. Single load-bearing observed_change at offramp_cex (the seizure
+  + freeze severing WebMoney's Ukrainian fiat settlement rails). The frozen
+  accounts were reopened and funds returned in March 2014 per later reporting
+  (recovery not coded as a separate row in this DRYRUN draft).
+
+  §9 inclusion: IN scope — a deliberate state seizure/freeze action against a
+  legitimate, operating digital-currency/e-money settlement system (WebMoney
+  Transfer, operating since 1998), not a platform failure and not a Ponzi/
+  scam prosecution. Sits in the pre-Bitcoin / early digital-currency
+  enforcement lineage alongside Liberty Reserve (SUGEF 2011) and e-gold (DOJ
+  2007-2008); hence related_events:[liberty-reserve-costa-rica-license-denial-2011-03].
+
+  trigger.type=regulatory_enforcement under §5.1 (non-US national authority
+  administrative enforcement — a tax-police asset freeze + equipment seizure,
+  not an ISP/DNS network block). research_stratum=S4_nation_state per §5.2.
+  attribution=plausible under §1.1/§8.4: the action is announced by and
+  causally consistent with the named tax authority, but it is anchored on
+  contemporaneous RAPSI reporting rather than a captured primary Ministry
+  order, so the conservative value is retained pending human audit.
+  empirical_shape=comparison (1 observed_change layer). admission_tier=
+  empirical_case (1 strong-attribution observed_change layer).
+
+  Historical-baseline tier by construction: temporal_tier=
+  historical_baseline_2013_2016, analysis_use=historical_baseline. Carries no
+  comparable-analysis denominator weight.
+
+scoped_claim: |
+  "On 2013-06-13 the Ukrainian Ministry of Incomes and Fees (tax police)
+  froze ~UAH 60M (~$7.5M) across the bank accounts of the local companies
+  forming the WebMoney payment system and seized the computer equipment
+  running the system, after a Kiev office search the ministry said revealed
+  violations including failure to coordinate with the National Bank of
+  Ukraine. The row claims only this single-layer offramp_cex observed_change
+  with attribution=plausible; no L0/L1/L3/L4/asset-onchain effects are coded.
+  Historical-baseline tier only: no comparable-analysis use."
+
+tags:
+  - regulatory_enforcement
+  - ukraine
+  - webmoney
+  - account_freeze
+  - asset_seizure
+  - tax_police
+  - pre_bitcoin_digital_currency
+  - historical_baseline
+  - offramp_cex
+  - dryrun_2026_05_31

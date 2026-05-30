@@ -1,0 +1,141 @@
+id: kb-vostok-russia-drone-ofac-2024-08
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-08-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240823
+      wayback: https://web.archive.org/web/20240824102141/https://ofac.treasury.gov/recent-actions/20240823
+      body_hash: sha256:75fdcf87f48e255a6a72f21fea4448bbd7440f1e238f83f0871823d0e716d72c
+      body_path: sources/http_captures/kb-vostok-russia-drone-ofac-2024-08/primary/web.archive.org__web-20240824120000-https-ofac.treasury.gov-recent-actions-20240823__ca41de774a.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2024-08-23 (Russia-related Designations, a
+        ~400-target tranche under EO 14024). KB VOSTOK OOO (Vostok Design
+        Bureau), a Russian UAV developer whose drones are used by Russian forces
+        in Ukraine, was designated; a USDT (TRON) address used to solicit
+        donations and likely facilitate drone sales is attached to the SDN
+        entry. Wayback 20240824102141 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2024-08-23 OFAC Recent Actions listing.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    KB Vostok (a Russian UAV developer) designated as an SDN, with a USDT-on-
+    TRON donation/sales address attached as an identifier. Coded subset: the
+    action targets the named entity plus its attached address rather than an
+    exhaustively enumerated complete address set.
+  actor_type: drone_developer
+  actor_name: KB Vostok OOO (Vostok Design Bureau)
+  chains: [tron]
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The designation acts on the SDN/sanctions surface, not on any network-
+      layer reachability of a domain; no L0 block is asserted.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: tron
+    note: TRON has no PBS / relay analogue.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: tron
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_measured
+    chain: tron
+    note: |
+      A USDT-on-TRON address was attached to the KB Vostok SDN entry, but no
+      Tether freeze (addBlackList) or other on-chain enforcement transaction
+      was captured for that address in this authoring pass; no primary_onchain
+      tx_hash is held, so no asset_onchain observation is asserted (codebook
+      §1.6 evidence floor; draft defers the check).
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-08-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-08-23T00:00:00Z
+      - 2024-09-06T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20240823
+        wayback: https://web.archive.org/web/20240824102141/https://ofac.treasury.gov/recent-actions/20240823
+        body_hash: sha256:75fdcf87f48e255a6a72f21fea4448bbd7440f1e238f83f0871823d0e716d72c
+        body_path: sources/http_captures/kb-vostok-russia-drone-ofac-2024-08/primary/web.archive.org__web-20240824120000-https-ofac.treasury.gov-recent-actions-20240823__ca41de774a.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2024-08-23T00:00:00Z
+            - 2024-09-06T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the KB Vostok SDN
+          designation was published by major exchanges in the 14-day post-
+          designation window. Records the absence of public disclosure; private
+          chain-analytics KYT flagging of the attached USDT-TRON address (whose
+          inflows trace largely to the sanctioned exchange Garantex) is outside
+          this observation's scope.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). On 2024-08-23 OFAC designated
+  the Russian UAV developer KB Vostok (Vostok Design Bureau) as an SDN within a
+  ~400-target Russia tranche under EO 14024 (OFAC Recent Actions 20240823),
+  attaching a USDT-on-TRON address used to solicit donations and likely
+  facilitate drone sales (inflows trace largely to the sanctioned exchange
+  Garantex). In scope under codebook §9 (OFAC SDN designation). Coded
+  null_event/null_case per the S1 convention (cf. bitriver-russia-mining-ofac-
+  2022-04): the designation is the trigger, but no public CEX cascade was
+  documented in the 14-day window and no primary_onchain Tether freeze tx was
+  captured for the attached address, so the measurable cross-layer surface is
+  limited (offramp_cex observed_no_change/none). Source verified + captured
+  2026-05-31 (OFAC Recent Actions 20240823, body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "The 2024-08-23 OFAC SDN designation of KB Vostok (Russian drone developer;
+  USDT-TRON address attached) is confirmed against the OFAC Recent Actions
+  page; no public CEX cascade and no captured on-chain freeze were documented
+  in the 14-day window. null_case: limited measurable cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - russia_related
+  - drone_developer
+  - crypto_donations
+  - null_event

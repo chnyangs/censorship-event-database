@@ -1,0 +1,167 @@
+id: hanafin-huriya-russia-evasion-ofac-2023-05
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-05-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1494
+      wayback: https://web.archive.org/web/20230519161141/https://home.treasury.gov/news/press-releases/jy1494
+      body_hash: sha256:b3ee6a6ba713b4c6f7c4d1a6ca05efafc98391061e97bc1b31a7f35595965c09
+      body_path: sources/http_captures/hanafin-huriya-russia-evasion-ofac-2023-05/primary/web.archive.org__web-20230519000000-https-home.treasury.gov-news-press-releases-jy1494__49f614ecb7.html
+      evidence_use: replayable
+      note: |
+        Treasury press release jy1494 (2023-05-19) "With Over 300 Sanctions,
+        U.S. Targets Russia's Circumvention and Evasion...". Among the 22
+        individuals + 104 entities designated under EO 14024 is Dubai-based
+        John Desmond Hanafin (Irish national, founder/CEO of Huriya Private)
+        and his firms Huriya Private FZE LLE, Huriya Private Cyprus Ltd., and
+        Gold Miles Ltd. (HK), for crypto/financial-services facilitation of
+        Russian sanctions evasion — moving Russian nationals' funds into UAE
+        accounts. Wayback 20230519161141 pinned; grep verifies 18xHanafin,
+        20xHuriya, 8x"May 19, 2023".
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20230519
+      wayback: https://web.archive.org/web/20230519152222/https://ofac.treasury.gov/recent-actions/20230519
+      body_hash: sha256:7d7cb183e4070782d4e18efe91394d9b59749d20d62c7481815e2f9ec8b56d0d
+      body_path: sources/http_captures/hanafin-huriya-russia-evasion-ofac-2023-05/primary/web.archive.org__web-20230519000000-https-ofac.treasury.gov-recent-actions-20230519__7ac3487571.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2023-05-19, the formal SDN-list publication
+        accompanying jy1494. Hanafin's SDN entry carries an Ethereum address
+        identifier (0x38735f03b30FbC022DdD06ABED01F0Ca823C6a94, ~$4.9M received,
+        mostly USDT, per Chainalysis). Independent primary anchor for the
+        designation.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level precision per the 2023-05-19 Treasury press release jy1494.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    John Desmond Hanafin (individual) + Huriya Private FZE LLE (Dubai) and
+    affiliated firms (Huriya Private Cyprus Ltd., Gold Miles Ltd. HK). Hanafin's
+    SDN entry names a single Ethereum-address identifier. Subset enumeration:
+    the Hanafin/Huriya cluster is one node within a 126-target Russia-evasion
+    action (jy1494); the broader action is out of scope for this event's target.
+  actor_type: financial_services_facilitator
+  actor_name: John Desmond Hanafin + Huriya Private (Dubai)
+  chains:
+    - ethereum
+  canonical_domains: []
+  addresses:
+    - "0x38735f03b30fbc022ddd06abed01f0ca823c6a94"
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Individual/entity SDN designation; no nation-state ISP/DNS block
+      instrument involved.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      A financial-services-facilitator SDN entry does not act on any chain's
+      consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No canonical crypto-platform web presence; Huriya is a financial-services
+      firm, not an on-chain frontend.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Hanafin's SDN entry names one Ethereum address (mostly USDT inflows). Per
+      codebook §1.6, this event makes no on-chain claim absent a captured
+      primary_onchain freeze tx_hash; the measurable surface is carried at
+      offramp_cex. Not reclassified to escape the asset_onchain evidence floor.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-05-19T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-05-19T00:00:00Z
+      - 2023-06-02T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy1494
+        wayback: https://web.archive.org/web/20230519161141/https://home.treasury.gov/news/press-releases/jy1494
+        body_hash: sha256:b3ee6a6ba713b4c6f7c4d1a6ca05efafc98391061e97bc1b31a7f35595965c09
+        body_path: sources/http_captures/hanafin-huriya-russia-evasion-ofac-2023-05/primary/web.archive.org__web-20230519000000-https-home.treasury.gov-news-press-releases-jy1494__49f614ecb7.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2023-05-19T00:00:00Z
+            - 2023-06-02T23:59:59Z
+        note: |
+          No public CEX policy statement explicitly naming the Hanafin/Huriya
+          SDN entry was published by major exchanges in the 14-day
+          post-designation window. Records absence of public disclosure;
+          private chain-analytics KYT flagging is outside this observation's
+          scope.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission).
+
+  null_event documenting the 2023-05-19 OFAC SDN designation (EO 14024) of
+  Dubai-based John Desmond Hanafin and his firm Huriya Private, part of the
+  126-target jy1494 Russia sanctions-evasion action. Hanafin's SDN entry carries
+  an Ethereum-address identifier (~$4.9M received, mostly USDT); the
+  designation targets crypto/financial-services facilitation of Russian
+  sanctions evasion (moving Russian funds into UAE accounts).
+
+  Coded null_event / null_case per the S1 convention
+  (cf. ofac-dprk-it-worker-sim-hyon-sop-2023-04, bitriver-russia-mining-ofac-2022-04):
+  the designation is the trigger, but no public CEX cascade was documented in
+  the 14-day window. Per codebook §1.6 the named Ethereum address is not coded
+  as an asset_onchain observation absent a captured primary_onchain freeze
+  tx_hash; the measurable surface is carried at offramp_cex
+  (observed_no_change / none). Sources verified + captured 2026-05-31 (Treasury
+  jy1494 + OFAC RA 20230519, both body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "OFAC's 2023-05-19 SDN designation of John Desmond Hanafin + Huriya Private
+  (Dubai), part of the jy1494 Russia-evasion action, named a single Ethereum
+  address. No public CEX cascade was documented in the 14-day window.
+  null_case: financial-services-facilitator target with limited measurable
+  cross-layer surface at draft time."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - russia_related
+  - sanctions_evasion
+  - dubai
+  - null_event
+  - dryrun_bulk_wave_1

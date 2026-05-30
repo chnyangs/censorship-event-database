@@ -1,0 +1,149 @@
+id: genesis-market-ofac-2023-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-04-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1388
+      wayback: https://web.archive.org/web/20230405235346/https://home.treasury.gov/news/press-releases/jy1388
+      body_hash: sha256:02e921aab0d82ca5dae0a6e13e721b775f0eaf5837436d4598df3fec30912d1c
+      body_path: sources/http_captures/genesis-market-ofac-2023-04/primary/web.archive.org__web-20230405235346-https-home.treasury.gov-news-press-releases-jy1388__f6aa071506.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release jy1388 (2023-04-05), "Treasury
+        Sanctions Illicit Marketplace Genesis Market." OFAC designated
+        Genesis Market — a cybercrime marketplace selling stolen device
+        credentials / access packages — pursuant to E.O. 13694 (as
+        amended), coordinated with the DOJ/FBI Operation Cookie Monster
+        takedown and domain seizure. Wayback memento 20230405235346
+        pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2023-04-05 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Genesis Market designated as an SDN entity under E.O. 13694. Marked
+    subset because the OFAC entry names the marketplace entity rather than
+    enumerating a complete on-chain address cohort. The parallel Operation
+    Cookie Monster domain seizure (FBI/DOJ + international partners) is a
+    separate legal instrument from the OFAC SDN designation tracked here.
+  actor_type: cybercrime_marketplace
+  actor_name: Genesis Market
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No OONI / Censored Planet probe of Genesis Market domains within the
+      event window. Substrate-shaped gap, not a coverage_gap observation.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      A marketplace SDN designation does not act on any chain's consensus
+      layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Genesis Market's domains were seized in the parallel Operation
+      Cookie Monster action (FBI/DOJ + international partners), but that
+      seizure is a separate legal instrument from the OFAC SDN designation
+      tracked by this event, and no Wayback CDX bracketing of the Genesis
+      Market frontend has been captured in this authoring pass. not_measured.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain addresses are enumerated in the Genesis Market OFAC entry
+      (entity target, not an address set); no asset-onchain freeze surface
+      to measure.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-04-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-04-05T00:00:00Z
+      - 2023-04-19T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy1388
+        wayback: https://web.archive.org/web/20230405235346/https://home.treasury.gov/news/press-releases/jy1388
+        body_hash: sha256:02e921aab0d82ca5dae0a6e13e721b775f0eaf5837436d4598df3fec30912d1c
+        body_path: sources/http_captures/genesis-market-ofac-2023-04/primary/web.archive.org__web-20230405235346-https-home.treasury.gov-news-press-releases-jy1388__f6aa071506.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2023-04-05T00:00:00Z
+            - 2023-04-19T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the Genesis Market
+          designation was published by major exchanges in the 14-day post-
+          designation window. Observation records the absence of public
+          disclosure; private chain-analytics KYT flagging is outside this
+          observation's scope. Genesis Market is an entity target with no
+          enumerated on-chain addresses, so the measurable offramp-cascade
+          surface is structurally limited.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). OFAC designated the
+  cybercrime marketplace Genesis Market on 2023-04-05 (Treasury jy1388,
+  E.O. 13694), coordinated with the DOJ/FBI Operation Cookie Monster
+  takedown. Per codebook §9 the OFAC SDN designation itself is the in-scope
+  censorship action (financial-system debanking of the designated entity).
+  Coded null_event/null_case per the S1 convention (cf. zservers-ofac-2025,
+  bitriver-russia-mining-ofac-2022-04): no on-chain addresses are
+  enumerated in the OFAC entry, no public CEX cascade was documented in the
+  14-day window, and the co-occurring domain seizure is a separate FBI/DOJ
+  instrument not captured here (offramp_cex observed_no_change/none).
+  Source verified + captured 2026-05-31 (Treasury jy1388, body_hash-pinned;
+  no fabrication). Candidate src (jy2616) was WRONG — corrected to the
+  actual press release jy1388.
+
+scoped_claim: |
+  "The 2023-04-05 OFAC E.O. 13694 designation of the Genesis Market
+  cybercrime marketplace (coordinated with Operation Cookie Monster)
+  enumerated no on-chain addresses; no public CEX cascade was documented in
+  the 14-day window. null_case: entity target with limited measurable
+  cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - cybercrime_marketplace
+  - operation_cookie_monster
+  - null_event

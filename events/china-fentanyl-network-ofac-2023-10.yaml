@@ -1,0 +1,162 @@
+id: china-fentanyl-network-ofac-2023-10
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2023-10-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy1779
+      wayback: https://web.archive.org/web/20231003190525/https://home.treasury.gov/news/press-releases/jy1779
+      body_hash: sha256:00f439975eba09e5ac169c4f0d6fea7617063249f1a5d1faa0c03cc6a96d8f67
+      body_path: sources/http_captures/china-fentanyl-network-ofac-2023-10/primary/web.archive.org__web-20231003000000-https-home.treasury.gov-news-press-releases-jy1779__c0f71db364.html
+      evidence_use: replayable
+      note: |
+        Treasury press release jy1779 (2023-10-03) "Treasury Targets Large
+        Chinese Network of Illicit Drug Producers". OFAC designated 28
+        individuals/entities (a primarily China-based fentanyl/methamphetamine/
+        MDMA-precursor network, plus one Canadian national and two Canadian
+        firms), identifying crypto addresses used to receive drug-payment
+        proceeds. Wayback 20231003190525 pinned; grep verifies 59xfentanyl,
+        4x"October 3, 2023".
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20231003
+      wayback: https://web.archive.org/web/20231003190327/https://ofac.treasury.gov/recent-actions/20231003
+      body_hash: sha256:1e69d995969b2deee20c842346e86f4d8aa35d0c615e25df287c28cea79f17cc
+      body_path: sources/http_captures/china-fentanyl-network-ofac-2023-10/primary/web.archive.org__web-20231003000000-https-ofac.treasury.gov-recent-actions-20231003__09b2bec01f.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2023-10-03, the formal SDN-list publication
+        accompanying jy1779. Per Chainalysis, 16 crypto addresses across
+        Bitcoin / Ethereum / Tron (the EVM/Tron addresses primarily holding
+        USDT/USDC) were attached, collectively receiving ~$3.8M. Independent
+        primary anchor for the designation.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level precision per the 2023-10-03 Treasury press release jy1779.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    A primarily China-based illicit-drug-producer network (28 designated
+    individuals/entities; jy1779), with 16 crypto addresses across BTC/ETH/Tron
+    used to receive drug-payment proceeds. Subset enumeration: this event treats
+    the China fentanyl network as the target aggregate; per-defendant address
+    enumeration is deferred (no captured primary_onchain receipts at draft
+    time).
+  actor_type: entity
+  actor_name: China-based fentanyl/synthetic-opioid producer network (28 SDNs)
+  chains:
+    - bitcoin
+    - ethereum
+    - tron
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Drug-trafficking-network SDN action; no nation-state ISP/DNS block
+      instrument involved.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      A narcotics-network SDN entry does not act on any chain's consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical crypto-platform web presence for the designated network.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      16 BTC/ETH/Tron addresses (mostly receiving drug proceeds in USDT/USDC)
+      are attached, but no captured primary_onchain freeze/blacklist tx_hash is
+      pinned at draft time. Per codebook §1.6, no on-chain claim is made; the
+      measurable surface is carried at offramp_cex. Not reclassified to escape
+      the asset_onchain evidence floor.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2023-10-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2023-10-03T00:00:00Z
+      - 2023-10-17T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20231003
+        wayback: https://web.archive.org/web/20231003190327/https://ofac.treasury.gov/recent-actions/20231003
+        body_hash: sha256:1e69d995969b2deee20c842346e86f4d8aa35d0c615e25df287c28cea79f17cc
+        body_path: sources/http_captures/china-fentanyl-network-ofac-2023-10/primary/web.archive.org__web-20231003000000-https-ofac.treasury.gov-recent-actions-20231003__09b2bec01f.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2023-10-03T00:00:00Z
+            - 2023-10-17T23:59:59Z
+          addresses_cohort: china_fentanyl_network_btc_eth_tron
+        note: |
+          No public CEX policy statement explicitly naming the China fentanyl
+          network SDN entries was published by major exchanges in the 14-day
+          post-designation window. Records absence of public disclosure; private
+          chain-analytics KYT flagging is outside this observation's scope.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission).
+
+  null_event documenting the 2023-10-03 OFAC SDN designation of a large,
+  primarily China-based illicit-drug-producer network (28 individuals/entities;
+  jy1779) responsible for ton-quantities of fentanyl/meth/MDMA precursors, with
+  16 crypto addresses across BTC/ETH/Tron used to receive ~$3.8M in
+  drug-payment proceeds.
+
+  Coded null_event / null_case per the S1 convention: the designation is the
+  trigger, but no public CEX cascade was documented in the 14-day window. Per
+  codebook §1.6 the named addresses are not coded as an asset_onchain
+  observation absent a captured primary_onchain freeze tx_hash; the measurable
+  surface is carried at offramp_cex (observed_no_change / none). Sources
+  verified + captured 2026-05-31 (Treasury jy1779 + OFAC RA 20231003, both
+  body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "OFAC's 2023-10-03 SDN designation of a China-based fentanyl/synthetic-opioid
+  producer network (jy1779, 28 SDNs) named 16 crypto addresses across
+  BTC/ETH/Tron. No public CEX cascade was documented in the 14-day window.
+  null_case: narcotics-network target with limited measurable cross-layer
+  surface at draft time."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - fentanyl
+  - narcotics
+  - china_related
+  - null_event
+  - dryrun_bulk_wave_1

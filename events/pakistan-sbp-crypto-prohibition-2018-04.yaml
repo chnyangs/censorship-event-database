@@ -1,0 +1,159 @@
+id: pakistan-sbp-crypto-prohibition-2018-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - india-rbi-crypto-ban-2018
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: PK_SBP
+  timestamp: 2018-04-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://web.archive.org/web/20180409033815/http://www.sbp.org.pk/bprd/2018/C3.htm
+      wayback: https://web.archive.org/web/20180409033815/http://www.sbp.org.pk/bprd/2018/C3.htm
+      body_hash: sha256:7f326e4384a9c3a6f060a2d72326cd09795d56a40ab5a2ae39cce7c1ba81a876
+      body_path: sources/http_captures/pakistan-sbp-crypto-prohibition-2018-04/primary/web.archive.org__web-20180409033815-http-www.sbp.org.pk-bprd-2018-C3.htm__5d4efb5b12.html
+      evidence_use: replayable
+      note: |
+        State Bank of Pakistan BPRD Circular No. 03 of 2018, dated 2018-04-06,
+        titled "Prohibition of Dealing in Virtual Currencies/Tokens," addressed
+        to the Presidents/Chief Executive Officers of all banks, DFIs,
+        microfinance banks, Payment System Operators (PSOs) and Payment System
+        Providers (PSPs). The circular advises all such entities to refrain from
+        processing, using, trading, holding, transferring value, promoting,
+        and investing in virtual currencies/tokens, and directs banks/DFIs not
+        to facilitate any customer/account-holder transactions in such currencies.
+        Captured from official sbp.org.pk via Wayback memento 2018-04-09.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Pakistani crypto users and the regulated banking/payment-system sector as a
+    class. The circular addresses all banks, DFIs, microfinance banks, PSOs and
+    PSPs and bars them from facilitating any virtual-currency transactions —
+    effectively severing the fiat banking/payment rails for the then-active
+    Pakistani crypto ecosystem. No specific exchange is enumerated in the
+    circular; target treated as entity-class-level, matching the sibling
+    india-rbi-crypto-ban-2018 and nigeria-cbn-crypto-ban-2021 convention.
+  protocol: null
+  actor_type: pakistani_crypto_banking_ecosystem
+  actor_name: PK banks / DFIs / PSOs facilitating crypto (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [PK]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The BPRD circular is a banking/payment-rail prohibition; it does not direct
+      ISP-level domain blocking or DNS interference. L0 not_applicable consistent
+      with sibling banking-rail nation-state events (India 2018, Nigeria 2021).
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Pre-Merge (2018); the post-Merge PBS relay-filter primitive the L1 layer
+      measures did not exist. not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The public-RPC compliance substrate (Flashbots Protect 2022-11, MEV-Blocker
+      2023-03) did not exist in 2018. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The circular engages no issuer-side blacklist or on-chain freeze method.
+      not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope: [pkr_banking_payment_channels_to_crypto]
+    note: |
+      The SBP circular directly bars regulated banks, DFIs and payment-system
+      operators from processing or facilitating virtual-currency transactions,
+      severing the PKR fiat on/off-ramp for the Pakistani crypto ecosystem. The
+      circular text itself is the regulatory mandate; load-bearing observation
+      attached below as observed_change with direct attribution.
+
+observations:
+  - layer: offramp_cex
+    actor: pakistani_crypto_banking_ecosystem
+    event: pkr_banking_payment_channel_severed_industry_wide
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-04-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20180409033815/http://www.sbp.org.pk/bprd/2018/C3.htm
+        wayback: https://web.archive.org/web/20180409033815/http://www.sbp.org.pk/bprd/2018/C3.htm
+        body_hash: sha256:7f326e4384a9c3a6f060a2d72326cd09795d56a40ab5a2ae39cce7c1ba81a876
+        body_path: sources/http_captures/pakistan-sbp-crypto-prohibition-2018-04/primary/web.archive.org__web-20180409033815-http-www.sbp.org.pk-bprd-2018-C3.htm__5d4efb5b12.html
+        evidence_use: replayable
+        note: |
+          BPRD Circular No. 03 of 2018 is the legal instrument. attribution=direct
+          because the circular explicitly mandates that banks/DFIs/PSOs refrain
+          from and not facilitate virtual-currency transactions, cutting the
+          banking/payment rail at class level.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission).
+
+  comparison documenting the State Bank of Pakistan's 2018-04-06 BPRD Circular
+  No. 03 of 2018 barring all banks, DFIs, microfinance banks and payment-system
+  operators from processing or facilitating virtual-currency/ICO-token
+  transactions. A nation-state banking-rail prohibition in the same family as
+  India RBI 2018 and Nigeria CBN 2021.
+
+  Per codebook §5.1, trigger.type=nation_state_block is the canonical fit: the
+  action is a central-bank payment-rail prohibition severing fiat on/off-ramps.
+  Per §5.2, research_stratum=S4_nation_state is permitted.
+
+  Per §9 inclusion boundary: this is in scope — a deliberate debanking /
+  payment-rail prohibition against the legitimate Pakistani crypto ecosystem,
+  not a fraud prosecution or soft advisory. (A separate SBP public consumer
+  notice on virtual-currency risks exists but is not the load-bearing
+  instrument here; the binding circular is C3 of 2018.)
+
+  Why offramp_cex direct: the circular text itself mandates the banking/payment
+  cut-off (§1 direct rule — the named actor's instrument names the regulated
+  banking sector as the acted-upon party). Why L0/L1/L3/asset_onchain
+  not_applicable: banking-rail action, pre-Merge/pre-Flashbots era, no
+  issuer-side on-chain freeze.
+
+  Why temporal_tier=comparable_main_2017_present / analysis_use=
+  comparable_analysis: 2018-04-06 sits in the 2017+ comparable corpus.
+
+scoped_claim: |
+  "SBP BPRD Circular No. 03 of 2018 (2018-04-06) barred regulated banks, DFIs,
+  microfinance banks and payment-system operators in Pakistan from processing or
+  facilitating virtual-currency/ICO-token transactions, severing the PKR fiat
+  banking/payment rail for the Pakistani crypto ecosystem. The offramp_cex layer
+  carries the load-bearing direct-attribution observation at class level."
+
+tags:
+  - nation_state_block
+  - pakistan
+  - banking_rail_severance
+  - sbp_circular

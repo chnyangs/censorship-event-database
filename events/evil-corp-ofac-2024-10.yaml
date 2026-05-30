@@ -1,0 +1,140 @@
+id: evil-corp-ofac-2024-10
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-10-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2623
+      wayback: https://web.archive.org/web/20241002115708/https://home.treasury.gov/news/press-releases/jy2623
+      body_hash: sha256:acff2559861b6e13bb3fbf6287c8f36d612174bdedac3744c5dc9b7d2c67663a
+      body_path: sources/http_captures/evil-corp-ofac-2024-10/primary/web.archive.org__web-20241002120000-https-home.treasury.gov-news-press-releases-jy2623__f5d9c9c476.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release jy2623 (2024-10-01): OFAC designated seven
+        individuals and two entities tied to the Russia-based Evil Corp
+        cybercrime syndicate (Dridex / BitPaymer) in a tri-lateral action with
+        the UK FCDO and Australia DFAT. Named individuals include Eduard
+        Benderskiy (former FSB Spetsnaz, the state-nexus enabler), Viktor
+        Yakubets, Aleksandr and Sergey Ryzhenkov, Aleksey Shchetinin, Beyat
+        Ramazanov, and Vadim Pogodin; entities Vympel-Assistance LLC and Solar-
+        Invest LLC. Wayback 20241002115708 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2024-10-01 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Seven individuals and two entities tied to the Evil Corp cybercrime
+    syndicate designated as SDNs in a tri-lateral US/UK/AU action. Coded subset:
+    the action targets the named members and facilitators of the syndicate
+    rather than an exhaustively enumerated on-chain address set.
+  actor_type: cybercrime_syndicate
+  actor_name: Evil Corp (additional members and facilitators)
+
+jurisdiction:
+  - US
+  - UK
+  - AU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The designation acts on the SDN/sanctions surface, not on any network-
+      layer reachability of a domain; no L0 block is asserted.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The 2024-10-01 designation names individuals and corporate entities
+      (Evil Corp members/facilitators) rather than enumerating crypto addresses
+      in the SDN entry; no asset_onchain freeze surface tied to a pre-named
+      address set is asserted, and no primary_onchain tx_hash is held.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-10-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-10-01T00:00:00Z
+      - 2024-10-15T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy2623
+        wayback: https://web.archive.org/web/20241002115708/https://home.treasury.gov/news/press-releases/jy2623
+        body_hash: sha256:acff2559861b6e13bb3fbf6287c8f36d612174bdedac3744c5dc9b7d2c67663a
+        body_path: sources/http_captures/evil-corp-ofac-2024-10/primary/web.archive.org__web-20241002120000-https-home.treasury.gov-news-press-releases-jy2623__f5d9c9c476.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2024-10-01T00:00:00Z
+            - 2024-10-15T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the 2024-10-01 Evil Corp
+          tri-lateral designation was published by major exchanges in the
+          14-day post-designation window. Records the absence of public
+          disclosure; private chain-analytics KYT flagging is outside this
+          observation's scope. The designation names individuals/entities with
+          no enumerated on-chain addresses, so the measurable offramp-cascade
+          surface is structurally limited.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission). On 2024-10-01 OFAC designated
+  seven individuals and two entities tied to the Russia-based Evil Corp
+  cybercrime syndicate (Dridex / BitPaymer) in a tri-lateral US/UK/AU action
+  (Treasury jy2623), including state-nexus enabler Eduard Benderskiy. In scope
+  under codebook §9 (OFAC SDN designation). Coded null_event/null_case per the
+  S1 convention (cf. bitriver-russia-mining-ofac-2022-04): the designation is
+  the trigger, but no public CEX cascade was documented in the 14-day window
+  and the SDN entry names individuals/entities with no enumerated on-chain
+  addresses, so the measurable cross-layer surface is limited (offramp_cex
+  observed_no_change/none; asset_onchain not_applicable). Source verified +
+  captured 2026-05-31 (Treasury jy2623, body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "The 2024-10-01 tri-lateral OFAC SDN designation of Evil Corp members/
+  facilitators (incl. Eduard Benderskiy) is confirmed against Treasury jy2623;
+  the entry names individuals/entities (no enumerated on-chain addresses) and
+  no public CEX cascade was documented in the 14-day window. null_case:
+  limited measurable cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - russia_related
+  - cybercrime
+  - ransomware
+  - null_event

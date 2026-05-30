@@ -1,0 +1,159 @@
+id: prince-group-chen-zhi-ofac-2025-10
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-10-14T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0278
+      wayback: https://web.archive.org/web/20251016034109/https://home.treasury.gov/news/press-releases/sb0278
+      body_hash: sha256:642670e04c720ee94ca468ddd871aeae5858ee29fe6e2bb167ab6102892eb279
+      body_path: sources/http_captures/prince-group-chen-zhi-ofac-2025-10/primary/web.archive.org__web-20251016034109-https-home.treasury.gov-news-press-releases-sb0278__4d115ef988.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release sb0278 (2025-10-14): OFAC, jointly
+        with the U.K. (FCDO/OFSI), designated 146 targets within the
+        Prince Group Transnational Criminal Organization led by Cambodian
+        national Chen Zhi, for large-scale "pig butchering" crypto
+        investment fraud run out of forced-labor scam compounds. Chen
+        Zhi's SDN entry lists Bitcoin addresses (four at designation;
+        25 more added 2025-10-30); a parallel DOJ civil forfeiture
+        targeted ~127,000 BTC (~$15B). Wayback memento 20251016034109
+        pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-10-14 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Prince Group TCO (146 targets) led by Chen Zhi, designated as SDNs
+    jointly by OFAC and the U.K. Chen Zhi's SDN entry attaches Bitcoin
+    addresses (four at the 2025-10-14 designation; 25 added 2025-10-30).
+    Marked subset because the action targets the named TCO and a
+    non-exhaustive attached address set rather than an enumerated
+    complete address set captured in this pass.
+  actor_type: transnational_criminal_organization
+  actor_name: Prince Group TCO + Chen Zhi
+  chains: [bitcoin]
+  canonical_domains: []
+
+jurisdiction:
+  - US
+  - UK
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Entity/person SDN designation with no canonical web domain in
+      scope; no network-layer block surface to measure.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The designation acts on a named TCO and attached Bitcoin
+      addresses; it does not act on any chain's consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No web-service operator with a canonical frontend is targeted.
+  - layer: asset_onchain
+    status: not_measured
+    chain: bitcoin
+    note: |
+      Bitcoin addresses are attached to Chen Zhi's SDN entry, but native
+      BTC has no issuer-level freeze primitive (unlike USDT/USDC), so
+      there is no on-chain freeze receipt to capture. The parallel DOJ
+      ~127,000-BTC ($15B) civil forfeiture is an enforcement seizure
+      rather than an issuer freeze; no primary_onchain tx_hash pinned in
+      this draft authoring pass (codebook §1.6 defers the floor for
+      drafts).
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-10-14T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-10-14T00:00:00Z
+      - 2025-10-28T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/sb0278
+        wayback: https://web.archive.org/web/20251016034109/https://home.treasury.gov/news/press-releases/sb0278
+        body_hash: sha256:642670e04c720ee94ca468ddd871aeae5858ee29fe6e2bb167ab6102892eb279
+        body_path: sources/http_captures/prince-group-chen-zhi-ofac-2025-10/primary/web.archive.org__web-20251016034109-https-home.treasury.gov-news-press-releases-sb0278__4d115ef988.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2025-10-14T00:00:00Z
+            - 2025-10-28T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the Prince Group /
+          Chen Zhi designation was pinned in the 14-day post-designation
+          window in this authoring pass. Records the absence of pinned
+          public disclosure; private KYT flagging is outside scope. The
+          on-chain footprint is native-BTC (no issuer freeze primitive);
+          the parallel DOJ seizure is a separate enforcement mechanism.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1;
+  sources verified+captured, awaiting human admission). OFAC SDN
+  designation 2025-10-14 (Treasury sb0278), jointly with the U.K., of
+  the Prince Group TCO (146 targets) led by Chen Zhi for "pig
+  butchering" crypto fraud out of forced-labor scam compounds; Chen
+  Zhi's SDN entry attaches Bitcoin addresses (four at designation, 25
+  added 2025-10-30), alongside a parallel DOJ ~127,000-BTC ($15B) civil
+  forfeiture. In-scope per §9 INCLUDE (OFAC SDN designation) — the
+  censorship action is the SDN designation / asset blocking, distinct
+  from the §9 EXCLUDE for prosecuting a scam-as-platform. Coded
+  null_event / null_case per the S1 convention (cf.
+  bitriver-russia-mining-ofac-2022-04): the on-chain footprint is
+  native BTC (no issuer freeze primitive) and no per-event CEX cascade
+  was pinned in the 14-day window, so the measurable cross-layer surface
+  is limited (offramp_cex observed_no_change / none). Primary source
+  verified + captured 2026-05-31 (Treasury sb0278, body_hash-pinned; no
+  fabrication). Conservative coding per codebook §8.4 pending human
+  review.
+
+scoped_claim: |
+  "The 2025-10-14 OFAC + U.K. designation of the Prince Group TCO /
+  Chen Zhi (Treasury sb0278, pig-butchering crypto fraud) attached
+  Bitcoin addresses; native BTC has no issuer freeze primitive and no
+  public CEX cascade was pinned in the 14-day window. null_case: limited
+  measurable cross-layer surface (parallel DOJ seizure is a separate
+  mechanism)."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - pig_butchering
+  - cambodia_related
+  - bitcoin
+  - null_event

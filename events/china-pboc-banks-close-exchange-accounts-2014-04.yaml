@@ -1,0 +1,198 @@
+id: china-pboc-banks-close-exchange-accounts-2014-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - china-pboc-crypto-ban-2013-12
+  - china-pboc-crypto-ban-2021
+  - jordan-cbj-bank-crypto-prohibition-2014
+
+trigger:
+  type: nation_state_block
+  actor: CN_PBOC
+  timestamp: 2014-04-15T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://web.archive.org/web/20140418000000/https://www.coindesk.com/markets/2014/04/17/chinas-banks-close-more-bitcoin-accounts-following-pboc-deadline
+      wayback: https://web.archive.org/web/20210918082857/https://www.coindesk.com/markets/2014/04/17/chinas-banks-close-more-bitcoin-accounts-following-pboc-deadline/
+      body_hash: sha256:022abe686c4f11d75f8ca2e31eaf3f3593db658ae67a06c45ae77be3441a80d8
+      body_path: sources/http_captures/china-pboc-banks-close-exchange-accounts-2014-04/primary/web.archive.org__web-20140418000000-https-www.coindesk.com-markets-2014-04-17-chinas-banks-close-more-bitcoin-accounts-following-pboc-deadline__c560f7f2c5.html
+      evidence_use: replayable
+      note: |
+        CoinDesk report (Jon Southurst) dated 2014-04-17 documenting that, following a
+        PBOC deadline of 2014-04-15 requiring banks and third-party payment processors
+        to close the accounts of bitcoin exchanges, "Exchanges OKCoin and Huobi said they
+        had bank accounts closed as of Friday afternoon China time, posting the news on
+        their respective sites." Verified in the captured body. This is the enforcement
+        escalation distinct from the 2013-12 PBOC Notice 2013/289 (which refused new
+        accounts / drove a CNY-deposit pause): here the named exchanges' EXISTING bank
+        accounts were actually closed around the 2014-04-15 deadline. The PBOC order
+        itself is reported via internal Chinese regulatory channels and is not publicly
+        archivable; the CoinDesk report is the replayable anchor. Wayback date-prefix
+        resolved to the 2021-09-18 memento of the same article.
+  timestamp_sources:
+    - type: supporting_journalism
+      note: |
+        The PBOC deadline for banks/payment processors to close bitcoin-exchange accounts
+        was 2014-04-15; OKCoin and Huobi reported their bank accounts closed by Friday
+        2014-04-18 (the week of the deadline). Day-level precision anchored on the
+        2014-04-15 deadline date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Canonical target is the population of Chinese bitcoin-exchange operators whose bank
+    accounts were ordered closed around the 2014-04-15 PBOC deadline. Named affected
+    exchanges in contemporaneous coverage include OKCoin and Huobi (whose bank accounts
+    were reported closed); the deadline reportedly applied to a broader set of domestic
+    exchanges and their banking/payment partners. enumeration=subset because the named
+    roster (OKCoin, Huobi) is a non-exhaustive subset of the exchange class subject to the
+    PBOC deadline, consistent with the sibling china-pboc-crypto-ban-2013-12 convention.
+  protocol: null
+  actor_type: chinese_bitcoin_exchange_ecosystem
+  actor_name: PRC bitcoin exchanges (OKCoin, Huobi, et al.) bank-account-closure class
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - CN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2014-04 PBOC account-closure deadline is a banking-and-payment-rail enforcement
+      action, not an ISP-level domain block or DNS interference. L0 not_applicable,
+      consistent with the china-pboc-crypto-ban-2013-12 treatment.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2014-04 has no protocol-level relay-filter
+      primitive analogous to the post-Merge Ethereum PBS relay surface (the Merge is
+      ~8.4 years downstream, 2022-09-15). not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC compliance substrate
+      that the L3 layer measures did not exist in 2014. not_applicable on
+      construct-did-not-exist grounds.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      This event is a bank-account-closure enforcement action against exchange operators,
+      not a directive to take down specific exchange frontends. No frontends were
+      enumerated targets. not_applicable on scope-mismatch grounds.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin native asset has no issuer-side blacklist / freeze admin method, and the
+      account-closure order does not engage a stablecoin-issuer admin path (USDT first
+      issued ~2014-10). not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - okcoin
+      - huobi
+    note: |
+      This is by construction an off-ramp / banking-rail enforcement event: around the
+      2014-04-15 PBOC deadline, banks and third-party payment processors closed the
+      accounts of Chinese bitcoin exchanges. OKCoin and Huobi reported their bank accounts
+      closed by 2014-04-18, posting the news on their own sites — the actual severance of
+      the CNY banking channel for the named exchanges (escalating beyond the 2013-12
+      deposit pause). The PBOC deadline is the regulatory mandate driving the observed
+      closures; attribution=direct at this layer. Marked measured; load-bearing observation
+      attached below.
+
+observations:
+  - layer: offramp_cex
+    actor: prc_bitcoin_exchange_ecosystem
+    event: exchange_bank_accounts_closed_following_pboc_deadline
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2014-04-18T00:00:00Z
+    precision: day
+    delta_hours: 72
+    sources:
+      - type: supporting_journalism
+        url: https://web.archive.org/web/20140418000000/https://www.coindesk.com/markets/2014/04/17/chinas-banks-close-more-bitcoin-accounts-following-pboc-deadline
+        wayback: https://web.archive.org/web/20210918082857/https://www.coindesk.com/markets/2014/04/17/chinas-banks-close-more-bitcoin-accounts-following-pboc-deadline/
+        body_hash: sha256:022abe686c4f11d75f8ca2e31eaf3f3593db658ae67a06c45ae77be3441a80d8
+        body_path: sources/http_captures/china-pboc-banks-close-exchange-accounts-2014-04/primary/web.archive.org__web-20140418000000-https-www.coindesk.com-markets-2014-04-17-chinas-banks-close-more-bitcoin-accounts-following-pboc-deadline__c560f7f2c5.html
+        evidence_use: replayable
+        note: |
+          CoinDesk 2014-04-17: "Exchanges OKCoin and Huobi said they had bank accounts
+          closed as of Friday afternoon China time, posting the news on their respective
+          sites," following the 2014-04-15 PBOC deadline for banks/payment processors to
+          close bitcoin-exchange accounts. attribution=direct because the PBOC deadline is
+          the named regulatory mandate driving the observed account closures. The PBOC
+          order is not publicly archivable; this report is the replayable anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission).
+
+  Historical-baseline authoring pass for the 2014-04-15 PBOC deadline requiring Chinese
+  banks and third-party payment processors to close the bank accounts of domestic bitcoin
+  exchanges, and the resulting closures of OKCoin's and Huobi's bank accounts (reported
+  2014-04-18). This is a banking-rail severance / debanking ENFORCEMENT action against
+  legitimate exchanges (codebook §9 INCLUDE).
+
+  DEDUP rationale (NOT a duplicate of china-pboc-crypto-ban-2013-12): the 2013-12 event
+  documents PBOC Notice 2013/289, whose effect was that banks refused NEW bitcoin-related
+  accounts and the exchange triad PAUSED CNY deposits (~2013-12-18). This April-2014 event
+  is the distinct enforcement escalation — a separate PBOC deadline (2014-04-15) under which
+  EXISTING exchange bank accounts were actually CLOSED, with OKCoin and Huobi reporting
+  their accounts shut by 2014-04-18. Distinct date, distinct mechanism (account closure vs
+  deposit pause), distinct named effect; recorded as a sibling, cross-referenced in
+  related_events.
+
+  Why trigger.type=nation_state_block: a PBOC banking/payment-rail enforcement deadline
+  driving account closures (codebook §5.1 nation-state payment-rail family, alongside the
+  2013 PBOC notice). Per §5.2 the permitted research_stratum is S4_nation_state.
+
+  Why historical_baseline tier: 2014 events belong to historical_baseline_2013_2016;
+  analysis_use=historical_baseline excludes this row from the 2017+ comparable-analysis
+  denominator.
+
+  Why empirical_shape=comparison / admission_tier=empirical_case: one direct-attribution
+  observed_change layer (offramp_cex). L1/L3/asset_onchain are construct-did-not-exist in
+  2014; L0/L4 are scope-mismatched. Single load-bearing strong-attribution layer ->
+  comparison / empirical_case.
+
+  Why attribution=direct: the PBOC deadline is the named regulatory mandate driving the
+  observed bank-account closures at OKCoin and Huobi (§1.5 nation-state-mandate reading at
+  the off-ramp rail).
+
+  Source note: the PBOC order travels via internal Chinese regulatory/banking channels and
+  is not publicly archivable; the replayable anchor is the contemporaneous CoinDesk report
+  documenting the deadline and the named exchanges' account closures. Human audit should
+  attempt to pin a PBOC-domain or exchange-domain primary copy before admission.
+
+scoped_claim: |
+  Around the 2014-04-15 PBOC deadline, Chinese banks and third-party payment processors
+  closed the accounts of domestic bitcoin exchanges; OKCoin and Huobi reported their bank
+  accounts closed by 2014-04-18. The offramp_cex layer carries the load-bearing
+  direct-attribution observation. This is the enforcement escalation of the 2013-12 PBOC
+  banking-exclusion notice (deposit pause -> account closure).
+
+tags:
+  - nation_state_block
+  - china
+  - pboc
+  - banking_rail_severance
+  - historical_baseline
+  - exchange_debanking

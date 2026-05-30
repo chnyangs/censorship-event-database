@@ -149,3 +149,13 @@ User woke ~06:40 and **blessed all 3 gating decisions** (enforcement-only scope 
 ALL 268 events validate (0 fail). Cron 1ddafe54 RETIRED (CronDelete) — user now driving interactively.
 
 **Overnight final tally:** 6 events authored (254->260 admitted, corpus 262->268), 47-row registry, S4 roadmap, MORNING_REVIEW dashboard, codebook v3.0.0 with §9 scope rule. Next: bulk-author e-gold 2007 + the S4/S1/EU-sanctions batches now that schema is unblocked.
+
+### Bulk-author WAVE 1 (S1 + S4 first 48) — 2026-05-31 morning (user launched workflow)
+Workflow: 12 author agents (verified-draft authoring) -> adversarial verify (source real+on-topic? §9 scope? dup? validates?). 24 agents, ~1.74M tokens.
+**Result: +36 verified-source census DRAFTS** (status: draft, awaiting admission audit):
+- **25 KEEP** (clean): S1 OFAC (genesis-market, hanafin-huriya, chinyong-dprk, china-fentanyl, netex24-bitpapa, al-law-hezbollah, oko/kb-vostok drones, evil-corp, nemesis-parsarad, prince-group, dkba, media-land) + S4 hard-bans (webmoney-ukraine, jordan-cbj, china-pboc-2014-account-closure, ecuador-2014, kenya-2015, nepal-2017, vietnam-2017, algeria-2018, indonesia-bi-2018, pakistan-2018, zimbabwe-golix-2018).
+- **11 FIX -> flagged with VERIFY-FLAG** (real designations/bans, but the captured press release does NOT contain the SPECIFIC crypto addresses claimed — those live in the SDN-list entry; refine source before admission): zheng-yan, task-force-rusich, wang-hongfei, botnet-911, tengyue, derakhshan-irgc, taiwan-fsc, iraq-cbi, morocco, cambodia, china-pboc-2019.
+**The adversarial verify EARNED ITS KEEP — caught the C-5 fabrication risk:**
+- **4 DROPPED** (deleted): fayzimatov + nordic-resistance (FABRICATED crypto nexus — the OFAC press release has ZERO crypto mention; these are terror designations the gap-discovery wrongly tagged as crypto), jordan-cbj dup, kyrgyzstan.
+- **33 SKIPPED by authors** (§9 working): soft warnings / non-recognition statements (France/Norway/Lebanon/India-2013/Malaysia/Belgium/Mexico/Denmark/Russia-2014 "not currency" statements), dups, out-of-scope (Kimsuky espionage, Schumer-Manchin letter).
+**Lesson confirmed:** parallel fresh agents OVERCLAIM crypto specifics (addresses/asset-types not in the captured source). The author-as-DRAFT + adversarial-verify + human-admission pattern is essential and works. Corpus now 305 events (261 admitted / 37 draft / 7 rejected).

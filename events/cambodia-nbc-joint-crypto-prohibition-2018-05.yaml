@@ -1,0 +1,179 @@
+id: cambodia-nbc-joint-crypto-prohibition-2018-05
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - india-rbi-crypto-ban-2018
+  - zimbabwe-rbz-circular-2-2018-golix-ban
+
+trigger:
+  type: nation_state_block
+  actor: KH_NBC
+  timestamp: 2018-05-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://web.archive.org/web/20180620031123/https://www.phnompenhpost.com/business/cryptos-illegal-kingdom-regulators
+      wayback: https://web.archive.org/web/20180620031123/https://www.phnompenhpost.com/business/cryptos-illegal-kingdom-regulators
+      body_hash: sha256:c8acdc033a4946eef66dde5c4d2ae7858c2aec180a64696a3ba09b74ac99edb6
+      body_path: sources/http_captures/cambodia-nbc-joint-crypto-prohibition-2018-05/primary/web.archive.org__web-20180620031123-https-www.phnompenhpost.com-business-cryptos-illegal-kingdom-regulators__3512288dd1.html
+      evidence_use: replayable
+      note: |
+        Phnom Penh Post, "Cryptos illegal in the Kingdom: regulators" (June 2018),
+        reporting the joint statement issued 2018-05-11 by the National Bank of
+        Cambodia (NBC), the Securities and Exchange Commission of Cambodia (SECC),
+        and the General-Commissariat of National Police. The joint statement
+        declared that the propagation, circulation, buying, selling, trading and
+        settlement of cryptocurrencies without a license from competent
+        authorities is illegal. Because no licensing pathway was opened, the
+        statement operated as a de facto prohibition on Cambodian crypto
+        exchanges/trading. Contemporaneous reporting captured via Wayback memento
+        2018-06-20; the NBC/SECC joint statement itself was not published on a
+        stable English-language web page.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Cambodian crypto users, exchanges and ICO/token operators as a class. The
+    joint statement does not enumerate specific platforms; it prohibits the
+    propagation, circulation, buying, selling, trading and settlement of
+    cryptocurrencies without a license. Target treated as entity-class-level,
+    matching the sibling nation-state prohibition convention (India 2018,
+    Zimbabwe 2018).
+  protocol: null
+  actor_type: cambodian_crypto_ecosystem
+  actor_name: Cambodian crypto exchanges / traders (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [KH]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The joint statement is a legality/licensing prohibition; it does not direct
+      ISP-level domain blocking or DNS interference. L0 not_applicable consistent
+      with sibling nation-state prohibition events.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Pre-Merge (2018); the post-Merge PBS relay-filter primitive the L1 layer
+      measures did not exist. not_applicable on construct-did-not-exist grounds.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The public-RPC compliance substrate (Flashbots Protect 2022-11, MEV-Blocker
+      2023-03) did not exist in 2018. not_applicable on construct-did-not-exist
+      grounds.
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The joint statement engages no issuer-side blacklist or on-chain freeze
+      method. not_applicable on construct-did-not-exist grounds.
+  - layer: offramp_cex
+    status: measured
+    scope: [cambodian_crypto_trading_and_exchange_activity]
+    note: |
+      The NBC/SECC/National Police joint statement prohibits buying, selling,
+      trading and settlement of cryptocurrencies without a license, with no
+      licensing pathway opened — a de facto prohibition on the Cambodian crypto
+      exchange/trading surface. Carried at offramp_cex as the closest layer for
+      a trading/settlement prohibition. Load-bearing observation attached below
+      as observed_change with plausible attribution (the load-bearing evidence is
+      contemporaneous journalism reproducing the statement, not the official
+      instrument text).
+
+observations:
+  - layer: offramp_cex
+    actor: cambodian_crypto_ecosystem
+    event: crypto_trading_and_settlement_declared_illegal_without_license
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2018-05-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: supporting_journalism
+        url: https://web.archive.org/web/20180620031123/https://www.phnompenhpost.com/business/cryptos-illegal-kingdom-regulators
+        wayback: https://web.archive.org/web/20180620031123/https://www.phnompenhpost.com/business/cryptos-illegal-kingdom-regulators
+        body_hash: sha256:c8acdc033a4946eef66dde5c4d2ae7858c2aec180a64696a3ba09b74ac99edb6
+        body_path: sources/http_captures/cambodia-nbc-joint-crypto-prohibition-2018-05/primary/web.archive.org__web-20180620031123-https-www.phnompenhpost.com-business-cryptos-illegal-kingdom-regulators__3512288dd1.html
+        evidence_use: replayable
+        note: |
+          attribution=plausible per codebook §1: the action is causally
+          consistent with the named NBC/SECC/National Police joint statement, but
+          the load-bearing captured evidence is contemporaneous journalism
+          reproducing the statement rather than the official instrument text, and
+          the statement is class-level (names no specific exchange). A primary
+          NBC/SECC instrument capture would be required to elevate to direct.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
+  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
+  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
+  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
+  unsupported specifics. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission).
+
+  comparison documenting the 2018-05-11 joint statement by the National Bank of
+  Cambodia (NBC), the Securities and Exchange Commission of Cambodia (SECC) and
+  the General-Commissariat of National Police declaring crypto propagation,
+  circulation, buying, selling, trading and settlement illegal without a license
+  from competent authorities. Because no licensing pathway was opened, this
+  functioned as a de facto national prohibition on the Cambodian crypto
+  exchange/trading surface. Same nation-state-prohibition family as India RBI
+  2018 and Zimbabwe RBZ 2018.
+
+  Per codebook §5.1, trigger.type=nation_state_block is the canonical fit: a
+  nation-state declaration making crypto trading/settlement illegal without a
+  (non-existent) license. Per §5.2, research_stratum=S4_nation_state is
+  permitted.
+
+  Per §9 inclusion boundary: in scope — a deliberate state prohibition denying
+  legitimate crypto trading/settlement service to Cambodian users, distinct from
+  a fraud prosecution or a pure soft advisory (the joint statement declares the
+  activity illegal, not merely risky).
+
+  Why offramp_cex plausible (not direct): the load-bearing captured evidence is
+  contemporaneous journalism (Phnom Penh Post) reproducing the joint statement,
+  not the official NBC/SECC instrument text, and the prohibition is class-level
+  (no exchange named). Conservative-default rule (§8.4) applied → plausible. A
+  human reviewer may elevate to direct if a primary NBC/SECC instrument capture
+  is pinned.
+
+  Why L0/L1/L3/asset_onchain not_applicable: legality/licensing action,
+  pre-Merge/pre-Flashbots era, no issuer-side on-chain freeze.
+
+  Why temporal_tier=comparable_main_2017_present / analysis_use=
+  comparable_analysis: 2018-05-11 sits in the 2017+ comparable corpus.
+
+scoped_claim: |
+  "On 2018-05-11 the NBC, SECC and General-Commissariat of National Police
+  issued a joint statement declaring the propagation, circulation, buying,
+  selling, trading and settlement of cryptocurrencies illegal without a license
+  from competent Cambodian authorities; with no licensing pathway opened, this
+  operated as a de facto national prohibition on the Cambodian crypto
+  exchange/trading surface. The offramp_cex layer carries the load-bearing
+  plausible-attribution observation at class level."
+
+tags:
+  - nation_state_block
+  - cambodia
+  - crypto_prohibition
+  - nbc_secc_joint_statement

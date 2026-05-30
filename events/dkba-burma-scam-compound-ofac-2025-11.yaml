@@ -1,0 +1,152 @@
+id: dkba-burma-scam-compound-ofac-2025-11
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-11-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0312
+      wayback: https://web.archive.org/web/20251114001806/https://home.treasury.gov/news/press-releases/sb0312
+      body_hash: sha256:f6fd7f18cb6c852c1119bb239c19f26ecda1a18a4fc7fd9b0c58dc9ea335b242
+      body_path: sources/http_captures/dkba-burma-scam-compound-ofac-2025-11/primary/web.archive.org__web-20251114001806-https-home.treasury.gov-news-press-releases-sb0312__c42392aa88.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release sb0312 (2025-11-12): OFAC designated
+        the Democratic Karen Benevolent Army (DKBA), a Burmese armed
+        group, and four senior leaders, plus companies Trans Asia
+        International Holding Group Thailand and Troth Star and Thai
+        national Chamu Sawang, for developing and hosting Chinese-OC
+        cyber-scam ("pig butchering" crypto-investment-fraud) compounds —
+        including the Tai Chang compound near Myawaddy in Karen State —
+        that target Americans. Part of the Scam Center Strike Force.
+        Wayback memento 20251114001806 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-11-12 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Democratic Karen Benevolent Army (DKBA) + four senior leaders,
+    Trans Asia International Holding Group Thailand, Troth Star, and
+    Chamu Sawang, designated as SDNs. Marked subset because the action
+    targets the named armed group / companies / individuals rather than
+    an enumerated complete address set.
+  actor_type: armed_group_scam_compound_network
+  actor_name: DKBA + Trans Asia / Troth Star / Chamu Sawang
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Entity SDN designation with no canonical web domain in scope; no
+      network-layer block surface to measure.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The designation acts on a named armed group, companies, and
+      individuals; it does not act on any chain's consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No web-service operator with a canonical frontend is targeted.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The SDN entries name the DKBA armed group, companies, and leaders
+      rather than enumerating on-chain addresses; no asset-onchain freeze
+      surface is attached to this designation in the captured page.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-11-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-11-12T00:00:00Z
+      - 2025-11-26T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/sb0312
+        wayback: https://web.archive.org/web/20251114001806/https://home.treasury.gov/news/press-releases/sb0312
+        body_hash: sha256:f6fd7f18cb6c852c1119bb239c19f26ecda1a18a4fc7fd9b0c58dc9ea335b242
+        body_path: sources/http_captures/dkba-burma-scam-compound-ofac-2025-11/primary/web.archive.org__web-20251114001806-https-home.treasury.gov-news-press-releases-sb0312__c42392aa88.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2025-11-12T00:00:00Z
+            - 2025-11-26T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the DKBA / Trans
+          Asia / Troth Star designation was pinned in the 14-day
+          post-designation window in this authoring pass. Records the
+          absence of pinned public disclosure; private KYT flagging is
+          outside scope. The SDN names an armed group / companies (no
+          enumerated addresses), so the measurable offramp surface is
+          structurally limited.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1;
+  sources verified+captured, awaiting human admission). OFAC SDN
+  designation 2025-11-12 (Treasury sb0312) of the Democratic Karen
+  Benevolent Army (DKBA) + four leaders, Trans Asia, Troth Star, and
+  Chamu Sawang, for developing / hosting Chinese-OC pig-butchering
+  crypto-fraud scam compounds (incl. Tai Chang near Myawaddy) that
+  target Americans; part of the Scam Center Strike Force. In-scope per
+  §9 INCLUDE (OFAC SDN designation) — the censorship action is the SDN
+  asset-blocking designation, distinct from the §9 EXCLUDE for
+  prosecuting a scam-as-platform. Coded null_event / null_case per the
+  S1 convention (cf. bitriver-russia-mining-ofac-2022-04): the
+  designation names an armed group / companies with no enumerated
+  on-chain addresses on the captured page and no per-event CEX cascade
+  was pinned in the 14-day window, so the measurable cross-layer surface
+  is limited (offramp_cex observed_no_change / none; asset_onchain
+  not_applicable). Primary source verified + captured 2026-05-31
+  (Treasury sb0312, body_hash-pinned; no fabrication). Conservative
+  coding per codebook §8.4 pending human review.
+
+scoped_claim: |
+  "The 2025-11-12 OFAC designation of the DKBA + Trans Asia / Troth Star
+  / Chamu Sawang (Treasury sb0312, pig-butchering scam compounds)
+  named an armed group and companies with no enumerated on-chain
+  addresses; no public CEX cascade was pinned in the 14-day window.
+  null_case: infrastructure/entity target with limited measurable
+  cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - pig_butchering
+  - burma_related
+  - scam_compound
+  - null_event

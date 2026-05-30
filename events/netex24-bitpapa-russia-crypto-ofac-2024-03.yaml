@@ -1,0 +1,169 @@
+id: netex24-bitpapa-russia-crypto-ofac-2024-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - garantex-ofac-2022
+  - hydra-ofac-2022
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2024-03-25T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy2204
+      wayback: https://web.archive.org/web/20240325164058/https://home.treasury.gov/news/press-releases/jy2204
+      body_hash: sha256:7eb432311ad1e3f87cc1ebc0f9ce2037a547c4bee1e97c968971ddc6caf657d0
+      body_path: sources/http_captures/netex24-bitpapa-russia-crypto-ofac-2024-03/primary/web.archive.org__web-20240325000000-https-home.treasury.gov-news-press-releases-jy2204__8802ae93d9.html
+      evidence_use: replayable
+      note: |
+        Treasury press release jy2204 (2024-03-25) "Treasury Designates Russian
+        Companies Supporting Sanctions Evasion Through Virtual Asset Services
+        and Technology Procurement". OFAC designated 13 entities + 2 individuals
+        under EO 14024, including Moscow-based virtual-currency exchange operator
+        TOEP (business names Netexchange / Netex24) and Bitpapa IC FZC LLC
+        (Bitpapa) — both crypto exchanges that processed transactions for
+        OFAC-designated Russian entities (Sberbank, Alfa-Bank, Hydra Market,
+        Garantex). Wayback 20240325164058 pinned; grep verifies 6xBitpapa,
+        2xNetex24, 5x"March 25, 2024".
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20240325
+      wayback: https://web.archive.org/web/20240325174522/https://ofac.treasury.gov/recent-actions/20240325
+      body_hash: sha256:e9df0faca4d5419d5d3dfa52b33165a6ddce79e76bc37cfd62ecd7c360f001db
+      body_path: sources/http_captures/netex24-bitpapa-russia-crypto-ofac-2024-03/primary/web.archive.org__web-20240325000000-https-ofac.treasury.gov-recent-actions-20240325__95986fab84.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2024-03-25, the formal SDN-list publication
+        accompanying jy2204 (Netex24 / Bitpapa and the broader Russia
+        virtual-asset-services cluster). Independent primary anchor for the
+        designation.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level precision per the 2024-03-25 Treasury press release jy2204.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Russia-nexus virtual-currency exchanges Netex24 (TOEP / Netexchange) and
+    Bitpapa IC FZC LLC, the load-bearing crypto-platform targets within the
+    13-entity + 2-individual jy2204 action. Subset enumeration: the full set of
+    fintech/technology-procurement co-designees on the same action is out of
+    this event's target scope.
+  actor_type: virtual_currency_exchange
+  actor_name: Netex24 (TOEP) + Bitpapa IC FZC LLC
+  canonical_domains:
+    - netex24.net
+    - bitpapa.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No OONI / Censored Planet probe of netex24.net or bitpapa.com within the
+      event window; substrate-shaped gap, not a coverage_gap observation.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Exchange-operator SDN action; the designation does not act on any chain's
+      consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      netex24.net / bitpapa.com are the exchanges' canonical domains; Wayback
+      CDX bracketing around 2024-03-25 not performed in this authoring pass
+      (not_measured, consistent with peer S1 exchange events such as
+      garantex-ofac-2022).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The designation targets exchange operators, not an enumerated
+      issuer/protocol address set, and no captured primary_onchain freeze
+      tx_hash is pinned at draft time. Per codebook §1.6, no on-chain claim is
+      made; the measurable surface is carried at offramp_cex.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2024-03-25T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2024-03-25T00:00:00Z
+      - 2024-04-08T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy2204
+        wayback: https://web.archive.org/web/20240325164058/https://home.treasury.gov/news/press-releases/jy2204
+        body_hash: sha256:7eb432311ad1e3f87cc1ebc0f9ce2037a547c4bee1e97c968971ddc6caf657d0
+        body_path: sources/http_captures/netex24-bitpapa-russia-crypto-ofac-2024-03/primary/web.archive.org__web-20240325000000-https-home.treasury.gov-news-press-releases-jy2204__8802ae93d9.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2024-03-25T00:00:00Z
+            - 2024-04-08T23:59:59Z
+        note: |
+          No public CEX policy statement explicitly naming the Netex24 / Bitpapa
+          SDN entries was published by major exchanges in the 14-day
+          post-designation window. Records absence of public disclosure; private
+          chain-analytics KYT flagging is outside this observation's scope.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
+  verified+captured, awaiting human admission).
+
+  null_event documenting the 2024-03-25 OFAC SDN designation (EO 14024; jy2204)
+  of Russia-nexus virtual-currency exchanges Netex24 (TOEP / Netexchange) and
+  Bitpapa, part of a 13-entity + 2-individual Russia virtual-asset-services and
+  technology-procurement action. Both exchanges processed transactions for
+  OFAC-designated Russian entities (Sberbank, Alfa-Bank, Hydra Market,
+  Garantex). Sibling to garantex-ofac-2022 / hydra-ofac-2022 in the Russia
+  crypto-exchange-sanctions chain.
+
+  Coded null_event / null_case per the S1 convention: the designation is the
+  trigger, but no public CEX cascade was documented in the 14-day window. Per
+  codebook §1.6 no asset_onchain observation is coded absent a captured
+  primary_onchain freeze tx_hash; the measurable surface is carried at
+  offramp_cex (observed_no_change / none). Sources verified + captured
+  2026-05-31 (Treasury jy2204 + OFAC RA 20240325, both body_hash-pinned).
+
+scoped_claim: |
+  "OFAC's 2024-03-25 SDN designation (jy2204) of Russia-nexus virtual-currency
+  exchanges Netex24 and Bitpapa, within a 15-target Russia virtual-asset-
+  services action, restricted U.S.-person dealings with both crypto exchanges.
+  No public CEX cascade was documented in the 14-day window. null_case:
+  exchange-operator target with limited measurable cross-layer surface at draft
+  time."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - russia_related
+  - sanctions_evasion
+  - virtual_currency_exchange
+  - null_event
+  - dryrun_bulk_wave_1

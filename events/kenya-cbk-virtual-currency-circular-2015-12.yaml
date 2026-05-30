@@ -1,0 +1,118 @@
+id: kenya-cbk-virtual-currency-circular-2015-12
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: KE_CBK
+  timestamp: 2015-12-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://web.archive.org/web/20151218000000id_/https://www.centralbank.go.ke/uploads/banking_circulars/2075994161_Banking%20Circular%20No%2014%20of%202015%20-%20Virtual%20Currencies%20-%20Bitcoin.pdf
+      wayback: https://web.archive.org/web/20180404165057id_/https://www.centralbank.go.ke/uploads/banking_circulars/2075994161_Banking%20Circular%20No%2014%20of%202015%20-%20Virtual%20Currencies%20-%20Bitcoin.pdf
+      body_hash: sha256:e46c749d0c6038c889b613db62b8a3f2df7e0ffde3d80ca2eb081b4ebc3298a4
+      body_path: sources/http_captures/kenya-cbk-virtual-currency-circular-2015-12/primary/web.archive.org__web-20151218000000id_-https-www.centralbank.go.ke-uploads-banking_circulars-2075994161_Banking-20Circular-20No-2014-20of-202015-20--20Virtual-20Currenc__10a852500d.bin
+      note: |
+        Central Bank of Kenya Banking Circular No. 14 of 2015 (PDF, document creation
+        date 2015-12-18) to all chief executives of commercial banks, mortgage finance
+        companies and microfinance banks: directs financial institutions NOT to open
+        accounts for any person dealing in virtual currencies (Bitcoin) and warns of
+        remedial action for non-compliance. This debanking directive — distinct from the
+        same-day soft public notice — is the load-bearing censorship action (codebook §9).
+  timestamp_sources:
+    - type: primary_legal
+      note: PDF metadata creation date D:20151218; Circular No. 14 of 2015.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Kenyan banks / MFIs / mortgage-finance companies directed not to service any person
+    dealing in virtual currencies. Affected the domestic crypto banking-rail ecosystem at
+    class level; no specific operator named in the circular.
+  protocol: null
+  actor_type: kenyan_crypto_banking_ecosystem
+  actor_name: Kenyan crypto users / dealers served by regulated banks (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [KE]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [kenya_banking_channels_to_virtual_currency_dealers]
+    note: |
+      CBK Banking Circular No. 14 of 2015 directs regulated financial institutions not to
+      open accounts for persons dealing in virtual currencies, severing banking rails for
+      the crypto ecosystem. Effect carried at offramp_cex (banking-rail debanking) at class
+      level (codebook §1.6 — regulatory debanking directive, no on-chain tx).
+
+observations:
+  - layer: offramp_cex
+    actor: kenyan_crypto_banking_ecosystem
+    event: bank_account_opening_for_virtual_currency_dealers_prohibited
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2015-12-18T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20151218000000id_/https://www.centralbank.go.ke/uploads/banking_circulars/2075994161_Banking%20Circular%20No%2014%20of%202015%20-%20Virtual%20Currencies%20-%20Bitcoin.pdf
+        body_hash: sha256:e46c749d0c6038c889b613db62b8a3f2df7e0ffde3d80ca2eb081b4ebc3298a4
+        body_path: sources/http_captures/kenya-cbk-virtual-currency-circular-2015-12/primary/web.archive.org__web-20151218000000id_-https-www.centralbank.go.ke-uploads-banking_circulars-2075994161_Banking-20Circular-20No-2014-20of-202015-20--20Virtual-20Currenc__10a852500d.bin
+        note: |
+          attribution=direct (codebook §1.1): the CBK circular is the regulatory
+          instrument itself and explicitly mandates the banking cut-off (no accounts for
+          virtual-currency dealers), mirroring the nigeria-cbn-crypto-ban-2021 precedent.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission). Central Bank of Kenya Banking Circular No. 14 of 2015 (2015-12-18)
+  directs regulated banks/MFIs not to open accounts for any person dealing in virtual
+  currencies, with remedial action for non-compliance — a debanking directive (in scope per
+  codebook §9; distinct from the same-day soft public notice, which alone would be
+  out-of-scope advisory). Historical-baseline tier (2015). One observed_change layer
+  (offramp_cex) -> empirical_shape=comparison. attribution=direct (codebook §1.1) — the
+  circular is the primary legal instrument mandating the cut-off (nigeria-cbn precedent).
+  DEDUP NOTE: the wave-1 candidate list carried two near-identical Kenya entries
+  (kenya-cbk-virtual-currency-public-notice-2015-12 / kenya-cbk-virtual-currency-notice-2015-12);
+  both describe THIS single CBK action and are consolidated here.
+
+scoped_claim: |
+  "Central Bank of Kenya Banking Circular No. 14 of 2015 (2015-12-18) directed regulated
+  financial institutions not to open accounts for persons dealing in virtual currencies,
+  severing banking rails for Kenya's crypto ecosystem; impact captured at class level at the
+  offramp_cex layer."
+
+tags:
+  - nation_state_block
+  - kenya
+  - banking_rail_severance
+  - cbk_circular

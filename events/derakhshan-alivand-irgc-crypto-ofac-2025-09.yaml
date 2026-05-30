@@ -1,0 +1,160 @@
+id: derakhshan-alivand-irgc-crypto-ofac-2025-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2025-09-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/sb0248
+      wayback: https://web.archive.org/web/20250917232322/https://home.treasury.gov/news/press-releases/sb0248
+      body_hash: sha256:96de8a340095a2c177c4c798ffe3a930db682b45229a791087af70b2372d1f45
+      body_path: sources/http_captures/derakhshan-alivand-irgc-crypto-ofac-2025-09/primary/web.archive.org__web-20250917232322-https-home.treasury.gov-news-press-releases-sb0248__a24adc46a8.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release sb0248 (2025-09-16): OFAC designated
+        an Iranian shadow-banking / financial-facilitator network,
+        including Iranian nationals Alireza Derakhshan and Arash Estaki
+        Alivand, plus Hong Kong- and UAE-based front companies, for
+        coordinating cryptocurrency funds transfers (incl. proceeds of
+        Iranian oil sales) benefiting the IRGC-Qods Force and MODAFL.
+        Crypto addresses associated with Derakhshan and Alivand (largely
+        USDT) are listed on the SDN entries. Wayback memento
+        20250917232322 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2025-09-16 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Iranian financial facilitators Alireza Derakhshan and Arash Estaki
+    Alivand plus a network of Hong Kong- and UAE-based front companies
+    and individuals, designated as SDNs with associated crypto (largely
+    USDT) addresses. Marked subset because the action targets the named
+    facilitator network rather than an exhaustively enumerated complete
+    address set captured in this pass.
+  actor_type: financial_facilitator_network
+  actor_name: Derakhshan / Alivand Iranian shadow-banking network
+  chains: [ethereum, tron]
+  canonical_domains: []
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Entity/person SDN designation with no canonical web domain in
+      scope; no network-layer block surface to measure.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The designation acts on named persons/entities and associated
+      addresses; it does not act on any chain's consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No web-service operator with a canonical frontend is targeted.
+  - layer: asset_onchain
+    status: not_measured
+    chain: tron
+    note: |
+      The SDN entries list crypto addresses (largely USDT) associated
+      with the facilitators. A Tether/issuer freeze response is the
+      natural asset-layer experiment, but no primary_onchain freeze
+      tx_hash was pinned in this draft authoring pass (codebook §1.6
+      defers the evidence floor for drafts). Per-address Tronscan /
+      usdtbanlist enumeration would promote this row.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2025-09-16T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2025-09-16T00:00:00Z
+      - 2025-09-30T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/sb0248
+        wayback: https://web.archive.org/web/20250917232322/https://home.treasury.gov/news/press-releases/sb0248
+        body_hash: sha256:96de8a340095a2c177c4c798ffe3a930db682b45229a791087af70b2372d1f45
+        body_path: sources/http_captures/derakhshan-alivand-irgc-crypto-ofac-2025-09/primary/web.archive.org__web-20250917232322-https-home.treasury.gov-news-press-releases-sb0248__a24adc46a8.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2025-09-16T00:00:00Z
+            - 2025-09-30T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the Derakhshan /
+          Alivand designation was pinned in the 14-day post-designation
+          window in this authoring pass. Records the absence of pinned
+          public disclosure; private KYT flagging is outside scope. The
+          asset-layer (USDT-issuer freeze) response is the natural
+          experiment but is not yet captured.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
+  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
+  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
+  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
+  unsupported specifics. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1;
+  sources verified+captured, awaiting human admission). OFAC SDN
+  designation 2025-09-16 (Treasury sb0248) of an Iranian shadow-banking /
+  financial-facilitator network — Alireza Derakhshan, Arash Estaki
+  Alivand, and Hong Kong / UAE front companies — for coordinating
+  crypto (largely USDT) funds transfers benefiting the IRGC-QF and
+  MODAFL. In-scope per §9 INCLUDE (OFAC SDN designation). Coded
+  null_event / null_case per the S1 convention (cf.
+  bitriver-russia-mining-ofac-2022-04): the designation is the trigger,
+  but no per-address on-chain freeze tx_hash and no per-event CEX
+  cascade were pinned in this draft authoring pass, so the measurable
+  cross-layer surface is limited (offramp_cex observed_no_change /
+  none). The USDT-issuer freeze response is the natural asset-layer
+  experiment, deferred per codebook §1.6 for drafts. Primary source
+  verified + captured 2026-05-31 (Treasury sb0248, body_hash-pinned; no
+  fabrication). Conservative coding per codebook §8.4 pending human
+  review.
+
+scoped_claim: |
+  "The 2025-09-16 OFAC designation of the Derakhshan / Alivand Iranian
+  shadow-banking network (Treasury sb0248, IRGC-QF / MODAFL crypto
+  facilitation) attached USDT-associated addresses; no per-address
+  on-chain freeze receipt or public CEX cascade was pinned in the 14-day
+  window. null_case: cross-layer surface deferred for a draft."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - iran_related
+  - irgc
+  - usdt
+  - null_event

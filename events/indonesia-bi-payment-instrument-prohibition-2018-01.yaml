@@ -1,0 +1,144 @@
+id: indonesia-bi-payment-instrument-prohibition-2018-01
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - indonesia-bi-bitcoin-warning-2014
+  - indonesia-bappebti-illegal-exchange-block-2023
+
+trigger:
+  type: nation_state_block
+  actor: ID_BI
+  timestamp: 2018-01-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.bi.go.id/id/ruang-media/siaran-pers/Pages/sp_200418.aspx
+      wayback: https://web.archive.org/web/20180315015913/https://www.bi.go.id/id/ruang-media/siaran-pers/Pages/sp_200418.aspx
+      body_hash: sha256:2c820cf8d63cd7633b7a94595943adfa4083180af5097dc5042889f6551251bf
+      body_path: sources/http_captures/indonesia-bi-payment-instrument-prohibition-2018-01/bi-press-release/web.archive.org__web-20180120000000-https-www.bi.go.id-id-ruang-media-siaran-pers-Pages-sp_200418.aspx__71db8c61ed.html
+      note: |
+        Bank Indonesia press release No. 20/4/Dkom dated 2018-01-13 ("Bank Indonesia
+        Memperingatkan Kepada Seluruh Pihak Agar Tidak Menjual, Membeli atau Memperdagangkan
+        Virtual Currency"). The release affirms virtual currency including bitcoin is not a
+        legitimate payment instrument under Law No. 7/2011 on Currency, AND — as the payment-
+        system authority — PROHIBITS all payment-system service providers (penyelenggara jasa
+        sistem pembayaran) and Financial Technology providers in Indonesia, both bank and non-
+        bank, from processing transactions with virtual currency (citing PBI No. 18/40/PBI/2016
+        and PBI No. 19/12/PBI/2017). Date "13 Januari 2018" and the processing prohibition
+        language verified by full-text capture.
+  timestamp_sources:
+    - type: primary_government
+      note: BI press release dated 2018-01-13; processing prohibition effective on issuance.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Indonesian payment-system service providers (PJSP) and financial-technology operators
+    (bank and non-bank) as a class, barred from processing virtual-currency transactions;
+    and the Indonesian public, for whom crypto is declared a non-legitimate payment
+    instrument. No specific operator is named in the release. Coded subset at entity-class
+    level.
+  protocol: null
+  actor_type: indonesian_payment_processor_ecosystem
+  actor_name: Indonesian PJSP / fintech payment operators (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [ID]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [indonesia_payment_operator_virtual_currency_processing_prohibition]
+    note: |
+      The load-bearing action is BI's prohibition on payment-system service providers and
+      fintech operators processing virtual-currency transactions — a payment-rail / off-ramp
+      severance for crypto in Indonesia. Carried at offramp_cex and anchored to the BI press
+      release (primary_government). partially_measured: the regulatory prohibition is the
+      captured artifact; downstream operator-level compliance effects are not separately
+      measured. (BI's parallel "not a legitimate payment instrument" non-recognition statement
+      is, on its own, a §9-excludable soft statement; the load-bearing, in-scope element coded
+      here is the operative processing prohibition on payment firms.)
+
+observations:
+  - layer: offramp_cex
+    actor: indonesian_payment_processor_ecosystem
+    event: payment_operators_barred_from_processing_virtual_currency_transactions
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-01-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_government
+        url: https://www.bi.go.id/id/ruang-media/siaran-pers/Pages/sp_200418.aspx
+        wayback: https://web.archive.org/web/20180315015913/https://www.bi.go.id/id/ruang-media/siaran-pers/Pages/sp_200418.aspx
+        body_hash: sha256:2c820cf8d63cd7633b7a94595943adfa4083180af5097dc5042889f6551251bf
+        body_path: sources/http_captures/indonesia-bi-payment-instrument-prohibition-2018-01/bi-press-release/web.archive.org__web-20180120000000-https-www.bi.go.id-id-ruang-media-siaran-pers-Pages-sp_200418.aspx__71db8c61ed.html
+        note: |
+          attribution=direct: Bank Indonesia (the named actor) publicly issues the
+          prohibition in its own press release and names the target class (PJSP / fintech
+          payment operators) barred from processing virtual-currency transactions. The BI
+          release IS the regulatory action. Per codebook §1 the actor's own instrument
+          citing the restriction satisfies direct attribution.
+      - type: supporting_journalism
+        url: https://www.coindesk.com/markets/2018/01/15/indonesia-central-bank-cryptocurrency-payments-not-legitimate
+        wayback: https://web.archive.org/web/20210917105712/https://www.coindesk.com/markets/2018/01/15/indonesia-central-bank-cryptocurrency-payments-not-legitimate/
+        body_hash: sha256:ba12f6f3f0126796bae7064c487431a3816be99df62ddb67691877dfb21c6e3a
+        body_path: sources/http_captures/indonesia-bi-payment-instrument-prohibition-2018-01/primary/web.archive.org__web-20180115000000-https-www.coindesk.com-markets-2018-01-15-indonesia-central-bank-cryptocurrency-payments-not-legitimate__524874f33c.html
+        note: |
+          CoinDesk 2018-01-15 contemporaneous report corroborating the BI 2018-01-13
+          announcement: crypto declared not a legitimate payment instrument and payment
+          operators barred from processing virtual-currency transactions.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission). Bank Indonesia press release No. 20/4/Dkom of 2018-01-13
+  declared virtual currency (incl. bitcoin) not a legitimate payment instrument under Law
+  7/2011 AND barred all Indonesian payment-system service providers (PJSP) and fintech
+  operators — bank and non-bank — from processing virtual-currency transactions. §9 inclusion:
+  the operative, in-scope element is the processing PROHIBITION on payment firms (a payment-
+  rail / off-ramp severance), distinct from and load-bearing relative to the accompanying
+  "not legitimate payment instrument" non-recognition statement (which alone would be a §9-
+  excludable soft statement). Coded at offramp_cex with direct attribution (the BI press
+  release is the actor's own instrument naming the restriction and the target class). NOT a
+  duplicate of indonesia-bi-bitcoin-warning-2014 (an earlier 2014 BI advisory) nor
+  indonesia-bappebti-illegal-exchange-block-2023 (a 2023 Bappebti action); listed as
+  related_events. Companion nation-state payment-rail bans: India RBI 2018, China PBoC 2021,
+  Nigeria CBN 2021.
+
+scoped_claim: |
+  "Bank Indonesia's 2018-01-13 press release barred Indonesian payment-system and fintech
+  operators from processing virtual-currency transactions (and declared crypto a non-legitimate
+  payment instrument). Coded as a nation-state off-ramp / payment-rail prohibition at class
+  level; primary source is the BI press release."
+
+tags:
+  - nation_state_block
+  - indonesia
+  - bank_indonesia
+  - payment_rail_prohibition
+  - offramp_prohibition

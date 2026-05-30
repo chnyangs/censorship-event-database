@@ -1,0 +1,120 @@
+id: iraq-cbi-cryptocurrency-prohibition-2017-12
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - iran-cbi-crypto-banking-prohibition-2018
+  - nigeria-cbn-crypto-ban-2021
+
+trigger:
+  type: nation_state_block
+  actor: IQ_CBI
+  timestamp: 2017-12-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://web.archive.org/web/20171203000000/https://cbi.iq/news/view/512
+      wayback: https://web.archive.org/web/20180306163403/https://cbi.iq/news/view/512
+      body_hash: sha256:908aebce5ad7585451b2e176a641a91c1b99a98aafb99f9951dec35cd57fac13
+      body_path: sources/http_captures/iraq-cbi-cryptocurrency-prohibition-2017-12/primary/web.archive.org__web-20171203000000-https-cbi.iq-news-view-512__e56ceadd6b.html
+      note: |
+        Central Bank of Iraq (CBI) official statement dated December 03, 2017 (Arabic:
+        "Warning on trading the virtual currency Bitcoin"). The CBI supports issuance of a
+        circular against using Bitcoin and subjects those dealing in it to the provisions of
+        the anti-money-laundering law — i.e. a prohibition on bank/currency-trader dealing in
+        cryptocurrency, not a mere consumer caution. Page "Creation date" field shows
+        December 03, 2017; earliest Wayback memento 2018-03-06.
+  timestamp_sources:
+    - type: primary_government
+      note: CBI page dated December 03, 2017.
+
+target:
+  kind: asset
+  enumeration: subset
+  enumeration_note: |
+    Bitcoin / virtual currency as a class, with banks and currency traders prohibited from
+    dealing in it under AML-law penalties. No specific platform/address named; class-level.
+  protocol: null
+  actor_type: iraqi_crypto_banking_ecosystem
+  actor_name: Iraqi banks / currency traders dealing in cryptocurrency (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [IQ]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: measured
+    scope: [iraq_banking_channels_and_currency_traders_for_cryptocurrency]
+    note: |
+      CBI prohibited banks and currency traders from dealing in cryptocurrency under
+      AML-law penalties, severing regulated banking/exchange rails for crypto. Effect
+      carried at offramp_cex (banking/payment-rail prohibition) at class level
+      (codebook §1.6 — regulatory prohibition, no on-chain tx).
+
+observations:
+  - layer: offramp_cex
+    actor: iraqi_crypto_banking_ecosystem
+    event: bank_and_currency_trader_dealing_in_cryptocurrency_prohibited
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-12-03T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_government
+        url: https://web.archive.org/web/20171203000000/https://cbi.iq/news/view/512
+        body_hash: sha256:908aebce5ad7585451b2e176a641a91c1b99a98aafb99f9951dec35cd57fac13
+        body_path: sources/http_captures/iraq-cbi-cryptocurrency-prohibition-2017-12/primary/web.archive.org__web-20171203000000-https-cbi.iq-news-view-512__e56ceadd6b.html
+        note: |
+          attribution=direct (codebook §1.1): the CBI statement is the regulatory
+          instrument itself and mandates the prohibition (banks/currency traders barred
+          from dealing in cryptocurrency, AML-law penalties for offenders).
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
+  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
+  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
+  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
+  unsupported specifics. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission). Central Bank of Iraq statement dated 2017-12-03 prohibits banks
+  and currency traders from dealing in cryptocurrency (Bitcoin) under AML-law penalties — a
+  banking/payment-rail prohibition (in scope per codebook §9). Comparable-main tier (2017).
+  One observed_change layer (offramp_cex) -> empirical_shape=comparison. attribution=direct
+  (codebook §1.1) — the CBI statement is the primary instrument that mandates the
+  prohibition. NOTE: candidate slug date (2017-01-01) corrected to the CBI page's own date,
+  2017-12-03. The 2017 ban was later formalized by CBI Circular No. 125/5/9 (Nov 2021);
+  this event captures the original 2017 action.
+
+scoped_claim: |
+  "The Central Bank of Iraq (statement dated 2017-12-03) prohibited banks and currency traders
+  from dealing in cryptocurrency under AML-law penalties; impact captured at class level at the
+  offramp_cex (banking/payment-rail) layer."
+
+tags:
+  - nation_state_block
+  - iraq
+  - banking_rail_severance
+  - cbi_statement

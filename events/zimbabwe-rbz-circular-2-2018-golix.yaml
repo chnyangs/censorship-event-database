@@ -1,0 +1,130 @@
+id: zimbabwe-rbz-circular-2-2018-golix
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - nigeria-cbn-crypto-ban-2021
+  - india-rbi-crypto-ban-2018
+
+trigger:
+  type: nation_state_block
+  actor: ZW_RBZ
+  timestamp: 2018-05-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://web.archive.org/web/20180515000000/https://www.techzim.co.zw/2018/05/cryptocurrency-ban-full-statement-rbz/
+      wayback: https://web.archive.org/web/20180514120042/https://www.techzim.co.zw/2018/05/cryptocurrency-ban-full-statement-rbz/
+      body_hash: sha256:bfc884d752671650f0f57eac44d179ff0bf539ab53a8a07f681964edb9bffd62
+      body_path: sources/http_captures/zimbabwe-rbz-circular-2-2018-golix/primary/web.archive.org__web-20180515000000-https-www.techzim.co.zw-2018-05-cryptocurrency-ban-full-statement-rbz__0c19bf61cf.html
+      note: |
+        Reserve Bank of Zimbabwe (RBZ) Circular No. 2/2018 to Banking Institutions on
+        Virtual Currencies, signed by Registrar of Banking Institutions, dated 2018-05-11.
+        Directed all banking institutions to stop providing banking services that
+        facilitate dealing in or settlement of virtual currencies (maintaining accounts,
+        registering/trading/clearing, processing payments, giving loans against crypto
+        tokens, or accepting them as collateral). The circular names Bitfinance (Private)
+        Limited (trading as Golix) and Styx24 as the major exchanges then operating in
+        Zimbabwe, and gave institutions 60 days to terminate existing relationships and
+        return account balances. Full statement text captured via Techzim (Wayback memento
+        2018-05-14); the page reproduces the RBZ circular verbatim.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Circular dated 2018-05-11; institutions given 60 days to exit. Action publicly
+        reported 2018-05-12 to 2018-05-14. Later provisionally suspended by Harare High
+        Court order (Golix v RBZ) on 2018-05-24, but the banking cut-off was effective on
+        issue.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Zimbabwean crypto exchanges and users as a class; the circular explicitly names
+    Bitfinance (Private) Limited trading as Golix and Styx24 as the two major exchanges
+    targeted. Banking-service severance applied to all institutions and any entity dealing
+    in virtual currencies.
+  protocol: null
+  actor_type: zimbabwean_crypto_ecosystem
+  actor_name: Golix / Styx24 and Zimbabwean crypto exchanges / users (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [ZW]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [zimbabwe_banking_channels_to_crypto_exchanges]
+    note: |
+      RBZ circular severed banking deposit/withdrawal channels for cryptocurrency
+      exchanges (named: Golix, Styx24) within 60 days. Carried as observed_change at
+      offramp_cex (banking-rail severance). Replayable anchor is the captured RBZ circular
+      (primary_legal, body_hash + body_path on the observation source); the off-ramp
+      surface is not exhaustively measured (no per-exchange volume slice), hence
+      partially_measured.
+
+observations:
+  - layer: offramp_cex
+    actor: zimbabwe_crypto_banking_ecosystem
+    event: banking_channel_severed_named_exchanges_golix_styx24
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-05-11T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://web.archive.org/web/20180515000000/https://www.techzim.co.zw/2018/05/cryptocurrency-ban-full-statement-rbz/
+        body_hash: sha256:bfc884d752671650f0f57eac44d179ff0bf539ab53a8a07f681964edb9bffd62
+        body_path: sources/http_captures/zimbabwe-rbz-circular-2-2018-golix/primary/web.archive.org__web-20180515000000-https-www.techzim.co.zw-2018-05-cryptocurrency-ban-full-statement-rbz__0c19bf61cf.html
+        note: |
+          RBZ Circular 2/2018 is the legal instrument. attribution=direct because the
+          circular itself mandates the banking cut-off and explicitly names the targeted
+          exchanges (Golix, Styx24).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission). Reserve Bank of Zimbabwe Circular No. 2/2018 (2018-05-11)
+  ordered all banking institutions to stop servicing cryptocurrency exchanges, naming
+  Golix (Bitfinance Pvt Ltd) and Styx24, with a 60-day wind-down. This is a nation-state
+  banking-rail severance directly analogous to the Nigeria CBN 2021 and India RBI 2018
+  cut-offs (sibling S4 events). attribution=direct under §1.5 reasoning analogue: the
+  blocking authority's own order names the targets and mandates the severance.
+  Subsequently provisionally suspended by the Harare High Court (Golix v RBZ, 2018-05-24),
+  but the order was effective on issue; the later court suspension is downstream context.
+  Coded offramp_cex (banking-channel severance), not l0_network (no ISP/DNS block alleged).
+
+scoped_claim: |
+  "RBZ Circular 2/2018 of 2018-05-11 ordered Zimbabwean banks to cease servicing
+  cryptocurrency exchanges (named: Golix, Styx24) within 60 days, severing banking rails
+  for the domestic crypto off-ramp surface. Effect carried at offramp_cex; later
+  provisionally suspended by the Harare High Court."
+
+tags:
+  - nation_state_block
+  - zimbabwe
+  - banking_rail_severance
+  - rbz_circular
+  - golix

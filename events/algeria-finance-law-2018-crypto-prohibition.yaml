@@ -1,0 +1,128 @@
+id: algeria-finance-law-2018-crypto-prohibition
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: nation_state_block
+  actor: DZ_GOVT
+  timestamp: 2017-12-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.joradp.dz/FTP/jo-francais/2017/F2017076.pdf
+      wayback: https://web.archive.org/web/20190312173325id_/https://www.joradp.dz/FTP/jo-francais/2017/F2017076.pdf
+      body_hash: sha256:0e73a9f71de0d7514761b7667ac22d9ceeafb13b408fd4e98ec8072eb4bdb2a7
+      body_path: sources/http_captures/algeria-finance-law-2018-crypto-prohibition/primary/web.archive.org__web-20190312173325id_-https-www.joradp.dz-FTP-jo-francais-2017-F2017076.pdf__6c420ff786.bin
+      note: |
+        Journal Officiel de la République Algérienne No. 76 (French edition), dated
+        2017-12-28, carrying Loi de finances pour 2018 (Loi n° 17-11 du 27 décembre 2017).
+        Article 117 reads verbatim: "L'achat, la vente, l'utilisation et la détention de la
+        monnaie dite virtuelle est interdite. La monnaie virtuelle est celle utilisée par
+        les internautes à travers le web. ... Toute infraction à cette disposition est punie
+        conformément aux lois et règlements en vigueur." (Purchase, sale, use and holding of
+        so-called virtual currency is prohibited.) This is the primary legal instrument — the
+        law itself. Verified by full-text extraction of the captured PDF.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Finance Law 2018 (Loi n° 17-11) signed 2017-12-27, published in JO No. 76 on
+        2017-12-28; Article 117 prohibition effective on publication.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Algerian crypto users / exchanges / merchants as a class. Article 117 prohibits the
+    purchase, sale, use and possession of virtual currency by any person within Algeria;
+    no specific platform or address is enumerated in the law. Coded subset at entity-class
+    level. (Prohibition later hardened by Law No. 25-10 in July 2025 — a separate, out-of-
+    scope-of-this-event later action.)
+  protocol: null
+  actor_type: algerian_crypto_ecosystem
+  actor_name: Algerian crypto users / exchanges / merchants (class)
+  chains: []
+  canonical_domains: []
+
+jurisdiction: [DZ]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    scope: [algeria_purchase_sale_use_possession_prohibition]
+    note: |
+      Finance Law 2018 Article 117 is a blanket statutory prohibition on the purchase,
+      sale, use and possession of virtual currency in Algeria — i.e. a nation-state
+      payment-rail / off-ramp prohibition severing legal access to crypto buy/sell
+      activity for the Algerian public. Carried at offramp_cex (the load-bearing layer);
+      anchored to the law text (primary_legal). partially_measured because the statutory
+      prohibition is the captured artifact; downstream market-level on-the-ground
+      enforcement effects are not separately measured.
+
+observations:
+  - layer: offramp_cex
+    actor: algerian_crypto_ecosystem
+    event: virtual_currency_purchase_sale_use_possession_prohibited_by_statute
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-12-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.joradp.dz/FTP/jo-francais/2017/F2017076.pdf
+        wayback: https://web.archive.org/web/20190312173325id_/https://www.joradp.dz/FTP/jo-francais/2017/F2017076.pdf
+        body_hash: sha256:0e73a9f71de0d7514761b7667ac22d9ceeafb13b408fd4e98ec8072eb4bdb2a7
+        body_path: sources/http_captures/algeria-finance-law-2018-crypto-prohibition/primary/web.archive.org__web-20190312173325id_-https-www.joradp.dz-FTP-jo-francais-2017-F2017076.pdf__6c420ff786.bin
+        note: |
+          attribution=direct: the named actor (Algerian state, via Loi de finances 2018)
+          publicly references the prohibition in the law text itself, and the instrument
+          names the target class (all holders/users of virtual currency in Algeria). The
+          law IS the censorship action. Per codebook §1 the actor's own instrument citing
+          the restriction satisfies direct attribution.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission). Algeria Finance Law 2018 (Loi n° 17-11 du 27 décembre 2017),
+  Article 117, published in Journal Officiel No. 76 on 2017-12-28, prohibited the purchase,
+  sale, use and possession of virtual currency nationwide. §9 inclusion: this is a deliberate
+  nation-state statutory prohibition (payment-rail / off-ramp ban), not a soft warning or
+  non-recognition statement — it criminalizes/prohibits the activity outright, so it is IN
+  scope. Primary source is the law text itself (JO No. 76 PDF, Article 117 verified by
+  full-text extraction). attribution=direct per codebook §1 (the actor's own legal instrument
+  names the restriction and the target class). Drafted with offramp_cex as the load-bearing
+  layer (legal severance of buy/sell/use access); set partially_measured anchored to the
+  primary legal artifact. Companion nation-state statutory bans in the corpus: India RBI 2018,
+  China PBoC 2021, Nigeria CBN 2021.
+
+scoped_claim: |
+  "Algeria's Finance Law 2018 (Article 117), published 2017-12-28 in Journal Officiel No. 76,
+  prohibited the purchase, sale, use and possession of virtual currency nationwide. Coded as
+  a nation-state off-ramp prohibition at class level; primary source is the law text itself."
+
+tags:
+  - nation_state_block
+  - algeria
+  - finance_law_2018
+  - statutory_crypto_prohibition
+  - offramp_prohibition

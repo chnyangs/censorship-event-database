@@ -1,0 +1,175 @@
+id: morocco-office-des-changes-crypto-ban-2017-11
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - vietnam-sbv-payment-prohibition-2017-10
+  - nepal-nrb-bitcoin-ban-2017-08
+
+trigger:
+  type: regulatory_enforcement
+  actor: MA_OFFICE_DES_CHANGES
+  timestamp: 2017-11-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/
+      wayback: https://web.archive.org/web/20171209152107/https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/
+      body_hash: sha256:6b2d52b9a56def12ee6f42bd90a723cb6e26a01d688600e74191f0c98c3c6609
+      body_path: sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/primary/web.archive.org__web-20171209152107-https-www.moroccoworldnews.com-2017-11-234382-bitcoin-morocco-cryptocurrencies-economy__be7ba8bf29.html
+      evidence_use: replayable
+      note: |
+        Morocco World News, 2017-11-21 (archived 2017-12-09), "Bye-Bye Bitcoin:
+        Morocco Bans Cryptocurrencies." Contemporaneous report that Morocco's Office
+        des Changes (Foreign Exchange Office) and Bank Al-Maghrib issued a public
+        statement declaring that transactions made via cryptocurrencies are banned and
+        will be punishable by fines, because they violate the foreign-exchange
+        regulations requiring transactions with foreign countries to pass through
+        authorized intermediaries and in currencies listed by Bank Al-Maghrib.
+        body_hash captured 2026-05-31.
+    - type: supporting_tracker
+      url: https://freemanlaw.com/cryptocurrency/morocco/
+      wayback: https://web.archive.org/web/20220629151654/https://freemanlaw.com/cryptocurrency/morocco/
+      body_hash: sha256:e2ce724fd9274b01b6432b03be523bb8ec39ed5abdbcd8a588665432f49eeae8
+      body_path: sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/tracker/web.archive.org__web-20220629151654-https-freemanlaw.com-cryptocurrency-morocco__5028aded5e.html
+      evidence_use: replayable
+      note: |
+        Freeman Law jurisdiction tracker corroborating that the Office des Changes
+        declared cryptocurrency transactions an infraction of Morocco's foreign-
+        exchange regulations, subject to penalties. Retrospective secondary tracker;
+        body_hash captured 2026-05-31.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Office des Changes / Bank Al-Maghrib joint statement dated 2017-11-21
+        (Morocco World News, archived 2017-12-09). Day-level precision.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Moroccan-resident cryptocurrency users and businesses as a class. The Office des
+    Changes statement declares any transaction in virtual currency an infraction of the
+    foreign-exchange regulations, subject to fines; it does not enumerate specific
+    exchanges. Class-level subset framing matches sibling FX-control prohibition events;
+    canonical_domains is empty.
+  protocol: null
+  actor_type: moroccan_crypto_ecosystem
+  actor_name: Moroccan crypto users / businesses (class)
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - MA
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The Office des Changes statement is an FX-control-law prohibition, not an ISP/DNS
+      network block; no replayable L0 measurement is captured (codebook §1.5).
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+  - layer: offramp_cex
+    status: partially_measured
+    note: |
+      The prohibition operates at the off-ramp / foreign-exchange surface: the Office
+      des Changes and Bank Al-Maghrib declared cryptocurrency transactions illegal under
+      the FX regulations (authorized-intermediary and listed-currency requirements) and
+      punishable by fines. Carried as observed_change with attribution=plausible: the
+      contemporaneous report documents the ban and penalties, but this pass did not
+      capture the official Office des Changes communiqué primary text or a quantitative
+      measurement, so coverage is partially_measured.
+
+observations:
+  - layer: offramp_cex
+    actor: moroccan_crypto_ecosystem
+    event: crypto_transactions_declared_illegal_with_fines_by_office_des_changes
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2017-11-21T00:00:00Z
+    precision: day
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/
+        wayback: https://web.archive.org/web/20171209152107/https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/
+        body_hash: sha256:6b2d52b9a56def12ee6f42bd90a723cb6e26a01d688600e74191f0c98c3c6609
+        body_path: sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/primary/web.archive.org__web-20171209152107-https-www.moroccoworldnews.com-2017-11-234382-bitcoin-morocco-cryptocurrencies-economy__be7ba8bf29.html
+        evidence_use: replayable
+        note: |
+          Morocco World News 2017-11-21 (archived 2017-12-09): Office des Changes and
+          Bank Al-Maghrib declared crypto transactions banned and punishable by fines
+          under the FX regulations. attribution=plausible per §1.5 (contemporaneous
+          report; official communiqué primary text not captured in this pass).
+      - type: supporting_tracker
+        url: https://freemanlaw.com/cryptocurrency/morocco/
+        wayback: https://web.archive.org/web/20220629151654/https://freemanlaw.com/cryptocurrency/morocco/
+        body_hash: sha256:e2ce724fd9274b01b6432b03be523bb8ec39ed5abdbcd8a588665432f49eeae8
+        body_path: sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/tracker/web.archive.org__web-20220629151654-https-freemanlaw.com-cryptocurrency-morocco__5028aded5e.html
+        evidence_use: replayable
+        note: |
+          Freeman Law tracker corroborating the FX-regulation infraction framing and
+          penalties.
+
+analysis_notes: |
+  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
+  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
+  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
+  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
+  unsupported specifics. DRAFT — do NOT admit as-is.
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
+  awaiting human admission).
+
+  Morocco's Office des Changes (Foreign Exchange Office), Bank Al-Maghrib and the Ministry
+  of Economy and Finance issued a joint public statement on 2017-11-21 declaring that
+  transactions made via cryptocurrencies are banned and punishable by fines, because they
+  violate the foreign-exchange regulations requiring transactions with foreign countries to
+  pass through authorized intermediaries and in currencies listed by Bank Al-Maghrib. This
+  is a binding FX-control prohibition with penalties, in scope under codebook §9 (a
+  deliberate state restriction on a crypto transaction surface), not a soft "not legal
+  tender" advisory.
+
+  Why trigger.type=regulatory_enforcement: per §5.1, the Office des Changes action is
+  non-US national regulator administrative enforcement (an FX-law prohibition with fines),
+  not an ISP/DNS network block. Matches the bangladesh-bb-bitcoin-warning-2014 sibling.
+
+  Why attribution=plausible: per §1.5 + §8.4, contemporaneous report captured but the
+  official Office des Changes communiqué primary text not captured in this pass;
+  conservative plausible.
+
+  Why comparable_main_2017_present / comparable_analysis: 2017 event, post-2017 tier.
+
+  Draft pending human audit of (i) the official Office des Changes / Bank Al-Maghrib
+  communiqué primary text and (ii) any quantitative offramp_cex measurement.
+
+scoped_claim: |
+  Morocco's Office des Changes and Bank Al-Maghrib declared on 2017-11-21 that
+  cryptocurrency transactions are banned and punishable by fines under the foreign-exchange
+  regulations. Effect carried at offramp_cex (observed_change, plausible) at class level.
+
+tags:
+  - regulatory_enforcement
+  - morocco
+  - office_des_changes
+  - bank_al_maghrib
+  - foreign_exchange_prohibition
+  - crypto_ban
+  - comparable_analysis
