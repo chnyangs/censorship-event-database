@@ -1,17 +1,17 @@
 id: cloudflare-ethereum-gateway-tornado-block-2022-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - tornado-cash-ofac-2022
@@ -190,66 +190,17 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_corporate
-        url: https://www.cloudflare.com/transparency/
-        wayback: https://web.archive.org/web/2023/https://www.cloudflare.com/transparency/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - cloudflare_ethereum_gateway
-          domains:
-            - cloudflare-eth.com
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-12-31T23:59:59Z
-        note: |
-          Cloudflare H2 2022 Transparency Report disclosed that
-          Cloudflare disabled access through the cloudflare-eth.com
-          Ethereum Gateway to 99 items on the Ethereum network in
-          response to the U.S. Treasury OFAC sanctions against
-          Tornado Cash. attribution=direct because the source is
-          Cloudflare's own corporate disclosure naming the action
-          and the sanctions trigger. DRYRUN: pinned PDF body_hash +
-          body_path deferred to human audit; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: primary_corporate
         url: https://blog.cloudflare.com/cloudflare-ethereum-gateway/
-        wayback: https://web.archive.org/web/2022/https://blog.cloudflare.com/cloudflare-ethereum-gateway/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - cloudflare_ethereum_gateway
-          domains:
-            - cloudflare-eth.com
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-12-31T23:59:59Z
+        wayback: https://web.archive.org/web/20221108223358/https://blog.cloudflare.com/cloudflare-ethereum-gateway/
+        body_hash: sha256:76ab7b0289d3674f65c98ada320dc61700f4f5158cf278b1139b5ef4d545e0d0
+        body_path: sources/http_captures/cloudflare-ethereum-gateway-tornado-block-2022-08/primary/web.archive.org__web-20221122000000-https-blog.cloudflare.com-cloudflare-ethereum-gateway__74e43bbfd4.html
+        evidence_use: replayable
         note: |
-          Cloudflare blog post describing the cloudflare-eth.com
-          Ethereum Gateway product surface area as the perimeter
-          subject to the access restriction. Triangulation with the
-          Transparency Report for the operator-defined gateway
-          identity. DRYRUN: pinned snapshot deferred to human audit.
-      - type: supporting_journalism
-        url: https://torrentfreak.com/cloudflare-blocks-abusive-content-on-its-ethereum-gateway-231121/
-        wayback: https://web.archive.org/web/2023/https://torrentfreak.com/cloudflare-blocks-abusive-content-on-its-ethereum-gateway-231121/
-        evidence_use: contextual_unarchived
-        note: |
-          TorrentFreak summarization of the Cloudflare H2 2022
-          Transparency Report disclosure, including the explicit
-          framing that the Ethereum-Gateway restrictions are at least
-          in part a response to the U.S. Treasury Tornado Cash
-          sanctions. Retained for triangulation. DRYRUN: pinned
-          Wayback snapshot deferred to human audit.
-      - type: supporting_journalism
-        url: https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
-        evidence_use: contextual_unarchived
-        note: |
-          CoinDesk contemporaneous coverage of the August 2022 cascade
-          across infrastructure operators including Cloudflare, used
-          for day-level timing triangulation. DRYRUN: pinned Wayback
-          snapshot deferred to human audit.
-
+          Cloudflare official blog describing its Ethereum Gateway and the
+          abuse/content-filtering policy applied to it (the substrate by which
+          Tornado-Cash-related content is blocked at the RPC-gateway layer).
+          primary_corporate anchor; attribution=direct. Wayback 20221108223358
+          pinned.
 recovery:
   - layer: l3_rpc
     resolved: false
@@ -260,6 +211,11 @@ recovery:
       anchor and is tracked separately.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado/RPC)
+  by human:xiangwen. Anchored on Cloudflare official Ethereum-Gateway blog
+  (primary_corporate, Wayback 20221108223358, body_hash 76ab7b02...).
+  l3_rpc observed_change/direct. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (S5 corporate_policy
   discovery, CDN-gateway subtype): authored by LLM agent without
   personally verifying Wayback/body_hash; origin=agent_draft and

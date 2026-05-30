@@ -1,17 +1,17 @@
 id: dydx-tornado-account-block-2022-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: anchor_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - tornado-cash-ofac-2022
@@ -186,57 +186,24 @@ observations:
     sources:
       - type: primary_corporate
         url: https://dydx.exchange/blog/tornado-cash-update
-        wayback: https://web.archive.org/web/2022/https://dydx.exchange/blog/tornado-cash-update
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - dydx.exchange
-            - trade.dydx.exchange
-          time_window:
-            - 2022-08-11T00:00:00Z
-            - 2022-08-12T23:59:59Z
+        wayback: https://web.archive.org/web/20220829214213/https://dydx.exchange/blog/tornado-cash-update
+        body_hash: sha256:e4f66984122b7e34fb7142f29bb5a9d1805dad6db38242a2383158abad00b817
+        body_path: sources/http_captures/dydx-tornado-account-block-2022-08/primary/web.archive.org__web-20220812000000-https-dydx.exchange-blog-tornado-cash-update__c44496f200.html
+        evidence_use: replayable
         note: |
-          dYdX Trading Inc.'s own blog post of 2022-08-11 is the
-          canonical corporate-policy source for this L4 frontend
-          account-block. The operator names: (a) the action (accounts
-          flagged for Tornado Cash interaction history blocked from
-          the dYdX trading UI), (b) the mechanism (third-party
-          compliance vendor flag), and (c) the upstream cause
-          (compliance with the 2022-08-08 OFAC SDN designation, per
-          related event tornado-cash-ofac-2022). The post also
-          explicitly acknowledges the history-based "guilt by
-          association" character of the block — accounts blocked
-          because their wallets received Tornado-traceable funds in
-          the past, not because of current-state interaction.
-          attribution=direct because the source is the operator
-          naming the action. DRYRUN: pinned Wayback snapshot and
-          body_hash deferred to human audit; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: supporting_journalism
+          dYdX official blog (2022-08) confirming it blocked accounts that
+          received funds traceable to Tornado Cash (including via dust attacks),
+          via its compliance provider. primary_corporate anchor; attribution=
+          direct. Wayback 20220829214213 pinned.
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - dydx.exchange
-          time_window:
-            - 2022-08-11T00:00:00Z
-            - 2022-08-12T23:59:59Z
+        wayback: https://web.archive.org/web/20220811213559/https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash/
+        body_hash: sha256:4ca9dc3fc04a525ca5af4665e81b714c3df235b3d9f7546a109bb55852cc4157
+        body_path: sources/http_captures/dydx-tornado-account-block-2022-08/primary/web.archive.org__web-20220812000000-https-www.coindesk.com-business-2022-08-11-crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash__641b67aa65.html
+        evidence_use: replayable
         note: |
-          CoinDesk contemporaneous coverage (2022-08-11) of the dYdX
-          account-block, documenting the history-based "even small
-          amounts from Tornado Cash" trigger condition that makes
-          this a paper-defining "guilt by association" anchor.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-      - type: supporting_journalism
-        url: https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
-        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
-        evidence_use: contextual_unarchived
-        note: |
-          The Block contemporaneous coverage (2022-08-11) confirming
-          the compliance-vendor mechanism and the layer split
-          (frontend trading block vs withdrawal preservation).
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
+          CoinDesk 2022-08-11 coverage corroborating the dYdX account blocks.
+          Independent semi-primary anchor.
   - layer: offramp_cex
     actor: exchange:dydx
     event: dydx_off_ramp_trading_restricted_for_tornado_tainted_accounts
@@ -248,56 +215,24 @@ observations:
     sources:
       - type: primary_corporate
         url: https://dydx.exchange/blog/tornado-cash-update
-        wayback: https://web.archive.org/web/2022/https://dydx.exchange/blog/tornado-cash-update
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - dydx_trading_inc
-          time_window:
-            - 2022-08-11T00:00:00Z
-            - 2022-08-12T23:59:59Z
+        wayback: https://web.archive.org/web/20220829214213/https://dydx.exchange/blog/tornado-cash-update
+        body_hash: sha256:e4f66984122b7e34fb7142f29bb5a9d1805dad6db38242a2383158abad00b817
+        body_path: sources/http_captures/dydx-tornado-account-block-2022-08/primary/web.archive.org__web-20220812000000-https-dydx.exchange-blog-tornado-cash-update__c44496f200.html
+        evidence_use: replayable
         note: |
-          Same dYdX blog post serves as the off-ramp-layer anchor: as
-          a hybrid CEX (centralized matching engine + onchain StarkEx
-          settlement) dYdX is structurally an off-ramp venue, and the
-          account-block restricts trading and platform interaction
-          while preserving withdrawal. The dYdX statement names the
-          off-ramp-specific consequence — flagged accounts cannot
-          open new perpetuals positions or otherwise interact with
-          the dYdX venue, but funds remain withdrawable. This is the
-          "trading-side restriction, withdrawal-side preserved"
-          off-ramp signature characteristic of compliance-vendor-
-          flagged accounts on hybrid-CEX venues. attribution=direct
-          because the source is the operator naming the action.
-          DRYRUN: pinned Wayback snapshot and body_hash deferred to
-          human audit; marked evidence_use=contextual_unarchived per
-          validator policy.
-      - type: supporting_journalism
-        url: https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
-        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162928/dydx-confirms-blocking-user-accounts-tied-to-tornado-cash
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - dydx_trading_inc
-          time_window:
-            - 2022-08-11T00:00:00Z
-            - 2022-08-12T23:59:59Z
+          dYdX official blog (2022-08) confirming it blocked accounts that
+          received funds traceable to Tornado Cash (including via dust attacks),
+          via its compliance provider. primary_corporate anchor; attribution=
+          direct. Wayback 20220829214213 pinned.
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash
+        wayback: https://web.archive.org/web/20220811213559/https://www.coindesk.com/business/2022/08/11/crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash/
+        body_hash: sha256:4ca9dc3fc04a525ca5af4665e81b714c3df235b3d9f7546a109bb55852cc4157
+        body_path: sources/http_captures/dydx-tornado-account-block-2022-08/primary/web.archive.org__web-20220812000000-https-www.coindesk.com-business-2022-08-11-crypto-exchange-dydx-blocked-accounts-that-received-even-small-amounts-from-tornado-cash__641b67aa65.html
+        evidence_use: replayable
         note: |
-          The Block contemporaneous coverage (2022-08-11) confirming
-          that withdrawals from blocked dYdX accounts remained
-          available — load-bearing for the "trading restricted,
-          withdrawal preserved" off-ramp shape. DRYRUN: pinned
-          Wayback snapshot deferred to human audit.
-      - type: supporting_journalism
-        url: https://cointelegraph.com/news/dydx-confirms-blocking-and-unblocking-some-accounts-linked-to-tornado-cash
-        wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/dydx-confirms-blocking-and-unblocking-some-accounts-linked-to-tornado-cash
-        evidence_use: contextual_unarchived
-        note: |
-          Cointelegraph contemporaneous coverage (2022-08-11)
-          documenting the same-day partial rollback of incorrectly
-          flagged accounts. DRYRUN: pinned Wayback snapshot deferred
-          to human audit.
-
+          CoinDesk 2022-08-11 coverage corroborating the dYdX account blocks.
+          Independent semi-primary anchor.
 recovery:
   - layer: l4_frontend
     resolved: false
@@ -320,6 +255,13 @@ recovery:
       above.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado,
+  anchor_case) by human:xiangwen. Both observations (l4_frontend +
+  offramp_cex) anchored on dYdX official blog (primary_corporate, Wayback
+  20220829214213, body_hash e4f66984...) + CoinDesk (semi_primary_wayback,
+  20220811213559, 4ca9dc3f...). observed_change/direct. anchor_case
+  preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2
   corporate_policy discovery; lean run): authored by LLM agent
   without personally verifying Wayback/body_hash; origin=agent_draft

@@ -1,17 +1,17 @@
 id: uniswap-balancer-tornado-frontend-block-2022-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - tornado-cash-ofac-2022
@@ -180,87 +180,53 @@ observations:
     sources:
       - type: primary_corporate
         url: https://blog.uniswap.org/trm
-        body_hash: sha256:1abc31ac680d449997991e3c253625932d658246fa31a918327c7397a4ebba09
-        body_path: sources/http_captures/uniswap-balancer-tornado-frontend-block-2022-08/v0_3_primary_repair/blog.uniswap.org__trm__b85d385f33.html
+        wayback: https://web.archive.org/web/20230330015248/https://blog.uniswap.org/trm
+        body_hash: sha256:97cbcdcf1912c8c37ea25ea4e4e09081e581b792e758e84ca4551c35926414e2
+        body_path: sources/http_captures/uniswap-balancer-tornado-frontend-block-2022-08/primary/web.archive.org__web-20220824000000-https-blog.uniswap.org-trm__6bc512d432.html
+        evidence_use: replayable
         note: |
-          Uniswap Labs' own 2022 address-screening update states that,
-          with TRM Labs, Uniswap Labs blocks wallet addresses associated
-          with illicit activity from interacting with the Uniswap Labs app.
-          This primary corporate source anchors the Uniswap Labs leg of the
-          L4 frontend-screening observation; Balancer remains separately
-          sourced by supporting reports pending an operator-primary anchor.
-      - type: supporting_journalism
+          Uniswap Labs official blog announcing TRM Labs wallet-screening
+          at the app.uniswap.org frontend, blocking addresses flagged for
+          Tornado-Cash/OFAC exposure. primary_corporate; attribution=direct.
+          Wayback 20230330015248 pinned.
+      - type: semi_primary_wayback
         url: https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
-        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - uniswap_labs
-          domains:
-            - app.uniswap.org
-          time_window:
-            - 2022-08-12T00:00:00Z
-            - 2022-08-22T23:59:59Z
+        wayback: https://web.archive.org/web/20220815231904/https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
+        body_hash: sha256:5f565d9df6ffe166766c152d4046138c4b026b965ef071055f92b1f4be52e1e9
+        body_path: sources/http_captures/uniswap-balancer-tornado-frontend-block-2022-08/primary/web.archive.org__web-20220824000000-https-www.theblock.co-post-143036-uniswap-labs-now-blocks-crypto-wallets-frontend__c337ab2c5e.html
+        evidence_use: replayable
         note: |
-          The Block contemporaneous report ("Uniswap Labs now blocks
-          certain crypto wallets from its app's frontend") naming
-          Uniswap Labs as the operator and TRM Labs as the
-          address-screening API provider. attribution=direct because
-          the firm publicly confirmed the screening integration via
-          Uniswap Labs' general counsel statement quoted in the
-          piece. DRYRUN: pinned Wayback snapshot and body_hash
-          deferred to human audit; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: supporting_journalism
-        url: https://www.coindesk.com/tech/2022/08/22/popular-uniswap-frontend-blocks-over-250-crypto-addresses-related-to-defi-crimes
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/22/popular-uniswap-frontend-blocks-over-250-crypto-addresses-related-to-defi-crimes
-        evidence_use: contextual_unarchived
-        note: |
-          CoinDesk retrospective (2022-08-22) reporting the 253-
-          address blocklist scale and the seven-category TRM Labs
-          taxonomy. Triangulation source for the scale of the
-          Uniswap Labs frontend block. DRYRUN: pinned Wayback
-          snapshot deferred to human audit.
+          The Block 2022-08 coverage of Uniswap Labs frontend wallet
+          blocking. Independent semi-primary anchor.
   - layer: l4_frontend
     actor: frontend:balancer_labs
     event: balancer_labs_trm_screening_block_of_tornado_tainted_addresses
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-08-12T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://cryptoslate.com/defi-protocols-aave-uniswap-balancer-ban-users-following-ofac-sanctions-on-tornado-cash/
-        wayback: https://web.archive.org/web/2022/https://cryptoslate.com/defi-protocols-aave-uniswap-balancer-ban-users-following-ofac-sanctions-on-tornado-cash/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - balancer_labs
-          domains:
-            - balancer.fi
-          time_window:
-            - 2022-08-12T00:00:00Z
-            - 2022-08-22T23:59:59Z
+        wayback: https://web.archive.org/web/20220822183816/https://cryptoslate.com/defi-protocols-aave-uniswap-balancer-ban-users-following-ofac-sanctions-on-tornado-cash/
+        body_hash: sha256:445e6b4735bf986668eeda286f43605db6d77772208bdbaee517c2b1086564d9
+        body_path: sources/http_captures/uniswap-balancer-tornado-frontend-block-2022-08/primary/web.archive.org__web-20220823000000-https-cryptoslate.com-defi-protocols-aave-uniswap-balancer-ban-users-following-ofac-sanctions-on-tornado-cash__172b99b064.html
+        evidence_use: replayable
         note: |
-          CryptoSlate contemporaneous report naming Balancer Labs
-          alongside Uniswap and Aave as DeFi frontend operators
-          activating the TRM-Labs-API-driven block of Tornado-
-          tainted addresses on balancer.fi. attribution=direct
-          because the firm's frontend behavior change is the
-          first-party operator action named in the source. DRYRUN:
-          pinned Wayback snapshot and body_hash deferred to human
-          audit.
-      - type: supporting_journalism
+          CryptoSlate 2022-08-22 coverage naming Balancer (alongside Aave,
+          Uniswap) among the DeFi frontends restricting Tornado-tainted wallets.
+          Semi-primary anchor for the Balancer leg.
+      - type: semi_primary_wayback
         url: https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
-        wayback: https://web.archive.org/web/2022/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20221121141935/https://blockworks.co/news/defi-web-apps-block-users-hit-by-tornado-cash-dust-attack
+        body_hash: sha256:7ea8212b396eca5a79b78ed6f9ff434089f02e7a5041169d3cb79b8d1be2c42a
+        body_path: sources/http_captures/uniswap-balancer-tornado-frontend-block-2022-08/primary/web.archive.org__web-20220823000000-https-blockworks.co-news-defi-web-apps-block-users-hit-by-tornado-cash-dust-attack__eb071a4a2e.html
+        evidence_use: replayable
         note: |
-          Blockworks coverage triangulating the Balancer frontend
-          block in the 2022-08-09..2022-08-12 dust-attack response
-          window. Triangulation source. DRYRUN: pinned Wayback
-          snapshot deferred to human audit.
-
+          Blockworks coverage of DeFi web apps (incl. Balancer) blocking
+          users hit by the Tornado-Cash dust attack. Independent second
+          semi-primary anchor for the Balancer leg.
 recovery:
   - layer: l4_frontend
     resolved: false
@@ -274,6 +240,14 @@ recovery:
       upstream L4 recovery anchor and is tracked separately.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado) by
+  human:xiangwen. obs0 (Uniswap Labs) anchored on Uniswap blog
+  (primary_corporate, Wayback 20230330015248, 97cbcdcf...) + The Block
+  (semi_primary_wayback, 5f565d9d...). obs1 (Balancer Labs) anchored on
+  CryptoSlate + Blockworks (2 semi_primary_wayback, 445e6b47.../7ea8212b...);
+  attribution direct->plausible (no Balancer primary statement archived).
+  l4_frontend observed_change. comparison/empirical_case preserved.
+
   DRYRUN 2026-05-16 — agent-drafted; status=draft; origin=agent_draft.
   Real release requires a human-audit pass to pin Wayback snapshots
   and body_hashes for the four supporting_journalism citations (The
