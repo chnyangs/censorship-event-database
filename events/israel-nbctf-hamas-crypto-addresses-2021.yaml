@@ -1,17 +1,17 @@
 id: israel-nbctf-hamas-crypto-addresses-2021
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 related_events:
   - ofac-hamas-buy-cash-msb-2023-10
@@ -144,22 +144,19 @@ coverage:
       the seizure order acts directly on address-level custody claims
       via Israeli administrative law, not on a frontend.
   - layer: asset_onchain
-    status: partially_measured
-    chain: ethereum
+    status: not_applicable
     note: |
-      Load-bearing layer (1 of 2). The order's named address set
-      includes USDT-on-Ethereum and USDT-on-Tron addresses receiving
-      ~1.18M USDT in the documented 2015-2021 window. Tether's public
-      compliance posture at event time (2021-07) was to freeze on
-      law-enforcement request, and contemporaneous reporting indicates
-      issuer-level freezes followed the order, but per-address
-      Etherscan freeze-tx anchors against the NBCTF roster are not
-      pinned at draft time. Status is partially_measured rather than
-      measured because the per-address sweep (usdtbanlist.com against
-      the 84-address roster) is deferred to the human-audit pass.
-      DRYRUN.
+      Not classified as an observed-change layer at admission. BTC
+      holdings cannot be protocol-frozen, and no pinnable issuer-level
+      (Tether destroyBlackFunds/addBlackList) or forfeiture transaction
+      hash against the 84-address NBCTF roster was verifiable at audit
+      time. The enforceable censorship effect is therefore classified at
+      offramp_cex (exchange/issuer freezes of deposit clusters) rather
+      than asserted on-chain. The seized address roster remains
+      documented in target.enumeration_note for a future on-chain
+      authoring pass.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     provider_scope: unknown
     note: |
       Load-bearing layer (2 of 2). Contemporaneous Chainalysis
@@ -175,42 +172,6 @@ coverage:
       are not pinned at draft time. DRYRUN.
 
 observations:
-  - layer: asset_onchain
-    actor: il_nbctf
-    event: nbctf_administrative_seizure_order_targets_usdt_addresses_in_hamas_donation_cluster
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2021-07-08T00:00:00Z
-    precision: day
-    delta_hours: 0
-    country: IL
-    sources:
-      - type: primary_legal
-        url: https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
-        wayback: https://web.archive.org/web/2021/https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - il_nbctf
-          time_window:
-            - 2021-07-08T00:00:00Z
-            - 2021-07-09T23:59:59Z
-        note: |
-          Chainalysis 2021-07 writeup naming the NBCTF action and the
-          USDT/ETH portion of the seizure roster. attribution=direct
-          under §1.2: the seizure order is itself the asset_onchain
-          censorship action against the named address-level targets;
-          the actor (NBCTF) explicitly names the addresses in the
-          underlying order. DRYRUN: pinned Wayback snapshot deferred
-          to human audit.
-      - type: primary_legal
-        url: https://www.merklescience.com/blog/israel-issues-seizure-orders
-        wayback: https://web.archive.org/web/2021/https://www.merklescience.com/blog/israel-issues-seizure-orders
-        evidence_use: contextual_unarchived
-        note: |
-          Merkle Science independent legal-framing anchor (Section 66
-          Anti-Terrorism Law 2016; Defense Minister Gantz signature).
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
   - layer: offramp_cex
     actor: il_nbctf
     event: nbctf_seizure_order_severs_il_ramp_access_for_named_hamas_cluster
@@ -221,10 +182,12 @@ observations:
     delta_hours: 0
     country: IL
     sources:
-      - type: supporting_journalism
+      - type: semi_primary_measurement
         url: https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
-        wayback: https://web.archive.org/web/2021/https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230830011908/https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/
+        body_hash: sha256:1524ddad7cf55ba046c48450c21bdc1ed4a12041c79c6fd3c21d3413189bbe6b
+        body_path: sources/http_captures/israel-nbctf-hamas-crypto-addresses-2021/primary/web.archive.org__web-20230830011908-https-www.chainalysis.com-blog-israel-hamas-cryptocurrency-seizure-july-2021__e64fe1175d.html
+        evidence_use: replayable
         scope_descriptor:
           providers:
             - mainstream_exchange_unnamed
@@ -232,29 +195,42 @@ observations:
             - 2021-07-08T00:00:00Z
             - 2021-07-09T23:59:59Z
         note: |
-          Chainalysis writeup traces consolidation flows into deposit
-          addresses at a major mainstream exchange. attribution=plausible
-          (not direct) per §1.2: the NBCTF order names the source-side
-          addresses but does not publicly name the downstream CEX, and
-          the receiving exchange did not make a public compliance
-          statement tying its account freezes to the NBCTF order in
-          the immediate 2021-07 window. DRYRUN: pinned Wayback snapshot
-          deferred to human audit.
-      - type: supporting_journalism
+          Chainalysis forensic writeup traces consolidation flows into
+          deposit addresses at a major mainstream exchange.
+          attribution=plausible (not direct) per the codebook: the NBCTF
+          order names the source-side addresses but does not publicly
+          name the downstream CEX, and the receiving exchange did not
+          make a public compliance statement tying its account freezes
+          to the order in the immediate 2021-07 window. Reclassified
+          semi_primary_measurement (forensic-firm on-chain tracing) at
+          audit; Wayback 20230830011908 pinned.
+      - type: semi_primary_wayback
         url: https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
-        wayback: https://web.archive.org/web/2023/https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20231010141013/https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
+        body_hash: sha256:d9e0c13db40200c6c4f62d03cb86c6307c39ccc9570cf409c82ed3f8c76e5bba
+        body_path: sources/http_captures/israel-nbctf-hamas-crypto-addresses-2021/primary/web.archive.org__web-20231010141013-https-www.dlnews.com-articles-regulation-israeli-police-seize-binance-account-linked-to-hamas__947af0b9f5.html
+        evidence_use: replayable
         note: |
           DL News 2023-10 coverage retroactively confirms the
           downstream-CEX leg (Israeli police seizures of Binance
           accounts linked to Hamas) and references the earlier 2021
-          NBCTF action as the precedent ("Israeli authorities blocked
-          84 addresses believed to be linked to Hamas that had
-          received $7.7 million in crypto assets"). Triangulation
-          source for the offramp_cex plausibility claim. DRYRUN:
-          pinned Wayback snapshot deferred to human audit.
-
+          NBCTF action as precedent ("Israeli authorities blocked 84
+          addresses believed to be linked to Hamas that had received
+          $7.7 million in crypto assets"). Independent second
+          semi-primary anchor; Wayback 20231010141013 pinned.
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison, others
+  7/11) by human:xiangwen as empirical_case. asset_onchain dropped to
+  coverage not_applicable (no pinnable protocol-freeze/forfeiture tx;
+  BTC not protocol-freezable) per established audit precedent; the
+  enforceable censorship effect is classified at offramp_cex
+  (observed_change/plausible), anchored by 2 independent semi-primary
+  sources: Chainalysis forensic writeup (semi_primary_measurement,
+  Wayback 20230830011908, body_hash 1524ddad...) + DL News 2023-10
+  (semi_primary_wayback, Wayback 20231010141013, body_hash d9e0c13d...).
+  84-address roster + BTC consolidation address preserved in target.
+  comparison/empirical_case (now single-layer) preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase E S4_nation_state
   discovery; comparable-tier authoring): authored by LLM agent without
   personally verifying Wayback / body_hash anchors; origin=agent_draft
