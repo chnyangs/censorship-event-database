@@ -1,17 +1,17 @@
 id: kazakhstan-internet-shutdown-mining-2022-01
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - china-sichuan-mining-ban-2021-06
@@ -24,6 +24,9 @@ trigger:
   citation:
     - type: semi_primary_measurement
       url: https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+      wayback: https://web.archive.org/web/20220104182416/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+      body_hash: sha256:246d9d7abfacb5c82b1d9542bae00cc4cd467d68f4772d6c90214949dc512641
+      body_path: sources/http_captures/kazakhstan-internet-shutdown-mining-2022-01/primary/web.archive.org__web-20220104182416-https-netblocks.org-reports-internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3__00dd341aba.html
       wayback: https://web.archive.org/web/2022/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
       evidence_use: contextual_unarchived
       note: |
@@ -190,16 +193,18 @@ observations:
     actor: bitcoin_network:kazakhstan_hosted_miners
     event: bitcoin_hashrate_collapse_following_l0_shutdown
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-01-05T12:00:00Z
     precision: hour
     delta_hours: 0
     country: KZ
     sources:
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220106124152/https://www.coindesk.com/business/2022/01/06/kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests
+        body_hash: sha256:1bba39948b13d0e41ed7e57c550fa575d8783e5e7b80fc5ab885437f4393c73a
+        body_path: sources/http_captures/kazakhstan-internet-shutdown-mining-2022-01/primary/web.archive.org__web-20220106124152-https-www.coindesk.com-business-2022-01-06-kazakhstans-hashrate-drops-as-internet-blackout-persists-amid-nationwide-protests__7bcd112c55.html
+        evidence_use: replayable
         scope_descriptor:
           countries: [KZ]
           time_window:
@@ -218,6 +223,16 @@ observations:
           cannot reach external pool stratum servers cannot submit
           shares and effectively go offline from the network's
           perspective within the same block-interval window.
+      - type: semi_primary_measurement
+        url: https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+        wayback: https://web.archive.org/web/20220104182416/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3
+        body_hash: sha256:246d9d7abfacb5c82b1d9542bae00cc4cd467d68f4772d6c90214949dc512641
+        body_path: sources/http_captures/kazakhstan-internet-shutdown-mining-2022-01/primary/web.archive.org__web-20220104182416-https-netblocks.org-reports-internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3__00dd341aba.html
+        evidence_use: replayable
+        note: |
+          NetBlocks internet-disruption measurement for the 2022-01-05
+          Kazakhstan national shutdown — the L0 substrate that drove the
+          L1 hashrate collapse. Independent semi-primary measurement anchor.
       - type: supporting_journalism
         url: https://www.theblock.co/amp/post/129312/bitcoin-mining-pool-hashrates-fall-amid-kazakhstan-internet-shutdown
         wayback: https://web.archive.org/web/2022/https://www.theblock.co/amp/post/129312/bitcoin-mining-pool-hashrates-fall-amid-kazakhstan-internet-shutdown
@@ -260,6 +275,17 @@ recovery:
           mechanism. DRYRUN: day-precision recovery anchor.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Kazakhstan cluster)
+  by human:xiangwen as empirical_case. NetBlocks internet-disruption
+  measurement Wayback 20220104182416 (semi_primary_measurement) + CoinDesk
+  Wayback 20220106124152 (semi_primary_wayback) replayable body_hash;
+  CCAF mining-map measurement retained. l1_consensus observed_change
+  attribution direct->plausible (no KZ gov shutdown order pinned as
+  primary_*; hashrate collapse measured via NetBlocks + CCAF + press).
+  2022-01-05 Kazakhstan national internet shutdown (energy-price protests)
+  -> Bitcoin hashrate ~194->168 EH/s (~13% drop); KZ ~18% global share.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (agent_draft per user
   instruction; status=draft because no body_hash+body_path archive
   anchors have been pinned in this session). Authored by LLM agent

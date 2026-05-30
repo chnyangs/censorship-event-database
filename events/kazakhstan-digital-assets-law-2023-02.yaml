@@ -1,17 +1,17 @@
 id: kazakhstan-digital-assets-law-2023-02
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - kazakhstan-internet-shutdown-mining-2022-01
@@ -202,7 +202,7 @@ observations:
     actor: nation_state:kz_government
     event: mandatory_mining_license_and_pool_accreditation_regime_in_force
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2023-04-01T00:00:00Z
     precision: day
     delta_hours: 1320
@@ -229,19 +229,30 @@ observations:
           is the change in the licensing regime; no inference step
           beyond reading the statute. DRYRUN: Wayback anchor unverified
           by LLM agent at authoring time.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
-        wayback: https://web.archive.org/web/2023/https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230501140021/https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
+        body_hash: sha256:f9ad5f2a0639cae226f2daf8d349f871611fc84f68334e9f976cebebe59e1ad7
+        body_path: sources/http_captures/kazakhstan-digital-assets-law-2023-02/primary/web.archive.org__web-20230501140021-https-www.loc.gov-item-global-legal-monitor-2023-04-30-kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptom__eceb3c6808.html
+        evidence_use: replayable
         note: |
           US Library of Congress Global Legal Monitor independent
           summary of the licensing / pool-accreditation regime.
-          DRYRUN: Wayback anchor unverified.
+          Semi-primary anchor 1 of 2. Wayback memento 20230501140021.
+      - type: semi_primary_wayback
+        url: https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+        wayback: https://web.archive.org/web/20230222214013/https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+        body_hash: sha256:1df53b9ae33db13e151ecaf73c34602c7ccc47c51513c7814970f069fa5b9413
+        body_path: sources/http_captures/kazakhstan-digital-assets-law-2023-02/primary/web.archive.org__web-20230222214013-https-www.morganlewis.com-pubs-2023-02-kazakhstan-introduces-new-regulation-of-digital-assets__60e84f286f.html
+        evidence_use: replayable
+        note: |
+          Morgan Lewis legal analysis of Kazakhstan Law 193-VII digital-
+          assets regulation. Semi-primary anchor 2 of 2.
   - layer: offramp_cex
     actor: nation_state:kz_government
     event: commercial_digital_asset_exchange_activity_confined_to_aifc_licensed_perimeter
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2023-04-01T00:00:00Z
     precision: day
     delta_hours: 1320
@@ -275,8 +286,36 @@ observations:
           AIFC-confined commercial-exchange perimeter and the
           implication for offshore CEX activity serving Kazakh users.
           DRYRUN: Wayback anchor unverified.
+      - type: semi_primary_wayback
+        url: https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
+        wayback: https://web.archive.org/web/20230501140021/https://www.loc.gov/item/global-legal-monitor/2023-04-30/kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptomining/
+        body_hash: sha256:f9ad5f2a0639cae226f2daf8d349f871611fc84f68334e9f976cebebe59e1ad7
+        body_path: sources/http_captures/kazakhstan-digital-assets-law-2023-02/primary/web.archive.org__web-20230501140021-https-www.loc.gov-item-global-legal-monitor-2023-04-30-kazakhstan-new-law-establishes-legal-framework-for-digital-assets-and-cryptom__eceb3c6808.html
+        evidence_use: replayable
+        note: |
+          LoC Global Legal Monitor summary of the AIFC-confined exchange
+          perimeter. Semi-primary anchor 1 of 2.
+      - type: semi_primary_wayback
+        url: https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+        wayback: https://web.archive.org/web/20230222214013/https://www.morganlewis.com/pubs/2023/02/kazakhstan-introduces-new-regulation-of-digital-assets
+        body_hash: sha256:1df53b9ae33db13e151ecaf73c34602c7ccc47c51513c7814970f069fa5b9413
+        body_path: sources/http_captures/kazakhstan-digital-assets-law-2023-02/primary/web.archive.org__web-20230222214013-https-www.morganlewis.com-pubs-2023-02-kazakhstan-introduces-new-regulation-of-digital-assets__60e84f286f.html
+        evidence_use: replayable
+        note: |
+          Morgan Lewis analysis confirming commercial digital-asset
+          exchange activity confined to AIFC-licensed perimeter.
+          Semi-primary anchor 2 of 2.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Kazakhstan cluster;
+  FINAL 2/2) by human:xiangwen as empirical_case. LoC Global Legal Monitor
+  Wayback 20230501140021 + Morgan Lewis Wayback 20230222214013 reclassified
+  semi_primary_wayback (both observations 2 independent). adilet.zan.kz
+  primary (SSL-fail / no Wayback) retained contextual. Both observed_change
+  direct->plausible. Kazakhstan Law 193-VII (in force 2023-04-01) - mandatory
+  mining license + pool accreditation + AIFC-confined exchange perimeter.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C S4 nation-state
   Central-Asia discovery; lean run): authored by LLM agent without
   personally verifying Wayback / body_hash; origin=agent_draft and
