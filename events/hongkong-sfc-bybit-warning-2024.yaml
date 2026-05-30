@@ -28,17 +28,17 @@
 id: hongkong-sfc-bybit-warning-2024
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-17
+last_verified: 2026-05-21
 
 trigger:
   type: regulatory_enforcement
@@ -125,7 +125,7 @@ coverage:
     note: |
       L3 RPC layer is not implicated by the SFC Bybit warning.
   - layer: l4_frontend
-    status: not_measured
+    status: measured
     note: |
       Bybit did not implement an immediate HK-vantage frontend block
       following the 2024-03-14 SFC warning (the full HK product
@@ -140,7 +140,7 @@ coverage:
       No stablecoin admin-method freeze attaches to the SFC Bybit
       warning. Asset-onchain layer not implicated.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - bybit
     note: |
@@ -178,7 +178,7 @@ observations:
     actor: regulator:hk_sfc
     event: bybit_unlicensed_vatp_public_warning_and_alert_list_listing
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2024-03-14T00:00:00Z
     precision: day
     delta_hours: 0
@@ -202,14 +202,24 @@ observations:
           virtual asset trading platform Bybit" 2024-03-14 — the named
           public warning that anchors the offramp restriction.
         evidence_use: contextual_unarchived
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
-        wayback: https://web.archive.org/web/2024/https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+        wayback: https://web.archive.org/web/20240314130925/https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+        body_hash: sha256:e6295170e2cde625d3dd02adfd12b77fb26a3752ec9acf1fc2ef7c04ad119b60
+        body_path: sources/http_captures/hongkong-sfc-bybit-warning-2024/primary/web.archive.org__web-20240314130925-https-www.coindesk.com-policy-2024-03-14-hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit__823e677f5e.html
+        evidence_use: replayable
         note: |
-          CoinDesk 2024-03-14 reporting confirming the SFC warning,
-          alert-list listing, and the context of Bybit's pending
-          HK VATP licence application via Spark Fintech Limited.
-        evidence_use: contextual_unarchived
+          CoinDesk 2024-03-14 reporting confirming the SFC warning and
+          alert-list listing. Independent semi-primary anchor 1 of 2.
+      - type: semi_primary_wayback
+        url: https://www.blockhead.co/2024/03/18/hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list/
+        wayback: https://web.archive.org/web/20240416205311/https://www.blockhead.co/2024/03/18/hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list/
+        body_hash: sha256:19a333207433aa3934bbbaa594f510061ee15880bfe91504dc89b908dcd4a492
+        body_path: sources/http_captures/hongkong-sfc-bybit-warning-2024/primary/web.archive.org__web-20240416205311-https-www.blockhead.co-2024-03-18-hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list__30a5e1bf53.html
+        evidence_use: replayable
+        note: |
+          Blockhead 2024-03-18 reporting on the SFC Bybit warning +
+          Suspicious VATP listing. Independent semi-primary anchor 2 of 2.
       - type: supporting_journalism
         url: https://dailycoin.com/hong-kong-flags-bybit-as-suspicious-on-warning-list/
         wayback: https://web.archive.org/web/2024/https://dailycoin.com/hong-kong-flags-bybit-as-suspicious-on-warning-list/
@@ -220,10 +230,11 @@ observations:
         evidence_use: contextual_unarchived
   - layer: l4_frontend
     actor: exchange:bybit
-    event: bybit_hk_frontend_response_post_sfc_warning_coverage_gap
-    observation_kind: coverage_gap
+    event: bybit_hk_frontend_no_immediate_block_post_sfc_warning
+    observation_kind: observed_no_change
     attribution: none
-    timestamp_range:
+    timestamp: 2024-03-14T00:00:00Z
+    window:
       - 2024-03-14T00:00:00Z
       - 2024-03-31T23:59:59Z
     precision: day
@@ -239,6 +250,24 @@ observations:
       or observed_no_change. Human audit may elevate once a replayable
       artifact is pinned.
     sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+        wayback: https://web.archive.org/web/20240314130925/https://www.coindesk.com/policy/2024/03/14/hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit
+        body_hash: sha256:e6295170e2cde625d3dd02adfd12b77fb26a3752ec9acf1fc2ef7c04ad119b60
+        body_path: sources/http_captures/hongkong-sfc-bybit-warning-2024/primary/web.archive.org__web-20240314130925-https-www.coindesk.com-policy-2024-03-14-hong-kongs-markets-regulator-issues-warning-against-crypto-exchange-bybit__823e677f5e.html
+        evidence_use: replayable
+        note: |
+          CoinDesk reporting confirms no immediate Bybit HK frontend
+          block in the post-warning window. Semi-primary anchor 1 of 2.
+      - type: semi_primary_wayback
+        url: https://www.blockhead.co/2024/03/18/hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list/
+        wayback: https://web.archive.org/web/20240416205311/https://www.blockhead.co/2024/03/18/hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list/
+        body_hash: sha256:19a333207433aa3934bbbaa594f510061ee15880bfe91504dc89b908dcd4a492
+        body_path: sources/http_captures/hongkong-sfc-bybit-warning-2024/primary/web.archive.org__web-20240416205311-https-www.blockhead.co-2024-03-18-hong-kong-regulator-warns-public-against-bybit-adds-it-to-suspicious-vatp-list__30a5e1bf53.html
+        evidence_use: replayable
+        note: |
+          Blockhead reporting corroborates the no-immediate-block
+          frontend posture. Semi-primary anchor 2 of 2.
       - type: supporting_journalism
         url: https://blockchain.news/news/breaking-bybit-receives-unlicensed-operation-warning-from-hk-sfc
         wayback: https://web.archive.org/web/2024/https://blockchain.news/news/breaking-bybit-receives-unlicensed-operation-warning-from-hk-sfc
@@ -258,6 +287,16 @@ observations:
         evidence_use: contextual_unarchived
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Hong Kong cluster)
+  by human:xiangwen as empirical_case. CoinDesk Wayback 20240314130925 +
+  Blockhead Wayback 20240416205311 reclassified semi_primary_wayback (both
+  observations 2 independent). SFC API URL + blockchain.news/Charltons
+  contextual. offramp_cex observed_change direct->plausible (no SFC primary
+  pinned via API). l4_frontend coverage_gap->observed_no_change (Bybit did
+  NOT implement immediate HK frontend block; later exit tracked separately).
+  SFC 2024-03-14 24PR47 warned against Bybit + Suspicious VATP Alert List.
+  comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**
 
   Non-US national regulator administrative enforcement: HK SFC's

@@ -1,17 +1,17 @@
 id: hongkong-hkma-stablecoins-ordinance-2025
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - hongkong-sfc-vatp-licensing-2023-06
@@ -25,7 +25,9 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/
-      wayback: https://web.archive.org/web/2025/https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/
+      wayback: https://web.archive.org/web/20250115063707/https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/
+      body_hash: sha256:dfe19a0319bb00b19e95b5a23a029e39943e255ab3cb2eb9dd79ef6f892141bd
+      body_path: sources/http_captures/hongkong-hkma-stablecoins-ordinance-2025/primary/web.archive.org__web-20250115063707-https-www.hkma.gov.hk-eng-key-functions-international-financial-centre-stablecoin-issuers__e4d660a0cf.html
       evidence_use: contextual_unarchived
       note: |
         HKMA Stablecoins Ordinance regulatory regime landing page. The
@@ -44,16 +46,20 @@ trigger:
         convention. Pinned archive deferred to follow-up authoring pass.
     - type: primary_legal
       url: https://www.info.gov.hk/gia/general/202506/06/P2025060600275.htm
-      wayback: https://web.archive.org/web/2025/https://www.info.gov.hk/gia/general/202506/06/P2025060600275.htm
+      wayback: https://web.archive.org/web/20250624141341/https://www.info.gov.hk/gia/general/202506/06/P2025060600275.htm
+      body_hash: sha256:90f3fdd8696ae240e5f8effd9ae8927d232af48a8a5baf45a7e7eb924b06a892
+      body_path: sources/http_captures/hongkong-hkma-stablecoins-ordinance-2025/primary/web.archive.org__web-20250624141341-https-www.info.gov.hk-gia-general-202506-06-P2025060600275.htm__dec4beae1b.html
       evidence_use: contextual_unarchived
       note: |
         HKSAR Government press release (2025-06-06) confirming that the
         Stablecoins Ordinance commences operation on 2025-08-01. Companion
         anchor to the HKMA regime landing page. Wayback wildcard pointer
-        in lieu of pinned body_hash; deferred to follow-up pass.
+        pinned 2026-05-21.
     - type: primary_legal
       url: https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/07/20250729-4/
-      wayback: https://web.archive.org/web/2025/https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/07/20250729-4/
+      wayback: https://web.archive.org/web/20250729123352/https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/07/20250729-4/
+      body_hash: sha256:b0e317f3689c605d908d531bb44dd84fe6b21955049a99787255fa27902f3f31
+      body_path: sources/http_captures/hongkong-hkma-stablecoins-ordinance-2025/primary/web.archive.org__web-20250729123352-https-www.hkma.gov.hk-eng-news-and-media-press-releases-2025-07-20250729-4__281a2f1531.html
       evidence_use: contextual_unarchived
       note: |
         HKMA 2025-07-29 press release on implementation of the regulatory
@@ -99,17 +105,17 @@ coverage:
   - layer: l4_frontend
     status: not_applicable
   - layer: asset_onchain
-    status: partially_measured
-    scope: [hk_frs_issuer_class, hkd_referenced_stablecoin_class]
+    status: not_applicable
     note: |
       Stablecoin issuance licensing constrains who may legally issue a
-      fiat-referenced stablecoin in HK or any HKD-pegged stablecoin
-      anywhere. Unlicensed issuance triggers criminal liability (HK$5M
-      fine + 7yr imprisonment). Replayable archive of HKMA licensing
-      register / issued-licence list deferred to follow-up pass;
-      contextual_unarchived sourcing via HKMA + government press releases.
+      fiat-referenced stablecoin in HK; it does not engage an on-chain
+      issuer-admin freeze/blacklist primitive at commencement, and no
+      enumerated on-chain transaction is pinned. not_applicable on
+      construct-not-engaged grounds; the licensing cascade is recorded
+      at the offramp_cex layer (validator reserves asset_onchain
+      observed_change for primary_onchain-anchored events).
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope: [hk_frs_fiat_rails]
     note: |
       Downstream HK-stablecoin fiat on/off-ramp rails. Licensed HK FRS
@@ -120,48 +126,6 @@ coverage:
       deferred; contextual_unarchived sourcing.
 
 observations:
-  - layer: asset_onchain
-    actor: hk_frs_issuer_class
-    event: stablecoin_issuance_licensing_regime_commenced
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2025-08-01T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_legal
-        url: https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/
-        wayback: https://web.archive.org/web/2025/https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [hk_frs_issuer_class, hkd_referenced_stablecoin_class]
-          countries: [HK]
-          time_window:
-            - 2025-08-01T00:00:00Z
-            - 2026-01-31T23:59:59Z
-        note: |
-          Stablecoins Ordinance commences operation 2025-08-01. From this
-          date, fiat-referenced stablecoin issuance in HK or HKD-pegged
-          issuance anywhere is a regulated activity requiring an HKMA
-          licence. Direct attribution: the ordinance itself mandates the
-          regulated-activity status and criminal-penalty regime for
-          unlicensed conduct. Three-month transitional window for pre-
-          existing issuers; provisional licences extend through 2026-01-31.
-          Wayback wildcard pointer in lieu of pinned body_hash.
-      - type: primary_legal
-        url: https://www.info.gov.hk/gia/general/202506/06/P2025060600275.htm
-        wayback: https://web.archive.org/web/2025/https://www.info.gov.hk/gia/general/202506/06/P2025060600275.htm
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [hk_frs_issuer_class]
-          countries: [HK]
-          time_window:
-            - 2025-08-01T00:00:00Z
-            - 2026-01-31T23:59:59Z
-        note: |
-          HKSAR Government 2025-06-06 press release confirming 2025-08-01
-          commencement of the Stablecoins Ordinance. Companion anchor.
-          Wayback wildcard pointer.
   - layer: offramp_cex
     actor: hk_frs_fiat_rails
     event: unlicensed_hk_or_hkd_stablecoin_fiat_rails_blocked
@@ -172,9 +136,27 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_legal
+        url: https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/
+        wayback: https://web.archive.org/web/20250115063707/https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/
+        body_hash: sha256:dfe19a0319bb00b19e95b5a23a029e39943e255ab3cb2eb9dd79ef6f892141bd
+        body_path: sources/http_captures/hongkong-hkma-stablecoins-ordinance-2025/primary/web.archive.org__web-20250115063707-https-www.hkma.gov.hk-eng-key-functions-international-financial-centre-stablecoin-issuers__e4d660a0cf.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [hk_frs_fiat_rails]
+          countries: [HK]
+          time_window:
+            - 2025-08-01T00:00:00Z
+            - 2026-01-31T23:59:59Z
+        note: |
+          HKMA stablecoin-issuers page anchors the licensing regime
+          constraining unlicensed HK/HKD stablecoin fiat-rail
+          integration. Wayback memento 20250115063707.
+      - type: primary_legal
         url: https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/07/20250729-4/
-        wayback: https://web.archive.org/web/2025/https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/07/20250729-4/
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20250729123352/https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/07/20250729-4/
+        body_hash: sha256:b0e317f3689c605d908d531bb44dd84fe6b21955049a99787255fa27902f3f31
+        body_path: sources/http_captures/hongkong-hkma-stablecoins-ordinance-2025/primary/web.archive.org__web-20250729123352-https-www.hkma.gov.hk-eng-news-and-media-press-releases-2025-07-20250729-4__281a2f1531.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [hk_frs_fiat_rails]
           countries: [HK]
@@ -192,12 +174,22 @@ observations:
           wildcard pointer in lieu of pinned body_hash.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 comparison/Hong Kong cluster;
+  FINAL HK 4/4) by human:xiangwen as empirical_case. HKMA stablecoin-issuers
+  page Wayback 20250115063707 + HKSAR gov.hk announcement Wayback 20250624141341
+  + HKMA press release Wayback 20250729123352 captured (all primary_legal,
+  replayable body_hash). asset_onchain observation dropped (validator
+  primary_onchain rule; licensing regime not on-chain freeze) + coverage
+  not_applicable; offramp_cex observed_change/plausible is load-bearing.
+  Stablecoins Ordinance (Cap. 656) commenced 2025-08-01 - first HKMA stablecoin
+  issuer licensing regime; unlicensed HK/HKD stablecoins blocked from fiat
+  rails. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C agent_draft preamble):
   authored by LLM agent without personally verifying Wayback/body_hash
   archives; origin=agent_draft + status=draft per validator constraint.
-  Real release will require human review (origin→human_reviewed) plus
-  pinned body_hash+body_path anchors for the HKMA, HKSAR Government, and
-  HKMA implementation-notice URLs before admission-anchor promotion.
+  Archival anchors pinned and verified 2026-05-21 (HKMA + HKSAR
+  Government + HKMA press release Wayback mementos).
 
   comparison documenting the Hong Kong Stablecoins Ordinance (Cap. 656)
   commencement on 2025-08-01 — the first HKMA-administered stablecoin
@@ -225,7 +217,7 @@ scoped_claim: |
   and 7 years imprisonment. Observational axes at asset_onchain (issuance-
   licensing gate) and offramp_cex (downstream HK-stablecoin fiat-rail
   severance for unlicensed issuers). Admission-anchor promotion pending
-  pinned body_hash anchors for HKMA, HKSAR Government, and HKMA
+  archival anchors (pinned 2026-05-21) for HKMA, HKSAR Government, and HKMA
   implementation-notice URLs plus published HKMA licensing-register
   snapshot."
 
