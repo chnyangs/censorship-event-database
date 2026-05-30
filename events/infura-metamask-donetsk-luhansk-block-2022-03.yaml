@@ -1,17 +1,17 @@
 id: infura-metamask-donetsk-luhansk-block-2022-03
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-05-21
 
 related_events:
   - infura-alchemy-tornado-rpc-block-2022
@@ -165,101 +165,61 @@ observations:
     actor: rpc_provider:consensys_infura
     event: infura_rpc_ip_geo_block_of_donetsk_luhansk_regions
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-03-03T00:00:00Z
     precision: day
     delta_hours: 0
     country: UA
     sources:
-      - type: primary_corporate
-        url: https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
-        wayback: https://web.archive.org/web/2022/https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - consensys_infura
-          countries:
-            - UA
-          time_window:
-            - 2022-03-03T00:00:00Z
-            - 2022-03-04T23:59:59Z
-        note: |
-          ConsenSys corporate blog statement of March 2022 naming the
-          IP-geo restriction on Infura RPC requests originating from
-          OFAC-comprehensively-sanctioned regions, including the
-          Donetsk and Luhansk regions added under EO 14065
-          (2022-02-21). attribution=direct because the source is the
-          operator's own corporate statement naming the action.
-          DRYRUN: pinned Wayback snapshot and body_hash for the
-          specific blog revision are deferred to the human-audit
-          pass; marked evidence_use=contextual_unarchived per
-          validator policy.
-      - type: supporting_journalism
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220303211454/https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury/
+        body_hash: sha256:363d4e41a39d936d9906d1658ae98aa633a31519fddb4142d09231eae2cf0f13
+        body_path: sources/http_captures/infura-metamask-donetsk-luhansk-block-2022-03/primary/web.archive.org__web-20220304000000-https-www.coindesk.com-policy-2022-03-03-metamask-infura-block-certain-areas-amid-crypto-sanctions-fury__b9e1a64e36.html
+        evidence_use: replayable
         note: |
-          CoinDesk contemporaneous coverage of 2022-03-03 confirming
-          Infura applied IP-geo blocks to "certain areas" in
-          compliance with the new sanctions directives. Day-level
-          timing triangulation. DRYRUN: pinned Wayback snapshot
-          deferred to human audit.
+          CoinDesk 2022-03-03: Infura/MetaMask blocked users in certain
+          sanctioned areas (Donetsk/Luhansk) amid Russia-Ukraine sanctions.
+          Independent semi-primary anchor.
+      - type: semi_primary_wayback
+        url: https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
+        wayback: https://web.archive.org/web/20220303225101/https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
+        body_hash: sha256:8eaae4f3355cd364cc4eee6c0a055134e796e8e40152b3e96b2855871cb15199
+        body_path: sources/http_captures/infura-metamask-donetsk-luhansk-block-2022-03/primary/web.archive.org__web-20220304000000-https-decrypt.co-94315-ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela__3a19ef65b4.html
+        evidence_use: replayable
+        note: |
+          Decrypt 2022-03-03: Infura cut off users in separatist Ukrainian
+          areas (and accidentally over-blocked Venezuela). Independent second
+          semi-primary anchor.
   - layer: l4_frontend
     actor: frontend:metamask_wallet_ui
     event: metamask_ui_error_state_for_blocked_region_users_including_overblock_venezuela_iran
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-03-03T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
-      - type: primary_corporate
-        url: https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
-        wayback: https://web.archive.org/web/2022/https://consensys.net/blog/news/consensys-and-the-russia-ukraine-conflict/
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - consensys_infura
-            - metamask
-          domains:
-            - metamask.io
-          countries:
-            - UA
-            - VE
-            - IR
-          time_window:
-            - 2022-03-03T00:00:00Z
-            - 2022-03-04T23:59:59Z
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury
+        wayback: https://web.archive.org/web/20220303211454/https://www.coindesk.com/policy/2022/03/03/metamask-infura-block-certain-areas-amid-crypto-sanctions-fury/
+        body_hash: sha256:363d4e41a39d936d9906d1658ae98aa633a31519fddb4142d09231eae2cf0f13
+        body_path: sources/http_captures/infura-metamask-donetsk-luhansk-block-2022-03/primary/web.archive.org__web-20220304000000-https-www.coindesk.com-policy-2022-03-03-metamask-infura-block-certain-areas-amid-crypto-sanctions-fury__b9e1a64e36.html
+        evidence_use: replayable
         note: |
-          ConsenSys statement of March 2022 covering MetaMask
-          (Infura's downstream-default-RPC wallet UI) and noting
-          that the IP-geo configuration was applied "more broadly
-          than they needed to be," transiently capturing users in
-          Venezuela (and per some contemporaneous reports, Iran)
-          before correction. attribution=direct because the source
-          is ConsenSys's own corporate statement naming the action
-          and the over-block. DRYRUN: pinned Wayback snapshot and
-          body_hash deferred to human audit.
-      - type: supporting_journalism
-        url: https://www.coindesk.com/business/2022/03/04/crypto-industrys-sanctions-woes-on-full-display-in-metamasks-venezuela-hiccup
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/business/2022/03/04/crypto-industrys-sanctions-woes-on-full-display-in-metamasks-venezuela-hiccup
-        evidence_use: contextual_unarchived
-        note: |
-          CoinDesk follow-up coverage (2022-03-04) documenting the
-          Venezuelan-user over-block before ConsenSys corrected the
-          configuration. Triangulation source for the over-block
-          side-effect. DRYRUN: pinned Wayback snapshot deferred to
-          human audit.
-      - type: supporting_journalism
+          CoinDesk 2022-03-03: Infura/MetaMask blocked users in certain
+          sanctioned areas (Donetsk/Luhansk) amid Russia-Ukraine sanctions.
+          Independent semi-primary anchor.
+      - type: semi_primary_wayback
         url: https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
-        wayback: https://web.archive.org/web/2022/https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20220303225101/https://decrypt.co/94315/ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela
+        body_hash: sha256:8eaae4f3355cd364cc4eee6c0a055134e796e8e40152b3e96b2855871cb15199
+        body_path: sources/http_captures/infura-metamask-donetsk-luhansk-block-2022-03/primary/web.archive.org__web-20220304000000-https-decrypt.co-94315-ethereum-infura-cuts-off-users-separatist-areas-ukraine-accidentally-blocks-venezuela__3a19ef65b4.html
+        evidence_use: replayable
         note: |
-          Decrypt contemporaneous coverage of the Donetsk/Luhansk
-          block and Venezuelan-user over-block. Triangulation
-          source. DRYRUN: pinned Wayback snapshot deferred to human
-          audit.
-
+          Decrypt 2022-03-03: Infura cut off users in separatist Ukrainian
+          areas (and accidentally over-blocked Venezuela). Independent second
+          semi-primary anchor.
 recovery:
   - layer: l4_frontend
     resolved: true
@@ -283,6 +243,14 @@ recovery:
       is not reversed in this event.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado/
+  sanctions) by human:xiangwen. ConsenSys blog URL non-archivable ->
+  both obs (l3_rpc Infura + l4_frontend MetaMask) anchored on 2 independent
+  semi_primary_wayback (CoinDesk + Decrypt, Wayback 20220303211454 /
+  20220303225101). attribution direct->plausible (no archived ConsenSys
+  primary statement). observed_change/plausible. comparison/empirical_case
+  preserved.
+
   **NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase D of 2026-05-16
   staged-release plan; lean run): authored by LLM agent without
   personally verifying Wayback/body_hash; origin=agent_draft and

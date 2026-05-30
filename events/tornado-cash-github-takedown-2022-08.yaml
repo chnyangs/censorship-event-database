@@ -1,15 +1,15 @@
 id: tornado-cash-github-takedown-2022-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -171,107 +171,31 @@ observations:
     actor: source_code_host:github_microsoft
     event: github_microsoft_removed_tornadocash_org_and_semenov_developer_account
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2022-08-08T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
       - type: semi_primary_wayback
-        url: https://github.com/tornadocash
-        wayback: https://web.archive.org/web/20220808144505/https://github.com/tornadocash
-        body_hash: sha256:2133abf49379a6c9fcc66382c9b454b3482689f234bc3d87a03191c83cc5ebcb
-        body_path: sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220808-https-github.com-tornadocash__dfe0d7708c.html
-        evidence_group_id: github_org_wayback_before_after
-        scope_descriptor:
-          domains:
-            - github.com/tornadocash
-          providers:
-            - github_microsoft
-          time_window:
-            - 2022-08-08T14:45:05Z
-            - 2022-08-09T15:42:43Z
+        url: https://www.theregister.com/2022/08/24/github_eff_tornado_cash/
+        wayback: https://web.archive.org/web/20220825093705/https://www.theregister.com/2022/08/24/github_eff_tornado_cash/
+        body_hash: sha256:bf2eab81bd1b3e5293bc5dee0f1c2013a0dbebae2eefcaebed196e3d80cf9725
+        body_path: sources/http_captures/tornado-cash-github-takedown-2022-08/primary/web.archive.org__web-20220825000000-https-www.theregister.com-2022-08-24-github_eff_tornado_cash__625112de04.html
+        evidence_use: replayable
         note: |
-          v0.3 before-state Wayback anchor. The 2022-08-08 14:45:05Z
-          memento shows the GitHub tornadocash organization and its
-          repositories still visible on the day of the OFAC designation.
-          Paired with the 2022-08-09 15:42:43Z not-found memento below,
-          this provides a replayable before/after platform-surface
-          observation for the source-code-host takedown window.
+          The Register 2022-08-24 coverage of GitHub removing the Tornado
+          Cash organization/repositories and developer accounts after the OFAC
+          sanctions. Independent semi-primary anchor.
       - type: semi_primary_wayback
-        url: https://github.com/tornadocash
-        wayback: https://web.archive.org/web/20220809154243/https://github.com/tornadocash
-        body_hash: sha256:e533e007cf7b48ea5b070febcc8add27e624432988710c11effcb496cc6a422c
-        body_path: sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220809154243-https-github.com-tornadocash__manual404.html
-        evidence_group_id: github_org_wayback_before_after
-        scope_descriptor:
-          domains:
-            - github.com/tornadocash
-          providers:
-            - github_microsoft
-          time_window:
-            - 2022-08-08T14:45:05Z
-            - 2022-08-09T15:42:43Z
-        note: |
-          v0.3 after-state Wayback anchor. The 2022-08-09 15:42:43Z
-          GitHub memento returns the GitHub "Page not found" surface for
-          github.com/tornadocash. Together with the 2022-08-08
-          organization-page memento, this bounds the platform-surface
-          removal to the post-OFAC window without relying solely on
-          journalism. Same evidence_group_id is intentional: the
-          before/after pair is one Wayback surface measurement, not two
-          independent sources for admission.
-      - type: supporting_journalism
-        url: https://www.theregister.com/AMP/2022/08/24/github_eff_tornado_cash
-        wayback: https://web.archive.org/web/2022/https://www.theregister.com/AMP/2022/08/24/github_eff_tornado_cash
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - github.com
-          providers:
-            - github_microsoft
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-08-09T23:59:59Z
-        note: |
-          The Register (2022-08-24) names the action (suspension of
-          developer accounts including Roman Semenov, removal of the
-          tornadocash organisation repositories — tornado-core,
-          tornado-cli, classic contracts, relayer, ui) and the trigger
-          (the 2022-08-08 OFAC SDN designation of Tornado Cash,
-          captured under related event tornado-cash-ofac-2022).
-          attribution=direct per §1.4: the platform operator's
-          publicly reported rationale cites the upstream OFAC trigger
-          and the block lands within the ≤ 7-day compliance window
-          (same-day, 0h lag). DRYRUN: pinned Wayback snapshot and
-          body_hash deferred to human audit.
-      - type: supporting_journalism
-        url: https://cointelegraph.com/news/github-unbans-tornado-cash-repositories-following-ofac-guidance
-        wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/github-unbans-tornado-cash-repositories-following-ofac-guidance
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - github.com
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-09-23T23:59:59Z
-        note: |
-          Cointelegraph (2022-09-23) retrospective coverage of the
-          partial reinstatement following OFAC's 2022-09-13 guidance
-          clarification; retroactively confirms the 2022-08-08
-          takedown event and GitHub's sanctions-compliance rationale.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-      - type: supporting_journalism
         url: https://www.eff.org/deeplinks/2023/04/update-tornado-cash
-        wayback: https://web.archive.org/web/2023/https://www.eff.org/deeplinks/2023/04/update-tornado-cash
-        evidence_use: contextual_unarchived
+        wayback: https://web.archive.org/web/20230419014440/https://www.eff.org/deeplinks/2023/04/update-tornado-cash
+        body_hash: sha256:dab65362b458b3ea85681d0389282489cacd6a717781f8ed45c8ea90528747a4
+        body_path: sources/http_captures/tornado-cash-github-takedown-2022-08/primary/web.archive.org__web-20230420000000-https-www.eff.org-deeplinks-2023-04-update-tornado-cash__44c1b7fb25.html
+        evidence_use: replayable
         note: |
-          Electronic Frontier Foundation (2023-04) retrospective
-          documenting the 2022-08-08 GitHub takedown and the
-          EFF-coordinated re-upload campaign. Triangulation source for
-          the developer-account scope (Roman Semenov) and the
-          source-code-as-speech downstream tension. DRYRUN: pinned
-          Wayback snapshot deferred to human audit.
-
+          EFF 2023-04 analysis documenting the GitHub takedown of Tornado
+          Cash code/accounts and the subsequent partial restoration. Independent
+          second semi-primary anchor.
 recovery:
   - layer: l4_frontend
     resolved: false
@@ -292,6 +216,13 @@ recovery:
           history) is not a clean recovery to the pre-trigger state.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado) by
+  human:xiangwen. Fabricated github.com/tornadocash semi_primary_wayback
+  (repo removed) dropped; anchored on 2 independent semi_primary_wayback
+  (The Register + EFF, Wayback 20220825093705 / 20230419014440).
+  attribution direct->plausible (no archived GitHub primary statement).
+  l4_frontend observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase F source-code-layer
   discovery; foundational L4 censorship event): authored by LLM agent
   without personally verifying Wayback/body_hash; origin=agent_draft

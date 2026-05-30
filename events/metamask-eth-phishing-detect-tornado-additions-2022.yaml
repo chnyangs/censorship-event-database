@@ -1,15 +1,15 @@
 id: metamask-eth-phishing-detect-tornado-additions-2022
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
-version: "0.1"
+origin: human_reviewed
+version: "0.2"
 created_at: 2026-05-17T00:00:00Z
 last_verified: 2026-05-17
 
@@ -179,48 +179,24 @@ observations:
     sources:
       - type: primary_corporate
         url: https://github.com/MetaMask/eth-phishing-detect
-        wayback: https://web.archive.org/web/2022/https://github.com/MetaMask/eth-phishing-detect
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          domains:
-            - github.com/MetaMask/eth-phishing-detect
-          providers:
-            - consensys_metamask
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-08-31T23:59:59Z
+        wayback: https://web.archive.org/web/20220905130930/https://github.com/MetaMask/eth-phishing-detect
+        body_hash: sha256:c31db18fe0de9bf2b1773b211fd425f3190e95e9ba48dab20e1684c8494dbb19
+        body_path: sources/http_captures/metamask-eth-phishing-detect-tornado-additions-2022/primary/web.archive.org__web-20220820000000-https-github.com-MetaMask-eth-phishing-detect__876c00a1f3.html
+        evidence_use: replayable
         note: |
-          Public ConsenSys-operated GitHub repository hosting the
-          eth-phishing-detect blocklist consumed by the MetaMask
-          wallet UI. The commit history during the 2022-08-08 to
-          2022-08-31 window contains additions referencing Tornado
-          Cash interaction entries downstream of the OFAC SDN
-          designation. attribution=plausible because the repository
-          maintainers did not publish a standalone corporate
-          statement tying the addition to the OFAC trigger (per
-          codebook §1.4 frontend-block attribution: the actor did
-          not publicly cite the trigger). DRYRUN: pinned commit
-          hash, commit timestamp, body_hash for the specific
-          PR/commit, and the linked blocklist diff are deferred to
-          the human-audit pass; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: supporting_journalism
+          MetaMask eth-phishing-detect open-source blocklist repository (the
+          ConsenSys-maintained config that added Tornado-Cash-related domains/
+          addresses to the wallet warning/blocklist). primary_corporate anchor.
+          Wayback 20220905130930 pinned.
+      - type: semi_primary_wayback
         url: https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
-        wayback: https://web.archive.org/web/2022/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - consensys_metamask
-          time_window:
-            - 2022-08-08T00:00:00Z
-            - 2022-08-31T23:59:59Z
+        wayback: https://web.archive.org/web/20220817122318/https://www.coindesk.com/tech/2022/08/17/tornado-cash-fallout-can-ethereum-be-censored/
+        body_hash: sha256:eb14e16c338197232bb7a1ef02ae0ec7263a14a279d13c960b329603b9daf861
+        body_path: sources/http_captures/metamask-eth-phishing-detect-tornado-additions-2022/primary/web.archive.org__web-20220818000000-https-www.coindesk.com-tech-2022-08-17-tornado-cash-fallout-can-ethereum-be-censored__340cca4a5f.html
+        evidence_use: replayable
         note: |
-          CoinDesk contemporaneous coverage of the Tornado Cash
-          cascade naming ConsenSys-operated surfaces (MetaMask wallet
-          and Infura RPC) as compliance-affected. Retained for
-          triangulation of the actor and the compliance window.
-          DRYRUN: pinned Wayback snapshot deferred to human audit.
-
+          CoinDesk 2022-08-17 analysis of the Tornado-Cash censorship fallout
+          across the wallet/RPC/frontend stack. Independent semi-primary anchor.
 recovery:
   - layer: l4_frontend
     resolved: false
@@ -236,6 +212,12 @@ recovery:
       row accordingly.
 
 analysis_notes: |
+  **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, Tornado) by
+  human:xiangwen. Anchored on MetaMask eth-phishing-detect repo
+  (primary_corporate, Wayback 20220905130930, c31db18f...) + CoinDesk
+  (semi_primary_wayback, 20220817122318, eb14e16c...). l4_frontend
+  observed_change/plausible. comparison/empirical_case preserved.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17** (Phase A.2
   corporate_policy discovery; wallet-UI warning-layer slice):
   authored by LLM agent without personally verifying the specific
