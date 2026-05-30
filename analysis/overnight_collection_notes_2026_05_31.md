@@ -63,3 +63,11 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - **tradehill-dwolla-payment-cutoff-2012-02** (S5, discovery_only_2008_2012, comparison/empirical_case). Payment processor Dwolla severed early US Bitcoin exchange TradeHill's fiat rail (early 2012) -> exchange ceased; TradeHill v. Dwolla suit. Earliest-tier financial-rail de-risking censorship case (offramp_cex/plausible). 2 semi_primary_wayback (VentureBeat + American Banker), body_hash-pinned, verified. audit_id 466. (precision: month not in enum -> used week, coarsest available.)
 - bitfloor-capital-one-debanking-2013-04 left registered/author-ready for a later tick (sibling case).
 - Corpus now 256 admitted.
+
+### Tick 4 — 2026-05-31 01:08 Melbourne — focus: S6 supranational census (registry breadth)
+**+6 verified registry rows** (S6), each tagged by censorship-relevance:
+- **DIRECT CENSORSHIP**: eu-russia-sanctions-crypto-services-ban-2022-10 (EU 8th package — total ban on crypto services to Russian persons; offramp_cex). The clearest S6 censorship case — AUTHOR-WORTHY after verifying exact package/date (8th=2022-10; later 16th/18th/19th/20th expanded it).
+- **CENSORSHIP-ENABLING**: fatf-updated-rba-guidance-va-vasp-2021-10 (Travel Rule), bcbs-cryptoasset-prudential-sco60-2022 (1250% risk weight -> bank de-risking). Both WB-confirmed.
+- **SOFT-GOVERNANCE / WARNING (likely context-only)**: iosco-2023-recommendations, fsb-stablecoin-recs-2023, esa-eu-virtual-currency-warning-2013. Tagged for the scope decision.
+
+**Judgment:** S6 has many soft-governance framework docs (IOSCO/FSB/IMF/BCBS recommendations) — these are censorship-ENABLING infrastructure, not censorship ACTIONS. Recommend the morning scope decision clarify whether soft governance belongs (the existing 24 S6 corpus events set the precedent — e.g. MiCA is included). I tagged each rather than guess. The EU Russia-sanctions crypto bans are the unambiguous S6 censorship events worth authoring (verify exact packages first). No event authored this tick (registry breadth).
