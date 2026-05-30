@@ -44,3 +44,16 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 2. **controlled_vocab jurisdiction enum too small for S4 census.** Only ~42 country codes; the S4 work-list (~106 candidates) spans many missing (CR, KE, LB, JO, KH, EC, MA, DZ, IQ, EG, QA, SA, ...). I used `US` (lead jurisdiction) for Liberty Reserve 2013 + noted CR in prose. **RECOMMEND** bulk-add the missing ISO-3166 codes before authoring S4 events. Overnight, vocab-blocked S4 cases go to the registry (free-text) for morning authoring; I author only schema-fitting cases (US S1/S3, S5, S6).
 
 **Skips/notes:** kept the tick bounded (1 high-value event + 2 flagged decisions). The registry stays at the e-gold 2007 anchor; future ticks extend it (each verifying its own sources). Next tick will work schema-fitting S3/S5/S6 candidates while the 2007-tier + jurisdiction-vocab decisions await morning blessing.
+
+### Tick 2 — 2026-05-31 00:10 Melbourne — focus: 2007-2016 back-fill (TIER 1 registry breadth)
+**+6 verified registry rows** (each source verified live-200 or Wayback-memento; no fabrication):
+- liberty-reserve-budovsky-sentencing-2016-05 (S3, high) — completes the LR arc.
+- **tradehill-dwolla-payment-cutoff-2012-02** (S5, AUTHOR-READY) — Dwolla cut TradeHill's rails under compliance pressure; early financial-rail debanking.
+- **bitfloor-capital-one-debanking-2013-04** (S5) — Capital One debanked BitFloor (Operation-Choke-Point-era).
+- cfpb-virtual-currency-consumer-advisory-2014-08 (S3, BORDERLINE — a warning, not a block).
+- cryptsy-collapse-insolvency-2016-01 (S5, LIKELY OUT-OF-SCOPE — fraud/theft, not censorship).
+- mtgox-chapter-15-us-bankruptcy-recognition-2014-06 (S3, BORDERLINE — bankruptcy recognition).
+
+**⚠️ SCOPE-BOUNDARY DECISION FLAGGED:** the census needs a clear inclusion rule separating CENSORSHIP (state/corporate denial/blocking/seizure/freeze) from exchange FAILURES (fraud/hack/insolvency) and soft WARNINGS. RECOMMEND excluding pure failures/frauds (Cryptsy, Mt.Gox-collapse-as-such) and treating advisories (CFPB) as null/context only. I recorded the borderline cases with explicit scope flags rather than silently in/excluding them. Please bless the boundary in the morning.
+
+**Bounded:** no new event authored this tick (registry breadth prioritized); tradehill-dwolla + bitfloor are author-ready (US, schema-fitting) for a later tick / morning. The 2007-tier + jurisdiction-vocab blocks from tick 1 still await your blessing.

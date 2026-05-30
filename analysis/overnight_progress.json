@@ -13,11 +13,11 @@
     "S6 supranational census",
     "S5 corporate saturation"
   ],
-  "tick_count": 1,
-  "registry_rows_added": 0,
+  "tick_count": 2,
+  "registry_rows_added": 7,
   "events_authored": 1,
   "last_audit_id": 465,
-  "last_fire_utc": "2026-05-30T13:40:00Z",
+  "last_fire_utc": "2026-05-30T14:10:00Z",
   "gap_discovery_done": true,
   "work_list": "analysis/census_gap_candidates.tsv (264 candidates) + analysis/census_gap_list.md (synthesis)",
   "candidates_total": 264,
@@ -32,6 +32,7 @@
   "notes": "S2 census-complete. proto-2007-2012 (13) + early-bitcoin-2013-2016 (23) are the priority back-fill. Verify agent-provided source_urls before trusting (C-5 lesson).",
   "flagged_for_review": [
     "SCHEMA: temporal_tier enum earliest = discovery_only_2008_2012 (starts 2008). The 'since 2007' census needs a 2007 tier. RECOMMEND rename -> discovery_only_2007_2012 (schema/event.schema.json + codebook + validator). e-gold-doj-indictment-2007-04 registered + ready to author once blessed. NOT changed overnight (structural).",
-    "VOCAB: schema/controlled_vocab.yaml jurisdiction enum has only ~42 values; the S4 census (~106 candidates) spans many missing countries (CR, KE, LB, JO, KH, EC, MA, DZ, IQ, EG, QA, SA, ...). RECOMMEND bulk-add missing ISO-3166 codes before authoring S4 events. NOT changed overnight; vocab-blocked S4 cases go to the registry for morning authoring."
+    "VOCAB: schema/controlled_vocab.yaml jurisdiction enum has only ~42 values; the S4 census (~106 candidates) spans many missing countries (CR, KE, LB, JO, KH, EC, MA, DZ, IQ, EG, QA, SA, ...). RECOMMEND bulk-add missing ISO-3166 codes before authoring S4 events. NOT changed overnight; vocab-blocked S4 cases go to the registry for morning authoring.",
+    "SCOPE BOUNDARY: the census must distinguish CENSORSHIP actions (state/corporate denial/blocking/seizure/freeze) from (a) exchange FAILURES (fraud/hack/insolvency, e.g. Cryptsy) and (b) soft WARNINGS/advisories (e.g. CFPB 2014). RECOMMEND: exclude pure failures/frauds; treat advisories as null/context only. Flagged borderline rows in census_gap_registry.tsv (cryptsy=OUT-OF-SCOPE?, cfpb/mtgox-ch15=BORDERLINE). Please bless the inclusion boundary."
   ]
 }
