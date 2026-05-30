@@ -1,0 +1,195 @@
+id: egold-doj-indictment-2007-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: discovery_only_2007_2012
+analysis_use: discovery_ledger_only
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.2"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - egold-doj-guilty-plea-2008-07
+  - liberty-reserve-coordinated-takedown-2013-05
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_DC
+  timestamp: 2007-04-27T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/archive/opa/pr/2007/April/07_crm_301.html
+      wayback: https://web.archive.org/web/20091201225327/http://www.justice.gov/archive/opa/pr/2007/April/07_crm_301.html
+      body_hash: sha256:44f71f8a576076e415daef9c169b3e44c998b1538a1e7d48a0c9d839609e7cdb
+      body_path: sources/http_captures/egold-doj-indictment-2007-04/primary/web.archive.org__web-20070601000000-https-www.justice.gov-archive-opa-pr-2007-April-07_crm_301.html__10dd69e8c1.html
+      evidence_use: replayable
+      note: |
+        DOJ press release #07-301 (returned 2007-04-24, unsealed 2007-04-27):
+        "Digital Currency Business E-Gold Indicted for Money Laundering and
+        Illegal Money Transmitting." A four-count federal grand-jury
+        indictment charged e-Gold Ltd., Gold & Silver Reserve Inc., and
+        principals Douglas Jackson, Reid Jackson, and Barry Downey with
+        conspiracy to launder money (18 USC s 1956(h)), conspiracy to
+        operate an unlicensed money transmitting business, and operating
+        such a business (18 USC s 1960). The SEMINAL pre-Bitcoin
+        digital-currency enforcement action; the 2008-07-21 guilty plea
+        (egold-doj-guilty-plea-2008-07) is the resolution stage. Wayback
+        20091201225327 pinned.
+    - type: primary_legal
+      url: https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+      wayback: https://web.archive.org/web/20170328035206/https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+      body_hash: sha256:3f32e6096bc756a52f7d8473f62012c1126ab1706f81b3716fbeb507b06d3c5d
+      body_path: sources/http_captures/egold-doj-indictment-2007-04/primary/web.archive.org__web-20120101000000-https-www.justice.gov-archive-criminal-cybercrime-press-releases-2007-egoldIndict.htm__9f05621822.html
+      evidence_use: replayable
+      note: |
+        DOJ Computer Crime & Intellectual Property Section (CCIPS) copy of
+        the 2007-04-27 e-Gold indictment release. Corroborating primary
+        anchor. Wayback 20170328035206 pinned.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision: indictment returned 2007-04-24, unsealed and
+        announced 2007-04-27 per the DOJ release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Named corporate defendants e-Gold Ltd. (operator of the e-gold
+    digital-gold-account ledger) and Gold & Silver Reserve Inc. (US
+    fiat-side affiliate), plus three named individual directors (Douglas
+    Jackson, Reid Jackson, Barry Downey). e-Gold was a centralized
+    digital-gold-account ledger (gold-grams unit; no blockchain), so no
+    on-chain addresses are enumerated. Subset: the named defendants + the
+    e-Gold corporate vehicle.
+  actor_type: digital_currency_administrator_msb
+  actor_name: e-Gold Ltd. + Gold & Silver Reserve Inc. + Douglas Jackson (2007 indictment)
+  canonical_domains:
+    - e-gold.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The 2007 indictment is a criminal charging instrument, not an
+      ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      e-Gold was a centralized digital-gold-account ledger; no blockchain
+      / consensus layer (Bitcoin genesis was ~20 months later, 2009-01).
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No DOJ-attributed frontend seizure of e-gold.com at the 2007-04-27
+      indictment; the operational account surface remained up under
+      indictment until the 2008 plea-driven wind-down.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      e-Gold "gold-grams" were off-ledger entries administered by e-Gold
+      Ltd., not a blockchain token; no asset-layer freeze instrument.
+  - layer: offramp_cex
+    status: measured
+    scope: [e_gold]
+    note: |
+      Load-bearing layer. The 2007-04-27 federal indictment of e-Gold +
+      its principals for unlicensed money transmitting + money laundering
+      placed the digital-currency MSB under enforcement, restricting its
+      operations and beginning the path to cessation (resolved at the
+      2008-07-21 plea). measured: the indictment + its operational impact
+      are publicly attested in the DOJ release + contemporaneous press.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:e_gold
+    event: egold_operations_restricted_under_federal_indictment
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2007-04-27T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/archive/opa/pr/2007/April/07_crm_301.html
+        wayback: https://web.archive.org/web/20091201225327/http://www.justice.gov/archive/opa/pr/2007/April/07_crm_301.html
+        body_hash: sha256:44f71f8a576076e415daef9c169b3e44c998b1538a1e7d48a0c9d839609e7cdb
+        body_path: sources/http_captures/egold-doj-indictment-2007-04/primary/web.archive.org__web-20070601000000-https-www.justice.gov-archive-opa-pr-2007-April-07_crm_301.html__10dd69e8c1.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [e_gold]
+          countries: [US]
+          time_window:
+            - 2007-04-27T00:00:00Z
+            - 2008-07-21T23:59:59Z
+        note: |
+          DOJ 2007-04-27 indictment of e-Gold + principals (18 USC s 1960
+          + s 1956(h)). attribution=plausible: the indictment is the
+          enforcement action that placed e-Gold's MSB operations under
+          legal restriction; the full operational cessation is the
+          downstream consequence resolved at the 2008 plea.
+      - type: primary_legal
+        url: https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+        wayback: https://web.archive.org/web/20170328035206/https://www.justice.gov/archive/criminal/cybercrime/press-releases/2007/egoldIndict.htm
+        body_hash: sha256:3f32e6096bc756a52f7d8473f62012c1126ab1706f81b3716fbeb507b06d3c5d
+        body_path: sources/http_captures/egold-doj-indictment-2007-04/primary/web.archive.org__web-20120101000000-https-www.justice.gov-archive-criminal-cybercrime-press-releases-2007-egoldIndict.htm__9f05621822.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [e_gold]
+          countries: [US]
+          time_window:
+            - 2007-04-27T00:00:00Z
+            - 2008-07-21T23:59:59Z
+        note: |
+          DOJ CCIPS copy of the indictment release. Corroborating anchor.
+
+analysis_notes: |
+  **AUTHORED 2026-05-31** (census, by human:xiangwen). The e-Gold 2007-04-27
+  federal indictment — the #1 "since 2007" anchor and the SEMINAL pre-Bitcoin
+  digital-currency enforcement action. A four-count grand-jury indictment
+  charged e-Gold Ltd., Gold & Silver Reserve Inc., and principals (Douglas
+  Jackson, Reid Jackson, Barry Downey) with money laundering (18 USC
+  s 1956(h)) + operating an unlicensed money transmitting business (18 USC
+  s 1960). This is the TRIGGER stage; the 2008-07-21 guilty plea
+  (egold-doj-guilty-plea-2008-07, in corpus) is the resolution. comparison
+  shape, single offramp_cex observed_change/plausible (the indictment placed
+  e-Gold's MSB operations under enforcement restriction; cessation resolved
+  at the 2008 plea). Enabled by the temporal_tier rename to
+  discovery_only_2007_2012 (2026-05-31). In scope per codebook §9 +
+  corpus precedent (the e-Gold 2008 plea is already an admitted S3 event):
+  e-Gold was a real digital-currency MSB shut by US enforcement — the
+  foundational template for the FinCEN-2013 -> Liberty-Reserve-2013 ->
+  BTC-e-2017 enforcement lineage. Sources verified + captured 2026-05-31
+  (DOJ #07-301 + CCIPS copy, both body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "The 2007-04-27 DOJ indictment of e-Gold Ltd., Gold & Silver Reserve Inc.,
+  and principals (18 USC s 1960 + s 1956(h)) placed the pre-Bitcoin
+  digital-currency MSB under federal enforcement (offramp_cex
+  observed_change, attribution plausible); the seminal since-2007 anchor,
+  resolved at the 2008 guilty plea. Discovery-tier only."
+
+tags:
+  - doj_enforcement
+  - indictment
+  - unlicensed_money_transmitter
+  - money_laundering
+  - 18_usc_1960
+  - 18_usc_1956
+  - e_gold
+  - pre_bitcoin_digital_currency
+  - since_2007_anchor
+  - discovery_ledger
