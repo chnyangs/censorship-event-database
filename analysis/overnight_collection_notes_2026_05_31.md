@@ -71,3 +71,9 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - **SOFT-GOVERNANCE / WARNING (likely context-only)**: iosco-2023-recommendations, fsb-stablecoin-recs-2023, esa-eu-virtual-currency-warning-2013. Tagged for the scope decision.
 
 **Judgment:** S6 has many soft-governance framework docs (IOSCO/FSB/IMF/BCBS recommendations) — these are censorship-ENABLING infrastructure, not censorship ACTIONS. Recommend the morning scope decision clarify whether soft governance belongs (the existing 24 S6 corpus events set the precedent — e.g. MiCA is included). I tagged each rather than guess. The EU Russia-sanctions crypto bans are the unambiguous S6 censorship events worth authoring (verify exact packages first). No event authored this tick (registry breadth).
+
+### Tick 5 — 2026-05-31 01:38 Melbourne — focus: S1 OFAC SDN census
+**Authored 1 full event (validates [OK]):**
+- **bitriver-russia-mining-ofac-2022-04** (S1, null_case). The FIRST OFAC designation of a crypto-MINING company (BitRiver AG + 10 RU subsidiaries, 2022-04-20, Treasury jy0731). Coded null_case per S1 convention (entity target, no addresses, offramp_cex observed_no_change/none, 14d window). Sources Treasury jy0731 + The Record, body_hash-pinned, verified. audit_id 467. Corpus now 257 admitted.
+**+5 S1 registry rows** (Genesis Market, Netex24/Bitpapa, Evil Corp, Task Force Rusich, + BitRiver-as-authored). Treasury press-release URL pattern (home.treasury.gov/news/press-releases/jyXXXX) is consistent + verifiable; spot-verify each jyXXXX before authoring.
+**Note:** S1 events follow a repetitive null_case template (designation = trigger; offramp_cex observed_no_change since downstream CEX cascade is unmeasured). The 24 S1 gaps are well-suited to fast batch-authoring in the morning using bitriver + zservers as templates.

@@ -1,0 +1,159 @@
+id: bitriver-russia-mining-ofac-2022-04
+schema_version: 0.2.0
+codebook_version: "2.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: human_reviewed
+version: "0.2"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2022-04-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy0731
+      wayback: https://web.archive.org/web/20220430203000/https://home.treasury.gov/news/press-releases/jy0731
+      body_hash: sha256:29ae5daf08553def8ccf7f30a9da1516bbe9bbfd25c01bb24492c12163c778be
+      body_path: sources/http_captures/bitriver-russia-mining-ofac-2022-04/primary/web.archive.org__web-20220501000000-https-home.treasury.gov-news-press-releases-jy0731__70365f1f26.html
+      evidence_use: replayable
+      note: |
+        U.S. Treasury press release jy0731 (2022-04-20): OFAC designated
+        BitRiver AG (Switzerland-headquartered) and ten Russia-based
+        subsidiaries — the FIRST OFAC designation of a cryptocurrency-
+        MINING company — for operating in Russia's technology sector and
+        helping Russia monetize its natural resources / evade sanctions
+        via crypto mining. Wayback 20220430203000 pinned.
+    - type: semi_primary_wayback
+      url: https://therecord.media/us-treasury-dept-sanctions-russian-crypto-mining-giant-bitriver
+      wayback: https://web.archive.org/web/20220421190013/https://therecord.media/us-treasury-dept-sanctions-russian-crypto-mining-giant-bitriver
+      body_hash: sha256:e251f0fa7d3dd43973cb8bd1966061cd36fa96dc60885e1decf10c1cdce692f3
+      body_path: sources/http_captures/bitriver-russia-mining-ofac-2022-04/primary/web.archive.org__web-20220421000000-https-therecord.media-us-treasury-dept-sanctions-russian-crypto-mining-giant-bitriver__2423a37ff1.html
+      evidence_use: replayable
+      note: |
+        The Record (Recorded Future News) 2022-04-20 coverage confirming
+        the first-of-its-kind OFAC designation of a crypto-mining company
+        (BitRiver). Independent corroborating anchor.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision per the 2022-04-20 Treasury press release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    BitRiver AG (Switzerland HQ) plus ten Russia-based subsidiaries
+    designated as SDNs. A crypto-mining-infrastructure company (not an
+    asset issuer); the OFAC entry names the corporate entities rather
+    than enumerating on-chain addresses, so no addresses are attached.
+    Marked subset because the action targets the named BitRiver
+    corporate group rather than an enumerated complete address set.
+  actor_type: crypto_mining_company
+  actor_name: BitRiver AG + 10 Russia-based subsidiaries
+  canonical_domains:
+    - bitriver.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_measured
+    note: |
+      No OONI / Censored Planet probe of bitriver.com within the event
+      window; substrate-shaped gap, not a coverage_gap observation.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      BitRiver is a mining-infrastructure operator; the designation does
+      not act on any chain's consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      bitriver.com is the company's canonical domain; Wayback CDX
+      bracketing of bitriver.com around 2022-04-20 not performed in this
+      authoring pass (not_measured, consistent with peer S1 entity events).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain addresses are attached to the BitRiver corporate
+      designation (entity target, not an address set); no asset-onchain
+      freeze surface to measure.
+  - layer: offramp_cex
+    status: measured
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2022-04-20T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2022-04-20T00:00:00Z
+      - 2022-05-04T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://home.treasury.gov/news/press-releases/jy0731
+        wayback: https://web.archive.org/web/20220430203000/https://home.treasury.gov/news/press-releases/jy0731
+        body_hash: sha256:29ae5daf08553def8ccf7f30a9da1516bbe9bbfd25c01bb24492c12163c778be
+        body_path: sources/http_captures/bitriver-russia-mining-ofac-2022-04/primary/web.archive.org__web-20220501000000-https-home.treasury.gov-news-press-releases-jy0731__70365f1f26.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2022-04-20T00:00:00Z
+            - 2022-05-04T23:59:59Z
+        note: |
+          No public CEX policy statement referencing the BitRiver
+          corporate group was published by major exchanges in the 14-day
+          post-designation window. Observation records the absence of
+          public disclosure; private chain-analytics KYT flagging is
+          outside this observation's scope. BitRiver is a mining
+          operator (no enumerated addresses), so the measurable
+          offramp-cascade surface is structurally limited.
+
+analysis_notes: |
+  **AUTHORED 2026-05-31** (overnight census tick 5, human:xiangwen
+  autonomous mandate). FIRST-OF-ITS-KIND OFAC designation of a
+  cryptocurrency-MINING company: BitRiver AG + 10 Russia-based
+  subsidiaries (2022-04-20, Treasury jy0731), targeting Russia's use of
+  crypto mining to monetize energy resources / evade sanctions. Coded as
+  null_event/null_case per the S1 convention (cf. zservers-ofac-2025):
+  the designation is the trigger, but no public CEX cascade was
+  documented in the 14-day window and the target is a corporate entity
+  with no enumerated on-chain addresses, so the measurable cross-layer
+  surface is limited (offramp_cex observed_no_change/none). Sources
+  verified + captured 2026-05-31 (Treasury jy0731 + The Record,
+  body_hash-pinned; no fabrication). Notable as the first crypto-mining-
+  company sanction — a precedent for sanctioning mining infrastructure.
+
+scoped_claim: |
+  "The 2022-04-20 OFAC designation of BitRiver AG + 10 Russia-based
+  subsidiaries (the first OFAC sanction of a crypto-mining company)
+  attached no on-chain addresses; no public CEX cascade was documented
+  in the 14-day window. null_case: infrastructure-entity target with
+  limited measurable cross-layer surface."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - russia_related
+  - crypto_mining
+  - first_of_its_kind
+  - bitriver
+  - null_event
