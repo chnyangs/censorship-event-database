@@ -104,3 +104,12 @@ authored, judgment calls + why, skips + why, anything needing human review.)
 - **SOFT WARNINGS (borderline)**: india-rbi-caution-2013 (soft precursor to the corpus 2018 hard ban), + an EU central-bank "not-currency" warning cluster (France/Norway/Belgium/Denmark 2013-14) -> context-only per scope.
 **Dedup discipline:** caught internal gap-discovery dups (Jordan x2, Iraq x2, Bangladesh x2 -> single events each).
 **Key for morning:** S4 is the largest gap (~106 cands) but mostly VOCAB-BLOCKED — bulk-add ISO-3166 codes (VN/EC/JO/NP/MA/IQ/CR/KE/LB/MX/NO/DK/...) then batch-author. A handful (CN/BD/IN) are already authorable. Hard-ban vs soft-warning tagging is ready to drive the scope decision. Registry now 39 rows.
+
+### Tick 10 — 2026-05-31 04:08 Melbourne — focus: S4 census PREP (high-value analysis)
+Rather than register 106 S4 rows one-by-one (the candidates file already lists them), produced **analysis/s4_census_prep.md** — the complete S4 roadmap for the morning:
+- **Exact ISO-code additions** needed (~25: CR/DK/DZ/EC/EG/IQ/JO/KE/KH/KW/LB/LK/MA/MM/MX/NO/NP/PK/QA/SA/TN/TW/VE/VN/ZW) — the one additive controlled_vocab commit that unblocks the whole S4 census.
+- **20 jurisdictions already authorable** (BD/BE/BO/CA/CN/FR/ID/IN/IR/JP/KG/KR/MY/NG/PH/RU/SG/TH/UA/US).
+- **Dedup-density map** (US×9, CN×6, IN×5, ID×5, KR×5, NP×4, PK×4, TH×4 → multi-stage, dedup vs corpus).
+- **Scope rule** (hard-ban=include vs soft-warning=context-only) + recommended workflow + templates.
+- Estimate: **~50-70 net-new S4 events** after dedup+scope (of 106 candidates), weighted to 2013-2020.
+**Judgment:** this single prep doc is worth more than 10 more registry rows — it converts the biggest gap into a morning batch-authoring plan gated only on your ISO-code + scope blessing. No event authored (analysis tick).
