@@ -1,0 +1,157 @@
+id: bitfinex-us-retail-customer-exit-2017-11
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - bitfinex-cftc-retail-commodity-2016
+  - coinbase-india-exit-2022
+  - bybit-singapore-exit-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: bitfinex
+  timestamp: 2017-08-11T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
+      wayback: https://web.archive.org/web/20250722095442/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
+      body_hash: sha256:232ef68bcf1ed7ef022dbd3bc1378289539ce48b8ca74a5ba6f371b231551e06
+      body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/primary/web.archive.org__web-20250722095442-https-news.bitcoin.com-bitfinex-to-terminate-services-to-us-retail-customers-by-november-9__deab52a2b8.html
+      evidence_use: replayable
+      note: |
+        Bitcoin.com 2017-10-18: Bitfinex announced it would "terminate all
+        services to U.S. retail customers" no later than 2017-11-09, and
+        barred US-based customers from ERC-20/ICO tokens within a week of the
+        SEC's July-2017 ICO-as-securities warning. Bitfinex cited having "for
+        some time considered pulling away from the retail marketplace in the
+        U.S." Body grep-confirmed: "Terminate Services to US Retail Customers",
+        "terminate all services to U[S]", "by November 9". Wayback 20250722095442
+        pinned. Trigger anchored to the 2017-08-11 first disclosure of the plan.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: plan first revealed 2017-08-11; termination
+        effective no later than 2017-11-09 per the cited coverage.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Single class: Bitfinex US retail customers. The action terminated trading,
+    deposit, and withdrawal functionality for all US retail users (and dropped
+    US users from ERC-20/ICO tokens), geofencing the US retail segment off the
+    Bitfinex off-ramp.
+  actor_type: exchange_operator
+  actor_name: Bitfinex US retail customers
+  chains:
+    - ethereum
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A customer-eligibility policy/geofence, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Acts on Bitfinex's US-customer access, not on any chain's consensus.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Not a frontend domain/UI block; the removal is of US-retail access to
+      the exchange off-ramp.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain freeze; assets remain on-chain. The action is an off-ramp
+      access termination for US retail users.
+  - layer: offramp_cex
+    status: measured
+    scope: [bitfinex_us_retail]
+    note: |
+      Load-bearing layer. Bitfinex terminated trading/deposit/withdrawal
+      functionality for all US retail customers (effective ≤2017-11-09) and
+      dropped US users from ERC-20/ICO tokens after the SEC ICO warning,
+      severing the Bitfinex off-ramp for the US retail segment.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bitfinex
+    event: bitfinex_terminates_us_retail_access
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2017-11-09T00:00:00Z
+    precision: day
+    delta_hours: 2160
+    country: US
+    sources:
+      - type: semi_primary_wayback
+        url: https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
+        wayback: https://web.archive.org/web/20250722095442/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
+        body_hash: sha256:232ef68bcf1ed7ef022dbd3bc1378289539ce48b8ca74a5ba6f371b231551e06
+        body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/primary/web.archive.org__web-20250722095442-https-news.bitcoin.com-bitfinex-to-terminate-services-to-us-retail-customers-by-november-9__deab52a2b8.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bitfinex]
+          countries: [US]
+          time_window:
+            - 2017-08-01T00:00:00Z
+            - 2017-11-30T23:59:59Z
+        note: |
+          Bitfinex terminated all services to US retail customers by 2017-11-09
+          and barred US users from ICO/ERC-20 tokens within a week of the SEC's
+          ICO-as-securities warning. attribution=direct: Bitfinex publicly
+          announced the termination and cited the US ICO-securities regulatory
+          backdrop in its own statement (§1.1 — actor references the trigger
+          and the action names the US-retail target class it acted upon).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Bitfinex's 2017-08-11
+  announcement to terminate trading/deposit/withdrawal functionality for all US
+  retail customers (effective no later than 2017-11-09), dropping US users from
+  ERC-20/ICO tokens after the SEC's July-2017 ICO-as-securities warning. §9 IN
+  scope: deliberate corporate jurisdiction-exit/geofence of a legitimate
+  exchange's US retail segment (not a hack/insolvency). comparison shape,
+  single offramp_cex observed_change. attribution=direct per §1.1: Bitfinex
+  publicly announced the termination and tied it to the US ICO-securities
+  regulatory backdrop, and the action explicitly names the US-retail customer
+  class it acted upon. Assets stay on-chain so l0/l1/l3/l4/asset_onchain are
+  not_applicable; comparable tier (2017). NOTE: distinct from the 2016 Bitfinex
+  hack/socialized-loss event (§9-excluded as a platform failure) — this event
+  is the separate US-retail-exit policy action. Source verified via WebSearch +
+  captured Wayback (Bitcoin.com, body_hash-pinned, body grep-confirmed; no
+  fabrication).
+
+scoped_claim: |
+  "Bitfinex's termination of trading/deposit/withdrawal functionality for all
+  US retail customers (effective ≤2017-11-09, dropping US users from ICO/ERC-20
+  tokens after the SEC ICO warning) severed the Bitfinex off-ramp for the US
+  retail segment; single-layer offramp_cex observed_change, attribution=direct
+  (Bitfinex publicly cited the US ICO-securities backdrop)."
+
+tags:
+  - corporate_policy_change
+  - jurisdiction_exit
+  - geofence
+  - us_retail
+  - bitfinex
+  - offramp_shutdown
+  - ico_securities
