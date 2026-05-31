@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c7761c0` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8b35609` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -44,7 +44,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `bitcoinica-shutdown-2012-05:0:offramp_cex:bitcoinica_operator:operator_led_shutdown_of_bitcoinica_trading_platform_after_hack` | 1 | 0 | 1 | offramp_cex | `bitcoinica-shutdown-2012-05::offramp_cex` |
 | `bitfinex-cftc-retail-commodity-2016:0:offramp_cex:exchange:bitfinex:cftc_ordered_bitfinex_cease_desist_for_financed_retail_bitcoin_transactions` | 1 | 0 | 1 | offramp_cex | `bitfinex-cftc-retail-commodity-2016::offramp_cex` |
 | `bitfinex-tether-cftc-2021:0:offramp_cex:exchange:bitfinex:cftc_ordered_bitfinex_us_retail_financed_commodity_product_remediation_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-cftc-2021::offramp_cex` |
-| `bitfinex-tether-cftc-2021:1:offramp_cex:tether_usdt_issuer:cftc_ordered_tether_usdt_reserve_attestation_regime_change_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-cftc-2021::offramp_cex` |
+| `bitfinex-tether-cftc-2021:1:offramp_cex:tether_usdt_issuer:cftc_ordered_tether_usdt_reserve_disclosure_remediation_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-cftc-2021::offramp_cex` |
 | `bitfinex-tether-nyag-2021:0:offramp_cex:exchange:bitfinex:nyag_ordered_bitfinex_tether_ny_resident_trading_prohibition_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-nyag-2021::offramp_cex` |
 | `bitfinex-tether-nyag-2021:1:offramp_cex:tether_usdt_issuer:nyag_ordered_tether_usdt_reserve_attestation_regime_change_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-nyag-2021::offramp_cex` |
 | `bitfloor-capital-one-debanking-2013-04:0:offramp_cex:bank:capital_one:capital_one_closes_bitfloor_usd_bank_account` | 1 | 0 | 1 | offramp_cex | `bitfloor-capital-one-debanking-2013-04::offramp_cex` |
