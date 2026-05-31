@@ -1,6 +1,6 @@
 # Next steps — censorship-event-database
 
-Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 398 total; see
+Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 total; see
 `analysis/STATE_OF_CORPUS_2026_05_31.md`). Ordered by priority. Nothing here is pushed — all work is local.
 
 ## P1 — Scope / design decisions
@@ -72,11 +72,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 398 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 149
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 101 already covered
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 150
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 102 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
       48 `in_corpus=false` rows, all 48 are now reviewed-excluded/context-only under codebook §9, leaving
-      0 currently actionable registry rows. Exact-id remaining queue: 35 candidate rows not yet in events
+      0 currently actionable registry rows. Exact-id remaining queue: 34 candidate rows not yet in events
       or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
@@ -85,8 +85,9 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 398 
       cautionary notice: the source record supports a request/warning about possible legal risk, not a
       distinct service denial, platform block, payment-rail prohibition, or binding ban beyond the
       already-admitted `bangladesh-bb-bitcoin-warning-2014`. `vietnam-sbv-bitcoin-prohibition-2014-02`
-      was closed as semantic-covered by `vietnam-sbv-payment-prohibition-2017-10`; the inspected source
-      is a 2017-10 SBV ban report, not a distinct 2014 event. `cftc-bzerox-founders-settlement-2022-09`
+      was re-opened from stale semantic coverage and split correctly: the alternate slug now points to
+      draft `vietnam-sbv-bitcoin-prohibition-statement-2014-02`, while the admitted 2017 SBV fines/payment
+      prohibition remains distinct. `cftc-bzerox-founders-settlement-2022-09`
       was closed as covered by `cftc-v-ooki-dao-2022`, because the corpus row already uses the same CFTC
       8590-22 trigger and explicitly enumerates bZeroX LLC, both founders, and successor Ooki DAO.
       Follow-on triage added 8 more registry rows: Liberty Reserve takedown/sentencing, e-Bullion

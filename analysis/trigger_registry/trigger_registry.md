@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · commit `9849c58` · generated `2026-05-31T12:14:39Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · commit `1e151cd` · generated `2026-05-31T12:31:46Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 
@@ -8,8 +8,8 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | count | value | target | gap |
 | --- | ---: | ---: | ---: |
-| raw registry rows | 490 | audit surface | — |
-| distinct in-frame triggers | 389 | 150-250 milestone | 0 |
+| raw registry rows | 491 | audit surface | — |
+| distinct in-frame triggers | 390 | 150-250 milestone | 0 |
 | admitted events | 368 | 120 quality milestone | 0 |
 
 ## Status distribution
@@ -17,7 +17,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | registry_status | count |
 | --- | ---: |
 | `admitted` | 368 |
-| `draft` | 21 |
+| `draft` | 22 |
 | `promoted_to_event` | 45 |
 | `rejected` | 9 |
 | `screened_no_extractor_target` | 47 |
@@ -28,7 +28,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | --- | ---: |
 | `comparable_main_2017_present` | 415 |
 | `discovery_only_2007_2012` | 22 |
-| `historical_baseline_2013_2016` | 53 |
+| `historical_baseline_2013_2016` | 54 |
 
 ## Analysis-use distribution
 
@@ -36,7 +36,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | --- | ---: |
 | `comparable_analysis` | 415 |
 | `discovery_ledger_only` | 22 |
-| `historical_baseline` | 53 |
+| `historical_baseline` | 54 |
 
 ## Stratum expansion gaps
 
@@ -45,7 +45,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | `S1_ofac_sdn` | 54 | 52 | 30 | 0 | 35 | 0 | 50 | 0 |
 | `S2_ofac_removal` | 1 | 1 | 5 | 4 | 10 | 9 | 10 | 9 |
 | `S3_doj_sec_cftc_fiod` | 85 | 77 | 20 | 0 | 30 | 0 | 40 | 0 |
-| `S4_nation_state` | 115 | 111 | 10 | 0 | 20 | 0 | 20 | 0 |
+| `S4_nation_state` | 116 | 111 | 10 | 0 | 20 | 0 | 20 | 0 |
 | `S5_corporate` | 104 | 97 | 10 | 0 | 15 | 0 | 20 | 0 |
 | `S6_supranational` | 30 | 30 | 5 | 0 | 10 | 0 | 10 | 0 |
 

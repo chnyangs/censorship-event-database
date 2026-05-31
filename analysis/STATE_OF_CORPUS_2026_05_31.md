@@ -4,8 +4,8 @@
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **398 events**: **368 admitted** / 21 draft / 9 rejected.
-- **Integrity**: `scripts/validate.py` passes **398 / 398 [OK]**; `make check` passes. All changes remain local, never pushed.
+- **399 events**: **368 admitted** / 22 draft / 9 rejected.
+- **Integrity**: `scripts/validate.py` passes **399 / 399 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
 ## Admitted composition (368)
@@ -56,10 +56,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 149
-    verified+scope-tagged registry rows, 101 covered by corpus / duplicate / semantic precedent. All
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 150
+    verified+scope-tagged registry rows, 102 covered by corpus / duplicate / semantic precedent. All
     remaining 48 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 35 exact-id candidate rows remain to triage from the 264-row
+    0 currently actionable registry rows; 34 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -150,6 +150,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     General Wayback page confirms the 2014 monetary-surrogate / no-use posture and interagency
     coordination with CBR, FSB, and MVD, but does not add a distinct exchange shutdown, banking-rail
     cutoff, domain block, asset freeze, or measured off-ramp observation.
+18. **Sixteenth follow-on triage (Vietnam 2014 split)** — `vietnam-sbv-bitcoin-prohibition-statement-2014-02`
+    was added as a conservative `origin=agent_draft` historical-baseline null_case row using VietnamPlus/VNA
+    contemporaneous coverage plus an official SBV retrospective page. The older alternate slug now points to
+    this draft rather than being collapsed into the admitted 2017 SBV fines/payment-prohibition row.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;
@@ -160,7 +164,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
 - **Capture yield rule**: only official PDFs / static pages on standard URLs capture cleanly; JS-gated exchange
   pages (Binance) return empty bodies and bot-protected gov sites reset — don't rely on them.
 
-## Held drafts (21) — all honest, documented holds
+## Held drafts (22) — all honest, documented holds
 - **1 partially repaired asset_onchain draft still lacks a complete target set**: t3-financial-crime-unit now pins
   two same-day USDT-on-TRON blacklist txs, but the public launch source does not enumerate the full "over USDT
   12M" frozen-address set.
@@ -175,7 +179,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   USDC blacklist receipts; bittrex-global-shutdown now has an official primary-corporate Zendesk notice;
   colonial-pipeline-darkside-clawback now has DOJ/Paladin captures plus a primary_onchain Bitcoin tx hash.
   All remain `origin=agent_draft`, so automation does not promote them.
-- **11 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
+- **12 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
   kuwait-cma-virtual-assets-prohibition-2023-07, and
   celsius-multistate-cease-desist-earn-2021-09 are newly modeled from the P4 queue with replay anchors;
   bitcoin-maven-tetley-doj-2018 is modeled from an official DOJ Wayback capture as an individual-MSB
@@ -190,8 +194,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   official DOJ Wayback captures as a Bitcoin-mixer operator-state criminal-finality row, with DOJ-reported
   BTC forfeiture kept at asset_onchain=not_measured until transaction-level evidence is pinned; and
   lebanon-bdl-bitcoin-warning-2013-12 is modeled from the official BDL Announcement No. 900 PDF as a
-  historical-baseline class-level central-bank warning / electronic-money restriction signal. All remain non-admitted
-  pending human admission review. Celsius
+  historical-baseline class-level central-bank warning / electronic-money restriction signal; and
+  vietnam-sbv-bitcoin-prohibition-statement-2014-02 is modeled as a distinct 2014 SBV payment-instrument /
+  credit-institution warning rather than collapsed into the admitted 2017 fines/payment-prohibition event.
+  All remain non-admitted pending human admission review. Celsius
   additionally needs OCR/human confirmation of the scanned New Jersey order text before any promotion.
 
 ## New rejected / context-only rulings

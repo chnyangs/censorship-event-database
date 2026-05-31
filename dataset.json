@@ -62252,6 +62252,162 @@
     "version": "0.1"
   },
   {
+    "_source_file": "vietnam-sbv-bitcoin-prohibition-statement-2014-02.yaml",
+    "admission_tier": "null_case",
+    "analysis_notes": "**NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4\ncensus-gap queue after locating replayable VietnamPlus/VNA contemporaneous\ncoverage and an official SBV retrospective source. The event remains\n`status=draft` and `origin=agent_draft`; automation must not promote it to an\nadmitted paper row without human admission review.\n\nInclusion / scope rationale: the 2014 SBV statement is distinct from the\nalready-admitted 2017 Vietnam payment-prohibition event. The 2014 source\nrecord supports a historical-baseline central-bank position that Bitcoin and\nsimilar virtual currencies were not lawful payment means, that credit\ninstitutions were not permitted to use them as currency/payment means when\nsupplying customer services, and that organizations / individuals were warned\nagainst investment and payment use. It does not support importing the 2017\nOfficial Letter No. 5747/NHNN-PC, Decree 80/2016, administrative fines, or\nlater criminal-liability language into the 2014 row.\n\nModeling rationale: this is coded as `null_event` / `null_case` because the\nsource record gives a class-level payment-instrument / credit-institution\nwarning but this pass found no named exchange shutdown, bank cutoff, domain\nblock, frontend geofence, issuer freeze, or on-chain action in the bounded\nobservation window. The row is useful as a clean historical-baseline comparator\nand as a guardrail against stale deduplication that previously collapsed the\n2014 statement into the stronger 2017 event.\n\nSource note: the capture script successfully fetched VietnamPlus/VNA and the\nofficial SBV retrospective page. The VietnamPlus body was returned gzip-\nencoded and can be rendered with `gzip -cd`. The optional BizHub mirror failed\nTLS capture due unsafe legacy renegotiation and is not used as a load-bearing\nsource.\n",
+    "analysis_use": "historical_baseline",
+    "codebook_version": "4.0.0",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The SBV 2014 statement is a central-bank payment-instrument / credit-\ninstitution warning. It does not direct ISP, DNS, IP, routing, or other\nnetwork-layer blocking.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "Bitcoin proof-of-work consensus is not affected by the SBV statement, and\nno consensus-layer relay or validation surface is implicated.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The public-RPC compliance substrate measured by the L3 layer did not\nexist in 2014 and is not implicated by a central-bank payment-instrument\nwarning.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The 2014 statement does not name or order changes at any exchange, wallet,\nmerchant, or frontend domain.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "Bitcoin has no issuer-side blacklist or freeze admin function, and the\n2014 SBV statement does not name a token issuer, address set, freeze,\nburn, blacklist, or other asset-admin action.\n",
+        "status": "not_applicable"
+      },
+      {
+        "denominator_artifact": {
+          "note": "Scope descriptor for the 90-day historical-baseline authoring pass:\nVietnam-resident exchange / bank off-ramp cutoffs documented in the\npublic record after the 2014-02-27 SBV press statement. This pass found\na class-level payment-instrument / credit-institution warning but no\nspecific exchange, bank, or payment-provider cutoff to model as an\nobserved_change cascade.\n",
+          "scope_descriptor": {
+            "countries": [
+              "VN"
+            ],
+            "time_window": [
+              "2014-02-27T00:00:00+00:00",
+              "2014-05-28T00:00:00+00:00"
+            ]
+          },
+          "type": "scope_descriptor"
+        },
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer. The 2014 SBV statement is an off-ramp / payment-\ninstrument regulatory signal: it states that Bitcoin and similar virtual\ncurrencies are not lawful payment means, that use as payment is not\nrecognized or protected by law, and that credit institutions are not\npermitted to use them as currency or payment means when providing\nservices to customers. This draft deliberately does not claim a specific\nexchange shutdown, user offboarding, payment-processor cutoff, domain\nblock, or fines. The 90-day denominator below records a bounded\npublic-record null observation for exchange- or bank-side cutoff evidence.\n",
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-31T00:00:00+00:00",
+    "empirical_shape": "null_event",
+    "id": "vietnam-sbv-bitcoin-prohibition-statement-2014-02",
+    "jurisdiction": [
+      "VN"
+    ],
+    "last_verified": "2026-05-31",
+    "observations": [
+      {
+        "actor": "vietnamese_bitcoin_payment_activity_class",
+        "attribution": "none",
+        "event": "no_measured_exchange_or_bank_cutoff_after_sbv_2014_statement",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_no_change",
+        "precision": "day",
+        "sources": [
+          {
+            "body_hash": "sha256:62b826abe0b02dc2ea97a84d93f72bada0c9261324fd89661cac6ae23bdde437",
+            "body_path": "sources/http_captures/vietnam-sbv-bitcoin-prohibition-statement-2014-02/primary/en.vietnamplus.vn__vietnam-dismisses-bitcoin-as-legal-currency-post57059.vnp__a0d26e0a35.html",
+            "evidence_use": "replayable",
+            "note": "Contemporaneous VNA/VietnamPlus report of the 2014 SBV statement.\nIt documents the payment-instrument / credit-institution warning and\nrisk advisory but does not document a named exchange, bank, payment\nprovider, or user class being cut off in response. attribution=none\nbecause this row is an observed_no_change cascade observation.\n",
+            "type": "primary_government",
+            "url": "https://en.vietnamplus.vn/vietnam-dismisses-bitcoin-as-legal-currency-post57059.vnp"
+          },
+          {
+            "body_hash": "sha256:f4ad48820235218f53286118b13a9c032348259ab1003051c16478a58bfc0e22",
+            "body_path": "sources/http_captures/vietnam-sbv-bitcoin-prohibition-statement-2014-02/primary/www.sbv.gov.vn__w-sbv554224---categories-93909__a8d054950b.html",
+            "evidence_use": "replayable",
+            "note": "Official SBV retrospective page corroborating the 2014 press statement\nand distinguishing it from the later 2017 Official Letter and payment-\nprohibition / fines sequence. Used to keep this row scoped to the\n2014 historical-baseline statement and to avoid importing 2017 effects.\n",
+            "type": "primary_government",
+            "url": "https://www.sbv.gov.vn/w/sbv554224/-/categories/93909"
+          }
+        ],
+        "timestamp": "2014-02-27T00:00:00+00:00",
+        "window": [
+          "2014-02-27T00:00:00+00:00",
+          "2014-05-28T00:00:00+00:00"
+        ]
+      }
+    ],
+    "origin": "agent_draft",
+    "primary_source_verified": false,
+    "related_events": [
+      "vietnam-sbv-payment-prohibition-2017-10",
+      "indonesia-bi-bitcoin-warning-2014",
+      "bangladesh-bb-bitcoin-warning-2014"
+    ],
+    "research_stratum": "S4_nation_state",
+    "schema_version": "0.2.0",
+    "scoped_claim": "On 2014-02-27, the State Bank of Vietnam stated that Bitcoin and similar\nvirtual currencies were not currency and not lawful payment means in Vietnam,\nthat credit institutions were not permitted to use them as currency/payment\nmeans when providing services to customers, and that organizations and\nindividuals should not invest or conduct payments with them. This draft codes\nthe action as a historical-baseline, class-level off-ramp/payment-instrument\nwarning with no measured exchange shutdown, bank cutoff, domain block, or\non-chain action; the later 2017 payment-prohibition/fines event remains\nseparate.\n",
+    "status": "draft",
+    "tags": [
+      "regulatory_enforcement",
+      "vietnam",
+      "state_bank_of_vietnam",
+      "bitcoin_warning",
+      "payment_instrument",
+      "historical_baseline",
+      "agent_draft"
+    ],
+    "target": {
+      "actor_name": "Vietnam credit institutions and bitcoin / virtual-currency users",
+      "actor_type": "vietnamese_bitcoin_payment_activity_class",
+      "canonical_domains": [],
+      "chains": [
+        "bitcoin"
+      ],
+      "enumeration": "subset",
+      "enumeration_note": "Vietnamese credit institutions, organizations, individuals, and Bitcoin /\nsimilar-virtual-currency users as the class addressed by the SBV 2014\nstatement. The statement does not enumerate specific exchanges,\ncounterparties, domains, payment providers, tokens beyond Bitcoin and\nsimilar virtual currencies, or blockchain addresses.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "historical_baseline_2013_2016",
+    "trigger": {
+      "actor": "VN_SBV",
+      "citation": [
+        {
+          "body_hash": "sha256:62b826abe0b02dc2ea97a84d93f72bada0c9261324fd89661cac6ae23bdde437",
+          "body_path": "sources/http_captures/vietnam-sbv-bitcoin-prohibition-statement-2014-02/primary/en.vietnamplus.vn__vietnam-dismisses-bitcoin-as-legal-currency-post57059.vnp__a0d26e0a35.html",
+          "evidence_use": "replayable",
+          "note": "VietnamPlus / Vietnam News Agency contemporaneous English report,\npublished 2014-02-27 21:00 +07:00, stating that the State Bank said\nbitcoin and other virtual currencies were not legal tender or a\npermitted means of payment in Vietnam; credit institutions were not\nallowed to use them while supplying services to customers; ownership\nand trading posed legal-risk exposure; and organizations / individuals\nwere warned not to invest or conduct payments with them. The capture\nbody is gzip-encoded by the server; body_hash is over the captured\nbytes and `gzip -cd` renders the article text.\n",
+          "type": "primary_government",
+          "url": "https://en.vietnamplus.vn/vietnam-dismisses-bitcoin-as-legal-currency-post57059.vnp"
+        },
+        {
+          "body_hash": "sha256:f4ad48820235218f53286118b13a9c032348259ab1003051c16478a58bfc0e22",
+          "body_path": "sources/http_captures/vietnam-sbv-bitcoin-prohibition-statement-2014-02/primary/www.sbv.gov.vn__w-sbv554224---categories-93909__a8d054950b.html",
+          "evidence_use": "replayable",
+          "note": "Official State Bank of Vietnam retrospective page captured live\n2026-05-31. The page separately describes the 2014-02-27 first SBV\npress statement on Bitcoin and similar virtual currencies and the later\n2017 Official Letter / press statement sequence. For 2014 it states\nthat Bitcoin and similar virtual currencies were not currency and not\nlawful means of payment in Vietnam; that use as payment was not\nrecognized or protected by law; that credit institutions were not\npermitted to use them as a currency or payment means when providing\nservices to customers; and that organizations / individuals were\nadvised not to invest, hold, or transact in them. Used here as an\nofficial retrospective corroboration and to prevent conflating the 2014\nstatement with the stronger 2017 payment-prohibition/fines event.\n",
+          "type": "primary_government",
+          "url": "https://www.sbv.gov.vn/w/sbv554224/-/categories/93909"
+        }
+      ],
+      "timestamp": "2014-02-27T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "VietnamPlus / VNA published the contemporaneous report on 2014-02-27\nat 21:00 local time. The SBV retrospective also identifies 2014-02-27\nas the date of the first SBV press statement. Day precision is used\nbecause the load-bearing SBV instrument is a date-level press\nstatement, not an intraday enforcement order.\n",
+          "type": "primary_government"
+        }
+      ],
+      "type": "regulatory_enforcement"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "vietnam-sbv-payment-prohibition-2017-10.yaml",
     "admission_tier": "empirical_case",
     "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. \u00a79-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook \u00a710) \u2014 single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,\nawaiting human admission).\n\nState Bank of Vietnam (SBV) public statement of 2017-10-30 declared bitcoin and similar\nvirtual currencies not a lawful means of payment, and prohibited their issuance, supply\nand use as a means of payment under Decree 101/2012 (amended by Decree 80/2016), with\nadministrative fines of 150-200 million VND under Decree 96/2014/ND-CP effective\n2018-01-01 (criminal liability possible thereafter). The underlying instrument is SBV\nOfficial Letter No. 5747/NHNN-PC dated 2017-07-21. This is a binding payment-rail\nprohibition with penalties, in scope under codebook \u00a79 (a deliberate state restriction\non using a crypto payment surface), not a soft \"not legal tender\" advisory.\n\nWhy trigger.type=regulatory_enforcement: per \u00a75.1, the SBV action is non-US national\nregulator administrative enforcement (a payment-law prohibition), not an ISP/DNS network\nblock. Matches the bangladesh-bb-bitcoin-warning-2014 sibling.\n\nWhy attribution=plausible: per \u00a71.5 + \u00a78.4, contemporaneous state-news report captured\nbut SBV primary letter text not captured in this pass; conservative plausible.\n\nWhy comparable_main_2017_present / comparable_analysis: 2017 event, post-2017 tier.\n\nDraft pending human audit of (i) SBV Official Letter 5747/NHNN-PC primary text and\n(ii) any quantitative offramp_cex measurement.\n",

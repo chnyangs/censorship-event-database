@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-05-31T12:14:39Z`
+Generated at: `2026-05-31T12:31:46Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 273, 'ok': 125}
-- **Verification** (`last_verified`): {'ok': 398}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 273, 'ok': 125}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 274, 'ok': 125}
+- **Verification** (`last_verified`): {'ok': 399}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 274, 'ok': 125}
 
 ## Flag legend
 
@@ -404,6 +404,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `upbit-privacy-coin-delisting-2019-09` | `admitted` | `human_reviewed` | 2026-05-31 | 0 | ok | 2026-05-31 | 0 | ok | ok |
 | `uzbekistan-napp-vasp-licensing-2022-07` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 10 | ok | no_audit_recorded |
 | `venezuela-sunacrip-mining-exchange-halt-2023-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
+| `vietnam-sbv-bitcoin-prohibition-statement-2014-02` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
 | `vietnam-sbv-payment-prohibition-2017-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
 | `voyager-bankruptcy-doj-objection-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 10 | ok | no_audit_recorded |
 | `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 0 | ok | 2026-05-31 | 0 | ok | ok |
@@ -684,6 +685,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `unsc-resolution-2371-dprk-crypto-2017` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `uzbekistan-napp-vasp-licensing-2022-07` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `venezuela-sunacrip-mining-exchange-halt-2023-03` — audit=no_audit_recorded, verification=ok, verif_age=0d
+- `vietnam-sbv-bitcoin-prohibition-statement-2014-02` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `vietnam-sbv-payment-prohibition-2017-10` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `voyager-bankruptcy-doj-objection-2023` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `webmoney-ukraine-tax-police-freeze-2013-06` — audit=no_audit_recorded, verification=ok, verif_age=0d

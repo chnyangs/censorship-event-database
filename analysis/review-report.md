@@ -7,15 +7,15 @@ This file is the operational summary for the repo's two current priorities:
 
 ## Process
 
-- Event count: `398`
+- Event count: `399`
 - Release-ready cases: `40`
 - Admitted but release-blocked cases: `328`
 - Fully complete release-ready cases: `1`
 - Scope-limited release-ready cases: `39`
 - Working drafts: `3`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 63, 'paper_anchor': 5}`
-- Draft priority order: `bitfinex-us-retail-customer-exit-2017-11, ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bitcoin-maven-tetley-doj-2018, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, kuwait-cma-virtual-assets-prohibition-2023-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
+- Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 64, 'paper_anchor': 5}`
+- Draft priority order: `bitfinex-us-retail-customer-exit-2017-11, ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, vietnam-sbv-bitcoin-prohibition-statement-2014-02, bitcoin-maven-tetley-doj-2018, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, kuwait-cma-virtual-assets-prohibition-2023-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
 
 ## Cases
 
@@ -7055,6 +7055,24 @@ This file is the operational summary for the repo's two current priorities:
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `vietnam-sbv-bitcoin-prohibition-statement-2014-02`
+
+- Status: `draft`
+- Readiness: `needs_re_scoping`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `low`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Trigger is primary, but target scope or enumeration still looks coarse.
+- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Case shape is visible but the case is not yet admitted.
+- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
+- Blocker: The file does not currently retain a stable changed-layer claim.
+- Next action: Pin down the target set more concretely in the event file.
+- Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `vietnam-sbv-payment-prohibition-2017-10`
 
