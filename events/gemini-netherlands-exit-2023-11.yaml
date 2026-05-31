@@ -1,0 +1,174 @@
+id: gemini-netherlands-exit-2023-11
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - binance-netherlands-exit-2023-07
+  - kucoin-netherlands-exit-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: gemini
+  timestamp: 2023-09-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/policy/2023/09/29/gemini-to-cease-offering-crypto-services-in-netherlands-in-november
+      wayback: https://web.archive.org/web/20240615053708/https://www.coindesk.com/policy/2023/09/29/gemini-to-cease-offering-crypto-services-in-netherlands-in-november/
+      body_hash: sha256:18d5f55197f40afa004b6ed0a8bbd240cbefac4e140233e5c52c886a9079ecda
+      body_path: sources/http_captures/gemini-netherlands-exit-2023-11/primary/web.archive.org__web-20240615053708-https-www.coindesk.com-policy-2023-09-29-gemini-to-cease-offering-crypto-services-in-netherlands-in-november__7aed9116c7.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2023-09-29: "Gemini to Cease Offering Crypto Services in
+        Netherlands in November" due to requirements imposed by De Nederlandsche
+        Bank (DNB); Dutch users asked to withdraw their crypto and fiat balances
+        by Nov. 17. Grep of captured body confirms "Gemini", "Netherlands",
+        "requirements imposed by the De Nederlandsche Bank (DNB)", "withdrawn
+        their crypto and fiat balances by Nov. 17". Wayback 20240615053708
+        pinned.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: announced 2023-09-29; user withdrawal deadline
+        2023-11-17 per the cited coverage.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the Gemini Dutch-resident customer access surface. Subset
+    enumeration: a national market-access withdrawal (services ceased; balances
+    to be withdrawn by 2023-11-17) rather than a complete on-chain address set.
+    No address-level targets; a market-level exit by a centralized exchange.
+  actor_type: exchange_market_withdrawal
+  actor_name: Gemini (Netherlands market)
+  chains: []
+  canonical_domains:
+    - gemini.com
+
+jurisdiction:
+  - NL
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      gemini.com remained globally reachable; restriction is at the
+      exchange-product level, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No frontend-domain takedown; gemini.com stayed up. The action is a
+      product-level market withdrawal, carried at offramp_cex.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain token freeze; a centralized exchange exiting a national
+      market. No §1.6 asset_onchain tx_hash floor applies.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - gemini_nl_retail
+    note: |
+      Load-bearing layer. Gemini (a centralized exchange / off-ramp) ceased
+      Dutch operations due to DNB requirements on crypto exchanges, severing
+      the Gemini off-ramp for Netherlands residents (balances to be withdrawn
+      by 2023-11-17). Partially_measured: the corporate-disclosure anchor is
+      replayable via wayback but the per-user offramp impact set is not
+      enumerated at this draft stage.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:gemini_nl
+    event: gemini_netherlands_market_withdrawal_announced
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-09-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: NL
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2023/09/29/gemini-to-cease-offering-crypto-services-in-netherlands-in-november
+        wayback: https://web.archive.org/web/20240615053708/https://www.coindesk.com/policy/2023/09/29/gemini-to-cease-offering-crypto-services-in-netherlands-in-november/
+        body_hash: sha256:18d5f55197f40afa004b6ed0a8bbd240cbefac4e140233e5c52c886a9079ecda
+        body_path: sources/http_captures/gemini-netherlands-exit-2023-11/primary/web.archive.org__web-20240615053708-https-www.coindesk.com-policy-2023-09-29-gemini-to-cease-offering-crypto-services-in-netherlands-in-november__7aed9116c7.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [gemini]
+          countries: [NL]
+          time_window:
+            - 2023-09-29T00:00:00Z
+            - 2023-11-17T23:59:59Z
+        note: |
+          CoinDesk 2023-09-29: Gemini to cease Netherlands crypto services in
+          November due to DNB requirements; users to withdraw by 2023-11-17.
+          attribution=plausible: the market withdrawal is directly observed; the
+          captured anchor is trade press (not a Gemini primary notice) and the
+          DNB-requirement framing is as reported.
+      - type: semi_primary_wayback
+        url: https://www.unlock-bc.com/109313/gemini-halts-operations-in-netherlands-amid-regulatory-challenges/
+        wayback: https://web.archive.org/web/20250624003219/https://www.unlock-bc.com/109313/gemini-halts-operations-in-netherlands-amid-regulatory-challenges/
+        body_hash: sha256:80960eae95ce4977ed0520f488bab19df5a4bf7227107ad3e0544c51d9f712b7
+        body_path: sources/http_captures/gemini-netherlands-exit-2023-11/primary/web.archive.org__web-20250624003219-https-www.unlock-bc.com-109313-gemini-halts-operations-in-netherlands-amid-regulatory-challenges__a86d2a7053.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [gemini]
+          countries: [NL]
+          time_window:
+            - 2023-09-29T00:00:00Z
+            - 2023-11-17T23:59:59Z
+        note: |
+          Unlock-BC corroboration of the Gemini Netherlands operations halt amid
+          DNB regulatory requirements. Independent second semi-primary anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). On 2023-09-29 (notice to Dutch
+  users dated 2023-09-26) Gemini announced it would cease offering crypto
+  services in the Netherlands by 2023-11-17, citing requirements imposed by De
+  Nederlandsche Bank (DNB) on crypto exchanges; Dutch users were asked to
+  withdraw their crypto and fiat balances by that date. This is a corporate
+  jurisdiction exit by a centralized exchange driven by a national regulatory
+  regime — in scope per codebook §9 (corporate jurisdiction exit/geofence).
+  comparison shape, single offramp_cex observed_change, attribution=plausible
+  (exit is directly observed; captured anchors are trade press, not a Gemini
+  primary notice). asset_onchain not_applicable (CEX market exit, no on-chain
+  freeze, no §1.6 tx_hash floor). Same DNB-driven 2023 Dutch exchange exodus as
+  binance-netherlands-exit-2023-07 and kucoin-netherlands-exit-2023. Sources
+  verified via WebSearch 2026-05-31; CoinDesk + Unlock-BC captured + body_hash
+  pinned; grep of the CoinDesk body confirms "Gemini", "Netherlands",
+  "requirements imposed by the De Nederlandsche Bank (DNB)", "withdrawn their
+  crypto and fiat balances by Nov. 17" (no fabrication).
+
+scoped_claim: |
+  "Gemini's 2023-09-29 decision to cease Netherlands crypto services by
+  2023-11-17, citing DNB requirements on crypto exchanges, is a single-layer
+  offramp_cex observed_change with attribution=plausible, part of the 2023
+  Dutch exchange exodus (cf. Binance/KuCoin)."
+
+tags:
+  - corporate_policy_change
+  - market_exit
+  - jurisdiction_exit
+  - netherlands
+  - gemini
+  - dnb
+  - offramp_shutdown
+  - comparable_main

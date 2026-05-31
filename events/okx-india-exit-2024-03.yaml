@@ -1,0 +1,209 @@
+id: okx-india-exit-2024-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - coinbase-india-exit-2022
+  - okx-nigeria-exit-2024-08
+
+trigger:
+  type: corporate_policy_change
+  actor: okx
+  timestamp: 2024-03-21T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://techcrunch.com/2024/03/21/crypto-exchange-okx-ceases-services-in-india/
+      wayback: https://web.archive.org/web/20240322011034/https://techcrunch.com/2024/03/21/crypto-exchange-okx-ceases-services-in-india/
+      body_hash: sha256:6f72148e83e27a3771872eafc7f1c69ca71150084132832a6488ad6e16203519
+      body_path: sources/http_captures/okx-india-exit-2024-03/primary/web.archive.org__web-20240322000000-https-techcrunch.com-2024-03-21-crypto-exchange-okx-ceases-services-in-india__074c6e5c64.html
+      evidence_use: replayable
+      note: |
+        TechCrunch 2024-03-21: OKX ceased services for users in India,
+        advising them to withdraw all funds by April 30 and citing "local
+        regulations." Captured body verifies: "withdraw all funds by April
+        30"; "The move follows Apple and Google pulling the eponymous app of
+        OKX in the country after" an Indian government agency said many
+        crypto exchanges were operating illegally; FIU IND context. Wayback
+        20240322011034.
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/policy/2024/03/21/crypto-exchange-okx-to-end-services-in-india
+      wayback: https://web.archive.org/web/20240322070830/https://www.coindesk.com/policy/2024/03/21/crypto-exchange-okx-to-end-services-in-india/
+      body_hash: sha256:19fe144df0e5608b5cf4938c24d2836650c7be3c7f88b32fef1c831669332fd2
+      body_path: sources/http_captures/okx-india-exit-2024-03/primary/web.archive.org__web-20240322000000-https-www.coindesk.com-policy-2024-03-21-crypto-exchange-okx-to-end-services-in-india__afcb77b3d0.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2024-03-21 corroboration: OKX users in India "have until
+        April 30 to close out their positions"; must "close all margin
+        positions, as well as positions in perpetuals, futures and options"
+        and then "only be able to withdraw their funds"; OKX "is responding
+        to regulations" targeting exchanges operating illegally; "The FIU
+        IND issued a notice in December to nine exchanges." Independent
+        second semi-primary anchor.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: 2024-03-21 (TechCrunch + CoinDesk URL path
+        /2024/03/21/). Users instructed to withdraw / close positions by
+        2024-04-30. Recorded event date 2024-03-21 (announcement).
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Target is OKX's centralized (CeFi) service surface for Indian users —
+    spot/margin/derivatives trading and account access on okx.com for India.
+    Complete enumeration of the India CeFi service set OKX wound down;
+    users required to close positions and withdraw by 2024-04-30. (OKX's
+    DeFi Web3 wallet remained available per the reporting; the censored
+    surface is the CeFi off-ramp.)
+  protocol: null
+  actor_type: centralized_exchange_jurisdiction_service
+  actor_name: OKX India (CeFi) services
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - IN
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      OKX's own exit from India is a corporate off-ramp withdrawal, not an
+      ISP/DNS network block. (The Apple/Google app-store removals were a
+      separate platform action preceding OKX's exit.)
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No chain consensus surface is engaged by an exchange jurisdiction exit.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      OKX's CeFi service withdrawal is an off-ramp exit, not an
+      OKX-frontend domain/UI block. (App-store removals by Apple/Google are
+      a distinct platform action, not coded here.)
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer blacklist/freeze admin method is engaged; OKX wound down its
+      India CeFi service and required users to withdraw, not an on-chain
+      asset freeze.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - okx_india_cefi_trading
+      - okx_india_account_access
+    note: |
+      Load-bearing layer. OKX ceased its centralized-exchange services for
+      Indian users (no new positions; close-out + withdraw by 2024-04-30),
+      severing the OKX CeFi off-ramp in India, following FIU-IND
+      illegal-operation notices and Apple/Google app removals. Attested in
+      contemporaneous trade press.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:okx
+    event: okx_ceases_cefi_services_for_indian_users
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-03-21T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IN
+    sources:
+      - type: semi_primary_wayback
+        url: https://techcrunch.com/2024/03/21/crypto-exchange-okx-ceases-services-in-india/
+        wayback: https://web.archive.org/web/20240322011034/https://techcrunch.com/2024/03/21/crypto-exchange-okx-ceases-services-in-india/
+        body_hash: sha256:6f72148e83e27a3771872eafc7f1c69ca71150084132832a6488ad6e16203519
+        body_path: sources/http_captures/okx-india-exit-2024-03/primary/web.archive.org__web-20240322000000-https-techcrunch.com-2024-03-21-crypto-exchange-okx-ceases-services-in-india__074c6e5c64.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [okx]
+          countries: [IN]
+          time_window:
+            - 2024-03-21T00:00:00Z
+            - 2024-04-30T23:59:59Z
+        note: |
+          TechCrunch 2024-03-21: OKX ceased India services, withdraw by
+          April 30, citing local regulations after FIU-IND notices and
+          Apple/Google app removals. attribution=plausible: the exit is
+          directly observed, but OKX cited "local regulations" generically;
+          the specific regulatory driver is contextual.
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2024/03/21/crypto-exchange-okx-to-end-services-in-india
+        wayback: https://web.archive.org/web/20240322070830/https://www.coindesk.com/policy/2024/03/21/crypto-exchange-okx-to-end-services-in-india/
+        body_hash: sha256:19fe144df0e5608b5cf4938c24d2836650c7be3c7f88b32fef1c831669332fd2
+        body_path: sources/http_captures/okx-india-exit-2024-03/primary/web.archive.org__web-20240322000000-https-www.coindesk.com-policy-2024-03-21-crypto-exchange-okx-to-end-services-in-india__afcb77b3d0.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [okx]
+          countries: [IN]
+          time_window:
+            - 2024-03-21T00:00:00Z
+            - 2024-04-30T23:59:59Z
+        note: |
+          CoinDesk corroboration: India users close positions and withdraw
+          by 2024-04-30; OKX responding to regulations targeting exchanges
+          operating illegally; FIU IND December notice to nine exchanges.
+          Independent second semi-primary anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission).
+
+  OKX's 2024-03-21 cessation of its centralized-exchange (CeFi) services
+  for Indian users — no new positions; close out margin/perpetuals/futures/
+  options and withdraw all funds by 2024-04-30 — citing "local
+  regulations," following FIU-IND (Financial Intelligence Unit, India)
+  illegal-operation notices (December 2023, nine offshore exchanges) and
+  Apple/Google removing the OKX app from India app stores.
+
+  Why §9 INCLUDE: a deliberate corporate jurisdiction exit / geofence that
+  denied Indian users access to OKX's CeFi off-ramp (codebook §9 INCLUDE:
+  corporate jurisdiction exit / geofence). Part of the 2024 offshore-
+  exchange withdrawal wave from India under PMLA/FIU-IND pressure.
+
+  Why S5_corporate: an exchange's unilateral decision to exit a market is a
+  corporate policy action.
+
+  Why comparison / empirical_case: one strong-attribution observed_change
+  layer (offramp_cex). Other five layers scope-mismatched.
+
+  Why attribution=plausible: the exit is directly observed, but OKX cited
+  "local regulations" generically (no named mandate compelling OKX
+  specifically; the FIU-IND public notice named Binance/Kraken/Huobi/
+  Gate.io but not OKX), so the precise regulatory driver is contextual.
+
+  Sources verified via WebSearch + captured 2026-05-31 (TechCrunch +
+  CoinDesk, body_hash-pinned; both grep-confirmed for "withdraw by April
+  30" and FIU-IND/app-removal context; no fabrication).
+
+scoped_claim: |
+  "OKX's 2024-03-21 cessation of CeFi services for Indian users (close
+  positions + withdraw by 2024-04-30), following FIU-IND illegal-operation
+  notices and Apple/Google app removals, severed the OKX CeFi off-ramp in
+  India; single-layer offramp_cex observed_change with attribution=
+  plausible (OKX cited generic local regulations, not a named OKX-specific
+  mandate)."
+
+tags:
+  - corporate_policy_change
+  - okx
+  - india
+  - offramp_shutdown
+  - jurisdiction_exit
+  - fiu_ind

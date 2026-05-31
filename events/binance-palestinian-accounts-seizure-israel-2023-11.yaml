@@ -1,0 +1,208 @@
+id: binance-palestinian-accounts-seizure-israel-2023-11
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - israel-nbctf-hamas-crypto-addresses-2021
+
+trigger:
+  type: corporate_policy_change
+  actor: binance
+  timestamp: 2023-11-01T00:00:00Z
+  timestamp_precision: month
+  citation:
+    - type: semi_primary_wayback
+      url: https://cointelegraph.com/news/binance-seize-funds-palestine-israel
+      wayback: https://web.archive.org/web/20240827142258/https://cointelegraph.com/news/binance-seize-funds-palestine-israel
+      body_hash: sha256:c33a10e717954b66726ad2befd49f1a22dc05de6a43543866c85adc9d8be7102
+      body_path: sources/http_captures/binance-palestinian-accounts-seizure-israel-2023-11/primary/web.archive.org__web-20240827142258-https-cointelegraph.com-news-binance-seize-funds-palestine-israel__51e5185689.html
+      evidence_use: replayable
+      note: |
+        Cointelegraph (capture 2024-08-27): Binance blocked Palestinian
+        user accounts pursuant to a November 2023 letter signed by Israel's
+        National Bureau for Counter Terror Financing (NBCTF), Paul Landes,
+        which rejected appeals by Palestinian users to restore the blocked
+        funds. The Hebrew letter invoked Israeli anti-terrorism law
+        permitting the Minister of Defense to issue a "temporary seizure of
+        property of a declared terrorist organization," including
+        cryptocurrency funds. Binance disputed any mass freeze, stating
+        "Only a small number of user accounts, linked to illicit funds,
+        were blocked from transacting." Wayback 20240827142258.
+    - type: supporting_community
+      url: https://skylineforhuman.org/en/news/details/801/binances-response-to-skylines-letter-on-seizure-of-palestinian-cryptocurrency-wallets
+      wayback: https://web.archive.org/web/20241008190737/https://skylineforhuman.org/en/news/details/801/binances-response-to-skylines-letter-on-seizure-of-palestinian-cryptocurrency-wallets
+      body_hash: sha256:ea7ab115856d2c3bb7ac0435bb6068fa7cfdd1e7c0fc1748431c483a77373afe
+      body_path: sources/http_captures/binance-palestinian-accounts-seizure-israel-2023-11/primary/web.archive.org__web-20241008190737-https-skylineforhuman.org-en-news-details-801-binances-response-to-skylines-letter-on-seizure-of-palestinian-cryptocurrency-wallets__c6a6fa0209.html
+      evidence_use: replayable
+      note: |
+        Skyline International for Human Rights (capture 2024-10-08):
+        rights-org account of Binance's response to its letter on the
+        seizure of Palestinian cryptocurrency wallets, corroborating the
+        Binance blocking action tied to the NBCTF seizure correspondence.
+        Advocacy source — supporting_community, used as corroboration not
+        as the primary action attestation.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Month-level precision: the cited NBCTF letter is dated November
+        2023; the exact day of the account blocking is not pinned in the
+        captured coverage, so timestamp_precision=month.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Palestinian-user Binance accounts blocked under the November 2023
+    NBCTF seizure order. The exact set is contested: Binance states only
+    "a small number of user accounts, linked to illicit funds," were
+    blocked, while Palestinian advocates allege a broader sweep; the
+    captured sources do not enumerate a verified account list or count, so
+    enumeration=subset.
+  actor_type: state_order_account_freeze
+  actor_name: Binance (Palestinian user accounts under Israeli NBCTF order)
+  chains: []
+
+jurisdiction:
+  - PS
+  - IL
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An exchange account-blocking under a state seizure order, not an
+      ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No verified on-chain issuer/contract freeze tx is pinned. The action
+      is a Binance-internal account block (exchange custody), so the
+      effect is carried at offramp_cex, not asset_onchain. (Codebook §1.6:
+      an asset_onchain observed_change requires a verified primary_onchain
+      freeze tx_hash, which is not available here.)
+  - layer: offramp_cex
+    status: measured
+    scope: [binance_palestinian_user_accounts]
+    note: |
+      Load-bearing layer. Binance blocked Palestinian user accounts from
+      transacting pursuant to a November 2023 Israeli NBCTF seizure order,
+      severing the Binance off-ramp/custody for the affected (contested)
+      account set.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: binance_blocks_palestinian_user_accounts_under_israeli_nbctf_order
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-11-01T00:00:00Z
+    precision: month
+    delta_hours: 0
+    country: PS
+    sources:
+      - type: semi_primary_wayback
+        url: https://cointelegraph.com/news/binance-seize-funds-palestine-israel
+        wayback: https://web.archive.org/web/20240827142258/https://cointelegraph.com/news/binance-seize-funds-palestine-israel
+        body_hash: sha256:c33a10e717954b66726ad2befd49f1a22dc05de6a43543866c85adc9d8be7102
+        body_path: sources/http_captures/binance-palestinian-accounts-seizure-israel-2023-11/primary/web.archive.org__web-20240827142258-https-cointelegraph.com-news-binance-seize-funds-palestine-israel__51e5185689.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [PS, IL]
+          time_window:
+            - 2023-11-01T00:00:00Z
+            - 2023-11-30T23:59:59Z
+        note: |
+          Cointelegraph: Binance blocked Palestinian user accounts under a
+          November 2023 NBCTF (Paul Landes) seizure letter invoking Israeli
+          anti-terrorism law; Binance states only "a small number of user
+          accounts, linked to illicit funds," were blocked.
+          attribution=plausible: the account-blocking action is directly
+          reported and Binance confirms blocking accounts, but the order's
+          target scope/count is contested and the captured page does not
+          reproduce the primary seizure order or an enumerated list, so a
+          conservative attribution is retained.
+      - type: supporting_community
+        url: https://skylineforhuman.org/en/news/details/801/binances-response-to-skylines-letter-on-seizure-of-palestinian-cryptocurrency-wallets
+        wayback: https://web.archive.org/web/20241008190737/https://skylineforhuman.org/en/news/details/801/binances-response-to-skylines-letter-on-seizure-of-palestinian-cryptocurrency-wallets
+        body_hash: sha256:ea7ab115856d2c3bb7ac0435bb6068fa7cfdd1e7c0fc1748431c483a77373afe
+        body_path: sources/http_captures/binance-palestinian-accounts-seizure-israel-2023-11/primary/web.archive.org__web-20241008190737-https-skylineforhuman.org-en-news-details-801-binances-response-to-skylines-letter-on-seizure-of-palestinian-cryptocurrency-wallets__c6a6fa0209.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [PS, IL]
+          time_window:
+            - 2023-11-01T00:00:00Z
+            - 2023-11-30T23:59:59Z
+        note: |
+          Skyline International for Human Rights corroboration of the
+          Binance Palestinian-wallet blocking tied to the NBCTF seizure
+          correspondence. Advocacy source (supporting_community);
+          corroboration only.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Binance blocked Palestinian
+  user accounts from transacting pursuant to a November 2023 letter from
+  Israel's National Bureau for Counter Terror Financing (NBCTF, signed by
+  Paul Landes) that rejected Palestinian users' appeals to restore blocked
+  funds, invoking Israeli anti-terrorism law's "temporary seizure of
+  property of a declared terrorist organization." Single offramp_cex
+  observed_change (state-order account freeze at the exchange);
+  comparison shape. attribution=plausible per §1: the blocking action is
+  directly reported and Binance confirms blocking accounts, but the order's
+  target scope/count is CONTESTED — Binance states only "a small number of
+  user accounts, linked to illicit funds" were blocked while Palestinian
+  advocates allege a broader sweep — and the captured coverage does not
+  reproduce the primary seizure order or an enumerated account list, so a
+  conservative attribution and enumeration=subset are retained. PS/IL
+  jurisdictions (target users Palestinian; ordering authority Israeli).
+  ANTI-FABRICATION NOTE for human reviewer: the candidate lead asserted
+  "~220 accounts," but that figure is NOT present in the captured
+  cointelegraph page (the only numbers on the page are CSS/menu IDs and a
+  "708 total views" counter) — the count is therefore NOT claimed here.
+  asset_onchain is not_applicable: no verified primary_onchain freeze
+  tx_hash exists, and the action is a Binance-internal custody block, so
+  the effect is carried at offramp_cex (codebook §1.6). l0/l1/l3/l4
+  not_applicable. Distinct from israel-nbctf-hamas-crypto-addresses-2021
+  (the 2021 NBCTF on-chain address seizure) — this 2023 row is the
+  Binance exchange-custody account block. Sources verified via WebSearch +
+  captured 2026-05-31 (Cointelegraph primary + Skyline advocacy
+  corroboration, body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "Binance blocked a contested set of Palestinian user accounts from
+  transacting under a November 2023 Israeli NBCTF (Paul Landes) seizure
+  order invoking anti-terrorism law; single-layer offramp_cex
+  observed_change, attribution=plausible (Binance confirms blocking
+  accounts but the order's scope/count is contested and unreproduced;
+  enumeration=subset). No verified on-chain freeze tx, so the effect is
+  carried at offramp_cex, not asset_onchain."
+
+tags:
+  - corporate_policy_change
+  - state_order_account_freeze
+  - binance
+  - palestine
+  - israel
+  - nbctf
+  - counter_terror_financing
+  - account_freeze
+  - offramp_shutdown

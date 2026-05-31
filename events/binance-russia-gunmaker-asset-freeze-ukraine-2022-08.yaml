@@ -1,0 +1,166 @@
+id: binance-russia-gunmaker-asset-freeze-ukraine-2022-08
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+trigger:
+  type: corporate_policy_change
+  actor: binance
+  timestamp: 2022-08-31T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.nasdaq.com/articles/binance-froze-russian-gun-makers-crypto-assets-amid-ukrainian-pressure
+      wayback: https://web.archive.org/web/20220914203535/https://www.nasdaq.com/articles/binance-froze-russian-gun-makers-crypto-assets-amid-ukrainian-pressure
+      body_hash: sha256:4a9db4928be5154a6b069d5fea5012cdbdbde5afa7bfe964b0b0c2019af22ccb
+      body_path: sources/http_captures/binance-russia-gunmaker-asset-freeze-ukraine-2022-08/primary/web.archive.org__web-20220914203535-https-www.nasdaq.com-articles-binance-froze-russian-gun-makers-crypto-assets-amid-ukrainian-pressure__8e0848db7b.html
+      evidence_use: replayable
+      note: |
+        CoinDesk (via Nasdaq syndication, 2022-08-31): "Binance, the
+        world's largest crypto exchange by volume, froze a wallet related
+        to Vladislav Lobaev, a Russian gun manufacturer" who fundraised
+        for Russian troops in Ukraine. "CoinDesk has confirmed that ...
+        wallet was Lobaev's Binance account." Per a Binance support rep
+        the account was "locked due to an account review." The Security
+        Service of Ukraine (SSU) had published a release saying it
+        "blocked a crypto wallet belonging to a Russian [citizen]"; the
+        fundraiser had raised "800,000 Ukrainian hryvnias (US$21,700)."
+        Wayback 20220914203535 pinned; the freeze, Lobaev identity, SSU
+        pressure and amount are grep-verified in the captured body.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: reported 2022-08-31 (article publication);
+        the freeze occurred shortly before, after the SSU's release "last
+        week." Trigger timestamp set to the 2022-08-31 reporting date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    A single Binance account / wallet controlled by Vladislav Lobaev
+    (founder of Lobaev Arms, a Russian firearms manufacturer), used to
+    fundraise for Russian troops in Ukraine. The captured source confirms
+    the frozen account is Lobaev's Binance account but does not publish the
+    on-chain deposit addresses; coded subset (the target account is named,
+    the address set is not enumerated in the captured primary).
+  actor_type: cex_account
+  actor_name: Vladislav Lobaev (Lobaev Arms) Binance account
+  chains:
+    - bitcoin
+    - ethereum
+
+jurisdiction:
+  - RU
+  - UA
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An exchange account freeze, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The freeze acts on Binance's custodial account, not on any chain's
+      consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer on-chain freeze tx: the funds (BTC/ETH/USDT) sit in
+      Binance custody and the action is a custodial account lock, not an
+      asset-issuer on-chain blacklist. Per §1.6 the effect is carried at
+      offramp_cex, and no primary_onchain tx_hash is claimed.
+  - layer: offramp_cex
+    status: measured
+    scope: [binance_lobaev_account]
+    note: |
+      Load-bearing layer. Binance froze (locked, per its support rep "due
+      to an account review") the Binance account of Vladislav Lobaev after
+      Ukrainian SSU pressure, severing his off-ramp for the ~US$21,700
+      raised for Russian troops. Attested in contemporaneous CoinDesk
+      reporting (Nasdaq syndication), body_hash-pinned.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: binance_freezes_lobaev_account_after_ukrainian_le_pressure
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-08-31T00:00:00Z
+    precision: day
+    country: UA
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.nasdaq.com/articles/binance-froze-russian-gun-makers-crypto-assets-amid-ukrainian-pressure
+        wayback: https://web.archive.org/web/20220914203535/https://www.nasdaq.com/articles/binance-froze-russian-gun-makers-crypto-assets-amid-ukrainian-pressure
+        body_hash: sha256:4a9db4928be5154a6b069d5fea5012cdbdbde5afa7bfe964b0b0c2019af22ccb
+        body_path: sources/http_captures/binance-russia-gunmaker-asset-freeze-ukraine-2022-08/primary/web.archive.org__web-20220914203535-https-www.nasdaq.com-articles-binance-froze-russian-gun-makers-crypto-assets-amid-ukrainian-pressure__8e0848db7b.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [UA, RU]
+          time_window:
+            - 2022-08-22T00:00:00Z
+            - 2022-08-31T23:59:59Z
+        note: |
+          CoinDesk (Nasdaq syndication) 2022-08-31: Binance froze Lobaev's
+          account (~US$21,700 in BTC/ETH/USDT) after the SSU identified his
+          fundraising. attribution=plausible: the freeze is directly
+          observed and CoinDesk confirmed it is Lobaev's Binance account,
+          but Binance's only stated reason to the user was "locked due to
+          an account review" (not an explicit citation of the SSU request
+          or a sanctions designation), so the Ukrainian-LE-request linkage
+          is journalistic inference rather than a Binance-stated cause.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Binance froze the custodial
+  account of Vladislav Lobaev (founder of Lobaev Arms, a Russian firearms
+  manufacturer) who had fundraised ~US$21,700 (800,000 UAH) in BTC/ETH/USDT
+  for Russian troops in Ukraine, after the Security Service of Ukraine
+  (SSU) publicly announced it had "blocked" the wallet and CoinDesk
+  confirmed it was a Binance account. comparison shape, single offramp_cex
+  observed_change. attribution=plausible: Binance's stated reason to the
+  user was generic ("locked due to an account review"), not an explicit
+  citation of the SSU request, so the Ukrainian-law-enforcement-request
+  linkage is journalistic inference (§1.1 / §8(4) conservative default).
+  Per §1.6 the asset_onchain row is not_applicable and no primary_onchain
+  tx_hash is claimed: the funds are in Binance custody and the action is a
+  custodial account lock, not an issuer on-chain blacklist — the effect is
+  carried at offramp_cex. jurisdiction=RU (account holder) + UA (requesting
+  authority). Source verified via WebSearch + capture 2026-05-31 (CoinDesk
+  via Nasdaq syndication, body_hash-pinned; freeze + Lobaev identity + SSU
+  + amount grep-verified; no fabrication).
+
+scoped_claim: |
+  "Binance's late-August-2022 freeze of Vladislav Lobaev's account
+  (~US$21,700 raised for Russian troops) after Ukrainian SSU pressure
+  severed his Binance off-ramp; single-layer offramp_cex observed_change,
+  attribution=plausible (Binance cited only an 'account review', not the
+  SSU request)."
+
+tags:
+  - corporate_policy_change
+  - account_freeze
+  - asset_freeze
+  - binance
+  - russia_ukraine_war
+  - law_enforcement_request
+  - offramp_shutdown
+  - lobaev
