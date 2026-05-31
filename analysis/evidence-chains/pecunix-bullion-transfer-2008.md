@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `cc05a9c` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a9689fa` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -105,11 +105,13 @@
 - **`primary_corporate`**
   - URL: <http://www.pecunix.com/money.refined...ind.goldbars>
   - Wayback: <https://web.archive.org/web/20081014015939/http://www.pecunix.com/money.refined...ind.goldbars>
-  - body_hash: `sha256:51e7ca12d132901dad9cba171796127b8e3ba8e718470ac4ce57b2b932b27efe`
-  - body_path: `sources/http_captures/pecunix-bullion-transfer-2008/primary/web.archive.org__web-20110101000000-https-themonetaryfuture.blogspot.com-2010-07-overview-of-pecunix.html__82da1f34dd.html`
+  - body_hash: `sha256:32bba84329e2bcc83ac181810ae56d27483e4ddae6ef03c6b53c1a6271a81773`
+  - body_path: `sources/http_captures/pecunix-bullion-transfer-2008/primary/web.archive.org__web-20081014015939-http-www.pecunix.com-money.refined...ind.goldbars__f0f49c077e.html`
   > Pecunix operator site (2008 Wayback snapshot) documenting the
-> gold-bullion-backed digital-currency transfer service. Operator
-> primary_corporate anchor. Wayback 20081014015939 pinned.
+> gold-bullion-backed digital-currency service. This operator
+> primary_corporate anchor establishes the service substrate and
+> 2008 memento, but does not independently prove the bullion-transfer
+> date.
 - **`semi_primary_wayback`**
   - URL: <https://themonetaryfuture.blogspot.com/2010/07/overview-of-pecunix.html>
   - Wayback: <https://web.archive.org/web/20120403064453/http://themonetaryfuture.blogspot.com/2010/07/overview-of-pecunix.html>
@@ -128,7 +130,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `cc05a9c`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a9689fa`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
