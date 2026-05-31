@@ -29,7 +29,7 @@ trigger:
       wayback: https://web.archive.org/web/20210702090802/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9017
       body_hash: sha256:ccde39d696241c09db1794f3ad90c7203603d170f724379b43dd2b62f147fe77
       body_path: sources/http_captures/thailand-sec-binance-bybit-c-and-d-2021/primary/web.archive.org__web-20210702090802-https-www.sec.or.th-EN-Pages-News_Detail.aspx__8f919efcf2.html
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         Thailand Securities and Exchange Commission (TH SEC) news release
         dated 2021-07-02 announcing that the SEC has filed a criminal
@@ -48,11 +48,11 @@ trigger:
         (operative window starting 2022-01-25), recorded here as a
         cross-target subset because the user-anchored event scope binds
         Binance + Bybit under the 2021-07 TH SEC enforcement wave.
-        DRYRUN promotion: real anchor (TH SEC News_Detail SECID=9017)
-        asserted with a 2021-calendar-folder Wayback pointer; pinned
-        snapshot timestamp and body_hash capture deferred to non-DRYRUN
-        release. Marked evidence_use=contextual_unarchived to flag the
-        unarchived state per validator policy.
+        Evidence repair 2026-06-01: TH SEC News_Detail SECID=9017 is
+        locally captured from Wayback memento 20210702090802 with
+        body_hash/body_path, so it is claim-usable for the Binance
+        criminal-complaint trigger. It does not independently prove a
+        direct TH SEC banking-rail severance directive.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -157,7 +157,7 @@ observations:
         wayback: https://web.archive.org/web/20210702090802/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=9017
         body_hash: sha256:ccde39d696241c09db1794f3ad90c7203603d170f724379b43dd2b62f147fe77
         body_path: sources/http_captures/thailand-sec-binance-bybit-c-and-d-2021/primary/web.archive.org__web-20210702090802-https-www.sec.or.th-EN-Pages-News_Detail.aspx__8f919efcf2.html
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
           TH SEC News_Detail SECID=9017 (2021-07-02) is the legal
           anchor naming Binance as the addressee of the criminal
@@ -171,22 +171,23 @@ observations:
           authority over Thai retail banks; the cascade is via
           Binance / Bybit operator-side compliance posture and Thai
           retail customer risk-perception update following the public
-          criminal complaint). DRYRUN: pinned anchors for the
-          Binance-TH / Bybit-TH THB-rail flows and any contemporaneous
-          Bangkok Post / Coindesk reporting deferred to human audit.
+          criminal complaint). The local Wayback body_hash/body_path
+          capture makes this a claim-usable legal anchor for the
+          regulator action, but operator-side Binance-TH / Bybit-TH
+          THB-rail notices remain unpinned.
       - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2021/07/02/thailand-sec-files-criminal-complaint-against-binance
         wayback: https://web.archive.org/web/20210916230514/https://www.coindesk.com/markets/2021/07/02/thailand-sec-files-criminal-complaint-against-binance
         body_hash: sha256:a6dc09bc43c53c367f358a6a2c7f6fa8c000ec344a3e104af09063d974429b81
         body_path: sources/http_captures/thailand-sec-binance-bybit-c-and-d-2021/primary/web.archive.org__web-20210916230514-https-www.coindesk.com-markets-2021-07-02-thailand-sec-files-criminal-complaint-against-binance__7c956e0ae9.html
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
           Coindesk 2021-07-02 reporting corroborates the TH SEC's
           criminal-complaint anchor and the unlicensed-operator
           framing (15-day SEC warning issued 2021-04-05; Binance
           failed to respond within the deadline; complaint then filed
-          with the Royal Thai Police ECD). DRYRUN: contextual
-          unarchived pending pinned Wayback capture.
+          with the Royal Thai Police ECD). Locally captured from
+          Wayback memento 20210916230514 with body_hash/body_path.
       - type: supporting_journalism
         url: https://www.bangkokpost.com/business/2142503/sec-files-criminal-complaint-against-binance
         wayback: https://web.archive.org/web/2021/https://www.bangkokpost.com/business/2142503/sec-files-criminal-complaint-against-binance
@@ -271,20 +272,15 @@ analysis_notes: |
   available in 2013. Cross-period anchor showing the TH regulator
   posture's statutory consolidation between 2013 and 2021.
 
-  DRYRUN caveats: trigger primary citation (TH SEC News_Detail
-  SECID=9017) is asserted with a 2021-calendar-folder Wayback
-  pointer; pinned snapshot timestamp and body_hash capture deferred
-  to non-DRYRUN release. For non-DRYRUN release, capture body_hash +
-  body_path for: (1) TH SEC News_Detail SECID=9017 (2021-07-02
-  criminal complaint against Binance), (2) TH SEC 2021-04-05 warning
-  letter / press item to Binance with the 15-day response window,
-  (3) Bangkok Post 2142503 (2021-07-02) and Coindesk 2021-07-02
-  reporting, (4) any Binance / Bybit contemporaneous corporate
-  announcements addressing the TH SEC posture, (5) TH SEC News_Detail
-  SECID=10613 (Bybit criminal complaint, operative window 2022-01-25)
-  if the user-anchored Binance + Bybit scope is preserved on human
-  audit. Marked evidence_use=contextual_unarchived on all citations
-  to flag the unarchived state per validator policy.
+  Evidence repair 2026-06-01: TH SEC News_Detail SECID=9017
+  (Wayback memento 20210702090802) and Coindesk 2021-07-02
+  reporting (Wayback memento 20210916230514) are locally captured
+  with body_hash/body_path and marked evidence_use=replayable.
+  Remaining open evidence debts are narrower: TH SEC 2021-04-05
+  warning-letter text, any Binance / Bybit contemporaneous corporate
+  THB-rail notices, Bangkok Post 2142503, and TH SEC News_Detail
+  SECID=10613 for the later Bybit-specific criminal complaint if the
+  cross-target subset is preserved.
 
 scoped_claim: |
   "Thailand SEC criminal complaint filed 2021-07-02 against Binance
