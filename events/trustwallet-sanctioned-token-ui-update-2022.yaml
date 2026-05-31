@@ -28,18 +28,19 @@ trigger:
       body_hash: sha256:a6ef7187edf50e4cd5270b866293f01ef215f5283abdefb54472ad832858292d
       body_path: sources/http_captures/trustwallet-sanctioned-token-ui-update-2022/v0_3_primary_repair/trustwallet.com__blog-cryptocurrency-tornado-cash-explained__4e36ebe5e5.html
       wayback: https://web.archive.org/web/2022/https://trustwallet.com/blog/cryptocurrency/tornado-cash-explained
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         Trust Wallet's own educational blog post discussing Tornado Cash
         following the 2022-08-08 OFAC SDN designation (related event
         tornado-cash-ofac-2022). This is the closest publicly retrievable
         Trust Wallet corporate-channel anchor located in the present
         authoring pass for any 2022 Trust Wallet UI behaviour change
-        relating to OFAC-sanctioned tokens. evidence_use=
-        contextual_unarchived; the post acknowledges the OFAC designation
-        as context but does NOT directly document a Trust Wallet UI
-        update that displays warnings on sanctioned tokens. Retained for
-        context only and for the human-audit pass to triangulate against.
+        relating to OFAC-sanctioned tokens. Evidence repair 2026-06-01:
+        the post is locally captured with body_hash/body_path and is
+        claim-usable only for the bounded public-record null observation
+        and OFAC-context bracketing. It does NOT directly document a
+        Trust Wallet UI update that displays warnings on sanctioned
+        tokens and is not evidence of an affirmative UI-warning feature.
   timestamp_sources:
     - type: primary_corporate
       note: |
@@ -124,7 +125,7 @@ coverage:
       (b) Trust Wallet store-changelog history, and (c)
       contemporaneous community forums (Reddit r/trustapp, Trust
       Wallet community) is the gating step before this row can be
-      promoted past status=draft.
+      recoded from observed_no_change to observed_change.
     denominator_artifact:
       type: scope_descriptor
       scope_descriptor:
@@ -174,7 +175,7 @@ observations:
         body_hash: sha256:a6ef7187edf50e4cd5270b866293f01ef215f5283abdefb54472ad832858292d
         body_path: sources/http_captures/trustwallet-sanctioned-token-ui-update-2022/v0_3_primary_repair/trustwallet.com__blog-cryptocurrency-tornado-cash-explained__4e36ebe5e5.html
         wayback: https://web.archive.org/web/2022/https://trustwallet.com/blog/cryptocurrency/tornado-cash-explained
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         scope_descriptor:
           domains:
             - trustwallet.com
@@ -187,16 +188,23 @@ observations:
           located in this authoring pass. It acknowledges the 2022-
           08-08 OFAC designation as context but does NOT document
           any Trust Wallet UI-warning feature for OFAC-sanctioned
-          tokens. This is a primary corporate source for the bounded
+          tokens. Evidence repair 2026-06-01: the local body_hash/body_path
+          make this a replayable primary corporate source for the bounded
           public-record null observation, not evidence of an affirmative
-          Trust Wallet UI-warning feature. attribution=none per
-          validator rule for observed_no_change.
+          Trust Wallet UI-warning feature. attribution=none per validator
+          rule for observed_no_change.
 
 analysis_notes: |
   **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, null_case) by
   human:xiangwen. Verified observed_no_change null (no censorship state
   transition in window); existing pinned-Wayback falsifiability anchor
   retained. null_event/null_case preserved.
+
+  **EVIDENCE REPAIR 2026-06-01**. The Trust Wallet Tornado Cash explainer
+  has a local body_hash/body_path capture and is marked replayable for the
+  narrow observed_no_change/null-denominator claim. This repair does not
+  promote the row to observed_change and does not treat the explainer as
+  evidence of any affirmative Trust Wallet UI-warning feature.
 
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Authored at status=
   draft / origin=agent_draft as a LOW-CONFIDENCE null_event row
@@ -231,10 +239,8 @@ analysis_notes: |
     - one observation_kind=observed_no_change row at l4_frontend
       with attribution=none (per validator rule for
       observed_no_change)
-    - l4_frontend coverage.status=not_measured (per codebook §2 +
-      Kazakhstan precedent: documented-but-uncaptured measurement
-      claims must be coded as not_measured until the dataset slice
-      is pinned)
+    - l4_frontend coverage.status=partially_measured because the
+      public-record denominator slice is bounded but not exhaustive
 
   Codebook compliance:
     - §3 (empirical_shape): null_event because there are 0
@@ -257,8 +263,7 @@ analysis_notes: |
       change paired with attribution=none; conservative coding
       (null_case over empirical_case) under unverifiability.
 
-  Human-audit follow-ups (gating before this row may be promoted
-  past status=draft):
+  Release-hardening follow-ups before any recoding to observed_change:
     1. Search trustwallet/assets and trustwallet/wallet-core
        GitHub history for any 2022-08 / 2022-09 commit adding a
        sanctioned-token warning surface, OFAC blocklist file, or
@@ -278,12 +283,13 @@ scoped_claim: |
   The candidate event "Trust Wallet (Binance-affiliated) UI update
   to display warnings on OFAC-sanctioned tokens following the
   2022-08-08 OFAC SDN cascade (related event tornado-cash-ofac-2022)"
-  could not be verified against any pinned Trust-Wallet-operated
-  corporate channel in this authoring pass. The row is coded as a
-  low-confidence null_event with one observed_no_change row at
+  could not be verified against any Trust-Wallet-operated corporate
+  channel in the authoring and audit passes. The row is coded as an
+  admitted null_event/null_case with one observed_no_change row at
   l4_frontend (attribution=none) and l4_frontend coverage.status=
-  not_measured pending human audit of Trust Wallet release notes,
-  GitHub history, and community discussion.
+  partially_measured. It is claim-usable only as a bounded denominator
+  / no-public-record observation unless Trust Wallet release notes,
+  GitHub history, or community discussion later support recoding.
 
 tags:
   - corporate_policy_change
