@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `8e29b8d` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a09b90d` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -49,11 +49,11 @@
 > (operative window starting 2022-01-25), recorded here as a
 > cross-target subset because the user-anchored event scope binds
 > Binance + Bybit under the 2021-07 TH SEC enforcement wave.
-> DRYRUN promotion: real anchor (TH SEC News_Detail SECID=9017)
-> asserted with a 2021-calendar-folder Wayback pointer; pinned
-> snapshot timestamp and body_hash capture deferred to non-DRYRUN
-> release. Marked evidence_use=contextual_unarchived to flag the
-> unarchived state per validator policy.
+> Evidence repair 2026-06-01: TH SEC News_Detail SECID=9017 is
+> locally captured from Wayback memento 20210702090802 with
+> body_hash/body_path, so it is claim-usable for the Binance
+> criminal-complaint trigger. It does not independently prove a
+> direct TH SEC banking-rail severance directive.
 
 ## 2. Target
 
@@ -105,9 +105,10 @@
 > authority over Thai retail banks; the cascade is via
 > Binance / Bybit operator-side compliance posture and Thai
 > retail customer risk-perception update following the public
-> criminal complaint). DRYRUN: pinned anchors for the
-> Binance-TH / Bybit-TH THB-rail flows and any contemporaneous
-> Bangkok Post / Coindesk reporting deferred to human audit.
+> criminal complaint). The local Wayback body_hash/body_path
+> capture makes this a claim-usable legal anchor for the
+> regulator action, but operator-side Binance-TH / Bybit-TH
+> THB-rail notices remain unpinned.
 - **`semi_primary_wayback`**
   - URL: <https://www.coindesk.com/markets/2021/07/02/thailand-sec-files-criminal-complaint-against-binance>
   - Wayback: <https://web.archive.org/web/20210916230514/https://www.coindesk.com/markets/2021/07/02/thailand-sec-files-criminal-complaint-against-binance>
@@ -117,8 +118,8 @@
 > criminal-complaint anchor and the unlicensed-operator
 > framing (15-day SEC warning issued 2021-04-05; Binance
 > failed to respond within the deadline; complaint then filed
-> with the Royal Thai Police ECD). DRYRUN: contextual
-> unarchived pending pinned Wayback capture.
+> with the Royal Thai Police ECD). Locally captured from
+> Wayback memento 20210916230514 with body_hash/body_path.
 - **`supporting_journalism`**
   - URL: <https://www.bangkokpost.com/business/2142503/sec-files-criminal-complaint-against-binance>
   - Wayback: <https://web.archive.org/web/2021/https://www.bangkokpost.com/business/2142503/sec-files-criminal-complaint-against-binance>
@@ -140,7 +141,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `8e29b8d`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a09b90d`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
