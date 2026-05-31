@@ -256,7 +256,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     proposal/date-corrected rather than a pinned 2022 operative ban). MetaMask Apple App Store removal is now
     reviewed-excluded after primary MetaMask oEmbed capture and press attribution to an internal operational
     error rather than Apple action. One row remains held, not authored, until it meets the evidence floor:
-    `wazirx-tether-usdt-hack-freeze-2025-01` needs asset-onchain tx_hash/address-set anchors.
+    `wazirx-tether-usdt-hack-freeze-2025-01` needs asset-onchain tx_hash/address-set anchors. Its
+    2026-06-01 follow-up note (`analysis/wazirx_tether_held_investigation_2026_06_01.md`) records that
+    date-window ETH USDT blacklist triage found nearby blacklist activity but no public WazirX attribution,
+    frozen address set, or blacklist tx anchor.
     `tether-bybit-hack-lazarus-freeze-2025-02` is now date/scope-corrected to the non-admitted draft
     `t3-bybit-hack-usdt-freeze-2025-03`.
 

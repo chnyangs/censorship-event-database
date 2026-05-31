@@ -245,6 +245,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       primary/app-store anchor or asset-onchain tx_hash/address-set evidence before any event can be authored.
       A later continuation closed MetaMask as reviewed-excluded after capturing official MetaMask oEmbed
       statements and confirming press attribution to an internal operational error rather than Apple action.
+      A WazirX/Tether follow-up note now lives at
+      `analysis/wazirx_tether_held_investigation_2026_06_01.md`: date-window ETH USDT blacklist triage found
+      plausible nearby blacklist activity but no public WazirX attribution, frozen address set, or blacklist tx
+      anchor, so the row stays held and must not be authored from aggregate press alone.
       A subsequent continuation date/scope-corrected the Bybit/Tether held row into draft
       `t3-bybit-hack-usdt-freeze-2025-03`, using Tether's primary 2025-03-26 T3 FCU announcement, the
       Bybit/LazarusBounty public address API, and 18 USDT AddedBlackList receipts. The draft remains
