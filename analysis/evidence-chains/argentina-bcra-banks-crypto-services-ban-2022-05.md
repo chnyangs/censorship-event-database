@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `b3ed1c5` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `cc05a9c` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -22,6 +22,16 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://www.bcra.gob.ar/Pdfs/comytexord/A7506.pdf>
+  - Wayback: <https://web.archive.org/web/20260531041114/https://www.bcra.gob.ar/archivos/Pdfs/comytexord/A7506.pdf>
+  - body_hash: `sha256:09fe0a3415d8e8c574e42aafb454d69758b236187548649d457c9d6d0552bbbe`
+  - body_path: `sources/http_captures/argentina-bcra-banks-crypto-services-ban-2022-05/primary/www.bcra.gob.ar__Pdfs-comytexord-A7506.pdf__6a3303756d.bin`
+  > BCRA Comunicacion "A" 7506 (2022-05-05), official primary trigger
+> instrument. The captured PDF is body-hash pinned and Wayback-archived;
+> extracted text confirms the communication date, addressees ("entidades
+> financieras"), client operations, and criptoactivos language supporting
+> the class-wide financial-institution crypto-services prohibition.
 - **`supporting_journalism`**
   - URL: <https://web.archive.org/web/20220510051130/https://www.coindesk.com/policy/2022/05/05/argentinas-central-bank-bans-lenders-from-offering-crypto-services/>
   - Wayback: <https://web.archive.org/web/20220510051130/https://www.coindesk.com/policy/2022/05/05/argentinas-central-bank-bans-lenders-from-offering-crypto-services/>
@@ -36,13 +46,8 @@
 > since there currently are no digital assets thus regulated, the move amounts to a
 > de facto ban"; and notes the move "comes just days after Banco Galicia ... added
 > the option to buy and sell cryptocurrencies on its platform." The underlying
-> instrument is BCRA Communication "A" 7506 (2022-05-05). The official BCRA news
-> page (https://www.bcra.gob.ar/en/news/the-bcra-discourages-the-offer-of-crypto-
-> assets-through-the-financial-system/) carries the same operative language
-> ("Financial institutions may not carry out transactions or allow their customers
-> to make transactions with digital assets ... not regulated by a national authority
-> and authorized by the BCRA") but is not Wayback-archivable; the archived CoinDesk
-> report is the replayable anchor.
+> instrument is BCRA Communication "A" 7506 (2022-05-05), now pinned
+> above as the official primary_government trigger anchor.
 
 ## 2. Target
 
@@ -106,7 +111,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `b3ed1c5`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `cc05a9c`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

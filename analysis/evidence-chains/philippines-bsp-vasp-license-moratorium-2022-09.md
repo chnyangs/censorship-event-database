@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `b3ed1c5` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `cc05a9c` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -24,6 +24,15 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://www.bsp.gov.ph/Regulations/Issuances/2022/M-2022-035.pdf>
+  - Wayback: <https://web.archive.org/web/20260531040728/https://www.bsp.gov.ph/Regulations/Issuances/2022/M-2022-035.pdf>
+  - body_hash: `sha256:91dfac514d4bc41768fa0c9451095ccf38273e48a69b393d60f5939767874d1e`
+  - body_path: `sources/http_captures/philippines-bsp-vasp-license-moratorium-2022-09/primary/www.bsp.gov.ph__Regulations-Issuances-2022-M-2022-035.pdf__62423443c1.bin`
+  > BSP Memorandum No. M-2022-035, official primary trigger instrument
+> signed 2022-08-10 by Deputy Governor Chuchi G. Fonacier. The captured
+> PDF is body-hash pinned and Wayback-archived; extracted text confirms
+> the suspension of new VASP licenses for three years from 2022-09-01.
 - **`semi_primary_wayback`**
   - URL: <https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/>
   - Wayback: <https://web.archive.org/web/20220819111117/https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/>
@@ -39,8 +48,10 @@
 > subject to reassessment based on market developments"; quotes BSP
 > Governor Felipe Medalla. Used as the semi-primary anchor because
 > the BSP's own MediaDisp.aspx press page is a JavaScript/SharePoint
-> shell whose archived HTML body is not content-bearing. Wayback
-> memento 20220819111117 captured 2026-05-31.
+> shell whose archived HTML body is not content-bearing. The official
+> Memorandum No. M-2022-035 PDF is pinned above as the replayable
+> primary_government trigger anchor. Wayback memento 20220819111117
+> captured 2026-05-31.
 
 ## 2. Target
 
@@ -104,7 +115,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `b3ed1c5`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `cc05a9c`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
