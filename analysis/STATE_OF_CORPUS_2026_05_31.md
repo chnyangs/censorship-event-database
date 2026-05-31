@@ -55,7 +55,12 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    USDC `Blacklisted(address)` receipts from the 2026-03-23 batch. The row is now
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
-10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
+10. **Continuation P4 admitted-row source strengthening** — pinned Poloniex's official Medium post for
+    `poloniex-circle-us-token-geofence-2019-05`, upgrading the trigger and observed_change from
+    semi-primary trade-press anchors to a primary_corporate replayable source. The row remains admitted;
+    attribution is now direct for the Poloniex geofence action while the regulatory rationale stays scoped
+    as generic U.S. securities-classification uncertainty.
+11. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
     `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 185
     verified+scope-tagged registry rows, 118 covered by corpus / duplicate / semantic precedent. Of the
     remaining 67 `in_corpus=false` rows, 66 are reviewed-excluded/context-only/out-of-scope/proposal-only

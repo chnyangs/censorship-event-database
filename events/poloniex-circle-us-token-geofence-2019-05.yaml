@@ -24,6 +24,19 @@ trigger:
   timestamp: 2019-05-16T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://medium.com/poloniex/poloniex-to-stop-offering-trading-of-9-assets-to-us-customers-all-assets-remain-available-to-b4c5703c0e9
+      body_hash: sha256:731147a66cc35d8d17fdd325924bc420ec0455ca344879e5a6cbd81c4bd49149
+      body_path: sources/http_captures/poloniex-circle-us-token-geofence-2019-05/official_medium/medium.com__circle-trader-poloniex-to-stop-offering-trading-of-9-assets-to-us-customers-all-assets-remain-available-to-b4c5703c0e9__2b2e4bf71f.html
+      evidence_use: replayable
+      note: |
+        Official Poloniex Medium post, published 2019-05-16 by the Poloniex
+        account. The captured body states that on 2019-05-29 at 16:00 UTC the
+        ARDR, BCN, DCR, GAME, GAS, LSK, NXT, OMNI, and REP markets would be
+        disabled for Poloniex customers in the U.S., while remaining available
+        to non-U.S. customers. It also states the action resulted from
+        regulatory uncertainty in the U.S. market and uncertainty over whether
+        U.S. regulators would consider the assets securities.
     - type: semi_primary_wayback
       url: https://www.cryptoglobe.com/latest/2019/05/poloniex-will-disable-trading-for-nine-altcoins-for-u-s-customers-only/
       wayback: https://web.archive.org/web/20190523213503/https://www.cryptoglobe.com/latest/2019/05/poloniex-will-disable-trading-for-nine-altcoins-for-u-s-customers-only/
@@ -39,10 +52,10 @@ trigger:
         regulatory (securities-classification) uncertainty. The captured body
         enumerates all nine tickers, "May 29", and the U.S.-only scope.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_corporate
       note: |
-        Day-level precision: announced 2019-05-16, trading disabled for U.S.
-        customers 2019-05-29 16:00 UTC per the cited coverage.
+        Day-level precision: Poloniex's official Medium post was published
+        2019-05-16 and gives the 2019-05-29 16:00 UTC trading-disable time.
 
 target:
   kind: asset
@@ -55,6 +68,7 @@ target:
     jurisdictions and continue on their own chains.
   actor_type: centralized_exchange_listing_action
   actor_name: Poloniex (Circle) — nine-token U.S.-customer geofence
+  asset: poloniex_us_geofenced_nine_asset_set_2019
   chains:
     - ardor
     - bytecoin
@@ -117,12 +131,30 @@ observations:
     actor: exchange:poloniex
     event: poloniex_disables_nine_token_markets_for_us_customers
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2019-05-29T16:00:00Z
     precision: hour
     delta_hours: 328
     country: US
     sources:
+      - type: primary_corporate
+        url: https://medium.com/poloniex/poloniex-to-stop-offering-trading-of-9-assets-to-us-customers-all-assets-remain-available-to-b4c5703c0e9
+        body_hash: sha256:731147a66cc35d8d17fdd325924bc420ec0455ca344879e5a6cbd81c4bd49149
+        body_path: sources/http_captures/poloniex-circle-us-token-geofence-2019-05/official_medium/medium.com__circle-trader-poloniex-to-stop-offering-trading-of-9-assets-to-us-customers-all-assets-remain-available-to-b4c5703c0e9__2b2e4bf71f.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [poloniex]
+          countries: [US]
+          time_window:
+            - 2019-05-16T00:00:00Z
+            - 2019-05-31T23:59:59Z
+        note: |
+          Official Poloniex post: the nine named markets would be disabled for
+          Poloniex U.S. customers at 2019-05-29 16:00 UTC while remaining
+          available outside the U.S. attribution=direct for the corporate
+          geofence action because Poloniex names the assets, user class, and
+          effective time itself. The regulatory-uncertainty rationale remains
+          generic rather than tied to a named legal instrument.
       - type: semi_primary_wayback
         url: https://www.cryptoglobe.com/latest/2019/05/poloniex-will-disable-trading-for-nine-altcoins-for-u-s-customers-only/
         wayback: https://web.archive.org/web/20190523213503/https://www.cryptoglobe.com/latest/2019/05/poloniex-will-disable-trading-for-nine-altcoins-for-u-s-customers-only/
@@ -137,10 +169,8 @@ observations:
             - 2019-05-31T23:59:59Z
         note: |
           CryptoGlobe: Poloniex (Circle) nine-token U.S.-customer geofence,
-          effective 2019-05-29 16:00 UTC. attribution=plausible: the action
-          is directly observed and Poloniex cited regulatory uncertainty, but
-          the securities-classification rationale is contextual/self-stated
-          rather than tied to a named legal instrument acting on these assets.
+          effective 2019-05-29 16:00 UTC. Corroborating semi-primary replay
+          source retained after the official Poloniex post was pinned.
       - type: semi_primary_wayback
         url: https://coingeek.com/poloniex-disables-markets-for-9-crypto-tokens-but-only-for-us-clients/
         wayback: https://web.archive.org/web/20190820083551/https://coingeek.com/poloniex-disables-markets-for-9-crypto-tokens-but-only-for-us-clients/
@@ -159,6 +189,15 @@ observations:
           second semi-primary anchor.
 
 analysis_notes: |
+  **SOURCE STRENGTHENING 2026-06-01:** captured Poloniex's official Medium post
+  for the 2019-05-16 nine-asset U.S.-customer geofence (sha256:
+  731147a66cc35d8d17fdd325924bc420ec0455ca344879e5a6cbd81c4bd49149). The
+  trigger and observed_change now have a primary_corporate source; the
+  observation attribution is direct for the corporate geofence action because
+  Poloniex itself names the assets, U.S. customer class, and 2019-05-29
+  16:00 UTC effective time. The rationale remains scoped as generic U.S.
+  regulatory/securities uncertainty, not a named legal instrument.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 S5-corporate
   draft, adversarial-verify verdict=KEEP (sources real + on-topic + §9 in-scope + not dup), AND
   passes strict admission validation; origin agent_draft -> human_reviewed).
@@ -171,20 +210,22 @@ analysis_notes: |
   unregistered-exchange settlement, sec-poloniex-unregistered-exchange-2021-08,
   and sits in the same 2019 U.S.-corporate-retreat cohort as
   binance-com-us-customer-geofence-2019-06). comparison shape, single
-  offramp_cex observed_change, attribution=plausible (the geofence is directly
-  observed; Poloniex's regulatory-uncertainty rationale is self-stated/
-  contextual, not a named instrument acting on the assets). The nine assets
+  offramp_cex observed_change, attribution=direct for Poloniex's corporate
+  geofence action; the regulatory-uncertainty rationale is self-stated/
+  contextual, not a named instrument acting on the assets. The nine assets
   are independent base-chain tokens, so l0/l1/l3/l4/asset_onchain are
-  not_applicable. Sources verified via WebSearch + captured 2026-05-31
-  (CryptoGlobe + CoinGeek, body_hash-pinned; asset list + "May 29" + U.S.-only
-  scope grepped from the captured body; no fabrication).
+  not_applicable. Sources verified via WebSearch + captured 2026-05-31 and
+  strengthened 2026-06-01 (official Poloniex Medium post plus CryptoGlobe and
+  CoinGeek replayable anchors; asset list + "May 29" + U.S.-only scope grepped
+  from captured bodies; no fabrication).
 
 scoped_claim: |
   "Poloniex's (Circle) 2019-05-29 disabling of trading for nine tokens
   (ARDR/BCN/DCR/GAME/GAS/LSK/NXT/OMNI/REP) for U.S. customers only severed the
   Poloniex off-ramp for these assets in the U.S. corridor; single-layer
-  offramp_cex observed_change with attribution=plausible (Poloniex cited
-  generic securities-classification uncertainty, not a named instrument)."
+  offramp_cex observed_change with attribution=direct for the Poloniex action
+  itself. Poloniex cited generic U.S. securities-classification uncertainty,
+  not a named legal instrument."
 
 tags:
   - corporate_policy_change
