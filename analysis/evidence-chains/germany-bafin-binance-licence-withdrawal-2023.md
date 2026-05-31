@@ -1,23 +1,19 @@
 # Evidence chain — `germany-bafin-binance-licence-withdrawal-2023`
 
-**Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (2 changed layer(s): `l4_frontend`, `offramp_cex`) · **Tier**: `empirical_case`
+**Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `e443d6f` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a4484c4` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "Binance withdrew its German BaFin crypto-custody licence application
-> on 2023-07-26 after BaFin signalled (through supervisory dialogue,
-> not a published denial) that the application would not be approved.
-> The withdrawal closed the path to a regulated-in-DE Binance offering
-> under the pre-MiCA KWG crypto-custody licensing regime and produced
-> an operator-state change at the Binance Germany-customer cohort
-> (offramp_cex load-bearing) plus a Binance-corporate L4 frontend
-> response (Germany-geo notices, attribution=plausible). The row does
-> not claim ISP-level connectivity blocking, on-chain asset freeze,
-> or class-wide German banking-rail severance."
+> "Binance's German BaFin crypto-custody licence application was reported
+> withdrawn on 2023-07-26. The retained observation is the operator-state
+> licensing-path change under Germany's pre-MiCA KWG crypto-custody
+> authorisation regime. This repaired row does not claim a published BaFin
+> denial, Binance.com Germany-geo frontend restriction, ISP-level block,
+> on-chain asset freeze, or German banking-rail severance."
 
 ## 1. Trigger
 
@@ -28,37 +24,32 @@
 ### Trigger citations
 
 - **`primary_legal`**
-  - URL: <https://www.bafin.de/EN/Homepage/homepage_node.html>
-  - Wayback: <https://web.archive.org/web/2023/https://www.bafin.de/EN/Homepage/homepage_node.html>
-  > German Federal Financial Supervisory Authority (Bundesanstalt fuer
-> Finanzdienstleistungsaufsicht, BaFin) supervisory posture toward
-> Binance's German crypto-custody licence application under section 1
-> para. 1a sentence 2 no. 6 of the German Banking Act (KWG). On
-> 2023-07-26 Binance publicly withdrew its German crypto-custody
-> licence application after BaFin signalled (through supervisory
-> dialogue, not a formal published denial) that the application would
-> not be approved in its then-current form. The BaFin homepage /
-> institutions-list directory is the canonical regulator surface;
-> the specific supervisory exchange producing the withdrawal is not
-> published as a standalone BaFin press item. Marked
-> evidence_use=contextual_unarchived because the authoring LLM agent
-> did not personally pin a Wayback snapshot timestamp or compute a
-> body_hash for the BaFin surface; the specific snapshot and any
-> BaFin sectoral statement must be re-pinned during human audit
-> before this citation may serve as an admission anchor in its
-> own right.
-- **`primary_corporate`**
-  - URL: <https://www.binance.com/en/blog>
-  - Wayback: <https://web.archive.org/web/2023/https://www.binance.com/en/blog>
-  > Binance corporate communication (2023-07-26) announcing withdrawal
-> of the German BaFin crypto-custody licence application. This
-> announcement sits within the broader 2023 EU-market exit cascade
-> (Netherlands operations wind-down 2022-07, Belgium FSMA cease-and-
-> repatriate 2023-06-23, Cyprus and Austria deregistration mid-2023)
-> and pre-dates MiCA's transitional regime. Marked
-> evidence_use=contextual_unarchived pending human-audit Wayback
-> re-pin and body_hash capture of the specific Binance blog /
-> press-line item.
+  - URL: <https://www.bafin.de/SharedDocs/Veroeffentlichungen/EN/Merkblatt/mb_200302_kryptoverwahrgeschaeft_en>
+  - body_hash: `sha256:e6024f8b49411b9a80c6db5d0d97ea71044f8bfa2c6aa8474dd0f8729ffca38f`
+  - body_path: `sources/http_captures/germany-bafin-binance-licence-withdrawal-2023/bafin/www.bafin.de__SharedDocs-Veroeffentlichungen-EN-Merkblatt-mb_200302_kryptoverwahrgeschaeft_en__7735676cee.html`
+  > BaFin guidance notice on the statutory definition and authorisation
+> requirement for crypto custody business under KWG section 1(1a)
+> sentence 2 no. 6 / section 32(1). This is the primary legal context
+> for the German licence-application path, not a Binance-specific
+> denial notice. Captured and pinned with body_hash/body_path during
+> the 2026-06-01 source-repair pass.
+- **`supporting_journalism`**
+  - URL: <https://www.pymnts.com/cryptocurrency/2023/binance-retreats-germany-crypto-landscape-shifts-significantly/>
+  - body_hash: `sha256:8ca3964fc655c3f17413afa3602b18b2cb2d19617a6db37e9dd34816dfc00a1a`
+  - body_path: `sources/http_captures/germany-bafin-binance-licence-withdrawal-2023/primary/www.pymnts.com__cryptocurrency-2023-binance-retreats-germany-crypto-landscape-shifts-significantly__18947af64a.html`
+  > PYMNTS report dated 2023-07-26 carrying a Binance spokesperson
+> statement that Binance had proactively withdrawn its BaFin licence
+> application and still intended to apply for appropriate licensing in
+> Germany. Used as contemporaneous lower-tier attestation; no public
+> BaFin Binance-specific notice is available in this row.
+- **`supporting_journalism`**
+  - URL: <https://www.investing.com/news/stock-market-news/binance-withdraws-application-for-crypto-license-in-germany-3134579>
+  - body_hash: `sha256:ae9682d626ce853bb189e6d97a1d17805b966afa53a9c6f0aa81643bff5673a9`
+  - body_path: `sources/http_captures/germany-bafin-binance-licence-withdrawal-2023/primary/www.investing.com__news-stock-market-news-binance-withdraws-application-for-crypto-license-in-germany-3134579__73c4dd7dbd.html`
+  > Reuters story as syndicated by Investing.com, dated 2023-07-26,
+> reporting that Binance withdrew its application for a German crypto
+> licence. Used as contemporaneous corroboration for the lower-tier
+> operator-withdrawal fact.
 
 ## 2. Target
 
@@ -69,17 +60,13 @@
 
 > Binance group entities that had sought authorisation under the German
 > KWG crypto-custody licensing regime (Kryptoverwahrgeschaeft, KWG sec.
-> 1 para. 1a sentence 2 no. 6) and, by cascade, the German retail
-> customer cohort of the global binance.com platform. The BaFin
-> supervisory action is at the licence-application layer addressed to
-> the Binance entity seeking German authorisation; the operational
-> effect propagates to German retail users of binance.com who lose
-> a path to regulated-in-DE Binance services pre-MiCA. Treated as
-> entity-level at the Binance-Germany cohort.
+> 1 para. 1a sentence 2 no. 6). The repaired claim is scoped to the
+> application-withdrawal / no-German-licensed-Binance-offering path, not
+> to a measured German retail account geofence or bank-rail cutoff.
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `direct` · Δt = 0h
+### offramp_cex · attribution: `plausible` · Δt = 0h
 
 **Event label**: `binance_de_crypto_custody_licence_application_withdrawn`
 
@@ -87,54 +74,23 @@
 
 **Sources**:
 
-- **`primary_corporate`**
-  - URL: <https://www.binance.com/en/blog>
-  - Wayback: <https://web.archive.org/web/2023/https://www.binance.com/en/blog>
-  > Binance public statement (2023-07-26) is the canonical
-> customer-facing notification that the BaFin crypto-custody
-> licence application was withdrawn. The statement names
-> BaFin supervisory expectations as the precipitating cause —
-> attribution=direct at the supervisory-dialogue-as-trigger
-> level. DRYRUN: pinned Wayback snapshot and body_hash capture
-> of the specific Binance blog / press-line item deferred to
-> human audit.
-- **`primary_legal`**
-  - URL: <https://www.bafin.de/EN/Homepage/homepage_node.html>
-  - Wayback: <https://web.archive.org/web/2023/https://www.bafin.de/EN/Homepage/homepage_node.html>
-  > BaFin regulator surface anchor. BaFin did not publish a
-> same-day press item naming Binance; the supervisory exchange
-> producing the withdrawal sits within BaFin's ongoing KWG
-> crypto-custody licensing oversight rather than a discrete
-> press release. DRYRUN: Wayback anchor is a 2023 calendar-
-> folder pointer; specific BaFin sectoral statement (if any)
-> must be re-pinned during human audit.
-
-### l4_frontend · attribution: `plausible` · Δt = 24h
-
-**Event label**: `de_geo_specific_restriction_notices_posted`
-
-**Timestamp**: `2023-07-27 00:00:00+00:00` (precision: `day`)
-
-**Sources**:
-
-- **`primary_corporate`**
-  - URL: <https://www.binance.com/en/blog>
-  - Wayback: <https://web.archive.org/web/2023/https://www.binance.com/en/blog>
-  > Binance posted Germany-facing communication on binance.com in
-> the days following the 2023-07-26 BaFin licence-application
-> withdrawal, with subsequent reduction of DE-licensed product
-> surface. attribution=plausible because the frontend notice
-> is a Binance-corporate response, not a BaFin-mandated DOM
-> change. DRYRUN: pinned Wayback snapshot of the binance.com
-> Germany-geo notice page is deferred to human audit.
-- **`primary_legal`**
-  - URL: <https://www.bafin.de/EN/Homepage/homepage_node.html>
-  - Wayback: <https://web.archive.org/web/2023/https://www.bafin.de/EN/Homepage/homepage_node.html>
-  > BaFin regulator surface retained as contextual anchor for the
-> frontend response. The specific supervisory exchange is not
-> published as a standalone BaFin press item; the licence-
-> application withdrawal is the publicly visible marker of the
-> regulator-driven cause.
+- **`supporting_journalism`**
+  - URL: <https://www.pymnts.com/cryptocurrency/2023/binance-retreats-germany-crypto-landscape-shifts-significantly/>
+  - body_hash: `sha256:8ca3964fc655c3f17413afa3602b18b2cb2d19617a6db37e9dd34816dfc00a1a`
+  - body_path: `sources/http_captures/germany-bafin-binance-licence-withdrawal-2023/primary/www.pymnts.com__cryptocurrency-2023-binance-retreats-germany-crypto-landscape-shifts-significantly__18947af64a.html`
+  > PYMNTS report dated 2023-07-26 carrying a Binance spokesperson
+> statement that Binance had proactively withdrawn its licence
+> application with BaFin. Because this is a reported spokesperson
+> statement rather than a replayable Binance first-party artifact,
+> the event is explicitly marked evidence_tier=attested_secondary
+> and attribution is kept plausible.
+- **`supporting_journalism`**
+  - URL: <https://www.investing.com/news/stock-market-news/binance-withdraws-application-for-crypto-license-in-germany-3134579>
+  - body_hash: `sha256:ae9682d626ce853bb189e6d97a1d17805b966afa53a9c6f0aa81643bff5673a9`
+  - body_path: `sources/http_captures/germany-bafin-binance-licence-withdrawal-2023/primary/www.investing.com__news-stock-market-news-binance-withdraws-application-for-crypto-license-in-germany-3134579__73c4dd7dbd.html`
+  > Reuters story as syndicated by Investing.com, dated 2023-07-26,
+> reporting that Binance withdrew its application for a German
+> crypto licence.
 
 ## 5. Honest coverage gaps
 
@@ -149,7 +105,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `e443d6f`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a4484c4`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

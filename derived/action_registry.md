@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `e443d6f` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `a4484c4` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **332**
+- Canonical physical actions: **331**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -138,7 +138,6 @@ This registry deduplicates physical actions that appear in more than one event r
 | `genesis-sec-gemini-earn-2023:0:offramp_cex:lending_platform:gemini_earn_program:unregistered_lending_program_charged_and_terminated` | 1 | 0 | 1 | offramp_cex | `genesis-sec-gemini-earn-2023::offramp_cex` |
 | `genesis-sec-gemini-earn-2023:1:offramp_cex:lending_platform:genesis_global_capital:genesis_chapter_11_filing_freezes_lender_estate` | 1 | 0 | 1 | offramp_cex | `genesis-sec-gemini-earn-2023::offramp_cex` |
 | `germany-bafin-binance-licence-withdrawal-2023:0:offramp_cex:cex:binance_germany_cohort:binance_de_crypto_custody_licence_application_withdrawn` | 1 | 0 | 1 | offramp_cex | `germany-bafin-binance-licence-withdrawal-2023::offramp_cex` |
-| `germany-bafin-binance-licence-withdrawal-2023:1:l4_frontend:frontend:binance_com_de_geo:de_geo_specific_restriction_notices_posted` | 1 | 0 | 1 | l4_frontend | `germany-bafin-binance-licence-withdrawal-2023::l4_frontend` |
 | `google-play-india-crypto-exchange-removal-2024-01:0:l4_frontend:google_play_in:seven_offshore_vda_apps_removed_from_google_play_in_regional_storefront` | 1 | 0 | 1 | l4_frontend | `google-play-india-crypto-exchange-removal-2024-01::l4_frontend` |
 | `grinex-garantex-successor-ofac-2025:0:asset_onchain:tether_usdt_issuer:tether_batch_froze_all_11_trx_addresses_same_day_as_ofac` | 1 | 0 | 1 | asset_onchain | `grinex-garantex-successor-ofac-2025::asset_onchain` |
 | `helix-doj-mixer-2020:0:l4_frontend:frontend:helix_tor_service:helix_mixer_frontend_finality_anchored_by_operator_indictment` | 1 | 0 | 1 | l4_frontend | `helix-doj-mixer-2020::l4_frontend` |

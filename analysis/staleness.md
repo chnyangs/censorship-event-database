@@ -182,7 +182,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `gemini-netherlands-exit-2023-11` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `genesis-market-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `genesis-sec-gemini-earn-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
-| `germany-bafin-binance-licence-withdrawal-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `germany-bafin-binance-licence-withdrawal-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-06-01 | 0 | ok | ok |
 | `goldage-ny-state-indictment-2006-07` | `rejected` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `google-play-india-crypto-exchange-removal-2024-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `grinex-garantex-successor-ofac-2025` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 41 | ok | no_audit_recorded |

@@ -68,8 +68,8 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **249 release-ready** cases, **119 admitted-but-blocked** cases, observation reliability
-      **267 high / 80 medium / 21 low**, and attribution reliability **229 high / 139 medium / 0 low**.
+      **250 release-ready** cases, **118 admitted-but-blocked** cases, observation reliability
+      **267 high / 81 medium / 20 low**, and attribution reliability **229 high / 139 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -94,7 +94,12 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       withdrawal observation. Follow-on repair also moved `uk-fca-binance-markets-2021` out of the queue with
       the FCA consumer-warning page plus First Supervisory Notice PDF pinned locally, while narrowing the row
       from an unpinned bank-payment-rail cascade to the FCA-supported BML regulated-business restriction plus
-      required notice / promotion-removal compliance.
+      required notice / promotion-removal compliance. Follow-on repair also moved
+      `germany-bafin-binance-licence-withdrawal-2023` out of the low-observation queue with BaFin
+      crypto-custody regime context plus PYMNTS and Reuters-syndicated reports pinned locally, while narrowing
+      the row from an unpinned BaFin/Binance/L4 claim to the reported Binance Germany licence-application
+      withdrawal under the BaFin/KWG regime and explicitly marking the evidence floor as
+      `evidence_tier=attested_secondary`.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
@@ -104,7 +109,7 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       claim-usable merely to improve counts.
 - [ ] **`evidence_tier` IRR pass.** Codebook 4.0.0 added a decision-rule (the `attested_secondary` tier). The
       codebook's own "Effective" convention requires a new IRR pass on ≥ 10 events for a decision-rule change.
-      Run a 2-coder IRR pass on a 10–15 event sample of the 33 `attested_secondary` rows to confirm inter-rater
+      Run a 2-coder IRR pass on a 10–15 event sample of the 34 `attested_secondary` rows to confirm inter-rater
       agreement on (a) §9-clarity and (b) the single-source judgment. Record κ. This is outstanding process debt.
       Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md` plus the machine-readable
       `analysis/evidence_tier_irr_packet_2026_05_31.csv`; both are intentionally blank and must not be treated as

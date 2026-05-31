@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **249** (11 complete / 238 scoped) and
-  admitted-but-blocked cases are **119**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **250** (11 complete / 239 scoped) and
+  admitted-but-blocked cases are **118**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **267 high / 80 medium / 21 low**; attribution reliability
+  observation reliability **267 high / 81 medium / 20 low**; attribution reliability
   **229 high / 139 medium / 0 low**. Current admitted paper roles are
-  **248 aggregate_datapoint / 96 null_control / 21 appendix_only / 3 paper_anchor**.
+  **249 aggregate_datapoint / 96 null_control / 20 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -50,18 +50,22 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `uk-fca-binance-markets-2021` now has the FCA consumer-warning page and First Supervisory Notice PDF pinned
   locally, and is narrowed from an unpinned bank-payment-rail cascade to the FCA-supported BML regulated-business
   restriction plus required notice / promotion-removal compliance.
+  `germany-bafin-binance-licence-withdrawal-2023` now has BaFin crypto-custody guidance plus PYMNTS and
+  Reuters-syndicated reports pinned locally, is explicitly `evidence_tier=attested_secondary`, and is narrowed
+  from an unpinned BaFin/Binance/L4 claim to the reported Binance Germany licence-application withdrawal under
+  the BaFin/KWG regime.
 
 ## Admitted composition (368)
 | dimension | breakdown |
 |---|---|
 | **research_stratum** | S4_nation_state 111 · S5_corporate 97 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 308 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 335 · **attested_secondary 33** (lower-tier, filterable — see codebook §10) |
+| **evidence_tier** | admission_grade 334 · **attested_secondary 34** (lower-tier, filterable — see codebook §10) |
 | **admission_tier** | empirical_case 267 · null_case 96 · anchor_case 5 |
 | **empirical_shape** | comparison 270 · null_event 96 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
-censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **33
+censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **34
 `attested_secondary`** rows are the well-documented single-source national bans + corporate restrictions admitted
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.
