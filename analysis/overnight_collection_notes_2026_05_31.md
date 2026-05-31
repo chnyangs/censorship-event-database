@@ -242,3 +242,25 @@ All local commits, never pushed. Method upgrade: dry-run admission gating + inde
    research; Wayback availability for old/foreign gov docs is uncertain.
 3. **US-state enforcement stratum** (Celsius/BlockFi/Coinbase-state) — S3/S4 misfit; needs a stratum decision.
 4. **goldage-2006** pre-2007 boundary (REVIEW-FLAG).
+
+### TASK 1 — VERIFY-FLAG refinement (user: 先做1) — 2026-05-31
+Method: for each flagged draft, render+grep the captured HTML, check the specific against the source,
+soften unsupported specifics to match evidence, remove the flag (its forbidden markers also blocked
+admission), dry-run-admit (auto-revert on fail). Of 21 flagged drafts, 11 were "flag-only-blocked"
+(had primary / 2+ semi-primary sources); the other 10 also fail the source threshold → fold into Task 2.
+**+9 admitted (corpus 322 → 331):**
+- 5 OFAC null_case: zheng-yan (first OFAC narcotics crypto designation — sm756 has Bitcoin not Litecoin →
+  Litecoin re-attributed to SDN entry), wang-hongfei, tengyue, derakhshan-irgc, botnet-911 (specific
+  literal-address/coin/count re-attributed to SDN-list entry; captured Treasury release supports the nexus).
+- 4 non-OFAC: sec-tradestation + uae-sca-decision-23 (clean — generic flag over-cautious), fincen-eric-powers
+  ($35,350 → FinCEN-assessment-doc attribution), sec-abra ($1.65M is a Jan-2025 final-judgment figure absent
+  from the captured Aug-2024 release + mis-derived from a "1765" substring → softened to "civil penalty").
+**2 held with corrected flags (NOT admitted — honest):**
+- task-force-rusich: genuinely crypto (OFAC sanctioned 5 addresses: 2 BTC/2 ETH/1 USDT-TRON, ~$138k; CoinDesk/
+  Chainalysis/TRM) BUT captured press release jy0954 contains ZERO crypto terms → needs a crypto-nexus source pinned.
+- iraq-cbi: source is the genuine Arabic CBI page but titled "تحذير/WARNING" → §9 ban-vs-warning ruling needed.
+**Tiebreak lesson reconfirmed:** the adversarial verifier over-flags (binance-dex, sec-tradestation, uae-sca all
+checked out fully); independent source-rendering is the arbiter. But it also catches REAL overclaims (sec-abra
+$1.65M, the SDN-entry-only specifics) — so every specific is grep-verified against the captured body, not trusted.
+
+## SESSION-CONTINUATION RUNNING TOTAL: corpus 261 → **331 admitted** / 47 draft / 7 rejected = 385; sweep 385/385 [OK]. +70 admitted.
