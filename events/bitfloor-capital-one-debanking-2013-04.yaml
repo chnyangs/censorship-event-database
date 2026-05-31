@@ -1,0 +1,172 @@
+id: bitfloor-capital-one-debanking-2013-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - mtgox-mizuho-wire-pressure-2012
+  - mtgox-usd-withdrawal-suspension-2013-06
+
+trigger:
+  type: corporate_policy_change
+  actor: capital_one
+  timestamp: 2013-04-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.americanbanker.com/fincen-regulations-choking-bitcoin-entrepreneurs-1058606-1.html
+      wayback: https://web.archive.org/web/20241130191119/https://www.americanbanker.com/fincen-regulations-choking-bitcoin-entrepreneurs-1058606-1.html
+      body_hash: sha256:5e4542aedb281c462119f7061b674645ca6e04fc0f2bae7ae9194c916a8291c3
+      body_path: sources/http_captures/bitfloor-capital-one-debanking-2013-04/primary/web.archive.org__web-20241130191119-https-www.americanbanker.com-fincen-regulations-choking-bitcoin-entrepreneurs-1058606-1.html__242252ee6d.html
+      evidence_use: replayable
+      note: |
+        American Banker (PaymentsSource) 2013-04-25: BitFloor's New York
+        operation ran USD deposits/withdrawals "through a Capital One bank
+        account – which the bank unilaterally closed." Founder Roman Shtylman:
+        "I had very little time to act between receiving the account closure
+        letter and the account being closed." BitFloor was a FinCEN-registered
+        MSB but not a state money transmitter; Shtylman surmised Capital One
+        judged the business "not worth the risk." Body grep-confirmed: "Capital
+        One", "unilaterally closed", "Shtylman". Wayback 20241130191119 pinned.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: BitFloor received the account-closure letter and
+        announced ceasing all trading operations indefinitely on 2013-04-17
+        (Bitcoin Magazine reports the cease-operations announcement 2013-04-19).
+        Trigger anchored to the debanking date (~2013-04-17).
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Single target: BitFloor, Inc. (US/New York bitcoin exchange, the then
+    fourth-largest, operated by Roman Shtylman). Capital One's unilateral
+    closure of BitFloor's USD bank account severed its only fiat
+    deposit/withdrawal rail.
+  actor_type: exchange_operator
+  actor_name: BitFloor (US bitcoin exchange)
+  chains:
+    - bitcoin
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A bank account closure, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Acts on BitFloor's fiat banking rail, not on Bitcoin consensus.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Not a frontend domain/UI block; the exchange's USD rail was cut.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain freeze; BTC remained on-chain. The action is a fiat-rail
+      debanking realized off-chain.
+  - layer: offramp_cex
+    status: measured
+    scope: [bitfloor_usd_rail]
+    note: |
+      Load-bearing layer. Capital One's unilateral closure of BitFloor's USD
+      bank account cut the exchange's fiat off-ramp, forcing it to cease all
+      trading operations indefinitely. Attested in contemporaneous coverage
+      (American Banker/PaymentsSource + Bitcoin Magazine).
+
+observations:
+  - layer: offramp_cex
+    actor: bank:capital_one
+    event: capital_one_closes_bitfloor_usd_bank_account
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2013-04-17T00:00:00Z
+    precision: day
+    country: US
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.americanbanker.com/fincen-regulations-choking-bitcoin-entrepreneurs-1058606-1.html
+        wayback: https://web.archive.org/web/20241130191119/https://www.americanbanker.com/fincen-regulations-choking-bitcoin-entrepreneurs-1058606-1.html
+        body_hash: sha256:5e4542aedb281c462119f7061b674645ca6e04fc0f2bae7ae9194c916a8291c3
+        body_path: sources/http_captures/bitfloor-capital-one-debanking-2013-04/primary/web.archive.org__web-20241130191119-https-www.americanbanker.com-fincen-regulations-choking-bitcoin-entrepreneurs-1058606-1.html__242252ee6d.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [capital_one, bitfloor]
+          countries: [US]
+          time_window:
+            - 2013-04-01T00:00:00Z
+            - 2013-04-30T23:59:59Z
+        note: |
+          American Banker names Capital One as the bank that "unilaterally
+          closed" BitFloor's USD account. attribution=plausible: the debanking
+          is directly observed, but Capital One issued no public rationale
+          naming BitFloor; the FinCEN-pressure / "not worth the risk" motive is
+          Shtylman's contextual inference, not a stated bank rationale.
+      - type: semi_primary_wayback
+        url: https://bitcoinmagazine.com/markets/bitfloor-shuts-down-1366351632
+        wayback: https://web.archive.org/web/20260121151931/https://bitcoinmagazine.com/markets/bitfloor-shuts-down-1366351632
+        body_hash: sha256:ceba4a4321475fc97fbc665c07f1c183a3457a11a2123fb1ca22f5ea3d710f92
+        body_path: sources/http_captures/bitfloor-capital-one-debanking-2013-04/primary/web.archive.org__web-20260121151931-https-bitcoinmagazine.com-markets-bitfloor-shuts-down-1366351632__2b2d5f7223.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bitfloor]
+          countries: [US]
+          time_window:
+            - 2013-04-01T00:00:00Z
+            - 2013-04-30T23:59:59Z
+        note: |
+          Bitcoin Magazine 2013-04: founder Shtylman announced BitFloor would
+          "cease all trading operations" because its US bank account was being
+          closed and it could "no longer provide the same level of USD deposits
+          and withdrawals." Independent corroboration of the rail loss. Body
+          grep-confirmed: "cease all trading operations", "Shtylman", "USD
+          deposits and withdrawals".
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Capital One's ~2013-04-17
+  unilateral closure of BitFloor's USD bank account cut the exchange's only
+  fiat off-ramp, forcing it (then the ~4th-largest bitcoin exchange, operated
+  by Roman Shtylman in New York) to cease all trading operations indefinitely
+  — an early bank-debanking node amid the 2013 FinCEN-guidance wave. §9 IN
+  scope: bank debanking of a legitimate exchange (not a hack/insolvency).
+  comparison shape, single offramp_cex observed_change, attribution=plausible
+  per §1.1 (debanking directly observed; Capital One stated no public rationale
+  naming BitFloor — the FinCEN-risk motive is Shtylman's contextual inference).
+  BTC stays on-chain so l0/l1/l3/l4/asset_onchain are not_applicable;
+  historical_baseline tier (2013). Sources verified via WebSearch + captured
+  Wayback (American Banker explicitly names "Capital One … unilaterally closed";
+  Bitcoin Magazine corroborates the USD-rail loss; both body_hash-pinned, body
+  grep-confirmed, no fabrication).
+
+scoped_claim: |
+  "Capital One's ~2013-04-17 unilateral closure of BitFloor's USD bank account
+  severed the exchange's fiat off-ramp and forced it to cease trading; single-
+  layer offramp_cex observed_change with attribution=plausible (no public
+  Capital One rationale naming BitFloor)."
+
+tags:
+  - corporate_policy_change
+  - debanking
+  - bank_account_closure
+  - capital_one
+  - bitfloor
+  - offramp_shutdown
+  - fiat_rail
