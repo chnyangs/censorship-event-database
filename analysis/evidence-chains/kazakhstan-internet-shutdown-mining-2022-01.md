@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `l1_consensus`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `3067f79` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `ec5c516` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -33,17 +33,14 @@
 
 - **`semi_primary_measurement`**
   - URL: <https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3>
-  - Wayback: <https://web.archive.org/web/2022/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3>
+  - Wayback: <https://web.archive.org/web/20220104182416/https://netblocks.org/reports/internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3>
   - body_hash: `sha256:246d9d7abfacb5c82b1d9542bae00cc4cd467d68f4772d6c90214949dc512641`
   - body_path: `sources/http_captures/kazakhstan-internet-shutdown-mining-2022-01/primary/web.archive.org__web-20220104182416-https-netblocks.org-reports-internet-disrupted-in-kazakhstan-amid-energy-price-protests-oy9YQgy3__00dd341aba.html`
-  > **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase C S4
-> nation-state L0 network-layer discovery; lean run): authored by
-> LLB agent without personally verifying Wayback/body_hash;
-> origin=agent_draft and status=draft pending human review. Real
-> release must replace this DRYRUN marker with a human-verified
-> audit after pinning real archive anchors (NetBlocks report
-> snapshot, IODA outage signature, Cloudflare Radar BGP/HTTP
-> traffic drop chart, CBECI Kazakhstan hashrate share data).
+  > Human audit 2026-05-21 pinned the NetBlocks Wayback memento
+> 20220104182416 with local body_hash/body_path, making this a
+> replayable trigger anchor for the L0 shutdown onset. Remaining
+> hardening targets are independent IODA/Cloudflare/CBECI
+> machine-readable measurement artifacts, not admission blockers.
 > 
 > NetBlocks report "Internet disrupted in Kazakhstan amid energy
 > price protests" documents normalized country-level connectivity
@@ -157,7 +154,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3067f79`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ec5c516`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

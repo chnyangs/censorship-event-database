@@ -8,13 +8,13 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `234`
-- Admitted but release-blocked cases: `134`
+- Release-ready cases: `235`
+- Admitted but release-blocked cases: `133`
 - Fully complete release-ready cases: `9`
-- Scope-limited release-ready cases: `225`
+- Scope-limited release-ready cases: `226`
 - Working drafts: `2`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 233, 'null_control': 96, 'appendix_only': 71, 'paper_anchor': 5}`
+- Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
 - Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, magic-eden-ofac-sanctioned-country-block, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06, vietnam-sbv-bitcoin-prohibition-statement-2014-02`
 
 ## Cases
@@ -2727,19 +2727,18 @@ This file is the operational summary for the repo's two current priorities:
 ### `hongkong-sfc-vatp-licensing-2023-06`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
-- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.

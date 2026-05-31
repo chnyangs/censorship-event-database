@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `3067f79` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `ec5c516` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -115,7 +115,8 @@
   > CoinDesk (2022-04-22) Binance public denial. Reinforces
 > the null-event posture: Binance contests the existence of
 > a formal Rosfin compulsion and no Rosfin enforcement
-> artifact has surfaced in the 2022 window.
+> artifact has surfaced in the 2022 window. Used as a
+> replayable support anchor for the null observation.
 - **`primary_corporate`**
   - URL: <https://www.binance.com/en/blog/leadership/binance--russia-openness-transparency-and-honesty-421499824684903741>
   - Wayback: <https://web.archive.org/web/20220425013842/https://www.binance.com/en/blog/leadership/binance--russia-openness-transparency-and-honesty-421499824684903741>
@@ -143,7 +144,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3067f79`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ec5c516`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
