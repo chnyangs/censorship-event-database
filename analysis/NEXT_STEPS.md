@@ -68,8 +68,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **230 release-ready** cases, **138 admitted-but-blocked** cases, observation reliability
-      **278 high / 79 medium / 48 low**, and attribution reliability **244 high / 157 medium / 4 low**.
+      **236 release-ready** cases, **132 admitted-but-blocked** cases, observation reliability
+      **254 high / 80 medium / 34 low**, and attribution reliability **217 high / 151 medium / 0 low**.
+      Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
+      kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
       `scores.attribution_reliability=="low"` in `analysis/review-report.json`, then either:
       attach replayable claim-usable primary/semi-primary anchors, narrow/drop the weak observation, or leave
