@@ -55,16 +55,18 @@ trigger:
         state-level bans on bitcoin and is commonly cited alongside
         the 2013-07 Thailand Bank of Thailand verbal prohibition and
         the 2013-12 PBOC Notice 2013/289 as one of the first three
-        nation-state crypto-prohibition actions globally. The bcb.gob.bo
+        nation-state crypto-prohibition actions globally. BCB Board
+        Resolution No. 082/2024 later left without effect the follow-on
+        Resolution No. 144/2020 and re-enabled electronic payment
+        instruments for virtual-asset purchase/sale operations; this is
+        tracked below as a recovery/update anchor for the operative
+        payment-system restriction, not as a textual repeal of the
+        2014 instrument itself. The bcb.gob.bo
         URL path for board resolutions is publicly indexed but specific
         Wayback snapshot timestamps for the 2014-05-06 PDF have not
         been pinned in this authoring pass. evidence_use=
         contextual_unarchived pending re-pin in a follow-up human-audit
-        pass. (Resolution 044/2014 was subsequently superseded by BCB
-        Board Resolution No. 082/2024 of 2024-06-26, which lifted the
-        prohibition and authorized regulated crypto transactions via
-        the Bolivian banking system; that reversal is recorded in a
-        separate event file when authored.)
+        pass.
     - type: semi_primary_wayback
       url: https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/
       wayback: https://web.archive.org/web/20201112040703/https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/
@@ -220,6 +222,48 @@ observations:
           year-prefix wayback anchor pending re-pin in a follow-up
           human-audit pass.
 
+recovery:
+  - layer: offramp_cex
+    resolved: true
+    resolved_timestamp: 2024-06-26T00:00:00Z
+    citation:
+      - type: primary_legal
+        url: https://www.bcb.gob.bo/webdocs/01_resoluciones/RD%20082%202024.pdf
+        body_hash: sha256:1734d88c60bd66ee487e6fd5e25f05d6c4de3309e30e46765af89f67351c47a2
+        body_path: sources/http_captures/bolivia-bcb-crypto-prohibition-2014/recovery/www.bcb.gob.bo__webdocs-01_resoluciones-RD-20082-202024.pdf__0b2dde37d0.bin
+        evidence_use: replayable
+        note: |
+          Banco Central de Bolivia Board Resolution No. 082/2024, dated 2024-06-25.
+          The scanned official PDF visually confirms Article 1 leaves Resolution
+          No. 144/2020 without effect and Article 2 makes the resolution effective
+          upon publication.
+      - type: primary_government
+        url: https://www.bcb.gob.bo/webdocs/files_noticias/CP_35%20NormativaActivosVirtuales4.pdf
+        body_hash: sha256:10660d63ab7a6c79d51fa36cee0a9ef3112511d16700f91a1cc5a39e46b192e8
+        body_path: sources/http_captures/bolivia-bcb-crypto-prohibition-2014/recovery/www.bcb.gob.bo__webdocs-files_noticias-CP_35-20NormativaActivosVirtuales4.pdf__6b0c2a2f57.bin
+        evidence_use: replayable
+        note: |
+          BCB press release CP 35/2024 dated 2024-06-26 stating that Resolution
+          No. 082/2024 left Resolution No. 144/2020 without effect and enabled
+          electronic payment instruments for purchase and sale operations involving
+          virtual assets, while reiterating that the boliviano remains the only
+          legal-tender currency.
+      - type: primary_government
+        url: https://www.bcb.gob.bo/?q=content%2Fel-bcb-en-coordinaci%C3%B3n-con-asfi-y-uif-actualiza-normativa-en-torno-los-activos-virtuales
+        body_hash: sha256:3e66eeaa2f6d2002f8435ae282fdf8d3ef0ba01811e94f59ddda5c9c416ebc2c
+        body_path: sources/http_captures/bolivia-bcb-crypto-prohibition-2014/recovery/www.bcb.gob.bo__capture__3967585b69.html
+        evidence_use: replayable
+        note: |
+          BCB HTML publication mirroring CP 35/2024 and naming the coordination
+          with ASFI and UIF. The captured body states that Resolution No. 082/2024
+          enabled electronic payment channels for virtual-asset purchase and sale.
+    note: |
+      Recovery is coded as the legal/payment-channel removal of the later operative
+      Bolivian virtual-asset payment-system restriction. Because the 2014 event is
+      admitted as a historical-baseline null_case with observed_no_change rather than
+      a measured exchange shutdown, this recovery must not be read as evidence of
+      same-day restoration of any named Bolivian exchange or user account.
+
 analysis_notes: |
   **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
   human:xiangwen as null_case. BCB press release NP-62 captured live
@@ -298,13 +342,11 @@ analysis_notes: |
   field forward-references that planned sibling alongside the already-
   authored china-pboc-crypto-ban-2013-12.
 
-  Origin=agent_draft and status=draft per the agent-authoring
-  convention. A human reviewer must (a) re-pin the bcb.gob.bo
-  Resolution 044/2014 PDF Wayback snapshot, (b) re-pin the City A.M.
-  contemporaneous coverage Wayback snapshot, and (c) decide whether
-  observed_no_change with the falsifiable 2014-05-06 to 2016-12-31
-  scope window admits the event as null_case before promoting status
-  beyond draft.
+  Origin=human_reviewed and status=admitted per the 2026-05-21 Batch
+  C-4 promotion note above. The original 2014 resolution PDF remains
+  contextual_unarchived because the live URL is 404 and no pinned
+  Wayback body exists; the replayable 2014 BCB press release and the
+  2024 recovery/update anchors are captured locally.
 
 scoped_claim: |
   Banco Central de Bolivia Board Resolution No. 044/2014 (issued

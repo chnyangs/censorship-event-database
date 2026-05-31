@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `ad034bc` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T13:58:50Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `c87d162` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T14:17:25Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -57,16 +57,18 @@
 > state-level bans on bitcoin and is commonly cited alongside
 > the 2013-07 Thailand Bank of Thailand verbal prohibition and
 > the 2013-12 PBOC Notice 2013/289 as one of the first three
-> nation-state crypto-prohibition actions globally. The bcb.gob.bo
+> nation-state crypto-prohibition actions globally. BCB Board
+> Resolution No. 082/2024 later left without effect the follow-on
+> Resolution No. 144/2020 and re-enabled electronic payment
+> instruments for virtual-asset purchase/sale operations; this is
+> tracked below as a recovery/update anchor for the operative
+> payment-system restriction, not as a textual repeal of the
+> 2014 instrument itself. The bcb.gob.bo
 > URL path for board resolutions is publicly indexed but specific
 > Wayback snapshot timestamps for the 2014-05-06 PDF have not
 > been pinned in this authoring pass. evidence_use=
 > contextual_unarchived pending re-pin in a follow-up human-audit
-> pass. (Resolution 044/2014 was subsequently superseded by BCB
-> Board Resolution No. 082/2024 of 2024-06-26, which lifted the
-> prohibition and authorized regulated crypto transactions via
-> the Bolivian banking system; that reversal is recorded in a
-> separate event file when authored.)
+> pass.
 - **`semi_primary_wayback`**
   - URL: <https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/>
   - Wayback: <https://web.archive.org/web/20201112040703/https://www.cityam.com/bitcoin-banned-bolivian-central-bank-threat-national-currency/>
@@ -146,7 +148,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ad034bc`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `c87d162`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
