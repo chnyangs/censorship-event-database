@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a09b90d` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `c86ca57` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -50,7 +50,11 @@
 > announcement closing Greek or Portuguese services attributable
 > to MiCA-prep or national-regulator constraints, and the
 > publicly-available regulator registry suggests the opposite
-> (continued Portuguese authorization).
+> (continued Portuguese authorization). Evidence repair
+> 2026-06-01: the Banco de Portugal registry page is locally
+> captured from Wayback memento 20230323174741 with
+> body_hash/body_path, so it is claim-usable for the PT-side
+> null/denominator claim. It does not establish Greek coverage.
 
 ## 2. Target
 
@@ -89,6 +93,9 @@
 > Bitstamp Europe S.A. — positive evidence that Bitstamp
 > retained Portuguese VASP authorization, which is the
 > inverse of what the slug's Portugal-exit premise predicts.
+> Locally captured from Wayback memento 20230323174741 with
+> body_hash/body_path; claim-usable only for the PT-side
+> observed_no_change/null bracketing claim.
 - **`primary_corporate`**
   - URL: <https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/>
   - Wayback: <https://web.archive.org/web/2023/https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/>
@@ -108,7 +115,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a09b90d`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `c86ca57`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

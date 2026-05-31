@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a09b90d` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `c86ca57` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -51,6 +51,10 @@
 > full NL exit effective 2025-08-04 / 2025-08-25. This is
 > CONTRARY to the slug's premise of a 2023 exit and is recorded
 > here as load-bearing evidence for the null_event disposition.
+> Evidence repair 2026-06-01: the KuCoin announcement is locally
+> captured with body_hash/body_path, so it is claim-usable for
+> the post-window null bracketing claim. It does not establish a
+> 2023 KuCoin Netherlands exit.
 
 ## 2. Target
 
@@ -94,7 +98,9 @@
   - body_path: `sources/http_captures/kucoin-netherlands-exit-2023/primary/www.kucoin.com__announcement-announcement_for_kucoin_users_in_the_netherlands_240930__a1d0e633e2.html`
   > KuCoin's NL-user announcement page (effective 2024-09-30).
 > Documents the first published KuCoin NL-restrictive action;
-> postdates the slug's 2023 window.
+> postdates the slug's 2023 window. Locally captured with
+> body_hash/body_path; claim-usable only for the post-window
+> observed_no_change/null bracketing claim.
 
 ## 5. Honest coverage gaps
 
@@ -108,7 +114,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a09b90d`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `c86ca57`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
