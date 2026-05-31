@@ -304,3 +304,25 @@ hunting for an existing Wayback snapshot / a PDF mirror of the foreign-language 
 methodology. Per user, continuing the slow capture route as PDF primaries are found; this is an ongoing background effort.
 
 ## RUNNING TOTAL: corpus 261 → **334 admitted** / 44 draft / 7 rejected = 385; sweep 385/385 [OK]. +73 admitted this continuation.
+
+### TASK 2 (cont.) — lower-admission tier (user: 引入 lower-admission tier) — 2026-05-31
+Implemented codebook **4.0.0**: new orthogonal event-level `evidence_tier` (admission_grade default /
+`attested_secondary`) + required `evidence_caveat`; validator relaxes the source floor to ≥1 contemporaneous
+source ONLY for attested_secondary (does NOT relax §1.6 asset_onchain or attribution=direct-needs-primary);
+codebook §10 documents it; the tier is filterable so IRR/κ/headline-census can exclude it. Regression 385/385.
+**+34 admitted at attested_secondary (corpus 334 → 368):**
+- Pass 1 (25 clean §9-clear single-source): 10 national bans (china-pboc-2014/ndrc/alipay, vietnam, jordan,
+  nepal, korea-fiu, indonesia-kominfo, iran-cbi, thailand-meme-nft) + 15 corporate (privacy delistings,
+  Canada exits, MiCA-USDT delistings, geofences, freezes). 3 direct→plausible softened.
+- Pass 2 (9 flagged national bans): cambodia, china-2019, china-search-engine, egypt-194, korea-fsc-privacy,
+  morocco, myanmar, taiwan-2014, venezuela-sunacrip. Each: rendered+grepped source (core restriction 5/7-7/7);
+  removed the OFAC-template boilerplate VERIFY-FLAG (inapplicable to a national ban).
+**Remaining 10 drafts — ALL correctly held for honest, documented reasons (NOT source-count):**
+- 6 need a primary_onchain tx_hash (§1.6 binds; tier doesn't apply): circle-usdc-hack, circle-usdc-sealed,
+  ren-protocol (the §1.6 terminal-draft precedent), t3, tether-iran-fury, tether-okx-doj.
+- 4 semantic holds: iraq-cbi (§9 warning-vs-ban ruling pending), goldage (pre-2007 boundary), task-force-rusich
+  (real crypto designation but captured jy0954 has no crypto nexus — needs a crypto source), bitfinex-us-exit
+  (captured page is a JS-shell — needs a real capture).
+
+## FINAL SESSION TALLY: corpus 261 → **368 admitted** / 10 draft / 7 rejected = 385; sweep 385/385 [OK]. **+107 admitted this continuation.**
+Task 1 (+9 flag-refine) + Task 2 (+3 capture, +34 lower-tier). All local commits, never pushed.
