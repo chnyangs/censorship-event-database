@@ -131,14 +131,22 @@ def check_docs(summary: CensusSummary, next_steps_path: Path, state_path: Path) 
         "registry_count": _extract_int(r"census_gap_registry\.tsv` has (\d+)", next_steps, "NEXT_STEPS registry count"),
         "covered_count": _extract_int(r"found (\d+) already covered", next_steps, "NEXT_STEPS covered count"),
         "not_in_corpus_count": _extract_int(r"Of the remaining\s+(\d+) `in_corpus=false`", next_steps, "NEXT_STEPS false count"),
-        "held_count": _extract_int(r"and (\d+) are explicit `HELD-needs-\*`", next_steps, "NEXT_STEPS held count"),
+        "held_count": _extract_int(
+            r"and (\d+) (?:are explicit|is an explicit) `HELD-needs-\*`",
+            next_steps,
+            "NEXT_STEPS held count",
+        ),
         "missing_count": _extract_int(r"Exact-id remaining queue: (\d+)", next_steps, "NEXT_STEPS exact queue count"),
     }
     state_counts = {
         "registry_count": _extract_int(r"semantic-covered slug mismatches: (\d+)", state, "STATE registry count"),
         "covered_count": _extract_int(r"registry rows, (\d+) covered", state, "STATE covered count"),
         "not_in_corpus_count": _extract_int(r"remaining (\d+) `in_corpus=false` rows", state, "STATE false count"),
-        "held_count": _extract_int(r"and (\d+) are explicit held evidence-floor rows", state, "STATE held count"),
+        "held_count": _extract_int(
+            r"and (\d+) (?:are explicit held evidence-floor rows|is an explicit held evidence-floor row)",
+            state,
+            "STATE held count",
+        ),
         "missing_count": _extract_int(r"(\d+) exact-id candidate rows remain", state, "STATE exact queue count"),
     }
     expected = {

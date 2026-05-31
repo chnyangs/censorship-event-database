@@ -76,7 +76,7 @@ def test_census_registry_rejects_stale_doc_counts(tmp_path):
         (
             "`census_gap_registry.tsv` has 99 verified+scope-tagged rows. "
             "Registry reconciliation on 2026-05-31 found 1 already covered. "
-            "Of the remaining 1 `in_corpus=false` rows, 0 are reviewed and 1 are explicit `HELD-needs-*`. "
+            "Of the remaining 1 `in_corpus=false` rows, 0 are reviewed and 1 is an explicit `HELD-needs-*`. "
             "Exact-id remaining queue: 0 candidate rows not yet in events or registry."
         ),
     )
@@ -85,7 +85,7 @@ def test_census_registry_rejects_stale_doc_counts(tmp_path):
         (
             "semantic-covered slug mismatches: 2 verified+scope-tagged registry rows, 1 covered "
             "by corpus. Of the remaining 1 `in_corpus=false` rows, 0 are reviewed and "
-            "1 are explicit held evidence-floor rows; 0 exact-id candidate rows remain."
+            "1 is an explicit held evidence-floor row; 0 exact-id candidate rows remain."
         ),
     )
 
@@ -109,7 +109,7 @@ def test_census_registry_accepts_current_doc_counts(tmp_path):
         (
             "`census_gap_registry.tsv` has 2 verified+scope-tagged rows. "
             "Registry reconciliation on 2026-05-31 found 1 already covered. "
-            "Of the remaining 1 `in_corpus=false` rows, 0 are reviewed and 1 are explicit `HELD-needs-*`. "
+            "Of the remaining 1 `in_corpus=false` rows, 0 are reviewed and 1 is an explicit `HELD-needs-*`. "
             "Exact-id remaining queue: 0 candidate rows not yet in events or registry."
         ),
     )
@@ -118,7 +118,7 @@ def test_census_registry_accepts_current_doc_counts(tmp_path):
         (
             "semantic-covered slug mismatches: 2 verified+scope-tagged registry rows, 1 covered "
             "by corpus. Of the remaining 1 `in_corpus=false` rows, 0 are reviewed and "
-            "1 are explicit held evidence-floor rows; 0 exact-id candidate rows remain."
+            "1 is an explicit held evidence-floor row; 0 exact-id candidate rows remain."
         ),
     )
 

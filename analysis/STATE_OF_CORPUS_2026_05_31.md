@@ -5,7 +5,7 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
 - **405 events**: **368 admitted** / 28 draft / 9 rejected.
-- **Integrity**: `scripts/validate.py` passes **404 / 404 [OK]**; `make check` passes. All changes remain local, never pushed.
+- **Integrity**: `scripts/validate.py` passes **405 / 405 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
 ## Admitted composition (368)
@@ -31,7 +31,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
    (25 clean + 9 flagged national bans). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;
-   current validator regression 404/404.
+   current validator regression 405/405.
 5. **Continuation P1/P2 cleanup** — resolved US-state regulator stratum policy (state/subnational
    administrative actions stay `regulatory_enforcement` / `S4_nation_state`), recoded NYDFS BitLicense
    accordingly, rejected Iraq as warning/context-only, rejected GoldAge as pre-2007 out-of-frame, and
@@ -58,8 +58,8 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
     `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 185
     verified+scope-tagged registry rows, 118 covered by corpus / duplicate / semantic precedent. Of the
-    remaining 67 `in_corpus=false` rows, 65 are reviewed-excluded/context-only/out-of-scope/proposal-only
-    under codebook §9 and 2 are explicit held evidence-floor rows; 0 exact-id candidate rows remain to triage from the 264-row
+    remaining 67 `in_corpus=false` rows, 66 are reviewed-excluded/context-only/out-of-scope/proposal-only
+    under codebook §9 and 1 is an explicit held evidence-floor row; 0 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -98,9 +98,9 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     The prior 8-row exact-id queue is now exhausted: Tencent/WeChat NFT and Binance Europe retreat are
     semantic-covered, Tether APAC pig-butchering is exact-covered by admitted `tether-pig-butchering-second-wave-2024`,
     FATF 2022 is context-only, Thailand SEC staking/lending is date/scope-corrected as proposal-policy rather
-    than a pinned 2022 operative ban, and two candidates remain only as held evidence-floor rows
-    (MetaMask Apple App Store removal needs primary/app-store availability evidence; WazirX/Tether
-    needs asset-onchain tx_hash/address-set evidence). The Bybit/Tether held row is now
+    than a pinned 2022 operative ban, MetaMask Apple App Store removal is reviewed-excluded after primary
+    MetaMask oEmbed capture plus press attribution to an internal operational error, and WazirX/Tether remains
+    held until it has asset-onchain tx_hash/address-set evidence. The Bybit/Tether held row is now
     date/scope-corrected into draft `t3-bybit-hack-usdt-freeze-2025-03`, using Tether's 2025-03-26
     primary T3 FCU announcement, the Bybit/LazarusBounty public address API, and 18 USDT blacklist receipts.
     `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
@@ -253,11 +253,12 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     withdrawal/enforcement family; `tether-apac-pig-butchering-freeze-2024-06` by admitted
     `tether-pig-butchering-second-wave-2024`). Two are reviewed non-authorable as currently framed
     (`fatf-targeted-update-va-vasp-2022` context-only and `thailand-sec-staking-lending-ban-2022-09`
-    proposal/date-corrected rather than a pinned 2022 operative ban). Two remain held, not authored, until
-    they meet the evidence floor: `metamask-apple-app-store-removal-2023-10` needs primary/app-store
-    availability evidence, while `wazirx-tether-usdt-hack-freeze-2025-01` needs asset-onchain
-    tx_hash/address-set anchors. `tether-bybit-hack-lazarus-freeze-2025-02` is now date/scope-corrected
-    to the non-admitted draft `t3-bybit-hack-usdt-freeze-2025-03`.
+    proposal/date-corrected rather than a pinned 2022 operative ban). MetaMask Apple App Store removal is now
+    reviewed-excluded after primary MetaMask oEmbed capture and press attribution to an internal operational
+    error rather than Apple action. One row remains held, not authored, until it meets the evidence floor:
+    `wazirx-tether-usdt-hack-freeze-2025-01` needs asset-onchain tx_hash/address-set anchors.
+    `tether-bybit-hack-lazarus-freeze-2025-02` is now date/scope-corrected to the non-admitted draft
+    `t3-bybit-hack-usdt-freeze-2025-03`.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;
