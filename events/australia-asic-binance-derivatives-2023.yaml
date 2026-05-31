@@ -30,32 +30,26 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/
-      wayback: https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/
-      evidence_use: contextual_unarchived
+      url: https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/
+      body_hash: sha256:697f54c2792390c0ebf27994c3d15079598372cf6799662fb9c5210262b889ed
+      body_path: sources/http_captures/australia-asic-binance-derivatives-2023/asic-media-release/asic.gov.au__about-asic-news-centre-find-a-media-release-2023-releases-23-091mr-binance-australia-derivatives-afs-licence-cancelled__5f5971f9a2.html
+      wayback: https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/
+      evidence_use: replayable
       note: |
-        Australian Securities and Investments Commission (ASIC) media
-        release 23-079MR dated 2023-04-06, "ASIC cancels Binance Australia
-        AFS licence." ASIC cancelled the Australian Financial Services
-        Licence (AFSL) of Oztures Trading Pty Ltd, trading as Binance
-        Australia Derivatives, after a targeted review found that Binance
-        had wrongly classified approximately 500 retail clients as
-        wholesale clients, thereby denying them the consumer protections
-        afforded to retail clients under the Corporations Act. The
-        cancellation took effect on 2023-04-14, forcing the shutdown of
-        Binance Australia Derivatives operations to Australian users.
-        Wayback anchor is a 2023 calendar-folder pointer to the ASIC media
-        release URL rather than a pinned snapshot; the authoring LLM agent
-        did not personally pin a Wayback timestamp or compute a body_hash
-        for the ASIC media release page. Marked evidence_use=
-        contextual_unarchived to flag the unarchived state explicitly; the
-        specific snapshot and body_hash must be re-pinned during human
-        audit before this citation may serve as an admission anchor in
-        its own right.
+        ASIC media release 23-091MR dated 2023-04-06, "Binance Australia
+        Derivatives - AFS licence cancelled." ASIC cancelled the Australian
+        Financial Services licence of Oztures Trading Pty Ltd, trading as
+        Binance Australia Derivatives. The release states that, following
+        cancellation, clients could not increase or open derivatives
+        positions from 2023-04-14, existing positions had to be closed
+        before 2023-04-21, and remaining positions would be closed on
+        2023-04-21. The release also records ASIC's targeted review of
+        Binance's Australian financial-services business, including retail
+        and wholesale client classification.
   timestamp_sources:
     - type: primary_legal
       note: |
-        Day-level timing per the ASIC media release 23-079MR dated
+        Day-level timing per the ASIC media release 23-091MR dated
         2023-04-06. The AFSL cancellation took effect on 2023-04-14, with
         limited transitional provisions through 2023-04-21 for closing out
         existing derivatives positions. Day-level precision.
@@ -71,8 +65,9 @@ target:
     Australian retail derivatives customer cohort of the Binance platform.
     The ASIC cancellation names a single legal entity (Oztures Trading Pty
     Ltd) as the immediate addressee; the operational effect is on
-    Australian users of Binance derivatives, including the ~500 misclassified
-    retail clients who were the focus of the ASIC targeted review.
+    Australian users of Binance derivatives. The release also records an
+    ASIC targeted review of Binance's Australian financial-services business,
+    including its classification of retail and wholesale clients.
     Treated as entity-level at the Binance-Australia-derivatives cohort.
   protocol: null
   actor_type: regulated_crypto_service_provider
@@ -95,18 +90,12 @@ coverage:
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: partially_measured
+    status: not_measured
     scope: [binance.com]
     note: |
-      Binance posted Australia-specific notices on binance.com following
-      the ASIC 2023-04-06 cancellation, restricting Australian users from
-      opening new derivatives positions and triggering account-level
-      close-out flows for existing Australian derivatives customers
-      during the transitional window (2023-04-14 to 2023-04-21). L4 is
-      the secondary observational layer; the load-bearing signal is the
-      AFSL-mandated cessation at offramp_cex. partially_measured pending
-      pinned Wayback bracket of binance.com AU-geo derivatives-shutdown
-      banners.
+      No replayable Binance AU-geo frontend notice is retained in this
+      event. The load-bearing public claim is narrowed to the ASIC-backed
+      exchange/platform derivatives-service cessation at offramp_cex.
   - layer: asset_onchain
     status: not_applicable
     note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
@@ -136,11 +125,13 @@ observations:
       - 2023-04-21T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/
-        wayback: https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/
-        evidence_use: contextual_unarchived
+        url: https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/
+        body_hash: sha256:697f54c2792390c0ebf27994c3d15079598372cf6799662fb9c5210262b889ed
+        body_path: sources/http_captures/australia-asic-binance-derivatives-2023/asic-media-release/asic.gov.au__about-asic-news-centre-find-a-media-release-2023-releases-23-091mr-binance-australia-derivatives-afs-licence-cancelled__5f5971f9a2.html
+        wayback: https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/
+        evidence_use: replayable
         note: |
-          ASIC media release 23-079MR is the legal instrument cancelling
+          ASIC media release 23-091MR is the legal instrument cancelling
           the Oztures Trading Pty Ltd AFSL. attribution=direct because
           the AFSL cancellation itself compels the operator-state change
           (cessation of Australian-facing derivatives service): without
@@ -148,38 +139,19 @@ observations:
           to Australian clients under the Corporations Act. The
           transitional close-out window (2023-04-14 effective date,
           2023-04-21 limited close-out deadline) flows directly from the
-          ASIC order. DRYRUN: Wayback anchor is a 2023 calendar-folder
-          pointer; pinned snapshot timestamp and body_hash capture
-          deferred to human audit.
-  - layer: l4_frontend
-    actor: frontend:binance_com_au_geo
-    event: au_geo_specific_derivatives_shutdown_notices_posted
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2023-04-07T00:00:00Z
-    precision: day
-    delta_hours: 24
-    sources:
-      - type: primary_legal
-        url: https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/
-        wayback: https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/
-        evidence_use: contextual_unarchived
-        note: |
-          ASIC media release is the regulatory anchor for the Binance-AU
-          frontend response: Binance posted Australia-specific derivatives-
-          shutdown notices and account close-out flows in the days
-          following the AFSL cancellation. attribution=plausible because
-          the frontend banner / regional notice is a Binance-corporate
-          response, not a regulator-mandated DOM change. DRYRUN: pinned
-          Wayback snapshot of the binance.com Australia-geo notice page
-          is deferred to human audit; the ASIC media release is retained
-          here as the contextual anchor for the frontend response.
+          ASIC order.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.4 non_us_state discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **SOURCE-REPAIRED 2026-06-01**: corrected the ASIC source from stale
+  23-079MR wording to ASIC media release 23-091MR and narrowed the retained
+  observation to the ASIC-backed offramp_cex derivatives-service cessation.
+  The prior unanchored L4 frontend-banner observation was removed because no
+  replayable Binance AU-geo notice is retained in this event.
 
-  comparison shape: 2 observed_change layers (offramp_cex load-bearing,
-  L4 frontend secondary). Sibling event in the 2023 Binance multi-
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.4 non_us_state discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator.
+
+  comparison shape: 1 observed_change layer (offramp_cex load-bearing).
+  Sibling event in the 2023 Binance multi-
   jurisdictional regulatory-pressure cascade alongside
   belgium-fsma-binance-cease-2023 (2023-06-23),
   germany-bafin-binance-licence-withdrawal-2023, and the structurally
@@ -192,12 +164,11 @@ analysis_notes: |
   repatriate), and the BaFin-2023 (licence-application withdrawal /
   refusal) patterns. ASIC exercises direct licence-cancellation
   authority over an Australian-incorporated AFSL holder (Oztures
-  Trading Pty Ltd) following a targeted review that found regulatory
-  classification fraud (~500 retail clients wrongly classified as
-  wholesale). The shutdown is therefore directly regulator-compelled at
-  the AFSL level, comparable in legal mechanism to a BaFin licence
-  refusal but narrower in scope (derivatives only; Binance Australia's
-  spot operations under separate digital-currency-exchange registration
+  Trading Pty Ltd) following a targeted review that included retail /
+  wholesale client classification. The shutdown is therefore directly
+  regulator-compelled at the AFSL level, comparable in legal mechanism to
+  a BaFin licence refusal but narrower in scope (derivatives only; Binance
+  Australia's spot operations under separate digital-currency-exchange registration
   with AUSTRAC were not cancelled by this action).
 
   Cross-stratum cousin: binance-4framework-2023 (US, S3) — the ASIC
@@ -206,30 +177,20 @@ analysis_notes: |
   illustrating the multi-jurisdictional pile-on phase of Binance's
   regulatory trajectory.
 
-  DRYRUN caveats: trigger primary citation (ASIC media release 23-079MR)
-  is asserted with a 2023-calendar-folder Wayback pointer; pinned
-  snapshot timestamp and body_hash capture are deferred to the
-  human-audit pass. For non-DRYRUN release, capture body_hash +
-  body_path for: (1) ASIC media release 23-079MR permalink, (2) the
-  ASIC targeted-review report findings (referenced in the media release),
-  (3) the binance.com Australia-geo derivatives-shutdown notice /
-  regional announcement page if recoverable from Wayback. Marked
-  evidence_use=contextual_unarchived on all citations to flag the
-  unarchived state per validator policy.
+  Remaining caveat: this event does not retain a replayable Binance-owned
+  AU-geo frontend notice, so no L4 observed_change is claimed.
 
 scoped_claim: |
-  "ASIC media release 23-079MR of 2023-04-06 cancelled the AFSL of
+  "ASIC media release 23-091MR of 2023-04-06 cancelled the AFSL of
   Oztures Trading Pty Ltd (trading as Binance Australia Derivatives)
-  after a targeted review found ~500 retail clients had been wrongly
-  classified as wholesale clients, directly compelling the shutdown of
-  Binance's Australian derivatives operations (effective 2023-04-14
-  with transitional close-out through 2023-04-21). Primary
+  and directly compelled the shutdown of Binance's Australian derivatives
+  operations for opening or increasing positions from 2023-04-14
+  with transitional close-out through 2023-04-21. Primary
   observational axis is offramp_cex at the Binance-Australia-derivatives
-  cohort level; secondary L4-frontend response (AU-geo derivatives-
-  shutdown banners on binance.com) attached with plausible attribution.
-  The row does not claim ISP-level connectivity blocking, on-chain
-  asset freeze, or cancellation of Binance Australia's separate spot-
-  exchange AUSTRAC registration."
+  cohort level. The row does not claim ISP-level connectivity blocking,
+  a measured Binance AU-geo frontend banner, on-chain asset freeze, or
+  cancellation of Binance Australia's separate spot-exchange AUSTRAC
+  registration."
 
 tags:
   - nation_state_block

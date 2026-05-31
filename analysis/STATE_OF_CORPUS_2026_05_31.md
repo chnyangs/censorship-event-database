@@ -12,12 +12,12 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **236** (9 complete / 227 scoped) and
-  admitted-but-blocked cases are **132**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **238** (9 complete / 229 scoped) and
+  admitted-but-blocked cases are **130**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current reliability distribution after the stricter pass and subsequent quality-loop repairs: observation
-  reliability **254 high / 80 medium / 34 low**; attribution reliability **217 high / 151 medium / 0 low**.
+  reliability **256 high / 80 medium / 32 low**; attribution reliability **219 high / 149 medium / 0 low**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 
