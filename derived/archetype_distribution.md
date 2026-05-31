@@ -1,6 +1,6 @@
 # Archetype distribution report
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `71b6d3d` · generated `2026-06-01T00:00:00Z` (events: 368)
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `9964436` · generated `2026-06-01T00:00:00Z` (events: 368)
 
 ## 1. Classification rules (deterministic, priority-ordered)
 

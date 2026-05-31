@@ -8,14 +8,14 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `187`
-- Admitted but release-blocked cases: `181`
+- Release-ready cases: `199`
+- Admitted but release-blocked cases: `169`
 - Fully complete release-ready cases: `13`
-- Scope-limited release-ready cases: `174`
+- Scope-limited release-ready cases: `186`
 - Working drafts: `2`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
-- Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, saudi-standing-committee-virtual-currency-warning-2018-08, terror-financing-crypto-seizure-doj-2020, vietnam-sbv-bitcoin-prohibition-statement-2014-02, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, magic-eden-ofac-sanctioned-country-block, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
+- Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, vietnam-sbv-bitcoin-prohibition-statement-2014-02, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, fayzimatov-alqaeda-syria-ofac-2021-07, magic-eden-ofac-sanctioned-country-block, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
 
 ## Cases
 
@@ -109,14 +109,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -226,14 +225,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -244,14 +242,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -309,16 +306,15 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -800,15 +796,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -820,15 +815,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -841,15 +835,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -964,14 +957,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -982,15 +974,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1002,14 +993,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1020,14 +1010,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1217,14 +1206,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1262,14 +1250,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1566,14 +1553,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1645,17 +1631,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `circle-usdc-svb-policy-statement-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1799,17 +1784,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `consensys-metamask-infura-rpc-data-collection-2022-11`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1902,15 +1886,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1922,14 +1905,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2082,17 +2064,16 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -2151,16 +2132,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `eu-14th-russia-sanctions-spfs-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-15th-russia-sanctions-2024`
@@ -2170,14 +2150,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2253,15 +2232,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -2273,14 +2251,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2291,15 +2268,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -2311,14 +2287,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2385,14 +2360,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2403,14 +2377,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2434,14 +2407,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2452,14 +2424,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2470,47 +2441,44 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `fayzimatov-alqaeda-syria-ofac-2021-07`
 
 - Status: `draft`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `fbi-bitcoin-intelligence-assessment-2012-04`
 
 - Status: `rejected`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -2536,14 +2504,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2554,15 +2521,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -2574,14 +2540,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2628,14 +2593,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2646,14 +2610,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2731,15 +2694,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -2840,14 +2802,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2982,14 +2943,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3045,14 +3005,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3191,13 +3150,12 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3205,34 +3163,32 @@ This file is the operational summary for the repo's two current priorities:
 ### `iraq-cbi-cryptocurrency-prohibition-2017-12`
 
 - Status: `rejected`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `irgc-ransomware-ofac-2022`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `israel-nbctf-hamas-crypto-addresses-2021`
@@ -3259,14 +3215,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3368,15 +3323,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3388,14 +3342,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3445,17 +3398,16 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -3505,15 +3457,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3538,14 +3489,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3737,15 +3687,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3769,18 +3718,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07`
 
 - Status: `draft`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -3791,30 +3739,28 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `lazarus-laundering-ofac-2020`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `lebanon-bdl-bitcoin-warning-2013-12`
@@ -3876,16 +3822,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `lockbit-leader-ofac-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `magic-eden-ofac-sanctioned-country-block`
@@ -3904,17 +3849,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `makerdao-emergency-shutdown-contingency-2022-08`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3940,15 +3884,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3960,15 +3903,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -4011,14 +3953,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4063,17 +4004,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `mtgox-coinlab-civil-2013`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4112,17 +4052,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `mtgox-mizuho-wire-pressure-2012`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4172,15 +4111,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4233,15 +4171,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -4339,19 +4276,18 @@ This file is the operational summary for the repo's two current priorities:
 ### `nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015`
 
 - Status: `rejected`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Promote to admitted once promotion-gate criteria are met.
@@ -4379,13 +4315,12 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Promote to admitted once promotion-gate criteria are met.
@@ -4410,15 +4345,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4446,15 +4380,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -4463,18 +4396,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `ofac-hamas-irgc-virtual-currency-network-2024-01`
 
 - Status: `rejected`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -4485,15 +4417,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4505,13 +4436,12 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4523,14 +4453,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4541,14 +4470,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4583,15 +4511,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4868,14 +4795,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4980,15 +4906,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5092,14 +5017,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5110,14 +5034,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5128,17 +5051,16 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -5166,16 +5088,15 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5204,14 +5125,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5233,16 +5153,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `russian-cybercrime-infra-ofac-2025`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `salame-ftx-campaign-finance-doj-2023`
@@ -5252,14 +5171,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5285,18 +5203,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `saudi-standing-committee-virtual-currency-warning-2018-08`
 
 - Status: `draft`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -5540,18 +5457,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `sec-v-coinbase-staking-wells-2023`
 
 - Status: `rejected`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -5562,14 +5478,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5600,18 +5515,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `sec-v-uniswap-wells-notice-2024`
 
 - Status: `rejected`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -5689,15 +5603,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5735,13 +5648,12 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5779,14 +5691,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5810,14 +5721,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5844,14 +5754,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5896,15 +5805,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5942,15 +5850,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -5963,15 +5870,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6123,17 +6029,16 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -6312,14 +6217,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6397,15 +6301,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6430,14 +6333,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6448,16 +6350,15 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6469,14 +6370,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6514,14 +6414,13 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6580,15 +6479,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6609,17 +6507,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `unsc-resolution-2371-dprk-crypto-2017`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6674,17 +6571,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `uzbekistan-napp-vasp-licensing-2022-07`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6717,18 +6613,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `vietnam-sbv-bitcoin-prohibition-statement-2014-02`
 
 - Status: `draft`
-- Readiness: `needs_re_scoping`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -6778,15 +6673,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -6972,15 +6866,14 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
@@ -7021,13 +6914,12 @@ This file is the operational summary for the repo's two current priorities:
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `low`
+- Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: The file does not currently retain a stable changed-layer claim.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
