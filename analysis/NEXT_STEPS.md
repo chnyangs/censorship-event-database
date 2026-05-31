@@ -58,10 +58,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       Actions page for 2022-09-15 is now captured locally and enumerates the five digital-currency
       addresses (2 XBT / 2 ETH / 1 USDT-on-Tron). The event remains `status=draft` only because
       admission is human-only (`origin=agent_draft` cannot be promoted by automation).
-- [x] **bitfinex-us-retail-customer-exit-2017-11** — re-captured. The event now cites the 2017-10-18
-      Wayback memento of the Bitcoin.com article, whose rendered body confirms the US-retail service
-      termination and November 9 deadline. The event remains `status=draft` only because admission is
-      human-only (`origin=agent_draft` cannot be promoted by automation).
+- [x] **bitfinex-us-retail-customer-exit-2017-11** — source-strengthened. The event now cites official
+      Bitfinex Wayback mementos for `/posts/216` (2017-08-11 service-change trigger) and `/posts/227`
+      (2017-11-09 trading/deposit/withdrawal termination deadline), with the 2017-10-18 Bitcoin.com
+      capture retained only as corroborating semi-primary replay evidence. The event remains `status=draft`
+      only because admission is human-only (`origin=agent_draft` cannot be promoted by automation).
 
 ## P3 — Methodology debt (codebook process)
 - [ ] **`evidence_tier` IRR pass.** Codebook 4.0.0 added a decision-rule (the `attested_secondary` tier). The

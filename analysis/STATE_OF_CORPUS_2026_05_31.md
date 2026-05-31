@@ -284,7 +284,8 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
 - **1 terminal asset_onchain draft**: ren-protocol (off-chain RenVM darknode signature cessation; no
   on-chain tx can exist, so keep as documented draft precedent).
 - **8 source-repaired human-only drafts**: task-force-rusich now has the official OFAC crypto-address source;
-  bitfinex-us-exit-2017 now has a 2017 rendered article capture; circle-usdc-multichain now has full
+  bitfinex-us-exit-2017 now has official Bitfinex /posts/216 and /posts/227 Wayback captures;
+  circle-usdc-multichain now has full
   addresses + three primary_onchain tx hashes; tether-okx-doj-2025 now has DOJ OPA + D.D.C. complaint
   captures, seven USDT Token Group addresses, seven 2023 AddedBlackList txs, and seven 2025
   DestroyedBlackFunds txs; tether-iran-fury now has OFAC address enumeration plus two Tron

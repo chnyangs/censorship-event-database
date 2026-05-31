@@ -24,6 +24,22 @@ trigger:
   timestamp: 2017-08-11T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://www.bitfinex.com/posts/216
+      wayback: https://web.archive.org/web/20170811184809/https://www.bitfinex.com/posts/216
+      body_hash: sha256:3aeb5ddb3641fbc4a7d1aa5a473832b0e0e2c9c3bd94bbb50ea213e600d2daa5
+      body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/official_bitfinex/web.archive.org__web-20170811184809-https-www.bitfinex.com-posts-216__bcdcdd5a39.html
+      evidence_use: replayable
+      note: |
+        Official Bitfinex announcement "Service Changes for U.S. Customers",
+        pinned to the first successful Wayback memento found for /posts/216
+        (2017-08-11 18:48:09Z). The captured body states that Bitfinex was
+        making changes to services for U.S. individuals, would stop accepting
+        U.S. individual verification requests immediately, had decided to
+        begin disengaging from U.S. retail customers, and would discontinue
+        services to existing U.S. individual customers over the next 90 days.
+        It also ties the ERC20/ICO-token trading restriction to the SEC DAO
+        report.
     - type: semi_primary_wayback
       url: https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
       wayback: https://web.archive.org/web/20171018121607/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
@@ -41,10 +57,12 @@ trigger:
         November 9, 2017", and "August 11". Wayback 20171018121607 pinned.
         Trigger anchored to the 2017-08-11 first disclosure of the plan.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_corporate
       note: |
-        Day-level precision: plan first revealed 2017-08-11; termination
-        effective no later than 2017-11-09 per the cited coverage.
+        Day-level precision: the official Bitfinex /posts/216 announcement is
+        dated 2017-08-11 and is pinned to a same-day Wayback memento.
+        Termination was later confirmed effective no later than 2017-11-09 in
+        official Bitfinex /posts/227.
 
 target:
   kind: entity
@@ -103,6 +121,25 @@ observations:
     delta_hours: 2160
     country: US
     sources:
+      - type: primary_corporate
+        url: https://www.bitfinex.com/posts/227
+        wayback: https://web.archive.org/web/20171017060118/https://www.bitfinex.com/posts/227
+        body_hash: sha256:e4cea1f8dd6de3168fac04cae27a079065b4d9711898a7c8864c804ddb74585c
+        body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/official_bitfinex/web.archive.org__web-20171017060118-https-www.bitfinex.com-posts-227__440056aa06.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bitfinex]
+          countries: [US]
+          time_window:
+            - 2017-08-01T00:00:00Z
+            - 2017-11-30T23:59:59Z
+        note: |
+          Official Bitfinex update "U.S. Individual Users", pinned to the first
+          successful Wayback memento found for /posts/227 (2017-10-17
+          06:01:18Z). The captured body says Bitfinex was terminating trading,
+          deposit, and withdrawal functionality for U.S. individual customers
+          by no later than 2017-11-09, and that all U.S. individual users had
+          to arrange withdrawal of digital tokens by November 9.
       - type: semi_primary_wayback
         url: https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
         wayback: https://web.archive.org/web/20171018121607/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
@@ -124,6 +161,15 @@ observations:
           and the action names the US-retail target class it acted upon).
 
 analysis_notes: |
+  **SOURCE STRENGTHENING 2026-06-01:** captured official Bitfinex Wayback
+  mementos for /posts/216 ("Service Changes for U.S. Customers") and
+  /posts/227 ("Update: U.S. Individual Users"). The trigger now has a
+  same-day primary_corporate anchor for the 2017-08-11 policy decision, and
+  the observed_change now has a primary_corporate anchor for termination of
+  trading, deposit, and withdrawal functionality for U.S. individual customers
+  by no later than 2017-11-09. Status remains draft because admission is
+  human-only (`origin=agent_draft` cannot be promoted by automation).
+
   **SOURCE REPAIR 2026-05-31:** the earlier 2025 Wayback capture of the
   Bitcoin.com article was a JS-gated shell. This pass captured the 2017-10-18
   Wayback memento (sha256:
