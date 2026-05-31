@@ -213,7 +213,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `israel-nbctf-hamas-crypto-addresses-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `japan-fsa-binance-sakura-acquisition-2022-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `japan-fsa-binance-warning-2018` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `japan-fsa-coincheck-orders-2018` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `japan-fsa-coincheck-orders-2018` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-06-01 | 0 | ok | ok |
 | `japan-fsa-dmm-bitcoin-order-2024-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `japan-fsa-ftx-japan-suspension-2022-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `japan-fsa-margin-leverage-cap-2x-2020-05` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |

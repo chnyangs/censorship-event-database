@@ -11,7 +11,7 @@ admission_tier: empirical_case
 origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-06-01
 last_human_audit: 2026-05-16
 
 related_events:
@@ -20,46 +20,44 @@ related_events:
 
 trigger:
   type: regulatory_enforcement
-  actor: JP_FSA
+  actor: JP_KANTO_LOCAL_FINANCE_BUREAU
   timestamp: 2018-01-29T00:00:00Z
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://www.fsa.go.jp/news/29/sonota/
-      wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/29/sonota/
-      evidence_use: contextual_unarchived
+      url: https://lfb.mof.go.jp/kantou/rizai/pagekthp0130000001_00004.html
+      body_hash: sha256:f44bc22a845e4a663b6512aae697185d6a831ba8fb37ba66b2f3709685f6bc54
+      body_path: sources/http_captures/japan-fsa-coincheck-orders-2018/primary/lfb.mof.go.jp__kantou-rizai-pagekthp0130000001_00004.html__9fee158b7a.html
+      evidence_use: replayable
       note: |
-        Japan Financial Services Agency (金融庁 / FSA) press-release index for
-        Heisei-29 (2017/2018) "sonota" (その他 / "other") notices. On
-        2018-01-29 the FSA issued a 業務改善命令 (gyomu-kaizen-meirei /
-        business-improvement order) under the Payment Services Act (資金決済法)
-        against Coincheck, Inc. following the 2018-01-26 NEM hack in which
-        approximately ¥58 billion (~USD 530M) of NEM (XEM) was stolen from
-        Coincheck hot wallets. The order required Coincheck to (1) submit a
-        plan for facts-finding, victim-compensation, and root-cause analysis,
-        (2) strengthen its risk-management framework, and (3) restore
-        confidence in customer protection. A follow-on 業務停止命令
-        (gyomu-teishi-meirei / business-suspension order) was issued
-        2018-03-08 partially suspending Coincheck's operations except for
-        customer-fund-return / withdrawal-processing activities. Coincheck
-        withdrawals (both crypto and JPY) were frozen for approximately
-        five months between January and approximately June 2018 across the
-        cascade of FSA supervisory actions. First major Asian post-Mt-Gox
-        FSA supervisory cascade and the formative case for Japan's
-        registered-VASP regulatory model. DRYRUN promotion: real anchor is
-        an FSA press-release index folder pointer; pinned snapshot
-        timestamp and body_hash capture for the specific 2018-01-29 and
-        2018-03-08 release permalinks deferred to non-DRYRUN release.
-        Marked evidence_use=contextual_unarchived to flag the unarchived
-        state per validator policy.
+        Kanto Local Finance Bureau administrative disposition page dated
+        2018-01-29. It states that Coincheck reported the 2018-01-26 NEM
+        outflow, that the bureau found the cause analysis, customer response,
+        and recurrence-prevention posture insufficient, and that it issued a
+        business-improvement order under Payment Services Act article 63-16.
+        Captured and pinned with body_hash/body_path during the 2026-06-01
+        source-repair pass.
+    - type: primary_legal
+      url: https://lfb.mof.go.jp/kantou/rizai/pagekthp0130000001_00013.html
+      body_hash: sha256:91526375be3317873d3c6645c86ce27a9a8093ae6cd8a66a68b632df5d215ca9
+      body_path: sources/http_captures/japan-fsa-coincheck-orders-2018/primary/lfb.mof.go.jp__kantou-rizai-pagekthp0130000001_00013.html__b552d9d688.html
+      evidence_use: replayable
+      note: |
+        Kanto Local Finance Bureau administrative disposition page dated
+        2018-03-08. It records the January report request, the 2018-01-29
+        business-improvement order, the 2018-02-02 on-site inspection, and a
+        second business-improvement order requiring governance, AML/CFT, risk
+        review, reports on customer transactions/compensation, and effective
+        controls before suspended trading/new-account functions resumed. This
+        page corrects the earlier dry-run overstatement: Coincheck received a
+        business-improvement order, not a business-suspension order.
   timestamp_sources:
     - type: primary_legal
       note: |
-        Day-level timing per FSA press release dated 2018-01-29 issuing the
-        initial business-improvement order; trigger timestamp anchors on the
-        first FSA supervisory action rather than the 2018-01-26 hack itself
-        (the hack is the precipitating event; the trigger is the
-        nation-state regulatory action).
+        Day-level timing per the Kanto Local Finance Bureau page dated
+        2018-01-29 issuing the first business-improvement order. The
+        2018-01-26 NEM hack is the precipitating incident; the trigger coded
+        here is the regulator's first formal administrative order.
 
 target:
   kind: entity
@@ -68,13 +66,14 @@ target:
   enumeration_note: |
     Coincheck, Inc. (コインチェック株式会社) — a Tokyo-based crypto-asset
     exchange operating since 2014, treated at the entity-level as the
-    named addressee of the FSA's 2018-01-29 business-improvement order and
-    the 2018-03-08 business-suspension order. As of 2018-01 Coincheck was
+    named addressee of the Kanto Local Finance Bureau's 2018-01-29 and
+    2018-03-08 business-improvement orders. As of 2018-01 Coincheck was
     operating under deemed-VASP transitional registration (みなし業者) under
     the Payment Services Act revision effective 2017-04 and had not yet
     received final FSA registration approval. Downstream operational
-    effect: freeze of customer withdrawals (both crypto and JPY) for
-    approximately five months pending the FSA-supervised remediation plan.
+    effect: customer-facing withdrawal/sale and account-opening functions
+    were restored only in phases while Coincheck implemented the
+    regulator-supervised remediation plan.
   protocol: null
   actor_type: regulated_crypto_service_provider
   actor_name: Coincheck, Inc.
@@ -108,89 +107,114 @@ coverage:
       countermeasure, not a state-issued asset-layer freeze). No
       asset_onchain observation is coded for the FSA action itself.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
       - coincheck_jpy_and_crypto_withdrawal_rail
     note: |
-      Load-bearing observation. FSA's 2018-01-29 business-improvement
-      order combined with the 2018-03-08 business-suspension order
-      compelled Coincheck to freeze customer withdrawals (both crypto-
-      asset withdrawals and JPY fiat withdrawals) for approximately
-      five months. Direct attribution: Coincheck's withdrawal-suspension
-      state change is the operator-side compliance with the FSA's
-      supervisory directives. partially_measured pending pinned anchors
-      for (1) Coincheck's withdrawal-suspension announcement page, (2)
-      the FSA's 2018-03-08 business-suspension-order release, (3)
-      contemporaneous JPY-rail withdrawal-status updates.
+      Load-bearing scoped observation. The repaired row does not claim that the
+      regulator ordered the initial hack-response withdrawal freeze. It
+      claims the narrower, source-supported supervisory state: the
+      2018-01-29 and 2018-03-08 business-improvement orders required
+      customer-protection remediation and effective controls before suspended
+      trading/new-account functions resumed, and Coincheck then restored
+      withdrawal/sale and account-opening functions in phases. Within that
+      scoped claim, the regulator orders and operator-side staged restoration
+      notices are pinned and measured.
 
 observations:
   - layer: offramp_cex
     actor: cex:coincheck
-    event: coincheck_withdrawal_rail_frozen_per_fsa_orders
+    event: coincheck_withdrawal_sale_functions_restored_in_fsa_supervised_phases
     observation_kind: observed_change
     attribution: direct
-    timestamp: 2018-01-29T00:00:00Z
+    timestamp: 2018-03-12T00:00:00Z
     precision: day
-    delta_hours: 0
+    delta_hours: 1008
+    window:
+      - 2018-01-29T00:00:00Z
+      - 2018-10-30T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://www.fsa.go.jp/news/29/sonota/
-        wayback: https://web.archive.org/web/2018/https://www.fsa.go.jp/news/29/sonota/
-        evidence_use: contextual_unarchived
+        url: https://lfb.mof.go.jp/kantou/rizai/pagekthp0130000001_00004.html
+        body_hash: sha256:f44bc22a845e4a663b6512aae697185d6a831ba8fb37ba66b2f3709685f6bc54
+        body_path: sources/http_captures/japan-fsa-coincheck-orders-2018/primary/lfb.mof.go.jp__kantou-rizai-pagekthp0130000001_00004.html__9fee158b7a.html
+        evidence_use: replayable
         scope_descriptor:
           providers: [coincheck]
           time_window:
             - 2018-01-29T00:00:00Z
-            - 2018-06-30T23:59:59Z
+            - 2018-10-30T23:59:59Z
           addresses_cohort: coincheck_jp_customer_withdrawals
         note: |
-          FSA's 2018-01-29 業務改善命令 (business-improvement order) is the
-          legal instrument that compelled the initial customer-protection /
-          remediation regime at Coincheck; the cascade-completing
-          2018-03-08 業務停止命令 (business-suspension order) extended the
-          operational suspension. attribution=direct because the
-          operator-state change (withdrawal-rail freeze) is the regulatory
-          compliance with the FSA supervisory directives, not a downstream
-          cascade. DRYRUN: Wayback anchor is an FSA press-index folder
-          pointer at fsa.go.jp/news/29/sonota; pinned snapshot timestamp
-          and body_hash capture for the specific 2018-01-29 and
-          2018-03-08 release permalinks deferred to human audit.
+          The 2018-01-29 Kanto Local Finance Bureau order required
+          fact-finding, customer response, risk-governance strengthening, and
+          recurrence-prevention reporting by 2018-02-13. Used as the first
+          formal supervisory trigger, not as proof that the regulator ordered
+          the initial hack-response freeze.
       - type: primary_corporate
-        url: https://coincheck.com/info/news
-        wayback: https://web.archive.org/web/2018/https://coincheck.com/info/news
-        evidence_use: contextual_unarchived
+        url: https://corporate.coincheck.com/press/Vih7V6FC
+        body_hash: sha256:d83f35446070b04f35e9a62ff76efda7ccbc49f7f15c9ce3b3f41cbbb7f831e1
+        body_path: sources/http_captures/japan-fsa-coincheck-orders-2018/primary/corporate.coincheck.com__press-Vih7V6FC__48b11e9452.html
+        evidence_use: replayable
         note: |
-          Coincheck's own customer-notice news index page is the
-          corporate-side primary anchor for the chain of withdrawal-
-          suspension and customer-compensation announcements (the NEM
-          self-compensation announcement at ¥88.549/XEM, the JPY-
-          withdrawal resumption notice in approximately mid-2018, and
-          the subsequent acquisition by Monex Group 2018-04). DRYRUN:
-          pinned snapshot timestamps and body_hash captures for each
-          specific Coincheck-announcement permalink deferred to human
-          audit.
+          Coincheck's 2018-03-12 announcement states that, after receiving
+          the 2018-03-08 business-improvement order, it would resume
+          withdrawals and sales for selected cryptocurrencies sequentially
+          after confirming technical security, while other currencies and
+          deposits/purchases/new registrations remained suspended pending
+          further remediation.
+      - type: primary_legal
+        url: https://lfb.mof.go.jp/kantou/rizai/pagekthp0130000001_00013.html
+        body_hash: sha256:91526375be3317873d3c6645c86ce27a9a8093ae6cd8a66a68b632df5d215ca9
+        body_path: sources/http_captures/japan-fsa-coincheck-orders-2018/primary/lfb.mof.go.jp__kantou-rizai-pagekthp0130000001_00013.html__b552d9d688.html
+        evidence_use: replayable
+        note: |
+          The 2018-03-08 Kanto Local Finance Bureau order required a
+          fundamental governance/risk-control rebuild, reports on customer
+          transactions and compensation, and effective controls before
+          suspended trading and new account opening resumed.
+      - type: primary_corporate
+        url: https://corporate.coincheck.com/press/g9dFINgu
+        body_hash: sha256:e574a7d5a8edb0fd7099c0de5c06d78653c033a98c020eea6fd430e5b8e239db
+        body_path: sources/http_captures/japan-fsa-coincheck-orders-2018/primary/corporate.coincheck.com__press-g9dFINgu__b86be564c3.html
+        evidence_use: replayable
+        note: |
+          Coincheck's 2018-10-30 announcement summarizes the staged service
+          restoration: JPY withdrawals resumed in February 2018, crypto
+          withdrawals and sales resumed from March through June 2018, and
+          new account opening plus selected deposits/purchases resumed on
+          2018-10-30 after the remediation plan.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.4 non_us_state discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  Source-repaired on 2026-06-01. The old dry-run row was over-specific in
+  two ways: it pointed to an FSA index rather than the specific Kanto Local
+  Finance Bureau administrative-disposition pages, and it described the
+  2018-03-08 Coincheck disposition as a business-suspension order. The
+  official Kanto page shows that Coincheck received a second
+  business-improvement order; suspension orders in the wider 2018-03-08
+  enforcement batch applied to other firms.
 
-  Comparison documenting Japan's 2018-01-29 FSA 業務改善命令 (business-
-  improvement order) and 2018-03-08 業務停止命令 (business-suspension
-  order) against Coincheck following the 2018-01-26 NEM hack
-  (~¥58 billion / ~USD 530M stolen). First major Asia post-Mt-Gox FSA
-  supervisory cascade and the formative case for Japan's registered-
-  VASP regulatory model under the revised Payment Services Act.
+  Repaired comparison: Japan's Kanto Local Finance Bureau issued
+  business-improvement orders to Coincheck on 2018-01-29 and 2018-03-08
+  following the 2018-01-26 NEM outflow. Coincheck's own primary corporate
+  notices show staged service restoration under that customer-protection and
+  governance-remediation posture: selected crypto withdrawals/sales resumed
+  on 2018-03-12, further currencies resumed in phases through June, and
+  new account opening plus selected deposits/purchases resumed on
+  2018-10-30. The row no longer claims an FSA-ordered five-month withdrawal
+  freeze or a frontend/ISP/on-chain restriction.
 
   Paper-relevant contrast vs Korea Travel Rule
   (korea-travel-rule-2022): both are Asia-jurisdiction nation-state
   supervisory actions targeting registered/registering VASPs, but the
   JP FSA case is reactive single-entity supervision triggered by an
-  exchange security failure (single-VASP withdrawal freeze and
-  remediation regime), whereas the KR FSC Travel Rule is proactive
+  exchange security failure (single-VASP remediation and staged
+  service-restoration regime), whereas the KR FSC Travel Rule is proactive
   class-wide metadata-layer regulation applied uniformly across all
   registered Korean VASPs. Both share the offramp_cex load-bearing
   axis; the JP case is sharply asymmetric (single named entity,
-  ~5-month withdrawal freeze) while the KR case is symmetric (uniform
-  KRW 1M threshold across all VASPs, no entity-specific freeze).
+  remediation-gated service restoration) while the KR case is symmetric
+  (uniform KRW 1M threshold across all VASPs, no entity-specific freeze).
 
   Paper-relevant contrast vs Turkey CBRT ban
   (turkey-cbrt-crypto-ban-2021): both are nation-state offramp_cex
@@ -203,33 +227,23 @@ analysis_notes: |
   Turkey case foregrounds the payment-services-act prohibition that
   the Japan case lacks.
 
-  DRYRUN caveats: trigger primary citation (FSA press-release index)
-  is asserted with a 2018-calendar-folder Wayback pointer; pinned
-  snapshot timestamp and body_hash capture for the specific
-  2018-01-29 業務改善命令 and 2018-03-08 業務停止命令 release permalinks
-  are deferred to the human-audit pass. For non-DRYRUN release,
-  capture body_hash + body_path for: (1) the FSA's 2018-01-29
-  business-improvement-order release page, (2) the FSA's 2018-03-08
-  business-suspension-order release page, (3) Coincheck's
-  withdrawal-suspension customer-notice page (initial announcement
-  and JPY-withdrawal resumption notice), (4) Coincheck's NEM
-  self-compensation announcement at ¥88.549/XEM, (5) the Monex Group
-  2018-04 acquisition announcement (post-hack corporate
-  restructuring). Marked evidence_use=contextual_unarchived on all
-  citations to flag the unarchived state per validator policy.
+  Remaining limitation: the row is scoped to replayable official/legal and
+  operator-side service-restoration records. It does not independently
+  reconstruct every Coincheck wallet/JPY-rail state between January and
+  October 2018.
 
 scoped_claim: |
-  "Japan FSA's 2018-01-29 business-improvement order and 2018-03-08
-  business-suspension order against Coincheck (following the
-  2018-01-26 NEM hack of approximately ¥58 billion / USD 530M)
-  directly compelled the Coincheck operator-state change of customer-
-  withdrawal-rail freeze (both crypto-asset and JPY fiat withdrawals)
-  for approximately five months between January and approximately
-  June 2018. The row does not claim frontend-disable, ISP/DNS-level
-  connectivity blocking, on-chain asset-layer freeze, or class-wide
-  Japanese VASP-cohort suspension — only the single-entity
-  Coincheck-cohort offramp_cex load-bearing axis under the Payment
-  Services Act supervisory regime."
+  "The Kanto Local Finance Bureau issued business-improvement orders to
+  Coincheck on 2018-01-29 and 2018-03-08 after the 2018-01-26 NEM outflow.
+  The retained observation is the single-entity Coincheck offramp_cex /
+  operator-state remediation path: selected crypto withdrawals and sales
+  resumed on 2018-03-12, further crypto withdrawals/sales resumed in phases
+  through June 2018, and new account opening plus selected deposits/purchases
+  resumed on 2018-10-30 after the regulator-supervised governance and
+  customer-protection remediation process. The repaired row does not claim
+  a Coincheck business-suspension order, an FSA-ordered initial withdrawal
+  freeze, frontend disablement, ISP/DNS blocking, on-chain asset freeze, or
+  class-wide Japanese VASP suspension."
 
 tags:
   - nation_state_block

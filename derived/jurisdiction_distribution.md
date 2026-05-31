@@ -84,7 +84,7 @@ _Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in 
 | `EU_Council` | 13 |
 | `US_CFTC` | 9 |
 | `binance` | 8 |
-| `JP_FSA` | 8 |
+| `JP_FSA` | 7 |
 | `CN_PBOC` | 6 |
 | `tether_usdt_issuer` | 6 |
 | `US_DOJ` | 5 |

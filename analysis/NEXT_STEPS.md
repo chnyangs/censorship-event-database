@@ -68,8 +68,8 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **250 release-ready** cases, **118 admitted-but-blocked** cases, observation reliability
-      **267 high / 81 medium / 20 low**, and attribution reliability **229 high / 139 medium / 0 low**.
+      **251 release-ready** cases, **117 admitted-but-blocked** cases, observation reliability
+      **268 high / 81 medium / 19 low**, and attribution reliability **230 high / 138 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -99,7 +99,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       crypto-custody regime context plus PYMNTS and Reuters-syndicated reports pinned locally, while narrowing
       the row from an unpinned BaFin/Binance/L4 claim to the reported Binance Germany licence-application
       withdrawal under the BaFin/KWG regime and explicitly marking the evidence floor as
-      `evidence_tier=attested_secondary`.
+      `evidence_tier=attested_secondary`. Follow-on repair also moved
+      `japan-fsa-coincheck-orders-2018` out of the low-observation queue with Kanto Local Finance Bureau
+      2018-01-29 / 2018-03-08 disposition pages plus Coincheck 2018-03-12 / 2018-10-30 staged-restoration
+      notices pinned locally, while correcting the old overclaim that Coincheck received a business-suspension
+      order or regulator-ordered withdrawal freeze.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or

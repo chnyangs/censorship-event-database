@@ -1,6 +1,6 @@
 # Audit worksheet — `garantex-besciokov-mira-serda-doj-2025`
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `a4484c4` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `89285c6` · generated `2026-06-01T00:00:00Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S3_doj_sec_cftc_fiod`

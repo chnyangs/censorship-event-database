@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=368)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `a4484c4` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `89285c6` · generated `2026-06-01T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -199,7 +199,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `israel-nbctf-hamas-crypto-addresses-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `address_set` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `japan-fsa-binance-sakura-acquisition-2022-11` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `japan-fsa-binance-warning-2018` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
-| `japan-fsa-coincheck-orders-2018` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
+| `japan-fsa-coincheck-orders-2018` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-16` |
 | `japan-fsa-dmm-bitcoin-order-2024-09` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `japan-fsa-ftx-japan-suspension-2022-11` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `japan-fsa-six-exchange-orders-2018-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |

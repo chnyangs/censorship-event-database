@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `a4484c4` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `89285c6` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -167,7 +167,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `iran-government-mining-electricity-restriction-2021:0:l1_consensus:iranian_licensed_mining_farm_class:licensed_bitcoin_mining_operations_halted_summer_2021` | 1 | 0 | 1 | l1_consensus | `iran-government-mining-electricity-restriction-2021::l1_consensus` |
 | `israel-nbctf-hamas-crypto-addresses-2021:0:offramp_cex:il_nbctf:nbctf_seizure_order_severs_il_ramp_access_for_named_hamas_cluster` | 1 | 0 | 1 | offramp_cex | `israel-nbctf-hamas-crypto-addresses-2021::offramp_cex` |
 | `japan-fsa-binance-warning-2018:0:offramp_cex:cex:binance:binance_jp_resident_access_deprecation_and_hq_relocation_to_malta` | 1 | 0 | 1 | offramp_cex | `japan-fsa-binance-warning-2018::offramp_cex` |
-| `japan-fsa-coincheck-orders-2018:0:offramp_cex:cex:coincheck:coincheck_withdrawal_rail_frozen_per_fsa_orders` | 1 | 0 | 1 | offramp_cex | `japan-fsa-coincheck-orders-2018::offramp_cex` |
+| `japan-fsa-coincheck-orders-2018:0:offramp_cex:cex:coincheck:coincheck_withdrawal_sale_functions_restored_in_fsa_supervised_phases` | 1 | 0 | 1 | offramp_cex | `japan-fsa-coincheck-orders-2018::offramp_cex` |
 | `japan-fsa-dmm-bitcoin-order-2024-09:0:offramp_cex:cex:dmm_bitcoin:dmm_bitcoin_winddown_and_asset_migration_to_sbi_vc_trade_per_fsa_order` | 1 | 0 | 1 | offramp_cex | `japan-fsa-dmm-bitcoin-order-2024-09::offramp_cex` |
 | `japan-fsa-ftx-japan-suspension-2022-11:0:offramp_cex:cex:ftx_japan:ftx_japan_withdrawal_rail_frozen_and_assets_held_domestically_per_kanto_lfb_orders` | 1 | 0 | 1 | offramp_cex | `japan-fsa-ftx-japan-suspension-2022-11::offramp_cex` |
 | `japan-fsa-six-exchange-orders-2018-06:0:offramp_cex:regulator:jp_fsa:six_exchange_aml_cft_business_improvement_orders_issued_simultaneously` | 1 | 0 | 1 | offramp_cex | `japan-fsa-six-exchange-orders-2018-06::offramp_cex` |
