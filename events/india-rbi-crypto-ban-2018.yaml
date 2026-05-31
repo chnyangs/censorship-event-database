@@ -31,10 +31,10 @@ trigger:
         NBFCs, and payment system operators) to cease providing services to any individual
         or business dealing with or settling virtual currencies, and to exit existing
         relationships within three months. Effectively cut off Indian bank access for
-        crypto exchanges from 2018-07-06 onward. Overturned by Supreme Court of India on
-        2020-03-04 in Internet and Mobile Association of India v. RBI — that Supreme Court
-        ruling is a separate event (candidate for future addition as a comparison
-        showing ban-reversal).
+        crypto exchanges from 2018-07-06 onward. The 2020-03-04 Supreme Court of India
+        ruling in Internet and Mobile Association of India v. RBI is tracked below as the
+        recovery anchor for the same off-ramp restriction, rather than as a separate
+        admitted event in this row.
     - type: primary_legal
       url: https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=43574
       evidence_use: contextual_unarchived
@@ -110,6 +110,36 @@ observations:
           effective-observation timestamp is 2018-07-06. attribution=direct because the
           circular specifies the regulatory mandate and timing.
 
+recovery:
+  - layer: offramp_cex
+    resolved: true
+    resolved_timestamp: 2020-03-04T00:00:00Z
+    citation:
+      - type: primary_legal
+        url: https://api.sci.gov.in/supremecourt/2018/19230/19230_2018_4_1501_21151_Judgement_04-Mar-2020.pdf
+        body_hash: sha256:04098984a4a735d949f33e0d7416deb0c4e38fb7792b0cc5a409a73d9de54614
+        body_path: sources/http_captures/india-rbi-crypto-ban-2018/recovery/api.sci.gov.in__supremecourt-2018-19230-19230_2018_4_1501_21151_Judgement_04-Mar-2020.pdf__7d3c15d38b.bin
+        evidence_use: replayable
+        note: |
+          Supreme Court of India judgment dated 2020-03-04 in Internet and Mobile
+          Association of India v. Reserve Bank of India. The judgment allows the writ
+          petitions and sets aside the 2018-04-06 RBI circular on proportionality grounds.
+      - type: primary_legal
+        url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12103&Mode=0
+        body_hash: sha256:f7acc38297535833577dbbe71ec5d83785cc2731d1b4ed20aba8434e6e150a82
+        body_path: sources/http_captures/india-rbi-crypto-ban-2018/recovery/www.rbi.org.in__Scripts-NotificationUser.aspx__a8086b4109.html
+        evidence_use: replayable
+        note: |
+          RBI notification dated 2021-05-31 confirming that, in view of the 2020-03-04
+          Supreme Court order, references by banks or regulated entities to the 2018
+          circular were not in order and that the circular was no longer valid from the
+          date of the Supreme Court judgment.
+    note: |
+      Recovery is coded at the same `offramp_cex` layer as the observed change. It
+      resolves the legal mandate that severed INR banking services for crypto businesses,
+      but does not claim same-day restoration of every exchange-bank relationship, user
+      account, or exchange operation.
+
 analysis_notes: |
   comparison documenting India's 2018-04-06 RBI Circular prohibiting banks
   from servicing crypto entities — the first major nation-state banking-level crypto ban
@@ -120,8 +150,9 @@ analysis_notes: |
   This is a sibling event to china-pboc-crypto-ban-2021 (admitted). Both share the
   comparison shape: nation-state regulator cuts banking rails rather than targeting
   specific crypto addresses. The RBI ban was overturned by the Supreme Court 2020-03-04,
-  making it the only ban in the dataset with a legally-forced reversal — that would be a
-  natural comparison candidate for future addition.
+  making it the only ban in the dataset with a legally-forced reversal; that reversal is
+  now encoded as the recovery block on this event and tracked in the census registry as a
+  covered recovery anchor.
 
 scoped_claim: |
   "RBI Circular of 2018-04-06 severed INR banking channels for Indian crypto exchanges

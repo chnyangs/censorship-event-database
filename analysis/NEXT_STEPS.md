@@ -72,11 +72,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 155
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 107 already covered
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 156
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 108 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
       48 `in_corpus=false` rows, all 48 are now reviewed-excluded/context-only under codebook §9, leaving
-      0 currently actionable registry rows. Exact-id remaining queue: 30 candidate rows not yet in events
+      0 currently actionable registry rows. Exact-id remaining queue: 29 candidate rows not yet in events
       or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
@@ -93,7 +93,9 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       `saudi-standing-committee-virtual-currency-warning-2018-08`: the official SAMA Arabic notice
       supports a no-approval / no-licensed-persons warning, but no replayable exchange shutdown,
       bank-rail cutoff, frontend block, or on-chain action, so the row is modeled as an S4 null_case
-      denominator.
+      denominator. `india-sc-iamai-rbi-ban-reversal-2020-03` was closed as a covered recovery anchor on
+      admitted `india-rbi-crypto-ban-2018`: official Supreme Court and RBI sources now pin the 2020-03-04
+      legal reversal of the 2018 RBI banking circular without creating a separate admitted event.
       `vietnam-sbv-bitcoin-prohibition-2014-02`
       was re-opened from stale semantic coverage and split correctly: the alternate slug now points to
       draft `vietnam-sbv-bitcoin-prohibition-statement-2014-02`, while the admitted 2017 SBV fines/payment
@@ -200,6 +202,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       `saudi-standing-committee-virtual-currency-warning-2018-08` as an official SAMA-captured
       `origin=agent_draft` no-approval / no-licensed-persons null_case row and closed the stale
       Saudi "crypto illegal" candidate slug as scope-narrowed/covered.
+      A twentieth follow-on triage enriched admitted `india-rbi-crypto-ban-2018` with official
+      Supreme Court and RBI recovery anchors for the 2020-03-04 ban reversal, and closed the
+      `india-sc-iamai-rbi-ban-reversal-2020-03` candidate as covered by that recovery block rather
+      than as a separate admitted event.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 

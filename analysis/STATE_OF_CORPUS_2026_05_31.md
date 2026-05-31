@@ -56,10 +56,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 155
-    verified+scope-tagged registry rows, 107 covered by corpus / duplicate / semantic precedent. All
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 156
+    verified+scope-tagged registry rows, 108 covered by corpus / duplicate / semantic precedent. All
     remaining 48 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 30 exact-id candidate rows remain to triage from the 264-row
+    0 currently actionable registry rows; 29 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -72,6 +72,9 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     `saudi-standing-committee-virtual-currency-warning-2018-08`: the official SAMA Arabic notice supports
     a no-approval / no-licensed-persons warning, but no replayable hard exchange shutdown or bank-rail
     cutoff, so the draft is modeled as an S4 null_case denominator.
+    `india-sc-iamai-rbi-ban-reversal-2020-03` is now closed as a covered recovery anchor on admitted
+    `india-rbi-crypto-ban-2018`, using official Supreme Court and RBI sources for the 2020-03-04 reversal
+    without creating a separate admitted event.
     `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
     `cftc-v-ooki-dao-2022`, which already uses the same CFTC 8590-22 trigger and enumerates bZeroX LLC,
     both founders, and successor Ooki DAO.
@@ -178,6 +181,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     News English corroboration. The stale "crypto illegal" candidate slug is now scope-narrowed to this
     no-approval / no-licensed-persons denominator; no exchange shutdown, bank cutoff, frontend block, or
     on-chain action is claimed.
+22. **Twentieth follow-on triage (India 2020 RBI-ban reversal)** —
+    `india-rbi-crypto-ban-2018` now has official Supreme Court and RBI recovery anchors for the 2020-03-04
+    legal reversal of the 2018 RBI banking circular. The exact candidate
+    `india-sc-iamai-rbi-ban-reversal-2020-03` is closed as covered by that recovery block rather than
+    modeled as a separate admitted event.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;

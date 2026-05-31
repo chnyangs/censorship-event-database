@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `2f5abab` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T13:36:54Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `ad034bc` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T13:58:50Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -32,10 +32,10 @@
 > NBFCs, and payment system operators) to cease providing services to any individual
 > or business dealing with or settling virtual currencies, and to exit existing
 > relationships within three months. Effectively cut off Indian bank access for
-> crypto exchanges from 2018-07-06 onward. Overturned by Supreme Court of India on
-> 2020-03-04 in Internet and Mobile Association of India v. RBI — that Supreme Court
-> ruling is a separate event (candidate for future addition as a comparison
-> showing ban-reversal).
+> crypto exchanges from 2018-07-06 onward. The 2020-03-04 Supreme Court of India
+> ruling in Internet and Mobile Association of India v. RBI is tracked below as the
+> recovery anchor for the same off-ramp restriction, rather than as a separate
+> admitted event in this row.
 - **`primary_legal`**
   - URL: <https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=43574>
   > RBI press release accompanying the 2018-04-05 monetary-policy announcement that first mentioned the VC restrictions.
@@ -76,7 +76,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `2f5abab`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ad034bc`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

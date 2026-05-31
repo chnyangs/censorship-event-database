@@ -27918,7 +27918,7 @@
   {
     "_source_file": "india-rbi-crypto-ban-2018.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison documenting India's 2018-04-06 RBI Circular prohibiting banks\nfrom servicing crypto entities \u2014 the first major nation-state banking-level crypto ban\nin a major economy (cf. China PBOC 2021, Nigeria CBN 2021, Turkey CBRT 2021). Structurally\ndistinct from OFAC designations: no address set, no individual target, no digital-\ncurrency address enumeration \u2014 instead, an industry-class banking severance.\n\nThis is a sibling event to china-pboc-crypto-ban-2021 (admitted). Both share the\ncomparison shape: nation-state regulator cuts banking rails rather than targeting\nspecific crypto addresses. The RBI ban was overturned by the Supreme Court 2020-03-04,\nmaking it the only ban in the dataset with a legally-forced reversal \u2014 that would be a\nnatural comparison candidate for future addition.\n",
+    "analysis_notes": "comparison documenting India's 2018-04-06 RBI Circular prohibiting banks\nfrom servicing crypto entities \u2014 the first major nation-state banking-level crypto ban\nin a major economy (cf. China PBOC 2021, Nigeria CBN 2021, Turkey CBRT 2021). Structurally\ndistinct from OFAC designations: no address set, no individual target, no digital-\ncurrency address enumeration \u2014 instead, an industry-class banking severance.\n\nThis is a sibling event to china-pboc-crypto-ban-2021 (admitted). Both share the\ncomparison shape: nation-state regulator cuts banking rails rather than targeting\nspecific crypto addresses. The RBI ban was overturned by the Supreme Court 2020-03-04,\nmaking it the only ban in the dataset with a legally-forced reversal; that reversal is\nnow encoded as the recovery block on this event and tracked in the census registry as a\ncovered recovery anchor.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -27986,6 +27986,32 @@
     ],
     "origin": "human_authored",
     "primary_source_verified": false,
+    "recovery": [
+      {
+        "citation": [
+          {
+            "body_hash": "sha256:04098984a4a735d949f33e0d7416deb0c4e38fb7792b0cc5a409a73d9de54614",
+            "body_path": "sources/http_captures/india-rbi-crypto-ban-2018/recovery/api.sci.gov.in__supremecourt-2018-19230-19230_2018_4_1501_21151_Judgement_04-Mar-2020.pdf__7d3c15d38b.bin",
+            "evidence_use": "replayable",
+            "note": "Supreme Court of India judgment dated 2020-03-04 in Internet and Mobile\nAssociation of India v. Reserve Bank of India. The judgment allows the writ\npetitions and sets aside the 2018-04-06 RBI circular on proportionality grounds.\n",
+            "type": "primary_legal",
+            "url": "https://api.sci.gov.in/supremecourt/2018/19230/19230_2018_4_1501_21151_Judgement_04-Mar-2020.pdf"
+          },
+          {
+            "body_hash": "sha256:f7acc38297535833577dbbe71ec5d83785cc2731d1b4ed20aba8434e6e150a82",
+            "body_path": "sources/http_captures/india-rbi-crypto-ban-2018/recovery/www.rbi.org.in__Scripts-NotificationUser.aspx__a8086b4109.html",
+            "evidence_use": "replayable",
+            "note": "RBI notification dated 2021-05-31 confirming that, in view of the 2020-03-04\nSupreme Court order, references by banks or regulated entities to the 2018\ncircular were not in order and that the circular was no longer valid from the\ndate of the Supreme Court judgment.\n",
+            "type": "primary_legal",
+            "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12103&Mode=0"
+          }
+        ],
+        "layer": "offramp_cex",
+        "note": "Recovery is coded at the same `offramp_cex` layer as the observed change. It\nresolves the legal mandate that severed INR banking services for crypto businesses,\nbut does not claim same-day restoration of every exchange-bank relationship, user\naccount, or exchange operation.\n",
+        "resolved": true,
+        "resolved_timestamp": "2020-03-04T00:00:00+00:00"
+      }
+    ],
     "research_stratum": "S4_nation_state",
     "schema_version": "0.2.0",
     "scoped_claim": "\"RBI Circular of 2018-04-06 severed INR banking channels for Indian crypto exchanges\neffective 2018-07-06 (3-month compliance window). Primary observational axis is\nofframp_cex at industry-aggregate level; multiple exchanges (Zebpay, Unocoin) shut down\nor relocated as a direct consequence.\"\n",
@@ -28013,7 +28039,7 @@
         {
           "body_hash": "sha256:d06e4b01c74822b7a395308abc8820016abf95f64c12dca5b4c02ed58c228fd9",
           "body_path": "sources/http_captures/india-rbi-crypto-ban-2018/rbi-circular/rbidocs.rbi.org.in__rdocs-notification-PDFs-NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF__be75532d01.html",
-          "note": "Reserve Bank of India (RBI) Circular DBR.No.BP.BC.104/08.13.102/2017-18 dated\n2018-04-06 titled \"Prohibition on dealing in Virtual Currencies (VCs)\". Directed\nall RBI-regulated entities (including scheduled commercial banks, cooperative banks,\nNBFCs, and payment system operators) to cease providing services to any individual\nor business dealing with or settling virtual currencies, and to exit existing\nrelationships within three months. Effectively cut off Indian bank access for\ncrypto exchanges from 2018-07-06 onward. Overturned by Supreme Court of India on\n2020-03-04 in Internet and Mobile Association of India v. RBI \u2014 that Supreme Court\nruling is a separate event (candidate for future addition as a comparison\nshowing ban-reversal).\n",
+          "note": "Reserve Bank of India (RBI) Circular DBR.No.BP.BC.104/08.13.102/2017-18 dated\n2018-04-06 titled \"Prohibition on dealing in Virtual Currencies (VCs)\". Directed\nall RBI-regulated entities (including scheduled commercial banks, cooperative banks,\nNBFCs, and payment system operators) to cease providing services to any individual\nor business dealing with or settling virtual currencies, and to exit existing\nrelationships within three months. Effectively cut off Indian bank access for\ncrypto exchanges from 2018-07-06 onward. The 2020-03-04 Supreme Court of India\nruling in Internet and Mobile Association of India v. RBI is tracked below as the\nrecovery anchor for the same off-ramp restriction, rather than as a separate\nadmitted event in this row.\n",
           "type": "primary_legal",
           "url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF",
           "wayback": "https://web.archive.org/web/20260421144628/https://rbidocs.rbi.org.in/rdocs/notification/PDFs/NOTI15465B741A10B0E45E896C62A9C83AB938F.PDF"
