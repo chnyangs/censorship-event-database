@@ -43,7 +43,7 @@ trigger:
       body_hash: sha256:77ccff1f413b36342171d9c1afbf4bb04ef104ece9f7b3545a784affa588bcb8
       body_path: sources/http_captures/kucoin-netherlands-exit-2023/primary/www.kucoin.com__announcement-announcement_for_kucoin_users_in_the_netherlands_240930__a1d0e633e2.html
       wayback: https://web.archive.org/web/2023/https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         KuCoin's official announcement for Netherlands users. The
         announcement slug `_240930` indicates an effective date of
@@ -53,6 +53,10 @@ trigger:
         full NL exit effective 2025-08-04 / 2025-08-25. This is
         CONTRARY to the slug's premise of a 2023 exit and is recorded
         here as load-bearing evidence for the null_event disposition.
+        Evidence repair 2026-06-01: the KuCoin announcement is locally
+        captured with body_hash/body_path, so it is claim-usable for
+        the post-window null bracketing claim. It does not establish a
+        2023 KuCoin Netherlands exit.
   timestamp_sources:
     - type: primary_corporate
       note: |
@@ -187,7 +191,7 @@ observations:
         body_hash: sha256:77ccff1f413b36342171d9c1afbf4bb04ef104ece9f7b3545a784affa588bcb8
         body_path: sources/http_captures/kucoin-netherlands-exit-2023/primary/www.kucoin.com__announcement-announcement_for_kucoin_users_in_the_netherlands_240930__a1d0e633e2.html
         wayback: https://web.archive.org/web/2023/https://www.kucoin.com/announcement/announcement_for_kucoin_users_in_the_netherlands_240930
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         scope_descriptor:
           countries: [NL]
           providers: [kucoin]
@@ -197,7 +201,9 @@ observations:
         note: |
           KuCoin's NL-user announcement page (effective 2024-09-30).
           Documents the first published KuCoin NL-restrictive action;
-          postdates the slug's 2023 window.
+          postdates the slug's 2023 window. Locally captured with
+          body_hash/body_path; claim-usable only for the post-window
+          observed_no_change/null bracketing claim.
 
 analysis_notes: |
   **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, null_case) by
@@ -257,11 +263,12 @@ analysis_notes: |
   - target.enumeration=subset per §7 — hypothesized NL retail cohort
     is class-level rather than per-address enumerated; rationale
     documented in enumeration_note.
+  - Evidence repair 2026-06-01: the KuCoin 2024-09-30 Netherlands
+    announcement is locally captured with body_hash/body_path and
+    marked evidence_use=replayable for the post-window
+    observed_no_change/null bracketing claim. The DNB warning remains
+    contextual_unarchived until separately pinned.
   - jurisdiction=[corporate_global] per authoring instruction.
-  - evidence_use=contextual_unarchived on all citations because the
-    authoring agent did not personally pin Wayback or compute
-    body_hash; per the slug's null disposition this is appropriate
-    (these citations are not admission anchors).
 
 scoped_claim: |
   "As of the 2026-05-17 authoring pass, no specific 2023 KuCoin

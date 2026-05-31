@@ -41,7 +41,7 @@ trigger:
       wayback: https://web.archive.org/web/20230323174741/https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
       body_hash: sha256:1824fc1311d6736e9483e95a8fae2f2856ddec3469902b1de649bedf74bb45f3
       body_path: sources/http_captures/bitstamp-greece-portugal-exit-2023/primary/web.archive.org__web-20230323174741-https-www.bportugal.pt-en-entidadeautorizada-bitstamp-europe-sa__daac2f34b8.html
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         Banco de Portugal authorized-entity registry entry for Bitstamp
         Europe S.A. Contradicts the slug's premise: as of the public
@@ -53,7 +53,11 @@ trigger:
         announcement closing Greek or Portuguese services attributable
         to MiCA-prep or national-regulator constraints, and the
         publicly-available regulator registry suggests the opposite
-        (continued Portuguese authorization).
+        (continued Portuguese authorization). Evidence repair
+        2026-06-01: the Banco de Portugal registry page is locally
+        captured from Wayback memento 20230323174741 with
+        body_hash/body_path, so it is claim-usable for the PT-side
+        null/denominator claim. It does not establish Greek coverage.
   timestamp_sources:
     - type: primary_corporate
       note: |
@@ -170,7 +174,7 @@ observations:
         wayback: https://web.archive.org/web/20230323174741/https://www.bportugal.pt/en/entidadeautorizada/bitstamp-europe-sa
         body_hash: sha256:1824fc1311d6736e9483e95a8fae2f2856ddec3469902b1de649bedf74bb45f3
         body_path: sources/http_captures/bitstamp-greece-portugal-exit-2023/primary/web.archive.org__web-20230323174741-https-www.bportugal.pt-en-entidadeautorizada-bitstamp-europe-sa__daac2f34b8.html
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         scope_descriptor:
           countries: [PT]
           providers: [bitstamp_europe_sa]
@@ -182,6 +186,9 @@ observations:
           Bitstamp Europe S.A. — positive evidence that Bitstamp
           retained Portuguese VASP authorization, which is the
           inverse of what the slug's Portugal-exit premise predicts.
+          Locally captured from Wayback memento 20230323174741 with
+          body_hash/body_path; claim-usable only for the PT-side
+          observed_no_change/null bracketing claim.
       - type: primary_corporate
         url: https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/
         wayback: https://web.archive.org/web/2023/https://www.bitstamp.net/faq/which-countries-are-the-bitstamp-apps-available-in/
@@ -253,10 +260,11 @@ analysis_notes: |
     Portuguese cohorts are class-level rather than per-address
     enumerated; rationale documented in enumeration_note.
   - jurisdiction=[corporate_global] per authoring instruction.
-  - evidence_use=contextual_unarchived on all citations because
-    the authoring agent did not personally pin Wayback or compute
-    body_hash; per the slug's null disposition this is appropriate
-    (these citations are not admission anchors).
+  - Evidence repair 2026-06-01: the Banco de Portugal registry entry
+    is locally captured with body_hash/body_path and marked
+    evidence_use=replayable for the PT-side observed_no_change/null
+    bracketing claim. The Bitstamp availability FAQ remains
+    contextual_unarchived, and Greek-side coverage remains weaker.
 
 scoped_claim: |
   "As of the 2026-05-17 authoring pass, no specific 2023 Bitstamp
