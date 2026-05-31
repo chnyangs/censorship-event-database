@@ -1,6 +1,6 @@
 # Archetype distribution report
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8b35609` · generated `2026-06-01T00:00:00Z` (events: 368)
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8583894` · generated `2026-06-01T00:00:00Z` (events: 368)
 
 ## 1. Classification rules (deterministic, priority-ordered)
 
@@ -26,8 +26,8 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 | Archetype | Count | % |
 | --- | ---: | ---: |
 | `asset_only` | 14 | 3.8% |
-| `frontend_only` | 46 | 12.5% |
-| `cex_only` | 169 | 45.9% |
+| `frontend_only` | 45 | 12.2% |
+| `cex_only` | 170 | 46.2% |
 | `multi_layer` | 36 | 9.8% |
 | `other_single_layer` | 7 | 1.9% |
 | `null_event` | 96 | 26.1% |
@@ -61,8 +61,8 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 | archetype \ latency | synchronous | acute | delayed | lagged | none | total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `asset_only` | 3 | 6 | 2 | 3 | 0 | 14 |
-| `frontend_only` | 38 | 4 | 3 | 1 | 0 | 46 |
-| `cex_only` | 138 | 4 | 20 | 7 | 0 | 169 |
+| `frontend_only` | 37 | 4 | 3 | 1 | 0 | 45 |
+| `cex_only` | 139 | 4 | 20 | 7 | 0 | 170 |
 | `multi_layer` | 26 | 4 | 2 | 3 | 1 | 36 |
 | `other_single_layer` | 6 | 0 | 0 | 0 | 1 | 7 |
 | `null_event` | 0 | 0 | 0 | 0 | 96 | 96 |
@@ -79,7 +79,7 @@ Up to 5 events per class, selected by admission tier then slug.
 - `dprk-usdt-network-ofac-2025` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain` · latency `acute` (t=21.6h)
 - `funnull-cdn-ofac-2025` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain` · latency `acute` (t=7.8h)
 
-### `frontend_only`  (46 events)
+### `frontend_only`  (45 events)
 
 - `1inch-us-geofence-2021-09` · tier `empirical_case` · stratum `S5_corporate` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 - `aave-arc-fireblocks-whitelist-2022-01` · tier `empirical_case` · stratum `S5_corporate` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
@@ -87,7 +87,7 @@ Up to 5 events per class, selected by admission tier then slug.
 - `alphabay-hansa-doj-2017` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 - `apple-india-crypto-exchange-removal-2024-01` · tier `empirical_case` · stratum `S5_corporate` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 
-### `cex_only`  (169 events)
+### `cex_only`  (170 events)
 
 - `1mdc-egold-account-freeze-2007-04` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `algeria-finance-law-2018-crypto-prohibition` · tier `empirical_case` · stratum `S4_nation_state` · signature `offramp_cex` · latency `synchronous` (t=0.0h)

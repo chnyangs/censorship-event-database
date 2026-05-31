@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=368)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8b35609` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8583894` · generated `2026-06-01T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -114,7 +114,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `coinbase-india-exit-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `domain` | `complete` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `coinbase-irs-john-doe-summons-2016` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `court_civil_order` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `coinbase-japan-exit-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
-| `coinflip-cftc-derivabit-2015` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `complete` | 1 | `frontend_only` | · | · | `2026-05-16` | `2026-05-16` |
+| `coinflip-cftc-derivabit-2015` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `consensys-metamask-infura-rpc-data-collection-2022-11` | `null_case` | `S5_corporate` | `null_event` | `corporate_policy_change` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `cryptex-ofac-2024` | `anchor_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 2 | `multi_layer` | · | · | `2026-04-21` | `2026-04-22` |
 | `cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-31` | `2026-05-31` |
