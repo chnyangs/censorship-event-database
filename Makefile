@@ -1,9 +1,7 @@
 PYTHON      ?= python3
 EVENTS      ?= events/*.yaml
 TIMEOUT     ?= 10
-REPRO_GIT_SOURCE_DATE_EPOCH ?= $(shell git log -1 --format=%ct 2>/dev/null)
-REPRO_META_SOURCE_DATE_EPOCH ?= $(shell $(PYTHON) scripts/repro_source_date_epoch.py 2>/dev/null)
-REPRO_SOURCE_DATE_EPOCH ?= $(or $(REPRO_GIT_SOURCE_DATE_EPOCH),$(REPRO_META_SOURCE_DATE_EPOCH))
+REPRO_SOURCE_DATE_EPOCH ?= $(shell $(PYTHON) scripts/repro_source_date_epoch.py 2>/dev/null)
 
 # ---- Artifact paths ----
 DATASET_JSON    ?= dataset.json

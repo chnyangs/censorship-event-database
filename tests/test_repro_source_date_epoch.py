@@ -13,11 +13,40 @@ def test_repro_source_date_epoch_reads_dataset_metadata(tmp_path, monkeypatch, c
     meta = tmp_path / "dataset.meta.json"
     meta.write_text('{"generated_at": "2026-04-27T11:03:02Z"}')
     monkeypatch.setattr(repro_source_date_epoch, "META_PATH", meta)
+    monkeypatch.setattr(repro_source_date_epoch, "_git_head_epoch", lambda: None)
 
     assert repro_source_date_epoch.main() == 0
 
     expected = int(datetime.fromisoformat("2026-04-27T11:03:02+00:00").timestamp())
     assert capsys.readouterr().out.strip() == str(expected)
+
+
+def test_repro_source_date_epoch_uses_cutoff_when_head_commit_predates_it(tmp_path, monkeypatch, capsys):
+    meta = tmp_path / "dataset.meta.json"
+    meta.write_text('{"generated_at": "2026-05-31T16:38:43Z", "cutoff_date": "2026-06-01"}')
+    monkeypatch.setattr(repro_source_date_epoch, "META_PATH", meta)
+    monkeypatch.setattr(
+        repro_source_date_epoch,
+        "_git_head_epoch",
+        lambda: int(datetime.fromisoformat("2026-05-31T16:40:00+00:00").timestamp()),
+    )
+
+    assert repro_source_date_epoch.main() == 0
+
+    expected = int(datetime.fromisoformat("2026-06-01T00:00:00+00:00").timestamp())
+    assert capsys.readouterr().out.strip() == str(expected)
+
+
+def test_repro_source_date_epoch_keeps_later_head_commit(tmp_path, monkeypatch, capsys):
+    meta = tmp_path / "dataset.meta.json"
+    meta.write_text('{"generated_at": "2026-06-01T00:00:00Z", "cutoff_date": "2026-06-01"}')
+    head_epoch = int(datetime.fromisoformat("2026-06-02T03:04:05+00:00").timestamp())
+    monkeypatch.setattr(repro_source_date_epoch, "META_PATH", meta)
+    monkeypatch.setattr(repro_source_date_epoch, "_git_head_epoch", lambda: head_epoch)
+
+    assert repro_source_date_epoch.main() == 0
+
+    assert capsys.readouterr().out.strip() == str(head_epoch)
 
 
 def test_repo_relative_path_removes_checkout_prefix(tmp_path):
