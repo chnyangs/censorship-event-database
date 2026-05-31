@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a9689fa` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `8e29b8d` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -110,15 +110,14 @@
 > anchor. Wayback memento 20220629043447 captured 2026-05-21.
 - **`semi_primary_wayback`**
   - URL: <https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105>
-  - Wayback: <https://web.archive.org/web/20220629043447/https://www.legisweb.com.br/legislacao/?id=265825>
-  - body_hash: `sha256:3a0771e0b743ba7752efef71a20c1a16f28d51bc6753cd5af711e6bc716d6632`
-  - body_path: `sources/http_captures/brazil-bcb-comunicado-25306-2014/primary/web.archive.org__web-20220629043447-https-www.legisweb.com.br-legislacao__518ffabdc0.html`
+  - Wayback: <https://web.archive.org/web/2014/https://www.jusbrasil.com.br/diarios/66539047/dou-secao-3-20-02-2014-pg-105>
   > Diário Oficial da União 2014-02-20 Seção 3 publication
 > record for Comunicado n° 25.306, corroborating the official
-> federal-gazette publication one day after issuance. The
-> DOU/jusbrasil page is not Wayback-archived; the LegisWeb
-> full-text reproduction (same body_hash) substitutes as the
-> replayable corroboration anchor for the publication record.
+> federal-gazette publication one day after issuance. This
+> DOU/Jusbrasil URL is retained only as contextual publication
+> metadata because it lacks a pinned local body_hash artifact.
+> The replayable full-text anchor is the separate LegisWeb source
+> above.
 
 ## 5. Honest coverage gaps
 
@@ -131,7 +130,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a9689fa`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `8e29b8d`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
