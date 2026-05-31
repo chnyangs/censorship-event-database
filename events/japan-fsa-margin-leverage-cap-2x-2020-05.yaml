@@ -50,6 +50,18 @@ trigger:
         for CFD transactions by retail users." A 50% minimum margin requirement
         implies a 2x maximum leverage cap for retail crypto-asset CFD/margin
         transactions.
+    - type: primary_legal
+      url: https://www.japaneselawtranslation.go.jp/en/laws/download/4748/09/h19Cop00520504en15.0_r4O20.pdf
+      body_hash: sha256:8a171f686dfcb00d2b1d225308568c7ca0d200a05479ec4115dc02b9f55bf7c9
+      body_path: sources/http_captures/japan-fsa-margin-leverage-cap-2x-2020-05/primary/www.japaneselawtranslation.go.jp__en-laws-download-4748-09-h19Cop00520504en15.0_r4O20.pdf__83a4a0a88c.bin
+      evidence_use: replayable
+      note: |
+        Official Japanese Law Translation PDF of the Cabinet Office Order on
+        Financial Instruments Business. `pdftotext` confirms Article 117(1)
+        items (xlvii)-(xlviii) prohibit continuing retail cryptoasset
+        derivatives contracts when margin falls below required deposit amounts,
+        and Article 117(41)-(42) defines the required contract/maintenance
+        amounts as 50/100 of the transaction amount, anchoring the 2x cap.
     - type: primary_government
       url: https://www.fsa.go.jp/en/newsletter/weekly2020/391.html
       body_hash: sha256:cc93b6c5d35684697f3b29ca404527dc6268dce4cbade6352ceb9a2c6eaf490d
@@ -159,6 +171,16 @@ observations:
           Official FSA regulatory-framework deck confirming the minimum 50%
           margin requirement for retail crypto-asset CFD transactions. Used as
           the load-bearing 2x-leverage-cap anchor.
+      - type: primary_legal
+        url: https://www.japaneselawtranslation.go.jp/en/laws/download/4748/09/h19Cop00520504en15.0_r4O20.pdf
+        body_hash: sha256:8a171f686dfcb00d2b1d225308568c7ca0d200a05479ec4115dc02b9f55bf7c9
+        body_path: sources/http_captures/japan-fsa-margin-leverage-cap-2x-2020-05/primary/www.japaneselawtranslation.go.jp__en-laws-download-4748-09-h19Cop00520504en15.0_r4O20.pdf__83a4a0a88c.bin
+        evidence_use: replayable
+        note: |
+          Official translated legal text for the Financial Instruments Business
+          Cabinet Office Order. The captured PDF supplies the direct legal
+          anchor for the 50/100 required deposit amount behind the retail
+          cryptoasset-derivatives leverage cap.
 
 analysis_notes: |
   **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-06-01**. Created from the P4
@@ -173,12 +195,12 @@ analysis_notes: |
   modeled as a single-layer `offramp_cex` / regulated intermediary product
   restriction, parallel to other margin or lending-product restrictions.
 
-  Caution for human review: the current draft uses official FSA explanatory
-  materials and an official FSA framework deck. Before admission, a human
-  reviewer should decide whether the underlying Cabinet Office Order /
-  Financial Instruments and Exchange Act instrument should be pinned directly,
-  and whether the event should remain in scope as a product-surface restriction
-  rather than a narrower prudential market-conduct rule.
+  Source-strengthening pass 2026-06-01: the underlying Cabinet Office Order on
+  Financial Instruments Business is now pinned via the official Japanese Law
+  Translation PDF, which states the 50/100 required deposit formula for
+  cryptoasset-related derivatives transactions. Remaining human review should
+  focus on admission/scope: whether this stays in scope as a product-surface
+  restriction or should be treated as a narrower prudential market-conduct rule.
 
 scoped_claim: |
   As of 2020-05-01, Japan's FSA crypto-asset regulatory amendments brought

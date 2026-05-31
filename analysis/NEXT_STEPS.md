@@ -240,6 +240,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       `magic-eden-ofac-sanctioned-country-block`. It also closed
       `github-sanctioned-country-account-restriction-2019-07` as out-of-scope because the captured GitHub
       trade-controls policy is a non-crypto-specific code-hosting sanctions restriction.
+      A later source-strengthening pass pinned the official Japanese Law Translation PDF for the
+      Cabinet Office Order on Financial Instruments Business to the Japan FSA margin row, giving the
+      draft a direct legal anchor for the 50/100 required-deposit formula behind the 2x cap; it remains
+      non-admitted solely pending human admission/scope review.
       A twenty-sixth follow-on triage exhausted the prior 8-row exact-id queue. It closed Tencent/WeChat NFT
       and Binance Europe retreat as semantic-covered, Tether APAC pig-butchering as exact-covered by the
       admitted `tether-pig-butchering-second-wave-2024`, FATF 2022 as context-only, and Thailand SEC

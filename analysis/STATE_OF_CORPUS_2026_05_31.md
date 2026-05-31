@@ -95,6 +95,9 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     `magic-eden-ofac-sanctioned-country-block`. The GitHub sanctioned-country account-restriction row is
     closed as out-of-scope because the captured policy is a non-crypto-specific code-hosting sanctions
     restriction rather than a crypto-stack service-denial action.
+    The Japan FSA margin draft has since been source-strengthened with the official Japanese Law Translation
+    PDF for the Cabinet Office Order on Financial Instruments Business, directly anchoring the 50/100
+    required-deposit formula behind the 2x cap; it remains non-admitted pending human admission/scope review.
     The prior 8-row exact-id queue is now exhausted: Tencent/WeChat NFT and Binance Europe retreat are
     semantic-covered, Tether APAC pig-butchering is exact-covered by admitted `tether-pig-butchering-second-wave-2024`,
     FATF 2022 is context-only, Thailand SEC staking/lending is date/scope-corrected as proposal-policy rather
@@ -245,7 +248,9 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     kept out of admitted paper counts pending human admission/scope review. `github-sanctioned-country-
     account-restriction-2019-07` is closed as out-of-scope after capturing GitHub's official trade-controls
     policy: it is a general code-hosting sanctions restriction, not a crypto-specific platform, asset, wallet,
-    exchange, NFT-marketplace, or protocol restriction.
+    exchange, NFT-marketplace, or protocol restriction. A later source-strengthening pass pinned the
+    official Japanese Law Translation PDF for the Cabinet Office Order on Financial Instruments Business to
+    the Japan FSA draft, directly anchoring the 50/100 required-deposit formula behind the 2x cap.
 28. **Twenty-sixth follow-on triage (exact queue exhausted)** —
     The remaining 8 exact-id candidate rows are now all represented in the registry without changing event
     counts. Three are covered (`china-tencent-wechat-nft-account-purge-2022` by the admitted PRC NFT
