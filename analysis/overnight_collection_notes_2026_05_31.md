@@ -169,3 +169,36 @@ Workflow: 23 author agents (anti-fabrication rule strengthened) -> adversarial v
 **§9 worked excellently — 88 SKIPPED**: India SC *reversal* 2020 (de-restriction!), Japan leverage cap (prudential), MUI fatwa (religious not state), Celsius/BlockFi US-state stratum-misfits (flagged for a US-enforcement stratum), soft governance (IOSCO/FSB), + many dups.
 **Verify caught**: nigeria-binance-detention (DUP of my nigeria-binance-network-block-2024-02), kuwait/shapeshift/eu-tfr drops, egypt/argentina cross-batch dup-variants.
 **Note for admission audit**: the 10 wave-2 fix-flags + 11 wave-1 fix-flags need source-refinement (specific addresses in SDN-list not captured press release) before admission. US-state enforcement (Celsius/BlockFi/Coinbase-state) surfaced as a stratum gap — consider an S7 or fold into S3.
+
+### ADMISSION AUDIT + WAVE 3 (S5 corporate) — 2026-05-31 (continuation, user: 继续 / 不需要问我)
+**Method upgrade — dry-run admission gating.** Lesson from an over-eager batch: source-content grep is
+NOT enough for admission. Built a dry-run checker — simulate the draft→admitted flip in a temp file, run
+`validate.py`, admit ONLY if it passes the strict admission floor (1 primary OR 2 independent semi-primary
+groups; attribution=direct needs a primary; no placeholders; asset_onchain needs primary_onchain). Every
+admission is validation-gated and auto-reverts on any failure, so no broken event is ever committed.
+
+**+48 events admitted this continuation (corpus 261 → 309 admitted):**
+- 6 genuine-review landmarks: eu-19th, eu-20th, SEC EtherDelta/LBRY/Kik/Poloniex.
+- 2 S4 hard-bans that pass strict validation: nepal-comprehensive-2021, qatar-qfcra-2019 (+ thailand-payment-ban after placeholder reword).
+- 38 waves-1/2 admission-ready drafts (passed adversarial-verify clean AND strict validation): e-gold-1mdc-2007, the OFAC SDN cluster (genesis-market/evil-corp/prince-group/media-land/nemesis/cryptex/garantex/netex24/al-law/chinyong/china-fentanyl/oko/kb-vostok/hanafin/dkba), SEC cease (consensys/nexo/etoro/tokenlot), CFTC DeFi (opyn/zerox/deridex), S4 (algeria/pakistan/kenya/indonesia-bi/sri-lanka/zimbabwe-golix/taiwan-vasp), S6 (eu-16th/eu-18th/bcbs-sco60), + webmoney-ukraine, bitfloor-debanking, blockfi-multistate, binance-dex-geoblock, okx-nigeria/india.
+- 1 with honest evidence downgrade: coinbase-eu-usdt (direct→plausible — semi-primary only).
+
+**Reverted/held (honest provenance — NOT admitted):**
+- 17 fail-on-admit waves-1/2 drafts auto-reverted to draft. ~29 total drafts fail the admission floor
+  because they carry only ONE supporting_journalism source (e.g. china-pboc-2014, vietnam-2017, ecuador-2014,
+  jordan-2014, korea-fiu-2021, nepal-2017, argentina-2022, china-ndrc-mining, china-alipay-block, bitfinex-us-exit,
+  thailand-meme-nft). These need a 2nd INDEPENDENT semi-primary source (or a pinned primary regulatory/exchange
+  doc) before admission — genuine per-event research, NOT type-reclassification (reclassifying a CoinDesk article
+  as semi_primary_wayback to clear the gate would be gaming the type system → refused).
+- A few asset_onchain drafts need a primary_onchain tx_hash per §1.6: ren-protocol, circle-usdc-hack-freeze,
+  circle-usdc-sealed-civil, tether-iran-fury-freeze.
+
+**WAVE 3 (S5 corporate) — workflow still running at log time.** Stage-1 authored 26 S5 DRAFTS (committed as
+status:draft, all validate): exchange jurisdiction-exits (binance NL/UK/nigeria-naira, bybit CA/FR, okx CA/india,
+paxos CA, gemini NL, dydx-CA, okx-canada), stablecoin/MiCA delistings (binance-eea-usdt, crypto-com-eu-usdt,
+etoro-ada-trx), frontend geofences (orca-dex, pancakeswap, poloniex-circle, binance-com-us, apple-uniswap-rejection),
+privacy delistings (binance-monero, gate-io-perps, upbit-bithumb), asset freezes (tether-garantex, tether-okx-doj),
+binance-palestinian-seizure, shapeshift-kyc. **HELD from admission pending the adversarial-verify stage verdicts**
+(must not admit unverified wave-3 output). Will parse drop/flag/keep when the workflow completes, then dry-run-admit clean ones.
+
+**Corpus state at log time: 385 events — 309 admitted / 69 draft / 7 rejected — sweep 384/384 validate [OK].**
