@@ -12,10 +12,10 @@ This file is the operational summary for the repo's two current priorities:
 - Admitted but release-blocked cases: `328`
 - Fully complete release-ready cases: `1`
 - Scope-limited release-ready cases: `39`
-- Working drafts: `3`
+- Working drafts: `2`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
-- Draft priority order: `bitfinex-us-retail-customer-exit-2017-11, ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, saudi-standing-committee-virtual-currency-warning-2018-08, terror-financing-crypto-seizure-doj-2020, vietnam-sbv-bitcoin-prohibition-statement-2014-02, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, magic-eden-ofac-sanctioned-country-block, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
+- Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, saudi-standing-committee-virtual-currency-warning-2018-08, terror-financing-crypto-seizure-doj-2020, vietnam-sbv-bitcoin-prohibition-statement-2014-02, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, magic-eden-ofac-sanctioned-country-block, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
 
 ## Cases
 
@@ -813,26 +813,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `bitfinex-us-retail-customer-exit-2017-11`
 
 - Status: `draft`
-- Readiness: `working_draft`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
-- Attribution reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: At least one changed layer does not clearly meet the source threshold.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `bitfloor-capital-one-debanking-2013-04`
