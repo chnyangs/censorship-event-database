@@ -98,6 +98,30 @@ def is_url(value: str) -> bool:
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
 
 
+def source_url_host_candidates(value: Any) -> list[str]:
+    if not isinstance(value, str) or not value.strip():
+        return []
+    parsed = urllib.parse.urlparse(value.strip())
+    host = parsed.netloc.lower().split("@")[-1].split(":")[0]
+    if host == "web.archive.org":
+        parts = parsed.path.split("/", 3)
+        if len(parts) >= 4 and parts[1] == "web":
+            parsed = urllib.parse.urlparse(parts[3])
+            host = parsed.netloc.lower().split("@")[-1].split(":")[0]
+    if not host:
+        return []
+    hosts = {host}
+    if host.startswith("www."):
+        hosts.add(host[4:])
+    return sorted(hosts, key=len, reverse=True)
+
+
+def body_path_uses_structured_capture_name(body_path: str) -> bool:
+    base = Path(body_path).name.lower()
+    prefix = base.split("__", 1)[0]
+    return base.startswith("web.archive.org__web-") or ("__" in base and "." in prefix)
+
+
 def source_is_primary(source_type: str) -> bool:
     return source_type.startswith("primary_")
 
@@ -1173,6 +1197,17 @@ class EventValidator:
                 f"{label}.body_hash does not match the local file at {body_path_str}: "
                 f"expected {expected_hex[:12]}…, actual {actual_hex[:12]}…"
             )
+
+        source_url = source.get("url")
+        if isinstance(source_url, str) and body_path_uses_structured_capture_name(body_path_str):
+            base = Path(body_path_str).name.lower()
+            host_candidates = source_url_host_candidates(source_url)
+            if host_candidates and not any(host in base for host in host_candidates):
+                result.error(
+                    f"{label}.body_path appears to reference a structured capture for a "
+                    f"different host than {label}.url; expected one of {host_candidates}, "
+                    f"got {body_path_str!r}."
+                )
 
     def _validate_recovery(self, recovery: Any, result: ValidationResult) -> None:
         if recovery is None:
