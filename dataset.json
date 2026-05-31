@@ -9988,7 +9988,7 @@
   {
     "_source_file": "canada-csa-binance-withdrawal-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/canada-csa-binance-withdrawal-2023.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison shape: 2 observed_change layers (l4_frontend, offramp_cex), both\nwith direct attribution. Structurally a sibling of uk-fca-binance-markets-2021\nand the 2021-Binance regulator wave (Netherlands DNB, Malaysia SC, Singapore\nMAS), but with two distinguishing features. First, the CSA action is a\nsecurities-registration / pre-registration-undertaking framework rather than\nan FCA-style consumer warning; it operates by changing the conditions under\nwhich a crypto-trading platform may serve Canadian retail clients, not by\ndeclaring a single named entity unauthorised. Second, Binance's response was\na self-initiated full-market withdrawal (2023-05-12) rather than a banking-\nrail-mediated cascade \u2014 the cascade leg here is an operator-state change\n(Binance Canada exit) rather than a class-wide bank-payment-rail severance.\n\nCross-stratum cousin: binance-4framework-2023 (US, S3) \u2014 coincides temporally\nwith the broader 2023 Binance regulatory exposure that culminated in the\nNovember 2023 multi-framework US settlement. The CSA-driven Canada exit is\npart of the global posture realignment that the 4-framework row captures\nfrom the US side.\n",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/canada-csa-binance-withdrawal-2023.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison shape: 1 observed_change layer (offramp_cex / operator market\nwithdrawal), with plausible attribution to the preceding CSA enhanced-PRU\nframework. Structurally a sibling of uk-fca-binance-markets-2021\nand the 2021-Binance regulator wave (Netherlands DNB, Malaysia SC, Singapore\nMAS), but with two distinguishing features. First, the CSA action is a\nsecurities-registration / pre-registration-undertaking framework rather than\nan FCA-style consumer warning; it operates by changing the conditions under\nwhich a crypto-trading platform may serve Canadian retail clients, not by\ndeclaring a single named entity unauthorised. Second, Binance's response was\na self-initiated full-market withdrawal (2023-05-12) rather than a banking-\nrail-mediated cascade \u2014 the cascade leg here is an operator-state change\n(Binance Canada exit) rather than a class-wide bank-payment-rail severance.\n\nCross-stratum cousin: binance-4framework-2023 (US, S3) \u2014 coincides temporally\nwith the broader 2023 Binance regulatory exposure that culminated in the\nNovember 2023 multi-framework US settlement. The CSA-driven Canada exit is\npart of the global posture realignment that the 4-framework row captures\nfrom the US side.\n\n**SOURCE REPAIR \u2014 2026-06-01**: replaced generic CSA news-index and stale\nBinance blog pointers with a replayable OSC-hosted CSA Staff Notice\n21-332 PDF and a replayable official Binance X announcement. A live capture\nof the old Binance blog URL returned a WAF/challenge response with an empty\nbody and is deliberately not used. The row is narrowed from a 2-layer\nbinance.com + CAD-rail wind-down claim to a single observed Binance Canada\nmarketplace-withdrawal action; attribution is downgraded from direct to\nplausible because the captured official X text does not itself enumerate the\nstablecoin / investor-limit rationale.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -10009,11 +10009,11 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "Binance posted a Canada-specific corporate blog announcement on\nbinance.com (2023-05-12) notifying Canadian users of the planned\nmarket exit and the timeline for off-boarding (account-restriction\ntransition to withdraw-only mode through 2023). Wayback-replayable\nvia the canonical Binance blog post. Load-bearing alongside\nofframp_cex for the cascade shape.\n",
+        "note": "No replayable Binance.com page-state, geo-block, or account-access\nartifact is currently pinned for the Canada cohort. A live capture of\nthe old Binance blog URL returned a CloudFront/WAF challenge with an\nempty body, so it is not used as claim evidence.\n",
         "scope": [
           "binance.com"
         ],
-        "status": "measured"
+        "status": "not_measured"
       },
       {
         "layer": "asset_onchain",
@@ -10022,7 +10022,7 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Binance-Canada is the focal off-ramp under CSA-driven restriction.\nFollowing the 2023-05-12 withdrawal announcement, Canadian-resident\nBinance accounts transitioned to withdraw-only mode and CAD on/off-\nramp access to Binance was wound down on Binance's stated timeline.\nLoad-bearing observation attached below as observed_change with\ndirect attribution to the CSA Staff Notice 21-332 cited in the\nBinance blog post.\n",
+        "note": "Binance-Canada is the focal exchange/off-ramp cohort under the\nCSA-driven PRU restriction. The load-bearing observation is the\nofficial Binance X announcement that Binance would proactively withdraw\nfrom the Canadian marketplace. More specific claims about CAD rail\nshutdown timing or withdraw-only account mode are not retained without\na replayable first-party account-notice or support-page artifact.\n",
         "scope": [
           "binance_canada_users",
           "cad_payment_rails_to_binance"
@@ -10040,71 +10040,38 @@
     "last_verified": "2026-05-16",
     "observations": [
       {
-        "actor": "frontend:binance_com_en_ca_geo",
-        "attribution": "direct",
-        "delta_hours": 1920,
-        "event": "binance_canada_market_exit_announcement",
-        "layer": "l4_frontend",
-        "observation_kind": "observed_change",
-        "precision": "day",
-        "sources": [
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "Binance corporate blog post (2023-05-12) is the canonical\ncustomer-facing notification of Canadian market exit. The post\nexplicitly cites the CSA's evolving guidance (stablecoin\nofferings, investor-position limits) introduced via the\n2023-02-22 Staff Notice 21-332 as the precipitating cause \u2014\nattribution=direct on this basis. Marked\nevidence_use=contextual_unarchived pending Wayback re-pin.\n",
-            "scope_descriptor": {
-              "providers": [
-                "binance_com_ca_geo_frontend"
-              ],
-              "time_window": [
-                "2023-05-12T00:00:00+00:00",
-                "2023-12-31T23:59:59+00:00"
-              ]
-            },
-            "type": "primary_corporate",
-            "url": "https://www.binance.com/en/blog/ecosystem/an-update-on-binance-in-canada-3550161948550610227",
-            "wayback": "https://web.archive.org/web/20230512000000*/binance.com/en/blog/ecosystem/an-update-on-binance-in-canada-3550161948550610227"
-          },
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "CSA Staff Notice 21-332 is the regulatory anchor for the\nfrontend announcement; Binance's blog post names the CSA's\nenhanced pre-registration-undertaking expectations as the\ndriving cause of withdrawal.\n",
-            "type": "primary_legal",
-            "url": "https://www.securities-administrators.ca/news/",
-            "wayback": "https://web.archive.org/web/20230222000000*/securities-administrators.ca/news/"
-          }
-        ],
-        "timestamp": "2023-05-12T00:00:00+00:00"
-      },
-      {
         "actor": "exchange:binance_canada",
-        "attribution": "direct",
-        "delta_hours": 1920,
-        "event": "binance_canada_offramp_shutdown",
+        "attribution": "plausible",
+        "delta_hours": 1896,
+        "event": "binance_canada_market_withdrawal_announcement",
         "layer": "offramp_cex",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "Binance blog post documents the operational off-boarding plan\nfor Canadian-resident accounts: transition to withdraw-only\nmode and wind-down of CAD payment rails to Binance over the\nmonths following 2023-05-12. attribution=direct because the\nblog post explicitly ties the operational shutdown to the CSA\nregulatory framework.\n",
+            "body_hash": "sha256:76e74a1dc89e79f326dd3d4de04e7465fa897a0941f19840a62826b8af2cf456",
+            "body_path": "sources/http_captures/canada-csa-binance-withdrawal-2023/binance-x/x.com__binance-status-1657099651210969088__017fd8e815.html",
+            "evidence_use": "replayable",
+            "note": "Binance's official X account announced on 2023-05-12 that\nBinance would join other crypto businesses in proactively\nwithdrawing from the Canadian marketplace and thanked regulators\nwho had worked with Binance on Canadian-user needs. This is the\nload-bearing first-party observation for the operator market-exit\naction. The captured live X HTML includes the tweet text in\n`window.__INITIAL_STATE__`; it does not by itself enumerate\nstablecoin / investor-limit terms, so attribution is kept\nplausible rather than direct.\n",
             "scope_descriptor": {
               "providers": [
                 "binance_canada_offramp_cohort"
               ],
               "time_window": [
                 "2023-05-12T00:00:00+00:00",
-                "2023-12-31T23:59:59+00:00"
+                "2023-05-12T23:59:59+00:00"
               ]
             },
             "type": "primary_corporate",
-            "url": "https://www.binance.com/en/blog/ecosystem/an-update-on-binance-in-canada-3550161948550610227",
-            "wayback": "https://web.archive.org/web/20230512000000*/binance.com/en/blog/ecosystem/an-update-on-binance-in-canada-3550161948550610227"
+            "url": "https://x.com/binance/status/1657099651210969088"
           },
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "CSA Staff Notice 21-332 (2023-02-22) is the legal instrument\nimposing the enhanced pre-registration-undertaking expectations\nwhose stablecoin and investor-position-limit provisions Binance\ncited as untenable for continued Canada operations.\n",
+            "body_hash": "sha256:98feda91a13238ce5af49cb958314fed8c98f8297acff5e390cf240f56089fb1",
+            "body_path": "sources/http_captures/canada-csa-binance-withdrawal-2023/primary/www.osc.ca__sites-default-files-2023-02-csa_20230222_21-332_crypto-trading-platforms-pre-reg-undertakings.pdf__a38823bba3.bin",
+            "evidence_use": "replayable",
+            "note": "CSA Staff Notice 21-332 is the replayable legal trigger for the\nFebruary 2023 enhanced-PRU framework. It supports the regulatory\ncontext and the off-boarding/access-restriction expectation for\nCTPs unable or unwilling to provide enhanced PRUs; it is not used\nas a first-party Binance operational notice.\n",
             "type": "primary_legal",
-            "url": "https://www.securities-administrators.ca/news/",
-            "wayback": "https://web.archive.org/web/20230222000000*/securities-administrators.ca/news/"
+            "url": "https://www.osc.ca/sites/default/files/2023-02/csa_20230222_21-332_crypto-trading-platforms-pre-reg-undertakings.pdf"
           }
         ],
         "timestamp": "2023-05-12T00:00:00+00:00"
@@ -10120,7 +10087,7 @@
     ],
     "research_stratum": "S4_nation_state",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2023-02-22 CSA Staff Notice 21-332 enhanced pre-registration-undertaking\nframework \u2014 restricting Canadian crypto-trading-platform stablecoin offerings\nand investor-position limits \u2014 produced a 2-layer cascade for the Binance\nCanada cohort: a customer-facing market-exit announcement on binance.com\n(2023-05-12) and a corresponding offramp_cex shutdown of CAD rails and\nCanadian-resident accounts. Structurally an entity-self-withdrawal response\nto a class-wide securities-registration framework rather than a banking-rail\ncascade.\"\n",
+    "scoped_claim": "\"The 2023-02-22 CSA Staff Notice 21-332 enhanced pre-registration-undertaking\nframework, including off-boarding / access-restriction expectations for\nplatforms unable or unwilling to provide enhanced PRUs, was followed by\nBinance's official 2023-05-12 announcement that it would proactively withdraw\nfrom the Canadian marketplace. This row is scoped to the replayable operator\nmarket-withdrawal announcement and does not assert a separately measured\nbinance.com geo-block, CAD-rail shutdown timeline, or withdraw-only account\ntransition.\"\n",
     "status": "admitted",
     "tags": [
       "nation_state_block",
@@ -10140,7 +10107,7 @@
       "chains": [],
       "entity": "binance_canada_user_cohort_2023",
       "enumeration": "subset",
-      "enumeration_note": "Canada-registered crypto-trading-platform cohort regulated by the CSA's\npre-registration-undertaking framework. Binance is the load-bearing\ntarget for the observable cascade because it announced full Canada\nmarket exit 2023-05-12 citing the 2023-02-22 Staff Notice's revised\nstablecoin and position-limit restrictions. Other Canadian-active\nplatforms (e.g., Kraken Canada, KuCoin) either filed PRUs and remained\nor exited on different timelines; this row treats the Binance-Canada\ncohort as the focal cascade leg while flagging the class-wide CSA\nposture as the trigger.\n",
+      "enumeration_note": "Canada-registered crypto-trading-platform cohort regulated by the CSA's\npre-registration-undertaking framework. Binance is the load-bearing\ntarget for the observable cascade because its official X account\nannounced a proactive withdrawal from the Canadian marketplace on\n2023-05-12 after the 2023-02-22 Staff Notice. Other Canadian-active\nplatforms either filed PRUs and remained or exited on different\ntimelines; this row treats the Binance-Canada cohort as the focal\ncascade leg while flagging the class-wide CSA posture as the trigger.\n",
       "kind": "entity"
     },
     "temporal_tier": "comparable_main_2017_present",
@@ -10148,18 +10115,12 @@
       "actor": "CA_CSA",
       "citation": [
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "CSA (Canadian Securities Administrators) Staff Notice 21-332\n(2023-02-22): \"Canadian Securities Regulators Strengthen Approach to\nCrypto Trading Platforms with Enhanced Pre-Registration Undertakings\nExpectations.\" The notice updates the pre-registration-undertaking\n(PRU) framework first announced in 21-329, requiring crypto-trading\nplatforms operating in Canada to file enhanced PRUs that prohibit\noffering leverage/margin trading to Canadian clients, segregate\nclient assets, and restrict the holding of proprietary stablecoins\nwithout CSA approval. Marked evidence_use=contextual_unarchived\nbecause the authoring LLM agent did not personally pin a Wayback\nsnapshot timestamp or compute a body_hash for the CSA news page;\nthe canonical CSA news index is routinely captured by Wayback but\nthe specific 2023-02-22 snapshot is to be re-pinned during human\naudit before this citation may serve as an admission anchor.\n",
+          "body_hash": "sha256:98feda91a13238ce5af49cb958314fed8c98f8297acff5e390cf240f56089fb1",
+          "body_path": "sources/http_captures/canada-csa-binance-withdrawal-2023/primary/www.osc.ca__sites-default-files-2023-02-csa_20230222_21-332_crypto-trading-platforms-pre-reg-undertakings.pdf__a38823bba3.bin",
+          "evidence_use": "replayable",
+          "note": "CSA Staff Notice 21-332, \"Crypto Asset Trading Platforms:\nPre-Registration Undertakings - Changes to Enhance Canadian Investor\nProtection\" (2023-02-22). The notice required CTPs operating in\nCanada while seeking registration to file enhanced PRUs and included\nrestrictions on leverage/margin, custody and segregation, stablecoins\n/ value-referenced crypto assets, proprietary tokens, and investor\nprotection commitments. It also states that an unregistered CTP that\nis unable or unwilling to provide an enhanced PRU is expected to\nidentify and off-board existing Canadian users and impose access\nrestrictions. The OSC-hosted PDF was captured live and pinned with\nbody_hash/body_path during the 2026-06-01 source-repair pass.\n",
           "type": "primary_legal",
-          "url": "https://www.securities-administrators.ca/news/",
-          "wayback": "https://web.archive.org/web/20230222000000*/securities-administrators.ca/news/"
-        },
-        {
-          "evidence_use": "contextual_unarchived",
-          "note": "Binance corporate blog post (2023-05-12): \"An Update on Binance in\nCanada.\" Binance announced it would proactively withdraw from the\nCanadian market, citing the CSA's evolving guidance \u2014 specifically\nrestrictions on stablecoin offerings and investor-position limits\nintroduced by the 2023-02-22 Staff Notice 21-332 \u2014 as no longer\ntenable for its Canada operations. ~80-day delta between the CSA\nnotice and the Binance withdrawal announcement. Marked\nevidence_use=contextual_unarchived pending human-audit Wayback\nre-pin and body_hash capture.\n",
-          "type": "primary_corporate",
-          "url": "https://www.binance.com/en/blog/ecosystem/an-update-on-binance-in-canada-3550161948550610227",
-          "wayback": "https://web.archive.org/web/20230512000000*/binance.com/en/blog/ecosystem/an-update-on-binance-in-canada-3550161948550610227"
+          "url": "https://www.osc.ca/sites/default/files/2023-02/csa_20230222_21-332_crypto-trading-platforms-pre-reg-undertakings.pdf"
         }
       ],
       "timestamp": "2023-02-22T00:00:00+00:00",

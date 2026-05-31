@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `22e4579` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `00764cd` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **333**
+- Canonical physical actions: **332**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -61,8 +61,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `bybit-singapore-exit-2022:0:offramp_cex:cex:bybit_com_sg_cohort:bybit_sg_user_services_wound_down_and_hq_to_dubai` | 1 | 0 | 1 | offramp_cex | `bybit-singapore-exit-2022::offramp_cex` |
 | `cambodia-nbc-joint-crypto-prohibition-2018-05:0:offramp_cex:cambodian_crypto_ecosystem:crypto_trading_and_settlement_declared_illegal_without_license` | 1 | 0 | 1 | offramp_cex | `cambodia-nbc-joint-crypto-prohibition-2018-05::offramp_cex` |
 | `canada-convoy-freeze-2022:0:offramp_cex:ca_regulated_cex_ecosystem:canadian_regulated_exchanges_frozen_convoy_addresses` | 1 | 0 | 1 | offramp_cex | `canada-convoy-freeze-2022::offramp_cex` |
-| `canada-csa-binance-withdrawal-2023:0:l4_frontend:frontend:binance_com_en_ca_geo:binance_canada_market_exit_announcement` | 1 | 0 | 1 | l4_frontend | `canada-csa-binance-withdrawal-2023::l4_frontend` |
-| `canada-csa-binance-withdrawal-2023:1:offramp_cex:exchange:binance_canada:binance_canada_offramp_shutdown` | 1 | 0 | 1 | offramp_cex | `canada-csa-binance-withdrawal-2023::offramp_cex` |
+| `canada-csa-binance-withdrawal-2023:0:offramp_cex:exchange:binance_canada:binance_canada_market_withdrawal_announcement` | 1 | 0 | 1 | offramp_cex | `canada-csa-binance-withdrawal-2023::offramp_cex` |
 | `celsius-bankruptcy-mashinsky-doj-2023:0:offramp_cex:lending_platform:celsius_network:celsius_lending_platform_collapse_codified_by_doj_sec_cftc_ftc_actions` | 1 | 0 | 1 | offramp_cex | `celsius-bankruptcy-mashinsky-doj-2023::offramp_cex` |
 | `cftc-defi-opyn-zeroex-deridex-2023-09:0:l4_frontend:defi_operators:opyn_zeroex_deridex_us:cftc_orders_three_defi_operators_to_cease_offering_to_us_persons` | 1 | 0 | 1 | l4_frontend | `cftc-defi-opyn-zeroex-deridex-2023-09::l4_frontend` |
 | `cftc-v-ooki-dao-2022:0:l4_frontend:frontend:ooki_dao:cftc_enforced_frontend_geo_blocking_us_via_default_judgment` | 1 | 0 | 1 | l4_frontend | `cftc-v-ooki-dao-2022::l4_frontend` |
