@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `222`
-- Admitted but release-blocked cases: `146`
+- Release-ready cases: `226`
+- Admitted but release-blocked cases: `142`
 - Fully complete release-ready cases: `13`
-- Scope-limited release-ready cases: `209`
+- Scope-limited release-ready cases: `213`
 - Working drafts: `2`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
@@ -828,19 +828,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `bitstamp-greece-portugal-exit-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3632,19 +3629,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `kucoin-netherlands-exit-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6228,19 +6222,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `trustwallet-sanctioned-token-ui-update-2022`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6406,19 +6397,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `uniswap-token-list-curation-default-2021`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
