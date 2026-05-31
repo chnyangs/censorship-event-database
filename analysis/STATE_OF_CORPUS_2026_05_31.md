@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **241** (9 complete / 232 scoped) and
-  admitted-but-blocked cases are **127**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **242** (9 complete / 233 scoped) and
+  admitted-but-blocked cases are **126**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **259 high / 80 medium / 29 low**; attribution reliability
-  **222 high / 146 medium / 0 low**. Current admitted paper roles are
-  **240 aggregate_datapoint / 96 null_control / 29 appendix_only / 3 paper_anchor**.
+  observation reliability **260 high / 80 medium / 28 low**; attribution reliability
+  **223 high / 145 medium / 0 low**. Current admitted paper roles are
+  **241 aggregate_datapoint / 96 null_control / 28 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -29,7 +29,10 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   Durov's Telegraph termination post. `bitfinex-cftc-retail-commodity-2016` now has local CFTC press-release
   and administrative-order replay anchors, and its scoped claim is narrowed from a specific mandated
   actual-delivery model transition to the order-supported actual-delivery violation finding, penalty,
-  cease-and-desist, and recorded business-practice changes.
+  cease-and-desist, and recorded business-practice changes. `bitfinex-tether-cftc-2021` now has local CFTC
+  press-release plus both CFTC order PDFs pinned; its Tether-side claim is narrowed from a CFTC-created
+  quarterly-reporting regime to the order-supported reserve-misrepresentation penalty, cease-and-desist, and
+  recorded remediation posture.
 
 ## Admitted composition (368)
 | dimension | breakdown |

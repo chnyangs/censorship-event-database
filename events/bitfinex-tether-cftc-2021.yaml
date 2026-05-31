@@ -29,8 +29,10 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.cftc.gov/PressRoom/PressReleases/8450-21
+      body_hash: sha256:e47dfb31a0775ccb4a4ad732240723f741a2230709b2c0342b9eef53bf467c88
+      body_path: sources/http_captures/bitfinex-tether-cftc-2021/cftc-tether-primary/www.cftc.gov__PressRoom-PressReleases-8450-21__6ca0538f56.html
       wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8450-21
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         CFTC press release 8450-21 (2021-10-15): "CFTC Orders Tether and
         Bitfinex to Pay Fines Totaling $42.5 Million." Announces two
@@ -48,38 +50,47 @@ trigger:
         statements and omissions of material fact in connection with the
         US-dollar tether (USDT) stablecoin, specifically: USDT was
         marketed as "100% backed" by USD reserves but for substantial
-        portions of the 2016-01 through 2018-02 review period the Tether
-        entities held insufficient fiat reserves to back USDT 1:1 and
+        portions of the 2016-06-01 through 2019-02-25 review period the
+        Tether entities held insufficient fiat reserves to back USDT 1:1 and
         commingled reserve assets with operational funds, including
         through transfers to and from Bitfinex. The 2021-10-15 CFTC
         action follows the 2021-02-23 NYAG settlement (NY OAG In the
         Matter of iFinex Inc. et al.) which already imposed a $18.5M
         penalty and a prohibition on serving New York residents plus a
         quarterly USDT reserve-composition reporting obligation. The
-        CFTC settlement extends the disclosure-regime change to a
-        federal-level commodities-law axis. Marked
-        evidence_use=contextual_unarchived because the authoring LLM
-        agent did not personally pin a Wayback snapshot timestamp or
-        compute a body_hash for the press release; the CFTC press-release
-        URL format is stable and routinely captured by Wayback, but the
-        specific snapshot timestamp is to be re-pinned during human
-        audit before this citation may serve as an admission anchor in
-        its own right. Provisional Wayback anchor uses Wayback Machine
-        2026-05-16 timestamp prefix.
-    - type: primary_corporate
-      url: https://tether.to/en/tether-and-bitfinex-reach-settlement-with-cftc/
-      wayback: https://web.archive.org/web/20260516000000/https://tether.to/en/tether-and-bitfinex-reach-settlement-with-cftc/
-      evidence_use: contextual_unarchived
+        CFTC settlement is the federal commodities-law reserve-
+        misrepresentation counterpart, but this row does not claim that
+        the CFTC order itself imposed the NYAG quarterly-reporting
+        obligation. SOURCE-REPAIRED 2026-06-01: the live CFTC press
+        release was captured locally and pinned with body_hash/body_path.
+    - type: primary_legal
+      url: https://www.cftc.gov/media/6646/enftetherholdingsorder101521/download
+      body_hash: sha256:b468b9aafb63849fc1d699379b58f182220b5d01202d73c603a10c575159a3ca
+      body_path: sources/http_captures/bitfinex-tether-cftc-2021/cftc-tether-primary/www.cftc.gov__media-6646-enftetherholdingsorder101521-download__e295e95279.bin
+      evidence_use: replayable
       note: |
-        Tether corporate response statement "Tether and Bitfinex Reach
-        Settlement with the CFTC" (2021-10-15) confirming the $41M
-        Tether + $1.5M Bitfinex settlement without admission of
-        wrongdoing, and announcing prospective compliance with the
-        CFTC-imposed disclosure regime including continued quarterly
-        attestation reports on USDT reserve composition. Marked
-        evidence_use=contextual_unarchived pending Wayback re-pin and
-        body_hash capture during human audit. Provisional Wayback anchor
-        uses Wayback Machine 2026-05-16 timestamp prefix.
+        CFTC Docket No. 22-04 order against Tether Holdings Limited,
+        Tether Operations Limited, Tether Limited, and Tether
+        International Limited, dated 2021-10-15. The order finds
+        violations of CEA Section 6(c)(1) and Regulation 180.1(a)(2),
+        imposes a $41 million civil monetary penalty and cease-and-
+        desist, and records Tether's represented remediation efforts,
+        including reserve segregation and more automated reserve tracking
+        and reporting on the Tether Transparency Page.
+    - type: primary_legal
+      url: https://www.cftc.gov/media/6651/enfbfxnaincorder101521/download
+      body_hash: sha256:2c26ec526ea15e84fa6e242f80006121d5f36ee16a0ce85694a3a585e00e7683
+      body_path: sources/http_captures/bitfinex-tether-cftc-2021/cftc-tether-primary/www.cftc.gov__media-6651-enfbfxnaincorder101521-download__6d43b4e1fc.bin
+      evidence_use: replayable
+      note: |
+        CFTC Docket No. 22-05 order against iFinex Inc., BFXNA Inc., and
+        BFXWW Inc., dated 2021-10-15. The order finds CEA Sections 4(a)
+        and 4d violations and a violation of the Commission's 2016 BFXNA
+        order, imposes a $1.5 million civil monetary penalty and cease-
+        and-desist, and requires systems and procedures reasonably
+        designed to prevent covered U.S. persons from engaging in
+        leveraged, margined, or financed retail commodity transactions by
+        2021-12-31.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -98,7 +109,7 @@ target:
     off-exchange retail commodity transaction order; and (b) the Tether
     issuer entities Tether Holdings Limited, Tether Limited, Tether
     Operations Limited, and Tether International Limited, named in the
-    $41M USDT reserve-disclosure order. The row enumerates only the
+    $41M USDT reserve-misrepresentation order. The row enumerates only the
     corporate-entity targets named in the two CFTC orders; it does not
     enumerate individual Bitfinex customer accounts, individual USDT
     holders, or specific on-chain USDT contract addresses. Canonical
@@ -157,23 +168,23 @@ coverage:
     chain: ethereum
     note: |
       The 2021-10-15 CFTC order against the Tether issuer entities
-      targets the USDT reserve-attestation / disclosure regime — a
-      corporate-disclosure axis — and does NOT compel a USDT blacklist
+      targets the USDT reserve-misrepresentation and off-chain reserve-
+      reporting posture, a corporate-disclosure axis, and does NOT compel a USDT blacklist
       or addBlackList() on-chain action against any specific
       address-set. The Tether USDT freeze primitive exists in 2021
       (and is used in other events such as tether-retroactive-sweep-
       2023 and tether-doj-pig-butchering-freeze-2023) but is not
       engaged by this CFTC settlement. Marked not_applicable rather
       than not_measured because the regulator-compelled change is
-      definitionally off-chain (quarterly reserve-composition
-      reports), not an on-chain admin action. The reserve-disclosure
-      regime change is registered as an offramp_cex observation on
-      the Tether issuer actor below.
+      definitionally off-chain, not an on-chain admin action. The
+      reserve-misrepresentation / disclosure-remediation posture is
+      registered as an offramp_cex observation on the Tether issuer actor
+      below.
   - layer: offramp_cex
     status: measured
     scope:
       - bitfinex_us_retail_financed_commodity_product
-      - tether_usdt_reserve_attestation_regime
+      - tether_usdt_reserve_disclosure_remediation
     note: |
       Load-bearing layer for this event with two distinct
       operator-state changes registered as observed_change rows:
@@ -182,11 +193,11 @@ coverage:
       $1.5M order (CEA Section 4(a) / 4d violations — illegal
       off-exchange retail commodity transactions and operation as an
       unregistered Futures Commission Merchant); and (2) Tether
-      issuer-level adoption of the CFTC-mandated USDT reserve-
-      disclosure regime per the $41M order (mandatory quarterly
-      reserve-composition reports for two years following the
-      settlement, covering the prior 2016-01 through 2018-02
-      misrepresentation period). Both are regulator-compelled
+      issuer-level reserve-misrepresentation settlement per the $41M
+      order, including civil penalty, cease-and-desist, and recorded
+      reserve-tracking / Transparency Page remediation covering the prior
+      2016-06 through 2019-02 misrepresentation period. Both are
+      regulator-compelled
       operator-state changes at offramp_cex venues (Bitfinex spot/
       margin exchange and Tether issuer fiat-rails interface),
       attached below as two observation_kind=observed_change rows
@@ -204,8 +215,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.cftc.gov/PressRoom/PressReleases/8450-21
+        body_hash: sha256:e47dfb31a0775ccb4a4ad732240723f741a2230709b2c0342b9eef53bf467c88
+        body_path: sources/http_captures/bitfinex-tether-cftc-2021/cftc-tether-primary/www.cftc.gov__PressRoom-PressReleases-8450-21__6ca0538f56.html
         wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8450-21
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         scope_descriptor:
           providers: [bitfinex_com_offramp_cex]
           time_window:
@@ -223,15 +236,32 @@ observations:
           entities. The order is the second CFTC enforcement against
           Bitfinex's financed-commodity retail product line, following
           the 2016-06-02 CFTC order against BFXNA Inc. (bitfinex-cftc-
-          retail-commodity-2016) which imposed a $75,000 penalty and
-          required transition to an actual-delivery margin model;
-          this 2021-10-15 order extends the enforcement to the
-          2016-04 through 2018-02 review period covering activity
-          that postdated the 2016 order. Provisional Wayback anchor
-          uses Wayback Machine 2026-05-16 timestamp prefix.
+          retail-commodity-2016) which imposed a $75,000 penalty and a
+          cease-and-desist; this 2021-10-15 order extends the enforcement
+          to the 2016-03-01 through 2018-12-31 review period covering activity
+          that postdated the 2016 order. Local body_hash/body_path
+          capture is the admission-grade replay anchor.
+      - type: primary_legal
+        url: https://www.cftc.gov/media/6651/enfbfxnaincorder101521/download
+        body_hash: sha256:2c26ec526ea15e84fa6e242f80006121d5f36ee16a0ce85694a3a585e00e7683
+        body_path: sources/http_captures/bitfinex-tether-cftc-2021/cftc-tether-primary/www.cftc.gov__media-6651-enfbfxnaincorder101521-download__6d43b4e1fc.bin
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bitfinex_com_offramp_cex]
+          time_window:
+            - 2021-10-15T00:00:00Z
+            - 2021-12-31T23:59:59Z
+        note: |
+          CFTC Docket No. 22-05 is the Bitfinex administrative order. It
+          imposes the $1.5 million penalty and requires Bitfinex to
+          implement, as necessary, and maintain systems and procedures
+          reasonably designed to prevent covered U.S. persons from
+          engaging in leveraged, margined, or financed retail commodity
+          transactions or providing/receiving margin funding on the
+          platform by 2021-12-31.
   - layer: offramp_cex
     actor: tether_usdt_issuer
-    event: cftc_ordered_tether_usdt_reserve_attestation_regime_change_2021
+    event: cftc_ordered_tether_usdt_reserve_disclosure_remediation_2021
     observation_kind: observed_change
     attribution: direct
     timestamp: 2021-10-15T00:00:00Z
@@ -240,8 +270,10 @@ observations:
     sources:
       - type: primary_legal
         url: https://www.cftc.gov/PressRoom/PressReleases/8450-21
+        body_hash: sha256:e47dfb31a0775ccb4a4ad732240723f741a2230709b2c0342b9eef53bf467c88
+        body_path: sources/http_captures/bitfinex-tether-cftc-2021/cftc-tether-primary/www.cftc.gov__PressRoom-PressReleases-8450-21__6ca0538f56.html
         wayback: https://web.archive.org/web/20260516000000/https://www.cftc.gov/PressRoom/PressReleases/8450-21
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         scope_descriptor:
           providers: [tether_usdt_issuer]
           time_window:
@@ -253,44 +285,48 @@ observations:
           Limited, and Tether International Limited for making untrue
           or misleading statements and omissions of material fact in
           connection with the US-dollar tether (USDT) stablecoin
-          during the 2016-01 through 2018-02 period. The CFTC order
-          imposes the $41M civil penalty plus a continuing two-year
-          quarterly reserve-composition reporting obligation on the
-          Tether issuer group, which is the regulator-compelled
-          reserve-attestation regime change registered as this
-          observation. attribution=direct because the CFTC order is
-          the legal instrument that imposes the new disclosure
-          regime against the Tether issuer entities; the obligation
-          is registered at offramp_cex (Tether-as-issuer fiat-rails
-          interface) rather than asset_onchain because the CFTC
-          remedy operates on the off-chain reserve-disclosure axis,
-          not on the USDT addBlackList() on-chain primitive. Follows
-          the 2021-02-23 NYAG settlement which imposed an analogous
-          quarterly reserve-composition disclosure obligation at the
-          state level; this CFTC order extends the regime to the
-          federal commodities-law axis. Provisional Wayback anchor
-          uses Wayback Machine 2026-05-16 timestamp prefix.
-      - type: primary_corporate
-        url: https://tether.to/en/tether-and-bitfinex-reach-settlement-with-cftc/
-        wayback: https://web.archive.org/web/20260516000000/https://tether.to/en/tether-and-bitfinex-reach-settlement-with-cftc/
-        evidence_use: contextual_unarchived
+          during the 2016-06-01 through 2019-02-25 period. The CFTC order
+          imposes the $41M civil penalty and cease-and-desist and
+          identifies Tether's represented reserve-remediation posture,
+          including reserve segregation and more automated tracking and
+          Transparency Page reporting. attribution=direct because the
+          observation event is the CFTC order and associated issuer
+          compliance posture. It is registered at offramp_cex
+          (Tether-as-issuer fiat-rails interface) rather than
+          asset_onchain because the CFTC remedy operates on the
+          off-chain reserve-disclosure axis, not on the USDT
+          addBlackList() on-chain primitive. Local body_hash/body_path
+          capture is the admission-grade replay anchor.
+      - type: primary_legal
+        url: https://www.cftc.gov/media/6646/enftetherholdingsorder101521/download
+        body_hash: sha256:b468b9aafb63849fc1d699379b58f182220b5d01202d73c603a10c575159a3ca
+        body_path: sources/http_captures/bitfinex-tether-cftc-2021/cftc-tether-primary/www.cftc.gov__media-6646-enftetherholdingsorder101521-download__e295e95279.bin
+        evidence_use: replayable
         scope_descriptor:
           providers: [tether_usdt_issuer]
           time_window:
             - 2021-10-15T00:00:00Z
             - 2023-10-14T23:59:59Z
         note: |
-          Tether corporate response statement confirming the $41M
-          Tether + $1.5M Bitfinex settlement and the prospective
-          adoption of the CFTC-mandated quarterly reserve-composition
-          attestation regime. Corroborates the issuer-side acceptance
-          of the disclosure-regime change. Marked
-          evidence_use=contextual_unarchived pending Wayback re-pin.
-          Provisional Wayback anchor uses Wayback Machine 2026-05-16
-          timestamp prefix.
+          CFTC Docket No. 22-04 is the Tether administrative order. It
+          finds that Tether misrepresented reserve backing, imposes the
+          $41 million civil monetary penalty and cease-and-desist, and
+          records Tether's represented remediation efforts. The legacy
+          Tether corporate-response URL is not used as a claim anchor
+          because the live capture now serves a generic Tether homepage
+          rather than the 2021 settlement article.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **SOURCE-REPAIRED 2026-06-01**: promoted-from-candidate history retained,
+  but the load-bearing CFTC press release plus the two CFTC administrative
+  orders now have local body_hash/body_path replay anchors. The prior wording
+  that described a CFTC-mandated two-year quarterly reserve-composition regime
+  has been narrowed: that reporting obligation belongs to the NYAG predecessor
+  settlement, while this CFTC row supports the federal reserve-misrepresentation
+  order, civil penalty, cease-and-desist, and recorded Tether remediation
+  posture. The legacy Tether corporate-response URL was not retained as a claim
+  anchor because the current live capture resolves to a generic Tether homepage.
+  This source-repair note is not a last_human_audit claim.
 
   comparison shape: 2 observed_change rows on a single distinct layer
   (offramp_cex), keyed by two different operator actors — the Bitfinex
@@ -302,9 +338,9 @@ analysis_notes: |
   (which did not yet exist), did not implicate the L3 RPC compliance
   substrate (also did not yet exist), did not require frontend
   takedown or new geofencing, and did not compel a USDT addBlackList()
-  on-chain action — the reserve-disclosure regime is a corporate /
-  off-chain remedy and is recorded at offramp_cex on the Tether
-  issuer actor instead of at asset_onchain.
+  on-chain action. The Tether order is a reserve-misrepresentation /
+  off-chain disclosure-remediation action and is recorded at offramp_cex
+  on the Tether issuer actor instead of at asset_onchain.
 
   **Two-target consolidated CFTC action**: this is a paper-worthy
   precedent of a single CFTC press release packaging two distinct
@@ -316,34 +352,37 @@ analysis_notes: |
   different regulatory axes: the Bitfinex order extends the 2016
   CEA Section 4(a) / 4d retail-commodity enforcement (see
   bitfinex-cftc-retail-commodity-2016), while the Tether order
-  imposes a stablecoin-issuer disclosure regime that is the federal
-  counterpart of the 2021-02-23 NYAG settlement.
+  imposes a stablecoin-issuer reserve-misrepresentation penalty and
+  cease-and-desist that is the federal commodities-law counterpart of
+  the 2021-02-23 NYAG settlement, without re-coding the NYAG quarterly
+  reporting obligation as a CFTC-created duty.
 
   **Relationship to prior and successor events in the corpus**:
   - bitfinex-cftc-retail-commodity-2016 (2016-06-02): predecessor
     CFTC retail-commodity action against BFXNA Inc., $75K penalty;
     this 2021-10-15 order is the second CFTC enforcement against
     the same Bitfinex operator entities and extends the review
-    period to 2016-04 through 2018-02 (covering activity that
+    period to 2016-03-01 through 2018-12-31 (covering activity that
     postdated the 2016 order). Recidivism precedent paper-worthy.
   - tether-retroactive-sweep-2023 (2023-12-09): later corporate-
     policy event on the Tether USDT issuer actor, registered at
     asset_onchain on the USDT addBlackList() primitive against
-    historical OFAC-SDN ETH addresses. The 2021-10-15 CFTC
-    disclosure-regime change predates this on-chain compliance
-    pattern by ~2 years and may be a contributing factor in
-    Tether's eventual buildout of on-chain compliance tooling.
+    historical OFAC-SDN ETH addresses. The 2021-10-15 CFTC reserve-
+    misrepresentation settlement predates this on-chain compliance
+    pattern by ~2 years, but this row does not claim that the CFTC
+    settlement caused the later blacklist policy.
   - tether-doj-pig-butchering-freeze-2023 (2023-11-20): related
     Tether issuer action recording USDT addBlackList() against
     pig-butchering scam addresses in coordination with US DOJ;
-    illustrates the same Tether-issuer compliance-tooling buildout
-    that the 2021-10-15 CFTC disclosure regime helped catalyze.
+    illustrates a later and distinct Tether-issuer compliance-tooling
+    pattern; this row does not infer causation from the 2021-10-15
+    CFTC settlement to that later on-chain action.
   - circle-usdc-tornado-2022 (2022-08-08): the comparator
     stablecoin issuer event on USDC; pairing 2021-10-15 against
     2022-08-08 documents the asymmetric stablecoin-issuer
     compliance posture (Circle: same-day OFAC compliance; Tether:
-    multi-year CFTC settlement before adopting a disclosure
-    regime). Useful for paper claims about stablecoin-issuer
+    reserve-misrepresentation settlement on an off-chain disclosure
+    axis). Useful for paper claims about stablecoin-issuer
     compliance-clock asymmetry.
   - binance-cftc-2023 (2023-03-27): later CFTC civil complaint
     against a different (larger) crypto exchange operator;
@@ -351,13 +390,8 @@ analysis_notes: |
 
   **Empirical_shape = comparison** (1 distinct observed_change
   layer = offramp_cex); admission_tier = empirical_case (2 direct-
-  attribution observed_change rows on offramp_cex, each with a
-  primary_legal CFTC press-release source and the Tether row also
-  with a primary_corporate Tether-response source). For a real
-  release, replace this DRYRUN marker after human audit and pin
-  verified Wayback snapshots + body_hash / body_path captures of
-  CFTC press release 8450-21, the underlying CFTC orders, and the
-  Tether corporate response via scripts/capture_http_artifact.py.
+  attribution observed_change rows on offramp_cex, each with
+  replayable primary_legal CFTC press-release and order anchors.
 
 scoped_claim: |
   "The 2021-10-15 CFTC press release 8450-21 packages two simultaneous
@@ -365,13 +399,18 @@ scoped_claim: |
   off-exchange financed retail commodity transactions in digital
   assets, and $41M against Tether Holdings / Limited / Operations /
   International for false or misleading statements regarding USDT
-  reserve backing during 2016-01 through 2018-02), each registered
+  reserve backing during 2016-06 through 2019-02), each registered
   as a single direct-attribution observed_change row at the
-  offramp_cex layer. The CFTC settlement extends the 2021-02-23 NYAG
-  disclosure-regime change to the federal commodities-law axis. The
-  row asserts neither network-layer reachability change nor any
-  USDT addBlackList() on-chain action; the reserve-attestation
-  regime is recorded at offramp_cex (Tether-as-issuer fiat-rails
+  offramp_cex layer. The Bitfinex order also required systems and
+  procedures by 2021-12-31 to prevent covered U.S. persons from
+  engaging in leveraged, margined, or financed retail commodity
+  transactions on the platform. The CFTC settlement is a federal
+  commodities-law reserve-misrepresentation counterpart to the
+  2021-02-23 NYAG settlement, but this row does not claim the CFTC
+  order created the NYAG quarterly-reporting duty. The row asserts
+  neither network-layer reachability change nor any USDT
+  addBlackList() on-chain action; the Tether reserve-remediation
+  posture is recorded at offramp_cex (Tether-as-issuer fiat-rails
   interface), not at asset_onchain."
 
 tags:
