@@ -1,6 +1,6 @@
 # Next steps — censorship-event-database
 
-Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 404 total; see
+Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 total; see
 `analysis/STATE_OF_CORPUS_2026_05_31.md`). Ordered by priority. Nothing here is pushed — all work is local.
 
 ## P1 — Scope / design decisions
@@ -73,10 +73,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 404 
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
 - [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 185
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 117 already covered
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 118 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
-      68 `in_corpus=false` rows, 65 are reviewed-excluded/context-only/out-of-scope/proposal-only under
-      codebook §9 and 3 are explicit `HELD-needs-*` evidence-floor rows. Exact-id remaining queue: 0
+      67 `in_corpus=false` rows, 65 are reviewed-excluded/context-only/out-of-scope/proposal-only under
+      codebook §9 and 2 are explicit `HELD-needs-*` evidence-floor rows. Exact-id remaining queue: 0
       candidate rows not yet in events or registry; the 264-row candidate pool is now fully reconciled.
       Continue with either held evidence repair or new source sweeps: source candidate → dedup against
       corpus → §9 scope → author as verified draft when evidence floors are met → adversarial verify →
@@ -241,9 +241,12 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 404 
       and Binance Europe retreat as semantic-covered, Tether APAC pig-butchering as exact-covered by the
       admitted `tether-pig-butchering-second-wave-2024`, FATF 2022 as context-only, and Thailand SEC
       staking/lending as date/scope-corrected proposal-policy rather than a pinned 2022 operative ban.
-      It left MetaMask Apple App Store removal plus WazirX/Tether and Bybit/Tether freezes as held rows
-      requiring a primary/app-store anchor or asset-onchain tx_hash/address-set evidence before any event can
-      be authored.
+      It left MetaMask Apple App Store removal plus WazirX/Tether as held rows requiring a primary/app-store
+      anchor or asset-onchain tx_hash/address-set evidence before any event can be authored. A subsequent
+      continuation date/scope-corrected the Bybit/Tether held row into draft
+      `t3-bybit-hack-usdt-freeze-2025-03`, using Tether's primary 2025-03-26 T3 FCU announcement, the
+      Bybit/LazarusBounty public address API, and 18 USDT AddedBlackList receipts. The draft remains
+      non-admitted and subset-scoped because the pinned balances do not exhaust Tether's nearly-9M aggregate.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 

@@ -1,0 +1,326 @@
+id: t3-bybit-hack-usdt-freeze-2025-03
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-06-01T00:00:00Z
+last_verified: 2026-06-01
+
+related_events:
+  - t3-financial-crime-unit-launch-2024-09
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_tron_trm_labs
+  timestamp: 2025-03-01T19:58:24Z
+  timestamp_precision: second
+  citation:
+    - type: primary_corporate
+      url: https://tether.io/news/t3-fcu-freezes-nearly-9-million-linked-to-record-breaking-bybit-hack-bringing-crime-units-total-to-over-150-million/
+      body_hash: sha256:0960e54b028e5f6a3bb8d3790c7a993f90a6d05411c5b099325918fd6195374d
+      body_path: sources/http_captures/t3-bybit-hack-usdt-freeze-2025-03/primary/tether.io__news-t3-fcu-freezes-nearly-9-million-linked-to-record-breaking-bybit-hack-bringing-crime-units-total-to-over-150-million__d6bb1e1bf7.html
+      evidence_use: replayable
+      note: |
+        Official Tether.io announcement dated 2025-03-26: T3 Financial Crime Unit
+        (Tether + TRON + TRM Labs) announced the successful freezing of nearly
+        $9 million connected to the Bybit hack. The same source frames Bybit as
+        the record-breaking theft and reports T3 FCU's cumulative freeze total
+        exceeding $150M.
+    - type: semi_primary_measurement
+      url: https://hackscan.hackbounty.io/public/hack-address.json
+      body_hash: sha256:eef1d0d6bca71edc7c27d4131f2548df79787c2318449448c99bab85aa43660f
+      body_path: sources/http_captures/t3-bybit-hack-usdt-freeze-2025-03/primary/hackscan.hackbounty.io__public-hack-address.json__dbb3efd2b5.json
+      evidence_use: replayable
+      note: |
+        Public Bybit/LazarusBounty hacker-address API snapshot. It enumerates
+        the Bybit-hack address universe used here to link the 13 TRON and five
+        Ethereum blacklist receipts below to the Bybit/Lazarus hack cluster.
+  timestamp_sources:
+    - type: primary_onchain
+      note: |
+        Trigger timestamp is the earliest pinned blacklist receipt in this
+        date/scope-corrected batch: TRON tx
+        e55f21880eb4b58aace813b1350776b085194af613f3fdd9ff38bd328399fe80,
+        block 70068840 at 2025-03-01 19:58:24 UTC. The public Tether disclosure
+        date is 2025-03-26; the on-chain freeze wave spans 2025-03-01 through
+        2025-03-21 in the currently pinned subset.
+
+target:
+  kind: address_set
+  enumeration: subset
+  enumeration_note: |
+    The full T3/Bybit freeze target set is not enumerated by Tether's public
+    announcement. This draft pins a measured subset of 18 Bybit/LazarusBounty
+    API addresses with USDT blacklist receipts: 13 on TRON and five on
+    Ethereum. usdtbanlist tracker balances for the pinned subset sum to
+    7,454,738.93 USDT; Tether's primary-corporate announcement reports the
+    broader operation as nearly $9M. The gap is deliberately retained as
+    subset enumeration rather than inferred away.
+  addresses:
+    - TEa1NpRPax9KiRXF2WBhcPfU4B8jt8zUiQ
+    - TPy7UReJj62TDvVhH1CMGYNRdP4kAhT3wy
+    - TLZiKkccnBs2hg21dD55HZJLhQWFEgkjVU
+    - TBh5t6Gy46ae48uaFTWij1u5RGLswWjvrt
+    - TGYB5nyy6DyrmZv7U6a4egX35jomz67R2t
+    - TXjmb1gnkjMorvFS4ytDT79MN9HMDfHVsY
+    - TPykroq1Hc7G58mFfPsyUCkoVXWFXMf64N
+    - TJxe6da2LcPPXe8VZJYAA9v9F1bwJhX4i2
+    - TCwrBc8fBnLTAQQENwkTLP4UEESM9Ksg6n
+    - THpynByUg6JZ8uQeqFNFzEFtCzi9NcWxud
+    - TSbT8sqSiDjQPL7iHcRgzRnNTLRK8qhMf7
+    - TGjMuqfgBbs9PqD5uJDAE9zVysdnGwMk12
+    - TFq8nBxgbb9pjMw9fjT2uNRNuuhTgDdBed
+    - "0xedcf79de5347a81d9329951ed78f6215cfb27b3c"
+    - "0xcd69f8ec7d6b03e66bd13f2829cbc00a416420d6"
+    - "0x8f836b2122da07d8a20f71856e676f086c7c84b8"
+    - "0xc8bd2fbfe0437f38394c5d504221fc01cc8df92a"
+    - "0xe761bcec17380181d99ebcabd0d2a65b7ab64c6f"
+  protocol: null
+  actor_type: bybit_lazarus_hack_cluster
+  actor_name: Bybit/Lazarus hack wallet cluster (T3 FCU pinned subset)
+  chains:
+    - tron
+    - ethereum
+  canonical_domains: []
+
+jurisdiction:
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    note: USDT issuer blacklist state changed; no base-chain consensus rule changed.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: partially_measured
+    chain: multi_chain_usdt
+    scope:
+      - bybit_lazarus_hack_usdt_blacklist_subset
+    note: |
+      Load-bearing layer. T3 FCU/Tether froze Bybit-hack-linked USDT on-chain
+      through USDT blacklist receipts on TRON and Ethereum. Partially_measured:
+      18 addresses and receipts are pinned, but Tether's public "nearly $9M"
+      announcement does not enumerate the full target set, and the pinned
+      tracker balances sum to 7.45M rather than the full public aggregate.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: t3_financial_crime_unit
+    event: t3_fcu_freezes_bybit_hack_usdt_subset
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2025-03-01T19:58:24Z
+    precision: second
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://tether.io/news/t3-fcu-freezes-nearly-9-million-linked-to-record-breaking-bybit-hack-bringing-crime-units-total-to-over-150-million/
+        body_hash: sha256:0960e54b028e5f6a3bb8d3790c7a993f90a6d05411c5b099325918fd6195374d
+        body_path: sources/http_captures/t3-bybit-hack-usdt-freeze-2025-03/primary/tether.io__news-t3-fcu-freezes-nearly-9-million-linked-to-record-breaking-bybit-hack-bringing-crime-units-total-to-over-150-million__d6bb1e1bf7.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tether, tron, trm_labs]
+          chains: [tron, ethereum]
+          time_window:
+            - 2025-03-01T00:00:00Z
+            - 2025-03-26T23:59:59Z
+        note: |
+          Tether primary-corporate anchor for the T3 FCU / Bybit-hack freeze
+          framing and nearly $9M aggregate. Coded plausible rather than direct
+          for the row-level observation because the public announcement does
+          not enumerate the full address set; the address linkage is supplied
+          by the Bybit/LazarusBounty API plus the receipt-level sources below.
+      - type: semi_primary_measurement
+        url: https://hackscan.hackbounty.io/public/hack-address.json
+        body_hash: sha256:eef1d0d6bca71edc7c27d4131f2548df79787c2318449448c99bab85aa43660f
+        body_path: sources/http_captures/t3-bybit-hack-usdt-freeze-2025-03/primary/hackscan.hackbounty.io__public-hack-address.json__dbb3efd2b5.json
+        evidence_use: replayable
+        note: |
+          Public Bybit/LazarusBounty address-set anchor used to link the
+          pinned blacklist receipts to the Bybit/Lazarus hack cluster.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/e55f21880eb4b58aace813b1350776b085194af613f3fdd9ff38bd328399fe80
+        tx_hash: "e55f21880eb4b58aace813b1350776b085194af613f3fdd9ff38bd328399fe80"
+        block: 70068840
+        note: |
+          USDT-TRON AddedBlackList(address) for TEa1NpRPax9KiRXF2WBhcPfU4B8jt8zUiQ,
+          44,974.57 USDT tracker balance, block 70068840 at 2025-03-01 19:58:24 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/c0591a35651d622d19ed27b1e1961dc005e7a84074ecca2012eac4505c296a5e
+        tx_hash: "c0591a35651d622d19ed27b1e1961dc005e7a84074ecca2012eac4505c296a5e"
+        block: 70180719
+        note: |
+          USDT-TRON AddedBlackList(address) for TPy7UReJj62TDvVhH1CMGYNRdP4kAhT3wy,
+          1,387.43 USDT tracker balance, block 70180719 at 2025-03-05 17:13:51 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/0e0cd72fcbf09fb17d7acff188328c7b6c6734463ef1e266727f523fa284674f
+        tx_hash: "0e0cd72fcbf09fb17d7acff188328c7b6c6734463ef1e266727f523fa284674f"
+        block: 70581335
+        note: |
+          USDT-TRON AddedBlackList(address) for TLZiKkccnBs2hg21dD55HZJLhQWFEgkjVU,
+          500,001.06 USDT tracker balance, block 70581335 at 2025-03-19 15:10:15 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/aeaac3dcd1e2d9ac92a01a4ffea1bbebc248410859d21327a29645ccca92e3f0
+        tx_hash: "aeaac3dcd1e2d9ac92a01a4ffea1bbebc248410859d21327a29645ccca92e3f0"
+        block: 70581335
+        note: |
+          USDT-TRON AddedBlackList(address) for TBh5t6Gy46ae48uaFTWij1u5RGLswWjvrt,
+          1,000,000.00 USDT tracker balance, block 70581335 at 2025-03-19 15:10:15 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/6084da483740a6d10b14310974cc9077f6e6ed30c665556f7953677bbdac3990
+        tx_hash: "6084da483740a6d10b14310974cc9077f6e6ed30c665556f7953677bbdac3990"
+        block: 70583046
+        note: |
+          USDT-TRON AddedBlackList(address) for TGYB5nyy6DyrmZv7U6a4egX35jomz67R2t,
+          1,000,000.00 USDT tracker balance, block 70583046 at 2025-03-19 16:35:48 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/b021c6a691a51a1007558dfcfb99de79c3f9a56c13724d136720c5cf38ad3a65
+        tx_hash: "b021c6a691a51a1007558dfcfb99de79c3f9a56c13724d136720c5cf38ad3a65"
+        block: 70583045
+        note: |
+          USDT-TRON AddedBlackList(address) for TXjmb1gnkjMorvFS4ytDT79MN9HMDfHVsY,
+          1,000,000.00 USDT tracker balance, block 70583045 at 2025-03-19 16:35:45 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/04ff6378e56cc6614fda40145a98adf218586ac499309dae2e6bd6bdf9b27d23
+        tx_hash: "04ff6378e56cc6614fda40145a98adf218586ac499309dae2e6bd6bdf9b27d23"
+        block: 70583047
+        note: |
+          USDT-TRON AddedBlackList(address) for TPykroq1Hc7G58mFfPsyUCkoVXWFXMf64N,
+          1,000,000.00 USDT tracker balance, block 70583047 at 2025-03-19 16:35:51 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/b59eb7f5edb2101726f00e19722d7b24a064cbbde5d704f6b042c5c35d1cad5f
+        tx_hash: "b59eb7f5edb2101726f00e19722d7b24a064cbbde5d704f6b042c5c35d1cad5f"
+        block: 70581341
+        note: |
+          USDT-TRON AddedBlackList(address) for TJxe6da2LcPPXe8VZJYAA9v9F1bwJhX4i2,
+          400,996.68 USDT tracker balance, block 70581341 at 2025-03-19 15:10:33 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/7034e8e7f93511259f3ce384eb0d328ec885d5dbd627e6541213567b994de8cd
+        tx_hash: "7034e8e7f93511259f3ce384eb0d328ec885d5dbd627e6541213567b994de8cd"
+        block: 70581340
+        note: |
+          USDT-TRON AddedBlackList(address) for TCwrBc8fBnLTAQQENwkTLP4UEESM9Ksg6n,
+          1,079,953.26 USDT tracker balance, block 70581340 at 2025-03-19 15:10:30 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/c5223e2f8fe9fbfc4e57fe9bd4b0e4e4b7bde289ed4fcdb319414ae60e1bc5ad
+        tx_hash: "c5223e2f8fe9fbfc4e57fe9bd4b0e4e4b7bde289ed4fcdb319414ae60e1bc5ad"
+        block: 70634998
+        note: |
+          USDT-TRON AddedBlackList(address) for THpynByUg6JZ8uQeqFNFzEFtCzi9NcWxud,
+          8.07 USDT tracker balance, block 70634998 at 2025-03-21 11:54:06 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/b4feadd44e2e9378797e50a4150e8f73cc9ceadaf924b76dcf2b860421eb1d5b
+        tx_hash: "b4feadd44e2e9378797e50a4150e8f73cc9ceadaf924b76dcf2b860421eb1d5b"
+        block: 70635005
+        note: |
+          USDT-TRON AddedBlackList(address) for TSbT8sqSiDjQPL7iHcRgzRnNTLRK8qhMf7,
+          11.09 USDT tracker balance, block 70635005 at 2025-03-21 11:54:27 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/759ff42fc6554ba3f8816c7eee40b94dfdf44cf74f0efefd70b363d06cac8e41
+        tx_hash: "759ff42fc6554ba3f8816c7eee40b94dfdf44cf74f0efefd70b363d06cac8e41"
+        block: 70635009
+        note: |
+          USDT-TRON AddedBlackList(address) for TGjMuqfgBbs9PqD5uJDAE9zVysdnGwMk12,
+          883,070.00 USDT tracker balance, block 70635009 at 2025-03-21 11:54:39 UTC.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/8fdd5aac1f1aedfd71a72dbf5bb60815db1a2c03a511a39b344aeb30f29b44ac
+        tx_hash: "8fdd5aac1f1aedfd71a72dbf5bb60815db1a2c03a511a39b344aeb30f29b44ac"
+        block: 70635013
+        note: |
+          USDT-TRON AddedBlackList(address) for TFq8nBxgbb9pjMw9fjT2uNRNuuhTgDdBed,
+          426,183.08 USDT tracker balance, block 70635013 at 2025-03-21 11:54:51 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xb6bc7e5f79e9c7ed91db7a917f01633e8b7a39fbc9d2713db667c336c304a0e0
+        tx_hash: "0xb6bc7e5f79e9c7ed91db7a917f01633e8b7a39fbc9d2713db667c336c304a0e0"
+        block: 22095092
+        note: |
+          Ethereum USDT AddedBlackList(address) for 0xedcf79de5347a81d9329951ed78f6215cfb27b3c,
+          19,696.79 USDT tracker balance, block 22095092 at 2025-03-21 11:57:35 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x970af0dc17ff56a1846b59bfc0d347f6615fdb940bca5ca2258b0bdfdcb46edb
+        tx_hash: "0x970af0dc17ff56a1846b59bfc0d347f6615fdb940bca5ca2258b0bdfdcb46edb"
+        block: 22095092
+        note: |
+          Ethereum USDT AddedBlackList(address) for 0xcd69f8ec7d6b03e66bd13f2829cbc00a416420d6,
+          19,691.69 USDT tracker balance, block 22095092 at 2025-03-21 11:57:35 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xa71f1a9da815b86cee18e3628e967b85409ae366050f522452e0f5471838cdd3
+        tx_hash: "0xa71f1a9da815b86cee18e3628e967b85409ae366050f522452e0f5471838cdd3"
+        block: 22095092
+        note: |
+          Ethereum USDT AddedBlackList(address) for 0x8f836b2122da07d8a20f71856e676f086c7c84b8,
+          19,694.80 USDT tracker balance, block 22095092 at 2025-03-21 11:57:35 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xb36caaaad90f4fe9e194882086194671b827fed86e8af571c6d974a910f276e1
+        tx_hash: "0xb36caaaad90f4fe9e194882086194671b827fed86e8af571c6d974a910f276e1"
+        block: 22095093
+        note: |
+          Ethereum USDT AddedBlackList(address) for 0xc8bd2fbfe0437f38394c5d504221fc01cc8df92a,
+          19,730.41 USDT tracker balance, block 22095093 at 2025-03-21 11:57:47 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x3ec45ce2716355ccfabf5f26a5c91acfe9cd58e8b4d806f3a56283663bd30ee3
+        tx_hash: "0x3ec45ce2716355ccfabf5f26a5c91acfe9cd58e8b4d806f3a56283663bd30ee3"
+        block: 22095093
+        note: |
+          Ethereum USDT AddedBlackList(address) for 0xe761bcec17380181d99ebcabd0d2a65b7ab64c6f,
+          39,340.00 USDT tracker balance, block 22095093 at 2025-03-21 11:57:47 UTC.
+      - type: supporting_tracker
+        url: https://usdtbanlist.com/address/TLZiKkccnBs2hg21dD55HZJLhQWFEgkjVU
+        body_hash: sha256:a1ab069c077c34fc519fcb1bf39ef8c206fa8a40901cf2dc73a727620698894a
+        body_path: sources/http_captures/t3-bybit-hack-usdt-freeze-2025-03/primary/usdtbanlist.com__address-TLZiKkccnBs2hg21dD55HZJLhQWFEgkjVU__84239a2658.html
+        evidence_use: replayable
+        note: |
+          Representative usdtbanlist tracker capture showing the address-level
+          frozen balance and linked Tronscan AddedBlackList tx. The full local
+          capture bundle includes tracker pages for all 18 pinned addresses.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-06-01.** This is a date/scope-corrected
+  replacement for the prior held registry row `tether-bybit-hack-lazarus-freeze-2025-02`.
+  The earlier row was based on an inaccessible/press-only 181k-USDT claim and lacked
+  address or tx anchors. This draft uses a stronger source chain: Tether's primary
+  2025-03-26 T3 FCU announcement, the public Bybit/LazarusBounty address API, 13 TRON
+  USDT AddedBlackList receipts, five Ethereum USDT AddedBlackList receipts, and local
+  usdtbanlist tracker captures.
+
+  This remains `status=draft` and `origin=agent_draft`; automation must not promote it
+  to an admitted paper row without human admission review.
+
+  Scope discipline: the event does not claim to exhaust Tether's nearly-$9M operation.
+  Pinned tracker balances sum to 7,454,738.93 USDT across the 18-address subset, while
+  the Tether aggregate is larger. The draft therefore uses `target.enumeration=subset`
+  and `asset_onchain=partially_measured`. It records the first pinned blacklist receipt
+  as the trigger timestamp and treats the public 2025-03-26 Tether article as the
+  disclosure/source anchor, not as the first freeze time.
+
+scoped_claim: |
+  "T3 FCU/Tether froze a measured subset of Bybit-hack-linked USDT addresses between
+  2025-03-01 and 2025-03-21, with 18 Bybit/LazarusBounty API addresses pinned to
+  USDT AddedBlackList receipts on TRON and Ethereum. Tether's 2025-03-26 primary
+  announcement reports the broader operation as nearly $9M; this draft carries only
+  the pinned subset and remains non-admitted pending human review."
+
+tags:
+  - corporate_policy_change
+  - tether
+  - tron
+  - trm_labs
+  - t3_financial_crime_unit
+  - bybit_hack
+  - lazarus
+  - usdt
+  - asset_freeze

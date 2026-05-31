@@ -4,7 +4,7 @@
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **404 events**: **368 admitted** / 27 draft / 9 rejected.
+- **405 events**: **368 admitted** / 28 draft / 9 rejected.
 - **Integrity**: `scripts/validate.py` passes **404 / 404 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
@@ -57,9 +57,9 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
     `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 185
-    verified+scope-tagged registry rows, 117 covered by corpus / duplicate / semantic precedent. Of the
-    remaining 68 `in_corpus=false` rows, 65 are reviewed-excluded/context-only/out-of-scope/proposal-only
-    under codebook §9 and 3 are explicit held evidence-floor rows; 0 exact-id candidate rows remain to triage from the 264-row
+    verified+scope-tagged registry rows, 118 covered by corpus / duplicate / semantic precedent. Of the
+    remaining 67 `in_corpus=false` rows, 65 are reviewed-excluded/context-only/out-of-scope/proposal-only
+    under codebook §9 and 2 are explicit held evidence-floor rows; 0 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -98,9 +98,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     The prior 8-row exact-id queue is now exhausted: Tencent/WeChat NFT and Binance Europe retreat are
     semantic-covered, Tether APAC pig-butchering is exact-covered by admitted `tether-pig-butchering-second-wave-2024`,
     FATF 2022 is context-only, Thailand SEC staking/lending is date/scope-corrected as proposal-policy rather
-    than a pinned 2022 operative ban, and three candidates remain only as held evidence-floor rows
-    (MetaMask Apple App Store removal needs primary/app-store availability evidence; WazirX/Tether and
-    Bybit/Tether freezes need asset-onchain tx_hash/address-set evidence).
+    than a pinned 2022 operative ban, and two candidates remain only as held evidence-floor rows
+    (MetaMask Apple App Store removal needs primary/app-store availability evidence; WazirX/Tether
+    needs asset-onchain tx_hash/address-set evidence). The Bybit/Tether held row is now
+    date/scope-corrected into draft `t3-bybit-hack-usdt-freeze-2025-03`, using Tether's 2025-03-26
+    primary T3 FCU announcement, the Bybit/LazarusBounty public address API, and 18 USDT blacklist receipts.
     `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
     `cftc-v-ooki-dao-2022`, which already uses the same CFTC 8590-22 trigger and enumerates bZeroX LLC,
     both founders, and successor Ooki DAO.
@@ -251,10 +253,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     withdrawal/enforcement family; `tether-apac-pig-butchering-freeze-2024-06` by admitted
     `tether-pig-butchering-second-wave-2024`). Two are reviewed non-authorable as currently framed
     (`fatf-targeted-update-va-vasp-2022` context-only and `thailand-sec-staking-lending-ban-2022-09`
-    proposal/date-corrected rather than a pinned 2022 operative ban). Three are held, not authored, until
+    proposal/date-corrected rather than a pinned 2022 operative ban). Two remain held, not authored, until
     they meet the evidence floor: `metamask-apple-app-store-removal-2023-10` needs primary/app-store
-    availability evidence, while `wazirx-tether-usdt-hack-freeze-2025-01` and
-    `tether-bybit-hack-lazarus-freeze-2025-02` need asset-onchain tx_hash/address-set anchors.
+    availability evidence, while `wazirx-tether-usdt-hack-freeze-2025-01` needs asset-onchain
+    tx_hash/address-set anchors. `tether-bybit-hack-lazarus-freeze-2025-02` is now date/scope-corrected
+    to the non-admitted draft `t3-bybit-hack-usdt-freeze-2025-03`.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;
@@ -265,7 +268,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
 - **Capture yield rule**: only official PDFs / static pages on standard URLs capture cleanly; JS-gated exchange
   pages (Binance) return empty bodies and bot-protected gov sites reset — don't rely on them.
 
-## Held drafts (25) — all honest, documented holds
+## Held drafts (26) — all honest, documented holds
 - **1 partially repaired asset_onchain draft still lacks a complete target set**: t3-financial-crime-unit now pins
   two same-day USDT-on-TRON blacklist txs, but the public launch source does not enumerate the full "over USDT
   12M" frozen-address set.
@@ -280,7 +283,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   USDC blacklist receipts; bittrex-global-shutdown now has an official primary-corporate Zendesk notice;
   colonial-pipeline-darkside-clawback now has DOJ/Paladin captures plus a primary_onchain Bitcoin tx hash.
   All remain `origin=agent_draft`, so automation does not promote them.
-- **15 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
+- **16 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
   kuwait-cma-virtual-assets-prohibition-2023-07, and
   celsius-multistate-cease-desist-earn-2021-09 are newly modeled from the P4 queue with replay anchors;
   bitcoin-maven-tetley-doj-2018 is modeled from an official DOJ Wayback capture as an individual-MSB
@@ -304,7 +307,9 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   FEPD/BFIU PDFs as a date-corrected payment-rail restriction distinct from the 2014 warning row; and
   saudi-standing-committee-virtual-currency-warning-2018-08 is modeled from the official SAMA Arabic
   committee notice as a no-approval / no-licensed-persons null_case denominator rather than a hard
-  exchange-shutdown claim.
+  exchange-shutdown claim; and t3-bybit-hack-usdt-freeze-2025-03 is modeled from Tether's official
+  2025-03-26 T3 FCU announcement, the public Bybit/LazarusBounty address API, and 18 pinned USDT
+  AddedBlackList receipts as a subset-scoped Bybit-hack freeze row.
   All remain non-admitted pending human admission review. Celsius
   additionally needs OCR/human confirmation of the scanned New Jersey order text before any promotion.
 
