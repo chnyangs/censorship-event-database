@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `199`
-- Admitted but release-blocked cases: `169`
+- Release-ready cases: `213`
+- Admitted but release-blocked cases: `155`
 - Fully complete release-ready cases: `13`
-- Scope-limited release-ready cases: `186`
+- Scope-limited release-ready cases: `200`
 - Working drafts: `2`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
@@ -2146,18 +2146,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `eu-15th-russia-sanctions-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-16th-russia-sanctions-2025`
@@ -2228,73 +2225,61 @@ This file is the operational summary for the repo's two current priorities:
 ### `eu-amla-anti-money-laundering-authority-regulation-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-amlr-eu-single-rulebook-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-belarus-crypto-services-ban-2022`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-dac8-crypto-asset-reporting-directive-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-mica-2023`
@@ -2373,18 +2358,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `fatf-grey-list-crypto-related-actions-2023-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `fatf-r15-vasp-travel-rule-2019`
@@ -2403,52 +2385,43 @@ This file is the operational summary for the repo's two current priorities:
 ### `fatf-targeted-update-va-vasp-2021`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `fatf-targeted-update-va-vasp-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `fatf-virtual-currencies-key-definitions-2014`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `fayzimatov-alqaeda-syria-ofac-2021-07`
@@ -2536,18 +2509,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `fsb-crypto-asset-recommendations-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `ftx-bankman-fried-doj-2022`
@@ -2589,35 +2559,29 @@ This file is the operational summary for the repo's two current priorities:
 ### `g20-roadmap-crypto-asset-policy-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `g7-hiroshima-crypto-statement-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `garantex-besciokov-mira-serda-doj-2025`
@@ -3338,18 +3302,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `japan-fsa-travel-rule-effective-2023-06`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `japan-fsa-zaif-orders-2018-09`
@@ -3949,18 +3910,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `mica-l2-esma-eba-rts-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `morocco-office-des-changes-crypto-ban-2017-11`
