@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · commit `c9831a8` · generated `2026-05-31T12:53:21Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · commit `b71c00e` · generated `2026-05-31T13:15:30Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 
@@ -8,8 +8,8 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | count | value | target | gap |
 | --- | ---: | ---: | ---: |
-| raw registry rows | 492 | audit surface | — |
-| distinct in-frame triggers | 391 | 150-250 milestone | 0 |
+| raw registry rows | 493 | audit surface | — |
+| distinct in-frame triggers | 392 | 150-250 milestone | 0 |
 | admitted events | 368 | 120 quality milestone | 0 |
 
 ## Status distribution
@@ -17,7 +17,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | registry_status | count |
 | --- | ---: |
 | `admitted` | 368 |
-| `draft` | 23 |
+| `draft` | 24 |
 | `promoted_to_event` | 45 |
 | `rejected` | 9 |
 | `screened_no_extractor_target` | 47 |
@@ -26,7 +26,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | temporal_tier | rows |
 | --- | ---: |
-| `comparable_main_2017_present` | 415 |
+| `comparable_main_2017_present` | 416 |
 | `discovery_only_2007_2012` | 22 |
 | `historical_baseline_2013_2016` | 55 |
 
@@ -34,7 +34,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | analysis_use | rows |
 | --- | ---: |
-| `comparable_analysis` | 415 |
+| `comparable_analysis` | 416 |
 | `discovery_ledger_only` | 22 |
 | `historical_baseline` | 55 |
 
@@ -45,7 +45,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | `S1_ofac_sdn` | 54 | 52 | 30 | 0 | 35 | 0 | 50 | 0 |
 | `S2_ofac_removal` | 1 | 1 | 5 | 4 | 10 | 9 | 10 | 9 |
 | `S3_doj_sec_cftc_fiod` | 85 | 77 | 20 | 0 | 30 | 0 | 40 | 0 |
-| `S4_nation_state` | 117 | 111 | 10 | 0 | 20 | 0 | 20 | 0 |
+| `S4_nation_state` | 118 | 111 | 10 | 0 | 20 | 0 | 20 | 0 |
 | `S5_corporate` | 104 | 97 | 10 | 0 | 15 | 0 | 20 | 0 |
 | `S6_supranational` | 30 | 30 | 5 | 0 | 10 | 0 | 10 | 0 |
 

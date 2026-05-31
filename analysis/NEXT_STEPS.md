@@ -1,6 +1,6 @@
 # Next steps — censorship-event-database
 
-Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 total; see
+Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 401 total; see
 `analysis/STATE_OF_CORPUS_2026_05_31.md`). Ordered by priority. Nothing here is pushed — all work is local.
 
 ## P1 — Scope / design decisions
@@ -72,11 +72,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 152
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 104 already covered
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 154
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 106 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
       48 `in_corpus=false` rows, all 48 are now reviewed-excluded/context-only under codebook §9, leaving
-      0 currently actionable registry rows. Exact-id remaining queue: 33 candidate rows not yet in events
+      0 currently actionable registry rows. Exact-id remaining queue: 31 candidate rows not yet in events
       or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
@@ -84,7 +84,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 
       `bangladesh-bb-crypto-illegality-2017-09` was closed as a date-corrected 2017-12-24 Bangladesh Bank
       cautionary notice: the source record supports a request/warning about possible legal risk, not a
       distinct service denial, platform block, payment-rail prohibition, or binding ban beyond the
-      already-admitted `bangladesh-bb-bitcoin-warning-2014`. `vietnam-sbv-bitcoin-prohibition-2014-02`
+      already-admitted `bangladesh-bb-bitcoin-warning-2014`. The two broader Bangladesh
+      reaffirmation candidates are now date-corrected to the operative 2022-09-15 Bangladesh Bank FEPD
+      FE Circular No. 24 and represented by draft
+      `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09`, using the official FEPD circular PDF
+      plus the BFIU Annual Report 2021-22 as replayable official anchors. `vietnam-sbv-bitcoin-prohibition-2014-02`
       was re-opened from stale semantic coverage and split correctly: the alternate slug now points to
       draft `vietnam-sbv-bitcoin-prohibition-statement-2014-02`, while the admitted 2017 SBV fines/payment
       prohibition remains distinct. `kyrgyzstan-nbkr-bitcoin-payment-ban-2014-08` was date-corrected to
@@ -182,6 +186,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 
       A seventeenth follow-on triage added `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07`
       as an official NBKR-captured `origin=agent_draft` historical-baseline null_case row and closed
       the stale 2014-08 candidate slug as date-corrected/covered.
+      An eighteenth follow-on triage added
+      `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09` as an official Bangladesh Bank
+      FEPD/BFIU-captured `origin=agent_draft` payment-rail restriction row and closed two stale
+      Bangladesh reaffirmation candidate slugs as date-corrected/covered.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 

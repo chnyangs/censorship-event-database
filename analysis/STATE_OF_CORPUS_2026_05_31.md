@@ -4,8 +4,8 @@
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **400 events**: **368 admitted** / 23 draft / 9 rejected.
-- **Integrity**: `scripts/validate.py` passes **400 / 400 [OK]**; `make check` passes. All changes remain local, never pushed.
+- **401 events**: **368 admitted** / 24 draft / 9 rejected.
+- **Integrity**: `scripts/validate.py` passes **401 / 401 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
 ## Admitted composition (368)
@@ -31,7 +31,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
    (25 clean + 9 flagged national bans). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;
-   current validator regression 400/400.
+   current validator regression 401/401.
 5. **Continuation P1/P2 cleanup** — resolved US-state regulator stratum policy (state/subnational
    administrative actions stay `regulatory_enforcement` / `S4_nation_state`), recoded NYDFS BitLicense
    accordingly, rejected Iraq as warning/context-only, rejected GoldAge as pre-2007 out-of-frame, and
@@ -56,14 +56,18 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 152
-    verified+scope-tagged registry rows, 104 covered by corpus / duplicate / semantic precedent. All
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 154
+    verified+scope-tagged registry rows, 106 covered by corpus / duplicate / semantic precedent. All
     remaining 48 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 33 exact-id candidate rows remain to triage from the 264-row
+    0 currently actionable registry rows; 31 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
     payment-rail prohibition, or binding ban beyond `bangladesh-bb-bitcoin-warning-2014`.
+    The broader Bangladesh reaffirmation candidates are now date-corrected to the operative 2022-09-15
+    Bangladesh Bank FEPD FE Circular No. 24 and represented by draft
+    `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09`, using the official FEPD circular PDF plus
+    the BFIU Annual Report 2021-22 as replayable official anchors.
     `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
     `cftc-v-ooki-dao-2022`, which already uses the same CFTC 8590-22 trigger and enumerates bZeroX LLC,
     both founders, and successor Ooki DAO.
@@ -159,6 +163,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     `origin=agent_draft` historical-baseline null_case row using the official NBKR English warning page
     plus a confirmed 2026-05-31 Wayback snapshot. The stale
     `kyrgyzstan-nbkr-bitcoin-payment-ban-2014-08` candidate slug now points to this date-corrected draft.
+20. **Eighteenth follow-on triage (Bangladesh 2022 FEPD circular)** —
+    `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09` was added as a conservative
+    `origin=agent_draft` payment-rail restriction row using the official Bangladesh Bank FEPD circular PDF
+    and BFIU Annual Report 2021-22. Two stale Bangladesh reaffirmation candidate slugs now point to this
+    date-corrected draft rather than to the 2014 warning row.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;
@@ -169,7 +178,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
 - **Capture yield rule**: only official PDFs / static pages on standard URLs capture cleanly; JS-gated exchange
   pages (Binance) return empty bodies and bot-protected gov sites reset — don't rely on them.
 
-## Held drafts (23) — all honest, documented holds
+## Held drafts (24) — all honest, documented holds
 - **1 partially repaired asset_onchain draft still lacks a complete target set**: t3-financial-crime-unit now pins
   two same-day USDT-on-TRON blacklist txs, but the public launch source does not enumerate the full "over USDT
   12M" frozen-address set.
@@ -184,7 +193,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   USDC blacklist receipts; bittrex-global-shutdown now has an official primary-corporate Zendesk notice;
   colonial-pipeline-darkside-clawback now has DOJ/Paladin captures plus a primary_onchain Bitcoin tx hash.
   All remain `origin=agent_draft`, so automation does not promote them.
-- **13 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
+- **14 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
   kuwait-cma-virtual-assets-prohibition-2023-07, and
   celsius-multistate-cease-desist-earn-2021-09 are newly modeled from the P4 queue with replay anchors;
   bitcoin-maven-tetley-doj-2018 is modeled from an official DOJ Wayback capture as an individual-MSB
@@ -203,7 +212,9 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   vietnam-sbv-bitcoin-prohibition-statement-2014-02 is modeled as a distinct 2014 SBV payment-instrument /
   credit-institution warning rather than collapsed into the admitted 2017 fines/payment-prohibition event;
   and kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07 is modeled from the official NBKR warning
-  page as a date-corrected class-level virtual-currency payment warning with no named downstream cutoff.
+  page as a date-corrected class-level virtual-currency payment warning with no named downstream cutoff;
+  and bangladesh-bank-fepd-virtual-assets-prohibition-2022-09 is modeled from official Bangladesh Bank
+  FEPD/BFIU PDFs as a date-corrected payment-rail restriction distinct from the 2014 warning row.
   All remain non-admitted pending human admission review. Celsius
   additionally needs OCR/human confirmation of the scanned New Jersey order text before any promotion.
 

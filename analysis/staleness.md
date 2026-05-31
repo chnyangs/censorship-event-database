@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-05-31T12:53:21Z`
+Generated at: `2026-05-31T13:15:30Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 275, 'ok': 125}
-- **Verification** (`last_verified`): {'ok': 400}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 275, 'ok': 125}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 276, 'ok': 125}
+- **Verification** (`last_verified`): {'ok': 401}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 276, 'ok': 125}
 
 ## Flag legend
 
@@ -39,6 +39,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `argentina-uif-resolution-300-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 10 | ok | no_audit_recorded |
 | `augur-v2-us-uk-geofence-2020-07` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 10 | ok | no_audit_recorded |
 | `australia-asic-binance-derivatives-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 15 | ok | 2026-05-16 | 15 | ok | ok |
+| `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
 | `bangladesh-bb-bitcoin-warning-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 10 | ok | no_audit_recorded |
 | `bcbs-cryptoasset-prudential-standard-sco60-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
 | `belgium-fsma-binance-cease-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 15 | ok | 2026-05-16 | 15 | ok | ok |
@@ -440,6 +441,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `argentina-cnv-psav-registration-2024` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `argentina-uif-resolution-300-2014` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `augur-v2-us-uk-geofence-2020-07` — audit=no_audit_recorded, verification=ok, verif_age=10d
+- `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `bangladesh-bb-bitcoin-warning-2014` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `bcbs-cryptoasset-prudential-standard-sco60-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `binance-4framework-2023` — audit=no_audit_recorded, verification=ok, verif_age=39d

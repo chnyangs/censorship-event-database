@@ -2270,6 +2270,163 @@
     "version": "0.1"
   },
   {
+    "_source_file": "bangladesh-bank-fepd-virtual-assets-prohibition-2022-09.yaml",
+    "admission_tier": "empirical_case",
+    "analysis_notes": "**NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4\ncensus-gap queue after exact-candidate review found that the previously\nclosed 2017 Bangladesh warning row did not cover the stronger official\nBangladesh Bank FE Circular No. 24 issued on 2022-09-15. The event remains\n`status=draft` and `origin=agent_draft`; automation must not promote it to an\nadmitted paper row without human admission review.\n\nInclusion rationale: this is not coded as a soft consumer warning. The\ncircular is an exercise of Bangladesh Bank authority under Section 20(3) of\nthe Foreign Exchange Regulation Act, 1947 and is addressed to banks,\nauthorized FX dealers, MFS providers, financial institutions, and FX\nstakeholders. It prohibits virtual-asset / virtual-currency obtaining\ntransactions in/from/to Bangladesh and facilitation of their\nexchange/transfer/trading, with FERA contravention consequences.\n\nDate/scope correction: the candidate pool framed this as a 2017/2021/2022\nreaffirmation. This draft keys only the operative 2022-09-15 FEPD circular.\nThe 2021 public notice cited in the circular remains antecedent context, and\nthe already-admitted 2014 Bangladesh Bank warning remains a separate\nhistorical-baseline null_case.\n\nModeling rationale: `nation_state_block` is used for consistency with\npayment-rail prohibition events such as Turkey CBRT 2021 and Kuwait 2023.\nThe measured layer is `offramp_cex` because the practical restriction is on\nregulated financial/foreign-exchange channels and facilitation of virtual\nasset exchange/transfer/trading, not a network block, frontend takedown,\nprotocol change, or issuer-side asset freeze.\n\nSource note: a Wayback save attempt for the FEPD circular returned HTTP 523\non 2026-05-31. The draft therefore relies on local body_hash/body_path replay\nanchors for the official PDFs.\n",
+    "analysis_use": "comparable_analysis",
+    "codebook_version": "4.0.0",
+    "coverage": [
+      {
+        "layer": "l0_network",
+        "note": "The circular is a foreign-exchange / payment-rail legal instrument, not an\nISP, DNS, IP, routing, or other network-layer block.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l1_consensus",
+        "note": "No blockchain consensus mechanism, validator, miner, relay, or protocol\nrule is modified by the Bangladesh Bank circular.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l3_rpc",
+        "note": "The instrument does not name RPC providers or wallet/API routing\ninfrastructure.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "l4_frontend",
+        "note": "The circular does not name any exchange, wallet, marketplace, merchant,\nor frontend domain for blocking or takedown.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "asset_onchain",
+        "note": "The circular does not identify an issuer-side freeze, blacklist, burn, or\naddress set, and no on-chain administrative action is claimed.\n",
+        "status": "not_applicable"
+      },
+      {
+        "layer": "offramp_cex",
+        "note": "Load-bearing layer. FE Circular No. 24 prohibits transactions made\nin/from/to Bangladesh for obtaining virtual assets or virtual currencies\nand prohibits facilitation of business, activities, and operations\nassociated with exchange/transfer/trading of virtual assets or virtual\ncurrencies. This is modeled as a Bangladesh foreign-exchange / financial-\nrail restriction on virtual-asset dealing and facilitation.\n",
+        "scope": [
+          "bangladesh_virtual_asset_fx_payment_facilitation",
+          "bangladesh_banks_mfs_financial_institutions_fx_stakeholders"
+        ],
+        "status": "measured"
+      }
+    ],
+    "created_at": "2026-05-31T00:00:00+00:00",
+    "empirical_shape": "comparison",
+    "id": "bangladesh-bank-fepd-virtual-assets-prohibition-2022-09",
+    "jurisdiction": [
+      "BD"
+    ],
+    "last_verified": "2026-05-31",
+    "observations": [
+      {
+        "actor": "bangladesh_virtual_asset_fx_activity_class",
+        "attribution": "direct",
+        "delta_hours": 0,
+        "event": "virtual_asset_dealing_and_facilitation_not_permitted_by_bangladesh_bank",
+        "layer": "offramp_cex",
+        "observation_kind": "observed_change",
+        "precision": "day",
+        "sources": [
+          {
+            "body_hash": "sha256:f88145cd6358c849b0e23c1ea2453392d2b2e917152aeb670aad7005868c81d8",
+            "body_path": "sources/http_captures/bangladesh-bank-fepd-virtual-assets-prohibition-2022-09/primary/www.bb.org.bd__mediaroom-circulars-fepd-sep152022fepd24e.pdf__a437219e06.bin",
+            "evidence_use": "replayable",
+            "note": "FE Circular No. 24 is the direct legal anchor for the observed_change.\nIt states that virtual-asset / virtual-currency obtaining\ntransactions in/from/to Bangladesh and facilitation of their\nexchange/transfer/trading are not permitted by Bangladesh Bank and\nidentifies FERA contravention consequences. attribution=direct because\nthe regulator's own circular names the restricted activity class and\naddressees.\n",
+            "scope_descriptor": {
+              "countries": [
+                "BD"
+              ],
+              "providers": [
+                "bangladesh_scheduled_banks_authorized_fx_dealers_mfs_financial_institutions"
+              ],
+              "time_window": [
+                "2022-09-15T00:00:00+00:00",
+                "2026-05-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.bb.org.bd/mediaroom/circulars/fepd/sep152022fepd24e.pdf"
+          },
+          {
+            "body_hash": "sha256:c46b2f47c8c2fe0bdad07cc1ab35a7039915762c2f2d9886557d929a45299e7f",
+            "body_path": "sources/http_captures/bangladesh-bank-fepd-virtual-assets-prohibition-2022-09/primary/www.bb.org.bd__pub-annual-bfiu-bfiu_2021-2022.pdf__5f0c377ee2.bin",
+            "evidence_use": "replayable",
+            "note": "BFIU Annual Report 2021-22 corroborates the circular, repeats the\nprohibition framing, and provides official AML/FIU context for\nreporting and enforcement activity around virtual-currency and online\nforex trading. It does not add a distinct platform shutdown or\non-chain action.\n",
+            "type": "primary_government",
+            "url": "https://www.bb.org.bd/pub/annual/bfiu/bfiu_2021-2022.pdf"
+          }
+        ],
+        "timestamp": "2022-09-15T00:00:00+00:00"
+      }
+    ],
+    "origin": "agent_draft",
+    "primary_source_verified": false,
+    "related_events": [
+      "bangladesh-bb-bitcoin-warning-2014",
+      "vietnam-sbv-payment-prohibition-2017-10",
+      "pakistan-sbp-crypto-prohibition-2018-04",
+      "turkey-cbrt-crypto-ban-2021"
+    ],
+    "research_stratum": "S4_nation_state",
+    "schema_version": "0.2.0",
+    "scoped_claim": "On 2022-09-15, Bangladesh Bank's Foreign Exchange Policy Department issued FE\nCircular No. 24 prohibiting transactions made in/from/to Bangladesh for\nobtaining virtual assets or virtual currencies and prohibiting facilitation of\nbusiness, activities, and operations associated with their\nexchange/transfer/trading. This draft models the action as a single-layer S4\nnation-state foreign-exchange / financial-rail restriction at offramp_cex; no\nL0/L1/L3/L4 or asset-onchain effect is claimed.\n",
+    "status": "draft",
+    "tags": [
+      "nation_state_block",
+      "bangladesh",
+      "bangladesh_bank",
+      "fepd",
+      "virtual_assets",
+      "virtual_currency_prohibition",
+      "payment_rail_prohibition",
+      "foreign_exchange_regulation",
+      "agent_draft"
+    ],
+    "target": {
+      "actor_name": "Bangladesh virtual-asset dealing and facilitation class",
+      "actor_type": "bangladesh_virtual_asset_fx_activity_class",
+      "canonical_domains": [],
+      "chains": [],
+      "enumeration": "subset",
+      "enumeration_note": "Bangladesh scheduled banks, authorized foreign-exchange dealers, mobile\nfinancial service providers, financial institutions, other concerns, and\nstakeholders associated with foreign-exchange dealings, plus the class of\nindividuals/entities/institutions operating in Bangladesh that might deal in\nor facilitate exchange/transfer/trading of virtual assets or virtual\ncurrencies. The circular is class-level and does not enumerate specific\nexchanges, banks, MFS providers, user accounts, domains, tokens, or\nblockchain addresses.\n",
+      "kind": "entity",
+      "protocol": null
+    },
+    "temporal_tier": "comparable_main_2017_present",
+    "trigger": {
+      "actor": "BD_BB_FEPD",
+      "citation": [
+        {
+          "body_hash": "sha256:f88145cd6358c849b0e23c1ea2453392d2b2e917152aeb670aad7005868c81d8",
+          "body_path": "sources/http_captures/bangladesh-bank-fepd-virtual-assets-prohibition-2022-09/primary/www.bb.org.bd__mediaroom-circulars-fepd-sep152022fepd24e.pdf__a437219e06.bin",
+          "evidence_use": "replayable",
+          "note": "Bangladesh Bank Foreign Exchange Policy Department FE Circular No. 24,\ndated 2022-09-15, titled \"Prohibition regarding virtual assets, virtual\ncurrencies and facilitating their exchange/transfer/trading.\" The\ncircular is addressed to scheduled banks, authorized dealers of foreign\nexchange, MFS providers, financial institutions, other concerns, and all\nstakeholders associated with foreign-exchange dealings in Bangladesh.\n`pdftotext` on the captured PDF confirms the load-bearing provisions:\nvirtual currencies are not recognized as currency, are not approved\nforeign exchange/currency or approved transaction/investment forms, any\ntransaction made in/from/to Bangladesh for obtaining virtual assets or\nvirtual currencies is not permitted by Bangladesh Bank, facilitation of\nvirtual-asset exchange/transfer/trading is not permitted, and violations\nare treated as contraventions of the Foreign Exchange Regulation Act,\n1947 subject to cognizance under Section 23(1).\n",
+          "type": "primary_legal",
+          "url": "https://www.bb.org.bd/mediaroom/circulars/fepd/sep152022fepd24e.pdf"
+        },
+        {
+          "body_hash": "sha256:c46b2f47c8c2fe0bdad07cc1ab35a7039915762c2f2d9886557d929a45299e7f",
+          "body_path": "sources/http_captures/bangladesh-bank-fepd-virtual-assets-prohibition-2022-09/primary/www.bb.org.bd__pub-annual-bfiu-bfiu_2021-2022.pdf__5f0c377ee2.bin",
+          "evidence_use": "replayable",
+          "note": "Bangladesh Financial Intelligence Unit Annual Report 2021-22, hosted by\nBangladesh Bank. The report corroborates the 2022-09-15 FEPD circular\nand describes the policy as a prohibition of virtual assets, virtual\ncurrencies, and facilitation of exchange/transfer/trading. It also\ndocuments BFIU reporting context: 107 STR/SARs related to virtual\ncurrency and online forex trading as of June 2022, and law-enforcement\nactivity involving detected cases and arrests during the preceding\nfive-year period. Used as official corroboration and operational\ncontext, not as a separate trigger.\n",
+          "type": "primary_government",
+          "url": "https://www.bb.org.bd/pub/annual/bfiu/bfiu_2021-2022.pdf"
+        }
+      ],
+      "timestamp": "2022-09-15T00:00:00+00:00",
+      "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision from the date printed on FE Circular No. 24\n(2022-09-15). The event is keyed to the circular date, not the earlier\n2021 public-warning notice cited in the circular.\n",
+          "type": "primary_legal"
+        }
+      ],
+      "type": "nation_state_block"
+    },
+    "version": "0.1"
+  },
+  {
     "_source_file": "bangladesh-bb-bitcoin-warning-2014.yaml",
     "admission_tier": "null_case",
     "analysis_notes": "**PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by\nhuman:xiangwen as null_case. CoinDesk Wayback 20210919030841 + Daily\nStar Wayback 20181206154558 captured 2026-05-21 with replayable\nbody_hash, reclassified as semi_primary_wayback (2 independent ->\nmeets admission). observation coverage_gap->observed_no_change.\ncoverage[offramp_cex] not_measured->measured. null_event/null_case\npreserved.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-17**. Historical-baseline\ncontextual case for the 2014-09-15 Bangladesh Bank (BB) warning\nthat bitcoin transactions could constitute unauthorised acts\nunder the Foreign Exchange Regulation Act 1947 and the AML/CFT\nstatutes (Money Laundering Prevention Act 2012, Anti-Terrorism\nAct 2009), carrying up to 12 years' imprisonment. Authored at\nstatus=draft / origin=agent_draft pending human audit of (i)\nthe CoinDesk and Daily Star URL reachability and Wayback\nsnapshot pinning, (ii) any direct BB press-release primary\nsource that may exist in Bangladeshi-language press but was not\nlocated in this authoring pass, and (iii) any exchange-side\nevidence of Bangladesh-resident cutoff in contemporaneous\npress coverage.\n\nSignificance: this is a foundational 2014-era nation-state\nwarning treating bitcoin transactions as prohibited under\nexisting FX-control and AML/CFT law rather than under a\nfreshly issued crypto-specific directive. It is the direct\ncross-jurisdiction sibling of iceland-cbi-foreign-exchange-\nbitcoin-2014 (CBI 2014-03-19 statement) and bolivia-bcb-\ncrypto-prohibition-2014 (BCB 2014-05 prohibition), and\nfollows china-pboc-crypto-ban-2013-12 and thailand-bot-\nbitcoin-prohibition-2013 as the earliest cluster of nation-\nstate-level bitcoin-restriction events in the dataset.\n\nWhy trigger.type=regulatory_enforcement (not nation_state_block):\nper codebook \u00a75.1, regulatory_enforcement is the canonical\ntrigger.type for non-US national regulator administrative\nenforcement actions that are NOT network-layer or payment-rail\nblocks. The BB warning does not direct ISP-level blocking or\npayment-system severance; it states a legal-interpretation\nposition under existing FX-control and AML/CFT law. This\nmatches the codebook \u00a75.1 carve-out distinguishing\nregulatory_enforcement from nation_state_block.\n\nWhy temporal_tier=historical_baseline_2013_2016 +\nanalysis_use=historical_baseline: 2014 belongs to the pre-2017\nhistorical-baseline tier per sampling/frame.yaml.\nanalysis_use=historical_baseline excludes this row from the\n2017+ comparable-analysis denominator. The event is retained\nas contextual case-study material rather than as a denominator\nrow because (a) it predates the comparable corpus and (b) the\ncascade surface is class-level rather than exchange-specific.\n\nWhy null_event / null_case / coverage_gap: the BB warning carries\ndirect-attribution force on Bangladeshi-resident bitcoin\ntransacting behaviour as a class, but the cascade surface in the\navailable public record is not exchange-specific and this pass\ndid not locate a replayable null-observation anchor for a 90-day\nexchange-side cutoff window. Without a documented exchange-side\ncutoff, a measured Bangladesh-resident on-chain volume shift, or\na falsifiable null-observation query, the event stays draft-only\nas a coverage_gap with admission_tier=null_case.\n\nWhy L0/L1/L3/L4/asset_onchain are not_applicable: the BB\nwarning is a legal-interpretation notice under existing\nFX-control and AML/CFT law; it does not direct network-layer\nblocking, L4 frontend changes, or engage any 2014-nonexistent\nL1/L3 PBS measurement primitive or any asset-issuer admin\npath. The L0/L1/L3/asset_onchain not_applicable treatment\nmatches the sibling Iceland 2014 / China 2013-12 / India 2018\n/ Nigeria 2021 / Turkey 2021 banking-and-FX-rail pattern.\n\nCodebook compliance: per \u00a76 the canonical analysis_use is\n`historical_baseline` (not the alias `contextual_baseline`);\nper \u00a77 target.enumeration=subset is used with class-level\nrationale documented in enumeration_note (not the unsupported\n`class_level` enum value); per \u00a71.5 no L0 observation is\nadmitted because no replayable OONI / Censored Planet /\nCloudflare Radar measurement was captured.\n",
