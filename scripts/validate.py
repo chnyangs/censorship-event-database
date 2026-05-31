@@ -1221,6 +1221,20 @@ class EventValidator:
                     "non-draft event requires target.enumeration to be 'complete' or 'subset'; "
                     f"got {enumeration!r}. Pending enumeration is only valid on draft events."
                 )
+            kind = target.get("kind")
+            canonical_target_fields = {
+                "address_set": "addresses",
+                "asset": "asset",
+                "domain": "canonical_domains",
+                "entity": "entity",
+                "protocol": "protocol",
+            }
+            required_field = canonical_target_fields.get(kind)
+            if required_field and not target.get(required_field):
+                result.error(
+                    "non-draft event requires a canonical target field for "
+                    f"target.kind={kind!r}: target.{required_field}"
+                )
 
         placeholders = []
         observed_change_count = 0
