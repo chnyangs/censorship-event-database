@@ -12,17 +12,19 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **239** (9 complete / 230 scoped) and
-  admitted-but-blocked cases are **129**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **240** (9 complete / 231 scoped) and
+  admitted-but-blocked cases are **128**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current reliability distribution after the stricter pass and subsequent quality-loop repairs: observation
-  reliability **257 high / 80 medium / 31 low**; attribution reliability **220 high / 148 medium / 0 low**.
+  reliability **258 high / 80 medium / 30 low**; attribution reliability **221 high / 147 medium / 0 low**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
-- Latest automated repair: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
+- Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
   `body_hash` / `body_path` replay anchors, and its scoped claim is narrowed to the SEC civil filing and
-  relief sought rather than an unanchored post-filing receivership timeline.
+  relief sought rather than an unanchored post-filing receivership timeline. `sec-v-telegram-ton-2020`
+  now replaces stale SEC 2020-69 / telegram.org pointers with SDNY Document 227, SEC 2020-146, and Pavel
+  Durov's Telegraph termination post.
 
 ## Admitted composition (368)
 | dimension | breakdown |
