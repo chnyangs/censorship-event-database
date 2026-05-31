@@ -1,6 +1,6 @@
 # Audit worksheet — `infura-alchemy-tornado-rpc-block-2022`
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ad93b7f` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `e43eea7` · generated `2026-06-01T00:00:00Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S5_corporate`
