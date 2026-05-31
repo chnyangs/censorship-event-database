@@ -56,10 +56,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 158
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 160
     verified+scope-tagged registry rows, 110 covered by corpus / duplicate / semantic precedent. All
-    remaining 48 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 27 exact-id candidate rows remain to triage from the 264-row
+    remaining 50 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
+    0 currently actionable registry rows; 25 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -78,6 +78,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     The two Bolivia 2024 Resolution 082/2024 ban-lift candidate slugs are now closed as covered by a
     recovery/update block on admitted `bolivia-bcb-crypto-prohibition-2014`; official BCB legal and press
     sources pin the 2024-06-26 payment-channel reopening without claiming measured exchange restoration.
+    The two Tunisia 2018 BCT criminalization candidate slugs are now closed as reviewed-excluded/context-only:
+    captured claim sources are non-contemporaneous 2025/2026 explainers without a primary BCT/legal
+    instrument, while captured Tunisian coverage supports legal ambiguity and later ad hoc enforcement
+    concerns rather than a distinct 2018 crypto-stack censorship action.
     `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
     `cftc-v-ooki-dao-2022`, which already uses the same CFTC 8590-22 trigger and enumerates bZeroX LLC,
     both founders, and successor Ooki DAO.
@@ -195,6 +199,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     `bolivia-bcb-crypto-ban-lift-082-2024-06` are closed as covered by that block; the wording stays
     narrow because the captured legal instrument directly leaves Resolution 144/2020 without effect and
     re-enables electronic payment channels for virtual-asset purchase/sale operations.
+24. **Twenty-second follow-on triage (Tunisia 2018 BCT criminalization)** —
+    `tunisia-central-bank-crypto-criminalization-2018` and `tunisia-cbt-crypto-criminalization-2018`
+    are closed as reviewed-excluded/context-only. The review captured the non-contemporaneous claim
+    sources plus local Tunisian coverage; no primary BCT directive, legal text, or replayable 2018
+    service-denial action was located.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;

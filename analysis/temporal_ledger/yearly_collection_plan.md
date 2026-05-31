@@ -1,6 +1,6 @@
 # Yearly Collection Plan
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · generated `2026-05-31T14:17:25Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · generated `2026-05-31T14:34:18Z`
 
 This is the year-level control surface for the 2008+ tiered frame. It is derived from the monthly discovery ledger and trigger registry; it is not a paper denominator.
 

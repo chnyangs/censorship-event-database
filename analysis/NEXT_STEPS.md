@@ -72,11 +72,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 158
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 160
       verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 110 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
-      48 `in_corpus=false` rows, all 48 are now reviewed-excluded/context-only under codebook §9, leaving
-      0 currently actionable registry rows. Exact-id remaining queue: 27 candidate rows not yet in events
+      50 `in_corpus=false` rows, all 50 are now reviewed-excluded/context-only under codebook §9, leaving
+      0 currently actionable registry rows. Exact-id remaining queue: 25 candidate rows not yet in events
       or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
@@ -100,6 +100,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       recovery/update block on admitted `bolivia-bcb-crypto-prohibition-2014`: official BCB legal and
       press sources now pin the 2024-06-26 payment-channel reopening, without claiming a measured exchange
       restoration or a separate admitted event.
+      The two Tunisia 2018 BCT criminalization slugs were closed as reviewed-excluded/context-only: the
+      captured claim chain rests on non-contemporaneous 2025/2026 explainers without a primary BCT/legal
+      instrument, while captured Tunisian coverage supports legal ambiguity and later ad hoc enforcement
+      concerns rather than a distinct 2018 crypto-stack censorship action.
       `vietnam-sbv-bitcoin-prohibition-2014-02`
       was re-opened from stale semantic coverage and split correctly: the alternate slug now points to
       draft `vietnam-sbv-bitcoin-prohibition-statement-2014-02`, while the admitted 2017 SBV fines/payment
@@ -215,6 +219,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       candidate slugs as covered by that block, with the 2014-to-2024 legal chain kept deliberately
       narrow: 082/2024 directly leaves 144/2020 without effect and re-enables IEP channels for
       virtual-asset purchase/sale operations.
+      A twenty-second follow-on triage closed the two Tunisia 2018 BCT criminalization candidate slugs
+      as reviewed-excluded/context-only after capture review: the non-contemporaneous claim sources
+      do not pin a primary BCT/legal instrument, and the better captured local record points to legal
+      gray area plus later ad hoc arrests, not a replayable 2018 service-denial action.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 
