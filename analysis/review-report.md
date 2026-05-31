@@ -15,7 +15,7 @@ This file is the operational summary for the repo's two current priorities:
 - Working drafts: `2`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
-- Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, vietnam-sbv-bitcoin-prohibition-statement-2014-02, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, fayzimatov-alqaeda-syria-ofac-2021-07, magic-eden-ofac-sanctioned-country-block, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
+- Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, magic-eden-ofac-sanctioned-country-block, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06, vietnam-sbv-bitcoin-prohibition-statement-2014-02`
 
 ## Cases
 
@@ -88,17 +88,14 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -157,15 +154,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -182,14 +176,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -205,13 +196,10 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -279,15 +267,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `bangladesh-bb-bitcoin-warning-2014`
@@ -301,13 +286,10 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bcbs-cryptoasset-prudential-standard-sco60-2022`
@@ -426,15 +408,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -450,15 +429,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -475,14 +451,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -498,15 +471,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -536,15 +506,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -584,15 +551,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -608,15 +572,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -641,19 +602,16 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `working_draft`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one retained observation still depends on unresolved evidence scaffolding.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Promote to admitted once promotion-gate criteria are met.
@@ -663,15 +621,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `bitcoinica-shutdown-2012-05`
@@ -735,15 +690,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `bitfloor-capital-one-debanking-2013-04`
@@ -757,14 +709,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -801,18 +750,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -837,16 +783,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -861,14 +804,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -998,17 +938,14 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1023,16 +960,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -1049,14 +983,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1089,15 +1020,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1146,16 +1074,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -1270,16 +1195,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -1318,15 +1240,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1342,15 +1261,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1397,16 +1313,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -1532,17 +1445,14 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1662,14 +1572,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1791,16 +1698,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -1815,15 +1719,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1951,13 +1852,10 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2002,15 +1900,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -2026,14 +1921,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2061,15 +1953,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -2398,16 +2287,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `fincen-eric-powers-p2p-exchanger-2019-04`
@@ -2491,17 +2377,14 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2586,15 +2469,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -2605,18 +2485,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2656,15 +2533,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `google-play-india-crypto-exchange-removal-2024-01`
@@ -2678,15 +2552,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -2938,15 +2809,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3012,15 +2880,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3062,16 +2927,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `irgc-ransomware-ofac-2022`
@@ -3182,15 +3044,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `japan-fsa-six-exchange-orders-2018-06`
@@ -3266,15 +3125,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3290,14 +3146,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3392,16 +3245,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -3448,15 +3298,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3583,15 +3430,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07`
@@ -3599,16 +3443,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `lazarus-entity-ofac-2019`
@@ -3644,15 +3485,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `liberty-reserve-coordinated-takedown-2013-05`
@@ -3774,18 +3612,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3844,16 +3679,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -3961,15 +3793,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4001,16 +3830,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -4036,18 +3862,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4069,20 +3892,17 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `needs_re_scoping`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `low`
 - Attribution reliability: `low`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one retained observation still depends on unresolved evidence scaffolding.
 - Note: No observed_change entries remain, so attribution cannot be evaluated.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
 - Blocker: The file does not currently retain a stable changed-layer claim.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Promote to admitted once promotion-gate criteria are met.
@@ -4098,14 +3918,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -4145,17 +3962,14 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -4164,15 +3978,12 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `oasis-app-wormhole-counter-exploit-2023-02`
@@ -4242,18 +4053,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4262,16 +4070,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `ofac-houthi-al-jamal-crypto-refresh-2024-12`
@@ -4346,15 +4151,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4399,16 +4201,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -4425,14 +4224,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4442,20 +4238,17 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `needs_re_scoping`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `low`
 - Attribution reliability: `low`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one retained observation still depends on unresolved evidence scaffolding.
 - Note: No observed_change entries remain, so attribution cannot be evaluated.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
 - Blocker: The file does not currently retain a stable changed-layer claim.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Promote to admitted once promotion-gate criteria are met.
@@ -4471,14 +4264,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4526,15 +4316,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4563,15 +4350,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4602,16 +4386,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -4628,14 +4409,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4665,13 +4443,10 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4825,20 +4600,17 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `needs_re_scoping`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `low`
 - Attribution reliability: `low`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one retained observation still depends on unresolved evidence scaffolding.
 - Note: No observed_change entries remain, so attribution cannot be evaluated.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
 - Blocker: The file does not currently retain a stable changed-layer claim.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Promote to admitted once promotion-gate criteria are met.
@@ -4895,14 +4667,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4932,13 +4701,10 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `russia-mining-regional-ban-2024-12`
@@ -5020,17 +4786,14 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5039,16 +4802,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `sec-abra-plutus-earn-cease-2024-08`
@@ -5293,16 +5053,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `sec-v-ftx-2022`
@@ -5348,16 +5105,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `sec-voorhees-satoshidice-2014`
@@ -5400,14 +5154,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5644,16 +5395,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -5664,18 +5412,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `needs_re_scoping`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -5715,17 +5460,14 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `working_draft`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
@@ -5808,15 +5550,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -5846,14 +5585,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5877,18 +5613,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5917,15 +5650,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5960,14 +5690,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6042,18 +5769,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6069,14 +5793,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6092,14 +5813,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6158,13 +5876,10 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `uae-vara-licence-issuance-regime-2023`
@@ -6326,15 +6041,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6350,15 +6062,12 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6390,16 +6099,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
@@ -6410,16 +6116,13 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `draft`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `vietnam-sbv-payment-prohibition-2017-10`
@@ -6433,16 +6136,13 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer does not clearly meet the source threshold.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either strengthen the weak changed layer or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
@@ -6466,18 +6166,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6492,14 +6189,11 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6659,18 +6353,15 @@ This file is the operational summary for the repo's two current priorities:
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Pin down the target set more concretely in the event file.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
