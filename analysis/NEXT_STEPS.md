@@ -77,10 +77,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 404 
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
       68 `in_corpus=false` rows, 65 are reviewed-excluded/context-only/out-of-scope/proposal-only under
       codebook §9 and 3 are explicit `HELD-needs-*` evidence-floor rows. Exact-id remaining queue: 0
-      candidate rows not yet in events or registry. Continue by promoting new rows from the 264-row candidate pool
-      into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
-      draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
-      the under-collected 2013–2020 era and non-US/non-English actions.
+      candidate rows not yet in events or registry; the 264-row candidate pool is now fully reconciled.
+      Continue with either held evidence repair or new source sweeps: source candidate → dedup against
+      corpus → §9 scope → author as verified draft when evidence floors are met → adversarial verify →
+      admit (or `attested_secondary` if single-source). Heaviest gap remains the under-collected
+      2013–2020 era and non-US/non-English actions.
       `bangladesh-bb-crypto-illegality-2017-09` was closed as a date-corrected 2017-12-24 Bangladesh Bank
       cautionary notice: the source record supports a request/warning about possible legal risk, not a
       distinct service denial, platform block, payment-rail prohibition, or binding ban beyond the
