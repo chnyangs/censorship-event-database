@@ -45,12 +45,16 @@ trigger:
       wayback: https://web.archive.org/web/20221124110546/https://www.theblock.co/post/189717/consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura
       body_hash: sha256:9e7e1de2017082950f81267d77f69693828cc587d3b226ba018e6f039245c8fb
       body_path: sources/http_captures/consensys-metamask-infura-rpc-data-collection-2022-11/primary/web.archive.org__web-20221124110546-https-www.theblock.co-post-189717-consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura__bb63c07635.html
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         The Block contemporaneous coverage of the 2022-11-23 ConsenSys
         privacy-policy update disclosing Infura IP+wallet-address
-        collection. Day-level timing triangulation. DRYRUN: pinned
-        Wayback snapshot deferred to human audit.
+        collection. Evidence repair 2026-06-01: the 2022-11-24
+        Wayback memento is locally captured with body_hash/body_path
+        and is claim-usable for timing triangulation and the public-
+        disclosure/no-behavioral-cutover framing. The canonical
+        ConsenSys privacy-policy revision remains the preferred
+        first-party source to pin in a future release-hardening pass.
     - type: supporting_journalism
       url: https://decrypt.co/115486/infura-collect-metamask-users-ip-ethereum-addresses-after-privacy-policy-update
       wayback: https://web.archive.org/web/2022/https://decrypt.co/115486/infura-collect-metamask-users-ip-ethereum-addresses-after-privacy-policy-update
@@ -134,7 +138,9 @@ coverage:
       revision itself. Coverage is partially_measured because the
       privacy-policy text is the canonical primary-corporate source
       pinned at calendar-folder Wayback granularity (pending
-      body_hash on human audit); no behavioral L3 cascade is claimed.
+      body_hash on human audit), while the locally captured 2022-11-24
+      The Block memento provides replayable contemporaneous support
+      for the disclosure timing. No behavioral L3 cascade is claimed.
   - layer: l4_frontend
     status: not_applicable
     note: |
@@ -204,20 +210,30 @@ observations:
         wayback: https://web.archive.org/web/20221124110546/https://www.theblock.co/post/189717/consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura
         body_hash: sha256:9e7e1de2017082950f81267d77f69693828cc587d3b226ba018e6f039245c8fb
         body_path: sources/http_captures/consensys-metamask-infura-rpc-data-collection-2022-11/primary/web.archive.org__web-20221124110546-https-www.theblock.co-post-189717-consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura__bb63c07635.html
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
           The Block contemporaneous coverage (2022-11-24) of the
           ConsenSys privacy-policy disclosure, retained for day-level
           timing triangulation and for the framing that the
           disclosure is a transparency update about pre-existing
-          collection rather than a new collection practice. DRYRUN:
-          pinned Wayback snapshot deferred to human audit.
+          collection rather than a new collection practice. Evidence
+          repair 2026-06-01: the 2022-11-24 Wayback memento is locally
+          captured with body_hash/body_path and is claim-usable for the
+          bounded null observation; it is not treated as a first-party
+          ConsenSys privacy-policy archive.
 
 analysis_notes: |
   **PROMOTED 2026-05-21** (c) Batch C-5 audit (S5 corporate, null_case) by
   human:xiangwen. Verified observed_no_change null (no censorship state
   transition in window); existing pinned-Wayback falsifiability anchor
   retained. null_event/null_case preserved.
+
+  **EVIDENCE REPAIR 2026-06-01**. The 2022-11-24 The Block Wayback
+  memento has a local body_hash/body_path capture and is marked
+  replayable for the narrow observed_no_change/null-denominator claim:
+  public disclosure timing and no claimed L3 availability cutover. The
+  repair does not promote the row to observed_change and does not replace
+  the still-needed first-party ConsenSys privacy-policy revision pin.
 
   **NEW EVENT AUTHORED — DRYRUN 2026-05-17**. Comparable-tier
   contextual case for the 2022-11-23 ConsenSys privacy-policy
@@ -291,17 +307,15 @@ analysis_notes: |
   asymmetry distinct from the censorship asymmetry surfaced by
   the cascade-shape siblings.
 
-  DRYRUN caveats: the four primary-corporate and supporting-
-  journalism citations all carry 2022-calendar-folder Wayback
-  pointers rather than pinned snapshots; pinned snapshot
-  timestamps and body_hash captures are deferred to the human-
-  audit pass. For non-DRYRUN release, capture body_hash +
-  body_path for: (1) the ConsenSys privacy-policy revision dated
-  2022-11-23 (compare archive.org snapshots 2022-11-23..2022-11-25
-  for the "Infura" / "IP address" / "Ethereum wallet address"
-  language); (2) The Block, Decrypt, and CryptoSlate article
-  permalinks. Marked evidence_use=contextual_unarchived on all
-  citations to flag the unarchived state per validator policy.
+  Remaining release-hardening caveats: the canonical ConsenSys
+  privacy-policy URL still carries a 2022-calendar-folder Wayback
+  pointer rather than a first-party pinned snapshot/body_hash for
+  the exact 2022-11-23 revision. The Block article has been repaired
+  with a locally captured 2022-11-24 Wayback memento; Decrypt and
+  CryptoSlate remain contextual triangulation only. For strict release,
+  capture body_hash+body_path for the ConsenSys privacy-policy revision
+  dated 2022-11-23 (compare archive.org snapshots 2022-11-23..2022-11-25
+  for the "Infura" / "IP address" / "Ethereum wallet address" language).
 
 scoped_claim: |
   "On 2022-11-23 ConsenSys updated the MetaMask privacy policy to
@@ -355,15 +369,15 @@ scoped_knowledge: |
   paper's discussion of corporate-policy governance of the L3
   substrate.
 
-  DRYRUN risk: the four citations are unarchived at pinned-snapshot
-  granularity. Before paper release the human-audit pass must pin
-  Wayback snapshots and body_hashes for the ConsenSys privacy-
-  policy revision dated 2022-11-23 and the three journalism
-  permalinks. If archive.org coverage of the specific 2022-11-23
-  privacy-policy revision proves recoverable only at calendar-
-  folder granularity, the disclosure framing should be preserved
-  as-is (observed_no_change / attribution=none / null_case) because
-  the framing does not depend on a strong-attribution anchor.
+  Residual risk: the canonical ConsenSys privacy-policy revision is
+  still not pinned at first-party snapshot/body_hash granularity, while
+  the locally captured The Block memento provides only contemporaneous
+  support. Before paper release, pin the ConsenSys privacy-policy
+  revision dated 2022-11-23 if archive.org coverage is recoverable.
+  If the first-party revision proves recoverable only at calendar-
+  folder granularity, the disclosure framing should be preserved as-is
+  (observed_no_change / attribution=none / null_case) because the row
+  does not claim a behavioral censorship cutover.
 
 tags:
   - corporate_policy_change
