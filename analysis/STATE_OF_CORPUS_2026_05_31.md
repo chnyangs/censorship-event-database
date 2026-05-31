@@ -56,10 +56,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 166
-    verified+scope-tagged registry rows, 110 covered by corpus / duplicate / semantic precedent. All
-    remaining 56 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 19 exact-id candidate rows remain to triage from the 264-row
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 174
+    verified+scope-tagged registry rows, 112 covered by corpus / duplicate / semantic precedent. All
+    remaining 62 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
+    0 currently actionable registry rows; 11 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -86,6 +86,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     Bitstamp, Cryptsy, and Bitfinex 2015-2016 hack/insolvency rows are incident-response failures, while
     IOSCO DeFi, FSB EMDE global-stablecoin, and IOSCO investor-education rows are recommendations or
     reporting artifacts with no operative access restriction.
+    Eight supranational update/review/report rows are now closed: BCBS 2024 disclosure/amendments and
+    FATF 2024 Targeted Update are covered by existing standards arcs, while FATF R16 2025, FATF 2025
+    Targeted Update, IOSCO/FSB 2025 thematic reviews, and FATF 2026 risk reports are context-only
+    artifacts with no standalone service-denial action.
     `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
     `cftc-v-ooki-dao-2022`, which already uses the same CFTC 8590-22 trigger and enumerates bZeroX LLC,
     both founders, and successor Ooki DAO.
@@ -213,6 +217,14 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     Cryptsy, and Bitfinex 2015-2016 rows are reviewed-excluded platform-failure/hack-response cases
     under codebook §9. IOSCO DeFi 2023, FSB EMDE global-stablecoin 2024, and IOSCO investor-education
     2024 are reviewed-context-only recommendations/reporting artifacts with no operative access restriction.
+26. **Twenty-fourth follow-on triage (supranational updates/reviews/reports)** —
+    Eight exact candidates are now closed without changing admitted-event counts. BCBS 2024 disclosure
+    framework/amendments are covered as an update to the admitted 2022 BCBS cryptoasset prudential
+    standard, and the FATF 2024 Targeted Update is already pinned inside the admitted FATF 2023-2024
+    standards/grey-list arc. FATF R16 2025, FATF 2025 Targeted Update, IOSCO/FSB 2025 thematic reviews,
+    and FATF 2026 stablecoin/unhosted-wallet plus offshore-VASP reports are reviewed-context-only:
+    official captures show implementation monitoring, risk reporting, or recommendations, not standalone
+    crypto-stack service-denial actions.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;
