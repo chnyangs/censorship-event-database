@@ -1,0 +1,182 @@
+id: tether-okx-doj-pig-butchering-225m-freeze-2025-06
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - tether-doj-pig-butchering-freeze-2023
+  - tether-pig-butchering-second-wave-2024
+
+trigger:
+  type: doj_seizure_order
+  actor: doj_usao_dc
+  timestamp: 2025-06-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.cnbc.com/2025/06/18/doj-crypto-scams.html
+      wayback: https://web.archive.org/web/20260128145043/https://www.cnbc.com/2025/06/18/doj-crypto-scams.html
+      body_hash: sha256:6d42073efca881f4f19fb822df80a94f79afebfa4e4e4fb2045d32814c2ddb4f
+      body_path: sources/http_captures/tether-okx-doj-pig-butchering-225m-freeze-2025-06/primary/web.archive.org__web-20260128145043-https-www.cnbc.com-2025-06-18-doj-crypto-scams.html__e1478807da.html
+      evidence_use: replayable
+      note: |
+        CNBC 2025-06-18: The US Attorney's Office for the District of
+        Columbia filed a civil forfeiture complaint seeking ~$225M in
+        USDT — the largest-ever US seizure of funds tied to crypto
+        "pig butchering" confidence schemes. Tether assisted the freeze.
+        Wayback 20260128145043 pinned.
+    - type: semi_primary_wayback
+      url: https://www.trmlabs.com/resources/blog/us-doj-announces-largest-ever-seizure-of-funds-related-to-crypto-scams
+      wayback: https://web.archive.org/web/20260409233711/https://www.trmlabs.com/resources/blog/us-doj-announces-largest-ever-seizure-of-funds-related-to-crypto-scams
+      body_hash: sha256:50ad0a3b08e400b39c65a90948cdca45c725d851b027bd4ae2fbcf65ac9c48e7
+      body_path: sources/http_captures/tether-okx-doj-pig-butchering-225m-freeze-2025-06/primary/web.archive.org__web-20260409233711-https-www.trmlabs.com-resources-blog-us-doj-announces-largest-ever-seizure-of-funds-related-to-crypto-scams__0d14d7bd3b.html
+      evidence_use: replayable
+      note: |
+        TRM Labs corroboration: ~$225,364,961 USDT held across seven
+        wallets ("USDT Token Groups A-G") frozen with the assistance of
+        Tether and OKX; Tether burned the frozen tokens and reissued the
+        equivalent value to the US government to enable civil-forfeiture
+        recovery. Independent second semi-primary anchor.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: civil forfeiture complaint filed 2025-06-18
+        per the cited coverage.
+
+target:
+  kind: address_set
+  enumeration: subset
+  enumeration_note: |
+    Seven high-value wallets ("USDT Token Groups A-G") holding a combined
+    ~$225,364,961 USDT, frozen with Tether/OKX assistance. The seven
+    groups are attested as a count in the captured coverage; the
+    individual on-chain addresses are not enumerated here.
+  protocol: null
+  actor_type: pig_butchering_laundering_cluster
+  actor_name: Pig-butchering syndicate USDT cluster (7 wallet groups)
+  chains: [tron, ethereum]
+  canonical_domains: []
+  addresses: []
+
+jurisdiction:
+  - corporate_global
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: measured
+    note: |
+      Tether (with OKX) froze ~$225.36M USDT across seven wallets at DOJ
+      direction, then burned and reissued the tokens to the US government
+      under civil forfeiture. The freeze is the load-bearing asset-layer
+      action. NOTE (codebook §1.6): no verified primary_onchain freeze
+      tx_hash is pinned in this draft; a human must attach the
+      addBlackList / burn tx hashes before admission. No tx_hash fabricated.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_okx_froze_225m_usdt_seven_wallets_at_doj_direction
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2025-06-18T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.trmlabs.com/resources/blog/us-doj-announces-largest-ever-seizure-of-funds-related-to-crypto-scams
+        wayback: https://web.archive.org/web/20260409233711/https://www.trmlabs.com/resources/blog/us-doj-announces-largest-ever-seizure-of-funds-related-to-crypto-scams
+        body_hash: sha256:50ad0a3b08e400b39c65a90948cdca45c725d851b027bd4ae2fbcf65ac9c48e7
+        body_path: sources/http_captures/tether-okx-doj-pig-butchering-225m-freeze-2025-06/primary/web.archive.org__web-20260409233711-https-www.trmlabs.com-resources-blog-us-doj-announces-largest-ever-seizure-of-funds-related-to-crypto-scams__0d14d7bd3b.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tether, okx]
+          countries: [US]
+          time_window:
+            - 2025-06-18T00:00:00Z
+            - 2025-06-30T23:59:59Z
+        note: |
+          TRM Labs: ~$225,364,961 USDT across seven wallets (Token Groups
+          A-G) frozen with Tether/OKX assistance; Tether burned and
+          reissued to the US government. attribution=direct: Tether's
+          own freeze/burn action carries the asset-layer change and is
+          executed at the named DOJ DC forfeiture direction against
+          identified target wallets.
+      - type: semi_primary_wayback
+        url: https://www.cnbc.com/2025/06/18/doj-crypto-scams.html
+        wayback: https://web.archive.org/web/20260128145043/https://www.cnbc.com/2025/06/18/doj-crypto-scams.html
+        body_hash: sha256:6d42073efca881f4f19fb822df80a94f79afebfa4e4e4fb2045d32814c2ddb4f
+        body_path: sources/http_captures/tether-okx-doj-pig-butchering-225m-freeze-2025-06/primary/web.archive.org__web-20260128145043-https-www.cnbc.com-2025-06-18-doj-crypto-scams.html__e1478807da.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tether]
+          countries: [US]
+          time_window:
+            - 2025-06-18T00:00:00Z
+            - 2025-06-30T23:59:59Z
+        note: |
+          CNBC corroboration of the largest-ever ~$225M USDT pig-
+          butchering forfeiture (DOJ DC, 2025-06-18) with Tether
+          assistance. Independent second semi-primary anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). On 2025-06-18 the US
+  Attorney's Office for the District of Columbia filed a civil forfeiture
+  complaint for ~$225,364,961 USDT — the largest-ever US seizure tied to
+  crypto "pig butchering" schemes. Tether and OKX froze the funds across
+  seven wallets ("USDT Token Groups A-G"); Tether then burned the frozen
+  tokens and reissued the equivalent value to the US government.
+  comparison shape, single asset_onchain observed_change,
+  attribution=direct per §1.2 (Tether's own freeze/burn carries the
+  asset-layer change at named DOJ forfeiture direction against identified
+  targets). jurisdiction corporate_global (Tether/OKX action) + US (DOJ
+  DC). DEDUP note: DISTINCT from tether-doj-pig-butchering-freeze-2023
+  (the 2023-11-20 $225M EDVA freeze, "International Human Trafficking
+  Syndicate" — a separate, earlier $225M event) and from
+  tether-pig-butchering-second-wave-2024; this is the 2025-06 DOJ-DC
+  civil forfeiture (a coincidentally similar headline figure but a
+  different filing, district, date, and wallet set). NOTE for human
+  reviewer (codebook §1.6): asset_onchain observed_change carries no
+  pinned primary_onchain freeze/burn tx_hash (deferred for drafts); pin
+  the addBlackList/burn tx hashes before admission. No tx_hash fabricated.
+  The two specific Tron/ETH addresses and per-group amounts are NOT
+  asserted (not present in the captured pages). Sources verified via
+  WebSearch + captured 2026-05-31 (CNBC + TRM Labs, body_hash-pinned).
+
+scoped_claim: |
+  "On 2025-06-18 (DOJ DC civil forfeiture, largest-ever crypto pig-
+  butchering seizure), Tether and OKX froze ~$225.36M USDT across seven
+  wallets and Tether burned+reissued the tokens to the US government;
+  single-layer asset_onchain observed_change, attribution=direct.
+  Distinct from the 2023-11 $225M EDVA freeze. Asset-layer freeze/burn
+  tx hashes to be pinned by a human before admission (codebook §1.6)."
+
+tags:
+  - doj_seizure_order
+  - tether_freeze
+  - okx
+  - pig_butchering
+  - civil_forfeiture
+  - largest_ever_seizure
+  - non_ofac_triggered

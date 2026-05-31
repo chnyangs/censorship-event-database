@@ -1,0 +1,170 @@
+id: shapeshift-mandatory-kyc-anonymity-end-2018-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - consensys-metamask-infura-rpc-data-collection-2022-11
+  - kraken-monero-eu-delisting-2024
+
+trigger:
+  type: corporate_policy_change
+  actor: shapeshift
+  timestamp: 2018-09-04T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://bitcoinist.com/shapeshift-ends-anonymity-with-announcement-of-mandatory-kyc-data-collection/
+      wayback: https://web.archive.org/web/20251017143246/https://bitcoinist.com/shapeshift-ends-anonymity-with-announcement-of-mandatory-kyc-data-collection/
+      body_hash: sha256:8ff6e8ad8917401286503df16e08cda75abcca2b55c81908969cfee155669b95
+      body_path: sources/http_captures/shapeshift-mandatory-kyc-anonymity-end-2018-09/primary/web.archive.org__web-20251017143246-https-bitcoinist.com-shapeshift-ends-anonymity-with-announcement-of-mandatory-kyc-data-collection__37ef4733b2.html
+      evidence_use: replayable
+      note: |
+        Bitcoinist 2018-09: CEO Erik Voorhees announced on 2018-09-04 that all
+        ShapeShift users would face mandatory KYC, packaged as a "membership"
+        scheme — ending the pioneering "exchange without accounts" anonymous
+        no-account swap model. Body grep-confirmed: "mandatory", "membership",
+        "without accounts". Wayback 20251017143246 pinned.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: Voorhees' membership/KYC announcement 2018-09-04
+        per the cited coverage.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Single class: ShapeShift's anonymous (no-account) swap users. The mandatory
+    KYC membership scheme ended the no-account anonymous-swap model the platform
+    pioneered, removing anonymous access to the ShapeShift off-ramp/swap surface
+    globally.
+  actor_type: exchange_operator
+  actor_name: ShapeShift anonymous swap users
+  chains:
+    - bitcoin
+    - ethereum
+
+jurisdiction:
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A customer-onboarding/KYC policy, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Acts on ShapeShift's access policy, not on any chain's consensus.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Not a frontend domain/UI block; the change is mandatory identity
+      collection gating access to the swap service.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain freeze; assets remain on-chain. The action is an access-gating
+      KYC requirement on a centralized swap/off-ramp surface.
+  - layer: offramp_cex
+    status: measured
+    scope: [shapeshift_anonymous_swap]
+    note: |
+      Load-bearing layer. ShapeShift imposed mandatory KYC ("membership"),
+      ending its anonymous no-account swap model and removing anonymous access
+      to the ShapeShift centralized swap/off-ramp. Attested in contemporaneous
+      trade press (Bitcoinist + CoinDesk).
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:shapeshift
+    event: shapeshift_mandatory_kyc_ends_anonymous_swaps
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2018-09-04T00:00:00Z
+    precision: day
+    country: corporate_global
+    sources:
+      - type: semi_primary_wayback
+        url: https://bitcoinist.com/shapeshift-ends-anonymity-with-announcement-of-mandatory-kyc-data-collection/
+        wayback: https://web.archive.org/web/20251017143246/https://bitcoinist.com/shapeshift-ends-anonymity-with-announcement-of-mandatory-kyc-data-collection/
+        body_hash: sha256:8ff6e8ad8917401286503df16e08cda75abcca2b55c81908969cfee155669b95
+        body_path: sources/http_captures/shapeshift-mandatory-kyc-anonymity-end-2018-09/primary/web.archive.org__web-20251017143246-https-bitcoinist.com-shapeshift-ends-anonymity-with-announcement-of-mandatory-kyc-data-collection__37ef4733b2.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [shapeshift]
+          countries: [global]
+          time_window:
+            - 2018-09-01T00:00:00Z
+            - 2018-09-30T23:59:59Z
+        note: |
+          Bitcoinist 2018-09: Voorhees announced mandatory KYC membership,
+          ending the "exchange without accounts" anonymous-swap model.
+          attribution=plausible: the policy change is directly observed, but
+          per Voorhees it was a proactive de-risking step "not added as a result
+          of any enforcement action" — i.e. no specific named trigger, so the
+          regulatory-compliance motive is contextual class-level inference (§1.1).
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/markets/2018/09/24/crypto-exchange-shapeshifts-ceo-says-move-to-collect-ids-was-proactive
+        wayback: https://web.archive.org/web/20240812225720/https://www.coindesk.com/markets/2018/09/24/crypto-exchange-shapeshifts-ceo-says-move-to-collect-ids-was-proactive/
+        body_hash: sha256:8d0b5798555272ad7d9f991919ab1786f879d1558f5675096e2805fe66d58e06
+        body_path: sources/http_captures/shapeshift-mandatory-kyc-anonymity-end-2018-09/primary/web.archive.org__web-20240812225720-https-www.coindesk.com-markets-2018-09-24-crypto-exchange-shapeshifts-ceo-says-move-to-collect-ids-was-proactive__650b51aebe.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [shapeshift]
+          countries: [global]
+          time_window:
+            - 2018-09-01T00:00:00Z
+            - 2018-09-30T23:59:59Z
+        note: |
+          CoinDesk 2018-09-24: Voorhees says the move to collect IDs was
+          "proactive," not the result of an enforcement action. Independent
+          second semi-primary anchor; supports attribution=plausible (no named
+          trigger). Body grep-confirmed: "proactive", "Voorhees".
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). ShapeShift (CEO Erik Voorhees)
+  announced on 2018-09-04 a mandatory-KYC "membership" scheme, ending the
+  pioneering "exchange without accounts" anonymous no-account swap model — a
+  foundational CEX/swap privacy-censorship action removing anonymous access to
+  the ShapeShift off-ramp globally. §9 IN scope: deliberate corporate denial of
+  anonymous service access (privacy restriction), not a hack/insolvency.
+  comparison shape, single offramp_cex observed_change. attribution=plausible
+  per §1.1: the policy is directly observed but Voorhees publicly framed it as a
+  PROACTIVE de-risking step "not added as a result of any enforcement action"
+  (CoinDesk), so there is no named trigger and the global-AML-compliance motive
+  is contextual class-level inference. jurisdiction=corporate_global (no single
+  named state). Assets stay on-chain so l0/l1/l3/l4/asset_onchain are
+  not_applicable; comparable tier (2018). Sources verified via WebSearch +
+  captured Wayback (Bitcoinist + CoinDesk, both body_hash-pinned, body
+  grep-confirmed; no fabrication). NOTE: the later 2021 Voorhees "No more KYC"
+  reversal is a separate event and is NOT used here.
+
+scoped_claim: |
+  "ShapeShift's 2018-09-04 mandatory-KYC membership scheme ended its anonymous
+  no-account swap model, removing anonymous access to the ShapeShift swap/off-
+  ramp; single-layer offramp_cex observed_change, attribution=plausible
+  (Voorhees framed it as proactive, citing no enforcement-action trigger)."
+
+tags:
+  - corporate_policy_change
+  - mandatory_kyc
+  - anonymity_end
+  - privacy_restriction
+  - shapeshift
+  - offramp_shutdown
+  - no_account_swap

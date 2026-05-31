@@ -1,0 +1,189 @@
+id: paxos-canada-exit-2023-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - canada-csa-binance-withdrawal-2023
+  - kucoin-canada-exit-2023
+  - okx-canada-exit-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: PAXOS_TRUST
+  timestamp: 2023-04-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada
+      wayback: https://web.archive.org/web/20240810111740/https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada/
+      body_hash: sha256:2847886e2e270edad0e32f6d9bbfe7ccd32af9a5aaeadadfceb3a0c9b5c946d3
+      body_path: sources/http_captures/paxos-canada-exit-2023-04/primary/web.archive.org__web-20240810111740-https-www.coindesk.com-business-2023-04-12-blockchain-financial-services-firm-paxos-is-withdrawing-from-canada__c7eb09cb13.html
+      evidence_use: replayable
+      note: |
+        CoinDesk (2023-04-12): Paxos announced on its website that it is
+        withdrawing from the Canadian market effective 2023-06-02. Accounts
+        with no funds were auto-closed on 2023-05-09; all other accounts
+        were disabled on 2023-06-02 (after which Canadian users could still
+        withdraw funds but not initiate new trades). The exit followed the
+        CSA's 2023-02-22 enhanced pre-registration-undertaking framework
+        (the stablecoin / value-referenced-crypto-asset deposit
+        restrictions). The captured page confirms the Canada withdrawal,
+        the 2023-06-02 effective date, and the CSA regulatory context.
+        Verified via grep of the pinned body.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level trigger timing: Paxos website announcement dated
+        2023-04-12; empty accounts closed 2023-05-09; all remaining
+        accounts disabled (withdraw-only) 2023-06-02.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Paxos Canadian-resident user cohort. Paxos (Paxos Trust Company /
+    crypto-brokerage and stablecoin-issuance businesses) is the focal
+    target actor; the affected population is Canadian-resident users of
+    the Paxos platform. Subset-enumerated because the exit affected the
+    Canadian retail cohort rather than a named address list. Sibling to
+    the S4 canada-csa-binance-withdrawal-2023 and the S5
+    kucoin-canada-exit-2023 / okx-canada-exit-2023.
+  actor_type: regulated_crypto_service_provider
+  actor_name: Paxos (Canada user cohort)
+  chains: []
+  canonical_domains:
+    - paxos.com
+
+jurisdiction: [CA]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Paxos's Canada exit is a corporate policy decision, not an ISP-level
+      / network-layer block. No DNS or BGP reachability change is asserted
+      against paxos.com from Canadian networks.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Corporate market-exit decision; no validator-level construct is
+      implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change is implicated by a platform
+      market-exit.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      Paxos's exit was a website / notice announcement rather than a
+      captured geo-gated paxos.com frontend block; no replayable
+      frontend-state diff for Canadian geo was captured. Held as
+      not_measured pending a Wayback capture of paxos.com Canada-geo
+      behavior across the 2023-05-09 to 2023-06-02 window.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Although Paxos is a stablecoin issuer, this event is a Canadian
+      market exit (platform-service withdrawal), not an issuer-admin
+      on-chain freeze of any asset. No tx_hash freeze is asserted; the
+      effect is carried at offramp_cex per codebook §1.6 routing.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - paxos_canada_users
+      - cad_rails_to_paxos
+    note: |
+      Load-bearing layer. Effective 2023-06-02 Paxos disabled Canadian-
+      resident accounts (with empty accounts auto-closed 2023-05-09),
+      leaving Canadian users withdraw-only and severing the Paxos platform
+      off-ramp / brokerage service for new activity. Attested in the pinned
+      CoinDesk coverage.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:paxos_canada
+    event: paxos_canada_offramp_shutdown
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-06-02T00:00:00Z
+    precision: day
+    country: CA
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada
+        wayback: https://web.archive.org/web/20240810111740/https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada/
+        body_hash: sha256:2847886e2e270edad0e32f6d9bbfe7ccd32af9a5aaeadadfceb3a0c9b5c946d3
+        body_path: sources/http_captures/paxos-canada-exit-2023-04/primary/web.archive.org__web-20240810111740-https-www.coindesk.com-business-2023-04-12-blockchain-financial-services-firm-paxos-is-withdrawing-from-canada__c7eb09cb13.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [paxos]
+          countries: [CA]
+          time_window:
+            - 2023-04-12T00:00:00Z
+            - 2023-06-02T23:59:59Z
+        note: |
+          Paxos 2023-06-02 disabling of Canadian accounts (empty accounts
+          closed 2023-05-09). attribution=plausible: the off-ramp shutdown
+          is directly observed in contemporaneous coverage, but the captured
+          anchor is semi-primary (no Paxos primary notice pinned), so the
+          link to the 2023-02-22 CSA framework is the reporter-attributed
+          rationale rather than a primary Paxos-stated trigger.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Paxos's 2023-04-12
+  announcement of withdrawal from the Canadian market effective 2023-06-02
+  (empty accounts auto-closed 2023-05-09), following the CSA's 2023-02-22
+  enhanced pre-registration-undertaking framework. S5 corporate-policy
+  retreat sibling to the S4 canada-csa-binance-withdrawal-2023 and the S5
+  kucoin-canada-exit-2023 / okx-canada-exit-2023.
+
+  comparison shape: 1 observed_change layer (offramp_cex) with
+  attribution=plausible. attribution held at plausible (not direct)
+  because the captured anchor is semi-primary trade press; no primary
+  Paxos corporate notice was pinned. Although Paxos is a stablecoin
+  issuer, asset_onchain is not_applicable per codebook §1.6 — this is a
+  market-exit / platform-service withdrawal, not an on-chain issuer
+  freeze; the effect is carried at offramp_cex (precedent:
+  paxos-busd-nydfs-minting-stop-2023 / binance-busd-wind-down-2024 carry
+  issuer actions off the asset_onchain row). l0/l1/l3 not_applicable;
+  l4_frontend not_measured. Source verified via WebSearch + capture
+  2026-05-31 (CoinDesk, body_hash-pinned; grep-confirmed "Canada" /
+  "June 2" / "withdraw"; no fabrication).
+
+  Codebook decisions applied:
+  - trigger.type=corporate_policy_change per §5.1 (platform-initiated
+    market exit) -> research_stratum=S5_corporate.
+  - attribution=plausible on offramp_cex per §1.x (semi-primary anchor).
+  - asset_onchain=not_applicable per §1.6 off-chain-mechanism routing.
+  - target.enumeration=subset per §7 (Canadian-resident retail cohort).
+  - empirical_shape=comparison per §3; admission_tier=empirical_case
+    per §4.
+
+scoped_claim: |
+  "Paxos on 2023-04-12 announced withdrawal from the Canadian market
+  effective 2023-06-02 (empty accounts closed 2023-05-09), disabling
+  Canadian-resident accounts to withdraw-only amid the CSA's 2023-02-22
+  undertaking framework — a 1-layer offramp_cex observed_change
+  (attribution=plausible) for the Paxos Canada cohort. Structurally an S5
+  corporate-policy retreat sibling to the S4 CSA-driven Binance Canada
+  withdrawal (canada-csa-binance-withdrawal-2023)."
+
+tags:
+  - corporate_policy_change
+  - canada
+  - paxos
+  - jurisdiction_exit
+  - offramp_shutdown

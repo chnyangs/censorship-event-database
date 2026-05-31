@@ -1,0 +1,197 @@
+id: tether-garantex-usdt-freeze-2025-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - garantex-ofac-2022
+  - grinex-garantex-successor-ofac-2025
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_usdt_issuer
+  timestamp: 2025-03-06T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://cointelegraph.com/news/tether-freezes-27-million-usdt-sanctions-garantex-russia
+      wayback: https://web.archive.org/web/20251230143611/https://cointelegraph.com/news/tether-freezes-27-million-usdt-sanctions-garantex-russia
+      body_hash: sha256:7fac161b542140e576ba6984a1f9c30726d243d73ffe2043b20fac544b6e277c
+      body_path: sources/http_captures/tether-garantex-usdt-freeze-2025-03/primary/web.archive.org__web-20251230143611-https-cointelegraph.com-news-tether-freezes-27-million-usdt-sanctions-garantex-russia__2dfac54eda.html
+      evidence_use: replayable
+      note: |
+        Cointelegraph 2025-03-06: Garantex announced "Tether has entered
+        the war against the Russian crypto market and blocked our wallets
+        worth more than 2.5 billion rubles [$27 million]." Garantex
+        temporarily suspended all services, including withdrawals, with
+        its website under maintenance. The freeze followed the EU
+        sanctioning Garantex on 2025-02-26 as part of its 16th package
+        of sanctions on Russia (the EU's first crypto-exchange listing).
+        Wayback 20251230143611 pinned.
+    - type: primary_corporate
+      url: https://tether.io/news/tether-recognized-for-assisting-the-united-states-secret-service-in-23m-freeze-related-to-transfers-on-sanctioned-exchange-garantex/
+      wayback: https://web.archive.org/web/20260306082124/https://tether.io/news/tether-recognized-for-assisting-the-united-states-secret-service-in-23m-freeze-related-to-transfers-on-sanctioned-exchange-garantex/
+      body_hash: sha256:94138908ffbc2cf82148c6465988b2b0304d7f9ae9b530bc15a5f4df0f25e7dd
+      body_path: sources/http_captures/tether-garantex-usdt-freeze-2025-03/primary/web.archive.org__web-20260306082124-https-tether.io-news-tether-recognized-for-assisting-the-united-states-secret-service-in-23m-freeze-related-to-transfers-on-sanction__f4b7d2b2aa.html
+      evidence_use: replayable
+      note: |
+        Tether official blog corroborating Tether's compliance freeze
+        action against the sanctioned exchange Garantex (Tether-assisted
+        US Secret Service freeze related to transfers on Garantex).
+        Independent primary-corporate anchor confirming the actor
+        (Tether) and target (sanctioned Garantex) of the freeze.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: Garantex's public statement and the service
+        suspension are dated 2025-03-06 per the cited coverage.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Garantex's USDT holdings / operating wallets frozen by Tether,
+    forcing the exchange to suspend all services and halt withdrawals.
+    Target is the Garantex exchange offramp; the specific frozen
+    on-chain addresses are not individually enumerated in the captured
+    coverage.
+  actor_type: sanctioned_exchange
+  actor_name: Garantex (USDT wallets / offramp)
+  chains: [tron, ethereum]
+
+jurisdiction:
+  - corporate_global
+  - EU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An issuer freeze + exchange service suspension, not an ISP/DNS
+      network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Garantex's website went to maintenance as a consequence of the
+      freeze, but this is not an externally-imposed L4 domain/UI block;
+      the load-bearing effect is the offramp/service suspension.
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      Tether froze ~$27M USDT in Garantex's wallets (the mechanism). No
+      verified primary_onchain freeze tx_hash is pinned in this draft, so
+      per codebook §1.6 the asset-layer effect is carried as a coverage
+      note rather than an asset_onchain observed_change; a human must pin
+      the addBlackList tx(s) before any asset_onchain observed_change is
+      admitted. No tx_hash is fabricated.
+  - layer: offramp_cex
+    status: measured
+    scope: [garantex]
+    note: |
+      Load-bearing layer. Following Tether's freeze, Garantex suspended
+      all services including withdrawals (website under maintenance),
+      severing the Garantex centralized-exchange off-ramp. Directly
+      attested in contemporaneous coverage.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:garantex
+    event: garantex_suspends_all_services_after_tether_usdt_freeze
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2025-03-06T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: RU
+    sources:
+      - type: semi_primary_wayback
+        url: https://cointelegraph.com/news/tether-freezes-27-million-usdt-sanctions-garantex-russia
+        wayback: https://web.archive.org/web/20251230143611/https://cointelegraph.com/news/tether-freezes-27-million-usdt-sanctions-garantex-russia
+        body_hash: sha256:7fac161b542140e576ba6984a1f9c30726d243d73ffe2043b20fac544b6e277c
+        body_path: sources/http_captures/tether-garantex-usdt-freeze-2025-03/primary/web.archive.org__web-20251230143611-https-cointelegraph.com-news-tether-freezes-27-million-usdt-sanctions-garantex-russia__2dfac54eda.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [garantex]
+          countries: [RU]
+          time_window:
+            - 2025-03-06T00:00:00Z
+            - 2025-03-31T23:59:59Z
+        note: |
+          Cointelegraph 2025-03-06: Tether froze ~$27M USDT
+          ("2.5 billion rubles") on Garantex; Garantex suspended all
+          services including withdrawals. attribution=plausible: the
+          freeze is causally tied to the EU's 2025-02-26 16th-package
+          sanctioning of Garantex (reported context), and the captured
+          coverage attributes the service suspension to Tether's freeze
+          rather than reproducing a primary order naming the specific
+          frozen addresses.
+      - type: primary_corporate
+        url: https://tether.io/news/tether-recognized-for-assisting-the-united-states-secret-service-in-23m-freeze-related-to-transfers-on-sanctioned-exchange-garantex/
+        wayback: https://web.archive.org/web/20260306082124/https://tether.io/news/tether-recognized-for-assisting-the-united-states-secret-service-in-23m-freeze-related-to-transfers-on-sanctioned-exchange-garantex/
+        body_hash: sha256:94138908ffbc2cf82148c6465988b2b0304d7f9ae9b530bc15a5f4df0f25e7dd
+        body_path: sources/http_captures/tether-garantex-usdt-freeze-2025-03/primary/web.archive.org__web-20260306082124-https-tether.io-news-tether-recognized-for-assisting-the-united-states-secret-service-in-23m-freeze-related-to-transfers-on-sanction__f4b7d2b2aa.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [garantex]
+          countries: [RU]
+          time_window:
+            - 2025-03-06T00:00:00Z
+            - 2025-03-31T23:59:59Z
+        note: |
+          Tether official blog confirming Tether's freeze action against
+          the sanctioned Garantex exchange. Primary-corporate anchor for
+          the actor + target of the action.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Tether's 2025-03-06 freeze
+  of ~$27M USDT held by the EU-sanctioned Russian exchange Garantex,
+  forcing Garantex to suspend all services and halt withdrawals. Trigger:
+  the EU sanctioned Garantex on 2025-02-26 in its 16th sanctions package
+  (its first-ever crypto-exchange designation). comparison shape, single
+  offramp_cex observed_change, attribution=plausible per §1.1 (the freeze
+  is causally consistent with the EU designation; the captured coverage
+  does not reproduce a primary order naming the specific frozen on-chain
+  addresses). jurisdiction corporate_global (issuer action) + EU (the
+  sanctions trigger). l0/l1/l3/l4 not_applicable; asset_onchain
+  not_measured — the ~$27M freeze is the mechanism but no verified
+  primary_onchain freeze tx_hash is pinned (codebook §1.6: carried as a
+  coverage note, no tx_hash fabricated; a human must pin the addBlackList
+  tx before any asset_onchain observed_change is admitted). DEDUP note:
+  distinct from garantex-ofac-2022 (the 2022 OFAC SDN designation) and
+  grinex-garantex-successor-ofac-2025 — this is the 2025-03 Tether
+  issuer-freeze action precipitated by the EU 16th package. Sources
+  verified via WebSearch + captured 2026-05-31 (Cointelegraph +
+  Tether.io, body_hash-pinned; no fabrication).
+
+scoped_claim: |
+  "Tether's 2025-03-06 freeze of ~$27M USDT in Garantex's wallets
+  (precipitated by the EU's 2025-02-26 16th-package sanctioning of
+  Garantex) forced Garantex to suspend all services and halt
+  withdrawals; single-layer offramp_cex observed_change,
+  attribution=plausible (no primary order naming the specific frozen
+  addresses reproduced in the captured coverage). Asset-layer freeze
+  carried as a coverage note pending a pinned freeze tx_hash."
+
+tags:
+  - corporate_policy_change
+  - tether_freeze
+  - garantex
+  - eu_sanctions_16th_package
+  - sanctioned_exchange
+  - offramp_shutdown
+  - russia

@@ -1,0 +1,170 @@
+id: pancakeswap-sanctioned-country-frontend-geofence-2022
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - 1inch-us-geofence-2021-09
+  - opensea-iran-cuba-sanctions-block-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: pancakeswap
+  timestamp: 2022-03-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.theblock.co/linked/133904/pancakeswap-dex-reportedly-set-to-block-users-from-iran
+      wayback: https://web.archive.org/web/20260217132905/https://www.theblock.co/linked/133904/pancakeswap-dex-reportedly-set-to-block-users-from-iran
+      body_hash: sha256:574429bc1d4b30014b98930cbb13b6df9e22e0a330cf178929cd25e466bb6988
+      body_path: sources/http_captures/pancakeswap-sanctioned-country-frontend-geofence-2022/primary/web.archive.org__web-20260217132905-https-www.theblock.co-linked-133904-pancakeswap-dex-reportedly-set-to-block-users-from-iran__0c9239bd6e.html
+      evidence_use: replayable
+      note: |
+        The Block (Feb 2022): "decentralized exchange platform PancakeSwap
+        will reportedly start blocking access to Iranian IP addresses ...
+        PancakeSwap will begin geoblocking users [from] other jurisdictions
+        on March 9. The other countries included [in] PancakeSwap's
+        geofencing are Belarus, Cuba, The Democratic Republic [of Congo],
+        ... North Korea, Sudan, Syria, Zimbabwe, and Crimea." Report based
+        on a Persian-language screenshot of a PancakeSwap message; no
+        first-party PancakeSwap notice captured, hence "reportedly". Wayback
+        20260217132905 pinned; the March 9 cutoff and country list are
+        grep-verified in the captured body.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: the geoblock was reported to take effect on
+        2022-03-09 per The Block. Trigger timestamp set to that effective
+        date.
+
+target:
+  kind: domain
+  enumeration: subset
+  enumeration_note: |
+    PancakeSwap's frontend (app.pancakeswap.finance) geofence against
+    users in OFAC-sanctioned jurisdictions. The captured source names
+    Iran (primary), Belarus, Cuba, the Democratic Republic of Congo, Iraq,
+    North Korea, Sudan, Syria, Zimbabwe and Crimea. Coded subset: the
+    blocked-jurisdiction class is named but the controlling sanctions list
+    is the OFAC comprehensive-sanctions set rather than a closed
+    enumeration fixed by PancakeSwap.
+  actor_type: dex_frontend
+  actor_name: PancakeSwap frontend geofence of OFAC-sanctioned jurisdictions
+  chains:
+    - bnb_smart_chain
+
+jurisdiction:
+  - corporate_global
+  - IR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      A frontend (app-level) IP geofence applied by the operator, not an
+      ISP/DNS network block imposed by a state.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The geofence acts on the PancakeSwap web frontend, not on BNB Smart
+      Chain consensus; the contracts remain reachable directly on-chain.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The block is at the frontend UI, not at an RPC provider.
+  - layer: l4_frontend
+    status: measured
+    scope: [pancakeswap_frontend]
+    note: |
+      Load-bearing layer. PancakeSwap's web frontend reportedly began
+      geoblocking IP addresses from Iran and nine other OFAC-sanctioned
+      jurisdictions on 2022-03-09, denying those users UI access to the DEX
+      (the underlying BSC contracts remain directly reachable on-chain).
+      Attested in contemporaneous trade press, body_hash-pinned.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No on-chain asset freeze; the action is a frontend access geofence.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      PancakeSwap is a DEX, not a centralized-exchange off-ramp.
+
+observations:
+  - layer: l4_frontend
+    actor: dex_frontend:pancakeswap
+    event: pancakeswap_frontend_geoblocks_ofac_sanctioned_jurisdictions
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2022-03-09T00:00:00Z
+    precision: day
+    country: IR
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.theblock.co/linked/133904/pancakeswap-dex-reportedly-set-to-block-users-from-iran
+        wayback: https://web.archive.org/web/20260217132905/https://www.theblock.co/linked/133904/pancakeswap-dex-reportedly-set-to-block-users-from-iran
+        body_hash: sha256:574429bc1d4b30014b98930cbb13b6df9e22e0a330cf178929cd25e466bb6988
+        body_path: sources/http_captures/pancakeswap-sanctioned-country-frontend-geofence-2022/primary/web.archive.org__web-20260217132905-https-www.theblock.co-linked-133904-pancakeswap-dex-reportedly-set-to-block-users-from-iran__0c9239bd6e.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [pancakeswap]
+          countries: [IR]
+          time_window:
+            - 2022-02-10T00:00:00Z
+            - 2022-03-31T23:59:59Z
+        note: |
+          The Block: PancakeSwap reportedly began geoblocking Iran and nine
+          other OFAC-sanctioned jurisdictions on 2022-03-09.
+          attribution=plausible: the geofence is reported (Persian-language
+          screenshot of a PancakeSwap message), not a captured first-party
+          PancakeSwap compliance notice citing a specific sanctions trigger,
+          so per §1.4 the provider does not publicly cite the trigger in a
+          captured statement — plausible is required.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). PancakeSwap — the leading
+  BNB-Smart-Chain DEX — reportedly implemented a frontend IP geofence
+  (effective 2022-03-09) blocking users from Iran plus Belarus, Cuba, the
+  DR Congo, Iraq, North Korea, Sudan, Syria, Zimbabwe and Crimea, the OFAC
+  comprehensive-sanctions set. A DEX-frontend geofence is the same
+  censorship surface as 1inch-us-geofence-2021-09 and the
+  opensea-iran-cuba-sanctions-block-2022 sanctioned-jurisdiction blocks
+  (cf. related_events). comparison shape, single l4_frontend
+  observed_change. attribution=plausible per §1.4: the block is reported
+  via a Persian-language screenshot of a PancakeSwap message rather than a
+  captured first-party PancakeSwap compliance notice citing a named
+  trigger. The underlying BSC contracts remain directly reachable
+  on-chain, so l1/l3/asset_onchain/offramp_cex are not_applicable.
+  jurisdiction=corporate_global + IR (Iran named primary; full OFAC list
+  not all in the controlled vocab). Source verified via WebSearch +
+  capture 2026-05-31 (The Block, body_hash-pinned; the March 9 cutoff +
+  country list grep-verified; no fabrication).
+
+scoped_claim: |
+  "PancakeSwap's reported 2022-03-09 frontend IP geofence against Iran and
+  nine other OFAC-sanctioned jurisdictions denied those users UI access to
+  the leading BNB-chain DEX (contracts remained directly reachable
+  on-chain); single-layer l4_frontend observed_change,
+  attribution=plausible (reported, no captured first-party notice)."
+
+tags:
+  - corporate_policy_change
+  - frontend_geofence
+  - dex
+  - pancakeswap
+  - ofac_sanctioned_jurisdiction
+  - iran
+  - bnb_smart_chain
+  - sanctions_compliance

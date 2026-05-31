@@ -1,0 +1,155 @@
+id: crypto-com-eu-usdt-stablecoin-delisting-2025-01
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - eu-mica-2023
+  - mica-l2-esma-eba-rts-2024
+  - binance-busd-wind-down-2024
+
+trigger:
+  type: corporate_policy_change
+  actor: crypto_com
+  timestamp: 2025-01-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.dlnews.com/articles/regulation/cryptocom-to-delist-tether-usdt-in-eu/
+      wayback: https://web.archive.org/web/20260309180532/https://www.dlnews.com/articles/regulation/cryptocom-to-delist-tether-usdt-in-eu/
+      body_hash: sha256:a8b782cb3517021f301b0006a81cc5f6557372e79aa3cc7ad380ed67a5e002bf
+      body_path: sources/http_captures/crypto-com-eu-usdt-stablecoin-delisting-2025-01/primary/web.archive.org__web-20260309180532-https-www.dlnews.com-articles-regulation-cryptocom-to-delist-tether-usdt-in-eu__41acb0cd52.html
+      evidence_use: replayable
+      note: |
+        DL News 2025-01-29: Crypto.com announced it will suspend USDT and
+        nine other non-MiCA-compliant tokens for European-Economic-Area
+        users — purchases suspended 2025-01-31, with full delisting /
+        conversion to compliant assets by end of Q1 2025 — because MiCA
+        requires EEA stablecoins to hold an e-money license that USDT
+        lacks. Grep-confirmed: USDT/Tether/MiCA/delist/EU/Europe present
+        in the captured body.
+
+target:
+  kind: asset
+  enumeration: subset
+  enumeration_note: |
+    USDT (Tether) is the load-bearing named target; Crypto.com's notice
+    also covers nine further non-MiCA-compliant tokens for EEA users
+    (per coverage incl. PYUSD, DAI, WBTC, PAX, PAXG and others). Coded
+    as subset: USDT is the enumerated focal asset, the remaining set is
+    class-level (non-MiCA-compliant stablecoins/tokens), per §7.
+  actor_type: stablecoin_offramp_restriction
+  actor_name: USDT (+ 9 non-MiCA tokens) on Crypto.com for EEA users
+  chains:
+    - ethereum
+    - tron
+
+jurisdiction:
+  - EU
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An exchange listing/offramp decision, not an ISP/DNS block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Crypto.com is not the USDT issuer; it cannot freeze USDT on-chain.
+      The action is an exchange-offramp suspension for EEA users, not an
+      asset-onchain freeze (cf. §1.6 / binance-busd precedent: issuer/
+      offramp stablecoin actions carried at offramp_cex, not asset_onchain).
+  - layer: offramp_cex
+    status: measured
+    scope: [cryptocom_usdt_eea]
+    note: |
+      Load-bearing layer. Crypto.com suspended USDT (and nine other non-
+      MiCA-compliant tokens) for EEA users — purchases off 2025-01-31,
+      full delisting by Q1-2025 end — severing the Crypto.com off-ramp
+      for USDT in the EEA under MiCA. Attested in contemporaneous
+      coverage.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:crypto_com
+    event: cryptocom_suspends_usdt_and_nine_tokens_for_eea_users
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2025-01-31T00:00:00Z
+    precision: day
+    delta_hours: 48
+    country: null
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.dlnews.com/articles/regulation/cryptocom-to-delist-tether-usdt-in-eu/
+        wayback: https://web.archive.org/web/20260309180532/https://www.dlnews.com/articles/regulation/cryptocom-to-delist-tether-usdt-in-eu/
+        body_hash: sha256:a8b782cb3517021f301b0006a81cc5f6557372e79aa3cc7ad380ed67a5e002bf
+        body_path: sources/http_captures/crypto-com-eu-usdt-stablecoin-delisting-2025-01/primary/web.archive.org__web-20260309180532-https-www.dlnews.com-articles-regulation-cryptocom-to-delist-tether-usdt-in-eu__41acb0cd52.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [crypto_com]
+          countries: [EU]
+          time_window:
+            - 2025-01-29T00:00:00Z
+            - 2025-03-31T23:59:59Z
+        note: |
+          DL News 2025-01-29: Crypto.com USDT + nine-token EEA suspension
+          (purchases off 2025-01-31, full delisting by Q1-2025 end).
+          attribution=plausible per §1.4 analogue: the MiCA cause is
+          reported and the action is squarely a MiCA-compliance offramp
+          restriction, but this is third-party trade-press coverage of a
+          Crypto.com policy rather than a captured Crypto.com notice
+          citing a specific MiCA instrument; class-level inference.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Crypto.com's 2025-01-29
+  announcement to suspend USDT and nine other non-MiCA-compliant tokens
+  for EEA users (purchases off 2025-01-31; full delisting / forced
+  conversion to compliant assets by Q1-2025 end), severing the Crypto.com
+  USDT off-ramp in the EEA under MiCA's e-money-license requirement (USDT
+  unlicensed). Part of the MiCA stablecoin-delisting wave (cf. Coinbase
+  Dec-2024, Binance Mar-2025; related EU-MiCA framework events).
+  comparison shape, single offramp_cex observed_change,
+  attribution=plausible per §1.1/§1.4-analogue (MiCA cause reported in
+  trade press; no captured Crypto.com notice naming a specific MiCA
+  instrument — class-level inference). EU jurisdiction. Per §1.6 /
+  binance-busd precedent the stablecoin action is carried at offramp_cex,
+  NOT asset_onchain (Crypto.com is not the USDT issuer and cannot freeze
+  on-chain). target.enumeration=subset (USDT focal; remaining nine
+  class-level, §7). Source verified via WebSearch + captured 2026-05-31
+  (DL News, body_hash-pinned, USDT/MiCA/EU grep-confirmed; no fabrication).
+
+scoped_claim: |
+  "Crypto.com's 2025-01 suspension of USDT (and nine other non-MiCA-
+  compliant tokens) for EEA users — purchases off 2025-01-31, full
+  delisting by Q1-2025 end — severed the Crypto.com USDT off-ramp in the
+  EEA under MiCA; single-layer offramp_cex observed_change,
+  attribution=plausible (MiCA cause reported, no captured issuer notice
+  naming a specific instrument)."
+
+tags:
+  - corporate_policy_change
+  - stablecoin_delisting
+  - usdt
+  - tether
+  - crypto_com
+  - mica
+  - eea
+  - offramp_shutdown

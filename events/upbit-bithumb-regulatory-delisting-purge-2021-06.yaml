@@ -1,0 +1,179 @@
+id: upbit-bithumb-regulatory-delisting-purge-2021-06
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - bittrex-privacy-coin-delisting-2021-01
+  - binance-privacy-coin-delisting-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: upbit_bithumb
+  timestamp: 2021-06-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/policy/2021/06/24/upbit-bithumb-delist-numerous-coins-ahead-of-south-korean-regulatory-review
+      wayback: https://web.archive.org/web/20250830094223/https://www.coindesk.com/policy/2021/06/24/upbit-bithumb-delist-numerous-coins-ahead-of-south-korean-regulatory-review
+      body_hash: sha256:d4be38d2b326184e24c7c4aa8db32a22a7e3908a7e577a7a31e3756016f8bfac
+      body_path: sources/http_captures/upbit-bithumb-regulatory-delisting-purge-2021-06/primary/web.archive.org__web-20250830094223-https-www.coindesk.com-policy-2021-06-24-upbit-bithumb-delist-numerous-coins-ahead-of-south-korean-regulatory-review__b05e4830e7.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2021-06-24: "On June 11, Upbit announced ... a watchlist
+        of 25 tokens. On June 18, it delisted 24 of them. On June 17,
+        Bithumb [announced terminating trading for four tokens effective]
+        July 5." Delisted tokens "generally fall into one of the following
+        categories: tokens that are listed on less than five exchanges,
+        dark coins (privacy coins like monero), tokens directly issued by
+        exchanges and tokens whose protocols are no longer being
+        developed." Driven by FIU/FSC "recommended guidelines" ahead of
+        the Sept. 24 registration deadline; "Delisting announcements have
+        caused prices for many altcoins to plummet by 50% or more." Wayback
+        20250830094223 pinned; claims grep-verified in captured body.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision. Upbit executed its 24-token delisting on
+        2021-06-18 (watchlist posted 2021-06-11); Bithumb announced its
+        four-token termination 2021-06-17 effective 2021-07-05. Trigger
+        timestamp set to the Upbit 2021-06-18 execution date.
+
+target:
+  kind: asset
+  enumeration: subset
+  enumeration_note: |
+    Non-exhaustive: Upbit removed fiat (KRW) markets for 5 tokens and
+    posted a 25-token watchlist on 2021-06-11, then delisted 24 of them on
+    2021-06-18; Bithumb announced termination of 4 tokens on 2021-06-17
+    (effective 2021-07-05). The captured CoinDesk source does not
+    enumerate every individual ticker but characterises the delisted set
+    as including "dark coins (privacy coins like monero)" alongside
+    low-liquidity / exchange-issued / abandoned tokens. Coded subset
+    because the class is named ("dark coins / privacy coins like monero")
+    but the full per-ticker list is not enumerated in the captured
+    primary.
+  actor_type: altcoin_and_privacy_asset_class
+  actor_name: Upbit/Bithumb delisted altcoins incl. dark/privacy coins (KR)
+  chains:
+    - monero
+
+jurisdiction:
+  - KR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Exchange listing decisions, not an ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The delistings act on the exchanges' markets, not on any chain's
+      consensus layer.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Removal of trading markets (offramp), not a frontend domain/UI block.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The delisted assets are independent base-chain tokens (no issuer
+      freeze); the exchanges cannot freeze them on-chain. The action is an
+      offramp market removal.
+  - layer: offramp_cex
+    status: measured
+    scope: [upbit, bithumb]
+    note: |
+      Load-bearing layer. Upbit removed 24 markets (2021-06-18) and
+      Bithumb terminated 4 (effective 2021-07-05), severing the two
+      largest South Korean CEX off-ramps for the affected altcoins
+      (including privacy/dark coins like Monero) ahead of the FIU
+      registration deadline. Attested in contemporaneous CoinDesk
+      coverage, body_hash-pinned.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:upbit_bithumb
+    event: upbit_bithumb_delist_altcoins_and_dark_coins_pre_fiu_registration
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-06-18T00:00:00Z
+    precision: day
+    country: KR
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2021/06/24/upbit-bithumb-delist-numerous-coins-ahead-of-south-korean-regulatory-review
+        wayback: https://web.archive.org/web/20250830094223/https://www.coindesk.com/policy/2021/06/24/upbit-bithumb-delist-numerous-coins-ahead-of-south-korean-regulatory-review
+        body_hash: sha256:d4be38d2b326184e24c7c4aa8db32a22a7e3908a7e577a7a31e3756016f8bfac
+        body_path: sources/http_captures/upbit-bithumb-regulatory-delisting-purge-2021-06/primary/web.archive.org__web-20250830094223-https-www.coindesk.com-policy-2021-06-24-upbit-bithumb-delist-numerous-coins-ahead-of-south-korean-regulatory-review__b05e4830e7.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [upbit, bithumb]
+          countries: [KR]
+          time_window:
+            - 2021-06-11T00:00:00Z
+            - 2021-07-05T23:59:59Z
+        note: |
+          CoinDesk 2021-06-24: Upbit delisted 24 tokens (2021-06-18) from a
+          25-token watchlist; Bithumb terminated 4 (effective 2021-07-05).
+          Delisted set characterised as including "dark coins (privacy
+          coins like monero)". attribution=plausible: the delistings are
+          directly observed and the FIU/FSC "recommended guidelines" /
+          Sept. 24 registration context is explicit, but the exchanges did
+          not publish a per-token rationale tying each removal to a named
+          regulatory order, so the compliance motive is the contextual
+          inference rather than a per-target stated cause.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). South Korea's two largest
+  exchanges, Upbit and Bithumb, executed a delisting purge in June 2021
+  ahead of the mandatory FIU/FSC virtual-asset-service-provider
+  registration regime (deadline 2021-09-24). Upbit posted a 25-token
+  watchlist (2021-06-11) and delisted 24 (2021-06-18); Bithumb announced
+  termination of 4 tokens (2021-06-17, effective 2021-07-05). The delisted
+  set explicitly included "dark coins (privacy coins like monero)" per the
+  captured CoinDesk source, placing this in the privacy-coin-delisting wave
+  alongside bittrex-privacy-coin-delisting-2021-01 and
+  binance-privacy-coin-delisting-2023 (cf. related_events). comparison
+  shape, single offramp_cex observed_change. attribution=plausible: the
+  delistings are directly observed and the regulatory context is explicit,
+  but no per-token regulatory order names each removed asset (§1.1 class-
+  level inference). enumeration=subset because the privacy-coin class is
+  named but the full per-ticker list is not in the captured primary (§7).
+  jurisdiction=KR. Source verified via WebSearch + capture 2026-05-31
+  (CoinDesk, body_hash-pinned; claims grep-verified; no fabrication).
+
+scoped_claim: |
+  "Upbit's 2021-06-18 removal of 24 markets and Bithumb's termination of 4
+  (effective 2021-07-05) — a regulatory-driven delisting purge that
+  included dark/privacy coins (e.g. Monero) ahead of the FIU registration
+  deadline — severed the two largest South Korean CEX off-ramps for the
+  affected altcoins; single-layer offramp_cex observed_change,
+  attribution=plausible (no per-token regulatory order stated)."
+
+tags:
+  - corporate_policy_change
+  - exchange_delisting
+  - privacy_coin_delisting
+  - dark_coin
+  - monero
+  - upbit
+  - bithumb
+  - south_korea
+  - fiu_registration
+  - offramp_shutdown

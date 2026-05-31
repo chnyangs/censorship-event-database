@@ -1,0 +1,204 @@
+id: dydx-canada-frontend-wind-down-2023-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - canada-csa-binance-withdrawal-2023
+  - kucoin-canada-exit-2023
+  - okx-canada-exit-2023
+  - dydx-tornado-account-block-2022-08
+
+trigger:
+  type: corporate_policy_change
+  actor: DYDX_TRADING
+  timestamp: 2023-04-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://dydx.exchange/blog/canada-wind-down
+      wayback: https://web.archive.org/web/20260209054353/https://dydx.exchange/blog/canada-wind-down
+      body_hash: sha256:2626aa386a9b161466264c834b9ade84bdd301428de3627885c571b1394ff54f
+      body_path: sources/http_captures/dydx-canada-frontend-wind-down-2023-04/primary/web.archive.org__web-20260209054353-https-dydx.exchange-blog-canada-wind-down__7698f7cb86.html
+      evidence_use: replayable
+      note: |
+        dYdX official blog "Canada Wind Down": on 2023-04-07 at 17:00 UTC
+        dYdX stopped allowing new users located in Canada to onboard; on
+        2023-04-14 at 17:00 UTC existing Canadian users were moved to
+        close-only mode (withdraw / close positions only). dYdX cited the
+        Canadian regulatory environment (CSA additional restrictions on
+        crypto-asset contracts). The captured page confirms "April 7",
+        "17:00 UTC", "close-only", "onboard", and Canada. Verified via grep
+        of the pinned body. primary_corporate anchor by the acting party.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level trigger timing from the dYdX blog: 2023-04-07 17:00 UTC
+        new-onboarding halt; 2023-04-14 17:00 UTC close-only for existing
+        Canadian users.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    dYdX Canadian-resident user cohort. dYdX Trading Inc. (operator of the
+    dydx.exchange v3 perpetuals frontend) is the focal target actor; the
+    affected population is Canadian-located users of dydx.exchange.
+    Subset-enumerated because the wind-down affected the Canadian cohort
+    rather than a named address list. Distinct from the later dYdX v4
+    US/Canada geofence. Sibling to the S4 canada-csa-binance-withdrawal-2023
+    and the S5 okx-canada-exit-2023 / kucoin-canada-exit-2023.
+  actor_type: regulated_crypto_service_provider
+  actor_name: dYdX (Canada user cohort)
+  chains:
+    - ethereum
+  canonical_domains:
+    - dydx.exchange
+
+jurisdiction: [CA]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      dYdX's Canada wind-down is a corporate policy decision implemented at
+      its own frontend, not an ISP-level / network-layer block. No DNS or
+      BGP reachability change is asserted.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Frontend / interface geofence; no validator-level construct is
+      implicated and the underlying v3 StarkEx protocol is unaffected.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change; the action is a frontend
+      onboarding / trading restriction.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer freeze / SDN listing primitive applicable; the action is a
+      frontend access restriction, not an on-chain asset action.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      dydx.exchange v3 is a non-custodial perpetuals DEX frontend, not a
+      centralized-exchange off-ramp; the restriction is enforced at the
+      frontend / onboarding layer rather than a CEX fiat off-ramp.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - dydx_exchange_canada_geo
+    note: |
+      Load-bearing layer. dYdX geofenced dydx.exchange against Canadian
+      users: new Canadian onboarding stopped 2023-04-07 17:00 UTC and
+      existing Canadian users moved to close-only 2023-04-14 17:00 UTC,
+      while withdrawals from the protocol remained available. Attested by
+      the dYdX official blog (primary_corporate).
+
+observations:
+  - layer: l4_frontend
+    actor: provider:dydx_exchange
+    event: dydx_canada_frontend_geofence
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-04-07T17:00:00Z
+    precision: hour
+    country: CA
+    sources:
+      - type: primary_corporate
+        url: https://dydx.exchange/blog/canada-wind-down
+        wayback: https://web.archive.org/web/20260209054353/https://dydx.exchange/blog/canada-wind-down
+        body_hash: sha256:2626aa386a9b161466264c834b9ade84bdd301428de3627885c571b1394ff54f
+        body_path: sources/http_captures/dydx-canada-frontend-wind-down-2023-04/primary/web.archive.org__web-20260209054353-https-dydx.exchange-blog-canada-wind-down__7698f7cb86.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [dydx_exchange]
+          countries: [CA]
+          time_window:
+            - 2023-04-07T00:00:00Z
+            - 2023-04-14T23:59:59Z
+        note: |
+          dYdX 2023-04-07 17:00 UTC Canadian-onboarding halt + 2023-04-14
+          17:00 UTC close-only transition for existing Canadian users.
+          attribution=direct: the corporate-policy trigger and the frontend
+          geofence are co-authored by the same actor (dYdX), and the dYdX
+          blog explicitly cites the Canadian regulatory environment as the
+          reason (§1.4 provider-cites-trigger + actor co-authorship).
+      - type: semi_primary_wayback
+        url: https://www.theblock.co/post/225452/dydx-ends-support-for-canadian-users
+        wayback: https://web.archive.org/web/20251028235922/https://www.theblock.co/post/225452/dydx-ends-support-for-canadian-users
+        body_hash: sha256:ec86382ddecd3891fad98aef1dfef271f9fd068233f7394cc4063f5e9c477e3d
+        body_path: sources/http_captures/dydx-canada-frontend-wind-down-2023-04/primary/web.archive.org__web-20251028235922-https-www.theblock.co-post-225452-dydx-ends-support-for-canadian-users__e001b7328e.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [dydx_exchange]
+          countries: [CA]
+          time_window:
+            - 2023-04-07T00:00:00Z
+            - 2023-04-14T23:59:59Z
+        note: |
+          The Block corroboration of the dYdX Canada wind-down (April 7 /
+          April 14, close-only, regulatory environment). Independent
+          semi-primary second anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). dYdX's 2023-04-07 wind-down
+  of dydx.exchange (v3) access for Canadian users: new Canadian onboarding
+  halted 2023-04-07 17:00 UTC, existing Canadian users moved to close-only
+  2023-04-14 17:00 UTC, citing the Canadian regulatory environment (CSA
+  additional restrictions on crypto-asset contracts). Distinct from the
+  later dYdX v4 US/Canada geofence. S5 corporate-policy frontend geofence
+  sibling to the S4 canada-csa-binance-withdrawal-2023 and the S5
+  okx-canada-exit-2023 / kucoin-canada-exit-2023.
+
+  comparison shape: 1 observed_change layer (l4_frontend) with
+  attribution=direct. Direct because the dYdX official blog
+  (primary_corporate) both implements and explains the geofence (§1.4:
+  provider publicly cites the trigger; plus same-actor co-authorship of
+  trigger and action). offramp_cex is not_applicable — dydx.exchange v3
+  is a non-custodial perpetuals DEX frontend, not a CEX off-ramp, so the
+  effect is carried at l4_frontend rather than offramp_cex. l0/l1/l3/
+  asset_onchain not_applicable. Sources verified via WebSearch + capture
+  2026-05-31 (dYdX blog primary_corporate + The Block corroboration,
+  body_hash-pinned; grep-confirmed "April 7" / "17:00 UTC" / "close-only";
+  no fabrication).
+
+  Codebook decisions applied:
+  - trigger.type=corporate_policy_change per §5.1 (frontend operator
+    self-initiated geofence) -> research_stratum=S5_corporate.
+  - attribution=direct on l4_frontend per §1.4 (provider cites trigger)
+    + same-actor co-authorship.
+  - layer=l4_frontend (not offramp_cex): v3 is a non-custodial DEX
+    frontend, not a CEX off-ramp.
+  - target.enumeration=subset per §7 (Canadian-located user cohort).
+  - empirical_shape=comparison per §3; admission_tier=empirical_case
+    per §4.
+
+scoped_claim: |
+  "dYdX on 2023-04-07 17:00 UTC stopped onboarding new Canadian users to
+  dydx.exchange (v3) and on 2023-04-14 17:00 UTC moved existing Canadian
+  users to close-only, geofencing its frontend against Canada over the
+  CSA regulatory environment — a 1-layer l4_frontend observed_change
+  (attribution=direct, dYdX official blog). Structurally an S5
+  corporate-policy frontend geofence sibling to the S4 CSA-driven Binance
+  Canada withdrawal (canada-csa-binance-withdrawal-2023); distinct from
+  the later dYdX v4 US/Canada geofence."
+
+tags:
+  - corporate_policy_change
+  - canada
+  - dydx
+  - frontend_block
+  - geofence

@@ -1,0 +1,159 @@
+id: gate-io-privacy-coin-perpetuals-delisting-2024-12
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - bittrex-privacy-coin-delisting-2021-01
+  - huobi-htx-privacy-coin-delisting-2024
+  - okx-privacy-token-delist-2024
+  - binance-privacy-coin-delisting-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: gate_io
+  timestamp: 2024-12-26T08:00:00Z
+  timestamp_precision: hour
+  citation:
+    - type: primary_corporate
+      url: https://www.gate.io/announcements/article/41883
+      wayback: https://web.archive.org/web/20250501041136/https://www.gate.io/announcements/article/41883
+      body_hash: sha256:3128754ebe1b3c468daf6a20bef3334b7c02d4ed8f1063d4d9e424c5a311ca5d
+      body_path: sources/http_captures/gate-io-privacy-coin-perpetuals-delisting-2024-12/primary/web.archive.org__web-20250501041136-https-www.gate.io-announcements-article-41883__c9c5355352.html
+      evidence_use: replayable
+      note: |
+        Gate.io official announcement (article 41883): XMR, DASH, ZEC,
+        ZEN, XVG perpetual contracts moved to reduce-only mode 2024-12-25
+        and fully delisted 2024-12-26 08:00 UTC; open orders cancelled
+        and remaining positions auto-settled at the 30-min average index
+        price. Captured page enumerates all five tickers and the
+        reduce-only/delist mechanics (grep-confirmed: XMR/DASH/ZEC/ZEN/
+        XVG, "perpetual", "reduce-only", "delist").
+
+target:
+  kind: asset
+  enumeration: complete
+  enumeration_note: |
+    Five privacy-coin perpetual-contract markets removed from Gate.io:
+    Monero (XMR), Dash (DASH), Zcash (ZEC), Horizen (ZEN), Verge (XVG).
+    Complete enumeration of the delisted perpetual set per the official
+    Gate.io notice; the action removes the Gate.io derivatives markets
+    for these privacy assets (the underlying base-chain assets persist).
+  actor_type: privacy_asset_class
+  actor_name: XMR + DASH + ZEC + ZEN + XVG perpetuals on Gate.io
+  chains:
+    - monero
+    - dash
+    - zcash
+
+jurisdiction:
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An exchange derivatives-listing decision, not an ISP/DNS block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The delisting acts on Gate.io's perpetual markets, not on any
+      chain's consensus; XMR/DASH/ZEC/ZEN/XVG continue on their chains.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      These are independent base-chain privacy assets (no issuer/
+      contract Gate.io can freeze). The action is a derivatives-market
+      removal, not an asset-onchain freeze.
+  - layer: offramp_cex
+    status: measured
+    scope: [gateio_xmr_perp, gateio_dash_perp, gateio_zec_perp, gateio_zen_perp, gateio_xvg_perp]
+    note: |
+      Load-bearing layer. Gate.io removed the XMR/DASH/ZEC/ZEN/XVG
+      perpetual-contract markets (reduce-only 2024-12-25, delisted
+      2024-12-26 08:00 UTC), severing the Gate.io derivatives off-ramp
+      for these privacy assets. Attested in the official Gate.io notice.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:gate_io
+    event: gateio_removes_xmr_dash_zec_zen_xvg_perpetual_markets
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-12-26T08:00:00Z
+    precision: hour
+    delta_hours: 0
+    country: null
+    sources:
+      - type: primary_corporate
+        url: https://www.gate.io/announcements/article/41883
+        wayback: https://web.archive.org/web/20250501041136/https://www.gate.io/announcements/article/41883
+        body_hash: sha256:3128754ebe1b3c468daf6a20bef3334b7c02d4ed8f1063d4d9e424c5a311ca5d
+        body_path: sources/http_captures/gate-io-privacy-coin-perpetuals-delisting-2024-12/primary/web.archive.org__web-20250501041136-https-www.gate.io-announcements-article-41883__c9c5355352.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [gate_io]
+          countries: []
+          time_window:
+            - 2024-12-25T00:00:00Z
+            - 2024-12-26T08:00:00Z
+        note: |
+          Gate.io official notice (article 41883): XMR/DASH/ZEC/ZEN/XVG
+          perpetual delisting (reduce-only 2024-12-25, removed 2024-12-26
+          08:00 UTC). attribution=plausible per §1.1: the delisting is
+          directly observed in the issuer's own notice, but the notice
+          (as captured) states delisting mechanics without naming a
+          specific regulatory trigger; the MiCA privacy-coin-pressure
+          motive is contextual class-level inference, not a stated cause.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Gate.io's 2024-12 removal
+  of XMR/DASH/ZEC/ZEN/XVG perpetual-contract markets (reduce-only
+  2024-12-25, delisted 2024-12-26 08:00 UTC per its official notice) — a
+  later node in the privacy-coin-delisting wave (cf. Bittrex 2021, Huobi/
+  OKX/Binance, related_events), here on the derivatives surface amid MiCA
+  privacy-coin pressure. comparison shape, single offramp_cex
+  observed_change, attribution=plausible per §1.1 (the captured Gate.io
+  notice states delisting mechanics but does not name a regulatory
+  instrument; the MiCA motive is contextual, reported by trade press but
+  not in the issuer notice). jurisdiction=corporate_global (a global
+  exchange-wide derivatives delisting, not jurisdiction-scoped). XMR/DASH/
+  ZEC/ZEN/XVG are independent base-chain assets, so l0/l1/l3/l4/
+  asset_onchain are not_applicable. Source verified via WebSearch +
+  captured 2026-05-31 (official Gate.io announcement article 41883,
+  body_hash-pinned, all five tickers grep-confirmed; no fabrication).
+
+scoped_claim: |
+  "Gate.io's 2024-12-26 removal of the XMR/DASH/ZEC/ZEN/XVG perpetual-
+  contract markets (reduce-only 2024-12-25) severed the Gate.io
+  derivatives off-ramp for these privacy assets; single-layer offramp_cex
+  observed_change, attribution=plausible (the official notice states
+  mechanics but no regulatory trigger; MiCA motive is contextual)."
+
+tags:
+  - corporate_policy_change
+  - privacy_coin_delisting
+  - monero
+  - zcash
+  - dash
+  - horizen
+  - verge
+  - gate_io
+  - perpetuals
+  - mica
+  - offramp_shutdown

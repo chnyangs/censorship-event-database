@@ -1,0 +1,220 @@
+id: binance-nigeria-naira-services-end-2024-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - nigeria-binance-network-block-2024-02
+  - nigeria-cbn-crypto-ban-2021
+  - okx-nigeria-exit-2024-08
+
+trigger:
+  type: corporate_policy_change
+  actor: binance
+  timestamp: 2024-03-05T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/policy/2024/03/05/binance-will-discontinue-its-nigerian-naira-services-after-government-scrutiny
+      wayback: https://web.archive.org/web/20240305220110/https://www.coindesk.com/policy/2024/03/05/binance-will-discontinue-its-nigerian-naira-services-after-government-scrutiny/
+      body_hash: sha256:dd10bee8b0af68a2b04d4902fe606cab0186aaa1d7b2db43005ae7747d16d3f1
+      body_path: sources/http_captures/binance-nigeria-naira-services-end-2024-03/primary/web.archive.org__web-20240306000000-https-www.coindesk.com-policy-2024-03-05-binance-will-discontinue-its-nigerian-naira-services-after-government-scrutiny__97537db759.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2024-03-05: Binance announced (in a company blog post) it
+        will discontinue its Nigerian Naira (NGN) services following
+        government scrutiny. Captured body verifies the operative facts:
+        Binance "will delist any existing NGN pairs by Thursday, and on
+        Friday any remaining NGN balances in a user account will be
+        converted to USDT"; "Users are encouraged to withdraw NGN, trade
+        their NGN assets or convert NGN into crypto prior to the
+        discontinuation." Context: heightened Nigerian regulatory scrutiny
+        and the detention of Binance executives. Wayback 20240305220110.
+    - type: primary_corporate
+      url: https://www.binance.com/en/support/announcement/binance-to-discontinue-all-nigerian-naira-ngn-services-f9857dc2fea4448ba1fb8815d87d8144
+      wayback: https://web.archive.org/web/20240306114131/https://www.binance.com/en/support/announcement/binance-to-discontinue-all-nigerian-naira-ngn-services-f9857dc2fea4448ba1fb8815d87d8144
+      body_hash: sha256:1ece5d57c223b89189c75c3449bb8d0f0ea0fc48b129ff89d10331e7ae8a3a57
+      body_path: sources/http_captures/binance-nigeria-naira-services-end-2024-03/primary/web.archive.org__web-20240307000000-https-www.binance.com-en-support-announcement-binance-to-discontinue-all-nigerian-naira-ngn-services-f9857dc2fea4448ba1fb8815d87d814__702cbe50f7.html
+      evidence_use: replayable
+      note: |
+        Official Binance support announcement "Binance to Discontinue All
+        Nigerian Naira (NGN) Services" (issuer's own notice; archived
+        memento 2024-03-06). The page body is JS-rendered so the per-step
+        NGN-service-end timeline (P2P NGN delisted 2024-02-28; NGN deposits
+        stopped 2024-03-05; NGN spot pairs delisted 2024-03-07; residual
+        NGN converted to USDT from 2024-03-08) is corroborated by the
+        captured CoinDesk report rather than grep-confirmed in this HTML;
+        retained as the primary_corporate anchor that this is Binance's own
+        policy action.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: 2024-03-05 announcement (CoinDesk URL path
+        /2024/03/05/; company blog post same day). The phased service end
+        ran 2024-03-05 (NGN deposits stopped) through 2024-03-08 (residual
+        NGN auto-converted to USDT). Recorded event date 2024-03-05.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Target is the Binance Nigerian-Naira (NGN) fiat service surface:
+    all NGN trading pairs (BTC/NGN, USDT/NGN), NGN P2P, and NGN
+    deposit/withdrawal rails on Binance. Complete enumeration of the
+    NGN-service set that Binance discontinued; the action removes the
+    NGN on/off-ramp for Nigerian users (residual NGN balances
+    auto-converted to USDT).
+  protocol: null
+  actor_type: centralized_exchange_fiat_service
+  actor_name: Binance Nigerian Naira (NGN) services
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - NG
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Binance's own decision to end NGN services is a corporate off-ramp
+      withdrawal, not an ISP/DNS network block. (The separate Feb-2024
+      NCC telco block of binance.com is coded at
+      nigeria-binance-network-block-2024-02.)
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No chain consensus surface is engaged by an exchange fiat-service
+      withdrawal.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The action ends NGN fiat services (off-ramp), not a frontend
+      domain/UI block.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer blacklist/freeze admin method is engaged; Binance ended its
+      NGN fiat off-ramp and converted residual NGN to USDT, not an on-chain
+      asset freeze.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - binance_ngn_trading_pairs
+      - binance_ngn_p2p
+      - binance_ngn_deposit_withdrawal
+    note: |
+      Load-bearing layer. Binance discontinued all NGN services — delisting
+      NGN spot pairs and NGN P2P and ending NGN deposit/withdrawal — severing
+      the Binance NGN fiat off-ramp for Nigerian users and auto-converting
+      residual NGN to USDT. Attested in Binance's own announcement plus
+      contemporaneous trade press.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance
+    event: binance_discontinues_all_nigerian_naira_services
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-03-05T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: NG
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/policy/2024/03/05/binance-will-discontinue-its-nigerian-naira-services-after-government-scrutiny
+        wayback: https://web.archive.org/web/20240305220110/https://www.coindesk.com/policy/2024/03/05/binance-will-discontinue-its-nigerian-naira-services-after-government-scrutiny/
+        body_hash: sha256:dd10bee8b0af68a2b04d4902fe606cab0186aaa1d7b2db43005ae7747d16d3f1
+        body_path: sources/http_captures/binance-nigeria-naira-services-end-2024-03/primary/web.archive.org__web-20240306000000-https-www.coindesk.com-policy-2024-03-05-binance-will-discontinue-its-nigerian-naira-services-after-government-scrutiny__97537db759.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [NG]
+          time_window:
+            - 2024-03-05T00:00:00Z
+            - 2024-03-08T23:59:59Z
+        note: |
+          CoinDesk 2024-03-05: Binance to delist NGN pairs and convert
+          residual NGN balances to USDT, ending NGN services. attribution=
+          direct: the action is Binance's own announced policy (company
+          blog post), corroborated by the official Binance notice.
+      - type: primary_corporate
+        url: https://www.binance.com/en/support/announcement/binance-to-discontinue-all-nigerian-naira-ngn-services-f9857dc2fea4448ba1fb8815d87d8144
+        wayback: https://web.archive.org/web/20240306114131/https://www.binance.com/en/support/announcement/binance-to-discontinue-all-nigerian-naira-ngn-services-f9857dc2fea4448ba1fb8815d87d8144
+        body_hash: sha256:1ece5d57c223b89189c75c3449bb8d0f0ea0fc48b129ff89d10331e7ae8a3a57
+        body_path: sources/http_captures/binance-nigeria-naira-services-end-2024-03/primary/web.archive.org__web-20240307000000-https-www.binance.com-en-support-announcement-binance-to-discontinue-all-nigerian-naira-ngn-services-f9857dc2fea4448ba1fb8815d87d814__702cbe50f7.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [NG]
+          time_window:
+            - 2024-03-05T00:00:00Z
+            - 2024-03-08T23:59:59Z
+        note: |
+          Official Binance announcement "Binance to Discontinue All Nigerian
+          Naira (NGN) Services" — the issuer's own notice that this is a
+          Binance policy action. Body is JS-rendered (per-step timeline not
+          grep-confirmed here; carried by the CoinDesk capture).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission).
+
+  Binance's 2024-03-05 decision to discontinue ALL Nigerian Naira (NGN)
+  services — delisting NGN spot pairs (BTC/NGN, USDT/NGN) and NGN P2P,
+  ending NGN deposits/withdrawals, and auto-converting residual NGN
+  balances to USDT (phased 2024-03-05 → 2024-03-08) — amid intense Nigerian
+  government scrutiny and the detention of Binance executives. This is a
+  corporate jurisdiction-exit / fiat-off-ramp withdrawal by Binance itself.
+
+  Why §9 INCLUDE: a deliberate corporate withdrawal of the NGN fiat
+  off-ramp that denied Nigerian users access to Binance's local-currency
+  service (codebook §9 INCLUDE: corporate jurisdiction exit / geofence).
+  Distinct from the separate state action — the late-Feb-2024 NCC telco
+  block of binance.com and exec detention (coded at
+  nigeria-binance-network-block-2024-02, S4). Here the actor is Binance
+  (corporate), the action is Binance ending its own NGN services. Listed as
+  related, not a dup.
+
+  Why S5_corporate: an exchange's unilateral fiat-service withdrawal is a
+  corporate policy action (issuer/exchange unilateral policy family).
+
+  Why comparison / empirical_case: one strong-attribution (direct)
+  observed_change layer (offramp_cex). Other five layers scope-mismatched.
+
+  Why attribution=direct: the action is Binance's own announced policy,
+  carried by Binance's official support announcement and the CoinDesk
+  report of the company blog post.
+
+  Sources verified via WebSearch + captured 2026-05-31 (CoinDesk semi-
+  primary + official Binance notice, body_hash-pinned; CoinDesk content
+  grep-confirmed for the NGN-pair delisting and USDT conversion; no
+  fabrication).
+
+scoped_claim: |
+  "Binance's 2024-03-05 discontinuation of all Nigerian Naira (NGN)
+  services — delisting NGN spot/P2P pairs, ending NGN deposit/withdrawal,
+  and auto-converting residual NGN to USDT — severed the Binance NGN fiat
+  off-ramp for Nigerian users; single-layer offramp_cex observed_change
+  with attribution=direct (Binance's own announced policy)."
+
+tags:
+  - corporate_policy_change
+  - binance
+  - nigeria
+  - naira
+  - offramp_shutdown
+  - jurisdiction_exit
+  - fiat_service_withdrawal

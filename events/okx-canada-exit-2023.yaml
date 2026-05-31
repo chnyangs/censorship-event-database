@@ -1,0 +1,186 @@
+id: okx-canada-exit-2023
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - canada-csa-binance-withdrawal-2023
+  - kucoin-canada-exit-2023
+  - paxos-canada-exit-2023-04
+
+trigger:
+  type: corporate_policy_change
+  actor: OKX_EXCHANGE
+  timestamp: 2023-03-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://cointelegraph.com/news/okx-to-cease-operations-in-canada-by-june-22-2023
+      wayback: https://web.archive.org/web/20251225133547/https://cointelegraph.com/news/okx-to-cease-operations-in-canada-by-june-22-2023
+      body_hash: sha256:3858c9aa2ad432071a55fbc8b5cddcd0578037eef52cb5bfcc2d142c3cd25dce
+      body_path: sources/http_captures/okx-canada-exit-2023/primary/web.archive.org__web-20251225133547-https-cointelegraph.com-news-okx-to-cease-operations-in-canada-by-june-22-2023__0acf53d2eb.html
+      evidence_use: replayable
+      note: |
+        Cointelegraph (2023-03): OKX emailed Canadian users on 2023-03-20
+        stating it "will no longer provide services or allow users to open
+        new accounts in Canada starting on Mar. 24, 2023, 12:00 AM EST,"
+        citing "new regulations." Existing Canadian users had to close
+        open options / margin / perpetual / futures positions and withdraw
+        fiat or tokens by 2023-06-22. The captured page confirms the
+        "Mar. 24" no-new-accounts / "no longer provide" services cut-off
+        and the 2023-06-22 wind-down date. Verified via grep of the pinned
+        body.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level trigger timing: OKX's email to Canadian users dated
+        2023-03-20; new-account / services cut-off 2023-03-24; full
+        position-close / withdrawal deadline 2023-06-22.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    OKX Canadian-resident user cohort. OKX (Aux Cayes FinTech Co. Ltd.)
+    is the focal target actor; the affected population is Canadian-resident
+    retail users of okx.com. Subset-enumerated because OKX's Canada exit
+    affected the Canadian retail cohort rather than a named address list.
+    Sibling to the S4 canada-csa-binance-withdrawal-2023 and the S5
+    kucoin-canada-exit-2023 / paxos-canada-exit-2023-04 from the
+    corporate-policy side.
+  actor_type: regulated_crypto_service_provider
+  actor_name: OKX (Canada user cohort)
+  chains: []
+  canonical_domains:
+    - okx.com
+
+jurisdiction: [CA]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      OKX's Canada exit is a corporate policy decision, not an ISP-level /
+      network-layer block. No DNS or BGP reachability change is asserted
+      against okx.com from Canadian networks.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Corporate market-exit decision; no validator-level construct is
+      implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change is implicated by a CEX
+      market-exit.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      OKX's exit was communicated by email / notice rather than captured
+      as a geo-gated okx.com frontend block; no replayable frontend-state
+      diff for Canadian geo was captured. Held as not_measured pending a
+      Wayback capture of okx.com Canada-geo behavior across the
+      2023-03-24 to 2023-06-22 window.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No SDN listing or stablecoin-issuer freeze primitive applicable; the
+      action operates at the platform-service layer, not at an issuer-admin
+      freeze layer.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - okx_canada_users
+      - cad_payment_rails_to_okx
+    note: |
+      Load-bearing layer. Following the 2023-03-20 email, OKX stopped
+      providing services and new accounts to Canadian users on 2023-03-24
+      and required all Canadian positions to be closed and funds withdrawn
+      by 2023-06-22, severing the OKX centralized-exchange off-ramp for
+      Canadian users. Attested in the pinned Cointelegraph coverage.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:okx_canada
+    event: okx_canada_offramp_shutdown
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-03-24T00:00:00Z
+    precision: day
+    country: CA
+    sources:
+      - type: semi_primary_wayback
+        url: https://cointelegraph.com/news/okx-to-cease-operations-in-canada-by-june-22-2023
+        wayback: https://web.archive.org/web/20251225133547/https://cointelegraph.com/news/okx-to-cease-operations-in-canada-by-june-22-2023
+        body_hash: sha256:3858c9aa2ad432071a55fbc8b5cddcd0578037eef52cb5bfcc2d142c3cd25dce
+        body_path: sources/http_captures/okx-canada-exit-2023/primary/web.archive.org__web-20251225133547-https-cointelegraph.com-news-okx-to-cease-operations-in-canada-by-june-22-2023__0acf53d2eb.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [okx]
+          countries: [CA]
+          time_window:
+            - 2023-03-20T00:00:00Z
+            - 2023-06-22T23:59:59Z
+        note: |
+          OKX 2023-03-24 services / new-account cut-off for Canadian users
+          (full wind-down 2023-06-22). attribution=plausible: the off-ramp
+          shutdown is directly observed in contemporaneous coverage, but the
+          captured anchor is semi-primary (no OKX primary notice pinned), so
+          the link to the specific 2023-02-22 CSA Staff Notice 21-332 is
+          carried as the reporter-attributed "new regulations" rationale
+          rather than a primary OKX-stated trigger.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). OKX's 2023-03-20 email to
+  Canadian users announcing a 2023-03-24 services / new-account cut-off and
+  a 2023-06-22 position-close / withdrawal deadline, citing "new
+  regulations" (the 2023-02-22 CSA Staff Notice 21-332 enhanced
+  pre-registration-undertaking framework). S5 corporate-policy retreat
+  sibling to the S4 canada-csa-binance-withdrawal-2023 and the S5
+  kucoin-canada-exit-2023 / paxos-canada-exit-2023-04.
+
+  comparison shape: 1 observed_change layer (offramp_cex) with
+  attribution=plausible. attribution held at plausible (not direct)
+  because the captured anchor is semi-primary trade press; no primary OKX
+  corporate notice was archivable / pinned. l0/l1/l3/asset_onchain
+  not_applicable; l4_frontend held not_measured (no geo-gated okx.com
+  frontend diff captured). Source verified via WebSearch + capture
+  2026-05-31 (Cointelegraph, body_hash-pinned; grep-confirmed "Mar. 24" /
+  "no longer provide" / "June 22"; no fabrication).
+
+  Codebook decisions applied:
+  - trigger.type=corporate_policy_change per §5.1 (exchange-initiated
+    market retreat) -> research_stratum=S5_corporate.
+  - attribution=plausible on offramp_cex per §1.x (semi-primary anchor,
+    no primary OKX notice citing the trigger pinned).
+  - target.enumeration=subset per §7 (Canadian-resident retail cohort,
+    class-level).
+  - empirical_shape=comparison per §3 (1 observed_change layer);
+    admission_tier=empirical_case per §4.
+
+scoped_claim: |
+  "OKX on 2023-03-20 notified Canadian users that it would stop providing
+  services and accepting new accounts on 2023-03-24 and require all
+  Canadian positions closed and funds withdrawn by 2023-06-22, citing the
+  CSA's new stablecoin / undertaking regulations — a 1-layer offramp_cex
+  observed_change (attribution=plausible) for the OKX Canada cohort.
+  Structurally an S5 corporate-policy retreat sibling to the S4 CSA-driven
+  Binance Canada withdrawal (canada-csa-binance-withdrawal-2023)."
+
+tags:
+  - corporate_policy_change
+  - canada
+  - okx
+  - jurisdiction_exit
+  - offramp_shutdown

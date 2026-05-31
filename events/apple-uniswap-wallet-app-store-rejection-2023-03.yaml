@@ -1,0 +1,194 @@
+id: apple-uniswap-wallet-app-store-rejection-2023-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - apple-india-crypto-exchange-removal-2024-01
+
+trigger:
+  type: corporate_policy_change
+  actor: APPLE_APP_STORE
+  timestamp: 2023-03-03T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
+      wayback: https://web.archive.org/web/20250428020543/https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
+      body_hash: sha256:119e6bd8b94763bcbb78109a4183b6ec062937a941d588595ee43ec0ec9c3837
+      body_path: sources/http_captures/apple-uniswap-wallet-app-store-rejection-2023-03/primary/web.archive.org__web-20250428020543-https-fortune.com-crypto-2023-03-03-uniswap-wallet-apple-app-store__0546440ba0.html
+      evidence_use: replayable
+      note: |
+        Fortune (2023-03-03): Uniswap Labs announced its self-custody mobile
+        Wallet but said Apple refused to approve it for the App Store,
+        leaving it unavailable to iOS users. Per Uniswap's blog (quoted),
+        Apple approved other self-custody swapping wallets but "won't
+        green-light our launch and we don't know why"; Uniswap instead
+        distributed the app to 10,000 users via TestFlight while awaiting
+        approval. The captured page confirms "App Store", "Apple",
+        "self-custody", "approve", and "wallet". Verified via grep of the
+        pinned body.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level: Uniswap's launch announcement and Apple's refusal were
+        reported 2023-03-03. (An earlier rejection had stalled the planned
+        December 2022 launch per the same coverage.)
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Single named app: the Uniswap (Labs) self-custody mobile Wallet for
+    iOS. Apple (App Store review) is the gatekeeping actor; the target is
+    the Uniswap Wallet app, which Apple declined to approve for App Store
+    distribution. Complete enumeration of the single app affected.
+  actor_type: app_distribution_gatekeeper
+  actor_name: Uniswap Wallet (iOS) on Apple App Store
+  chains:
+    - ethereum
+  canonical_domains:
+    - apps.apple.com
+
+jurisdiction: [US]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An app-store review / distribution decision, not an ISP-level / DNS
+      network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Gatekeeping of an app's distribution; no validator-level construct is
+      implicated and the underlying Uniswap protocol is unaffected.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No public-RPC compliance-filter change; the action is an app-store
+      approval refusal.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer freeze / SDN listing primitive; the action gates an app's
+      distribution, not an on-chain asset.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The Uniswap Wallet is a self-custody app, not a centralized-exchange
+      off-ramp; the action is an app-store distribution refusal.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - uniswap_wallet_ios_app_store
+    note: |
+      Load-bearing layer. Apple's App Store review refused to approve the
+      Uniswap self-custody Wallet, denying iOS users access to the app via
+      the App Store distribution surface (the user-facing access /
+      front-end layer), despite Apple approving comparable self-custody
+      swapping wallets. Attested in the pinned Fortune coverage plus the
+      CoinDesk corroboration.
+
+observations:
+  - layer: l4_frontend
+    actor: provider:apple_app_store
+    event: apple_refuses_uniswap_wallet_app_store_approval
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-03-03T00:00:00Z
+    precision: day
+    country: US
+    sources:
+      - type: semi_primary_wayback
+        url: https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
+        wayback: https://web.archive.org/web/20250428020543/https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
+        body_hash: sha256:119e6bd8b94763bcbb78109a4183b6ec062937a941d588595ee43ec0ec9c3837
+        body_path: sources/http_captures/apple-uniswap-wallet-app-store-rejection-2023-03/primary/web.archive.org__web-20250428020543-https-fortune.com-crypto-2023-03-03-uniswap-wallet-apple-app-store__0546440ba0.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [apple_app_store]
+          countries: [US]
+          time_window:
+            - 2023-03-03T00:00:00Z
+            - 2023-03-31T23:59:59Z
+        note: |
+          Apple's 2023-03 refusal to approve the Uniswap self-custody Wallet
+          for the App Store. attribution=plausible: the refusal is directly
+          observed (and stated by Uniswap), but Apple gave no public
+          rationale ("we don't know why" per Uniswap), so the reason is
+          unstated by the gatekeeper.
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/business/2023/03/03/uniswap-wants-to-launch-crypto-wallet-app-but-apple-says-not-so-fast
+        wayback: https://web.archive.org/web/20240907112054/https://www.coindesk.com/business/2023/03/03/uniswap-wants-to-launch-crypto-wallet-app-but-apple-says-not-so-fast/
+        body_hash: sha256:e771da735d7327df1f6dd67f5a8a8bb59c6175f8af2b865dcf737ab234727eaf
+        body_path: sources/http_captures/apple-uniswap-wallet-app-store-rejection-2023-03/primary/web.archive.org__web-20240907112054-https-www.coindesk.com-business-2023-03-03-uniswap-wants-to-launch-crypto-wallet-app-but-apple-says-not-so-fast__8ac039667b.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [apple_app_store]
+          countries: [US]
+          time_window:
+            - 2023-03-03T00:00:00Z
+            - 2023-03-31T23:59:59Z
+        note: |
+          CoinDesk corroboration: Apple won't green-light the Uniswap Wallet
+          launch despite approving other self-custody swapping wallets.
+          Independent semi-primary second anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Apple's App Store review
+  refused (2023-03-03) to approve the Uniswap self-custody Wallet for iOS,
+  leaving it unavailable via the App Store despite Apple approving
+  comparable self-custody swapping wallets ("won't green-light our launch
+  and we don't know why"). Uniswap routed around it via TestFlight (10,000
+  users). An app-store gatekeeping denial of a major crypto app — same
+  app-store-gatekeeper pattern as apple-india-crypto-exchange-removal-2024-01.
+
+  comparison shape: 1 observed_change layer (l4_frontend, the app
+  distribution / access surface) with attribution=plausible. attribution
+  held at plausible because Apple gave no public rationale (reason unstated
+  by the gatekeeper; only Uniswap's account is on record). l0/l1/l3/
+  asset_onchain/offramp_cex not_applicable. Sources verified via WebSearch
+  + capture 2026-05-31 (Fortune primary lead + CoinDesk corroboration,
+  body_hash-pinned; grep-confirmed "App Store" / "Apple" / "self-custody" /
+  "won't green-light"; no fabrication).
+
+  Codebook decisions applied:
+  - §9 in scope: app-store removal / refusal of a legitimate crypto app is
+    a deliberate corporate access denial (app-store gatekeeping).
+  - trigger.type=corporate_policy_change per §5.1 (app-store gatekeeper
+    review decision) -> research_stratum=S5_corporate.
+  - layer=l4_frontend: the App Store is the user-facing distribution /
+    access surface for the app.
+  - attribution=plausible per §1.4 analogue (gatekeeper stated no public
+    reason).
+  - target.enumeration=complete per §7 (single named app).
+  - empirical_shape=comparison per §3; admission_tier=empirical_case
+    per §4.
+
+scoped_claim: |
+  "Apple's App Store review refused (2023-03-03) to approve the Uniswap
+  self-custody Wallet for iOS, denying iOS users App Store access to the
+  app despite Apple approving comparable self-custody swapping wallets and
+  giving no public reason — a 1-layer l4_frontend observed_change
+  (attribution=plausible) of app-store gatekeeping against a major crypto
+  app. Same gatekeeper pattern as apple-india-crypto-exchange-removal-2024-01."
+
+tags:
+  - corporate_policy_change
+  - united_states
+  - apple
+  - uniswap
+  - app_store
+  - frontend_block
