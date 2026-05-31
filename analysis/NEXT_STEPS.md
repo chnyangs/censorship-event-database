@@ -65,6 +65,16 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       only because admission is human-only (`origin=agent_draft` cannot be promoted by automation).
 
 ## P3 — Methodology debt (codebook process)
+- [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
+      `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
+      reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
+      **230 release-ready** cases, **138 admitted-but-blocked** cases, observation reliability
+      **278 high / 79 medium / 48 low**, and attribution reliability **244 high / 157 medium / 4 low**.
+      The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
+      `scores.attribution_reliability=="low"` in `analysis/review-report.json`, then either:
+      attach replayable claim-usable primary/semi-primary anchors, narrow/drop the weak observation, or leave
+      the case blocked when no public replayable source exists. Do **not** convert contextual sources to
+      claim-usable merely to improve counts.
 - [ ] **`evidence_tier` IRR pass.** Codebook 4.0.0 added a decision-rule (the `attested_secondary` tier). The
       codebook's own "Effective" convention requires a new IRR pass on ≥ 10 events for a decision-rule change.
       Run a 2-coder IRR pass on a 10–15 event sample of the 33 `attested_secondary` rows to confirm inter-rater

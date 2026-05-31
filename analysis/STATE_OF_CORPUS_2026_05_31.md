@@ -8,6 +8,17 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - **Integrity**: `scripts/validate.py` passes **405 / 405 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
+### 2026-06-01 quality-loop addendum
+- Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
+  attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
+  `contextual_unarchived` or `non_admission`.
+- Under that stricter operational review, release-ready cases are **230** (9 complete / 221 scoped) and
+  admitted-but-blocked cases are **138**. This is a deliberate paper-risk surfacing change, not a corpus
+  shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
+  underlying source rows are upgraded or narrowed.
+- Current reliability distribution after the stricter pass: observation reliability **278 high / 79 medium /
+  48 low**; attribution reliability **244 high / 157 medium / 4 low**.
+
 ## Admitted composition (368)
 | dimension | breakdown |
 |---|---|
