@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `80b0ca3` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `3067f79` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -28,7 +28,7 @@
 
 - **`primary_legal`**
   - URL: <http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/3374222/index.html>
-  - Wayback: <https://web.archive.org/web/2017/http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/3374222/index.html>
+  - Wayback: <https://web.archive.org/web/20170904083557/http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/3374222/index.html>
   - body_hash: `sha256:48cad3d18bb9d1d59fb58b3ba398bfcc70a1dd74cabf81d554094f9f981983ca`
   - body_path: `sources/http_captures/china-ico-ban-2017-09/primary/web.archive.org__web-20170904083557-http-www.pbc.gov.cn-goutongjiaoliu-113456-113469-3374222-index.html__0aa94d8f93.html`
   > PBOC publication of the "Announcement on Preventing Financial
@@ -50,12 +50,12 @@
 > providing account opening, registration, trading, liquidation,
 > settlement, or insurance services involving tokens and virtual
 > currencies. The pbc.gov.cn URL path format has drifted since 2017;
-> the provisional Wayback anchor uses year-prefix lookup and the
-> specific capture timestamp requires re-pinning during human audit
-> before this citation may serve as an admission anchor in its own
-> right. Marked evidence_use=contextual_unarchived pending that
-> re-pin. Primary source is Chinese-language; English secondary
-> anchors below provide the working translation context.
+> Evidence repair 2026-06-01 replaces the year-prefix Wayback
+> pointer with the locally captured 2017-09-04 08:35:57 memento
+> and body_hash/body_path. This primary legal citation is
+> claim-usable for the trigger and direct offramp_cex observation.
+> Primary source is Chinese-language; English secondary anchors
+> below provide the working translation context.
 - **`supporting_tracker`**
   - URL: <https://www.loc.gov/item/global-legal-monitor/2017-10-19/china-regulators-ban-companies-from-raising-money-through-virtual-currencies/>
   - Wayback: <https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2017-10-19/china-regulators-ban-companies-from-raising-money-through-virtual-currencies/>
@@ -70,14 +70,17 @@
 > pending that re-pin.
 - **`supporting_journalism`**
   - URL: <https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html>
-  - Wayback: <https://web.archive.org/web/2017/https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html>
+  - Wayback: <https://web.archive.org/web/20170904084200/https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html>
+  - body_hash: `sha256:4b10ede20fb7ed959ddcf52630d092ffe2d5fa5598cd2f2f4a228fa5d5dd24dd`
+  - body_path: `sources/http_captures/china-ico-ban-2017-09/primary/web.archive.org__web-20170904084200-https-www.cnbc.com-2017-09-04-chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html__a27d6aec56.html`
   > CNBC same-day English-language coverage 2017-09-04: "China bans
 > companies from raising money through ICOs, asks local regulators
 > to inspect 60 major platforms". Corroborates the 2017-09-04
 > issuance date and the cross-ministry origin. Used as an
 > English-language anchor because primary PBOC text is
-> Chinese-language; wayback year-prefix anchor, specific snapshot
-> requires re-pin during human audit.
+> Chinese-language. Evidence repair 2026-06-01 attaches the
+> locally captured 2017-09-04 08:42:00 Wayback memento and
+> body_hash/body_path for replayable translation/context support.
 
 ## 2. Target
 
@@ -119,9 +122,9 @@
 > ICO tokens at the PRC domestic exchange triad (OKCoin,
 > Huobi, BTCC) ceased in compliance. attribution=direct
 > because the notice text names the prohibition that drove
-> the observed sector-wide CNY-pair delisting. Provisional
-> wayback anchor; specific snapshot timestamp requires
-> re-pinning during human audit.
+> the observed sector-wide CNY-pair delisting. Evidence repair
+> 2026-06-01: timestamped Wayback memento and body_hash/body_path
+> are locally pinned for this primary legal anchor.
 - **`semi_primary_wayback`**
   - URL: <https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html>
   - Wayback: <https://web.archive.org/web/20170904084200/https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html>
@@ -144,7 +147,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `80b0ca3`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3067f79`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (2 changed layer(s): `l1_consensus`, `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `80b0ca3` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `3067f79` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -31,7 +31,7 @@
 
 - **`primary_legal`**
   - URL: <http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm>
-  - Wayback: <https://web.archive.org/web/2021/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm>
+  - Wayback: <https://web.archive.org/web/20210521153842/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm>
   - body_hash: `sha256:0dc104d32ebe49522590e6f1b999aac1a88304a93c84b85db74857499d6bb2c4`
   - body_path: `sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521153842-http-www.gov.cn-guowuyuan-2021-05-21-content_5610192.htm__a4e95ada52.html`
   > State Council Financial Stability and Development Committee
@@ -45,12 +45,12 @@
 > explicitly name bitcoin mining as a target and is the immediate
 > precursor to the province-level mining-ban cascade (Inner
 > Mongolia 2021-05-25, Qinghai 2021-06-09, Yunnan/Xinjiang/Sichuan
-> 2021-06). evidence_use=contextual_unarchived because no
-> body_hash+body_path archival capture was pinned in this
-> DRYRUN authoring pass; the gov.cn origin URL and the Xinhua
-> English readout remain publicly reachable and Wayback
-> bracketing of the 2021-05-21 publication window is straightforward
-> in a follow-up human-audit pass.
+> 2021-06). The original DRYRUN pass marked this source
+> contextual because no body_hash+body_path archival capture was
+> pinned then. Evidence repair 2026-06-01 replaces that stale
+> posture: the 2021-05-21 15:38:42 Wayback memento is now locally
+> captured with body_hash/body_path and is claim-usable for the
+> trigger and the bounded observations that cite this readout.
 - **`supporting_journalism`**
   - URL: <https://www.reuters.com/technology/chinese-financial-payment-bodies-barred-cryptocurrency-business-2021-05-18/>
   - Wayback: <https://web.archive.org/web/2021/https://www.reuters.com/technology/chinese-financial-payment-bodies-barred-cryptocurrency-business-2021-05-18/>
@@ -60,11 +60,15 @@
 > Liu He as the chair and the FSDC as the issuing body.
 - **`supporting_journalism`**
   - URL: <https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html>
-  - Wayback: <https://web.archive.org/web/2021/https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html>
+  - Wayback: <https://web.archive.org/web/20210521160706/https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html>
+  - body_hash: `sha256:dd0f548582f23ecad905039c1e4aeba7fbb49a7aac10482edc94a059fcd5f47c`
+  - body_path: `sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521160706-https-www.cnbc.com-2021-05-21-bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html__1d9eaab499.html`
   > CNBC 2021-05-21 contemporaneous market-reaction coverage.
 > Cited for the immediate (intra-day) BTC spot price decline of
 > ≥6% following circulation of the FSDC statement; supports
-> plausible attribution for downstream observations.
+> plausible attribution for downstream observations. Evidence
+> repair 2026-06-01 attaches the locally captured 2021-05-21
+> 16:07:06 Wayback memento and body_hash/body_path.
 
 ## 2. Target
 
@@ -188,7 +192,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `80b0ca3`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3067f79`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
