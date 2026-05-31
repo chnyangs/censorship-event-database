@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `71ac901` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `80b0ca3` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -49,8 +49,12 @@
   - body_path: `sources/http_captures/consensys-metamask-infura-rpc-data-collection-2022-11/primary/web.archive.org__web-20221124110546-https-www.theblock.co-post-189717-consensys-says-it-collects-ip-addresses-of-metamask-users-via-infura__bb63c07635.html`
   > The Block contemporaneous coverage of the 2022-11-23 ConsenSys
 > privacy-policy update disclosing Infura IP+wallet-address
-> collection. Day-level timing triangulation. DRYRUN: pinned
-> Wayback snapshot deferred to human audit.
+> collection. Evidence repair 2026-06-01: the 2022-11-24
+> Wayback memento is locally captured with body_hash/body_path
+> and is claim-usable for timing triangulation and the public-
+> disclosure/no-behavioral-cutover framing. The canonical
+> ConsenSys privacy-policy revision remains the preferred
+> first-party source to pin in a future release-hardening pass.
 - **`supporting_journalism`**
   - URL: <https://decrypt.co/115486/infura-collect-metamask-users-ip-ethereum-addresses-after-privacy-policy-update>
   - Wayback: <https://web.archive.org/web/2022/https://decrypt.co/115486/infura-collect-metamask-users-ip-ethereum-addresses-after-privacy-policy-update>
@@ -126,8 +130,11 @@
 > ConsenSys privacy-policy disclosure, retained for day-level
 > timing triangulation and for the framing that the
 > disclosure is a transparency update about pre-existing
-> collection rather than a new collection practice. DRYRUN:
-> pinned Wayback snapshot deferred to human audit.
+> collection rather than a new collection practice. Evidence
+> repair 2026-06-01: the 2022-11-24 Wayback memento is locally
+> captured with body_hash/body_path and is claim-usable for the
+> bounded null observation; it is not treated as a first-party
+> ConsenSys privacy-policy archive.
 
 ## 5. Honest coverage gaps
 
@@ -140,7 +147,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `71ac901`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `80b0ca3`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

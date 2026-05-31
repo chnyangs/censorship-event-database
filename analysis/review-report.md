@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `233`
-- Admitted but release-blocked cases: `135`
+- Release-ready cases: `234`
+- Admitted but release-blocked cases: `134`
 - Fully complete release-ready cases: `9`
-- Scope-limited release-ready cases: `224`
+- Scope-limited release-ready cases: `225`
 - Working drafts: `2`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 233, 'null_control': 96, 'appendix_only': 71, 'paper_anchor': 5}`
@@ -1705,19 +1705,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `consensys-metamask-infura-rpc-data-collection-2022-11`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
-- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
