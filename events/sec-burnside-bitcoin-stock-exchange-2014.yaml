@@ -26,9 +26,11 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://www.sec.gov/news/press-release/2014-273
+      url: https://www.sec.gov/newsroom/press-releases/2014-273
+      body_hash: sha256:8df90509bfb2278913febfb77097dad838daeb098dd317e0f84dd701e56477c6
+      body_path: sources/http_captures/sec-burnside-bitcoin-stock-exchange-2014/sec-primary/www.sec.gov__newsroom-press-releases-2014-273__10000997d5.html
       wayback: https://web.archive.org/web/2015/https://www.sec.gov/news/press-release/2014-273
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         SEC press release 2014-273 (2014-12-08): "SEC Sanctions Operator of
         Bitcoin-Related Stock Exchanges for Registration Violations." Charges
@@ -39,23 +41,30 @@ trigger:
         prejudgment interest, and civil penalties; two-year ban from
         association and from participating in any penny-stock offerings.
         Earliest SEC enforcement against an unregistered crypto-denominated
-        securities exchange. Wayback anchor is a year-prefix lookup; specific
-        snapshot timestamp requires human-audit re-pinning before this
-        citation can serve as a standalone admission anchor.
+        securities exchange. SOURCE-REPAIRED 2026-06-01: the SEC newsroom
+        press release was captured locally and pinned with body_hash/body_path.
+        The legacy Wayback year-prefix URL remains only as a supplemental
+        historical lookup.
     - type: primary_legal
-      url: https://www.sec.gov/litigation/admin/2014/33-9684.pdf
-      wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/admin/2014/33-9684.pdf
-      evidence_use: contextual_unarchived
+      url: https://www.sec.gov/litigation/admin/2014/33-9685.pdf
+      body_hash: sha256:aa0c6f4a9626bb46b6f1b169b9d544d5a64e3e97be8e9dcc87d09e5277bc43b0
+      body_path: sources/http_captures/sec-burnside-bitcoin-stock-exchange-2014/sec-primary/www.sec.gov__litigation-admin-2014-33-9685.pdf__60467c1bed.bin
+      wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/admin/2014/33-9685.pdf
+      evidence_use: replayable
       note: |
-        SEC Administrative Proceeding Order 33-9684 (Release No. 33-9684 /
-        34-73834 / Admin Proc. File No. 3-16307) instituting and settling
+        SEC Administrative Proceeding Order 33-9685 (Release No. 33-9685 /
+        34-73783 / IC-31366 / Admin Proc. File No. 3-16307) instituting and settling
         cease-and-desist proceedings against Ethan Burnside and BTC Trading
         Corp. The order details (i) operation of BTCT as an unregistered
         Bitcoin-denominated stock exchange and (ii) operation of LTC-Global
         as an unregistered Litecoin-denominated stock exchange, both without
         registration as a national securities exchange under Section 5 of
-        the Exchange Act. Wayback anchor is a year-prefix lookup; the
-        specific snapshot timestamp requires re-pinning during human audit.
+        the Exchange Act. It records that, in response to Commission staff's
+        investigation, Burnside began winding down both websites in September
+        2013 and that both websites had ceased operating by 2013-10-31.
+        SOURCE-REPAIRED 2026-06-01: the live SEC PDF was captured locally and
+        pinned with body_hash/body_path. The legacy Wayback year-prefix URL
+        remains only as a supplemental historical lookup.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -115,13 +124,13 @@ coverage:
       - btct.co
       - ltc-global.com
     note: |
-      Both BTCT (btct.co) and LTC-Global (ltc-global.com) frontends ceased
-      serving the unregistered-securities-exchange surface in 2013-10
-      under operator action, ahead of the 2014-12-08 SEC settlement that
-      formalized the enforcement posture. The SEC order references that
-      both venues had wound down trading and instructed users to withdraw
-      assets prior to settlement. L4 frontend shutdown is the load-bearing
-      observation at this layer.
+      The SEC order records that, shortly after Commission staff contacted
+      Burnside in 2013-09, he began an orderly winddown of both websites by
+      disabling registration and trading functions while maintaining user
+      withdrawal access; by 2013-10-31, both websites had ceased operating.
+      No independent web-archive diff is reconstructed in this row. The L4
+      observation is therefore the order-recorded website-function winddown,
+      not a separately measured domain takedown.
   - layer: asset_onchain
     status: not_applicable
     note: |
@@ -139,17 +148,19 @@ coverage:
       - ltc-global.com
     note: |
       The two venues were themselves the off-ramp / exchange platforms for
-      Bitcoin/Litecoin-denominated securities trading. The 2013-10
-      operator-side shutdown of trading and the SEC-mandated cease-and-
-      desist plus disgorgement settlement directly terminated the off-ramp
-      function for BTCT and LTC-Global users. attribution=direct because
-      the SEC order itself names the regulatory mandate that finalized the
-      cessation. Load-bearing observation attached below.
+      Bitcoin/Litecoin-denominated securities trading. The SEC order records
+      that both venues disabled trading during the winddown, users withdrew
+      approximately 200,000 litecoins and 20,000 bitcoins, and both websites
+      had ceased operating by 2013-10-31. The 2014-12-08 settlement then
+      imposed cease-and-desist, industry-bar, disgorgement/interest, and
+      penalty remedies. attribution=direct because the SEC order ties the
+      winddown to Commission staff contact and the final sanctions to the
+      settled administrative proceeding.
 
 observations:
   - layer: l4_frontend
     actor: frontend:btct_co
-    event: btct_unregistered_securities_exchange_frontend_shutdown
+    event: sec_order_recorded_btct_ltc_global_website_function_winddown
     observation_kind: observed_change
     attribution: direct
     timestamp: 2014-12-08T00:00:00Z
@@ -157,29 +168,35 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_legal
-        url: https://www.sec.gov/news/press-release/2014-273
+        url: https://www.sec.gov/newsroom/press-releases/2014-273
+        body_hash: sha256:8df90509bfb2278913febfb77097dad838daeb098dd317e0f84dd701e56477c6
+        body_path: sources/http_captures/sec-burnside-bitcoin-stock-exchange-2014/sec-primary/www.sec.gov__newsroom-press-releases-2014-273__10000997d5.html
         wayback: https://web.archive.org/web/2015/https://www.sec.gov/news/press-release/2014-273
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
-          SEC press release 2014-273 names the BTCT (btct.co) Bitcoin-
-          denominated securities-exchange frontend as the public surface
-          that operated without registration and was the subject of the
-          cease-and-desist order. The operator-side shutdown (2013-10) was
-          finalized by the 2014-12-08 settlement. attribution=direct
-          because the SEC primary-legal source names the regulatory
-          mandate. Wayback anchor is a year-prefix lookup; specific
-          snapshot timestamp requires human-audit re-pinning.
+          SEC press release 2014-273 names BTC Virtual Stock Exchange and
+          LTC-Global Virtual Stock Exchange as the online venues that traded
+          securities using Bitcoin or Litecoin without registration. It
+          states that the venues operated from 2012-08 through 2013-10 and
+          describes the 2014-12-08 settlement. Local body_hash/body_path
+          capture is the admission-grade replay anchor; the legacy Wayback
+          year-prefix URL is supplemental.
       - type: primary_legal
-        url: https://www.sec.gov/litigation/admin/2014/33-9684.pdf
-        wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/admin/2014/33-9684.pdf
-        evidence_use: contextual_unarchived
+        url: https://www.sec.gov/litigation/admin/2014/33-9685.pdf
+        body_hash: sha256:aa0c6f4a9626bb46b6f1b169b9d544d5a64e3e97be8e9dcc87d09e5277bc43b0
+        body_path: sources/http_captures/sec-burnside-bitcoin-stock-exchange-2014/sec-primary/www.sec.gov__litigation-admin-2014-33-9685.pdf__60467c1bed.bin
+        wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/admin/2014/33-9685.pdf
+        evidence_use: replayable
         note: |
-          SEC Administrative Proceeding Order 33-9684 detailing the BTCT
-          unregistered-exchange operation and its termination. Corroborates
-          the L4 frontend shutdown observation at the primary-legal tier.
+          SEC Administrative Proceeding Order 33-9685 records that Burnside
+          began an orderly winddown in 2013-09 after Commission staff contact,
+          disabled registration and trading functions while preserving
+          withdrawals, and that both websites had ceased operating by
+          2013-10-31. Timestamp is the public order date; the row does not
+          claim the website winddown first occurred on 2014-12-08.
   - layer: offramp_cex
     actor: exchange:btc_trading_corp_and_ltc_global
-    event: bitcoin_litecoin_denominated_securities_exchanges_terminated
+    event: sec_order_finalized_btct_ltc_global_exchange_winddown_and_cease_desist
     observation_kind: observed_change
     attribution: direct
     timestamp: 2014-12-08T00:00:00Z
@@ -187,40 +204,55 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_legal
-        url: https://www.sec.gov/news/press-release/2014-273
+        url: https://www.sec.gov/newsroom/press-releases/2014-273
+        body_hash: sha256:8df90509bfb2278913febfb77097dad838daeb098dd317e0f84dd701e56477c6
+        body_path: sources/http_captures/sec-burnside-bitcoin-stock-exchange-2014/sec-primary/www.sec.gov__newsroom-press-releases-2014-273__10000997d5.html
         wayback: https://web.archive.org/web/2015/https://www.sec.gov/news/press-release/2014-273
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
         note: |
           SEC press release 2014-273 documents that the BTC Trading Corp
           and LTC-Global venues operated as unregistered Bitcoin/Litecoin
-          stock-exchange off-ramps and were terminated under the SEC
-          cease-and-desist settlement (~$68,000 disgorgement +
-          prejudgment interest + civil penalty + two-year associational
-          and penny-stock bar). attribution=direct: SEC source names the
-          regulatory mandate behind the off-ramp termination.
+          stock-exchange venues and that the 2014-12-08 settlement imposed
+          more than $68,000 in disgorgement, interest, and penalty plus a
+          two-year industry bar. Local body_hash/body_path capture is the
+          admission-grade replay anchor; the legacy Wayback year-prefix URL
+          is supplemental.
       - type: primary_legal
-        url: https://www.sec.gov/litigation/admin/2014/33-9684.pdf
-        wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/admin/2014/33-9684.pdf
-        evidence_use: contextual_unarchived
+        url: https://www.sec.gov/litigation/admin/2014/33-9685.pdf
+        body_hash: sha256:aa0c6f4a9626bb46b6f1b169b9d544d5a64e3e97be8e9dcc87d09e5277bc43b0
+        body_path: sources/http_captures/sec-burnside-bitcoin-stock-exchange-2014/sec-primary/www.sec.gov__litigation-admin-2014-33-9685.pdf__60467c1bed.bin
+        wayback: https://web.archive.org/web/2015/https://www.sec.gov/litigation/admin/2014/33-9685.pdf
+        evidence_use: replayable
         note: |
-          SEC Administrative Proceeding Order 33-9684 details the off-ramp
-          cessation at BTCT (Bitcoin-denominated) and LTC-Global (Litecoin-
-          denominated). Corroborates the offramp_cex observation at the
-          primary-legal tier.
+          SEC Administrative Proceeding Order 33-9685 records the 2013-09
+          winddown after Commission staff contact, the 2013-10-31 cessation
+          of both websites, and the 2014-12-08 cease-and-desist, industry
+          bar, disgorgement/interest, and penalty remedies. Local
+          body_hash/body_path capture is the admission-grade replay anchor.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/sec-burnside-bitcoin-stock-exchange-2014.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **SOURCE-REPAIRED 2026-06-01**: promoted-from-candidate history retained,
+  but the SEC press release and administrative-order PDF now have local
+  body_hash/body_path replay anchors. The earlier URL/numbering error
+  (`33-9684.pdf`) has been corrected to SEC Release No. 33-9685 /
+  34-73783 / IC-31366. The row is narrowed to what the order supports:
+  Commission-staff-triggered website/trading winddown beginning 2013-09,
+  both websites ceased by 2013-10-31, and a 2014-12-08 settlement imposing
+  cease-and-desist, industry-bar, disgorgement/interest, and penalty remedies.
+  This source-repair note is not a last_human_audit claim.
 
   comparison — earliest SEC enforcement action in the dataset against an
   unregistered crypto-denominated securities exchange. The 2014-12-08
   cease-and-desist against Ethan Burnside and BTC Trading Corp finalized
   the wind-down of two Bitcoin/Litecoin-denominated stock-exchange venues
-  (BTCT and LTC-Global) that had operated 2011-2013 without registration
+  (BTCT and LTC-Global) that had operated 2012-2013 without registration
   as national securities exchanges. Two distinct observed_change layers:
   (1) L4 frontend (shutdown of the unregistered-exchange public surface
-  at btct.co and ltc-global.com); (2) offramp_cex (termination of the
-  Bitcoin/Litecoin off-ramp function the two venues provided). Both
-  observations attribute_direct from the SEC primary-legal sources.
+  at btct.co and ltc-global.com as recorded in the SEC order); (2)
+  offramp_cex (termination of the Bitcoin/Litecoin exchange function the
+  two venues provided). Both observations attribute_direct from the SEC
+  primary-legal sources, with the public observation timestamp set to the
+  2014-12-08 order date and the underlying winddown dates recorded in notes.
 
   Why historical_baseline tier: 2014-12 sits inside the
   historical_baseline_2013_2016 temporal tier per the 2008+ tiered frame
@@ -230,11 +262,10 @@ analysis_notes: |
   family (sec-beaxy-platform-shutdown-2023 is the closest 2017+ sibling).
 
   Why empirical_case rather than anchor_case: the two observed_change
-  layers exist and are direct-attribution, but the LLM authoring
-  constraint in this pass is that no live body_hash+body_path captures
-  of the SEC primary-legal sources have been personally retrieved; the
-  citations rely on Wayback year-prefix anchors pending the real
-  archival-capture pass that anchor_case promotion would require.
+  layers exist and are direct-attribution, but they describe the same
+  operator winddown surface from different layer lenses; anchor_case
+  promotion would require either an additional independent changed layer
+  or pinned website archive bracketing of btct.co / ltc-global.com.
 
   Why L0/L1/L3/asset_onchain are not_applicable: the SEC order is an
   administrative cease-and-desist against an exchange operator, not a
@@ -253,10 +284,12 @@ analysis_notes: |
 
 scoped_claim: |
   "The 2014-12-08 SEC cease-and-desist settlement against Ethan Burnside
-  and BTC Trading Corp finalized the shutdown of two unregistered
-  Bitcoin/Litecoin-denominated securities-exchange venues (BTCT and
-  LTC-Global) at the L4 frontend and offramp_cex layers; the row claims
-  only this two-layer cessation observation and not network blocking,
+  and BTC Trading Corp records that, after Commission staff contact in
+  2013-09, BTCT and LTC-Global disabled registration/trading functions,
+  preserved user withdrawals, and had ceased operating by 2013-10-31; the
+  settlement then imposed cease-and-desist, industry-bar, disgorgement /
+  interest, and penalty remedies. The row claims only this SEC-order-
+  supported L4/offramp_cex cessation observation and not network blocking,
   on-chain asset action, or PBS-era L1/L3 effects."
 
 scoped_knowledge: |

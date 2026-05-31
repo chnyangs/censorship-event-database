@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **243** (9 complete / 234 scoped) and
-  admitted-but-blocked cases are **125**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **244** (10 complete / 234 scoped) and
+  admitted-but-blocked cases are **124**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **261 high / 80 medium / 27 low**; attribution reliability
-  **224 high / 144 medium / 0 low**. Current admitted paper roles are
-  **242 aggregate_datapoint / 96 null_control / 27 appendix_only / 3 paper_anchor**.
+  observation reliability **262 high / 80 medium / 26 low**; attribution reliability
+  **225 high / 143 medium / 0 low**. Current admitted paper roles are
+  **243 aggregate_datapoint / 96 null_control / 26 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -36,6 +36,9 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   administrative-order replay anchors, and its scoped claim is narrowed from an independently verified
   Derivabit frontend shutdown to the order-supported unregistered Bitcoin-options facility finding,
   commodity-classification holding, and cease-and-desist / operator-state observation.
+  `sec-burnside-bitcoin-stock-exchange-2014` now has local SEC newsroom press-release and corrected
+  Administrative Proceeding Order 33-9685 PDF replay anchors; its claim is narrowed to the order-supported
+  Commission-staff-triggered website/trading winddown and 2014 settlement remedies.
 
 ## Admitted composition (368)
 | dimension | breakdown |
