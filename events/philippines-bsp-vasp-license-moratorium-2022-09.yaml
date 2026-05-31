@@ -23,6 +23,17 @@ trigger:
   timestamp: 2022-09-01T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.bsp.gov.ph/Regulations/Issuances/2022/M-2022-035.pdf
+      wayback: https://web.archive.org/web/20260531040728/https://www.bsp.gov.ph/Regulations/Issuances/2022/M-2022-035.pdf
+      body_hash: sha256:91dfac514d4bc41768fa0c9451095ccf38273e48a69b393d60f5939767874d1e
+      body_path: sources/http_captures/philippines-bsp-vasp-license-moratorium-2022-09/primary/www.bsp.gov.ph__Regulations-Issuances-2022-M-2022-035.pdf__62423443c1.bin
+      evidence_use: replayable
+      note: |
+        BSP Memorandum No. M-2022-035, official primary trigger instrument
+        signed 2022-08-10 by Deputy Governor Chuchi G. Fonacier. The captured
+        PDF is body-hash pinned and Wayback-archived; extracted text confirms
+        the suspension of new VASP licenses for three years from 2022-09-01.
     - type: semi_primary_wayback
       url: https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/
       wayback: https://web.archive.org/web/20220819111117/https://www.rappler.com/business/bangko-sentral-pilipinas-imposes-moratorium-virtual-asset-service-providers-licensing/
@@ -40,16 +51,17 @@ trigger:
         subject to reassessment based on market developments"; quotes BSP
         Governor Felipe Medalla. Used as the semi-primary anchor because
         the BSP's own MediaDisp.aspx press page is a JavaScript/SharePoint
-        shell whose archived HTML body is not content-bearing. Wayback
-        memento 20220819111117 captured 2026-05-31.
+        shell whose archived HTML body is not content-bearing. The official
+        Memorandum No. M-2022-035 PDF is pinned above as the replayable
+        primary_government trigger anchor. Wayback memento 20220819111117
+        captured 2026-05-31.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_government
       note: |
-        BSP Resolution No. 1141 is dated 2022-08-04; the moratorium was
-        publicly announced 2022-08-12 and is effective 2022-09-01 (the
-        date the regular VASP application window closes). Day-level
-        precision; trigger.timestamp pinned to the 2022-09-01 effective
-        date of the window closure.
+        BSP Memorandum No. M-2022-035 was signed 2022-08-10 and states that
+        the suspension of new VASP licenses applies for three years from
+        2022-09-01. Day-level precision; trigger.timestamp is pinned to the
+        2022-09-01 effective date of the window closure.
 
 target:
   kind: entity
