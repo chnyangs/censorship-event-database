@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **242** (9 complete / 233 scoped) and
-  admitted-but-blocked cases are **126**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **243** (9 complete / 234 scoped) and
+  admitted-but-blocked cases are **125**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **260 high / 80 medium / 28 low**; attribution reliability
-  **223 high / 145 medium / 0 low**. Current admitted paper roles are
-  **241 aggregate_datapoint / 96 null_control / 28 appendix_only / 3 paper_anchor**.
+  observation reliability **261 high / 80 medium / 27 low**; attribution reliability
+  **224 high / 144 medium / 0 low**. Current admitted paper roles are
+  **242 aggregate_datapoint / 96 null_control / 27 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -32,7 +32,10 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   cease-and-desist, and recorded business-practice changes. `bitfinex-tether-cftc-2021` now has local CFTC
   press-release plus both CFTC order PDFs pinned; its Tether-side claim is narrowed from a CFTC-created
   quarterly-reporting regime to the order-supported reserve-misrepresentation penalty, cease-and-desist, and
-  recorded remediation posture.
+  recorded remediation posture. `coinflip-cftc-derivabit-2015` now has local CFTC press-release and
+  administrative-order replay anchors, and its scoped claim is narrowed from an independently verified
+  Derivabit frontend shutdown to the order-supported unregistered Bitcoin-options facility finding,
+  commodity-classification holding, and cease-and-desist / operator-state observation.
 
 ## Admitted composition (368)
 | dimension | breakdown |
