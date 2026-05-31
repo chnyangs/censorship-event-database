@@ -13,12 +13,12 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 |---|---|
 | **research_stratum** | S4_nation_state 111 · S5_corporate 97 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 308 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 334 · **attested_secondary 34** (lower-tier, filterable — see codebook §10) |
+| **evidence_tier** | admission_grade 335 · **attested_secondary 33** (lower-tier, filterable — see codebook §10) |
 | **admission_tier** | empirical_case 267 · null_case 96 · anchor_case 5 |
 | **empirical_shape** | comparison 270 · null_event 96 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
-censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **34
+censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **33
 `attested_secondary`** rows are the well-documented single-source national bans + corporate restrictions admitted
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.
@@ -29,7 +29,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    over-claims to match captured sources; 2 held with corrected flags. → 331.
 3. **Task 2 — source-strengthening** (+37): +3 via official-PDF capture (philippines-bsp / argentina-bcra /
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
-   (25 clean + 9 flagged national bans). → 368.
+   (25 clean + 9 flagged national bans; 1 of those was later upgraded to admission-grade by item 11). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;
    current validator regression 405/405.
 5. **Continuation P1/P2 cleanup** — resolved US-state regulator stratum policy (state/subnational
@@ -60,7 +60,12 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     semi-primary trade-press anchors to a primary_corporate replayable source. The row remains admitted;
     attribution is now direct for the Poloniex geofence action while the regulatory rationale stays scoped
     as generic U.S. securities-classification uncertainty.
-11. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
+11. **Continuation P4 lower-tier source strengthening** — pinned Binance's official support article
+    (`Terms of Use Review`) and same-day Terms of Use Wayback capture for
+    `binance-com-us-customer-geofence-2019-06`. The row now meets the strict admission-grade source
+    floor, no longer uses `evidence_tier=attested_secondary`, and has a concrete
+    `target.entity` for the U.S.-person Binance.com customer class.
+12. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
     `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 185
     verified+scope-tagged registry rows, 118 covered by corpus / duplicate / semantic precedent. Of the
     remaining 67 `in_corpus=false` rows, 66 are reviewed-excluded/context-only/out-of-scope/proposal-only

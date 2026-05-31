@@ -44,7 +44,7 @@ Allowed values: `yes`, `no`, `unclear`.
 | `morocco-office-des-changes-crypto-ban-2017-11` | S4 | MA | `regulatory_enforcement` | flagged national ban |  |  |  |  |  |  |  |
 | `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` | S4 | TW | `nation_state_block` | early bank/ATM restriction |  |  |  |  |  |  |  |
 | `vietnam-sbv-payment-prohibition-2017-10` | S4 | VN | `regulatory_enforcement` | official payment prohibition |  |  |  |  |  |  |  |
-| `binance-com-us-customer-geofence-2019-06` | S5 | US | `corporate_policy_change` | major exchange geofence |  |  |  |  |  |  |  |
+| `binance-uk-new-user-halt-2023-10` | S5 | UK | `corporate_policy_change` | major exchange jurisdiction restriction |  |  |  |  |  |  |  |
 | `binance-eea-usdt-spot-delisting-2025-03` | S5 | EU | `corporate_policy_change` | MiCA stablecoin delisting |  |  |  |  |  |  |  |
 | `bybit-canada-exit-2023-05` | S5 | CA | `corporate_policy_change` | market exit |  |  |  |  |  |  |  |
 | `crypto-com-eu-usdt-stablecoin-delisting-2025-01` | S5 | EU | `corporate_policy_change` | stablecoin delisting |  |  |  |  |  |  |  |
