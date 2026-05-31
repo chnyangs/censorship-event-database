@@ -30,8 +30,7 @@ trigger:
       wayback: https://web.archive.org/web/20170904083557/http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/3374222/index.html
       body_hash: sha256:48cad3d18bb9d1d59fb58b3ba398bfcc70a1dd74cabf81d554094f9f981983ca
       body_path: sources/http_captures/china-ico-ban-2017-09/primary/web.archive.org__web-20170904083557-http-www.pbc.gov.cn-goutongjiaoliu-113456-113469-3374222-index.html__0aa94d8f93.html
-      wayback: https://web.archive.org/web/2017/http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/3374222/index.html
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         PBOC publication of the "Announcement on Preventing Financial
         Risks from Initial Coin Offerings" (关于防范代币发行融资风险的公告,
@@ -52,12 +51,12 @@ trigger:
         providing account opening, registration, trading, liquidation,
         settlement, or insurance services involving tokens and virtual
         currencies. The pbc.gov.cn URL path format has drifted since 2017;
-        the provisional Wayback anchor uses year-prefix lookup and the
-        specific capture timestamp requires re-pinning during human audit
-        before this citation may serve as an admission anchor in its own
-        right. Marked evidence_use=contextual_unarchived pending that
-        re-pin. Primary source is Chinese-language; English secondary
-        anchors below provide the working translation context.
+        Evidence repair 2026-06-01 replaces the year-prefix Wayback
+        pointer with the locally captured 2017-09-04 08:35:57 memento
+        and body_hash/body_path. This primary legal citation is
+        claim-usable for the trigger and direct offramp_cex observation.
+        Primary source is Chinese-language; English secondary anchors
+        below provide the working translation context.
     - type: supporting_tracker
       url: https://www.loc.gov/item/global-legal-monitor/2017-10-19/china-regulators-ban-companies-from-raising-money-through-virtual-currencies/
       wayback: https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2017-10-19/china-regulators-ban-companies-from-raising-money-through-virtual-currencies/
@@ -74,16 +73,19 @@ trigger:
         pending that re-pin.
     - type: supporting_journalism
       url: https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html
-      wayback: https://web.archive.org/web/2017/https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20170904084200/https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html
+      body_hash: sha256:4b10ede20fb7ed959ddcf52630d092ffe2d5fa5598cd2f2f4a228fa5d5dd24dd
+      body_path: sources/http_captures/china-ico-ban-2017-09/primary/web.archive.org__web-20170904084200-https-www.cnbc.com-2017-09-04-chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html__a27d6aec56.html
+      evidence_use: replayable
       note: |
         CNBC same-day English-language coverage 2017-09-04: "China bans
         companies from raising money through ICOs, asks local regulators
         to inspect 60 major platforms". Corroborates the 2017-09-04
         issuance date and the cross-ministry origin. Used as an
         English-language anchor because primary PBOC text is
-        Chinese-language; wayback year-prefix anchor, specific snapshot
-        requires re-pin during human audit.
+        Chinese-language. Evidence repair 2026-06-01 attaches the
+        locally captured 2017-09-04 08:42:00 Wayback memento and
+        body_hash/body_path for replayable translation/context support.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -216,9 +218,9 @@ observations:
           ICO tokens at the PRC domestic exchange triad (OKCoin,
           Huobi, BTCC) ceased in compliance. attribution=direct
           because the notice text names the prohibition that drove
-          the observed sector-wide CNY-pair delisting. Provisional
-          wayback anchor; specific snapshot timestamp requires
-          re-pinning during human audit.
+          the observed sector-wide CNY-pair delisting. Evidence repair
+          2026-06-01: timestamped Wayback memento and body_hash/body_path
+          are locally pinned for this primary legal anchor.
       - type: semi_primary_wayback
         url: https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html
         wayback: https://web.archive.org/web/20170904084200/https://www.cnbc.com/2017/09/04/chinese-icos-china-bans-fundraising-through-initial-coin-offerings-report-says.html
@@ -241,6 +243,12 @@ analysis_notes: |
   offramp_cex. offramp_cex observed_change/direct - PBOC 2017-09-04 7-Ministry
   Notice banned ICO fundraising + CNY-pair ICO-token delisting sector-wide.
   comparison/empirical_case preserved.
+
+  **EVIDENCE REPAIR 2026-06-01**. Trigger citations now use the same
+  timestamped replayable PBOC and CNBC Wayback captures already carried
+  by the observation row. This removes the duplicate/year-prefix Wayback
+  drift in the trigger citation while preserving the existing
+  empirical_shape=comparison and admission_tier=empirical_case coding.
 
   NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase C of the 2026-05-16
   staged-release plan: agent-drafted comparable_main_2017_present

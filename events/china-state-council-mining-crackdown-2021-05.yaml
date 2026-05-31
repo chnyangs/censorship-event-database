@@ -29,8 +29,7 @@ trigger:
       wayback: https://web.archive.org/web/20210521153842/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
       body_hash: sha256:0dc104d32ebe49522590e6f1b999aac1a88304a93c84b85db74857499d6bb2c4
       body_path: sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521153842-http-www.gov.cn-guowuyuan-2021-05-21-content_5610192.htm__a4e95ada52.html
-      wayback: https://web.archive.org/web/2021/http://www.gov.cn/guowuyuan/2021-05/21/content_5610192.htm
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
       note: |
         State Council Financial Stability and Development Committee
         (国务院金融稳定发展委员会, FSDC) 51st meeting, chaired by Vice
@@ -43,12 +42,12 @@ trigger:
         explicitly name bitcoin mining as a target and is the immediate
         precursor to the province-level mining-ban cascade (Inner
         Mongolia 2021-05-25, Qinghai 2021-06-09, Yunnan/Xinjiang/Sichuan
-        2021-06). evidence_use=contextual_unarchived because no
-        body_hash+body_path archival capture was pinned in this
-        DRYRUN authoring pass; the gov.cn origin URL and the Xinhua
-        English readout remain publicly reachable and Wayback
-        bracketing of the 2021-05-21 publication window is straightforward
-        in a follow-up human-audit pass.
+        2021-06). The original DRYRUN pass marked this source
+        contextual because no body_hash+body_path archival capture was
+        pinned then. Evidence repair 2026-06-01 replaces that stale
+        posture: the 2021-05-21 15:38:42 Wayback memento is now locally
+        captured with body_hash/body_path and is claim-usable for the
+        trigger and the bounded observations that cite this readout.
     - type: supporting_journalism
       url: https://www.reuters.com/technology/chinese-financial-payment-bodies-barred-cryptocurrency-business-2021-05-18/
       wayback: https://web.archive.org/web/2021/https://www.reuters.com/technology/chinese-financial-payment-bodies-barred-cryptocurrency-business-2021-05-18/
@@ -60,13 +59,17 @@ trigger:
         Liu He as the chair and the FSDC as the issuing body.
     - type: supporting_journalism
       url: https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html
-      wayback: https://web.archive.org/web/2021/https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html
-      evidence_use: contextual_unarchived
+      wayback: https://web.archive.org/web/20210521160706/https://www.cnbc.com/2021/05/21/bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html
+      body_hash: sha256:dd0f548582f23ecad905039c1e4aeba7fbb49a7aac10482edc94a059fcd5f47c
+      body_path: sources/http_captures/china-state-council-mining-crackdown-2021-05/primary/web.archive.org__web-20210521160706-https-www.cnbc.com-2021-05-21-bitcoin-falls-after-china-calls-for-crackdown-on-bitcoin-mining-and-trading-behavior.html__1d9eaab499.html
+      evidence_use: replayable
       note: |
         CNBC 2021-05-21 contemporaneous market-reaction coverage.
         Cited for the immediate (intra-day) BTC spot price decline of
         ≥6% following circulation of the FSDC statement; supports
-        plausible attribution for downstream observations.
+        plausible attribution for downstream observations. Evidence
+        repair 2026-06-01 attaches the locally captured 2021-05-21
+        16:07:06 Wayback memento and body_hash/body_path.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -342,6 +345,12 @@ analysis_notes: |
   CN hashrate share 46%->0% + Huobi/HashCow/BTC.TOP service pauses.
   comparison/empirical_case preserved.
 
+  **EVIDENCE REPAIR 2026-06-01**. Trigger citations now use the same
+  timestamped replayable gov.cn and CNBC Wayback captures already carried
+  by the observation rows. This removes duplicate/year-prefix Wayback
+  drift in the trigger citation while preserving comparison/
+  empirical_case coding and plausible attribution.
+
   NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase C of the
   2026-05-16 staged-release plan, S4 nation-state precursor
   fill for the PRC 2021 mining-and-trading crackdown cascade.
@@ -383,23 +392,14 @@ analysis_notes: |
   "trading") rather than firms; canonical_domains=[] because
   the directive does not list hosts.
 
-  Evidence posture: all citations carry evidence_use=
-  contextual_unarchived per the authoring brief. The gov.cn
-  readout URL, Reuters / CNBC / Al Jazeera / SCMP coverage,
-  and the Cambridge CBECI tracker remain publicly reachable;
-  Wayback bracketing and body_hash pinning of each anchor is
-  the standard human-audit follow-up that would promote this
-  event from draft to human_reviewed.
-
-  Status remains draft (origin=agent_draft) per the agent-
-  authoring convention. Promotion path: (1) pin gov.cn readout
-  body_hash + Wayback, (2) pin Cambridge CBECI country-share
-  JSON body_hash for 2021-04 and 2021-09 brackets, (3) pin
-  Huobi / HashCow / BTC.TOP primary_corporate announcement
-  body_hashes from 2021-05-23 to 2021-05-26, (4) consider
-  promoting l1_consensus attribution to direct on the basis
-  of CCAF tracker primary-measurement anchor, (5) human
-  reviewer sign-off → origin=human_reviewed, status=admitted.
+  Current evidence posture after the 2026-06-01 repair: the gov.cn
+  FSDC readout and CNBC market-reaction article are replayable
+  timestamped Wayback captures with body_hash/body_path. The Cambridge
+  CBECI tracker and several downstream operator/journalism anchors remain
+  contextual. Further hardening should pin CCAF country-share JSON for
+  the 2021-04 and 2021-09 brackets and, if available, Huobi / HashCow /
+  BTC.TOP primary_corporate announcement body_hashes from 2021-05-23 to
+  2021-05-26 before any attribution upgrade is considered.
 
 scoped_claim: |
   Within hours-to-days of the PRC State Council Financial
