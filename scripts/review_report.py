@@ -54,6 +54,11 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
         for obs in event.get("observations", [])
         if obs.get("observation_kind") == "observed_change"
     ]
+    no_change_observations = [
+        obs
+        for obs in event.get("observations", [])
+        if obs.get("observation_kind") == "observed_no_change"
+    ]
     coverage_entries = event.get("coverage", [])
     gap_marker_count = collect_gap_count(event)
     coverage_counts = Counter(entry.get("status") for entry in coverage_entries)
@@ -128,9 +133,20 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
     ]
 
     if not changed_observations:
-        attribution_reliability = "low"
-        notes.append("No observed_change entries remain, so attribution cannot be evaluated.")
-        blockers.append("The file does not currently retain a stable changed-layer claim.")
+        if (
+            event.get("empirical_shape") == "null_event"
+            and event.get("admission_tier") == "null_case"
+            and no_change_observations
+            and all(obs.get("attribution") == "none" for obs in no_change_observations)
+        ):
+            attribution_reliability = "high"
+            notes.append(
+                "Null case is supported by observed_no_change rows; changed-layer attribution is not applicable."
+            )
+        else:
+            attribution_reliability = "low"
+            notes.append("No observed_change entries remain, so attribution cannot be evaluated.")
+            blockers.append("The file does not currently retain a stable changed-layer claim.")
     elif unearned_direct:
         attribution_reliability = "medium"
         notes.append(

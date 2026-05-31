@@ -40,6 +40,36 @@ def _event() -> dict:
     }
 
 
+def _null_event() -> dict:
+    return {
+        "id": "null-denominator-case",
+        "status": "admitted",
+        "research_stratum": "S6_supranational",
+        "empirical_shape": "null_event",
+        "admission_tier": "null_case",
+        "trigger": {
+            "citation": [{"type": "primary_legal"}],
+        },
+        "target": {
+            "kind": "entity",
+            "entity": "supranational_policy_target",
+            "enumeration": "subset",
+        },
+        "coverage": [
+            {"layer": "offramp_cex", "status": "measured"},
+            {"layer": "l0_network", "status": "not_applicable"},
+        ],
+        "observations": [
+            {
+                "layer": "offramp_cex",
+                "observation_kind": "observed_no_change",
+                "attribution": "none",
+                "sources": [{"type": "primary_legal"}],
+            }
+        ],
+    }
+
+
 def test_review_report_treats_mixed_primary_trigger_citations_as_reliable():
     case = summarize_case(_event())
 
@@ -57,3 +87,22 @@ def test_review_report_separates_missing_primary_trigger_from_target_scope():
     assert case["scores"]["trigger_reliability"] == "medium"
     assert "Add a primary trigger source before treating the trigger as settled." in case["blockers"]
     assert "Tighten target enumeration or target scope before treating the trigger as settled." not in case["blockers"]
+
+
+def test_review_report_does_not_require_changed_layer_for_null_cases():
+    case = summarize_case(_null_event())
+
+    assert case["scores"]["attribution_reliability"] == "high"
+    assert "The file does not currently retain a stable changed-layer claim." not in case["blockers"]
+    assert case["overall_readiness"] == "release_ready_scoped"
+
+
+def test_review_report_still_blocks_non_null_cases_without_changed_layers():
+    event = _null_event()
+    event["empirical_shape"] = "comparison"
+    event["admission_tier"] = "empirical_case"
+
+    case = summarize_case(event)
+
+    assert case["scores"]["attribution_reliability"] == "low"
+    assert "The file does not currently retain a stable changed-layer claim." in case["blockers"]
