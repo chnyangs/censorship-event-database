@@ -1,12 +1,12 @@
 # tests/ — regression guards and their scope
 
-163 test functions yielding **172 pytest-collected cases** (the
+165 test functions yielding **174 pytest-collected cases** (the
 expansion is from parametrized latency-band and safety-class suites),
 locking the invariants fixed during the 2026-04-23, 2026-04-24, and
-2026-05-06 reviews plus the 2026-06-01 duplicate-YAML-key and
-evidence-tier-readiness guards. Runnable via `make test`; wired into CI
-(`.github/workflows/validate.yml`) so a silent regression cannot
-re-enter main.
+2026-05-06 reviews plus the 2026-06-01 duplicate-YAML-key,
+paper-anchor-readiness, and evidence-tier-readiness guards. Runnable via
+`make test`; wired into CI (`.github/workflows/validate.yml`) so a
+silent regression cannot re-enter main.
 
 ## What's covered
 
@@ -34,7 +34,7 @@ re-enter main.
 | `test_render_site_safety.py` | 8 | 8 | Static-site rendering refuses destructive output directories, `.git`, symlinked outputs, and existing unmarked directories; raw YAML export publishes admitted records only |
 | `test_repair_evidence_anchors.py` | 2 | 2 | Evidence-anchor repair finds missing URLs and recognizes replayable local body, Wayback, query, measurement, and tx anchors |
 | `test_repro_source_date_epoch.py` | 6 | 6 | Non-git Docker/source-archive reproduction can derive a deterministic fallback epoch from committed metadata; generated metadata uses checkout-independent paths, source-input hashes, and a declared Python ABI rather than local patch versions |
-| `test_review_report.py` | 4 | 4 | Review-report trigger scoring distinguishes missing primary trigger evidence from concrete target-enumeration state, respects claim-usable evidence anchors, and does not require changed layers for null cases |
+| `test_review_report.py` | 6 | 6 | Review-report trigger scoring distinguishes missing primary trigger evidence from concrete target-enumeration state, respects claim-usable evidence anchors, does not require changed layers for null cases, and only promotes release-ready anchor cases to paper anchors |
 | `test_schema_fail_closed.py` | 10 | 10 | JSON Schema rejects validator-critical bypass shapes for schema-only consumers |
 | `test_source_manifest.py` | 3 | 3 | Release source manifest excludes recursive outputs/refetchable clones, hashes event source artifacts deterministically, and paper-readiness re-hashes manifest rows against current files |
 | `test_staleness_report.py` | 1 | 1 | Staleness report honors `SOURCE_DATE_EPOCH` so regenerate remains byte-stable |
@@ -43,7 +43,7 @@ re-enter main.
 | `test_v03_yaml_surface.py` | 2 | 2 | Validator rejects internal re-extraction flags and agent-draft claims of primary-source verification in YAML |
 | `test_validate_source_rules.py` | 17 | 17 | On-chain tx hashes / block anchors, trigger/source Wayback URL validation, duplicate YAML keys, body-hash verification, nonblank measurement IDs, note-only semi-primary loopholes, `observed_change`/`attribution:none`, denominator anchors, duplicate action IDs, and unknown provider scopes fail closed |
 
-When citing the count in prose, **prefer "172 pytest cases (163 test
+When citing the count in prose, **prefer "174 pytest cases (165 test
 functions)"**. `grep -c '^def test_' tests/*.py` gives the function
 count; `pytest --collect-only -q` gives the collected-case count.
 

@@ -389,6 +389,7 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
     if (
         event.get("status") == "admitted"
         and event.get("admission_tier") == "anchor_case"
+        and overall_readiness in {"release_ready_complete", "release_ready_scoped"}
         and changed_layer_count >= 2
         and gap_marker_count == 0
     ):

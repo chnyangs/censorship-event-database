@@ -86,6 +86,38 @@ def _null_event() -> dict:
     }
 
 
+def _anchor_event() -> dict:
+    event = deepcopy(_event())
+    event["id"] = "anchor-case"
+    event["status"] = "admitted"
+    event["admission_tier"] = "anchor_case"
+    event["coverage"] = [
+        {"layer": "asset_onchain", "status": "measured"},
+        {"layer": "l4_frontend", "status": "measured"},
+        {"layer": "l0_network", "status": "not_applicable"},
+    ]
+    event["observations"] = [
+        {
+            "layer": "asset_onchain",
+            "observation_kind": "observed_change",
+            "attribution": "direct",
+            "sources": [{"type": "primary_onchain", "tx_hash": "0x" + "a" * 64}],
+        },
+        {
+            "layer": "l4_frontend",
+            "observation_kind": "observed_change",
+            "attribution": "direct",
+            "sources": [
+                {
+                    "type": "primary_corporate",
+                    "wayback": "https://web.archive.org/web/20240101000000/https://example.com/frontend",
+                }
+            ],
+        },
+    ]
+    return event
+
+
 def test_review_report_treats_mixed_primary_trigger_citations_as_reliable():
     case = summarize_case(_event())
 
@@ -122,3 +154,20 @@ def test_review_report_still_blocks_non_null_cases_without_changed_layers():
 
     assert case["scores"]["attribution_reliability"] == "low"
     assert "The file does not currently retain a stable changed-layer claim." in case["blockers"]
+
+
+def test_review_report_marks_release_ready_anchor_cases_as_paper_anchors():
+    case = summarize_case(_anchor_event())
+
+    assert case["overall_readiness"] == "release_ready_complete"
+    assert case["paper_use_role"] == "paper_anchor"
+
+
+def test_review_report_does_not_promote_blocked_anchor_cases_to_paper_anchors():
+    event = _anchor_event()
+    event["observations"][1]["sources"][0]["evidence_use"] = "contextual_unarchived"
+
+    case = summarize_case(event)
+
+    assert case["overall_readiness"] == "admitted_scope_blocked"
+    assert case["paper_use_role"] == "appendix_only"
