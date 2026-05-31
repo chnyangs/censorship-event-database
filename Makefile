@@ -31,7 +31,7 @@ COMPARE_OUT ?= -
 
 .PHONY: help \
     validate schema-check validate-citations validate-archives verify-citations freshness \
-    draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry temporal-ledger source-manifest \
+    draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry temporal-ledger source-manifest census-registry-check \
     ingestion-db ingestion-register-sources ingestion-bootstrap ingestion-status ingestion-report \
     ofac-canary ofac-canary-status review-next review-export review-packets review-triage \
     human-audit-worksheet evidence-repair-plan source-discovery-worklist non-human-todo-list \
@@ -65,6 +65,7 @@ help:
 	    'make trigger-registry      # pre-admission trigger registry + sampling-frame gaps' \
 	    'make temporal-ledger       # 2008+ monthly source-frame discovery ledger' \
 	    'make source-manifest       # hash manifest for local source artifacts under sources/' \
+	    'make census-registry-check # fail-closed census-gap registry/docs reconciliation check' \
 	    'make ingestion-db          # initialize local v0.3 ingestion SQLite state under .local/' \
 	    'make ingestion-register-sources # register v0.3 ingestion source registry without marking fetch success' \
 	    'make ingestion-bootstrap   # bootstrap events/*.yaml into local v0.3 SQLite state' \
@@ -172,6 +173,9 @@ temporal-ledger: dataset
 
 source-manifest: dataset
 	$(PYTHON) scripts/build_source_manifest.py --out-prefix $(SOURCE_MANIFEST_PREFIX)
+
+census-registry-check:
+	$(PYTHON) scripts/check_census_gap_registry.py
 
 ingestion-db:
 	$(PYTHON) scripts/ingestion_v03.py init-db
@@ -377,7 +381,7 @@ capture:
 ifndef SOURCE_DATE_EPOCH
 check: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
-check: test validate schema-check draft-gaps status review staleness trigger-registry temporal-ledger source-manifest paper-check
+check: test validate schema-check draft-gaps status review staleness trigger-registry temporal-ledger source-manifest census-registry-check paper-check
 
 check-network: verify-citations freshness
 
@@ -394,7 +398,7 @@ regenerate: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 regenerate: validate schema-check dataset trigger-registry temporal-ledger source-manifest event-metrics action-registry layer-observability archetypes coverage-matrix \
             admission-sensitivity jurisdiction \
-            paper-tables status review staleness \
+            paper-tables status review staleness census-registry-check \
             render-site irr-packet render-evidence-all audit-worksheets paper-check
 	@echo "[regenerate] all derived artifacts rebuilt and gated"
 
