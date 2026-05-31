@@ -1,0 +1,231 @@
+id: saudi-standing-committee-virtual-currency-warning-2018-08
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - bangladesh-bb-bitcoin-warning-2014
+  - lebanon-bdl-bitcoin-warning-2013-12
+  - pakistan-sbp-crypto-prohibition-2018-04
+  - qatar-qcb-qfcra-virtual-asset-ban-2019-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: SA_STANDING_COMMITTEE_FOREX
+  timestamp: 2018-08-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.sama.gov.sa/ar-sa/MediaCenter/News/Pages/news12082018.aspx
+      body_hash: sha256:6b399338705800fb0e9e6df4a5ad617b446b13cb200c43a6381379aba3ecb549
+      body_path: sources/http_captures/saudi-standing-committee-virtual-currency-warning-2018-08/primary/www.sama.gov.sa__ar-sa-MediaCenter-News-Pages-news12082018.aspx__manual.html
+      evidence_use: replayable
+      note: |
+        Official SAMA-hosted Arabic notice dated 2018-08-12 from the Standing
+        Committee for Awareness and Warning against Unauthorized Securities
+        Activities in the Foreign Exchange Market. The captured page title and
+        body state that virtual digital currencies are not approved inside the
+        Kingdom and that dealing in them is risky. The body warns citizens and
+        residents against dealing or investing in virtual currencies, including
+        Bitcoin as an example; says such activity is outside the Saudi
+        regulatory umbrella; says promotional claims of Saudi official licensing
+        are incorrect; says virtual currencies are not traded through licensed
+        persons in the Kingdom; and says the committee coordinates with relevant
+        government bodies to reduce marketing/trading in unauthorized forex
+        activity and virtual currencies.
+    - type: supporting_journalism
+      url: https://www.arabnews.com/node/1355246/amp
+      body_hash: sha256:a6b93e20bcbbf585342b403295dc752282974fa6fa251196bdd272cdf11f6f3f
+      body_path: sources/http_captures/saudi-standing-committee-virtual-currency-warning-2018-08/supporting/www.arabnews.com__node-1355246-amp__4d758fa528.html
+      evidence_use: replayable
+      note: |
+        Arab News English contemporaneous report, "Virtual currencies not
+        approved in Saudi Arabia, government committee warns." The captured AMP
+        page corroborates the committee composition and summarizes the warning
+        that transactions and investments using virtual currencies are outside
+        the Saudi monitoring umbrella and that Bitcoin-like virtual currencies
+        are not approved in the Kingdom. Used for English-language
+        corroboration, not as the load-bearing primary anchor.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level timestamp from the SAMA news-page slug and publication date
+        2018-08-12. No intra-day release time is used.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Saudi citizens, residents, online promoters, and the class of persons or
+    entities marketing, dealing in, or investing in virtual currencies in Saudi
+    Arabia. The official warning is class-level: it does not enumerate a named
+    exchange, bank, payment provider, frontend domain, token issuer, user
+    account, or blockchain address.
+  protocol: null
+  actor_type: saudi_virtual_currency_activity_class
+  actor_name: Saudi virtual-currency dealing and promotion class
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - SA
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The SAMA-hosted committee notice is a regulatory warning and licensing
+      status statement, not an ISP, DNS, IP, routing, or other network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus and other public-chain consensus
+      mechanisms were not modified by the committee warning.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The notice does not name RPC providers, wallet APIs, or public blockchain
+      infrastructure providers.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The notice does not order or document blocking, delisting, geofencing, or
+      takedown of any specific exchange, wallet, or web frontend.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The notice does not identify a token issuer, blacklist, freeze, burn, or
+      address set, and no on-chain administrative action is claimed.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - saudi_virtual_currency_dealing_and_promotion_warning
+    note: |
+      Load-bearing denominator layer. The official notice states that virtual
+      currencies are not approved in Saudi Arabia, warns against dealing or
+      investing in them, and says they are not traded through licensed persons in
+      the Kingdom. This row deliberately does not code a hard exchange shutdown,
+      bank-rail cutoff, or named platform restriction because no replayable
+      official source or contemporaneous platform artifact found in this pass
+      documents such a downstream access change.
+    denominator_artifact:
+      type: primary_government
+      source:
+        url: https://www.sama.gov.sa/ar-sa/MediaCenter/News/Pages/news12082018.aspx
+        body_hash: sha256:6b399338705800fb0e9e6df4a5ad617b446b13cb200c43a6381379aba3ecb549
+        body_path: sources/http_captures/saudi-standing-committee-virtual-currency-warning-2018-08/primary/www.sama.gov.sa__ar-sa-MediaCenter-News-Pages-news12082018.aspx__manual.html
+      scope_descriptor:
+        countries: [SA]
+        providers:
+          - saudi_virtual_currency_dealing_and_promotion_class
+        time_window:
+          - 2018-08-12T00:00:00Z
+          - 2018-11-10T00:00:00Z
+      note: |
+        Replayable official source anchor for the class-level warning / no
+        licensed-persons denominator. The 90-day window is retained as a
+        coverage-gap window for exchange-side or bank-rail cutoffs; none is
+        claimed without a separate source.
+
+observations:
+  - layer: offramp_cex
+    actor: saudi_virtual_currency_activity_class
+    event: saudi_exchange_side_cutoff_observation_gap_after_committee_warning
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2018-08-12T00:00:00Z
+    precision: day
+    window:
+      - 2018-08-12T00:00:00Z
+      - 2018-11-10T00:00:00Z
+    sources:
+      - type: primary_government
+        url: https://www.sama.gov.sa/ar-sa/MediaCenter/News/Pages/news12082018.aspx
+        body_hash: sha256:6b399338705800fb0e9e6df4a5ad617b446b13cb200c43a6381379aba3ecb549
+        body_path: sources/http_captures/saudi-standing-committee-virtual-currency-warning-2018-08/primary/www.sama.gov.sa__ar-sa-MediaCenter-News-Pages-news12082018.aspx__manual.html
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [SA]
+          providers:
+            - saudi_virtual_currency_dealing_and_promotion_class
+          time_window:
+            - 2018-08-12T00:00:00Z
+            - 2018-11-10T00:00:00Z
+        note: |
+          The SAMA-hosted committee notice is the official anchor for the
+          Saudi class-level warning / no-approval / no-licensed-persons posture.
+          It does not name a specific exchange, bank, frontend, user account, or
+          issuer-side action. The null observation therefore records the absence
+          of a replayable downstream access-change artifact in the modeled
+          window, not proof that no private compliance action occurred.
+      - type: supporting_journalism
+        url: https://www.arabnews.com/node/1355246/amp
+        body_hash: sha256:a6b93e20bcbbf585342b403295dc752282974fa6fa251196bdd272cdf11f6f3f
+        body_path: sources/http_captures/saudi-standing-committee-virtual-currency-warning-2018-08/supporting/www.arabnews.com__node-1355246-amp__4d758fa528.html
+        evidence_use: replayable
+        note: |
+          English-language corroboration that the committee warned against
+          virtual-currency transactions and investments and stated that Bitcoin-
+          like virtual currencies were not approved in Saudi Arabia.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official-source verification. The event remains
+  `status=draft` and `origin=agent_draft`; automation must not promote it to an
+  admitted paper row without human admission review.
+
+  Inclusion rationale: the candidate pool framed this as a Saudi "illegal
+  crypto" event. The official SAMA-hosted Arabic notice supports a narrower
+  claim: the inter-agency Standing Committee warned against dealing or investing
+  in virtual currencies, stated that virtual currencies are not approved in the
+  Kingdom, rejected claims that promoters were Saudi-licensed, stated that
+  virtual currencies are not traded through licensed persons in Saudi Arabia,
+  and described committee coordination to reduce unauthorized forex and
+  virtual-currency marketing/trading.
+
+  Conservative modeling: this is not coded as a hard nation-state block. This
+  pass did not find a replayable official order or platform artifact showing a
+  specific exchange shutdown, bank-rail cutoff, frontend geofence, app removal,
+  or on-chain action. The row is therefore a comparable-period S4 null_case: it
+  preserves the official warning / no-licensed-persons denominator while
+  avoiding overclaiming a downstream censorship action.
+
+  Source note: the SAMA English path indexed by secondary reports now returns a
+  site not-found page, while the Arabic SAMA page remains live. The Python
+  capture script timed out against SAMA, so the Arabic HTML body was captured
+  manually with curl using HTTP/1.1 and TLS 1.2, then hashed locally. The Arab
+  News AMP page was captured with the repo capture script using a browser user
+  agent after the default agent received HTTP 403.
+
+scoped_claim: |
+  On 2018-08-12, Saudi Arabia's inter-agency Standing Committee for Awareness
+  and Warning against Unauthorized Securities Activities in the Foreign Exchange
+  Market issued a SAMA-hosted warning that virtual currencies including Bitcoin
+  were not approved in the Kingdom, that promotional claims of Saudi licensing
+  were incorrect, and that virtual currencies were not traded through licensed
+  persons in Saudi Arabia. This draft models the item as a class-level S4
+  null_case denominator at the off-ramp / regulated-financial-activity surface;
+  no specific exchange shutdown, bank cutoff, frontend block, network block, or
+  on-chain asset action is claimed.
+
+tags:
+  - regulatory_enforcement
+  - saudi_arabia
+  - sama
+  - standing_committee
+  - virtual_currency_warning
+  - bitcoin_warning
+  - no_licensed_persons
+  - null_case
+  - agent_draft

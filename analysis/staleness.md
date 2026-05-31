@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-05-31T13:15:30Z`
+Generated at: `2026-05-31T13:36:54Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 276, 'ok': 125}
-- **Verification** (`last_verified`): {'ok': 401}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 276, 'ok': 125}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 277, 'ok': 125}
+- **Verification** (`last_verified`): {'ok': 402}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 277, 'ok': 125}
 
 ## Flag legend
 
@@ -323,6 +323,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `russian-cybercrime-infra-ofac-2025` | `admitted` | `human_authored` | 2026-05-15 | 16 | ok | 2026-04-22 | 39 | ok | ok |
 | `salame-ftx-campaign-finance-doj-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-20 | 11 | ok | no_audit_recorded |
 | `samourai-doj-2024` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 39 | ok | no_audit_recorded |
+| `saudi-standing-committee-virtual-currency-warning-2018-08` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
 | `sec-abra-plutus-earn-cease-2024-08` | `admitted` | `human_reviewed` | 2026-05-31 | 0 | ok | 2026-05-31 | 0 | ok | ok |
 | `sec-beaxy-platform-shutdown-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 15 | ok | 2026-05-16 | 15 | ok | ok |
 | `sec-burnside-bitcoin-stock-exchange-2014` | `admitted` | `human_reviewed` | 2026-05-16 | 15 | ok | 2026-05-16 | 15 | ok | ok |
@@ -638,6 +639,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `russian-cyber-theft-ofac-2020` — audit=no_audit_recorded, verification=ok, verif_age=39d
 - `salame-ftx-campaign-finance-doj-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `samourai-doj-2024` — audit=no_audit_recorded, verification=ok, verif_age=39d
+- `saudi-standing-committee-virtual-currency-warning-2018-08` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `sec-etherdelta-coburn-unregistered-exchange-2018-11` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `sec-garza-gaw-miners-zenminer-2015` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `sec-nexo-earn-lending-product-cease-2023-01` — audit=no_audit_recorded, verification=ok, verif_age=0d
