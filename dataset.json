@@ -2140,7 +2140,7 @@
   {
     "_source_file": "australia-asic-binance-derivatives-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.4 non_us_state discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison shape: 2 observed_change layers (offramp_cex load-bearing,\nL4 frontend secondary). Sibling event in the 2023 Binance multi-\njurisdictional regulatory-pressure cascade alongside\nbelgium-fsma-binance-cease-2023 (2023-06-23),\ngermany-bafin-binance-licence-withdrawal-2023, and the structurally\nearlier 2021 wave (uk-fca-binance-markets-2021,\nnetherlands-dnb-binance-warning-2021, malaysia-sc-binance-disable-2021,\nsingapore-mas-binance-services-2021).\n\nPaper-relevant contrast: ASIC's mechanism is distinct from the\nFCA-2021 (warning + payment-rail-cascade), the FSMA-2023 (cease-and-\nrepatriate), and the BaFin-2023 (licence-application withdrawal /\nrefusal) patterns. ASIC exercises direct licence-cancellation\nauthority over an Australian-incorporated AFSL holder (Oztures\nTrading Pty Ltd) following a targeted review that found regulatory\nclassification fraud (~500 retail clients wrongly classified as\nwholesale). The shutdown is therefore directly regulator-compelled at\nthe AFSL level, comparable in legal mechanism to a BaFin licence\nrefusal but narrower in scope (derivatives only; Binance Australia's\nspot operations under separate digital-currency-exchange registration\nwith AUSTRAC were not cancelled by this action).\n\nCross-stratum cousin: binance-4framework-2023 (US, S3) \u2014 the ASIC\nAustralian derivatives action sits in the same 2023 Binance\nregulatory-pressure cohort as the US DOJ/SEC/CFTC/FinCEN settlement,\nillustrating the multi-jurisdictional pile-on phase of Binance's\nregulatory trajectory.\n\nDRYRUN caveats: trigger primary citation (ASIC media release 23-079MR)\nis asserted with a 2023-calendar-folder Wayback pointer; pinned\nsnapshot timestamp and body_hash capture are deferred to the\nhuman-audit pass. For non-DRYRUN release, capture body_hash +\nbody_path for: (1) ASIC media release 23-079MR permalink, (2) the\nASIC targeted-review report findings (referenced in the media release),\n(3) the binance.com Australia-geo derivatives-shutdown notice /\nregional announcement page if recoverable from Wayback. Marked\nevidence_use=contextual_unarchived on all citations to flag the\nunarchived state per validator policy.\n",
+    "analysis_notes": "**SOURCE-REPAIRED 2026-06-01**: corrected the ASIC source from stale\n23-079MR wording to ASIC media release 23-091MR and narrowed the retained\nobservation to the ASIC-backed offramp_cex derivatives-service cessation.\nThe prior unanchored L4 frontend-banner observation was removed because no\nreplayable Binance AU-geo notice is retained in this event.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.4 non_us_state discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator.\n\ncomparison shape: 1 observed_change layer (offramp_cex load-bearing).\nSibling event in the 2023 Binance multi-\njurisdictional regulatory-pressure cascade alongside\nbelgium-fsma-binance-cease-2023 (2023-06-23),\ngermany-bafin-binance-licence-withdrawal-2023, and the structurally\nearlier 2021 wave (uk-fca-binance-markets-2021,\nnetherlands-dnb-binance-warning-2021, malaysia-sc-binance-disable-2021,\nsingapore-mas-binance-services-2021).\n\nPaper-relevant contrast: ASIC's mechanism is distinct from the\nFCA-2021 (warning + payment-rail-cascade), the FSMA-2023 (cease-and-\nrepatriate), and the BaFin-2023 (licence-application withdrawal /\nrefusal) patterns. ASIC exercises direct licence-cancellation\nauthority over an Australian-incorporated AFSL holder (Oztures\nTrading Pty Ltd) following a targeted review that included retail /\nwholesale client classification. The shutdown is therefore directly\nregulator-compelled at the AFSL level, comparable in legal mechanism to\na BaFin licence refusal but narrower in scope (derivatives only; Binance\nAustralia's spot operations under separate digital-currency-exchange registration\nwith AUSTRAC were not cancelled by this action).\n\nCross-stratum cousin: binance-4framework-2023 (US, S3) \u2014 the ASIC\nAustralian derivatives action sits in the same 2023 Binance\nregulatory-pressure cohort as the US DOJ/SEC/CFTC/FinCEN settlement,\nillustrating the multi-jurisdictional pile-on phase of Binance's\nregulatory trajectory.\n\nRemaining caveat: this event does not retain a replayable Binance-owned\nAU-geo frontend notice, so no L4 observed_change is claimed.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -2159,11 +2159,11 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "Binance posted Australia-specific notices on binance.com following\nthe ASIC 2023-04-06 cancellation, restricting Australian users from\nopening new derivatives positions and triggering account-level\nclose-out flows for existing Australian derivatives customers\nduring the transitional window (2023-04-14 to 2023-04-21). L4 is\nthe secondary observational layer; the load-bearing signal is the\nAFSL-mandated cessation at offramp_cex. partially_measured pending\npinned Wayback bracket of binance.com AU-geo derivatives-shutdown\nbanners.\n",
+        "note": "No replayable Binance AU-geo frontend notice is retained in this\nevent. The load-bearing public claim is narrowed to the ASIC-backed\nexchange/platform derivatives-service cessation at offramp_cex.\n",
         "scope": [
           "binance.com"
         ],
-        "status": "partially_measured"
+        "status": "not_measured"
       },
       {
         "layer": "asset_onchain",
@@ -2198,11 +2198,13 @@
         "precision": "day",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "ASIC media release 23-079MR is the legal instrument cancelling\nthe Oztures Trading Pty Ltd AFSL. attribution=direct because\nthe AFSL cancellation itself compels the operator-state change\n(cessation of Australian-facing derivatives service): without\nan AFSL, the entity may not lawfully offer derivative products\nto Australian clients under the Corporations Act. The\ntransitional close-out window (2023-04-14 effective date,\n2023-04-21 limited close-out deadline) flows directly from the\nASIC order. DRYRUN: Wayback anchor is a 2023 calendar-folder\npointer; pinned snapshot timestamp and body_hash capture\ndeferred to human audit.\n",
+            "body_hash": "sha256:697f54c2792390c0ebf27994c3d15079598372cf6799662fb9c5210262b889ed",
+            "body_path": "sources/http_captures/australia-asic-binance-derivatives-2023/asic-media-release/asic.gov.au__about-asic-news-centre-find-a-media-release-2023-releases-23-091mr-binance-australia-derivatives-afs-licence-cancelled__5f5971f9a2.html",
+            "evidence_use": "replayable",
+            "note": "ASIC media release 23-091MR is the legal instrument cancelling\nthe Oztures Trading Pty Ltd AFSL. attribution=direct because\nthe AFSL cancellation itself compels the operator-state change\n(cessation of Australian-facing derivatives service): without\nan AFSL, the entity may not lawfully offer derivative products\nto Australian clients under the Corporations Act. The\ntransitional close-out window (2023-04-14 effective date,\n2023-04-21 limited close-out deadline) flows directly from the\nASIC order.\n",
             "type": "primary_legal",
-            "url": "https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/",
-            "wayback": "https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/"
+            "url": "https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/",
+            "wayback": "https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/"
           }
         ],
         "timestamp": "2023-04-06T00:00:00+00:00",
@@ -2210,25 +2212,6 @@
           "2023-04-06T00:00:00+00:00",
           "2023-04-21T23:59:59+00:00"
         ]
-      },
-      {
-        "actor": "frontend:binance_com_au_geo",
-        "attribution": "plausible",
-        "delta_hours": 24,
-        "event": "au_geo_specific_derivatives_shutdown_notices_posted",
-        "layer": "l4_frontend",
-        "observation_kind": "observed_change",
-        "precision": "day",
-        "sources": [
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "ASIC media release is the regulatory anchor for the Binance-AU\nfrontend response: Binance posted Australia-specific derivatives-\nshutdown notices and account close-out flows in the days\nfollowing the AFSL cancellation. attribution=plausible because\nthe frontend banner / regional notice is a Binance-corporate\nresponse, not a regulator-mandated DOM change. DRYRUN: pinned\nWayback snapshot of the binance.com Australia-geo notice page\nis deferred to human audit; the ASIC media release is retained\nhere as the contextual anchor for the frontend response.\n",
-            "type": "primary_legal",
-            "url": "https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/",
-            "wayback": "https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/"
-          }
-        ],
-        "timestamp": "2023-04-07T00:00:00+00:00"
       }
     ],
     "origin": "human_reviewed",
@@ -2244,7 +2227,7 @@
     ],
     "research_stratum": "S4_nation_state",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"ASIC media release 23-079MR of 2023-04-06 cancelled the AFSL of\nOztures Trading Pty Ltd (trading as Binance Australia Derivatives)\nafter a targeted review found ~500 retail clients had been wrongly\nclassified as wholesale clients, directly compelling the shutdown of\nBinance's Australian derivatives operations (effective 2023-04-14\nwith transitional close-out through 2023-04-21). Primary\nobservational axis is offramp_cex at the Binance-Australia-derivatives\ncohort level; secondary L4-frontend response (AU-geo derivatives-\nshutdown banners on binance.com) attached with plausible attribution.\nThe row does not claim ISP-level connectivity blocking, on-chain\nasset freeze, or cancellation of Binance Australia's separate spot-\nexchange AUSTRAC registration.\"\n",
+    "scoped_claim": "\"ASIC media release 23-091MR of 2023-04-06 cancelled the AFSL of\nOztures Trading Pty Ltd (trading as Binance Australia Derivatives)\nand directly compelled the shutdown of Binance's Australian derivatives\noperations for opening or increasing positions from 2023-04-14\nwith transitional close-out through 2023-04-21. Primary\nobservational axis is offramp_cex at the Binance-Australia-derivatives\ncohort level. The row does not claim ISP-level connectivity blocking,\na measured Binance AU-geo frontend banner, on-chain asset freeze, or\ncancellation of Binance Australia's separate spot-exchange AUSTRAC\nregistration.\"\n",
     "status": "admitted",
     "tags": [
       "nation_state_block",
@@ -2265,7 +2248,7 @@
       "chains": [],
       "entity": "binance_australia_derivatives_oztures_target_2023",
       "enumeration": "subset",
-      "enumeration_note": "Oztures Trading Pty Ltd (trading as Binance Australia Derivatives), the\nAFSL-holding Australian entity of the Binance group authorised to offer\nderivative products to Australian clients, and (by cascade) the\nAustralian retail derivatives customer cohort of the Binance platform.\nThe ASIC cancellation names a single legal entity (Oztures Trading Pty\nLtd) as the immediate addressee; the operational effect is on\nAustralian users of Binance derivatives, including the ~500 misclassified\nretail clients who were the focus of the ASIC targeted review.\nTreated as entity-level at the Binance-Australia-derivatives cohort.\n",
+      "enumeration_note": "Oztures Trading Pty Ltd (trading as Binance Australia Derivatives), the\nAFSL-holding Australian entity of the Binance group authorised to offer\nderivative products to Australian clients, and (by cascade) the\nAustralian retail derivatives customer cohort of the Binance platform.\nThe ASIC cancellation names a single legal entity (Oztures Trading Pty\nLtd) as the immediate addressee; the operational effect is on\nAustralian users of Binance derivatives. The release also records an\nASIC targeted review of Binance's Australian financial-services business,\nincluding its classification of retail and wholesale clients.\nTreated as entity-level at the Binance-Australia-derivatives cohort.\n",
       "kind": "entity",
       "protocol": null
     },
@@ -2274,18 +2257,20 @@
       "actor": "AU_ASIC",
       "citation": [
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "Australian Securities and Investments Commission (ASIC) media\nrelease 23-079MR dated 2023-04-06, \"ASIC cancels Binance Australia\nAFS licence.\" ASIC cancelled the Australian Financial Services\nLicence (AFSL) of Oztures Trading Pty Ltd, trading as Binance\nAustralia Derivatives, after a targeted review found that Binance\nhad wrongly classified approximately 500 retail clients as\nwholesale clients, thereby denying them the consumer protections\nafforded to retail clients under the Corporations Act. The\ncancellation took effect on 2023-04-14, forcing the shutdown of\nBinance Australia Derivatives operations to Australian users.\nWayback anchor is a 2023 calendar-folder pointer to the ASIC media\nrelease URL rather than a pinned snapshot; the authoring LLM agent\ndid not personally pin a Wayback timestamp or compute a body_hash\nfor the ASIC media release page. Marked evidence_use=\ncontextual_unarchived to flag the unarchived state explicitly; the\nspecific snapshot and body_hash must be re-pinned during human\naudit before this citation may serve as an admission anchor in\nits own right.\n",
+          "body_hash": "sha256:697f54c2792390c0ebf27994c3d15079598372cf6799662fb9c5210262b889ed",
+          "body_path": "sources/http_captures/australia-asic-binance-derivatives-2023/asic-media-release/asic.gov.au__about-asic-news-centre-find-a-media-release-2023-releases-23-091mr-binance-australia-derivatives-afs-licence-cancelled__5f5971f9a2.html",
+          "evidence_use": "replayable",
+          "note": "ASIC media release 23-091MR dated 2023-04-06, \"Binance Australia\nDerivatives - AFS licence cancelled.\" ASIC cancelled the Australian\nFinancial Services licence of Oztures Trading Pty Ltd, trading as\nBinance Australia Derivatives. The release states that, following\ncancellation, clients could not increase or open derivatives\npositions from 2023-04-14, existing positions had to be closed\nbefore 2023-04-21, and remaining positions would be closed on\n2023-04-21. The release also records ASIC's targeted review of\nBinance's Australian financial-services business, including retail\nand wholesale client classification.\n",
           "type": "primary_legal",
-          "url": "https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/",
-          "wayback": "https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-079mr-asic-cancels-binance-australia-afs-licence/"
+          "url": "https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/",
+          "wayback": "https://web.archive.org/web/2023/https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-091mr-binance-australia-derivatives-afs-licence-cancelled/"
         }
       ],
       "timestamp": "2023-04-06T00:00:00+00:00",
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level timing per the ASIC media release 23-079MR dated\n2023-04-06. The AFSL cancellation took effect on 2023-04-14, with\nlimited transitional provisions through 2023-04-21 for closing out\nexisting derivatives positions. Day-level precision.\n",
+          "note": "Day-level timing per the ASIC media release 23-091MR dated\n2023-04-06. The AFSL cancellation took effect on 2023-04-14, with\nlimited transitional provisions through 2023-04-21 for closing out\nexisting derivatives positions. Day-level precision.\n",
           "type": "primary_legal"
         }
       ],
@@ -2767,7 +2752,7 @@
   {
     "_source_file": "belgium-fsma-binance-cease-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/belgium-fsma-binance-cease-2023.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison shape: 2 observed_change layers (offramp_cex load-bearing,\nL4 frontend secondary). Structurally aligned with the 2021 multi-\njurisdictional Binance regulator wave (uk-fca-binance-markets-2021,\nnetherlands-dnb-binance-warning-2021, malaysia-sc-binance-disable-2021)\nbut distinct in two respects: (1) FSMA action targets the Binance\nBelgian-customer cohort with an explicit repatriation-of-customer-assets\nremedy (asset-flow severance, not just licensing warning), and (2) it\ninvokes the EEA-incorporation perimeter \u2014 services offered from outside\nthe EEA to Belgian residents are the prohibited surface, foreshadowing\nthe MiCA EEA-passporting framework (eu-mica-2023) that came into force\nshortly afterward.\n\nPaper-relevant contrast: comparable cousin to UK-FCA-2021 (single-\nregulator action producing class-wide Binance customer cohort\nseverance), but where FCA-2021's effect propagated via UK retail-bank\npayment-rail cutoffs, FSMA-2023's effect propagated via direct\nregulator-mandated repatriation of customer holdings from non-EEA\nBinance entities. Both are S4 nation-state actions; both are\nempirical_case shape=comparison; both load-bear at offramp_cex.\n\nCross-stratum cousin: binance-4framework-2023 (US, S3) \u2014 the FSMA\nBelgian action sits in the same 2023 Binance regulatory-pressure\ncohort as the US DOJ/SEC/CFTC/FinCEN settlement, illustrating the\nmulti-jurisdictional pile-on phase of Binance's regulatory\ntrajectory.\n\nDRYRUN caveats: trigger primary citation (FSMA press feed) is\nasserted with a 2023-calendar-folder Wayback pointer; pinned\nsnapshot timestamp and body_hash capture are deferred to the\nhuman-audit pass. For non-DRYRUN release, capture body_hash +\nbody_path for: (1) the specific FSMA press item permalink (slug\n`fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium`\nper candidate stub), (2) the binance.com Belgium-geo restriction\nnotice / regional announcement page if recoverable from Wayback.\nMarked evidence_use=contextual_unarchived on both citations to\nflag the unarchived state per validator policy.\n",
+    "analysis_notes": "**SOURCE-REPAIRED 2026-06-01**: replaced the generic FSMA news-list URL\nwith the specific FSMA Binance press-item URL and narrowed the retained\nobservation to the FSMA-backed offramp_cex cease-and-repatriate directive.\nThe prior unanchored L4 frontend notice observation was removed because no\nreplayable Binance BE-geo notice is retained in this event.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/belgium-fsma-binance-cease-2023.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator.\n\ncomparison shape: 1 observed_change layer (offramp_cex load-bearing).\nStructurally aligned with the 2021 multi-\njurisdictional Binance regulator wave (uk-fca-binance-markets-2021,\nnetherlands-dnb-binance-warning-2021, malaysia-sc-binance-disable-2021)\nbut distinct in two respects: (1) FSMA action targets the Binance\nBelgian-customer cohort with an explicit repatriation-of-customer-assets\nremedy (asset-flow severance, not just licensing warning), and (2) it\ninvokes the EEA-incorporation perimeter \u2014 services offered from outside\nthe EEA to Belgian residents are the prohibited surface, foreshadowing\nthe MiCA EEA-passporting framework (eu-mica-2023) that came into force\nshortly afterward.\n\nPaper-relevant contrast: comparable cousin to UK-FCA-2021 (single-\nregulator action producing class-wide Binance customer cohort\nseverance), but where FCA-2021's effect propagated via UK retail-bank\npayment-rail cutoffs, FSMA-2023's effect propagated via direct\nregulator-mandated repatriation of customer holdings from non-EEA\nBinance entities. Both are S4 nation-state actions; both are\nempirical_case shape=comparison; both load-bear at offramp_cex.\n\nCross-stratum cousin: binance-4framework-2023 (US, S3) \u2014 the FSMA\nBelgian action sits in the same 2023 Binance regulatory-pressure\ncohort as the US DOJ/SEC/CFTC/FinCEN settlement, illustrating the\nmulti-jurisdictional pile-on phase of Binance's regulatory\ntrajectory.\n\nRemaining caveat: this event does not retain a replayable Binance-owned\nBelgium-geo frontend notice, so no L4 observed_change is claimed.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -2786,11 +2771,11 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "Binance posted Belgium-specific regional notices on binance.com\nfollowing the FSMA 2023-06-23 order, restricting Belgian users from\nonboarding new services and triggering account-level migration /\nwithdrawal flows for Belgian residents. Load-bearing observation\nattached below at attribution=plausible (frontend banner is a\nBinance-corporate response to the regulator, not a regulator-mandated\nDOM change). partially_measured pending pinned Wayback bracket of\nbinance.com/en BE-geo notices.\n",
+        "note": "No replayable Binance BE-geo frontend notice is retained in this\nevent. The load-bearing public claim is narrowed to the FSMA-backed\nexchange/custody-wallet service cessation and repatriation directive\nat offramp_cex.\n",
         "scope": [
           "binance.com"
         ],
-        "status": "partially_measured"
+        "status": "not_measured"
       },
       {
         "layer": "asset_onchain",
@@ -2825,33 +2810,16 @@
         "precision": "day",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "FSMA press release is the legal instrument naming Binance as\naddressee of the cease-and-desist and repatriation order.\nattribution=direct because the FSMA order itself compels the\noperator-state change (cessation of Belgian-facing exchange and\ncustody-wallet service) and the four-month repatriation window\nfor non-EEA-held customer holdings flows directly from the order.\nDRYRUN: Wayback anchor is a 2023 calendar-folder pointer; pinned\nsnapshot timestamp and body_hash capture deferred to human audit.\n",
+            "body_hash": "sha256:4d7a9bb2e5d336b51cfadc5a4826ad9cc7af3c11f5ded7f60594172ee26ca1d5",
+            "body_path": "sources/http_captures/belgium-fsma-binance-cease-2023/fsma-press-item/www.fsma.be__en-news-fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium__f00da6751a.html",
+            "evidence_use": "replayable",
+            "note": "FSMA press release is the legal instrument naming Binance as\naddressee of the cease-and-desist and repatriation order.\nattribution=direct because the FSMA order itself compels the\noperator-state change (cessation of Belgian-facing exchange and\ncustody-wallet service) and the four-month repatriation window\nfor non-EEA-held customer holdings flows directly from the order.\n",
             "type": "primary_legal",
-            "url": "https://www.fsma.be/en/news",
-            "wayback": "https://web.archive.org/web/2023/https://www.fsma.be/en/news"
+            "url": "https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium",
+            "wayback": "https://web.archive.org/web/2023/https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium"
           }
         ],
         "timestamp": "2023-06-23T00:00:00+00:00"
-      },
-      {
-        "actor": "frontend:binance_com_be_geo",
-        "attribution": "plausible",
-        "delta_hours": 24,
-        "event": "be_geo_specific_restriction_notices_posted",
-        "layer": "l4_frontend",
-        "observation_kind": "observed_change",
-        "precision": "day",
-        "sources": [
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "FSMA press item is the regulatory anchor for the Binance-BE\nfrontend response: Binance posted Belgium-specific user notices\nand onboarding restrictions in the days following the FSMA order.\nattribution=plausible because the frontend banner / regional\nnotice is a Binance-corporate response, not a regulator-mandated\nDOM change. DRYRUN: pinned Wayback snapshot of the binance.com\nBelgium-geo notice page is deferred to human audit; the FSMA\npress item is retained here as the contextual anchor for the\nfrontend response.\n",
-            "type": "primary_legal",
-            "url": "https://www.fsma.be/en/news",
-            "wayback": "https://web.archive.org/web/2023/https://www.fsma.be/en/news"
-          }
-        ],
-        "timestamp": "2023-06-24T00:00:00+00:00"
       }
     ],
     "origin": "human_reviewed",
@@ -2865,7 +2833,7 @@
     ],
     "research_stratum": "S4_nation_state",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"FSMA order of 2023-06-23 directly compelled Binance to cease offering\nvirtual-currency exchange and custody-wallet services to Belgian\nresidents and to repatriate customer holdings from non-EEA-incorporated\nBinance entities, producing a regulator-mandated operator-state change\nat the Binance Belgian-customer cohort (offramp_cex load-bearing) and a\nBinance-corporate L4 frontend response (Belgium-geo restriction notices,\nattribution=plausible). The row does not claim ISP-level connectivity\nblocking, on-chain asset freeze, or class-wide Belgian banking-rail\nseverance.\"\n",
+    "scoped_claim": "\"FSMA order of 2023-06-23 directly compelled Binance to cease offering\nvirtual-currency exchange and custody-wallet services to Belgian\nresidents and to repatriate customer holdings from non-EEA-incorporated\nBinance entities, producing a regulator-mandated operator-state change\nat the Binance Belgian-customer cohort (offramp_cex load-bearing). The\nrow does not claim ISP-level connectivity blocking, a measured Binance\nBelgium-geo frontend notice, on-chain asset freeze, or class-wide Belgian\nbanking-rail severance.\"\n",
     "status": "admitted",
     "tags": [
       "nation_state_block",
@@ -2893,11 +2861,13 @@
       "actor": "BE_FSMA",
       "citation": [
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "Belgian Financial Services and Markets Authority (FSMA) press\nannouncement dated 2023-06-23 ordering Binance to cease immediately\nall offers of virtual-currency exchange and custody-wallet services\nin Belgium, and ordering Binance to repatriate to Belgian customers\nall virtual-currency holdings and cryptographic keys held on their\nbehalf by non-EEA-incorporated Binance entities. Wayback anchor is\na 2023 calendar-folder pointer at fsma.be/en/news rather than a\npinned snapshot of the specific press item; the press item URL slug\nis referenced in the candidate stub\n(candidate_triggers/belgium-fsma-binance-cease-2023.yaml). Marked\nevidence_use=contextual_unarchived because the authoring LLM agent\ndid not personally pin a Wayback timestamp or compute a body_hash\nfor the FSMA press item; the specific snapshot and body_hash must\nbe re-pinned during human audit before this citation may serve as\nan admission anchor in its own right.\n",
+          "body_hash": "sha256:4d7a9bb2e5d336b51cfadc5a4826ad9cc7af3c11f5ded7f60594172ee26ca1d5",
+          "body_path": "sources/http_captures/belgium-fsma-binance-cease-2023/fsma-press-item/www.fsma.be__en-news-fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium__f00da6751a.html",
+          "evidence_use": "replayable",
+          "note": "Belgian Financial Services and Markets Authority (FSMA) press\nannouncement dated 2023-06-23 ordering Binance to cease immediately\nall offers of virtual-currency exchange and custody-wallet services\nin Belgium, and ordering Binance to repatriate to Belgian customers\nall virtual-currency holdings and cryptographic keys held on their\nbehalf by non-EEA-incorporated Binance entities.\n",
           "type": "primary_legal",
-          "url": "https://www.fsma.be/en/news",
-          "wayback": "https://web.archive.org/web/2023/https://www.fsma.be/en/news"
+          "url": "https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium",
+          "wayback": "https://web.archive.org/web/2023/https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium"
         }
       ],
       "timestamp": "2023-06-23T00:00:00+00:00",
@@ -14034,8 +14004,8 @@
         "precision": "minute",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "Circle USDC Blacklisted() tx freezing Cryptex ETH address 0x0931cA... at\n2024-09-27 03:00 UTC, 27 hours after the 2024-09-26 OFAC SDN designation.\nDirect on-chain receipt of the corporate-policy compliance action.\n",
+            "evidence_use": "replayable",
+            "note": "Circle USDC Blacklisted() tx freezing Cryptex ETH address 0x0931cA... at\n2024-09-27 03:00 UTC, 27 hours after the 2024-09-26 OFAC SDN designation.\nThe tx_hash is the replayable on-chain receipt of the corporate-policy compliance\naction.\n",
             "tx_hash": "0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da",
             "type": "primary_onchain",
             "url": "https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da",
@@ -14100,8 +14070,8 @@
           "wayback": "https://web.archive.org/web/2024/https://ofac.treasury.gov/recent-actions/20240926"
         },
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "Circle USDC Blacklisted() transaction freezing the OFAC-named Cryptex ETH address\n0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7 at 2024-09-27 03:00 UTC, approximately\n27 hours after the OFAC SDN designation. On-chain receipt of the corporate-policy\ncompliance action.\n",
+          "evidence_use": "replayable",
+          "note": "Circle USDC Blacklisted() transaction freezing the OFAC-named Cryptex ETH address\n0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7 at 2024-09-27 03:00 UTC, approximately\n27 hours after the OFAC SDN designation. The tx_hash is the replayable on-chain\nreceipt of the corporate-policy compliance action.\n",
           "tx_hash": "0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da",
           "type": "primary_onchain",
           "url": "https://etherscan.io/tx/0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da",

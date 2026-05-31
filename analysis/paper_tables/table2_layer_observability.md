@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ec5c516` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `cd97438` · generated `2026-06-01T00:00:00Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -11,7 +11,7 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 | `l0_network` | 41 | 0 | 2 | 39 | 327 | 0 | 2 | 2 | 0 | — | 2/2 (100.0%) |
 | `l1_consensus` | 19 | 8 | 8 | 3 | 349 | 2 | 8 | 10 | 0 | 2/8 (25.0%) | 10/16 (62.5%) |
 | `l3_rpc` | 16 | 2 | 5 | 9 | 352 | 2 | 4 | 7 | 0 | 2/2 (100.0%) | 6/7 (85.7%) |
-| `l4_frontend` | 140 | 56 | 32 | 52 | 228 | 51 | 28 | 85 | 0 | 51/56 (91.1%) | 79/88 (89.8%) |
+| `l4_frontend` | 140 | 56 | 30 | 54 | 228 | 51 | 26 | 83 | 0 | 51/56 (91.1%) | 77/86 (89.5%) |
 | `asset_onchain` | 46 | 18 | 2 | 26 | 322 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
 | `offramp_cex` | 313 | 233 | 54 | 26 | 55 | 155 | 44 | 209 | 0 | 155/233 (66.5%) | 199/287 (69.3%) |
 
@@ -25,5 +25,5 @@ A rate of `—` indicates a zero denominator; it is an **observability gap**, no
 
 - **`l1_consensus`** sensitive (Δ=0.625): 0/8 (0.00) strict · 2/8 (0.25) current · 10/16 (0.62) permissive.
 - **`l3_rpc`** sensitive (Δ=-0.1429): 2/2 (1.00) strict · 2/2 (1.00) current · 6/7 (0.86) permissive.
-- **`l4_frontend`** sensitive (Δ=0.3084): 33/56 (0.59) strict · 51/56 (0.91) current · 79/88 (0.90) permissive.
+- **`l4_frontend`** sensitive (Δ=0.306): 33/56 (0.59) strict · 51/56 (0.91) current · 77/86 (0.90) permissive.
 - **`offramp_cex`** sensitive (Δ=0.2943): 93/233 (0.40) strict · 155/233 (0.67) current · 199/287 (0.69) permissive.

@@ -1,8 +1,8 @@
 # Evidence chain — `belgium-fsma-binance-cease-2023`
 
-**Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (2 changed layer(s): `l4_frontend`, `offramp_cex`) · **Tier**: `empirical_case`
+**Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `ec5c516` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `cd97438` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -12,11 +12,10 @@
 > virtual-currency exchange and custody-wallet services to Belgian
 > residents and to repatriate customer holdings from non-EEA-incorporated
 > Binance entities, producing a regulator-mandated operator-state change
-> at the Binance Belgian-customer cohort (offramp_cex load-bearing) and a
-> Binance-corporate L4 frontend response (Belgium-geo restriction notices,
-> attribution=plausible). The row does not claim ISP-level connectivity
-> blocking, on-chain asset freeze, or class-wide Belgian banking-rail
-> severance."
+> at the Binance Belgian-customer cohort (offramp_cex load-bearing). The
+> row does not claim ISP-level connectivity blocking, a measured Binance
+> Belgium-geo frontend notice, on-chain asset freeze, or class-wide Belgian
+> banking-rail severance."
 
 ## 1. Trigger
 
@@ -27,23 +26,16 @@
 ### Trigger citations
 
 - **`primary_legal`**
-  - URL: <https://www.fsma.be/en/news>
-  - Wayback: <https://web.archive.org/web/2023/https://www.fsma.be/en/news>
+  - URL: <https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium>
+  - Wayback: <https://web.archive.org/web/2023/https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium>
+  - body_hash: `sha256:4d7a9bb2e5d336b51cfadc5a4826ad9cc7af3c11f5ded7f60594172ee26ca1d5`
+  - body_path: `sources/http_captures/belgium-fsma-binance-cease-2023/fsma-press-item/www.fsma.be__en-news-fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium__f00da6751a.html`
   > Belgian Financial Services and Markets Authority (FSMA) press
 > announcement dated 2023-06-23 ordering Binance to cease immediately
 > all offers of virtual-currency exchange and custody-wallet services
 > in Belgium, and ordering Binance to repatriate to Belgian customers
 > all virtual-currency holdings and cryptographic keys held on their
-> behalf by non-EEA-incorporated Binance entities. Wayback anchor is
-> a 2023 calendar-folder pointer at fsma.be/en/news rather than a
-> pinned snapshot of the specific press item; the press item URL slug
-> is referenced in the candidate stub
-> (candidate_triggers/belgium-fsma-binance-cease-2023.yaml). Marked
-> evidence_use=contextual_unarchived because the authoring LLM agent
-> did not personally pin a Wayback timestamp or compute a body_hash
-> for the FSMA press item; the specific snapshot and body_hash must
-> be re-pinned during human audit before this citation may serve as
-> an admission anchor in its own right.
+> behalf by non-EEA-incorporated Binance entities.
 
 ## 2. Target
 
@@ -72,41 +64,20 @@
 **Sources**:
 
 - **`primary_legal`**
-  - URL: <https://www.fsma.be/en/news>
-  - Wayback: <https://web.archive.org/web/2023/https://www.fsma.be/en/news>
+  - URL: <https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium>
+  - Wayback: <https://web.archive.org/web/2023/https://www.fsma.be/en/news/fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium>
+  - body_hash: `sha256:4d7a9bb2e5d336b51cfadc5a4826ad9cc7af3c11f5ded7f60594172ee26ca1d5`
+  - body_path: `sources/http_captures/belgium-fsma-binance-cease-2023/fsma-press-item/www.fsma.be__en-news-fsma-orders-binance-cease-immediately-all-offers-virtual-currency-services-belgium__f00da6751a.html`
   > FSMA press release is the legal instrument naming Binance as
 > addressee of the cease-and-desist and repatriation order.
 > attribution=direct because the FSMA order itself compels the
 > operator-state change (cessation of Belgian-facing exchange and
 > custody-wallet service) and the four-month repatriation window
 > for non-EEA-held customer holdings flows directly from the order.
-> DRYRUN: Wayback anchor is a 2023 calendar-folder pointer; pinned
-> snapshot timestamp and body_hash capture deferred to human audit.
-
-### l4_frontend · attribution: `plausible` · Δt = 24h
-
-**Event label**: `be_geo_specific_restriction_notices_posted`
-
-**Timestamp**: `2023-06-24 00:00:00+00:00` (precision: `day`)
-
-**Sources**:
-
-- **`primary_legal`**
-  - URL: <https://www.fsma.be/en/news>
-  - Wayback: <https://web.archive.org/web/2023/https://www.fsma.be/en/news>
-  > FSMA press item is the regulatory anchor for the Binance-BE
-> frontend response: Binance posted Belgium-specific user notices
-> and onboarding restrictions in the days following the FSMA order.
-> attribution=plausible because the frontend banner / regional
-> notice is a Binance-corporate response, not a regulator-mandated
-> DOM change. DRYRUN: pinned Wayback snapshot of the binance.com
-> Belgium-geo notice page is deferred to human audit; the FSMA
-> press item is retained here as the contextual anchor for the
-> frontend response.
 
 ## 5. Honest coverage gaps
 
-*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
+- **l4_frontend** (`not_measured`): No replayable Binance BE-geo frontend notice is retained in this
 
 ## 7. Related events
 
@@ -118,7 +89,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ec5c516`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `cd97438`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=368)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ec5c516` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `cd97438` · generated `2026-06-01T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -38,10 +38,10 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `argentina-cnv-psav-registration-2024` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `argentina-uif-resolution-300-2014` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `augur-v2-us-uk-geofence-2020-07` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
-| `australia-asic-binance-derivatives-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-16` | `2026-05-16` |
+| `australia-asic-binance-derivatives-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `bangladesh-bb-bitcoin-warning-2014` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `bcbs-cryptoasset-prudential-standard-sco60-2022` | `empirical_case` | `S6_supranational` | `comparison` | `supranational_regulation` | `day` | `asset` | `complete` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
-| `belgium-fsma-binance-cease-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-16` | `2026-05-16` |
+| `belgium-fsma-binance-cease-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `binance-4framework-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `binance-busd-wind-down-2024` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
 | `binance-cftc-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |

@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `asset_onchain`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `ec5c516` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `cd97438` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -35,8 +35,8 @@
   - tx_hash: `0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da`
   > Circle USDC Blacklisted() transaction freezing the OFAC-named Cryptex ETH address
 > 0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7 at 2024-09-27 03:00 UTC, approximately
-> 27 hours after the OFAC SDN designation. On-chain receipt of the corporate-policy
-> compliance action.
+> 27 hours after the OFAC SDN designation. The tx_hash is the replayable on-chain
+> receipt of the corporate-policy compliance action.
 
 ## 2. Target
 
@@ -68,7 +68,8 @@
   - tx_hash: `0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da`
   > Circle USDC Blacklisted() tx freezing Cryptex ETH address 0x0931cA... at
 > 2024-09-27 03:00 UTC, 27 hours after the 2024-09-26 OFAC SDN designation.
-> Direct on-chain receipt of the corporate-policy compliance action.
+> The tx_hash is the replayable on-chain receipt of the corporate-policy compliance
+> action.
 - **`supporting_community`**
   - URL: <https://usdtbanlist.com/address/0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7>
   - Wayback: <https://web.archive.org/web/2024/https://usdtbanlist.com/address/0x0931cA4D13BB4ba75D9B7132AB690265D749a5E7>
@@ -89,7 +90,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ec5c516`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `cd97438`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

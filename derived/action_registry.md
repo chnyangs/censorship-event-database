@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ec5c516` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `cd97438` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **335**
+- Canonical physical actions: **333**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -22,10 +22,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `argentina-bcra-banks-crypto-services-ban-2022-05:0:offramp_cex:argentine_financial_institution_ecosystem:bank_crypto_services_prohibited_class_wide_de_facto_ban` | 1 | 0 | 1 | offramp_cex | `argentina-bcra-banks-crypto-services-ban-2022-05::offramp_cex` |
 | `augur-v2-us-uk-geofence-2020-07:0:l4_frontend:frontend:forecast_foundation:augur_v2_us_uk_geofence_primary_confirmation_gap` | 1 | 0 | 1 | l4_frontend | `augur-v2-us-uk-geofence-2020-07::l4_frontend` |
 | `australia-asic-binance-derivatives-2023:0:offramp_cex:cex:binance_australia_derivatives_cohort:binance_australia_derivatives_afsl_cancelled_operations_shut_down` | 1 | 0 | 1 | offramp_cex | `australia-asic-binance-derivatives-2023::offramp_cex` |
-| `australia-asic-binance-derivatives-2023:1:l4_frontend:frontend:binance_com_au_geo:au_geo_specific_derivatives_shutdown_notices_posted` | 1 | 0 | 1 | l4_frontend | `australia-asic-binance-derivatives-2023::l4_frontend` |
 | `bcbs-cryptoasset-prudential-standard-sco60-2022:0:offramp_cex:regulator:bcbs:bcbs_imposes_punitive_capital_treatment_on_group2_cryptoassets` | 1 | 0 | 1 | offramp_cex | `bcbs-cryptoasset-prudential-standard-sco60-2022::offramp_cex` |
 | `belgium-fsma-binance-cease-2023:0:offramp_cex:cex:binance_belgium_cohort:binance_belgium_services_ordered_to_cease_and_assets_repatriated` | 1 | 0 | 1 | offramp_cex | `belgium-fsma-binance-cease-2023::offramp_cex` |
-| `belgium-fsma-binance-cease-2023:1:l4_frontend:frontend:binance_com_be_geo:be_geo_specific_restriction_notices_posted` | 1 | 0 | 1 | l4_frontend | `belgium-fsma-binance-cease-2023::l4_frontend` |
 | `binance-4framework-2023:1:offramp_cex:exchange:binance:compliance_remediation_program_mandated` | 1 | 0 | 1 | offramp_cex | `binance-4framework-2023::offramp_cex` |
 | `binance-busd-wind-down-2024:0:offramp_cex:exchange:binance:binance_busd_spot_pair_removal_and_balance_auto_conversion_to_fdusd` | 1 | 0 | 1 | offramp_cex | `binance-busd-wind-down-2024::offramp_cex` |
 | `binance-cftc-2023:0:offramp_cex:exchange:binance:cftc_complaint_initiates_binance_us_rails_enforcement_axis` | 1 | 0 | 1 | offramp_cex | `binance-cftc-2023::offramp_cex` |

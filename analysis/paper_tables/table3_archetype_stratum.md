@@ -1,6 +1,6 @@
 # Table 3 · Archetype × research-stratum cross-tab
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ec5c516` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `cd97438` · generated `2026-06-01T00:00:00Z`
 
 Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). Rows: rule-based deterministic archetypes. Columns: research strata (admission stratification, NOT jurisdiction / population weighting). Promotion from descriptive table to paper claim requires `observation_kind` κ ≥ 0.6.
 
@@ -8,8 +8,8 @@ Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). R
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `asset_only` | 10 | 0 | 0 | 0 | 4 | 0 | 14 |
 | `frontend_only` | 2 | 0 | 15 | 5 | 24 | 0 | 46 |
-| `cex_only` | 2 | 0 | 40 | 60 | 51 | 14 | 167 |
-| `multi_layer` | 3 | 1 | 11 | 16 | 7 | 0 | 38 |
+| `cex_only` | 2 | 0 | 40 | 62 | 51 | 14 | 169 |
+| `multi_layer` | 3 | 1 | 11 | 14 | 7 | 0 | 36 |
 | `other_single_layer` | 0 | 0 | 0 | 6 | 1 | 0 | 7 |
 | `null_event` | 35 | 0 | 11 | 24 | 10 | 16 | 96 |
 | **total** | **52** | **1** | **77** | **111** | **97** | **30** | **368** |
