@@ -60,17 +60,20 @@ trigger:
         (T3 FCU launch announcement).
 
 target:
-  kind: entity
+  kind: address_set
   enumeration: subset
   enumeration_note: |
     Target is the class of USDT-on-TRON balances subject to T3 FCU
     enforcement freezes at law-enforcement direction (executed via Tether's
     USDT blacklist admin function). The launch announcement reports an
     initial aggregate "over USDT 12 million" frozen across a blackmail scam,
-    an investment-fraud scheme and others, without enumerating specific
-    addresses or transactions — enumeration=subset. No specific frozen
-    address roster or freeze tx is claimed (none is pinned by the captured
-    source).
+    an investment-fraud scheme and others. The captured source does not
+    enumerate a full frozen-address roster; this row pins two same-day
+    USDT-on-TRON AddedBlackList(address) receipts as a representative subset
+    only. The two addresses are NOT asserted to exhaust the launch aggregate.
+  addresses:
+    - "TYMtkQ1rdvu5XnHFsg5SWizsdr4zk8AgqS"
+    - "TDSp29bjTQZjQ6qoMB9VK74NnbbhT4aPB8"
   protocol: null
   actor_type: private_freeze_consortium
   actor_name: T3 Financial Crime Unit (Tether + TRON + TRM Labs)
@@ -104,12 +107,12 @@ coverage:
       Load-bearing layer. T3 FCU executes USDT-on-TRON freezes (via Tether's
       blacklist admin function) at law-enforcement direction; the launch
       announcement reports an initial aggregate of "over USDT 12 million"
-      frozen. partially_measured: a replayable artifact (the captured
-      Tether.io launch announcement) attests the aggregate freeze but does
-      NOT exhaust the scope — this draft pins no specific freeze transaction
-      hash, so the §1.6 primary_onchain floor is deferred for the draft and
-      no tx_hash is fabricated. Observation attached below carries the
-      aggregate institutional claim only.
+      frozen. partially_measured: the captured Tether.io launch announcement
+      attests the aggregate freeze, and two same-day TronGrid-verified USDT
+      AddedBlackList receipts are pinned below, but the public source still
+      does NOT exhaust the full scope. The row therefore carries only a
+      representative address subset and does not fabricate a complete target
+      set.
   - layer: offramp_cex
     status: not_applicable
     note: |
@@ -122,9 +125,9 @@ observations:
     event: t3_fcu_launch_executes_usdt_tron_enforcement_freezes
     observation_kind: observed_change
     attribution: plausible
-    timestamp: 2024-09-10T00:00:00Z
-    precision: day
-    delta_hours: 0
+    timestamp: 2024-09-10T06:45:54Z
+    precision: second
+    delta_hours: 6.76
     sources:
       - type: primary_corporate
         url: https://tether.io/news/tether-tron-and-trm-labs-establish-first-ever-private-sector-financial-crime-unit-to-combat-crypto-crime/
@@ -142,10 +145,32 @@ observations:
           Tether.io launch announcement: T3 FCU established to facilitate
           USDT-on-TRON enforcement freezes with law enforcement; reports
           "over USDT 12 million" frozen at launch. attribution=plausible:
-          the consortium and the aggregate-freeze claim are directly stated
-          by the issuer, but no specific freeze tx/address is pinned, so the
-          on-chain effect is carried at the institutional/aggregate level.
-          §1.6 primary_onchain floor deferred (draft); no tx_hash fabricated.
+          the consortium and aggregate-freeze claim are directly stated by
+          the issuer, while the captured source does not enumerate the full
+          address roster. The primary_onchain sources below pin a same-day
+          representative subset only.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/b08e804e631be03ff779027181d7069be9135d57890fc32856d8b093c07f0c5d
+        tx_hash: "b08e804e631be03ff779027181d7069be9135d57890fc32856d8b093c07f0c5d"
+        block: 65100940
+        note: |
+          USDT Tron AddedBlackList(address) log for
+          TYMtkQ1rdvu5XnHFsg5SWizsdr4zk8AgqS in block 65100940 at
+          2024-09-10 06:45:54 UTC. TronGrid receipt SUCCESS, USDT TRON
+          contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t, event topic
+          42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc;
+          receipt cached under sources/onchain_receipts.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/0f7c52af61004b54bc9de3ec37695c3a3d61fd135b2db29faee824386f604856
+        tx_hash: "0f7c52af61004b54bc9de3ec37695c3a3d61fd135b2db29faee824386f604856"
+        block: 65100945
+        note: |
+          USDT Tron AddedBlackList(address) log for
+          TDSp29bjTQZjQ6qoMB9VK74NnbbhT4aPB8 in block 65100945 at
+          2024-09-10 06:46:09 UTC. TronGrid receipt SUCCESS, USDT TRON
+          contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t, event topic
+          42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc;
+          receipt cached under sources/onchain_receipts.
       - type: semi_primary_wayback
         url: https://www.coindesk.com/business/2024/09/10/tron-tether-and-trm-labs-start-financial-crime-fighting-force
         wayback: https://web.archive.org/web/20240911050312/https://www.coindesk.com/business/2024/09/10/tron-tether-and-trm-labs-start-financial-crime-fighting-force/
@@ -164,6 +189,19 @@ observations:
           actor set.
 
 analysis_notes: |
+  **SOURCE REPAIR 2026-05-31 (automation, no human admission claimed):**
+  resolved the prior §1.6 tx_hash gap by pinning two same-day TronGrid-
+  verified USDT AddedBlackList receipts:
+  b08e804e631be03ff779027181d7069be9135d57890fc32856d8b093c07f0c5d
+  for TYMtkQ1rdvu5XnHFsg5SWizsdr4zk8AgqS at 2024-09-10 06:45:54 UTC, and
+  0f7c52af61004b54bc9de3ec37695c3a3d61fd135b2db29faee824386f604856
+  for TDSp29bjTQZjQ6qoMB9VK74NnbbhT4aPB8 at 2024-09-10 06:46:09 UTC. The
+  captured Tether launch source still does not enumerate the full frozen
+  address set or tie these two addresses to the entire "over USDT 12M"
+  aggregate, so target.enumeration remains subset and asset_onchain remains
+  partially_measured. The event remains status=draft because
+  origin=agent_draft cannot be promoted by automation.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
   verified+captured, awaiting human admission).
 
@@ -186,12 +224,12 @@ analysis_notes: |
   observed_change layer (asset_onchain). Other layers scope-mismatched.
 
   ANTI-FABRICATION / §1.6: the freeze effect is genuinely on-chain (USDT
-  blacklist), but this draft pins NO specific freeze transaction hash and
-  claims NO specific frozen addresses — only the issuer-stated aggregate
-  ("over USDT 12 million") is recorded. asset_onchain is coded not_measured
-  with the primary_onchain tx_hash floor explicitly deferred for the draft;
-  no tx_hash is invented. A human audit may attach representative T3/Tether
-  blacklist freeze txs before any promotion, or re-route per §1.6.
+  blacklist), but this draft claims only two same-day pinned blacklist
+  transactions as a representative subset, plus the issuer-stated aggregate
+  ("over USDT 12 million"). It does NOT claim a complete frozen-address
+  roster and does NOT infer that the two pinned addresses exhaust the
+  aggregate. asset_onchain is coded partially_measured; no tx_hash or full
+  target set is invented.
 
   Scope note: subsequent T3 aggregate milestones ($100M+, $250M+, $300M+,
   $450M+) are NOT claimed here (their sources were not captured for this
@@ -206,10 +244,11 @@ scoped_claim: |
   "The 2024-09-10 launch of the T3 Financial Crime Unit (Tether + TRON +
   TRM Labs) operationalized a standing private-sector consortium that
   executes USDT-on-TRON enforcement freezes at law-enforcement direction
-  (initial aggregate 'over USDT 12 million' frozen); single-layer
-  asset_onchain observed_change with attribution=plausible, carried at the
-  institutional/aggregate level (no specific freeze tx pinned; §1.6 floor
-  deferred for the draft)."
+  (initial aggregate 'over USDT 12 million' frozen). Two same-day
+  USDT-on-TRON AddedBlackList receipts are pinned as a representative
+  subset; single-layer asset_onchain observed_change with
+  attribution=plausible, carried at the institutional/subset level (no
+  complete address roster asserted)."
 
 tags:
   - corporate_policy_change

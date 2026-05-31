@@ -1,0 +1,199 @@
+id: lebanon-bdl-bitcoin-warning-2013-12
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - thailand-bot-bitcoin-prohibition-2013
+  - china-pboc-crypto-ban-2013-12
+  - indonesia-bi-bitcoin-warning-2014
+
+trigger:
+  type: regulatory_enforcement
+  actor: LB_BDL
+  timestamp: 2013-12-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.bdl.gov.lb/CB%20Com/Laws%20And%20Regulations/Announcements/900.pdf
+      body_hash: sha256:2176daacf9d50a42e245f84cad5ea52c2290e511bfe7ad7ee903d67a4daf82bc
+      body_path: sources/http_captures/lebanon-bdl-bitcoin-warning-2013-12/primary/www.bdl.gov.lb__CB-Com-Laws-And-Regulations-Announcements-900.pdf__manual.bin
+      evidence_use: replayable
+      note: |
+        Banque du Liban Announcement No. 900, dated 2013-12-19 and addressed to
+        banks, financial institutions, exchange institutions, financial brokerage
+        institutions, and the public. `pdftotext` on the captured official PDF
+        confirms that the announcement cites Basic Decision No. 7548, Article 3,
+        as prohibiting issuance of electronic money and dealing with it in any
+        form, then warns anyone against purchasing, holding, or using virtual
+        money, especially Bitcoin.
+    - type: supporting_journalism
+      url: https://www.businessnews.com.lb/cms/Story/StoryDetails/3702/The-BDL-warned-of-the-use-of-%E2%80%98Bitcoins%E2%80%99
+      body_hash: sha256:77374133068398f8125e1523d263337332df9cefee01a9951cfadbe41918c476
+      body_path: sources/http_captures/lebanon-bdl-bitcoin-warning-2013-12/primary/www.businessnews.com.lb__cms-Story-StoryDetails-3702-The-BDL-warned-of-the-use-of-Bitcoins__manual.html
+      evidence_use: replayable
+      note: |
+        BusinessNews.com.lb contemporaneous English report, "The BDL warned of
+        the use of 'Bitcoins'," summarizing the BDL announcement as forbidding
+        banks, financial institutions, currency-exchange companies, brokerage
+        firms, and the public from purchasing, holding, and dealing with
+        electronic money, especially Bitcoin, and describing the money-laundering
+        and consumer-loss risks listed by BDL.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        The official BDL PDF carries the Beirut date 2013-12-19. Day precision is
+        appropriate because the announcement has no intra-day release time.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Lebanese banks, financial institutions, exchange institutions, financial
+    brokerage institutions, and the public as the class addressed by BDL
+    Announcement No. 900. The announcement is class-level: it does not enumerate
+    specific exchanges, counterparties, domains, tokens beyond Bitcoin as an
+    example, or blockchain addresses.
+  protocol: null
+  actor_type: lebanon_virtual_money_regulated_activity_class
+  actor_name: Lebanon banks, financial institutions, exchange institutions, brokers, and virtual-money users
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - LB
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The BDL announcement is a central-bank legal / regulatory warning and
+      electronic-money restriction, not an ISP, DNS, IP, or routing block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus in 2013 is outside the measured relay /
+      validator filtering surfaces, and the announcement does not direct any
+      consensus-layer action.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The public-RPC compliance substrate measured by the L3 layer did not exist
+      in 2013 and is not implicated by the BDL announcement.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      No exchange, wallet, or application frontend domain is named or ordered to
+      change access.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin has no issuer-side blacklist/freeze admin function, and the BDL
+      announcement does not name any token issuer, address set, freeze, or burn.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - lebanon_bdl_announcement_900_addressed_activity_class
+    note: |
+      Load-bearing layer. BDL Announcement No. 900 addresses regulated financial
+      institutions, exchange institutions, brokerage institutions, and the public;
+      cites an existing electronic-money prohibition; and warns against purchase,
+      holding, or use of virtual money including Bitcoin. This is modeled as a
+      class-level restriction signal at the off-ramp / regulated-financial-activity
+      surface. No exchange-specific cutoff or platform shutdown is claimed.
+
+observations:
+  - layer: offramp_cex
+    actor: lebanon_virtual_money_activity_class
+    event: bdl_warning_against_purchase_holding_and_use_of_virtual_money
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2013-12-19T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_government
+        url: https://www.bdl.gov.lb/CB%20Com/Laws%20And%20Regulations/Announcements/900.pdf
+        body_hash: sha256:2176daacf9d50a42e245f84cad5ea52c2290e511bfe7ad7ee903d67a4daf82bc
+        body_path: sources/http_captures/lebanon-bdl-bitcoin-warning-2013-12/primary/www.bdl.gov.lb__CB-Com-Laws-And-Regulations-Announcements-900.pdf__manual.bin
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [LB]
+          providers:
+            - lebanon_banks_financial_institutions_exchange_institutions_brokerage_institutions
+          time_window:
+            - 2013-12-19T00:00:00Z
+            - 2013-12-19T23:59:59Z
+        note: |
+          The BDL announcement itself is the replayable source anchor. It cites a
+          prohibition on issuing and dealing with electronic money and directly
+          warns anyone against purchase, holding, and use of virtual money,
+          especially Bitcoin. attribution=direct for the class-level regulatory
+          signal; no exchange-specific cascade is asserted.
+      - type: supporting_journalism
+        url: https://www.businessnews.com.lb/cms/Story/StoryDetails/3702/The-BDL-warned-of-the-use-of-%E2%80%98Bitcoins%E2%80%99
+        body_hash: sha256:77374133068398f8125e1523d263337332df9cefee01a9951cfadbe41918c476
+        body_path: sources/http_captures/lebanon-bdl-bitcoin-warning-2013-12/primary/www.businessnews.com.lb__cms-Story-StoryDetails-3702-The-BDL-warned-of-the-use-of-Bitcoins__manual.html
+        evidence_use: replayable
+        note: |
+          Contemporaneous English-language corroboration of the addressed
+          institution classes and the purchase / holding / dealing restriction
+          framing.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official-source verification. The event remains
+  `status=draft` and `origin=agent_draft`; automation must not promote it to an
+  admitted paper row without human admission review.
+
+  Inclusion rationale: this is stronger than a generic non-legal-tender warning.
+  The official BDL text is addressed to banks, financial institutions, exchange
+  institutions, financial brokerage institutions, and the public; cites Basic
+  Decision No. 7548 Article 3 as prohibiting issuance of and dealing in
+  electronic money; and warns anyone against purchase, holding, or use of
+  virtual money including Bitcoin. That makes it an early historical-baseline
+  central-bank restriction signal rather than a pure consumer-risk note.
+
+  Modeling rationale: `trigger.type=regulatory_enforcement` because this is a
+  central-bank administrative announcement / warning, not an ISP block or a
+  newly measured payment-rail shutdown. The load-bearing observation is coded at
+  `offramp_cex` as a regulated-financial-activity class restriction. The row does
+  not claim any specific exchange closure, user offboarding, domain block,
+  frontend geofence, or on-chain asset action.
+
+  Source note: the repo capture script failed on the BDL PDF because Python's TLS
+  stack hit an SSL handshake failure; the same URL was downloaded with curl using
+  HTTP/1.1 and TLS 1.2, then hashed locally. The Perma memento for the older BDL
+  page was also captured, but its local HTML is a replay shell rather than the
+  load-bearing announcement body, so the official PDF is the replayable primary
+  anchor used here.
+
+scoped_claim: |
+  "On 2013-12-19, Banque du Liban issued Announcement No. 900, addressed to
+  banks, financial institutions, exchange institutions, financial brokerage
+  institutions, and the public, citing the electronic-money prohibition in Basic
+  Decision No. 7548 and warning against purchase, holding, or use of virtual
+  money including Bitcoin. The event is modeled as a historical-baseline,
+  class-level off-ramp / regulated-financial-activity restriction signal; no
+  platform-specific cutoff, network block, frontend block, or on-chain action is
+  claimed."
+
+tags:
+  - regulatory_enforcement
+  - lebanon
+  - banque_du_liban
+  - bitcoin_warning
+  - electronic_money_prohibition
+  - historical_baseline
+  - agent_draft

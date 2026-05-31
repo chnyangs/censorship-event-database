@@ -2,15 +2,24 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `a331305` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T04:56:33Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "OFAC designation of 6 IRGC-affiliated individuals on 2022-09-14 attached 6 Bitcoin
-> addresses. Cross-layer cascade structurally unmeasurable. Datapoint for Iran-related
-> individual-BTC-sanction class."
+> "OFAC designation of 11 IRGC-affiliated individuals + 1 entity
+> (AFKAR SYSTEM YAZD COMPANY) on 2022-09-14, with 6 unique Bitcoin
+> addresses concentrated among 2 of the 11 individuals (KHATIBI
+> AGHADA Ahmad: 3 XBT; NIKAEEN RAVARI Amir Hossein: 4 XBT, with 1
+> address `1H939dom7i4WDLCKyGbXUp3fs9CSTNRzgL` shared between both
+> listings = 7 raw DCA entries deduplicating to 6 unique). Cross-
+> layer cascade structurally unmeasurable (BTC native, individuals,
+> event falls 1 day before The Merge). Datapoint for Iran-related
+> individual-BTC-sanction class. v0.3 audit 2026-05-19: scoped_claim
+> repaired per audit_log row 233 (qid=116 needs_recheck) which
+> flagged original wording for `6 IRGC-affiliated individuals` count
+> factual error vs OFAC RA 11 individuals + 1 entity."
 
 ## 1. Trigger
 
@@ -73,7 +82,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a331305`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

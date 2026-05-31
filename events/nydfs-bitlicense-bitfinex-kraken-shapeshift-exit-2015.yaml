@@ -3,7 +3,7 @@ schema_version: 0.2.0
 codebook_version: "1.0.0"
 status: rejected
 primary_source_verified: false
-research_stratum: S3_doj_sec_cftc_fiod
+research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: null_event
@@ -16,7 +16,7 @@ related_events:
   - nydfs-bitlicense-2015-06             # parent rulemaking event already in corpus
 
 trigger:
-  type: court_civil_order
+  type: regulatory_enforcement
   actor: US_NYDFS
   timestamp: 2015-08-10T00:00:00Z
   timestamp_precision: day
@@ -157,6 +157,12 @@ analysis_notes: |
   event nydfs-bitlicense-2015-06 for the canonical L4/offramp_cex
   cascade record.
 
+  Scope-coding update 2026-05-31: because this rejected duplicate shares
+  the NYDFS BitLicense trigger with the parent event, it follows the same
+  US state/subnational regulator convention: trigger.type=regulatory_enforcement
+  and research_stratum=S4_nation_state. S3 remains reserved for US federal
+  enforcement/court actions.
+
 scoped_claim: |
   "The 2015-08-10 BitLicense grace-period expiration triggered a
   cluster of crypto exchange exits from the New York market:
@@ -168,6 +174,7 @@ scoped_claim: |
 
 tags:
   - historical_baseline_2013_2016
+  - regulatory_enforcement
   - nydfs
   - bitlicense
   - bitfinex

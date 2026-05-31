@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `a331305` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T04:56:33Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -63,14 +63,40 @@
 **Sources**:
 
 - **`primary_legal`**
+  - URL: <https://www.cftc.gov/media/8741/enfookidaojudgment060923/download>
+  - Wayback: <https://web.archive.org/web/20230610092333/https://www.cftc.gov/media/8741/enfookidaojudgment060923/download>
+  - body_hash: `sha256:cb8789ad3283645a8ffef6ce726701e72373417a781c48097237685135e37673`
+  - body_path: `sources/http_captures/cftc-v-ooki-dao-2022/cftc_judgment_pdf/cftc_v_ooki_dao_judgment_20230608.pdf`
+  > CFTC v. Ooki DAO default judgment PDF (N.D. Cal. Case 22-cv-05416,
+> Judge Orrick, 4 pages, 100132 bytes). Wayback-captured 2023-06-10
+> (~2 days post-judgment). v0.3 audit 2026-05-20 repair: added per
+> Session 2 Block D NO decision (qid=38) which flagged the original
+> observation row for citing only the 2022-09-22 filing release as
+> source for judgment-specific facts 258 days later. pypdf-extracted
+> content substantiates: 19xOoki + 16xDAO + 1xdefault judgment +
+> 1x$643,542 + 1xOrrick + 5xNorthern District. attribution=direct
+> sound: the default judgment IS the legal instrument that mandated
+> US-user frontend geo-blocking + $643,542 monetary penalty +
+> cessation of Ooki DAO activities.
+- **`primary_legal`**
+  - URL: <https://www.cftc.gov/media/8736/enfookidaoorder060923/download>
+  - Wayback: <https://web.archive.org/web/20230609212231/https://www.cftc.gov/media/8736/enfookidaoorder060923/download>
+  - body_hash: `sha256:370136f5c29b0a814c8142c454f678111ee0610b4aad9eff6c8a943b7972bbc1`
+  - body_path: `sources/http_captures/cftc-v-ooki-dao-2022/cftc_order_pdf/cftc_v_ooki_dao_order_20230608.pdf`
+  > CFTC v. Ooki DAO underlying court order PDF (N.D. Cal., 16 pages,
+> 227826 bytes). Wayback-captured 2023-06-09 (~1 day post-judgment).
+> pypdf-extracted content substantiates: 64xOoki + 71xDAO +
+> 20xdefault judgment + 80xU.S. + 2x$643,542 + 1xOrrick + 18xNorthern
+> District. Provides the substantive judicial reasoning and remedy
+> structure backing the judgment PDF above.
+- **`primary_legal`**
   - URL: <https://www.cftc.gov/PressRoom/PressReleases/8590-22>
   - body_hash: `sha256:a241fc6b6dc9ff3a73c8a9a39fe49032c591a62ca4c84841521b532c26f0ed3d`
   - body_path: `sources/http_captures/cftc-v-ooki-dao-2022/primary/www.cftc.gov__PressRoom-PressReleases-8590-22__bd77d22b3b.html`
-  > CFTC primary filing document. Default judgment 2023-06-08 (258 days
-> post-CFTC-filing) ordered cessation of Ooki DAO's activities,
-> shutdown of US-user frontend access, and $643,542 monetary penalty.
-> Direct attribution: the default judgment explicitly mandated US
-> user frontend geo-blocking.
+  > CFTC initial 2022-09-22 filing release (8590-22) — retained as
+> context anchor for the trigger event but NOT load-bearing for
+> the 2023-06-08 default judgment outcome (which is anchored to
+> the Order + Judgment PDFs above per v0.3 audit 2026-05-20 repair).
 
 ## 5. Honest coverage gaps
 
@@ -78,7 +104,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a331305`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

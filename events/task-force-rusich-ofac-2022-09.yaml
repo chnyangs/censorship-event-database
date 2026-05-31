@@ -12,7 +12,6 @@ origin: agent_draft
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
 last_verified: 2026-05-31
-last_human_audit: 2026-05-31
 
 trigger:
   type: ofac_sdn_designation
@@ -35,6 +34,18 @@ trigger:
         BTC, 2 ETH, 1 USDT-on-Tron) tied to a Rusich military-hardware
         crowdfunding campaign for pro-Russian troops in Ukraine. Wayback
         memento 20220916012425 pinned.
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20220915
+      body_hash: sha256:22ad2861c1adbcf4036a3d5951e4af949dabff8040bfa3d07ce1db0faebf3f34
+      body_path: sources/http_captures/task-force-rusich-ofac-2022-09/primary/ofac.treasury.gov__recent-actions-20220915__943c5c2580.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2022-09-15, captured locally on
+        2026-05-31. The SDN-list update names TASK FORCE RUSICH and
+        enumerates five digital-currency addresses attached to the entity:
+        two XBT addresses, two ETH addresses, and one USDT-on-Tron address.
+        This repairs the earlier crypto-nexus source gap in the jy0954-only
+        draft without relying on secondary reporting.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -45,15 +56,23 @@ target:
   enumeration: subset
   enumeration_note: |
     Task Force Rusich designated as an SDN entity under E.O. 14024 with
-    five attached crypto addresses (2 BTC, 2 ETH, 1 USDT-on-Tron). Marked
-    subset because the target is the named paramilitary group; the on-
-    chain addresses are not separately re-listed in this draft pending a
-    primary_onchain freeze receipt (deferred per codebook §1.6). The
-    broader jy0954 action designated 22 individuals + 2 entities; only the
-    Rusich crypto cohort is in scope for this event's target.
+    five attached crypto addresses (2 XBT, 2 ETH, 1 USDT-on-Tron), all
+    enumerated verbatim from the OFAC Recent Actions page. Marked subset
+    because the broader 2022-09-15 action designated many individuals and
+    entities; only the Rusich crypto cohort is in scope for this event.
   actor_type: paramilitary_group
   actor_name: Task Force Rusich
+  chains:
+    - bitcoin
+    - ethereum
+    - tron
   canonical_domains: []
+  addresses:
+    - bc1ql7dlyh8xz6tpqk92vztrhqh88dmjvcwrmsemrm
+    - bc1q2lpgjntr348pfvxhfy33ehmdzy3gmx8w4052z6
+    - "0xc2a3829F459B3Edd87791c74cD45402BA0a20Be3"
+    - "0x3AD9dB589d201A710Ed237c829c7860Ba86510Fc"
+    - TX5GV4DyfxNB3rPkzZJhmqZ1efVmL4rEqG
 
 jurisdiction:
   - US
@@ -104,6 +123,24 @@ observations:
       - 2022-09-29T23:59:59Z
     sources:
       - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20220915
+        body_hash: sha256:22ad2861c1adbcf4036a3d5951e4af949dabff8040bfa3d07ce1db0faebf3f34
+        body_path: sources/http_captures/task-force-rusich-ofac-2022-09/primary/ofac.treasury.gov__recent-actions-20220915__943c5c2580.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2022-09-15T00:00:00Z
+            - 2022-09-29T23:59:59Z
+          addresses_cohort: task_force_rusich_5_crypto_addresses
+        note: |
+          OFAC Recent Actions page for 2022-09-15, the formal SDN-list
+          publication for the designation. The TASK FORCE RUSICH entry
+          enumerates two XBT addresses, two ETH addresses, and one
+          USDT-on-Tron address. No public CEX policy statement explicitly
+          naming this five-address cohort was found in the 14-day window;
+          private KYT flagging is outside this observation's scope.
+      - type: primary_legal
         url: https://home.treasury.gov/news/press-releases/jy0954
         wayback: https://web.archive.org/web/20220916012425/https://home.treasury.gov/news/press-releases/jy0954
         body_hash: sha256:1407d5948d7d5d982888f38a953d00eab01e7766bed8a6c6e47df509bb1a01e1
@@ -122,14 +159,17 @@ observations:
           observation's scope.
 
 analysis_notes: |
-  **VERIFY-FLAG 2026-05-31 (refined; corrected finding):** the designation IS genuinely crypto —
-  OFAC sanctioned 5 Task Force Rusich cryptocurrency addresses (2 BTC, 2 ETH, 1 USDT-on-TRON; ~$138k
-  raised), well-documented (CoinDesk/Chainalysis/TRM, 2022-09-15). BUT the captured press release
-  jy0954 (rendered+grepped) does NOT contain ANY crypto terms — the crypto-address detail is in the
-  SDN-list entry / contemporaneous reporting, not jy0954. Before admission: pin a crypto-nexus source
-  (OFAC Recent-Actions 20220915 or a reliable secondary) so the crypto claim is substantiated. NOT a
-  fabrication (unlike dropped fayzimatov/nordic-resistance) — a real crypto designation needing a
-  better source. DRAFT — do NOT admit until a crypto-nexus source is pinned.
+  **SOURCE REPAIR 2026-05-31:** the earlier jy0954-only draft had a real
+  crypto-nexus gap because the Treasury press release body does not itself
+  list the crypto addresses. This pass captured the official OFAC Recent
+  Actions page for 2022-09-15
+  (`ofac.treasury.gov/recent-actions/20220915`, sha256:
+  22ad2861c1adbcf4036a3d5951e4af949dabff8040bfa3d07ce1db0faebf3f34),
+  whose TASK FORCE RUSICH SDN entry enumerates the five digital-currency
+  addresses verbatim (2 XBT, 2 ETH, 1 USDT-on-Tron). The crypto-nexus
+  source gap is repaired without relying on secondary reporting. Status
+  remains draft because admission is human-only (`origin=agent_draft` cannot
+  be promoted by automation).
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
   verified+captured, awaiting human admission). OFAC designated the Russian
   neo-Nazi paramilitary group Task Force Rusich on 2022-09-15 (Treasury

@@ -1,63 +1,95 @@
 # Jurisdictional distribution (derived)
 
-Generated: `2026-05-17T00:00:00Z`. Corpus: n = 105 events.
+Generated: `2026-05-31T04:56:33Z`. Corpus: n = 368 events.
 
 ## By region
 
 | region | events touching | share of corpus |
 | --- | ---: | ---: |
-| US | 72 | 68.6% |
-| Europe (EU+UK+CH+non-bloc) | 23 | 21.9% |
-| Rest of World | 22 | 21.0% |
-| Corporate (no jurisdiction) | 9 | 8.6% |
-| Other | 5 | 4.8% |
-| **CORPUS TOTAL** | **105** | — |
-_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (131) ≥ corpus total (105). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
+| US | 159 | 43.2% |
+| Europe (EU+UK+CH+non-bloc) | 58 | 15.8% |
+| Rest of World | 68 | 18.5% |
+| Corporate (no jurisdiction) | 49 | 13.3% |
+| Other | 85 | 23.1% |
+| **CORPUS TOTAL** | **368** | — |
+_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (419) ≥ corpus total (368). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
 
 ## By country / bloc
 
 | jurisdiction code | events |
 | --- | ---: |
-| `US` | 72 |
-| `EU` | 9 |
-| `corporate_global` | 9 |
-| `UK` | 7 |
-| `NL` | 5 |
-| `AU` | 5 |
-| `RU` | 5 |
-| `DE` | 5 |
-| `IN` | 3 |
-| `KR` | 3 |
-| `CA` | 2 |
-| `CN` | 2 |
+| `US` | 159 |
+| `corporate_global` | 49 |
+| `EU` | 28 |
+| `RU` | 19 |
+| `UK` | 16 |
+| `CN` | 14 |
+| `JP` | 14 |
+| `UN` | 10 |
+| `KR` | 9 |
+| `NL` | 7 |
+| `AU` | 7 |
+| `CA` | 7 |
+| `IN` | 6 |
+| `DE` | 6 |
+| `NG` | 4 |
+| `IS` | 4 |
+| `HK` | 4 |
+| `ID` | 4 |
+| `IR` | 4 |
+| `TH` | 4 |
+| `AR` | 3 |
+| `IL` | 3 |
+| `UA` | 3 |
+| `SG` | 3 |
+| `CH` | 3 |
+| `PH` | 3 |
+| `BR` | 2 |
+| `FR` | 2 |
+| `KZ` | 2 |
+| `NP` | 2 |
+| `TW` | 2 |
+| `TR` | 2 |
+| `AE` | 2 |
+| `ZW` | 2 |
+| `DZ` | 1 |
+| `BD` | 1 |
 | `BE` | 1 |
+| `BO` | 1 |
+| `KH` | 1 |
 | `PL` | 1 |
-| `CH` | 1 |
-| `UN` | 1 |
-| `JP` | 1 |
+| `EC` | 1 |
+| `EG` | 1 |
+| `JO` | 1 |
+| `KE` | 1 |
 | `MY` | 1 |
-| `NG` | 1 |
+| `MA` | 1 |
+| `MM` | 1 |
+| `PK` | 1 |
+| `QA` | 1 |
 | `PT` | 1 |
-| `IS` | 1 |
-| `SG` | 1 |
-| `TR` | 1 |
+| `ZA` | 1 |
+| `LK` | 1 |
+| `UZ` | 1 |
+| `VE` | 1 |
+| `VN` | 1 |
 
 ## By trigger actor (top 15)
 
 | actor | events |
 | --- | ---: |
-| `US_OFAC` | 27 |
-| `US_SEC` | 13 |
-| `US_DOJ_SDNY` | 8 |
-| `US_CFTC` | 6 |
-| `EU_Council` | 5 |
-| `US_DOJ` | 4 |
-| `tether_usdt_issuer` | 3 |
-| `binance_holdings_limited` | 2 |
-| `CN_PBOC` | 2 |
-| `KR_FSC` | 2 |
-| `AU_ASIC` | 1 |
-| `BE_FSMA` | 1 |
-| `US_DOJ_FinCEN_OFAC_CFTC` | 1 |
-| `binance_us` | 1 |
-| `US_DOJ_NDCA` | 1 |
+| `US_OFAC` | 53 |
+| `US_SEC` | 25 |
+| `US_DOJ_SDNY` | 14 |
+| `EU_Council` | 13 |
+| `US_CFTC` | 9 |
+| `binance` | 8 |
+| `JP_FSA` | 8 |
+| `CN_PBOC` | 6 |
+| `tether_usdt_issuer` | 6 |
+| `US_DOJ` | 5 |
+| `FATF` | 5 |
+| `US_DOJ_DC` | 4 |
+| `binance_holdings_limited` | 4 |
+| `US_FINCEN` | 4 |
+| `KR_FSC` | 4 |

@@ -1,0 +1,162 @@
+id: fayzimatov-alqaeda-syria-ofac-2021-07
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - ofac-hamas-buy-cash-msb-2023-10
+  - ofac-hamas-gaza-now-2024-03
+  - zheng-yan-fentanyl-ofac-2019-08
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2021-07-28T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20210728
+      body_hash: sha256:9138b98dadd6b5c229099e886b200cc61f1d649e235d2cc4ceace8e428f6f0f1
+      body_path: sources/http_captures/fayzimatov-alqaeda-syria-ofac-2021-07/primary/ofac.treasury.gov__recent-actions-20210728__74c2273c08.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions page for 2021-07-28, captured locally on
+        2026-05-31. The SDN update lists Farrukh Furkatovitch Fayzimatov
+        with a single Digital Currency Address - XBT:
+        17a5bpKvEp1j1Trs4qTbcNZrby53JbaS9C, under the SDGT authority.
+    - type: primary_legal
+      url: https://home.treasury.gov/news/press-releases/jy0293
+      body_hash: sha256:1dbebf420a418ec8e9db7698f6e32fc6c6f03b7b4ca6f3da3ced7d93c353edb6
+      body_path: sources/http_captures/fayzimatov-alqaeda-syria-ofac-2021-07/primary/home.treasury.gov__news-press-releases-jy0293__b9a2c681a6.html
+      evidence_use: replayable
+      note: |
+        Treasury press release "Treasury Designates Al-Qa'ida-Linked
+        Financial Facilitators in Turkey and Syria" (2021-07-28), captured
+        locally on 2026-05-31. The source states that Fayzimatov used social
+        media to post propaganda, recruit, and solicit donations for Hay'et
+        Tahrir Al-Sham, and was designated for material support to HTS.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per OFAC Recent Actions and Treasury press release.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    The captured OFAC SDN update enumerates one XBT digital-currency address
+    for Farrukh Furkatovitch Fayzimatov. Complete at the event-row level for
+    the crypto-address cohort visible in the official OFAC source.
+  protocol: null
+  actor_type: individual_sanctions_target
+  actor_name: Farrukh Furkatovitch Fayzimatov
+  chains:
+    - bitcoin
+  canonical_domains: []
+  addresses:
+    - 17a5bpKvEp1j1Trs4qTbcNZrby53JbaS9C
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Individual SDGT designation; no ISP, DNS, or network-connectivity block is implicated.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin consensus behavior is not affected by an OFAC individual designation.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: No hosted RPC-provider restriction is implicated by the official sources.
+  - layer: l4_frontend
+    status: not_applicable
+    note: No canonical public web frontend for the individual target is modeled.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The only official crypto address is native Bitcoin. Bitcoin has no
+      issuer-admin freeze or blacklist primitive analogous to USDT/USDC; no
+      asset-layer observed_change is possible for this address.
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Public-disclosure observation only. The official OFAC sources establish
+      the legal trigger and target address; no public exchange-side statement
+      naming this address has been pinned in the 14-day window.
+
+observations:
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2021-07-28T00:00:00Z
+    precision: day
+    delta_hours: 0
+    window:
+      - 2021-07-28T00:00:00Z
+      - 2021-08-11T23:59:59Z
+    sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20210728
+        body_hash: sha256:9138b98dadd6b5c229099e886b200cc61f1d649e235d2cc4ceace8e428f6f0f1
+        body_path: sources/http_captures/fayzimatov-alqaeda-syria-ofac-2021-07/primary/ofac.treasury.gov__recent-actions-20210728__74c2273c08.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers:
+            - counterparty_cex_aggregate
+          time_window:
+            - 2021-07-28T00:00:00Z
+            - 2021-08-11T23:59:59Z
+          addresses_cohort: fayzimatov_single_xbt_address
+        note: |
+          No public CEX policy statement naming the Fayzimatov XBT address has
+          been pinned for the 14-day post-designation window. The observation
+          is limited to public-disclosure absence; private KYT flagging is not
+          measured here.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official OFAC/Treasury source capture. The event
+  remains `status=draft` and `origin=agent_draft`; automation must not promote
+  it to an admitted paper row without human admission review.
+
+  Inclusion rationale: unlike nearby candidate rows whose crypto nexus is only
+  inferential, this official OFAC SDN update directly enumerates a Bitcoin/XBT
+  address for Fayzimatov. The Treasury press release supplies the fundraising
+  context for HTS. The row is modeled conservatively as a null_case because the
+  only crypto substrate is native Bitcoin and no public exchange-side cascade
+  has been pinned.
+
+  Modeling rationale: this follows the individual-BTC OFAC null-event pattern
+  used by `lazarus-laundering-ofac-2020` and `zheng-yan-fentanyl-ofac-2019-08`:
+  the designation is in scope as an OFAC crypto-address SDN action, but the
+  measurable cross-layer surface is limited to absence of public CEX disclosure.
+
+scoped_claim: |
+  "On 2021-07-28 OFAC designated Farrukh Furkatovitch Fayzimatov and listed
+  one Bitcoin/XBT address, 17a5bpKvEp1j1Trs4qTbcNZrby53JbaS9C. Treasury's
+  same-day release describes Fayzimatov as soliciting donations for HTS. This
+  draft models the event as an individual-BTC OFAC null_case: no issuer-admin
+  asset freeze is possible and no public CEX cascade has been pinned."
+
+tags:
+  - ofac_sdn_designation
+  - sanctions
+  - terrorism_financing
+  - bitcoin
+  - null_event
+  - agent_draft

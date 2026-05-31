@@ -62,7 +62,7 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
     target = event.get("target", {})
     target_kind = target.get("kind")
     trigger_citations = event.get("trigger", {}).get("citation", [])
-    trigger_primary = bool(trigger_citations) and all(
+    trigger_has_primary = any(
         str(source.get("type", "")).startswith("primary_")
         for source in trigger_citations
     )
@@ -73,8 +73,12 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
         or (target_kind == "domain" and bool(target.get("canonical_domains")))
         or (target_kind == "asset" and bool(target.get("asset")))
     )
-    trigger_reliability = "high" if trigger_primary and target_is_concrete else "medium"
-    if trigger_reliability != "high":
+    trigger_reliability = "high" if trigger_has_primary and target_is_concrete else "medium"
+    if not trigger_has_primary:
+        notes.append("Trigger evidence lacks a primary citation.")
+        blockers.append("Add a primary trigger source before treating the trigger as settled.")
+        next_actions.append("Pin a primary legal, government, corporate, or on-chain trigger artifact.")
+    if not target_is_concrete:
         notes.append("Trigger is primary, but target scope or enumeration still looks coarse.")
         blockers.append("Tighten target enumeration or target scope before treating the trigger as settled.")
         next_actions.append("Pin down the target set more concretely in the event file.")

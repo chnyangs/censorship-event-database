@@ -1,6 +1,6 @@
 # Audit worksheet — `cryptex-ofac-2024`
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-05-17` · commit `1d420be` · generated `2026-05-17T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-05-31` · commit `a331305` · generated `2026-05-31T04:56:33Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S1_ofac_sdn`
@@ -78,7 +78,7 @@ Audit checks:
 - **timestamp**: `2024-09-26 03:35:00+00:00` · precision=`minute` · delta_hours=`3.58`
 - **sources** (2):
   - [ ] src[0]: type=`primary_onchain` · url=<https://tronscan.org/#/transaction/dad0d1dabad6f1727c6ebb3961053f66dd2add3b78def6360e5c2a2a6121cad9>  · hash_check=`—`
-  - [ ] src[1]: type=`primary_corporate` · url=<https://usdtbanlist.com/address/TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr> · body_hash=`sha256:fcabacd2…0cf0` · body_path=`sources/http_captures/cryptex-ofac-2024/asset-layer-check/usdtbanlist.com__address-TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr.html`  · hash_check=`ok`
+  - [ ] src[1]: type=`supporting_community` · url=<https://usdtbanlist.com/address/TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr> · body_hash=`sha256:fcabacd2…0cf0` · body_path=`sources/http_captures/cryptex-ofac-2024/asset-layer-check/usdtbanlist.com__address-TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr.html`  · hash_check=`ok`
 
 Audit checks:
 - [ ] Passage in each cited source supports `observed_change` for this layer.

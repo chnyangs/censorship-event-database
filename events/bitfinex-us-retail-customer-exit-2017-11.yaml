@@ -26,9 +26,9 @@ trigger:
   citation:
     - type: semi_primary_wayback
       url: https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
-      wayback: https://web.archive.org/web/20250722095442/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
-      body_hash: sha256:232ef68bcf1ed7ef022dbd3bc1378289539ce48b8ca74a5ba6f371b231551e06
-      body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/primary/web.archive.org__web-20250722095442-https-news.bitcoin.com-bitfinex-to-terminate-services-to-us-retail-customers-by-november-9__deab52a2b8.html
+      wayback: https://web.archive.org/web/20171018121607/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
+      body_hash: sha256:5a26060a406b8a6b4c8e5459d177802d17c18a8b1b445994531b2c008a140fd9
+      body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/primary/web.archive.org__web-20171018121607-https-news.bitcoin.com-bitfinex-to-terminate-services-to-us-retail-customers-by-november-9__f781837006.html
       evidence_use: replayable
       note: |
         Bitcoin.com 2017-10-18: Bitfinex announced it would "terminate all
@@ -37,8 +37,9 @@ trigger:
         SEC's July-2017 ICO-as-securities warning. Bitfinex cited having "for
         some time considered pulling away from the retail marketplace in the
         U.S." Body grep-confirmed: "Terminate Services to US Retail Customers",
-        "terminate all services to U[S]", "by November 9". Wayback 20250722095442
-        pinned. Trigger anchored to the 2017-08-11 first disclosure of the plan.
+        "terminate all services for U.S. individual customers", "no later than
+        November 9, 2017", and "August 11". Wayback 20171018121607 pinned.
+        Trigger anchored to the 2017-08-11 first disclosure of the plan.
   timestamp_sources:
     - type: semi_primary_wayback
       note: |
@@ -104,9 +105,9 @@ observations:
     sources:
       - type: semi_primary_wayback
         url: https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
-        wayback: https://web.archive.org/web/20250722095442/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
-        body_hash: sha256:232ef68bcf1ed7ef022dbd3bc1378289539ce48b8ca74a5ba6f371b231551e06
-        body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/primary/web.archive.org__web-20250722095442-https-news.bitcoin.com-bitfinex-to-terminate-services-to-us-retail-customers-by-november-9__deab52a2b8.html
+        wayback: https://web.archive.org/web/20171018121607/https://news.bitcoin.com/bitfinex-to-terminate-services-to-us-retail-customers-by-november-9/
+        body_hash: sha256:5a26060a406b8a6b4c8e5459d177802d17c18a8b1b445994531b2c008a140fd9
+        body_path: sources/http_captures/bitfinex-us-retail-customer-exit-2017-11/primary/web.archive.org__web-20171018121607-https-news.bitcoin.com-bitfinex-to-terminate-services-to-us-retail-customers-by-november-9__f781837006.html
         evidence_use: replayable
         scope_descriptor:
           providers: [bitfinex]
@@ -123,7 +124,15 @@ observations:
           and the action names the US-retail target class it acted upon).
 
 analysis_notes: |
-  **VERIFY-FLAG 2026-05-31 (wave-3 S5 adversarial verify):** the captured news.bitcoin.com HTML is a JS-gated React shell ('You need to enable JavaScript') — body_hash matches but the page carries no rendered article text, so the single source does not actually substantiate the claim. Re-capture a non-JS-shell copy (e.g. Wayback of the Bitfinex announcement or a static-HTML outlet) before admission. DRAFT — do NOT admit as-is.
+  **SOURCE REPAIR 2026-05-31:** the earlier 2025 Wayback capture of the
+  Bitcoin.com article was a JS-gated shell. This pass captured the 2017-10-18
+  Wayback memento (sha256:
+  5a26060a406b8a6b4c8e5459d177802d17c18a8b1b445994531b2c008a140fd9), which
+  contains rendered article text confirming Bitfinex would terminate trading,
+  deposit, and withdrawal functionality for all U.S. individual customers no
+  later than 2017-11-09, and tying the August 11 first disclosure to the SEC
+  ICO-securities warning. Status remains draft because admission is human-only
+  (`origin=agent_draft` cannot be promoted by automation).
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
   verified+captured, awaiting human admission). Bitfinex's 2017-08-11
   announcement to terminate trading/deposit/withdrawal functionality for all US
@@ -138,8 +147,8 @@ analysis_notes: |
   not_applicable; comparable tier (2017). NOTE: distinct from the 2016 Bitfinex
   hack/socialized-loss event (§9-excluded as a platform failure) — this event
   is the separate US-retail-exit policy action. Source verified via WebSearch +
-  captured Wayback (Bitcoin.com, body_hash-pinned, body grep-confirmed; no
-  fabrication).
+  captured Wayback (Bitcoin.com 2017 memento, body_hash-pinned, body
+  grep-confirmed; no fabrication).
 
 scoped_claim: |
   "Bitfinex's termination of trading/deposit/withdrawal functionality for all

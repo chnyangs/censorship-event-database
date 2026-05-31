@@ -198,7 +198,7 @@ def _write_csv(rows: list[dict[str, Any]], path: pathlib.Path) -> None:
         "strict_permissive_delta", "sensitivity",
     ]
     with path.open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fields)
+        w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 

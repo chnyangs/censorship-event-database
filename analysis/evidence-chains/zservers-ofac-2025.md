@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `a331305` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T04:56:33Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -66,10 +66,11 @@
 ## 5. Honest coverage gaps
 
 - **l0_network** (`not_measured`): No OONI / Censored Planet query attempted for hosting-related domains within the event window; substrate-shaped gap, not a coverage_gap observation. Sibling `sinbad-ofac-2023` sets the L0-honesty bar with an attested OONI-negative query — applying the same standard would require either an OONI/CP probe of `zservers.ru` or an explicit "no domain to probe" justification.
+- **l4_frontend** (`not_measured`): Zservers.ru is listed as the canonical website in the ZSERVERS
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a331305`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

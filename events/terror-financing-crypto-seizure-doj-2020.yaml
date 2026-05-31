@@ -1,0 +1,221 @@
+id: terror-financing-crypto-seizure-doj-2020
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - ofac-hamas-buy-cash-msb-2023-10
+  - israel-nbctf-hamas-crypto-addresses-2021
+  - fayzimatov-alqaeda-syria-ofac-2021-07
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_DC
+  timestamp: 2020-08-13T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/global-disruption-three-terror-finance-cyber-enabled-campaigns
+      wayback: http://web.archive.org/web/20200814232542/https://www.justice.gov/opa/pr/global-disruption-three-terror-finance-cyber-enabled-campaigns
+      body_hash: sha256:000020bc96919db4ef08202b09ed962e69baaf9f707e4049e2859708dbc41ba4
+      body_path: sources/http_captures/terror-financing-crypto-seizure-doj-2020/primary/web.archive.org__web-20200814232542-https-www.justice.gov-opa-pr-global-disruption-three-terror-finance-cyber-enabled-campaigns__75dbce79dd.html
+      evidence_use: replayable
+      note: |
+        DOJ OPA 2020-08-13 release, captured from Wayback on 2026-05-31
+        after the live justice.gov page returned an Akamai interstitial.
+        The source announces the coordinated disruption of al-Qassam
+        Brigades, al-Qaeda-affiliated, and ISIS cyber-enabled terror-finance
+        campaigns; states that judicially authorized warrants seized millions
+        of dollars, over 300 cryptocurrency accounts, four websites, and four
+        Facebook pages; and calls it the government's largest-ever seizure of
+        cryptocurrency in the terrorism context.
+    - type: primary_legal
+      url: https://www.justice.gov/opa/press-release/file/1304276/download
+      wayback: http://web.archive.org/web/20200903202343if_/https://www.justice.gov/opa/press-release/file/1304276/download
+      body_hash: sha256:36f0ba91894de6e4fc6e3b0af59dbdfd47de2074ac175a85fb2939e1d9187b74
+      body_path: sources/http_captures/terror-financing-crypto-seizure-doj-2020/primary/web.archive.org__web-20200903202343if_-https-www.justice.gov-opa-press-release-file-1304276-download__e0d6a54488.bin
+      evidence_use: replayable
+      note: |
+        DOJ-hosted criminal-complaint affidavit for Mehmet Akti and
+        Husamettin Karatas, captured as a Wayback PDF. The affidavit links
+        the al-Qassam/Hamas donation flow to virtual-currency exchange
+        accounts and unlicensed money-transmission activity.
+    - type: primary_legal
+      url: https://www.justice.gov/opa/press-release/file/1304296/download
+      wayback: http://web.archive.org/web/20201004114529if_/https://www.justice.gov/opa/press-release/file/1304296/download
+      body_hash: sha256:dbc11bf5c0044851d923242086b8c6957a3c77c2c8fea66548147f0bbe2ecfe0
+      body_path: sources/http_captures/terror-financing-crypto-seizure-doj-2020/primary/web.archive.org__web-20201004114529if_-https-www.justice.gov-opa-press-release-file-1304296-download__345512e6de.bin
+      evidence_use: replayable
+      note: |
+        DOJ-hosted civil forfeiture complaint bundle, captured as a Wayback
+        PDF. It includes the FaceMaskCenter.com / four-Facebook-page ISIS
+        forfeiture complaint and an al-Qaeda-linked BTC forfeiture complaint
+        with Attachment A enumerating 155 virtual-currency defendant
+        properties.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing from the DOJ 2020-08-13 public release.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Coordinated DOJ action against three cyber-enabled terrorist-finance
+    campaigns: al-Qassam Brigades / Hamas donation sites, al-Qaeda-affiliated
+    Syria fundraising networks, and Murat Cakar / ISIS-linked
+    FaceMaskCenter.com. The DOJ source gives an aggregate over-300
+    cryptocurrency-account figure and names four websites plus four Facebook
+    pages. The al-Qaeda civil complaint enumerates 155 virtual-currency
+    defendant properties, but this draft does not exhaustively transcribe every
+    account across all three campaigns, so target.enumeration remains subset.
+  protocol: null
+  actor_type: terrorist_finance_campaigns
+  actor_name: al-Qassam / al-Qaeda-affiliated / ISIS cyber-enabled fundraising campaigns
+  chains:
+    - bitcoin
+    - ethereum
+  canonical_domains:
+    - alqassam.net
+    - alqassam.ps
+    - qassam.ps
+    - facemaskcenter.com
+    - facebook.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      DOJ seizure / forfeiture action against websites, social pages, and
+      crypto accounts; not a public-network ISP/DNS blocking measurement.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The action does not modify Bitcoin or Ethereum consensus behavior.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC-provider filtering surface is implicated by the DOJ
+      sources.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - alqassam_net
+      - alqassam_ps
+      - qassam_ps
+      - facemaskcenter_com
+      - four_facebook_pages
+    note: |
+      Load-bearing measured layer. DOJ states that law enforcement seized the
+      infrastructure of the al-Qassam Brigades websites, covertly operated
+      alqassam.net, and seized FaceMaskCenter.com plus four related Facebook
+      pages used in the ISIS/PPE-fraud campaign.
+  - layer: asset_onchain
+    status: not_measured
+    note: |
+      DOJ reports seizure / forfeiture of cryptocurrency accounts and the
+      al-Qaeda complaint enumerates BTC defendant properties, but this draft
+      does not pin a primary_onchain seizure or movement tx_hash. Under
+      codebook §1.6, no asset_onchain observed_change is coded without a
+      public primary_onchain tx_hash.
+  - layer: offramp_cex
+    status: not_measured
+    note: |
+      The Akti/Karatas affidavit documents virtual-currency exchange accounts
+      and unlicensed money-transmission activity, but the public materials do
+      not enumerate every exchange provider/account or a platform-side freeze
+      statement. Kept as not_measured pending a human review of the court
+      docket and any exchange-side artifacts.
+
+observations:
+  - layer: l4_frontend
+    actor: law_enforcement:us_doj_fbi_hsi_irs_ci
+    event: terror_finance_websites_and_social_pages_seized
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-08-13T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/global-disruption-three-terror-finance-cyber-enabled-campaigns
+        wayback: http://web.archive.org/web/20200814232542/https://www.justice.gov/opa/pr/global-disruption-three-terror-finance-cyber-enabled-campaigns
+        body_hash: sha256:000020bc96919db4ef08202b09ed962e69baaf9f707e4049e2859708dbc41ba4
+        body_path: sources/http_captures/terror-financing-crypto-seizure-doj-2020/primary/web.archive.org__web-20200814232542-https-www.justice.gov-opa-pr-global-disruption-three-terror-finance-cyber-enabled-campaigns__75dbce79dd.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers:
+            - alqassam_net
+            - facemaskcenter_com
+            - facebook_pages
+          time_window:
+            - 2020-08-13T00:00:00Z
+            - 2020-08-13T23:59:59Z
+        note: |
+          DOJ's public release states that law enforcement seized
+          al-Qassam Brigades website infrastructure and subsequently operated
+          alqassam.net, and that the ISIS/Cakar forfeiture seized
+          FaceMaskCenter.com plus four Facebook pages. This is the narrow
+          observed_change layer in this draft.
+      - type: primary_legal
+        url: https://www.justice.gov/opa/press-release/file/1304296/download
+        wayback: http://web.archive.org/web/20201004114529if_/https://www.justice.gov/opa/press-release/file/1304296/download
+        body_hash: sha256:dbc11bf5c0044851d923242086b8c6957a3c77c2c8fea66548147f0bbe2ecfe0
+        body_path: sources/http_captures/terror-financing-crypto-seizure-doj-2020/primary/web.archive.org__web-20201004114529if_-https-www.justice.gov-opa-press-release-file-1304296-download__345512e6de.bin
+        evidence_use: replayable
+        note: |
+          The civil forfeiture complaint identifies FaceMaskCenter.com and four
+          Facebook pages as defendant properties, and the al-Qaeda complaint
+          attachment enumerates 155 virtual-currency defendant properties.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official DOJ source capture. Live justice.gov capture
+  returned an Akamai interstitial, so the replayable body anchor is the
+  2020-08-14 Wayback memento plus three DOJ-hosted complaint / affidavit PDFs
+  captured through Wayback `if_` PDF URLs. The event remains `status=draft` and
+  `origin=agent_draft`; automation must not promote it to an admitted paper row
+  without human admission review.
+
+  Inclusion rationale: this is in scope as a federal seizure / forfeiture action
+  against crypto-enabled terrorist-finance infrastructure, comparable to the
+  dataset's darknet-market and mixer takedown rows. The draft deliberately keeps
+  the measured observation at `l4_frontend`, where DOJ directly states website
+  and Facebook-page seizure. It does not code the aggregate cryptocurrency
+  account seizures as `asset_onchain` because no public primary_onchain tx_hash
+  has been pinned.
+
+  Future repair path: a human or later automated source pass could transcribe the
+  155-address al-Qaeda attachment and search for public transaction-level seizure
+  movements, but that would be a new on-chain repair. Until then, §1.6 keeps
+  asset_onchain at `not_measured`.
+
+scoped_claim: |
+  "On 2020-08-13 DOJ announced the coordinated disruption of three
+  crypto-enabled terrorist-finance campaigns involving al-Qassam Brigades,
+  al-Qaeda-affiliated Syria fundraisers, and an ISIS-linked FaceMaskCenter.com
+  scheme. This draft codes only the directly documented website/social-page
+  seizure at `l4_frontend`; cryptocurrency-account seizures remain
+  `asset_onchain: not_measured` until a public tx_hash is pinned."
+
+tags:
+  - doj_seizure_order
+  - terrorism_financing
+  - hamas
+  - al_qaeda
+  - isis
+  - l4_frontend
+  - agent_draft

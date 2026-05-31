@@ -181,10 +181,11 @@ shape). Per 2026-Q2 reviewer feedback, that field was split into three:
   sampling frame:
   - `S1_ofac_sdn` — OFAC SDN designations (2018–2025)
   - `S2_ofac_removal` — OFAC SDN delistings
-  - `S3_doj_sec_cftc_fiod` — US federal enforcement (DOJ / SEC / CFTC / FinCEN)
-    plus non-US MLAT companion actions (e.g., NL FIOD)
-  - `S4_nation_state` — single-country central-bank / emergency-order actions
-    (IN RBI, NG CBN, TR CBRT, CN PBOC, CA Emergencies Act, KR FSC Travel Rule)
+  - `S3_doj_sec_cftc_fiod` — US federal enforcement / court actions (DOJ /
+    SEC / CFTC / FinCEN) plus non-US MLAT companion actions (e.g., NL FIOD)
+  - `S4_nation_state` — single-country and subnational government/regulator
+    actions (IN RBI, NG CBN, TR CBRT, CN PBOC, CA Emergencies Act, KR FSC
+    Travel Rule, US state regulators)
   - `S5_corporate` — issuer / exchange / frontend unilateral policy (Circle,
     Tether, Uniswap Labs, Coinbase)
   - `S6_supranational` — EU / UN / G7-level actions, including both regulatory

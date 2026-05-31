@@ -195,8 +195,9 @@ def event_l0_denominator_rows(
 
     v0.3 repair passes may attach a replayable OONI denominator artifact to an
     event's `coverage[].denominator_artifact` before that query is folded into
-    the legacy `sources/l0_datasets/_summary.json` registry.  Paper readiness
-    needs those event-scoped denominators to be visible in the L0 summary.
+    the legacy `sources/l0_datasets/_summary.json` registry, or attach the same
+    replayable measurement source to an L0 observation.  Paper readiness needs
+    those event-scoped denominators to be visible in the L0 summary.
     """
     rows: list[dict[str, Any]] = []
     if not events_dir.exists():
@@ -208,6 +209,8 @@ def event_l0_denominator_rows(
         if not isinstance(event, dict):
             continue
         event_id = str(event.get("id") or path.stem)
+        l0_has_measurement_coverage = False
+        artifacts: list[dict[str, Any]] = []
         for coverage in event.get("coverage") or []:
             if not isinstance(coverage, dict):
                 continue
@@ -215,9 +218,24 @@ def event_l0_denominator_rows(
                 continue
             if coverage.get("status") not in {"measured", "partially_measured"}:
                 continue
+            l0_has_measurement_coverage = True
             artifact = coverage.get("denominator_artifact")
-            if not isinstance(artifact, dict):
+            if isinstance(artifact, dict):
+                artifacts.append(artifact)
+
+        if not l0_has_measurement_coverage:
+            continue
+
+        for observation in event.get("observations") or []:
+            if not isinstance(observation, dict):
                 continue
+            if observation.get("layer") != "l0_network":
+                continue
+            for source in observation.get("sources") or []:
+                if isinstance(source, dict):
+                    artifacts.append(source)
+
+        for artifact in artifacts:
             if artifact.get("type") != "semi_primary_measurement":
                 continue
             if not artifact.get("measurement_ids"):
@@ -227,6 +245,8 @@ def event_l0_denominator_rows(
                 continue
             params = query_params_from_url(query_url)
             input_url = params.get("input") or str(artifact.get("input_url") or "")
+            if not input_url:
+                continue
             domain = str(artifact.get("domain") or domain_from_input_url(input_url) or "")
             normalized_params: dict[str, Any] = {
                 "input": input_url,

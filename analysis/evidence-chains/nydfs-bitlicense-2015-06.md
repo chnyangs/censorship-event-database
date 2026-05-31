@@ -1,8 +1,8 @@
 # Evidence chain — `nydfs-bitlicense-2015-06`
 
-**Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
+**Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `a331305` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T04:56:33Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -16,7 +16,7 @@
 
 ## 1. Trigger
 
-- **Type**: `court_civil_order`
+- **Type**: `regulatory_enforcement`
 - **Actor**: `US_NYDFS`
 - **Timestamp**: `2015-06-24 00:00:00+00:00` (precision: `day`)
 
@@ -86,7 +86,7 @@
 > application window closed). attribution=direct because the
 > operator itself names the regulation as the cause.
 
-### l4_frontend · attribution: `direct` · Δt = 24h
+### l4_frontend · attribution: `plausible` · Δt = 24h
 
 **Event label**: `shapeshift_ny_exit_announcement`
 
@@ -103,8 +103,16 @@
 > day after Erik Voorhees's same-day public statement that
 > ShapeShift would cease serving NY residents in response to the
 > BitLicense final rule). The captured page is the post-exit
-> state of the blog index. attribution=direct: Voorhees's public
-> statement and ShapeShift's blog both name BitLicense as cause.
+> state of the blog index. v0.3 audit 2026-05-20: attribution
+> DOWNGRADED from direct to plausible per Session 2 Block D NO
+> decision (qid=160 nydfs needs_recheck). Reason: Voorhees's
+> public statement that names BitLicense as cause is NOT in the
+> captured body_path (the blog INDEX snapshot doesn't carry the
+> exit-announcement post content). Matches the Bitfinex row's
+> honest attribution=plausible treatment within this same YAML
+> (CDX index without per-event banner content). Future capture
+> of Voorhees's actual 2015-06-25 statement (likely via Reddit
+> AMA Wayback) would support re-upgrading to attribution=direct.
 
 ### l4_frontend · attribution: `plausible` · Δt = 1233h
 
@@ -138,7 +146,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a331305`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

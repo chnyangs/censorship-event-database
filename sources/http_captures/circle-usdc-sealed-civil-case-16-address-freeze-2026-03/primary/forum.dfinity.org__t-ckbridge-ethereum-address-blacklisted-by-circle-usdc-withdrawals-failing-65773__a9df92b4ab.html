@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing - Developers - Internet Computer Developer Forum</title>
+    <meta name="description" content="Problem Summary: The Ethereum mainnet address used by ckBridge for USDC transfers has been blacklisted by Circle. This is preventing all USDC withdrawals from Internet Computer (ICP) to Ethereum from completing succes&amp;hellip;">
+    <meta name="generator" content="Discourse 2026.5.0-latest.1 - https://github.com/discourse/discourse version e832d4d90ee43dbcff9d6a6f6fec2c74f714f672">
+<link rel="icon" type="image/png" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/1X/c6f5dd4f7a21c825f82566b7c7528e5505734f77_2_32x32.png">
+<link rel="apple-touch-icon" type="image/png" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/1X/c6f5dd4f7a21c825f82566b7c7528e5505734f77_2_180x180.png">
+<meta name="theme-color" media="all" content="#fff">
+
+<meta name="color-scheme" content="light">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<link rel="canonical" href="https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773" />
+
+<meta name="discourse-track-view-session-id" content="qyI94jxhDHs3fGuM9LICAtWKci5umiDa">
+<link rel="search" type="application/opensearchdescription+xml" href="https://forum.dfinity.org/opensearch.xml" title="Internet Computer Developer Forum Search">
+
+    
+    <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/color_definitions_light-default_-1_2_5993dd7511792b80479bbfc27a0eb8e2abfe9c16.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" class="light-scheme"/>
+
+<link href="https://sea1.discourse-cdn.com/flex023/stylesheets/common_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="common"  />
+
+<link href="https://sea1.discourse-cdn.com/flex023/stylesheets/mobile_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="(max-width: 39.99999rem)" rel="stylesheet" data-target="mobile"  />
+<link href="https://sea1.discourse-cdn.com/flex023/stylesheets/desktop_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="(min-width: 40rem)" rel="stylesheet" data-target="desktop"  />
+
+
+
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/automation_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="automation"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/checklist_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="checklist"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-adplugin_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-adplugin"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-ai_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-ai"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-cakeday_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-cakeday"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-chat-integration_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-chat-integration"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-data-explorer_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-data-explorer"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-details_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-details"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-github_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-github"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-lazy-videos_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-lazy-videos"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-local-dates_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-local-dates"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-narrative-bot_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-narrative-bot"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-policy_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-policy"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-presence_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-presence"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-reactions_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-reactions"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-solved_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-solved"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-templates_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-templates"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-topic-voting_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="discourse-topic-voting"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/footnote_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="footnote"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/hosted-site_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="hosted-site"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/poll_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="poll"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/spoiler-alert_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="all" rel="stylesheet" data-target="spoiler-alert"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-ai_mobile_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="(max-width: 39.99999rem)" rel="stylesheet" data-target="discourse-ai_mobile"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-reactions_mobile_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="(max-width: 39.99999rem)" rel="stylesheet" data-target="discourse-reactions_mobile"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-ai_desktop_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="(min-width: 40rem)" rel="stylesheet" data-target="discourse-ai_desktop"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/discourse-reactions_desktop_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="(min-width: 40rem)" rel="stylesheet" data-target="discourse-reactions_desktop"  />
+  <link href="https://sea1.discourse-cdn.com/flex023/stylesheets/poll_desktop_edb634dc280acc50873194a8461d300de6ba48df.css?__ws=forum.dfinity.org" media="(min-width: 40rem)" rel="stylesheet" data-target="poll_desktop"  />
+
+  
+  
+  
+
+    <script defer="" src="https://widget.kapa.ai/kapa-widget.bundle.js" data-website-id="1d58e14f-d948-49de-a94e-6edd61a20319" data-project-name="Internet Computer" data-project-color="#172234" data-project-logo="https://s3.coinmarketcap.com/static-gravity/image/2fb1bc84c1494178beef0822179d137d.png" data-button-position-bottom="60px" nonce="ZxVPa9MiRG6G5xsBgBAClyAQ5"></script>
+<!-- Matomo -->
+<script defer="" src="https://sea1.discourse-cdn.com/flex023/theme-javascripts/206e414422ea80e6c83aa658554ebc93d2734624.js?__ws=forum.dfinity.org" data-theme-id="5" nonce="ZxVPa9MiRG6G5xsBgBAClyAQ5"></script>
+<!-- End Matomo Code -->
+
+<meta name="google-site-verification" content="RngR3HKV3OrmsaX2KMpgM-uTpwF0oV3X1jP23F2IZd0">
+    <meta id="data-ga-universal-analytics" data-tracking-code="UA-90192104-9" data-json="{&quot;cookieDomain&quot;:&quot;auto&quot;}" data-auto-link-domains="">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90192104-9" nonce="ZxVPa9MiRG6G5xsBgBAClyAQ5"></script>
+  <script defer src="https://us1.discourse-cdn.com/flex023/assets/google-universal-analytics-v4-ba0fc09a.js" data-discourse-entrypoint="google-universal-analytics-v4" nonce="ZxVPa9MiRG6G5xsBgBAClyAQ5"></script>
+
+
+        <link rel="alternate nofollow" type="application/rss+xml" title="RSS feed of &#39;ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing&#39;" href="https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773.rss" />
+    <meta property="og:site_name" content="Internet Computer Developer Forum" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06_2_1024x745.jpeg" />
+<meta property="og:image" content="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06_2_1024x745.jpeg" />
+<meta property="og:image:width" content="1920" />
+<meta property="og:image:height" content="1397" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:url" content="https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773" />
+<meta name="twitter:url" content="https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773" />
+<meta property="og:title" content="ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing" />
+<meta name="twitter:title" content="ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing" />
+<meta property="og:description" content="Problem Summary: The Ethereum mainnet address used by ckBridge for USDC transfers has been blacklisted by Circle. This is preventing all USDC withdrawals from Internet Computer (ICP) to Ethereum from completing successfully.  Affected Address: 0xb25eA1D493B49a1DeD42aC5B1208cC618f9A9B80  Impact Timeline:   Issue started approximately 32+ hours ago All USDC withdrawal attempts from ICP → ETH are failing Users unable to access their assets  User Impact:   USDC not arriving on Ethereum mainnet ck..." />
+<meta name="twitter:description" content="Problem Summary: The Ethereum mainnet address used by ckBridge for USDC transfers has been blacklisted by Circle. This is preventing all USDC withdrawals from Internet Computer (ICP) to Ethereum from completing successfully.  Affected Address: 0xb25eA1D493B49a1DeD42aC5B1208cC618f9A9B80  Impact Timeline:   Issue started approximately 32+ hours ago All USDC withdrawal attempts from ICP → ETH are failing Users unable to access their assets  User Impact:   USDC not arriving on Ethereum mainnet ck..." />
+<meta property="og:article:section" content="Developers" />
+<meta property="og:article:section:color" content="F15A24" />
+<meta name="twitter:label1" value="Reading time" />
+<meta name="twitter:data1" value="4 mins 🕑" />
+<meta name="twitter:label2" value="Likes" />
+<meta name="twitter:data2" value="42 ❤" />
+<meta property="article:published_time" content="2026-03-25T09:32:31+00:00" />
+<meta property="og:ignore_canonical" content="true" />
+
+        <link rel="next" href="/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773?page=2">
+
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"QAPage","name":"ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing","datePublished":"2026-03-25T09:32:31.932Z","mainEntity":{"@type":"Question","answerCount":19,"author":{"@type":"Person","name":"Murza13","url":"https://forum.dfinity.org/u/Murza13"},"dateModified":"2026-03-25T09:32:32.002Z","datePublished":"2026-03-25T09:32:31.932Z","name":"ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing","text":"<a class=\"lightbox\" href=\"https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06.jpeg\" data-download-href=\"/uploads/short-url/aySuYApFzihHJf2g6I6pD5kuV94.jpeg?dl=1\" title=\"Снимок экрана — 2026-03-25 в 10.25.58\" rel=\"noopener nofollow ugc\">[Снимок экрана — 2026-03-25 в 10.25.58]<\/a>\n\nProblem Summary: The Ethereum mainnet address used by ckBridge for USDC transfers has been blacklisted by Circle. This is preventing all USDC withdrawals from Internet Computer (ICP) to Ethereum from completing successfully.\n\nAffected Address: 0xb25eA1D493B4&hellip;","upvoteCount":11,"suggestedAnswer":[{"@type":"Answer","author":{"@type":"Person","name":"Trils","url":"https://forum.dfinity.org/u/Trils"},"dateModified":"2026-03-25T09:55:17.744Z","datePublished":"2026-03-25T09:55:17.731Z","text":"why does an address get blacklisted?","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/2"},{"@type":"Answer","author":{"@type":"Person","name":"Vivienne","url":"https://forum.dfinity.org/u/Vivienne"},"dateModified":"2026-03-25T10:16:37.116Z","datePublished":"2026-03-25T10:16:37.103Z","text":"Thanks for the ping, folks are investigating","upvoteCount":2,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/3"},{"@type":"Answer","author":{"@type":"Person","name":"gregory-demay","url":"https://forum.dfinity.org/u/gregory-demay"},"dateModified":"2026-03-25T10:39:53.112Z","datePublished":"2026-03-25T10:39:53.102Z","text":"That’s unfortunately correct, Circle blacklisted the minter <a href=\"https://etherscan.io/tx/0xf4080ba2c142fcf27c93ec545a7316ced4de6fd579fa741ac75569b4c8d3d186\" rel=\"noopener nofollow ugc\">here<\/a>. We will reach out to Circle to clarify this issue.","upvoteCount":4,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/4"},{"@type":"Answer","author":{"@type":"Person","name":"Zane","url":"https://forum.dfinity.org/u/Zane"},"dateModified":"2026-03-25T12:50:53.879Z","datePublished":"2026-03-25T12:50:53.864Z","text":"Apparently it has to do with an ongoing civil case: <a href=\"https://x.com/zachxbt/status/2036472308467224839\">https://x.com/zachxbt/status/2036472308467224839<\/a>","upvoteCount":2,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/5"},{"@type":"Answer","author":{"@type":"Person","name":"kizzafredrichkibalam","url":"https://forum.dfinity.org/u/kizzafredrichkibalam"},"dateModified":"2026-03-25T13:10:29.708Z","datePublished":"2026-03-25T13:10:29.678Z","text":"Why we are building a native stablecoin. I remember a community member raising such an issue when DFINITY was gathering feedback on the ckUSDC…….  but it has  finally happened as he suggested.An important lesson to learn. In future we shall diversify all our collateral of DUSD and not to rely on on &hellip;","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/6"},{"@type":"Answer","author":{"@type":"Person","name":"DeFiAdventures","url":"https://forum.dfinity.org/u/DeFiAdventures"},"dateModified":"2026-03-25T19:44:56.428Z","datePublished":"2026-03-25T19:44:56.397Z","text":"Several people have pointed out it was just a matter of time before the USDC canister got blacklisted by circle, and here we are.\n\nMy feedback / complaint got censored by staff:\n\n<a class=\"lightbox\" href=\"https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/f/b/fb1bb6e77fad30cbf98ca3d668fa138548d851f2.png\" data-download-href=\"/uploads/short-url/zPpdPrAqXXOtXgIfMRVZ2njYfdw.png?dl=1\" title=\"hidden\">[hidden]<\/a>\n\nWe all know why this happened","upvoteCount":2,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/8"},{"@type":"Answer","author":{"@type":"Person","name":"SmartMonkey","url":"https://forum.dfinity.org/u/SmartMonkey"},"dateModified":"2026-03-25T19:54:20.892Z","datePublished":"2026-03-25T19:54:20.862Z","text":"Obviously they want to extort Dfinity to pay them a fee. Its pay to play. Unfortunately for us our TVL is next to nothing and paying the fee is not worth it.","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/9"},{"@type":"Answer","author":{"@type":"Person","name":"RootProof","url":"https://forum.dfinity.org/u/RootProof"},"dateModified":"2026-03-25T20:05:34.662Z","datePublished":"2026-03-25T20:05:34.630Z","text":"So there’s this as well\n\n<a class=\"lightbox\" href=\"https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/d/1/d12ce195cafb5051a586096170594022f3480bc9.jpeg\" data-download-href=\"/uploads/short-url/tQrWPjIBKIosaExzrsE159GkZ97.jpeg?dl=1\" title=\"Screenshot_20260325_150248_Chrome\" rel=\"noopener nofollow ugc\">[Screenshot_20260325_150248_Chrome]<\/a>","upvoteCount":1,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/10"},{"@type":"Answer","author":{"@type":"Person","name":"DeFiAdventures","url":"https://forum.dfinity.org/u/DeFiAdventures"},"dateModified":"2026-03-25T20:16:05.389Z","datePublished":"2026-03-25T20:16:05.361Z","text":"TVL being low is not the problem, it’s a symptom of the problem\n\nRegarding the fee’, if not worth it why do you think other blockchains still pay for it?\n\nhmmmmm","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/11"},{"@type":"Answer","author":{"@type":"Person","name":"Henn91","url":"https://forum.dfinity.org/u/Henn91"},"dateModified":"2026-03-25T20:22:10.513Z","datePublished":"2026-03-25T20:22:10.477Z","text":"[image] DeFiAdventures:\n\nMy feedback / complaint got censored by staff:\n\nBecause you spreading false info/propaganda.\n\n<a class=\"lightbox\" href=\"https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/2/f/2f641376122cc5776d5568fd9baf3291321a6dfc.jpeg\" data-download-href=\"/uploads/short-url/6LeQSUNUjCaICGgOluouoQk4pB2.jpeg?dl=1\" title=\"Untitled\" rel=\"noopener nofollow ugc\">[Untitled]<\/a>","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/12"},{"@type":"Answer","author":{"@type":"Person","name":"DeFiAdventures","url":"https://forum.dfinity.org/u/DeFiAdventures"},"dateModified":"2026-03-25T20:42:25.216Z","datePublished":"2026-03-25T20:28:50.342Z","text":"“False propaganda” :relieved_face:\n\nIf a civil case related to some FX services and unregulated gambling products makes Circle pull the plug of the addresses governing entire blockchains Ethereum, Polygon,all other mayor smart contract blockchains would be black listed by Circle\n\nIf you argument is &hellip;","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/13"},{"@type":"Answer","author":{"@type":"Person","name":"Henn91","url":"https://forum.dfinity.org/u/Henn91"},"dateModified":"2026-03-25T20:31:15.262Z","datePublished":"2026-03-25T20:31:15.212Z","text":"[image] DeFiAdventures:\n\nShould only take one minute assuming Circle didn’t blacklist because Dfinity refused to pay for pirating their technology. Oh… what… you refused to pay but continued using their services?\n\nThe most rational explanation is that circle is conducting very aggressive and soph&hellip;","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/14"},{"@type":"Answer","author":{"@type":"Person","name":"DeFiAdventures","url":"https://forum.dfinity.org/u/DeFiAdventures"},"dateModified":"2026-03-25T20:48:11.439Z","datePublished":"2026-03-25T20:48:11.406Z","text":"Ok\n\nGood think you are not an admin then\n\nSo that people are able to discuss important matters without your emotions coming in the way","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/15"},{"@type":"Answer","author":{"@type":"Person","name":"SSS","url":"https://forum.dfinity.org/u/SSS"},"dateModified":"2026-03-26T01:51:14.205Z","datePublished":"2026-03-26T01:51:14.174Z","text":"This is the kind of incident that forces a more important conversation than “bridge UX.”\n\nIf the final exit path depends on a centralized issuer’s permission layer, then the system still has a structural choke point.\n\nThe real design question is how to build execution, internal liquidity, and asset &hellip;","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/17"},{"@type":"Answer","author":{"@type":"Person","name":"HeroToZero","url":"https://forum.dfinity.org/u/HeroToZero"},"dateModified":"2026-03-26T02:03:22.040Z","datePublished":"2026-03-26T02:03:22.012Z","text":"I’m not sure why. But a lot of people seem to think the foundation owes them money.","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/18"},{"@type":"Answer","author":{"@type":"Person","name":"Gotcha","url":"https://forum.dfinity.org/u/Gotcha"},"dateModified":"2026-03-26T22:21:51.177Z","datePublished":"2026-03-26T22:21:51.147Z","text":"Another 2 addresses in the list were unfreezed, 0x68416 and 0x4bd282, according to USDT/USDC Ban List","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/20"},{"@type":"Answer","author":{"@type":"Person","name":"kizzafredrichkibalam","url":"https://forum.dfinity.org/u/kizzafredrichkibalam"},"dateModified":"2026-03-27T07:31:16.807Z","datePublished":"2026-03-27T07:26:05.388Z","text":"Any  update from @DFINITY so far as key patner and project built on top ckUSDC.","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/21"},{"@type":"Answer","author":{"@type":"Person","name":"DeFiAdventures","url":"https://forum.dfinity.org/u/DeFiAdventures"},"dateModified":"2026-03-27T13:37:51.210Z","datePublished":"2026-03-27T12:20:51.346Z","text":"<a name=\"p-234153-main-theory-assumptions-1\" class=\"anchor\" href=\"#p-234153-main-theory-assumptions-1\" aria-label=\"Heading link\"><\/a>Main Theory (Assumptions)\n\nCivil/legal case likely tied to AML concerns (forex, HYIP, gambling activity)\n\nCircle froze ~16 USD Coin addresses\n\nIncluded directly identified service wallets\n\nExpanded the list using heuristic clustering (transaction tracing)\n\nckUSDC bridge (on Internet Computer) was incorr&hellip;","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/22"},{"@type":"Answer","author":{"@type":"Person","name":"kizzafredrichkibalam","url":"https://forum.dfinity.org/u/kizzafredrichkibalam"},"dateModified":"2026-03-27T14:23:37.437Z","datePublished":"2026-03-27T14:23:37.405Z","text":"immediately after sns we are changing @doxausd collateral to ustbill one. Talks with potential patners are already underway","upvoteCount":0,"url":"https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/23"}]}}</script>
+  </head>
+  <body class="crawler ">
+    <script type="text/x-handlebars" data-template-name="about" nonce="ZxVPa9MiRG6G5xsBgBAClyAQ5">
+
+    {{#d-section pageClass="about"}}
+
+      <div class='container'>
+
+        <div class='contents clearfix body-page'>
+
+    
+
+          <ul class="nav-pills">
+
+            <li class="nav-item-about">{{#link-to 'about' class="active"}}{{i18n 'about.simple_title'}}{{/link-to}}</li>
+
+            {{#if faqOverriden}}
+
+              <li class="nav-item-guidelines">{{#link-to 'guidelines'}}{{i18n 'guidelines'}}{{/link-to}}</li>
+
+              <li class="nav-item-faq">{{#link-to 'faq'}}{{i18n 'faq'}}{{/link-to}}</li>
+
+            {{else}}
+
+              <li class="nav-item-faq">{{#link-to 'faq'}}{{i18n 'faq'}}{{/link-to}}</li>
+
+            {{/if}}
+
+            <li class="nav-item-tos">{{#link-to 'tos'}}{{i18n 'tos'}}{{/link-to}}</li>
+
+            <li class="nav-item-privacy">{{#link-to 'privacy'}}{{i18n 'privacy'}}{{/link-to}}</li>
+
+          </ul>
+
+    
+
+          <section class='about description'>
+
+            <h2>{{i18n 'about.title' title=model.title}}</h2>
+
+            <p>{{model.description}}</p>
+
+          </section>
+
+    
+
+          {{plugin-outlet name="about-after-description"
+
+                  connectorTagName='section'
+
+                  tagName=''
+
+                  args=(hash model=model)}}
+
+    
+
+          {{plugin-outlet name="about-after-admins"
+
+                        connectorTagName='section'
+
+                        args=(hash model=model)}}
+
+    
+
+          {{#if model.moderators}}
+
+            <section class='about moderators'>
+
+              <h3>{{d-icon "users"}} {{i18n 'about.our_moderators'}}</h3>
+
+    
+
+              <div class='users'>
+
+                {{about-page-users users=model.moderators}}
+
+              </div>
+
+              <div class='clearfix'></div>
+
+            </section>
+
+          {{/if}}
+
+    
+
+          {{plugin-outlet name="about-after-moderators"
+
+                        connectorTagName='section'
+
+                        args=(hash model=model)}}
+
+    
+
+          {{#if model.category_moderators.length}}
+
+            {{#each model.category_moderators as |cm|}}
+
+              <section class='about category-moderators moderators-{{cm.category.slug}}'>
+
+                <h3>{{category-link cm.category}}{{i18n "about.moderators"}}</h3>
+
+                <div class='users'>
+
+                  {{about-page-users users=cm.moderators}}
+
+                </div>
+
+                <div class='clearfix'></div>
+
+              </section>
+
+            {{/each}}
+
+          {{/if}}
+
+          <section class='about stats'>
+
+            <h3>{{d-icon "far-chart-bar"}}  {{i18n 'about.stats'}}</h3>
+
+    
+
+            <table class='table'>
+
+              <tr>
+
+                <th>&nbsp;</th>
+
+                <th>{{i18n 'about.stat.last_7_days'}}</th>
+
+                <th>{{i18n 'about.stat.last_30_days'}}</th>
+
+                <th>{{i18n 'about.stat.all_time'}}</th>
+
+              </tr>
+
+              <tr>
+
+                <td class='title'>{{i18n 'about.topic_count'}}</td>
+
+                <td>{{number model.stats.topics_7_days}}</td>
+
+                <td>{{number model.stats.topics_30_days}}</td>
+
+                <td>{{number model.stats.topic_count}}</td>
+
+              </tr>
+
+              <tr>
+
+                <td>{{i18n 'about.post_count'}}</td>
+
+                <td>{{number model.stats.posts_7_days}}</td>
+
+                <td>{{number model.stats.posts_30_days}}</td>
+
+                <td>{{number model.stats.post_count}}</td>
+
+              </tr>
+
+              <tr>
+
+                <td>{{i18n 'about.user_count'}}</td>
+
+                <td>{{number model.stats.users_7_days}}</td>
+
+                <td>{{number model.stats.users_30_days}}</td>
+
+                <td>{{number model.stats.user_count}}</td>
+
+              </tr>
+
+              <tr>
+
+                <td>{{i18n 'about.active_user_count'}}</td>
+
+                <td>{{number model.stats.active_users_7_days}}</td>
+
+                <td>{{number model.stats.active_users_30_days}}</td>
+
+                <td>&mdash;</td>
+
+              </tr>
+
+              <tr>
+
+                <td>{{i18n 'about.like_count'}}</td>
+
+                <td>{{number model.stats.likes_7_days}}</td>
+
+                <td>{{number model.stats.likes_30_days}}</td>
+
+                <td>{{number model.stats.like_count}}</td>
+
+              </tr>
+
+            </table>
+
+          </section>
+
+    
+
+          {{#if contactInfo}}
+
+            <section class='about contact'>
+
+                <h3>{{d-icon "far-envelope"}} {{i18n 'about.contact'}}</h3>
+
+                <p>{{{contactInfo}}}</p>
+
+            </section>
+
+          {{/if}}
+
+    
+
+        </div>
+
+      </div>
+
+    {{/d-section}}
+
+</script>
+    <header>
+  <a href="/">Internet Computer Developer Forum</a>
+</header>
+
+    <div id="main-outlet" class="wrap" role="main">
+        <div id="topic-title">
+    <h1>
+      <a href="/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773">ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing</a>
+    </h1>
+
+      <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="/c/developers/14" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #F15A24'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Developers</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </span>
+      </div>
+
+  </div>
+
+  
+
+    <div itemscope="itemscope" itemtype="https://schema.org/QAPage">
+      <meta itemprop='name' content='ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing'>
+      <link itemprop='url' href='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773'>
+      <meta itemprop='datePublished' content='2026-03-25T09:32:31Z'>
+      <meta itemprop='keywords' content=''>
+
+        <div itemprop="mainEntity" itemscope="itemscope" itemtype="https://schema.org/Question">
+          <meta itemprop='answerCount' content='19'><meta itemprop='datePublished' content='2026-03-25T09:32:31Z'><meta itemprop='name' content='ckBridge Ethereum Address Blacklisted by Circle - USDC Withdrawals Failing'><meta itemprop='upvoteCount' content='11'>
+
+
+          <div id='post_1' data-qa-question="true" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/Murza13'><span itemprop="name">Murza13</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/Murza13'>
+                
+              </span>
+
+
+                <link itemprop="image" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06.jpeg">
+
+              <span class="crawler-post-infos">
+                  <time  datetime='2026-03-25T09:32:31Z' class='post-time'>
+                    March 25, 2026,  9:32am
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T09:32:31Z'>
+              <span itemprop="position">1</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06.jpeg" data-download-href="/uploads/short-url/aySuYApFzihHJf2g6I6pD5kuV94.jpeg?dl=1" title="Снимок экрана — 2026-03-25 в 10.25.58" rel="noopener nofollow ugc"><img src="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06_2_687x500.jpeg" alt="Снимок экрана — 2026-03-25 в 10.25.58" data-base62-sha1="aySuYApFzihHJf2g6I6pD5kuV94" width="687" height="500" srcset="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06_2_687x500.jpeg, https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06_2_1030x750.jpeg 1.5x, https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/4/a/4a07143d5f7f0baee8ba10e9e1e31eb2d4a71b06_2_1374x1000.jpeg 2x" data-dominant-color="F5F7F7"><div class="meta"><svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true"><use href="#far-image"></use></svg><span class="filename">Снимок экрана — 2026-03-25 в 10.25.58</span><span class="informations">1920×1397 455 KB</span><svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true"><use href="#discourse-expand"></use></svg></div></a></div><br>
+Problem Summary: The Ethereum mainnet address used by ckBridge for USDC transfers has been blacklisted by Circle. This is preventing all USDC withdrawals from Internet Computer (ICP) to Ethereum from completing successfully.</p>
+<p>Affected Address: 0xb25eA1D493B49a1DeD42aC5B1208cC618f9A9B80</p>
+<p>Impact Timeline:</p>
+<ul>
+<li>Issue started approximately 32+ hours ago</li>
+<li>All USDC withdrawal attempts from ICP → ETH are failing</li>
+<li>Users unable to access their assets</li>
+</ul>
+<p>User Impact:</p>
+<ul>
+<li>USDC not arriving on Ethereum mainnet</li>
+<li>ckUSDC not being returned to ICP</li>
+<li>Funds stuck in transit indefinitely</li>
+<li>Users blocked from moving assets</li>
+</ul>
+<p>Evidence:<br>
+Transaction hash showing Circle blacklist error: <a href="https://etherscan.io/tx/0x85f621a566d58e7392d4f390455ac0886277e2a0ea99beb584d027d003cc3e7a" class="inline-onebox" rel="noopener nofollow ugc">Ethereum Transaction Hash: 0x85f621a566... | Etherscan</a></p>
+<p>Error message: “Blacklistable: account is blacklisted”<br>
+Urgent Action Required: This is a critical issue affecting bridge functionality and user funds. Immediate investigation and remediation are needed.</p>
+            </div>
+
+
+
+            
+
+
+          </div>
+          <div id='post_2' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/Trils'><span itemprop="name">Trils</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/Trils'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T09:55:17Z' class='post-time'>
+                    March 25, 2026,  9:55am
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T09:55:17Z'>
+              <span itemprop="position">2</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>why does an address get blacklisted?</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/2'>
+          </div>
+          <div id='post_3' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/Vivienne'><span itemprop="name">Vivienne</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/Vivienne'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T10:16:37Z' class='post-time'>
+                    March 25, 2026, 10:16am
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T10:16:37Z'>
+              <span itemprop="position">3</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Thanks for the ping, folks are investigating</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='2'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/3'>
+          </div>
+          <div id='post_4' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/gregory-demay'><span itemprop="name">gregory-demay</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/gregory-demay'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T10:39:53Z' class='post-time'>
+                    March 25, 2026, 10:39am
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T10:39:53Z'>
+              <span itemprop="position">4</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>That’s unfortunately correct, Circle blacklisted the minter <a href="https://etherscan.io/tx/0xf4080ba2c142fcf27c93ec545a7316ced4de6fd579fa741ac75569b4c8d3d186" rel="noopener nofollow ugc">here</a>. We will reach out to Circle to clarify this issue.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='4'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/4'>
+          </div>
+          <div id='post_5' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/Zane'><span itemprop="name">Zane</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/Zane'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T12:50:53Z' class='post-time'>
+                    March 25, 2026, 12:50pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T12:50:53Z'>
+              <span itemprop="position">5</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Apparently it has to do with an ongoing civil case: <a href="https://x.com/zachxbt/status/2036472308467224839">https://x.com/zachxbt/status/2036472308467224839</a></p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='2'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/5'>
+          </div>
+          <div id='post_6' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/kizzafredrichkibalam'><span itemprop="name">kizzafredrichkibalam</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/kizzafredrichkibalam'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T13:10:29Z' class='post-time'>
+                    March 25, 2026,  1:10pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T13:10:29Z'>
+              <span itemprop="position">6</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Why we are building a native stablecoin. I remember a community member raising such an issue when DFINITY was gathering feedback on the ckUSDC…….  but it has  finally happened as he suggested.An important lesson to learn. In future we shall diversify all our collateral of DUSD and not to rely on on the cks</p>
+<p>Fredrich ~doxa</p>
+<p>_ _</p>
+<p>Hello community, we are mobilising for your support during doxaUSD SNS. Lets all support our <span class="hashtag-raw">#native</span> stablecoin</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/6'>
+          </div>
+          <div id='post_8' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/DeFiAdventures'><span itemprop="name">DeFiAdventures</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/DeFiAdventures'>
+                
+              </span>
+
+
+                <link itemprop="image" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/f/b/fb1bb6e77fad30cbf98ca3d668fa138548d851f2.png">
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T19:44:56Z' class='post-time'>
+                    March 25, 2026,  7:44pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T19:44:56Z'>
+              <span itemprop="position">8</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Several people have pointed out it was just a matter of time before the USDC canister got blacklisted by circle, and here we are.</p>
+<p>My feedback / complaint got censored by staff:</p>
+<p><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/f/b/fb1bb6e77fad30cbf98ca3d668fa138548d851f2.png" data-download-href="/uploads/short-url/zPpdPrAqXXOtXgIfMRVZ2njYfdw.png?dl=1" title="hidden"><img src="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/f/b/fb1bb6e77fad30cbf98ca3d668fa138548d851f2_2_690x354.png" alt="hidden" data-base62-sha1="zPpdPrAqXXOtXgIfMRVZ2njYfdw" width="690" height="354" srcset="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/f/b/fb1bb6e77fad30cbf98ca3d668fa138548d851f2_2_690x354.png, https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/f/b/fb1bb6e77fad30cbf98ca3d668fa138548d851f2.png 1.5x, https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/f/b/fb1bb6e77fad30cbf98ca3d668fa138548d851f2.png 2x" data-dominant-color="F7F8F9"><div class="meta"><svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true"><use href="#far-image"></use></svg><span class="filename">hidden</span><span class="informations">986×506 34.1 KB</span><svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true"><use href="#discourse-expand"></use></svg></div></a></div></p>
+<p>We all know why this happened</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='2'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/8'>
+          </div>
+          <div id='post_9' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/SmartMonkey'><span itemprop="name">SmartMonkey</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/SmartMonkey'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T19:54:20Z' class='post-time'>
+                    March 25, 2026,  7:54pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T19:54:20Z'>
+              <span itemprop="position">9</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Obviously they want to extort Dfinity to pay them a fee. Its pay to play. Unfortunately for us our TVL is next to nothing and paying the fee is not worth it.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/9'>
+          </div>
+          <div id='post_10' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/RootProof'><span itemprop="name">RootProof</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/RootProof'>
+                
+              </span>
+
+
+                <link itemprop="image" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/d/1/d12ce195cafb5051a586096170594022f3480bc9.jpeg">
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T20:05:34Z' class='post-time'>
+                    March 25, 2026,  8:05pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T20:05:34Z'>
+              <span itemprop="position">10</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>So there’s this as well</p>
+<p><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/d/1/d12ce195cafb5051a586096170594022f3480bc9.jpeg" data-download-href="/uploads/short-url/tQrWPjIBKIosaExzrsE159GkZ97.jpeg?dl=1" title="Screenshot_20260325_150248_Chrome" rel="noopener nofollow ugc"><img src="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/d/1/d12ce195cafb5051a586096170594022f3480bc9_2_225x500.jpeg" alt="Screenshot_20260325_150248_Chrome" data-base62-sha1="tQrWPjIBKIosaExzrsE159GkZ97" width="225" height="500" srcset="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/d/1/d12ce195cafb5051a586096170594022f3480bc9_2_225x500.jpeg, https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/d/1/d12ce195cafb5051a586096170594022f3480bc9_2_337x750.jpeg 1.5x, https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/d/1/d12ce195cafb5051a586096170594022f3480bc9_2_450x1000.jpeg 2x" data-dominant-color="2C3949"><div class="meta"><svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true"><use href="#far-image"></use></svg><span class="filename">Screenshot_20260325_150248_Chrome</span><span class="informations">1080×2400 249 KB</span><svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true"><use href="#discourse-expand"></use></svg></div></a></div></p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='1'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/10'>
+          </div>
+          <div id='post_11' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/DeFiAdventures'><span itemprop="name">DeFiAdventures</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/DeFiAdventures'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T20:16:05Z' class='post-time'>
+                    March 25, 2026,  8:16pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T20:16:05Z'>
+              <span itemprop="position">11</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>TVL being low is not the problem, it’s a symptom of the problem<br>
+Regarding the fee’, if not worth it why do you think other blockchains still pay for it?</p>
+<p>hmmmmm</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/11'>
+          </div>
+          <div id='post_12' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/Henn91'><span itemprop="name">Henn91</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/Henn91'>
+                
+              </span>
+
+
+                <link itemprop="image" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/2/f/2f641376122cc5776d5568fd9baf3291321a6dfc.jpeg">
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T20:22:10Z' class='post-time'>
+                    March 25, 2026,  8:22pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T20:22:10Z'>
+              <span itemprop="position">12</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <aside class="quote no-group" data-username="DeFiAdventures" data-post="8" data-topic="65773">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="24" height="24" src="https://sea1.discourse-cdn.com/flex023/user_avatar/forum.dfinity.org/defiadventures/48/32291_2.png" class="avatar"> DeFiAdventures:</div>
+<blockquote>
+<p>My feedback / complaint got censored by staff:</p>
+</blockquote>
+</aside>
+<p>Because you spreading false info/propaganda.<br>
+<div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/2/f/2f641376122cc5776d5568fd9baf3291321a6dfc.jpeg" data-download-href="/uploads/short-url/6LeQSUNUjCaICGgOluouoQk4pB2.jpeg?dl=1" title="Untitled" rel="noopener nofollow ugc"><img src="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/2/f/2f641376122cc5776d5568fd9baf3291321a6dfc_2_423x500.jpeg" alt="Untitled" data-base62-sha1="6LeQSUNUjCaICGgOluouoQk4pB2" width="423" height="500" srcset="https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/2/f/2f641376122cc5776d5568fd9baf3291321a6dfc_2_423x500.jpeg, https://us1.discourse-cdn.com/flex023/uploads/dfn/optimized/3X/2/f/2f641376122cc5776d5568fd9baf3291321a6dfc_2_634x750.jpeg 1.5x, https://us1.discourse-cdn.com/flex023/uploads/dfn/original/3X/2/f/2f641376122cc5776d5568fd9baf3291321a6dfc.jpeg 2x" data-dominant-color="C3D5C0"><div class="meta"><svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true"><use href="#far-image"></use></svg><span class="filename">Untitled</span><span class="informations">741×874 155 KB</span><svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true"><use href="#discourse-expand"></use></svg></div></a></div></p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/12'>
+          </div>
+          <div id='post_13' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/DeFiAdventures'><span itemprop="name">DeFiAdventures</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/DeFiAdventures'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T20:28:50Z' class='post-time'>
+                    March 25, 2026,  8:28pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T20:42:25Z'>
+              <span itemprop="position">13</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>“False propaganda” <img src="https://emoji.discourse-cdn.com/twitter/relieved_face.png?v=15" title=":relieved_face:" class="emoji" alt=":relieved_face:" loading="lazy" width="20" height="20"></p>
+<p>If a civil case related to some FX services and unregulated gambling products makes Circle pull the plug of the addresses governing entire blockchains Ethereum, Polygon,all other mayor smart contract blockchains would be black listed by Circle</p>
+<p>If you argument is ‘it was unknown service wallets’, which I suspect we will hear, I would still stick to my argument.  Imagine you work at Circle and you have a backend which allows white listening addresses, and black listening.</p>
+<p>I have not used the circle system, but I am pretty sure their dev did not build it in such a way that their system allowed a user to easily blacklist an address previously whitelisted.</p>
+<p>If this happened to Ethereum it could cause billion dollar loss.</p>
+<p>You cna make the argument that “ICP was not white listed because they never paid for that”,<br>
+but then, dont you think they actually do very careful checks before blacklisting an entire blockchain, given the risk of financial loss and lawsuit.</p>
+<p>I believe Circle is sending a message, and I ‘believe’ their systems and processes would have 100% hindered this from happening if IC was whitelisted in the first place.</p>
+<p>Also… pretty sure the guys who do the black listening do a minimum of due diligence before clicking the button.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/13'>
+          </div>
+          <div id='post_14' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/Henn91'><span itemprop="name">Henn91</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/Henn91'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T20:31:15Z' class='post-time'>
+                    March 25, 2026,  8:31pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T20:31:15Z'>
+              <span itemprop="position">14</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <aside class="quote no-group" data-username="DeFiAdventures" data-post="7" data-topic="65773">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="24" height="24" src="https://sea1.discourse-cdn.com/flex023/user_avatar/forum.dfinity.org/defiadventures/48/32291_2.png" class="avatar"> DeFiAdventures:</div>
+<blockquote>
+<p>Should only take one minute assuming Circle didn’t blacklist because Dfinity refused to pay for pirating their technology. Oh… what… you refused to pay but continued using their services?</p>
+<p>The most rational explanation is that circle is conducting very aggressive and sophisticated negotiations, putting pressure on Dfinity.</p>
+<p><strong>If you want to play you have to pay</strong></p>
+<p><a class="mention" href="/u/dominicwilliams">@dominicwilliams</a></p>
+<p>What the fuck bro? What the fuck?</p>
+</blockquote>
+</aside>
+<p>I would just ban you, or timeout 1 month.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/14'>
+          </div>
+          <div id='post_15' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/DeFiAdventures'><span itemprop="name">DeFiAdventures</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/DeFiAdventures'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-25T20:48:11Z' class='post-time'>
+                    March 25, 2026,  8:48pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-25T20:48:11Z'>
+              <span itemprop="position">15</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Ok<br>
+Good think you are not an admin then<br>
+So that people are able to discuss important matters without your emotions coming in the way</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/15'>
+          </div>
+          <div id='post_17' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/SSS'><span itemprop="name">SSS</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/SSS'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-26T01:51:14Z' class='post-time'>
+                    March 26, 2026,  1:51am
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-26T01:51:14Z'>
+              <span itemprop="position">17</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>This is the kind of incident that forces a more important conversation than “bridge UX.”</p>
+<p>If the final exit path depends on a centralized issuer’s permission layer, then the system still has a structural choke point.</p>
+<p>The real design question is how to build execution, internal liquidity, and asset routing in a way that degrades gracefully when one external rail fails.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/17'>
+          </div>
+          <div id='post_18' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/HeroToZero'><span itemprop="name">HeroToZero</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/HeroToZero'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-26T02:03:22Z' class='post-time'>
+                    March 26, 2026,  2:03am
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-26T02:03:22Z'>
+              <span itemprop="position">18</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>I’m not sure why. But a lot of people seem to think the foundation owes them money.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/18'>
+          </div>
+          <div id='post_20' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/Gotcha'><span itemprop="name">Gotcha</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/Gotcha'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-26T22:21:51Z' class='post-time'>
+                    March 26, 2026, 10:21pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-26T22:21:51Z'>
+              <span itemprop="position">20</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Another 2 addresses in the list were unfreezed, 0x68416 and 0x4bd282, according to USDT/USDC Ban List</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/20'>
+          </div>
+          <div id='post_21' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/kizzafredrichkibalam'><span itemprop="name">kizzafredrichkibalam</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/kizzafredrichkibalam'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-27T07:26:05Z' class='post-time'>
+                    March 27, 2026,  7:26am
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-27T07:31:16Z'>
+              <span itemprop="position">21</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>Any  update from <span class="mention">@DFINITY</span> so far as key patner and project built on top ckUSDC.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/21'>
+          </div>
+          <div id='post_22' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/DeFiAdventures'><span itemprop="name">DeFiAdventures</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/DeFiAdventures'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-27T12:20:51Z' class='post-time'>
+                    March 27, 2026, 12:20pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-27T13:37:51Z'>
+              <span itemprop="position">22</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <h2><a name="p-234153-main-theory-assumptions-1" class="anchor" href="#p-234153-main-theory-assumptions-1" aria-label="Heading link"></a><strong>Main Theory (Assumptions)</strong></h2>
+<ul>
+<li>Civil/legal case likely tied to AML concerns (forex, HYIP, gambling activity)</li>
+<li>Circle froze ~16 USD Coin addresses</li>
+<li>Included directly identified service wallets</li>
+<li>Expanded the list using heuristic clustering (transaction tracing)</li>
+<li>ckUSDC bridge (on Internet Computer) was incorrectly included</li>
+<li>Misclassified as “unknown service” (no prior labeling or attribution)</li>
+<li>Likely insufficient or no OSINT before blacklisting</li>
+<li>Overreach caused by automated/compliance heuristics</li>
+<li>Possible failure to follow internal review procedures</li>
+<li>Affected parties flagged the issue</li>
+<li>Rapid internal review by Circle</li>
+<li>Non-malicious / infrastructure addresses were unfrozen</li>
+<li>Final outcome: valid targets remained frozen, false positives were reversed</li>
+</ul>
+<hr>
+<h2><a name="p-234153-alternative-theory-morespeculative-2" class="anchor" href="#p-234153-alternative-theory-morespeculative-2" aria-label="Heading link"></a><strong>Alternative Theory (MoreSpeculative)</strong></h2>
+<ul>
+<li>Circle uses tools like Chainalysis (and others for b ackup), which are designed to identify major infrastructure</li>
+<li>BlockchainAnalysis software typically classify entities (name, organization, type, risk, category)</li>
+<li>DFINITY Foundation does not have a formal integration with Circle but still leverages USDC liquidity via bridging</li>
+<li>The ICP ecosystem builds DeFi around ckUSDC and presents it as a primary stablecoin without a direct partnership (lacking the normal circle quality and compliance procedures)</li>
+<li>This creates a perceived imbalance: benefiting from USDC without formal alignment with the issuer</li>
+<li>Circle retains unilateral freeze control over USDC at the contract level</li>
+<li>The freeze could be interpreted as a demonstration of that control over indirect users</li>
+<li>Inclusion of ckUSDC may be seen as targeting visible, non-integrated infrastructure</li>
+<li>Possible implicit message: using USDC without cooperation carries operational risk</li>
+<li>Rapid unfreeze helps reduce backlash while still demonstrating capability</li>
+<li>Could act as a signal to other chains, bridges, and DeFi protocols</li>
+<li>Reinforces the idea that USDC functions as permissioned paid financial infrastructure</li>
+</ul>
+<hr>
+<h2><a name="p-234153-what-could-have-prevented-this-3" class="anchor" href="#p-234153-what-could-have-prevented-this-3" aria-label="Heading link"></a><strong>What Could Have Prevented This</strong></h2>
+<ul>
+<li>Formal integration or partnership between DFINITY Foundation and Circle</li>
+<li>Official whitelisting of the ckUSDC bridge in circles internal homemade backend system</li>
+<li>Proper labeling in Chainalysis and similar analytics platforms</li>
+<li>Publicly registered and verified bridge address metadata</li>
+<li>Clear identification in blockchain explorers</li>
+<li>Mandatory manual review before freezing high-value or infrastructure addresses</li>
+<li>Clear separation between user wallets and protocol/bridge contracts in clustering logic</li>
+<li>Stronger OSINT and attribution processes prior to enforcement actions</li>
+<li>Reduced reliance on automated heuristics without human validation</li>
+</ul>
+<hr>
+<p>This particular mistake was critical, the explanation of unknown service wallet from a legal case is not sufficient, especially given how fast it was reverted. We know what licenses and what certificates they have, based on that we can do qualified guess work on how their policies and procedures may look, they been around for over ten years and is highly regulated, so its not random.</p>
+<p>Blacklist systems functionality is also very common in blockchain, many types of services use them, so we do not have to speculate wildly about how they may be built or how they work, and what safe guards are built in.</p>
+<p>This happening (no matter how unlikely it was) had  been predicted in this forum not long ago, and at that point in time it was predicted it would happen due no non-payment. Therefore, we should not immediately dismiss non-payment as implausible part of the explanation.</p>
+<p>Important takeaway:</p>
+<p>If there was illicit activity taking place using ckUSDC, if there was a ‘native integration’ Circle could freeze granularly the affected high risk wallets, the risk now remains that a court order is issued and Circle freezes the underlying address all ckUSDC relies on.</p>
+<p>It is difficult for institutional builders to bring high value infrastructure to ICP when you have this obvious centralization concerns. I hope this can be an eye opener for Dfinity and a call to action to start taking this serious and look to increase the value of the platform so it can be a bigger part of the overall extremely valuable blockchain economy.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/22'>
+          </div>
+          <div id='post_23' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://forum.dfinity.org/u/kizzafredrichkibalam'><span itemprop="name">kizzafredrichkibalam</span></a>
+                  <meta itemprop='url' content='https://forum.dfinity.org/u/kizzafredrichkibalam'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-03-27T14:23:37Z' class='post-time'>
+                    March 27, 2026,  2:23pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-03-27T14:23:37Z'>
+              <span itemprop="position">23</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>immediately after sns we are changing <span class="mention">@doxausd</span> collateral to ustbill one. Talks with potential patners are already underway</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='0'><meta itemprop='url' content='https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773/23'>
+          </div>
+
+        </div>
+    </div>
+
+      <div role='navigation' itemscope itemtype='http://schema.org/SiteNavigationElement' class="topic-body crawler-post">
+            <span itemprop='name'><b><a rel="next" itemprop="url" href="/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773?page=2">next page →</a></b></span>
+      </div>
+
+    <div id="related-topics" class="more-topics__list " role="complementary" aria-labelledby="related-topics-title">
+  <h3 id="related-topics-title" class="more-topics__list-title">
+    Related topics
+  </h3>
+  <div class="topic-list-container" itemscope itemtype='http://schema.org/ItemList'>
+    <meta itemprop='itemListOrder' content='http://schema.org/ItemListOrderDescending'>
+    <table class='topic-list'>
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th></th>
+          <th class="replies">Replies</th>
+          <th class="views">Views</th>
+          <th>Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="topic-list-item" id="topic-list-item-41980">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='1'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://forum.dfinity.org/t/ckusdc-on-and-off-ramp-fees/41980' class='title raw-link raw-topic-link'>ckUSDC on and off ramp fees</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/developers/14' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #F15A24'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Developers</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>19</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>403</span>
+            </td>
+            <td>
+              May 7, 2025
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-69618">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='2'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://forum.dfinity.org/t/ckusdc-to-usd-for-web3-app/69618' class='title raw-link raw-topic-link'>CkUSDC to USD for web3 app</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/developers/rust/30' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #f74c00'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Rust</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>3</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>183</span>
+            </td>
+            <td>
+              May 24, 2026
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-34990">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='3'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://forum.dfinity.org/t/why-minting-ckusdc-takes-so-long/34990' class='title raw-link raw-topic-link'>Why minting ckUSDC takes so long?</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/developers/14' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #F15A24'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Developers</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                      <a href='https://forum.dfinity.org/tag/discussing/12' class='discourse-tag'>Discussing</a>
+                      
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>10</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>220</span>
+            </td>
+            <td>
+              September 12, 2024
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-56663">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='4'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://forum.dfinity.org/t/how-to-convert-usdc-into-ckusdc/56663' class='title raw-link raw-topic-link'>How to convert USDC into CKUSDC?</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/developers/14' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #F15A24'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Developers</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>6</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>238</span>
+            </td>
+            <td>
+              September 14, 2025
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-35893">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='5'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://forum.dfinity.org/t/i-was-trying-to-call-the-cksepoliausdc-but-i-got-an-error/35893' class='title raw-link raw-topic-link'>I was trying to call the ckSepoliaUSDC but I got an error</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/developers/14' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #F15A24'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Developers</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>6</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>51</span>
+            </td>
+            <td>
+              October 7, 2024
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+    </div>
+    <footer class="container wrap">
+  <nav class='crawler-nav'>
+    <ul>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/' itemprop="url">Home </a>
+        </span>
+      </li>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/categories' itemprop="url">Categories </a>
+        </span>
+      </li>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/guidelines' itemprop="url">Guidelines </a>
+        </span>
+      </li>
+        <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+          <span itemprop='name'>
+            <a href='https://dfinity.org/terms-of-use' itemprop="url">Terms of Service </a>
+          </span>
+        </li>
+        <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+          <span itemprop='name'>
+            <a href='https://dfinity.org/privacy-policy' itemprop="url">Privacy Policy </a>
+          </span>
+        </li>
+    </ul>
+  </nav>
+  <p class='powered-by-link'>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+    
+    
+  </body>
+  
+</html>

@@ -296,8 +296,9 @@ For on-chain queries, topic0 is precomputed `keccak256` of the event signature:
 | --- | --- | --- | --- | --- |
 | USDC | `0xA0b86991c6218b36c1d19d4a2e9EB0cE3606eB48` | `Blacklisted(address)` | `0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855` | Ethereum |
 | USDC | same | `UnBlacklisted(address)` | separate topic | Ethereum |
-| USDT | `0xdAC17F958D2ee523a2206206994597C13D831ec7` | `AddedBlackList(address)` | separate topic | Ethereum |
-| USDT | same | `RemovedBlackList(address)` | separate topic | Ethereum |
+| USDT | `0xdAC17F958D2ee523a2206206994597C13D831ec7` | `AddedBlackList(address)` | `0x42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc` | Ethereum |
+| USDT | same | `RemovedBlackList(address)` | `0xd7e9ec6e6ecd65492dce6bf513cd6867560d49544421d0783ddf06e76c24470c` | Ethereum |
+| USDT | same | `DestroyedBlackFunds(address,uint256)` | `0x61e6e66b0d6339b2980aecc6ccc0039736791f0ccde9ed512e789a7fbdd698c6` | Ethereum |
 | DAI | `0x6B175474E89094C44Da98b954EedeAC495271d0F` | Non-standard — MakerDAO uses Emergency Shutdown, no per-address blacklist | — | Ethereum |
 | BUSD (deprecated) | `0x4Fabb145d64652a948d72533023f6E7A623C7C53` | `Blacklisted(address)` | | Ethereum |
 | FRAX | `0x853d955aCEf822Db058eb8505911ED77F175b99e` | No blacklist (non-custodial) | — | Ethereum |

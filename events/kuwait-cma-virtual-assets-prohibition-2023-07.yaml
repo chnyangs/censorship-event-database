@@ -1,0 +1,178 @@
+id: kuwait-cma-virtual-assets-prohibition-2023-07
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - saudi-standing-committee-crypto-illegal-2018-08
+  - qatar-qcb-qfcra-virtual-asset-ban-2019-12
+  - bahrain-cbb-crypto-asset-module-2019
+
+trigger:
+  type: nation_state_block
+  actor: KW_CMA_CBK
+  timestamp: 2023-07-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.cbk.gov.kw/en/images/16part1-2788_v60_tcm10-2788.pdf
+      body_hash: sha256:eaceca4e2bdb5843915f04a62a0fe441015fe087e6e699e82eb5983a8494dc6c
+      body_path: sources/http_captures/kuwait-cma-virtual-assets-prohibition-2023-07/primary/www.cbk.gov.kw__en-images-16part1-2788_v60_tcm10-2788.pdf__f60cea3fb8.bin
+      evidence_use: replayable
+      note: |
+        Central Bank of Kuwait AML/CFT instructions PDF, section Q, reproduces
+        the 2023-07-17 circular to local banks, financing companies, and
+        exchange companies concerning virtual-assets transaction procedures.
+        `pdftotext` on the captured PDF confirms the circular title and the
+        load-bearing restrictions: strict prohibition of using virtual assets as
+        a payment instrument, prohibition on dealing with virtual assets as an
+        investment medium, no natural or legal person in Kuwait to be granted a
+        virtual-asset-service license, and absolute prohibition of virtual-asset
+        mining activities.
+    - type: primary_government
+      url: https://www.cma.gov.kw/en/web/cma/cma-board-releases/resolutions-and-regulations/-/cmaboardreleases/detail/1384960
+      evidence_use: contextual_unarchived
+      note: |
+        Kuwait Capital Markets Authority circular page for Circular No. 10 of
+        2023. Live inspection on 2026-05-31 confirms the same restrictions and
+        publication metadata, but local capture timed out from the CLI; do not
+        use this URL as the sole replay anchor until it is captured.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level precision. The captured CBK PDF states the circular was issued
+        on 2023-07-17; the CMA web page was published on 2023-07-18.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Kuwait financial institutions, specified financial businesses, exchange
+    companies, prospective VASPs, and local virtual-asset mining activity. The
+    circular is class-level and does not enumerate individual exchanges,
+    miners, users, domains, tokens, or addresses; subset records the addressed
+    regulated-institution / commercial-activity class without claiming a
+    complete roster.
+  protocol: null
+  actor_type: kuwait_virtual_asset_activity_class
+  actor_name: Kuwait virtual-asset payment, investment, VASP, and mining activity
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - KW
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The circular is a legal / regulatory prohibition and banking/commercial
+      activity instruction, not an ISP, DNS, or network-connectivity block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The instrument prohibits local virtual-asset mining activity but does not
+      modify any blockchain consensus mechanism or validator/relay filtering
+      behavior. The measured access restriction is at the financial and
+      commercial service perimeter.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: No exchange or wallet frontend domain is named or measured.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-side token blacklist, freeze, burn, or address set is named.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - kuwait_virtual_asset_payment_investment_vasp_services
+      - kuwait_virtual_asset_mining_activity
+    note: |
+      Load-bearing layer. The circular prohibits use of virtual assets as a
+      payment instrument, dealing with virtual assets as an investment medium,
+      granting VASP licenses, and virtual-asset mining activity in Kuwait. This
+      severs regulated Kuwaiti financial/commercial service channels for virtual
+      assets.
+
+observations:
+  - layer: offramp_cex
+    actor: kuwait_virtual_asset_regulated_activity_class
+    event: virtual_asset_payment_investment_vasp_and_mining_prohibited
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-07-17T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.cbk.gov.kw/en/images/16part1-2788_v60_tcm10-2788.pdf
+        body_hash: sha256:eaceca4e2bdb5843915f04a62a0fe441015fe087e6e699e82eb5983a8494dc6c
+        body_path: sources/http_captures/kuwait-cma-virtual-assets-prohibition-2023-07/primary/www.cbk.gov.kw__en-images-16part1-2788_v60_tcm10-2788.pdf__f60cea3fb8.bin
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [KW]
+          providers:
+            - kuwait_local_banks_financing_companies_exchange_companies
+          time_window:
+            - 2023-07-17T00:00:00Z
+            - 2026-05-31T23:59:59Z
+        note: |
+          The captured CBK PDF is the replayable legal anchor. It instructs the
+          addressed Kuwaiti financial institutions to refrain from virtual-asset
+          payment and investment transactions, states that no VASP commercial
+          licenses will be issued, and prohibits all virtual-asset mining
+          activity. attribution=direct because the regulatory instrument itself
+          names the restricted activity class.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official-source verification. The event remains
+  `status=draft` and `origin=agent_draft`; automation must not promote it to an
+  admitted paper row without human admission review.
+
+  Inclusion rationale: this is not a soft warning. The captured CBK legal
+  instructions reproduce an operative Kuwait circular that prohibits payment
+  use, investment dealing, VASP licensing, and mining activity for virtual
+  assets. That is a deliberate restriction on legitimate crypto payment,
+  investment, service-provider, and mining activity under codebook §9.
+
+  Modeling rationale: trigger.type=nation_state_block because the action is a
+  state-level payment/commercial-rail prohibition, and research_stratum is
+  S4_nation_state. The load-bearing observation is coded at offramp_cex because
+  the practical access effect is the denial of regulated financial/commercial
+  service channels in Kuwait, not a network block, protocol action, frontend
+  takedown, or token-admin freeze.
+
+  Source limitation: the CMA HTML page was verified live through browsing, but
+  command-line capture timed out twice. The captured CBK PDF is therefore the
+  sole replayable source anchor in this draft.
+
+scoped_claim: |
+  "Kuwait's 2023-07-17 virtual-assets circular prohibited use of virtual assets
+  as payment instruments, dealing with them as investment media, granting VASP
+  commercial licenses, and virtual-asset mining activity. The event is modeled
+  as a single-layer S4 nation-state payment/commercial-rail restriction at
+  offramp_cex; no L0/L1/L3/L4 or asset-onchain effect is claimed."
+
+tags:
+  - nation_state_block
+  - kuwait
+  - cma
+  - cbk
+  - virtual_asset_ban
+  - payment_rail_prohibition
+  - vasp_licensing_ban
+  - mining_ban
+  - agent_draft

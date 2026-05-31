@@ -1,0 +1,167 @@
+id: bitcoin-maven-tetley-doj-2018
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - shrem-faiella-bitcoin-exchange-2014
+  - powell-unlicensed-bitcoin-exchange-2014
+  - fincen-eric-powers-p2p-exchanger-2019-04
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_CDCA
+  timestamp: 2018-07-09T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-cdca/pr/bitcoin-maven-sentenced-one-year-federal-prison-bitcoin-money-laundering-case
+      wayback: https://web.archive.org/web/20180711091804/https://www.justice.gov/usao-cdca/pr/bitcoin-maven-sentenced-one-year-federal-prison-bitcoin-money-laundering-case
+      body_hash: sha256:9635191abc6428fe45c63c676552aba881abc8e42190373ac2aae53ddea46dc7
+      body_path: sources/http_captures/bitcoin-maven-tetley-doj-2018/primary/web.archive.org__web-20180711091804-https-www.justice.gov-usao-cdca-pr-bitcoin-maven-sentenced-one-year-federal-prison-bitcoin-money-laundering-case__66dc046376.html
+      evidence_use: replayable
+      note: |
+        DOJ USAO-CDCA press release, archived by Wayback on 2018-07-11 and
+        captured locally on 2026-05-31. The body states that Theresa Lynn
+        Tetley, known as "Bitcoin Maven," admitted to operating an unlicensed
+        bitcoin-for-cash exchange business, was sentenced on 2018-07-09 to
+        12 months and one day in federal prison, pleaded guilty to operating
+        an unlicensed money transmitting business and money laundering, used
+        localbitcoins.com, exchanged between $6M and $9.5M for customers, and
+        was ordered to forfeit 40 Bitcoin, $292,264 in cash, and gold bars.
+        Direct live-page capture on 2026-05-31 returned a DOJ Akamai
+        interstitial, so the replayable body anchor is the Wayback memento.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing per the DOJ press-release date and sentencing date.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Single named individual P2P bitcoin-for-cash exchanger Theresa Lynn Tetley
+    a/k/a "Bitcoin Maven." The DOJ source identifies LocalBitcoins as the
+    advertising surface and gives aggregate transaction volume, but it does not
+    enumerate a customer list, wallet set, or business domain controlled by
+    Tetley. The target is therefore the individual unlicensed MSB/off-ramp
+    service, not LocalBitcoins as a platform.
+  protocol: null
+  actor_type: individual_unlicensed_msb_operator
+  actor_name: Theresa Lynn Tetley a/k/a Bitcoin Maven
+  chains:
+    - bitcoin
+  canonical_domains:
+    - localbitcoins.com
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: DOJ prosecution/sentencing of an individual P2P exchanger; no ISP, DNS, or network-connectivity block is implicated.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin consensus behavior is not affected by the prosecution of an individual cash-for-BTC exchanger.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: No hosted RPC provider surface is implicated.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      Tetley advertised through LocalBitcoins, but the DOJ action did not
+      block or seize localbitcoins.com. Do not code a LocalBitcoins frontend
+      change from an individual-user prosecution.
+  - layer: asset_onchain
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      The DOJ source records forfeiture of 40 Bitcoin as proceeds, but Bitcoin
+      itself has no issuer-admin blacklist/freeze surface. This row is not an
+      asset-layer freeze event.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - tetley_bitcoin_maven_individual_msb
+    note: |
+      Load-bearing layer. Tetley's individual bitcoin-for-cash off-ramp service
+      was terminated by the criminal case, sentencing, and forfeiture described
+      in the DOJ source.
+
+observations:
+  - layer: offramp_cex
+    actor: individual_msb:bitcoin_maven
+    event: tetley_bitcoin_for_cash_msb_terminated_by_doj_sentencing
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2018-07-09T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-cdca/pr/bitcoin-maven-sentenced-one-year-federal-prison-bitcoin-money-laundering-case
+        wayback: https://web.archive.org/web/20180711091804/https://www.justice.gov/usao-cdca/pr/bitcoin-maven-sentenced-one-year-federal-prison-bitcoin-money-laundering-case
+        body_hash: sha256:9635191abc6428fe45c63c676552aba881abc8e42190373ac2aae53ddea46dc7
+        body_path: sources/http_captures/bitcoin-maven-tetley-doj-2018/primary/web.archive.org__web-20180711091804-https-www.justice.gov-usao-cdca-pr-bitcoin-maven-sentenced-one-year-federal-prison-bitcoin-money-laundering-case__66dc046376.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers:
+            - tetley_bitcoin_maven_individual_msb
+          time_window:
+            - 2018-07-09T00:00:00Z
+            - 2018-07-09T23:59:59Z
+        note: |
+          The official DOJ source records the 2018-07-09 sentence, guilty plea
+          posture, LocalBitcoins-advertised bitcoin-for-cash service, aggregate
+          exchange volume, and forfeiture. Attribution is direct because the
+          legal action and incarceration/forfeiture are the terminating act for
+          the individual off-ramp service; the row does not claim a shutdown of
+          LocalBitcoins itself.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official DOJ source identification and Wayback capture.
+  The event remains `status=draft` and `origin=agent_draft`; automation must not
+  promote it to an admitted paper row without human admission review.
+
+  Inclusion rationale: this is the post-2017 counterpart to the admitted Shrem /
+  Faiella and Powell individual/exchange MSB enforcement rows. It is not a fraud
+  platform collapse or Ponzi prosecution: the modeled surface is an individual
+  bitcoin-for-cash off-ramp service that DOJ says operated without MSB
+  registration and AML controls. The row intentionally does not treat
+  LocalBitcoins as the censored platform, because the DOJ action targets Tetley's
+  individual service.
+
+  Modeling rationale: trigger.type=doj_indictment is the closest existing S3
+  enum used by peer historical MSB-enforcement rows, even though the clean public
+  anchor is the 2018-07-09 sentencing press release. The observed_change is
+  single-layer `offramp_cex` with direct attribution to the sentencing/forfeiture
+  endpoint. L0/L1/L3/L4/asset_onchain are not_applicable.
+
+scoped_claim: |
+  "On 2018-07-09 DOJ USAO-CDCA announced that Theresa Lynn Tetley, a/k/a
+  'Bitcoin Maven,' was sentenced for operating an unlicensed bitcoin-for-cash
+  money-transmitting business advertised on LocalBitcoins and for money
+  laundering. This draft models only the termination of Tetley's individual
+  P2P off-ramp service; it does not claim a LocalBitcoins platform shutdown,
+  frontend block, asset freeze, or consensus/RPC effect."
+
+tags:
+  - doj_enforcement
+  - unlicensed_msb
+  - p2p_exchange
+  - localbitcoins
+  - bitcoin_maven
+  - agent_draft

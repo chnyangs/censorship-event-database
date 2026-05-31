@@ -3,7 +3,7 @@ schema_version: 0.2.0
 codebook_version: "1.0.0"
 status: admitted
 primary_source_verified: false
-research_stratum: S3_doj_sec_cftc_fiod
+research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: comparison
@@ -18,7 +18,7 @@ related_events:
   - india-rbi-crypto-ban-2018
 
 trigger:
-  type: court_civil_order
+  type: regulatory_enforcement
   actor: US_NYDFS
   timestamp: 2015-06-24T00:00:00Z
   timestamp_precision: day
@@ -233,20 +233,15 @@ analysis_notes: |
   would be replaced by the production-promotion stamp after an
   additional independent human audit.
 
-  Trigger-type choice: NYDFS is a US sub-national (state) financial
-  regulator, and the BitLicense is an administrative rule-making, not a
-  criminal or civil enforcement action. The schema 0.2.0 trigger.type
-  vocabulary does not include a state_regulator_action enum value, and
-  Phase 1 (us_state_regulator_archives source frame) maps to research
-  stratum S3 by convention. The least-bad existing enum is
-  court_civil_order (which already maps to S3_doj_sec_cftc_fiod in the
-  validator's trigger-type-to-stratum map), used here to represent a
-  state administrative-regulatory order with binding legal effect.
-  trigger.actor=US_NYDFS does not match any of the actor-coherence
-  patterns (US_SEC / US_CFTC / US_FINCEN / US_DOJ / US_OFAC /
-  EU_COUNCIL), so no actor/type-coherence conflict is raised. Adding a
-  proper state_regulator_action trigger-type enum is left as a future
-  schema improvement (see Phase 3 candidate-ledger discussion).
+  Scope-coding update 2026-05-31: NYDFS is a US subnational (state)
+  financial regulator, and the BitLicense is an administrative
+  rulemaking/licensing regime rather than a US federal DOJ/SEC/CFTC/
+  FinCEN action or a court-issued civil order. Per codebook §5.1/§5.2,
+  US state/subnational regulator administrative actions are coded as
+  trigger.type=regulatory_enforcement and research_stratum=S4_nation_state.
+  This aligns the BitLicense parent event with the NY OAG and NJ Bureau
+  state-regulator precedents while keeping S3 reserved for federal
+  enforcement/court actions.
 
   Empirical shape: comparison. The cascade is L4-only: four named
   exchanges (ShapeShift, Kraken, Bitfinex, Poloniex) exited NY between
@@ -275,6 +270,7 @@ scoped_claim: |
 
 tags:
   - state_regulator_action
+  - regulatory_enforcement
   - bitlicense
   - new_york
   - market_exit

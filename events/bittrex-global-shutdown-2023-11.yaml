@@ -1,0 +1,158 @@
+id: bittrex-global-shutdown-2023-11
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - sec-v-bittrex-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: bittrex_global
+  timestamp: 2023-11-20T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://bittrexglobal.zendesk.com/hc/en-us/articles/14887148127517-Important-Information-for-Bittrex-Global-Customers
+      body_hash: sha256:ff1ba76b499cb93934781eacc1c26d4eef45dbf2971cd10090720b3658fb22c6
+      body_path: sources/http_captures/bittrex-global-shutdown-2023-11/primary/bittrexglobal.zendesk.com__hc-en-us-articles-14887148127517-Important-Information-for-Bittrex-Global-Customers__fc11384e12.html
+      evidence_use: replayable
+      note: |
+        Bittrex Global customer notice, captured locally 2026-05-31. The
+        page states that Bittrex Global decided to cease operations, that
+        trading would terminate on 2023-12-04, and that after that date
+        customers would only be able to withdraw assets.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level trigger date recorded as 2023-11-20 because the captured
+        Bittrex Global FAQ refers to "our message on 20 November 2023";
+        the captured Zendesk page itself is marked updated 2023-11-29.
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Target is the Bittrex Global exchange service surface, excluding the
+    previously coded Bittrex US off-ramp wind-down in sec-v-bittrex-2023.
+    The official notice describes all trading activity on Bittrex Global
+    being terminated from 2023-12-04, after which customers could only
+    withdraw assets.
+  protocol: null
+  actor_type: centralized_exchange
+  actor_name: Bittrex Global
+  chains: []
+  canonical_domains:
+    - bittrexglobal.com
+    - bittrexglobal.zendesk.com
+
+jurisdiction:
+  - corporate_global
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Corporate exchange wind-down; no ISP, DNS, or network-layer blocking
+      mechanism is asserted.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Exchange-service termination does not affect chain consensus.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_measured
+    scope:
+      - bittrex_global_exchange_ui
+    note: |
+      The notice says all activity except withdrawals would be disabled, but
+      this draft does not retain a UI diff or frontend probe. Count the
+      measured surface only at offramp_cex.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer blacklist, token freeze, or chain admin method is involved.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - bittrex_global_exchange
+    note: |
+      Load-bearing measured layer. Bittrex Global terminated trading on
+      2023-12-04 and left customers in withdrawal-only mode.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:bittrex_global
+    event: bittrex_global_trading_terminated_with_withdrawal_only_mode
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-12-04T18:00:00Z
+    precision: hour
+    delta_hours: 354
+    window:
+      - 2023-11-20T00:00:00Z
+      - 2023-12-04T18:00:00Z
+    sources:
+      - type: primary_corporate
+        url: https://bittrexglobal.zendesk.com/hc/en-us/articles/14887148127517-Important-Information-for-Bittrex-Global-Customers
+        body_hash: sha256:ff1ba76b499cb93934781eacc1c26d4eef45dbf2971cd10090720b3658fb22c6
+        body_path: sources/http_captures/bittrex-global-shutdown-2023-11/primary/bittrexglobal.zendesk.com__hc-en-us-articles-14887148127517-Important-Information-for-Bittrex-Global-Customers__fc11384e12.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bittrex_global]
+          countries: [corporate_global]
+          time_window:
+            - 2023-11-20T00:00:00Z
+            - 2023-12-04T18:00:00Z
+        note: |
+          Official Bittrex Global customer notice. Grep-confirmed in the
+          captured HTML: the company states that it decided to cease
+          operations; effective Monday 2023-12-04, all trading activity on
+          Bittrex Global would be terminated; after that, customers would
+          only be able to withdraw assets. Attribution is direct because the
+          source is Bittrex Global's own notice.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-31** (P4 census-gap registry
+  continuation). This draft converts the previously borderline
+  `bittrex-global-shutdown-2023-11` registry row into a narrow,
+  primary-corporate-anchored S5 event. The captured Zendesk notice is
+  replayable by body_hash and supports only the Bittrex Global service
+  wind-down / trading-termination claim.
+
+  Scope boundary: this is not a duplicate of `sec-v-bittrex-2023`. That
+  admitted event explicitly limits the measured surface to Bittrex US
+  off-ramp operations and says Bittrex Global is not coded as the measured
+  surface. This draft covers the later global exchange-service wind-down,
+  with Bittrex Global as the corporate actor and with attribution to the
+  company's own customer notice, not to an SEC-only causal claim.
+
+  Why draft: automation can verify and pin the official source, but cannot
+  provide human admission, human audit, or a final causation decision for a
+  borderline business wind-down. Keep as `origin=agent_draft` until a human
+  reviewer decides whether the S5 corporate service withdrawal is admitted
+  as a paper case.
+
+scoped_claim: |
+  "Bittrex Global's November 2023 customer notice announced termination of
+  all trading activity on 2023-12-04, leaving customers in withdrawal-only
+  mode; this is a single-layer S5 corporate exchange-service wind-down
+  draft, distinct from the earlier Bittrex US SEC/Chapter 11 event."
+
+tags:
+  - corporate_policy_change
+  - bittrex
+  - exchange_shutdown
+  - withdrawal_only
+  - agent_drafted

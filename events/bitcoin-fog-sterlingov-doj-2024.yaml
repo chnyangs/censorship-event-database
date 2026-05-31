@@ -1,0 +1,233 @@
+id: bitcoin-fog-sterlingov-doj-2024
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - helix-doj-mixer-2020
+  - chipmixer-doj-2023
+  - samourai-doj-2024
+  - sinbad-doj-2024
+  - silk-road-doj-seizure-2013
+
+trigger:
+  type: doj_indictment
+  actor: US_DOJ_DC
+  timestamp: 2024-03-12T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-dc/pr/jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency
+      wayback: https://web.archive.org/web/20240312213825/https://www.justice.gov/usao-dc/pr/jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency
+      body_hash: sha256:37a75d8bc698b3acebc347bcac71f914720316969481d59bb0520d5f7e420d65
+      body_path: sources/http_captures/bitcoin-fog-sterlingov-doj-2024/primary/web.archive.org__web-20240312213825-https-www.justice.gov-usao-dc-pr-jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency__8be7be24e5.html
+      evidence_use: replayable
+      note: |
+        DOJ USAO-DC 2024-03-12 conviction release, captured from Wayback
+        after direct live capture returned a DOJ/Akamai interstitial. The
+        source states that Roman Sterlingov was found guilty of operating
+        Bitcoin Fog, a darknet Bitcoin mixer, and that the jury granted
+        forfeiture of previously seized assets including about 1,354 Bitcoin
+        held in a Bitcoin Fog wallet plus cryptocurrency in seized Kraken
+        exchange accounts.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet
+      wayback: https://web.archive.org/web/20241112223112/https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet
+      body_hash: sha256:43e935f6f157c009c78438f6c9f00d37241a70a8a40ede5651d1cc73ef68a316
+      body_path: sources/http_captures/bitcoin-fog-sterlingov-doj-2024/primary/web.archive.org__web-20241112223112-https-www.justice.gov-usao-dc-pr-operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet__a173e27cb9.html
+      evidence_use: replayable
+      note: |
+        DOJ USAO-DC 2024-11-08 sentencing release, captured from Wayback.
+        The source states that Sterlingov was sentenced to 150 months, ordered
+        to pay a forfeiture money judgment of USD 395,563,025.39, ordered to
+        forfeit seized cryptocurrencies and monetary assets, and ordered to
+        forfeit his interest in a Bitcoin Fog wallet totaling approximately
+        1,345 Bitcoin.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level trigger timestamp from the 2024-03-12 DOJ conviction
+        release. The public trigger is the conviction endpoint, not the 2021
+        arrest and not a same-day frontend/domain seizure.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is the Bitcoin Fog mixer service and its named operator Roman
+    Sterlingov. DOJ sources identify the service, operator, operating window,
+    aggregate Bitcoin flows, a Bitcoin Fog wallet forfeiture interest, and
+    seized Kraken cryptocurrency accounts, but this draft does not enumerate a
+    complete mixer wallet/address set, a canonical domain, or transaction
+    hashes. The forfeiture facts are retained as official legal facts rather
+    than as measured on-chain observations.
+  protocol: bitcoin_fog
+  actor_type: mixer_service
+  actor_name: Bitcoin Fog / Roman Sterlingov
+  chains:
+    - bitcoin
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      DOJ criminal conviction/sentencing and forfeiture arc for a darknet
+      mixer operator; not an ISP, DNS, or public network blocking measurement.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: Bitcoin consensus behavior was not changed by the enforcement action.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: No hosted RPC-provider filtering surface is implicated.
+  - layer: l4_frontend
+    status: not_measured
+    note: |
+      DOJ states that Bitcoin Fog operated from October 2011 to April 2021 and
+      stopped when Sterlingov was arrested and detained. These 2024 sources do
+      not publish a canonical domain, seizure banner, or event-day frontend
+      measurement. No L4 observed_change is coded in this draft.
+  - layer: asset_onchain
+    status: not_measured
+    chain: bitcoin
+    note: |
+      Load-bearing unresolved layer from the P4 candidate. DOJ sources state
+      that law enforcement had previously seized about 1,354 BTC in a Bitcoin
+      Fog wallet and that the sentence ordered forfeiture of Sterlingov's
+      interest in about 1,345 BTC. This draft does not pin a public
+      primary_onchain tx_hash, address-history capture, or body-hashed court
+      document enumerating the wallet address(es). Under codebook section 1.6,
+      no measured asset_onchain observed_change is coded.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - bitcoin_fog_mixer_operator_state
+    note: |
+      Narrow measured layer. The 2024 conviction and sentencing convert the
+      Bitcoin Fog operator-state from arrested/detained and accused to
+      convicted, sentenced, and subject to final forfeiture orders. This is a
+      criminal-finality / mixer-operator-state endpoint, not a same-day domain
+      seizure or a new on-chain freeze.
+
+observations:
+  - layer: offramp_cex
+    actor: mixer:bitcoin_fog
+    event: bitcoin_fog_operator_convicted_sentenced_and_forfeiture_ordered
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2024-03-12T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-dc/pr/jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency
+        wayback: https://web.archive.org/web/20240312213825/https://www.justice.gov/usao-dc/pr/jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency
+        body_hash: sha256:37a75d8bc698b3acebc347bcac71f914720316969481d59bb0520d5f7e420d65
+        body_path: sources/http_captures/bitcoin-fog-sterlingov-doj-2024/primary/web.archive.org__web-20240312213825-https-www.justice.gov-usao-dc-pr-jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency__8be7be24e5.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers:
+            - bitcoin_fog_mixer
+          time_window:
+            - 2011-10-01T00:00:00Z
+            - 2021-04-27T23:59:59Z
+        note: |
+          DOJ states that Sterlingov was found guilty of operating Bitcoin Fog,
+          that the service operated from October 2011 to April 2021, and that
+          it stopped only when Sterlingov was arrested and detained. Attribution
+          is direct for the operator-state legal endpoint.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet
+        wayback: https://web.archive.org/web/20241112223112/https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet
+        body_hash: sha256:43e935f6f157c009c78438f6c9f00d37241a70a8a40ede5651d1cc73ef68a316
+        body_path: sources/http_captures/bitcoin-fog-sterlingov-doj-2024/primary/web.archive.org__web-20241112223112-https-www.justice.gov-usao-dc-pr-operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet__a173e27cb9.html
+        evidence_use: replayable
+        note: |
+          DOJ's sentencing release confirms the 150-month sentence, final
+          money judgment, seized-asset forfeiture order, and repeated operating
+          window. This corroborates criminal finality for the mixer operator
+          but does not provide a public on-chain transaction anchor.
+  - layer: asset_onchain
+    actor: law_enforcement:us_doj_irs_ci_fbi
+    event: bitcoin_fog_btc_forfeiture_onchain_gap
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2024-03-12T00:00:00Z
+    precision: day
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-dc/pr/jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency
+        wayback: https://web.archive.org/web/20240312213825/https://www.justice.gov/usao-dc/pr/jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency
+        body_hash: sha256:37a75d8bc698b3acebc347bcac71f914720316969481d59bb0520d5f7e420d65
+        body_path: sources/http_captures/bitcoin-fog-sterlingov-doj-2024/primary/web.archive.org__web-20240312213825-https-www.justice.gov-usao-dc-pr-jury-finds-russian-swedish-operator-bitcoin-fog-guilty-running-darknet-cryptocurrency__8be7be24e5.html
+        evidence_use: replayable
+        note: |
+          DOJ states that the jury granted forfeiture of previously seized
+          assets including about 1,354 BTC held in a Bitcoin Fog wallet, but
+          the source does not publish tx_hashes or wallet addresses.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet
+        wayback: https://web.archive.org/web/20241112223112/https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet
+        body_hash: sha256:43e935f6f157c009c78438f6c9f00d37241a70a8a40ede5651d1cc73ef68a316
+        body_path: sources/http_captures/bitcoin-fog-sterlingov-doj-2024/primary/web.archive.org__web-20241112223112-https-www.justice.gov-usao-dc-pr-operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet__a173e27cb9.html
+        evidence_use: replayable
+        note: |
+          DOJ states that Sterlingov was ordered to forfeit his interest in a
+          Bitcoin Fog wallet totaling about 1,345 BTC. This is a legal
+          forfeiture fact, not a machine-verified on-chain movement or freeze.
+    note: |
+      Machine-visible non-promotion flag. The official sources establish a
+      Bitcoin forfeiture arc but do not satisfy the codebook section 1.6
+      transaction-level anchor requirement for a measured asset_onchain row.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap exact-id queue after official DOJ source identification and
+  Wayback capture. Direct live justice.gov capture returned DOJ/Akamai
+  interstitial pages; those bad captures were deleted. The replayable anchors
+  are the two Wayback mementos listed above.
+
+  Inclusion rationale: Bitcoin Fog is structurally adjacent to Helix,
+  ChipMixer, Samourai, and Sinbad as a Bitcoin-mixer enforcement case. The
+  row is retained as a draft because the official DOJ sources prove the
+  operator conviction/sentencing and legal forfeiture facts, but do not
+  provide a public frontend seizure artifact or a transaction-level asset
+  seizure anchor.
+
+  Modeling rationale: the measured observation is narrowly `offramp_cex` as a
+  mixer-operator-state criminal-finality endpoint. This is weaker than a
+  same-day domain seizure and should not be promoted without human admission
+  review. The P4 candidate's asset_onchain framing is deliberately downgraded:
+  the 1,354/1,345 BTC figures are official legal facts, but no measured
+  `asset_onchain` observation is coded until a public tx_hash, address-history
+  capture, or wallet-enumerating court artifact is pinned.
+
+scoped_claim: |
+  "On 2024-03-12 DOJ USAO-DC announced Roman Sterlingov's conviction for
+  operating the Bitcoin Fog darknet cryptocurrency mixer, and on 2024-11-08
+  announced a 150-month sentence plus forfeiture orders. This draft models only
+  the mixer-operator-state criminal-finality endpoint; it does not claim a
+  same-day frontend seizure or a measured on-chain asset change until a public
+  tx_hash or equivalent wallet-level anchor is pinned."
+
+tags:
+  - doj_enforcement
+  - bitcoin_mixer
+  - mixer_operator_state
+  - bitcoin_fog
+  - asset_onchain_gap
+  - agent_draft

@@ -38,7 +38,7 @@ COMPARE_OUT ?= -
     er-training-template audit-archive repair-evidence-anchors \
     event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
     admission-sensitivity jurisdiction derived \
-    audit-worksheets paper-tables paper-check paper-regenerate-check test \
+    audit-worksheets paper-tables paper-check paper-release-check paper-regenerate-check test \
     render-site render-evidence render-evidence-all compare \
     ooni-scan l0-query-metadata usdt-scan operator-census capture \
     irr-sample irr-packet irr-kappa \
@@ -98,6 +98,7 @@ help:
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
 	    'make paper-check           # non-mutating paper-facing claim/table/audit-coherence checks' \
+	    'make paper-release-check   # strict submission/release paper gate' \
 	    'make paper-regenerate-check # rebuild paper dependencies, then run paper-check' \
 	    'make test                  # pytest regression suite for classifier + numerator rules' \
 	    '' \
@@ -283,8 +284,11 @@ endif
 paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
 
-paper-check:
-	$(PYTHON) scripts/check_paper_readiness.py --strict-audit
+paper-check: paper-tables
+	$(PYTHON) scripts/check_paper_readiness.py
+
+paper-release-check: paper-tables
+	$(PYTHON) scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 
 paper-regenerate-check: trigger-registry temporal-ledger source-manifest paper-tables paper-check
 

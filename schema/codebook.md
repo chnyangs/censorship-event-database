@@ -324,12 +324,12 @@ layer counts.
 | US SEC enforcement | `sec_action` | |
 | US CFTC enforcement | `cftc_action` | |
 | US FinCEN admin action | `fincen_action` | |
-| US court civil order (non-DOJ) | `court_civil_order` | DataCell Iceland 2012-07; consumer-protection class actions. |
+| US court civil order (non-DOJ) | `court_civil_order` | Federal or court-issued civil orders such as DataCell Iceland 2012-07; consumer-protection class actions. Do not use for administrative regulator rulemaking/orders. |
 | EU/UN/G7 sanctions | `non_us_sanctions` | EU Russia sanctions packages. |
 | EU/UN/G7 regulation (non-sanctions) | `supranational_regulation` | MiCA, FATF R15, TFR, AMLA. |
 | Corporate unilateral policy | `corporate_policy_change` | Tether/Circle freezes (when issuer-initiated), exchange delistings. |
 | Nation-state ISP/DNS block | `nation_state_block` | KZ shutdown, CN PBoC, NG CBN, India RBI, TR CBRT, IR sanctions. |
-| **Non-US national regulator administrative enforcement** | `regulatory_enforcement` | **NEW 2026-05-17**: JP FSA business improvement orders, KR FSC institutional restrictions, IS CBI advisories, etc. Use this when the actor is a non-US national regulator AND the action is administrative (not a network/payment-rail block). |
+| **National/subnational regulator administrative action** | `regulatory_enforcement` | **REVISED 2026-05-31**: JP FSA business improvement orders, KR FSC institutional restrictions, IS CBI advisories, plus US state/subnational regulator actions such as NYDFS BitLicense/consumer alerts, NY OAG settlements, and NJ Bureau securities orders. Use this when the actor is a national or subnational regulator and the action is administrative/regulatory (not a US federal DOJ/SEC/CFTC/FinCEN action, not a court civil order, and not a network/payment-rail block). |
 
 ### §5.2 Stratum-actor map (validator-enforced)
 
@@ -340,6 +340,11 @@ layer counts.
 | `nation_state_block` / `regulatory_enforcement` | `S4_nation_state` |
 | `corporate_policy_change` | `S5_corporate` |
 | `non_us_sanctions` / `supranational_regulation` | `S6_supranational` |
+
+US state/subnational regulator administrative actions are intentionally kept in
+`regulatory_enforcement` -> `S4_nation_state`. This preserves the S3 stratum for
+US federal DOJ/SEC/CFTC/FinCEN/court actions while avoiding a new S7 stratum that
+would churn paper tables without adding a new measurement surface.
 
 ---
 

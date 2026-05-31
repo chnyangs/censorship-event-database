@@ -17,6 +17,30 @@
     "coverage",
     "observations"
   ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evidence_tier": {
+            "const": "attested_secondary"
+          }
+        },
+        "required": [
+          "evidence_tier"
+        ]
+      },
+      "then": {
+        "required": [
+          "evidence_caveat"
+        ],
+        "properties": {
+          "evidence_caveat": {
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ],
   "properties": {
     "id": {
       "type": "string",
@@ -73,6 +97,18 @@
         "null_case"
       ],
       "description": "Admission-quality tier: anchor_case = ≥2 observed_change layers with strong attribution; empirical_case = ≥1; null_case = 0. Used to select anchor cases for paper exposition vs. anchored denominator controls."
+    },
+    "evidence_tier": {
+      "type": "string",
+      "enum": [
+        "admission_grade",
+        "attested_secondary"
+      ],
+      "description": "Source-strength tier orthogonal to admission_tier. Absent means admission_grade; attested_secondary requires evidence_caveat and is filterable for headline/IRR analyses."
+    },
+    "evidence_caveat": {
+      "type": "string",
+      "description": "Required when evidence_tier=attested_secondary; records the lower source grade and admissible use boundary."
     },
     "version": {
       "type": "string"
@@ -140,18 +176,33 @@
           "IN",
           "IR",
           "IS",
+          "JO",
           "JP",
             "KR",
             "KZ",
+            "KH",
+            "KW",
+            "LB",
+            "LK",
+            "MA",
+            "MM",
+            "MX",
             "MY",
             "NG",
             "NL",
+            "NO",
+            "NP",
             "PH",
             "PL",
+            "PK",
           "PT",
+          "QA",
           "RU",
+          "SA",
           "SG",
+          "TN",
           "TR",
+          "TW",
           "UA",
           "UK",
           "UN",
@@ -160,7 +211,14 @@
           "BD",
           "BO",
           "BR",
+          "CR",
+          "DK",
+          "DZ",
+          "EC",
+          "EG",
           "ID",
+          "IQ",
+          "KE",
           "TH",
           "UZ",
           "KG",
@@ -169,7 +227,10 @@
           "IL",
           "AE",
           "FR",
+          "VE",
+          "VN",
           "ZA",
+          "ZW",
           "corporate_global"
         ]
       }
@@ -264,6 +325,7 @@
               "type": "string",
               "enum": [
                 "admission_anchor",
+                "replayable",
                 "contextual_unarchived",
                 "non_admission"
               ],

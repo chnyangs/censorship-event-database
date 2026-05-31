@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-17` · **Source commit**: `1d420be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-05-17T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-05-31` · **Source commit**: `a331305` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-05-31T04:56:33Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -10,9 +10,20 @@
 
 > "DOJ indictment of Bitzlato and its founder on 2023-01-18 — paired with
 > FinCEN's Section 9714 special measure designation of Bitzlato as a
-> 'primary money laundering concern' — produced a same-day L4 seizure of
-> bitzlato.com. First application of FinCEN Section 9714 to a crypto
-> exchange; structurally distinct from pure-OFAC or pure-DOJ paths."
+> 'primary money laundering concern' — directly disrupted Bitzlato's
+> exchange operations at the offramp_cex layer (observed_change, direct
+> attribution via FinCEN 9714 order). First application of FinCEN
+> Section 9714 to a crypto exchange; structurally distinct from
+> pure-OFAC or pure-DOJ paths. L4 frontend takedown of bitzlato.com is
+> hypothesized but not asserted in this release: coverage.l4_frontend
+> status is `not_measured` and no L4 observation row is attached.
+> Future revision should add l4_frontend pre/post Wayback bracketing of
+> bitzlato.com to test the FinCEN-9714 + DOJ-indictment frontend
+> seizure pattern. v0.3 audit 2026-05-20: scoped_claim repaired per
+> Session 2 Block D NO decision (qid=26 bitzlato needs_recheck) which
+> flagged original wording for asserting L4 same-day seizure without
+> supporting observation row — same defect class as garantex-ofac-2022
+> audit_log row 218."
 
 ## 1. Trigger
 
@@ -76,7 +87,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1d420be`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a331305`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

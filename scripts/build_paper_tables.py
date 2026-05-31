@@ -79,8 +79,8 @@ ARCHETYPE_ORDER = [
 # `corporate_policy_change` events are admitted as `trigger_is_action`
 # (t=0 by construction); they carry minute-precision timestamps but are
 # excluded from the cross-event latency distribution per §C4.
-HOUR_PRECISION_VALUES = {"minute", "second", "hour"}
-DAY_PRECISION_VALUES = {"day", "date"}
+HOUR_PRECISION_VALUES = {"minute", "second", "hour", "hour_range"}
+DAY_PRECISION_VALUES = {"day", "date", "week"}
 
 
 def parse_args() -> argparse.Namespace:

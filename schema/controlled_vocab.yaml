@@ -12,8 +12,8 @@ event_classes:
 research_strata:
   - S1_ofac_sdn
   - S2_ofac_removal
-  - S3_doj_sec_cftc_fiod            # US federal enforcement (DOJ / SEC / CFTC / FinCEN) + non-US MLAT companions (e.g. NL FIOD)
-  - S4_nation_state                 # single-country central-bank / emergency-order actions (IN RBI, NG CBN, TR CBRT, CN PBOC, CA Emergencies Act, KR FSC)
+  - S3_doj_sec_cftc_fiod            # US federal enforcement / court actions (DOJ / SEC / CFTC / FinCEN) + non-US MLAT companions (e.g. NL FIOD)
+  - S4_nation_state                 # single-country and subnational government/regulator actions (IN RBI, NG CBN, TR CBRT, CN PBOC, CA Emergencies Act, KR FSC, US state regulators)
   - S5_corporate                    # issuer / exchange / frontend unilateral policy (Circle, Tether, Uniswap Labs, Coinbase)
   - S6_supranational                # EU / UN / G7-level actions: regulatory frameworks (MiCA) + sanctions packages (EU Russia sanctions)
 
@@ -54,7 +54,7 @@ trigger_types:
   - court_civil_order
   - corporate_policy_change
   - nation_state_block
-  - regulatory_enforcement          # non-US national regulator administrative enforcement (JP FSA, KR FSC, IS CBI, etc.); see schema/codebook.md §5.1. Distinct from nation_state_block (which is L0/payment-rail blocking).
+  - regulatory_enforcement          # national or subnational regulator administrative action (JP FSA, KR FSC, NYDFS, NY OAG, NJ Bureau, etc.); see schema/codebook.md §5.1. Distinct from nation_state_block (which is L0/payment-rail blocking).
 
 layers:
   - l0_network

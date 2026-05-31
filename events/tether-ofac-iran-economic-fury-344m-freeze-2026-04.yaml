@@ -37,6 +37,18 @@ trigger:
         funds. Primary-corporate anchor for the actor (Tether) and the
         action ($344M freeze across two addresses). Wayback 20260520133449
         pinned.
+    - type: primary_legal
+      url: https://ofac.treasury.gov/recent-actions/20260424
+      body_hash: sha256:327835198fb4e13ee3b43efeca177f9f50d6fe26360678db82965446b7c26661
+      body_path: sources/http_captures/tether-ofac-iran-economic-fury-344m-freeze-2026-04/primary/ofac.treasury.gov__recent-actions-20260424__ab9d2f176b.html
+      evidence_use: replayable
+      note: |
+        OFAC Recent Actions 2026-04-24 SDN update adds two TRON digital
+        currency addresses to Bank Markazi Jomhouri Islami Iran / Central
+        Bank of Iran: TNiq9AXBp9EjUqhDhrwrfvAA8U3GUQZH81 and
+        TTiDLWE6fZK8okMJv6ijg42yrH6W2pjSr9. This is the primary legal
+        anchor for the complete two-address target set and the US/IRGC/
+        Hizballah sanctions context.
     - type: semi_primary_wayback
       url: https://www.trmlabs.com/resources/blog/ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-million
       wayback: https://web.archive.org/web/20260524000757/https://www.trmlabs.com/resources/blog/ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-million
@@ -51,20 +63,27 @@ trigger:
         collectively received ~$370M across ~1,000 transactions since
         March 2021. Independent second semi-primary anchor.
   timestamp_sources:
+    - type: primary_onchain
+      note: |
+        The two USDT AddedBlackList receipts are both in Tron block 82092618
+        at 2026-04-23 12:02:36 UTC.
     - type: semi_primary_wayback
       note: |
         Day-level precision: the freeze is reported on 2026-04-23 per the
-        cited coverage (CoinDesk/TRM coverage 2026-04-24).
+        cited coverage (Tether/TRM coverage 2026-04-23/24).
 
 target:
-  kind: entity
-  enumeration: subset
+  kind: address_set
+  enumeration: complete
   enumeration_note: |
     Two Tron USD₮ addresses attributed to the Central Bank of Iran
-    (links to IRGC-Qods Force / Hizballah), holding ~$344M USDT. The
-    "two addresses" count is attested in both captured sources; the
-    specific address strings are NOT enumerated here (not present in the
-    captured pages — not asserted, per anti-fabrication).
+    (links to IRGC-Qods Force / Hizballah), holding ~$344M USDT. OFAC's
+    2026-04-24 SDN update enumerates the complete two-address set; both
+    addresses have matching USDT AddedBlackList logs in Tron block
+    82092618.
+  addresses:
+    - "TNiq9AXBp9EjUqhDhrwrfvAA8U3GUQZH81"
+    - "TTiDLWE6fZK8okMJv6ijg42yrH6W2pjSr9"
   actor_type: sovereign_sanctioned_wallets
   actor_name: Central Bank of Iran USD₮ wallets (2 addresses)
   chains: [tron]
@@ -92,10 +111,10 @@ coverage:
       Tether froze ~$344M USD₮ across two Tron addresses attributed to the
       Central Bank of Iran, in coordination with OFAC and U.S. law
       enforcement — the largest on-chain freeze of Iranian sovereign
-      crypto reserves on public record. NOTE (codebook §1.6): no verified
-      primary_onchain freeze tx_hash is pinned in this draft; a human must
-      attach the addBlackList tx hashes (and the specific addresses)
-      before admission. No tx_hash and no address strings fabricated.
+      crypto reserves on public record. OFAC's SDN update enumerates the
+      two target addresses, and two primary_onchain Tron receipts pin the
+      matching USDT AddedBlackList logs. The event remains draft only
+      because `origin=agent_draft` cannot be promoted by automation.
   - layer: offramp_cex
     status: not_applicable
 
@@ -105,10 +124,49 @@ observations:
     event: tether_froze_344m_usdt_central_bank_iran_two_addresses
     observation_kind: observed_change
     attribution: direct
-    timestamp: 2026-04-23T00:00:00Z
-    precision: day
-    delta_hours: 0
+    timestamp: 2026-04-23T12:02:36Z
+    precision: hour_range
+    delta_hours: 12.0
     sources:
+      - type: primary_legal
+        url: https://ofac.treasury.gov/recent-actions/20260424
+        body_hash: sha256:327835198fb4e13ee3b43efeca177f9f50d6fe26360678db82965446b7c26661
+        body_path: sources/http_captures/tether-ofac-iran-economic-fury-344m-freeze-2026-04/primary/ofac.treasury.gov__recent-actions-20260424__ab9d2f176b.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tether]
+          countries: [US, IR]
+          time_window:
+            - 2026-04-23T00:00:00Z
+            - 2026-04-24T23:59:59Z
+        note: |
+          OFAC Recent Actions 2026-04-24 SDN update enumerates the two
+          Central Bank of Iran TRON addresses later matched to the
+          primary_onchain USDT AddedBlackList logs:
+          TNiq9AXBp9EjUqhDhrwrfvAA8U3GUQZH81 and
+          TTiDLWE6fZK8okMJv6ijg42yrH6W2pjSr9.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/ebe670f1518f67077d28ec4b54dd0d236a5f1edfa90651524aeb42a21e6975fe
+        tx_hash: "ebe670f1518f67077d28ec4b54dd0d236a5f1edfa90651524aeb42a21e6975fe"
+        block: 82092618
+        note: |
+          USDT Tron AddedBlackList(address) log for
+          TNiq9AXBp9EjUqhDhrwrfvAA8U3GUQZH81 in block 82092618 at
+          2026-04-23 12:02:36 UTC. TronGrid receipt SUCCESS, USDT TRON
+          contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t, event topic
+          42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc;
+          receipt cached under sources/onchain_receipts.
+      - type: primary_onchain
+        url: https://tronscan.org/#/transaction/295cd606150289dc18d9e0e4d9503adb9d1b10bde9c314158f9cfa7c9928b09a
+        tx_hash: "295cd606150289dc18d9e0e4d9503adb9d1b10bde9c314158f9cfa7c9928b09a"
+        block: 82092618
+        note: |
+          USDT Tron AddedBlackList(address) log for
+          TTiDLWE6fZK8okMJv6ijg42yrH6W2pjSr9 in block 82092618 at
+          2026-04-23 12:02:36 UTC. TronGrid receipt SUCCESS, USDT TRON
+          contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t, event topic
+          42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc;
+          receipt cached under sources/onchain_receipts.
       - type: primary_corporate
         url: https://tether.io/news/tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement/
         wayback: https://web.archive.org/web/20260520133449/https://tether.io/news/tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement/
@@ -148,7 +206,17 @@ observations:
           second semi-primary anchor.
 
 analysis_notes: |
-  **VERIFY-FLAG 2026-05-31 (wave-3 S5 adversarial verify):** Tether.io primary supports the $344M/two-address freeze claim, BUT asset_onchain is coded observed_change without a primary_onchain tx_hash (§1.6 floor). Pin the two addBlackList tx hashes, or recode asset_onchain to not_measured with the freeze effect on offramp_cex (cf. tether-garantex-usdt-freeze-2025-03). DRAFT — do NOT admit as-is.
+  **SOURCE REPAIR 2026-05-31 (automation, no human admission claimed):**
+  resolved the prior §1.6 VERIFY-FLAG by adding an OFAC primary-legal SDN
+  update that enumerates the two Central Bank of Iran TRON addresses and by
+  pinning two TronGrid-verified USDT AddedBlackList receipts in block
+  82092618 at 2026-04-23 12:02:36 UTC:
+  ebe670f1518f67077d28ec4b54dd0d236a5f1edfa90651524aeb42a21e6975fe
+  for TNiq9AXBp9EjUqhDhrwrfvAA8U3GUQZH81, and
+  295cd606150289dc18d9e0e4d9503adb9d1b10bde9c314158f9cfa7c9928b09a
+  for TTiDLWE6fZK8okMJv6ijg42yrH6W2pjSr9. The event remains status=draft
+  because origin=agent_draft cannot be promoted by automation.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
   verified+captured, awaiting human admission). On ~2026-04-23 Tether
   froze ~$344M USD₮ across two Tron addresses attributed to the Central
@@ -159,28 +227,27 @@ analysis_notes: |
   attribution=direct per §1.2 (Tether's own freeze carries the asset-layer
   change and OFAC names the specific CBI target wallets). jurisdiction
   corporate_global (Tether action) + US (OFAC) + IR (target). NOTE for
-  human reviewer (codebook §1.6): asset_onchain observed_change carries no
-  pinned primary_onchain freeze tx_hash (deferred for drafts) — pin the
-  addBlackList tx hashes and the two specific Tron address strings before
-  admission. ANTI-FABRICATION: the two specific Tron addresses, the
-  per-address $213M/$131M split, and the verbatim "Operation Economic
-  Fury" phrasing are NOT asserted here because they are NOT present in the
-  two captured pages (they appear only in uncaptured secondary summaries);
-  what the captures DO support is asserted ($344M / $344.2M, two
+  human reviewer: asset_onchain now carries primary_onchain tx hashes and
+  the complete OFAC address set, but admission is still human-gated.
+  ANTI-FABRICATION: the per-address $213M/$131M split and the verbatim
+  "Operation Economic Fury" phrasing are NOT asserted here because they
+  are NOT present in the captured pages; what the captures DO support is
+  asserted ($344M / $344.2M, two
   addresses, Central Bank of Iran, IRGC-Qods Force, Hizballah, largest
   on-chain freeze, ~$370M / ~1,000 tx since March 2021). Sources verified
-  via WebSearch + captured 2026-05-31 (Tether.io primary + TRM Labs,
-  body_hash-pinned; no tx_hash or address fabricated).
+  via WebSearch + captured 2026-05-31 (Tether.io primary + OFAC primary
+  legal + TRM Labs, body_hash-pinned; tx hashes and addresses verified
+  from OFAC + TronGrid, not inferred).
 
 scoped_claim: |
-  "On ~2026-04-23 Tether froze ~$344M USD₮ across two Tron addresses
-  attributed to the Central Bank of Iran (IRGC-Qods Force / Hizballah
-  links), in coordination with OFAC — the largest on-chain freeze of
-  Iranian sovereign crypto reserves on record; single-layer asset_onchain
-  observed_change, attribution=direct. Specific addresses and freeze tx
-  hashes to be pinned by a human before admission (codebook §1.6); the
-  per-address split and 'Economic Fury' phrasing are not asserted (not in
-  captures)."
+  "On 2026-04-23 at 12:02:36 UTC, Tether blacklisted two Tron USDT
+  addresses later enumerated by OFAC for the Central Bank of Iran
+  (IRGC-Qods Force / Hizballah links): TNiq9AXBp9EjUqhDhrwrfvAA8U3GUQZH81
+  and TTiDLWE6fZK8okMJv6ijg42yrH6W2pjSr9. Tether/TRM describe the action
+  as a ~$344M freeze, the largest on-chain freeze of Iranian sovereign
+  crypto reserves on record; single-layer asset_onchain observed_change,
+  attribution=direct. The per-address split and 'Economic Fury' phrasing
+  are not asserted (not in captures)."
 
 tags:
   - corporate_policy_change

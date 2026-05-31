@@ -1,4 +1,4 @@
-id: circle-usdc-multichain-hack-freeze-2023-10
+id: circle-usdc-multichain-hack-freeze-2023-07
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: draft
@@ -12,7 +12,6 @@ origin: agent_draft
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
 last_verified: 2026-05-31
-last_human_audit: 2026-05-31
 
 related_events:
   - circle-usdc-cryptex-freeze-2024
@@ -21,8 +20,8 @@ related_events:
 trigger:
   type: corporate_policy_change
   actor: circle
-  timestamp: 2023-10-01T00:00:00Z
-  timestamp_precision: week
+  timestamp: 2023-07-07T16:55:23Z
+  timestamp_precision: minute
   citation:
     - type: semi_primary_wayback
       url: https://www.theblock.co/post/377094/multichain-extends-freeze-stolen-usdc
@@ -41,33 +40,60 @@ trigger:
         "U.S. Department of Justice obtained a seizure warrant and compelled
         Circle to freeze the addresses", "$63 million worth of USDC", "Judge
         David S. Jones", "bankruptcy court". Wayback 20251129153811 pinned.
-  timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_onchain
+      url: https://etherscan.io/tx/0x5a6ccaebe4e97298e27a40d8dd3fc59661935694c7a96b28c0de1165a725d3fc
+      tx_hash: "0x5a6ccaebe4e97298e27a40d8dd3fc59661935694c7a96b28c0de1165a725d3fc"
       note: |
-        Week/month-level precision: Circle first froze the three
-        Multichain-linked addresses in October 2023 at DOJ direction per the
-        cited coverage; the exact on-chain blacklist transaction date is not
-        pinned at this draft stage (no verified tx_hash captured — see §1.6 note
-        below). Timestamp set to 2023-10-01 as the start of the reported month;
-        precision=week marks the within-October uncertainty.
+        Circle USDC Blacklisted(address) transaction for
+        0x48BeAd89e696eE93B04913CB0006f35ADB844537 in block 17643245 at
+        2023-07-07 16:55:23 UTC. Verified via Ethereum JSON-RPC
+        eth_getLogs / eth_getTransactionReceipt against the USDC contract
+        0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48.
+    - type: primary_onchain
+      url: https://etherscan.io/tx/0xed97f73fc7c1ae7679b1572b08f16c422445e8ca575c643bd8c9c0ea3e1ad69b
+      tx_hash: "0xed97f73fc7c1ae7679b1572b08f16c422445e8ca575c643bd8c9c0ea3e1ad69b"
+      note: |
+        Circle USDC Blacklisted(address) transaction for
+        0xefEeF8e968a0db92781ac7B3B7C821909ef10c88 in block 17643245 at
+        2023-07-07 16:55:23 UTC. Verified via Ethereum JSON-RPC
+        eth_getLogs / eth_getTransactionReceipt against the USDC contract.
+    - type: primary_onchain
+      url: https://etherscan.io/tx/0xd568f3d01f052050efa2b6a0cedf89dd01f9597b6d9972be18996f9a5f5751c5
+      tx_hash: "0xd568f3d01f052050efa2b6a0cedf89dd01f9597b6d9972be18996f9a5f5751c5"
+      note: |
+        Circle USDC Blacklisted(address) transaction for
+        0x027F1571aca57354223276722DC7b572a5B05cD8 in block 17643245 at
+        2023-07-07 16:55:23 UTC. Verified via Ethereum JSON-RPC
+        eth_getLogs / eth_getTransactionReceipt against the USDC contract.
+  timestamp_sources:
+    - type: primary_onchain
+      note: |
+        Minute-level precision from the three USDC Blacklisted(address)
+        on-chain receipts, all in Ethereum block 17643245 at
+        2023-07-07 16:55:23 UTC. The prior October 2023 coding was a stale
+        candidate date derived from later court-extension coverage, not the
+        freeze execution time.
 
 target:
-  kind: asset
+  kind: address_set
   enumeration: subset
   enumeration_note: |
     USDC (Circle stablecoin) held at three Ethereum addresses that received
     outflow funds from the Multichain bridge exploit, blacklisted on the USDC
-    contract by Circle. Per the captured BeInCrypto report the three addresses
-    are 0x027F1, 0xefEeF, and 0x48BeA (prefixes only as published; full
-    addresses not enumerated in the captured sources), holding ~$65M in USDC
-    (The Block headline: ~$63M frozen). Marked subset (kind=asset rather than
-    address_set) because the captured sources publish only address prefixes, not
-    the full checksummed addresses required to enumerate a complete address_set;
-    no full addresses are fabricated.
+    contract by Circle. The captured BeInCrypto report publishes three address
+    prefixes (0x027F1, 0xefEeF, 0x48BeA); the full addresses below come from
+    matching USDC Blacklisted(address) logs in Ethereum block 17643245, queried
+    over the 2023-07-07 Multichain-freeze window. Marked subset because this is
+    the three-address USDC freeze set named in the source thread, not a complete
+    enumeration of every Multichain exploit address or every later legal claim.
   actor_type: stablecoin_issuer_blacklist
-  actor_name: USDC at three Multichain-linked addresses (0x027F1 / 0xefEeF / 0x48BeA)
+  actor_name: USDC at three Multichain-linked addresses
   chains:
     - ethereum
+  addresses:
+    - "0x027F1571aca57354223276722DC7b572a5B05cD8"
+    - "0xefEeF8e968a0db92781ac7B3B7C821909ef10c88"
+    - "0x48BeAd89e696eE93B04913CB0006f35ADB844537"
 
 jurisdiction:
   - US
@@ -93,21 +119,18 @@ coverage:
       No centralized-exchange off-ramp is the mechanism here; the freeze is an
       issuer on-chain blacklist on the USDC contract, carried at asset_onchain.
   - layer: asset_onchain
-    status: partially_measured
+    status: measured
     scope:
-      - usdc_multichain_addr_0x027F1
-      - usdc_multichain_addr_0xefEeF
-      - usdc_multichain_addr_0x48BeA
+      - usdc_multichain_addr_0x027F1571aca57354223276722DC7b572a5B05cD8
+      - usdc_multichain_addr_0xefEeF8e968a0db92781ac7B3B7C821909ef10c88
+      - usdc_multichain_addr_0x48BeAd89e696eE93B04913CB0006f35ADB844537
     note: |
       Load-bearing layer. Circle added three Multichain-exploit-linked addresses
       to the USDC contract blacklist (~$63-65M USDC), rendering that USDC
       unredeemable/untransferable, at the direction of a DOJ seizure warrant and
-      later under a court order. Partially_measured / §1.6 floor DEFERRED: the
-      specific on-chain USDC blacklist() transaction hash is NOT pinned — the
-      captured sources name only address prefixes and amounts, not a tx_hash, and
-      no tx_hash is fabricated (codebook §1.6 anti-fabrication). The event
-      therefore remains a draft; promotion to admitted would require pinning the
-      real blacklist() tx_hash on the USDC contract.
+      later under a court order. The three USDC Blacklisted(address) transaction
+      hashes are pinned below; the event remains a draft only because
+      `origin=agent_draft` cannot be promoted by automation.
 
 observations:
   - layer: asset_onchain
@@ -115,11 +138,33 @@ observations:
     event: circle_blacklists_three_multichain_linked_usdc_addresses
     observation_kind: observed_change
     attribution: plausible
-    timestamp: 2023-10-01T00:00:00Z
-    precision: week
+    timestamp: 2023-07-07T16:55:23Z
+    precision: minute
     delta_hours: 0
     country: US
+    action_id: circle-usdc-multichain-blacklist-2023-07-block-17643245
     sources:
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x5a6ccaebe4e97298e27a40d8dd3fc59661935694c7a96b28c0de1165a725d3fc
+        tx_hash: "0x5a6ccaebe4e97298e27a40d8dd3fc59661935694c7a96b28c0de1165a725d3fc"
+        note: |
+          USDC Blacklisted(address) log for
+          0x48BeAd89e696eE93B04913CB0006f35ADB844537 in Ethereum block
+          17643245 at 2023-07-07 16:55:23 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xed97f73fc7c1ae7679b1572b08f16c422445e8ca575c643bd8c9c0ea3e1ad69b
+        tx_hash: "0xed97f73fc7c1ae7679b1572b08f16c422445e8ca575c643bd8c9c0ea3e1ad69b"
+        note: |
+          USDC Blacklisted(address) log for
+          0xefEeF8e968a0db92781ac7B3B7C821909ef10c88 in Ethereum block
+          17643245 at 2023-07-07 16:55:23 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0xd568f3d01f052050efa2b6a0cedf89dd01f9597b6d9972be18996f9a5f5751c5
+        tx_hash: "0xd568f3d01f052050efa2b6a0cedf89dd01f9597b6d9972be18996f9a5f5751c5"
+        note: |
+          USDC Blacklisted(address) log for
+          0x027F1571aca57354223276722DC7b572a5B05cD8 in Ethereum block
+          17643245 at 2023-07-07 16:55:23 UTC.
       - type: semi_primary_wayback
         url: https://www.theblock.co/post/238459/63-million-in-usdc-frozen-by-circle-following-multichain-breach
         wayback: https://web.archive.org/web/20240418114315/https://www.theblock.co/post/238459/63-million-in-usdc-frozen-by-circle-following-multichain-breach
@@ -130,14 +175,14 @@ observations:
           providers: [circle_usdc]
           countries: [US]
           time_window:
-            - 2023-10-01T00:00:00Z
-            - 2023-10-31T23:59:59Z
+            - 2023-07-07T00:00:00Z
+            - 2023-07-07T23:59:59Z
         note: |
           The Block: "$63 million in USDC frozen by Circle following Multichain
           breach"; "Circle blacklisted three wallet addresses that received a
           significant outflow of funds from Multichain." Grep of captured body
-          confirms this title + description. NOTE: no on-chain tx_hash present;
-          §1.6 floor deferred at draft stage (no fabrication).
+          confirms this title + description. Later on-chain repair pinned the
+          three matching USDC Blacklisted(address) tx hashes above.
       - type: semi_primary_wayback
         url: https://beincrypto.com/multichain-hack-circle-tether-freeze-funds/
         wayback: https://web.archive.org/web/20250806162323/https://beincrypto.com/multichain-hack-circle-tether-freeze-funds/
@@ -148,8 +193,8 @@ observations:
           providers: [circle_usdc]
           countries: [US]
           time_window:
-            - 2023-10-01T00:00:00Z
-            - 2023-10-31T23:59:59Z
+            - 2023-07-07T00:00:00Z
+            - 2023-07-07T23:59:59Z
         note: |
           BeInCrypto: "Circle blacklisted three addresses receiving outflow funds
           from Multichain. The three addresses, 0x027F1, 0xefEeF, and 0x48BeA,
@@ -159,9 +204,20 @@ observations:
           carried by the trigger citation (The Block 377094).
 
 analysis_notes: |
-  **VERIFY-FLAG 2026-05-31 (wave-3 S5 adversarial verify):** (a) the trigger date is mis-stated vs the captured sources (The Block/BeInCrypto report the freeze timing differently — recheck and correct the date); (b) asset_onchain is coded observed_change but no primary_onchain freeze tx_hash is pinned (§1.6 requires one). Fix the date and either pin the tx or recode asset_onchain to not_measured. DRAFT — do NOT admit as-is.
+  **SOURCE REPAIR 2026-05-31 (automation, no human admission claimed):**
+  corrected the stale 2023-10 candidate date to the actual USDC blacklist
+  execution time, 2023-07-07 16:55:23 UTC. Ethereum JSON-RPC
+  eth_getLogs over the USDC Blacklisted(address) topic found the three source-
+  named address prefixes in block 17643245, yielding the full addresses and
+  three primary_onchain tx hashes:
+  0x5a6ccaebe4e97298e27a40d8dd3fc59661935694c7a96b28c0de1165a725d3fc
+  (0x48BeA...), 0xed97f73fc7c1ae7679b1572b08f16c422445e8ca575c643bd8c9c0ea3e1ad69b
+  (0xefEeF...), and 0xd568f3d01f052050efa2b6a0cedf89dd01f9597b6d9972be18996f9a5f5751c5
+  (0x027F1...). The event remains status=draft because origin=agent_draft
+  cannot be promoted by automation.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
-  verified+captured, awaiting human admission). In October 2023 Circle added
+  verified+captured, awaiting human admission). On 2023-07-07 Circle added
   three Ethereum addresses linked to the July-2023 Multichain bridge exploit to
   the USDC contract blacklist (~$63-65M USDC, addresses 0x027F1 / 0xefEeF /
   0x48BeA per the captured sources), at the direction of a U.S. Department of
@@ -173,14 +229,8 @@ analysis_notes: |
   scope (issuer asset freeze at LE/sanction request — the Circle/Tether
   pattern). comparison shape, single asset_onchain observed_change,
   attribution=plausible (the blacklist is directly reported and the DOJ-warrant
-  trigger is sourced, but the captured anchors are trade press, not a Circle
-  primary blacklist notice, and no on-chain tx is pinned). §1.6 FLOOR DEFERRED:
-  a real USDC blacklist() tx_hash is required for an admitted asset_onchain
-  observed_change; none is captured here (sources give only address prefixes +
-  amounts), and per anti-fabrication NO tx_hash is invented — so the event stays
-  draft and is intentionally un-promotable until the real blacklist tx is pinned
-  (cf. circle-usdc-cryptex-freeze-2024, which DOES carry a verified
-  primary_onchain freeze tx). Sources verified via WebSearch 2026-05-31; The
+  trigger is sourced, and the matching on-chain Blacklisted(address) logs are
+  now pinned). Sources verified via WebSearch 2026-05-31; The
   Block (238459 + 377094) + BeInCrypto captured + body_hash pinned; grep of the
   captured bodies confirms "$63 million in USDC frozen by Circle following
   Multichain breach", "blacklisted three wallet addresses", "0x027F1, 0xefEeF,
@@ -189,12 +239,13 @@ analysis_notes: |
   fabrication).
 
 scoped_claim: |
-  "Circle's October-2023 USDC-contract blacklist of three Multichain-exploit-
+  "Circle's 2023-07-07 16:55:23 UTC USDC-contract blacklist of three Multichain-exploit-
   linked Ethereum addresses (~$63-65M USDC, at DOJ seizure-warrant direction and
   later under SDNY court order) is a single-layer asset_onchain observed_change
-  with attribution=plausible; the asset_onchain §1.6 tx_hash floor is deferred
-  (no verified blacklist tx pinned), so the draft is intentionally
-  un-promotable as authored."
+  with attribution=plausible; the three source-named address prefixes are
+  resolved to full Ethereum addresses by matching USDC Blacklisted(address)
+  logs in block 17643245. The row remains draft only because no human
+  promotion is claimed."
 
 tags:
   - corporate_policy_change
@@ -204,5 +255,5 @@ tags:
   - stablecoin_blacklist
   - multichain
   - doj_seizure_warrant
-  - asset_onchain_floor_deferred
+  - primary_onchain_pinned
   - comparable_main

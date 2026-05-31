@@ -48,24 +48,45 @@ trigger:
         the Tether freeze: DOJ identifies targets + files civil forfeiture;
         Tether freezes USDT holdings of those targets. Second-anchor
         primary_legal artifact for the freeze's causal chain.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-dc/media/1403996/dl?inline=
+      body_hash: sha256:2134aba63aa003b2574401bb7ba94c10fa54970e82131baa747cdba0ebc8ae0b
+      body_path: sources/http_captures/tether-doj-pig-butchering-freeze-2023/primary/www.justice.gov__usao-dc-media-1403996-dl__2a4332ecd7.bin
+      evidence_use: replayable
+      note: |
+        D.D.C. verified complaint filed 2025-06-18 in United States v.
+        Approximately 225,364,961 USDT. Retrospective primary_legal anchor:
+        the complaint enumerates seven Subject Virtual Currency Addresses
+        (USDT Token Groups A-G) and states that on or around 2023-11-20 USSS
+        requested Tether voluntarily freeze approximately 225M USDT at
+        those addresses.
   timestamp_sources:
     - type: primary_corporate
       note: Day-level timing per Tether blog post.
 
 target:
-  kind: entity
+  kind: address_set
   enumeration: subset
   enumeration_note: |
     Pig-butchering syndicate wallet cluster with ~$225M USDT total frozen.
-    Tether blog post does not enumerate individual wallet addresses; the
-    DOJ civil-forfeiture complaint references ~$112M+ in identified
-    addresses. On-chain targets are therefore subset-enumerable through
-    the DOJ civil-forfeiture filings but not complete via primary Tether
-    source alone.
+    Tether's 2023 blog reports the aggregate freeze but does not enumerate
+    every wallet. The later D.D.C. verified complaint enumerates seven
+    Subject Virtual Currency Addresses (USDT Token Groups A-G) within the
+    same $225M freeze / forfeiture path; those seven are pinned below.
+    Other wallets in the broader 37-39 wallet freeze cohort remain
+    unenumerated here, so enumeration stays subset rather than complete.
+  addresses:
+    - "0xc7c8f8284c5360d0086a2f0a05bdd07afde23246"
+    - "0x564e11ace70bfe6c943a973f1289faa6e8a0fe16"
+    - "0xcab9a8391f765f6beda0b5bad434b10985bdaad0"
+    - "0x0b5453635e5325f5385ca1643c9e9eb173f9d5a8"
+    - "0xc76afbf0f69ae9be5d855239c50673252cf3f26b"
+    - "0x99ebaf3661065dc1e44feff4b80365678bdff6ce"
+    - "0x82e1d4ddd636857ebcf6a0e74b9b0929c158d7fb"
   protocol: null
   actor_type: scam_syndicate_wallet_cluster
   actor_name: Pig-butchering / romance-scam network
-  chains: [ethereum, tron]
+  chains: [ethereum]
   canonical_domains: []
 
 jurisdiction: [corporate_global, US]
@@ -83,17 +104,15 @@ coverage:
     status: not_applicable
     note: No canonical web presence for a wallet-cluster target.
   - layer: asset_onchain
-    status: not_measured
+    status: partially_measured
     chain: ethereum
     note: |
-      Tether's $225M USDT freeze across 37-39 wallets is an asset-layer
-      action in principle, but the 37-39 specific wallet addresses are not
-      enumerated in either primary source (Tether blog reports aggregate
-      $225M; DOJ EDVA civil-forfeiture references $112M+ aggregate); per-
-      tx primary_onchain receipts therefore cannot be anchored without a
-      secondary derivation pass. The paper-relevant observation is moved
-      to the offramp_cex layer (issuer-level stablecoin-access denial);
-      asset_onchain remains not_measured until the wallet cohort is pinned.
+      Tether's $225M USDT freeze is an asset-layer action. As of the
+      2026-05-31 repair pass, seven Subject Virtual Currency Addresses
+      from the later D.D.C. complaint are pinned to primary_onchain USDT
+      AddedBlackList logs on 2023-11-20. Partially_measured rather than
+      measured because the full 37-39 wallet cohort from the original
+      Tether blog is still not completely enumerated in the public record.
   - layer: offramp_cex
     status: measured
     scope: [tether_usdt_issuer]
@@ -105,6 +124,89 @@ coverage:
       direct attribution.
 
 observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_added_blacklist_for_doj_usss_pig_butchering_cluster
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-11-20T13:30:11Z
+    precision: hour_range
+    delta_hours: 13.5
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-dc/media/1403996/dl?inline=
+        body_hash: sha256:2134aba63aa003b2574401bb7ba94c10fa54970e82131baa747cdba0ebc8ae0b
+        body_path: sources/http_captures/tether-doj-pig-butchering-freeze-2023/primary/www.justice.gov__usao-dc-media-1403996-dl__2a4332ecd7.bin
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tether, okx]
+          countries: [US]
+          time_window:
+            - 2023-11-20T00:00:00Z
+            - 2023-11-20T23:59:59Z
+        note: |
+          The D.D.C. complaint provides the retrospective primary_legal
+          bridge between the 2023 Tether/USSS freeze and the seven
+          enumerated USDT Token Group addresses. It states USSS requested
+          Tether voluntarily freeze approximately 225M USDT at the Subject
+          Virtual Currency Addresses on or around 2023-11-20.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x6f2ee4e620f7ad9424746dc66bc0d59177769ab4162c152abc50735a1fb900d9
+        tx_hash: "0x6f2ee4e620f7ad9424746dc66bc0d59177769ab4162c152abc50735a1fb900d9"
+        block: 18613308
+        note: |
+          USDT AddedBlackList for Token Group E
+          0xc76afbf0f69ae9be5d855239c50673252cf3f26b, block 18613308 at
+          2023-11-20 13:30:11 UTC. Receipt cached under
+          sources/onchain_receipts/tether-doj-pig-butchering-freeze-2023/.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x27daa9b2a7feecfd9036f4c45eec44e9f06733e074d8ce222637201506855f0c
+        tx_hash: "0x27daa9b2a7feecfd9036f4c45eec44e9f06733e074d8ce222637201506855f0c"
+        block: 18613312
+        note: |
+          USDT AddedBlackList for Token Group F
+          0x99ebaf3661065dc1e44feff4b80365678bdff6ce, block 18613312 at
+          2023-11-20 13:30:59 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x1cba0d1237187bc409bdf02b1b54c2b848ad7e959d7229b48d13e13af042d769
+        tx_hash: "0x1cba0d1237187bc409bdf02b1b54c2b848ad7e959d7229b48d13e13af042d769"
+        block: 18613313
+        note: |
+          USDT AddedBlackList for Token Group D
+          0x0b5453635e5325f5385ca1643c9e9eb173f9d5a8, block 18613313 at
+          2023-11-20 13:31:11 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x9663efbd994469f8660b26efb553b23b16aa93a7fb531f04639ceaee2f5e4542
+        tx_hash: "0x9663efbd994469f8660b26efb553b23b16aa93a7fb531f04639ceaee2f5e4542"
+        block: 18613315
+        note: |
+          USDT AddedBlackList for Token Group G
+          0x82e1d4ddd636857ebcf6a0e74b9b0929c158d7fb, block 18613315 at
+          2023-11-20 13:31:35 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x0af2ed54fae51aab459873f8e97d8996810a7b19bb20615769c81d4a47ebab66
+        tx_hash: "0x0af2ed54fae51aab459873f8e97d8996810a7b19bb20615769c81d4a47ebab66"
+        block: 18613316
+        note: |
+          USDT AddedBlackList for Token Group B
+          0x564e11ace70bfe6c943a973f1289faa6e8a0fe16, block 18613316 at
+          2023-11-20 13:31:47 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x4ae05726cfb0dd0c2eaba70fe63a1a7848fb57f8a4f6efb5f72e290bd9141d1e
+        tx_hash: "0x4ae05726cfb0dd0c2eaba70fe63a1a7848fb57f8a4f6efb5f72e290bd9141d1e"
+        block: 18613318
+        note: |
+          USDT AddedBlackList for Token Group C
+          0xcab9a8391f765f6beda0b5bad434b10985bdaad0, block 18613318 at
+          2023-11-20 13:32:11 UTC.
+      - type: primary_onchain
+        url: https://etherscan.io/tx/0x3769cb9daa98464d086855d82f2327864778fe7c9b6bb2109d46b2f6d0900d0e
+        tx_hash: "0x3769cb9daa98464d086855d82f2327864778fe7c9b6bb2109d46b2f6d0900d0e"
+        block: 18613319
+        note: |
+          USDT AddedBlackList for Token Group A
+          0xc7c8f8284c5360d0086a2f0a05bdd07afde23246, block 18613319 at
+          2023-11-20 13:32:23 UTC.
   - layer: offramp_cex
     actor: tether_usdt_issuer
     event: tether_froze_225m_at_doj_request_non_ofac_trigger
@@ -133,6 +235,14 @@ observations:
           framing. Independent primary_legal artifact.
 
 analysis_notes: |
+  **SOURCE REPAIR 2026-05-31 (automation, user-delegated; no human audit
+  status changed):** added the later D.D.C. verified complaint and seven
+  primary_onchain USDT AddedBlackList receipts for the Token Group A-G
+  subset. The original admission status/origin is preserved. The repair
+  upgrades asset_onchain from not_measured to partially_measured because
+  seven concrete addresses are now pinned, while the full wallet cohort
+  from the 2023 Tether blog remains broader than those seven addresses.
+
   comparison — first **DOJ-request-driven (non-OFAC) Tether freeze**
   in the dataset. Paper-relevant S5 datapoint completing the Tether issuer-
   compliance profile:
@@ -149,10 +259,12 @@ analysis_notes: |
 scoped_claim: |
   "Tether's 2023-11-20 freeze of $225M USDT linked to a Southeast Asia
   pig-butchering syndicate — executed at DOJ/USSS request without any
-  corresponding OFAC SDN listing — documents the DOJ-request-driven mode
-  of stablecoin-issuer freeze action. Completes the 3-mode Tether
-  compliance spectrum (OFAC-reactive / OFAC-preemptive / DOJ-request-only)
-  at S5."
+  corresponding OFAC SDN listing — documents the DOJ-request-driven mode of
+  stablecoin-issuer freeze action. A later D.D.C. complaint enumerates seven
+  USDT Token Group addresses in this path, and the seven corresponding
+  Tether AddedBlackList transactions are pinned as primary_onchain
+  evidence. Completes the 3-mode Tether compliance spectrum
+  (OFAC-reactive / OFAC-preemptive / DOJ-request-only) at S5."
 
 tags:
   - corporate_policy_change
@@ -160,3 +272,4 @@ tags:
   - doj_request_driven
   - non_ofac_triggered
   - pig_butchering
+  - primary_onchain_pinned

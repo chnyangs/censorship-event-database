@@ -1,0 +1,193 @@
+id: revil-vasinskyi-polyanin-doj-2021
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - colonial-pipeline-darkside-ransom-clawback-doj-2021
+  - matveev-ofac-2023
+  - lockbit-affiliates-ofac-2024
+  - ofac-trickbot-conti-eleven-2023-09
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_NDTX
+  timestamp: 2021-11-08T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-ndtx/pr/ukrainian-arrested-and-charged-ransomware-attack-kaseya
+      wayback: http://web.archive.org/web/20211112210850/https://www.justice.gov/usao-ndtx/pr/ukrainian-arrested-and-charged-ransomware-attack-kaseya
+      body_hash: sha256:9fdee629e21c5999a463171c7f88132ded0f9a0f3e32a7ea7109a77f63f3cb1d
+      body_path: sources/http_captures/revil-vasinskyi-polyanin-doj-2021/primary/web.archive.org__web-20211112210850-https-www.justice.gov-usao-ndtx-pr-ukrainian-arrested-and-charged-ransomware-attack-kaseya__dccbd69e7d.html
+      evidence_use: replayable
+      note: |
+        DOJ USAO-NDTX 2021-11-08 release, captured from Wayback after the
+        live justice.gov page returned an Akamai interstitial. The source
+        announces charges against Yaroslav Vasinskyi and Yevgeniy Polyanin
+        for Sodinokibi/REvil ransomware activity, including the Kaseya
+        attack, and announces seizure of USD 6.1 million in funds traceable
+        to alleged ransom payments received by Polyanin.
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/sodinokibirevil-affiliate-sentenced-role-700m-ransomware-scheme
+      wayback: http://web.archive.org/web/20240501221044/https://www.justice.gov/opa/pr/sodinokibirevil-affiliate-sentenced-role-700m-ransomware-scheme
+      body_hash: sha256:098a2fc9c93dc8eef53797f01cfc0212fb56ecd9c8c288632716c270a838056d
+      body_path: sources/http_captures/revil-vasinskyi-polyanin-doj-2021/primary/web.archive.org__web-20240501221044-https-www.justice.gov-opa-pr-sodinokibirevil-affiliate-sentenced-role-700m-ransomware-scheme__4b60ba82aa.html
+      evidence_use: replayable
+      note: |
+        DOJ OPA 2024-05-01 sentencing release, captured from Wayback. The
+        source states that Vasinskyi was sentenced to 13 years and seven
+        months and ordered to pay over USD 16 million in restitution, and
+        that related 2023 civil forfeiture cases included 39.89138522
+        Bitcoin plus USD 6.1 million in funds traceable to alleged ransom
+        payments received by other members of the conspiracy.
+  timestamp_sources:
+    - type: primary_legal
+      note: Day-level timing from the DOJ 2021-11-08 public release.
+
+target:
+  kind: entity
+  enumeration: pending
+  enumeration_note: |
+    Target is the DOJ-described Sodinokibi/REvil actor cluster around
+    Yaroslav Vasinskyi, Yevgeniy Polyanin, and related conspirators. The
+    official sources identify the prosecution/seizure arc and later final
+    forfeiture amount, but this draft does not enumerate a complete wallet,
+    account, victim, or exchange-provider set. The 39.89138522 BTC forfeiture
+    is retained as an official legal fact, not as a measured on-chain action.
+  protocol: null
+  actor_type: ransomware_affiliate_cluster
+  actor_name: Yaroslav Vasinskyi / Yevgeniy Polyanin Sodinokibi/REvil actor cluster
+  chains:
+    - bitcoin
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      DOJ criminal prosecution and asset seizure / forfeiture arc; not an
+      ISP, DNS, or public-network blocking measurement.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin consensus behavior was not modified by the law-enforcement
+      action.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No hosted RPC-provider filtering surface is implicated by the official
+      DOJ sources.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The 2021 DOJ source describes ransomware payment pages and Tor/public
+      ransom-note URLs as part of the criminal scheme, but it does not claim
+      a seizure or blocking action against a specific REvil frontend surface.
+  - layer: asset_onchain
+    status: not_measured
+    chain: bitcoin
+    note: |
+      Load-bearing unresolved layer. DOJ's later sentencing release states
+      that related forfeiture cases included 39.89138522 Bitcoin, and the
+      2021 release states that USD 6.1 million was seized from Polyanin. This
+      draft does not pin a public primary_onchain tx_hash, address-history
+      capture, or court complaint body that enumerates the BTC address(es).
+      Under codebook section 1.6, no asset_onchain observed_change is coded
+      until that transaction-level evidence is available.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The official sources mention cryptocurrency exchangers and mixing
+      services as laundering tools, but do not identify a specific CEX account
+      freeze, delisting, withdrawal block, or provider-side off-ramp action.
+
+observations:
+  - layer: asset_onchain
+    actor: law_enforcement:us_doj_fbi
+    event: revil_ransom_proceeds_forfeiture_onchain_gap
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2021-11-08T00:00:00Z
+    precision: day
+    country: US
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-ndtx/pr/ukrainian-arrested-and-charged-ransomware-attack-kaseya
+        wayback: http://web.archive.org/web/20211112210850/https://www.justice.gov/usao-ndtx/pr/ukrainian-arrested-and-charged-ransomware-attack-kaseya
+        body_hash: sha256:9fdee629e21c5999a463171c7f88132ded0f9a0f3e32a7ea7109a77f63f3cb1d
+        body_path: sources/http_captures/revil-vasinskyi-polyanin-doj-2021/primary/web.archive.org__web-20211112210850-https-www.justice.gov-usao-ndtx-pr-ukrainian-arrested-and-charged-ransomware-attack-kaseya__dccbd69e7d.html
+        evidence_use: replayable
+        note: |
+          DOJ's 2021 release is the event-day anchor for the seizure and
+          charging action, including the USD 6.1 million seizure from Polyanin
+          and the virtual-currency payment-address workflow used by victims.
+      - type: primary_legal
+        url: https://www.justice.gov/opa/pr/sodinokibirevil-affiliate-sentenced-role-700m-ransomware-scheme
+        wayback: http://web.archive.org/web/20240501221044/https://www.justice.gov/opa/pr/sodinokibirevil-affiliate-sentenced-role-700m-ransomware-scheme
+        body_hash: sha256:098a2fc9c93dc8eef53797f01cfc0212fb56ecd9c8c288632716c270a838056d
+        body_path: sources/http_captures/revil-vasinskyi-polyanin-doj-2021/primary/web.archive.org__web-20240501221044-https-www.justice.gov-opa-pr-sodinokibirevil-affiliate-sentenced-role-700m-ransomware-scheme__4b60ba82aa.html
+        evidence_use: replayable
+        note: |
+          DOJ's 2024 release is the official anchor for the later final
+          forfeiture fact: related civil forfeiture cases included
+          39.89138522 Bitcoin and USD 6.1 million. It does not provide a
+          public transaction hash or address list.
+    note: |
+      Machine-visible non-promotion flag. This row records an official DOJ
+      asset-seizure / forfeiture arc but deliberately withholds a measured
+      asset_onchain observation until a public tx_hash or equivalent
+      transaction-level primary_onchain anchor is pinned.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official DOJ source identification and Wayback
+  capture. Direct live justice.gov captures returned Akamai interstitial pages;
+  those files were deleted, and the replayable anchors are the two Wayback
+  mementos listed above.
+
+  Inclusion rationale: the case is in scope as a federal ransomware proceeds
+  seizure / forfeiture arc tied to Sodinokibi/REvil. It is structurally adjacent
+  to the Colonial Pipeline / DarkSide clawback draft and to ransomware-related
+  OFAC rows, but it is not currently a measured on-chain event.
+
+  Modeling rationale: the event remains `status=draft` and
+  `empirical_shape=null_event` because the official sources prove the legal
+  seizure / forfeiture facts but not a public transaction-level on-chain
+  observed_change. The later DOJ release gives a precise 39.89138522 BTC final
+  forfeiture amount; without a public tx_hash, address-history capture, or
+  body-hashed court complaint enumerating the wallet, codebook section 1.6 keeps
+  `asset_onchain=not_measured`. Automation must not promote this event to an
+  admitted paper row without human admission review and on-chain repair.
+
+scoped_claim: |
+  "On 2021-11-08 DOJ announced charges against Yaroslav Vasinskyi and
+  Yevgeniy Polyanin for Sodinokibi/REvil ransomware activity and announced
+  seizure of USD 6.1 million traceable to alleged ransom payments. DOJ later
+  stated that related civil forfeiture cases included 39.89138522 Bitcoin.
+  This draft records the official legal arc only; it does not code a measured
+  asset_onchain change until a public tx_hash or equivalent on-chain anchor is
+  pinned."
+
+tags:
+  - doj_seizure_order
+  - ransomware
+  - revil
+  - sodinokibi
+  - bitcoin
+  - asset_onchain_gap
+  - agent_draft

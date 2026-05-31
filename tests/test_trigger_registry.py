@@ -16,8 +16,8 @@ snapshot_scope:
   candidate_trigger_registry_milestone_max: 4
   admitted_event_quality_milestone: 2
 temporal_tiers:
-  discovery_only_2008_2012:
-    date_range: [2008-01-01, 2012-12-31]
+  discovery_only_2007_2012:
+    date_range: [2007-01-01, 2012-12-31]
     analysis_use: discovery_ledger_only
     default_month_status: pending
   historical_baseline_2013_2016:

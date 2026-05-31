@@ -147,7 +147,7 @@ def _write_derived(by_country, by_region, by_actor, by_us,
                    out_dir: pathlib.Path, total: int) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     with (out_dir / "jurisdiction_distribution.csv").open("w", newline="") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator="\n")
         w.writerow(["dimension", "value", "count"])
         for c, n in by_country.most_common():
             w.writerow(["country", c, n])

@@ -147,6 +147,66 @@ coverage:
     assert rows[0]["measurement_ids"] == "m3"
 
 
+def test_l0_summary_includes_event_yaml_observation_measurement_source(tmp_path):
+    body = tmp_path / "sources" / "http_captures" / "event-d" / "ooni.json"
+    body.parent.mkdir(parents=True)
+    body.write_text(
+        json.dumps(
+            {
+                "metadata": {"count": 1},
+                "results": [
+                    {
+                        "measurement_uid": "m4",
+                        "probe_cc": "NG",
+                        "anomaly": True,
+                        "confirmed": False,
+                        "failure": None,
+                    }
+                ],
+            }
+        )
+    )
+    summary = tmp_path / "sources" / "l0_datasets" / "_summary.json"
+    summary.parent.mkdir(parents=True)
+    summary.write_text("[]")
+    event = tmp_path / "events" / "event-d.yaml"
+    event.parent.mkdir()
+    event.write_text(
+        """
+id: event-d
+coverage:
+  - layer: l0_network
+    status: partially_measured
+observations:
+  - layer: l0_network
+    observation_kind: observed_change
+    sources:
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/measurements?probe_cc=NG&test_name=web_connectivity&input=https%3A%2F%2Fwww.binance.com%2F&since=2024-02-25&until=2024-03-15&limit=5
+        body_hash: sha256:abc
+        body_path: sources/http_captures/event-d/ooni.json
+        measurement_ids:
+          - m4
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/raw_measurement?measurement_uid=m4
+        body_hash: sha256:def
+        body_path: sources/http_captures/event-d/raw_ooni.json
+        measurement_ids:
+          - m4
+"""
+    )
+
+    rows = build_rows(summary, tmp_path, tmp_path / "events")
+
+    assert len(rows) == 1
+    assert rows[0]["event_id"] == "event-d"
+    assert rows[0]["domain"] == "binance.com"
+    assert rows[0]["probe_cc"] == "NG"
+    assert rows[0]["body_hash"] == "abc"
+    assert rows[0]["denominator_class"] == "measurement_denominator"
+    assert rows[0]["measurement_ids"] == "m4"
+
+
 def test_l0_markdown_reports_not_queried_applicable_events():
     rows = [
         {

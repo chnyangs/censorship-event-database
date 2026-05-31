@@ -1,0 +1,218 @@
+id: netwalker-vachon-desjardins-doj-2022
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - colonial-pipeline-darkside-ransom-clawback-doj-2021
+  - revil-vasinskyi-polyanin-doj-2021
+  - matveev-ofac-2023
+  - terror-financing-crypto-seizure-doj-2020
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_MDFL_RCMP
+  timestamp: 2022-03-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/usao-mdfl/pr/former-canadian-government-employee-extradited-united-states-face-charges-dozens
+      wayback: http://web.archive.org/web/20220313001515/https://www.justice.gov/usao-mdfl/pr/former-canadian-government-employee-extradited-united-states-face-charges-dozens
+      body_hash: sha256:d37e3632adb3ae2c79f35fad71b65d3805c4ff10d3fa39faeb809b1caf4661bc
+      body_path: sources/http_captures/netwalker-vachon-desjardins-doj-2022/primary/web.archive.org__web-20220313001515-https-www.justice.gov-usao-mdfl-pr-former-canadian-government-employee-extradited-united-states-face-charges-dozens__eb92bb23bb.html
+      evidence_use: replayable
+      note: |
+        DOJ USAO-MDFL 2022-03-10 release, captured from Wayback after the
+        direct live capture returned a DOJ/Akamai interstitial. The source
+        announces Vachon-Desjardins's extradition to face NetWalker
+        ransomware charges and states that Canadian officers discovered and
+        seized 719 Bitcoin during the 2021-01-27 Gatineau search.
+    - type: primary_legal
+      url: https://www.justice.gov/usao-mdfl/pr/canadian-national-sentenced-connection-ransomware-attacks-resulting-payment-tens
+      wayback: http://web.archive.org/web/20221013175841/https://www.justice.gov/usao-mdfl/pr/canadian-national-sentenced-connection-ransomware-attacks-resulting-payment-tens
+      body_hash: sha256:316d512531e67d1429919d83003cc7f428d0714d6934d82be006ef65bff4c477
+      body_path: sources/http_captures/netwalker-vachon-desjardins-doj-2022/primary/web.archive.org__web-20221013175841-https-www.justice.gov-usao-mdfl-pr-canadian-national-sentenced-connection-ransomware-attacks-resulting-payment-tens__503781fe21.html
+      evidence_use: replayable
+      note: |
+        DOJ USAO-MDFL 2022-10-04 sentencing release, captured from Wayback.
+        The source states that Vachon-Desjardins was sentenced to 20 years
+        and ordered to forfeit USD 21.5 million; it again states that
+        Canadian officers seized 719 Bitcoin during the January 2021 search.
+    - type: primary_government
+      url: https://www.rcmp-grc.gc.ca/en/news/2022/successful-collaboration-the-rcmp-and-the-fbi-leads-guilty-plea-and-forfeiture-34-million
+      wayback: http://web.archive.org/web/20220310163440/https://www.rcmp-grc.gc.ca/en/news/2022/successful-collaboration-the-rcmp-and-the-fbi-leads-guilty-plea-and-forfeiture-34-million
+      body_hash: sha256:3b63d598876a78834fd9beade08d9651aadeaa4c40a0667f2035740083affaa4
+      body_path: sources/http_captures/netwalker-vachon-desjardins-doj-2022/primary/web.archive.org__web-20220310163440-https-www.rcmp-grc.gc.ca-en-news-2022-successful-collaboration-the-rcmp-and-the-fbi-leads-guilty-plea-and-forfeiture-34-million__8bfa8671ff.html
+      evidence_use: replayable
+      note: |
+        RCMP 2022-03-10 news release, captured from Wayback after the current
+        live URL redirected to the RCMP homepage. The source states that the
+        RCMP search seized 719 Bitcoin and that the Canadian court ordered
+        forfeiture of 680 Bitcoin plus cash and devices.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level trigger timestamp from the DOJ and RCMP 2022-03-10 public
+        releases. The underlying Canadian residential search occurred on
+        2021-01-27, but the P4 candidate and public DOJ enforcement anchor are
+        dated 2022-03-10.
+
+target:
+  kind: entity
+  enumeration: pending
+  enumeration_note: |
+    Target is the DOJ/RCMP-described NetWalker ransomware affiliate activity
+    of Sebastien Vachon-Desjardins. Official sources give aggregate seized and
+    forfeited Bitcoin counts, but this draft does not enumerate a complete
+    wallet, address, victim, or exchange-provider set. The 719 BTC seizure and
+    680 BTC forfeiture are retained as official legal facts, not as measured
+    on-chain actions.
+  protocol: null
+  actor_type: ransomware_affiliate
+  actor_name: Sebastien Vachon-Desjardins / NetWalker ransomware affiliate
+  chains:
+    - bitcoin
+
+jurisdiction:
+  - US
+  - CA
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Cross-border criminal prosecution, search, seizure, and forfeiture arc;
+      not an ISP, DNS, or public-network blocking measurement.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      Bitcoin consensus behavior was not modified by the law-enforcement
+      action.
+  - layer: l3_rpc
+    status: not_applicable
+    chain: bitcoin
+    note: |
+      No hosted RPC-provider filtering surface is implicated by the official
+      DOJ or RCMP sources.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The official sources discuss NetWalker ransomware activity, but this
+      Vachon-Desjardins row is not the NetWalker dark-web infrastructure
+      seizure event and does not identify a specific seized frontend.
+  - layer: asset_onchain
+    status: not_measured
+    chain: bitcoin
+    note: |
+      Load-bearing unresolved layer. DOJ and RCMP official sources state that
+      Canadian officers seized 719 Bitcoin in the 2021-01-27 search, and the
+      RCMP source states that the Canadian court ordered forfeiture of 680
+      Bitcoin. This draft does not pin a public primary_onchain tx_hash,
+      address-history capture, or body-hashed court document enumerating the
+      wallet address(es). Under codebook section 1.6, no measured
+      asset_onchain observed_change is coded until transaction-level evidence
+      is available.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The official sources do not identify a specific exchange account freeze,
+      delisting, withdrawal block, or provider-side off-ramp action.
+
+observations:
+  - layer: asset_onchain
+    actor: law_enforcement:rcmp_us_doj_fbi
+    event: netwalker_vachon_desjardins_btc_seizure_onchain_gap
+    observation_kind: coverage_gap
+    attribution: unknown
+    timestamp: 2022-03-10T00:00:00Z
+    precision: day
+    country: CA
+    sources:
+      - type: primary_legal
+        url: https://www.justice.gov/usao-mdfl/pr/former-canadian-government-employee-extradited-united-states-face-charges-dozens
+        wayback: http://web.archive.org/web/20220313001515/https://www.justice.gov/usao-mdfl/pr/former-canadian-government-employee-extradited-united-states-face-charges-dozens
+        body_hash: sha256:d37e3632adb3ae2c79f35fad71b65d3805c4ff10d3fa39faeb809b1caf4661bc
+        body_path: sources/http_captures/netwalker-vachon-desjardins-doj-2022/primary/web.archive.org__web-20220313001515-https-www.justice.gov-usao-mdfl-pr-former-canadian-government-employee-extradited-united-states-face-charges-dozens__eb92bb23bb.html
+        evidence_use: replayable
+        note: |
+          DOJ's event-day extradition release states that Canadian officers
+          seized 719 Bitcoin during the 2021-01-27 search and that the United
+          States intended to forfeit more than USD 27 million traceable to the
+          alleged offenses.
+      - type: primary_legal
+        url: https://www.justice.gov/usao-mdfl/pr/canadian-national-sentenced-connection-ransomware-attacks-resulting-payment-tens
+        wayback: http://web.archive.org/web/20221013175841/https://www.justice.gov/usao-mdfl/pr/canadian-national-sentenced-connection-ransomware-attacks-resulting-payment-tens
+        body_hash: sha256:316d512531e67d1429919d83003cc7f428d0714d6934d82be006ef65bff4c477
+        body_path: sources/http_captures/netwalker-vachon-desjardins-doj-2022/primary/web.archive.org__web-20221013175841-https-www.justice.gov-usao-mdfl-pr-canadian-national-sentenced-connection-ransomware-attacks-resulting-payment-tens__503781fe21.html
+        evidence_use: replayable
+        note: |
+          DOJ's sentencing release confirms the 20-year sentence, USD 21.5
+          million forfeiture order, and the 719 BTC search-seizure fact.
+      - type: primary_government
+        url: https://www.rcmp-grc.gc.ca/en/news/2022/successful-collaboration-the-rcmp-and-the-fbi-leads-guilty-plea-and-forfeiture-34-million
+        wayback: http://web.archive.org/web/20220310163440/https://www.rcmp-grc.gc.ca/en/news/2022/successful-collaboration-the-rcmp-and-the-fbi-leads-guilty-plea-and-forfeiture-34-million
+        body_hash: sha256:3b63d598876a78834fd9beade08d9651aadeaa4c40a0667f2035740083affaa4
+        body_path: sources/http_captures/netwalker-vachon-desjardins-doj-2022/primary/web.archive.org__web-20220310163440-https-www.rcmp-grc.gc.ca-en-news-2022-successful-collaboration-the-rcmp-and-the-fbi-leads-guilty-plea-and-forfeiture-34-million__8bfa8671ff.html
+        evidence_use: replayable
+        note: |
+          RCMP's release independently states that the 2021-01-27 search
+          seized 719 BTC and that the Canadian court ordered forfeiture of
+          680 BTC. It does not provide a public tx_hash or wallet list.
+    note: |
+      Machine-visible non-promotion flag. This row records an official
+      cross-border ransomware proceeds seizure / forfeiture arc but
+      deliberately withholds a measured asset_onchain observation until a
+      public tx_hash, address-history capture, or equivalent transaction-level
+      anchor is pinned.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after official DOJ and RCMP source identification and
+  Wayback capture. Direct live justice.gov capture returned DOJ/Akamai
+  interstitial pages, and the current live RCMP URL redirected to the RCMP
+  homepage; those bad captures were deleted. The replayable anchors are the
+  three Wayback mementos listed above.
+
+  Inclusion rationale: the case is in scope as a cross-border federal
+  ransomware proceeds seizure / forfeiture arc tied to NetWalker. It is
+  structurally adjacent to the Colonial Pipeline / DarkSide measured clawback
+  draft and the REvil legal-arc draft, but it is not currently a measured
+  on-chain event.
+
+  Modeling rationale: the event remains `status=draft` and
+  `empirical_shape=null_event` because official sources prove the legal
+  seizure / forfeiture facts but not a public transaction-level on-chain
+  observed_change. The aggregate seized / forfeited Bitcoin amounts are legal
+  facts, not a denominator artifact. Without a public tx_hash, address-history
+  capture, or body-hashed court document enumerating the wallet, codebook
+  section 1.6 keeps `asset_onchain=not_measured`. Automation must not promote
+  this event to an admitted paper row without human admission review and
+  on-chain repair.
+
+scoped_claim: |
+  "On 2022-03-10 DOJ announced the extradition of Sebastien
+  Vachon-Desjardins to face NetWalker ransomware charges and stated that
+  Canadian officers had seized 719 Bitcoin during a 2021-01-27 search. RCMP's
+  same-day release states that a Canadian court ordered forfeiture of 680
+  Bitcoin. This draft records the official legal arc only; it does not code a
+  measured asset_onchain change until a public tx_hash or equivalent on-chain
+  anchor is pinned."
+
+tags:
+  - doj_seizure_order
+  - ransomware
+  - netwalker
+  - bitcoin
+  - asset_onchain_gap
+  - agent_draft

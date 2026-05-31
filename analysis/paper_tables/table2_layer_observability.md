@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-05-17` · commit `1d420be` · generated `2026-05-17T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-05-31` · commit `a331305` · generated `2026-05-31T04:56:33Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -8,12 +8,12 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 
 | layer | applicable | measured | partial | not_measured | not_applicable | changed events (measured) | changed events (partial) | unique changed actions | duplicate action rows | changed/measured | changed/measured+partial |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `l0_network` | 26 | 0 | 0 | 26 | 79 | 0 | 0 | 0 | 0 | — | — |
-| `l1_consensus` | 8 | 6 | 1 | 1 | 97 | 1 | 1 | 2 | 0 | 1/6 (16.7%) | 2/7 (28.6%) |
-| `l3_rpc` | 10 | 1 | 2 | 7 | 95 | 1 | 2 | 4 | 0 | 1/1 (100.0%) | 3/3 (100.0%) |
-| `l4_frontend` | 65 | 27 | 14 | 24 | 40 | 24 | 13 | 39 | 0 | 24/27 (88.9%) | 37/41 (90.2%) |
-| `asset_onchain` | 26 | 17 | 0 | 9 | 79 | 17 | 0 | 20 | 1 | retracted; no rate | retracted; no rate |
-| `offramp_cex` | 94 | 65 | 7 | 22 | 11 | 55 | 7 | 68 | 0 | 55/65 (84.6%) | 62/72 (86.1%) |
+| `l0_network` | 41 | 0 | 2 | 39 | 327 | 0 | 2 | 2 | 0 | — | 2/2 (100.0%) |
+| `l1_consensus` | 19 | 8 | 8 | 3 | 349 | 2 | 8 | 10 | 0 | 2/8 (25.0%) | 10/16 (62.5%) |
+| `l3_rpc` | 16 | 2 | 5 | 9 | 352 | 2 | 4 | 7 | 0 | 2/2 (100.0%) | 6/7 (85.7%) |
+| `l4_frontend` | 140 | 56 | 32 | 52 | 228 | 51 | 28 | 85 | 0 | 51/56 (91.1%) | 79/88 (89.8%) |
+| `asset_onchain` | 46 | 18 | 2 | 26 | 322 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
+| `offramp_cex` | 313 | 233 | 54 | 26 | 55 | 155 | 44 | 209 | 0 | 155/233 (66.5%) | 199/287 (69.3%) |
 
 A rate of `—` indicates a zero denominator; it is an **observability gap**, not an attested negative.
 `unique changed actions` deduplicates physical actions that are intentionally linked across event records via `observations[].action_id` (for example, the Circle USDC Tornado blacklist transaction appears in both the OFAC-triggered event and the issuer-action event). Event-rate columns remain event-record denominators; action counts are reported separately so the two units are not conflated.
@@ -23,6 +23,7 @@ A rate of `—` indicates a zero denominator; it is an **observability gap**, no
 
 **Sensitivity reporting**. Rates flagged in [`derived/admission_sensitivity.md`](../../derived/admission_sensitivity.md) must carry their strict/current/permissive context when cited:
 
-- **`l1_consensus`** sensitive (Δ=0.2857): 0/6 (0.00) strict · 1/6 (0.17) current · 2/7 (0.29) permissive.
-- **`l4_frontend`** sensitive (Δ=0.1246): 21/27 (0.78) strict · 24/27 (0.89) current · 37/41 (0.90) permissive.
-- **`offramp_cex`** sensitive (Δ=0.1073): 49/65 (0.75) strict · 55/65 (0.85) current · 62/72 (0.86) permissive.
+- **`l1_consensus`** sensitive (Δ=0.625): 0/8 (0.00) strict · 2/8 (0.25) current · 10/16 (0.62) permissive.
+- **`l3_rpc`** sensitive (Δ=-0.1429): 2/2 (1.00) strict · 2/2 (1.00) current · 6/7 (0.86) permissive.
+- **`l4_frontend`** sensitive (Δ=0.3084): 33/56 (0.59) strict · 51/56 (0.91) current · 79/88 (0.90) permissive.
+- **`offramp_cex`** sensitive (Δ=0.3071): 90/233 (0.39) strict · 155/233 (0.67) current · 199/287 (0.69) permissive.

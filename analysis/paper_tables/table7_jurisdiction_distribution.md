@@ -1,50 +1,82 @@
 # Table 7 · Jurisdictional composition of the admitted corpus
 
-Generated: `2026-05-17T00:00:00Z`.
+Generated: `2026-05-31T04:56:33Z`.
 
-**US-trigger share** (events with `US` in `jurisdiction`): 72/105 (68.6%) · **non-US-trigger share**: 33/105 (31.4%).
+**US-trigger share** (events with `US` in `jurisdiction`): 159/368 (43.2%) · **non-US-trigger share**: 209/368 (56.8%).
 
-The v0.1 corpus is US-trigger-dominant (68.6% of admitted events have `US` in their jurisdiction list); second-most-touched region (under inclusive multi-jurisdiction counting): **Europe (EU+UK+CH+non-bloc)** (23 events). Non-Western state-actor jurisdictions (RU / CN / IN / KR / NG / TR) account for ~14.3% of country-level mentions. **Region row counts use inclusive multi-jurisdiction membership** — an event with `[UK, US]` is counted in both the US and Europe rows; do not read region shares as a partition. This concentration is a property of the sampling frame, not of the underlying phenomenon, and is driven by the frame's public-English-language-archival requirement combined with the high absolute volume of OFAC / DOJ / SEC activity in 2022-2025. The paper's landscape claims must be bounded accordingly; see `docs/paper_claims.md §0 Sampling frame` and `docs/datasheet.md §3` for the honest statement.
+The v0.1 corpus is US-trigger-dominant (43.2% of admitted events have `US` in their jurisdiction list); second-most-touched region (under inclusive multi-jurisdiction counting): **Other** (85 events). Non-Western state-actor jurisdictions (RU / CN / IN / KR / NG / TR) account for ~14.7% of country-level mentions. **Region row counts use inclusive multi-jurisdiction membership** — an event with `[UK, US]` is counted in both the US and Europe rows; do not read region shares as a partition. This concentration is a property of the sampling frame, not of the underlying phenomenon, and is driven by the frame's public-English-language-archival requirement combined with the high absolute volume of OFAC / DOJ / SEC activity in 2022-2025. The paper's landscape claims must be bounded accordingly; see `docs/paper_claims.md §0 Sampling frame` and `docs/datasheet.md §3` for the honest statement.
 
 ## Distribution by region (inclusive)
 
 | region | events touching | share of corpus |
 | --- | ---: | ---: |
-| US | 72 | 68.6% |
-| Europe (EU+UK+CH+non-bloc) | 23 | 21.9% |
-| Rest of World | 22 | 21.0% |
-| Corporate (no jurisdiction) | 9 | 8.6% |
-| Other | 5 | 4.8% |
-| **CORPUS TOTAL** | **105** | — |
-_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (131) ≥ corpus total (105). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
+| US | 159 | 43.2% |
+| Europe (EU+UK+CH+non-bloc) | 58 | 15.8% |
+| Rest of World | 68 | 18.5% |
+| Corporate (no jurisdiction) | 49 | 13.3% |
+| Other | 85 | 23.1% |
+| **CORPUS TOTAL** | **368** | — |
+_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (419) ≥ corpus total (368). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
 
 ## Distribution by country / bloc (all codes)
 
 | jurisdiction code | events |
 | --- | ---: |
-| `US` | 72 |
-| `EU` | 9 |
-| `corporate_global` | 9 |
-| `UK` | 7 |
-| `NL` | 5 |
-| `AU` | 5 |
-| `RU` | 5 |
-| `DE` | 5 |
-| `IN` | 3 |
-| `KR` | 3 |
-| `CA` | 2 |
-| `CN` | 2 |
+| `US` | 159 |
+| `corporate_global` | 49 |
+| `EU` | 28 |
+| `RU` | 19 |
+| `UK` | 16 |
+| `CN` | 14 |
+| `JP` | 14 |
+| `UN` | 10 |
+| `KR` | 9 |
+| `NL` | 7 |
+| `AU` | 7 |
+| `CA` | 7 |
+| `IN` | 6 |
+| `DE` | 6 |
+| `NG` | 4 |
+| `IS` | 4 |
+| `HK` | 4 |
+| `ID` | 4 |
+| `IR` | 4 |
+| `TH` | 4 |
+| `AR` | 3 |
+| `IL` | 3 |
+| `UA` | 3 |
+| `SG` | 3 |
+| `CH` | 3 |
+| `PH` | 3 |
+| `BR` | 2 |
+| `FR` | 2 |
+| `KZ` | 2 |
+| `NP` | 2 |
+| `TW` | 2 |
+| `TR` | 2 |
+| `AE` | 2 |
+| `ZW` | 2 |
+| `DZ` | 1 |
+| `BD` | 1 |
 | `BE` | 1 |
+| `BO` | 1 |
+| `KH` | 1 |
 | `PL` | 1 |
-| `CH` | 1 |
-| `UN` | 1 |
-| `JP` | 1 |
+| `EC` | 1 |
+| `EG` | 1 |
+| `JO` | 1 |
+| `KE` | 1 |
 | `MY` | 1 |
-| `NG` | 1 |
+| `MA` | 1 |
+| `MM` | 1 |
+| `PK` | 1 |
+| `QA` | 1 |
 | `PT` | 1 |
-| `IS` | 1 |
-| `SG` | 1 |
-| `TR` | 1 |
+| `ZA` | 1 |
+| `LK` | 1 |
+| `UZ` | 1 |
+| `VE` | 1 |
+| `VN` | 1 |
 
 ## What this table says (phrasing-lock)
 

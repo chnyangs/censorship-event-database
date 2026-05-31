@@ -1,17 +1,17 @@
-# 📍 State of the corpus — 2026-05-31 (session close)
+# 📍 State of the corpus — 2026-05-31 (continuation snapshot)
 
 **Authoritative current snapshot.** Supersedes `MORNING_REVIEW_2026_05_31.md` (which is now stale at 259).
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **385 events**: **368 admitted** / 10 draft / 7 rejected.
-- **Integrity**: `scripts/validate.py` passes **385 / 385 [OK]**. All changes are **local commits, never pushed**.
+- **398 events**: **368 admitted** / 21 draft / 9 rejected.
+- **Integrity**: `scripts/validate.py` passes **398 / 398 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
 ## Admitted composition (368)
 | dimension | breakdown |
 |---|---|
-| **research_stratum** | S4_nation_state 110 · S5_corporate 97 · S3_doj_sec_cftc_fiod 78 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
+| **research_stratum** | S4_nation_state 111 · S5_corporate 97 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 308 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
 | **evidence_tier** | admission_grade 334 · **attested_secondary 34** (lower-tier, filterable — see codebook §10) |
 | **admission_tier** | empirical_case 267 · null_case 96 · anchor_case 5 |
@@ -31,7 +31,120 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
    (25 clean + 9 flagged national bans). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;
-   regression 385/385.
+   current validator regression 397/397.
+5. **Continuation P1/P2 cleanup** — resolved US-state regulator stratum policy (state/subnational
+   administrative actions stay `regulatory_enforcement` / `S4_nation_state`), recoded NYDFS BitLicense
+   accordingly, rejected Iraq as warning/context-only, rejected GoldAge as pre-2007 out-of-frame, and
+   repaired source anchors for Task Force Rusich + Bitfinex US exit (both still human-only drafts), pinned the
+   Circle/Multichain USDC blacklist tx hashes while correcting its trigger date to 2023-07-07, and repaired the
+   Tether/OKX/DOJ 2025 row with DOJ primary legal anchors plus seven 2025 USDT DestroyedBlackFunds txs.
+6. **Continuation P2 asset-onchain repair** — repaired the Tether/OFAC/Iran 2026 row with an OFAC primary-legal
+   SDN update naming the two Central Bank of Iran TRON addresses plus two TronGrid-verified USDT
+   AddedBlackList tx hashes in block 82092618. It remains a human-only draft.
+7. **Continuation P2 partial Circle repair (superseded)** — resolved the public 0x61f...e543 Goated.com wallet in the
+   Circle sealed-civil-case row to one USDC Blacklisted(address) tx plus the matching UnBlacklisted(address)
+   recovery tx. This was the conservative interim repair before AMLBot's complete 16-address list was captured
+   and verified in item 9 below.
+8. **Continuation P2 T3 repair** — pinned two same-day TronGrid-verified USDT `AddedBlackList(address)` txs for
+   the T3 Financial Crime Unit launch row. The row is now an explicit representative subset rather than a
+   tx-less aggregate claim; it remains `partially_measured` / `status=draft` because the public launch source
+   does not enumerate the full "over USDT 12M" frozen-address set and automation cannot promote
+   `origin=agent_draft` events.
+9. **Continuation P2 Circle full-list repair** — superseded the earlier one-address Circle sealed-civil partial
+   repair by capturing AMLBot's 2026-03-26 full 16-address list and verifying all 16 addresses against cached
+   USDC `Blacklisted(address)` receipts from the 2026-03-23 batch. The row is now
+   `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
+   cannot promote `origin=agent_draft` events.
+10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 148
+    verified+scope-tagged registry rows, 100 covered by corpus / duplicate / semantic precedent. All
+    remaining 48 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
+    0 currently actionable registry rows; 36 exact-id candidate rows remain to triage from the 264-row
+    candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
+    date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
+    record supports a warning/request about possible legal risk, not a new service denial, platform block,
+    payment-rail prohibition, or binding ban beyond `bangladesh-bb-bitcoin-warning-2014`.
+    `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
+    `cftc-v-ooki-dao-2022`, which already uses the same CFTC 8590-22 trigger and enumerates bZeroX LLC,
+    both founders, and successor Ooki DAO.
+    Eight additional candidate-pool rows were triaged: Liberty Reserve takedown/sentencing, e-Bullion
+    indictment, and e-Gold sentencing are covered by existing corpus enforcement arcs; Roman Semenov 2025
+    is an OFAC authority-tag-only change with no independent access restoration; Centra and BitConnect are
+    fraud/Ponzi prosecutions; Mt. Gox Chapter 15 is bankruptcy administration after platform failure.
+    A second follow-on S4 triage added 25 exact-slug closures: 18 semantic-covered duplicates
+    (Kenya, Nepal, Pakistan, Qatar, Egypt, UAE, Thailand, BlockFi, Taiwan, Korea, Sri Lanka, Jordan,
+    and Iraq) and 7 reviewed-excluded soft warning / non-recognition rows (France, Norway, Malaysia,
+    Belgium, Mexico, Denmark, and Cambodia).
+    A third follow-on triage added 20 more closures: 10 covered slug mismatches/date corrections
+    (Algeria, Argentina, Canada CSA, Venezuela SUNACRIP, Nigeria Binance, OKX Canada, Huobi privacy
+    coins, and Circle/Multichain) plus 10 reviewed exclusions for political pressure, draft legislation,
+    fraud/Ponzi/rug-pull prosecutions, non-binding guidance, administrative framework transfer, and a
+    malformed placeholder candidate.
+    A fourth follow-on triage added 20 closures: 12 covered/date-corrected rows (Korea privacy-coin
+    delistings, Liberty Reserve Costa Rica, BTC-e/Vinnik disposition, Sinbad/Blender DOJ, DOJ/Tether
+    pig-butchering forfeiture, Circle sealed-civil freeze, OpenSea/MetaMask sanctions blocks, EU TFR
+    application, IMF-FSB synthesis paper, Binance Canada, and Iran CBI exchange-payment-gateway block)
+    and 8 reviewed exclusions (FinCEN CVC-mixing NPRM, Mango exploit prosecution, India VDA tax/TDS
+    duplicates, Kazakhstan mining tax hike, Pakistan ban-intent statement, and G20 roadmap status report).
+    `bittrex-global-shutdown-2023-11` was moved
+    from borderline false into a narrow primary-corporate-captured `origin=agent_draft` row; it remains
+    non-admitted pending human admission / causation review. `colonial-pipeline-darkside-ransom-clawback-doj-2021`
+    was moved from on-chain-gated false into a narrow primary-onchain-pinned `origin=agent_draft` row;
+    it remains non-admitted pending human attribution / admission review.
+    This continuation added official-source drafts for `nydfs-bittrex-bitlicense-denial-2019-04`
+    (NYDFS press release + denial-letter PDF capture) and `kuwait-cma-virtual-assets-prohibition-2023-07`
+    (CBK official PDF capture; CMA live page verified but not CLI-captured), and closed the Singapore MAS
+    public-advertising plus Nexo eight-state candidates as covered by existing corpus rows.
+    It then added `celsius-multistate-cease-desist-earn-2021-09` as a conservative official-source
+    draft using New Jersey and Texas 2021-09-17 PDFs; the short-form duplicate is registered as covered,
+    and the row remains non-admitted pending OCR/human confirmation of the scanned New Jersey order.
+    A fifth follow-on triage added 5 reviewed exclusions for post-hoc SEC/DOJ disposition rows with no
+    new platform-access restriction: ShapeShift's 2024 SEC settlement, the Bitfinex hack laundering case,
+    the James Zhong Silk Road forfeiture, the Banmeet Singh dark-web vendor forfeiture, and the DPRK
+    IT-worker civil forfeiture action.
+    A sixth follow-on triage added 4 exact-id closures: Cheil / First Credit Bank is covered by
+    `dprk-usdt-network-ofac-2025`; DataCell / Valitor Supreme Court is covered as downstream trajectory
+    of `datacell-v-valitor-iceland-district-court-2012-07`; `bitcoin-maven-tetley-doj-2018` was added
+    as an official DOJ / Wayback-captured `origin=agent_draft` individual-MSB off-ramp row; and the
+    Sim Hyon Sop DOJ indictment was excluded as a same-day criminal-indictment disposition with the
+    sanctions/access-denial component already modeled by `ofac-dprk-it-worker-sim-hyon-sop-2023-04`.
+    A seventh follow-on triage added 3 OFAC closures: `fayzimatov-alqaeda-syria-ofac-2021-07` was added
+    as an official OFAC/Treasury-captured `origin=agent_draft` individual-BTC null_case row; Kimsuky 2023
+    and Nordic Resistance Movement 2024 were reviewed-excluded because their official OFAC artifacts do
+    not enumerate cryptocurrency addresses or a crypto-platform/payment-rail access restriction.
+    An eighth follow-on triage added `crypto-capital-fowler-doj-2019` as an official DOJ / Wayback-captured
+    `origin=agent_draft` off-ramp shadow-banking row. The draft models only Fowler / GTS / Crypto Capital's
+    fiat-rail service for cryptocurrency exchanges; it does not claim a Bitfinex/Binance exchange shutdown,
+    frontend seizure, or on-chain asset freeze.
+    A ninth follow-on triage added `terror-financing-crypto-seizure-doj-2020` as an official DOJ /
+    Wayback-captured `origin=agent_draft` l4_frontend seizure row. The draft narrowly codes seized
+    websites/Facebook pages; reported cryptocurrency-account seizures remain `asset_onchain=not_measured`
+    until a public tx_hash is pinned.
+    A tenth follow-on triage added `revil-vasinskyi-polyanin-doj-2021` as an official DOJ /
+    Wayback-captured `origin=agent_draft` ransomware forfeiture row. The draft records DOJ's USD 6.1M
+    seizure and later 39.89138522 BTC final-forfeiture statement, but keeps `asset_onchain=not_measured`
+    until a public tx_hash, address-history capture, or body-hashed court complaint enumerating the wallet
+    is pinned.
+    An eleventh follow-on triage added `netwalker-vachon-desjardins-doj-2022` as an official DOJ + RCMP /
+    Wayback-captured `origin=agent_draft` NetWalker ransomware forfeiture row. The draft records the
+    official 719 BTC search-seizure and 680 BTC Canadian forfeiture facts, but keeps
+    `asset_onchain=not_measured` until a public tx_hash, address-history capture, or body-hashed court
+    document enumerating the wallet is pinned.
+    A twelfth follow-on triage added `bitcoin-fog-sterlingov-doj-2024` as an official DOJ /
+    Wayback-captured `origin=agent_draft` Bitcoin-mixer operator-state row. The draft models only the
+    2024 conviction/sentencing criminal-finality endpoint; the DOJ-reported 1,354/1,345 BTC forfeiture
+    facts remain `asset_onchain=not_measured` until a public tx_hash, address-history capture, or
+    wallet-enumerating court artifact is pinned.
+    A thirteenth follow-on triage reviewed `fincen-paxful-bsa-penalty-2025-08` against official FinCEN
+    and DOJ sources and closed it as reviewed-excluded: the 2025-12-09 Consent Order / guilty-plea
+    resolution imposes monetary, cooperation, record-retention, and successor-assignment terms for past
+    AML/BSA failures, but no platform shutdown, user offboarding, geoblock, industry bar, asset freeze,
+    or other new service-denial action.
+    A fourteenth follow-on triage added `lebanon-bdl-bitcoin-warning-2013-12` as an official BDL-PDF
+    captured `origin=agent_draft` historical-baseline row. The draft narrowly models BDL Announcement
+    No. 900 as a class-level warning / electronic-money restriction signal addressed to banks, financial
+    institutions, exchange institutions, brokerage institutions, and the public; it does not claim a
+    specific exchange shutdown, user offboarding, domain block, or on-chain action.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;
@@ -42,12 +155,44 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
 - **Capture yield rule**: only official PDFs / static pages on standard URLs capture cleanly; JS-gated exchange
   pages (Binance) return empty bodies and bot-protected gov sites reset — don't rely on them.
 
-## Held drafts (10) — all honest, documented holds (NOT source-count)
-- **6 need a `primary_onchain` tx_hash** (§1.6 binds; the lower tier does NOT apply): circle-usdc-hack,
-  circle-usdc-sealed, ren-protocol (the §1.6 terminal-draft precedent — off-chain mechanism), t3,
-  tether-iran-fury, tether-okx-doj.
-- **4 semantic holds**: iraq-cbi (§9 warning-vs-ban ruling pending), goldage-2006 (pre-2007 boundary),
-  task-force-rusich (real crypto designation but captured jy0954 has no crypto nexus — needs a crypto source),
-  bitfinex-us-exit-2017 (captured page is a JS shell — needs a real capture).
+## Held drafts (21) — all honest, documented holds
+- **1 partially repaired asset_onchain draft still lacks a complete target set**: t3-financial-crime-unit now pins
+  two same-day USDT-on-TRON blacklist txs, but the public launch source does not enumerate the full "over USDT
+  12M" frozen-address set.
+- **1 terminal asset_onchain draft**: ren-protocol (off-chain RenVM darknode signature cessation; no
+  on-chain tx can exist, so keep as documented draft precedent).
+- **8 source-repaired human-only drafts**: task-force-rusich now has the official OFAC crypto-address source;
+  bitfinex-us-exit-2017 now has a 2017 rendered article capture; circle-usdc-multichain now has full
+  addresses + three primary_onchain tx hashes; tether-okx-doj-2025 now has DOJ OPA + D.D.C. complaint
+  captures, seven USDT Token Group addresses, seven 2023 AddedBlackList txs, and seven 2025
+  DestroyedBlackFunds txs; tether-iran-fury now has OFAC address enumeration plus two Tron
+  AddedBlackList tx hashes; circle-usdc-sealed now has a complete 16-address AMLBot list plus 16 cached
+  USDC blacklist receipts; bittrex-global-shutdown now has an official primary-corporate Zendesk notice;
+  colonial-pipeline-darkside-clawback now has DOJ/Paladin captures plus a primary_onchain Bitcoin tx hash.
+  All remain `origin=agent_draft`, so automation does not promote them.
+- **11 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
+  kuwait-cma-virtual-assets-prohibition-2023-07, and
+  celsius-multistate-cease-desist-earn-2021-09 are newly modeled from the P4 queue with replay anchors;
+  bitcoin-maven-tetley-doj-2018 is modeled from an official DOJ Wayback capture as an individual-MSB
+  off-ramp row; fayzimatov-alqaeda-syria-ofac-2021-07 is modeled from official OFAC/Treasury captures as
+  an individual-BTC null_case row; crypto-capital-fowler-doj-2019 is modeled from official DOJ Wayback
+  captures as a shadow-banking / fiat-rail off-ramp row; terror-financing-crypto-seizure-doj-2020 is modeled
+  from official DOJ Wayback/PDF captures as a narrow website/social-page seizure row; revil-vasinskyi-
+  polyanin-doj-2021 is modeled from official DOJ Wayback captures as a ransomware proceeds forfeiture
+  row with asset_onchain deliberately held at not_measured; netwalker-vachon-desjardins-doj-2022 is modeled
+  from official DOJ + RCMP Wayback captures as a NetWalker ransomware proceeds forfeiture row with
+  asset_onchain deliberately held at not_measured; bitcoin-fog-sterlingov-doj-2024 is modeled from
+  official DOJ Wayback captures as a Bitcoin-mixer operator-state criminal-finality row, with DOJ-reported
+  BTC forfeiture kept at asset_onchain=not_measured until transaction-level evidence is pinned; and
+  lebanon-bdl-bitcoin-warning-2013-12 is modeled from the official BDL Announcement No. 900 PDF as a
+  historical-baseline class-level central-bank warning / electronic-money restriction signal. All remain non-admitted
+  pending human admission review. Celsius
+  additionally needs OCR/human confirmation of the scanned New Jersey order text before any promotion.
+
+## New rejected / context-only rulings
+- **iraq-cbi-cryptocurrency-prohibition-2017-12**: rejected as warning/context-only; the captured Arabic page
+  supports cautioning against use, not a clean binding ban row.
+- **goldage-ny-state-indictment-2006-07**: rejected as out-of-frame; the corpus boundary remains strict at
+  2007-01-01.
 
 → Remaining work is tracked in **`analysis/NEXT_STEPS.md`**.

@@ -41,8 +41,8 @@ TRIGGER_REGISTRY_DIR = REPO_ROOT / "analysis" / "trigger_registry"
 TEMPORAL_LEDGER_DIR = REPO_ROOT / "analysis" / "temporal_ledger"
 SOURCE_MANIFEST_PREFIX = REPO_ROOT / "sources" / "source_manifest"
 
-HOUR_PRECISION_VALUES = {"second", "minute", "hour"}
-DAY_PRECISION_VALUES = {"day", "date"}
+HOUR_PRECISION_VALUES = {"second", "minute", "hour", "hour_range"}
+DAY_PRECISION_VALUES = {"day", "date", "week"}
 
 REQUIRED_TABLES = [
     "README.md",

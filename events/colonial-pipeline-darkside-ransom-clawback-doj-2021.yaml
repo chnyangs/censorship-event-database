@@ -1,0 +1,220 @@
+id: colonial-pipeline-darkside-ransom-clawback-doj-2021
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+trigger:
+  type: doj_seizure_order
+  actor: US_DOJ_FBI
+  timestamp: 2021-06-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_legal
+      url: https://www.justice.gov/opa/pr/department-justice-seizes-23-million-cryptocurrency-paid-ransomware-extortionists-darkside
+      wayback: https://web.archive.org/web/20210607195332/https://www.justice.gov/opa/pr/department-justice-seizes-23-million-cryptocurrency-paid-ransomware-extortionists-darkside
+      body_hash: sha256:f6b71fdf0965268ed49e0e0cab67fd6cca70d0d1f5e8c4b72b05e1b89aac4d92
+      body_path: sources/http_captures/colonial-pipeline-darkside-ransom-clawback-doj-2021/primary/web.archive.org__web-20210607195332-https-www.justice.gov-opa-pr-department-justice-seizes-23-million-cryptocurrency-paid-ransomware-extortionists-darkside__086d33c408.html
+      evidence_use: replayable
+      note: |
+        DOJ archived press release (2021-06-07): DOJ announced seizure of
+        63.7 bitcoins worth about $2.3M, representing proceeds of the
+        Colonial Pipeline ransom paid to DarkSide; the warrant was
+        authorized the same day by Magistrate Judge Laurel Beeler in NDCA.
+        The release also states that law enforcement identified a specific
+        Bitcoin address for which the FBI had the private key.
+    - type: primary_legal
+      url: https://www.justice.gov/opa/press-release/file/1402056/download
+      body_hash: sha256:4ff9bcbcbfd0fa0459a831f97d0192c4a5d8dbb1cba1a671748af2deb69f6d8f
+      body_path: sources/http_captures/colonial-pipeline-darkside-ransom-clawback-doj-2021/primary/www.justice.gov__opa-press-release-file-1402056-download__70bb25919a.bin
+      evidence_use: replayable
+      note: |
+        DOJ-hosted seizure-affidavit PDF for case 3:21-mj-70945-LB,
+        captured as binary. The PDF is scanned/image-heavy, so load-bearing
+        text is carried by the replayable Wayback DOJ press release and the
+        captured analytics article that identifies the address.
+    - type: supporting_journalism
+      url: https://www.paladincapgroup.com/us-authorities-seize-the-affiliates-share-of-the-darkside-ransom-paid-by-colonial-pipeline/
+      body_hash: sha256:7ccfb6cfc99a8a86531e1c0f874fbf6b315d02f9f8e0f049399959279f3fad01
+      body_path: sources/http_captures/colonial-pipeline-darkside-ransom-clawback-doj-2021/primary/www.paladincapgroup.com__us-authorities-seize-the-affiliates-share-of-the-darkside-ransom-paid-by-colonial-pipeline__819c6a369f.html
+      evidence_use: replayable
+      note: |
+        Paladin-hosted Elliptic analysis by Tom Robinson links the
+        affiliate share of the Colonial ransom to Bitcoin address
+        bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq, describes it as the
+        same address mentioned in the seizure affidavit, and reports that
+        the address was emptied on 2021-06-07.
+  timestamp_sources:
+    - type: primary_legal
+      note: |
+        Day-level trigger timestamp from DOJ press release and NDCA seizure
+        warrant date.
+
+target:
+  kind: address_set
+  enumeration: complete
+  enumeration_note: |
+    Target is the single Bitcoin address identified by Elliptic/Paladin as
+    holding the affiliate share of the Colonial Pipeline DarkSide ransom and
+    as matching the address in the seizure affidavit. Marked complete for
+    this narrowly scoped one-address seizure draft; not a claim to enumerate
+    every DarkSide wallet.
+  actor_type: ransomware_ransom_wallet
+  actor_name: DarkSide affiliate Colonial Pipeline ransom address
+  chains:
+    - bitcoin
+  addresses:
+    - bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Criminal asset seizure; no network blocking mechanism.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin consensus was not modified; the action used control of a
+      private key for a specific wallet.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No centralized-exchange off-ramp is the measured mechanism.
+  - layer: asset_onchain
+    status: measured
+    scope:
+      - bitcoin_address_bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq
+    note: |
+      Load-bearing layer. The address received 69.60422177 BTC on
+      2021-05-28; on 2021-06-07 transaction
+      943f2d576ed8d9f388ba75eb82fe35cce29479b84121827ac368a5a94f44cf7a
+      spent that UTXO and returned 5.90422177 BTC to the same address,
+      producing a net 63.7 BTC outflow from the address. Blockstream and
+      mempool address APIs agree on the transaction, block, and amounts.
+    denominator_artifact:
+      type: primary_onchain
+      url: https://blockstream.info/tx/943f2d576ed8d9f388ba75eb82fe35cce29479b84121827ac368a5a94f44cf7a
+      tx_hash: "943f2d576ed8d9f388ba75eb82fe35cce29479b84121827ac368a5a94f44cf7a"
+      scope_descriptor:
+        providers: [blockstream, mempool_space]
+        time_window:
+          - 2021-06-07T17:45:41Z
+          - 2021-06-07T17:53:24Z
+      note: |
+        On-chain denominator for the one-address seizure draft: Blockstream
+        and mempool.space address histories both show the 63.7 BTC net
+        outflow transaction and the later 5.90422177 BTC movement.
+
+observations:
+  - layer: asset_onchain
+    actor: law_enforcement:us_doj_fbi
+    event: colonial_pipeline_darkside_affiliate_btc_seizure
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2021-06-07T17:45:41Z
+    precision: minute
+    delta_hours: 17.76
+    country: US
+    action_id: colonial-pipeline-darkside-btc-seizure-2021-06-07
+    sources:
+      - type: primary_onchain
+        url: https://blockstream.info/tx/943f2d576ed8d9f388ba75eb82fe35cce29479b84121827ac368a5a94f44cf7a
+        tx_hash: "943f2d576ed8d9f388ba75eb82fe35cce29479b84121827ac368a5a94f44cf7a"
+        block: 686683
+        note: |
+          Bitcoin transaction in block 686683 at 2021-06-07 17:45:41 UTC.
+          The transaction spends the 69.60422177 BTC UTXO held by
+          bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq and returns
+          5.90422177 BTC to the same address, leaving a 63.7 BTC net outflow.
+      - type: semi_primary_measurement
+        url: https://blockstream.info/api/address/bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq/txs
+        body_hash: sha256:fbdfadd09756a9aeae59888279b58c9a85035915b589d943164cef68327887d4
+        body_path: sources/http_captures/colonial-pipeline-darkside-ransom-clawback-doj-2021/primary/blockstream.info__api-address-bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq-txs__7ed12fe3c5.json
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [blockstream]
+          time_window:
+            - 2021-05-28T03:06:11Z
+            - 2021-06-07T17:53:24Z
+        note: |
+          Blockstream address API capture confirms four address-history
+          rows. Relevant rows: 69.60422177 BTC received in tx
+          daf38c7b38eb0a587cf843f47000d5c294affb4f56017370ad48c5147f5e69d9,
+          63.7 BTC net outflow in tx
+          943f2d576ed8d9f388ba75eb82fe35cce29479b84121827ac368a5a94f44cf7a,
+          and a later 5.90422177 BTC movement in tx
+          280c5f96397b9502b99703842712b78fda84f1a0faabf826f683448082f46369.
+      - type: semi_primary_measurement
+        url: https://mempool.space/api/address/bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq/txs
+        body_hash: sha256:526093099247a7c021ef3bbe5359b21d4ce3674dc552009580e1a9cd804ea853
+        body_path: sources/http_captures/colonial-pipeline-darkside-ransom-clawback-doj-2021/primary/mempool.space__api-address-bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq-txs__3d71e0b7bb.json
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [mempool_space]
+          time_window:
+            - 2021-05-28T03:06:11Z
+            - 2021-06-07T17:53:24Z
+        note: |
+          Independent mempool.space address API capture matches the
+          Blockstream transaction IDs, block heights, timestamps, and
+          receive/spend values for the target address.
+      - type: supporting_journalism
+        url: https://www.paladincapgroup.com/us-authorities-seize-the-affiliates-share-of-the-darkside-ransom-paid-by-colonial-pipeline/
+        body_hash: sha256:7ccfb6cfc99a8a86531e1c0f874fbf6b315d02f9f8e0f049399959279f3fad01
+        body_path: sources/http_captures/colonial-pipeline-darkside-ransom-clawback-doj-2021/primary/www.paladincapgroup.com__us-authorities-seize-the-affiliates-share-of-the-darkside-ransom-paid-by-colonial-pipeline__819c6a369f.html
+        evidence_use: replayable
+        note: |
+          Paladin/Elliptic article links the address to the Colonial ransom
+          affiliate share and says it was emptied around 1:40pm Eastern Time
+          on 2021-06-07, with a separate 5.9 BTC movement not mentioned in
+          the affidavit.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED - DRYRUN 2026-05-31** (P4 census-gap registry
+  continuation). This draft repairs the prior P4 on-chain gate for the
+  Colonial Pipeline / DarkSide clawback row. The official DOJ Wayback page
+  substantiates the 63.7 BTC seizure, the Colonial Pipeline / DarkSide ransom
+  context, the NDCA warrant, and the FBI private-key statement. The
+  Paladin/Elliptic article provides the address linkage to
+  bc1qq2euq8pw950klpjcawuy4uj39ym43hs6cfsegq. Blockstream and mempool.space
+  API captures independently confirm the 2021-06-07 transaction history and
+  the 63.7 BTC net outflow.
+
+  Why draft: the event now has the required primary_onchain tx hash for the
+  asset_onchain layer, but automation cannot provide human admission or
+  final attribution review. Attribution remains plausible rather than direct
+  because the on-chain transaction is linked to the government seizure by
+  DOJ's legal statement plus a captured analytics article, not by an on-chain
+  government label.
+
+scoped_claim: |
+  "DOJ/FBI's 2021-06-07 Colonial Pipeline DarkSide ransom clawback is
+  represented by a one-address Bitcoin seizure draft: tx
+  943f2d576ed8d9f388ba75eb82fe35cce29479b84121827ac368a5a94f44cf7a
+  produced a 63.7 BTC net outflow from the address identified by
+  Paladin/Elliptic as the DarkSide affiliate share address."
+
+tags:
+  - doj_seizure_order
+  - colonial_pipeline
+  - darkside
+  - ransomware
+  - bitcoin
+  - asset_onchain
+  - agent_drafted
