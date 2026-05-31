@@ -2,19 +2,21 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `9e851fb` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `c7761c0` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
 > "The 2016-06-02 CFTC order In re BFXNA Inc. d/b/a Bitfinex
-> (Docket No. 16-19) required Bitfinex to pay a $75,000 civil penalty
-> and to discontinue its operating margin-trading pool model in favor
-> of an actual-delivery margin model within 28 days, registered here
-> as a single-layer offramp_cex operator-state-change observation; the
-> row does not assert frontend takedown, ISP-level network blocking,
-> or on-chain asset effects."
+> (Docket No. 16-19) found that Bitfinex's financed retail bitcoin
+> transactions did not result in actual delivery within the statutory
+> 28-day window, ordered a $75,000 civil penalty and cease-and-desist,
+> and recorded Bitfinex's represented business-practice changes in
+> response to the investigation. The row is registered as a single-layer
+> offramp_cex operator-state-change observation; it does not assert
+> frontend takedown, ISP-level network blocking, or on-chain asset
+> effects."
 
 ## 1. Trigger
 
@@ -27,27 +29,26 @@
 - **`primary_legal`**
   - URL: <https://www.cftc.gov/PressRoom/PressReleases/7380-16>
   - Wayback: <https://web.archive.org/web/2016/https://www.cftc.gov/PressRoom/PressReleases/7380-16>
+  - body_hash: `sha256:8671fe9136935077a06ac5155a3ad04076587b7315d4cacd5cd3770edbaf3029`
+  - body_path: `sources/http_captures/bitfinex-cftc-retail-commodity-2016/cftc-primary/www.cftc.gov__PressRoom-PressReleases-7380-16__d5a12cecf5.html`
   > CFTC press release 7380-16 (2016-06-02): "CFTC Orders Bitcoin
 > Exchange Bitfinex to Pay $75,000 for Offering Illegal Off-Exchange
 > Financed Retail Commodity Transactions and Failing to Register as
 > a Futures Commission Merchant." Announces simultaneous filing and
 > settlement of CFTC administrative action against BFXNA Inc.
 > d/b/a Bitfinex (Hong Kong-based crypto exchange operator). Order
-> imposes $75,000 civil monetary penalty and cease-and-desist;
-> Bitfinex required to discontinue its operating margin-trading
-> pool model (in which Bitfinex held margin collateral in a single
-> omnibus pool) and move to an actual-delivery margin model within
-> 28 days. Marked evidence_use=contextual_unarchived because the
-> authoring LLM agent did not personally pin a Wayback snapshot
-> timestamp or compute a body_hash for the press release; the CFTC
-> press-release URL format is stable and routinely captured by
-> Wayback, but the specific snapshot timestamp is to be re-pinned
-> during human audit before this citation may serve as an admission
-> anchor in its own right. Provisional Wayback anchor uses Wayback
-> Machine year-prefix lookup.
+> imposes a $75,000 civil monetary penalty and cease-and-desist.
+> The release also notes that the CFTC recognized Bitfinex for
+> voluntarily making changes to its business practices to attempt
+> compliance. SOURCE-REPAIRED 2026-06-01: the live CFTC press
+> release was captured locally and pinned with body_hash/body_path.
+> The legacy Wayback year-prefix URL remains only as a supplemental
+> historical lookup.
 - **`primary_legal`**
   - URL: <https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf>
   - Wayback: <https://web.archive.org/web/2016/https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf>
+  - body_hash: `sha256:d5de7084ee9f5c4a3e575dda3d6f996ba5e521fed4064674ae9eea1aa4dd9f2c`
+  - body_path: `sources/http_captures/bitfinex-cftc-retail-commodity-2016/cftc-primary/www.cftc.gov__sites-default-files-idc-groups-public-lrenforcementactions-documents-legalpleading-enfbfxnaorder060216.pdf__e226b247ff.bin`
   > CFTC order In the Matter of BFXNA Inc. d/b/a Bitfinex,
 > CFTC Docket No. 16-19, dated 2016-06-02. Findings: from
 > approximately April 2013 through at least February 2016 Bitfinex
@@ -59,13 +60,13 @@
 > product was found to violate CEA Section 4(a) (off-exchange
 > retail commodity transactions not resulting in actual delivery
 > within 28 days) and Section 4d (operating without FCM
-> registration). Order requires the $75,000 civil penalty, a
-> cease-and-desist, and prospective changes to Bitfinex's
-> margin-trading product to satisfy the 28-day actual-delivery
-> exception. Marked evidence_use=contextual_unarchived pending
-> Wayback re-pin and body_hash capture during human audit.
-> Provisional Wayback anchor uses Wayback Machine year-prefix
-> lookup.
+> registration). The order imposes the $75,000 civil penalty and
+> cease-and-desist; it also records that Bitfinex represented it had
+> made business-practice changes in response to the investigation to
+> attempt compliance. SOURCE-REPAIRED 2026-06-01: the live CFTC PDF
+> was captured locally and pinned with body_hash/body_path. The
+> legacy Wayback year-prefix URL remains only as a supplemental
+> historical lookup.
 
 ## 2. Target
 
@@ -88,7 +89,7 @@
 
 ### offramp_cex · attribution: `direct` · Δt = 0h
 
-**Event label**: `cftc_ordered_bitfinex_margin_trading_product_change_to_actual_delivery_model`
+**Event label**: `cftc_ordered_bitfinex_cease_desist_for_financed_retail_bitcoin_transactions`
 
 **Timestamp**: `2016-06-02 00:00:00+00:00` (precision: `day`)
 
@@ -97,24 +98,30 @@
 - **`primary_legal`**
   - URL: <https://www.cftc.gov/PressRoom/PressReleases/7380-16>
   - Wayback: <https://web.archive.org/web/2016/https://www.cftc.gov/PressRoom/PressReleases/7380-16>
+  - body_hash: `sha256:8671fe9136935077a06ac5155a3ad04076587b7315d4cacd5cd3770edbaf3029`
+  - body_path: `sources/http_captures/bitfinex-cftc-retail-commodity-2016/cftc-primary/www.cftc.gov__PressRoom-PressReleases-7380-16__d5a12cecf5.html`
   > CFTC press release 7380-16 announces the order requiring
-> Bitfinex to pay a $75,000 civil penalty, cease and desist
-> from CEA violations, and modify its margin-trading product
-> so that financed retail commodity transactions result in
-> actual delivery within 28 days. attribution=direct because
-> the CFTC order itself mandates the operator-state change to
-> Bitfinex's financed-margin product line. Provisional Wayback
-> anchor uses Wayback Machine year-prefix lookup.
+> Bitfinex to pay a $75,000 civil penalty and cease and desist
+> from CEA violations. It also states that the CFTC recognized
+> Bitfinex for voluntarily making business-practice changes to
+> attempt compliance. attribution=direct because the observation
+> event is the CFTC order and associated compliance posture for
+> Bitfinex's financed-margin product line. Local body_hash/body_path
+> capture is the admission-grade replay anchor; the legacy Wayback
+> year-prefix URL is supplemental.
 - **`primary_legal`**
   - URL: <https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf>
   - Wayback: <https://web.archive.org/web/2016/https://www.cftc.gov/sites/default/files/idc/groups/public/@lrenforcementactions/documents/legalpleading/enfbfxnaorder060216.pdf>
+  - body_hash: `sha256:d5de7084ee9f5c4a3e575dda3d6f996ba5e521fed4064674ae9eea1aa4dd9f2c`
+  - body_path: `sources/http_captures/bitfinex-cftc-retail-commodity-2016/cftc-primary/www.cftc.gov__sites-default-files-idc-groups-public-lrenforcementactions-documents-legalpleading-enfbfxnaorder060216.pdf__e226b247ff.bin`
   > CFTC order In the Matter of BFXNA Inc. d/b/a Bitfinex,
 > Docket No. 16-19. Findings of fact describe Bitfinex's
-> operating margin-trading pool model and the regulator-
-> required transition to an actual-delivery model. Marked
-> evidence_use=contextual_unarchived pending Wayback re-pin.
-> Provisional Wayback anchor uses Wayback Machine year-prefix
-> lookup.
+> financed-margin product, the omnibus settlement wallet,
+> Bitfinex's retained control of private keys, the failure of
+> those transactions to satisfy actual delivery under Section
+> 2(c)(2)(D), and the resulting cease-and-desist order. Local
+> body_hash/body_path capture is the admission-grade replay
+> anchor; the legacy Wayback year-prefix URL is supplemental.
 
 ## 5. Honest coverage gaps
 
@@ -128,7 +135,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `9e851fb`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `c7761c0`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
