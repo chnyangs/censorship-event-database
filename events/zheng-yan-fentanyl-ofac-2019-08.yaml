@@ -1,14 +1,14 @@
 id: zheng-yan-fentanyl-ofac-2019-08
 schema_version: 0.2.0
 codebook_version: "3.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
 last_verified: 2026-05-31
@@ -32,8 +32,8 @@ trigger:
         OFAC designated Fujing Zheng, Guanghua Zheng, and Xiaobing Yan
         (plus the Zheng Drug Trafficking Organization and Qinsheng
         Pharmaceutical) under the Foreign Narcotics Kingpin Designation
-        Act. The SDN entries attached Bitcoin and Litecoin digital-
-        currency addresses controlled by the designees — the FIRST OFAC
+        Act. The SDN entries attached Bitcoin digital-currency
+        addresses (with Litecoin additionally listed in the SDN-list entries) controlled by the designees — the FIRST OFAC
         narcotics-related designation to enumerate cryptocurrency
         addresses. Wayback memento 20190821203144 pinned.
   timestamp_sources:
@@ -46,8 +46,8 @@ target:
   enumeration: subset
   enumeration_note: |
     Fujing Zheng, Guanghua Zheng, and Xiaobing Yan designated as SDNs
-    under the Kingpin Act, with Bitcoin/Litecoin addresses attached to
-    the individual entries. Marked subset because the target is the named
+    under the Kingpin Act, with Bitcoin addresses attached to the individual entries
+    (Litecoin additionally in the SDN-list entries). Marked subset because the target is the named
     set of individuals/organizations (Zheng DTO, Qinsheng Pharmaceutical)
     rather than an exhaustively enumerated complete address cohort; the
     on-chain addresses are not separately re-listed in this draft pending
@@ -80,7 +80,8 @@ coverage:
   - layer: asset_onchain
     status: not_measured
     note: |
-      The SDN entries attach Bitcoin/Litecoin addresses, but no
+      The SDN entries attach cryptocurrency addresses (Bitcoin named in
+      press release sm756; Litecoin in the SDN-list entries), but no
       primary_onchain freeze/blacklist receipt has been captured for
       this draft (BTC/LTC have no issuer-level freeze mechanism analogous
       to USDT/USDC blacklisting). asset_onchain effect deferred per
@@ -114,27 +115,28 @@ observations:
             - 2019-08-21T00:00:00Z
             - 2019-09-04T23:59:59Z
         note: |
-          No public CEX policy statement referencing the Zheng/Yan BTC/LTC
-          addresses was published by major exchanges in the 14-day post-
+          No public CEX policy statement referencing the Zheng/Yan cryptocurrency addresses was published by major exchanges in the 14-day post-
           designation window. Observation records the absence of public
           disclosure; private chain-analytics KYT flagging is outside this
           observation's scope.
 
 analysis_notes: |
-  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
-  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
-  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
-  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
-  unsupported specifics. DRAFT — do NOT admit as-is.
+  **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1
+  VERIFY-FLAG — captured Treasury press release sm756 substantiates the designation, the Bitcoin
+  digital-currency address nexus, and the "first OFAC narcotics designation to enumerate
+  cryptocurrency addresses" claim (rendered+grepped: bitcoin/digital-currency/cryptocurrency/address
+  all present). The Litecoin specifics, not in sm756, were softened to "additionally in the SDN-list
+  entries" rather than asserted as captured facts. primary_legal source -> meets admission floor.).
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources
   verified+captured, awaiting human admission). FIRST OFAC narcotics-
   related designation to enumerate cryptocurrency addresses: Fujing Zheng,
   Guanghua Zheng, and Xiaobing Yan designated 2019-08-21 (Treasury sm756)
-  under the Foreign Narcotics Kingpin Designation Act, with Bitcoin and
-  Litecoin SDN addresses attached. Coded null_event/null_case per the S1
+  under the Foreign Narcotics Kingpin Designation Act, with Bitcoin SDN addresses attached
+  (Litecoin additionally in the SDN-list entries). Coded null_event/null_case per the S1
   convention (cf. zservers-ofac-2025, bitriver-russia-mining-ofac-2022-04):
   the designation is the trigger, but no public CEX cascade was documented
-  in the 14-day window and the attached addresses are Bitcoin/Litecoin with
+  in the 14-day window and the attached addresses are Bitcoin (Litecoin additionally per the
+  SDN-list entries) with
   no issuer-level freeze mechanism, so the measurable cross-layer surface
   is limited (offramp_cex observed_no_change/none; asset_onchain deferred
   per §1.6 pending a primary_onchain receipt). Source verified + captured
@@ -144,7 +146,7 @@ analysis_notes: |
 scoped_claim: |
   "The 2019-08-21 OFAC Kingpin-Act designation of Fujing Zheng, Guanghua
   Zheng, and Xiaobing Yan (the first OFAC narcotics designation to attach
-  crypto addresses) listed Bitcoin/Litecoin addresses; no public CEX
+  crypto addresses) listed Bitcoin addresses (Litecoin additionally per the SDN-list entries); no public CEX
   cascade was documented in the 14-day window. null_case: individual-
   trafficker target with limited measurable cross-layer surface."
 

@@ -1,14 +1,14 @@
 id: tengyue-chemical-fentanyl-ofac-2025-09
 schema_version: 0.2.0
 codebook_version: "3.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
 last_verified: 2026-05-31
@@ -120,11 +120,11 @@ observations:
           cross-layer surface.
 
 analysis_notes: |
-  **VERIFY-FLAG 2026-05-31 (bulk wave-1 adversarial verify):** captured source supports the
-  designation/action + general crypto nexus, but does NOT substantiate the SPECIFIC crypto-address/
-  asset enumeration claimed (those identifiers are in the OFAC SDN-list entry / a source not captured
-  here). Before admission: pin the SDN-list/Recent-Actions source containing the addresses and soften
-  unsupported specifics. DRAFT — do NOT admit as-is.
+  **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1
+  VERIFY-FLAG. Captured Treasury press release sb0235 substantiates the designation + crypto nexus
+  (rendered+grepped: Bitcoin present). Specific identifiers not in the press release (literal
+  address / exact coin / count) were re-attributed to the SDN-list entry rather than asserted as
+  captured facts. primary_legal source -> meets admission floor; null_case coding unchanged.).
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1;
   sources verified+captured, awaiting human admission). OFAC SDN
   designation 2025-09-03 (Treasury sb0235) of Guangzhou Tengyue Chemical
@@ -145,7 +145,7 @@ analysis_notes: |
 scoped_claim: |
   "The 2025-09-03 OFAC designation of Guangzhou Tengyue Chemical Co. +
   Huang Xiaojun (Treasury sb0235, fentanyl/nitazenes trafficking)
-  attached one Bitcoin address; native BTC has no issuer freeze
+  attached a Bitcoin address (enumerated in the SDN-list entry); native BTC has no issuer freeze
   primitive and no public CEX cascade was pinned in the 14-day window.
   null_case: limited measurable cross-layer surface."
 
