@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 279, 'ok': 125}
-- **Verification** (`last_verified`): {'ok': 404}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 279, 'ok': 125}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 280, 'ok': 125}
+- **Verification** (`last_verified`): {'ok': 405}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 280, 'ok': 125}
 
 ## Flag legend
 
@@ -363,6 +363,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `storm-semenov-doj-2023` | `admitted` | `human_authored` | 2026-05-15 | 17 | ok | 2026-04-22 | 40 | ok | ok |
 | `suex-ofac-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 41 | ok | no_audit_recorded |
 | `switzerland-finma-tezos-zg-2018` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
+| `t3-bybit-hack-usdt-freeze-2025-03` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `t3-financial-crime-unit-launch-2024-09` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `taiwan-fsc-aml-vasp-regime-2021-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
@@ -657,6 +658,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `sri-lanka-cbsl-crypto-warning-fx-directive-2021` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `suex-ofac-2021` — audit=no_audit_recorded, verification=ok, verif_age=41d
 - `switzerland-finma-tezos-zg-2018` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `t3-bybit-hack-usdt-freeze-2025-03` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `t3-financial-crime-unit-launch-2024-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `taiwan-fsc-aml-vasp-regime-2021-2024` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` — audit=no_audit_recorded, verification=ok, verif_age=1d

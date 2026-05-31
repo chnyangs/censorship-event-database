@@ -7,15 +7,15 @@ This file is the operational summary for the repo's two current priorities:
 
 ## Process
 
-- Event count: `404`
+- Event count: `405`
 - Release-ready cases: `40`
 - Admitted but release-blocked cases: `328`
 - Fully complete release-ready cases: `1`
 - Scope-limited release-ready cases: `39`
 - Working drafts: `3`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 69, 'paper_anchor': 5}`
-- Draft priority order: `bitfinex-us-retail-customer-exit-2017-11, ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, saudi-standing-committee-virtual-currency-warning-2018-08, terror-financing-crypto-seizure-doj-2020, vietnam-sbv-bitcoin-prohibition-statement-2014-02, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, magic-eden-ofac-sanctioned-country-block, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
+- Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
+- Draft priority order: `bitfinex-us-retail-customer-exit-2017-11, ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, task-force-rusich-ofac-2022-09, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, saudi-standing-committee-virtual-currency-warning-2018-08, terror-financing-crypto-seizure-doj-2020, vietnam-sbv-bitcoin-prohibition-statement-2014-02, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, lebanon-bdl-bitcoin-warning-2013-12, nydfs-bittrex-bitlicense-denial-2019-04, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, magic-eden-ofac-sanctioned-country-block, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06`
 
 ## Cases
 
@@ -6264,6 +6264,23 @@ This file is the operational summary for the repo's two current priorities:
 - Blocker: The file does not currently retain a stable changed-layer claim.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `t3-bybit-hack-usdt-freeze-2025-03`
+
+- Status: `draft`
+- Readiness: `candidate_for_admission`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `medium`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: Case shape is visible but the case is not yet admitted.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `t3-financial-crime-unit-launch-2024-09`
 

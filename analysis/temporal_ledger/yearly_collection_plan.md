@@ -25,7 +25,7 @@ This is the year-level control surface for the 2008+ tiered frame. It is derived
 | 2022 | `comparable_main_2017_present` | 72 | 36 | 36 | 76 | 65 | 61 | 0 | 0 | 4 | triage pending source-frame months |
 | 2023 | `comparable_main_2017_present` | 72 | 42 | 30 | 100 | 84 | 80 | 0 | 0 | 6 | triage pending source-frame months |
 | 2024 | `comparable_main_2017_present` | 72 | 35 | 37 | 70 | 53 | 51 | 0 | 0 | 9 | triage pending source-frame months |
-| 2025 | `comparable_main_2017_present` | 72 | 22 | 50 | 41 | 27 | 26 | 0 | 0 | 7 | triage pending source-frame months |
+| 2025 | `comparable_main_2017_present` | 72 | 22 | 50 | 42 | 28 | 26 | 0 | 0 | 7 | triage pending source-frame months |
 | 2026 | `comparable_main_2017_present` | 36 | 5 | 31 | 5 | 3 | 1 | 0 | 0 | 2 | triage pending source-frame months |
 
 ## Use
