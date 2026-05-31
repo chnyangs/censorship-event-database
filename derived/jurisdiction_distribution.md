@@ -1,6 +1,6 @@
 # Jurisdictional distribution (derived)
 
-Generated: `2026-05-31T15:13:25Z`. Corpus: n = 368 events.
+Generated: `2026-06-01T00:00:00Z`. Corpus: n = 368 events.
 
 ## By region
 

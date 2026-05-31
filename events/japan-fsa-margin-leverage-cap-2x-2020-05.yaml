@@ -1,0 +1,197 @@
+id: japan-fsa-margin-leverage-cap-2x-2020-05
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-06-01T00:00:00Z
+last_verified: 2026-06-01
+
+related_events:
+  - japan-fsa-binance-warning-2018
+  - japan-fsa-six-exchange-orders-2018-06
+  - bitfinex-cftc-retail-commodity-2016
+  - korea-fsc-institutional-restriction-2017
+
+trigger:
+  type: regulatory_enforcement
+  actor: JP_FSA
+  timestamp: 2020-05-01T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://www.fsa.go.jp/en/newsletter/accessfsa2020/201.pdf
+      body_hash: sha256:1f7504f2994c68fd2b09ad97bdd6d28b1a8cbfa0d770cd23ae663a06f166ca31
+      body_path: sources/http_captures/japan-fsa-margin-leverage-cap-2x-2020-05/primary/www.fsa.go.jp__en-newsletter-accessfsa2020-201.pdf__0258b03d06.bin
+      evidence_use: replayable
+      note: |
+        FSA Access FSA No. 201 official English monthly magazine. `pdftotext`
+        on the captured PDF confirms that the 2019 amendments addressed
+        crypto-asset CFDs, brought businesses conducting crypto-asset CFD
+        transactions under Financial Instruments and Exchange Act registration,
+        and put the amended laws, supervisory guidelines, and policies into
+        effect as of 2020-05-01.
+    - type: primary_government
+      url: https://www.fsa.go.jp/en/news/2022/20220914-2/02.pdf
+      body_hash: sha256:f9dc25e14b5c9a8f14a509582d4f83e2266930ae28db38961efe300704c8f629
+      body_path: sources/http_captures/japan-fsa-margin-leverage-cap-2x-2020-05/primary/www.fsa.go.jp__en-news-2022-20220914-2-02.pdf__e6c759abb3.bin
+      evidence_use: replayable
+      note: |
+        FSA "Regulatory Framework for Crypto-assets and Stablecoins" official
+        English slide deck. `pdftotext` on the captured PDF confirms the
+        crypto-asset intermediary requirement: "In order to avoid highly
+        leveraged speculative transactions, a minimum margin of 50% is required
+        for CFD transactions by retail users." A 50% minimum margin requirement
+        implies a 2x maximum leverage cap for retail crypto-asset CFD/margin
+        transactions.
+    - type: primary_government
+      url: https://www.fsa.go.jp/en/newsletter/weekly2020/391.html
+      body_hash: sha256:cc93b6c5d35684697f3b29ca404527dc6268dce4cbade6352ceb9a2c6eaf490d
+      body_path: sources/http_captures/japan-fsa-margin-leverage-cap-2x-2020-05/primary/www.fsa.go.jp__en-newsletter-weekly2020-391.html__a8e715811a.html
+      evidence_use: replayable
+      note: |
+        FSA Weekly Review No. 391 records May 1, 2020 updates around the
+        virtual-currency / crypto-asset exchange-service provider guidelines
+        and notes that the updates were enforced since 2020-05-01. Used as an
+        official effective-date corroboration surface.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Day-level precision from FSA official materials identifying 2020-05-01
+        as the effective date of the amended crypto-asset laws, regulations,
+        supervisory guidelines, and policies.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: Japan crypto-asset CFD / margin-service businesses and
+    retail-user crypto-asset CFD transactions under the amended Financial
+    Instruments and Exchange Act / Payment Services Act framework effective
+    2020-05-01. The official FSA materials do not enumerate a fixed list of
+    affected platforms in these captured sources, so the target is modeled as a
+    regulated service class rather than named exchange rows.
+  protocol: null
+  actor_type: japan_crypto_asset_cfd_margin_service_providers
+  actor_name: Japan crypto-asset CFD / margin service providers
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - JP
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The FSA action is a financial-regulatory product restriction, not an ISP,
+      DNS, routing, or network-layer block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No consensus, validator, miner, staking, or protocol-rule surface is
+      changed by the crypto-asset CFD/margin leverage cap.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The action does not target hosted RPC, API, or wallet infrastructure.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The captured FSA sources do not identify a website, app, or frontend
+      takedown. The restriction is on the regulated margin/CFD product surface.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer-side token freeze, blacklist, burn, or address set is involved.
+      The asset_onchain tx_hash floor is not engaged.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - japan_crypto_asset_cfd_margin_services
+    note: |
+      Load-bearing layer. The FSA official materials place crypto-asset CFDs
+      and margin transactions inside the regulated financial-intermediary
+      perimeter and identify a minimum 50% margin requirement for retail
+      crypto-asset CFD transactions, modeled here as a 2x leverage cap on the
+      regulated exchange/off-ramp product surface.
+
+observations:
+  - layer: offramp_cex
+    actor: jp_fsa_crypto_asset_regulatory_framework
+    event: retail_crypto_asset_cfd_margin_leverage_capped_at_2x
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2020-05-01T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: JP
+    sources:
+      - type: primary_government
+        url: https://www.fsa.go.jp/en/newsletter/accessfsa2020/201.pdf
+        body_hash: sha256:1f7504f2994c68fd2b09ad97bdd6d28b1a8cbfa0d770cd23ae663a06f166ca31
+        body_path: sources/http_captures/japan-fsa-margin-leverage-cap-2x-2020-05/primary/www.fsa.go.jp__en-newsletter-accessfsa2020-201.pdf__0258b03d06.bin
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [JP]
+          providers: [japan_crypto_asset_cfd_margin_service_providers]
+          time_window:
+            - 2020-05-01T00:00:00Z
+            - 2026-06-01T23:59:59Z
+        note: |
+          Official FSA explanation of the 2019 crypto-asset amendments and
+          2020-05-01 effective date. The captured PDF states that crypto-asset
+          CFDs were brought under the Financial Instruments and Exchange Act and
+          that businesses conducting relevant transactions in trade came to be
+          required to register as financial instruments business operators.
+      - type: primary_government
+        url: https://www.fsa.go.jp/en/news/2022/20220914-2/02.pdf
+        body_hash: sha256:f9dc25e14b5c9a8f14a509582d4f83e2266930ae28db38961efe300704c8f629
+        body_path: sources/http_captures/japan-fsa-margin-leverage-cap-2x-2020-05/primary/www.fsa.go.jp__en-news-2022-20220914-2-02.pdf__e6c759abb3.bin
+        evidence_use: replayable
+        note: |
+          Official FSA regulatory-framework deck confirming the minimum 50%
+          margin requirement for retail crypto-asset CFD transactions. Used as
+          the load-bearing 2x-leverage-cap anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-06-01**. Created from the P4
+  census-gap exact queue. The event remains `status=draft` and
+  `origin=agent_draft`; automation must not promote it to an admitted paper row
+  without human admission review.
+
+  Inclusion rationale: the captured FSA sources describe an operative product
+  restriction on retail crypto-asset CFD/margin transactions rather than a soft
+  investor warning. A minimum 50% margin requirement corresponds to a 2x maximum
+  leverage cap for the regulated crypto-asset CFD product surface. This is
+  modeled as a single-layer `offramp_cex` / regulated intermediary product
+  restriction, parallel to other margin or lending-product restrictions.
+
+  Caution for human review: the current draft uses official FSA explanatory
+  materials and an official FSA framework deck. Before admission, a human
+  reviewer should decide whether the underlying Cabinet Office Order /
+  Financial Instruments and Exchange Act instrument should be pinned directly,
+  and whether the event should remain in scope as a product-surface restriction
+  rather than a narrower prudential market-conduct rule.
+
+scoped_claim: |
+  As of 2020-05-01, Japan's FSA crypto-asset regulatory amendments brought
+  retail crypto-asset CFD/margin transactions under the regulated financial
+  instruments perimeter and required a minimum 50% margin for retail
+  crypto-asset CFD transactions, modeled here as a 2x leverage cap at the
+  regulated exchange/off-ramp product layer.
+
+tags:
+  - regulatory_enforcement
+  - japan
+  - fsa_japan
+  - crypto_asset_cfd
+  - margin_trading
+  - leverage_cap
+  - agent_draft

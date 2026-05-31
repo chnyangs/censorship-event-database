@@ -1,11 +1,11 @@
 # Monthly Discovery Ledger
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · generated `2026-05-31T15:13:25Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-01` · generated `2026-06-01T00:00:00Z`
 
 This ledger covers every declared source frame for every month from `sampling/frame.yaml::snapshot_scope.historical_start` through the dataset cutoff. A `pending` row means the month has not yet been triaged; it is not evidence that no candidate exists.
 
 - Source frames: 6
-- Monthly rows: 1398
+- Monthly rows: 1404
 - Rows with candidates/events: 266
 
 ## Status Distribution
@@ -13,14 +13,14 @@ This ledger covers every declared source frame for every month from `sampling/fr
 | ledger_status | rows |
 | --- | ---: |
 | `candidate_found` | 266 |
-| `pending` | 628 |
+| `pending` | 634 |
 | `source_unavailable` | 504 |
 
 ## Temporal Tier Distribution
 
 | temporal_tier | rows |
 | --- | ---: |
-| `comparable_main_2017_present` | 678 |
+| `comparable_main_2017_present` | 684 |
 | `discovery_only_2007_2012` | 432 |
 | `historical_baseline_2013_2016` | 288 |
 

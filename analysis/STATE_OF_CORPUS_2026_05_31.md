@@ -4,8 +4,8 @@
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **402 events**: **368 admitted** / 25 draft / 9 rejected.
-- **Integrity**: `scripts/validate.py` passes **402 / 402 [OK]**; `make check` passes. All changes remain local, never pushed.
+- **404 events**: **368 admitted** / 27 draft / 9 rejected.
+- **Integrity**: `scripts/validate.py` passes **404 / 404 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
 ## Admitted composition (368)
@@ -31,7 +31,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
    (25 clean + 9 flagged national bans). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;
-   current validator regression 402/402.
+   current validator regression 404/404.
 5. **Continuation P1/P2 cleanup** — resolved US-state regulator stratum policy (state/subnational
    administrative actions stay `regulatory_enforcement` / `S4_nation_state`), recoded NYDFS BitLicense
    accordingly, rejected Iraq as warning/context-only, rejected GoldAge as pre-2007 out-of-frame, and
@@ -56,10 +56,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 174
-    verified+scope-tagged registry rows, 112 covered by corpus / duplicate / semantic precedent. All
-    remaining 62 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 11 exact-id candidate rows remain to triage from the 264-row
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 177
+    verified+scope-tagged registry rows, 114 covered by corpus / duplicate / semantic precedent. All
+    remaining 63 `in_corpus=false` rows are now reviewed-excluded/context-only/out-of-scope under codebook
+    §9, leaving 0 currently actionable registry rows; 8 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -90,6 +90,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     FATF 2024 Targeted Update are covered by existing standards arcs, while FATF R16 2025, FATF 2025
     Targeted Update, IOSCO/FSB 2025 thematic reviews, and FATF 2026 risk reports are context-only
     artifacts with no standalone service-denial action.
+    Two additional exact candidates are now represented by source-pinned `agent_draft` rows:
+    `japan-fsa-margin-leverage-cap-2x-2020-05` and
+    `magic-eden-ofac-sanctioned-country-block`. The GitHub sanctioned-country account-restriction row is
+    closed as out-of-scope because the captured policy is a non-crypto-specific code-hosting sanctions
+    restriction rather than a crypto-stack service-denial action.
     `cftc-bzerox-founders-settlement-2022-09` was added to the registry as semantic-covered by
     `cftc-v-ooki-dao-2022`, which already uses the same CFTC 8590-22 trigger and enumerates bZeroX LLC,
     both founders, and successor Ooki DAO.
@@ -225,6 +230,14 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     and FATF 2026 stablecoin/unhosted-wallet plus offshore-VASP reports are reviewed-context-only:
     official captures show implementation monitoring, risk reporting, or recommendations, not standalone
     crypto-stack service-denial actions.
+27. **Twenty-fifth follow-on triage (Japan/Magic Eden drafts + GitHub closure)** —
+    Two exact candidates are now represented by `status=draft` / `origin=agent_draft` rows with replayable
+    captured sources: Japan FSA's 2020-05-01 retail crypto-asset CFD/margin 2x leverage-cap draft and
+    Magic Eden's OFAC-sanctioned-country marketplace/frontend access-restriction draft. Both are deliberately
+    kept out of admitted paper counts pending human admission/scope review. `github-sanctioned-country-
+    account-restriction-2019-07` is closed as out-of-scope after capturing GitHub's official trade-controls
+    policy: it is a general code-hosting sanctions restriction, not a crypto-specific platform, asset, wallet,
+    exchange, NFT-marketplace, or protocol restriction.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;

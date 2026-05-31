@@ -1,6 +1,6 @@
 # Next steps — censorship-event-database
 
-Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 total; see
+Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 404 total; see
 `analysis/STATE_OF_CORPUS_2026_05_31.md`). Ordered by priority. Nothing here is pushed — all work is local.
 
 ## P1 — Scope / design decisions
@@ -72,11 +72,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 174
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 112 already covered
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 177
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 114 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
-      62 `in_corpus=false` rows, all 62 are now reviewed-excluded/context-only under codebook §9, leaving
-      0 currently actionable registry rows. Exact-id remaining queue: 11 candidate rows not yet in events
+      63 `in_corpus=false` rows, all 63 are now reviewed-excluded/context-only/out-of-scope under codebook §9,
+      leaving 0 currently actionable registry rows. Exact-id remaining queue: 8 candidate rows not yet in events
       or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
@@ -231,6 +231,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 402 
       disclosure/amendments and FATF 2024 Targeted Update are covered by existing corpus standards arcs,
       while FATF R16 2025, FATF 2025 Targeted Update, IOSCO/FSB 2025 thematic reviews, and two FATF 2026
       risk reports are context-only artifacts with no standalone service-denial action.
+      A twenty-fifth follow-on triage added two source-pinned `agent_draft` rows:
+      `japan-fsa-margin-leverage-cap-2x-2020-05` and
+      `magic-eden-ofac-sanctioned-country-block`. It also closed
+      `github-sanctioned-country-account-restriction-2019-07` as out-of-scope because the captured GitHub
+      trade-controls policy is a non-crypto-specific code-hosting sanctions restriction.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 

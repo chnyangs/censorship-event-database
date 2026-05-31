@@ -1,0 +1,192 @@
+id: magic-eden-ofac-sanctioned-country-block
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-06-01T00:00:00Z
+last_verified: 2026-06-01
+
+related_events:
+  - opensea-iran-cuba-sanctions-block-2022
+  - pump-fun-uk-fca-geofence-2024-12
+  - pancakeswap-sanctioned-country-frontend-geofence-2022
+  - 1inch-us-geofence-2021-09
+
+trigger:
+  type: corporate_policy_change
+  actor: MAGIC_EDEN
+  timestamp: 2023-09-29T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://help.magiceden.io/en/articles/8115154-restricted-access-for-ofac-sanctioned-countries
+      wayback: https://web.archive.org/web/20230929123242/https://help.magiceden.io/en/articles/8115154-restricted-access-for-ofac-sanctioned-countries
+      body_hash: sha256:e799d99ef5d9d24bbeb732f37cb0c4a29177847b15127501a03b303589ec5624
+      body_path: sources/http_captures/magic-eden-ofac-sanctioned-country-block/primary/web.archive.org__web-20230929123242-https-help.magiceden.io-en-articles-8115154-restricted-access-for-ofac-sanctioned-countries__393f250088.html
+      evidence_use: replayable
+      note: |
+        Magic Eden Help Center page "Restricted Access for OFAC Sanctioned
+        Countries", captured from the earliest successful Wayback memento found
+        in CDX during review (2023-09-29). The captured body states that Magic
+        Eden services are prohibited in certain countries due to existing
+        regulations and OFAC sanctions obligations. The 2023-09-29 timestamp is
+        a first-archived lower-bound for the policy, not a claim that the
+        geofence was first implemented on that exact day.
+    - type: primary_corporate
+      url: https://magiceden.io/terms-of-service.pdf
+      body_hash: sha256:a0bcbc8315b64ac2484a62d2aef9e0ce1c58ee61eec151f2259e16058040ba59
+      body_path: sources/http_captures/magic-eden-ofac-sanctioned-country-block/primary/magiceden.io__terms-of-service.pdf__2c7172fcab.bin
+      evidence_use: replayable
+      note: |
+        Magic Eden Terms of Service PDF, last updated 2024-01-29. The captured
+        PDF states that services are available only where permitted by
+        applicable law, users represent that they are not located in a country
+        subject to a U.S. Government embargo, VPN/geolocation circumvention is
+        prohibited, and Magic Eden reserves the right to block access by
+        geographic location, IP addresses, device identifiers, or users in
+        breach of the terms.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level lower-bound from the earliest successful Wayback memento
+        returned by CDX for the Magic Eden OFAC-restricted-access help article
+        (2023-09-29). Effective-date precision remains a draft caveat.
+
+target:
+  kind: domain
+  enumeration: subset
+  enumeration_note: |
+    Class-level target: users attempting to access Magic Eden services from
+    OFAC-sanctioned or otherwise restricted countries/regions. The captured
+    help-center page and terms do not enumerate the full jurisdiction roster in
+    a stable list, so the target is coded as a sanctions-jurisdiction class
+    rather than a country-by-country complete enumeration.
+  protocol: magic_eden_marketplace
+  actor_type: nft_marketplace_frontend
+  actor_name: Magic Eden marketplace / frontend services
+  chains:
+    - solana
+    - ethereum
+    - bitcoin
+    - polygon
+  canonical_domains:
+    - magiceden.io
+    - help.magiceden.io
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The captured Magic Eden sources describe a service/frontend access
+      restriction, not an ISP, DNS, IP-routing, or network-layer block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The policy does not alter Solana, Ethereum, Bitcoin, Polygon, or other
+      blockchain consensus rules.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      No hosted RPC provider or API routing surface is named as the target.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - magiceden.io
+      - help.magiceden.io
+    note: |
+      Load-bearing layer. Magic Eden's official help-center page states that
+      services are prohibited in certain countries due to existing regulations
+      and OFAC sanctions obligations. The terms reserve a geographic/IP/device
+      blocking right. This draft models the action as a marketplace/frontend
+      access restriction.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token issuer freeze, blacklist, burn, or address set is involved; NFT
+      ownership and chain-level transfer mechanics are not claimed to change.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Magic Eden is modeled here as an NFT marketplace/frontend surface, not a
+      centralized exchange off-ramp product.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:magic_eden
+    event: magic_eden_services_blocked_for_ofac_sanctioned_countries
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2023-09-29T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://help.magiceden.io/en/articles/8115154-restricted-access-for-ofac-sanctioned-countries
+        wayback: https://web.archive.org/web/20230929123242/https://help.magiceden.io/en/articles/8115154-restricted-access-for-ofac-sanctioned-countries
+        body_hash: sha256:e799d99ef5d9d24bbeb732f37cb0c4a29177847b15127501a03b303589ec5624
+        body_path: sources/http_captures/magic-eden-ofac-sanctioned-country-block/primary/web.archive.org__web-20230929123242-https-help.magiceden.io-en-articles-8115154-restricted-access-for-ofac-sanctioned-countries__393f250088.html
+        evidence_use: replayable
+        scope_descriptor:
+          domains: [magiceden.io, help.magiceden.io]
+          providers: [magic_eden_marketplace_frontend]
+          time_window:
+            - 2023-09-29T00:00:00Z
+            - 2026-06-01T23:59:59Z
+        note: |
+          Official Magic Eden help-center anchor, pinned to a 2023-09-29
+          Wayback memento, stating that Magic Eden services are prohibited in
+          certain countries because of existing regulations and OFAC sanctions
+          obligations.
+      - type: primary_corporate
+        url: https://magiceden.io/terms-of-service.pdf
+        body_hash: sha256:a0bcbc8315b64ac2484a62d2aef9e0ce1c58ee61eec151f2259e16058040ba59
+        body_path: sources/http_captures/magic-eden-ofac-sanctioned-country-block/primary/magiceden.io__terms-of-service.pdf__2c7172fcab.bin
+        evidence_use: replayable
+        note: |
+          Official Magic Eden Terms of Service corroborating the sanctions /
+          embargo eligibility terms and geographic/IP/device blocking authority.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-06-01**. Created from the P4
+  census-gap exact queue. The event remains `status=draft` and
+  `origin=agent_draft`; automation must not promote it to an admitted paper row
+  without human admission review.
+
+  Inclusion rationale: this is a crypto-specific marketplace/frontend access
+  restriction, not a generic sanctions compliance policy. Magic Eden is an NFT
+  marketplace and the official help-center page states that its services are
+  prohibited in certain countries due to OFAC sanctions obligations. The
+  observed layer is `l4_frontend`; no chain-level NFT transfer restriction,
+  issuer-side blacklist, or CEX off-ramp action is claimed.
+
+  Effective-date caveat: the 2023-09-29 timestamp is the earliest successful
+  Wayback memento found for the restricted-access help article during this
+  review. It is a lower-bound on public documentation, not proof of first
+  implementation. A human admission pass should either accept this as a
+  first-observed date or pin a stronger historical announcement / changelog.
+
+scoped_claim: |
+  By at least the 2023-09-29 Wayback memento, Magic Eden's official help-center
+  documentation stated that Magic Eden services were prohibited in certain
+  countries due to existing regulations and OFAC sanctions obligations. This
+  draft models the policy as a single-layer l4_frontend marketplace access
+  restriction; no on-chain NFT or token transfer effect is claimed.
+
+tags:
+  - corporate_policy_change
+  - magic_eden
+  - nft_marketplace
+  - ofac_sanctions
+  - frontend_restriction
+  - geofence
+  - agent_draft
