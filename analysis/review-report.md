@@ -8,13 +8,13 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `268`
-- Admitted but release-blocked cases: `100`
-- Fully complete release-ready cases: `13`
-- Scope-limited release-ready cases: `255`
+- Release-ready cases: `230`
+- Admitted but release-blocked cases: `138`
+- Fully complete release-ready cases: `9`
+- Scope-limited release-ready cases: `221`
 - Working drafts: `2`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 234, 'null_control': 96, 'appendix_only': 70, 'paper_anchor': 5}`
+- Paper-use roles: `{'aggregate_datapoint': 232, 'null_control': 96, 'appendix_only': 72, 'paper_anchor': 5}`
 - Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, magic-eden-ofac-sanctioned-country-block, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06, vietnam-sbv-bitcoin-prohibition-statement-2014-02`
 
 ## Cases
@@ -29,7 +29,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -76,7 +76,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -154,7 +154,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -176,7 +176,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -248,16 +248,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `australia-asic-binance-derivatives-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Coverage is majority-measured; some layers are only partially_measured.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09`
 
@@ -307,16 +311,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `belgium-fsma-binance-cease-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Coverage is majority-measured; some layers are only partially_measured.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `binance-4framework-2023`
 
@@ -385,7 +393,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -398,20 +406,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -426,7 +433,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -448,7 +455,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -468,7 +475,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -496,65 +503,75 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `binance-privacy-coin-delisting-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `binance-russia-exit-commex-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_complete`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `binance-russia-gunmaker-asset-freeze-ukraine-2022-08`
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -562,35 +579,40 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `binance-us-staking-end-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -646,27 +668,39 @@ This file is the operational summary for the repo's two current priorities:
 ### `bitfinex-cftc-retail-commodity-2016`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bitfinex-tether-cftc-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bitfinex-tether-nyag-2021`
@@ -706,7 +740,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -762,16 +796,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `bitstamp-greece-portugal-exit-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
+- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -801,7 +838,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -950,21 +987,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -980,7 +1016,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -1010,20 +1046,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1043,13 +1078,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `canada-csa-binance-withdrawal-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_complete`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `celsius-bankruptcy-mashinsky-doj-2023`
 
@@ -1170,13 +1211,15 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1185,21 +1228,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1215,7 +1257,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -1230,20 +1272,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1251,35 +1292,40 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `china-pboc-crypto-ban-2013-12`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1303,21 +1349,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1332,7 +1377,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -1345,21 +1390,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -1375,7 +1419,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -1412,7 +1456,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -1456,14 +1500,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `circle-usdc-cryptex-freeze-2024`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `circle-usdc-multichain-hack-freeze-2023-07`
@@ -1569,7 +1619,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -1624,14 +1674,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `coinflip-cftc-derivabit-2015`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `colonial-pipeline-darkside-ransom-clawback-doj-2021`
@@ -1652,16 +1708,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `consensys-metamask-infura-rpc-data-collection-2022-11`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
+- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1709,20 +1768,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1813,15 +1871,18 @@ This file is the operational summary for the repo's two current priorities:
 ### `eba-virtual-currencies-opinion-eba-op-2014-08`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1890,20 +1951,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1913,16 +1973,19 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `medium`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
+- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
+- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
+- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -1943,20 +2006,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2142,30 +2204,42 @@ This file is the operational summary for the repo's two current priorities:
 ### `eu-russia-crypto-wallet-cap-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-russia-full-crypto-wallet-ban-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2282,15 +2356,18 @@ This file is the operational summary for the repo's two current priorities:
 ### `fbi-bitcoin-intelligence-assessment-2012-04`
 
 - Status: `rejected`
-- Readiness: `candidate_for_admission`
+- Readiness: `needs_re_scoping`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case shape is visible but the case is not yet admitted.
+- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
+- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `fincen-eric-powers-p2p-exchanger-2019-04`
@@ -2355,16 +2432,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `ftx-bankman-fried-doj-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -2466,7 +2546,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -2514,16 +2594,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `germany-bafin-binance-licence-withdrawal-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Coverage is majority-measured; some layers are only partially_measured.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `goldage-ny-state-indictment-2006-07`
 
@@ -2549,7 +2633,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -2622,12 +2706,14 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2647,18 +2733,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `hongkong-sfc-vatp-licensing-2023-06`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `medium`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -2724,15 +2811,18 @@ This file is the operational summary for the repo's two current priorities:
 ### `india-fiu-offshore-vda-block-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 
@@ -2799,36 +2889,39 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `infura-alchemy-tornado-rpc-block-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `paper_anchor`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Coverage is majority-measured; some layers are only partially_measured.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `infura-metamask-donetsk-luhansk-block-2022-03`
 
@@ -2840,7 +2933,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -2857,7 +2950,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -2870,20 +2963,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -2957,7 +3049,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -2984,27 +3076,35 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `japan-fsa-coincheck-orders-2018`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3014,12 +3114,14 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3059,7 +3161,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -3102,12 +3204,14 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3115,20 +3219,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3157,12 +3260,14 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 
@@ -3177,7 +3282,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -3235,21 +3340,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3257,15 +3361,21 @@ This file is the operational summary for the repo's two current priorities:
 ### `korea-fsc-ico-ban-2017`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3288,20 +3398,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3349,16 +3458,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `kraken-sec-unregistered-exchange-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3409,16 +3521,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `kucoin-netherlands-exit-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
+- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3576,16 +3691,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `malaysia-sc-binance-disable-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
-- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: One layer remains explicitly unmeasured.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 
 ### `matveev-ofac-2023`
@@ -3669,21 +3788,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3719,15 +3837,21 @@ This file is the operational summary for the repo's two current priorities:
 ### `mtgox-dhs-dwolla-wells-fargo-seizure-2013`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3783,20 +3907,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -3820,21 +3943,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -3874,14 +3996,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `netherlands-dnb-binance-warning-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 
 ### `netwalker-vachon-desjardins-doj-2022`
@@ -3915,7 +4043,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -3989,28 +4117,37 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `needs_re_scoping`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
+- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case shape is visible but the case is not yet admitted.
+- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
+- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `oecd-carf-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `ofac-dprk-it-worker-sim-hyon-sop-2023-04`
@@ -4141,20 +4278,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4191,21 +4327,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4221,7 +4356,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -4261,7 +4396,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -4286,19 +4421,21 @@ This file is the operational summary for the repo's two current priorities:
 ### `opensea-iran-cuba-sanctions-block-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `medium`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
-- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4306,20 +4443,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4340,20 +4476,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -4376,21 +4511,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -4454,7 +4588,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -4543,7 +4677,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -4834,13 +4968,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `sec-burnside-bitcoin-stock-exchange-2014`
 
 - Status: `admitted`
-- Readiness: `release_ready_complete`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `sec-consensys-metamask-staking-swaps-2024-06`
 
@@ -4953,14 +5093,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `sec-shavers-btcst-2013`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `sec-tokenlot-unregistered-broker-2018-09`
@@ -5073,25 +5219,37 @@ This file is the operational summary for the repo's two current priorities:
 ### `sec-v-ripple-2020`
 
 - Status: `admitted`
-- Readiness: `release_ready_complete`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `sec-v-telegram-ton-2020`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `sec-v-uniswap-wells-notice-2024`
@@ -5148,7 +5306,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -5234,14 +5392,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `singapore-mas-binance-services-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 
 ### `singapore-mas-retail-crypto-restriction-2022`
@@ -5382,21 +5546,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5544,7 +5707,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -5606,16 +5769,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `aggregate_datapoint`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5637,20 +5803,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5664,7 +5829,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
@@ -5684,7 +5849,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -5703,7 +5868,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `high`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
@@ -5720,7 +5885,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `low`
 - Case-shape completeness: `high`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
@@ -5762,16 +5927,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `aggregate_datapoint`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -5787,7 +5955,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -5807,7 +5975,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -5819,16 +5987,19 @@ This file is the operational summary for the repo's two current priorities:
 ### `trustwallet-sanctioned-token-ui-update-2022`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
+- Readiness: `admitted_scope_blocked`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
+- Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
+- Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5893,16 +6064,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `uk-fca-binance-markets-2021`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `low`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Coverage is majority-measured; some layers are only partially_measured.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 
 ### `uk-fca-crypto-promotion-rule-2023`
 
@@ -5937,12 +6112,14 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `high`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -5957,7 +6134,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -6028,20 +6205,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6049,20 +6225,19 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
@@ -6086,21 +6261,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6123,21 +6297,20 @@ This file is the operational summary for the repo's two current priorities:
 
 - Status: `admitted`
 - Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer does not clearly meet the source threshold.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: At least one retained changed layer does not clearly satisfy the admission source rule.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Either strengthen the weak changed layer or drop it from observations.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
@@ -6145,14 +6318,20 @@ This file is the operational summary for the repo's two current priorities:
 ### `voyager-bankruptcy-doj-objection-2023`
 
 - Status: `admitted`
-- Readiness: `release_ready_scoped`
-- Paper-use role: `aggregate_datapoint`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `high`
-- Attribution reliability: `high`
+- Observation reliability: `low`
+- Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
+- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
+- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
+- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
+- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `wang-hongfei-fentanyl-precursor-ofac-2023-04`
@@ -6183,7 +6362,7 @@ This file is the operational summary for the repo's two current priorities:
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
@@ -6247,7 +6426,7 @@ This file is the operational summary for the repo's two current priorities:
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary evidence rather than a primary artifact.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.

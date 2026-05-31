@@ -20,6 +20,7 @@ from status_report import collect_gap_count, load_events  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parent.parent
 JSON_OUT_PATH = REPO_ROOT / "analysis" / "review-report.json"
 MD_OUT_PATH = REPO_ROOT / "analysis" / "review-report.md"
+NON_ADMISSION_EVIDENCE_USES = {"contextual_unarchived", "non_admission"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -29,20 +30,83 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def measurement_ids_are_valid(value: Any) -> bool:
+    return (
+        isinstance(value, list)
+        and len(value) > 0
+        and all(isinstance(item, str) and item.strip() for item in value)
+    )
+
+
+def source_has_replayable_anchor(source: dict[str, Any]) -> bool:
+    return bool(
+        (source.get("type") == "primary_onchain" and source.get("tx_hash"))
+        or source.get("wayback")
+        or (source.get("body_hash") and source.get("body_path"))
+        or source.get("query_hash")
+        or measurement_ids_are_valid(source.get("measurement_ids"))
+    )
+
+
+def source_is_admission_usable(source: dict[str, Any]) -> bool:
+    return (
+        isinstance(source, dict)
+        and source.get("evidence_use") not in NON_ADMISSION_EVIDENCE_USES
+        and source_has_replayable_anchor(source)
+    )
+
+
 def has_primary_sources(observation: dict[str, Any]) -> bool:
     return any(
-        str(source.get("type", "")).startswith("primary_")
+        source_is_admission_usable(source)
+        and str(source.get("type", "")).startswith("primary_")
         for source in observation.get("sources", [])
     )
+
+
+def semi_primary_distinct_count(observation: dict[str, Any]) -> int:
+    group_ids: set[str] = set()
+    ungrouped = 0
+    for source in observation.get("sources", []):
+        if not source_is_admission_usable(source):
+            continue
+        if not str(source.get("type", "")).startswith("semi_primary_"):
+            continue
+        group_id = source.get("evidence_group_id")
+        if isinstance(group_id, str) and group_id.strip():
+            group_ids.add(group_id.strip())
+        else:
+            ungrouped += 1
+    return len(group_ids) + ungrouped
 
 
 def has_two_semi_primary_sources(observation: dict[str, Any]) -> bool:
-    semi_primary_count = sum(
-        1
+    return semi_primary_distinct_count(observation) >= 2
+
+
+def observation_has_admission_usable_source(observation: dict[str, Any]) -> bool:
+    return any(
+        source_is_admission_usable(source)
         for source in observation.get("sources", [])
-        if str(source.get("type", "")).startswith("semi_primary_")
     )
-    return semi_primary_count >= 2
+
+
+def observation_meets_nonprimary_floor(
+    event: dict[str, Any],
+    observation: dict[str, Any],
+) -> bool:
+    if has_two_semi_primary_sources(observation):
+        return True
+    if event.get("evidence_tier") != "attested_secondary":
+        return False
+    return any(
+        source_is_admission_usable(source)
+        and (
+            str(source.get("type", "")).startswith("semi_primary_")
+            or str(source.get("type", "")).startswith("supporting_")
+        )
+        for source in observation.get("sources", [])
+    )
 
 
 def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
@@ -89,6 +153,17 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
         next_actions.append("Pin down the target set more concretely in the event file.")
 
     observation_reliability = "high"
+    weak_changed_observations = [
+        obs for obs in changed_observations if not has_primary_sources(obs)
+    ]
+    under_floor_changed_observations = [
+        obs
+        for obs in weak_changed_observations
+        if not observation_meets_nonprimary_floor(event, obs)
+    ]
+    unanchored_no_change_observations = [
+        obs for obs in no_change_observations if not observation_has_admission_usable_source(obs)
+    ]
     if gap_marker_count > 0 or any(
         obs.get("observation_kind") == "coverage_gap"
         for obs in event.get("observations", [])
@@ -97,33 +172,48 @@ def summarize_case(event: dict[str, Any]) -> dict[str, Any]:
         notes.append("At least one retained observation still depends on unresolved evidence scaffolding.")
         blockers.append("Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.")
         next_actions.append("Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.")
-    elif any(not has_primary_sources(obs) for obs in changed_observations):
-        if any(has_two_semi_primary_sources(obs) for obs in changed_observations):
-            observation_reliability = "medium"
-            notes.append("At least one changed layer is carried by semi-primary evidence rather than a primary artifact.")
-            next_actions.append("Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.")
-        else:
-            observation_reliability = "low"
-            notes.append("At least one changed layer does not clearly meet the source threshold.")
-            blockers.append("At least one retained changed layer does not clearly satisfy the admission source rule.")
-            next_actions.append("Either strengthen the weak changed layer or drop it from observations.")
+    elif under_floor_changed_observations:
+        observation_reliability = "low"
+        notes.append(
+            "At least one changed layer depends only on contextual/non-admission or non-replayable evidence."
+        )
+        blockers.append(
+            "At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence."
+        )
+        next_actions.append(
+            "Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations."
+        )
+    elif weak_changed_observations:
+        observation_reliability = "medium"
+        notes.append(
+            "At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact."
+        )
+        next_actions.append("Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.")
+    elif unanchored_no_change_observations:
+        observation_reliability = "low"
+        notes.append(
+            "At least one no-change observation lacks replayable, claim-usable evidence."
+        )
+        blockers.append(
+            "At least one null/no-change row cannot support a denominator claim with its current evidence_use markings."
+        )
+        next_actions.append(
+            "Attach a replayable null-observation anchor or mark the row outside the denominator."
+        )
 
     changed_attributions = {obs.get("attribution") for obs in changed_observations}
 
     def _direct_is_structurally_earned(obs: dict[str, Any]) -> bool:
-        """A `direct` label is earned when at least one source is primary_*.
+        """A `direct` label is earned when at least one claim-usable source is primary_*.
 
         Methodology §2.5 / §4.1 define `direct` as "a legal or operator source
         names the target or order explicitly", which in the source taxonomy
         maps to primary_legal, primary_corporate, primary_government, or
-        primary_onchain. Two
-        semi-primary sources can satisfy admission but cannot by themselves
-        earn direct attribution.
+        primary_onchain. Contextual/non-admission sources and two semi-primary
+        sources can satisfy context or admission respectively, but cannot by
+        themselves earn direct attribution.
         """
-        return any(
-            str(source.get("type", "")).startswith("primary_")
-            for source in obs.get("sources", [])
-        )
+        return has_primary_sources(obs)
 
     direct_observations = [
         obs for obs in changed_observations if obs.get("attribution") == "direct"
