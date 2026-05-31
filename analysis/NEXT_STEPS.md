@@ -68,8 +68,8 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **248 release-ready** cases, **120 admitted-but-blocked** cases, observation reliability
-      **266 high / 80 medium / 22 low**, and attribution reliability **228 high / 140 medium / 0 low**.
+      **249 release-ready** cases, **119 admitted-but-blocked** cases, observation reliability
+      **267 high / 80 medium / 21 low**, and attribution reliability **229 high / 139 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -91,7 +91,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       `canada-csa-binance-withdrawal-2023` out of the queue with the OSC-hosted CSA Staff Notice 21-332 PDF
       plus the official Binance X announcement pinned locally, while narrowing the row from an unpinned
       2-layer Binance.com / CAD-rail wind-down claim to a replayable single-layer Binance Canada marketplace
-      withdrawal observation.
+      withdrawal observation. Follow-on repair also moved `uk-fca-binance-markets-2021` out of the queue with
+      the FCA consumer-warning page plus First Supervisory Notice PDF pinned locally, while narrowing the row
+      from an unpinned bank-payment-rail cascade to the FCA-supported BML regulated-business restriction plus
+      required notice / promotion-removal compliance.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or

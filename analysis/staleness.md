@@ -397,7 +397,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `turkey-cmb-casp-licensing-law-7518-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `uae-sca-crypto-asset-activities-regulation-decision-23-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `uae-vara-licence-issuance-regime-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `uk-fca-binance-markets-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-05-16 | 16 | ok | no_audit_recorded |
+| `uk-fca-binance-markets-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `uk-fca-crypto-promotion-rule-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `uk-hmrc-bitcoin-vat-brief-09-14-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `ukraine-virtual-assets-law-2022-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -686,7 +686,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `turkey-cmb-casp-licensing-law-7518-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `uae-sca-crypto-asset-activities-regulation-decision-23-2020` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `uae-vara-licence-issuance-regime-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
-- `uk-fca-binance-markets-2021` — audit=no_audit_recorded, verification=ok, verif_age=16d
+- `uk-fca-binance-markets-2021` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `uk-fca-crypto-promotion-rule-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `uk-hmrc-bitcoin-vat-brief-09-14-2014` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `ukraine-virtual-assets-law-2022-03` — audit=no_audit_recorded, verification=ok, verif_age=11d

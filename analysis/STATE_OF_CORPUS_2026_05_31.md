@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **248** (10 complete / 238 scoped) and
-  admitted-but-blocked cases are **120**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **249** (11 complete / 238 scoped) and
+  admitted-but-blocked cases are **119**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **266 high / 80 medium / 22 low**; attribution reliability
-  **228 high / 140 medium / 0 low**. Current admitted paper roles are
-  **247 aggregate_datapoint / 96 null_control / 22 appendix_only / 3 paper_anchor**.
+  observation reliability **267 high / 80 medium / 21 low**; attribution reliability
+  **229 high / 139 medium / 0 low**. Current admitted paper roles are
+  **248 aggregate_datapoint / 96 null_control / 21 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -47,6 +47,9 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `canada-csa-binance-withdrawal-2023` now has the OSC-hosted CSA Staff Notice 21-332 PDF and official Binance
   X announcement pinned locally, and is narrowed from an unpinned 2-layer Binance.com/CAD-rail claim to a
   replayable single-layer Binance Canada marketplace-withdrawal observation.
+  `uk-fca-binance-markets-2021` now has the FCA consumer-warning page and First Supervisory Notice PDF pinned
+  locally, and is narrowed from an unpinned bank-payment-rail cascade to the FCA-supported BML regulated-business
+  restriction plus required notice / promotion-removal compliance.
 
 ## Admitted composition (368)
 | dimension | breakdown |

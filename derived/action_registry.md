@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `00764cd` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `e443d6f` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -314,8 +314,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `tornado-cash-tornadocash-org-seizure-2022:0:l4_frontend:domain_entrypoint:tornado_cash_team:tornadocash_org_canonical_domain_rendered_unreachable_after_ofac_sdn` | 1 | 0 | 1 | l4_frontend | `tornado-cash-tornadocash-org-seizure-2022::l4_frontend` |
 | `tradehill-dwolla-payment-cutoff-2012-02:0:offramp_cex:payment_processor:dwolla:dwolla_severs_tradehill_fiat_payment_rail` | 1 | 0 | 1 | offramp_cex | `tradehill-dwolla-payment-cutoff-2012-02::offramp_cex` |
 | `turkey-cbrt-crypto-ban-2021:0:offramp_cex:turkish_payment_ecosystem:try_payment_rail_to_crypto_severed` | 1 | 0 | 1 | offramp_cex | `turkey-cbrt-crypto-ban-2021::offramp_cex` |
-| `uk-fca-binance-markets-2021:0:offramp_cex:uk_retail_banking_ecosystem:gbp_payment_rails_to_binance_severed_class_wide` | 1 | 0 | 1 | offramp_cex | `uk-fca-binance-markets-2021::offramp_cex` |
-| `uk-fca-binance-markets-2021:1:l4_frontend:frontend:binance_com_en_uk_geo:uk_geo_specific_restriction_banners_posted` | 1 | 0 | 1 | l4_frontend | `uk-fca-binance-markets-2021::l4_frontend` |
+| `uk-fca-binance-markets-2021:0:offramp_cex:binance_markets_limited:bml_regulated_business_restriction_remained_in_place` | 1 | 0 | 1 | offramp_cex | `uk-fca-binance-markets-2021::offramp_cex` |
+| `uk-fca-binance-markets-2021:1:l4_frontend:binance_markets_limited:fca_required_binance_notice_and_promotion_removal_complied` | 1 | 0 | 1 | l4_frontend | `uk-fca-binance-markets-2021::l4_frontend` |
 | `uk-fca-crypto-promotion-rule-2023:0:offramp_cex:bybit_global:bybit_restricted_uk_retail_customers_in_response_to_fca_financial_promotions_regime` | 1 | 0 | 1 | offramp_cex | `uk-fca-crypto-promotion-rule-2023::offramp_cex` |
 | `uk-fca-crypto-promotion-rule-2023:1:offramp_cex:kucoin_global:kucoin_restricted_uk_retail_customers_in_response_to_fca_financial_promotions_regime` | 1 | 0 | 1 | offramp_cex | `uk-fca-crypto-promotion-rule-2023::offramp_cex` |
 | `uk-fca-crypto-promotion-rule-2023:2:l4_frontend:frontend:bybit_kucoin_uk_geo:uk_geo_frontend_banners_and_kyc_restrictions_added_on_bybit_and_kucoin_uk_vantage` | 1 | 0 | 1 | l4_frontend | `uk-fca-crypto-promotion-rule-2023::l4_frontend` |

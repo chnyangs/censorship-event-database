@@ -2,20 +2,19 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (2 changed layer(s): `l4_frontend`, `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `00764cd` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `e443d6f` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "FCA consumer warning of 2021-06-26 that Binance Markets Limited is not
-> permitted to undertake regulated activity in the UK precipitated a
-> class-wide GBP payment-rail severance from major UK retail banks
-> (Barclays 2021-07-05, Santander 2021-07-13, others) to Binance over the
-> following 8 weeks. Primary observational axis is offramp_cex at the
-> UK-Binance cohort level; secondary L4-frontend response (UK-geo
-> restriction banners on binance.com/en) attached with plausible
-> attribution."
+> "FCA's 2021-06-26 consumer warning and First Supervisory Notice imposed
+> immediate requirements on Binance Markets Limited: BML could not undertake
+> regulated activity in the UK without prior FCA consent, had to display a
+> prescribed notice on www.binance.com and other channels, and had to remove
+> live advertising / financial promotions by 2021-06-30. The FCA later
+> stated on 2021-08-25 that BML complied with all aspects of the requirements.
+> No UK bank payment-rail severance claim is retained in this repaired row."
 
 ## 1. Trigger
 
@@ -26,17 +25,26 @@
 ### Trigger citations
 
 - **`primary_legal`**
-  - URL: <https://www.fca.org.uk/news/news-stories/binance-markets-limited>
-  - Wayback: <https://web.archive.org/web/20210626155014/https://www.fca.org.uk/news/news-stories/binance-markets-limited>
-  > UK Financial Conduct Authority (FCA) consumer warning "Binance Markets
-> Limited" dated 2021-06-26. States that "Binance Markets Limited is not
-> permitted to undertake any regulated activity in the UK." Companion
-> statement to the FCA's supervisory notice imposing requirements on
-> Binance Markets Ltd (the UK FCA-registered Binance entity). DRYRUN
-> promotion: replayable Wayback URL is asserted in the FCA news feed;
-> body-hash capture deferred to a follow-on pass before non-DRYRUN
-> release. Marked contextual_unarchived to flag the unarchived state
-> explicitly.
+  - URL: <https://www.fca.org.uk/news/news-stories/consumer-warning-binance-markets-limited-and-binance-group>
+  - body_hash: `sha256:4ea9e5b25281b4685156a0f03327d3e86e779e6ed03e2b8176bd4201515c37e9`
+  - body_path: `sources/http_captures/uk-fca-binance-markets-2021/primary/www.fca.org.uk__news-news-stories-consumer-warning-binance-markets-limited-and-binance-group__de6cfda4a8.html`
+  > UK Financial Conduct Authority (FCA) consumer warning "Consumer
+> warning on Binance Markets Limited and the Binance Group" dated
+> 2021-06-26. The live FCA page states that Binance Markets Limited is
+> not permitted to undertake regulated activity in the UK and links the
+> FCA supervisory notice. Captured and pinned with body_hash/body_path
+> during the 2026-06-01 source-repair pass.
+- **`primary_legal`**
+  - URL: <https://www.fca.org.uk/publication/supervisory-notices/first-supervisory-notice-binance-markets-limited.pdf>
+  - body_hash: `sha256:e31a4e8a06371066cc3057da5bdd8d9ada90706b5f515b92a8144e18b65d2b07`
+  - body_path: `sources/http_captures/uk-fca-binance-markets-2021/primary/www.fca.org.uk__publication-supervisory-notices-first-supervisory-notice-binance-markets-limited.pdf__0e4475627e.bin`
+  > FCA First Supervisory Notice to Binance Markets Limited, dated
+> 2021-06-25. The notice imposed immediate requirements under FSMA,
+> including a prohibition on BML carrying out regulated activities
+> without prior FCA consent and a requirement to display a prescribed
+> notice on www.binance.com and other communication channels by
+> 2021-06-30. Captured and pinned with body_hash/body_path during the
+> 2026-06-01 source-repair pass.
 
 ## 2. Target
 
@@ -45,66 +53,61 @@
 - **Actor name**: Binance Markets Limited (UK)
 - **Canonical domains**: `binance.com`
 
-> Binance Markets Limited (the UK-FCA-registered entity of the Binance group)
-> and, by cascade, UK retail customers of the global binance.com platform.
-> The FCA notice targets a single legal entity (BML) but its operational
-> effect is on the UK Binance customer base via downstream bank payment-rail
-> cutoffs. Target treated as entity-level at the Binance-UK cohort.
+> Binance Markets Limited (the UK FCA-authorised entity of the Binance
+> group) and the Binance communication surfaces named in the FCA First
+> Supervisory Notice. The public claim is intentionally scoped to the FCA's
+> regulated-activity prohibition and required customer-facing notice/removal
+> steps; UK bank payment-rail cascades are not retained without replayable
+> bank-side primary evidence.
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `direct` · Δt = 216h
+### offramp_cex · attribution: `direct` · Δt = 1440h
 
-**Event label**: `gbp_payment_rails_to_binance_severed_class_wide`
+**Event label**: `bml_regulated_business_restriction_remained_in_place`
 
-**Timestamp**: `2021-07-05 00:00:00+00:00` (precision: `day`)
+**Timestamp**: `2021-08-25 00:00:00+00:00` (precision: `day`)
 
 **Sources**:
 
 - **`primary_legal`**
-  - URL: <https://www.fca.org.uk/news/news-stories/binance-markets-limited>
-  - Wayback: <https://web.archive.org/web/20210626155014/https://www.fca.org.uk/news/news-stories/binance-markets-limited>
-  > FCA consumer warning is the regulatory anchor. The notice itself
-> does not legally compel UK banks to block payment rails, but
-> contemporaneous bank statements (Barclays 2021-07-05) cited the
-> FCA warning as the reason for the block. attribution=direct at
-> the FCA-warning-as-trigger level; bank responses are the
-> immediate cascade.
-- **`supporting_journalism`**
-  - URL: <https://www.ft.com/content/27e91a07-6b35-4e62-a9c4-1bf4d2cf5fff>
-  - Wayback: <https://web.archive.org/web/20210706153500/https://www.ft.com/content/27e91a07-6b35-4e62-a9c4-1bf4d2cf5fff>
-  > Financial Times "Barclays blocks UK card payments to Binance
-> cryptocurrency exchange" (2021-07-05). Documents the first
-> major UK retail bank citing the FCA action and blocking card
-> payments to Binance. Marked contextual_unarchived for DRYRUN;
-> body-hash capture deferred.
-- **`supporting_journalism`**
-  - URL: <https://www.reuters.com/technology/santander-stops-uk-payments-binance-2021-07-13/>
-  - Wayback: <https://web.archive.org/web/20210713200000/https://www.reuters.com/technology/santander-stops-uk-payments-binance-2021-07-13/>
-  > Reuters report (2021-07-13) on Santander UK halting payments to
-> Binance. Second major UK retail bank to act post-FCA notice;
-> confirms the class-wide payment-rail severance pattern.
+  - URL: <https://www.fca.org.uk/publication/supervisory-notices/first-supervisory-notice-binance-markets-limited.pdf>
+  - body_hash: `sha256:e31a4e8a06371066cc3057da5bdd8d9ada90706b5f515b92a8144e18b65d2b07`
+  - body_path: `sources/http_captures/uk-fca-binance-markets-2021/primary/www.fca.org.uk__publication-supervisory-notices-first-supervisory-notice-binance-markets-limited.pdf__0e4475627e.bin`
+  > FCA First Supervisory Notice imposed an immediate requirement that
+> BML must not carry out any regulated activities for which it had
+> Part 4A permission without prior written FCA consent.
+- **`primary_legal`**
+  - URL: <https://www.fca.org.uk/news/news-stories/consumer-warning-binance-markets-limited-and-binance-group>
+  - body_hash: `sha256:4ea9e5b25281b4685156a0f03327d3e86e779e6ed03e2b8176bd4201515c37e9`
+  - body_path: `sources/http_captures/uk-fca-binance-markets-2021/primary/www.fca.org.uk__news-news-stories-consumer-warning-binance-markets-limited-and-binance-group__de6cfda4a8.html`
+  > FCA 2021-08-25 update states that BML complied with all aspects
+> of the requirements and that the requirements remained in place,
+> with BML still unable to conduct regulated business in the UK.
 
-### l4_frontend · attribution: `plausible` · Δt = 24h
+### l4_frontend · attribution: `direct` · Δt = 1440h
 
-**Event label**: `uk_geo_specific_restriction_banners_posted`
+**Event label**: `fca_required_binance_notice_and_promotion_removal_complied`
 
-**Timestamp**: `2021-06-27 00:00:00+00:00` (precision: `day`)
+**Timestamp**: `2021-08-25 00:00:00+00:00` (precision: `day`)
 
 **Sources**:
 
-- **`primary_corporate`**
-  - URL: <https://www.binance.com/en/support/announcement/binance-markets-limited-and-the-fca-uk-2bb6f1c121f74ae0a05bbcc4dbf94135>
-  - Wayback: <https://web.archive.org/web/20210627000000*/binance.com/en/support/announcement/binance-markets-limited-and-the-fca-uk-2bb6f1c121f74ae0a05bbcc4dbf94135>
-  > Binance UK announcement posted on binance.com/en in the days
-> after the FCA notice, clarifying that Binance Markets Limited
-> was a "separate legal entity" from binance.com and that
-> binance.com itself was not subject to the FCA notice.
-> Functional UK-customer restrictions followed in subsequent
-> months. attribution=plausible because the frontend banner is
-> a Binance-corporate response, not a regulator-mandated
-> change. DRYRUN: Wayback URL pattern asserted; pinned snapshot
-> capture deferred.
+- **`primary_legal`**
+  - URL: <https://www.fca.org.uk/publication/supervisory-notices/first-supervisory-notice-binance-markets-limited.pdf>
+  - body_hash: `sha256:e31a4e8a06371066cc3057da5bdd8d9ada90706b5f515b92a8144e18b65d2b07`
+  - body_path: `sources/http_captures/uk-fca-binance-markets-2021/primary/www.fca.org.uk__publication-supervisory-notices-first-supervisory-notice-binance-markets-limited.pdf__0e4475627e.bin`
+  > FCA First Supervisory Notice required BML to display prescribed
+> wording on www.binance.com and other communication channels by
+> 2021-06-30, remove live advertising and financial promotions by
+> the same date, and confirm the steps taken to the FCA.
+- **`primary_legal`**
+  - URL: <https://www.fca.org.uk/news/news-stories/consumer-warning-binance-markets-limited-and-binance-group>
+  - body_hash: `sha256:4ea9e5b25281b4685156a0f03327d3e86e779e6ed03e2b8176bd4201515c37e9`
+  - body_path: `sources/http_captures/uk-fca-binance-markets-2021/primary/www.fca.org.uk__news-news-stories-consumer-warning-binance-markets-limited-and-binance-group__de6cfda4a8.html`
+  > FCA 2021-08-25 update states that BML complied with all aspects
+> of the requirements and that the requirements remained in place,
+> with BML still unable to conduct regulated business in the UK.
 
 ## 5. Honest coverage gaps
 
@@ -120,7 +123,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `00764cd`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `e443d6f`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
