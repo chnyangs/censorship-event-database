@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **244** (10 complete / 234 scoped) and
-  admitted-but-blocked cases are **124**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **246** (10 complete / 236 scoped) and
+  admitted-but-blocked cases are **122**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **262 high / 80 medium / 26 low**; attribution reliability
-  **225 high / 143 medium / 0 low**. Current admitted paper roles are
-  **243 aggregate_datapoint / 96 null_control / 26 appendix_only / 3 paper_anchor**.
+  observation reliability **264 high / 80 medium / 24 low**; attribution reliability
+  **227 high / 141 medium / 0 low**. Current admitted paper roles are
+  **245 aggregate_datapoint / 96 null_control / 24 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -39,6 +39,9 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `sec-burnside-bitcoin-stock-exchange-2014` now has local SEC newsroom press-release and corrected
   Administrative Proceeding Order 33-9685 PDF replay anchors; its claim is narrowed to the order-supported
   Commission-staff-triggered website/trading winddown and 2014 settlement remedies.
+  `eu-russia-crypto-wallet-cap-2022` and `eu-russia-full-crypto-wallet-ban-2022` now have local EUR-Lex
+  replay anchors for Regulations 2022/576 and 2022/1904, and both rows are narrowed from unpinned named-CASP
+  implementation claims to the source-supported EU CASP custody/account legal obligations.
 
 ## Admitted composition (368)
 | dimension | breakdown |
