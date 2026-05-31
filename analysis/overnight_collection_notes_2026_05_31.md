@@ -286,3 +286,21 @@ evidence_group_ids to existing independent semi-primary sources) found NONE — 
 semi-primary in the observation. 5 more need a primary_onchain tx_hash (different fix). Decision point surfaced to user.
 
 ## RUNNING TOTAL: corpus 261 → **333 admitted** / 45 draft / 7 rejected = 385; sweep 385/385 [OK]. +72 admitted this continuation.
+
+### TASK 2 (cont.) — per-event capture, user: 继续 capture 慢慢跑 — 2026-05-31
++1 admitted (corpus 333 → 334): **ecuador** — official Código Orgánico Monetario y Financiero PDF
+(primary_legal, 156pp, full text grep-verified: se prohíbe / no autorizado / medios de pago / curso legal /
+dólar / junta de política; attribution=plausible, Code doesn't name bitcoin). Wayback-archived.
+**Refined yield rule: only official PDFs on standard URLs capture reliably.**
+- ✅ Worked (3): philippines-bsp (BSP M-2022-035.pdf), argentina-bcra (A-7506.pdf), ecuador (COMF.pdf) — all direct PDFs.
+- ❌ china-pboc-2014: found the correct pbc.gov.cn URL for notice 银发[2013]289号, but the page is a JS stub
+  (rendered 490 chars — 比特币/289 present but the notice body absent) + Wayback submit timed out. Chinese gov
+  HTML pages don't capture. STAYS DRAFT.
+- ❌ Confirmed-hard: korea-fsc/fiu (bot-block reset), binance (JS-gated empty body), thailand/indonesia/egypt/
+  nepal (searches return only law-firm commentary + journalism; no clean PDF/standard-URL primary surfaced).
+**Task-2 tally this session: +3 admitted (philippines, argentina, ecuador) via official-PDF capture.** The remaining
+~34 under-threshold drafts mostly lack a clean capturable PDF primary — they need either (a) patient per-event
+hunting for an existing Wayback snapshot / a PDF mirror of the foreign-language law, or (b) the lower-admission-tier
+methodology. Per user, continuing the slow capture route as PDF primaries are found; this is an ongoing background effort.
+
+## RUNNING TOTAL: corpus 261 → **334 admitted** / 44 draft / 7 rejected = 385; sweep 385/385 [OK]. +73 admitted this continuation.
