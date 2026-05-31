@@ -12,6 +12,8 @@ from typing import Any
 import jsonschema
 import yaml
 
+from _yaml_strict import load_yaml_unique_keys
+
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 SCHEMA_PATH = REPO_ROOT / "schema" / "event.schema.json"
@@ -27,7 +29,7 @@ def _clean_nulls(node: Any) -> Any:
 
 
 def _load_event(path: pathlib.Path) -> dict[str, Any]:
-    data = yaml.safe_load(path.read_text())
+    data = load_yaml_unique_keys(path)
     if not isinstance(data, dict):
         raise ValueError("top-level YAML document must be a mapping")
     return json.loads(json.dumps(_clean_nulls(data), default=str))

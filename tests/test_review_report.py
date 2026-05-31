@@ -16,8 +16,14 @@ def _event() -> dict:
         "admission_tier": "empirical_case",
         "trigger": {
             "citation": [
-                {"type": "primary_legal"},
-                {"type": "semi_primary_wayback"},
+                {
+                    "type": "primary_legal",
+                    "wayback": "https://web.archive.org/web/20240101000000/https://example.com/legal",
+                },
+                {
+                    "type": "semi_primary_wayback",
+                    "wayback": "https://web.archive.org/web/20240101000000/https://example.com/context",
+                },
             ],
         },
         "target": {
@@ -34,7 +40,7 @@ def _event() -> dict:
                 "layer": "asset_onchain",
                 "observation_kind": "observed_change",
                 "attribution": "direct",
-                "sources": [{"type": "primary_onchain"}],
+                "sources": [{"type": "primary_onchain", "tx_hash": "0x" + "a" * 64}],
             }
         ],
     }
@@ -48,7 +54,12 @@ def _null_event() -> dict:
         "empirical_shape": "null_event",
         "admission_tier": "null_case",
         "trigger": {
-            "citation": [{"type": "primary_legal"}],
+            "citation": [
+                {
+                    "type": "primary_legal",
+                    "wayback": "https://web.archive.org/web/20240101000000/https://example.com/legal",
+                }
+            ],
         },
         "target": {
             "kind": "entity",
@@ -64,7 +75,12 @@ def _null_event() -> dict:
                 "layer": "offramp_cex",
                 "observation_kind": "observed_no_change",
                 "attribution": "none",
-                "sources": [{"type": "primary_legal"}],
+                "sources": [
+                    {
+                        "type": "primary_legal",
+                        "wayback": "https://web.archive.org/web/20240101000000/https://example.com/null",
+                    }
+                ],
             }
         ],
     }

@@ -25,6 +25,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _gap_markers import BLOCKING as PLACEHOLDER_MARKERS  # noqa: E402
+from _yaml_strict import load_yaml_unique_keys  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -71,7 +72,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def load_yaml(path: Path) -> Any:
-    return yaml.safe_load(path.read_text())
+    return load_yaml_unique_keys(path)
 
 
 def load_json(path: Path) -> Any:
@@ -1516,9 +1517,16 @@ def main() -> int:
         print("No event YAML files found.", file=sys.stderr)
         return 1
 
+    loaded_by_path: dict[Path, Any] = {}
+    load_errors: dict[Path, str] = {}
     events_by_path: dict[Path, dict[str, Any]] = {}
     for path in paths:
-        event = load_yaml(path)
+        try:
+            event = load_yaml(path)
+        except (OSError, yaml.YAMLError) as exc:
+            load_errors[path] = str(exc)
+            continue
+        loaded_by_path[path] = event
         if isinstance(event, dict):
             events_by_path[path] = event
 
@@ -1532,16 +1540,20 @@ def main() -> int:
 
     all_ok = True
     for path in paths:
-        event = events_by_path.get(path) or load_yaml(path)
-        result = validator.validate_event(
-            path=path,
-            event=event,
-            check_citations=args.check_citations,
-            check_archives=args.check_archives,
-            timeout=args.timeout,
-        )
-        for error in action_reference_errors.get(path, []):
-            result.error(error)
+        if path in load_errors:
+            result = ValidationResult(path)
+            result.error(f"YAML load failed: {load_errors[path]}")
+        else:
+            event = loaded_by_path.get(path)
+            result = validator.validate_event(
+                path=path,
+                event=event,
+                check_citations=args.check_citations,
+                check_archives=args.check_archives,
+                timeout=args.timeout,
+            )
+            for error in action_reference_errors.get(path, []):
+                result.error(error)
         status = "OK" if result.ok else "FAIL"
         print(f"[{status}] {path}")
         for warning in result.warnings:

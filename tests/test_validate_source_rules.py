@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import yaml
 
+import validate_json_schema
 import validate
 from validate import EventValidator, ValidationResult, VOCAB_PATH
 
@@ -14,6 +15,42 @@ def _validator() -> EventValidator:
 
 def _result() -> ValidationResult:
     return ValidationResult(path=VOCAB_PATH)
+
+
+def test_load_yaml_rejects_duplicate_mapping_keys(tmp_path):
+    path = tmp_path / "duplicate-source-key.yaml"
+    path.write_text(
+        "\n".join(
+            [
+                "id: duplicate-source-key",
+                "trigger:",
+                "  citation:",
+                "    - url: https://example.com/original",
+                "      wayback: https://web.archive.org/web/20240101000000/https://example.com/original",
+                "      wayback: https://web.archive.org/web/20240102000000/https://example.com/overwritten",
+            ]
+        )
+        + "\n"
+    )
+
+    try:
+        validate.load_yaml(path)
+    except yaml.YAMLError as exc:
+        assert "duplicate key 'wayback'" in str(exc)
+    else:  # pragma: no cover - the assertion above is the expected path.
+        raise AssertionError("duplicate YAML keys must fail validation")
+
+
+def test_schema_loader_rejects_duplicate_mapping_keys(tmp_path):
+    path = tmp_path / "duplicate-top-level-key.yaml"
+    path.write_text("id: first\nid: second\n")
+
+    try:
+        validate_json_schema._load_event(path)
+    except yaml.YAMLError as exc:
+        assert "duplicate key 'id'" in str(exc)
+    else:  # pragma: no cover - the assertion above is the expected path.
+        raise AssertionError("duplicate YAML keys must fail schema-check loading")
 
 
 def test_primary_onchain_rejects_truncated_tx_hash():
