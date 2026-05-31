@@ -202,3 +202,43 @@ binance-palestinian-seizure, shapeshift-kyc. **HELD from admission pending the a
 (must not admit unverified wave-3 output). Will parse drop/flag/keep when the workflow completes, then dry-run-admit clean ones.
 
 **Corpus state at log time: 385 events — 309 admitted / 69 draft / 7 rejected — sweep 384/384 validate [OK].**
+
+### WAVE 3 (S5 corporate) FULLY PROCESSED + admission audit checkpoint — 2026-05-31
+Wave-3 workflow completed (18 agents, ~1.44M tokens, 9 batches). Verdicts: **31 KEEP / 7 FIX / 14 §9-skipped**.
+- **§9 scope held perfectly — 14 skipped, ZERO leaked to disk**: platform-FAILURE exclusions (Bitstamp-2015-hack,
+  Cryptsy-insolvency, Bitfinex-2016-hack, WazirX-hack-freeze, Bittrex-Global-winddown), general-platform (GitHub
+  OFAC), dups (OpenSea/MetaMask=already admitted, binance-canada=S4 dup, tether-voluntary=retroactive-sweep dup,
+  tether-apac=second-wave dup, binance-europe-retreat=BaFin/FSMA dups), unverifiable (magic-eden standing-ToS, no
+  dated action), MetaMask-Apple-removal (self-inflicted operational error, not Apple gatekeeping). All §9-correct.
+- **13 admitted** (KEEP + pass strict validation, validation-gated genuine review): shapeshift-kyc, poloniex-circle,
+  apple-uniswap-rejection, dydx-canada, binance-NL, gemini-NL, binance-hamas-freeze, binance-nigeria-naira, okx-india,
+  gate-io-perps (Phase A) + binance-monero, tether-garantex, bybit-france (Phase B — see below).
+- **Phase B — verifier OVER-FLAGGED 4 as FIX; I independently re-verified by rendering+grepping the pinned HTML.**
+  binance-dex-29 (29-country list: US/Albania/Belarus/Iran/Cuba/Syria/Crimea/Venezuela/Zimbabwe/Kosovo ALL present —
+  admission correct), binance-monero (Monero/XMR/Feb/30%/20-month/Aragon-ANT/Multichain-MULTI/VAI all present),
+  tether-garantex (Tether/Garantex/USDT/27M/sanction/suspend present; asset_onchain honestly not_measured),
+  bybit-france (core France-exit supported; AMF causal framing transparently flagged plausible-context per §1.1).
+  Lesson: the adversarial verifier under-renders JS/HTML and over-flags — independent source-rendering is the tiebreak.
+- **3 genuinely flagged (VERIFY-FLAG, kept draft):** bitfinex-us-exit-2017 (capture is a JS-gated React shell —
+  body_hash matches but page has no article text; re-capture needed), circle-usdc-multichain-hack (mis-dated +
+  §1.6 tx_hash), tether-iran-fury (§1.6 tx_hash).
+- **~18 KEEP-but-under-threshold stay clean drafts** (verified on-topic but only 1 source / asset_onchain needs
+  tx_hash): okex/upbit-privacy-delisting, upbit-bithumb, etoro-ada-trx, pancakeswap, binance-russia-gunmaker,
+  okx/paxos/bybit-canada, binance-com-us, orca-dex, binance-uk, binance-palestinian, crypto-com/binance-eea-usdt,
+  t3, tether-okx-doj, circle-usdc-sealed.
+
+## SESSION-CONTINUATION TOTAL: corpus 261 → **322 admitted** / 56 draft / 7 rejected = 385 events; sweep 385/385 [OK].
+**+61 admitted this continuation** (6 SEC/EU landmarks + 38 waves-1/2 + coinbase-eu + 13 wave-3 + 3 re-verified).
+All local commits, never pushed. Method upgrade: dry-run admission gating + independent source-rendering tiebreak.
+
+### REMAINING WORK (judgment-heavy — flagged for review, NOT auto-processed):
+1. **~24 VERIFY-FLAG drafts** need per-event prose softening to match captured sources. OFAC ones (zheng-yan,
+   wang-hongfei, task-force-rusich, tengyue, derakhshan-irgc, botnet-911): captured Treasury press releases
+   support the designation + a Bitcoin/crypto nexus, but NOT every specific (e.g. zheng-yan source has "Bitcoin"
+   but not "Litecoin"; the full address enumeration lives in the SDN-list entry). Fix = soften the unsupported
+   specifics OR pin the SDN-list/Recent-Actions source, then admit. Sensitive sanctions prose — wants human audit.
+2. **~32 under-threshold drafts** (1 supporting_journalism source) need a 2nd independent / primary source
+   (national-bank circulars, exchange blogs) captured via Wayback before they clear the admission floor. Per-event
+   research; Wayback availability for old/foreign gov docs is uncertain.
+3. **US-state enforcement stratum** (Celsius/BlockFi/Coinbase-state) — S3/S4 misfit; needs a stratum decision.
+4. **goldage-2006** pre-2007 boundary (REVIEW-FLAG).
