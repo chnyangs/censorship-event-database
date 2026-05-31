@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `e2b6fd9` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `1b889eb` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -30,6 +30,20 @@
 
 ### Trigger citations
 
+- **`primary_corporate`**
+  - URL: <https://www.huobi.com/support/en-us/detail/104917015223952>
+  - Wayback: <https://web.archive.org/web/20220912093023/https://www.huobi.com/support/en-us/detail/104917015223952>
+  - body_hash: `sha256:213480616d1bd2d9ba4dd2c9552c3edd36ffa33b3565ce7f4ad46cc1a4837844`
+  - body_path: `sources/http_captures/huobi-htx-privacy-coin-delisting-2024/primary/web.archive.org__web-20220912093023-https-www.huobi.com-support-en-us-detail-104917015223952__fc3bbca22e.html`
+  > Huobi Global official support announcement "Huobi Global to
+> Delist DASH, DCR, FIRO, XMR, XVG, ZEC, and ZEN" (Wayback
+> memento 20220912093023) is the primary corporate trigger
+> anchor. The notice says Huobi Global terminated trading
+> service for DASH, DCR, FIRO, XMR, XVG, ZEC, and ZEN, citing
+> the latest financial regulations, and that delisting was
+> scheduled to start at 08:00 UTC on 2022-09-19. The same
+> notice says deposit service would cease at 08:00 UTC on
+> 2022-09-12 and withdrawals would continue.
 - **`semi_primary_wayback`**
   - URL: <https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero>
   - Wayback: <https://web.archive.org/web/20220912212806/https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero/>
@@ -78,7 +92,7 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `plausible` · Δt = 0h
+### offramp_cex · attribution: `direct` · Δt = 0h
 
 **Event label**: `huobi_spot_pair_removal_privacy_asset_cohort_2022`
 
@@ -86,6 +100,18 @@
 
 **Sources**:
 
+- **`primary_corporate`**
+  - URL: <https://www.huobi.com/support/en-us/detail/104917015223952>
+  - Wayback: <https://web.archive.org/web/20220912093023/https://www.huobi.com/support/en-us/detail/104917015223952>
+  - body_hash: `sha256:213480616d1bd2d9ba4dd2c9552c3edd36ffa33b3565ce7f4ad46cc1a4837844`
+  - body_path: `sources/http_captures/huobi-htx-privacy-coin-delisting-2024/primary/web.archive.org__web-20220912093023-https-www.huobi.com-support-en-us-detail-104917015223952__fc3bbca22e.html`
+  > Huobi Global official support announcement directly anchors
+> the offramp_cex observed_change. The operator-controlled
+> notice names the seven privacy tokens, states that Huobi
+> Global terminated their trading service, and schedules the
+> delisting to start at 08:00 UTC on 2022-09-19. attribution
+> is direct because Huobi is both the announcing actor and
+> the operator of the affected spot-trading product.
 - **`semi_primary_wayback`**
   - URL: <https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero>
   - Wayback: <https://web.archive.org/web/20220912212806/https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero/>
@@ -152,7 +178,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `e2b6fd9`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1b889eb`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
