@@ -7,6 +7,17 @@ This packet is intentionally blank for coder decisions. Do not compute kappa
 from this file until two independent human coders have filled the decision
 columns without seeing each other's labels.
 
+Machine-readable worksheet: `analysis/evidence_tier_irr_packet_2026_05_31.csv`.
+After both coders fill the `coder_a_*` and `coder_b_*` columns, run
+`make evidence-tier-irr-kappa`. The command intentionally fails while the
+worksheet is incomplete.
+
+Blinding note: do not distribute the raw event YAMLs as-is for this pass,
+because they contain `evidence_tier`, `evidence_caveat`, and admission notes
+that leak the current label. Provide redacted event/source packets to the
+coders, or have them code from independently rendered source artifacts where
+the current `attested_secondary` assignment is hidden.
+
 ## Coding task
 
 For each sampled event, independently decide:

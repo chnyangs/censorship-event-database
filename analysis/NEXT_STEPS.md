@@ -68,8 +68,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       codebook's own "Effective" convention requires a new IRR pass on ≥ 10 events for a decision-rule change.
       Run a 2-coder IRR pass on a 10–15 event sample of the 34 `attested_secondary` rows to confirm inter-rater
       agreement on (a) §9-clarity and (b) the single-source judgment. Record κ. This is outstanding process debt.
-      Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md`; it is intentionally blank and
-      must not be treated as completed IRR until two independent human coders fill it.
+      Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md` plus the machine-readable
+      `analysis/evidence_tier_irr_packet_2026_05_31.csv`; both are intentionally blank and must not be treated as
+      completed IRR until two independent human coders fill them. Use `make evidence-tier-irr-kappa` only after the
+      coder columns are complete.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
 - [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 185

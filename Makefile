@@ -39,7 +39,7 @@ COMPARE_OUT ?= -
     audit-worksheets paper-tables paper-check paper-release-check paper-regenerate-check test \
     render-site render-evidence render-evidence-all compare \
     ooni-scan l0-query-metadata usdt-scan operator-census capture \
-    irr-sample irr-packet irr-kappa \
+    irr-sample irr-packet irr-kappa evidence-tier-irr-kappa \
     check check-network check-all \
     regenerate clean
 
@@ -116,6 +116,7 @@ help:
 	    'make irr-sample            # stratified blind sample for inter-rater reliability' \
 	    'make irr-packet            # blank independent-human IRR packet under site/h1_irr_packet/' \
 	    'make irr-kappa             # compute Cohen'"'"'s κ on filled-in blind worksheets' \
+	    'make evidence-tier-irr-kappa # compute codebook-4.0 evidence_tier κ after human coding' \
 	    'make capture URL=<url> OUT=<dir>   # capture a single URL with body_hash' \
 	    '' \
 	    '### Omnibus' \
@@ -368,6 +369,9 @@ irr-packet:
 
 irr-kappa:
 	$(PYTHON) scripts/compute_irr_kappa.py
+
+evidence-tier-irr-kappa:
+	$(PYTHON) scripts/compute_evidence_tier_irr_kappa.py
 
 # Usage: make capture URL=https://example.com OUT=sources/http_captures/foo/primary
 capture:
