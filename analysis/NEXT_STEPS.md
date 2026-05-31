@@ -72,12 +72,12 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 404 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 177
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 114 already covered
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 185
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 117 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
-      63 `in_corpus=false` rows, all 63 are now reviewed-excluded/context-only/out-of-scope under codebook §9,
-      leaving 0 currently actionable registry rows. Exact-id remaining queue: 8 candidate rows not yet in events
-      or registry. Continue by promoting new rows from the 264-row candidate pool
+      68 `in_corpus=false` rows, 65 are reviewed-excluded/context-only/out-of-scope/proposal-only under
+      codebook §9 and 3 are explicit `HELD-needs-*` evidence-floor rows. Exact-id remaining queue: 0
+      candidate rows not yet in events or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
       the under-collected 2013–2020 era and non-US/non-English actions.
@@ -236,6 +236,13 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 404 
       `magic-eden-ofac-sanctioned-country-block`. It also closed
       `github-sanctioned-country-account-restriction-2019-07` as out-of-scope because the captured GitHub
       trade-controls policy is a non-crypto-specific code-hosting sanctions restriction.
+      A twenty-sixth follow-on triage exhausted the prior 8-row exact-id queue. It closed Tencent/WeChat NFT
+      and Binance Europe retreat as semantic-covered, Tether APAC pig-butchering as exact-covered by the
+      admitted `tether-pig-butchering-second-wave-2024`, FATF 2022 as context-only, and Thailand SEC
+      staking/lending as date/scope-corrected proposal-policy rather than a pinned 2022 operative ban.
+      It left MetaMask Apple App Store removal plus WazirX/Tether and Bybit/Tether freezes as held rows
+      requiring a primary/app-store anchor or asset-onchain tx_hash/address-set evidence before any event can
+      be authored.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 
