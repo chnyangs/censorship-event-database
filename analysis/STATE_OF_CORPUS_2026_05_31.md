@@ -12,19 +12,24 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **240** (9 complete / 231 scoped) and
-  admitted-but-blocked cases are **128**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **241** (9 complete / 232 scoped) and
+  admitted-but-blocked cases are **127**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
-- Current reliability distribution after the stricter pass and subsequent quality-loop repairs: observation
-  reliability **258 high / 80 medium / 30 low**; attribution reliability **221 high / 147 medium / 0 low**.
+- Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
+  observation reliability **259 high / 80 medium / 29 low**; attribution reliability
+  **222 high / 146 medium / 0 low**. Current admitted paper roles are
+  **240 aggregate_datapoint / 96 null_control / 29 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
   `body_hash` / `body_path` replay anchors, and its scoped claim is narrowed to the SEC civil filing and
   relief sought rather than an unanchored post-filing receivership timeline. `sec-v-telegram-ton-2020`
   now replaces stale SEC 2020-69 / telegram.org pointers with SDNY Document 227, SEC 2020-146, and Pavel
-  Durov's Telegraph termination post.
+  Durov's Telegraph termination post. `bitfinex-cftc-retail-commodity-2016` now has local CFTC press-release
+  and administrative-order replay anchors, and its scoped claim is narrowed from a specific mandated
+  actual-delivery model transition to the order-supported actual-delivery violation finding, penalty,
+  cease-and-desist, and recorded business-practice changes.
 
 ## Admitted composition (368)
 | dimension | breakdown |
