@@ -1,0 +1,181 @@
+id: okex-privacy-coin-delisting-2019-09
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - upbit-privacy-coin-delisting-2019-09
+  - bittrex-privacy-coin-delisting-2021-01
+  - binance-privacy-coin-delisting-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: okex_korea
+  timestamp: 2019-09-16T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.coindesk.com/markets/2019/09/16/okex-korea-drops-5-privacy-cryptocurrencies-citing-fatf-rules/
+      wayback: https://web.archive.org/web/20210921011726/https://www.coindesk.com/markets/2019/09/16/okex-korea-drops-5-privacy-cryptocurrencies-citing-fatf-rules/
+      body_hash: sha256:23c866bff91320010984e150501ac4c1e36ee7a2f4a48d30dbd9e39134f55f66
+      body_path: sources/http_captures/okex-privacy-coin-delisting-2019-09/primary/web.archive.org__web-20210921011726-https-www.coindesk.com-markets-2019-09-16-okex-korea-drops-5-privacy-cryptocurrencies-citing-fatf-rules__255eadc61e.html
+      evidence_use: replayable
+      note: |
+        CoinDesk 2019-09-16 (Wayback 20210921011726): OKEx's Korea unit
+        delisted five privacy coins — Monero (XMR), Dash (DASH), Zcash (ZEC),
+        Horizen (ZEN) and Super Bitcoin (SBTC) — citing the FATF "travel rule"
+        (which privacy coins cannot satisfy). Trading support ended Oct. 10,
+        withdrawals Dec. 10. The captured body carries "OKEX Korea", all five
+        assets (Monero/Dash/Zcash/Horizen/Super Bitcoin, ZEN/SBTC), "FATF",
+        "travel rule", "Oct. 10" and "Dec. 10". The decision applied to the
+        Korea unit, not OKEx globally.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: announced 2019-09-16; trading support ended
+        2019-10-10, withdrawals 2019-12-10 per the cited coverage.
+
+target:
+  kind: asset
+  enumeration: complete
+  enumeration_note: |
+    Five privacy assets delisted from OKEx Korea: Monero (XMR), Dash (DASH),
+    Zcash (ZEC), Horizen (ZEN), Super Bitcoin (SBTC). Complete enumeration of
+    the delisted set per the cited coverage. The action removed the OKEx Korea
+    off-ramp markets for these assets; they remain on their own chains and
+    (per the source) the decision was scoped to the Korea unit, not OKEx
+    globally.
+  actor_type: privacy_asset_class
+  actor_name: XMR + DASH + ZEC + ZEN + SBTC on OKEx Korea
+  chains:
+    - monero
+    - dash
+    - zcash
+    - horizen
+    - super_bitcoin
+
+jurisdiction:
+  - KR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An exchange listing decision by OKEx's Korea unit, not an ISP/DNS
+      network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The delisting acts on OKEx Korea's markets, not on any chain's consensus
+      layer; XMR/DASH/ZEC/ZEN/SBTC continue on their own chains.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The removal is of the trading/withdrawal markets (off-ramp), not a
+      frontend domain/UI block.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The five assets are independent base-chain tokens (no issuer/contract);
+      OKEx cannot freeze them on-chain. The action is an off-ramp market
+      removal, not an asset-onchain freeze.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - okex_korea_xmr
+      - okex_korea_dash
+      - okex_korea_zec
+      - okex_korea_zen
+      - okex_korea_sbtc
+    note: |
+      Load-bearing layer. OKEx's Korea unit removed the XMR/DASH/ZEC/ZEN/SBTC
+      trading markets (trading ended 2019-10-10, withdrawals 2019-12-10),
+      severing the OKEx Korea centralized-exchange off-ramp for these privacy
+      assets in compliance with the FATF travel rule. Attested in
+      contemporaneous trade press (body_hash-pinned).
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:okex_korea
+    event: okex_korea_removes_five_privacy_coin_markets
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2019-10-10T00:00:00Z
+    precision: day
+    delta_hours: 576
+    country: KR
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.coindesk.com/markets/2019/09/16/okex-korea-drops-5-privacy-cryptocurrencies-citing-fatf-rules/
+        wayback: https://web.archive.org/web/20210921011726/https://www.coindesk.com/markets/2019/09/16/okex-korea-drops-5-privacy-cryptocurrencies-citing-fatf-rules/
+        body_hash: sha256:23c866bff91320010984e150501ac4c1e36ee7a2f4a48d30dbd9e39134f55f66
+        body_path: sources/http_captures/okex-privacy-coin-delisting-2019-09/primary/web.archive.org__web-20210921011726-https-www.coindesk.com-markets-2019-09-16-okex-korea-drops-5-privacy-cryptocurrencies-citing-fatf-rules__255eadc61e.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [okex_korea]
+          countries: [KR]
+          time_window:
+            - 2019-09-16T00:00:00Z
+            - 2019-12-31T23:59:59Z
+        note: |
+          CoinDesk 2019-09-16: OKEx Korea XMR/DASH/ZEC/ZEN/SBTC market removal
+          (trading end 2019-10-10, withdrawals 2019-12-10) over the FATF travel
+          rule. attribution=plausible: the delisting is directly observed and
+          OKEx cites the FATF travel rule, but FATF guidance is a soft
+          framework operationalized via national/exchange policy rather than a
+          named instrument naming these specific assets (class-level
+          compliance inference).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). OKEx's Korea unit delisted
+  five privacy coins — Monero (XMR), Dash (DASH), Zcash (ZEC), Horizen (ZEN),
+  Super Bitcoin (SBTC) — citing the FATF travel rule (trading ended
+  2019-10-10, withdrawals 2019-12-10). Part of the first major privacy-coin
+  delisting wave (alongside upbit-privacy-coin-delisting-2019-09), an early
+  node later joined by Bittrex (2021), Binance (2023) and OKX/Kraken/Huobi
+  (2024). CORRECTION vs lead: the lead candidate framed this as "South Korea /
+  Global"; the captured CoinDesk body is explicit that the decision was scoped
+  to OKEx's KOREA unit, not OKEx globally — coded jurisdiction=KR and asset
+  list corrected to the five named coins (XMR/DASH/ZEC/ZEN/SBTC), not a vague
+  "five privacy coins". comparison shape, single offramp_cex observed_change,
+  attribution=plausible (delisting directly observed; FATF-travel-rule
+  rationale is a soft-framework class-level compliance inference, not a named
+  instrument acting on these assets). The five assets are independent
+  base-chain tokens, so l0/l1/l3/l4/asset_onchain are not_applicable. Sources
+  verified via WebSearch + captured 2026-05-31 (CoinDesk, body_hash-pinned;
+  "OKEX Korea"/five assets/"FATF"/"travel rule"/"Oct. 10"/"Dec. 10" grepped
+  from the captured body; no fabrication).
+
+scoped_claim: |
+  "OKEx's Korea unit's 2019-09-16 removal of the XMR/DASH/ZEC/ZEN/SBTC markets
+  (trading end 2019-10-10, withdrawals 2019-12-10) over the FATF travel rule
+  severed the OKEx Korea off-ramp for these privacy assets; single-layer
+  offramp_cex observed_change with attribution=plausible (FATF-travel-rule
+  soft-framework compliance inference). Scoped to the Korea unit, not OKEx
+  globally."
+
+tags:
+  - corporate_policy_change
+  - privacy_coin_delisting
+  - monero
+  - zcash
+  - dash
+  - okex
+  - okex_korea
+  - fatf_travel_rule
+  - offramp_shutdown
+  - dryrun_2026_05_31

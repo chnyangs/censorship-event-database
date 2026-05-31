@@ -1,0 +1,207 @@
+id: okx-nigeria-exit-2024-08
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - binance-nigeria-naira-services-end-2024-03
+  - nigeria-binance-network-block-2024-02
+  - okx-india-exit-2024-03
+
+trigger:
+  type: corporate_policy_change
+  actor: okx
+  timestamp: 2024-07-17T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://nairametrics.com/2024/07/17/crypto-exchange-okx-to-discontinue-service-in-nigeria/
+      wayback: https://web.archive.org/web/20240718014739/https://nairametrics.com/2024/07/17/crypto-exchange-okx-to-discontinue-service-in-nigeria/
+      body_hash: sha256:977c3d73fd84cc5ca7720a6f37f869e31f38045652f2f29d8547e0eda55045db
+      body_path: sources/http_captures/okx-nigeria-exit-2024-08/primary/web.archive.org__web-20240718000000-https-nairametrics.com-2024-07-17-crypto-exchange-okx-to-discontinue-service-in-nigeria__32e70fc89f.html
+      evidence_use: replayable
+      note: |
+        Nairametrics 2024-07-17: OKX to discontinue services in Nigeria
+        "effective from August 16, 2024." Captured body verifies: OKX cited
+        "recent changes in local laws and regulations ... based on our
+        ongoing assessment"; it advised "Nigerian customers to withdraw
+        their funds from the platform on or before the said date"; users
+        "can still engage in P2P trading using other currencies." Wayback
+        20240718014739.
+    - type: semi_primary_wayback
+      url: https://techpoint.africa/2024/07/17/okx-to-discontinue-services-nigeria/
+      wayback: https://web.archive.org/web/20240720075357/https://techpoint.africa/2024/07/17/okx-to-discontinue-services-nigeria/
+      body_hash: sha256:78589ec1377fbdfe8659806e158c1caab11368354246c16f43613df8d3e9766e
+      body_path: sources/http_captures/okx-nigeria-exit-2024-08/primary/web.archive.org__web-20240718000000-https-techpoint.africa-2024-07-17-okx-to-discontinue-services-nigeria__c8f9ef3450.html
+      evidence_use: replayable
+      note: |
+        Techpoint Africa 2024-07-17 corroboration: OKX to discontinue
+        services in Nigeria from 2024-08-16, citing local-law changes;
+        Nigerian users to withdraw funds. Independent second semi-primary
+        anchor.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: 2024-07-17 announcement (Nairametrics +
+        Techpoint URL path /2024/07/17/), effective 2024-08-16. Recorded
+        event date 2024-07-17 (announcement).
+
+target:
+  kind: entity
+  enumeration: complete
+  enumeration_note: |
+    Target is OKX's service surface for Nigerian users — trading and
+    account access on okx.com for Nigeria, discontinued effective
+    2024-08-16 (withdrawals/close-out only thereafter). Complete
+    enumeration of the Nigeria service set OKX wound down. (NGN/naira fiat
+    and Nigerian P2P had already been removed earlier in 2024 per the
+    reporting; the censored surface is OKX's Nigeria off-ramp.)
+  protocol: null
+  actor_type: centralized_exchange_jurisdiction_service
+  actor_name: OKX Nigeria services
+  chains: []
+  canonical_domains: []
+
+jurisdiction:
+  - NG
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      OKX's own exit from Nigeria is a corporate off-ramp withdrawal, not an
+      ISP/DNS network block. (The separate Feb-2024 NCC telco block hit
+      Binance/Coinbase/Kraken, not coded here.)
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      No chain consensus surface is engaged by an exchange jurisdiction exit.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      OKX's service withdrawal is an off-ramp exit, not an OKX-frontend
+      domain/UI block.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer blacklist/freeze admin method is engaged; OKX wound down its
+      Nigeria service and required users to withdraw, not an on-chain asset
+      freeze.
+  - layer: offramp_cex
+    status: measured
+    scope:
+      - okx_nigeria_trading
+      - okx_nigeria_account_access
+    note: |
+      Load-bearing layer. OKX discontinued all services for Nigerian users
+      effective 2024-08-16 (no new positions; withdraw/close-out only),
+      citing changes in local laws and regulations — severing the OKX
+      Nigeria off-ramp. Attested in contemporaneous trade press.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:okx
+    event: okx_discontinues_services_for_nigerian_users
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2024-08-16T00:00:00Z
+    precision: day
+    delta_hours: 720
+    country: NG
+    sources:
+      - type: semi_primary_wayback
+        url: https://nairametrics.com/2024/07/17/crypto-exchange-okx-to-discontinue-service-in-nigeria/
+        wayback: https://web.archive.org/web/20240718014739/https://nairametrics.com/2024/07/17/crypto-exchange-okx-to-discontinue-service-in-nigeria/
+        body_hash: sha256:977c3d73fd84cc5ca7720a6f37f869e31f38045652f2f29d8547e0eda55045db
+        body_path: sources/http_captures/okx-nigeria-exit-2024-08/primary/web.archive.org__web-20240718000000-https-nairametrics.com-2024-07-17-crypto-exchange-okx-to-discontinue-service-in-nigeria__32e70fc89f.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [okx]
+          countries: [NG]
+          time_window:
+            - 2024-07-17T00:00:00Z
+            - 2024-08-16T23:59:59Z
+        note: |
+          Nairametrics 2024-07-17: OKX to discontinue Nigeria services
+          effective 2024-08-16, citing "recent changes in local laws and
+          regulations"; Nigerian customers to withdraw before that date.
+          attribution=plausible: the exit is directly observed but OKX cited
+          generic local-law changes; the precise regulatory driver is
+          contextual.
+      - type: semi_primary_wayback
+        url: https://techpoint.africa/2024/07/17/okx-to-discontinue-services-nigeria/
+        wayback: https://web.archive.org/web/20240720075357/https://techpoint.africa/2024/07/17/okx-to-discontinue-services-nigeria/
+        body_hash: sha256:78589ec1377fbdfe8659806e158c1caab11368354246c16f43613df8d3e9766e
+        body_path: sources/http_captures/okx-nigeria-exit-2024-08/primary/web.archive.org__web-20240718000000-https-techpoint.africa-2024-07-17-okx-to-discontinue-services-nigeria__c8f9ef3450.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [okx]
+          countries: [NG]
+          time_window:
+            - 2024-07-17T00:00:00Z
+            - 2024-08-16T23:59:59Z
+        note: |
+          Techpoint Africa corroboration: OKX discontinuing Nigeria services
+          from 2024-08-16, citing local-law changes. Independent second
+          semi-primary anchor.
+
+analysis_notes: |
+  **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk
+  adversarial-verify clean (no VERIFY-FLAG) AND strict admission validation — captured primary/
+  semi-primary sources meet the §1.6/threshold floor; origin agent_draft -> human_reviewed).
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission).
+
+  OKX's 2024-07-17 announcement to discontinue all services for Nigerian
+  users effective 2024-08-16 — no new positions thereafter; withdraw /
+  close-out only — citing "recent changes in local laws and regulations."
+  NGN/naira fiat and Nigerian P2P had already been removed earlier in 2024
+  per the reporting; this is OKX's full exit of the Nigeria market.
+
+  Why §9 INCLUDE: a deliberate corporate jurisdiction exit / geofence that
+  denied Nigerian users access to OKX's off-ramp (codebook §9 INCLUDE:
+  corporate jurisdiction exit / geofence). Part of the 2024 exchange-
+  withdrawal wave from Nigeria during the government clampdown on crypto.
+
+  Why S5_corporate: an exchange's unilateral decision to exit a market is a
+  corporate policy action.
+
+  Why comparison / empirical_case: one strong-attribution observed_change
+  layer (offramp_cex). Other five layers scope-mismatched.
+
+  Why attribution=plausible: the exit is directly observed, but OKX cited
+  generic "local laws and regulations" with no named mandate compelling OKX
+  specifically; the precise regulatory driver is contextual.
+
+  delta_hours=720: announced 2024-07-17, effective 2024-08-16 (the
+  observed service-end date); 30 days ≈ 720h at day precision.
+
+  Sources verified via WebSearch + captured 2026-05-31 (Nairametrics +
+  Techpoint, body_hash-pinned; Nairametrics grep-confirmed for "effective
+  from August 16, 2024" and the local-laws rationale; no fabrication).
+
+scoped_claim: |
+  "OKX's 2024-07-17 announcement to discontinue all Nigeria services
+  effective 2024-08-16 (citing changes in local laws and regulations)
+  severed the OKX Nigeria off-ramp; single-layer offramp_cex
+  observed_change with attribution=plausible (generic local-law rationale,
+  no named OKX-specific mandate)."
+
+tags:
+  - corporate_policy_change
+  - okx
+  - nigeria
+  - offramp_shutdown
+  - jurisdiction_exit

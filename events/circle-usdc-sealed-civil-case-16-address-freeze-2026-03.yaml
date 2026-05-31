@@ -1,0 +1,188 @@
+id: circle-usdc-sealed-civil-case-16-address-freeze-2026-03
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - circle-usdc-cryptex-freeze-2024
+  - circle-usdc-tornado-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: circle_usdc_issuer
+  timestamp: 2026-03-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/
+      wayback: https://web.archive.org/web/20260407171557/https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/
+      body_hash: sha256:1fca05e20b1236ccc89862b94f29fd2c1fc1be7dfd64cc724d87398af30523d1
+      body_path: sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260407171557-https-www.ccn.com-news-crypto-circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why__3f4a9b8e89.html
+      evidence_use: replayable
+      note: |
+        CCN: Circle froze 16 unrelated USDC business hot wallets on
+        2026-03-23, tied to a sealed U.S. civil lawsuit in a New York
+        court, disrupting exchanges, online casinos, forex platforms, and
+        payment processors. ZachXBT criticized the broad action as
+        incompetent ("potentially the most incompetent" freeze in 5+
+        years), noting no clear link between the wallets. Circle unfroze
+        one Goated.com wallet holding 130,966 USDC on 2026-03-26 after
+        backlash. Wayback 20260407171557 pinned.
+    - type: semi_primary_wayback
+      url: https://www.theblock.co/post/395190/circle-unfreezes-usdc
+      wayback: https://web.archive.org/web/20260402130148/https://www.theblock.co/post/395190/circle-unfreezes-usdc
+      body_hash: sha256:1eab6ba1366fb1cf6829c03bf55be5c1cf46539d46d88e87fd08479a05a567af
+      body_path: sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260402130148-https-www.theblock.co-post-395190-circle-unfreezes-usdc__13c810b467.html
+      evidence_use: replayable
+      note: |
+        The Block (byline 2026-03-25): Circle unfroze one of the 16
+        blacklisted USDC wallets following backlash; ZachXBT said "The NY
+        civil case is sealed and they have provided absolutely ZERO basis
+        to freeze all of these business addresses." The unfrozen wallet
+        (0x61f…e543, tied to Goated.com) holds 130,966 USDC per Arkham.
+        Independent second semi-primary anchor.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: Circle froze the 16 wallets late on
+        2026-03-23; first unfreeze (Goated.com) 2026-03-26 per the cited
+        coverage.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    16 USDC business hot wallets (exchanges, online casinos, forex
+    platforms, payment processors) blacklisted by Circle. The count (16)
+    and one unfrozen wallet (0x61f…e543, Goated.com, 130,966 USDC) are
+    attested in the captured coverage; the full 16-address set is NOT
+    individually enumerated in the captured pages.
+  actor_type: usdc_business_hot_wallets
+  actor_name: 16 USDC business hot wallets (sealed NY civil case)
+  chains: [ethereum]
+
+jurisdiction:
+  - corporate_global
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: measured
+    chain: ethereum
+    note: |
+      Circle blacklisted 16 USDC business hot wallets via the USDC
+      contract, freezing their balances. NOTE (codebook §1.6): no
+      verified primary_onchain blacklist tx_hash is pinned in this draft;
+      a human must attach the blacklist tx hashes and the specific
+      addresses before admission. No tx_hash fabricated.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: circle_usdc_issuer
+    event: circle_blacklisted_16_usdc_business_wallets_sealed_ny_case
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2026-03-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/
+        wayback: https://web.archive.org/web/20260407171557/https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/
+        body_hash: sha256:1fca05e20b1236ccc89862b94f29fd2c1fc1be7dfd64cc724d87398af30523d1
+        body_path: sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260407171557-https-www.ccn.com-news-crypto-circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why__3f4a9b8e89.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [circle]
+          countries: [US]
+          time_window:
+            - 2026-03-23T00:00:00Z
+            - 2026-03-31T23:59:59Z
+        note: |
+          CCN: Circle blacklisted 16 unrelated USDC business hot wallets
+          on 2026-03-23 tied to a sealed NY civil case; unfroze one
+          (Goated.com, 130,966 USDC) on 2026-03-26. attribution=plausible
+          per §1.2: the underlying civil case is SEALED and Circle did not
+          publicly reference an order naming the specific addresses, so
+          the trigger does not publicly name the target (class-level
+          inference required); ZachXBT publicly characterized the basis as
+          undisclosed/overbroad.
+      - type: semi_primary_wayback
+        url: https://www.theblock.co/post/395190/circle-unfreezes-usdc
+        wayback: https://web.archive.org/web/20260402130148/https://www.theblock.co/post/395190/circle-unfreezes-usdc
+        body_hash: sha256:1eab6ba1366fb1cf6829c03bf55be5c1cf46539d46d88e87fd08479a05a567af
+        body_path: sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260402130148-https-www.theblock.co-post-395190-circle-unfreezes-usdc__13c810b467.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [circle]
+          countries: [US]
+          time_window:
+            - 2026-03-23T00:00:00Z
+            - 2026-03-31T23:59:59Z
+        note: |
+          The Block corroboration: one of the 16 blacklisted USDC wallets
+          (0x61f…e543, Goated.com, 130,966 USDC) unfrozen after backlash;
+          ZachXBT: "The NY civil case is sealed and they have provided
+          absolutely ZERO basis to freeze all of these business
+          addresses." Independent second semi-primary anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). On 2026-03-23 Circle
+  blacklisted 16 unrelated USDC business hot wallets (exchanges, casinos,
+  forex platforms, payment processors), freezing their balances, citing a
+  sealed U.S. civil case in a New York court. After ZachXBT publicly
+  criticized the freeze as overbroad and unexplained ("ZERO basis"),
+  Circle reversed several — including a Goated.com wallet holding 130,966
+  USDC unfrozen 2026-03-26. comparison shape, single asset_onchain
+  observed_change, attribution=plausible per §1.2 (the civil case is
+  SEALED and Circle did not publicly reference an order naming the
+  specific addresses; class-level inference required). jurisdiction
+  corporate_global (Circle action) + US (sealed NY civil case). DATE
+  CORRECTION: the bulk_wave3 candidate id encoded "2025-03", but the
+  verified event date is 2026-03-23 (CCN states "March 23, 2026"
+  explicitly; The Block byline 2026-03-25) — this draft uses the corrected
+  id ...-2026-03. NOTE for human reviewer (codebook §1.6): asset_onchain
+  observed_change carries no pinned primary_onchain blacklist tx_hash
+  (deferred for drafts) — pin the blacklist tx hashes and the full
+  16-address set before admission. No tx_hash or address fabricated.
+  Sources verified via WebSearch + captured 2026-05-31 (CCN + The Block,
+  body_hash-pinned).
+
+scoped_claim: |
+  "On 2026-03-23 Circle blacklisted 16 unrelated USDC business hot
+  wallets citing a sealed NY civil case, freezing their balances, then
+  reversed several (incl. a Goated.com wallet, 130,966 USDC, unfrozen
+  2026-03-26) after ZachXBT criticism; single-layer asset_onchain
+  observed_change, attribution=plausible (sealed case, no public order
+  naming the addresses). Blacklist tx hashes + full 16-address set to be
+  pinned by a human before admission (codebook §1.6)."
+
+tags:
+  - corporate_policy_change
+  - circle_freeze
+  - usdc
+  - sealed_civil_case
+  - overbroad_freeze
+  - zachxbt
+  - partial_reversal

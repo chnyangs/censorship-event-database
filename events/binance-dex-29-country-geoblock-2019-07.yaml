@@ -1,0 +1,199 @@
+id: binance-dex-29-country-geoblock-2019-07
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: admitted
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - binance-com-us-customer-geofence-2019-06
+  - 1inch-us-geofence-2021-09
+
+trigger:
+  type: corporate_policy_change
+  actor: binance_org_binance_dex
+  timestamp: 2019-06-07T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.financemagnates.com/cryptocurrency/news/binance-dex-to-geoblock-traders-from-29-countries-us-included/
+      wayback: https://web.archive.org/web/20190607134838/https://www.financemagnates.com/cryptocurrency/news/binance-dex-to-geoblock-traders-from-29-countries-us-included/
+      body_hash: sha256:628f19716d0fce5c46df4ce3fc216b4e8394f611d6aa1aee53e1f7b18676004f
+      body_path: sources/http_captures/binance-dex-29-country-geoblock-2019-07/primary/web.archive.org__web-20190607134838-https-www.financemagnates.com-cryptocurrency-news-binance-dex-to-geoblock-traders-from-29-countries-us-included__86aacc573c.html
+      evidence_use: replayable
+      note: |
+        Finance Magnates (Wayback 20190607134838) on the Binance DEX geoblock:
+        the binance.org web interface will geo-block users by IP address from
+        29 countries — the United States and 28 others including Iran, Cuba,
+        Syria and North Korea — beginning July 1 2019. The captured body
+        carries "29 Countries", "geoblock"/"geo-block", "July 1",
+        "United States", "Iran", "Cuba", "Syria", "binance.org" and the
+        IP-address mechanism. CZ clarified that binance.org (the frontend) is
+        barring users, not the underlying DEX blockchain.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: reported 2019-06-07; binance.org frontend
+        geo-block effective 2019-07-01 per the cited coverage.
+
+target:
+  kind: domain
+  enumeration: subset
+  enumeration_note: |
+    Target is the binance.org web interface (the Binance DEX frontend) for
+    users in 29 IP-geolocated jurisdictions. Named in the coverage: United
+    States, Albania, Belarus, Bosnia & Herzegovina, Burma (Myanmar), Central
+    African Republic, DR Congo, North Korea, Cote d'Ivoire, Crimea (Ukraine),
+    Croatia, Cuba, Iran, Iraq, Kosovo, Lebanon, Liberia, Libya, North
+    Macedonia, Moldova, Serbia, Somalia, Sudan, South Sudan, Syria, Venezuela,
+    Yemen, Zimbabwe. enumeration=subset because most of the 29 jurisdictions
+    are not separately coded as event jurisdictions here; the U.S. is the
+    load-bearing, vocab-coded jurisdiction and the others are carried as a
+    text list. The DEX blockchain itself was not blocked — only the
+    binance.org frontend, accessible via alternative wallets.
+  actor_type: dex_frontend_geoblock
+  actor_name: Binance DEX (binance.org) — 29-country frontend geo-block
+  canonical_domains:
+    - binance.org
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      Not an ISP/DNS network block: binance.org itself applied the geofence to
+      its own web interface by reading visitor IP addresses, a frontend-side
+      access restriction rather than a network-layer filter imposed by a
+      carrier/state.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Per CZ's clarification, the Binance Chain DEX blockchain was NOT blocked;
+      only the binance.org web interface restricted access. No consensus
+      surface engaged.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - binance_org_dex_web_interface_29_countries
+    note: |
+      Load-bearing layer. The binance.org web interface (the Binance DEX
+      frontend) began IP-geolocation geo-blocking of users from 29
+      jurisdictions including the U.S., Iran, Cuba, Syria and North Korea on
+      2019-07-01 — an early DEX-frontend geofence. The underlying DEX chain
+      remained reachable via alternative wallets, so the restriction is a
+      frontend-access block, not an off-ramp/asset/network action. Attested in
+      contemporaneous trade press (body_hash-pinned).
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No issuer/contract freeze; the action restricts frontend access, not any
+      asset on-chain.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Binance DEX is a decentralized exchange frontend, not a centralized-
+      exchange custodial off-ramp; the geofence acts on the binance.org web UI.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:binance_org
+    event: binance_org_dex_frontend_geoblocks_29_countries
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2019-07-01T00:00:00Z
+    precision: day
+    delta_hours: 576
+    country: US
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.financemagnates.com/cryptocurrency/news/binance-dex-to-geoblock-traders-from-29-countries-us-included/
+        wayback: https://web.archive.org/web/20190607134838/https://www.financemagnates.com/cryptocurrency/news/binance-dex-to-geoblock-traders-from-29-countries-us-included/
+        body_hash: sha256:628f19716d0fce5c46df4ce3fc216b4e8394f611d6aa1aee53e1f7b18676004f
+        body_path: sources/http_captures/binance-dex-29-country-geoblock-2019-07/primary/web.archive.org__web-20190607134838-https-www.financemagnates.com-cryptocurrency-news-binance-dex-to-geoblock-traders-from-29-countries-us-included__86aacc573c.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance_org]
+          countries: [US]
+          time_window:
+            - 2019-06-07T00:00:00Z
+            - 2019-07-31T23:59:59Z
+        note: |
+          Finance Magnates (announcement snapshot): binance.org frontend
+          geo-block of 29 countries effective 2019-07-01. attribution=plausible
+          — Binance applied the frontend geofence as a broad compliance policy
+          covering the U.S. plus sanctioned/restricted jurisdictions, without a
+          single named legal instrument acting on binance.org (§1.4: provider
+          does not cite a specific per-trigger instrument).
+      - type: semi_primary_wayback
+        url: https://www.financemagnates.com/cryptocurrency/news/binance-dex-to-geoblock-traders-from-29-countries-us-included/
+        wayback: https://web.archive.org/web/20190714020909/https://www.financemagnates.com/cryptocurrency/news/binance-dex-to-geoblock-traders-from-29-countries-us-included/
+        body_hash: sha256:496ae2790f494f86f4171784e5103b508cdbbf27b26e87d335a12fa4ba1b5644
+        body_path: sources/http_captures/binance-dex-29-country-geoblock-2019-07/primary/web.archive.org__web-20190714020909-https-www.financemagnates.com-cryptocurrency-news-binance-dex-to-geoblock-traders-from-29-countries-us-included__7902d53d42.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance_org]
+          countries: [US]
+          time_window:
+            - 2019-06-07T00:00:00Z
+            - 2019-07-31T23:59:59Z
+        note: |
+          Second Finance Magnates Wayback snapshot (20190714, after the
+          2019-07-01 effective date) of the same article, anchoring the
+          post-effective-date persistence of the binance.org frontend
+          geo-block. Independent timestamp anchor for the load-bearing claim.
+
+analysis_notes: |
+  **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk
+  adversarial-verify clean (no VERIFY-FLAG) AND strict admission validation — captured primary/
+  semi-primary sources meet the §1.6/threshold floor; origin agent_draft -> human_reviewed).
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). Binance DEX (binance.org)
+  began IP-geolocation geo-blocking of its web interface for users from 29
+  jurisdictions — the U.S. plus 28 sanctioned/restricted countries including
+  Iran, Cuba, Syria and North Korea — effective 2019-07-01. An early
+  DEX-frontend geofence; sits in the same 2019 Binance U.S.-compliance cohort
+  as binance-com-us-customer-geofence-2019-06 and prefigures later DeFi
+  frontend geofences (cf. 1inch-us-geofence-2021-09). comparison shape, single
+  l4_frontend observed_change, attribution=plausible (broad compliance
+  geofence, no single named instrument citing binance.org; §1.4). Per CZ, the
+  DEX blockchain itself was NOT blocked — only the binance.org frontend — so
+  l1_consensus and asset_onchain are not_applicable and the load is at
+  l4_frontend, not offramp_cex (a DEX frontend is not a CEX off-ramp).
+  Jurisdiction coded as US (the load-bearing vocab-coded jurisdiction); the
+  full 29-country list is carried in target.enumeration_note as text because
+  most of those jurisdictions are not separately coded here. Sources verified
+  via WebSearch + captured 2026-05-31 (Finance Magnates, two snapshots,
+  body_hash-pinned; "29 Countries"/"July 1"/"Iran"/"Cuba"/"Syria"/
+  "binance.org" grepped from the captured body; no fabrication).
+
+scoped_claim: |
+  "Binance DEX's 2019-07-01 IP-geolocation geo-block of the binance.org web
+  interface for users from 29 jurisdictions (the U.S. plus 28 sanctioned/
+  restricted countries including Iran, Cuba, Syria, North Korea) restricted
+  frontend access to the Binance DEX while leaving the underlying chain
+  reachable via alternative wallets; single-layer l4_frontend observed_change
+  with attribution=plausible (broad compliance geofence, no single named
+  instrument)."
+
+tags:
+  - corporate_policy_change
+  - dex_frontend_geoblock
+  - us_customer_geofence
+  - binance
+  - binance_dex
+  - frontend_restriction
+  - sanctions_geoblock
+  - dryrun_2026_05_31

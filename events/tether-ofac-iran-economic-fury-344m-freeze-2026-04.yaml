@@ -1,0 +1,191 @@
+id: tether-ofac-iran-economic-fury-344m-freeze-2026-04
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - dprk-usdt-network-ofac-2025
+  - tether-dprk-precommit-freeze-2025
+
+trigger:
+  type: corporate_policy_change
+  actor: tether_usdt_issuer
+  timestamp: 2026-04-23T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://tether.io/news/tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement/
+      wayback: https://web.archive.org/web/20260520133449/https://tether.io/news/tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement/
+      body_hash: sha256:74ef9f0b7a5fe23c37c57e1c5b3649eb9fec3cbce109864401d59cce57ff6509
+      body_path: sources/http_captures/tether-ofac-iran-economic-fury-344m-freeze-2026-04/primary/web.archive.org__web-20260520133449-https-tether.io-news-tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement__13331ae00f.html
+      evidence_use: replayable
+      note: |
+        Tether official blog: Tether "supported the U.S. Government in
+        freezing $344 million USD₮ across two addresses" in coordination
+        with OFAC and U.S. law enforcement; the freeze was executed after
+        the addresses were identified, preventing further movement of
+        funds. Primary-corporate anchor for the actor (Tether) and the
+        action ($344M freeze across two addresses). Wayback 20260520133449
+        pinned.
+    - type: semi_primary_wayback
+      url: https://www.trmlabs.com/resources/blog/ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-million
+      wayback: https://web.archive.org/web/20260524000757/https://www.trmlabs.com/resources/blog/ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-million
+      body_hash: sha256:7d958fe9098d3287131261d64ee0a063d548030368c4f39fe9254e3f6ec2e7cb
+      body_path: sources/http_captures/tether-ofac-iran-economic-fury-344m-freeze-2026-04/primary/web.archive.org__web-20260524000757-https-www.trmlabs.com-resources-blog-ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-millio__e726d45b35.html
+      evidence_use: replayable
+      note: |
+        TRM Labs: OFAC froze ~$344.2M USDT held in two wallets attributed
+        to the Central Bank of Iran, with links to the IRGC-Qods Force and
+        Hizballah — described as the largest on-chain freeze of Iranian
+        sovereign crypto reserves on public record. The two wallets
+        collectively received ~$370M across ~1,000 transactions since
+        March 2021. Independent second semi-primary anchor.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: the freeze is reported on 2026-04-23 per the
+        cited coverage (CoinDesk/TRM coverage 2026-04-24).
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Two Tron USD₮ addresses attributed to the Central Bank of Iran
+    (links to IRGC-Qods Force / Hizballah), holding ~$344M USDT. The
+    "two addresses" count is attested in both captured sources; the
+    specific address strings are NOT enumerated here (not present in the
+    captured pages — not asserted, per anti-fabrication).
+  actor_type: sovereign_sanctioned_wallets
+  actor_name: Central Bank of Iran USD₮ wallets (2 addresses)
+  chains: [tron]
+
+jurisdiction:
+  - corporate_global
+  - US
+  - IR
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+  - layer: l1_consensus
+    status: not_applicable
+    chain: tron
+  - layer: l3_rpc
+    status: not_applicable
+    chain: tron
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: measured
+    chain: tron
+    note: |
+      Tether froze ~$344M USD₮ across two Tron addresses attributed to the
+      Central Bank of Iran, in coordination with OFAC and U.S. law
+      enforcement — the largest on-chain freeze of Iranian sovereign
+      crypto reserves on public record. NOTE (codebook §1.6): no verified
+      primary_onchain freeze tx_hash is pinned in this draft; a human must
+      attach the addBlackList tx hashes (and the specific addresses)
+      before admission. No tx_hash and no address strings fabricated.
+  - layer: offramp_cex
+    status: not_applicable
+
+observations:
+  - layer: asset_onchain
+    actor: tether_usdt_issuer
+    event: tether_froze_344m_usdt_central_bank_iran_two_addresses
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2026-04-23T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://tether.io/news/tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement/
+        wayback: https://web.archive.org/web/20260520133449/https://tether.io/news/tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement/
+        body_hash: sha256:74ef9f0b7a5fe23c37c57e1c5b3649eb9fec3cbce109864401d59cce57ff6509
+        body_path: sources/http_captures/tether-ofac-iran-economic-fury-344m-freeze-2026-04/primary/web.archive.org__web-20260520133449-https-tether.io-news-tether-supports-freeze-of-more-than-344-million-in-usdt-in-coordination-with-ofac-and-u-s-law-enforcement__13331ae00f.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tether]
+          countries: [US, IR]
+          time_window:
+            - 2026-04-23T00:00:00Z
+            - 2026-04-30T23:59:59Z
+        note: |
+          Tether official statement: Tether supported the U.S. Government
+          in freezing $344M USD₮ across two addresses, in coordination
+          with OFAC and U.S. law enforcement. attribution=direct per §1.2:
+          Tether's own freeze carries the asset-layer change and OFAC's
+          designation names the specific (Central Bank of Iran) target
+          wallets being acted upon.
+      - type: semi_primary_wayback
+        url: https://www.trmlabs.com/resources/blog/ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-million
+        wayback: https://web.archive.org/web/20260524000757/https://www.trmlabs.com/resources/blog/ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-million
+        body_hash: sha256:7d958fe9098d3287131261d64ee0a063d548030368c4f39fe9254e3f6ec2e7cb
+        body_path: sources/http_captures/tether-ofac-iran-economic-fury-344m-freeze-2026-04/primary/web.archive.org__web-20260524000757-https-www.trmlabs.com-resources-blog-ofac-sanctions-crypto-addresses-associated-with-the-central-bank-of-iran-freezes-usd-344-millio__e726d45b35.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [tether]
+          countries: [US, IR]
+          time_window:
+            - 2026-04-23T00:00:00Z
+            - 2026-04-30T23:59:59Z
+        note: |
+          TRM Labs corroboration: ~$344.2M USD₮ in two Central-Bank-of-
+          Iran wallets (IRGC-Qods Force / Hizballah links), the largest
+          on-chain freeze of Iranian sovereign crypto reserves on record;
+          ~$370M received across ~1,000 tx since March 2021. Independent
+          second semi-primary anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). On ~2026-04-23 Tether
+  froze ~$344M USD₮ across two Tron addresses attributed to the Central
+  Bank of Iran (links to the IRGC-Qods Force and Hizballah), in
+  coordination with OFAC and U.S. law enforcement — described by TRM Labs
+  as the largest on-chain freeze of Iranian sovereign crypto reserves on
+  public record. comparison shape, single asset_onchain observed_change,
+  attribution=direct per §1.2 (Tether's own freeze carries the asset-layer
+  change and OFAC names the specific CBI target wallets). jurisdiction
+  corporate_global (Tether action) + US (OFAC) + IR (target). NOTE for
+  human reviewer (codebook §1.6): asset_onchain observed_change carries no
+  pinned primary_onchain freeze tx_hash (deferred for drafts) — pin the
+  addBlackList tx hashes and the two specific Tron address strings before
+  admission. ANTI-FABRICATION: the two specific Tron addresses, the
+  per-address $213M/$131M split, and the verbatim "Operation Economic
+  Fury" phrasing are NOT asserted here because they are NOT present in the
+  two captured pages (they appear only in uncaptured secondary summaries);
+  what the captures DO support is asserted ($344M / $344.2M, two
+  addresses, Central Bank of Iran, IRGC-Qods Force, Hizballah, largest
+  on-chain freeze, ~$370M / ~1,000 tx since March 2021). Sources verified
+  via WebSearch + captured 2026-05-31 (Tether.io primary + TRM Labs,
+  body_hash-pinned; no tx_hash or address fabricated).
+
+scoped_claim: |
+  "On ~2026-04-23 Tether froze ~$344M USD₮ across two Tron addresses
+  attributed to the Central Bank of Iran (IRGC-Qods Force / Hizballah
+  links), in coordination with OFAC — the largest on-chain freeze of
+  Iranian sovereign crypto reserves on record; single-layer asset_onchain
+  observed_change, attribution=direct. Specific addresses and freeze tx
+  hashes to be pinned by a human before admission (codebook §1.6); the
+  per-address split and 'Economic Fury' phrasing are not asserted (not in
+  captures)."
+
+tags:
+  - corporate_policy_change
+  - tether_freeze
+  - iran
+  - central_bank_of_iran
+  - ofac
+  - irgc
+  - largest_onchain_freeze

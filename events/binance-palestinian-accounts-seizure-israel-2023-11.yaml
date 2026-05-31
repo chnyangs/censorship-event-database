@@ -20,7 +20,7 @@ trigger:
   type: corporate_policy_change
   actor: binance
   timestamp: 2023-11-01T00:00:00Z
-  timestamp_precision: month
+  timestamp_precision: week
   citation:
     - type: semi_primary_wayback
       url: https://cointelegraph.com/news/binance-seize-funds-palestine-israel
@@ -55,9 +55,11 @@ trigger:
   timestamp_sources:
     - type: semi_primary_wayback
       note: |
-        Month-level precision: the cited NBCTF letter is dated November
+        Coarse precision: the cited NBCTF letter is dated November
         2023; the exact day of the account blocking is not pinned in the
-        captured coverage, so timestamp_precision=month.
+        captured coverage. Only month-level is actually known; the schema's
+        coarsest precision enum is "week", used here as the closest
+        available coding (the true uncertainty is month-wide).
 
 target:
   kind: entity
@@ -74,7 +76,6 @@ target:
   chains: []
 
 jurisdiction:
-  - PS
   - IL
 
 coverage:
@@ -113,9 +114,9 @@ observations:
     observation_kind: observed_change
     attribution: plausible
     timestamp: 2023-11-01T00:00:00Z
-    precision: month
+    precision: week
     delta_hours: 0
-    country: PS
+    country: IL
     sources:
       - type: semi_primary_wayback
         url: https://cointelegraph.com/news/binance-seize-funds-palestine-israel
@@ -125,7 +126,7 @@ observations:
         evidence_use: replayable
         scope_descriptor:
           providers: [binance]
-          countries: [PS, IL]
+          countries: [IL]
           time_window:
             - 2023-11-01T00:00:00Z
             - 2023-11-30T23:59:59Z
@@ -147,7 +148,7 @@ observations:
         evidence_use: replayable
         scope_descriptor:
           providers: [binance]
-          countries: [PS, IL]
+          countries: [IL]
           time_window:
             - 2023-11-01T00:00:00Z
             - 2023-11-30T23:59:59Z
@@ -172,8 +173,13 @@ analysis_notes: |
   user accounts, linked to illicit funds" were blocked while Palestinian
   advocates allege a broader sweep — and the captured coverage does not
   reproduce the primary seizure order or an enumerated account list, so a
-  conservative attribution and enumeration=subset are retained. PS/IL
-  jurisdictions (target users Palestinian; ordering authority Israeli).
+  conservative attribution and enumeration=subset are retained.
+  Jurisdiction coded IL (the ordering authority — Israel's NBCTF); the
+  target users are Palestinian but the controlled vocab has no PS code,
+  so PS was dropped from the jurisdiction list and the Palestinian-user
+  target is documented in target.enumeration_note (NOTE for human
+  reviewer: consider adding a PS jurisdiction code to controlled_vocab if
+  Palestinian-target cases recur).
   ANTI-FABRICATION NOTE for human reviewer: the candidate lead asserted
   "~220 accounts," but that figure is NOT present in the captured
   cointelegraph page (the only numbers on the page are CSS/menu IDs and a

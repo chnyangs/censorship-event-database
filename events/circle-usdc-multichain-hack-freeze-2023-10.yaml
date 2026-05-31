@@ -1,0 +1,207 @@
+id: circle-usdc-multichain-hack-freeze-2023-10
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - circle-usdc-cryptex-freeze-2024
+  - circle-usdc-tornado-2022
+
+trigger:
+  type: corporate_policy_change
+  actor: circle
+  timestamp: 2023-10-01T00:00:00Z
+  timestamp_precision: week
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.theblock.co/post/377094/multichain-extends-freeze-stolen-usdc
+      wayback: https://web.archive.org/web/20251129153811/https://www.theblock.co/post/377094/multichain-extends-freeze-stolen-usdc
+      body_hash: sha256:7987c110d42af1ce73124dbf1c72d0af5e38345fa0bf1128639ae64ec13d077e
+      body_path: sources/http_captures/circle-usdc-multichain-hack-freeze-2023-10/primary/web.archive.org__web-20251129153811-https-www.theblock.co-post-377094-multichain-extends-freeze-stolen-usdc__bc93fd3241.html
+      evidence_use: replayable
+      note: |
+        The Block (2025, extends-freeze story): "Shortly after the hack, the
+        U.S. Department of Justice obtained a seizure warrant and compelled
+        Circle to freeze the addresses" holding ~$63 million worth of USDC
+        stolen from Multichain; the DOJ later informed the court it could not
+        identify the hackers, and Judge David S. Jones (SDNY bankruptcy court)
+        ordered Circle to maintain the addresses on its blacklist for the
+        Singapore-based Multichain liquidators. Grep of captured body confirms
+        "U.S. Department of Justice obtained a seizure warrant and compelled
+        Circle to freeze the addresses", "$63 million worth of USDC", "Judge
+        David S. Jones", "bankruptcy court". Wayback 20251129153811 pinned.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Week/month-level precision: Circle first froze the three
+        Multichain-linked addresses in October 2023 at DOJ direction per the
+        cited coverage; the exact on-chain blacklist transaction date is not
+        pinned at this draft stage (no verified tx_hash captured — see §1.6 note
+        below). Timestamp set to 2023-10-01 as the start of the reported month;
+        precision=week marks the within-October uncertainty.
+
+target:
+  kind: asset
+  enumeration: subset
+  enumeration_note: |
+    USDC (Circle stablecoin) held at three Ethereum addresses that received
+    outflow funds from the Multichain bridge exploit, blacklisted on the USDC
+    contract by Circle. Per the captured BeInCrypto report the three addresses
+    are 0x027F1, 0xefEeF, and 0x48BeA (prefixes only as published; full
+    addresses not enumerated in the captured sources), holding ~$65M in USDC
+    (The Block headline: ~$63M frozen). Marked subset (kind=asset rather than
+    address_set) because the captured sources publish only address prefixes, not
+    the full checksummed addresses required to enumerate a complete address_set;
+    no full addresses are fabricated.
+  actor_type: stablecoin_issuer_blacklist
+  actor_name: USDC at three Multichain-linked addresses (0x027F1 / 0xefEeF / 0x48BeA)
+  chains:
+    - ethereum
+
+jurisdiction:
+  - US
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An issuer on-chain blacklist of stablecoin addresses, not an ISP/DNS
+      network block.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      The blacklist acts on the USDC contract's transfer logic, not on Ethereum
+      consensus.
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      No centralized-exchange off-ramp is the mechanism here; the freeze is an
+      issuer on-chain blacklist on the USDC contract, carried at asset_onchain.
+  - layer: asset_onchain
+    status: partially_measured
+    scope:
+      - usdc_multichain_addr_0x027F1
+      - usdc_multichain_addr_0xefEeF
+      - usdc_multichain_addr_0x48BeA
+    note: |
+      Load-bearing layer. Circle added three Multichain-exploit-linked addresses
+      to the USDC contract blacklist (~$63-65M USDC), rendering that USDC
+      unredeemable/untransferable, at the direction of a DOJ seizure warrant and
+      later under a court order. Partially_measured / §1.6 floor DEFERRED: the
+      specific on-chain USDC blacklist() transaction hash is NOT pinned — the
+      captured sources name only address prefixes and amounts, not a tx_hash, and
+      no tx_hash is fabricated (codebook §1.6 anti-fabrication). The event
+      therefore remains a draft; promotion to admitted would require pinning the
+      real blacklist() tx_hash on the USDC contract.
+
+observations:
+  - layer: asset_onchain
+    actor: issuer:circle_usdc
+    event: circle_blacklists_three_multichain_linked_usdc_addresses
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-10-01T00:00:00Z
+    precision: week
+    delta_hours: 0
+    country: US
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.theblock.co/post/238459/63-million-in-usdc-frozen-by-circle-following-multichain-breach
+        wayback: https://web.archive.org/web/20240418114315/https://www.theblock.co/post/238459/63-million-in-usdc-frozen-by-circle-following-multichain-breach
+        body_hash: sha256:e44c9d92b7c87682eb84af4751c8a7f90ab25ddc2f2f6fb9fb88bbf527d96c52
+        body_path: sources/http_captures/circle-usdc-multichain-hack-freeze-2023-10/primary/web.archive.org__web-20240418114315-https-www.theblock.co-post-238459-63-million-in-usdc-frozen-by-circle-following-multichain-breach__cc7e8b6324.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [circle_usdc]
+          countries: [US]
+          time_window:
+            - 2023-10-01T00:00:00Z
+            - 2023-10-31T23:59:59Z
+        note: |
+          The Block: "$63 million in USDC frozen by Circle following Multichain
+          breach"; "Circle blacklisted three wallet addresses that received a
+          significant outflow of funds from Multichain." Grep of captured body
+          confirms this title + description. NOTE: no on-chain tx_hash present;
+          §1.6 floor deferred at draft stage (no fabrication).
+      - type: semi_primary_wayback
+        url: https://beincrypto.com/multichain-hack-circle-tether-freeze-funds/
+        wayback: https://web.archive.org/web/20250806162323/https://beincrypto.com/multichain-hack-circle-tether-freeze-funds/
+        body_hash: sha256:44996e62670db992b7d4cf0d07fb672613805b06a77b271a9b6260aed2dd0e2c
+        body_path: sources/http_captures/circle-usdc-multichain-hack-freeze-2023-10/primary/web.archive.org__web-20250806162323-https-beincrypto.com-multichain-hack-circle-tether-freeze-funds__6857cb2ee5.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [circle_usdc]
+          countries: [US]
+          time_window:
+            - 2023-10-01T00:00:00Z
+            - 2023-10-31T23:59:59Z
+        note: |
+          BeInCrypto: "Circle blacklisted three addresses receiving outflow funds
+          from Multichain. The three addresses, 0x027F1, 0xefEeF, and 0x48BeA,
+          held $65 million in USDC." Grep of captured body confirms the three
+          address prefixes verbatim. attribution=plausible: the blacklist effect
+          is directly reported; the legal trigger (DOJ seizure warrant) is
+          carried by the trigger citation (The Block 377094).
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). In October 2023 Circle added
+  three Ethereum addresses linked to the July-2023 Multichain bridge exploit to
+  the USDC contract blacklist (~$63-65M USDC, addresses 0x027F1 / 0xefEeF /
+  0x48BeA per the captured sources), at the direction of a U.S. Department of
+  Justice seizure warrant; after the DOJ could not identify the hackers, an SDNY
+  bankruptcy court (Judge David S. Jones) ordered Circle to maintain the
+  blacklist for the Multichain liquidators. SCOPE (§9): the Multichain hack
+  itself is an EXCLUDED platform failure, but Circle's deliberate issuer freeze
+  of the stolen-proceeds USDC at LE/court direction IS a censorship action in
+  scope (issuer asset freeze at LE/sanction request — the Circle/Tether
+  pattern). comparison shape, single asset_onchain observed_change,
+  attribution=plausible (the blacklist is directly reported and the DOJ-warrant
+  trigger is sourced, but the captured anchors are trade press, not a Circle
+  primary blacklist notice, and no on-chain tx is pinned). §1.6 FLOOR DEFERRED:
+  a real USDC blacklist() tx_hash is required for an admitted asset_onchain
+  observed_change; none is captured here (sources give only address prefixes +
+  amounts), and per anti-fabrication NO tx_hash is invented — so the event stays
+  draft and is intentionally un-promotable until the real blacklist tx is pinned
+  (cf. circle-usdc-cryptex-freeze-2024, which DOES carry a verified
+  primary_onchain freeze tx). Sources verified via WebSearch 2026-05-31; The
+  Block (238459 + 377094) + BeInCrypto captured + body_hash pinned; grep of the
+  captured bodies confirms "$63 million in USDC frozen by Circle following
+  Multichain breach", "blacklisted three wallet addresses", "0x027F1, 0xefEeF,
+  and 0x48BeA", "U.S. Department of Justice obtained a seizure warrant and
+  compelled Circle to freeze the addresses", "Judge David S. Jones" (no
+  fabrication).
+
+scoped_claim: |
+  "Circle's October-2023 USDC-contract blacklist of three Multichain-exploit-
+  linked Ethereum addresses (~$63-65M USDC, at DOJ seizure-warrant direction and
+  later under SDNY court order) is a single-layer asset_onchain observed_change
+  with attribution=plausible; the asset_onchain §1.6 tx_hash floor is deferred
+  (no verified blacklist tx pinned), so the draft is intentionally
+  un-promotable as authored."
+
+tags:
+  - corporate_policy_change
+  - issuer_freeze
+  - usdc
+  - circle
+  - stablecoin_blacklist
+  - multichain
+  - doj_seizure_warrant
+  - asset_onchain_floor_deferred
+  - comparable_main

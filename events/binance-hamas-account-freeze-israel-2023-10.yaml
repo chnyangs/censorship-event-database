@@ -1,0 +1,191 @@
+id: binance-hamas-account-freeze-israel-2023-10
+schema_version: 0.2.0
+codebook_version: "3.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+last_human_audit: 2026-05-31
+
+related_events:
+  - israel-nbctf-hamas-crypto-addresses-2021
+  - ofac-hamas-buy-cash-msb-2023-10
+  - binance-palestinian-accounts-seizure-israel-2023-11
+
+trigger:
+  type: corporate_policy_change
+  actor: binance
+  timestamp: 2023-10-10T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: semi_primary_wayback
+      url: https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
+      wayback: https://web.archive.org/web/20260117195331/https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
+      body_hash: sha256:088d77dc114cd382054e9d91000977b41621db57a843311a5f516e1ed87d3705
+      body_path: sources/http_captures/binance-hamas-account-freeze-israel-2023-10/primary/web.archive.org__web-20260117195331-https-www.dlnews.com-articles-regulation-israeli-police-seize-binance-account-linked-to-hamas__c80d6b79b1.html
+      evidence_use: replayable
+      note: |
+        DL News 2023-10-10: Israeli police seized Hamas-linked crypto accounts
+        on Binance with the exchange's help; an Israeli cybercrime unit (Lahav
+        433) located the accounts on Binance, seized them, and transferred funds
+        to the state treasury; action supported by the National Bureau for
+        Counter Terror Financing (NBCTF), the Ministry of Defence, and
+        intelligence organisations. Grep of captured body confirms "Israeli
+        police seize Hamas crypto wallets on Binance", "Lahav 433", "NBCTF",
+        "10 October 2023". Wayback 20260117195331 pinned.
+  timestamp_sources:
+    - type: semi_primary_wayback
+      note: |
+        Day-level precision: reporting dated 2023-10-10, days after the
+        2023-10-07 Hamas attack, per the cited coverage.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Target is a set of Binance accounts that Israeli law enforcement identified
+    as allegedly linked to Hamas fundraising and froze/seized with Binance's
+    cooperation. Subset enumeration: the captured DL News report describes the
+    seized-account set qualitatively (located by Lahav 433, funds moved to the
+    state treasury) without an enumerated account list; a related FT report
+    (not relied on here) put the figure at 100+ accounts. No on-chain
+    address-level set is enumerated in the captured sources.
+  actor_type: exchange_account_freeze
+  actor_name: Binance accounts allegedly linked to Hamas (Israeli LE seizure)
+  chains: []
+  canonical_domains:
+    - binance.com
+
+jurisdiction:
+  - IL
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      An exchange account freeze/seizure at law-enforcement request, not an
+      ISP/DNS network block.
+  - layer: l1_consensus
+    status: not_applicable
+  - layer: l3_rpc
+    status: not_applicable
+  - layer: l4_frontend
+    status: not_applicable
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      The freeze acts on custodial Binance accounts (off-ramp custody), not via
+      an on-chain issuer blacklist; no §1.6 asset_onchain tx_hash floor applies.
+  - layer: offramp_cex
+    status: partially_measured
+    scope:
+      - binance_il_hamas_linked_accounts
+    note: |
+      Load-bearing layer. Binance (a centralized exchange / custodial off-ramp)
+      froze/seized a set of accounts allegedly linked to Hamas at the request of
+      Israeli law enforcement (Lahav 433 / NBCTF), with the funds transferred to
+      the Israeli state treasury. Partially_measured: the disclosure anchors are
+      replayable via wayback but the captured sources do not enumerate the
+      specific account set.
+
+observations:
+  - layer: offramp_cex
+    actor: exchange:binance_il
+    event: binance_freezes_hamas_linked_accounts_at_israeli_le_request
+    observation_kind: observed_change
+    attribution: plausible
+    timestamp: 2023-10-10T00:00:00Z
+    precision: day
+    delta_hours: 0
+    country: IL
+    sources:
+      - type: semi_primary_wayback
+        url: https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
+        wayback: https://web.archive.org/web/20260117195331/https://www.dlnews.com/articles/regulation/israeli-police-seize-binance-account-linked-to-hamas/
+        body_hash: sha256:088d77dc114cd382054e9d91000977b41621db57a843311a5f516e1ed87d3705
+        body_path: sources/http_captures/binance-hamas-account-freeze-israel-2023-10/primary/web.archive.org__web-20260117195331-https-www.dlnews.com-articles-regulation-israeli-police-seize-binance-account-linked-to-hamas__c80d6b79b1.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [IL]
+          time_window:
+            - 2023-10-07T00:00:00Z
+            - 2023-10-31T23:59:59Z
+        note: |
+          DL News 2023-10-10: Israeli police (Lahav 433), with Binance's help and
+          NBCTF/MoD support, seized Hamas-linked accounts on Binance and moved
+          funds to the state treasury. attribution=plausible: the freeze/seizure
+          is reported via trade press (not a Binance or Israeli-police primary
+          notice) and the "Hamas-linked" characterization is the law
+          enforcement's allegation as reported.
+      - type: semi_primary_wayback
+        url: https://unchainedcrypto.com/binance-helps-israel-police-freeze-hamas-crypto-accounts-report/
+        wayback: https://web.archive.org/web/20250720194349/https://unchainedcrypto.com/binance-helps-israel-police-freeze-hamas-crypto-accounts-report/
+        body_hash: sha256:963f5cdf4e44604bd386c9a5040293397a3824dd90dfc4320da34785b2766ece
+        body_path: sources/http_captures/binance-hamas-account-freeze-israel-2023-10/primary/web.archive.org__web-20250720194349-https-unchainedcrypto.com-binance-helps-israel-police-freeze-hamas-crypto-accounts-report__74d7358f26.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [IL]
+          time_window:
+            - 2023-10-07T00:00:00Z
+            - 2023-10-31T23:59:59Z
+        note: |
+          Unchained: "Binance Helps Israel Police Freeze Hamas Crypto Accounts."
+          Grep of captured body confirms "The seized funds will go into the state
+          treasury" and the freeze-following-the-2023-10-07-attack framing.
+          Independent second semi-primary anchor.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
+  verified+captured, awaiting human admission). In the days after the
+  2023-10-07 Hamas attack on Israel, Binance — at the request of Israeli law
+  enforcement (the Lahav 433 cybercrime unit, with NBCTF / Ministry of Defence /
+  intelligence support) — froze and seized a set of accounts on its exchange
+  allegedly linked to Hamas fundraising, with seized funds transferred to the
+  Israeli state treasury (reporting dated 2023-10-10). This is a corporate
+  account/asset freeze at law-enforcement request — in scope per codebook §9
+  (account/asset freeze at LE/sanction request). comparison shape, single
+  offramp_cex observed_change, attribution=plausible (the freeze is reported via
+  trade press, not a Binance or Israeli-police primary notice, and the
+  "Hamas-linked" characterization is the LE allegation as reported). asset_onchain
+  not_applicable: the action is a custodial account freeze on the exchange, not
+  an on-chain issuer blacklist, so no §1.6 tx_hash floor applies. Distinct from
+  israel-nbctf-hamas-crypto-addresses-2021 (an earlier 2021 NBCTF on-chain
+  address-seizure action, S4) and from the OFAC Hamas designations in corpus
+  (S1). Also distinct from the existing draft
+  binance-palestinian-accounts-seizure-israel-2023-11, which covers the
+  *November 2023* NBCTF (Paul Landes) temporary-seizure order against Palestinian
+  user accounts — a later, separately-sourced action; this event captures the
+  immediate post-2023-10-07 Hamas-fundraising-account freezes (DL News /
+  Unchained, dated 2023-10-10). Sources verified via WebSearch 2026-05-31; DL News + Unchained captured +
+  body_hash pinned; grep of the DL News body confirms "Israeli police seize Hamas
+  crypto wallets on Binance", "Lahav 433", "NBCTF", "10 October 2023", and the
+  Unchained body confirms "The seized funds will go into the state treasury" (no
+  fabrication). The specific account count (FT report: 100+) is NOT asserted in
+  the scoped claim because it is not in the two captured anchors.
+
+scoped_claim: |
+  "In the week after the 2023-10-07 Hamas attack, Binance froze/seized a set of
+  accounts allegedly linked to Hamas at the request of Israeli law enforcement
+  (Lahav 433 / NBCTF), transferring funds to the state treasury — a single-layer
+  offramp_cex observed_change with attribution=plausible (trade-press anchored;
+  the Hamas-link is the LE allegation)."
+
+tags:
+  - corporate_policy_change
+  - account_freeze
+  - asset_seizure
+  - law_enforcement_request
+  - israel
+  - hamas
+  - binance
+  - offramp_freeze
+  - comparable_main
