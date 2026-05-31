@@ -68,8 +68,8 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **246 release-ready** cases, **122 admitted-but-blocked** cases, observation reliability
-      **264 high / 80 medium / 24 low**, and attribution reliability **227 high / 141 medium / 0 low**.
+      **247 release-ready** cases, **121 admitted-but-blocked** cases, observation reliability
+      **265 high / 80 medium / 23 low**, and attribution reliability **228 high / 140 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -84,7 +84,10 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       Follow-on repair also moved `eu-russia-crypto-wallet-cap-2022` and
       `eu-russia-full-crypto-wallet-ban-2022` out of the queue with EUR-Lex Regulation 2022/576 and
       2022/1904 replay anchors, while narrowing both rows from unpinned named-CASP implementation claims to
-      the source-supported EU CASP custody/account legal obligations.
+      the source-supported EU CASP custody/account legal obligations. Follow-on repair also moved
+      `eba-virtual-currencies-opinion-eba-op-2014-08` out of the queue with the official EBA Opinion PDF
+      pinned locally, while narrowing the row to the EBA supervisory recommendation rather than downstream
+      banking de-risking not enumerated by the source.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or

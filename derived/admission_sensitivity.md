@@ -19,7 +19,7 @@ The `strict_permissive_delta` column is the absolute change in rate from strict 
 | `l3_rpc` | 2/2 = 1.000 | 2/2 = 1.000 | 6/7 = 0.857 | -0.1429 | **sensitive** |
 | `l4_frontend` | 32/55 = 0.582 | 50/55 = 0.909 | 76/85 = 0.894 | 0.3123 | **sensitive** |
 | `asset_onchain` | 18/18 = retracted | 18/18 = retracted | 19/20 = retracted | — | **retracted_structural** |
-| `offramp_cex` | 94/234 = 0.402 | 156/234 = 0.667 | 200/288 = 0.694 | 0.2927 | **sensitive** |
+| `offramp_cex` | 95/234 = 0.406 | 156/234 = 0.667 | 200/288 = 0.694 | 0.2884 | **sensitive** |
 
 ## Interpretation
 

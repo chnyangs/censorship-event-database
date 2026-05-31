@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `eabcaae` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `22e4579` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -108,7 +108,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `dydx-canada-frontend-wind-down-2023-04:0:l4_frontend:provider:dydx_exchange:dydx_canada_frontend_geofence` | 1 | 0 | 1 | l4_frontend | `dydx-canada-frontend-wind-down-2023-04::l4_frontend` |
 | `dydx-tornado-account-block-2022-08:0:l4_frontend:frontend:dydx_trading_inc:dydx_blocked_accounts_with_any_historical_tornado_cash_interaction` | 1 | 0 | 1 | l4_frontend | `dydx-tornado-account-block-2022-08::l4_frontend` |
 | `dydx-tornado-account-block-2022-08:1:offramp_cex:exchange:dydx:dydx_off_ramp_trading_restricted_for_tornado_tainted_accounts` | 1 | 0 | 1 | offramp_cex | `dydx-tornado-account-block-2022-08::offramp_cex` |
-| `eba-virtual-currencies-opinion-eba-op-2014-08:0:offramp_cex:eu_credit_payment_emoney_institution_aggregate:eba_opinion_2014_08_discourages_institutional_vc_handling` | 1 | 0 | 1 | offramp_cex | `eba-virtual-currencies-opinion-eba-op-2014-08::offramp_cex` |
+| `eba-virtual-currencies-opinion-eba-op-2014-08:0:offramp_cex:eu_credit_payment_emoney_institution_aggregate:eba_opinion_2014_08_recommends_discouraging_institutional_vc_handling` | 1 | 0 | 1 | offramp_cex | `eba-virtual-currencies-opinion-eba-op-2014-08::offramp_cex` |
 | `ebullion-doj-fbi-seizure-2008-08:0:offramp_cex:exchange:e_bullion:ebullion_ceases_operations_following_doj_fbi_seizure_and_founder_arrest` | 1 | 0 | 1 | offramp_cex | `ebullion-doj-fbi-seizure-2008-08::offramp_cex` |
 | `ecuador-national-assembly-bitcoin-ban-2014-07:0:offramp_cex:ecuador_payment_rail_ecosystem:decentralized_digital_currency_circulation_prohibited` | 1 | 0 | 1 | offramp_cex | `ecuador-national-assembly-bitcoin-ban-2014-07::offramp_cex` |
 | `egold-doj-guilty-plea-2008-07:0:offramp_cex:exchange:e_gold:egold_ceases_operations_following_corporate_and_ceo_guilty_plea` | 1 | 0 | 1 | offramp_cex | `egold-doj-guilty-plea-2008-07::offramp_cex` |

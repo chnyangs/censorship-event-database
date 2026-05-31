@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S6_supranational` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `eabcaae` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `22e4579` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -14,11 +14,9 @@
 > discourage EU credit institutions, payment institutions, and
 > e-money institutions from buying, holding, or selling virtual
 > currencies pending a longer-term regulatory regime. The
-> load-bearing axis is offramp_cex at the dispersed-cascade
-> institutional-aggregate layer; downstream banking-rail / payment-
-> rail severance against EU crypto businesses across 2014-2018 is
-> consistent with the cascade hypothesis but not enumerated in this
-> draft."
+> load-bearing axis is offramp_cex at the supervisory-guidance layer;
+> downstream banking-rail / payment-rail severance against EU crypto
+> businesses across 2014-2018 is not enumerated in this row."
 
 ## 1. Trigger
 
@@ -31,6 +29,8 @@
 - **`primary_legal`**
   - URL: <https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf>
   - Wayback: <https://web.archive.org/web/2014/https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf>
+  - body_hash: `sha256:5bb1772c847475e9c6b32bead00c446dffddd1050f0c901b81d47fe1cad832e2`
+  - body_path: `sources/http_captures/eba-virtual-currencies-opinion-eba-op-2014-08/pdf-primary/www.eba.europa.eu__sites-default-files-documents-10180-657547-81409b94-4222-45d7-ba3b-7deb5863ab57-EBA-Op-2014-08-20Opinion-20on-20Virtual-20Currencies.pdf__2bb82434df.bin`
   > EBA Opinion EBA/Op/2014/08 ("Opinion on 'virtual currencies'")
 > issued by the European Banking Authority on 4 July 2014. The
 > Opinion identifies 70+ risks arising from virtual currencies
@@ -44,7 +44,8 @@
 > selling virtual currencies" whilst no such regime is in place.
 > This is the first major EU-level supervisory guidance on virtual
 > currencies and sets the pre-MiCA pan-European regulatory tone
-> for the 2014-2018 window.
+> for the 2014-2018 window. The PDF was captured live and pinned
+> with body_hash/body_path during the 2026-06-01 source-repair pass.
 - **`primary_legal`**
   - URL: <https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n>
   - Wayback: <https://web.archive.org/web/20191031205451/https://eba.europa.eu/eba-proposes-potential-regulatory-regime-for-virtual-currencies-but-also-advises-that-financial-institutions-should-not-buy-hold-or-sell-them-whilst-n>
@@ -55,10 +56,9 @@
 > directed at credit institutions, payment institutions, and
 > e-money institutions and the parallel proposal of a longer-term
 > regulatory regime. Wayback memento 20191031205451 captured
-> 2026-05-21 with replayable body_hash. The Opinion PDF itself
-> has no Wayback memento across 2014-2024 (CDX prefix-match
-> empty); the press release substitutes as the primary_legal
-> admission anchor.
+> 2026-05-21 with replayable body_hash. The Opinion PDF is now also
+> locally captured and pinned; this press release remains a
+> corroborating replayable primary anchor.
 
 ## 2. Target
 
@@ -78,9 +78,9 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `plausible` · Δt = 0h
+### offramp_cex · attribution: `direct` · Δt = 0h
 
-**Event label**: `eba_opinion_2014_08_discourages_institutional_vc_handling`
+**Event label**: `eba_opinion_2014_08_recommends_discouraging_institutional_vc_handling`
 
 **Timestamp**: `2014-07-04 00:00:00+00:00` (precision: `day`)
 
@@ -89,6 +89,8 @@
 - **`primary_legal`**
   - URL: <https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf>
   - Wayback: <https://web.archive.org/web/2014/https://www.eba.europa.eu/sites/default/files/documents/10180/657547/81409b94-4222-45d7-ba3b-7deb5863ab57/EBA-Op-2014-08%20Opinion%20on%20Virtual%20Currencies.pdf>
+  - body_hash: `sha256:5bb1772c847475e9c6b32bead00c446dffddd1050f0c901b81d47fe1cad832e2`
+  - body_path: `sources/http_captures/eba-virtual-currencies-opinion-eba-op-2014-08/pdf-primary/www.eba.europa.eu__sites-default-files-documents-10180-657547-81409b94-4222-45d7-ba3b-7deb5863ab57-EBA-Op-2014-08-20Opinion-20on-20Virtual-20Currencies.pdf__2bb82434df.bin`
   > EBA/Op/2014/08 directs national supervisory authorities to
 > discourage EU credit/payment/e-money institutions from buying,
 > holding, or selling virtual currencies pending a longer-term
@@ -96,16 +98,13 @@
 > supranational supervisory-instruction layer: the Opinion's
 > issuance is itself the regulatory change at offramp_cex via
 > the class-level discouragement directive routed through
-> national competent authorities. attribution=plausible (not
-> direct) because the Opinion operates through downstream
-> national-supervisor and institution-level risk-appetite
-> decisions rather than a discrete enumerable enforcement
-> action; downstream banking-rail severance against EU crypto
-> businesses across 2014-2018 is consistent with the cascade
-> hypothesis but not enumerated here. The PDF carries the
-> load-bearing Opinion text; replayable anchor for this row is
-> on the trigger-level EBA press release citation (Wayback
-> memento 20191031205451 captured 2026-05-21).
+> national competent authorities. attribution=direct for the
+> EBA supervisory recommendation itself because the Opinion names
+> the affected institution classes and the recommended conduct.
+> Downstream banking-rail severance against EU crypto businesses
+> across 2014-2018 is outside this row unless separately
+> enumerated. The PDF carries the load-bearing Opinion text and
+> is locally captured with body_hash/body_path.
 
 ## 5. Honest coverage gaps
 
@@ -120,7 +119,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `eabcaae`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `22e4579`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
