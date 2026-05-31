@@ -11,7 +11,7 @@ admission_tier: empirical_case
 origin: human_reviewed
 version: "0.2"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-21
+last_verified: 2026-06-01
 
 related_events:
   - binance-privacy-coin-delisting-2023
@@ -24,6 +24,23 @@ trigger:
   timestamp: 2022-09-19T08:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://www.huobi.com/support/en-us/detail/104917015223952
+      wayback: https://web.archive.org/web/20220912093023/https://www.huobi.com/support/en-us/detail/104917015223952
+      body_hash: sha256:213480616d1bd2d9ba4dd2c9552c3edd36ffa33b3565ce7f4ad46cc1a4837844
+      body_path: sources/http_captures/huobi-htx-privacy-coin-delisting-2024/primary/web.archive.org__web-20220912093023-https-www.huobi.com-support-en-us-detail-104917015223952__fc3bbca22e.html
+      evidence_use: replayable
+      evidence_group_id: huobi_2022_09_12
+      note: |
+        Huobi Global official support announcement "Huobi Global to
+        Delist DASH, DCR, FIRO, XMR, XVG, ZEC, and ZEN" (Wayback
+        memento 20220912093023) is the primary corporate trigger
+        anchor. The notice says Huobi Global terminated trading
+        service for DASH, DCR, FIRO, XMR, XVG, ZEC, and ZEN, citing
+        the latest financial regulations, and that delisting was
+        scheduled to start at 08:00 UTC on 2022-09-19. The same
+        notice says deposit service would cease at 08:00 UTC on
+        2022-09-12 and withdrawals would continue.
     - type: semi_primary_wayback
       url: https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero
       wayback: https://web.archive.org/web/20220912212806/https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero/
@@ -156,11 +173,38 @@ observations:
     actor: exchange:huobi
     event: huobi_spot_pair_removal_privacy_asset_cohort_2022
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2022-09-19T08:00:00Z
     precision: day
     delta_hours: 0
     sources:
+      - type: primary_corporate
+        url: https://www.huobi.com/support/en-us/detail/104917015223952
+        wayback: https://web.archive.org/web/20220912093023/https://www.huobi.com/support/en-us/detail/104917015223952
+        body_hash: sha256:213480616d1bd2d9ba4dd2c9552c3edd36ffa33b3565ce7f4ad46cc1a4837844
+        body_path: sources/http_captures/huobi-htx-privacy-coin-delisting-2024/primary/web.archive.org__web-20220912093023-https-www.huobi.com-support-en-us-detail-104917015223952__fc3bbca22e.html
+        evidence_use: replayable
+        evidence_group_id: huobi_2022_09_12
+        scope_descriptor:
+          providers:
+            - huobi_spot_dsh_pairs
+            - huobi_spot_dcr_pairs
+            - huobi_spot_firo_pairs
+            - huobi_spot_xmr_pairs
+            - huobi_spot_xvg_pairs
+            - huobi_spot_zec_pairs
+            - huobi_spot_zen_pairs
+          time_window:
+            - 2022-09-12T00:00:00Z
+            - 2022-09-19T08:00:00Z
+        note: |
+          Huobi Global official support announcement directly anchors
+          the offramp_cex observed_change. The operator-controlled
+          notice names the seven privacy tokens, states that Huobi
+          Global terminated their trading service, and schedules the
+          delisting to start at 08:00 UTC on 2022-09-19. attribution
+          is direct because Huobi is both the announcing actor and
+          the operator of the affected spot-trading product.
       - type: semi_primary_wayback
         url: https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero
         wayback: https://web.archive.org/web/20220912212806/https://www.coindesk.com/business/2022/09/12/crypto-exchange-huobi-to-delist-7-privacy-coins-including-zcash-monero/
@@ -246,11 +290,21 @@ analysis_notes: |
   CEX privacy-asset delisting wave) by human:xiangwen as
   empirical_case. Re-dated, re-scoped, and re-sourced from the
   fabricated 2024 HTX draft to the real 2022 Huobi seven-coin
-  privacy delisting. offramp_cex observed_change/plausible with
+  privacy delisting. At promotion, offramp_cex observed_change/plausible with
   four independent semi_primary_wayback groups (CoinDesk
   20220912212806, Decrypt 20220912165759, CoinGeek 20220913190344,
   Cointelegraph 20220912175020), all replayable body_hash pinned.
   comparison/empirical_case preserved.
+
+  **SOURCE UPGRADE 2026-06-01**: added the archived Huobi Global
+  official support announcement (Wayback memento 20220912093023,
+  body_hash sha256:213480616d1bd2d9ba4dd2c9552c3edd36ffa33b3565ce7f4ad46cc1a4837844)
+  as a primary_corporate trigger and observed_change source. This
+  upgrades the retained offramp_cex attribution from plausible to
+  direct because Huobi itself announces the seven-token trading
+  service termination and the 2022-09-19 08:00 UTC delisting start.
+  primary_source_verified and last_human_audit remain unchanged
+  because this was an agent source-upgrade pass, not a human audit.
 
   **DATE-CORRECTION 2026-05-21 (2024 -> 2022)**: the original
   agent draft asserted a 2024 "HTX" privacy-coin delisting anchored
@@ -288,8 +342,9 @@ analysis_notes: |
   HTX-era catalogue posture.
 
   Single observed_change layer (offramp_cex) with
-  attribution=plausible (semi-primary measurements alone warrant
-  plausible rather than direct under the admission rule). L0 / L1 /
+  attribution=direct, backed by the Huobi Global official
+  support announcement plus four independent semi-primary
+  corroborating reports. L0 / L1 /
   L3 / l4_frontend / asset_onchain are all not_applicable on
   substrate-mismatch grounds — this is a CEX corporate-policy
   listing-restriction event keyed to base-chain privacy assets, not
@@ -299,14 +354,11 @@ analysis_notes: |
   sibling events).
 
   Why empirical_case rather than anchor_case: the load-bearing
-  offramp_cex observation carries a single load-bearing layer with
-  plausible attribution backed by four independent semi-primary
-  contemporaneous reports rather than a Huobi-hosted primary
-  notice. Promotion to anchor_case would require either a pinned
-  Huobi-hosted announcement primary or a second independent
-  observed_change layer; this audit corrected the date/scope/source
-  fabrication and admits the single comparison observation as an
-  empirical_case.
+  offramp_cex observation now carries direct attribution from a
+  pinned Huobi-hosted primary notice, but the event still has only
+  one observed_change layer. Under codebook admission-tier rules,
+  anchor_case requires at least two observed_change layers, so the
+  event remains an empirical_case.
 
 scoped_claim: |
   "Huobi (Huobi Global)'s 2022-09 product-catalogue removal of
