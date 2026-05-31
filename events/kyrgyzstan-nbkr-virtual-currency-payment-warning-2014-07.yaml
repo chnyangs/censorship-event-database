@@ -1,0 +1,201 @@
+id: kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: draft
+primary_source_verified: false
+research_stratum: S4_nation_state
+temporal_tier: historical_baseline_2013_2016
+analysis_use: historical_baseline
+empirical_shape: null_event
+admission_tier: null_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-05-31T00:00:00Z
+last_verified: 2026-05-31
+
+related_events:
+  - vietnam-sbv-bitcoin-prohibition-statement-2014-02
+  - indonesia-bi-bitcoin-warning-2014
+  - jordan-cbj-bank-crypto-prohibition-2014
+  - lebanon-bdl-bitcoin-warning-2013-12
+
+trigger:
+  type: regulatory_enforcement
+  actor: KG_NBKR
+  timestamp: 2014-07-18T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://nbkr.kg/searchout.jsp?amp=&amp=&item=31&lang=ENG&material=50718
+      wayback: https://web.archive.org/web/20260531125524/https://nbkr.kg/searchout.jsp?amp=&amp=&item=31&lang=ENG&material=50718
+      body_hash: sha256:55bfbf5b9d0da803146ee4587651c4f2c55195fdf76ea51aef8a356e85b47d00
+      body_path: sources/http_captures/kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07/primary/nbkr.kg__searchout.jsp__556a968ab7.html
+      evidence_use: replayable
+      note: |
+        Official National Bank of the Kyrgyz Republic English page, creation
+        date 2014-07-18, titled "Warning of the National Bank of the Kyrgyz
+        Republic on the spread and use of the 'virtual currency', in particular,
+        bitcoins (bitcoin)." The page states that the Kyrgyz som is the sole
+        legal tender in Kyrgyzstan and that using virtual currency, particularly
+        bitcoin, as a means of payment in Kyrgyzstan would violate Kyrgyz law.
+        It also strongly recommends not using virtual currency, not participating
+        in purchase/sale/exchange operations, and not providing or receiving
+        virtual currency as payment for goods, services, or works. The source
+        does not name any exchange, bank, payment provider, domain, or address.
+        The Wayback save request timed out locally, but the CDX API confirmed the
+        2026-05-31 snapshot recorded in the wayback field.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        The official NBKR page carries "Creation date: 2014-07-18"; that date is
+        used instead of the stale 2014-08 date in the census candidate row. Day
+        precision is appropriate because the page does not publish an intraday
+        release time.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    Kyrgyzstan-resident virtual-currency users, merchants, and payment users as
+    the class addressed by the NBKR warning. The page discusses bitcoin and
+    virtual currencies as a class and does not enumerate specific exchanges,
+    banks, payment companies, merchants, domains, tokens beyond bitcoin as an
+    example, or blockchain addresses.
+  protocol: null
+  actor_type: kyrgyzstan_virtual_currency_payment_activity_class
+  actor_name: Kyrgyzstan bitcoin and virtual-currency payment users
+  chains:
+    - bitcoin
+  canonical_domains: []
+
+jurisdiction:
+  - KG
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The NBKR 2014 warning is a central-bank legal / payment-instrument
+      warning. It does not direct ISP, DNS, IP, routing, or other network-layer
+      blocking.
+  - layer: l1_consensus
+    status: not_applicable
+    note: |
+      Bitcoin proof-of-work consensus is not affected by the NBKR warning, and
+      no consensus-layer relay or validation surface is implicated.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The public-RPC compliance substrate measured by the L3 layer did not
+      exist in 2014 and is not implicated by a central-bank payment warning.
+  - layer: l4_frontend
+    status: not_applicable
+    note: |
+      The NBKR page does not name or order changes at any exchange, wallet,
+      merchant, or frontend domain.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      Bitcoin has no issuer-side blacklist or freeze admin function, and the
+      NBKR warning does not name a token issuer, address set, freeze, burn,
+      blacklist, or other asset-admin action.
+  - layer: offramp_cex
+    status: measured
+    note: |
+      Load-bearing layer. The 2014 NBKR page is an off-ramp / payment-instrument
+      regulatory signal: it states that the som is Kyrgyzstan's sole legal
+      tender and that using virtual currency, particularly bitcoin, as a means
+      of payment would violate Kyrgyz law. It also recommends against use,
+      purchase/sale/exchange operations, and providing or receiving virtual
+      currency as payment. This draft deliberately does not claim a specific
+      exchange shutdown, bank cutoff, payment-processor cutoff, domain block,
+      user offboarding, or fines. The 90-day denominator below records a bounded
+      public-record null observation for exchange-, bank-, or payment-provider
+      cutoff evidence.
+    denominator_artifact:
+      type: scope_descriptor
+      scope_descriptor:
+        countries:
+          - KG
+        time_window:
+          - 2014-07-18T00:00:00Z
+          - 2014-10-16T00:00:00Z
+      note: |
+        Scope descriptor for the 90-day historical-baseline authoring pass:
+        Kyrgyzstan-resident exchange, bank, merchant, or payment-provider
+        cutoffs documented in the public record after the 2014-07-18 NBKR
+        warning. This pass found a class-level payment-instrument / legal-risk
+        warning but no named exchange, bank, merchant, or payment-provider
+        cutoff to model as an observed_change cascade.
+
+observations:
+  - layer: offramp_cex
+    actor: kyrgyzstan_virtual_currency_payment_activity_class
+    event: no_measured_exchange_bank_or_payment_provider_cutoff_after_nbkr_2014_warning
+    observation_kind: observed_no_change
+    attribution: none
+    timestamp: 2014-07-18T00:00:00Z
+    precision: day
+    window:
+      - 2014-07-18T00:00:00Z
+      - 2014-10-16T00:00:00Z
+    sources:
+      - type: primary_government
+        url: https://nbkr.kg/searchout.jsp?amp=&amp=&item=31&lang=ENG&material=50718
+        wayback: https://web.archive.org/web/20260531125524/https://nbkr.kg/searchout.jsp?amp=&amp=&item=31&lang=ENG&material=50718
+        body_hash: sha256:55bfbf5b9d0da803146ee4587651c4f2c55195fdf76ea51aef8a356e85b47d00
+        body_path: sources/http_captures/kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07/primary/nbkr.kg__searchout.jsp__556a968ab7.html
+        evidence_use: replayable
+        note: |
+          Official NBKR warning page. It documents the class-level legal/payment
+          warning and risk advisory, including the statement that using virtual
+          currency as payment would violate Kyrgyz law, but it does not document
+          a named exchange, bank, payment provider, merchant, or user class being
+          cut off in response. attribution=none because this row is an
+          observed_no_change cascade observation.
+
+analysis_notes: |
+  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
+  census-gap queue after locating and capturing the official NBKR English page.
+  The event remains `status=draft` and `origin=agent_draft`; automation must not
+  promote it to an admitted paper row without human admission review.
+
+  Inclusion / scope rationale: the source is stronger than a generic consumer
+  risk note because NBKR states that the Kyrgyz som is the sole legal tender and
+  that using virtual currency, particularly bitcoin, as a means of payment in
+  Kyrgyzstan would violate Kyrgyz law. It also advises against purchase, sale,
+  exchange, and payment use. However, the source does not identify an operator
+  response or regulated-institution mandate equivalent to Jordan's 2014 CBJ
+  circular, and it does not document a specific exchange shutdown, bank cutoff,
+  payment-provider cutoff, merchant ban, domain block, or asset freeze.
+
+  Modeling rationale: this is coded as `null_event` / `null_case` because the
+  captured source gives a class-level payment-instrument / legal-risk warning
+  but this pass found no named exchange, bank, merchant, payment-provider,
+  frontend, issuer, or on-chain action in the bounded observation window. The
+  row is useful as a clean historical-baseline comparator and as a guardrail
+  against the stale census slug/date, which used an August 2014 secondary-report
+  date rather than the official NBKR creation date of 2014-07-18.
+
+  Source note: the current CoinDesk candidate URL returned a 200 status serving
+  a 404 page and is not used as evidence. The official NBKR page was captured
+  live with a stable body hash; Wayback save timed out locally, but the Wayback
+  CDX API confirmed a 2026-05-31 snapshot.
+
+scoped_claim: |
+  On 2014-07-18, the National Bank of the Kyrgyz Republic published a warning
+  stating that the Kyrgyz som is the sole legal tender and that using virtual
+  currency, particularly bitcoin, as a means of payment in Kyrgyzstan would
+  violate Kyrgyz law. This draft codes the action as a historical-baseline,
+  class-level off-ramp/payment-instrument warning with no measured exchange
+  shutdown, bank cutoff, payment-provider cutoff, domain block, or on-chain
+  action.
+
+tags:
+  - regulatory_enforcement
+  - kyrgyzstan
+  - nbkr
+  - bitcoin_warning
+  - payment_instrument
+  - historical_baseline
+  - agent_draft

@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-05-31T12:31:46Z`
+Generated at: `2026-05-31T12:53:21Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 274, 'ok': 125}
-- **Verification** (`last_verified`): {'ok': 399}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 274, 'ok': 125}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 275, 'ok': 125}
+- **Verification** (`last_verified`): {'ok': 400}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 275, 'ok': 125}
 
 ## Flag legend
 
@@ -239,6 +239,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `kucoin-doj-2024` | `admitted` | `human_reviewed` | 2026-05-16 | 15 | ok | 2026-05-16 | 15 | ok | ok |
 | `kucoin-netherlands-exit-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 10 | ok | no_audit_recorded |
 | `kuwait-cma-virtual-assets-prohibition-2023-07` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
+| `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
 | `lazarus-entity-ofac-2019` | `admitted` | `human_authored` | 2026-05-15 | 16 | ok | 2026-04-22 | 39 | ok | ok |
 | `lazarus-laundering-ofac-2020` | `admitted` | `human_authored` | 2026-05-15 | 16 | ok | 2026-04-22 | 39 | ok | ok |
 | `lebanon-bdl-bitcoin-warning-2013-12` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 0 | ok | no_audit_recorded |
@@ -580,6 +581,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `kucoin-canada-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=14d
 - `kucoin-netherlands-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `kuwait-cma-virtual-assets-prohibition-2023-07` — audit=no_audit_recorded, verification=ok, verif_age=0d
+- `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `lebanon-bdl-bitcoin-warning-2013-12` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `liberty-reserve-costa-rica-license-denial-2011-03` — audit=no_audit_recorded, verification=ok, verif_age=10d
 - `lockbit-affiliates-ofac-2024` — audit=no_audit_recorded, verification=ok, verif_age=39d

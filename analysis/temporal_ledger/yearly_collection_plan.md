@@ -1,6 +1,6 @@
 # Yearly Collection Plan
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · generated `2026-05-31T12:31:46Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · generated `2026-05-31T12:53:21Z`
 
 This is the year-level control surface for the 2008+ tiered frame. It is derived from the monthly discovery ledger and trigger registry; it is not a paper denominator.
 
@@ -14,7 +14,7 @@ This is the year-level control surface for the 2008+ tiered frame. It is derived
 | 2011 | `discovery_only_2007_2012` | 72 | 2 | 0 | 2 | 2 | 2 | 0 | 0 | 0 | resolve source-unavailable receipts |
 | 2012 | `discovery_only_2007_2012` | 72 | 5 | 0 | 5 | 4 | 4 | 0 | 0 | 0 | resolve source-unavailable receipts |
 | 2013 | `historical_baseline_2013_2016` | 72 | 9 | 14 | 14 | 12 | 11 | 0 | 0 | 0 | triage pending source-frame months |
-| 2014 | `historical_baseline_2013_2016` | 72 | 14 | 30 | 23 | 20 | 19 | 0 | 0 | 0 | triage pending source-frame months |
+| 2014 | `historical_baseline_2013_2016` | 72 | 14 | 30 | 24 | 21 | 19 | 0 | 0 | 0 | triage pending source-frame months |
 | 2015 | `historical_baseline_2013_2016` | 72 | 10 | 54 | 13 | 8 | 8 | 0 | 0 | 2 | triage pending source-frame months |
 | 2016 | `historical_baseline_2013_2016` | 72 | 3 | 69 | 4 | 2 | 2 | 0 | 0 | 1 | triage pending source-frame months |
 | 2017 | `comparable_main_2017_present` | 72 | 10 | 62 | 16 | 12 | 11 | 0 | 0 | 2 | triage pending source-frame months |

@@ -72,11 +72,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 150
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 102 already covered
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 152
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 104 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
       48 `in_corpus=false` rows, all 48 are now reviewed-excluded/context-only under codebook §9, leaving
-      0 currently actionable registry rows. Exact-id remaining queue: 34 candidate rows not yet in events
+      0 currently actionable registry rows. Exact-id remaining queue: 33 candidate rows not yet in events
       or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
@@ -87,7 +87,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 
       already-admitted `bangladesh-bb-bitcoin-warning-2014`. `vietnam-sbv-bitcoin-prohibition-2014-02`
       was re-opened from stale semantic coverage and split correctly: the alternate slug now points to
       draft `vietnam-sbv-bitcoin-prohibition-statement-2014-02`, while the admitted 2017 SBV fines/payment
-      prohibition remains distinct. `cftc-bzerox-founders-settlement-2022-09`
+      prohibition remains distinct. `kyrgyzstan-nbkr-bitcoin-payment-ban-2014-08` was date-corrected to
+      the official NBKR creation date 2014-07-18 and represented by draft
+      `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07`, scoped as a historical-baseline
+      null-style payment-instrument warning with no named exchange, bank, payment-provider, domain, or
+      asset action. `cftc-bzerox-founders-settlement-2022-09`
       was closed as covered by `cftc-v-ooki-dao-2022`, because the corpus row already uses the same CFTC
       8590-22 trigger and explicitly enumerates bZeroX LLC, both founders, and successor Ooki DAO.
       Follow-on triage added 8 more registry rows: Liberty Reserve takedown/sentencing, e-Bullion
@@ -175,6 +179,9 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 399 
       Prosecutor General Wayback page confirms the 2014 monetary-surrogate / no-use posture and
       interagency coordination with CBR, FSB, and MVD, but does not add a distinct exchange shutdown,
       banking-rail cutoff, domain block, asset freeze, or measured off-ramp observation.
+      A seventeenth follow-on triage added `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07`
+      as an official NBKR-captured `origin=agent_draft` historical-baseline null_case row and closed
+      the stale 2014-08 candidate slug as date-corrected/covered.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 

@@ -4,8 +4,8 @@
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **399 events**: **368 admitted** / 22 draft / 9 rejected.
-- **Integrity**: `scripts/validate.py` passes **399 / 399 [OK]**; `make check` passes. All changes remain local, never pushed.
+- **400 events**: **368 admitted** / 23 draft / 9 rejected.
+- **Integrity**: `scripts/validate.py` passes **400 / 400 [OK]**; `make check` passes. All changes remain local, never pushed.
 - **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
 
 ## Admitted composition (368)
@@ -31,7 +31,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
    (25 clean + 9 flagged national bans). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;
-   current validator regression 397/397.
+   current validator regression 400/400.
 5. **Continuation P1/P2 cleanup** — resolved US-state regulator stratum policy (state/subnational
    administrative actions stay `regulatory_enforcement` / `S4_nation_state`), recoded NYDFS BitLicense
    accordingly, rejected Iraq as warning/context-only, rejected GoldAge as pre-2007 out-of-frame, and
@@ -56,10 +56,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 150
-    verified+scope-tagged registry rows, 102 covered by corpus / duplicate / semantic precedent. All
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 152
+    verified+scope-tagged registry rows, 104 covered by corpus / duplicate / semantic precedent. All
     remaining 48 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 34 exact-id candidate rows remain to triage from the 264-row
+    0 currently actionable registry rows; 33 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -154,6 +154,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     was added as a conservative `origin=agent_draft` historical-baseline null_case row using VietnamPlus/VNA
     contemporaneous coverage plus an official SBV retrospective page. The older alternate slug now points to
     this draft rather than being collapsed into the admitted 2017 SBV fines/payment-prohibition row.
+19. **Seventeenth follow-on triage (Kyrgyzstan 2014 date correction)** —
+    `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07` was added as a conservative
+    `origin=agent_draft` historical-baseline null_case row using the official NBKR English warning page
+    plus a confirmed 2026-05-31 Wayback snapshot. The stale
+    `kyrgyzstan-nbkr-bitcoin-payment-ban-2014-08` candidate slug now points to this date-corrected draft.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;
@@ -164,7 +169,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
 - **Capture yield rule**: only official PDFs / static pages on standard URLs capture cleanly; JS-gated exchange
   pages (Binance) return empty bodies and bot-protected gov sites reset — don't rely on them.
 
-## Held drafts (22) — all honest, documented holds
+## Held drafts (23) — all honest, documented holds
 - **1 partially repaired asset_onchain draft still lacks a complete target set**: t3-financial-crime-unit now pins
   two same-day USDT-on-TRON blacklist txs, but the public launch source does not enumerate the full "over USDT
   12M" frozen-address set.
@@ -179,7 +184,7 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   USDC blacklist receipts; bittrex-global-shutdown now has an official primary-corporate Zendesk notice;
   colonial-pipeline-darkside-clawback now has DOJ/Paladin captures plus a primary_onchain Bitcoin tx hash.
   All remain `origin=agent_draft`, so automation does not promote them.
-- **12 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
+- **13 new official-source agent drafts**: nydfs-bittrex-bitlicense-denial-2019-04,
   kuwait-cma-virtual-assets-prohibition-2023-07, and
   celsius-multistate-cease-desist-earn-2021-09 are newly modeled from the P4 queue with replay anchors;
   bitcoin-maven-tetley-doj-2018 is modeled from an official DOJ Wayback capture as an individual-MSB
@@ -194,9 +199,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
   official DOJ Wayback captures as a Bitcoin-mixer operator-state criminal-finality row, with DOJ-reported
   BTC forfeiture kept at asset_onchain=not_measured until transaction-level evidence is pinned; and
   lebanon-bdl-bitcoin-warning-2013-12 is modeled from the official BDL Announcement No. 900 PDF as a
-  historical-baseline class-level central-bank warning / electronic-money restriction signal; and
+  historical-baseline class-level central-bank warning / electronic-money restriction signal;
   vietnam-sbv-bitcoin-prohibition-statement-2014-02 is modeled as a distinct 2014 SBV payment-instrument /
-  credit-institution warning rather than collapsed into the admitted 2017 fines/payment-prohibition event.
+  credit-institution warning rather than collapsed into the admitted 2017 fines/payment-prohibition event;
+  and kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07 is modeled from the official NBKR warning
+  page as a date-corrected class-level virtual-currency payment warning with no named downstream cutoff.
   All remain non-admitted pending human admission review. Celsius
   additionally needs OCR/human confirmation of the scanned New Jersey order text before any promotion.
 
