@@ -264,3 +264,25 @@ checked out fully); independent source-rendering is the arbiter. But it also cat
 $1.65M, the SDN-entry-only specifics) — so every specific is grep-verified against the captured body, not trusted.
 
 ## SESSION-CONTINUATION RUNNING TOTAL: corpus 261 → **331 admitted** / 47 draft / 7 rejected = 385; sweep 385/385 [OK]. +70 admitted.
+
+### TASK 2 — source-strengthening (user: Task 2 自动跑) — 2026-05-31
+Built a repeatable pipeline: WebSearch primary → capture_http_artifact.py --wayback-submit → extract+grep
+to VERIFY content → wire as primary into the observed_change observation → dry-run-admit (auto-revert).
+**+2 admitted (corpus 331 → 333):**
+- philippines-bsp: official BSP Memorandum **M-2022-035.pdf** (primary_government, PDF text verified, Wayback-archived).
+- argentina-bcra: official BCRA **Comunicación A-7506.pdf** (primary_government, Spanish text verified, Wayback-archived).
+**YIELD PATTERN (important for the long tail):** the capture approach works ONLY for events whose primary is a
+non-bot-protected official English/standard-URL document:
+- ✅ Government static pages / PDFs on standard URLs (BSP, BCRA) — clean 200 + archivable.
+- ❌ Major-exchange announcement pages (Binance EEA-USDT) — JS-gated, returns 202 + EMPTY body (sha256 of "").
+- ❌ Bot-protected gov sites (Korea FSC) — connection reset on direct fetch.
+- ❌ Foreign-language gazette / commentary-only (Thailand SEC KorThor 18/2564, Indonesia Kominfo) — searches
+  return only law-firm commentary + journalism (supporting_*, which do NOT count toward the admission floor).
+**Implication:** of the ~37 under-threshold drafts, only a minority have cleanly-capturable primaries. The bulk
+are well-documented single-source national bans (china-2014/vietnam/ecuador/jordan/nepal/morocco/taiwan-2014/
+egypt/myanmar/venezuela/iran/the China cluster) whose primaries are old/dead/foreign-gazette or only covered by
+journalism. Pure per-event capture for these is low-yield + token-expensive. Cheap-win check (assign distinct
+evidence_group_ids to existing independent semi-primary sources) found NONE — morocco/taiwan each have only 1
+semi-primary in the observation. 5 more need a primary_onchain tx_hash (different fix). Decision point surfaced to user.
+
+## RUNNING TOTAL: corpus 261 → **333 admitted** / 45 draft / 7 rejected = 385; sweep 385/385 [OK]. +72 admitted this continuation.
