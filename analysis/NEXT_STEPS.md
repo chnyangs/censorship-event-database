@@ -72,11 +72,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 398 
       must not be treated as completed IRR until two independent human coders fill it.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
-- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 148
-      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 100 already covered
+- [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 149
+      verified+scope-tagged rows. Registry reconciliation on 2026-05-31 found 101 already covered
       (`in_corpus=true`, including exact, duplicate-covered, and semantic-covered rows). Of the remaining
       48 `in_corpus=false` rows, all 48 are now reviewed-excluded/context-only under codebook §9, leaving
-      0 currently actionable registry rows. Exact-id remaining queue: 36 candidate rows not yet in events
+      0 currently actionable registry rows. Exact-id remaining queue: 35 candidate rows not yet in events
       or registry. Continue by promoting new rows from the 264-row candidate pool
       into the verified registry: verify candidate → dedup against corpus → §9 scope → author as verified
       draft → adversarial verify → admit (or `attested_secondary` if single-source). Heaviest gap remains
@@ -169,6 +169,11 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 398 
       No. 900 as a class-level warning / electronic-money restriction signal addressed to banks,
       financial institutions, exchange institutions, brokerage institutions, and the public; it does not
       claim a specific exchange shutdown, user offboarding, domain block, or on-chain action.
+      A fifteenth follow-on triage closed `russia-prosecutor-general-monetary-surrogate-2014-02`
+      as semantic-covered by admitted `russia-cbr-bitcoin-information-letter-2014`: the official
+      Prosecutor General Wayback page confirms the 2014 monetary-surrogate / no-use posture and
+      interagency coordination with CBR, FSB, and MVD, but does not add a distinct exchange shutdown,
+      banking-rail cutoff, domain block, asset freeze, or measured off-ramp observation.
 - [ ] **Task-2 capture route**: opportunistic official-PDF wins as found (central-bank circulars, law texts on
       standard URLs). Skip JS-gated exchange pages + bot-protected gov HTML.
 

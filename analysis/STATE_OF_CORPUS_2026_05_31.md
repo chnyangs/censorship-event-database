@@ -56,10 +56,10 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    `target.enumeration=complete` / `asset_onchain=measured`, but remains `status=draft` because automation
    cannot promote `origin=agent_draft` events.
 10. **Continuation P4 registry reconciliation** — `analysis/census_gap_registry.tsv` now matches exact
-    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 148
-    verified+scope-tagged registry rows, 100 covered by corpus / duplicate / semantic precedent. All
+    `events/*.yaml` ids for non-duplicate rows and records semantic-covered slug mismatches: 149
+    verified+scope-tagged registry rows, 101 covered by corpus / duplicate / semantic precedent. All
     remaining 48 `in_corpus=false` rows are now reviewed-excluded/context-only under codebook §9, leaving
-    0 currently actionable registry rows; 36 exact-id candidate rows remain to triage from the 264-row
+    0 currently actionable registry rows; 35 exact-id candidate rows remain to triage from the 264-row
     candidate pool. `bangladesh-bb-crypto-illegality-2017-09` was closed as a
     date-corrected 2017-12-24 cautionary notice rather than a distinct binding restriction; the source
     record supports a warning/request about possible legal risk, not a new service denial, platform block,
@@ -145,6 +145,11 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
     No. 900 as a class-level warning / electronic-money restriction signal addressed to banks, financial
     institutions, exchange institutions, brokerage institutions, and the public; it does not claim a
     specific exchange shutdown, user offboarding, domain block, or on-chain action.
+    A fifteenth follow-on triage closed `russia-prosecutor-general-monetary-surrogate-2014-02` as
+    semantic-covered by admitted `russia-cbr-bitcoin-information-letter-2014`: the official Prosecutor
+    General Wayback page confirms the 2014 monetary-surrogate / no-use posture and interagency
+    coordination with CBR, FSB, and MVD, but does not add a distinct exchange shutdown, banking-rail
+    cutoff, domain block, asset freeze, or measured off-ramp observation.
 
 ## Method invariants proven this session (keep using)
 - **Dry-run admission gating**: simulate draft→admitted in a temp file, run validate, admit ONLY if it passes;

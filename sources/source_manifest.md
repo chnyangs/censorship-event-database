@@ -1,6 +1,6 @@
 # Source Artifact Manifest
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · commit `a331305` · generated `2026-05-31T04:56:33Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-05-31` · commit `9849c58` · generated `2026-05-31T12:14:39Z`
 
 This manifest lists local source artifacts included in the release reproduction surface and records their SHA-256 hashes. Re-fetchable operator-census repository clones and large upstream dumps excluded by `.gitignore` are intentionally not listed; their retrieval policy is recorded in `sources/external_retrieval_receipts.yaml`.
 

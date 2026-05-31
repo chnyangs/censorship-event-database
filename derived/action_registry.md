@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-05-31` · commit `a331305` · generated `2026-05-31T04:56:33Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-05-31` · commit `9849c58` · generated `2026-05-31T12:14:39Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
