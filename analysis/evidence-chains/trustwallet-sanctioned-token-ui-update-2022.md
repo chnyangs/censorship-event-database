@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `c86ca57` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `71ac901` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -11,12 +11,13 @@
 > The candidate event "Trust Wallet (Binance-affiliated) UI update
 > to display warnings on OFAC-sanctioned tokens following the
 > 2022-08-08 OFAC SDN cascade (related event tornado-cash-ofac-2022)"
-> could not be verified against any pinned Trust-Wallet-operated
-> corporate channel in this authoring pass. The row is coded as a
-> low-confidence null_event with one observed_no_change row at
+> could not be verified against any Trust-Wallet-operated corporate
+> channel in the authoring and audit passes. The row is coded as an
+> admitted null_event/null_case with one observed_no_change row at
 > l4_frontend (attribution=none) and l4_frontend coverage.status=
-> not_measured pending human audit of Trust Wallet release notes,
-> GitHub history, and community discussion.
+> partially_measured. It is claim-usable only as a bounded denominator
+> / no-public-record observation unless Trust Wallet release notes,
+> GitHub history, or community discussion later support recoding.
 
 ## 1. Trigger
 
@@ -36,11 +37,12 @@
 > tornado-cash-ofac-2022). This is the closest publicly retrievable
 > Trust Wallet corporate-channel anchor located in the present
 > authoring pass for any 2022 Trust Wallet UI behaviour change
-> relating to OFAC-sanctioned tokens. evidence_use=
-> contextual_unarchived; the post acknowledges the OFAC designation
-> as context but does NOT directly document a Trust Wallet UI
-> update that displays warnings on sanctioned tokens. Retained for
-> context only and for the human-audit pass to triangulate against.
+> relating to OFAC-sanctioned tokens. Evidence repair 2026-06-01:
+> the post is locally captured with body_hash/body_path and is
+> claim-usable only for the bounded public-record null observation
+> and OFAC-context bracketing. It does NOT directly document a
+> Trust Wallet UI update that displays warnings on sanctioned
+> tokens and is not evidence of an affirmative UI-warning feature.
 
 ## 2. Target
 
@@ -83,10 +85,11 @@
 > located in this authoring pass. It acknowledges the 2022-
 > 08-08 OFAC designation as context but does NOT document
 > any Trust Wallet UI-warning feature for OFAC-sanctioned
-> tokens. This is a primary corporate source for the bounded
+> tokens. Evidence repair 2026-06-01: the local body_hash/body_path
+> make this a replayable primary corporate source for the bounded
 > public-record null observation, not evidence of an affirmative
-> Trust Wallet UI-warning feature. attribution=none per
-> validator rule for observed_no_change.
+> Trust Wallet UI-warning feature. attribution=none per validator
+> rule for observed_no_change.
 
 ## 5. Honest coverage gaps
 
@@ -99,7 +102,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `c86ca57`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `71ac901`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
