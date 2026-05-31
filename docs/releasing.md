@@ -52,8 +52,9 @@ sed -i '' "s/^date-released:.*/date-released: \"$(date -u +%Y-%m-%d)\"/" CITATIO
 #    the version. This target mutates generated artifacts by design.
 make regenerate
 
-# 4. Run release gates. The strict reliability gate requires an
-#    independent-human IRR report; omit only for non-release working snapshots.
+# 4. Run release gates. The strict reliability gate requires independent-human
+#    IRR plus the codebook-4.0 evidence_tier IRR report; omit only for
+#    non-release working snapshots.
 python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 
 # Optional helper: prepares the same release packet and writes a sign-off log.

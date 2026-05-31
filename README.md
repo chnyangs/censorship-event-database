@@ -202,7 +202,7 @@ Release/submission readiness is intentionally stricter than working-snapshot val
 
 - Working snapshot: `make check` and `make paper-check` are intended to validate the current artifact surface without mutating paper outputs.
 - Release/submission snapshot: `python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability` must pass from a clean intended source tree.
-- Human gates cannot be substituted by agents: independent-human IRR, H2 null-case audit, and H3 release sign-off are tracked in [`human-audit.md`](human-audit.md).
+- Human gates cannot be substituted by agents: independent-human IRR, codebook-4.0 `evidence_tier` IRR, H2 null-case audit, and H3 release sign-off are tracked in [`human-audit.md`](human-audit.md) and [`analysis/NEXT_STEPS.md`](analysis/NEXT_STEPS.md).
 
 ## 6. v0.2 expansion frame (more cases without losing denominator discipline)
 

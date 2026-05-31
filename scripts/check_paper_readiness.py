@@ -36,6 +36,7 @@ DATASET_JSON = REPO_ROOT / "dataset.json"
 DATASET_CSV = REPO_ROOT / "dataset.csv"
 CITATION_CFF = REPO_ROOT / "CITATION.cff"
 IRR_REPORT = REPO_ROOT / "analysis" / "inter_rater" / "kappa_report.json"
+EVIDENCE_TIER_IRR_REPORT = REPO_ROOT / "analysis" / "evidence_tier_irr_report_2026_05_31.json"
 SAMPLING_FRAME = REPO_ROOT / "sampling" / "frame.yaml"
 TRIGGER_REGISTRY_DIR = REPO_ROOT / "analysis" / "trigger_registry"
 TEMPORAL_LEDGER_DIR = REPO_ROOT / "analysis" / "temporal_ledger"
@@ -113,6 +114,10 @@ TEMPORAL_LEDGER_STATUSES = {
     "source_unavailable",
     "pending",
 }
+
+EVIDENCE_TIER_IRR_VARIABLES = ("tier_ok", "section9_clear", "single_source_ok")
+MIN_EVIDENCE_TIER_IRR_EVENTS = 10
+MIN_KAPPA = 0.6
 
 FORBIDDEN_CLAIM_PHRASES = [
     "scripts/paper_tables.py",
@@ -207,6 +212,13 @@ def sha256_file(path: pathlib.Path) -> str:
         for chunk in iter(lambda: fh.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def display_path(path: pathlib.Path) -> str:
+    try:
+        return str(path.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(path)
 
 
 def canonical_precision_bucket(event: dict[str, Any]) -> str:
@@ -697,6 +709,140 @@ def handle_irr_provenance(
             warnings.append(msg)
 
 
+def _reliability_message(
+    *,
+    strict_reliability: bool,
+    errors: list[str],
+    warnings: list[str],
+    message: str,
+) -> None:
+    if strict_reliability:
+        errors.append(message)
+    else:
+        warnings.append(message)
+
+
+def check_evidence_tier_irr(
+    *,
+    events: list[dict[str, Any]],
+    report_path: pathlib.Path = EVIDENCE_TIER_IRR_REPORT,
+    strict_reliability: bool,
+    errors: list[str],
+    warnings: list[str],
+) -> None:
+    attested_ids = sorted(
+        event["id"]
+        for event in events
+        if event.get("evidence_tier") == "attested_secondary"
+    )
+    if not attested_ids:
+        return
+
+    if not report_path.exists():
+        _reliability_message(
+            strict_reliability=strict_reliability,
+            errors=errors,
+            warnings=warnings,
+            message=(
+                f"{len(attested_ids)} admitted events use "
+                "evidence_tier=attested_secondary, but the evidence-tier "
+                f"IRR report is missing at {display_path(report_path)}; "
+                "run `make evidence-tier-irr-kappa` only after two independent "
+                "human coders complete the worksheet"
+            ),
+        )
+        return
+
+    try:
+        report = load_json(report_path)
+    except (OSError, json.JSONDecodeError) as exc:
+        _reliability_message(
+            strict_reliability=strict_reliability,
+            errors=errors,
+            warnings=warnings,
+            message=f"could not read evidence-tier IRR report {report_path}: {exc}",
+        )
+        return
+
+    status = report.get("status")
+    provenance = report.get("coder_provenance") or {}
+    mode = provenance.get("mode")
+    if status != "complete":
+        _reliability_message(
+            strict_reliability=strict_reliability,
+            errors=errors,
+            warnings=warnings,
+            message=(
+                f"evidence-tier IRR report status={status!r}; "
+                "attested_secondary release/submission claims require a "
+                "completed two-human-coder pass"
+            ),
+        )
+    if mode != "independent_human":
+        _reliability_message(
+            strict_reliability=strict_reliability,
+            errors=errors,
+            warnings=warnings,
+            message=(
+                f"evidence-tier IRR coder_provenance.mode={mode!r}; "
+                "attested_secondary release/submission claims require "
+                "independent_human provenance"
+            ),
+        )
+
+    n_events = report.get("n_events")
+    if not isinstance(n_events, int) or n_events < MIN_EVIDENCE_TIER_IRR_EVENTS:
+        _reliability_message(
+            strict_reliability=strict_reliability,
+            errors=errors,
+            warnings=warnings,
+            message=(
+                "evidence-tier IRR report covers "
+                f"{n_events!r} events; expected at least "
+                f"{MIN_EVIDENCE_TIER_IRR_EVENTS}"
+            ),
+        )
+
+    variables = report.get("variables") or {}
+    for variable in EVIDENCE_TIER_IRR_VARIABLES:
+        stats = variables.get(variable) or {}
+        n_incomplete = stats.get("n_incomplete")
+        n_coded = stats.get("n_coded")
+        n_total = stats.get("n_total")
+        value = stats.get("kappa")
+        if n_incomplete not in (0, None):
+            _reliability_message(
+                strict_reliability=strict_reliability,
+                errors=errors,
+                warnings=warnings,
+                message=(
+                    f"evidence-tier IRR variable {variable} has "
+                    f"{n_incomplete} incomplete row(s)"
+                ),
+            )
+        if not isinstance(n_coded, int) or n_coded < MIN_EVIDENCE_TIER_IRR_EVENTS:
+            _reliability_message(
+                strict_reliability=strict_reliability,
+                errors=errors,
+                warnings=warnings,
+                message=(
+                    f"evidence-tier IRR variable {variable} has "
+                    f"{n_coded!r}/{n_total!r} coded rows; expected at least "
+                    f"{MIN_EVIDENCE_TIER_IRR_EVENTS}"
+                ),
+            )
+        if not isinstance(value, (int, float)) or value < MIN_KAPPA:
+            _reliability_message(
+                strict_reliability=strict_reliability,
+                errors=errors,
+                warnings=warnings,
+                message=(
+                    f"evidence-tier IRR variable {variable} κ={value!r}; "
+                    f"expected >= {MIN_KAPPA}"
+                ),
+            )
+
+
 def main() -> int:
     args = parse_args()
     events_dir = pathlib.Path(args.events_dir)
@@ -1145,6 +1291,13 @@ def main() -> int:
                     warnings.append(msg)
     except FileNotFoundError:
         errors.append("missing analysis/inter_rater/kappa_report.json — run `make irr-kappa`")
+
+    check_evidence_tier_irr(
+        events=events,
+        strict_reliability=args.strict_reliability,
+        errors=errors,
+        warnings=warnings,
+    )
 
     for warning in warnings:
         print(f"WARN: {warning}")

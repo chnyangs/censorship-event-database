@@ -71,7 +71,8 @@ Carried forward from the 2026-05-31 session close (corpus at 368 admitted / 405 
       Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md` plus the machine-readable
       `analysis/evidence_tier_irr_packet_2026_05_31.csv`; both are intentionally blank and must not be treated as
       completed IRR until two independent human coders fill them. Use `make evidence-tier-irr-kappa` only after the
-      coder columns are complete.
+      coder columns are complete. `paper-release-check` now fails under `--strict-reliability` until the completed
+      report exists and clears the evidence-tier κ floor.
 
 ## P4 — Census long-tail (ongoing, low-yield-per-event)
 - [ ] **`census_gap_candidates.tsv`** has 264 agent-sourced candidate rows; `census_gap_registry.tsv` has 185
