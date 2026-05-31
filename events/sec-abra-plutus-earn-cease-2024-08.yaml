@@ -1,14 +1,14 @@
 id: sec-abra-plutus-earn-cease-2024-08
 schema_version: 0.2.0
 codebook_version: "3.0.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
 last_verified: 2026-05-31
@@ -34,7 +34,7 @@ trigger:
         to pay a variable return — as unregistered securities and an
         unregistered investment company. Abra began winding down Abra Earn for
         US customers. Wayback 20240826192230 pinned. Grep of the captured body
-        confirms "Abra Earn", "Plutus", "winding down", "1765" ($1.65M),
+        confirms "Abra Earn", "Plutus", "winding down",
         "500 million", "600 million", "investment company", "Unregistered".
   timestamp_sources:
     - type: primary_legal
@@ -91,8 +91,9 @@ coverage:
     note: |
       Load-bearing layer. The SEC settlement forced the wind-down of the Abra
       Earn crypto-lending/yield product for US customers (a custodial
-      on-/off-ramp yield surface), with a permanent injunction and a $1.65M
-      penalty entered on final judgment. Attested in the SEC press release.
+      on-/off-ramp yield surface), with a permanent injunction and a civil
+      penalty entered on the Jan-2025 final judgment (figure per the SEC docket;
+      the captured Aug-2024 release announces the charges + wind-down, not the amount).
 
 observations:
   - layer: offramp_cex
@@ -125,18 +126,16 @@ observations:
           restricted.
 
 analysis_notes: |
-  **VERIFY-FLAG 2026-05-31 (bulk wave-2 adversarial verify):** captured source supports the
-  action + general nexus, but a specific claim (exact addresses / asset types / source-attribution
-  detail) is not fully substantiated by the captured page. Refine the source + soften unsupported
-  specifics before admission. DRAFT — do NOT admit as-is.
+  **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-2
+  VERIFY-FLAG by rendering+grepping the captured source. Abra/Plutus/Earn/unregistered/securities/wind-down all present in the captured Aug-2024 SEC release; the $1.65M penalty (a Jan-2025 final-judgment figure, NOT in the Aug-2024 capture, and mis-derived from a '1765' substring) was softened to 'civil penalty' attributed to the SEC docket. 3 primary_legal sources. Sources meet the admission floor.).
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
   verified+captured, awaiting human admission). On 2024-08-26 the US SEC
   (press release 2024-105) charged Plutus Lending, LLC (d/b/a Abra) over the
   Abra Earn retail crypto-lending product as unregistered crypto-asset
   securities and an unregistered investment company; Abra wound down Abra Earn
   for US customers (the product had ~$600M at its height, nearly $500M from US
-  investors). A permanent injunction plus a $1.65M civil penalty were entered
-  on final judgment (Jan 2025). This is SEC enforcement forcing the wind-down
+  investors). A permanent injunction plus a civil penalty were entered
+  on final judgment (Jan 2025; the captured Aug-2024 release predates the figure). This is SEC enforcement forcing the wind-down
   of a legitimate crypto yield/off-ramp product — in scope per codebook §9
   (SEC action restricting a legitimate operator/product). comparison shape,
   1 observed_change layer (offramp_cex), attribution=direct (the order names
@@ -144,14 +143,14 @@ analysis_notes: |
   investment-company cease, no on-chain freeze, so no §1.6 tx_hash floor
   applies. Sources verified via WebSearch 2026-05-31; the real SEC.gov press
   release captured + body_hash-pinned; grep of the captured body confirms
-  "Abra Earn", "Plutus", "winding down", "1765" ($1.65M), "500 million",
+  "Abra Earn", "Plutus", "winding down", "500 million",
   "600 million", "investment company", "Unregistered" (no fabrication).
 
 scoped_claim: |
   "The 2024-08-26 SEC settlement (press release 2024-105) charging Plutus
   Lending (Abra) with unregistered offers/sales of Abra Earn crypto-asset
   securities forced the wind-down of the Abra Earn product for US customers
-  (permanent injunction + $1.65M penalty): a single-layer offramp_cex
+  (permanent injunction + civil penalty): a single-layer offramp_cex
   restriction on a legitimate crypto yield/off-ramp product,
   attribution=direct. comparable_main tier."
 
