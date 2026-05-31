@@ -190,6 +190,7 @@ class EventValidator:
         self.origins = set(vocab.get("origins", []))
         self.temporal_tiers = set(vocab.get("temporal_tiers", []))
         self.analysis_uses = set(vocab.get("analysis_uses", []))
+        self.evidence_tiers = set(vocab.get("evidence_tiers", []))
 
     def validate_event(
         self,
@@ -337,6 +338,21 @@ class EventValidator:
             and origin == "agent_draft"
         ):
             result.error("status=admitted is incompatible with origin=agent_draft; promote to human_reviewed first.")
+
+        # evidence_tier (codebook §10): orthogonal source-strength grade. Absent = admission_grade.
+        # attested_secondary relaxes the source floor but REQUIRES a documented evidence_caveat so the
+        # lower grade is explicit and filterable.
+        evidence_tier = event.get("evidence_tier")
+        if evidence_tier is not None and self.evidence_tiers and evidence_tier not in self.evidence_tiers:
+            result.error(f"evidence_tier must be one of {sorted(self.evidence_tiers)} (got {evidence_tier!r}).")
+        if evidence_tier == "attested_secondary":
+            caveat = event.get("evidence_caveat")
+            if not isinstance(caveat, str) or not caveat.strip():
+                result.error(
+                    "evidence_tier=attested_secondary requires a non-empty evidence_caveat documenting "
+                    "why the event is admitted below the strict source floor (§9-clear restriction, "
+                    "well-documented, single contemporaneous source)."
+                )
 
         temporal_tier = event.get("temporal_tier")
         if temporal_tier is not None and self.temporal_tiers and temporal_tier not in self.temporal_tiers:
@@ -729,7 +745,9 @@ class EventValidator:
                         f"primary_* source; semi-primary measurements alone warrant attribution=plausible."
                     )
 
-            self._validate_sources(idx, layer, sources, result, event.get("status"))
+            self._validate_sources(
+                idx, layer, sources, result, event.get("status"), event.get("evidence_tier")
+            )
 
         empirical_shape = event.get("empirical_shape")
         status = event.get("status")
@@ -899,6 +917,7 @@ class EventValidator:
         sources: Any,
         result: ValidationResult,
         status: Any = None,
+        evidence_tier: Any = None,
     ) -> None:
         if not isinstance(sources, list) or not sources:
             result.error(f"observations[{idx}].sources must be a non-empty list.")
@@ -974,6 +993,12 @@ class EventValidator:
         # anchor during in-progress work; promotion requires upgrading to >= 2 distinct
         # semi-primary groups or >= 1 primary source.
         if status == "draft":
+            return
+        # evidence_tier=attested_secondary (codebook §10): a §9-clear, well-documented restriction
+        # may be admitted below the strict floor on >= 1 contemporaneous source (semi-primary OR
+        # supporting). The event-level evidence_caveat requirement (checked above) keeps the lower
+        # grade explicit + filterable. Does NOT apply to asset_onchain (that returns earlier, §1.6).
+        if evidence_tier == "attested_secondary" and (semi_primary_count + supporting_count) >= 1:
             return
         if semi_primary_count >= 2 and semi_primary_distinct < 2:
             result.error(

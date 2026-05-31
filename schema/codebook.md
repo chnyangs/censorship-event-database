@@ -5,9 +5,9 @@ the latest IRR run, or where Phase A-F authoring agents independently surfaced
 ambiguity. It is the **canonical reference** that LLM authoring agents and human
 coders MUST consult before assigning these fields.
 
-**Version**: 3.0.0.
+**Version**: 4.0.0.
 
-**Effective**: 2026-05-31 (3.0.0); 2026-05-30 (2.0.0); 2026-05-19 (1.0.1). Codebook updates require:
+**Effective**: 2026-05-31 (4.0.0); 2026-05-31 (3.0.0); 2026-05-30 (2.0.0); 2026-05-19 (1.0.1). Codebook updates require:
 1. A new IRR pass on at least 10 events covering the edge case.
 2. A `**CODEBOOK CHANGE — YYYY-MM-DD**` entry in this file's changelog.
 3. Re-coding of all events touching the changed field, with `last_human_audit`
@@ -24,6 +24,18 @@ a citation in this codebook contradicts agent intuition, the codebook wins.
 
 ## Changelog
 
+- **CODEBOOK CHANGE — 2026-05-31** — **§10 added: `evidence_tier` (lower-admission tier).**
+  Introduces an event-level `evidence_tier` field — ORTHOGONAL to `admission_tier` — grading SOURCE
+  strength (vs `admission_tier`, which grades EMPIRICAL strength). Default (absent) = `admission_grade`
+  (the strict §1.6 / 1-primary-or-2-independent-semi-primary floor, unchanged). New value
+  `attested_secondary` lets a **§9-clear, well-documented deliberate-restriction** event (a national
+  ban / corporate delisting that is widely reported but for which only a single contemporaneous source
+  is captured) be admitted below the strict floor on **≥ 1 contemporaneous source (semi-primary OR
+  supporting)** PROVIDED a non-empty `evidence_caveat` documents the lower grade. The tier is explicit
+  and filterable, so any IRR / κ / headline-census computation can exclude or down-weight it. Does NOT
+  relax the `asset_onchain` `primary_onchain` floor (§1.6 still binds). **Version 3.0.0 → 4.0.0
+  (major)** per the §"Effective" convention (admission-decision-rule change). Existing events are
+  vacuously `admission_grade`; no event re-bumps `codebook_version` unless its coding actually changes.
 - **CODEBOOK CHANGE — 2026-05-31** — **§9 added (inclusion boundary) + temporal-tier rename +
   jurisdiction vocab expansion** (comprehensive since-2007 census; user-blessed 2026-05-31).
   (1) **§9 inclusion boundary**: a case is in scope only if it is a deliberate *censorship action*
@@ -413,3 +425,35 @@ punitive capital weights that force debanking); otherwise context-only.
 **Test:** "Did a state/corporate actor deliberately restrict access to or service of a
 legitimate crypto platform/asset/user?" If yes → include. If the platform merely failed, or the
 target was a pure scam, or the instrument is only advisory → exclude (or null/context).
+
+## §10 Evidence tier (`evidence_tier`) — source-strength grade, orthogonal to admission tier
+
+`admission_tier` (§4) grades **empirical** strength (how many `observed_change` layers). `evidence_tier`
+grades **source** strength (how well the claim is sourced). They are independent: a `comparison` /
+`empirical_case` event can be `admission_grade` OR `attested_secondary`.
+
+| `evidence_tier` | meaning |
+|---|---|
+| `admission_grade` (default; absent ⇒ this) | Every non-draft observation meets the strict floor: ≥ 1 `primary_*` source, OR ≥ 2 independent semi-primary groups; `asset_onchain` meets §1.6. **No change from ≤ 3.0.0 behaviour.** |
+| `attested_secondary` | A **§9-clear, well-documented deliberate restriction** admitted *below* the strict floor on **≥ 1 contemporaneous source** (semi-primary OR supporting), because the act is widely reported but only a single contemporaneous source was captured. **Requires a non-empty `evidence_caveat`.** |
+
+**When `attested_secondary` is appropriate (ALL must hold):**
+1. The event is an unambiguous §9 *deliberate restriction* (ban / block / seize / freeze / delist /
+   geofence / debank) — NOT a §9-borderline case (e.g. a "warning" whose ban-vs-advisory status is
+   unresolved → stays draft, do not use this tier to launder a scope question).
+2. The act is **well-documented in the public record** (multiple independent outlets reported it),
+   even though only one contemporaneous source is captured in the event.
+3. There is **≥ 1 captured contemporaneous source** substantiating the action.
+4. No outstanding `VERIFY-FLAG` about an *over-claimed specific* — soften the prose to match the
+   captured source FIRST; the tier relaxes the source *count*, not the duty to not over-claim.
+
+**What it does NOT do:**
+- Does **not** relax `asset_onchain`'s `primary_onchain` requirement (§1.6 still binds — freezes still
+  need a tx hash).
+- Does **not** relax the `attribution=direct ⇒ ≥ 1 primary_*` rule (§1). An `attested_secondary` event
+  with only secondary sources must code `attribution=plausible`, not `direct`.
+
+**`evidence_caveat`** (required string when `attested_secondary`): one or two sentences naming the
+documented action, why it is §9-clear, and the single-source limitation — so any downstream consumer
+(IRR / κ / headline-census) can exclude or down-weight the row mechanically by filtering
+`evidence_tier == attested_secondary`.

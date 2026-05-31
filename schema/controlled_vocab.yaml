@@ -27,6 +27,13 @@ admission_tiers:
   - empirical_case   # ≥ 1 strong-attribution observed_change layer
   - null_case        # 0 strong-attribution observed_change layers
 
+# 2026-05-31 (codebook 4.0.0): evidence-grade tier, ORTHOGONAL to admission_tier.
+# admission_tier measures EMPIRICAL strength (observed_change layers); evidence_tier
+# measures SOURCE strength. Default (absent) = admission_grade. See schema/codebook.md §10.
+evidence_tiers:
+  - admission_grade     # meets the strict source floor (§1.6 / 1 primary or 2 independent semi-primary)
+  - attested_secondary  # §9-clear, well-documented restriction below the strict floor (≥1 contemporaneous source + evidence_caveat); filterable/down-weightable
+
 event_statuses:
   - draft
   - observation_active
