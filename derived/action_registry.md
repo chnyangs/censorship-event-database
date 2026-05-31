@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8583894` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `b4a1731` · generated `2026-06-01T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -251,8 +251,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `sec-abra-plutus-earn-cease-2024-08:0:offramp_cex:us_sec:sec_settles_abra_earn_unregistered_securities_us_wind_down` | 1 | 0 | 1 | offramp_cex | `sec-abra-plutus-earn-cease-2024-08::offramp_cex` |
 | `sec-beaxy-platform-shutdown-2023:0:l4_frontend:frontend:beaxy_platform:beaxy_platform_shutdown` | 1 | 0 | 1 | l4_frontend | `sec-beaxy-platform-shutdown-2023::l4_frontend` |
 | `sec-beaxy-platform-shutdown-2023:1:offramp_cex:exchange:beaxy_platform:exchange_broker_clearing_activities_ceased_and_customer_assets_returned` | 1 | 0 | 1 | offramp_cex | `sec-beaxy-platform-shutdown-2023::offramp_cex` |
-| `sec-burnside-bitcoin-stock-exchange-2014:0:l4_frontend:frontend:btct_co:btct_unregistered_securities_exchange_frontend_shutdown` | 1 | 0 | 1 | l4_frontend | `sec-burnside-bitcoin-stock-exchange-2014::l4_frontend` |
-| `sec-burnside-bitcoin-stock-exchange-2014:1:offramp_cex:exchange:btc_trading_corp_and_ltc_global:bitcoin_litecoin_denominated_securities_exchanges_terminated` | 1 | 0 | 1 | offramp_cex | `sec-burnside-bitcoin-stock-exchange-2014::offramp_cex` |
+| `sec-burnside-bitcoin-stock-exchange-2014:0:l4_frontend:frontend:btct_co:sec_order_recorded_btct_ltc_global_website_function_winddown` | 1 | 0 | 1 | l4_frontend | `sec-burnside-bitcoin-stock-exchange-2014::l4_frontend` |
+| `sec-burnside-bitcoin-stock-exchange-2014:1:offramp_cex:exchange:btc_trading_corp_and_ltc_global:sec_order_finalized_btct_ltc_global_exchange_winddown_and_cease_desist` | 1 | 0 | 1 | offramp_cex | `sec-burnside-bitcoin-stock-exchange-2014::offramp_cex` |
 | `sec-consensys-metamask-staking-swaps-2024-06:0:l4_frontend:us_sec:sec_sues_consensys_metamask_unregistered_broker_swaps_staking` | 1 | 0 | 1 | l4_frontend | `sec-consensys-metamask-staking-swaps-2024-06::l4_frontend` |
 | `sec-etherdelta-coburn-unregistered-exchange-2018-11:0:l4_frontend:us_sec:sec_charges_etherdelta_operator_unregistered_securities_exchange` | 1 | 0 | 1 | l4_frontend | `sec-etherdelta-coburn-unregistered-exchange-2018-11::l4_frontend` |
 | `sec-etoro-cease-crypto-trading-2024-09:0:offramp_cex:us_sec:sec_settles_etoro_cease_nearly_all_crypto_trading_us_customers` | 1 | 0 | 1 | offramp_cex | `sec-etoro-cease-crypto-trading-2024-09::offramp_cex` |
