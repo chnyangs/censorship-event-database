@@ -101,7 +101,11 @@ def render_source(src: dict, indent: str = "    ") -> list[str]:
     return lines
 
 
-def render_event_evidence_chain(event: dict, meta: dict) -> str:
+def render_event_evidence_chain(
+    event: dict,
+    meta: dict,
+    event_statuses: dict[str, str] | None = None,
+) -> str:
     dataset_version = meta.get("dataset_version") or "unknown"
     cutoff = meta.get("cutoff_date") or "n/a"
     commit = meta.get("source_commit") or ""
@@ -281,7 +285,7 @@ def render_event_evidence_chain(event: dict, meta: dict) -> str:
     # ===== Related events =====
     related = event.get("related_events") or []
     if related:
-        statuses = _event_status_by_slug()
+        statuses = event_statuses if event_statuses is not None else _event_status_by_slug()
         out.append("## 7. Related events")
         out.append("")
         for r in related:
@@ -335,12 +339,13 @@ def main() -> int:
         out_dir = prepare_output_dir(pathlib.Path(args.output_dir))
         n = 0
         expected: set[str] = set()
+        event_statuses = _event_status_by_slug()
         for f in sorted(EVENTS_DIR.glob("*.yaml")):
             event = yaml.safe_load(f.read_text())
             if not isinstance(event, dict) or event.get("status") != "admitted":
                 continue
             expected.add(f.stem)
-            content = render_event_evidence_chain(event, meta)
+            content = render_event_evidence_chain(event, meta, event_statuses)
             (out_dir / f"{f.stem}.md").write_text(content)
             n += 1
         for stale in out_dir.glob("*.md"):
