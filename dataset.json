@@ -50993,7 +50993,7 @@
   {
     "_source_file": "sec-shavers-btcst-2013.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/sec-shavers-btcst-2013.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/asset_onchain\nare all not_applicable because BTCST had no operator-controlled frontend or\nISP-level reachability surface, the Bitcoin protocol layers tracked by this\ndataset did not exist in their measured forms in 2013, and Bitcoin native\nasset has no issuer-side freeze primitive. The single load-bearing\nobservation is the operator-state change at the BTCST scheme triggered by\nthe 2013-07-23 SEC civil filing, attribution=direct via the primary-legal\nSEC complaint and press release.\n\nHistorical-baseline placement: this is the earliest SEC enforcement action\nagainst a Bitcoin-denominated investment scheme in the dataset, predating\nthe 2017-07-26 BTC-e DOJ indictment (the first crypto-exchange enforcement\nevent in the comparable corpus) by ~4 years. Establishes the pre-OFAC,\npre-comparable-corpus baseline for SEC-rooted offramp-class enforcement.\nCross-temporal sibling of the 2022-02-14 BlockFi SEC lending-product\nsettlement (blockfi-sec-lending-2022): both events code an offramp_cex\noperator/product restriction triggered by an SEC action, separated by\n~8.5 years and bracketing the SEC's escalating posture toward\ncentralized crypto-yield products.\n",
+    "analysis_notes": "**SOURCE-REPAIRED 2026-06-01**: promoted-from-candidate history retained, but\nthe load-bearing SEC complaint and press-release citations now have local\nbody_hash/body_path replay anchors. This source-repair note is not a\nlast_human_audit claim.\n\ncomparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/asset_onchain\nare all not_applicable because BTCST had no operator-controlled frontend or\nISP-level reachability surface, the Bitcoin protocol layers tracked by this\ndataset did not exist in their measured forms in 2013, and Bitcoin native\nasset has no issuer-side freeze primitive. The single load-bearing\nobservation is the operator-state change at the BTCST scheme triggered by\nthe 2013-07-23 SEC civil filing, attribution=direct via the primary-legal\nSEC complaint and press release.\n\nHistorical-baseline placement: this is the earliest SEC enforcement action\nagainst a Bitcoin-denominated investment scheme in the dataset, predating\nthe 2017-07-26 BTC-e DOJ indictment (the first crypto-exchange enforcement\nevent in the comparable corpus) by ~4 years. Establishes the pre-OFAC,\npre-comparable-corpus baseline for SEC-rooted offramp-class enforcement.\nCross-temporal sibling of the 2022-02-14 BlockFi SEC lending-product\nsettlement (blockfi-sec-lending-2022): both events code an offramp_cex\noperator/product restriction triggered by an SEC action, separated by\n~8.5 years and bracketing the SEC's escalating posture toward\ncentralized crypto-yield products.\n",
     "analysis_use": "historical_baseline",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -51027,7 +51027,7 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "BTCST is the load-bearing layer for this event: an operator-state\nchange at a Bitcoin-denominated investment scheme treated by this\ndataset as an offramp-class entity (centralized custodian of\ndepositor BTC offering nominal yield, structurally analogous to\ncrypto-lending platforms tracked elsewhere in the offramp_cex\ncolumn). The 2013-07-23 SEC civil filing alleging Ponzi operation,\ncoupled with the subsequent court-ordered asset freeze and\nreceivership, ended BTCST as an operating entity. Marked measured;\nload-bearing observation attached below as\nobservation_kind=observed_change with attribution=direct.\n",
+        "note": "BTCST is the load-bearing layer for this event: an operator-state\nchange at a Bitcoin-denominated investment scheme treated by this\ndataset as an offramp-class entity (centralized custodian of\ndepositor BTC offering nominal yield, structurally analogous to\ncrypto-lending platforms tracked elsewhere in the offramp_cex\ncolumn). The measured observation is the 2013-07-23 SEC civil filing\nagainst Shavers and BTCST, which alleged a Bitcoin-denominated Ponzi\nscheme and sought injunctive, disgorgement, penalty, and asset-freeze\nrelief. This row does not independently assert a separately measured\npost-filing receivership timeline. Marked measured; load-bearing\nobservation attached below as\nobservation_kind=observed_change with attribution=direct.\n",
         "scope": [
           "bitcoin_savings_and_trust"
         ],
@@ -51053,15 +51053,19 @@
         "precision": "day",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "SEC civil complaint (E.D. Tex.) is the legal instrument naming\nTrendon T. Shavers and Bitcoin Savings and Trust as defendants\nand seeking injunctive relief, disgorgement, and civil\npenalties for the alleged Bitcoin-denominated Ponzi scheme.\nattribution=direct because the SEC complaint names the\noperator-state change (cessation as an operating investment\nscheme) and the court order to freeze BTCST assets followed\ndirectly from this filing. Provisional Wayback anchor; specific\nsnapshot timestamp requires human-audit re-pinning.\n",
+            "body_hash": "sha256:3652979be04509dcaba810af33a6eb31775e4197faef4c9303cd4ea92864a97c",
+            "body_path": "sources/http_captures/sec-shavers-btcst-2013/sec-primary/www.sec.gov__litigation-complaints-2013-comp-pr2013-132.pdf__459b31b368.bin",
+            "evidence_use": "replayable",
+            "note": "SEC civil complaint (E.D. Tex.) is the legal instrument naming\nTrendon T. Shavers and Bitcoin Savings and Trust as defendants\nand seeking injunctive relief, disgorgement, and civil\npenalties for the alleged Bitcoin-denominated Ponzi scheme.\nattribution=direct because the observation event is the SEC civil\ncomplaint filing itself, not a separately measured post-filing\nreceivership outcome. Local body_hash/body_path capture is the\nadmission-grade replay anchor; the legacy Wayback year-prefix URL is\nsupplemental.\n",
             "type": "primary_legal",
             "url": "https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf",
             "wayback": "https://web.archive.org/web/2013/https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf"
           },
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "SEC press release 2013-132 corroborates the complaint filing\nand characterizes the action as the first major SEC enforcement\nagainst a Bitcoin-denominated investment scheme. Marked\nevidence_use=contextual_unarchived pending Wayback re-pin.\nProvisional Wayback anchor uses year-prefix lookup.\n",
+            "body_hash": "sha256:092f77e56db0d5a273eb9d948fc1fe1b048a746e7d003cf405e3d2748ad2c698",
+            "body_path": "sources/http_captures/sec-shavers-btcst-2013/sec-primary/www.sec.gov__news-press-release-2013-132__ce4b503fb8.html",
+            "evidence_use": "replayable",
+            "note": "SEC press release 2013-132 corroborates the complaint filing\nand characterizes the action as the first major SEC enforcement\nagainst a Bitcoin-denominated investment scheme. Local\nbody_hash/body_path capture is the admission-grade replay anchor; the\nlegacy Wayback year-prefix URL is supplemental.\n",
             "type": "primary_legal",
             "url": "https://www.sec.gov/news/press-release/2013-132",
             "wayback": "https://web.archive.org/web/2013/https://www.sec.gov/news/press-release/2013-132"
@@ -51079,7 +51083,7 @@
     ],
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2013-07-23 SEC civil complaint against Trendon T. Shavers and Bitcoin\nSavings and Trust ended BTCST as an operating Bitcoin-denominated investment\nscheme via subsequent court-ordered asset freeze and receivership; the row\nclaims only this single-layer offramp_cex operator-state-change observation\nand does not assert frontend, network, RPC, or on-chain asset effects.\"\n",
+    "scoped_claim": "\"The 2013-07-23 SEC civil complaint against Trendon T. Shavers and Bitcoin\nSavings and Trust is coded as a single-layer offramp_cex observed_change:\nthe SEC filing named BTCST as a Bitcoin-denominated Ponzi-scheme defendant\nand sought injunctive, disgorgement, penalty, and asset-freeze relief. The\nrow does not assert frontend, network, RPC, on-chain asset, or separately\nmeasured post-filing receivership effects.\"\n",
     "status": "admitted",
     "tags": [
       "sec_enforcement",
@@ -51106,15 +51110,19 @@
       "actor": "US_SEC",
       "citation": [
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "SEC civil complaint filed 2013-07-23 in the U.S. District Court for the\nEastern District of Texas, Sherman Division, against Trendon T. Shavers\nand Bitcoin Savings and Trust (BTCST). The complaint alleges Shavers\noperated a Bitcoin-denominated Ponzi scheme from approximately 2011\nthrough 2012, soliciting investors via the Bitcoin Forum under the alias\n\"pirateat40\" and promising up to 7% weekly interest on Bitcoin deposits.\nBTCST raised approximately 700,000 BTC in investor funds before\ncollapsing in August 2012. Marked evidence_use=contextual_unarchived\nbecause the authoring LLM agent did not personally pin a Wayback snapshot\ntimestamp or compute a body_hash for the PDF; the SEC litigation-PDF URL\nformat is stable and routinely captured by Wayback, but the specific\nsnapshot timestamp is to be re-pinned during human audit before this\ncitation may serve as an admission anchor in its own right. Provisional\nWayback anchor uses Wayback Machine year-prefix lookup.\n",
+          "body_hash": "sha256:3652979be04509dcaba810af33a6eb31775e4197faef4c9303cd4ea92864a97c",
+          "body_path": "sources/http_captures/sec-shavers-btcst-2013/sec-primary/www.sec.gov__litigation-complaints-2013-comp-pr2013-132.pdf__459b31b368.bin",
+          "evidence_use": "replayable",
+          "note": "SEC civil complaint filed 2013-07-23 in the U.S. District Court for the\nEastern District of Texas, Sherman Division, against Trendon T. Shavers\nand Bitcoin Savings and Trust (BTCST). The complaint alleges Shavers\noperated a Bitcoin-denominated Ponzi scheme from approximately 2011\nthrough 2012, soliciting investors via the Bitcoin Forum under the alias\n\"pirateat40\" and promising up to 7% weekly interest on Bitcoin deposits.\nBTCST raised approximately 700,000 BTC in investor funds before\ncollapsing in August 2012. SOURCE-REPAIRED 2026-06-01: the live SEC PDF\nwas captured locally from the redirected SEC file URL and pinned with\nbody_hash/body_path. The legacy Wayback year-prefix URL remains only as a\nsupplemental historical lookup.\n",
           "type": "primary_legal",
           "url": "https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf",
           "wayback": "https://web.archive.org/web/2013/https://www.sec.gov/litigation/complaints/2013/comp-pr2013-132.pdf"
         },
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "SEC press release 2013-132 (\"SEC Charges Texas Man With Running\nBitcoin-Denominated Ponzi Scheme\") announcing the civil complaint\nagainst Trendon T. Shavers and Bitcoin Savings and Trust. Names the\nE.D. Tex. venue, the 7%/week promised return structure, and the\napproximately 700,000 BTC raised. First major SEC enforcement action\nagainst a Bitcoin-denominated investment scheme. Marked\nevidence_use=contextual_unarchived pending a human-audit Wayback re-pin\nand body_hash capture. Provisional Wayback anchor uses Wayback Machine\nyear-prefix lookup.\n",
+          "body_hash": "sha256:092f77e56db0d5a273eb9d948fc1fe1b048a746e7d003cf405e3d2748ad2c698",
+          "body_path": "sources/http_captures/sec-shavers-btcst-2013/sec-primary/www.sec.gov__news-press-release-2013-132__ce4b503fb8.html",
+          "evidence_use": "replayable",
+          "note": "SEC press release 2013-132 (\"SEC Charges Texas Man With Running\nBitcoin-Denominated Ponzi Scheme\") announcing the civil complaint\nagainst Trendon T. Shavers and Bitcoin Savings and Trust. Names the\nE.D. Tex. venue, the 7%/week promised return structure, and the\napproximately 700,000 BTC raised. First major SEC enforcement action\nagainst a Bitcoin-denominated investment scheme. SOURCE-REPAIRED\n2026-06-01: the live SEC press-release page was captured locally from the\nredirected SEC newsroom URL and pinned with body_hash/body_path. The\nlegacy Wayback year-prefix URL remains only as a supplemental historical\nlookup.\n",
           "type": "primary_legal",
           "url": "https://www.sec.gov/news/press-release/2013-132",
           "wayback": "https://web.archive.org/web/2013/https://www.sec.gov/news/press-release/2013-132"
