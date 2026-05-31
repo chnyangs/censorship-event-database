@@ -3348,7 +3348,7 @@
   {
     "_source_file": "binance-com-us-customer-geofence-2019-06.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. \u00a79-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook \u00a710) \u2014 single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Binance Holdings Limited's\n2019-06-14 Terms-of-Use update barring all U.S. persons from trading/\ndepositing on the global binance.com platform (enforced 2019-09-12),\nredirecting U.S. customers to the separate FinCEN-registered Binance.US\nplatform. A flagship 2019 corporate jurisdiction-exit geofence, in the same\nU.S.-corporate-retreat cohort as poloniex-circle-us-token-geofence-2019-05\nand the backdrop to the later sec-v-binance-2023 enforcement. comparison\nshape, single offramp_cex observed_change, attribution=direct (Binance is\nthe announcing actor AND the operator of the restricted off-ramp; its own\nToS is the stated rationale, per \u00a71.1). l0/l1/l3/l4/asset_onchain\nnot_applicable (a CEX access-policy change, not a network/protocol/asset\naction). Sources verified via WebSearch + captured 2026-05-31 (CoinDesk +\nTechCrunch, body_hash-pinned; \"U.S. person\"/\"unable to provide services\"/\n\"Sept. 12\" grepped from the captured body; no fabrication).\n",
+    "analysis_notes": "**SOURCE STRENGTHENING 2026-06-01:** captured Binance's official 2019-06-14\nsupport article \"Terms of Use Review\" (sha256:\n567ddd89e8f29dd0f8fb5b8190a080258bf0013dca0b944c9f3d9ea4a5b07224) and the\nsame-day official Binance Terms page (sha256:\ncefd1bd90cacd52f998442695dfb474dc8f6cc2230a49e277b4faae81fc17a98). The row\nnow meets the strict admission-grade source floor and no longer needs the\n`attested_secondary` lower-admission tier: Binance itself states the\nU.S.-person service restriction and the 2019-09-12 trade/deposit cutoff for\nusers not in accordance with the Terms. `target.entity` now identifies the\nU.S.-person Binance.com customer class explicitly.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent:\nTASK-2 lower-tier. Originally admitted at evidence_tier=attested_secondary\non the then-captured source floor; the 2026-06-01 official-source repair\nabove supersedes that lower-tier caveat without changing the human admission\ndecision.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Binance Holdings Limited's\n2019-06-14 Terms-of-Use update barring all U.S. persons from trading/\ndepositing on the global binance.com platform (enforced 2019-09-12),\nredirecting U.S. customers to the separate FinCEN-registered Binance.US\nplatform. A flagship 2019 corporate jurisdiction-exit geofence, in the same\nU.S.-corporate-retreat cohort as poloniex-circle-us-token-geofence-2019-05\nand the backdrop to the later sec-v-binance-2023 enforcement. comparison\nshape, single offramp_cex observed_change, attribution=direct (Binance is\nthe announcing actor AND the operator of the restricted off-ramp; its own\nsupport article and ToS state the restriction, per \u00a71.1). l0/l1/l3/l4/asset_onchain\nnot_applicable (a CEX access-policy change, not a network/protocol/asset\naction). Sources verified via WebSearch + captured 2026-05-31 and\nstrengthened 2026-06-01 (official Binance Support + Terms artifacts plus\nCoinDesk and TechCrunch corroboration, body_hash-pinned; \"U.S. person\",\n\"unable to provide services\", \"2019/09/12\", and \"trade or deposit\" grepped\nfrom captured bodies; no fabrication).\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "3.0.0",
     "coverage": [
@@ -3378,7 +3378,7 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer. Binance Holdings Limited updated binance.com's Terms\nof Use on 2019-06-14 to bar all U.S. persons from trading/depositing\n(enforced from 2019-09-12), severing the global binance.com\ncentralized-exchange off-ramp for U.S. customers and redirecting them to\nthe separate FinCEN-registered Binance.US platform. Attested in\ncontemporaneous trade press (body_hash-pinned).\n",
+        "note": "Load-bearing layer. Binance Holdings Limited updated binance.com's Terms\nof Use on 2019-06-14 to bar U.S. persons from its services and posted\nan official support notice stating that, after 90 days and effective\n2019-09-12, users not in accordance with the Terms would retain wallet\nand fund access but no longer be able to trade or deposit on\nBinance.com. The official Binance support article and Terms page are\nbody_hash-pinned; contemporaneous trade press is retained as\ncorroboration.\n",
         "scope": [
           "binance_com_us_person_trading_deposit"
         ],
@@ -3387,8 +3387,6 @@
     ],
     "created_at": "2026-05-31T00:00:00+00:00",
     "empirical_shape": "comparison",
-    "evidence_caveat": "Binance.com June-2019 geofence of US customers (pre-Binance.US). \u00a79-clear geofence, widely documented; attested_secondary on a single captured source. attribution=plausible (single secondary source).",
-    "evidence_tier": "attested_secondary",
     "id": "binance-com-us-customer-geofence-2019-06",
     "jurisdiction": [
       "US"
@@ -3398,7 +3396,7 @@
     "observations": [
       {
         "actor": "exchange:binance",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": "US",
         "delta_hours": 0,
         "event": "binance_com_bars_us_persons_from_trading_and_deposits",
@@ -3407,10 +3405,52 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:567ddd89e8f29dd0f8fb5b8190a080258bf0013dca0b944c9f3d9ea4a5b07224",
+            "body_path": "sources/http_captures/binance-com-us-customer-geofence-2019-06/official_support_360029196512/web.archive.org__web-20190614175800-https-www.binance.com-en-support-articles-360029196512__93d106315f.html",
+            "evidence_use": "replayable",
+            "note": "Official Binance Support \"Terms of Use Review\" article: users not\nin accordance with Binance's Terms of Use would retain access to\nwallets and funds, but would no longer be able to trade or deposit\non Binance.com after 90 days, effective 2019-09-12. Attribution is\ndirect for the operator-state change because Binance is both the\nannouncing actor and the operator of the restricted off-ramp.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "binance_com"
+              ],
+              "time_window": [
+                "2019-06-14T00:00:00+00:00",
+                "2019-09-30T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.binance.com/en/support/articles/360029196512",
+            "wayback": "https://web.archive.org/web/20190614192737/https://www.binance.com/en/support/articles/360029196512"
+          },
+          {
+            "body_hash": "sha256:cefd1bd90cacd52f998442695dfb474dc8f6cc2230a49e277b4faae81fc17a98",
+            "body_path": "sources/http_captures/binance-com-us-customer-geofence-2019-06/official_terms/web.archive.org__web-20190614104622-https-www.binance.com-agreement.html__3fbaa8673a.html",
+            "evidence_use": "replayable",
+            "note": "Official Binance Terms of Use, captured on the same day as the\nsupport notice, states that Binance is unable to provide services to\nany U.S. person. This supplies the target class for the support\narticle's trade/deposit cutoff.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "binance_com"
+              ],
+              "time_window": [
+                "2019-06-14T00:00:00+00:00",
+                "2019-09-30T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.binance.com/agreement.html",
+            "wayback": "https://web.archive.org/web/20190614175800/https://www.binance.com/agreement.html"
+          },
+          {
             "body_hash": "sha256:3dee385b4d89d4fa787fb9a1f61fabe73c67393dc1a1a446b187fe75e0a322ea",
             "body_path": "sources/http_captures/binance-com-us-customer-geofence-2019-06/primary/web.archive.org__web-20210921042151-https-www.coindesk.com-markets-2019-06-14-crypto-exchange-binancecom-to-block-us-customers-from-trading__accd4baaa0.html",
             "evidence_use": "replayable",
-            "note": "CoinDesk: Binance's 2019-06-14 ToS update (\"unable to provide\nservices to any U.S. person\") with Sept-12 enforcement and a\nseparate Binance.US platform. attribution=direct: Binance is both\nthe announcing actor and the operator of the restricted off-ramp,\nand its own ToS statement is the stated rationale.\n",
+            "note": "CoinDesk: Binance's 2019-06-14 ToS update (\"unable to provide\nservices to any U.S. person\") with Sept-12 enforcement and a\nseparate Binance.US platform. Retained as corroborating\ncontemporaneous trade-press evidence after official Binance\nsupport and Terms artifacts were pinned.\n",
             "scope_descriptor": {
               "countries": [
                 "US"
@@ -3478,6 +3518,7 @@
       "canonical_domains": [
         "binance.com"
       ],
+      "entity": "binance_com_us_person_customer_class_2019",
       "enumeration": "complete",
       "enumeration_note": "Target is the U.S.-person user class of binance.com: all U.S. individual\nand corporate customers barred from trading/depositing on the global\nbinance.com platform via the 2019-06-14 Terms-of-Use update. Complete at\nthe class level (the whole U.S.-person cohort); migrated to the separate\nBinance.US platform.\n",
       "kind": "entity"
@@ -3486,6 +3527,24 @@
     "trigger": {
       "actor": "binance_holdings_limited",
       "citation": [
+        {
+          "body_hash": "sha256:567ddd89e8f29dd0f8fb5b8190a080258bf0013dca0b944c9f3d9ea4a5b07224",
+          "body_path": "sources/http_captures/binance-com-us-customer-geofence-2019-06/official_support_360029196512/web.archive.org__web-20190614175800-https-www.binance.com-en-support-articles-360029196512__93d106315f.html",
+          "evidence_use": "replayable",
+          "note": "Official Binance Support article \"Terms of Use Review\" (Wayback\nmemento 2019-06-14 19:27:37 UTC). The captured body links to\nBinance's Terms of Use, says some users may need to furnish evidence\nthat registrations are consistent with those Terms, and states that\nafter 90 days, effective 2019-09-12, users not in accordance with the\nTerms would retain wallet/fund access but no longer be able to trade\nor deposit on Binance.com.\n",
+          "type": "primary_corporate",
+          "url": "https://www.binance.com/en/support/articles/360029196512",
+          "wayback": "https://web.archive.org/web/20190614192737/https://www.binance.com/en/support/articles/360029196512"
+        },
+        {
+          "body_hash": "sha256:cefd1bd90cacd52f998442695dfb474dc8f6cc2230a49e277b4faae81fc17a98",
+          "body_path": "sources/http_captures/binance-com-us-customer-geofence-2019-06/official_terms/web.archive.org__web-20190614104622-https-www.binance.com-agreement.html__3fbaa8673a.html",
+          "evidence_use": "replayable",
+          "note": "Official Binance Terms of Use page captured by Wayback on 2019-06-14\n17:58:00 UTC. Section 3 (\"Prohibition of use\") states that Binance is\nunable to provide services to any U.S. person and may restrict or deny\nservices in selected jurisdictions. This primary artifact supplies the\nU.S.-person target class used by the support-announcement enforcement\nnotice.\n",
+          "type": "primary_corporate",
+          "url": "https://www.binance.com/agreement.html",
+          "wayback": "https://web.archive.org/web/20190614175800/https://www.binance.com/agreement.html"
+        },
         {
           "body_hash": "sha256:3dee385b4d89d4fa787fb9a1f61fabe73c67393dc1a1a446b187fe75e0a322ea",
           "body_path": "sources/http_captures/binance-com-us-customer-geofence-2019-06/primary/web.archive.org__web-20210921042151-https-www.coindesk.com-markets-2019-06-14-crypto-exchange-binancecom-to-block-us-customers-from-trading__accd4baaa0.html",
@@ -3500,8 +3559,8 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level precision: ToS update announced 2019-06-14; enforcement\n(loss of trade/deposit for non-compliant U.S. users) effective\n2019-09-12 per the cited coverage.\n",
-          "type": "semi_primary_wayback"
+          "note": "Day-level precision: Binance's official support article and Terms\nmementos are captured on 2019-06-14, and the support article gives\nthe 2019-09-12 trade/deposit cutoff for users not in accordance with\nthe Terms.\n",
+          "type": "primary_corporate"
         }
       ],
       "type": "corporate_policy_change"
