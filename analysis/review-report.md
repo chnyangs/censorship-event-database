@@ -8,9 +8,9 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `56`
-- Admitted but release-blocked cases: `312`
-- Fully complete release-ready cases: `5`
+- Release-ready cases: `64`
+- Admitted but release-blocked cases: `304`
+- Fully complete release-ready cases: `13`
 - Scope-limited release-ready cases: `51`
 - Working drafts: `2`
 - Cases with gap markers: `0`
@@ -1905,16 +1905,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `crypto-capital-fowler-doj-2019`
 
@@ -2789,16 +2786,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `garantex-besciokov-mira-serda-doj-2025`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `paper_anchor`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `garantex-ofac-2022`
 
@@ -2995,16 +2989,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `helix-doj-mixer-2020`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `hongkong-hkma-stablecoins-ordinance-2025`
 
@@ -3929,16 +3920,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `kucoin-doj-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `kucoin-netherlands-exit-2023`
 
@@ -4046,16 +4034,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `liberty-reserve-coordinated-takedown-2013-05`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `liberty-reserve-costa-rica-license-denial-2011-03`
 
@@ -4270,17 +4255,14 @@ This file is the operational summary for the repo's two current priorities:
 ### `mtgox-bankruptcy-tokyo-2014`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: Coverage is majority-measured; some layers are only partially_measured.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `mtgox-coinlab-civil-2013`
 
@@ -5605,16 +5587,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `sec-burnside-bitcoin-stock-exchange-2014`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `sec-consensys-metamask-staking-swaps-2024-06`
 
@@ -5897,16 +5876,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `sec-v-ripple-2020`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Next action: Pin down the target set more concretely in the event file.
 
 ### `sec-v-telegram-ton-2020`
 
