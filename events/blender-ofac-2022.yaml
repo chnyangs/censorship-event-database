@@ -1,17 +1,17 @@
 id: blender-ofac-2022
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-21T14:00:00Z
-last_verified: 2026-04-21
+last_verified: 2026-06-02
 
 related_events:
   - tornado-cash-ofac-2022
@@ -28,6 +28,7 @@ trigger:
       wayback: https://web.archive.org/web/20260421135013/https://ofac.treasury.gov/recent-actions/20220506
       body_hash: sha256:088245cfd0563f12865e84bf51db27dffdd2de2eadb742d278b3f901ca55f3ee
       body_path: sources/http_captures/blender-ofac-2022/ofac-recent-actions/ofac.treasury.gov__recent-actions-20220506__7887ae4d27.html
+      evidence_use: replayable
       note: |
         OFAC Recent Actions page for 2022-05-06. First crypto mixer ever sanctioned by OFAC
         (predates Tornado Cash 2022-08-08 by 94 days). Entity BLENDER.IO (aka BLENDERIO /
@@ -37,8 +38,16 @@ trigger:
         Lazarus-adjacent entities, not Blender). Tags for Blender: [DPRK3] [CYBER2].
     - type: primary_legal
       url: https://home.treasury.gov/news/press-releases/jy0768
-      evidence_use: contextual_unarchived
-      note: Treasury press release "U.S. Treasury Issues First-Ever Sanctions on a Virtual Currency Mixer, Targets DPRK Cyber Threats" (2022-05-06).
+      wayback: https://web.archive.org/web/20260421234013/https://home.treasury.gov/news/press-releases/jy0768
+      body_hash: sha256:52cf5226e2f155aff279a140d5fc7555f1c0faddec59f77ecba48df5a70c35b4
+      body_path: sources/http_captures/blender-ofac-2022/press-release/home.treasury.gov__news-press-releases-jy0768__25ddcdc9ec.html
+      evidence_use: replayable
+      note: |
+        Treasury press release "U.S. Treasury Issues First-Ever Sanctions on
+        a Virtual Currency Mixer, Targets DPRK Cyber Threats" (2022-05-06).
+        The local capture names Blender.io, describes the first-ever mixer
+        designation, and states the OFAC action blocks property / interests
+        in property of Blender.io in U.S. possession or control.
   timestamp_sources:
     - type: primary_legal
       note: OFAC Recent Actions page and Treasury press release both carry day-level public timing.
@@ -112,26 +121,15 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
-    scope:
-      - blender.io
-      - blender.to
+    status: not_applicable
     note: |
-      L0 network-layer OONI API query performed 2026-04-22. Searched the
-      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
-      test_name=web_connectivity across the following domain×window
-      combinations:
-        blender.io  2022-04-06..2022-06-06  -> 0 results
-        blender.to  2022-04-06..2022-06-06  -> 0 results
-      Aggregate across all queried domains: **0 / 2 domains
-      returned any OONI volunteer measurements in the relevant windows**.
-      Artifact: sources/l0_datasets/blender-ofac-2022/blender.io__ooni.json
-      (body_hash sha256:ffe796621d887d03d7e644dbf08c2c964addbee849e6bb6e63813400b4eb3a85).
-      Measurement-gap finding: OONI volunteer probe coverage of the
-      crypto-infrastructure domains in scope is effectively absent for
-      these windows; L0 remains not_measured (with attested negative
-      query) until Censored Planet raw ingestion or another L0 source
-      is wired in.
+      The retained claim is not an ISP/DNS/national-firewall block. Blender
+      is modeled as an OFAC designation plus operator-side web-application
+      teardown, measured at L4 via Wayback. A prior OONI query across
+      blender.io / blender.to for 2022-04-06..2022-06-06 returned no public
+      measurements, but the absence of OONI volunteer data is not used as a
+      claim-bearing L0 observation because no L0 censorship action is
+      asserted.
   - layer: l1_consensus
     status: not_applicable
     chain: bitcoin
@@ -193,6 +191,7 @@ observations:
         url: https://web.archive.org/web/20220516113713/http://blender.io/
         body_hash: sha256:e5e5eaae392f6c13af512e1000be2270a5b983fe5ca84457a3a0507a2cb31ad0
         body_path: sources/http_captures/blender-ofac-2022/frontend-wayback/web.archive.org__web-20220516113713-http-blender.io__240e6c7838.html
+        evidence_use: replayable
         note: |
           Wayback snapshot 10 days post-designation. 200 OK, 705-byte body carrying the default
           nginx welcome page verbatim ("Welcome to nginx! ... For online documentation and
@@ -208,6 +207,7 @@ observations:
         wayback: https://web.archive.org/web/20260421234013/https://home.treasury.gov/news/press-releases/jy0768
         body_hash: sha256:52cf5226e2f155aff279a140d5fc7555f1c0faddec59f77ecba48df5a70c35b4
         body_path: sources/http_captures/blender-ofac-2022/press-release/home.treasury.gov__news-press-releases-jy0768__25ddcdc9ec.html
+        evidence_use: replayable
         note: |
           Treasury press release "U.S. Treasury Issues First-Ever Sanctions on a Virtual
           Currency Mixer, Targets DPRK Cyber Threats" — primary_legal, anchors the
@@ -218,6 +218,16 @@ observations:
           attribution that the designation targeted Blender specifically).
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  verified the existing OFAC Recent Actions, Treasury press-release, and
+  Blender Wayback captures by body hash; marked the row primary-source
+  verified; and narrowed coverage taxonomy to the retained public claim.
+  This event now measures the OFAC designation plus L4 operator-side
+  application teardown. L0 network blocking is out of scope because no
+  ISP/DNS censorship claim is retained. Off-ramp/CEX effects remain an
+  explicit unmeasured follow-up until a public per-event exchange or
+  chain-analytics slice names Blender-tagged BTC addresses.
+
   comparison documenting the first-ever OFAC sanction of a virtual currency
   mixer. Blender.io was designated 94 days before Tornado Cash and tests whether the Tornado
   cascade shape generalizes to the mixer class, or whether Tornado's cross-layer reaction was
