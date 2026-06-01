@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `279da6b` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `8dbd685` · generated `2026-06-02T00:00:00Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -8,12 +8,12 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 
 | layer | applicable | measured | partial | not_measured | not_applicable | changed events (measured) | changed events (partial) | unique changed actions | duplicate action rows | changed/measured | changed/measured+partial |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `l0_network` | 35 | 0 | 3 | 32 | 330 | 0 | 3 | 3 | 0 | — | 3/3 (100.0%) |
+| `l0_network` | 32 | 0 | 3 | 29 | 333 | 0 | 3 | 3 | 0 | — | 3/3 (100.0%) |
 | `l1_consensus` | 19 | 8 | 8 | 3 | 346 | 2 | 8 | 10 | 0 | 2/8 (25.0%) | 10/16 (62.5%) |
-| `l3_rpc` | 15 | 1 | 6 | 8 | 350 | 1 | 5 | 6 | 0 | 1/1 (100.0%) | 6/7 (85.7%) |
-| `l4_frontend` | 131 | 55 | 21 | 55 | 234 | 50 | 18 | 74 | 0 | 50/55 (90.9%) | 68/76 (89.5%) |
-| `asset_onchain` | 44 | 18 | 2 | 24 | 321 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
-| `offramp_cex` | 311 | 242 | 44 | 25 | 54 | 162 | 34 | 204 | 0 | 162/242 (66.9%) | 196/286 (68.5%) |
+| `l3_rpc` | 14 | 1 | 6 | 7 | 351 | 1 | 5 | 6 | 0 | 1/1 (100.0%) | 6/7 (85.7%) |
+| `l4_frontend` | 129 | 55 | 21 | 53 | 236 | 50 | 18 | 74 | 0 | 50/55 (90.9%) | 68/76 (89.5%) |
+| `asset_onchain` | 43 | 18 | 2 | 23 | 322 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
+| `offramp_cex` | 310 | 242 | 44 | 24 | 55 | 162 | 34 | 204 | 0 | 162/242 (66.9%) | 196/286 (68.5%) |
 
 A rate of `—` indicates a zero denominator; it is an **observability gap**, not an attested negative.
 `unique changed actions` deduplicates physical actions that are intentionally linked across event records via `observations[].action_id` (for example, the Circle USDC Tornado blacklist transaction appears in both the OFAC-triggered event and the issuer-action event). Event-rate columns remain event-record denominators; action counts are reported separately so the two units are not conflated.

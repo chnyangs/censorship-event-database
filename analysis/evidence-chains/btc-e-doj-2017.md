@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `279da6b` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `8dbd685` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -11,7 +11,9 @@
 > "DOJ NDCA indictment of BTC-e / Alexander Vinnik on 2017-07-26 was accompanied
 > by a same-day seizure of the canonical btc-e.com domain, documenting the
 > earliest L4 frontend seizure in the dataset and establishing the pre-OFAC
-> baseline for crypto-exchange enforcement cross-layer cascade shape."
+> baseline for crypto-exchange enforcement cross-layer cascade shape. The
+> row does not assert ISP/DNS national blocking or a separate counterparty-
+> CEX/off-ramp cascade."
 
 ## 1. Trigger
 
@@ -101,12 +103,11 @@
 
 ## 5. Honest coverage gaps
 
-- **l0_network** (`not_measured`): L0 network-layer OONI API query performed 2026-04-22. Searched the
-- **offramp_cex** (`not_measured`): Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `279da6b`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `8dbd685`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

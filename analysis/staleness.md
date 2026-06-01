@@ -69,11 +69,11 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `bitfloor-capital-one-debanking-2013-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `bitmex-cftc-doj-2020` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `bitmex-fincen-2024` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
-| `bitriver-russia-mining-ofac-2022-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
+| `bitriver-russia-mining-ofac-2022-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
 | `bitstamp-greece-portugal-exit-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `bittrex-global-shutdown-2023-11` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `bittrex-privacy-coin-delisting-2021-01` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-01 | 1 | ok | ok |
-| `bitzlato-doj-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 42 | ok | no_audit_recorded |
+| `bitzlato-doj-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `blender-ofac-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `blockfi-multistate-cease-desist-bia-2021-07` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `blockfi-sec-lending-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
@@ -81,7 +81,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `botnet-911-s5-ofac-2024-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `brazil-bacen-stablecoin-restriction-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `brazil-bcb-comunicado-25306-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
-| `btc-e-doj-2017` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
+| `btc-e-doj-2017` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `bybit-canada-exit-2023-05` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-01 | 1 | ok | ok |
 | `bybit-france-exit-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `bybit-singapore-exit-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 16 | ok | no_audit_recorded |
@@ -466,14 +466,14 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `bitfloor-capital-one-debanking-2013-04` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `bitstamp-greece-portugal-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `bittrex-global-shutdown-2023-11` — audit=no_audit_recorded, verification=ok, verif_age=2d
-- `bitzlato-doj-2023` — audit=no_audit_recorded, verification=ok, verif_age=42d
+- `bitzlato-doj-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `blender-ofac-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `blockfi-multistate-cease-desist-bia-2021-07` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `bolivia-bcb-crypto-prohibition-2014` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `botnet-911-s5-ofac-2024-05` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `brazil-bacen-stablecoin-restriction-2023` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `brazil-bcb-comunicado-25306-2014` — audit=no_audit_recorded, verification=ok, verif_age=12d
-- `btc-e-doj-2017` — audit=no_audit_recorded, verification=ok, verif_age=41d
+- `btc-e-doj-2017` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `bybit-france-exit-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `bybit-singapore-exit-2022` — audit=no_audit_recorded, verification=ok, verif_age=16d
 - `cambodia-nbc-joint-crypto-prohibition-2018-05` — audit=no_audit_recorded, verification=ok, verif_age=1d

@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `304`
-- Admitted but release-blocked cases: `61`
+- Release-ready cases: `307`
+- Admitted but release-blocked cases: `58`
 - Fully complete release-ready cases: `12`
-- Scope-limited release-ready cases: `292`
+- Scope-limited release-ready cases: `295`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 41, 'paper_anchor': 3}`
@@ -720,18 +720,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `bitriver-russia-mining-ofac-2022-04`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bitstamp-greece-portugal-exit-2023`
@@ -781,17 +778,14 @@ This file is the operational summary for the repo's two current priorities:
 ### `bitzlato-doj-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `blender-ofac-2022`
@@ -900,17 +894,14 @@ This file is the operational summary for the repo's two current priorities:
 ### `btc-e-doj-2017`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bybit-canada-exit-2023-05`

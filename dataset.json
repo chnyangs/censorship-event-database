@@ -7458,14 +7458,14 @@
   {
     "_source_file": "bitriver-russia-mining-ofac-2022-04.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**AUTHORED 2026-05-31** (overnight census tick 5, human:xiangwen\nautonomous mandate). FIRST-OF-ITS-KIND OFAC designation of a\ncryptocurrency-MINING company: BitRiver AG + 10 Russia-based\nsubsidiaries (2022-04-20, Treasury jy0731), targeting Russia's use of\ncrypto mining to monetize energy resources / evade sanctions. Coded as\nnull_event/null_case per the S1 convention (cf. zservers-ofac-2025):\nthe designation is the trigger, but no public CEX cascade was\ndocumented in the 14-day window and the target is a corporate entity\nwith no enumerated on-chain addresses, so the measurable cross-layer\nsurface is limited (offramp_cex observed_no_change/none). Sources\nverified + captured 2026-05-31 (Treasury jy0731 + The Record,\nbody_hash-pinned; no fabrication). Notable as the first crypto-mining-\ncompany sanction \u2014 a precedent for sanctioning mining infrastructure.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nlocal Treasury and contemporaneous reporting anchors remain the\nclaim-usable trigger evidence. Coverage is narrowed to the retained\nentity-designation / no-public-CEX-cascade denominator: no L0 network\nblock, L4 website takedown, consensus/RPC filtering, or issuer\nblacklist observation is asserted for this mining-infrastructure row.\n\n**AUTHORED 2026-05-31** (overnight census tick 5, human:xiangwen\nautonomous mandate). FIRST-OF-ITS-KIND OFAC designation of a\ncryptocurrency-MINING company: BitRiver AG + 10 Russia-based\nsubsidiaries (2022-04-20, Treasury jy0731), targeting Russia's use of\ncrypto mining to monetize energy resources / evade sanctions. Coded as\nnull_event/null_case per the S1 convention (cf. zservers-ofac-2025):\nthe designation is the trigger, but no public CEX cascade was\ndocumented in the 14-day window and the target is a corporate entity\nwith no enumerated on-chain addresses, so the measurable cross-layer\nsurface is limited (offramp_cex observed_no_change/none). Sources\nverified + captured 2026-05-31 (Treasury jy0731 + The Record,\nbody_hash-pinned; no fabrication). Notable as the first crypto-mining-\ncompany sanction \u2014 a precedent for sanctioning mining infrastructure.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "2.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No OONI / Censored Planet probe of bitriver.com within the event\nwindow; substrate-shaped gap, not a coverage_gap observation.\n",
-        "status": "not_measured"
+        "note": "The retained public claim is an OFAC designation of a crypto-mining\ninfrastructure company plus a scoped no-public-CEX-cascade\ndenominator. It is not an ISP/DNS/national-firewall blocking claim,\nso absent OONI / Censored Planet probing of bitriver.com is not a\nclaim-bearing L0 measurement gap.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
@@ -7478,8 +7478,8 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "bitriver.com is the company's canonical domain; Wayback CDX\nbracketing of bitriver.com around 2022-04-20 not performed in this\nauthoring pass (not_measured, consistent with peer S1 entity events).\n",
-        "status": "not_measured"
+        "note": "bitriver.com is the company's canonical domain, but the retained\nrow does not assert a website seizure, frontend takedown, or\noperator-posted compliance notice. Wayback bracketing of the\nwebsite would be an optional enrichment, not load-bearing evidence\nfor the current null-case claim.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "asset_onchain",
@@ -7498,7 +7498,7 @@
       "US"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "counterparty_cex_ecosystem",
@@ -7536,7 +7536,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
     "scoped_claim": "\"The 2022-04-20 OFAC designation of BitRiver AG + 10 Russia-based\nsubsidiaries (the first OFAC sanction of a crypto-mining company)\nattached no on-chain addresses; no public CEX cascade was documented\nin the 14-day window. null_case: infrastructure-entity target with\nlimited measurable cross-layer surface.\"\n",
@@ -7594,7 +7594,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.2"
+    "version": "0.3"
   },
   {
     "_source_file": "bitstamp-greece-portugal-exit-2023.yaml",
@@ -8132,14 +8132,14 @@
   {
     "_source_file": "bitzlato-doj-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "Scoped release claim: the 2023-01-18 DOJ and FinCEN action directly disrupted\nBitzlato's exchange operations at the off-ramp / venue layer. This admitted\nbaseline is not claiming a multi-layer cascade. It is a narrow enforcement-led\ncomparison event used to test whether the schema can represent institution-level\ndisruptions, not only protocol sanctions. Additional frontend and downstream\npartner reactions are out of scope for this release and can be added later if\nconcrete artifacts are collected.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nlocal DOJ and FinCEN replay anchors remain the claim-usable evidence.\nCoverage is narrowed to the retained exchange-operation / Section 9714\ntransmittal-prohibition claim; no L0, L3, L4 seizure-banner, or\nissuer-blacklist observation is asserted.\n\nScoped release claim: the 2023-01-18 DOJ and FinCEN action directly disrupted\nBitzlato's exchange operations at the off-ramp / venue layer. This admitted\nbaseline is not claiming a multi-layer cascade. It is a narrow enforcement-led\ncomparison event used to test whether the schema can represent institution-level\ndisruptions, not only protocol sanctions. Additional frontend and downstream\npartner reactions are out of scope for this release and can be added later if\nconcrete artifacts are collected.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No network-layer measurement plan attached yet for this event",
-        "status": "not_measured"
+        "note": "The retained public claim is a DOJ/FinCEN exchange-operation\ndisruption and Section 9714 transmittal prohibition, not an\nISP/DNS/national-firewall block. No L0 censorship action is\nasserted for Bitzlato in this release.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
@@ -8148,22 +8148,22 @@
       },
       {
         "layer": "l3_rpc",
-        "note": "Public RPC provider substrate anchors exist for adjacent OFAC-aware\nEthereum RPC services, but no Bitzlato-specific RPC rejection,\ndocs/status change, or provider filter-list snapshot is pinned.\nSubstrate existence is not counted as event-specific L3 coverage.\n",
-        "status": "not_measured"
+        "note": "Bitzlato is modeled as an exchange / money-transmission\nenforcement target. The retained claim does not involve Ethereum\nRPC provider filtering, docs/status changes, or provider\nfilter-list snapshots.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l4_frontend",
-        "note": "Frontend/operator availability is not asserted in this release",
+        "note": "Frontend/operator website availability is not asserted in this\nrelease. The claim-usable observation is FinCEN's covered-financial-\ninstitution transmittal prohibition and DOJ-described exchange\ndisruption at the venue/off-ramp layer, not a separately verified\nbitzlato.com seizure-banner or frontend takedown.\n",
         "scope": [
           "bitzlato website",
           "exchange frontend availability"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "layer": "asset_onchain",
-        "note": "This trigger is not primarily an issuer blacklist event",
-        "status": "not_measured"
+        "note": "This trigger is not an issuer-blacklist event and the retained\nBitzlato row does not enumerate a frozen token-address set.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "offramp_cex",
@@ -8179,7 +8179,7 @@
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-04-21",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "exchange:bitzlato",
@@ -8209,7 +8209,7 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "recovery": [
       {
         "layer": "offramp_cex",
@@ -8219,7 +8219,7 @@
     ],
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"DOJ indictment of Bitzlato and its founder on 2023-01-18 \u2014 paired with\nFinCEN's Section 9714 special measure designation of Bitzlato as a\n'primary money laundering concern' \u2014 directly disrupted Bitzlato's\nexchange operations at the offramp_cex layer (observed_change, direct\nattribution via FinCEN 9714 order). First application of FinCEN\nSection 9714 to a crypto exchange; structurally distinct from\npure-OFAC or pure-DOJ paths. L4 frontend takedown of bitzlato.com is\nhypothesized but not asserted in this release: coverage.l4_frontend\nstatus is `not_measured` and no L4 observation row is attached.\nFuture revision should add l4_frontend pre/post Wayback bracketing of\nbitzlato.com to test the FinCEN-9714 + DOJ-indictment frontend\nseizure pattern. v0.3 audit 2026-05-20: scoped_claim repaired per\nSession 2 Block D NO decision (qid=26 bitzlato needs_recheck) which\nflagged original wording for asserting L4 same-day seizure without\nsupporting observation row \u2014 same defect class as garantex-ofac-2022\naudit_log row 218.\"\n",
+    "scoped_claim": "\"DOJ indictment of Bitzlato and its founder on 2023-01-18 \u2014 paired with\nFinCEN's Section 9714 special measure designation of Bitzlato as a\n'primary money laundering concern' \u2014 directly disrupted Bitzlato's\nexchange operations at the offramp_cex layer (observed_change, direct\nattribution via FinCEN 9714 order). First application of FinCEN\nSection 9714 to a crypto exchange; structurally distinct from\npure-OFAC or pure-DOJ paths. L4 frontend takedown of bitzlato.com is\nhypothesized but not asserted in this release: coverage.l4_frontend is\n`not_applicable` to the retained claim and no L4 observation row is attached.\nFuture revision should add l4_frontend pre/post Wayback bracketing of\nbitzlato.com to test the FinCEN-9714 + DOJ-indictment frontend\nseizure pattern. v0.3 audit 2026-05-20: scoped_claim repaired per\nSession 2 Block D NO decision (qid=26 bitzlato needs_recheck) which\nflagged original wording for asserting L4 same-day seizure without\nsupporting observation row \u2014 same defect class as garantex-ofac-2022\naudit_log row 218.\"\n",
     "status": "admitted",
     "tags": [
       "doj",
@@ -8273,7 +8273,7 @@
       ],
       "type": "doj_indictment"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "blender-ofac-2022.yaml",
@@ -9365,17 +9365,17 @@
   {
     "_source_file": "btc-e-doj-2017.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison \u2014 earliest crypto-exchange enforcement event in the dataset\n(16 months before the 2018-11-28 Iran-ransomware first OFAC crypto SDN).\nBTC-e indictment + domain seizure under DOJ NDCA + Greek authorities (Vinnik\narrested in Greece day-of). Pre-PBS, pre-Tether-freeze, pre-OFAC-crypto-SDN\nera; the only cross-layer signal is L4 domain seizure.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nlocal Wayback DOJ evidence remains the claim-usable trigger and\nobservation anchor; coverage is narrowed to the retained L4 domain-\nseizure claim. L0 network blocking and counterparty-CEX reactions are\nexcluded from the public claim rather than left as unresolved\nload-bearing gaps.\n\ncomparison \u2014 earliest crypto-exchange enforcement event in the dataset\n(16 months before the 2018-11-28 Iran-ransomware first OFAC crypto SDN).\nBTC-e indictment + domain seizure under DOJ NDCA + Greek authorities (Vinnik\narrested in Greece day-of). Pre-PBS, pre-Tether-freeze, pre-OFAC-crypto-SDN\nera; the only cross-layer signal is L4 domain seizure.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across:\n  btc-e.com  2017-06-26..2017-08-26  -> 0 results\nAll 1 queries returned 0 measurements.\nArtifact: sources/l0_datasets/btc-e-doj-2017/btc-e.com__ooni.json\n(body_hash sha256:992e3a6464e32bba4980a4153494856dae559dad55ecf490b2c5ed062515c5ba).\nMeasurement-gap finding: OONI volunteer probe coverage is absent.\n",
+        "note": "The retained public claim is a DOJ/FBI domain seizure, not an\nISP/DNS/national-firewall blocking claim. A prior OONI API query\nacross btc-e.com for 2017-06-26..2017-08-26 returned no public\nmeasurements (artifact:\nsources/l0_datasets/btc-e-doj-2017/btc-e.com__ooni.json), but\nthat absence is not load-bearing because no L0 censorship action\nis asserted.\n",
         "scope": [
           "btc-e.com"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "chain": "bitcoin",
@@ -9401,8 +9401,8 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Chain-analytics anchors pinned 2026-04-22 as primary_corporate\nsubstrate for per-event offramp_cex reasoning (Chainalysis, TRM,\nElliptic sanctions-coverage resource pages):\n  Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7\n  TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a\n  Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a\nStatus remains not_measured because per-event chain-analytics report\nslices (naming specific SDN addresses / KYT flag records) are not\nyet pinned. The anchors establish the substrate; per-event slicing\nwould promote status.\n",
-        "status": "not_measured"
+        "note": "BTC-e was itself the enforcement target and exchange venue. The\nrelease claim is limited to the same-day btc-e.com domain seizure\nand does not retain a separate counterparty-exchange delisting,\nKYT, or off-ramp cascade observation. Generic chain-analytics\nsubstrate captures are therefore not used as event-specific\nofframp_cex evidence for this row.\n",
+        "status": "not_applicable"
       }
     ],
     "created_at": "2026-04-22T07:30:00+00:00",
@@ -9411,7 +9411,7 @@
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-04-22",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "frontend:btc_e_com",
@@ -9435,10 +9435,10 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"DOJ NDCA indictment of BTC-e / Alexander Vinnik on 2017-07-26 was accompanied\nby a same-day seizure of the canonical btc-e.com domain, documenting the\nearliest L4 frontend seizure in the dataset and establishing the pre-OFAC\nbaseline for crypto-exchange enforcement cross-layer cascade shape.\"\n",
+    "scoped_claim": "\"DOJ NDCA indictment of BTC-e / Alexander Vinnik on 2017-07-26 was accompanied\nby a same-day seizure of the canonical btc-e.com domain, documenting the\nearliest L4 frontend seizure in the dataset and establishing the pre-OFAC\nbaseline for crypto-exchange enforcement cross-layer cascade shape. The\nrow does not assert ISP/DNS national blocking or a separate counterparty-\nCEX/off-ramp cascade.\"\n",
     "status": "admitted",
     "tags": [
       "doj_enforcement",
@@ -9491,7 +9491,7 @@
       ],
       "type": "doj_indictment"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "bybit-canada-exit-2023-05.yaml",
