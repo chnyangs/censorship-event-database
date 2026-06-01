@@ -1,19 +1,17 @@
 id: china-pboc-banks-alipay-payment-channel-block-2021-06
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "PBOC-directed June-2021 closure of bank/Alipay payment channels to crypto exchanges. §9-clear restriction, widely documented; attested_secondary on a single captured source. attribution=plausible (single secondary source)."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 
 related_events:
   - china-pboc-crypto-ban-2021
@@ -26,6 +24,21 @@ trigger:
   timestamp: 2021-06-21T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/2025092212551612812/index.html
+      body_hash: sha256:4be9779e2b2f10333311958a6aa32e4b5c26b8687b06e3202cbf2cb76e80658b
+      body_path: sources/http_captures/china-pboc-banks-alipay-payment-channel-block-2021-06/primary-pboc-repair/www.pbc.gov.cn__goutongjiaoliu-113456-113469-2025092212551612812-index.html__abab2abcf4.html
+      evidence_use: replayable
+      note: |
+        Official People's Bank of China release, "人民银行就虚拟货币交易炒作问题
+        约谈部分银行和支付机构." Captured 2026-06-01 from pbc.gov.cn. The
+        body states that PBOC departments summoned ICBC, Agricultural Bank of
+        China, China Construction Bank, Postal Savings Bank, Industrial Bank,
+        Alipay and other banks/payment institutions over services for virtual-
+        currency trading speculation. It requires banks/payment institutions not
+        to provide account opening, registration, trading, clearing, settlement
+        or other products/services for such activity, to identify exchange/OTC
+        dealer capital accounts, and to cut transaction-funds payment links.
     - type: supporting_journalism
       url: https://beincrypto.com/pboc-orders-major-banks-alipay-to-cease-servicing-crypto-companies/
       wayback: https://web.archive.org/web/20210621175818/https://beincrypto.com/pboc-orders-major-banks-alipay-to-cease-servicing-crypto-companies/
@@ -45,6 +58,11 @@ trigger:
         it would immediately close the account of any client found involved in
         crypto trading. Captured HTML verified to contain PBOC, Alipay,
         Agricultural Bank, ICBC, "cut off", and "close the account".
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        PBOC official page source line records 2021-06-21 17:17:35 for the public
+        release. Day-level precision is retained in the canonical timestamp.
 
 target:
   kind: entity
@@ -91,11 +109,24 @@ observations:
     actor: cn_bank_and_payment_app_ecosystem
     event: crypto_payment_channels_cut_and_accounts_closed
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2021-06-21T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
+      - type: primary_government
+        url: https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/2025092212551612812/index.html
+        body_hash: sha256:4be9779e2b2f10333311958a6aa32e4b5c26b8687b06e3202cbf2cb76e80658b
+        body_path: sources/http_captures/china-pboc-banks-alipay-payment-channel-block-2021-06/primary-pboc-repair/www.pbc.gov.cn__goutongjiaoliu-113456-113469-2025092212551612812-index.html__abab2abcf4.html
+        evidence_use: replayable
+        note: |
+          PBOC official 2021-06-21 release. The captured body explicitly names the
+          summoned banks/payment institutions and instructs them not to provide
+          account opening, registration, trading, clearing, settlement or related
+          services for virtual-currency trading speculation, to identify exchange
+          and OTC-dealer capital accounts, and to cut the transaction-funds payment
+          links. attribution=direct because the regulator's own release states the
+          order and the affected banking/payment-rail conduct.
       - type: supporting_journalism
         url: https://beincrypto.com/pboc-orders-major-banks-alipay-to-cease-servicing-crypto-companies/
         wayback: https://web.archive.org/web/20210621175818/https://beincrypto.com/pboc-orders-major-banks-alipay-to-cease-servicing-crypto-companies/
@@ -105,11 +136,8 @@ observations:
         note: |
           Same-day BeInCrypto report quoting the PBOC 2021-06-21 statement and
           the institutions' responses (AgBank to close crypto-linked accounts;
-          banks/Alipay to cut payment channels). attribution=direct: the PBOC is
-          the named authority and the directive explicitly orders the named
-          banks/Alipay to cut crypto payment channels and close accounts. Primary
-          PBOC release (pbc.gov.cn) not separately captured in this pass; the
-          same-day journalism source is the load-bearing evidence for this draft.
+          banks/Alipay to cut payment channels). Retained as same-day
+          corroboration now that the PBOC primary release is pinned locally.
       - type: supporting_journalism
         url: https://www.regulationasia.com/pboc-directs-banks-alipay-to-stamp-out-crypto-activity/
         wayback: https://web.archive.org/web/20210623023627/https://www.regulationasia.com/pboc-directs-banks-alipay-to-stamp-out-crypto-activity/
@@ -128,6 +156,14 @@ observations:
           captured lede + tags carry the cited facts.)
 
 analysis_notes: |
+  **SOURCE REPAIRED 2026-06-02** (automation): pinned the official PBOC
+  pbc.gov.cn release as a replayable `primary_government` body. Removed
+  `evidence_tier=attested_secondary`, set `primary_source_verified=true`, and
+  upgraded the off-ramp observation attribution to direct because the regulator's
+  own release states the summons, the named banks/payment institutions, the
+  prohibited account/clearing/settlement services, and the instruction to cut
+  virtual-currency trading payment links.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. §9-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook §10) — single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured, awaiting human admission)
 
@@ -149,17 +185,16 @@ analysis_notes: |
   payment-channel cut). Single observed_change layer (offramp_cex) ⇒
   empirical_shape=comparison, admission_tier=empirical_case.
 
-  Source caveat: the captured evidence is a same-day primary-quoting journalism
-  report (BeInCrypto, 2021-06-21), not the primary PBOC release (the pbc.gov.cn
-  statement was not separately archivable in this pass). Kept as draft awaiting
-  human admission / primary-source upgrade.
+  Source discipline: the official PBOC release is now the load-bearing
+  primary-government anchor. Same-day journalism is retained only as
+  corroboration / English-language context.
 
 scoped_claim: |
   "On 2021-06-21 the PBOC ordered major PRC banks (ICBC, Agricultural Bank of
   China, et al.) and Alipay to cut off the payment / fund-transfer channels used
   by virtual-currency exchanges and OTC dealers and to close crypto-linked
-  accounts. Effect captured at the offramp_cex layer at class level via a
-  same-day journalism source quoting the PBOC directive."
+  accounts. Effect captured at the offramp_cex layer at class level via the
+  official PBOC release, with same-day journalism retained as corroboration."
 
 tags:
   - nation_state_block
