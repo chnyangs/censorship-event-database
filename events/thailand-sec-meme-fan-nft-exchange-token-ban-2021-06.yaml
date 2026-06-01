@@ -1,19 +1,17 @@
 id: thailand-sec-meme-fan-nft-exchange-token-ban-2021-06
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "Thai SEC June-2021 notification (KorThor 18/2564) prohibiting exchanges from listing meme/fan/exchange tokens + NFTs. §9-clear restriction, widely documented; attested_secondary on a single captured source. attribution=plausible (single secondary source)."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - thailand-sec-binance-bybit-c-and-d-2021
@@ -25,6 +23,25 @@ trigger:
   timestamp: 2021-06-11T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=8994
+      wayback: https://web.archive.org/web/20210613190001/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=8994
+      body_hash: sha256:482e94e3ddc1b77d51f615cd80f40444db8f3b183f5bfbcb99eb1676a62e0c45
+      body_path: sources/http_captures/thailand-sec-meme-fan-nft-exchange-token-ban-2021-06/official-sec/web.archive.org__web-20210613190001id_-https-www.sec.or.th-EN-Pages-News_Detail.aspx__23a08a3b6b.html
+      evidence_use: replayable
+      note: |
+        Thai Securities and Exchange Commission news release No. 114/2021,
+        dated Saturday 2021-06-12 and datelined Bangkok 2021-06-11. The
+        captured official SEC body states that SEC Board Meeting No. 12/2564
+        approved Notification No. Kor Thor. 18/2564; that after Government
+        Gazette publication the notification became effective from 2021-06-11
+        without retrospective effect; that digital asset exchanges are
+        prohibited from providing services for meme tokens, fan tokens, NFTs,
+        and blockchain-transaction tokens issued by exchanges or related
+        persons; and that exchanges must revise listing rules within 30 days.
+        Live sec.or.th blocked the local capture agent with HTTP 403, so the
+        replayable artifact is the earliest available 2021-06-13 Wayback
+        memento of the official SEC page.
     - type: supporting_journalism
       url: https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts
       wayback: https://web.archive.org/web/20210927215039/https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts/
@@ -45,6 +62,16 @@ trigger:
         is prospective (no retroactive effect on tokens already listed prior).
         Captured HTML verified to contain "Thai SEC", the four token categories,
         and the 30-day compliance window. Archived via Wayback 2021-09-27.
+  timestamp_sources:
+    - type: primary_government
+      note: |
+        Official Thai SEC No. 114/2021 release says Notification No. Kor Thor.
+        18/2564 became effective from 2021-06-11 after Government Gazette
+        publication. Day-level precision is the supportable upper bound.
+        The SEC page was captured via its earliest replayable Wayback memento
+        because the live host blocks this capture environment.
+    - type: supporting_journalism
+      note: CoinDesk report dated 2021-06-12; Thai SEC board decision effective 2021-06-11.
 
 target:
   kind: entity
@@ -90,11 +117,26 @@ observations:
     actor: thai_licensed_digital_asset_exchanges
     event: meme_fan_nft_exchange_tokens_delisting_mandated
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2021-06-11T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
+      - type: primary_government
+        url: https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=8994
+        wayback: https://web.archive.org/web/20210613190001/https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=8994
+        body_hash: sha256:482e94e3ddc1b77d51f615cd80f40444db8f3b183f5bfbcb99eb1676a62e0c45
+        body_path: sources/http_captures/thailand-sec-meme-fan-nft-exchange-token-ban-2021-06/official-sec/web.archive.org__web-20210613190001id_-https-www.sec.or.th-EN-Pages-News_Detail.aspx__23a08a3b6b.html
+        evidence_use: replayable
+        note: |
+          Official Thai SEC No. 114/2021 release. The captured body identifies
+          Notification No. Kor Thor. 18/2564, its 2021-06-11 effective date,
+          the four prohibited categories (meme token, fan token, NFT, and
+          exchange-/related-person-issued blockchain transaction tokens), and
+          the requirement that digital asset exchanges revise their listing
+          rules within 30 days. attribution=direct: the regulator's own release
+          names both the regulated exchange class and the prohibited token
+          categories.
       - type: supporting_journalism
         url: https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts
         wayback: https://web.archive.org/web/20210927215039/https://www.coindesk.com/markets/2021/06/12/no-doge-allowed-thai-sec-bans-meme-fan-and-exchange-tokens-as-well-as-nfts/
@@ -104,13 +146,19 @@ observations:
         note: |
           CoinDesk report on the Thai SEC's 2021-06-11 prohibition ordering
           licensed exchanges to delist/refuse meme, fan, NFT and exchange-issued
-          tokens within 30 days. attribution=direct: the SEC is the named
-          regulator and the order names the prohibited token categories and the
-          regulated exchanges that must comply. Primary SEC release not separately
-          captured; the journalism source is the load-bearing evidence for this
-          draft.
+          tokens within 30 days. Retained as same-week corroboration for the
+          official SEC anchor.
 
 analysis_notes: |
+  **QUALITY-LOOP REPAIR 2026-06-01** (automated source-link repair; no new
+  human-audit stamp). Pinned the official Thai SEC No. 114/2021 page via the
+  earliest replayable 2021-06-13 Wayback memento after the live sec.or.th host
+  returned HTTP 403 to the local capture agent. The captured SEC body directly
+  names Notification No. Kor Thor. 18/2564, the 2021-06-11 effective date, the
+  four prohibited token categories, and the 30-day listing-rule revision window.
+  This removes the lower-tier `attested_secondary` caveat and upgrades the
+  observation attribution from plausible to direct.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. §9-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook §10) — single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources verified+captured, awaiting human admission)
 
@@ -129,18 +177,17 @@ analysis_notes: |
   empirical_shape=comparison, admission_tier=empirical_case.
 
   Source caveat: the captured evidence is the CoinDesk report (same-week,
-  supporting_journalism), not the primary Thai SEC release (the SEC PDF was not
-  separately archivable in this pass). The draft is honest about this — the
-  journalism source quotes the SEC decision and the four categories + 30-day
-  window directly. Kept as draft awaiting human admission / primary-source
-  upgrade.
+  supporting_journalism) plus the official SEC news release captured during the
+  2026-06-01 repair pass. The SEC PDF was not separately archived, but the
+  replayable official SEC news page is sufficient for the trigger and observed
+  exchange-listing restriction.
 
 scoped_claim: |
   "On 2021-06-11 the Thai SEC prohibited SEC-licensed digital-asset exchanges
   from listing or trading meme tokens, fan tokens, NFTs and exchange-issued
   tokens, requiring delisting / listing-rule revision within 30 days. Effect
-  captured at the offramp_cex layer at class level via same-week journalism
-  reporting the SEC decision."
+  captured at the offramp_cex layer at class level via the official SEC
+  release."
 
 tags:
   - regulatory_enforcement

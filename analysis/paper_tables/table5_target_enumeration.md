@@ -1,6 +1,6 @@
 # Table 5 · Complete-vs-subset target stratification
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `0b7e0bd` · generated `2026-06-01T09:13:36Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `776590d` · generated `2026-06-01T09:47:26Z`
 
 Supports `docs/paper_claims.md §4 item 5`. Stratifies events by whether their `target` enumerates the **complete** set of in-scope addresses/entities/domains or only a **subset**. Complete enumeration supports stronger causal statements about the address set; subset enumeration should be cited with that qualifier.
 

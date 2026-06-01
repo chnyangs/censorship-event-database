@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `0b7e0bd` · generated `2026-06-01T09:13:36Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `776590d` · generated `2026-06-01T09:47:26Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -289,7 +289,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `russia-cbr-crypto-payment-ban-2022` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `russia-dfa-law-2020` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-01` | `—` |
 | `russia-election-interference-ofac-2020` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
-| `russia-mining-legalization-law-2024-08` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
+| `russia-mining-legalization-law-2024-08` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-01` | `—` |
 | `russia-mining-regional-ban-2024-12` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `other_single_layer` | · | · | `2026-05-21` | `—` |
 | `russia-rosfinmonitoring-binance-russia-rails-2022` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `russian-cyber-theft-ofac-2020` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
@@ -344,7 +344,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `thailand-bot-bitcoin-prohibition-2013` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `thailand-sec-binance-bybit-c-and-d-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `thailand-sec-crypto-payment-ban-2022-04` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
-| `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `tornado-cash-frontend-tornado-cash-eth-block-2022-04` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
 | `tornado-cash-github-takedown-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
 | `tornado-cash-ofac-2022` | `anchor_case` | `S1_ofac_sdn` | `cascade` | `ofac_sdn_designation` | `hour` | `address_set` | `complete` | 5 | `multi_layer` | · | · | `2026-04-21` | `2026-04-22` |
@@ -356,7 +356,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `trustwallet-sanctioned-token-ui-update-2022` | `null_case` | `S5_corporate` | `null_event` | `corporate_policy_change` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `turkey-cbrt-crypto-ban-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `turkey-cmb-casp-licensing-law-7518-2024` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
-| `uae-sca-crypto-asset-activities-regulation-decision-23-2020` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
+| `uae-sca-crypto-asset-activities-regulation-decision-23-2020` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-01` | `—` |
 | `uae-vara-licence-issuance-regime-2023` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `uk-fca-binance-markets-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-06-01` | `—` |
 | `uk-fca-crypto-promotion-rule-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-21` | `—` |

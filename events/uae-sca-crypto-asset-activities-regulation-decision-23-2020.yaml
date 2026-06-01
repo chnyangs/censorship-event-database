@@ -2,16 +2,16 @@ id: uae-sca-crypto-asset-activities-regulation-decision-23-2020
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - uae-vara-licence-issuance-regime-2023
@@ -23,6 +23,23 @@ trigger:
   timestamp: 2020-11-01T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.sca.gov.ae/en/media-center/news/7/2/2021/sca-2020-report.aspx
+      body_hash: sha256:db87fe2badf8917a14ee4714cf94bec50f25e345f1009b24fff4780750785d46
+      body_path: sources/http_captures/uae-sca-crypto-asset-activities-regulation-decision-23-2020/official-sca/www.sca.gov.ae__en-media-center-news-7-2-2021-sca-2020-report.aspx__d6705dc0a1.html
+      evidence_use: replayable
+      note: |
+        UAE Securities and Commodities Authority official 2020-track
+        record news page. Captured body states that SCA approved
+        crypto asset regulations under the SCA Board Chairman's
+        Decision No. 23 of 2020 and that the decision regulates
+        licensing of financial activities connected with crypto
+        assets, particularly exchanges, crowdfunding platforms,
+        securities custodians, and other activities. Used as the
+        replayable primary-government trigger anchor. The direct SCA
+        PDF URL formerly indexed for Decision 23 drifted to an empty
+        500/page-not-found response on 2026-06-01 and is intentionally
+        not used as evidence.
     - type: semi_primary_wayback
       url: https://www.charlesrussellspeechlys.com/en/insights/expert-insights/dispute-resolution/2024/in-depth-virtual-currency-regulation-uae/
       wayback: https://web.archive.org/web/20260129211800/https://www.charlesrussellspeechlys.com/en/insights/expert-insights/dispute-resolution/2024/in-depth-virtual-currency-regulation-uae/
@@ -51,12 +68,14 @@ trigger:
         issuance, listing, and trading in onshore UAE (outside the financial free
         zones).
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_government
       note: |
         Day-level. SCA Decision No. 23/RM of 2020 is dated 01 November 2020 (and was
         published by the Chairman of the SCA Board in December 2020). Trigger anchored
-        to the 2020-11-01 decision date. Human audit should pin the SCA's own
-        Decision 23/RM/2020 text as a primary_legal anchor.
+        to the 2020-11-01 decision date. The captured SCA 2020-track-record page is
+        the primary-government anchor for the decision's existence and regulatory
+        scope; the full decision PDF remains desirable but was not replayable from
+        the live SCA URL on 2026-06-01.
 
 target:
   kind: entity
@@ -164,6 +183,17 @@ observations:
           supports the enabling-with-licensing (null_event) reading.
 
 analysis_notes: |
+  **QUALITY-LOOP REPAIR 2026-06-01**. Added a replayable official SCA
+  2020-track-record capture as the primary_government trigger anchor.
+  The page explicitly records approval of crypto asset regulations under
+  the SCA Board Chairman's Decision No. 23 of 2020 and describes
+  licensing of crypto-asset activities including exchanges,
+  crowdfunding platforms, and securities custodians. The SCA-hosted
+  Decision 23 PDF URL discovered by search drifted to an empty
+  500/page-not-found body in this network path and was discarded rather
+  than attached. The row remains a null_event; no specific VASP
+  delisting or frontend/off-ramp cascade is claimed.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-2
   VERIFY-FLAG by rendering+grepping the captured source. All specifics (SCA/Decision-23/2020/licensing/custody) present in the captured 96kb source; the row already disclaims any specific delisting cascade. Sources meet the admission floor.).
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
@@ -192,12 +222,12 @@ analysis_notes: |
   Decision 23/2020 was later superseded by SCA Decisions 26/RM and 27/RM of 2023 and
   Federal Cabinet Decision 111/2022 (downstream events, outside this window).
 
-  DRYRUN caveats: both anchors are law-firm legal explainers (Charles Russell,
-  Galadari) — both replayable (body_hash+body_path) — that quote "Decision No. 23 of
-  2020 Concerning Crypto Assets Activities Regulation" and confirm the 2020 issuance
-  and SCA licensing requirement. Human audit should pin the SCA's own Decision
-  23/RM/2020 text as a primary_legal anchor and the SCA licensee register as a
-  harder denominator before any admission promotion.
+  Source-strength caveat: the full SCA Decision 23/RM/2020 PDF remains a desirable
+  primary_legal artifact, but the current claim no longer rests only on law-firm
+  explainers. The captured official SCA page is a replayable primary_government
+  source for the decision's existence and crypto-asset licensing scope; Charles
+  Russell and Galadari remain corroborating semi-primary explainers. A live SCA PDF
+  URL drifted to a blank 500/page-not-found response on 2026-06-01 and was not used.
 
 scoped_claim: |
   "The UAE SCA issued Decision No. 23/RM of 2020 (dated 01 November 2020) Concerning

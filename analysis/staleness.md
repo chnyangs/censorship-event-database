@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T09:13:36Z`
+Generated at: `2026-06-01T09:47:26Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -318,7 +318,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `russia-cbr-crypto-payment-ban-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `russia-dfa-law-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `russia-election-interference-ofac-2020` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
-| `russia-mining-legalization-law-2024-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
+| `russia-mining-legalization-law-2024-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `russia-mining-regional-ban-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `russia-rosfinmonitoring-binance-russia-rails-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `russian-cyber-theft-ofac-2020` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
@@ -382,7 +382,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `thailand-bot-bitcoin-prohibition-2013` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `thailand-sec-binance-bybit-c-and-d-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `thailand-sec-crypto-payment-ban-2022-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `tornado-cash-frontend-tornado-cash-eth-block-2022-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `tornado-cash-github-takedown-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `tornado-cash-ofac-2022` | `admitted` | `human_authored` | 2026-04-22 | 40 | ok | 2026-04-21 | 41 | ok | ok |
@@ -395,7 +395,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `trustwallet-sanctioned-token-ui-update-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `turkey-cbrt-crypto-ban-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `turkey-cmb-casp-licensing-law-7518-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `uae-sca-crypto-asset-activities-regulation-decision-23-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `uae-sca-crypto-asset-activities-regulation-decision-23-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `uae-vara-licence-issuance-regime-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `uk-fca-binance-markets-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `uk-fca-crypto-promotion-rule-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -647,7 +647,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `russia-cbr-crypto-payment-ban-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `russia-dfa-law-2020` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `russia-election-interference-ofac-2020` — audit=no_audit_recorded, verification=ok, verif_age=40d
-- `russia-mining-legalization-law-2024-08` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `russia-mining-legalization-law-2024-08` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `russia-mining-regional-ban-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `russia-rosfinmonitoring-binance-russia-rails-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `russian-cyber-theft-ofac-2020` — audit=no_audit_recorded, verification=ok, verif_age=40d
@@ -686,7 +686,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `thailand-bot-bitcoin-prohibition-2013` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `thailand-sec-binance-bybit-c-and-d-2021` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `thailand-sec-crypto-payment-ban-2022-04` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `tornado-cash-frontend-tornado-cash-eth-block-2022-04` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `tornado-cash-github-takedown-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `tornado-cash-ofac-delisting-2025` — audit=no_audit_recorded, verification=ok, verif_age=41d
@@ -696,7 +696,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `trustwallet-sanctioned-token-ui-update-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `turkey-cbrt-crypto-ban-2021` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `turkey-cmb-casp-licensing-law-7518-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d
-- `uae-sca-crypto-asset-activities-regulation-decision-23-2020` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `uae-sca-crypto-asset-activities-regulation-decision-23-2020` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `uae-vara-licence-issuance-regime-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `uk-fca-binance-markets-2021` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `uk-fca-crypto-promotion-rule-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d

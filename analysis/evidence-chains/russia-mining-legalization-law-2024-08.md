@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `0b7e0bd` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T09:13:36Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a785639` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T09:36:40Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -18,6 +18,22 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://www.fedsfm.ru/releases/7971>
+  - body_hash: `sha256:eeb722722e0e026c72b32ddeee00dcd1741b5746dab2945f551b6d6167f3228d`
+  - body_path: `sources/http_captures/russia-mining-legalization-law-2024-08/official-fedsfm/www.fedsfm.ru__releases-7971__861a608ea0.html`
+  > Russian Federal Financial Monitoring Service news release
+> dated 2024-08-08 15:53. Captured body states that the
+> President of the Russian Federation signed Federal Law
+> No. 221-FZ "On Amendments to Certain Legislative Acts of the
+> Russian Federation"; that the law regulates digital-currency
+> mining in the Russian Federation; that it defines mining,
+> mining pools, mining infrastructure, and address identifiers;
+> that the general effective date is 2024-08-19; and that the
+> registry / supervision provisions for miners and mining-pool
+> operators begin on 2024-11-01. Used as the replayable
+> primary-government trigger anchor after live kremlin.ru /
+> pravo.gov.ru capture timed out from this network path.
 - **`semi_primary_wayback`**
   - URL: <https://tass.com/economy/1826725>
   - Wayback: <https://web.archive.org/web/20240808183801/https://tass.com/economy/1826725>
@@ -131,7 +147,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `0b7e0bd`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a785639`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

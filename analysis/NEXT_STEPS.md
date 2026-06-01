@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **273 release-ready** cases, **92 admitted-but-blocked** cases, admitted observation reliability
-      **286 high / 79 medium / 0 low**, and admitted attribution reliability **244 high / 121 medium / 0 low**.
+      **276 release-ready** cases, **89 admitted-but-blocked** cases, admitted observation reliability
+      **287 high / 78 medium / 0 low**, and admitted attribution reliability **245 high / 120 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -194,6 +194,14 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       mirror page plus its image-based 259-FZ PDF after `publication.pravo.gov.ru` timed out from this network;
       Bittrex now cites the official Bittrex Global Zendesk delisting notice and uses direct attribution for the
       market-removal action while leaving the regulatory/AML rationale contextual.
+      Follow-on government primary-trigger repair also moved `russia-mining-legalization-law-2024-08`,
+      `uae-sca-crypto-asset-activities-regulation-decision-23-2020`, and
+      `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` out of the blocked/lower-tier queue. Russia mining
+      now uses a replayable Rosfinmonitoring release for Federal Law No. 221-FZ after live Kremlin/pravo
+      endpoints timed out; UAE SCA now uses the official 2020 track-record page for Decision No. 23 of 2020
+      after the direct PDF endpoint drifted to an empty 500/page-not-found response; and Thailand SEC now uses
+      the official Thai SEC No. 114/2021 Wayback memento, removing `evidence_tier=attested_secondary` and
+      upgrading trigger, observation, and attribution reliability to high.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize remaining primary-trigger blockers and rows with
@@ -204,7 +212,7 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       claim-usable merely to improve counts.
 - [ ] **`evidence_tier` IRR pass.** Codebook 4.0.0 added a decision-rule (the `attested_secondary` tier). The
       codebook's own "Effective" convention requires a new IRR pass on ≥ 10 events for a decision-rule change.
-      Run a 2-coder IRR pass on a 10–15 event sample of the 37 `attested_secondary` rows to confirm inter-rater
+      Run a 2-coder IRR pass on a 10–15 event sample of the 36 `attested_secondary` rows to confirm inter-rater
       agreement on (a) §9-clarity and (b) the single-source judgment. Record κ. This is outstanding process debt.
       Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md` plus the machine-readable
       `analysis/evidence_tier_irr_packet_2026_05_31.csv`; both are intentionally blank and must not be treated as

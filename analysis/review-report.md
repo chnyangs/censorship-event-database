@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `273`
-- Admitted but release-blocked cases: `92`
+- Release-ready cases: `276`
+- Admitted but release-blocked cases: `89`
 - Fully complete release-ready cases: `11`
-- Scope-limited release-ready cases: `262`
+- Scope-limited release-ready cases: `265`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 41, 'paper_anchor': 3}`
@@ -4653,18 +4653,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `russia-mining-legalization-law-2024-08`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `russia-mining-regional-ban-2024-12`
@@ -5601,21 +5598,14 @@ This file is the operational summary for the repo's two current priorities:
 ### `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
-- Observation reliability: `medium`
-- Attribution reliability: `medium`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
-- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `tornado-cash-frontend-tornado-cash-eth-block-2022-04`
@@ -5829,18 +5819,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `uae-sca-crypto-asset-activities-regulation-decision-23-2020`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `uae-vara-licence-issuance-regime-2023`

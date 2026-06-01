@@ -2,16 +2,16 @@ id: russia-mining-legalization-law-2024-08
 schema_version: 0.2.0
 codebook_version: "1.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.2"
+version: "0.3"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-21
+last_verified: 2026-06-01
 
 related_events:
   - russia-mining-regional-ban-2024-12
@@ -23,6 +23,24 @@ trigger:
   timestamp: 2024-08-08T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.fedsfm.ru/releases/7971
+      body_hash: sha256:eeb722722e0e026c72b32ddeee00dcd1741b5746dab2945f551b6d6167f3228d
+      body_path: sources/http_captures/russia-mining-legalization-law-2024-08/official-fedsfm/www.fedsfm.ru__releases-7971__861a608ea0.html
+      evidence_use: replayable
+      note: |
+        Russian Federal Financial Monitoring Service news release
+        dated 2024-08-08 15:53. Captured body states that the
+        President of the Russian Federation signed Federal Law
+        No. 221-FZ "On Amendments to Certain Legislative Acts of the
+        Russian Federation"; that the law regulates digital-currency
+        mining in the Russian Federation; that it defines mining,
+        mining pools, mining infrastructure, and address identifiers;
+        that the general effective date is 2024-08-19; and that the
+        registry / supervision provisions for miners and mining-pool
+        operators begin on 2024-11-01. Used as the replayable
+        primary-government trigger anchor after live kremlin.ru /
+        pravo.gov.ru capture timed out from this network path.
     - type: semi_primary_wayback
       url: https://tass.com/economy/1826725
       wayback: https://web.archive.org/web/20240808183801/https://tass.com/economy/1826725
@@ -73,13 +91,15 @@ trigger:
         lookup form; evidence_use=contextual_unarchived pending
         human-audit re-pinning.
   timestamp_sources:
-    - type: primary_legal
+    - type: primary_government
       note: |
         Federal Law No. 221-FZ carries a signing date of 2024-08-08 by
-        President Putin per TASS, Interfax, Bitcoin Magazine, and
-        other contemporaneous coverage. The special-registry
-        provisions take effect 2024-11-01. Day-level precision is the
-        supportable upper bound for the signing event.
+        President Putin per the captured Rosfinmonitoring release and
+        contemporaneous TASS, Interfax, and Bitcoin Magazine coverage.
+        Rosfinmonitoring records the general 2024-08-19 effective date
+        and 2024-11-01 effective date for the registry / supervision
+        provisions. Day-level precision is the supportable upper bound
+        for the signing event.
 
 target:
   kind: entity
@@ -237,6 +257,17 @@ observations:
           pending human-audit re-pinning of the Wayback snapshot.
 
 analysis_notes: |
+  **QUALITY-LOOP REPAIR 2026-06-01**. Added a replayable
+  primary_government Rosfinmonitoring capture for the 2024-08-08
+  Federal Law No. 221-FZ trigger. The live Kremlin print page and
+  publication.pravo.gov.ru paths timed out from this network path, so
+  the federal AML authority release is used as the claim-usable
+  government trigger anchor while TASS / Bitcoin Magazine remain
+  corroborating replayable semi-primary sources. The null_event
+  posture is unchanged: the law legalizes / registers mining activity
+  rather than producing a measured hashpower or service-access
+  restriction.
+
   **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
   human:xiangwen as null_case. TASS Wayback 20240808183801 + Bitcoin
   Magazine Wayback 20240808145931 reclassified semi_primary_wayback (2

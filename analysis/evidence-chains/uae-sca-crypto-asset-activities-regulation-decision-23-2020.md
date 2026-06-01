@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `0b7e0bd` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T09:13:36Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a785639` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T09:36:40Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -24,6 +24,21 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://www.sca.gov.ae/en/media-center/news/7/2/2021/sca-2020-report.aspx>
+  - body_hash: `sha256:db87fe2badf8917a14ee4714cf94bec50f25e345f1009b24fff4780750785d46`
+  - body_path: `sources/http_captures/uae-sca-crypto-asset-activities-regulation-decision-23-2020/official-sca/www.sca.gov.ae__en-media-center-news-7-2-2021-sca-2020-report.aspx__d6705dc0a1.html`
+  > UAE Securities and Commodities Authority official 2020-track
+> record news page. Captured body states that SCA approved
+> crypto asset regulations under the SCA Board Chairman's
+> Decision No. 23 of 2020 and that the decision regulates
+> licensing of financial activities connected with crypto
+> assets, particularly exchanges, crowdfunding platforms,
+> securities custodians, and other activities. Used as the
+> replayable primary-government trigger anchor. The direct SCA
+> PDF URL formerly indexed for Decision 23 drifted to an empty
+> 500/page-not-found response on 2026-06-01 and is intentionally
+> not used as evidence.
 - **`semi_primary_wayback`**
   - URL: <https://www.charlesrussellspeechlys.com/en/insights/expert-insights/dispute-resolution/2024/in-depth-virtual-currency-regulation-uae/>
   - Wayback: <https://web.archive.org/web/20260129211800/https://www.charlesrussellspeechlys.com/en/insights/expert-insights/dispute-resolution/2024/in-depth-virtual-currency-regulation-uae/>
@@ -102,7 +117,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `0b7e0bd`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a785639`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

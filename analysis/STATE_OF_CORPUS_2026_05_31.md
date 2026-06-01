@@ -12,13 +12,13 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **273** (11 complete / 262 scoped) and
-  admitted-but-blocked cases are **92**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **276** (11 complete / 265 scoped) and
+  admitted-but-blocked cases are **89**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **286 high / 79 medium / 0 low**; attribution reliability
-  **244 high / 121 medium / 0 low**. Current admitted paper roles are
+  observation reliability **287 high / 78 medium / 0 low**; attribution reliability
+  **245 high / 120 medium / 0 low**. Current admitted paper roles are
   **264 aggregate_datapoint / 97 null_control / 1 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
@@ -132,18 +132,26 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `publication.pravo.gov.ru` live endpoint timed out from this network; and
   `bittrex-privacy-coin-delisting-2021-01` now cites the official Bittrex Global Zendesk notice and uses
   direct attribution for the market-removal action while leaving the AML/KYC/regulatory rationale contextual.
+  The latest continuation repair pins three more government primary-trigger anchors:
+  `russia-mining-legalization-law-2024-08` now uses a replayable Rosfinmonitoring release for Federal Law
+  No. 221-FZ after live Kremlin/pravo endpoints timed out from this network; `uae-sca-crypto-asset-activities-regulation-decision-23-2020`
+  now uses the official SCA 2020 track-record page for Decision No. 23 of 2020 after the direct PDF endpoint
+  drifted to an empty 500/page-not-found response; and
+  `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` now uses the official Thai SEC No. 114/2021 Wayback
+  memento, removing its `evidence_tier=attested_secondary` caveat and upgrading trigger, observation, and
+  attribution reliability to high.
 
 ## Admitted composition (365)
 | dimension | breakdown |
 |---|---|
 | **research_stratum** | S4_nation_state 111 · S5_corporate 95 · S3_doj_sec_cftc_fiod 76 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 305 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 328 · **attested_secondary 37** (lower-tier, filterable — see codebook §10) |
+| **evidence_tier** | admission_grade 329 · **attested_secondary 36** (lower-tier, filterable — see codebook §10) |
 | **admission_tier** | empirical_case 264 · null_case 97 · anchor_case 4 |
 | **empirical_shape** | comparison 266 · null_event 97 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
-censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **37
+censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **36
 `attested_secondary`** rows are the well-documented single-source national bans + corporate restrictions admitted
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.
@@ -154,7 +162,8 @@ exclude or down-weight them with `evidence_tier == attested_secondary`.
    over-claims to match captured sources; 2 held with corrected flags. → 331.
 3. **Task 2 — source-strengthening** (+37 before later false-positive rejection): +3 via official-PDF capture (philippines-bsp / argentina-bcra /
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
-   (25 clean + 9 flagged national bans; 1 of those was later upgraded to admission-grade by item 11). → 368.
+   (25 clean + 9 flagged national bans; two of those were later upgraded to admission-grade by item 11 and the
+   2026-06-01 quality-loop repair). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;
    current validator regression 405/405.
 5. **Continuation P1/P2 cleanup** — resolved US-state regulator stratum policy (state/subnational
