@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **256** (11 complete / 245 scoped) and
-  admitted-but-blocked cases are **111**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **257** (11 complete / 246 scoped) and
+  admitted-but-blocked cases are **110**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **274 high / 82 medium / 11 low**; attribution reliability
-  **234 high / 133 medium / 0 low**. Current admitted paper roles are
-  **256 aggregate_datapoint / 97 null_control / 11 appendix_only / 3 paper_anchor**.
+  observation reliability **275 high / 82 medium / 10 low**; attribution reliability
+  **235 high / 132 medium / 0 low**. Current admitted paper roles are
+  **257 aggregate_datapoint / 97 null_control / 10 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -86,6 +86,11 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   and administrative-actions captures plus a 2021 Wayback capture of Binance's Malaysia product-restriction
   support announcement. The row is release-ready scoped and narrowed to the SC website/app/messaging disable
   directive plus Binance-announced MYR product restrictions, with no broader bank-rail or live-URL-only claim.
+  `netherlands-dnb-binance-warning-2021` now replaces generic DNB homepage / contextual Wayback patterns with
+  pinned official DNB warning, enforcement-page, and fine-decision PDF captures. The row is recoded as
+  `regulatory_enforcement`, narrowed to DNB's warning/fine for unregistered Binance exchange and custody
+  services in the Netherlands, and no longer carries the unpinned 2022/2023 market-exit cascade already modeled
+  by `binance-netherlands-exit-2023-07`.
 
 ## Admitted composition (367)
 | dimension | breakdown |

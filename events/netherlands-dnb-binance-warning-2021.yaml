@@ -1,6 +1,6 @@
 id: netherlands-dnb-binance-warning-2021
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
@@ -9,51 +9,63 @@ analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
-last_human_audit: 2026-05-16
+last_verified: 2026-06-01
 
 related_events:
   - uk-fca-binance-markets-2021
   - singapore-mas-binance-services-2021
   - malaysia-sc-binance-disable-2021
+  - binance-netherlands-exit-2023-07
 
 trigger:
-  type: nation_state_block
+  type: regulatory_enforcement
   actor: NL_DNB
   timestamp: 2021-08-18T00:00:00Z
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://www.dnb.nl/en/
-      wayback: https://web.archive.org/web/20210818000000*/dnb.nl
-      evidence_use: contextual_unarchived
+      url: https://www.dnb.nl/en/general-news/news-2021/dnb-warns-against-binance/?rel=outbound
+      body_hash: sha256:3e0b848fbd2cc8f85bcd564322f9aab46623b538844984630e8dfe9e18c5d7af
+      body_path: sources/http_captures/netherlands-dnb-binance-warning-2021/primary/www.dnb.nl__en-general-news-news-2021-dnb-warns-against-binance__0309d4ff6a.html
+      evidence_use: replayable
       note: |
-        De Nederlandsche Bank (DNB) public warning dated 2021-08-18 that
-        Binance was offering crypto services in the Netherlands without
-        the legally-required registration as a custodian / crypto-service
-        provider under the Dutch Anti-Money Laundering and Anti-Terrorist
-        Financing Act (Wwft). DRYRUN promotion: real anchor (DNB press
-        release index) asserted with Wayback URL pattern; body-hash
-        capture deferred to non-DRYRUN release. Marked
-        contextual_unarchived to flag the unarchived state explicitly.
+        DNB warning page published 2021-08-18. The page states that Binance
+        was providing crypto services in the Netherlands without the required
+        DNB registration under the Wwft and identifies the affected services
+        as exchange between virtual and fiat currencies and custodian wallets.
+        Captured and pinned with body_hash/body_path during the 2026-06-01
+        quality-loop repair.
+    - type: primary_legal
+      url: https://www.dnb.nl/algemeen-nieuws/nieuwsbericht-2022/boete-voor-binance-holdings-ltd-vanwege-het-zonder-de-wettelijk-vereiste-registratie-aanbieden-van-cryptodiensten/
+      body_hash: sha256:08203adbf0008a92f2a43d9c4a2c24c8d4a9bb60b25a2d19d5427a21a5a1b37e
+      body_path: sources/http_captures/netherlands-dnb-binance-warning-2021/primary/www.dnb.nl__algemeen-nieuws-nieuwsbericht-2022-boete-voor-binance-holdings-ltd-vanwege-het-zonder-de-wettelijk-vereiste-registratie-aanbieden-van-cryptodiensten__1c9531968d.html
+      evidence_use: replayable
+      note: |
+        DNB enforcement page announcing the EUR 3.325 million administrative
+        fine imposed on 2022-04-25 and made irrevocable after Binance withdrew
+        its objection on 2022-07-27. The page reiterates that Binance offered
+        crypto services in the Netherlands without the legally required DNB
+        registration and links the fine to the earlier 2021-08-18 public
+        warning. Captured and pinned with body_hash/body_path.
   timestamp_sources:
     - type: primary_legal
       note: |
-        DNB press release dated 2021-08-18 (Wednesday). Day-level
-        precision per the press release publication date.
+        Day-level precision from the DNB warning page's publication date,
+        2021-08-18.
 
 target:
   kind: entity
   entity: binance_netherlands_dnb_warning_target_2021
   enumeration: subset
   enumeration_note: |
-    Binance Holdings Ltd. / Binance.com cohort serving Dutch retail
-    customers. DNB warning targets the global Binance entity (no
-    Dutch-registered Binance legal entity existed at the time of the
-    warning) and, by cascade, Dutch retail customers of binance.com.
-    Target treated as entity-level at the Binance-NL cohort.
+    Binance Holdings Ltd. and the Binance operators providing crypto services
+    to Netherlands residents through binance.com without DNB registration. The
+    DNB warning covers Binance Holdings Limited as owner of the intellectual
+    property rights and the Binance operator entities serving the Netherlands.
+    Target is coded as the Binance-Netherlands customer cohort, not a complete
+    legal-entity tree or address set.
   protocol: null
   actor_type: regulated_crypto_service_provider
   actor_name: Binance Holdings Ltd. (NL cohort)
@@ -66,128 +78,120 @@ jurisdiction: [NL]
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: DNB action is a regulatory / registration notice, not a DNS / connectivity action.
+    note: |
+      DNB action is a registration/enforcement action, not an ISP, DNS, or
+      connectivity block. No network reachability measurement is retained.
   - layer: l1_consensus
     status: not_applicable
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: partially_measured
-    scope: [binance.com]
+    status: not_applicable
     note: |
-      Binance posted NL-user-facing notices on binance.com/en in the
-      months following the DNB warning, ultimately culminating in
-      withdrawal of NL operations announced 2022-07 (NL users notified
-      to withdraw funds, trading restrictions imposed). L4 is load-
-      bearing alongside offramp_cex per stub brief. partially_measured
-      pending pinned Wayback bracket of binance.com/en NL-geo banners
-      and 2022-07 withdrawal-notice page.
+      This repaired S4 row does not retain the earlier unpinned Binance
+      frontend/notice/withdrawal cascade. The later Netherlands market exit is
+      represented separately by binance-netherlands-exit-2023-07.
   - layer: asset_onchain
     status: not_applicable
     note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     scope:
-      - binance_nl_user_rail
+      - binance_nl_unregistered_exchange_and_custody_services
     note: |
-      DNB warning constrained Binance's ability to onboard new Dutch
-      retail customers and offer regulated crypto custody services.
-      Cascade: Binance fined EUR 3.3M by DNB in 2022-04 for the
-      2020-05 through 2022-?? unregistered-operation period, and
-      Binance announced withdrawal of NL operations 2022-07
-      (NL-user offboarding, trading-pair restrictions, ultimate
-      service exit). partially_measured pending pinned anchors for
-      the 2022-04 fine and 2022-07 withdrawal notice.
+      Load-bearing layer. DNB's public warning states that Binance offered
+      crypto services in the Netherlands without required Wwft registration,
+      including exchange services and custodian wallets. The 2022 DNB fine page
+      confirms the same unregistered-service conduct and records the
+      administrative fine. The row is scoped to the official regulatory
+      warning/fine; it does not claim an independently measured user offboard,
+      website block, or fiat-rail shutdown.
 
 observations:
-  - layer: l4_frontend
-    actor: frontend:binance_com_en_nl_geo
-    event: nl_user_facing_notices_and_2022_07_withdrawal
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2022-07-01T00:00:00Z
-    precision: day
-    delta_hours: 7608
-    window:
-      - 2021-08-18T00:00:00Z
-      - 2022-07-31T23:59:59Z
-    sources:
-      - type: primary_legal
-        url: https://www.dnb.nl/en/
-        wayback: https://web.archive.org/web/20210818000000*/dnb.nl
-        evidence_use: contextual_unarchived
-        note: |
-          DNB 2021-08-18 warning is the regulatory anchor. Binance NL
-          withdrawal announced 2022-07 cited DNB registration
-          requirements; attribution=direct at the DNB-warning-as-
-          trigger level. DRYRUN: pinned Wayback captures for the
-          Binance 2022-07 withdrawal notice deferred; body-hash
-          capture deferred.
   - layer: offramp_cex
-    actor: binance_nl_cohort
-    event: nl_user_rail_restrictions_and_eventual_exit
+    actor: regulator:dnb
+    event: dnb_warning_and_fine_for_binance_unregistered_crypto_services
     observation_kind: observed_change
     attribution: direct
-    timestamp: 2022-07-01T00:00:00Z
+    timestamp: 2021-08-18T00:00:00Z
     precision: day
-    delta_hours: 7608
+    delta_hours: 0
+    country: NL
     window:
       - 2021-08-18T00:00:00Z
-      - 2022-07-31T23:59:59Z
+      - 2022-07-27T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://www.dnb.nl/en/
-        wayback: https://web.archive.org/web/20220401000000*/dnb.nl
-        evidence_use: contextual_unarchived
+        url: https://www.dnb.nl/en/general-news/news-2021/dnb-warns-against-binance/?rel=outbound
+        body_hash: sha256:3e0b848fbd2cc8f85bcd564322f9aab46623b538844984630e8dfe9e18c5d7af
+        body_path: sources/http_captures/netherlands-dnb-binance-warning-2021/primary/www.dnb.nl__en-general-news-news-2021-dnb-warns-against-binance__0309d4ff6a.html
+        evidence_use: replayable
         note: |
-          DNB 2022-04 fine (EUR 3.3M) and Binance 2022-07 NL-exit
-          announcement evidence the cascade from the 2021-08-18
-          warning. NL retail users of binance.com lost native rail
-          access. DRYRUN: pinned Wayback captures for the 2022-04
-          fine decision and 2022-07 withdrawal notice deferred;
-          body-hash capture deferred.
+          DNB 2021-08-18 warning names Binance and states that Binance was
+          providing Netherlands crypto services without required legal
+          registration, including exchange and custody services. Attribution is
+          direct because the legal source itself names the target and the
+          unregistered service surface.
+      - type: primary_legal
+        url: https://www.dnb.nl/algemeen-nieuws/nieuwsbericht-2022/boete-voor-binance-holdings-ltd-vanwege-het-zonder-de-wettelijk-vereiste-registratie-aanbieden-van-cryptodiensten/
+        body_hash: sha256:08203adbf0008a92f2a43d9c4a2c24c8d4a9bb60b25a2d19d5427a21a5a1b37e
+        body_path: sources/http_captures/netherlands-dnb-binance-warning-2021/primary/www.dnb.nl__algemeen-nieuws-nieuwsbericht-2022-boete-voor-binance-holdings-ltd-vanwege-het-zonder-de-wettelijk-vereiste-registratie-aanbieden-van-cryptodiensten__1c9531968d.html
+        evidence_use: replayable
+        note: |
+          DNB 2022 enforcement page records the EUR 3.325 million fine,
+          reiterates that offering crypto services in the Netherlands without
+          DNB registration is prohibited, and states that the fine became
+          irrevocable after Binance withdrew its objection on 2022-07-27.
+          Retained as official corroboration and finality evidence for the
+          regulatory-enforcement observation.
+      - type: primary_legal
+        url: https://www.dnb.nl/media/0jxfaxck/besluit-tot-het-opleggen-van-een-bestuurlijke-boete-aan-binance-gelakte-versie-pdf.pdf
+        body_hash: sha256:89e39ced6f6f0b910bc13684670b767e6567951228e67420a20e2d90b2714543
+        body_path: sources/http_captures/netherlands-dnb-binance-warning-2021/primary/www.dnb.nl__media-0jxfaxck-besluit-tot-het-opleggen-van-een-bestuurlijke-boete-aan-binance-gelakte-versie-pdf.pdf__e1747784aa.bin
+        evidence_use: replayable
+        note: |
+          DNB's redacted administrative-fine decision PDF, captured as a binary
+          artifact and pinned by hash. The HTML warning and fine pages remain
+          the text-greppable load-bearing anchors; the PDF is retained as the
+          official decision artifact.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/netherlands-dnb-binance-warning-2021.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **QUALITY-LOOP REPAIR 2026-06-01** (automated source repair; no new
+  human-audit stamp). This row previously depended on generic DNB homepage
+  citations, contextual_unarchived Wayback patterns, and dryrun notes. It also
+  overreached by folding later Binance Netherlands market-exit material into
+  the 2021 DNB warning row. The repair captures and pins the specific DNB 2021
+  warning page, the 2022 DNB enforcement/fine page, and the redacted DNB fine
+  decision PDF.
 
-  Comparison documenting the 2021-08-18 De Nederlandsche Bank (DNB)
-  public warning that Binance was offering crypto services in the
-  Netherlands without the legally-required registration under the
-  Dutch Wwft (Anti-Money Laundering and Anti-Terrorist Financing Act).
-  Sibling case to the 2021 global Binance regulator wave: UK FCA
-  2021-06-26, Malaysia SC 2021-07-30, Singapore MAS 2021-09-02.
+  The retained empirical claim is narrower: DNB publicly warned on 2021-08-18
+  that Binance was providing crypto services in the Netherlands without the
+  legally required DNB registration under the Wwft, naming exchange services
+  and custodian wallets; DNB later imposed and finalized an administrative
+  fine for that unregistered-service conduct. This row does not claim a
+  measured frontend block, user offboarding, app-store removal, fiat-rail
+  shutdown, or the 2023 Binance Netherlands withdrawal. The 2023 withdrawal is
+  kept in the separate S5 corporate event binance-netherlands-exit-2023-07.
 
-  Paper-relevant contrast vs UK FCA (uk-fca-binance-markets-2021):
-  DNB warning targets the global Binance entity directly (no NL-
-  registered Binance legal entity at the time) rather than a UK-style
-  named-subsidiary action. Cascade is slower and entity-level rather
-  than UK-style class-wide payment-rail severance: DNB EUR 3.3M fine
-  2022-04, Binance NL withdrawal 2022-07. Load-bearing observational
-  axes per stub brief: L4 frontend (Binance NL-user notices) and
-  offramp_cex (NL-user rail restrictions).
-
-  DRYRUN caveats: trigger primary citation (DNB press release index)
-  is asserted without pinned Wayback / body-hash capture. For non-
-  DRYRUN release, capture body_hash + body_path for: (1) DNB 2021-
-  08-18 warning page, (2) DNB 2022-04 fine decision, (3) Binance NL
-  2022-07 withdrawal announcement. Marked evidence_use=
-  contextual_unarchived on all citations to flag the unarchived
-  state per validator policy.
+  Structurally, this remains part of the 2021 Binance regulator wave alongside
+  UK FCA 2021-06, Malaysia SC 2021-07, and Singapore MAS 2021-09. Its usable
+  role is an aggregate datapoint for regulator-imposed exchange/custody
+  service constraints, not a narrative anchor for a full cross-layer cascade.
 
 scoped_claim: |
-  "DNB public warning of 2021-08-18 that Binance was offering crypto
-  services in the Netherlands without legally-required Wwft
-  registration precipitated a slow-cascade NL-cohort offramp
-  severance, culminating in a DNB EUR 3.3M fine (2022-04) and
-  Binance's announced withdrawal of NL operations (2022-07).
-  Load-bearing observational axes are L4 frontend (NL-user notices
-  on binance.com) and offramp_cex (NL-user rail restrictions) at
-  the Binance-NL cohort level."
+  "DNB's 2021-08-18 warning and subsequent 2022 fine establish an official
+  Netherlands regulatory-enforcement action against Binance for offering
+  crypto exchange and custodian-wallet services without the legally required
+  DNB registration. The retained observation is limited to that CEX/off-ramp
+  regulatory service surface; it does not claim ISP blocking, frontend
+  unavailability, app-store removal, on-chain asset action, fiat-rail shutdown,
+  or the later 2023 Binance Netherlands market exit."
 
 tags:
-  - nation_state_block
+  - regulatory_enforcement
   - nl
   - dnb
   - binance
   - registration_warning
-  - dryrun_2026_05_16
+  - administrative_fine
+  - quality_loop_2026_06_01

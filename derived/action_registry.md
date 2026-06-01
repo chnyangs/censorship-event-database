@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `558ea65` · generated `2026-06-01T01:29:23Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `878f8b5` · generated `2026-06-01T01:45:33Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **325**
+- Canonical physical actions: **324**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -205,8 +205,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `myanmar-cbm-crypto-prohibition-directive-9-2020:0:offramp_cex:myanmar_crypto_ecosystem:crypto_sale_purchase_exchange_prohibited_directive_9_2020` | 1 | 0 | 1 | offramp_cex | `myanmar-cbm-crypto-prohibition-directive-9-2020::offramp_cex` |
 | `nepal-nrb-bitcoin-ban-2017-08:0:offramp_cex:nepali_bitcoin_exchange_operators:domestic_bitcoin_exchange_channel_shut_by_nrb_ban_and_cib_arrests` | 1 | 0 | 1 | offramp_cex | `nepal-nrb-bitcoin-ban-2017-08::offramp_cex` |
 | `nepal-nrb-comprehensive-crypto-ban-2021-09:0:offramp_cex:nation_state:nepal_crypto_perimeter:nepal_crypto_transaction_usage_mining_declared_illegal_comprehensive` | 1 | 0 | 1 | offramp_cex | `nepal-nrb-comprehensive-crypto-ban-2021-09::offramp_cex` |
-| `netherlands-dnb-binance-warning-2021:0:l4_frontend:frontend:binance_com_en_nl_geo:nl_user_facing_notices_and_2022_07_withdrawal` | 1 | 0 | 1 | l4_frontend | `netherlands-dnb-binance-warning-2021::l4_frontend` |
-| `netherlands-dnb-binance-warning-2021:1:offramp_cex:binance_nl_cohort:nl_user_rail_restrictions_and_eventual_exit` | 1 | 0 | 1 | offramp_cex | `netherlands-dnb-binance-warning-2021::offramp_cex` |
+| `netherlands-dnb-binance-warning-2021:0:offramp_cex:regulator:dnb:dnb_warning_and_fine_for_binance_unregistered_crypto_services` | 1 | 0 | 1 | offramp_cex | `netherlands-dnb-binance-warning-2021::offramp_cex` |
 | `nigeria-binance-network-block-2024-02:0:l0_network:nigeria_ncc:ncc_telco_block_of_binance_and_other_exchange_domains` | 1 | 0 | 1 | l0_network | `nigeria-binance-network-block-2024-02::l0_network` |
 | `nigeria-binance-network-block-2024-02:1:offramp_cex:exchange:binance_nigeria:nigerian_user_access_to_binance_offramp_severed` | 1 | 0 | 1 | offramp_cex | `nigeria-binance-network-block-2024-02::offramp_cex` |
 | `nigeria-cbn-crypto-ban-2021:0:offramp_cex:nigerian_crypto_banking_ecosystem:naira_banking_channel_severed_industry_wide` | 1 | 0 | 1 | offramp_cex | `nigeria-cbn-crypto-ban-2021::offramp_cex` |
