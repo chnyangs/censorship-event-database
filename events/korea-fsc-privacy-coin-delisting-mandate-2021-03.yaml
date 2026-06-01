@@ -1,19 +1,17 @@
 id: korea-fsc-privacy-coin-delisting-mandate-2021-03
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "Korea FSC March-2021 mandate (Specific Financial Information Act) requiring exchanges to delist privacy 'dark coins' (Monero etc.). §9-clear delisting mandate, documented; attested_secondary on a single captured source."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - korea-fsc-institutional-restriction-2017
@@ -26,6 +24,28 @@ trigger:
   timestamp: 2021-03-25T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://fsc.go.kr/no010101/75591
+      body_hash: sha256:a2c7fdcad3bd103de21b2e38077b851fc63e3ee7792180b45a2f1798b8701ff2
+      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-nowww/fsc.go.kr__no010101-75591__80c5090d3f.html
+      evidence_use: replayable
+      note: |
+        Official FSC/FIU press release, captured 2026-06-01. The release
+        states that the amended Specific Financial Transaction Information
+        reporting/supervision regulation was completed and effective 2021-03-25,
+        and that VASPs are prohibited from handling virtual assets whose
+        transaction histories are difficult to identify and whose money-
+        laundering risk is high, so-called "dark coins."
+    - type: primary_government
+      url: https://fsc.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=75591&fileTy=ATTACH&fileNo=2
+      body_hash: sha256:010a8ed8d4c6d10d2aed336211eca9d7a6f05d7e923fb6c084d4a0a2edec15a7
+      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-pdf/fsc.go.kr__comm-getFile__99d4d4b302.bin
+      evidence_use: replayable
+      note: |
+        Official PDF attachment to the FSC/FIU release. The PDF text carries
+        the same 2021-03-25 effective date and VASP handling prohibition for
+        so-called dark coins; it is retained as a second official replayable
+        anchor for the page body.
     - type: supporting_journalism
       url: https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
       wayback: https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
@@ -51,15 +71,15 @@ trigger:
         coins (names Monero and Zcash), citing money-laundering / ransomware
         traceability risk, effective March 2021.
   timestamp_sources:
-    - type: supporting_journalism
+    - type: primary_government
+      url: https://fsc.go.kr/no010101/75591
+      body_hash: sha256:a2c7fdcad3bd103de21b2e38077b851fc63e3ee7792180b45a2f1798b8701ff2
+      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-nowww/fsc.go.kr__no010101-75591__80c5090d3f.html
       note: |
-        Day-level anchor 2021-03-25 = effective date of the amended Special
-        Financial Transactions Information Act enforcement decree (the act's
-        amendments commenced 2021-03-25). The captured journalism sources state
-        the privacy-coin handling ban took effect "March 2021"; the specific
-        2021-03-25 commencement date is the act's widely-reported effective date.
-        Human audit should pin the FSC enforcement-decree text (English) as a
-        primary_legal anchor confirming the exact day.
+        Day-level anchor 2021-03-25 from the official FSC/FIU release, which
+        states that the amended supervisory regulation was completed and
+        effective on 3.25, and that the amended law, enforcement decree, and
+        supervisory regulation take effect from 3.25.
 
 target:
   kind: entity
@@ -103,13 +123,13 @@ coverage:
       Load-bearing layer. The FSC enforcement-decree amendment bars South Korean
       licensed exchanges from handling privacy / "dark" coins (Monero, Dash, Zcash),
       forcing domestic delisting and severing the regulated off-ramp for that asset
-      class. Captured at class level via two replayable journalism anchors.
+      class. Captured at class level via official FSC/FIU HTML and PDF anchors,
+      with journalism retained only as English corroboration and examples.
     denominator_artifact:
-      type: supporting_journalism
-      url: https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
-      wayback: https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
-      body_hash: sha256:0db6fbd0fde1a06682603c614aa565696119b03b0ab32e6f954305843b85f62a
-      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary/web.archive.org__web-20260114063228-https-cointelegraph.com-news-south-korean-financial-watchdog-to-ban-privacy-coins__3faf32edcd.html
+      type: primary_government
+      url: https://fsc.go.kr/no010101/75591
+      body_hash: sha256:a2c7fdcad3bd103de21b2e38077b851fc63e3ee7792180b45a2f1798b8701ff2
+      body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-nowww/fsc.go.kr__no010101-75591__80c5090d3f.html
       scope_descriptor:
         providers: [korean_exchange_class]
         countries: [KR]
@@ -117,8 +137,8 @@ coverage:
           - 2021-03-25T00:00:00Z
           - 2021-12-31T23:59:59Z
       note: |
-        Cointelegraph report as class-level denominator anchor for the FSC
-        privacy-coin handling prohibition scope.
+        Official FSC/FIU release as class-level denominator anchor for the
+        VASP dark-coin handling prohibition scope.
 
 observations:
   - layer: offramp_cex
@@ -130,6 +150,37 @@ observations:
     precision: day
     delta_hours: 0
     sources:
+      - type: primary_government
+        url: https://fsc.go.kr/no010101/75591
+        body_hash: sha256:a2c7fdcad3bd103de21b2e38077b851fc63e3ee7792180b45a2f1798b8701ff2
+        body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-nowww/fsc.go.kr__no010101-75591__80c5090d3f.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [korean_exchange_class]
+          countries: [KR]
+          time_window:
+            - 2021-03-25T00:00:00Z
+            - 2021-12-31T23:59:59Z
+        note: |
+          Official FSC/FIU release: VASPs are prohibited from handling
+          virtual assets whose transaction histories are difficult to identify
+          and whose money-laundering risk is high, so-called "dark coins."
+          attribution remains plausible because the source binds the VASP /
+          asset class rather than enumerating a specific exchange operator.
+      - type: primary_government
+        url: https://fsc.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=75591&fileTy=ATTACH&fileNo=2
+        body_hash: sha256:010a8ed8d4c6d10d2aed336211eca9d7a6f05d7e923fb6c084d4a0a2edec15a7
+        body_path: sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-pdf/fsc.go.kr__comm-getFile__99d4d4b302.bin
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [korean_exchange_class]
+          countries: [KR]
+          time_window:
+            - 2021-03-25T00:00:00Z
+            - 2021-12-31T23:59:59Z
+        note: |
+          Official PDF attachment carrying the same dark-coin handling
+          prohibition and effective-date text as the FSC/FIU HTML release.
       - type: supporting_journalism
         url: https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
         wayback: https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins
@@ -164,7 +215,15 @@ observations:
           the FSC enforcement-decree amendment.
 
 analysis_notes: |
-  **ADMITTED 2026-05-31** (genuine review: TASK-2 lower-tier Pass 2. Rendered+grepped the captured source — core restriction substantiated (5/7-7/7 terms). The wave-1/2 VERIFY-FLAG was an OFAC-template "specific-address" boilerplate that does not apply to a national ban; removed. Admitted at evidence_tier=attested_secondary (§10), single source, filterable.)
+  **REPAIRED 2026-06-01** (automated primary-source repair). Located and
+  captured the official FSC/FIU press-release page plus its official PDF
+  attachment. Both anchors carry the 2021-03-25 effective date and the
+  load-bearing prohibition: VASPs may not handle high-money-laundering-risk
+  virtual assets whose transaction history is difficult to identify, so-called
+  "dark coins." Removed evidence_tier=attested_secondary; journalism remains
+  only as English corroboration and asset-name examples.
+
+  **ADMITTED 2026-05-31** (genuine review: TASK-2 lower-tier Pass 2. Rendered+grepped the captured source — core restriction substantiated (5/7-7/7 terms). The wave-1/2 VERIFY-FLAG was an OFAC-template "specific-address" boilerplate that does not apply to a national ban; removed. Since upgraded from evidence_tier=attested_secondary by primary-source repair.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
   verified+captured, awaiting human admission).
 
@@ -189,21 +248,19 @@ analysis_notes: |
   enumerated operators). empirical_shape=comparison / admission_tier=empirical_case:
   one strong-attribution (plausible) observed_change layer (offramp_cex).
 
-  DRYRUN caveats: the two captured anchors are journalism (Cointelegraph, CPO
-  Magazine) — both replayable (body_hash+body_path) — and state the ban took effect
-  "March 2021"; the precise 2021-03-25 day is the Special-Act amendment commencement
-  date and should be hardened against the FSC enforcement-decree text at human
-  audit. This is distinct from korea-fsc-institutional-restriction-2017 (earlier FSC
-  action) and from the corporate privacy-coin delistings (binance-privacy-coin-
-  delisting-2023, huobi-htx-privacy-coin-delisting-2024), which are issuer/exchange-
-  initiated S5 events rather than a state mandate.
+  Source-hardening note: this is distinct from korea-fsc-institutional-
+  restriction-2017 (earlier FSC action) and from the corporate privacy-coin
+  delistings (binance-privacy-coin-delisting-2023, huobi-htx-privacy-coin-
+  delisting-2024), which are issuer/exchange-initiated S5 events rather than a
+  state mandate.
 
 scoped_claim: |
   "South Korea's FSC enforcement-decree amendment, effective March 2021 (Special
   Financial Transactions Information Act commencement 2021-03-25), bars licensed
   Korean crypto exchanges from handling privacy / 'dark' coins (Monero, Dash,
-  Zcash), forcing domestic delisting of that asset class. Captured at class level
-  at the offramp_cex layer; no per-exchange or on-chain enumeration claimed."
+  Zcash), forcing domestic delisting of that asset class. Captured with official
+  FSC/FIU HTML and PDF anchors at class level at the offramp_cex layer; no
+  per-exchange or on-chain enumeration claimed."
 
 tags:
   - regulatory_enforcement
