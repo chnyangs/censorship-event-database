@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `60f1d90` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `cdc9fa8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -10,8 +10,8 @@
 
 > "DOJ EDPA seizure of ChipMixer on 2023-03-15 produced a direct L4 observed_change within
 > 17h (canonical chipmixer.com substituted with an FBI seizure banner). Joint-action footprint:
-> US + 4 European cooperating agencies + Europol. Establishes the 'cross-border
-> law-enforcement seizure' pattern for Bitcoin mixer frontends."
+> US + 4 European cooperating agencies + Europol. No ISP/DNS block, asset freeze, or exchange
+> off-ramp reaction is claimed for this row."
 
 ## 1. Trigger
 
@@ -22,14 +22,21 @@
 ### Trigger citations
 
 - **`primary_legal`**
-  - URL: <https://www.justice.gov/usao-edpa/pr/platform-used-launder-ransomware-proceeds-seized-coordinated-international-operation>
-  - body_hash: `sha256:bf9db0c3926262d81d1c79dacf2ee916719cf42412d5666937c5138cb09f2e65`
-  - body_path: `sources/http_captures/chipmixer-doj-2023/doj-press-release/www.justice.gov__usao-edpa-pr-platform-used-launder-ransomware-proceeds-seized-coordinated-international-operation__778427a127.html`
-  > DOJ USAO Eastern District of Pennsylvania press release for the 2023-03-15 seizure of
-> ChipMixer Bitcoin mixer service. Joint operation: USAO EDPA + FBI + BKA (Germany) +
-> HSI + Frankfurt ZIT + Poland Cybercrime Bureau + Zurich Cantonal Police + Europol.
-> DOJ dismantled infrastructure seized ~1,909 BTC (~$46.5M) and indicted operator
-> Minh Quôc Nguyên (Vietnamese national).
+  - URL: <https://www.justice.gov/usao-edpa/pr/justice-department-investigation-leads-takedown-darknet-cryptocurrency-mixer-processed>
+  > DOJ USAO Eastern District of Pennsylvania press release for the 2023-03-15 takedown of
+> ChipMixer Bitcoin mixer service. The legacy local CLI capture of an older DOJ slug returned
+> an Akamai interstitial rather than article text, and current CLI access to justice.gov is
+> WAF-gated on this network path; this row therefore treats the DOJ page as contextual only.
+> The load-bearing replayable trigger/observation anchor is the same-day FBI seizure banner
+> below.
+- **`primary_legal`**
+  - URL: <https://web.archive.org/web/20230315170606/https://chipmixer.com/>
+  - body_hash: `sha256:280d29cf15a4a644dc174f059f031e3e067cd56d0bd52b5de305ccdb022eb2bd`
+  - body_path: `sources/http_captures/chipmixer-doj-2023/frontend-wayback/web.archive.org__web-20230315170606-https-chipmixer.com__4c13a2baa9.html`
+  > Wayback snapshot of chipmixer.com on 2023-03-15 17:06 UTC carrying the FBI seizure
+> banner. The banner states that the domain was seized under an EDPA seizure warrant and
+> names the coordinating US and European law-enforcement agencies. This is the replayable
+> legal trigger anchor used for the retained L4 seizure claim.
 
 ## 2. Target
 
@@ -78,12 +85,11 @@
 
 ## 5. Honest coverage gaps
 
-- **l0_network** (`not_measured`): L0 network-layer OONI API query performed 2026-04-22. Searched the
-- **offramp_cex** (`not_measured`): Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `60f1d90`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `cdc9fa8`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

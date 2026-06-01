@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `60f1d90` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `cdc9fa8` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -103,7 +103,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `china-state-council-mining-crackdown-2021-05` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-21` | `—` |
 | `china-weibo-crypto-exchange-purge-2021-03` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `hour` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-21` | `—` |
 | `chinyong-kim-sang-man-dprk-it-worker-ofac-2023-05` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
-| `chipmixer-doj-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
+| `chipmixer-doj-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-06-02` | `—` |
 | `circle-usdc-cryptex-freeze-2024` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `asset_only` | · | · | `2026-05-21` | `—` |
 | `circle-usdc-svb-policy-statement-2023` | `null_case` | `S5_corporate` | `null_event` | `corporate_policy_change` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `circle-usdc-tornado-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `address_set` | `subset` | 1 | `asset_only` | ✓ | · | `2026-04-22` | `—` |
@@ -166,7 +166,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `garantex-ofac-2022` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `gate-io-privacy-coin-perpetuals-delisting-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `asset` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
 | `gemini-netherlands-exit-2023-11` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-02` | `2026-05-31` |
-| `genesis-market-ofac-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `2026-05-31` |
+| `genesis-market-ofac-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-02` | `2026-05-31` |
 | `genesis-sec-gemini-earn-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `germany-bafin-binance-licence-withdrawal-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-16` |
 | `google-play-india-crypto-exchange-removal-2024-01` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
@@ -295,7 +295,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `russian-cyber-theft-ofac-2020` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
 | `russian-cybercrime-infra-ofac-2025` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `2026-05-15` |
 | `salame-ftx-campaign-finance-doj-2023` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `doj_indictment` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `—` |
-| `samourai-doj-2024` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
+| `samourai-doj-2024` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-06-02` | `—` |
 | `sec-abra-plutus-earn-cease-2024-08` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `2026-05-31` |
 | `sec-beaxy-platform-shutdown-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-16` | `2026-05-16` |
 | `sec-burnside-bitcoin-stock-exchange-2014` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-16` | `2026-05-16` |

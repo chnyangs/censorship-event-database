@@ -1,6 +1,6 @@
 # L0 OONI coverage summary
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-02` · commit `60f1d90` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-02` · commit `cdc9fa8` · generated `2026-06-02T00:00:00Z`
 
 This artifact summarizes archived OONI web-connectivity query outputs for candidate L0 network-layer evidence. It is denominator-aware: `no_ooni_measurements` means the public OONI query returned no measurements for that domain/window, not that blocking was absent.
 
@@ -37,11 +37,11 @@ This artifact summarizes archived OONI web-connectivity query outputs for candid
 
 | class | events |
 | --- | ---: |
-| `queried_no_ooni_measurements` | 9 |
-| `not_queried_yet` | 21 |
-| `cp_not_ingested_v0_1` | 30 |
+| `queried_no_ooni_measurements` | 7 |
+| `not_queried_yet` | 20 |
+| `cp_not_ingested_v0_1` | 27 |
 
-`not_queried_yet` events: `china-pboc-exchange-access-block-2019-06`, `china-search-engine-social-keyword-exchange-block-2021-06`, `genesis-market-ofac-2023-04`, `grinex-garantex-successor-ofac-2025`, `indonesia-bappebti-illegal-exchange-block-2023`, `iran-ransomware-ofac-2018`, `kazakhstan-internet-shutdown-mining-2022-01`, `malaysia-sc-binance-disable-2021`, `media-land-volosovik-bulletproof-ofac-2025-11`, `netex24-bitpapa-russia-crypto-ofac-2024-03`, `ofac-hamas-buy-cash-msb-2023-10`, `ofac-recent-action-20240111`, `sec-beaxy-platform-shutdown-2023`, `sinbad-doj-2024`, `task-force-rusich-ofac-2022-09`, `thailand-sec-binance-bybit-c-and-d-2021`, `tornado-cash-ofac-delisting-2025`, `tornado-cash-ofac-redesignation-2022`, `wang-hongfei-fentanyl-precursor-ofac-2023-04`, `zheng-yan-fentanyl-ofac-2019-08`, `zservers-ofac-2025`.
+`not_queried_yet` events: `china-pboc-exchange-access-block-2019-06`, `china-search-engine-social-keyword-exchange-block-2021-06`, `grinex-garantex-successor-ofac-2025`, `indonesia-bappebti-illegal-exchange-block-2023`, `iran-ransomware-ofac-2018`, `kazakhstan-internet-shutdown-mining-2022-01`, `malaysia-sc-binance-disable-2021`, `media-land-volosovik-bulletproof-ofac-2025-11`, `netex24-bitpapa-russia-crypto-ofac-2024-03`, `ofac-hamas-buy-cash-msb-2023-10`, `ofac-recent-action-20240111`, `sec-beaxy-platform-shutdown-2023`, `sinbad-doj-2024`, `task-force-rusich-ofac-2022-09`, `thailand-sec-binance-bybit-c-and-d-2021`, `tornado-cash-ofac-delisting-2025`, `tornado-cash-ofac-redesignation-2022`, `wang-hongfei-fentanyl-precursor-ofac-2023-04`, `zheng-yan-fentanyl-ofac-2019-08`, `zservers-ofac-2025`.
 
 
 ## Phrasing lock

@@ -110,7 +110,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `china-state-council-mining-crackdown-2021-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `china-weibo-crypto-exchange-purge-2021-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `chinyong-kim-sang-man-dprk-it-worker-ofac-2023-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
-| `chipmixer-doj-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
+| `chipmixer-doj-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `circle-usdc-cryptex-freeze-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `circle-usdc-multichain-hack-freeze-2023-07` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `circle-usdc-sealed-civil-case-16-address-freeze-2026-03` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
@@ -180,7 +180,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `garantex-ofac-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `gate-io-privacy-coin-perpetuals-delisting-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `gemini-netherlands-exit-2023-11` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
-| `genesis-market-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
+| `genesis-market-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
 | `genesis-sec-gemini-earn-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `germany-bafin-binance-licence-withdrawal-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-06-01 | 1 | ok | ok |
 | `goldage-ny-state-indictment-2006-07` | `rejected` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
@@ -324,7 +324,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `russian-cyber-theft-ofac-2020` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
 | `russian-cybercrime-infra-ofac-2025` | `admitted` | `human_authored` | 2026-05-15 | 18 | ok | 2026-04-22 | 41 | ok | ok |
 | `salame-ftx-campaign-finance-doj-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-20 | 13 | ok | no_audit_recorded |
-| `samourai-doj-2024` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
+| `samourai-doj-2024` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `saudi-standing-committee-virtual-currency-warning-2018-08` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `sec-abra-plutus-earn-cease-2024-08` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
 | `sec-beaxy-platform-shutdown-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
@@ -497,7 +497,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `china-state-council-mining-crackdown-2021-05` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `china-weibo-crypto-exchange-purge-2021-03` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `chinyong-kim-sang-man-dprk-it-worker-ofac-2023-05` — audit=no_audit_recorded, verification=ok, verif_age=2d
-- `chipmixer-doj-2023` — audit=no_audit_recorded, verification=ok, verif_age=41d
+- `chipmixer-doj-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `circle-usdc-cryptex-freeze-2024` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `circle-usdc-multichain-hack-freeze-2023-07` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `circle-usdc-sealed-civil-case-16-address-freeze-2026-03` — audit=no_audit_recorded, verification=ok, verif_age=2d
@@ -652,7 +652,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `russia-rosfinmonitoring-binance-russia-rails-2022` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `russian-cyber-theft-ofac-2020` — audit=no_audit_recorded, verification=ok, verif_age=41d
 - `salame-ftx-campaign-finance-doj-2023` — audit=no_audit_recorded, verification=ok, verif_age=13d
-- `samourai-doj-2024` — audit=no_audit_recorded, verification=ok, verif_age=41d
+- `samourai-doj-2024` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `saudi-standing-committee-virtual-currency-warning-2018-08` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `sec-etherdelta-coburn-unregistered-exchange-2018-11` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `sec-garza-gaw-miners-zenminer-2015` — audit=no_audit_recorded, verification=ok, verif_age=13d

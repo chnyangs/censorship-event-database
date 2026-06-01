@@ -14184,17 +14184,17 @@
   {
     "_source_file": "chipmixer-doj-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison documenting the international takedown of ChipMixer Bitcoin mixer on\n2023-03-15. Joint FBI + BKA + Poland + Switzerland + HSI + Europol operation; domain\nseizure + ~$46.5M BTC seized + operator indictment. The L4 observed_change is direct\n(seizure banner on event day, 17h post-indictment-unsealing).\n\nStructural twin to Samourai 2024-04-24 (similar Bitcoin-privacy-tool + same-day seizure +\ninternational cooperation). Both cases inform the paper's \"direct-law-enforcement\" L4\nmechanism class.\n",
+    "analysis_notes": "Source/coverage repair 2026-06-02: the old DOJ live capture was an Akamai interstitial,\nso the DOJ press release is retained only as contextual_unarchived. The replayable\nprimary-legal anchor for the retained claim is the local Wayback capture of the FBI\nseizure banner. L0 and offramp_cex are non-load-bearing and are explicitly out of the\npublic claim rather than open empirical obligations.\n\ncomparison documenting the international takedown of ChipMixer Bitcoin mixer on\n2023-03-15. Joint FBI + BKA + Poland + Switzerland + HSI + Europol operation; domain\nseizure + ~$46.5M BTC seized + operator indictment. The L4 observed_change is direct\n(seizure banner on event day, 17h post-indictment-unsealing).\n\nStructural twin to Samourai 2024-04-24 (similar Bitcoin-privacy-tool + same-day seizure +\ninternational cooperation). Both cases inform the paper's \"direct-law-enforcement\" L4\nmechanism class.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across:\n  chipmixer.com  2023-02-01..2023-04-15  -> 0 results\nAll 1 queries returned 0 measurements.\nArtifact: sources/l0_datasets/chipmixer-doj-2023/chipmixer.com__ooni.json\n(body_hash sha256:f776c4d51e63caa3226624ba046363f9baca426a8617a1a59aea53ec9c220dfc).\nMeasurement-gap finding: OONI volunteer probe coverage is absent.\n",
+        "note": "No ISP/DNS/national network-blocking claim is retained for this row. The 2026-04-22\nOONI API query found no public web_connectivity measurements for chipmixer.com in the\n2023-02-01..2023-04-15 window, but that absence is treated only as measurement-gap\ncontext, not as a load-bearing no-change observation.\nArtifact: sources/l0_datasets/chipmixer-doj-2023/chipmixer.com__ooni.json\n(body_hash sha256:f776c4d51e63caa3226624ba046363f9baca426a8617a1a59aea53ec9c220dfc).\n",
         "scope": [
           "chipmixer.com"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "chain": "bitcoin",
@@ -14221,8 +14221,8 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Chain-analytics anchors pinned 2026-04-22 as primary_corporate\nsubstrate for per-event offramp_cex reasoning (Chainalysis, TRM,\nElliptic sanctions-coverage resource pages):\n  Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7\n  TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a\n  Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a\nStatus remains not_measured because per-event chain-analytics report\nslices (naming specific SDN addresses / KYT flag records) are not\nyet pinned. The anchors establish the substrate; per-event slicing\nwould promote status.\n",
-        "status": "not_measured"
+        "note": "No exchange, KYT-provider, or off-ramp reaction is claimed for this event. Generic\nchain-analytics sanctions-coverage pages are not event-specific and are not load-bearing\nfor the retained ChipMixer L4 seizure claim.\n",
+        "status": "not_applicable"
       }
     ],
     "created_at": "2026-04-22T02:10:00+00:00",
@@ -14235,7 +14235,7 @@
       "CH",
       "EU"
     ],
-    "last_verified": "2026-04-22",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "frontend:chipmixer_com",
@@ -14265,10 +14265,10 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"DOJ EDPA seizure of ChipMixer on 2023-03-15 produced a direct L4 observed_change within\n17h (canonical chipmixer.com substituted with an FBI seizure banner). Joint-action footprint:\nUS + 4 European cooperating agencies + Europol. Establishes the 'cross-border\nlaw-enforcement seizure' pattern for Bitcoin mixer frontends.\"\n",
+    "scoped_claim": "\"DOJ EDPA seizure of ChipMixer on 2023-03-15 produced a direct L4 observed_change within\n17h (canonical chipmixer.com substituted with an FBI seizure banner). Joint-action footprint:\nUS + 4 European cooperating agencies + Europol. No ISP/DNS block, asset freeze, or exchange\noff-ramp reaction is claimed for this row.\"\n",
     "status": "admitted",
     "tags": [
       "doj_seizure",
@@ -14296,24 +14296,30 @@
       "actor": "US_DOJ_EDPA",
       "citation": [
         {
-          "body_hash": "sha256:bf9db0c3926262d81d1c79dacf2ee916719cf42412d5666937c5138cb09f2e65",
-          "body_path": "sources/http_captures/chipmixer-doj-2023/doj-press-release/www.justice.gov__usao-edpa-pr-platform-used-launder-ransomware-proceeds-seized-coordinated-international-operation__778427a127.html",
-          "note": "DOJ USAO Eastern District of Pennsylvania press release for the 2023-03-15 seizure of\nChipMixer Bitcoin mixer service. Joint operation: USAO EDPA + FBI + BKA (Germany) +\nHSI + Frankfurt ZIT + Poland Cybercrime Bureau + Zurich Cantonal Police + Europol.\nDOJ dismantled infrastructure seized ~1,909 BTC (~$46.5M) and indicted operator\nMinh Qu\u00f4c Nguy\u00ean (Vietnamese national).\n",
+          "evidence_use": "contextual_unarchived",
+          "note": "DOJ USAO Eastern District of Pennsylvania press release for the 2023-03-15 takedown of\nChipMixer Bitcoin mixer service. The legacy local CLI capture of an older DOJ slug returned\nan Akamai interstitial rather than article text, and current CLI access to justice.gov is\nWAF-gated on this network path; this row therefore treats the DOJ page as contextual only.\nThe load-bearing replayable trigger/observation anchor is the same-day FBI seizure banner\nbelow.\n",
           "type": "primary_legal",
-          "url": "https://www.justice.gov/usao-edpa/pr/platform-used-launder-ransomware-proceeds-seized-coordinated-international-operation"
+          "url": "https://www.justice.gov/usao-edpa/pr/justice-department-investigation-leads-takedown-darknet-cryptocurrency-mixer-processed"
+        },
+        {
+          "body_hash": "sha256:280d29cf15a4a644dc174f059f031e3e067cd56d0bd52b5de305ccdb022eb2bd",
+          "body_path": "sources/http_captures/chipmixer-doj-2023/frontend-wayback/web.archive.org__web-20230315170606-https-chipmixer.com__4c13a2baa9.html",
+          "note": "Wayback snapshot of chipmixer.com on 2023-03-15 17:06 UTC carrying the FBI seizure\nbanner. The banner states that the domain was seized under an EDPA seizure warrant and\nnames the coordinating US and European law-enforcement agencies. This is the replayable\nlegal trigger anchor used for the retained L4 seizure claim.\n",
+          "type": "primary_legal",
+          "url": "https://web.archive.org/web/20230315170606/https://chipmixer.com/"
         }
       ],
       "timestamp": "2023-03-15T00:00:00+00:00",
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level via DOJ press release.",
+          "note": "Day-level via the DOJ press release and same-day seizure-banner memento.",
           "type": "primary_legal"
         }
       ],
       "type": "doj_seizure_order"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "circle-usdc-cryptex-freeze-2024.yaml",
@@ -25754,14 +25760,14 @@
   {
     "_source_file": "genesis-market-ofac-2023-04.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk\nadversarial-verify clean (no VERIFY-FLAG) AND strict admission validation \u2014 captured primary/\nsemi-primary sources meet the \u00a71.6/threshold floor; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission). OFAC designated the\ncybercrime marketplace Genesis Market on 2023-04-05 (Treasury jy1388,\nE.O. 13694), coordinated with the DOJ/FBI Operation Cookie Monster\ntakedown. Per codebook \u00a79 the OFAC SDN designation itself is the in-scope\ncensorship action (financial-system debanking of the designated entity).\nCoded null_event/null_case per the S1 convention (cf. zservers-ofac-2025,\nbitriver-russia-mining-ofac-2022-04): no on-chain addresses are\nenumerated in the OFAC entry, no public CEX cascade was documented in the\n14-day window, and the co-occurring domain seizure is a separate FBI/DOJ\ninstrument not captured here (offramp_cex observed_no_change/none).\nSource verified + captured 2026-05-31 (Treasury jy1388, body_hash-pinned;\nno fabrication). Candidate src (jy2616) was WRONG \u2014 corrected to the\nactual press release jy1388.\n",
+    "analysis_notes": "Source/coverage repair 2026-06-02: Treasury jy1388 remains the replayable\nprimary-legal trigger anchor. L0 and L4 are explicitly non-load-bearing for this OFAC\nnull-control row because the parallel Operation Cookie Monster domain seizure is a\nseparate legal instrument, not this event's retained observation.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk\nadversarial-verify clean (no VERIFY-FLAG) AND strict admission validation \u2014 captured primary/\nsemi-primary sources meet the \u00a71.6/threshold floor; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission). OFAC designated the\ncybercrime marketplace Genesis Market on 2023-04-05 (Treasury jy1388,\nE.O. 13694), coordinated with the DOJ/FBI Operation Cookie Monster\ntakedown. Per codebook \u00a79 the OFAC SDN designation itself is the in-scope\ncensorship action (financial-system debanking of the designated entity).\nCoded null_event/null_case per the S1 convention (cf. zservers-ofac-2025,\nbitriver-russia-mining-ofac-2022-04): no on-chain addresses are\nenumerated in the OFAC entry, no public CEX cascade was documented in the\n14-day window, and the co-occurring domain seizure is a separate FBI/DOJ\ninstrument not captured here (offramp_cex observed_no_change/none).\nSource verified + captured 2026-05-31 (Treasury jy1388, body_hash-pinned;\nno fabrication). Candidate src (jy2616) was WRONG \u2014 corrected to the\nactual press release jy1388.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "3.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No OONI / Censored Planet probe of Genesis Market domains within the\nevent window. Substrate-shaped gap, not a coverage_gap observation.\n",
-        "status": "not_measured"
+        "note": "No ISP/DNS/national network-blocking claim is retained for this OFAC row. The\nTreasury trigger names an entity target and does not enumerate a network-access\nmeasurement surface for this event.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
@@ -25774,8 +25780,8 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "Genesis Market's domains were seized in the parallel Operation\nCookie Monster action (FBI/DOJ + international partners), but that\nseizure is a separate legal instrument from the OFAC SDN designation\ntracked by this event, and no Wayback CDX bracketing of the Genesis\nMarket frontend has been captured in this authoring pass. not_measured.\n",
-        "status": "not_measured"
+        "note": "Genesis Market's domains were seized in the parallel Operation\nCookie Monster action (FBI/DOJ + international partners), but that\nseizure is a separate legal instrument from the OFAC SDN designation\ntracked by this event. This row does not retain a frontend-seizure\nclaim; the retained observation is the absence of a public CEX cascade\nfor the OFAC entity designation.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "asset_onchain",
@@ -25794,7 +25800,7 @@
       "US"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "counterparty_cex_ecosystem",
@@ -25832,7 +25838,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
     "scoped_claim": "\"The 2023-04-05 OFAC E.O. 13694 designation of the Genesis Market\ncybercrime marketplace (coordinated with Operation Cookie Monster)\nenumerated no on-chain addresses; no public CEX cascade was documented in\nthe 14-day window. null_case: entity target with limited measurable\ncross-layer surface.\"\n",
@@ -25877,7 +25883,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "genesis-sec-gemini-earn-2023.yaml",
@@ -49902,17 +49908,17 @@
   {
     "_source_file": "samourai-doj-2024.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison documenting the joint US (SDNY) + international (Europol, Portugal,\nIceland) takedown of Samourai Wallet on 2024-04-24. Unlike OFAC-SDN events, this trigger\nis a DOJ criminal indictment + SDNY seizure warrant \u2014 a different legal instrument. The\nsame-day domain seizure places this in the direct-law-enforcement class with Cryptex\n2024-09-26, but with an even cleaner international coordination footprint (4 countries,\nnot 3).\n\nEvent_class: comparison (admitted once at least 2 more layer\nobservations attach \u2014 e.g., exchange tagging reactions). At this draft stage only L4 is\ngrounded.\n\nTarget: marked enumeration=subset because Samourai addresses are not enumerable in the\nOFAC SDN-list sense (CoinJoin wallet + \u2265$2B fee-receiving infrastructure); only canonical\ndomain is the stable identifier.\n",
+    "analysis_notes": "Source/coverage repair 2026-06-02: the old DOJ live capture was a WAF interstitial, so\nthe DOJ press release is retained only as contextual_unarchived. The replayable\nprimary-legal anchor for the retained claim is the local Wayback capture of the SDNY\nseizure banner. L0 and offramp_cex are non-load-bearing and are explicitly out of the\npublic claim rather than open empirical obligations.\n\ncomparison documenting the joint US (SDNY) + international (Europol, Portugal,\nIceland) takedown of Samourai Wallet on 2024-04-24. Unlike OFAC-SDN events, this trigger\nis a DOJ criminal indictment + SDNY seizure warrant \u2014 a different legal instrument. The\nsame-day domain seizure places this in the direct-law-enforcement class with Cryptex\n2024-09-26, but with an even cleaner international coordination footprint (4 countries,\nnot 3).\n\nTarget: marked enumeration=subset because Samourai addresses are not enumerable in the\nOFAC SDN-list sense (CoinJoin wallet + \u2265$2B fee-receiving infrastructure); only canonical\ndomain is the stable identifier.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across:\n  samouraiwallet.com  2024-03-24..2024-05-24  -> 0 results\n  whirlpool.samouraiwallet.com  2024-03-24..2024-05-24  -> 0 results\nAll 2 queries returned 0 measurements.\nArtifact: sources/l0_datasets/samourai-doj-2024/samouraiwallet.com__ooni.json\n(body_hash sha256:f19214ecce8316d792cfc650e2a05a6fad1c53aac16f4bbe58f51e2337d992bc).\nMeasurement-gap finding: OONI volunteer probe coverage is absent.\n",
+        "note": "No ISP/DNS/national network-blocking claim is retained for this row. The 2026-04-22\nOONI API query found no public web_connectivity measurements for samouraiwallet.com or\nwhirlpool.samouraiwallet.com in the 2024-03-24..2024-05-24 window, but that absence is\ntreated only as measurement-gap context, not as a load-bearing no-change observation.\nArtifact: sources/l0_datasets/samourai-doj-2024/samouraiwallet.com__ooni.json\n(body_hash sha256:f19214ecce8316d792cfc650e2a05a6fad1c53aac16f4bbe58f51e2337d992bc).\n",
         "scope": [
           "samouraiwallet.com"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "chain": "bitcoin",
@@ -49940,8 +49946,8 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Chain-analytics anchors pinned 2026-04-22 as primary_corporate\nsubstrate for per-event offramp_cex reasoning (Chainalysis, TRM,\nElliptic sanctions-coverage resource pages):\n  Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7\n  TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a\n  Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a\nStatus remains not_measured because per-event chain-analytics report\nslices (naming specific SDN addresses / KYT flag records) are not\nyet pinned. The anchors establish the substrate; per-event slicing\nwould promote status.\n",
-        "status": "not_measured"
+        "note": "No exchange, KYT-provider, or off-ramp reaction is claimed for this event. Generic\nchain-analytics sanctions-coverage pages are not event-specific and are not load-bearing\nfor the retained Samourai L4 seizure claim.\n",
+        "status": "not_applicable"
       }
     ],
     "created_at": "2026-04-22T01:55:00+00:00",
@@ -49953,7 +49959,7 @@
       "IS",
       "EU"
     ],
-    "last_verified": "2026-04-22",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "frontend:samouraiwallet_com",
@@ -49983,10 +49989,10 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"DOJ SDNY indictment + domain seizure of Samourai Wallet on 2024-04-24 produced a direct\nL4 observed_change within ~19h of indictment unsealing (canonical samouraiwallet.com\nsubstituted with an SDNY seizure banner). Joint-action footprint: US + Europol + Portugal +\nIceland. Other layers pending empirical query.\"\n",
+    "scoped_claim": "\"DOJ SDNY indictment + domain seizure of Samourai Wallet on 2024-04-24 produced a direct\nL4 observed_change within ~19h of indictment unsealing (canonical samouraiwallet.com\nsubstituted with an SDNY seizure banner). Joint-action footprint: US + Europol + Portugal +\nIceland. No ISP/DNS block, asset freeze, or exchange off-ramp reaction is claimed for this row.\"\n",
     "status": "admitted",
     "tags": [
       "doj_indictment",
@@ -50016,11 +50022,17 @@
       "actor": "US_DOJ_SDNY",
       "citation": [
         {
-          "body_hash": "sha256:4c0bb4581d4e022a235ec932d484403bea011d5379d4686eed71d7138f4fd833",
-          "body_path": "sources/http_captures/samourai-doj-2024/doj-press-release/www.justice.gov__usao-sdny-pr-founders-and-ceo-cryptocurrency-mixing-service-arrested-and-charged-money-laundering__9bf8c90adc.html",
-          "note": "DOJ SDNY press release for the 2024-04-24 indictment of Keonne Rodriguez and William\nLonergan Hill, founders and CEO of Samourai Wallet / Whirlpool. Charges: conspiracy\nto commit money laundering and conspiracy to operate an unlicensed money transmitting\nbusiness. Simultaneously, the domain samouraiwallet.com was seized pursuant to a SDNY\nseizure warrant (18 U.S.C. \u00a7\u00a7 981, 982; 21 U.S.C. \u00a7 853). International cooperation:\nUSAO SDNY + FBI + IRS-CI + Europol + Portugal Judiciary Police + Icelandic Police.\n",
+          "evidence_use": "contextual_unarchived",
+          "note": "DOJ SDNY press release for the 2024-04-24 indictment of Keonne Rodriguez and William\nLonergan Hill, founders and CEO of Samourai Wallet / Whirlpool. The legacy local CLI\ncapture returned a DOJ WAF interstitial rather than article text, so this source is\nretained only as contextual_unarchived. The load-bearing replayable trigger/observation\nanchor is the same-day SDNY seizure banner below.\n",
           "type": "primary_legal",
           "url": "https://www.justice.gov/usao-sdny/pr/founders-and-ceo-cryptocurrency-mixing-service-arrested-and-charged-money-laundering"
+        },
+        {
+          "body_hash": "sha256:ee99adbaa188036ca0ad5929e509c229acb2b804c55b24cb81f6ec2978502f2d",
+          "body_path": "sources/http_captures/samourai-doj-2024/frontend-wayback/web.archive.org__web-20240424193938-https-samouraiwallet.com__5a0a26a311.html",
+          "note": "Wayback snapshot of samouraiwallet.com on 2024-04-24 19:39 UTC carrying the SDNY\nseizure banner. The banner states that the domain was seized under a SDNY seizure\nwarrant and names USAO SDNY, FBI, IRS-CI, Europol, Portugal Judiciary Police, and\nIcelandic Police. This is the replayable legal trigger anchor used for the retained\nL4 seizure claim.\n",
+          "type": "primary_legal",
+          "url": "https://web.archive.org/web/20240424193938/https://samouraiwallet.com/"
         },
         {
           "evidence_use": "contextual_unarchived",
@@ -50033,13 +50045,13 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "DOJ press release carries publication timestamp; domain seizure effective by 19:39 UTC event day per Wayback.",
+          "note": "Day-level via DOJ press release; domain seizure effective by 19:39 UTC event day per Wayback.",
           "type": "primary_legal"
         }
       ],
       "type": "doj_indictment"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "saudi-standing-committee-virtual-currency-warning-2018-08.yaml",

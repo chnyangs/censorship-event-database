@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `310`
-- Admitted but release-blocked cases: `55`
+- Release-ready cases: `313`
+- Admitted but release-blocked cases: `52`
 - Fully complete release-ready cases: `12`
-- Scope-limited release-ready cases: `298`
+- Scope-limited release-ready cases: `301`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 40, 'paper_anchor': 4}`
@@ -1360,17 +1360,14 @@ This file is the operational summary for the repo's two current priorities:
 ### `chipmixer-doj-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `circle-usdc-cryptex-freeze-2024`
@@ -2358,18 +2355,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `genesis-market-ofac-2023-04`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `genesis-sec-gemini-earn-2023`
@@ -4608,17 +4602,14 @@ This file is the operational summary for the repo's two current priorities:
 ### `samourai-doj-2024`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `saudi-standing-committee-virtual-currency-warning-2018-08`
