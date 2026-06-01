@@ -1,17 +1,17 @@
 id: suex-ofac-2021
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-21T14:10:00Z
-last_verified: 2026-04-21
+last_verified: 2026-06-02
 
 related_events:
   - chatex-ofac-2021
@@ -85,17 +85,15 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
-    scope: [suex.io]
+    status: not_applicable
     note: |
-      L0 network-layer OONI API query performed 2026-04-22. Searched the
-      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
-      test_name=web_connectivity across:
-        suex.io  2021-08-21..2021-10-21  -> 0 results
-      All 1 queries returned 0 measurements.
-      Artifact: sources/l0_datasets/suex-ofac-2021/suex.io__ooni.json
-      (body_hash sha256:792ebc3e6dd883c0ee1cddc742d4c7b9e6d297ffe8473e496e7cb21e9b717209).
-      Measurement-gap finding: OONI volunteer probe coverage is absent.
+      The retained public claim is not an ISP/DNS/national-firewall block.
+      SUEX is modeled as an OFAC exchange designation with measured
+      issuer-side asset blacklist evidence and a measured suex.io L4
+      observed_no_change window. A prior OONI query across suex.io for
+      2021-08-21..2021-10-21 returned no public measurements, but the
+      absence of OONI volunteer data is not used as a claim-bearing L0
+      observation because no L0 censorship action is asserted.
   - layer: l1_consensus
     status: not_applicable
     chain: ethereum
@@ -112,18 +110,6 @@ coverage:
       MEV-Blocker launched 2023-03-27) did not exist at event time. Same
       construct-did-not-exist reasoning as L1 consensus coverage for
       pre-Merge events. not_applicable rather than not_measured.
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
   - layer: l4_frontend
     status: measured
     scope: [suex.io]
@@ -223,25 +209,40 @@ observations:
           surface as pre-event. Independent archival anchor for the observed_no_change claim.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  verified the existing OFAC Recent Actions, on-chain, and suex.io Wayback
+  replay anchors by validation; marked the row primary-source verified; and
+  narrowed L0/L3 taxonomy to the retained claim. This row measures the
+  Circle USDC asset blacklist for all four listed ETH addresses and the
+  same-week suex.io frontend observed_no_change window. It does not claim
+  an ISP/DNS block, and the event predates the public Ethereum RPC-filtering
+  substrate, so those layers are non-load-bearing for this row. Counterparty
+  CEX/off-ramp reactions remain honestly not_measured until a per-event
+  chain-analytics or exchange artifact is pinned.
+
   comparison documenting the first OFAC designation of a crypto exchange (SUEX
   OTC, 2021-09-21). Pre-Merge by 359 days, so L1 consensus layer is structurally
   not_applicable. The foreign-operated exchange (Russia + Czech Republic) had no US
   infrastructure dependency and the canonical suex.io domain remained fully operational for
-  at least 5 days post-designation — another L4 observed_no_change case, structurally
-  consistent with Sinbad 2023-11 (foreign mixer persists) but distinct from Tornado 2022
-  (US-hosted frontend collapses within 22h).
+  at least 5 days post-designation — an L4 observed_no_change case, structurally
+  distinct from Chatex's operator-posted compliance notice and from Tornado 2022's
+  US-side compliance cascade.
 
-  Follow-up directions (post-admission): (1) Tether freeze query on the 4 ETH USDT addresses (highest probability
-  of a fresh freeze given Tether's typical behaviour toward OFAC-listed entities); (2)
-  Etherscan query for USDC blacklist on the 4 ETH addresses; (3) pinned chain-analytics firm
-  (Chainalysis) SUEX cluster tagging report; (4) SUEX's eventual fate — later Wayback
-  snapshots or press reporting on whether the service stopped operating.
+  Remaining follow-up directions: (1) pin a per-event chain-analytics firm
+  report or exchange artifact naming SUEX-tagged deposit clusters before
+  claiming counterparty CEX/off-ramp behavior; (2) if using later SUEX
+  shutdown history, keep it outside this event's 5-day frontend
+  observed_no_change window unless a dated operator/Wayback artifact supports
+  a separate follow-on claim.
 
 scoped_claim: |
   "OFAC designation of SUEX OTC on 2021-09-21 — the first
-  exchange-level crypto sanction — did not disrupt the canonical suex.io frontend within a
-  5-day post-event window; the Russian-and-Czech-operated exchange continued to serve its
-  full application. L1 consensus layer is not_applicable by construction (pre-Merge)."
+  exchange-level crypto sanction — produced a Circle USDC blacklist of all
+  four listed ETH addresses about 50 hours later, but did not disrupt the
+  canonical suex.io frontend within a 5-day post-event window; the
+  Russian-and-Czech-operated exchange continued to serve its full
+  application. L1/L3 are not applicable by construction for this pre-Merge,
+  pre-public-RPC-filtering event; CEX/off-ramp reactions remain unmeasured."
 
 tags:
   - sanctions
