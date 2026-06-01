@@ -33,8 +33,8 @@ from _dataset_meta import now_utc_iso  # noqa: E402
 
 # Region buckets for honest landscape framing. A country in multiple
 # buckets (e.g. UK is "Europe" but not "EU_bloc") is not a data
-# problem — the paper's claim is that the US / Europe / Rest split
-# is ~75/15/10, not exact.
+# problem. The paper's claim is evidence-frame concentration under
+# inclusive region membership, not an exclusive partition.
 REGION_BUCKETS = {
     "US": ["US"],
     "Europe (EU+UK+CH+non-bloc)": ["UK", "EU", "DE", "NL", "PL", "PT", "CH", "IS"],
@@ -214,7 +214,7 @@ def _write_paper_table(by_country, by_region, by_us, total: int,
         f"({non_us/total*100:.1f}%)"
         + (f" · Unspecified: {unspec}" if unspec else "") + ".",
         "",
-        f"The v0.1 corpus is US-trigger-dominant ({us/total*100:.1f}% "
+        f"This snapshot is US-trigger-heavy ({us/total*100:.1f}% "
         f"of admitted events have `US` in their jurisdiction list); "
         f"{second_label}. Non-Western state-actor jurisdictions "
         f"(RU / CN / IN / KR / NG / TR) account for "
@@ -241,10 +241,10 @@ def _write_paper_table(by_country, by_region, by_us, total: int,
         "",
         "## What this table says (phrasing-lock)",
         "",
-        "- PREFER: \"the v0.1 corpus is US-trigger-dominant and "
-        "English-indexable\", \"~75% of admitted events have `US` in "
-        "their jurisdiction list\", \"events outside the US/Europe "
-        "block are thinner in the v0.1 frame\".",
+        f"- PREFER: \"the current admitted corpus is US-trigger-heavy "
+        f"and English-indexable ({us}/{total}, {us/total*100:.1f}%)\", "
+        "\"region shares are inclusive, not a partition\", \"events "
+        "outside the US/Europe block are thinner in this evidence frame\".",
         "- FORBID: \"censorship is concentrated in the US\", "
         "\"non-Western jurisdictions do not censor crypto\", \"US is "
         "the primary site of crypto censorship\". All three inversions "

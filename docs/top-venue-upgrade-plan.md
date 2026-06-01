@@ -1,20 +1,24 @@
 # Top-Venue Upgrade Plan
 
-This is the execution plan for moving the current v0.1 artifact from a
+This is the execution plan for moving the current working artifact from a
 strong dataset / methodology package toward an A/A+ full-paper submission.
 The plan is deliberately artifact-gated: a task is not complete until a
 file, table, audit worksheet, or validation command proves it.
 
 ## Current Baseline
 
-- Corpus: 53 YAML records, 52 admitted, 1 rejected registry row, 0 working drafts.
-- Case roles: 2 `anchor_case`, 38 `empirical_case`, 13 `null_case`.
-- Review posture: 7 `release_ready_scoped`, 46 `admitted_scope_blocked`.
-- Registry posture: 126 trigger-registry rows; 54 distinct in-frame
-  triggers against the 150-250 v0.2 target.
-- Measurement gaps: `l0_network` and `l3_rpc` have zero measured
-  denominators; `asset_onchain` rates remain retracted as structurally
-  circular.
+- Corpus: 405 YAML records, 365 admitted, 30 draft rows, and 10 rejected
+  registry rows.
+- Case roles: live admitted-role counts are generated in
+  [`analysis/paper_tables/table1_case_roles.md`](../analysis/paper_tables/table1_case_roles.md).
+- Review posture: live readiness counts are generated in
+  [`analysis/review-report.md`](../analysis/review-report.md).
+- Registry posture: live trigger-registry rows and distinct-frame counts are
+  generated in
+  [`analysis/trigger_registry/trigger_registry.md`](../analysis/trigger_registry/trigger_registry.md).
+- Measurement gaps: `l0_network` has no measured denominator, `l3_rpc` has
+  only a tiny measured denominator plus named partial rows, and
+  `asset_onchain` rates remain retracted as structurally circular.
 
 ## Phase 1 - Thesis And Claim Boundaries
 
@@ -26,8 +30,8 @@ Deliverables:
 - `docs/paper_claims.md` states the primary estimand and every claim's
   table source, case-role scope, and forbidden phrasing.
 - `README.md`, `docs/limitations-and-use.md`, and `docs/datasheet.md`
-  use the current 53-admitted-event snapshot and no longer mention draft
-  repair candidates as the current state.
+  use live `dataset.meta.json` / generated-table counts and no longer mention
+  stale pilot-snapshot counts as the current state.
 - SEC v. Binance and SEC v. Coinbase are described only as scoped
   CEX/platform-service comparison rows.
 
@@ -39,7 +43,7 @@ Acceptance gate:
 
 ## Phase 2 - Sampling Expansion
 
-Goal: expand from a good v0.1 corpus to a predeclared v0.2 sampling frame.
+Goal: expand from the current working corpus to a predeclared sampling frame.
 
 Targets:
 

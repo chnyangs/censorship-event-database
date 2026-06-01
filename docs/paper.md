@@ -1,11 +1,11 @@
 # Cross-Layer Censorship Events Need Denominators, Not Implicit Zeros
 
-> Draft manuscript wrapper for the v0.1 paper surface. This file is derived
+> Draft manuscript wrapper for the current working paper surface. This file is derived
 > from [`paper_claims.md`](paper_claims.md) and the generated tables under
 > [`analysis/paper_tables/`](../analysis/paper_tables/). If this draft and
 > `paper_claims.md` disagree, `paper_claims.md` wins.
 
-> **Status as of 2026-05-14**: working snapshot, not strict release/submission artifact. The draft may describe the current corpus and working gates, but independent-human IRR, H2 null-case audit, and H3 release sign-off remain blockers for strict submission claims.
+> **Status as of 2026-06-01**: working snapshot, not strict release/submission artifact. The draft may describe the current corpus and working gates, but independent-human IRR, evidence-tier IRR, H2 null-case audit, and H3 release sign-off remain blockers for strict submission claims.
 
 ## Abstract
 
@@ -17,12 +17,13 @@ this problem, including Internet censorship, Ethereum relay censorship,
 Tornado Cash event-study effects, and sanctions-compliance intelligence, but
 there is no open event corpus that links the trigger to cross-layer reactions
 while preserving which layers were actually measurable. We present a
-denominator-aware measurement protocol and a 53-event admitted corpus
-(`v0.1.0`, cutoff 2026-05-06) that records legal/policy triggers, coverage
+denominator-aware measurement protocol and an admitted-event corpus
+with live counts in `dataset.meta.json` and Table 1 that records legal/policy triggers, coverage
 status, observations, evidence chains, and paper-facing tables. The main
 finding is methodological: absent measurement is not encoded as a zero. In the
-current corpus, L0 network has zero measured denominators, L3 RPC has named
-partial Flashbots observations but no emitted conditional rate, and
+current corpus, L0 network has no measured denominator, L3 RPC has a tiny
+measured denominator plus named partial observations that must be cited with
+inline denominators, and
 asset-onchain rates are retracted because the admission rule is structurally
 circular for that layer. The strongest empirical surface is upper-stack
 public evidence: L4 frontend and off-ramp CEX rows have reportable
@@ -51,19 +52,18 @@ This project asks a narrower and more reproducible question:
 > policy trigger, and which layers' conditional rates are undefined because
 > the public evidentiary denominator does not exist?
 
-The answer is implemented as a six-artifact measurement protocol and a
-52-admitted-event paper corpus over a 53-record YAML surface. Each event is a YAML record with a trigger,
+The answer is implemented as a six-artifact measurement protocol and an
+admitted-event paper corpus over an all-event YAML registry surface. Each event is a YAML record with a trigger,
 target, layer coverage rows, layer observations, and source anchors. The
 derived artifacts then compute the coverage matrix, evidence chains, and
 paper tables from the same source records. A rate is emitted only when the
 numerator is coverage-matched to the same measured or partially measured
 denominator. When the denominator is absent, the table reports `—`, not `0`.
 
-The resulting v0.1 corpus is not a population sample. It is a
+The resulting corpus is not a population sample. It is a
 selection-transparent, US-trigger-dominant, English-indexable public-evidence
-corpus. It currently contains 52 admitted events: 2 anchor cases, 38
-empirical cases, and 12 null cases. One rejected YAML row is retained in
-the registry surface for selection transparency. The corpus is useful because it makes
+corpus. Current case-role counts live in Table 1, and draft/rejected YAML rows
+are retained in the registry surface for selection transparency. The corpus is useful because it makes
 the evidentiary substrate explicit. It shows where public measurement can
 support layer-level claims, where named partial observations exist, and where
 the only honest conclusion is an observability gap.
@@ -73,7 +73,7 @@ The paper makes four contributions:
 1. **A denominator-aware event measurement protocol.** The protocol separates
    `measured`, `partially_measured`, `not_measured`, and `not_applicable`
    coverage and forbids interpreting missing measurement as no reaction.
-2. **A reproducible 53-event corpus.** Every admitted event has replayable
+2. **A reproducible event corpus.** Every admitted event has replayable
    source anchors, evidence chains, and generated paper tables.
 3. **A cross-layer observability result.** Upper-stack layers have the
    strongest public evidence surface; L0 and L3 denominator gaps remain
@@ -148,7 +148,7 @@ is filtered to the same coverage subset as the denominator. This avoids the
 common error of reporting "changed / all events" when most events lack a
 measurement substrate for the layer.
 
-The v0.1 sampling frame is public, English-indexable crypto censorship
+The current sampling frame is public, English-indexable crypto censorship
 events with an identifiable legal, regulatory, state, or corporate trigger
 and at least one independently archivable evidence surface. This frame is
 US-trigger-dominant by construction and should not be read as a global
@@ -156,54 +156,46 @@ prevalence sample.
 
 ## 4. Corpus
 
-The current snapshot contains 52 admitted events. Table 1 reports three
-paper roles: 2 anchor cases, 38 empirical cases, and 12 null cases. The case
-role controls how an event may be cited. Anchor cases can appear in narrative
+The current snapshot's admitted-event and case-role counts are generated in
+Table 1. The case role controls how an event may be cited. Anchor cases can appear in narrative
 spotlights and figures. Empirical cases contribute to aggregate tables. Null
 cases support denominator and observed-no-change interpretation only.
 
-Trigger precision is also uneven. Only 5 of the 52 admitted events have hour-level
-trigger precision, while 48 have day-level precision. Hour-granularity
+Trigger precision is also uneven. Table 1 reports the live hour-vs-day
+trigger-precision split. Hour-granularity
 latency claims are therefore restricted to the hour-precision subset, and
 day-precision events are reported in interval buckets.
 
 The corpus is stratified by research frame rather than population weight.
-Table 7 shows that 40 of 53 events include `US` in their jurisdiction list
-(75.5%). Region counts are inclusive rather than partitioned; a
+Table 7 reports the live share of admitted events whose jurisdiction list
+includes `US`. Region counts are inclusive rather than partitioned; a
 multi-jurisdiction event may count in both the US and Europe rows. This is a
 property of the public-English-language evidence frame and the high volume of
 OFAC, DOJ, and SEC activity in 2022-2025. The paper therefore describes the
 corpus as US-trigger-dominant, not as evidence that censorship is globally
 concentrated in the United States.
 
-Target enumeration is mixed. Table 5 reports 31 complete target
-enumerations and 22 subset enumerations. Subset rows must be phrased as
-claims about the named subset, not the entire protocol or ecosystem.
+Target enumeration is mixed. Table 5 reports the live complete/subset
+target-enumeration split. Subset rows must be phrased as claims about the
+named subset, not the entire protocol or ecosystem.
 
 ## 5. Results
 
 ### 5.1 Layer Observability
 
 Table 2 is the central result. It reports layer-level coverage and
-coverage-matched rates:
-
-| Layer | Measured | Partial | Not measured | Strict | Current | Permissive | Reported interpretation |
-| --- | ---: | ---: | ---: | --- | --- | --- | --- |
-| L0 network | 0 | 0 | 22 | — / 0 = — | — / 0 = — | — / 0 = — | No conditional rate; public measurements are absent in the queried cells. |
-| L1 consensus | 6 | 1 | 1 | 0/6 = 0.000 | 1/6 = 0.167 | 2/7 = 0.286 | Sensitive; cite all three rubrics or name the exact one. |
-| L3 RPC | 0 | 2 | 7 | — / 0 = — | — / 0 = — | 2 named observations, no rate | Named Flashbots partial observations only; no conditional rate. |
-| L4 frontend | 13 | 3 | 10 | 8/13 = 0.615 | 10/13 = 0.769 | 12/16 = 0.750 | Sensitive; cite all three rubrics or name the exact one. |
-| Asset on-chain | 17 | 0 | 6 | retracted | retracted | retracted | Rate retracted because the admission rule is structurally circular. |
-| Off-ramp CEX | 25 | 1 | 21 | 13/25 = 0.520 | 15/25 = 0.600 | 16/26 = 0.615 | Moderate sensitivity; quote with denominator and rubric context. |
+coverage-matched rates with live denominators; `derived/admission_sensitivity.md`
+reports the strict/current/permissive sensitivity surface. The draft must not
+copy those table cells by hand.
 
 The most important result is not that every upper layer "reacts more". The
 defensible result is that public evidence is concentrated in upper-stack
 surfaces, while lower-stack or private surfaces often lack a denominator.
-L0 has zero measured denominators in v0.1; L3 has two named partial rows but
-no measured denominator; asset-onchain rows are visible but cannot support a
+L0 has no measured denominator in this snapshot; L3 has only a tiny measured
+denominator plus named partial rows; asset-onchain rows are visible but cannot support a
 rate because the admission anchor often is the asset action itself. The paper
 therefore reports frontend and CEX rates with denominator qualifiers, retains
-L3 only as named partial evidence, and treats L0 as an observability gap.
+L3 only with inline denominator context, and treats L0 as an observability gap.
 
 Admission-sensitivity checks matter. L1 and L4 are sensitive to strict,
 current, and permissive admission rubrics, and the paper must carry that
@@ -336,8 +328,8 @@ This paper argues for a denominator-aware way to study crypto censorship
 events. Cross-layer reactions are real and sometimes reconstructable, but the
 measurement substrate is uneven. A credible corpus must therefore state not
 only what changed, but also which layers could be measured and which layers
-could not. The v0.1 database provides a reproducible starting point: 53
-admitted events, explicit coverage semantics, fail-closed paper tables,
+could not. The current database provides a reproducible starting point:
+explicit coverage semantics, fail-closed paper tables,
 evidence chains, external benchmark crosschecks, and an audit workflow. Its
 long-term contribution is the protocol: future work can expand the sampling
 frame, add non-English and non-US-triggered events, ingest richer L0/L1/L3

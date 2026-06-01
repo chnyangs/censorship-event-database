@@ -107,6 +107,15 @@ REQUIRED_SOURCE_MANIFEST = [
     "sources/source_manifest.meta.json",
 ]
 
+CURRENT_SNAPSHOT_DOCS = [
+    "README.md",
+    "docs/paper_claims.md",
+    "docs/paper.md",
+    "docs/datasheet.md",
+    "docs/limitations-and-use.md",
+    "docs/top-venue-upgrade-plan.md",
+]
+
 TEMPORAL_LEDGER_STATUSES = {
     "searched_no_candidate",
     "candidate_found",
@@ -128,6 +137,25 @@ FORBIDDEN_CLAIM_PHRASES = [
     "Five events in the admitted corpus carry",
     "Day-precision triggers (n=48)",
     "hour-or-better precision (n=5)",
+]
+
+STALE_CURRENT_SNAPSHOT_PATTERNS = [
+    (re.compile(r"\b52[- ]admitted(?:-event)?(?: events?)?\b", re.IGNORECASE), "52 admitted events"),
+    (re.compile(r"\ball 52 admitted events\b", re.IGNORECASE), "all 52 admitted events"),
+    (re.compile(r"\b53[- ]record YAML\b", re.IGNORECASE), "53-record YAML"),
+    (re.compile(r"\b53 YAML records\b", re.IGNORECASE), "53 YAML records"),
+    (re.compile(r"\b53[- ]event admitted corpus\b", re.IGNORECASE), "53-event admitted corpus"),
+    (re.compile(r"\b53 admitted events\b", re.IGNORECASE), "53 admitted events"),
+    (re.compile(r"\bcutoff 2026-05-(?:06|14|15)\b", re.IGNORECASE), "stale May 2026 cutoff"),
+    (re.compile(r"\b39/52\b|\b13/52\b|\b4/52\b"), "stale jurisdiction fraction"),
+    (re.compile(r"\b40 of 53\b", re.IGNORECASE), "stale jurisdiction count"),
+    (re.compile(r"\b36 / 40 changed events\b", re.IGNORECASE), "stale changed-event denominator"),
+    (re.compile(r"\b17/17\s*=\s*1\.00\b"), "stale asset_onchain structural count"),
+    (re.compile(r"`?l3_rpc`?.{0,80}zero `?measured`? denominators", re.IGNORECASE), "stale L3 zero-denominator prose"),
+    (re.compile(r"L3.{0,80}no emitted conditional rate", re.IGNORECASE), "stale L3 no-rate prose"),
+    (re.compile(r"L3.{0,80}no conditional rate", re.IGNORECASE), "stale L3 no-rate prose"),
+    (re.compile(r"two named Flashbots partial", re.IGNORECASE), "stale L3 partial-row count"),
+    (re.compile(r"\b~75% of admitted events have `US`", re.IGNORECASE), "stale US-share prose"),
 ]
 
 
@@ -694,6 +722,71 @@ def check_table2_layer_prose(
         )
 
 
+def check_table7_jurisdiction_prose(
+    jurisdiction_rows: list[dict[str, str]],
+    table7_text: str,
+    errors: list[str],
+) -> None:
+    """Guard jurisdiction prose against stale US-share phrasing."""
+    counts = {
+        (row.get("dimension"), row.get("value")): as_int(row.get("count")) or 0
+        for row in jurisdiction_rows
+    }
+    total = sum(
+        count
+        for (dimension, _value), count in counts.items()
+        if dimension == "us_vs_nonus"
+    )
+    us = counts.get(("us_vs_nonus", "US"), 0)
+    if not total:
+        return
+
+    expected = f"{us}/{total} ({us / total * 100:.1f}%)"
+    if expected not in table7_text:
+        errors.append(
+            "Table 7 prose does not report the live US-trigger share "
+            f"{expected} from derived/jurisdiction_distribution.csv"
+        )
+    stale_markers = ("~75% of admitted events have `US`", "39/52", "40 of 53")
+    for marker in stale_markers:
+        if marker in table7_text:
+            errors.append(f"Table 7 prose contains stale jurisdiction marker: {marker}")
+
+
+def stale_current_snapshot_hits(text: str) -> list[str]:
+    hits: list[str] = []
+    for pattern, label in STALE_CURRENT_SNAPSHOT_PATTERNS:
+        if pattern.search(text):
+            hits.append(label)
+    return hits
+
+
+def check_current_snapshot_docs(
+    dataset_meta: dict[str, Any],
+    errors: list[str],
+) -> None:
+    """Fail when current-facing docs retain stale v0.1 snapshot counts."""
+    admitted = dataset_meta.get("paper_corpus_event_count")
+    total = dataset_meta.get("event_count")
+    cutoff = dataset_meta.get("cutoff_date")
+    replacement = (
+        f"{admitted} admitted / {total} total / cutoff {cutoff}"
+        if admitted and total and cutoff else "the live dataset.meta.json snapshot"
+    )
+    for rel in CURRENT_SNAPSHOT_DOCS:
+        path = REPO_ROOT / rel
+        if not path.exists():
+            errors.append(f"missing current-snapshot doc: {rel}")
+            continue
+        hits = stale_current_snapshot_hits(path.read_text())
+        if hits:
+            errors.append(
+                f"{rel} contains stale current-snapshot prose "
+                f"({', '.join(sorted(set(hits)))}); use {replacement} "
+                "or delegate counts to dataset.meta.json / generated paper tables"
+            )
+
+
 def kappa_value(report: dict[str, Any], variable: str) -> float | None:
     variables = report.get("variables") or {}
     value = (variables.get(variable) or {}).get("kappa")
@@ -1223,6 +1316,13 @@ def main() -> int:
     except FileNotFoundError:
         pass
 
+    try:
+        jurisdiction_rows = read_csv(derived_dir / "jurisdiction_distribution.csv")
+        table7_text = (paper_tables_dir / "table7_jurisdiction_distribution.md").read_text()
+        check_table7_jurisdiction_prose(jurisdiction_rows, table7_text, errors)
+    except FileNotFoundError as exc:
+        errors.append(f"missing derived or paper-table artifact for Table 7 check: {exc}")
+
     for rel in (
         "table1_case_roles.csv",
         "table4_latency_by_precision.csv",
@@ -1250,6 +1350,9 @@ def main() -> int:
                 errors.append(f"paper_claims.md missing required section marker: {marker}")
     else:
         errors.append(f"missing {claims_path.relative_to(REPO_ROOT)}")
+
+    if dataset_meta is not None:
+        check_current_snapshot_docs(dataset_meta, errors)
 
     anchor_missing_scoped = [
         event["id"]

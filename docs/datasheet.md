@@ -139,8 +139,9 @@ Example citation form (footnote-safe):
 > (`circle_usdc address_blacklisted`, `attribution: direct`, source
 > `primary_onchain` tx `0xa613…dd9`, `body_hash sha256:3696…65` [^1]).
 >
-> [^1]: Cross-Layer Censorship Event Database v0.1.0, cutoff 2026-05-06,
->       event `tornado-cash-ofac-2022`, observation
+> [^1]: Cross-Layer Censorship Event Database, snapshot pinned by
+>       `dataset.meta.json` / `CITATION.cff`, event
+>       `tornado-cash-ofac-2022`, observation
 >       `asset_onchain/circle_usdc/address_blacklisted`. See
 >       [CITATION.cff](../CITATION.cff) for the canonical citation record.
 
@@ -155,15 +156,16 @@ they've been through admission review. Examples that stay within scope:
 - **Cascade-shape claim** — "cross-layer reactions were observed on at
   least three layers within 72 hours." Backed by the per-layer observation
   tallies. Safe when restated in layer-count terms.
-- **Distribution claim** — "among 52 admitted events, 38 satisfy the
-  `comparison` shape (1–2 observed-change layers) and only 2 satisfy the
-  `cascade` shape (≥3)." Safe *if* you carry the dataset version + cutoff
-  so readers understand which admitted release slice you counted.
+- **Distribution claim** — "in the admitted corpus slice identified by
+  Table 3, `comparison` rows dominate `cascade` rows." Safe *if* you carry
+  the dataset version + cutoff and cite the generated table, so readers
+  understand which admitted release slice you counted.
 
 What the data does **not** support:
 
 - **Probabilistic forecasts** about future events of the same trigger type.
-  With 52 admitted events across 6 strata, the per-cell sample is too small.
+  The per-cell sample is too small and evidence-frame-biased even in the
+  current admitted corpus.
 - **Individualised covered-party determinations.** The dataset records
   what happened to listed targets; it does not opine on whether a
   particular future action falls under a regulator's authority.

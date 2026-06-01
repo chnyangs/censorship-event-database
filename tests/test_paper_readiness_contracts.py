@@ -162,3 +162,47 @@ def test_table2_l3_prose_accepts_matching_measured_claim() -> None:
     )
 
     assert not errors
+
+
+def test_table7_jurisdiction_prose_rejects_stale_us_share() -> None:
+    errors: list[str] = []
+
+    check_paper_readiness.check_table7_jurisdiction_prose(
+        [
+            {"dimension": "us_vs_nonus", "value": "US", "count": "43"},
+            {"dimension": "us_vs_nonus", "value": "non-US", "count": "57"},
+        ],
+        "PREFER: ~75% of admitted events have `US` in their jurisdiction list.",
+        errors,
+    )
+
+    assert errors == [
+        "Table 7 prose does not report the live US-trigger share "
+        "43/100 (43.0%) from derived/jurisdiction_distribution.csv",
+        "Table 7 prose contains stale jurisdiction marker: "
+        "~75% of admitted events have `US`",
+    ]
+
+
+def test_table7_jurisdiction_prose_accepts_live_us_share() -> None:
+    errors: list[str] = []
+
+    check_paper_readiness.check_table7_jurisdiction_prose(
+        [
+            {"dimension": "us_vs_nonus", "value": "US", "count": "43"},
+            {"dimension": "us_vs_nonus", "value": "non-US", "count": "57"},
+        ],
+        "US-trigger share: 43/100 (43.0%).",
+        errors,
+    )
+
+    assert not errors
+
+
+def test_current_snapshot_docs_reject_known_stale_counts() -> None:
+    hits = check_paper_readiness.stale_current_snapshot_hits(
+        "The 53-record YAML snapshot currently contains 52 admitted events."
+    )
+
+    assert "53-record YAML" in hits
+    assert "52 admitted events" in hits

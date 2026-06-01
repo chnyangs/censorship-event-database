@@ -16,14 +16,15 @@ primary-source citations (sha256 `body_hash`); a concrete target
 with admission-grade evidence; and an explicit `scoped_claim` that the
 retained observations support.
 
-Current working snapshot: **52 admitted events**, 1 rejected registry row, and no working drafts; every event validates
+Current working snapshot: **365 admitted events**, 30 draft rows, and 10
+rejected registry rows across 405 event YAML records; every event validates
 under [`scripts/validate.py`](../scripts/validate.py) at schema version
 0.2.0. Paper-facing tables use admitted events only. This is not a strict
 release/submission artifact until the full human/release gate passes.
 
 ### 1.1 Sampling frame
 
-The v0.1 dataset is not an attempt to enumerate every possible
+The current dataset is not an attempt to enumerate every possible
 crypto-censorship event. Its sampling frame is narrower and deliberately
 auditable: **publicly documented crypto censorship events with an
 identifiable legal, regulatory, state, or corporate trigger and at least
@@ -67,8 +68,8 @@ using any output for anything consequential.
 
 ### 2.1 Not a predictive model
 
-With 52 admitted events across 6 research strata × 6 cascade layers × multiple
-time windows, **the statistical power for causal inference is low**. We
+Even with the current admitted corpus across 6 research strata × 6 cascade
+layers × multiple time windows, **the statistical power for causal inference is low**. We
 publish descriptive patterns ("across N historical OFAC mixer
 designations, the canonical frontend was taken down within 48 hours in
 K/N cases") — we do not publish probability-of-takedown estimates.
