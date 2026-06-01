@@ -384,7 +384,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `thailand-sec-crypto-payment-ban-2022-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `tornado-cash-frontend-tornado-cash-eth-block-2022-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 16 | ok | no_audit_recorded |
-| `tornado-cash-github-takedown-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 16 | ok | no_audit_recorded |
+| `tornado-cash-github-takedown-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `tornado-cash-ofac-2022` | `admitted` | `human_authored` | 2026-04-22 | 41 | ok | 2026-04-21 | 42 | ok | ok |
 | `tornado-cash-ofac-delisting-2025` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 42 | ok | no_audit_recorded |
 | `tornado-cash-ofac-redesignation-2022` | `admitted` | `human_authored` | 2026-04-22 | 41 | ok | 2026-04-21 | 42 | ok | ok |
@@ -688,7 +688,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `thailand-sec-crypto-payment-ban-2022-04` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `tornado-cash-frontend-tornado-cash-eth-block-2022-04` — audit=no_audit_recorded, verification=ok, verif_age=16d
-- `tornado-cash-github-takedown-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=16d
+- `tornado-cash-github-takedown-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `tornado-cash-ofac-delisting-2025` — audit=no_audit_recorded, verification=ok, verif_age=42d
 - `tornado-cash-pertsev-doj-indictment-2023` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `tornado-cash-storm-conviction-2025` — audit=no_audit_recorded, verification=ok, verif_age=1d

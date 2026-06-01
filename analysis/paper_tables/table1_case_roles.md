@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `3a48c00` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `9449371` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -346,7 +346,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `thailand-sec-crypto-payment-ban-2022-04` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `tornado-cash-frontend-tornado-cash-eth-block-2022-04` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
-| `tornado-cash-github-takedown-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
+| `tornado-cash-github-takedown-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-06-02` | `—` |
 | `tornado-cash-ofac-2022` | `anchor_case` | `S1_ofac_sdn` | `cascade` | `ofac_sdn_designation` | `hour` | `address_set` | `complete` | 5 | `multi_layer` | · | · | `2026-04-21` | `2026-04-22` |
 | `tornado-cash-ofac-delisting-2025` | `empirical_case` | `S2_ofac_removal` | `cascade` | `ofac_sdn_removal` | `day` | `address_set` | `complete` | 4 | `multi_layer` | · | ✓ | `2026-04-21` | `—` |
 | `tornado-cash-ofac-redesignation-2022` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-21` | `2026-04-22` |

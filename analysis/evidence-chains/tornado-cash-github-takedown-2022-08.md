@@ -2,23 +2,20 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `l4_frontend`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `3a48c00` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-17` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `9449371` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "Microsoft / GitHub's 2022-08-08 takedown of the tornadocash
-> GitHub organisation (tornado-core, tornado-cli, classic contracts,
-> relayer, ui) and suspension of co-founder Roman Semenov's
-> developer account — effective the same day as the OFAC SDN
-> designation of Tornado Cash (related event tornado-cash-ofac-2022)
-> — documents the source-code-distribution sub-layer of the L4
-> frontend vertex in the S5_corporate cascade. Paper-relevant as
-> the earliest and most foundational source-code-platform
-> compliance action in the corpus and as the comparison sibling to
-> the application-UI L4 rows (Aave, Uniswap/Balancer, Cloudflare
-> Ethereum Gateway)."
+> "Microsoft / GitHub's August 2022 removal of the tornadocash
+> GitHub organization from the public GitHub surface is anchored by a
+> Wayback before/after pair: the organization page was present with 47
+> repositories on 2022-08-08 14:45:05 UTC and returned GitHub's 404 page
+> by 2022-08-09 15:42:43 UTC. Contemporaneous reporting ties the takedown
+> and related developer-account suspensions to the same-day OFAC SDN
+> designation of Tornado Cash; attribution remains plausible because
+> GitHub did not publish a standalone takedown rationale."
 
 ## 1. Trigger
 
@@ -28,53 +25,48 @@
 
 ### Trigger citations
 
-- **`supporting_journalism`**
-  - URL: <https://www.theregister.com/AMP/2022/08/24/github_eff_tornado_cash>
-  - Wayback: <https://web.archive.org/web/2022/https://www.theregister.com/AMP/2022/08/24/github_eff_tornado_cash>
-  > The Register (2022-08-24) reporting that Microsoft-owned GitHub, on
-> 2022-08-08 immediately following the OFAC SDN designation of
-> Tornado Cash, suspended developer accounts (including Roman
-> Semenov) and removed the source-code repositories under the
-> tornadocash organisation (tornado-core, tornado-cli, classic
-> contracts, relayer, ui). Names the action (account suspension +
-> repository takedown) and the trigger (the 2022-08-08 OFAC SDN
-> designation of Tornado Cash, captured under related event
-> tornado-cash-ofac-2022). DRYRUN: pinned Wayback snapshot and
-> body_hash deferred to human-audit pass; marked
-> evidence_use=contextual_unarchived per validator policy for
-> unarchived sources.
-- **`supporting_journalism`**
-  - URL: <https://cointelegraph.com/news/github-unbans-tornado-cash-repositories-following-ofac-guidance>
-  - Wayback: <https://web.archive.org/web/2022/https://cointelegraph.com/news/github-unbans-tornado-cash-repositories-following-ofac-guidance>
-  > Cointelegraph (2022-09-23) coverage of the partial reinstatement
-> of the Tornado Cash repositories on GitHub following OFAC's
-> 2022-09-13 guidance clarifying that copying or hosting the
-> underlying code is not itself sanctioned. Retrospectively
-> confirms (a) that the 2022-08-08 takedown occurred and (b) that
-> GitHub's stated rationale was sanctions compliance with the
-> OFAC SDN designation. DRYRUN: pinned Wayback snapshot deferred
-> to human audit.
-- **`supporting_journalism`**
+- **`primary_corporate`**
+  - URL: <https://github.com/tornadocash>
+  - Wayback: <https://web.archive.org/web/20220808144505/https://github.com/tornadocash>
+  - body_hash: `sha256:2133abf49379a6c9fcc66382c9b454b3482689f234bc3d87a03191c83cc5ebcb`
+  - body_path: `sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220808144505-https-github.com-tornadocash__47734842c3.html`
+  > GitHub Wayback capture of https://github.com/tornadocash at
+> 2022-08-08 14:45:05 UTC. The page title is "Tornado Cash ·
+> GitHub"; meta text says the organization had 47 repositories, and
+> the body lists the Tornado Cash organization plus repositories such
+> as tornado-core and tornado-cli. This is the pre-takedown
+> platform-surface anchor for the before/after observation.
+- **`primary_corporate`**
+  - URL: <https://github.com/tornadocash>
+  - Wayback: <https://web.archive.org/web/20220809154243/https://github.com/tornadocash>
+  - body_hash: `sha256:e533e007cf7b48ea5b070febcc8add27e624432988710c11effcb496cc6a422c`
+  - body_path: `sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220809154243-https-github.com-tornadocash__manual404.html`
+  > GitHub Wayback capture of the same https://github.com/tornadocash
+> URL at 2022-08-09 15:42:43 UTC. The archived page title is "Page
+> not found · GitHub · GitHub" and the selected link remains
+> /tornadocash, providing the post-takedown platform-surface anchor.
+> The capture is a manually retained 404 body because the capture
+> helper recorded the HTTP 404 as an error instead of writing normal
+> metadata.
+- **`semi_primary_wayback`**
+  - URL: <https://www.theregister.com/2022/08/24/github_eff_tornado_cash/>
+  - Wayback: <https://web.archive.org/web/20220825093705/https://www.theregister.com/2022/08/24/github_eff_tornado_cash/>
+  - body_hash: `sha256:bf2eab81bd1b3e5293bc5dee0f1c2013a0dbebae2eefcaebed196e3d80cf9725`
+  - body_path: `sources/http_captures/tornado-cash-github-takedown-2022-08/primary/web.archive.org__web-20220825000000-https-www.theregister.com-2022-08-24-github_eff_tornado_cash__625112de04.html`
+  > The Register 2022-08-24 coverage reports that GitHub removed the
+> Tornado Cash organization/repositories and developer accounts after
+> the OFAC sanctions. Used as contemporaneous context for the action
+> and reported rationale; the GitHub before/after captures are the
+> primary platform-surface evidence.
+- **`semi_primary_wayback`**
   - URL: <https://www.eff.org/deeplinks/2023/04/update-tornado-cash>
-  - Wayback: <https://web.archive.org/web/2023/https://www.eff.org/deeplinks/2023/04/update-tornado-cash>
-  > Electronic Frontier Foundation (2023-04) retrospective on the
-> 2022-08-08 GitHub takedown of the Tornado Cash repositories
-> and developer accounts. EFF documents the source-code-layer
-> consequences of the OFAC SDN designation, including the
-> Microsoft / GitHub takedown rationale and the EFF-coordinated
-> re-upload campaign that tested the speech-vs-sanctions
-> boundary. DRYRUN: pinned Wayback snapshot deferred to human
-> audit.
-- **`supporting_journalism`**
-  - URL: <https://www.virtualcurrencyreport.com/2022/08/ofac-takes-action-against-virtual-currency-tornado-cashin-novel-application-of-sanctions-authorities/>
-  - Wayback: <https://web.archive.org/web/2022/https://www.virtualcurrencyreport.com/2022/08/ofac-takes-action-against-virtual-currency-tornado-cashin-novel-application-of-sanctions-authorities/>
-  > Perkins Coie Virtual Currency Report (2022-08) legal-practitioner
-> analysis of the 2022-08-08 OFAC SDN designation of Tornado Cash
-> and its immediate downstream effects, including the GitHub
-> repository removal and developer-account suspensions.
-> Triangulation source for the legal-compliance interpretation of
-> GitHub's takedown action. DRYRUN: pinned Wayback snapshot
-> deferred to human audit.
+  - Wayback: <https://web.archive.org/web/20230419014440/https://www.eff.org/deeplinks/2023/04/update-tornado-cash>
+  - body_hash: `sha256:dab65362b458b3ea85681d0389282489cacd6a717781f8ed45c8ea90528747a4`
+  - body_path: `sources/http_captures/tornado-cash-github-takedown-2022-08/primary/web.archive.org__web-20230420000000-https-www.eff.org-deeplinks-2023-04-update-tornado-cash__44c1b7fb25.html`
+  > EFF 2023-04 retrospective documenting the GitHub takedown and
+> partial restoration campaign. Used as secondary context for the
+> code-hosting consequence, not as the primary platform-surface
+> measurement.
 
 ## 2. Target
 
@@ -107,6 +99,25 @@
 
 **Sources**:
 
+- **`primary_corporate`**
+  - URL: <https://github.com/tornadocash>
+  - Wayback: <https://web.archive.org/web/20220808144505/https://github.com/tornadocash>
+  - body_hash: `sha256:2133abf49379a6c9fcc66382c9b454b3482689f234bc3d87a03191c83cc5ebcb`
+  - body_path: `sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220808144505-https-github.com-tornadocash__47734842c3.html`
+  > GitHub Wayback before-capture: the tornadocash organization page
+> exists on 2022-08-08 14:45:05 UTC with the title "Tornado Cash ·
+> GitHub", a meta description saying the organization had 47
+> repositories, and visible repository links including tornado-core
+> and tornado-cli.
+- **`primary_corporate`**
+  - URL: <https://github.com/tornadocash>
+  - Wayback: <https://web.archive.org/web/20220809154243/https://github.com/tornadocash>
+  - body_hash: `sha256:e533e007cf7b48ea5b070febcc8add27e624432988710c11effcb496cc6a422c`
+  - body_path: `sources/http_captures/tornado-cash-github-takedown-2022-08/v0_3_primary_repair/web.archive.org__web-20220809154243-https-github.com-tornadocash__manual404.html`
+  > GitHub Wayback after-capture: the same URL returns GitHub's "Page
+> not found" page at 2022-08-09 15:42:43 UTC. This anchors the
+> platform-surface removal window without relying on a later
+> GitHub-authored explanation.
 - **`semi_primary_wayback`**
   - URL: <https://www.theregister.com/2022/08/24/github_eff_tornado_cash/>
   - Wayback: <https://web.archive.org/web/20220825093705/https://www.theregister.com/2022/08/24/github_eff_tornado_cash/>
@@ -136,7 +147,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3a48c00`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `9449371`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
