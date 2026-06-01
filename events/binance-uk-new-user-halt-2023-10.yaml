@@ -2,18 +2,16 @@ id: binance-uk-new-user-halt-2023-10
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "Binance UK Oct-2023 halt of new-user onboarding (FCA financial-promotions regime). §9-clear restriction, documented; attested_secondary on a single captured source."
 origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - uk-fca-binance-markets-2021
@@ -24,6 +22,19 @@ trigger:
   timestamp: 2023-10-16T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589
+      wayback: https://web.archive.org/web/20231016152836/https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589
+      body_hash: sha256:c943fd2bddc6c2cf9ace48131fd44bd71c96445f7b076a2909ff72a8221848a1
+      body_path: sources/http_captures/binance-uk-new-user-halt-2023-10/official-binance-wayback/web.archive.org__web-20231016152836-https-www.binance.com-en-GB-blog-all-update-on-binance-for-uk-users-937596818854026589__5e20698543.html
+      evidence_use: replayable
+      note: |
+        Binance Blog, "Update on Binance for UK users," Wayback memento
+        2023-10-16 15:28:36 UTC. Captured body states that the UK Financial
+        Promotions Regime came into effect on 2023-10-08, that FCA requirements
+        on Rebuildingsociety.com forced withdrawal of Binance-related promotion
+        approvals, and that from Monday 2023-10-16 at 5pm UK time Binance would
+        stop accepting new UK users.
     - type: semi_primary_wayback
       url: https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction
       wayback: https://web.archive.org/web/20231018060034/https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction
@@ -92,12 +103,32 @@ observations:
     actor: exchange:binance
     event: binance_stops_accepting_new_uk_users_fca_promotions_regime
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2023-10-16T00:00:00Z
     precision: day
     delta_hours: 0
     country: UK
     sources:
+      - type: primary_corporate
+        url: https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589
+        wayback: https://web.archive.org/web/20231016152836/https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589
+        body_hash: sha256:c943fd2bddc6c2cf9ace48131fd44bd71c96445f7b076a2909ff72a8221848a1
+        body_path: sources/http_captures/binance-uk-new-user-halt-2023-10/official-binance-wayback/web.archive.org__web-20231016152836-https-www.binance.com-en-GB-blog-all-update-on-binance-for-uk-users-937596818854026589__5e20698543.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [UK]
+          time_window:
+            - 2023-10-16T16:00:00Z
+            - 2023-10-31T23:59:59Z
+        note: |
+          Binance first-party blog post stating that Binance would stop
+          accepting new UK users from Monday 2023-10-16 at 5pm UK time, while
+          existing UK users would retain current services if they completed the
+          required Investor Declaration and Appropriateness Test. attribution=
+          direct for Binance's own onboarding halt; the FCA/REBS regulatory
+          chain remains described as the cause without treating the action as a
+          direct FCA order against Binance.
       - type: semi_primary_wayback
         url: https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction
         wayback: https://web.archive.org/web/20231018060034/https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction
@@ -114,14 +145,25 @@ observations:
           The Block 2023-10-16: Binance temporarily stops accepting new UK
           users from 16 Oct 2023 to comply with the FCA financial-
           promotions regime after its approver Rebuildingsociety.com was
-          barred (10 Oct 2023). attribution=plausible: the halt is directly
-          observed and Binance attributes it to FCA promotions-regime
-          compliance, but the action is a self-imposed corporate
-          compliance step, not a direct FCA order naming Binance — the
-          regulator-causation chain runs through the REBS approver bar.
+          barred (10 Oct 2023). Legacy attribution note superseded by the
+          Binance primary blog capture added on 2026-06-01; retained as
+          corroborating trade coverage.
 
 analysis_notes: |
-  **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. §9-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook §10) — single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)
+  **PRIMARY-SOURCE REPAIR 2026-06-01** (quality loop): pinned the official
+  Binance Blog Wayback memento for "Update on Binance for UK users"
+  (2023-10-16 15:28:36 UTC). The captured body contains the REBS/FCA financial-
+  promotions background and the operative "from Monday 16 October 2023 at 5pm UK
+  time, Binance will stop accepting new UK users" statement. This supersedes the
+  earlier `attested_secondary` admission caveat; the row now has a first-party
+  corporate trigger/observation anchor, and attribution for Binance's own
+  onboarding halt is direct while the regulator-causation chain remains routed
+  through REBS.
+
+  **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent:
+  TASK-2 lower-tier at the time of admission; superseded by the 2026-06-01
+  primary-source repair. §9-clear, deliberate restriction; verified clean in
+  bulk adversarial-verify with no fabrication.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
   verified+captured, awaiting human admission). Binance's 2023-10-16
   decision to temporarily stop accepting new UK users to comply with the
@@ -129,30 +171,28 @@ analysis_notes: |
   approver Rebuildingsociety.com (REBS) was barred by the FCA on
   2023-10-10 from greenlighting crypto financial promotions. Single
   offramp_cex observed_change geofencing new-UK-user onboarding;
-  comparison shape. attribution=plausible per §1.1: the onboarding halt
-  is directly observed and Binance states FCA-promotions-regime
-  compliance as the cause, but it is a self-imposed corporate compliance
-  step (not a direct FCA order against Binance); the regulator-causation
-  chain runs through the REBS approver bar, so class-level inference is
-  retained. UK jurisdiction. Distinct from uk-fca-binance-markets-2021
+  comparison shape. attribution=direct for Binance's own onboarding halt;
+  the regulator-causation chain still runs through the REBS approver bar, so
+  the row does not claim a direct FCA order against Binance. UK jurisdiction.
+  Distinct from uk-fca-binance-markets-2021
   (the 2021 FCA consumer-warning/markets-cease-and-desist on Binance
   Markets Ltd) — this 2023 row is the financial-promotions-regime
   new-user onboarding halt. l0/l1/l3/l4/asset_onchain not_applicable (an
   onboarding/compliance restriction, not a network/UI block or asset
-  freeze). NOTE for human reviewer: the captured Binance en-GB blog page
-  is a JS shell with no article text, so it is NOT cited; the load-bearing
-  source is The Block (body_hash-pinned). The "temporary" framing and
-  search for a new approver are reported but the eventual resolution is
-  not coded here. Sources verified via WebSearch + captured 2026-05-31
-  (The Block, body_hash-pinned; no fabrication).
+  freeze). The earlier 2026-05-31 Binance en-GB attempt produced a JS-shell
+  caveat, but the 2026-06-01 Wayback memento contains the article body and is
+  now cited directly. The "temporary" framing and search for a new approver are
+  reported but the eventual resolution is not coded here. Sources verified via
+  WebSearch + captured 2026-05-31/2026-06-01 (The Block and official Binance
+  Blog, body_hash-pinned; no fabrication).
 
 scoped_claim: |
   "Binance's 2023-10-16 halt on accepting new UK users (to comply with
   the FCA financial-promotions regime after its approver REBS was barred
   on 2023-10-10) severed the Binance off-ramp for new UK customers;
-  single-layer offramp_cex observed_change, attribution=plausible (a
-  self-imposed corporate compliance step, not a direct FCA order against
-  Binance)."
+  single-layer offramp_cex observed_change, attribution=direct for Binance's
+  own onboarding halt (the regulatory-causation chain runs through REBS, not a
+  direct FCA order against Binance)."
 
 tags:
   - corporate_policy_change

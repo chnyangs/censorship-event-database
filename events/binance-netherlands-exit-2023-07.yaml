@@ -2,7 +2,7 @@ id: binance-netherlands-exit-2023-07
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -11,7 +11,7 @@ admission_tier: empirical_case
 origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 last_human_audit: 2026-05-31
 
 related_events:
@@ -24,6 +24,21 @@ trigger:
   timestamp: 2023-06-16T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced
+      wayback: https://web.archive.org/web/20230616171924/https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced
+      body_hash: sha256:01617926483c08666d267f9f54ab30377ca18fec9f517fcc86f5360bd413631b
+      body_path: sources/http_captures/binance-netherlands-exit-2023-07/official-binance-wayback/web.archive.org__web-20230616171924-https-www.binance.com-en-support-announcement-notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced__517a24b988.html
+      evidence_use: replayable
+      note: |
+        Binance Support notice, Wayback memento 2023-06-16 17:19:24 UTC:
+        "Notice on Changes of Services in the Netherlands." Captured body
+        contains the Binance-authored statement that Binance was leaving the
+        Dutch market, would accept no new Netherlands-resident users
+        immediately, and from 2023-07-17 would allow existing Dutch resident
+        users only to withdraw assets, with no further purchases, trades, or
+        deposits. This upgrades the trigger from semi-primary trade coverage
+        to a replayable first-party corporate source.
     - type: semi_primary_wayback
       url: https://decrypt.co/144920/binance-to-leave-netherlands-after-failing-to-acquire-vasp-license
       wayback: https://web.archive.org/web/20251212094859/https://decrypt.co/144920/binance-to-leave-netherlands-after-failing-to-acquire-vasp-license
@@ -101,12 +116,31 @@ observations:
     actor: exchange:binance_nl
     event: binance_netherlands_market_withdrawal_announced
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2023-06-16T00:00:00Z
     precision: day
     delta_hours: 0
     country: NL
     sources:
+      - type: primary_corporate
+        url: https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced
+        wayback: https://web.archive.org/web/20230616171924/https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced
+        body_hash: sha256:01617926483c08666d267f9f54ab30377ca18fec9f517fcc86f5360bd413631b
+        body_path: sources/http_captures/binance-netherlands-exit-2023-07/official-binance-wayback/web.archive.org__web-20230616171924-https-www.binance.com-en-support-announcement-notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced__517a24b988.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: [NL]
+          time_window:
+            - 2023-06-16T00:00:00Z
+            - 2023-07-17T23:59:59Z
+        note: |
+          Binance first-party support notice for the Netherlands service
+          changes. The captured body states that no new Dutch resident users
+          would be accepted and that existing Dutch resident users would be
+          withdraw-only from 2023-07-17, with purchases, trades, and deposits
+          disabled. attribution=direct for Binance's own market-withdrawal
+          action.
       - type: semi_primary_wayback
         url: https://decrypt.co/144920/binance-to-leave-netherlands-after-failing-to-acquire-vasp-license
         wayback: https://web.archive.org/web/20251212094859/https://decrypt.co/144920/binance-to-leave-netherlands-after-failing-to-acquire-vasp-license
@@ -122,9 +156,9 @@ observations:
         note: |
           Decrypt 2023-06-16: Binance to leave the Netherlands after failing to
           acquire a VASP license; no longer registering new Dutch users; trading
-          halted 2023-07-17; withdraw-only thereafter. attribution=plausible: the
-          market withdrawal is directly observed; the captured anchor is trade
-          press (not a Binance primary notice).
+          halted 2023-07-17; withdraw-only thereafter. Legacy attribution note
+          superseded by the Binance primary notice added on 2026-06-01; retained
+          as corroborating trade coverage.
       - type: semi_primary_wayback
         url: https://cryptoslate.com/binance-withdraws-from-netherlands-following-vasp-license-snub/
         wayback: https://web.archive.org/web/20251217033958/https://cryptoslate.com/binance-withdraws-from-netherlands-following-vasp-license-snub/
@@ -143,6 +177,16 @@ observations:
           semi-primary anchor.
 
 analysis_notes: |
+  **PRIMARY-SOURCE REPAIR 2026-06-01** (quality loop): pinned the official
+  Binance Support Wayback memento for "Notice on Changes of Services in the
+  Netherlands" (2023-06-16 17:19:24 UTC). The captured body contains the
+  Binance-authored no-new-Dutch-users / 2023-07-17 withdraw-only service-change
+  statement and the VASP-registration rationale. Trigger and observation are
+  now first-party replayable; attribution for Binance's own market-withdrawal
+  action is upgraded from plausible to direct. Coverage remains
+  partially_measured because the row still describes a national market-access
+  withdrawal, not a per-user account enumeration.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 S5-corporate
   draft, adversarial-verify verdict=KEEP (sources real + on-topic + §9 in-scope + not dup), AND
   passes strict admission validation; origin agent_draft -> human_reviewed).
@@ -155,9 +199,8 @@ analysis_notes: |
   users to rival Coinmerce). This is a corporate jurisdiction exit by a major
   centralized exchange driven by inability to clear the national VASP regime —
   in scope per codebook §9 (corporate jurisdiction exit/geofence). comparison
-  shape, single offramp_cex observed_change, attribution=plausible (exit is
-  directly observed; captured anchors are trade press, not a Binance primary
-  notice). asset_onchain not_applicable (CEX market exit, no on-chain freeze,
+  shape, single offramp_cex observed_change, attribution=direct (Binance
+  primary notice added on 2026-06-01). asset_onchain not_applicable (CEX market exit, no on-chain freeze,
   no §1.6 tx_hash floor). Distinct from netherlands-dnb-binance-warning-2021
   (the prior DNB unregistered-service warning/fine, S4) and
   kucoin-netherlands-exit-2023 (sibling exchange, same DNB-driven 2023 exodus).
@@ -171,7 +214,7 @@ scoped_claim: |
   "Binance's 2023-06-16 withdrawal from the Netherlands (new-user registration
   stopped immediately; trading halted 2023-07-17, withdraw-only) after failing
   to secure a Dutch VASP registration is a single-layer offramp_cex
-  observed_change with attribution=plausible, part of the 2023 Dutch exchange
+  observed_change with attribution=direct, part of the 2023 Dutch exchange
   exodus (cf. KuCoin)."
 
 tags:
