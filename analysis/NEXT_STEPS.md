@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **269 release-ready** cases, **96 admitted-but-blocked** cases, admitted observation reliability
-      **284 high / 81 medium / 0 low**, and admitted attribution reliability **242 high / 123 medium / 0 low**.
+      **270 release-ready** cases, **95 admitted-but-blocked** cases, admitted observation reliability
+      **285 high / 80 medium / 0 low**, and admitted attribution reliability **243 high / 122 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -181,6 +181,12 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       resolution, so the replayable Medium page is used as the official mirror; its canonical/JSON-LD points
       to the original ShapeShift URL and records the 2018-09-04 publication date. Trigger, observation, and
       attribution now score high, while the no-named-enforcement-action rationale remains contextual.
+      Follow-on primary-trigger repair also moved `binance-monero-global-delisting-2024-02` out of the blocked
+      queue by pinning the official Binance Support mirror on `binance.info` locally. The `binance.com` live
+      page returned a WAF challenge on this network path, so the replayable mirror capture is the claim-usable
+      primary_corporate anchor. Trigger, observation, and attribution now score high; attribution is direct for
+      Binance's market-removal action, while the privacy/regulatory motive remains contextual because Binance
+      used a generic listing-review rationale.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize remaining primary-trigger blockers and rows with

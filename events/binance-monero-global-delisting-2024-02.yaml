@@ -2,16 +2,16 @@ id: binance-monero-global-delisting-2024-02
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - binance-privacy-coin-delisting-2023
@@ -25,6 +25,21 @@ trigger:
   timestamp: 2024-02-06T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://www.binance.info/en/support/announcement/f73b083ba6834771b07dbe5319917ae5
+      body_hash: sha256:8f8b06e0db16e8ec1d4aa6248a4e377a64723d1d7ee42598be0e6ef433452a7c
+      body_path: sources/http_captures/binance-monero-global-delisting-2024-02/official-binance-info/www.binance.info__en-support-announcement-f73b083ba6834771b07dbe5319917ae5__0886efb112.html
+      evidence_use: replayable
+      note: |
+        Official Binance Support mirror capture. The page title is
+        "Binance Will Delist ANT, MULTI, VAI, XMR on 2024-02-20"; the
+        embedded article detail gives code f73b083ba6834771b07dbe5319917ae5,
+        catalog "Delisting", publish date 2024-02-06, and states that
+        Binance decided to delist and cease trading on all trading pairs
+        for ANT, MULTI, VAI, and XMR at 2024-02-20 03:00 UTC, including
+        XMR/BNB, XMR/BTC, XMR/ETH, and XMR/USDT. Captured 2026-06-01 from
+        binance.info because the binance.com live page returned a WAF
+        challenge in this network path.
     - type: semi_primary_wayback
       url: https://www.coindesk.com/markets/2024/02/06/binance-to-delist-monero-privacy-token-xmr-slides
       wayback: https://web.archive.org/web/20250911142709/https://www.coindesk.com/markets/2024/02/06/binance-to-delist-monero-privacy-token-xmr-slides
@@ -50,6 +65,11 @@ trigger:
         adding a monitoring tag; XMR dropped ~15% on the day of the
         announcement. Independent second semi-primary anchor.
   timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level trigger precision: the official Binance Support mirror
+        embeds publish date 2024-02-06 and displays Binance Team
+        2024-02-06. Intra-day timing is not needed for this comparison row.
     - type: semi_primary_wayback
       note: |
         Day-level precision: announced 2024-02-06, with spot trading on
@@ -114,12 +134,32 @@ observations:
     actor: exchange:binance
     event: binance_removes_xmr_global_spot_markets_privacy_coin_delisting
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2024-02-20T00:00:00Z
     precision: day
     delta_hours: 336
     country: null
     sources:
+      - type: primary_corporate
+        url: https://www.binance.info/en/support/announcement/f73b083ba6834771b07dbe5319917ae5
+        body_hash: sha256:8f8b06e0db16e8ec1d4aa6248a4e377a64723d1d7ee42598be0e6ef433452a7c
+        body_path: sources/http_captures/binance-monero-global-delisting-2024-02/official-binance-info/www.binance.info__en-support-announcement-f73b083ba6834771b07dbe5319917ae5__0886efb112.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [binance]
+          countries: []
+          time_window:
+            - 2024-02-06T00:00:00Z
+            - 2024-02-20T23:59:59Z
+        note: |
+          Official Binance Support mirror: Binance says it decided to
+          delist and cease trading on all trading pairs for ANT, MULTI,
+          VAI, and Monero (XMR) at 2024-02-20 03:00 UTC; the exact XMR
+          pairs listed are XMR/BNB, XMR/BTC, XMR/ETH, and XMR/USDT.
+          attribution=direct for the Binance market-removal action. The
+          broader privacy/regulatory interpretation remains contextual,
+          because the notice gives Binance's generic listing-review
+          rationale rather than an explicit privacy-coin rationale.
       - type: semi_primary_wayback
         url: https://www.coindesk.com/markets/2024/02/06/binance-to-delist-monero-privacy-token-xmr-slides
         wayback: https://web.archive.org/web/20250911142709/https://www.coindesk.com/markets/2024/02/06/binance-to-delist-monero-privacy-token-xmr-slides
@@ -135,10 +175,8 @@ observations:
         note: |
           CoinDesk 2024-02-06: Binance global XMR delisting (markets cease
           Feb. 20), within an ANT/MULTI/VAI/XMR batch; XMR fell ~30%.
-          attribution=plausible: the delisting is directly observed but
-          Binance's notice states only a generic periodic-review rationale,
-          not an explicit privacy-coin/regulatory reason, so the
-          compliance motive is contextual inference.
+          Secondary corroboration of the first-party Binance notice; the
+          privacy/regulatory motive remains contextual inference.
       - type: semi_primary_wayback
         url: https://www.theblock.co/post/276176/binance-delisting-monero
         wayback: https://web.archive.org/web/20240207035541/https://www.theblock.co/post/276176/binance-delisting-monero
@@ -157,6 +195,14 @@ observations:
           semi-primary anchor.
 
 analysis_notes: |
+  **SOURCE-STRENGTHENED 2026-06-01**: added a replayable official Binance
+  Support mirror capture from binance.info (binance.com live returned a WAF
+  challenge on this network path). The first-party notice explicitly names
+  ANT/MULTI/VAI/XMR and the removed XMR pairs, so the offramp_cex observation
+  is now attribution=direct for Binance's market-removal action. The privacy-
+  coin/regulatory motive is still treated as contextual, because Binance gave
+  a generic listing-review rationale rather than an explicit privacy-coin
+  rationale.
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 verify labeled
   this FIX, but I INDEPENDENTLY re-verified every load-bearing claim against the captured sources by
   rendering+grepping the pinned HTML — all confirmed present (the FIX label was verifier caution, same
@@ -187,12 +233,13 @@ analysis_notes: |
   body_hash-pinned; no fabrication).
 
 scoped_claim: |
-  "Binance's 2024-02-06 global delisting of Monero (XMR) — all XMR spot
+  "Binance's 2024-02-06 global delisting of Monero (XMR) -- all XMR spot
   pairs removed as of 2024-02-20, within an ANT/MULTI/VAI/XMR batch, XMR
-  -~30% — severed the Binance off-ramp for XMR worldwide; single-layer
-  offramp_cex observed_change, attribution=plausible (Binance stated only
-  a generic periodic-review rationale). Distinct from the 2023-06 Binance
-  EU privacy-asset delisting."
+  -~30% -- severed the Binance off-ramp for XMR worldwide; single-layer
+  offramp_cex observed_change, attribution=direct for the market-removal
+  action (Binance stated only a generic periodic-review rationale, so the
+  privacy/regulatory motive is contextual). Distinct from the 2023-06
+  Binance EU privacy-asset delisting."
 
 tags:
   - corporate_policy_change

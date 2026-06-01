@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T05:11:38Z`
+Generated at: `2026-06-01T05:22:19Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -50,7 +50,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `binance-dex-29-country-geoblock-2019-07` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `binance-eea-usdt-spot-delisting-2025-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `binance-hamas-account-freeze-israel-2023-10` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
-| `binance-monero-global-delisting-2024-02` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `binance-monero-global-delisting-2024-02` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `binance-netherlands-exit-2023-07` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `binance-nigeria-naira-services-end-2024-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `binance-palestinian-accounts-seizure-israel-2023-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
@@ -451,7 +451,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `binance-4framework-2023` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `binance-busd-wind-down-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `binance-eea-usdt-spot-delisting-2025-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `binance-monero-global-delisting-2024-02` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `binance-monero-global-delisting-2024-02` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `binance-nigeria-naira-services-end-2024-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `binance-palestinian-accounts-seizure-israel-2023-11` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `binance-privacy-coin-delisting-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d

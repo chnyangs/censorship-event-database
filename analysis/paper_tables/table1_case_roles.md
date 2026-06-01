@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `2079264` · generated `2026-06-01T05:11:38Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `34b152d` · generated `2026-06-01T05:22:19Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -49,7 +49,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `binance-dex-29-country-geoblock-2019-07` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `domain` | `subset` | 1 | `frontend_only` | · | · | `2026-05-31` | `2026-05-31` |
 | `binance-eea-usdt-spot-delisting-2025-03` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `binance-hamas-account-freeze-israel-2023-10` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
-| `binance-monero-global-delisting-2024-02` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `binance-monero-global-delisting-2024-02` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `binance-netherlands-exit-2023-07` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
 | `binance-nigeria-naira-services-end-2024-03` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
 | `binance-palestinian-accounts-seizure-israel-2023-11` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
