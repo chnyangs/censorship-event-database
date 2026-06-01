@@ -31,6 +31,7 @@ import json
 import pathlib
 import re
 import shutil
+import subprocess
 import sys
 from datetime import datetime
 from typing import Any
@@ -3246,6 +3247,46 @@ def render_analysis_block(events: list[dict], meta: dict | None = None) -> str:
 """
 
 
+_TRACKED_MD_CACHE: set[str] | None = None
+
+
+def _repo_tracked_md() -> set[str]:
+    """Set of repo-relative .md paths tracked in git (so their GitHub blob URL
+    resolves). Cached; degrades to empty set (no rewriting) if git is absent."""
+    global _TRACKED_MD_CACHE
+    if _TRACKED_MD_CACHE is None:
+        try:
+            out = subprocess.run(
+                ["git", "-C", str(REPO_ROOT), "ls-files", "*.md"],
+                capture_output=True, text=True, timeout=20,
+            )
+            _TRACKED_MD_CACHE = set(filter(None, out.stdout.split("\n")))
+        except Exception:
+            _TRACKED_MD_CACHE = set()
+    return _TRACKED_MD_CACHE
+
+
+_MD_HREF_RE = re.compile(r'href="((?:\.\./)*)([A-Za-z0-9_./-]+\.md)"')
+
+
+def rewrite_md_links_to_github(html: str, meta: dict | None) -> str:
+    """Point in-repo .md doc links at GitHub's rendered blob view. Under
+    `.nojekyll` (set by .github/workflows/site.yml) GitHub Pages serves .md as
+    raw source, so an in-site `docs/methodology.md` link shows source code.
+    GitHub renders the same markdown (tables, code, headings). Untracked .md
+    (e.g. generated evidence chains) is left as-is to avoid a blob 404."""
+    base = ((meta or {}).get("dataset_url") or "").rstrip("/")
+    if not base:
+        return html
+    tracked = _repo_tracked_md()
+
+    def repl(m: "re.Match[str]") -> str:
+        path = m.group(2)
+        return f'href="{base}/blob/main/{path}"' if path in tracked else m.group(0)
+
+    return _MD_HREF_RE.sub(repl, html)
+
+
 def render_index(events: list[dict], meta: dict | None = None) -> str:
     meta = meta or load_meta()
     dv = meta.get("dataset_version") or "unknown"
@@ -3707,7 +3748,9 @@ def main() -> int:
 
     for e in events:
         slug = e.get("id", "unknown")
-        (site_dir / "events" / f"{slug}.html").write_text(render_event_page(e, events, meta))
+        (site_dir / "events" / f"{slug}.html").write_text(
+            rewrite_md_links_to_github(render_event_page(e, events, meta), meta)
+        )
 
     copy_yaml_raw(events_dir, site_dir)
     n_docs = copy_docs_tree(DOCS_DIR, site_dir)
@@ -3715,8 +3758,12 @@ def main() -> int:
     copy_meta(site_dir)
     n_irr = write_h1_irr_packet(site_dir, meta)
 
-    (site_dir / "index.html").write_text(render_index(events, meta))
-    (site_dir / "audit.html").write_text(render_audit_console(events, site_dir, meta))
+    (site_dir / "index.html").write_text(
+        rewrite_md_links_to_github(render_index(events, meta), meta)
+    )
+    (site_dir / "audit.html").write_text(
+        rewrite_md_links_to_github(render_audit_console(events, site_dir, meta), meta)
+    )
 
     print(
         f"[render_site] wrote {site_dir}/index.html + {len(events)} per-event pages + "
