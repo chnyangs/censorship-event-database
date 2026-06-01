@@ -2784,8 +2784,8 @@ def render_artifact_cards() -> str:
             "docs/paper_claims.md",
         ),
         (
-            "Draft paper",
-            "Manuscript wrapper generated from the claim lock and paper tables.",
+            "Paper surface",
+            "Public manuscript wrapper tied to the claim lock and generated tables.",
             "docs/paper.md",
         ),
         (

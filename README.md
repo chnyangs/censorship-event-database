@@ -24,9 +24,11 @@ The measurement protocol is implemented as six reproducible artifacts:
 | Paper-table generator | [`scripts/build_paper_tables.py`](scripts/build_paper_tables.py) | admitted-only fail-closed paper numbers |
 | Audit/sensitivity package | [`analysis/audit_worksheets/`](analysis/audit_worksheets/), [`derived/admission_sensitivity.md`](derived/admission_sensitivity.md), [`analysis/inter_rater/kappa_report.md`](analysis/inter_rater/kappa_report.md), [`analysis/staleness.md`](analysis/staleness.md) | audit, rubric sensitivity, recoding consistency, and freshness gates |
 
-Draft manuscript wrapper: [`docs/paper.md`](docs/paper.md). The manuscript
-is generated from the claim lock and paper tables; if it conflicts with
-[`docs/paper_claims.md`](docs/paper_claims.md), the claim lock controls.
+Public manuscript wrapper: [`docs/paper.md`](docs/paper.md). The formatted
+submission manuscript may be maintained outside the public artifact set, but
+its claims are locked by [`docs/paper_claims.md`](docs/paper_claims.md), the
+single source of truth; if manuscript prose conflicts with the claim lock, the
+claim lock controls.
 
 External validity is tracked separately in
 [`analysis/external_crosschecks/`](analysis/external_crosschecks/). That
