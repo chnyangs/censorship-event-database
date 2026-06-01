@@ -12,13 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **276** (11 complete / 265 scoped) and
-  admitted-but-blocked cases are **89**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **277** (11 complete / 266 scoped) and
+  admitted-but-blocked cases are **88**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **287 high / 78 medium / 0 low**; attribution reliability
-  **245 high / 120 medium / 0 low**. Current admitted paper roles are
+  trigger reliability **309 high / 56 medium / 0 low**; observation reliability
+  **288 high / 77 medium / 0 low**; attribution reliability
+  **246 high / 119 medium / 0 low**. Current admitted paper roles are
   **264 aggregate_datapoint / 97 null_control / 1 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
@@ -140,6 +141,10 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` now uses the official Thai SEC No. 114/2021 Wayback
   memento, removing its `evidence_tier=attested_secondary` caveat and upgrading trigger, observation, and
   attribution reliability to high.
+  `bybit-france-exit-2024-12` now uses Bybit's official help-center Coinhouse/French-user custody notice as a
+  replayable primary_corporate anchor, moving the row from blocked to release-ready scoped and upgrading trigger,
+  observation, and attribution reliability to high while keeping the regulatory-driver claim scoped to Bybit's
+  generic French-regulator wording rather than a named AMF instrument.
 
 ## Admitted composition (365)
 | dimension | breakdown |

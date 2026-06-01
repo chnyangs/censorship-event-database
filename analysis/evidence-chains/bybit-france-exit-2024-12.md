@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `a785639` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T09:36:40Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `08595e8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T09:49:53Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -10,10 +10,10 @@
 
 > "Bybit's 2024-12-17 termination of withdrawal/custody services for
 > French-resident users (withdraw-by 2025-01-08) severed the Bybit
-> off-ramp in France under AMF pressure; single-layer offramp_cex
-> observed_change, attribution=plausible (no Bybit-stated AMF instrument
-> reproduced in the cited coverage). Later reversed (AMF de-listing
-> 2025-02-14)."
+> off-ramp in France amid French-regulator developments; single-layer
+> offramp_cex observed_change, attribution=direct for the Bybit service
+> termination (regulatory-driver specificity remains generic, not a
+> Bybit-cited AMF instrument). Later reversed (AMF de-listing 2025-02-14)."
 
 ## 1. Trigger
 
@@ -23,6 +23,17 @@
 
 ### Trigger citations
 
+- **`primary_corporate`**
+  - URL: <https://www.bybit.com/en/help-center/article/How-to-Onboard-Coinhouse-and-Manage-Your-Assets>
+  - body_hash: `sha256:79e09ba4530055d5df75a1364cc8505fa826771e04b42cdbb12f51482b2b0cb6`
+  - body_path: `sources/http_captures/bybit-france-exit-2024-12/official-bybit/www.bybit.com__en-help-center-article-How-to-Onboard-Coinhouse-and-Manage-Your-Assets__4d26279d3f.html`
+  > Official Bybit help-center article "How to Onboard Coinhouse and
+> Manage Your Assets" (last updated 2024-12-17 00:05:23). Bybit
+> states that, in light of recent developments by the French
+> regulator and prior restrictions in France, it would no longer
+> provide withdrawal and custody services to nationals or residents
+> of the French Territories starting 2025-01-08; residual balances
+> above 10 USDC would be converted/transferred through Coinhouse.
 - **`semi_primary_wayback`**
   - URL: <https://www.fxleaders.com/news/2024/12/17/bybit-to-end-services-in-france-key-deadlines-and-next-steps-for-users/>
   - Wayback: <https://web.archive.org/web/20250327225010/https://www.fxleaders.com/news/2024/12/17/bybit-to-end-services-in-france-key-deadlines-and-next-steps-for-users/>
@@ -56,7 +67,7 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `plausible` · Δt = 528h
+### offramp_cex · attribution: `direct` · Δt = 528h
 
 **Event label**: `bybit_ends_withdrawal_custody_services_for_french_users`
 
@@ -64,16 +75,25 @@
 
 **Sources**:
 
+- **`primary_corporate`**
+  - URL: <https://www.bybit.com/en/help-center/article/How-to-Onboard-Coinhouse-and-Manage-Your-Assets>
+  - body_hash: `sha256:79e09ba4530055d5df75a1364cc8505fa826771e04b42cdbb12f51482b2b0cb6`
+  - body_path: `sources/http_captures/bybit-france-exit-2024-12/official-bybit/www.bybit.com__en-help-center-article-How-to-Onboard-Coinhouse-and-Manage-Your-Assets__4d26279d3f.html`
+  > Official Bybit article: Bybit states that it would no longer
+> provide withdrawal and custody services to French users starting
+> 2025-01-08 at 08:00 UTC. attribution=direct for the Bybit service
+> termination; the regulatory-driver wording remains scoped to
+> Bybit's generic "French regulator"/"relevant regulations" phrasing,
+> not a named AMF instrument.
 - **`semi_primary_wayback`**
   - URL: <https://www.fxleaders.com/news/2024/12/17/bybit-to-end-services-in-france-key-deadlines-and-next-steps-for-users/>
   - Wayback: <https://web.archive.org/web/20250327225010/https://www.fxleaders.com/news/2024/12/17/bybit-to-end-services-in-france-key-deadlines-and-next-steps-for-users/>
   - body_hash: `sha256:8e69c8cffcc27109edd08f805b80e3477a0e5fa2bc78f5abd2b562d34ab5bdbb`
   - body_path: `sources/http_captures/bybit-france-exit-2024-12/primary/web.archive.org__web-20241218000000-https-www.fxleaders.com-news-2024-12-17-bybit-to-end-services-in-france-key-deadlines-and-next-steps-for-users__267a0afd51.html`
   > FX Leaders 2024-12-17: Bybit French-user withdrawal/custody
-> termination (deadline 2025-01-08). attribution=plausible: the
-> AMF-pressure linkage is reported context, not a Bybit-stated
-> regulatory order; the trade press does not reproduce a Bybit
-> notice that cites a specific AMF instrument as the cause.
+> termination (deadline 2025-01-08). Retained as corroboration and
+> AMF-context reporting; the official Bybit source carries the direct
+> service-termination attribution.
 - **`semi_primary_wayback`**
   - URL: <https://beincrypto.com/bybit-france-crypto-services-end-january-2025/>
   - Wayback: <https://web.archive.org/web/20241218104424/https://beincrypto.com/bybit-france-crypto-services-end-january-2025/>
@@ -93,7 +113,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `a785639`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `08595e8`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T09:47:26Z`
+Generated at: `2026-06-01T09:59:46Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -83,7 +83,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `brazil-bcb-comunicado-25306-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `btc-e-doj-2017` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `bybit-canada-exit-2023-05` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-06-01 | 0 | ok | ok |
-| `bybit-france-exit-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `bybit-france-exit-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `bybit-singapore-exit-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `cambodia-nbc-joint-crypto-prohibition-2018-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `canada-convoy-freeze-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
@@ -474,7 +474,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `brazil-bacen-stablecoin-restriction-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `brazil-bcb-comunicado-25306-2014` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `btc-e-doj-2017` — audit=no_audit_recorded, verification=ok, verif_age=40d
-- `bybit-france-exit-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `bybit-france-exit-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `bybit-singapore-exit-2022` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `cambodia-nbc-joint-crypto-prohibition-2018-05` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `canada-convoy-freeze-2022` — audit=no_audit_recorded, verification=ok, verif_age=40d

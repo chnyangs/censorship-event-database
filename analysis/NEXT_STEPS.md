@@ -69,8 +69,9 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **276 release-ready** cases, **89 admitted-but-blocked** cases, admitted observation reliability
-      **287 high / 78 medium / 0 low**, and admitted attribution reliability **245 high / 120 medium / 0 low**.
+      **277 release-ready** cases, **88 admitted-but-blocked** cases, admitted trigger reliability
+      **309 high / 56 medium / 0 low**, admitted observation reliability **288 high / 77 medium / 0 low**,
+      and admitted attribution reliability **246 high / 119 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -202,6 +203,10 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       after the direct PDF endpoint drifted to an empty 500/page-not-found response; and Thailand SEC now uses
       the official Thai SEC No. 114/2021 Wayback memento, removing `evidence_tier=attested_secondary` and
       upgrading trigger, observation, and attribution reliability to high.
+      Follow-on corporate primary-trigger repair also moved `bybit-france-exit-2024-12` out of the blocked
+      queue by pinning Bybit's official Coinhouse/French-user custody notice locally, upgrading trigger,
+      observation, and attribution reliability to high while keeping the regulatory-driver claim limited to
+      Bybit's generic French-regulator wording rather than a named AMF instrument.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize remaining primary-trigger blockers and rows with

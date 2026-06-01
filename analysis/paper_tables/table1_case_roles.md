@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `776590d` · generated `2026-06-01T09:47:26Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `08595e8` · generated `2026-06-01T09:59:46Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -77,7 +77,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `brazil-bcb-comunicado-25306-2014` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `btc-e-doj-2017` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
 | `bybit-canada-exit-2023-05` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `2026-05-31` |
-| `bybit-france-exit-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `bybit-france-exit-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `bybit-singapore-exit-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-17` | `—` |
 | `cambodia-nbc-joint-crypto-prohibition-2018-05` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `canada-convoy-freeze-2022` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |

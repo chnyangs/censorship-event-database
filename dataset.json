@@ -9566,7 +9566,7 @@
   {
     "_source_file": "bybit-france-exit-2024-12.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 verify labeled\nthis FIX, but I INDEPENDENTLY re-verified every load-bearing claim against the captured sources by\nrendering+grepping the pinned HTML \u2014 all confirmed present (the FIX label was verifier caution, same\nover-flag pattern as binance-dex-29 whose 29-country list checked out fully). asset_onchain layers\nhonestly remain not_measured where no tx_hash is pinned; attribution=plausible per \u00a71.1. Passes strict validation).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Bybit's 2024-12-17\nannouncement to terminate withdrawal/custody services for French-\nresident users (deadline 2025-01-08), severing the Bybit off-ramp in\nFrance amid AMF regulatory pressure (Bybit was AMF-blacklisted since\n2022; May 2024 AMF \"not authorized\" warning). comparison shape, single\nofframp_cex observed_change, attribution=plausible per \u00a71.1 (the AMF-\npressure cause is reported context; the cited trade press does not\nreproduce a Bybit notice naming a specific AMF instrument, so class-\nlevel inference is required). FR jurisdiction. l0/l1/l3/l4/asset_onchain\nnot_applicable (a contractual jurisdiction exit, not a network/UI block\nor asset freeze). NOTE for human reviewer: Bybit was REVERSED out of\nthis exit \u2014 removed from the AMF blacklist 2025-02-14 and pursued a\nMiCA/Bybit-EU path; this event records the 2024-12 exit action, not its\nlater reversal. Sources verified via WebSearch + captured 2026-05-31\n(FX Leaders + BeInCrypto, body_hash-pinned; no fabrication).\n",
+    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 verify labeled\nthis FIX, but I INDEPENDENTLY re-verified every load-bearing claim against the captured sources by\nrendering+grepping the pinned HTML \u2014 all confirmed present (the FIX label was verifier caution, same\nover-flag pattern as binance-dex-29 whose 29-country list checked out fully). asset_onchain layers\nhonestly remain not_measured where no tx_hash is pinned. Passes strict validation).\n**QUALITY-LOOP REPAIR 2026-06-01** (automated source-link repair; no new\nhuman audit stamp). Captured and grep-verified Bybit's official\nhelp-center article. The event now has a primary_corporate trigger and\nobservation anchor, and attribution is direct for the Bybit\nwithdrawal/custody termination. The regulatory-driver claim remains\nlimited to Bybit's generic \"French regulator\"/\"relevant regulations\"\nwording plus corroborating trade-press AMF context, not a named\nBybit-cited AMF instrument.\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Bybit's 2024-12-17\nannouncement to terminate withdrawal/custody services for French-\nresident users (deadline 2025-01-08), severing the Bybit off-ramp in\nFrance amid French-regulator developments (Bybit was AMF-blacklisted since\n2022; May 2024 AMF \"not authorized\" warning). comparison shape, single\nofframp_cex observed_change, attribution=direct for the Bybit service\ntermination. FR jurisdiction. l0/l1/l3/l4/asset_onchain\nnot_applicable (a contractual jurisdiction exit, not a network/UI block\nor asset freeze). NOTE for human reviewer: Bybit was REVERSED out of\nthis exit \u2014 removed from the AMF blacklist 2025-02-14 and pursued a\nMiCA/Bybit-EU path; this event records the 2024-12 exit action, not its\nlater reversal. Sources verified via WebSearch + captured 2026-05-31\n(FX Leaders + BeInCrypto, body_hash-pinned; no fabrication).\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "3.0.0",
     "coverage": [
@@ -9595,7 +9595,7 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer. Bybit terminated withdrawal/custody services\nfor French-resident users (withdraw-by 2025-01-08), severing the\nBybit centralized-exchange off-ramp in France under AMF pressure.\n",
+        "note": "Load-bearing layer. Bybit terminated withdrawal/custody services\nfor French-resident users (withdraw-by 2025-01-08), severing the\nBybit centralized-exchange off-ramp in France amid French-regulator\ndevelopments.\n",
         "scope": [
           "bybit_france"
         ],
@@ -9608,11 +9608,11 @@
     "jurisdiction": [
       "FR"
     ],
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "exchange:bybit",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": "FR",
         "delta_hours": 528,
         "event": "bybit_ends_withdrawal_custody_services_for_french_users",
@@ -9621,10 +9621,30 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:79e09ba4530055d5df75a1364cc8505fa826771e04b42cdbb12f51482b2b0cb6",
+            "body_path": "sources/http_captures/bybit-france-exit-2024-12/official-bybit/www.bybit.com__en-help-center-article-How-to-Onboard-Coinhouse-and-Manage-Your-Assets__4d26279d3f.html",
+            "evidence_use": "replayable",
+            "note": "Official Bybit article: Bybit states that it would no longer\nprovide withdrawal and custody services to French users starting\n2025-01-08 at 08:00 UTC. attribution=direct for the Bybit service\ntermination; the regulatory-driver wording remains scoped to\nBybit's generic \"French regulator\"/\"relevant regulations\" phrasing,\nnot a named AMF instrument.\n",
+            "scope_descriptor": {
+              "countries": [
+                "FR"
+              ],
+              "providers": [
+                "bybit"
+              ],
+              "time_window": [
+                "2024-12-17T00:00:00+00:00",
+                "2025-01-08T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.bybit.com/en/help-center/article/How-to-Onboard-Coinhouse-and-Manage-Your-Assets"
+          },
+          {
             "body_hash": "sha256:8e69c8cffcc27109edd08f805b80e3477a0e5fa2bc78f5abd2b562d34ab5bdbb",
             "body_path": "sources/http_captures/bybit-france-exit-2024-12/primary/web.archive.org__web-20241218000000-https-www.fxleaders.com-news-2024-12-17-bybit-to-end-services-in-france-key-deadlines-and-next-steps-for-users__267a0afd51.html",
             "evidence_use": "replayable",
-            "note": "FX Leaders 2024-12-17: Bybit French-user withdrawal/custody\ntermination (deadline 2025-01-08). attribution=plausible: the\nAMF-pressure linkage is reported context, not a Bybit-stated\nregulatory order; the trade press does not reproduce a Bybit\nnotice that cites a specific AMF instrument as the cause.\n",
+            "note": "FX Leaders 2024-12-17: Bybit French-user withdrawal/custody\ntermination (deadline 2025-01-08). Retained as corroboration and\nAMF-context reporting; the official Bybit source carries the direct\nservice-termination attribution.\n",
             "scope_descriptor": {
               "countries": [
                 "FR"
@@ -9667,14 +9687,14 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "bybit-singapore-exit-2022",
       "hongkong-sfc-bybit-warning-2024"
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Bybit's 2024-12-17 termination of withdrawal/custody services for\nFrench-resident users (withdraw-by 2025-01-08) severed the Bybit\noff-ramp in France under AMF pressure; single-layer offramp_cex\nobserved_change, attribution=plausible (no Bybit-stated AMF instrument\nreproduced in the cited coverage). Later reversed (AMF de-listing\n2025-02-14).\"\n",
+    "scoped_claim": "\"Bybit's 2024-12-17 termination of withdrawal/custody services for\nFrench-resident users (withdraw-by 2025-01-08) severed the Bybit\noff-ramp in France amid French-regulator developments; single-layer\nofframp_cex observed_change, attribution=direct for the Bybit service\ntermination (regulatory-driver specificity remains generic, not a\nBybit-cited AMF instrument). Later reversed (AMF de-listing 2025-02-14).\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -9699,6 +9719,14 @@
       "actor": "bybit",
       "citation": [
         {
+          "body_hash": "sha256:79e09ba4530055d5df75a1364cc8505fa826771e04b42cdbb12f51482b2b0cb6",
+          "body_path": "sources/http_captures/bybit-france-exit-2024-12/official-bybit/www.bybit.com__en-help-center-article-How-to-Onboard-Coinhouse-and-Manage-Your-Assets__4d26279d3f.html",
+          "evidence_use": "replayable",
+          "note": "Official Bybit help-center article \"How to Onboard Coinhouse and\nManage Your Assets\" (last updated 2024-12-17 00:05:23). Bybit\nstates that, in light of recent developments by the French\nregulator and prior restrictions in France, it would no longer\nprovide withdrawal and custody services to nationals or residents\nof the French Territories starting 2025-01-08; residual balances\nabove 10 USDC would be converted/transferred through Coinhouse.\n",
+          "type": "primary_corporate",
+          "url": "https://www.bybit.com/en/help-center/article/How-to-Onboard-Coinhouse-and-Manage-Your-Assets"
+        },
+        {
           "body_hash": "sha256:8e69c8cffcc27109edd08f805b80e3477a0e5fa2bc78f5abd2b562d34ab5bdbb",
           "body_path": "sources/http_captures/bybit-france-exit-2024-12/primary/web.archive.org__web-20241218000000-https-www.fxleaders.com-news-2024-12-17-bybit-to-end-services-in-france-key-deadlines-and-next-steps-for-users__267a0afd51.html",
           "evidence_use": "replayable",
@@ -9721,13 +9749,17 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
+          "note": "Day-level precision: official Bybit article last updated\n2024-12-17 00:05:23, with withdrawal/custody services ceasing\n2025-01-08 at 08:00 UTC.\n",
+          "type": "primary_corporate"
+        },
+        {
           "note": "Day-level precision: announced 2024-12-17, withdrawal deadline\n2025-01-08 per the cited coverage.\n",
           "type": "semi_primary_wayback"
         }
       ],
       "type": "corporate_policy_change"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "bybit-singapore-exit-2022.yaml",
