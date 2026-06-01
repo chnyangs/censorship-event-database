@@ -3424,7 +3424,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
   <div class="section-heading" id="layers">
     <div>
       <h2>Layer Observability</h2>
-      <p class="meta">Each layer card separates observed changes, observed no-change rows, and the measured/partial coverage denominator.</p>
+      <p class="meta">Each layer card separates observed changes, observed no-change rows, and the measured/partial coverage denominator. The stack runs <strong>L0 → L1 → L3 → L4</strong> plus <code>asset_onchain</code> and <code>offramp_cex</code>: <strong>L2 (rollup / sequencer filtering) is intentionally omitted</strong> — it is scoped to a separate L2-tracker project, not this corpus (see <a href="docs/methodology.md">methodology</a>).</p>
     </div>
   </div>
   {render_layer_board(events)}
