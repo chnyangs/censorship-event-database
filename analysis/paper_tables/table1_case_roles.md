@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `8dbd685` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `3f1a9f2` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -28,7 +28,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `1mdc-egold-account-freeze-2007-04` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `aave-arc-fireblocks-whitelist-2022-01` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
 | `aave-tornado-frontend-block-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
-| `aeza-group-ofac-2025` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
+| `aeza-group-ofac-2025` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 1 | `asset_only` | · | · | `2026-06-02` | `—` |
 | `al-law-hezbollah-crypto-ofac-2024-03` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
 | `algeria-finance-law-2018-crypto-prohibition` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `alphabay-hansa-doj-2017` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-16` | `2026-05-16` |
@@ -163,7 +163,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `g20-roadmap-crypto-asset-policy-2023` | `null_case` | `S6_supranational` | `null_event` | `supranational_regulation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `g7-hiroshima-crypto-statement-2023` | `null_case` | `S6_supranational` | `null_event` | `supranational_regulation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `garantex-besciokov-mira-serda-doj-2025` | `anchor_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-31` | `—` |
-| `garantex-ofac-2022` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-04-21` | `—` |
+| `garantex-ofac-2022` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `gate-io-privacy-coin-perpetuals-delisting-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `asset` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
 | `gemini-netherlands-exit-2023-11` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-02` | `2026-05-31` |
 | `genesis-market-ofac-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `2026-05-31` |

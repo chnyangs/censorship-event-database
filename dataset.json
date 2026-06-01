@@ -658,18 +658,18 @@
   {
     "_source_file": "aeza-group-ofac-2025.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison documenting the 2025-07-01 OFAC designation of the Aeza Group\nbulletproof-hosting network. Entity-level designation of a hosting-infrastructure\nprovider is structurally distinct from the exchange / mixer / wallet cases in the\ndataset \u2014 Aeza is an L0 / L4 infrastructure provider to other illicit services, not a\nconsumer-facing crypto service. The on-chain footprint is small (1 TRX address) but the\noff-chain (hosting infrastructure, UK corporate shell) surface is large.\n\nFollow-up directions (post-admission): (1) Wayback CDX for aeza.ru / aeza.net post-event (did UK-side\npressure shut aeza.net but leave aeza.ru untouched?); (2) Tether query on the TRX\naddress; (3) UK Companies House state changes on AEZA INTERNATIONAL LTD.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nverified the OFAC Recent Actions replay anchor and the locally pinned\nusdtbanlist/TRON blacklist evidence; marked the row primary-source\nverified; and narrowed the public claim to the measured OFAC designation\nplus issuer-side TRON USDT blacklist. L0, L4, and offramp_cex are\nnon-load-bearing for this row: no ISP/DNS block, Aeza website availability\noutcome, or counterparty-CEX/KYT reaction is retained.\n\ncomparison documenting the 2025-07-01 OFAC designation of the Aeza Group\nbulletproof-hosting network. Entity-level designation of a hosting-infrastructure\nprovider is structurally distinct from the exchange / mixer / wallet cases in the\ndataset \u2014 Aeza is an L0 / L4 infrastructure provider to other illicit services, not a\nconsumer-facing crypto service. The on-chain footprint is small (1 TRX address) but the\noff-chain (hosting infrastructure, UK corporate shell) surface is large.\n\nFollow-up directions (post-admission): (1) Wayback CDX for aeza.ru / aeza.net post-event\nif an L4 website-availability claim is desired; (2) direct TronGrid/Tronscan receipt\nreplay for the listed blacklist transaction; (3) UK Companies House state changes on\nAEZA INTERNATIONAL LTD.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across:\n  aeza.net  2025-06-01..2025-08-01  -> 0 results\n  aeza.ru  2025-06-01..2025-08-01  -> 0 results\n  aezadns.com  2025-06-01..2025-08-01  -> 0 results\nAll 3 queries returned 0 measurements.\nArtifact: sources/l0_datasets/aeza-group-ofac-2025/aeza.net__ooni.json\n(body_hash sha256:43fbb3d557333a0af403d950db2c8320ef9417cf9183b1a9a692e145f73bc0fc).\nMeasurement-gap finding: OONI volunteer probe coverage is absent.\n",
+        "note": "The retained public claim is not an ISP/DNS/national-firewall block.\nAeza is modeled as an OFAC designation of an upstream bulletproof\nhosting provider plus an issuer-side TRON USDT blacklist observation.\nA prior OONI query across aeza.net, aeza.ru, and aezadns.com for\n2025-06-01..2025-08-01 returned no public measurements, but that\nabsence is not used as a claim-bearing L0 observation because no L0\ncensorship action is asserted.\n",
         "scope": [
           "aeza.ru",
           "aeza.net"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "chain": "tron",
@@ -684,12 +684,12 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "Wayback CDX for aeza.ru / aeza.net in the 2025-06 / 2025-07 window is not included in this release (CDX API timed out during automated capture). The public claim excludes L4 until direct Wayback snapshot anchors are attached.",
+        "note": "Website availability is non-load-bearing for this row. The retained\nclaim excludes Aeza website takedown, geofence, operator notice, or\npost-designation persistence until direct Wayback snapshot anchors are\nattached.\n",
         "scope": [
           "aeza.ru",
           "aeza.net"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "chain": "tron",
@@ -699,8 +699,8 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Chain-analytics anchors pinned 2026-04-22 as primary_corporate\nsubstrate for per-event offramp_cex reasoning (Chainalysis, TRM,\nElliptic sanctions-coverage resource pages):\n  Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7\n  TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a\n  Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a\nStatus remains not_measured because per-event chain-analytics report\nslices (naming specific SDN addresses / KYT flag records) are not\nyet pinned. The anchors establish the substrate; per-event slicing\nwould promote status.\n",
-        "status": "not_measured"
+        "note": "Aeza is a hosting/infrastructure-provider designation, not a\ncounterparty-CEX deposit/withdrawal case. The retained observation is\nissuer-side TRON USDT blacklisting of the listed address; no exchange\nor chain-analytics artifact naming a counterparty-CEX reaction is\nattached or claimed.\n",
+        "status": "not_applicable"
       }
     ],
     "created_at": "2026-04-22T02:30:00+00:00",
@@ -710,7 +710,7 @@
       "US",
       "UK"
     ],
-    "last_verified": "2026-04-22",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "tether_usdt_issuer",
@@ -739,10 +739,10 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"OFAC designation of the Aeza Group Russian bulletproof-hosting network on 2025-07-01\ntargeted an upstream infrastructure layer rather than a consumer-facing crypto service.\nPrimary observational gap: Wayback post-event snapshots of aeza.ru / aeza.net and TRX\nfreeze data not yet attached.\"\n",
+    "scoped_claim": "\"OFAC designation of the Aeza Group Russian bulletproof-hosting network on 2025-07-01\ntargeted an upstream infrastructure layer rather than a consumer-facing crypto service.\nThe retained changed-layer observation is Tether USDT-TRC20 blacklisting of the one\nlisted TRX address on 2025-07-02 06:25 UTC, about 30 hours after designation. This\nrelease does not claim an ISP/DNS block, Aeza website takedown or persistence outcome,\nor counterparty-CEX/KYT reaction.\"\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -799,7 +799,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "al-law-hezbollah-crypto-ofac-2024-03.yaml",
@@ -25274,14 +25274,14 @@
   {
     "_source_file": "garantex-ofac-2022.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "Scoped release claim: the 2022-04-05 OFAC action directly designated Garantex\nand constrained the exchange at the off-ramp / venue layer. This admitted\nbaseline is not yet claiming broader frontend, RPC, or consensus-layer effects.\nIt is useful for testing jurisdictional and exchange-specific enforcement\nmodeling before additional downstream artifacts are attached.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nverified the existing OFAC Recent Actions and Treasury press-release\nreplay anchors; marked the row primary-source verified; and narrowed the\npublic claim to the measured venue/off-ramp legal constraint. L0, L4,\nasset-onchain, L1, and L3 are non-load-bearing for this row: no ISP/DNS\nblock, frontend takedown/persistence, issuer blacklist, consensus, or RPC\nfiltering claim is retained.\n\nScoped release claim: the 2022-04-05 OFAC action directly designated Garantex\nand constrained the exchange at the off-ramp / venue layer. This admitted\nbaseline is not yet claiming broader frontend, RPC, or consensus-layer effects.\nIt is useful for testing jurisdictional and exchange-specific enforcement\nmodeling before additional downstream artifacts are attached.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across:\n  garantex.io  2022-03-05..2022-05-05  -> 0 results\nAll 1 queries returned 0 measurements.\nArtifact: sources/l0_datasets/garantex-ofac-2022/garantex.io__ooni.json\n(body_hash sha256:496498f4762d8c5b6bdc0af3820c117154d5687863bfc2de53bbe02e158d7fae).\nMeasurement-gap finding: OONI volunteer probe coverage is absent.\n",
-        "status": "not_measured"
+        "note": "The retained public claim is not an ISP/DNS/national-firewall block.\nGarantex is modeled here as an OFAC exchange designation with a\nmeasured off-ramp / venue-layer legal constraint. A prior OONI query\nacross garantex.io for 2022-03-05..2022-05-05 returned no public\nmeasurements, but that absence is not used as a claim-bearing L0\nobservation because no L0 censorship action is asserted.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
@@ -25290,22 +25290,22 @@
       },
       {
         "layer": "l3_rpc",
-        "note": "Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-compliance-adjacent\npublic Ethereum RPC substrate (Flashbots Protect launched 2022-11,\nMEV-Blocker launched 2023-03-27) did not exist at event time. Same\nconstruct-did-not-exist reasoning as L1 consensus coverage for\npre-Merge events. not_applicable rather than not_measured.\nL3 RPC-layer public-provider filter-list pin: the two dominant\nOFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker\n(mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both\ncaptured 2026-04-22 as ecosystem-level primary_corporate anchors for\nL3-layer reasoning:\n  mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67\n  docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282\nStatus remains not_measured because per-event bracketing snapshots\nof the provider filter lists (pre-event / event-day / post-event) are\nnot yet pinned from the Wayback CDX. The anchors establish the\nmeasurement substrate; per-event slices would promote status to\npartially_measured.\n",
+        "note": "Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-compliance-adjacent\npublic Ethereum RPC substrate (Flashbots Protect launched 2022-11,\nMEV-Blocker launched 2023-03-27) did not exist at event time. Same\nconstruct-did-not-exist reasoning as L1 consensus coverage for\npre-Merge events. not_applicable rather than not_measured.\n",
         "status": "not_applicable"
       },
       {
         "layer": "l4_frontend",
-        "note": "Frontend/operator availability is not asserted in this release",
+        "note": "Frontend/operator availability is not asserted in this release. This\nrow is scoped to the OFAC/Treasury venue-layer designation; no\ngarantex.io takedown, geofence, operator notice, or post-designation\nfrontend persistence claim is retained.\n",
         "scope": [
           "garantex.io",
           "related frontend availability"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "layer": "asset_onchain",
-        "note": "Trigger is not primarily an issuer blacklist event",
-        "status": "not_measured"
+        "note": "Trigger is modeled as an entity/exchange designation rather than an\nissuer-blacklist event. This row does not enumerate Garantex's listed\nSDN digital-currency addresses at the target level and does not retain\na token-freeze or issuer-side blacklist observation.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "offramp_cex",
@@ -25322,7 +25322,7 @@
       "US",
       "RU"
     ],
-    "last_verified": "2026-04-21",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "exchange:garantex",
@@ -25353,7 +25353,7 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "recovery": [
       {
         "layer": "offramp_cex",
@@ -25363,7 +25363,7 @@
     ],
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"OFAC designation of Garantex on 2022-04-05 (co-designated with Hydra)\ndocuments a Russia-operated exchange SDN. L4 frontend persistence is\nhypothesized but not asserted in this release: l4_frontend coverage\nstatus is `not_measured` and no L4 observation row is attached.\nFuture revision should add l4_frontend pre/post Wayback bracketing of\ngarantex.io to test the foreign-operated-exchange persistence pattern\nobserved in related events (sinbad-ofac-2023, grinex-garantex-\nsuccessor-ofac-2025). v0.3 audit 2026-05-19: scoped_claim repaired\nper audit_log row 218 (qid=93 garantex needs_recheck) which flagged\nthe original wording for asserting L4 observed_no_change without\nsupporting observation row.\"\n",
+    "scoped_claim": "\"OFAC/Treasury's 2022-04-05 designation of Garantex documents a\nRussia-operated virtual-currency exchange SDN and directly constrains\nU.S.-person dealings with the venue. This release treats the row as a\nvenue/off-ramp legal-constraint datapoint only. It does not claim an\nISP/DNS block, garantex.io frontend takedown or persistence outcome,\nissuer-side token freeze, consensus-layer filtering, or RPC filtering.\"\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -25415,7 +25415,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "gate-io-privacy-coin-perpetuals-delisting-2024-12.yaml",

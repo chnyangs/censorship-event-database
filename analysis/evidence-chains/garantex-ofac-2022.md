@@ -2,23 +2,18 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `8dbd685` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `3f1a9f2` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "OFAC designation of Garantex on 2022-04-05 (co-designated with Hydra)
-> documents a Russia-operated exchange SDN. L4 frontend persistence is
-> hypothesized but not asserted in this release: l4_frontend coverage
-> status is `not_measured` and no L4 observation row is attached.
-> Future revision should add l4_frontend pre/post Wayback bracketing of
-> garantex.io to test the foreign-operated-exchange persistence pattern
-> observed in related events (sinbad-ofac-2023, grinex-garantex-
-> successor-ofac-2025). v0.3 audit 2026-05-19: scoped_claim repaired
-> per audit_log row 218 (qid=93 garantex needs_recheck) which flagged
-> the original wording for asserting L4 observed_no_change without
-> supporting observation row."
+> "OFAC/Treasury's 2022-04-05 designation of Garantex documents a
+> Russia-operated virtual-currency exchange SDN and directly constrains
+> U.S.-person dealings with the venue. This release treats the row as a
+> venue/off-ramp legal-constraint datapoint only. It does not claim an
+> ISP/DNS block, garantex.io frontend takedown or persistence outcome,
+> issuer-side token freeze, consensus-layer filtering, or RPC filtering."
 
 ## 1. Trigger
 
@@ -75,13 +70,11 @@
 
 ## 5. Honest coverage gaps
 
-- **l0_network** (`not_measured`): L0 network-layer OONI API query performed 2026-04-22. Searched the
-- **l4_frontend** (`not_measured`): Frontend/operator availability is not asserted in this release
-- **asset_onchain** (`not_measured`): Trigger is not primarily an issuer blacklist event
+*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `8dbd685`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3f1a9f2`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

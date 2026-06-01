@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `comparison` (1 changed layer(s): `asset_onchain`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `8dbd685` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-22` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `3f1a9f2` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -10,8 +10,10 @@
 
 > "OFAC designation of the Aeza Group Russian bulletproof-hosting network on 2025-07-01
 > targeted an upstream infrastructure layer rather than a consumer-facing crypto service.
-> Primary observational gap: Wayback post-event snapshots of aeza.ru / aeza.net and TRX
-> freeze data not yet attached."
+> The retained changed-layer observation is Tether USDT-TRC20 blacklisting of the one
+> listed TRX address on 2025-07-02 06:25 UTC, about 30 hours after designation. This
+> release does not claim an ISP/DNS block, Aeza website takedown or persistence outcome,
+> or counterparty-CEX/KYT reaction."
 
 ## 1. Trigger
 
@@ -73,13 +75,11 @@
 
 ## 5. Honest coverage gaps
 
-- **l0_network** (`not_measured`): L0 network-layer OONI API query performed 2026-04-22. Searched the
-- **l4_frontend** (`not_measured`): Wayback CDX for aeza.ru / aeza.net in the 2025-06 / 2025-07 window is not included in this release (CDX API timed out during automated capture). The public claim excludes L4 until direct Wayback snapshot anchors are attached.
-- **offramp_cex** (`not_measured`): Chain-analytics anchors pinned 2026-04-22 as primary_corporate
+*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `8dbd685`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3f1a9f2`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

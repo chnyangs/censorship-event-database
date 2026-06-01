@@ -28,7 +28,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `1mdc-egold-account-freeze-2007-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `aave-arc-fireblocks-whitelist-2022-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `aave-tornado-frontend-block-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
-| `aeza-group-ofac-2025` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
+| `aeza-group-ofac-2025` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `al-law-hezbollah-crypto-ofac-2024-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `algeria-finance-law-2018-crypto-prohibition` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `alphabay-hansa-doj-2017` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
@@ -177,7 +177,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `g20-roadmap-crypto-asset-policy-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `g7-hiroshima-crypto-statement-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `garantex-besciokov-mira-serda-doj-2025` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
-| `garantex-ofac-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 42 | ok | no_audit_recorded |
+| `garantex-ofac-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `gate-io-privacy-coin-perpetuals-delisting-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `gemini-netherlands-exit-2023-11` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
 | `genesis-market-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
@@ -436,7 +436,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `1mdc-egold-account-freeze-2007-04` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `aave-arc-fireblocks-whitelist-2022-01` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `aave-tornado-frontend-block-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=12d
-- `aeza-group-ofac-2025` — audit=no_audit_recorded, verification=ok, verif_age=41d
+- `aeza-group-ofac-2025` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `al-law-hezbollah-crypto-ofac-2024-03` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `algeria-finance-law-2018-crypto-prohibition` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `apple-india-crypto-exchange-removal-2024-01` — audit=no_audit_recorded, verification=ok, verif_age=12d
@@ -546,7 +546,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `g20-roadmap-crypto-asset-policy-2023` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `g7-hiroshima-crypto-statement-2023` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `garantex-besciokov-mira-serda-doj-2025` — audit=no_audit_recorded, verification=ok, verif_age=2d
-- `garantex-ofac-2022` — audit=no_audit_recorded, verification=ok, verif_age=42d
+- `garantex-ofac-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `gate-io-privacy-coin-perpetuals-delisting-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `goldage-ny-state-indictment-2006-07` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `google-play-india-crypto-exchange-removal-2024-01` — audit=no_audit_recorded, verification=ok, verif_age=12d
