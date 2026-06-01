@@ -65007,9 +65007,9 @@
   {
     "_source_file": "voyager-bankruptcy-doj-objection-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**REPAIRED 2026-06-01** (quality-loop low-observation pass): recoded this\nrow to `evidence_tier=attested_secondary` and relabeled the changed-layer\nattribution from direct to plausible. The public packet now has replayable\nCoinDesk and Reuters-syndicated captures plus a generic Stretto docket\ncapture, but it still lacks the specific U.S. Trustee docket PDFs and a\nfirst-party Binance.US termination artifact required for admission-grade\ndirect attribution.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-17** (Phase E expansion;\nbankruptcy-court-objection sub-frame of S3 DOJ enforcement):\nauthored by LLM agent without personally verifying Wayback /\nbody_hash; origin=agent_draft pending human review. Real release\nmust replace this DRYRUN marker with a human-verified audit after\npinning the actual S.D.N.Y. bankruptcy docket entries (Case No.\n22-10943) for the U.S. Trustee's plan-confirmation objection and\nthe 2023-03-08 notice of appeal of Judge Wiles's 2023-03-07\nconfirmation order, plus an archived snapshot of Binance.US's\n2023-04-25 deal-abandonment statement.\n\ncomparison \u2014 M&A-cancellation variant of the lender-bankruptcy\ntwin. Distinct from the criminal Voyager / Alameda investigations\n(which target individual executive conduct) and from\ncelsius-bankruptcy-mashinsky-doj-2023 (which codifies platform\ncollapse via post-petition criminal indictment); here, the DOJ acts\npre-confirmation via the U.S. Trustee's bankruptcy-court objection\n+ appeal pathway, citing AML / sanctions-enforcement grounds against\nthe plan's third-party releases and the Binance.US acquisition\nroute. Single-layer offramp_cex observed_change with plausible\nattribution and attested_secondary source tier \u2192 empirical_case\nadmission tier, but filter/down-weight for headline claims. The trigger.type is\ncourt_civil_order (codebook \u00a75.1: DOJ-via-bankruptcy-court objection\nis a civil court mechanism, not a doj_indictment or doj_seizure_order).\nStratum S3_doj_sec_cftc_fiod per \u00a75.2.\n",
+    "analysis_notes": "**SOURCE-REPAIRED 2026-06-02**: replaced the lower-tier\nCoinDesk/generic-Stretto packet with specific Stretto legal PDFs for\nBankruptcy Court Doc 1182, S.D.N.Y. Document 4, S.D.N.Y. corrected\nOpinion & Order Document 53, and Bankruptcy Court Doc 1345. The row no\nlonger uses `evidence_tier=attested_secondary`: Document 53 is the\nprimary legal trigger and observed-change anchor, and Doc 1345 is the\nprimary legal downstream termination/toggle endpoint.\n\nThe repair deliberately narrows the retained changed-layer claim. The\ndirect observation is the court-stayed confirmation-order /\nBinance.US-sale route, not a claim that the DOJ directly caused\nBinance.US to terminate the agreement. The termination notice remains\nan endpoint showing that Voyager moved toward the plan's liquidation\ntoggle after Binance.US terminated, while the Reuters-syndicated\n\"hostile and uncertain regulatory climate\" wording stays supporting\ncontext only.\n\nComparison placement: this is the M&A-cancellation / bankruptcy-sale\nvariant of the lender-bankruptcy twin. It remains distinct from\ncriminal Voyager / Alameda investigations and from\ncelsius-bankruptcy-mashinsky-doj-2023 because the load-bearing\nmechanism is a civil bankruptcy appeal/stay order over the plan's\nexculpation and sale/distribution path. The trigger.type remains\ncourt_civil_order; stratum remains S3_doj_sec_cftc_fiod.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
@@ -65028,7 +65028,7 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "Voyager customer-facing platform was already frozen since\n2022-07-01 (withdraw-freeze) and in active Chapter 11 by the\n2023-03 DOJ objection. No fresh frontend takedown attributable\nto the DOJ objection itself.\n",
+        "note": "Voyager customer-facing platform was already frozen since\n2022-07-01 (withdraw-freeze) and in active Chapter 11 before the\n2023-04 stay order. No fresh frontend takedown is attributed to\nthe repaired trigger.\n",
         "status": "not_applicable"
       },
       {
@@ -65038,15 +65038,15 @@
       },
       {
         "denominator_artifact": {
-          "body_hash": "sha256:f8816fac4d1f5efb338f42a3323e2fc6d5b7cebe4d109d061b951df8a41dc709",
-          "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary/web.archive.org__web-20230310074649-https-www.coindesk.com-policy-2023-03-10-us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus__27eaea0eee.html",
-          "note": "DRYRUN denominator anchor: CoinDesk reporting on the DOJ appeal of\nthe Voyager-Binance.US confirmation order. Release-time human\nreviewer must replace with a real wayback snapshot or the\nbankruptcy docket entry for the U.S. Trustee's objection.\n",
-          "type": "supporting_journalism",
-          "url": "https://www.coindesk.com/policy/2023/03/10/us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus",
-          "wayback": "https://web.archive.org/web/20230310074649/https://www.coindesk.com/policy/2023/03/10/us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus"
+          "body_hash": "sha256:f3eb8fee30cb73dff15ce6a3fc40c05afd2b3589c76f4952838c1e162494a5ae",
+          "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175304172380000000106.pdf__7e88393d78.bin",
+          "evidence_use": "replayable",
+          "note": "Corrected S.D.N.Y. Opinion & Order, Document 53, granting the\nGovernment's stay motion and describing the confirmation-order\ndistribution / Binance.US acquisition path.\n",
+          "type": "primary_legal",
+          "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175304172380000000106.pdf"
         },
         "layer": "offramp_cex",
-        "note": "Voyager's centralized lending platform IS the off-ramp; the DOJ\nobjection and emergency-stay litigation interrupted the planned\nBinance.US acquisition route, and Binance.US formally abandoned the\nacquisition 2023-04-25 citing a \"hostile and uncertain regulatory\nclimate.\" The row treats the DOJ-to-termination causal pathway as\nplausible lower-tier evidence rather than direct attribution until\nspecific docket PDFs and first-party termination artifacts are pinned.\n",
+        "note": "Voyager's centralized lending platform is the off-ramp. The\nmeasured row-local change is the S.D.N.Y. stay of the confirmation\norder pending the Government's appeal, which paused the\nBinance.US acquisition route and delayed the planned crypto\ndistribution path. Binance.US's 2023-04-25 termination notice is\nretained as a downstream endpoint, not as the direct causal claim.\n",
         "scope": [
           "voyager_lending_platform",
           "binance_us_acquisition"
@@ -65056,29 +65056,85 @@
     ],
     "created_at": "2026-05-17T00:00:00+00:00",
     "empirical_shape": "comparison",
-    "evidence_caveat": "Voyager/Binance.US deal cancellation is \u00a79-clear and contemporaneously documented, but the retained public packet is lower-tier: replayable CoinDesk/Reuters-syndicated reporting plus a generic Stretto docket capture, not the specific U.S. Trustee docket PDFs or a first-party Binance.US termination notice. Use as attested_secondary and down-weight/filter in headline claims.",
-    "evidence_tier": "attested_secondary",
     "id": "voyager-bankruptcy-doj-objection-2023",
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-06-01",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "lending_platform:voyager_digital",
-        "attribution": "plausible",
+        "attribution": "direct",
         "delta_hours": 0,
-        "event": "voyager_binance_us_acquisition_blocked_by_doj_objection",
+        "event": "sdny_stay_order_paused_voyager_binance_us_sale_route",
         "layer": "offramp_cex",
-        "note": "DOJ (via U.S. Trustee's Office) filed notice of appeal 2023-03-08\nof the 2023-03-07 bankruptcy court order confirming Voyager's\nChapter 11 plan and Binance.US asset sale, then moved 2023-03-14\nto vacate the plan's third-party release provisions on AML /\nsanctions-enforcement grounds. District Judge Jennifer Rearden\n(S.D.N.Y.) granted DOJ's emergency stay 2023-03-27. The cascade\nculminated 2023-04-25 when Binance.US abandoned the acquisition\nciting the \"hostile and uncertain regulatory climate.\"\nattribution=plausible: the DOJ objection and emergency stay are\nreplayably documented and contemporaneous reporting ties the deal\ntermination to regulatory uncertainty, but this repair does not pin\nthe specific U.S. Trustee docket PDFs or first-party Binance.US\ntermination notice needed for direct attribution.\n",
+        "note": "The repaired observation is the court-stayed sale/distribution\nroute itself, not a direct causal claim that DOJ caused the later\nBinance.US termination. S.D.N.Y. Document 53 granted the\nGovernment's stay of the confirmation order pending appeal,\ndescribing the Voyager/Binance.US purchase path and the risk that\nimmediate plan effectiveness would moot public appellate review.\nVoyager later filed Doc 1345 reporting that Binance.US terminated\nthe asset-purchase agreement and that Voyager intended to toggle\nto direct liquidation distributions via the Voyager platform.\nattribution=direct for the court stay of the sale route; the\ntermination endpoint is retained as downstream context.\n",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:f3eb8fee30cb73dff15ce6a3fc40c05afd2b3589c76f4952838c1e162494a5ae",
+            "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175304172380000000106.pdf__7e88393d78.bin",
+            "evidence_use": "replayable",
+            "note": "Corrected S.D.N.Y. Opinion & Order, Document 53, filed\n2023-04-01. It grants the Government's motion for a stay of\nthe confirmation order pending appeal, identifies the\nVoyager/Binance.US asset-purchase route and crypto-distribution\npath, and records the public-interest / government-enforcement\nbasis for the stay. This primary legal artifact earns direct\nattribution for the stayed court-mediated sale route.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "voyager_lending_platform",
+                "binance_us"
+              ],
+              "time_window": [
+                "2023-04-01T00:00:00+00:00",
+                "2023-04-25T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175304172380000000106.pdf"
+          },
+          {
+            "body_hash": "sha256:e276d7288a7e22e2f9f88af54312918f6d523f5667d825b9711a034c6f672932",
+            "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175304252380000000171.pdf__d67838da04.bin",
+            "evidence_use": "replayable",
+            "note": "Bankruptcy Court Doc 1345, filed 2023-04-25, is Voyager's\nnotice of receipt of Binance.US's termination notice. The\nfiling states that Voyager received a Notice of Termination\nof the Asset Purchase Agreement from BAM Trading Services Inc.\nd/b/a Binance.US and that the Debtors intended to exercise the\nplan toggle to a liquidation transaction returning crypto and\ncash directly to creditors via the Voyager platform. It anchors\nthe downstream endpoint without converting the endpoint into a\ndirect DOJ-causation claim.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "voyager_lending_platform",
+                "binance_us"
+              ],
+              "time_window": [
+                "2023-04-25T00:00:00+00:00",
+                "2023-04-25T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175304252380000000171.pdf"
+          },
+          {
+            "body_hash": "sha256:25ae70bc59ab756fa34542ab9ba52dc5badb911cec7c4b85448208caee6db555",
+            "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175303152380000000014.pdf__237b8ded26.bin",
+            "evidence_use": "replayable",
+            "note": "Bankruptcy Court Doc 1182, filed 2023-03-14, documents the\nGovernment's stay-pending-appeal motion and the asserted\npolice, regulatory, KYC, and AML enforcement concerns that led\nto the district-court stay order.\n",
+            "type": "primary_legal",
+            "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175303152380000000014.pdf"
+          },
+          {
+            "body_hash": "sha256:bf6a39d6e9c7522e93d70b3e8c660bad4f5e24fb604467e515df19a75e40abfd",
+            "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175303272380000000186.pdf__4ce51b4aba.bin",
+            "evidence_use": "replayable",
+            "note": "S.D.N.Y. Document 4, filed 2023-03-17, is the Government's\nemergency stay memorandum in the district-court appeal. It\nsupports the sequence from bankruptcy-court stay request to\ndistrict-court stay order.\n",
+            "type": "primary_legal",
+            "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175303272380000000186.pdf"
+          },
+          {
             "body_hash": "sha256:f8816fac4d1f5efb338f42a3323e2fc6d5b7cebe4d109d061b951df8a41dc709",
             "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary/web.archive.org__web-20230310074649-https-www.coindesk.com-policy-2023-03-10-us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus__27eaea0eee.html",
             "evidence_use": "replayable",
-            "note": "CoinDesk reports DOJ filed appeal 2023-03-08 of Judge Wiles's\n2023-03-07 confirmation of the Voyager Chapter 11 plan and\nBinance.US asset sale. Wayback memento 20230310074649\ncaptured 2026-05-21.\n",
+            "note": "CoinDesk reports the 2023-03-08 Government appeal of Judge\nWiles's confirmation order. Retained as contemporaneous\ncorroboration for the pre-stay appeal sequence.\n",
             "scope_descriptor": {
               "providers": [
                 "voyager_lending_platform",
@@ -65094,17 +65150,10 @@
             "wayback": "https://web.archive.org/web/20230310074649/https://www.coindesk.com/policy/2023/03/10/us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus"
           },
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "Cointelegraph: U.S. Trustee Harrington's 2023-03-14 motion\ntargets the plan's third-party release provisions on grounds\nthat they would impede AML / sanctions enforcement against\npersons carrying out the sale. Wayback capture not retained\nthis session (Cointelegraph URL returned no CDX mementos).\n",
-            "type": "supporting_journalism",
-            "url": "https://cointelegraph.com/news/us-officials-appeal-protections-for-voyager-execs-in-binance-us-sale",
-            "wayback": "https://web.archive.org/web/20260517000000/https://cointelegraph.com/news/us-officials-appeal-protections-for-voyager-execs-in-binance-us-sale"
-          },
-          {
             "body_hash": "sha256:ed36d0c9abf3a4b33434a229dd6bfccede2668ba16415ceee144b7e1be2f4916",
             "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary/web.archive.org__web-20230401153120-https-www.coindesk.com-policy-2023-04-01-us-government-case-against-voyager-binanceus-deal-has-substantial-merits-judge-says__52a7d20dbc.html",
             "evidence_use": "replayable",
-            "note": "CoinDesk (2023-04-01): District Judge Jennifer Rearden,\nS.D.N.Y., finds U.S. government case against the\nVoyager-Binance.US deal has \"substantial\" merits, granting\nemergency stay of the sale. Wayback memento 20230401153120\ncaptured 2026-05-21.\n",
+            "note": "CoinDesk (2023-04-01): District Judge Jennifer Rearden,\nS.D.N.Y., finds U.S. government case against the\nVoyager-Binance.US deal has \"substantial\" merits, granting\nemergency stay of the sale. Retained as contemporaneous\ncorroboration; Stretto Document 53 is now the load-bearing\nprimary legal anchor.\n",
             "type": "supporting_journalism",
             "url": "https://www.coindesk.com/policy/2023/04/01/us-government-case-against-voyager-binanceus-deal-has-substantial-merits-judge-says",
             "wayback": "https://web.archive.org/web/20230401153120/https://www.coindesk.com/policy/2023/04/01/us-government-case-against-voyager-binanceus-deal-has-substantial-merits-judge-says"
@@ -65113,36 +65162,27 @@
             "body_hash": "sha256:2a7c1591f24179e1d6b8764565696982dc0491b72557ae1f20a74378ac2feeab",
             "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/binance-termination/www.investing.com__news-stock-market-news-binanceus-calls-off-13-billion-deal-for-voyagers-assets-3064146__3c5bb35bf4.html",
             "evidence_use": "replayable",
-            "note": "Reuters-syndicated report, captured via Investing.com on\n2026-06-01, documenting Binance.US's 2023-04-25 termination of\nthe Voyager asset-purchase agreement and the stated \"hostile and\nuncertain regulatory climate\" rationale. Retained as supporting\nevidence; not enough by itself to earn direct attribution.\n",
+            "note": "Reuters-syndicated report, captured via Investing.com on\n2026-06-01, documenting Binance.US's 2023-04-25 termination of\nthe Voyager asset-purchase agreement and the stated \"hostile and\nuncertain regulatory climate\" rationale. Retained as supporting\ncontext for the downstream endpoint; the direct attribution in\nthis row is limited to the court stay.\n",
             "type": "supporting_journalism",
             "url": "https://www.investing.com/news/stock-market-news/binanceus-calls-off-13-billion-deal-for-voyagers-assets-3064146"
-          },
-          {
-            "body_hash": "sha256:9521dc8f420e8bdf5c011d45c49a92e91878c79b0254c6fc3c92e91bf742a993",
-            "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/v0_3_repair/cases.stretto.com__Voyager-court-docket__16ccfbf7a0.html",
-            "evidence_use": "contextual_unarchived",
-            "note": "Voyager bankruptcy docket (Case No. 22-10943, S.D.N.Y. Bankr.).\nLive cases.stretto.com docket pre-pinned in v0_3_repair/ with\nbody_hash. Wayback memento not available for this private\ndocket service; live capture is the canonical anchor.\n",
-            "type": "primary_legal",
-            "url": "https://cases.stretto.com/Voyager/court-docket",
-            "wayback": "https://web.archive.org/web/20260517000000/https://cases.stretto.com/Voyager/court-docket"
           }
         ],
-        "timestamp": "2023-03-08T00:00:00+00:00",
+        "timestamp": "2023-04-01T00:00:00+00:00",
         "window": [
-          "2023-03-07T00:00:00+00:00",
+          "2023-04-01T00:00:00+00:00",
           "2023-04-25T23:59:59+00:00"
         ]
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "celsius-bankruptcy-mashinsky-doj-2023",
       "ftx-bankman-fried-doj-2022"
     ],
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2023-03-08 DOJ (U.S. Trustee) objection and appeal of Voyager\nDigital's Chapter 11 plan-confirmation order, citing AML /\nsanctions-enforcement grounds against the plan's third-party\nreleases and the Binance.US acquisition route, codifies a\nsingle-layer offramp_cex observation: the proposed Binance.US\nacquisition was stayed amid the government challenge and later\nabandoned on 2023-04-25, pushing Voyager toward direct customer\ndistributions. M&A-cancellation variant of the lender-bankruptcy\ntwin; attribution is plausible and evidence_tier=attested_secondary\nuntil specific docket PDFs and a first-party termination artifact are\npinned.\"\n",
+    "scoped_claim": "\"The 2023-04-01 S.D.N.Y. corrected Opinion & Order granting the\nGovernment's stay pending appeal of Voyager Digital's confirmation\norder is coded as a single-layer offramp_cex observed_change: the\ncourt stay paused the bankruptcy-court-mediated Binance.US sale /\ncrypto-distribution route. Voyager's 2023-04-25 Doc 1345 termination\nnotice is retained as the downstream endpoint showing the Binance.US\nasset-purchase route ended and Voyager intended to toggle to direct\nliquidation distributions; the row does not claim that the DOJ\ndirectly caused Binance.US's termination.\"\n",
     "status": "admitted",
     "tags": [
       "doj_enforcement",
@@ -65150,7 +65190,7 @@
       "bankruptcy_court",
       "third_party_release",
       "aml_sanctions_grounds",
-      "binance_us_acquisition_blocked",
+      "binance_us_acquisition_stayed",
       "lending_product",
       "centralized_platform_collapse",
       "bankruptcy_cascade",
@@ -65170,49 +65210,58 @@
       ],
       "entity": "voyager_digital_binance_us_bankruptcy_plan_doj_objection_2023",
       "enumeration": "subset",
-      "enumeration_note": "Voyager Digital LLC / Voyager Digital Holdings, Inc. (collectively\nthe Chapter 11 debtors) and the contemplated asset acquirer\nBinance.US (BAM Trading Services Inc.). DOJ objection targets the\nChapter 11 plan's third-party release / exculpation provisions and\nthe Binance.US acquisition structure on AML / sanctions-enforcement\ngrounds. No on-chain address set; the cascade surface is the\nbankruptcy-court-mediated off-ramp distribution of frozen Voyager\ncustomer balances and the M&A deal that would have routed them\nthrough Binance.US.\n",
+      "enumeration_note": "Voyager Digital LLC / Voyager Digital Holdings, Inc. (collectively\nthe Chapter 11 debtors) and the contemplated asset acquirer\nBinance.US (BAM Trading Services Inc.). The stay order targets the\nChapter 11 plan-confirmation path and its third-party release /\nexculpation provisions, including the Binance.US acquisition route\nthat would have routed Voyager customer balances through Binance.US.\nNo on-chain address set is asserted; the cascade surface is the\nbankruptcy-court-mediated off-ramp distribution path for frozen\nVoyager customer balances.\n",
       "kind": "entity"
     },
     "temporal_tier": "comparable_main_2017_present",
     "trigger": {
-      "actor": "US_TRUSTEE_SDNY",
+      "actor": "US_SDNY_DISTRICT_COURT",
       "citation": [
+        {
+          "body_hash": "sha256:f3eb8fee30cb73dff15ce6a3fc40c05afd2b3589c76f4952838c1e162494a5ae",
+          "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175304172380000000106.pdf__7e88393d78.bin",
+          "evidence_use": "replayable",
+          "note": "S.D.N.Y. corrected Opinion & Order, United States et al. v.\nVoyager Digital Holdings et al., No. 23 Civ. 02171 (JHR),\nDocument 53, filed 2023-04-01. Judge Jennifer H. Rearden\ngranted the Government's emergency motion for a stay pending\nappeal of the Bankruptcy Court's confirmation order. The order\ndescribes the Binance.US asset-purchase route, the exculpation\nprovision, KYC/AML and government-enforcement concerns, and the\nharm to Voyager customers from delaying cryptocurrency\ndistributions. This is the load-bearing trigger and\nobserved-change anchor.\n",
+          "type": "primary_legal",
+          "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175304172380000000106.pdf"
+        },
+        {
+          "body_hash": "sha256:25ae70bc59ab756fa34542ab9ba52dc5badb911cec7c4b85448208caee6db555",
+          "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175303152380000000014.pdf__237b8ded26.bin",
+          "evidence_use": "replayable",
+          "note": "Bankruptcy Court Doc 1182, filed 2023-03-14: memorandum in\nsupport of the United States and United States Trustee's\nexpedited motion for stay of the March 8 confirmation order\npending appeal. The filing cites the Government's notice of\nappeal at Dkt. No. 1165 and explains the asserted police,\nregulatory, KYC, and AML-enforcement concerns with the\nexculpation provisions tied to the Voyager/Binance.US plan.\n",
+          "type": "primary_legal",
+          "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175303152380000000014.pdf"
+        },
+        {
+          "body_hash": "sha256:bf6a39d6e9c7522e93d70b3e8c660bad4f5e24fb604467e515df19a75e40abfd",
+          "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary-legal-stretto-repair-v2/cases.stretto.com__public-x193-11753-PLEADINGS-1175303272380000000186.pdf__4ce51b4aba.bin",
+          "evidence_use": "replayable",
+          "note": "S.D.N.Y. Document 4, filed 2023-03-17: Government memorandum\nsupporting the emergency motion for stay in the district-court\nappeal. It states that the Government had appealed the March 8\nconfirmation order, describes the Voyager-Binance.US commercial\ndeal, and asks the district court to stay the confirmation order\nor at least the exculpation provision pending appeal.\n",
+          "type": "primary_legal",
+          "url": "https://cases.stretto.com/public/x193/11753/PLEADINGS/1175303272380000000186.pdf"
+        },
         {
           "body_hash": "sha256:f8816fac4d1f5efb338f42a3323e2fc6d5b7cebe4d109d061b951df8a41dc709",
           "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/primary/web.archive.org__web-20230310074649-https-www.coindesk.com-policy-2023-03-10-us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus__27eaea0eee.html",
           "evidence_use": "replayable",
-          "note": "CoinDesk (2023-03-10): \"U.S. Justice Dept. Appeals New York Judge's\nDecision to Approve Voyager's Sale to Binance.US.\" Reports that the\nDOJ (via the U.S. Trustee's Office, an arm of DOJ overseeing\nbankruptcies) filed an appeal on 2023-03-08 challenging\nBankruptcy Judge Michael Wiles's 2023-03-07 confirmation order\napproving Voyager Digital's Chapter 11 plan and asset sale to\nBinance.US. Wayback memento 20230310074649 captured 2026-05-21\nwith replayable body_hash. The bankruptcy docket entry for the\nU.S. Trustee's objection is at cases.stretto.com (Case No.\n22-10943, S.D.N.Y. Bankr.).\n",
+          "note": "CoinDesk (2023-03-10) reports the preceding 2023-03-08\nGovernment appeal of Judge Wiles's confirmation order. Retained\nonly as contemporaneous corroboration for the appeal sequence;\nthe admission-grade anchors are the Stretto legal PDFs above.\n",
           "type": "supporting_journalism",
           "url": "https://www.coindesk.com/policy/2023/03/10/us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus",
           "wayback": "https://web.archive.org/web/20230310074649/https://www.coindesk.com/policy/2023/03/10/us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus"
-        },
-        {
-          "body_hash": "sha256:9521dc8f420e8bdf5c011d45c49a92e91878c79b0254c6fc3c92e91bf742a993",
-          "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/v0_3_repair/cases.stretto.com__Voyager-court-docket__16ccfbf7a0.html",
-          "evidence_use": "contextual_unarchived",
-          "note": "Voyager Digital Holdings bankruptcy docket (Case No. 22-10943,\nS.D.N.Y. Bankr.). Houses the U.S. Trustee's objection to plan\nconfirmation and the subsequent notice of appeal of the\n2023-03-07 confirmation order. DRYRUN pin; specific docket\nentry numbers not retained in this draft.\n",
-          "type": "primary_legal",
-          "url": "https://cases.stretto.com/Voyager/court-docket"
-        },
-        {
-          "evidence_use": "contextual_unarchived",
-          "note": "Cointelegraph: U.S. Trustee William Harrington and other\ngovernment attorneys filed motion 2023-03-14 in S.D.N.Y.\nbankruptcy court arguing the court \"improperly exceeded its\nstatutory authority\" in approving third-party release provisions\nthat would impede the government's \"ability to enforce its\npolice and regulatory powers\" \u2014 including AML / sanctions\nenforcement against persons carrying out the sale. Wayback\ncapture for this URL not retained in this session (Cointelegraph\nURL returned no CDX mementos).\n",
-          "type": "supporting_journalism",
-          "url": "https://cointelegraph.com/news/us-officials-appeal-protections-for-voyager-execs-in-binance-us-sale",
-          "wayback": "https://web.archive.org/web/20260517000000/https://cointelegraph.com/news/us-officials-appeal-protections-for-voyager-execs-in-binance-us-sale"
         }
       ],
-      "timestamp": "2023-03-08T00:00:00+00:00",
+      "timestamp": "2023-04-01T00:00:00+00:00",
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level timing: DOJ notice of appeal of the 2023-03-07\nconfirmation order was filed 2023-03-08 per CoinDesk\n(\"just one day after Judge Wiles approved the deal\").\n",
+          "note": "Day-level timing is the filed date on S.D.N.Y. Document 53,\nthe corrected Opinion & Order granting the Government's stay\nmotion: 2023-04-01. Earlier March filings document the\nGovernment's appeal and stay request sequence but are not the\ntrigger timestamp for this repaired row.\n",
           "type": "primary_legal"
         }
       ],
       "type": "court_civil_order"
     },
-    "version": "0.3"
+    "version": "0.4"
   },
   {
     "_source_file": "wang-hongfei-fentanyl-precursor-ofac-2023-04.yaml",

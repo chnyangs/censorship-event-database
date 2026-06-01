@@ -6001,15 +6001,11 @@ This file is the operational summary for the repo's two current priorities:
 - Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `medium`
-- Attribution reliability: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
-- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `wang-hongfei-fentanyl-precursor-ofac-2023-04`

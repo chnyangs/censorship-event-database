@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `a888d9d` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `a7b40fe` · generated `2026-06-02T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -315,7 +315,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `upbit-privacy-coin-delisting-2019-09:0:offramp_cex:exchange:upbit:upbit_ends_support_for_six_privacy_coin_markets` | 1 | 0 | 1 | offramp_cex | `upbit-privacy-coin-delisting-2019-09::offramp_cex` |
 | `venezuela-sunacrip-mining-exchange-halt-2023-03:0:l1_consensus:venezuelan_licensed_mining_facilities:state_ordered_mining_facility_shutdown_carabobo_lara_bolivar` | 1 | 0 | 1 | l1_consensus | `venezuela-sunacrip-mining-exchange-halt-2023-03::l1_consensus` |
 | `vietnam-sbv-payment-prohibition-2017-10:0:offramp_cex:vietnamese_crypto_payment_ecosystem:bitcoin_payment_use_prohibited_with_fines_by_sbv` | 1 | 0 | 1 | offramp_cex | `vietnam-sbv-payment-prohibition-2017-10::offramp_cex` |
-| `voyager-bankruptcy-doj-objection-2023:0:offramp_cex:lending_platform:voyager_digital:voyager_binance_us_acquisition_blocked_by_doj_objection` | 1 | 0 | 1 | offramp_cex | `voyager-bankruptcy-doj-objection-2023::offramp_cex` |
+| `voyager-bankruptcy-doj-objection-2023:0:offramp_cex:lending_platform:voyager_digital:sdny_stay_order_paused_voyager_binance_us_sale_route` | 1 | 0 | 1 | offramp_cex | `voyager-bankruptcy-doj-objection-2023::offramp_cex` |
 | `webmoney-ukraine-tax-police-freeze-2013-06:0:offramp_cex:regulator:UA_MINISTRY_OF_INCOMES_AND_FEES:webmoney_ukraine_bank_accounts_frozen_and_operating_equipment_seized` | 1 | 0 | 1 | offramp_cex | `webmoney-ukraine-tax-police-freeze-2013-06::offramp_cex` |
 | `welcome-to-video-doj-2019:0:l4_frontend:frontend:welcome_to_video_tor_service:tor_marketplace_seized_in_joint_us_uk_kr_operation` | 1 | 0 | 1 | l4_frontend | `welcome-to-video-doj-2019::l4_frontend` |
 | `wikileaks-amazon-aws-eviction-2010-12:0:l4_frontend:cloud_host:amazon_aws:wikileaks_account_terminated_from_amazon_aws_ec2_s3_hosting` | 1 | 0 | 1 | l4_frontend | `wikileaks-amazon-aws-eviction-2010-12::l4_frontend` |
