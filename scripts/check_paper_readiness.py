@@ -254,6 +254,30 @@ def git_head_short() -> str:
     return proc.stdout.strip() if proc.returncode == 0 else ""
 
 
+def source_hash_matches_current(recorded_hash: Any, current_hash: str) -> bool:
+    return bool(recorded_hash) and recorded_hash == current_hash
+
+
+def maybe_warn_source_commit_drift(
+    *,
+    label: str,
+    recorded_commit: Any,
+    head: str,
+    recorded_hash: Any,
+    current_hash: str,
+    warnings: list[str],
+    note: str,
+) -> None:
+    if (
+        head
+        and recorded_commit != head
+        and not source_hash_matches_current(recorded_hash, current_hash)
+    ):
+        warnings.append(
+            f"{label} source_commit={recorded_commit} but HEAD={head}; {note}"
+        )
+
+
 def parse_iso_date_or_datetime(value: Any) -> datetime | None:
     if not value:
         return None
@@ -859,6 +883,7 @@ def main() -> int:
     all_event_ids = {event["id"] for event in all_events}
     head = git_head_short()
     dataset_meta: dict[str, Any] | None = None
+    current_input_hash, _current_input_count = source_input_hash()
 
     check_trigger_citation_archiving(
         all_events,
@@ -871,19 +896,26 @@ def main() -> int:
     try:
         dataset_meta = load_json(DATASET_META)
         check_citation_metadata(dataset_meta, errors, warnings, args.strict_repro)
-        current_input_hash, _current_input_count = source_input_hash()
-        if dataset_meta.get("source_input_hash") and dataset_meta.get("source_input_hash") != current_input_hash:
+        recorded_input_hash = dataset_meta.get("source_input_hash")
+        dataset_source_hash_matches = source_hash_matches_current(
+            recorded_input_hash,
+            current_input_hash,
+        )
+        if recorded_input_hash and not dataset_source_hash_matches:
             errors.append(
-                f"dataset.meta.json source_input_hash={dataset_meta.get('source_input_hash')} "
+                f"dataset.meta.json source_input_hash={recorded_input_hash} "
                 f"but current source_input_hash={current_input_hash}; run `make dataset`"
             )
-        if head and dataset_meta.get("source_commit") != head:
-            warnings.append(
-                f"dataset.meta.json source_commit={dataset_meta.get('source_commit')} "
-                f"but HEAD={head}; source_commit is display metadata only, "
-                "source_input_hash is the self-verifying gate"
-            )
-        if dataset_meta.get("source_tree_dirty"):
+        maybe_warn_source_commit_drift(
+            label="dataset.meta.json",
+            recorded_commit=dataset_meta.get("source_commit"),
+            head=head,
+            recorded_hash=recorded_input_hash,
+            current_hash=current_input_hash,
+            warnings=warnings,
+            note="source_commit is display metadata only; source_input_hash is the self-verifying gate",
+        )
+        if dataset_meta.get("source_tree_dirty") and not dataset_source_hash_matches:
             msg = (
                 "dataset.meta.json was generated from a dirty source-input tree; "
                 "allowed for working snapshots, blocked for release/submission mode"
@@ -1041,12 +1073,28 @@ def main() -> int:
                 f"but paper corpus event count={expected_paper_event_count}"
             )
         snapshot = table_meta.get("dataset_snapshot") or {}
-        if head and snapshot.get("source_commit") != head:
-            warnings.append(
-                f"analysis/paper_tables/.meta.json source_commit={snapshot.get('source_commit')} "
-                f"but HEAD={head}; source_commit is display metadata only, "
-                "source_input_hash gates the dataset snapshot"
+        snapshot_input_hash = snapshot.get("source_input_hash")
+        expected_snapshot_hash = (
+            dataset_meta.get("source_input_hash")
+            if dataset_meta is not None
+            else current_input_hash
+        )
+        if snapshot_input_hash and snapshot_input_hash != expected_snapshot_hash:
+            errors.append(
+                "analysis/paper_tables/.meta.json "
+                f"source_input_hash={snapshot_input_hash} but "
+                f"dataset.meta.json source_input_hash={expected_snapshot_hash}; "
+                "run `make paper-tables`"
             )
+        maybe_warn_source_commit_drift(
+            label="analysis/paper_tables/.meta.json",
+            recorded_commit=snapshot.get("source_commit"),
+            head=head,
+            recorded_hash=snapshot_input_hash,
+            current_hash=current_input_hash,
+            warnings=warnings,
+            note="source_commit is display metadata only; source_input_hash gates the dataset snapshot",
+        )
         generated = parse_iso_date_or_datetime(table_meta.get("generated_at"))
         cutoff = parse_iso_date_or_datetime(snapshot.get("cutoff_date"))
         if generated and cutoff and generated < cutoff:

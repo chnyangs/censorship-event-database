@@ -100,3 +100,38 @@ def test_dataset_surface_contract_rejects_bad_csv_inclusion_flag() -> None:
     check_paper_readiness.check_dataset_surface_contract(meta, rows, [{}, {}], errors)
 
     assert any("paper_corpus_included" in error for error in errors)
+
+
+def test_source_commit_drift_suppressed_when_source_hash_matches() -> None:
+    warnings: list[str] = []
+
+    check_paper_readiness.maybe_warn_source_commit_drift(
+        label="dataset.meta.json",
+        recorded_commit="parent1",
+        head="head999",
+        recorded_hash="sha256:abc",
+        current_hash="sha256:abc",
+        warnings=warnings,
+        note="source_commit is display metadata only",
+    )
+
+    assert not warnings
+
+
+def test_source_commit_drift_warns_without_matching_source_hash() -> None:
+    warnings: list[str] = []
+
+    check_paper_readiness.maybe_warn_source_commit_drift(
+        label="dataset.meta.json",
+        recorded_commit="parent1",
+        head="head999",
+        recorded_hash="sha256:abc",
+        current_hash="sha256:def",
+        warnings=warnings,
+        note="source_commit is display metadata only",
+    )
+
+    assert warnings == [
+        "dataset.meta.json source_commit=parent1 but HEAD=head999; "
+        "source_commit is display metadata only"
+    ]

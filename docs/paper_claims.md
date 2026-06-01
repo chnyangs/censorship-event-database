@@ -782,7 +782,8 @@ The paper-table surface under `analysis/paper_tables/` is rebuilt by
 `derived/*`. `scripts/build_paper_tables.py` emits Tables 1-6;
 `scripts/build_jurisdiction_distribution.py` emits Table 7 as the
 `jurisdiction` prerequisite. Each claim is frozen to its exact number
-by the relevant table at a given `source_commit`. Numbers not
+by the relevant table at a given `source_input_hash`; `source_commit`
+is retained only as generation-time display metadata. Numbers not
 produced by this reproducible surface do not enter the paper.
 
 | # | table | file | supports |

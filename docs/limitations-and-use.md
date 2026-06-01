@@ -189,8 +189,13 @@ Every tool output under this framework carries:
 - `dataset_version` — semver version from `CITATION.cff :: version`
   (e.g. `0.1.0`). `scripts/build_dataset.py` bakes it into every
   `dataset.meta.json` run so all derived outputs agree.
-- `source_commit` — short git SHA at generation time (7 chars);
-  resolves the snapshot precisely between tagged releases.
+- `source_input_hash` — content hash over the source files that feed
+  dataset, derived, and paper-table generation. This is the authoritative
+  reproducibility gate for committed artifacts.
+- `source_commit` — short git SHA at generation time (7 chars). This
+  is display metadata and may point to the source-input parent of a
+  committed generated-artifact checkpoint; it is not the reproducibility
+  gate.
 - `cutoff_date` — **max** of (`last_verified`, `last_human_audit`)
   across events. See §2.5 for the canonical definition.
 - `schema_version` — currently `0.2.0`. The generator hard-fails if
@@ -202,9 +207,10 @@ Every tool output under this framework carries:
   of at least one primary source.
 
 A reader can re-check any claim by: `git checkout v{dataset_version}`
-(or `git checkout {source_commit}` between releases) → verify
-`body_hash` matches the file at `body_path` → read the original primary
-source. No step requires any proprietary service.
+(or the working snapshot that carries the recorded `source_input_hash`
+between releases) → verify the source-input hash and cited `body_hash`
+values → read the original primary source. No step requires any
+proprietary service.
 
 ## 5. Corrections and dispute resolution
 

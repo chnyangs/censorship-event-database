@@ -13,8 +13,8 @@ prerequisite of `make paper-tables`. Every table is a pure function of:
 
 Each output carries:
   - the dataset snapshot stamp (`version`, `cutoff_date`,
-    `source_commit`) so numbers in the paper can be re-verified
-    against a specific repo state,
+    `source_input_hash`, and display-only `source_commit`) so numbers
+    in the paper can be re-verified against a specific source-input state,
   - denominator-inline rates (no bare numbers that hide their
     denominator),
   - a phrasing-lock note at the end naming which paper claim it
@@ -866,7 +866,7 @@ def build_index(
         "claim(s) it supports and to the `derived/` artifact it reads "
         "from. Re-run with `make paper-tables` from a clean checkout; "
         "the output under this directory should match the paper's figures "
-        "byte-for-byte at a given `source_commit`."
+        "byte-for-byte at a given `source_input_hash`."
     )
     lines.append("")
     lines.append(f"Events in snapshot: **{event_count}**")
@@ -932,6 +932,7 @@ def main() -> int:
             "schema_version": ds_meta.get("schema_version"),
             "cutoff_date": ds_meta.get("cutoff_date"),
             "source_commit": ds_meta.get("source_commit"),
+            "source_input_hash": ds_meta.get("source_input_hash"),
         },
         "event_count": len(events),
         "tables": [
