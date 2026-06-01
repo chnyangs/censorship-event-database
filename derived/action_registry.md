@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ea43eeb` · generated `2026-06-01T03:45:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4ee1e3c` · generated `2026-06-01T03:53:57Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **321**
+- Canonical physical actions: **320**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -125,7 +125,6 @@ This registry deduplicates physical actions that appear in more than one event r
 | `eu-tfr-recast-2023:0:offramp_cex:eu_casp_ecosystem:eu_tfr_recast_adopted_zero_threshold_travel_rule_for_casps` | 1 | 0 | 1 | offramp_cex | `eu-tfr-recast-2023::offramp_cex` |
 | `fatf-r15-vasp-travel-rule-2019:0:offramp_cex:fatf_member_state_vasp_aggregate:fatf_r15_inr_adopted_vasp_travel_rule_supranational_trigger` | 1 | 0 | 1 | offramp_cex | `fatf-r15-vasp-travel-rule-2019::offramp_cex` |
 | `fincen-eric-powers-p2p-exchanger-2019-04:0:offramp_cex:us_fincen:fincen_industry_bar_terminates_p2p_bitcoin_exchanger` | 1 | 0 | 1 | offramp_cex | `fincen-eric-powers-p2p-exchanger-2019-04::offramp_cex` |
-| `ftx-bankman-fried-doj-2022:0:offramp_cex:exchange:ftx_com_and_ftx_us:global_withdraw_pause_and_chapter_11_customer_asset_freeze` | 1 | 0 | 1 | offramp_cex | `ftx-bankman-fried-doj-2022::offramp_cex` |
 | `funnull-cdn-ofac-2025:0:asset_onchain:circle_usdc_issuer:circle_usdc_blacklist_same_day` | 1 | 0 | 1 | asset_onchain | `funnull-cdn-ofac-2025::asset_onchain` |
 | `funnull-cdn-ofac-2025:1:asset_onchain:tether_usdt_issuer:tether_usdt_same_day_eth_and_tron` | 1 | 0 | 1 | asset_onchain | `funnull-cdn-ofac-2025::asset_onchain` |
 | `garantex-besciokov-mira-serda-doj-2025:0:l4_frontend:us_secret_service:secret_service_seizes_three_garantex_domains` | 1 | 0 | 1 | l4_frontend | `garantex-besciokov-mira-serda-doj-2025::l4_frontend` |

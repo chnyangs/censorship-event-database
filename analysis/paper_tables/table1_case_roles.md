@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=367)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ea43eeb` · generated `2026-06-01T03:45:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4ee1e3c` · generated `2026-06-01T03:53:57Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -9,8 +9,8 @@ Supports `docs/paper_claims.md §0` (case-role convention). Each event's admissi
 | admission_tier | count |
 | --- | ---: |
 | `anchor_case` | 4 |
-| `empirical_case` | 266 |
-| `null_case` | 97 |
+| `empirical_case` | 265 |
+| `null_case` | 98 |
 | **total** | **367** |
 
 | trigger precision bucket | count |
@@ -159,7 +159,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `fincen-virtual-currency-msb-guidance-2013` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `fincen_action` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
 | `france-amf-binance-psan-2022` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `fsb-crypto-asset-recommendations-2023` | `null_case` | `S6_supranational` | `null_event` | `supranational_regulation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
-| `ftx-bankman-fried-doj-2022` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
+| `ftx-bankman-fried-doj-2022` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `doj_indictment` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-01` | `—` |
 | `funnull-cdn-ofac-2025` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 1 | `asset_only` | · | · | `2026-04-22` | `—` |
 | `g20-roadmap-crypto-asset-policy-2023` | `null_case` | `S6_supranational` | `null_event` | `supranational_regulation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `g7-hiroshima-crypto-statement-2023` | `null_case` | `S6_supranational` | `null_event` | `supranational_regulation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |

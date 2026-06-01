@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T03:45:56Z`
+Generated at: `2026-06-01T03:53:57Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 290, 'ok': 115}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 291, 'ok': 114}
 - **Verification** (`last_verified`): {'ok': 405}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 290, 'ok': 115}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 291, 'ok': 114}
 
 ## Flag legend
 
@@ -172,7 +172,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `fincen-virtual-currency-msb-guidance-2013` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
 | `france-amf-binance-psan-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `fsb-crypto-asset-recommendations-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `ftx-bankman-fried-doj-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `ftx-bankman-fried-doj-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `funnull-cdn-ofac-2025` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `g20-roadmap-crypto-asset-policy-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `g7-hiroshima-crypto-statement-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -541,6 +541,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `fincen-eric-powers-p2p-exchanger-2019-04` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `france-amf-binance-psan-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `fsb-crypto-asset-recommendations-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `ftx-bankman-fried-doj-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `funnull-cdn-ofac-2025` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `g20-roadmap-crypto-asset-policy-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `g7-hiroshima-crypto-statement-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d

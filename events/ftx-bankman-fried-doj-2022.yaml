@@ -1,24 +1,25 @@
 id: ftx-bankman-fried-doj-2022
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
+empirical_shape: null_event
+admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
-last_human_audit: 2026-05-16
+last_verified: 2026-06-01
 
 related_events:
+  - sec-v-ftx-2022
+  - cftc-v-ftx-2022
   - blockfi-sec-lending-2022
-  - binance-4framework-2023
-  - sec-v-coinbase-2023
-  - kraken-sec-staking-2023
+  - celsius-bankruptcy-mashinsky-doj-2023
+  - voyager-bankruptcy-doj-objection-2023
+  - japan-fsa-ftx-japan-suspension-2022-11
 
 trigger:
   type: doj_indictment
@@ -27,94 +28,62 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://www.justice.gov/usao-sdny/pr/united-states-attorney-announces-charges-against-ftx-founder-samuel-bankman-fried
-      wayback: https://web.archive.org/web/2022/https://www.justice.gov/usao-sdny/pr/united-states-attorney-announces-charges-against-ftx-founder-samuel-bankman-fried
-      evidence_use: contextual_unarchived
+      url: https://www.justice.gov/d9/press-releases/attachments/2022/12/13/u.s._v._bankman-fried_indictment_0.pdf
+      evidence_use: replayable
+      body_hash: sha256:78f9ce2e758d146f6d6f48a3d14dde095b7eb64c693b13adca9474f9409b4719
+      body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.justice.gov__d9-press-releases-attachments-2022-12-13-u.s._v._bankman-fried_indictment_0.pdf__ad5b705de1.bin
       note: |
-        DOJ SDNY press release (2022-12-13): "United States Attorney Announces
-        Charges Against FTX Founder Samuel Bankman-Fried." Indictment was filed
-        2022-12-09 and unsealed 2022-12-13. Eight-count indictment charging
-        Bankman-Fried with wire fraud, wire fraud conspiracy, securities fraud,
-        securities fraud conspiracy, money laundering conspiracy, and
-        conspiracy to defraud the United States and violate campaign finance
-        laws. Marked evidence_use=contextual_unarchived because in this DRYRUN
-        the authoring LLM agent did not personally pin a Wayback snapshot
-        timestamp or compute a body_hash; the DOJ press-release URL slug is
-        stable and routinely captured by Wayback in 2022-2023 and remains the
-        canonical SDNY anchor for the criminal-side trigger. Pinned snapshot
-        timestamp + body_hash to be re-anchored during human audit before this
-        citation may serve as an admission anchor in its own right.
+        DOJ-hosted U.S. v. Bankman-Fried indictment PDF for the 2022-12-13
+        SDNY criminal case. The current DOJ HTML press-release surface
+        returned an Akamai interstitial during automated capture, so the
+        replayable official PDF is the load-bearing DOJ trigger anchor.
     - type: primary_legal
-      url: https://www.sec.gov/news/press-release/2022-219
-      wayback: https://web.archive.org/web/2022/https://www.sec.gov/news/press-release/2022-219
-      evidence_use: contextual_unarchived
+      url: https://www.sec.gov/newsroom/press-releases/2022-219
+      evidence_use: replayable
+      body_hash: sha256:4908c20f3da88e9cb492819dbe55fdfd731ccaa997491de955ef8de480a47276
+      body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.sec.gov__newsroom-press-releases-2022-219__923a9a0e93.html
       note: |
-        SEC press release 2022-219 (2022-12-13): "SEC Charges Samuel
-        Bankman-Fried with Defrauding Investors in Crypto Asset Trading
-        Platform FTX." Same-day civil complaint filed in SDNY alleging
-        Bankman-Fried orchestrated a multi-year scheme to defraud FTX equity
-        investors of more than $1.8B while diverting customer funds to Alameda
-        Research. Companion civil action to the DOJ criminal indictment;
-        documents the SEC side of the coordinated multi-agency action.
-        Wayback wildcard pointer in lieu of pinned-timestamp snapshot;
-        evidence_use=contextual_unarchived pending human-audit re-pin.
+        SEC press release 2022-219, captured locally, corroborates the same
+        2022-12-13 multi-agency FTX enforcement date and states that the
+        U.S. Attorney's Office for SDNY and CFTC announced parallel charges
+        against Bankman-Fried.
     - type: primary_legal
       url: https://www.cftc.gov/PressRoom/PressReleases/8638-22
-      wayback: https://web.archive.org/web/2022/https://www.cftc.gov/PressRoom/PressReleases/8638-22
-      evidence_use: contextual_unarchived
+      evidence_use: replayable
+      body_hash: sha256:0be01c582e41a2ffd9042074660125186626665220ff6128dc6c0d021317d220
+      body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.cftc.gov__PressRoom-PressReleases-8638-22__5a31c2a5d9.html
       note: |
-        CFTC press release 8638-22 (2022-12-13): "CFTC Charges Sam
-        Bankman-Fried, FTX Trading and Alameda with Fraud and Material
-        Misrepresentations." Same-day civil enforcement action in SDNY
-        charging Bankman-Fried, FTX Trading Ltd. (the operator of FTX.com),
-        and Alameda Research LLC with fraud and material misrepresentations
-        in connection with the sale of digital-asset commodities in interstate
-        commerce. Third pillar of the 2022-12-13 coordinated DOJ + SEC + CFTC
-        action. Wayback wildcard pointer in lieu of pinned-timestamp snapshot;
-        evidence_use=contextual_unarchived pending human-audit re-pin.
+        CFTC press release 8638-22, captured locally, corroborates the
+        same-day parallel CFTC and DOJ/SEC actions and names Bankman-Fried,
+        FTX Trading Ltd. d/b/a FTX.com, and Alameda Research LLC.
     - type: primary_corporate
-      url: https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases
-      wayback: https://web.archive.org/web/2022/https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases
-      evidence_use: contextual_unarchived
+      url: https://www.prnewswire.com/news-releases/ftx-receives-court-approval-for-first-day-motions-301685748.html
+      evidence_use: replayable
+      body_hash: sha256:00d80a76a9f51da40965a60afc9327f10f2f2bbd3375ee900b39a7582ebdf3d6
+      body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.prnewswire.com__news-releases-ftx-receives-court-approval-for-first-day-motions-301685748.html__ebf96d93a3.html
       note: |
-        FTX Trading Ltd. corporate announcement of voluntary Chapter 11
-        bankruptcy filing (2022-11-11), filed in the District of Delaware
-        (Case No. 22-11068). Predates the 2022-12-13 DOJ/SEC/CFTC trigger by
-        approximately one month and is the proximate corporate instrument
-        that implemented the global withdraw-pause and customer-asset freeze
-        on the FTX.com offramp_cex layer. Retained here as the corporate-side
-        primary citation that anchors the offramp_cex observation; the
-        2022-12-13 federal enforcement actions are the criminal/civil
-        accountability layer on top of an already-bankrupt platform.
-        Wayback wildcard pointer in lieu of pinned-timestamp snapshot;
-        evidence_use=contextual_unarchived pending human-audit re-pin.
+        FTX-sourced PRNewswire release on first-day bankruptcy motions.
+        It anchors that FTX Trading Ltd. and affiliated debtors filed
+        Chapter 11 petitions on 2022-11-11, before the 2022-12-13 DOJ
+        trigger, and that Kroll was the claims agent for official court
+        documents.
   timestamp_sources:
     - type: primary_legal
       note: |
-        Day-level precision per the 2022-12-13 DOJ SDNY press release
-        announcing the unsealed indictment (filed under seal 2022-12-09).
-        Same-day SEC press release 2022-219 and CFTC press release 8638-22
-        corroborate the 2022-12-13 trigger date for the coordinated
-        multi-agency action.
+        Day precision. The DOJ indictment and same-day SEC/CFTC releases
+        all anchor the coordinated federal enforcement trigger on
+        2022-12-13.
 
 target:
   kind: entity
   entity: ftx_sbf_alameda_doj_targets_2022
   enumeration: subset
   enumeration_note: |
-    Samuel Bankman-Fried (individual defendant in the DOJ criminal indictment,
-    SEC civil complaint, and CFTC civil enforcement action) + FTX Trading Ltd.
-    (operator of the FTX.com international exchange, named in the SEC and
-    CFTC civil complaints) + Alameda Research LLC (named in the CFTC civil
-    complaint as the co-conspirator trading firm). The target slice does not
-    enumerate the dozens of additional FTX-affiliated entities listed in the
-    Delaware Chapter 11 schedules; the load-bearing entities for the
-    offramp_cex observation are FTX.com (international) and FTX US
-    (US-customer offramp), both administratively frozen at the 2022-11-11
-    bankruptcy filing. The criminal-defendant individual (Bankman-Fried) was
-    convicted on 2023-11-02 on seven of the eight counts in the superseding
-    indictment and sentenced 2024-03-28; that disposition is downstream of
-    this row's trigger and not coded as a separate observation here.
+    Samuel Bankman-Fried, FTX Trading Ltd. d/b/a FTX.com, and Alameda
+    Research LLC are the load-bearing entities for the 2022-12-13
+    DOJ/SEC/CFTC enforcement triad. The row does not enumerate every FTX
+    debtor or affiliated entity in the Delaware Chapter 11 cases; those
+    entities are outside this DOJ-indictment trigger unit.
   actor_type: exchange_doj_sec_cftc_action
   actor_name: Samuel Bankman-Fried / FTX Trading Ltd. / Alameda Research LLC
   chains: []
@@ -128,52 +97,29 @@ coverage:
   - layer: l0_network
     status: not_applicable
     note: |
-      No network-layer (L0) reachability blocking is implicated by the FTX
-      DOJ/SEC/CFTC actions. ftx.com remained DNS-resolvable and TCP-reachable
-      from global vantage points through the bankruptcy and post-indictment
-      window; the cascade is a corporate-bankruptcy + federal-enforcement
-      event executed at the application / off-ramp layer, not an ISP-level
-      DNS / TCP block. not_applicable on substrate-mismatch grounds.
+      No ISP, DNS, TCP, or network-reachability primitive is implicated by
+      the 2022-12-13 DOJ indictment.
   - layer: l1_consensus
     status: not_applicable
-    chain: ethereum
     note: |
-      The FTX collapse and 2022-12-13 DOJ/SEC/CFTC trigger engage no
-      protocol-layer (L1) validator-set or PBS-relay primitive. Customer
-      tokens custodied by FTX were administratively frozen at the platform
-      level, not via L1 consensus rules. not_applicable on substrate-mismatch
-      grounds.
+      No validator-set, consensus, or block-construction primitive is
+      implicated by the DOJ indictment.
   - layer: l3_rpc
     status: not_applicable
     note: |
-      No public-RPC provider filter-list change attaches to the FTX
-      enforcement cascade. The L3 substrate (MEV-Boost / Flashbots Protect /
-      MEV-Blocker / Infura) is orthogonal to a CEX bankruptcy and
-      individual-defendant criminal indictment. not_applicable on
-      substrate-mismatch grounds.
+      No public-RPC provider filter-list change attaches to this criminal
+      enforcement trigger.
   - layer: l4_frontend
-    status: not_measured
-    scope:
-      - ftx.com
-      - ftx.us
+    status: not_applicable
     note: |
-      No admission-grade historical frontend diff for ftx.com / ftx.us is
-      retained in this DRYRUN file. A retained L4 observation would require
-      a pinned Wayback snapshot of the ftx.com Chapter 11 notice surface or
-      ftx.us withdraw-pause banner across the 2022-11-08 (withdraw pause) to
-      2022-12-13 (indictment unseal) window. Until those snapshots are pinned
-      and body_hashed, the L4 surface remains unmeasured; the admission-grade
-      load-bearing observation is the offramp_cex global withdraw-pause and
-      Chapter 11 customer-asset freeze.
+      No new FTX.com or FTX.US frontend takedown or geofence is attributed
+      to the 2022-12-13 DOJ trigger. Any Chapter 11 notice surface predates
+      this event and is not retained here as a fresh observed_change.
   - layer: asset_onchain
     status: not_applicable
     note: |
-      No stablecoin-issuer freeze or OFAC SDN-list address designation
-      primitive was engaged at the 2022-12-13 trigger. Customer USDC / USDT
-      balances inside FTX hot wallets were subject to administrative
-      bankruptcy-process recovery via the Chapter 11 estate, not via
-      issuer-level blacklist publications targeting specific addresses.
-      not_applicable on substrate-mismatch grounds.
+      No stablecoin-issuer blacklist, OFAC address designation, or other
+      issuer-level on-chain freeze primitive is triggered by the indictment.
   - layer: offramp_cex
     status: measured
     scope:
@@ -181,159 +127,118 @@ coverage:
       - ftx_us_customer_withdrawals
       - alameda_research_assets
     note: |
-      Load-bearing observation layer. FTX.com implemented a global
-      withdraw-pause on or about 2022-11-08, followed by the FTX Trading Ltd.
-      voluntary Chapter 11 filing on 2022-11-11 which administratively froze
-      all customer-asset withdrawals across the FTX International and FTX US
-      platforms. The same Chapter 11 estate proceedings encompassed Alameda
-      Research asset freezes. The 2022-12-13 DOJ/SEC/CFTC enforcement
-      actions did not themselves trigger the offramp shutdown (which had
-      already occurred at bankruptcy ~1 month earlier) but are the federal
-      accountability layer on top of that pre-existing freeze. Attribution
-      for the offramp_cex observation is therefore plausible (not direct) to
-      the 2022-12-13 trigger; the proximate cause of the off-ramp shutdown
-      is the corporate Chapter 11 instrument itself. The independent
-      US-user geofencing on FTX.com well predates this trigger (the
-      international platform had restricted US-resident access since the
-      2019 launch of FTX.US as a separate US-licensed affiliate) and is
-      noted here only for completeness — it is not coded as an observation
-      attributable to the 2022-12-13 trigger.
+      The FTX/Alameda offramp surface was already under the Chapter 11
+      estate before the 2022-12-13 DOJ trigger. The measured row-local
+      observation is therefore no incremental DOJ-attributable exchange or
+      off-ramp access change after a pre-existing bankruptcy freeze, not a
+      new positive censorship event.
 
 observations:
   - layer: offramp_cex
-    actor: exchange:ftx_com_and_ftx_us
-    event: global_withdraw_pause_and_chapter_11_customer_asset_freeze
-    observation_kind: observed_change
-    attribution: plausible
+    actor: ftx_bankruptcy_estate
+    event: no_incremental_doj_attributable_offramp_change_after_preexisting_chapter_11_freeze
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2022-12-13T00:00:00Z
     precision: day
     delta_hours: 0
     window:
-      - 2022-11-08T00:00:00Z
-      - 2022-12-13T23:59:59Z
+      - 2022-12-13T00:00:00Z
+      - 2022-12-27T23:59:59Z
     sources:
-      - type: primary_corporate
-        url: https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases
-        wayback: https://web.archive.org/web/2022/https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases
-        evidence_use: contextual_unarchived
+      - type: primary_legal
+        url: https://www.justice.gov/d9/press-releases/attachments/2022/12/13/u.s._v._bankman-fried_indictment_0.pdf
+        evidence_use: replayable
+        body_hash: sha256:78f9ce2e758d146f6d6f48a3d14dde095b7eb64c693b13adca9474f9409b4719
+        body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.justice.gov__d9-press-releases-attachments-2022-12-13-u.s._v._bankman-fried_indictment_0.pdf__ad5b705de1.bin
         scope_descriptor:
-          providers:
-            - ftx_com_global_withdrawals
-            - ftx_us_customer_withdrawals
-            - alameda_research_assets
+          providers: [ftx_com_global, ftx_us, alameda_research]
           countries: [US]
           time_window:
-            - 2022-11-08T00:00:00Z
+            - 2022-12-13T00:00:00Z
+            - 2022-12-27T23:59:59Z
+        note: |
+          Official DOJ-hosted indictment anchor for the 2022-12-13 criminal
+          trigger. It supports the federal enforcement date and target, not
+          an incremental platform-access shutdown.
+      - type: primary_corporate
+        url: https://www.prnewswire.com/news-releases/ftx-receives-court-approval-for-first-day-motions-301685748.html
+        evidence_use: replayable
+        body_hash: sha256:00d80a76a9f51da40965a60afc9327f10f2f2bbd3375ee900b39a7582ebdf3d6
+        body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.prnewswire.com__news-releases-ftx-receives-court-approval-for-first-day-motions-301685748.html__ebf96d93a3.html
+        scope_descriptor:
+          providers: [ftx_com_global, ftx_us]
+          time_window:
+            - 2022-11-11T00:00:00Z
             - 2022-12-13T23:59:59Z
         note: |
-          FTX Trading Ltd. corporate Chapter 11 filing announcement
-          (2022-11-11) is the proximate corporate instrument that froze
-          customer-asset withdrawals globally across the FTX.com and FTX.US
-          platforms. attribution=plausible (not direct) to the 2022-12-13
-          DOJ/SEC/CFTC trigger because the offramp shutdown was effected by
-          the prior bankruptcy filing; the federal enforcement actions are
-          the criminal/civil accountability cascade on top of an
-          already-frozen offramp. Wayback wildcard pointer in lieu of
-          pinned-timestamp snapshot; evidence_use=contextual_unarchived
-          pending human-audit re-pin.
+          FTX-sourced first-day-motions release confirms that the Chapter
+          11 petitions were filed on 2022-11-11, about one month before the
+          DOJ indictment. This anchors the null-control decision: the
+          exchange/off-ramp freeze was already a bankruptcy-estate condition
+          at the DOJ trigger date.
       - type: primary_legal
-        url: https://www.sec.gov/news/press-release/2022-219
-        wayback: https://web.archive.org/web/2022/https://www.sec.gov/news/press-release/2022-219
-        evidence_use: contextual_unarchived
+        url: https://www.sec.gov/newsroom/press-releases/2022-219
+        evidence_use: replayable
+        body_hash: sha256:4908c20f3da88e9cb492819dbe55fdfd731ccaa997491de955ef8de480a47276
+        body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.sec.gov__newsroom-press-releases-2022-219__923a9a0e93.html
         note: |
-          SEC press release 2022-219 documents that customer funds were
-          diverted from FTX to Alameda Research, anchoring the offramp_cex
-          observation that customer-asset withdrawals on the FTX.com and
-          FTX.US platforms were administratively suspended through the
-          bankruptcy proceedings and the federal enforcement cascade.
-          Wayback wildcard pointer; evidence_use=contextual_unarchived
-          pending human-audit re-pin.
+          Corroborates that the 2022-12-13 SEC filing was a parallel
+          enforcement action, consistent with the sibling SEC null-control
+          row and with this parent row's no-incremental-change coding.
       - type: primary_legal
         url: https://www.cftc.gov/PressRoom/PressReleases/8638-22
-        wayback: https://web.archive.org/web/2022/https://www.cftc.gov/PressRoom/PressReleases/8638-22
-        evidence_use: contextual_unarchived
+        evidence_use: replayable
+        body_hash: sha256:0be01c582e41a2ffd9042074660125186626665220ff6128dc6c0d021317d220
+        body_path: sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.cftc.gov__PressRoom-PressReleases-8638-22__5a31c2a5d9.html
         note: |
-          CFTC press release 8638-22 anchors the Alameda Research asset
-          freeze pillar of the offramp_cex observation. CFTC complaint
-          names FTX Trading Ltd. and Alameda Research LLC alongside
-          Bankman-Fried; the Alameda asset freeze is part of the same
-          Chapter 11 estate cascading from the 2022-11-11 bankruptcy.
-          Wayback wildcard pointer; evidence_use=contextual_unarchived
-          pending human-audit re-pin.
+          Corroborates that the 2022-12-13 CFTC filing was a parallel
+          enforcement action and that FTX.com / Alameda conduct ran through
+          the already-collapsed November 2022 platform state.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive
-  collection plan; us_federal_enforcement frame discovery): authored by LLM
-  agent without personally verifying Wayback/body_hash; origin=human_reviewed
-  required by validator. Real release must replace this DRYRUN marker with a
-  human-verified audit after pinning real archive anchors.
+  Repair 2026-06-01: the previous row overclaimed a positive
+  `global_withdraw_pause_and_chapter_11_customer_asset_freeze` observation
+  at the 2022-12-13 DOJ trigger even though the off-ramp freeze and Chapter
+  11 estate were already in place after the 2022-11-11 bankruptcy filing.
+  This created a stale-denominator risk and made the DOJ parent row
+  inconsistent with the SEC and CFTC sibling rows, which already model the
+  same multi-agency date as null-control siblings.
 
-  comparison documenting the 2022-12-13 coordinated DOJ SDNY + SEC + CFTC
-  enforcement action against Samuel Bankman-Fried, FTX Trading Ltd., and
-  Alameda Research LLC. The federal trigger followed the 2022-11-11 FTX
-  Trading Ltd. voluntary Chapter 11 filing by approximately one month; the
-  offramp_cex withdraw-pause and customer-asset freeze were already in
-  effect at the trigger date via the bankruptcy estate. The retained
-  load-bearing observation is therefore the offramp_cex layer with
-  attribution=plausible rather than direct — the proximate cause of the
-  off-ramp shutdown is the corporate Chapter 11 instrument, and the
-  2022-12-13 DOJ/SEC/CFTC actions are the federal accountability layer
-  cascading on top.
+  The repaired row preserves the 2022-12-13 DOJ criminal trigger and the
+  target unit, but recodes the empirical shape to `null_event` /
+  `null_case`: no new L0, L1, L3, L4, asset_onchain, or offramp_cex
+  observed_change is attributed to the DOJ indictment itself. The measured
+  off-ramp evidence is now an observed_no_change row anchored by the
+  official DOJ indictment PDF, SEC/CFTC same-day releases, and an
+  FTX-sourced PRNewswire release showing that Chapter 11 petitions had
+  already been filed on 2022-11-11.
 
-  Multi-layer cascade context noted in the brief: (a) FTX.com US-user
-  geofencing well predates the indictment and was a 2019-era platform
-  bifurcation between FTX International and FTX US, not a 2022 trigger
-  artifact; (b) Alameda Research asset freezes are encompassed by the
-  Chapter 11 estate; (c) BlockFi cross-default into its own 2022-11-28
-  Chapter 11 filing is downstream of this row and is partially captured
-  by the existing blockfi-sec-lending-2022 sibling event (different
-  trigger — SEC 2022-02-14 lending-product settlement — but same
-  collapsing-platform-cluster). The bulk-Bankman-Fried criminal
-  disposition (2023-11-02 conviction on 7 of 8 counts, 2024-03-28
-  sentencing) is downstream of the 2022-12-13 trigger and is not coded
-  here as a separate observation.
-
-  Sibling positioning: this event sits in the S3 us-federal-enforcement
-  cluster alongside binance-4framework-2023 (corporate-survival cascade
-  with monitor), sec-v-coinbase-2023 (state-scoped staking restriction),
-  kraken-sec-staking-2023 (US staking-service shutdown), and
-  blockfi-sec-lending-2022 (lending-product cease-and-desist). The FTX
-  row is structurally distinct because the offramp shutdown is total
-  (full Chapter 11 customer-asset freeze affecting global users) rather
-  than scoped (state-scope, product-scope, or service-scope) and because
-  the trigger is criminal indictment of an individual + civil complaints
-  against the corporate entity, rather than a corporate-settlement
-  resolution. One observed_change layer (offramp_cex) with attribution=
-  plausible to the 2022-12-13 federal trigger; L0 / L1 / L3 / asset_onchain
-  are not_applicable on substrate-mismatch grounds; L4 frontend is
-  not_measured pending Wayback pinning of ftx.com / ftx.us notice
-  surfaces.
+  The live DOJ HTML press-release URL drifted behind an Akamai interstitial
+  during automated capture and is not retained as load-bearing evidence.
+  The official DOJ-hosted indictment PDF remains replayable locally. This
+  follows the corpus live-URL-drift rule: local body_hash/body_path anchors
+  and narrowed claims carry the row, not current live HTML availability.
 
 scoped_claim: |
-  "The 2022-12-13 coordinated US DOJ SDNY + SEC + CFTC enforcement action
-  against Samuel Bankman-Fried, FTX Trading Ltd., and Alameda Research LLC,
-  cascading on top of the 2022-11-11 FTX Chapter 11 bankruptcy filing,
-  produced a one-layer admitted observation in the dataset: an offramp_cex
-  global withdraw-pause and Chapter 11 customer-asset freeze affecting
-  FTX.com international, FTX.US, and Alameda Research assets. Attribution
-  is plausible (not direct) to the 2022-12-13 federal trigger because the
-  off-ramp shutdown was proximately effected by the prior corporate
-  Chapter 11 filing. The row does not claim L0 network, L1 consensus, L3
-  RPC, asset_onchain, or admission-grade L4 frontend effects; the FTX.com
-  US-user geofencing well predates the trigger and is not coded as an
-  attributable observation."
+  "The 2022-12-13 DOJ SDNY criminal indictment of Samuel Bankman-Fried is
+  coded as a null-control federal-enforcement row: the FTX.com / FTX.US /
+  Alameda off-ramp surface was already under the FTX Chapter 11 estate from
+  the 2022-11-11 bankruptcy filing, and the DOJ trigger produced no new
+  measured exchange/off-ramp, frontend, network, RPC, consensus, or
+  issuer-freeze access change. The row is a denominator-control sibling to
+  the same-day SEC and CFTC FTX rows."
 
 tags:
   - doj_indictment
   - sec_enforcement
   - cftc_enforcement
   - multi_agency_action
+  - parallel_agency_sibling
   - bankruptcy_offramp_freeze
-  - individual_defendant
+  - null_event
   - exchange_collapse
   - ftx
   - bankman_fried
   - alameda_research
   - offramp_cex
-  - dryrun_2026_05_16
-  - phase_a1_2026_05_16

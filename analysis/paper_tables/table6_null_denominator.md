@@ -1,6 +1,6 @@
-# Table 6 · Null-case denominator (n=97)
+# Table 6 · Null-case denominator (n=98)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ea43eeb` · generated `2026-06-01T03:45:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4ee1e3c` · generated `2026-06-01T03:53:57Z`
 
 Supports the **null-event interpretation note** in `derived/archetype_distribution.md`. (C6 was demoted to exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md §C6`.) Each row lists the event's `observed_no_change` layers + the evidence-anchor types their sources carry. Per validator rule, `scope_descriptor` defines the covered scope but is not an evidence anchor by itself; each `observed_no_change` row needs at least one replayable artifact such as `body_hash`+`body_path`, `query_hash`, or `measurement_ids`.
 
@@ -39,6 +39,7 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `fincen-virtual-currency-msb-guidance-2013` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `france-amf-binance-psan-2022` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
 | `fsb-crypto-asset-recommendations-2023` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
+| `ftx-bankman-fried-doj-2022` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `g20-roadmap-crypto-asset-policy-2023` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `g7-hiroshima-crypto-statement-2023` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `genesis-market-ofac-2023-04` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |

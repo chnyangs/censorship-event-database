@@ -1,25 +1,20 @@
 # Evidence chain — `ftx-bankman-fried-doj-2022`
 
-**Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
+**Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `ea43eeb` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T03:45:56Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `4ee1e3c` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T03:53:57Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "The 2022-12-13 coordinated US DOJ SDNY + SEC + CFTC enforcement action
-> against Samuel Bankman-Fried, FTX Trading Ltd., and Alameda Research LLC,
-> cascading on top of the 2022-11-11 FTX Chapter 11 bankruptcy filing,
-> produced a one-layer admitted observation in the dataset: an offramp_cex
-> global withdraw-pause and Chapter 11 customer-asset freeze affecting
-> FTX.com international, FTX.US, and Alameda Research assets. Attribution
-> is plausible (not direct) to the 2022-12-13 federal trigger because the
-> off-ramp shutdown was proximately effected by the prior corporate
-> Chapter 11 filing. The row does not claim L0 network, L1 consensus, L3
-> RPC, asset_onchain, or admission-grade L4 frontend effects; the FTX.com
-> US-user geofencing well predates the trigger and is not coded as an
-> attributable observation."
+> "The 2022-12-13 DOJ SDNY criminal indictment of Samuel Bankman-Fried is
+> coded as a null-control federal-enforcement row: the FTX.com / FTX.US /
+> Alameda off-ramp surface was already under the FTX Chapter 11 estate from
+> the 2022-11-11 bankruptcy filing, and the DOJ trigger produced no new
+> measured exchange/off-ramp, frontend, network, RPC, consensus, or
+> issuer-freeze access change. The row is a denominator-control sibling to
+> the same-day SEC and CFTC FTX rows."
 
 ## 1. Trigger
 
@@ -30,59 +25,37 @@
 ### Trigger citations
 
 - **`primary_legal`**
-  - URL: <https://www.justice.gov/usao-sdny/pr/united-states-attorney-announces-charges-against-ftx-founder-samuel-bankman-fried>
-  - Wayback: <https://web.archive.org/web/2022/https://www.justice.gov/usao-sdny/pr/united-states-attorney-announces-charges-against-ftx-founder-samuel-bankman-fried>
-  > DOJ SDNY press release (2022-12-13): "United States Attorney Announces
-> Charges Against FTX Founder Samuel Bankman-Fried." Indictment was filed
-> 2022-12-09 and unsealed 2022-12-13. Eight-count indictment charging
-> Bankman-Fried with wire fraud, wire fraud conspiracy, securities fraud,
-> securities fraud conspiracy, money laundering conspiracy, and
-> conspiracy to defraud the United States and violate campaign finance
-> laws. Marked evidence_use=contextual_unarchived because in this DRYRUN
-> the authoring LLM agent did not personally pin a Wayback snapshot
-> timestamp or compute a body_hash; the DOJ press-release URL slug is
-> stable and routinely captured by Wayback in 2022-2023 and remains the
-> canonical SDNY anchor for the criminal-side trigger. Pinned snapshot
-> timestamp + body_hash to be re-anchored during human audit before this
-> citation may serve as an admission anchor in its own right.
+  - URL: <https://www.justice.gov/d9/press-releases/attachments/2022/12/13/u.s._v._bankman-fried_indictment_0.pdf>
+  - body_hash: `sha256:78f9ce2e758d146f6d6f48a3d14dde095b7eb64c693b13adca9474f9409b4719`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.justice.gov__d9-press-releases-attachments-2022-12-13-u.s._v._bankman-fried_indictment_0.pdf__ad5b705de1.bin`
+  > DOJ-hosted U.S. v. Bankman-Fried indictment PDF for the 2022-12-13
+> SDNY criminal case. The current DOJ HTML press-release surface
+> returned an Akamai interstitial during automated capture, so the
+> replayable official PDF is the load-bearing DOJ trigger anchor.
 - **`primary_legal`**
-  - URL: <https://www.sec.gov/news/press-release/2022-219>
-  - Wayback: <https://web.archive.org/web/2022/https://www.sec.gov/news/press-release/2022-219>
-  > SEC press release 2022-219 (2022-12-13): "SEC Charges Samuel
-> Bankman-Fried with Defrauding Investors in Crypto Asset Trading
-> Platform FTX." Same-day civil complaint filed in SDNY alleging
-> Bankman-Fried orchestrated a multi-year scheme to defraud FTX equity
-> investors of more than $1.8B while diverting customer funds to Alameda
-> Research. Companion civil action to the DOJ criminal indictment;
-> documents the SEC side of the coordinated multi-agency action.
-> Wayback wildcard pointer in lieu of pinned-timestamp snapshot;
-> evidence_use=contextual_unarchived pending human-audit re-pin.
+  - URL: <https://www.sec.gov/newsroom/press-releases/2022-219>
+  - body_hash: `sha256:4908c20f3da88e9cb492819dbe55fdfd731ccaa997491de955ef8de480a47276`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.sec.gov__newsroom-press-releases-2022-219__923a9a0e93.html`
+  > SEC press release 2022-219, captured locally, corroborates the same
+> 2022-12-13 multi-agency FTX enforcement date and states that the
+> U.S. Attorney's Office for SDNY and CFTC announced parallel charges
+> against Bankman-Fried.
 - **`primary_legal`**
   - URL: <https://www.cftc.gov/PressRoom/PressReleases/8638-22>
-  - Wayback: <https://web.archive.org/web/2022/https://www.cftc.gov/PressRoom/PressReleases/8638-22>
-  > CFTC press release 8638-22 (2022-12-13): "CFTC Charges Sam
-> Bankman-Fried, FTX Trading and Alameda with Fraud and Material
-> Misrepresentations." Same-day civil enforcement action in SDNY
-> charging Bankman-Fried, FTX Trading Ltd. (the operator of FTX.com),
-> and Alameda Research LLC with fraud and material misrepresentations
-> in connection with the sale of digital-asset commodities in interstate
-> commerce. Third pillar of the 2022-12-13 coordinated DOJ + SEC + CFTC
-> action. Wayback wildcard pointer in lieu of pinned-timestamp snapshot;
-> evidence_use=contextual_unarchived pending human-audit re-pin.
+  - body_hash: `sha256:0be01c582e41a2ffd9042074660125186626665220ff6128dc6c0d021317d220`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.cftc.gov__PressRoom-PressReleases-8638-22__5a31c2a5d9.html`
+  > CFTC press release 8638-22, captured locally, corroborates the
+> same-day parallel CFTC and DOJ/SEC actions and names Bankman-Fried,
+> FTX Trading Ltd. d/b/a FTX.com, and Alameda Research LLC.
 - **`primary_corporate`**
-  - URL: <https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases>
-  - Wayback: <https://web.archive.org/web/2022/https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases>
-  > FTX Trading Ltd. corporate announcement of voluntary Chapter 11
-> bankruptcy filing (2022-11-11), filed in the District of Delaware
-> (Case No. 22-11068). Predates the 2022-12-13 DOJ/SEC/CFTC trigger by
-> approximately one month and is the proximate corporate instrument
-> that implemented the global withdraw-pause and customer-asset freeze
-> on the FTX.com offramp_cex layer. Retained here as the corporate-side
-> primary citation that anchors the offramp_cex observation; the
-> 2022-12-13 federal enforcement actions are the criminal/civil
-> accountability layer on top of an already-bankrupt platform.
-> Wayback wildcard pointer in lieu of pinned-timestamp snapshot;
-> evidence_use=contextual_unarchived pending human-audit re-pin.
+  - URL: <https://www.prnewswire.com/news-releases/ftx-receives-court-approval-for-first-day-motions-301685748.html>
+  - body_hash: `sha256:00d80a76a9f51da40965a60afc9327f10f2f2bbd3375ee900b39a7582ebdf3d6`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.prnewswire.com__news-releases-ftx-receives-court-approval-for-first-day-motions-301685748.html__ebf96d93a3.html`
+  > FTX-sourced PRNewswire release on first-day bankruptcy motions.
+> It anchors that FTX Trading Ltd. and affiliated debtors filed
+> Chapter 11 petitions on 2022-11-11, before the 2022-12-13 DOJ
+> trigger, and that Kroll was the claims agent for official court
+> documents.
 
 ## 2. Target
 
@@ -91,78 +64,71 @@
 - **Actor name**: Samuel Bankman-Fried / FTX Trading Ltd. / Alameda Research LLC
 - **Canonical domains**: `ftx.com`, `ftx.us`
 
-> Samuel Bankman-Fried (individual defendant in the DOJ criminal indictment,
-> SEC civil complaint, and CFTC civil enforcement action) + FTX Trading Ltd.
-> (operator of the FTX.com international exchange, named in the SEC and
-> CFTC civil complaints) + Alameda Research LLC (named in the CFTC civil
-> complaint as the co-conspirator trading firm). The target slice does not
-> enumerate the dozens of additional FTX-affiliated entities listed in the
-> Delaware Chapter 11 schedules; the load-bearing entities for the
-> offramp_cex observation are FTX.com (international) and FTX US
-> (US-customer offramp), both administratively frozen at the 2022-11-11
-> bankruptcy filing. The criminal-defendant individual (Bankman-Fried) was
-> convicted on 2023-11-02 on seven of the eight counts in the superseding
-> indictment and sentenced 2024-03-28; that disposition is downstream of
-> this row's trigger and not coded as a separate observation here.
+> Samuel Bankman-Fried, FTX Trading Ltd. d/b/a FTX.com, and Alameda
+> Research LLC are the load-bearing entities for the 2022-12-13
+> DOJ/SEC/CFTC enforcement triad. The row does not enumerate every FTX
+> debtor or affiliated entity in the Delaware Chapter 11 cases; those
+> entities are outside this DOJ-indictment trigger unit.
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `plausible` · Δt = 0h
+*No observed_change entries. This is a `null_event`; see §4 for observed_no_change evidence supporting the null claim.*
 
-**Event label**: `global_withdraw_pause_and_chapter_11_customer_asset_freeze`
+## 4. No-change observations (where applicable)
 
-**Timestamp**: `2022-12-13 00:00:00+00:00` (precision: `day`)
+### offramp_cex — `no_incremental_doj_attributable_offramp_change_after_preexisting_chapter_11_freeze`
+
+**Window**: `2022-12-13 00:00:00+00:00` → `2022-12-27 23:59:59+00:00`
 
 **Sources**:
 
-- **`primary_corporate`**
-  - URL: <https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases>
-  - Wayback: <https://web.archive.org/web/2022/https://www.ftx.com/en/press-releases/ftx-trading-ltd-voluntary-chapter-11-cases>
-  > FTX Trading Ltd. corporate Chapter 11 filing announcement
-> (2022-11-11) is the proximate corporate instrument that froze
-> customer-asset withdrawals globally across the FTX.com and FTX.US
-> platforms. attribution=plausible (not direct) to the 2022-12-13
-> DOJ/SEC/CFTC trigger because the offramp shutdown was effected by
-> the prior bankruptcy filing; the federal enforcement actions are
-> the criminal/civil accountability cascade on top of an
-> already-frozen offramp. Wayback wildcard pointer in lieu of
-> pinned-timestamp snapshot; evidence_use=contextual_unarchived
-> pending human-audit re-pin.
 - **`primary_legal`**
-  - URL: <https://www.sec.gov/news/press-release/2022-219>
-  - Wayback: <https://web.archive.org/web/2022/https://www.sec.gov/news/press-release/2022-219>
-  > SEC press release 2022-219 documents that customer funds were
-> diverted from FTX to Alameda Research, anchoring the offramp_cex
-> observation that customer-asset withdrawals on the FTX.com and
-> FTX.US platforms were administratively suspended through the
-> bankruptcy proceedings and the federal enforcement cascade.
-> Wayback wildcard pointer; evidence_use=contextual_unarchived
-> pending human-audit re-pin.
+  - URL: <https://www.justice.gov/d9/press-releases/attachments/2022/12/13/u.s._v._bankman-fried_indictment_0.pdf>
+  - body_hash: `sha256:78f9ce2e758d146f6d6f48a3d14dde095b7eb64c693b13adca9474f9409b4719`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.justice.gov__d9-press-releases-attachments-2022-12-13-u.s._v._bankman-fried_indictment_0.pdf__ad5b705de1.bin`
+  > Official DOJ-hosted indictment anchor for the 2022-12-13 criminal
+> trigger. It supports the federal enforcement date and target, not
+> an incremental platform-access shutdown.
+- **`primary_corporate`**
+  - URL: <https://www.prnewswire.com/news-releases/ftx-receives-court-approval-for-first-day-motions-301685748.html>
+  - body_hash: `sha256:00d80a76a9f51da40965a60afc9327f10f2f2bbd3375ee900b39a7582ebdf3d6`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.prnewswire.com__news-releases-ftx-receives-court-approval-for-first-day-motions-301685748.html__ebf96d93a3.html`
+  > FTX-sourced first-day-motions release confirms that the Chapter
+> 11 petitions were filed on 2022-11-11, about one month before the
+> DOJ indictment. This anchors the null-control decision: the
+> exchange/off-ramp freeze was already a bankruptcy-estate condition
+> at the DOJ trigger date.
+- **`primary_legal`**
+  - URL: <https://www.sec.gov/newsroom/press-releases/2022-219>
+  - body_hash: `sha256:4908c20f3da88e9cb492819dbe55fdfd731ccaa997491de955ef8de480a47276`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.sec.gov__newsroom-press-releases-2022-219__923a9a0e93.html`
+  > Corroborates that the 2022-12-13 SEC filing was a parallel
+> enforcement action, consistent with the sibling SEC null-control
+> row and with this parent row's no-incremental-change coding.
 - **`primary_legal`**
   - URL: <https://www.cftc.gov/PressRoom/PressReleases/8638-22>
-  - Wayback: <https://web.archive.org/web/2022/https://www.cftc.gov/PressRoom/PressReleases/8638-22>
-  > CFTC press release 8638-22 anchors the Alameda Research asset
-> freeze pillar of the offramp_cex observation. CFTC complaint
-> names FTX Trading Ltd. and Alameda Research LLC alongside
-> Bankman-Fried; the Alameda asset freeze is part of the same
-> Chapter 11 estate cascading from the 2022-11-11 bankruptcy.
-> Wayback wildcard pointer; evidence_use=contextual_unarchived
-> pending human-audit re-pin.
+  - body_hash: `sha256:0be01c582e41a2ffd9042074660125186626665220ff6128dc6c0d021317d220`
+  - body_path: `sources/http_captures/ftx-bankman-fried-doj-2022/primary/www.cftc.gov__PressRoom-PressReleases-8638-22__5a31c2a5d9.html`
+  > Corroborates that the 2022-12-13 CFTC filing was a parallel
+> enforcement action and that FTX.com / Alameda conduct ran through
+> the already-collapsed November 2022 platform state.
 
 ## 5. Honest coverage gaps
 
-- **l4_frontend** (`not_measured`): No admission-grade historical frontend diff for ftx.com / ftx.us is
+*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
 
 ## 7. Related events
 
+- [`sec-v-ftx-2022`](./sec-v-ftx-2022.md)
+- [`cftc-v-ftx-2022`](./cftc-v-ftx-2022.md)
 - [`blockfi-sec-lending-2022`](./blockfi-sec-lending-2022.md)
-- [`binance-4framework-2023`](./binance-4framework-2023.md)
-- [`sec-v-coinbase-2023`](./sec-v-coinbase-2023.md)
-- [`kraken-sec-staking-2023`](./kraken-sec-staking-2023.md)
+- [`celsius-bankruptcy-mashinsky-doj-2023`](./celsius-bankruptcy-mashinsky-doj-2023.md)
+- [`voyager-bankruptcy-doj-objection-2023`](./voyager-bankruptcy-doj-objection-2023.md)
+- [`japan-fsa-ftx-japan-suspension-2022-11`](./japan-fsa-ftx-japan-suspension-2022-11.md)
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ea43eeb`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `4ee1e3c`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

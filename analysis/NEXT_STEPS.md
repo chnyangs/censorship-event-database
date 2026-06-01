@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **258 release-ready** cases, **109 admitted-but-blocked** cases, observation reliability
-      **275 high / 83 medium / 9 low**, and attribution reliability **235 high / 132 medium / 0 low**.
+      **261 release-ready** cases, **106 admitted-but-blocked** cases, observation reliability
+      **277 high / 85 medium / 5 low**, and attribution reliability **237 high / 130 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -147,6 +147,11 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       plus local Decrypt, Artnet, and Washington Times/AP Cuba reporting captures; the Cuba observation is
       relabeled `plausible`, the event is explicitly `evidence_tier=attested_secondary`, and it is now a
       release-ready scoped aggregate datapoint rather than `appendix_only`.
+      Follow-on quality-loop repair also moved `ftx-bankman-fried-doj-2022` out of the low-observation queue by
+      replacing contextual DOJ/SEC/CFTC/FTX pointers with local DOJ indictment PDF, SEC, CFTC, and FTX-sourced
+      PRNewswire replay anchors, while recoding the row from a positive `empirical_case` to a release-ready
+      `null_case`: the 2022-12-13 DOJ indictment did not itself produce a new exchange/off-ramp access change
+      because the FTX Chapter 11 estate was already in place from 2022-11-11.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
