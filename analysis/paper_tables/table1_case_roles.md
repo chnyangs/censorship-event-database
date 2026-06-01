@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `38556e8` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `a888d9d` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -245,7 +245,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `mtgox-usd-withdrawal-suspension-2013-06` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
 | `myanmar-cbm-crypto-prohibition-directive-9-2020` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `nemesis-parsarad-darknet-ofac-2025-03` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
-| `nepal-nrb-bitcoin-ban-2017-08` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `nepal-nrb-bitcoin-ban-2017-08` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `nepal-nrb-comprehensive-crypto-ban-2021-09` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `netex24-bitpapa-russia-crypto-ofac-2024-03` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
 | `netherlands-dnb-binance-warning-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |

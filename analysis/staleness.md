@@ -266,7 +266,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `mtgox-usd-withdrawal-suspension-2013-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `myanmar-cbm-crypto-prohibition-directive-9-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `nemesis-parsarad-darknet-ofac-2025-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
-| `nepal-nrb-bitcoin-ban-2017-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
+| `nepal-nrb-bitcoin-ban-2017-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `nepal-nrb-comprehensive-crypto-ban-2021-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `netex24-bitpapa-russia-crypto-ofac-2024-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `netherlands-dnb-binance-warning-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
@@ -614,7 +614,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `mtgox-usd-withdrawal-suspension-2013-06` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `myanmar-cbm-crypto-prohibition-directive-9-2020` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `nemesis-parsarad-darknet-ofac-2025-03` — audit=no_audit_recorded, verification=ok, verif_age=2d
-- `nepal-nrb-bitcoin-ban-2017-08` — audit=no_audit_recorded, verification=ok, verif_age=2d
+- `nepal-nrb-bitcoin-ban-2017-08` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `nepal-nrb-comprehensive-crypto-ban-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `netex24-bitpapa-russia-crypto-ofac-2024-03` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `netherlands-dnb-binance-warning-2021` — audit=no_audit_recorded, verification=ok, verif_age=1d
