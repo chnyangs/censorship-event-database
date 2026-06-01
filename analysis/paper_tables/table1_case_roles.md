@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `143c3a7` · generated `2026-06-01T12:56:36Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `029a430` · generated `2026-06-01T14:19:21Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -332,7 +332,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `suex-ofac-2021` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-21` | `—` |
 | `switzerland-finma-tezos-zg-2018` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `taiwan-fsc-aml-vasp-regime-2021-2024` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
-| `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `tengyue-chemical-fentanyl-ofac-2025-09` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
 | `teraexchange-cftc-bitcoin-swap-2015` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `tether-doj-pig-butchering-freeze-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `address_set` | `subset` | 2 | `multi_layer` | ✓ | · | `2026-04-22` | `—` |

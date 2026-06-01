@@ -56493,9 +56493,9 @@
   {
     "_source_file": "taiwan-fsc-bitcoin-bank-atm-ban-2014-01.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review: TASK-2 lower-tier Pass 2. Rendered+grepped the captured source \u2014 core restriction substantiated (5/7-7/7 terms). The wave-1/2 VERIFY-FLAG was an OFAC-template \"specific-address\" boilerplate that does not apply to a national ban; removed. Admitted at evidence_tier=attested_secondary (\u00a710), single source, filterable.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission).\n\nEvent: Taiwan Financial Supervisory Commission (FSC), jointly with the\ncentral bank, on 2014-01-06 barred local banks and financial institutions\nfrom converting/accepting bitcoin or using it as a payment tool via ATMs,\nand refused to approve Robocoin bitcoin-ATM installations. \u00a79 INCLUDE:\nthis is a payment-rail prohibition + denial of ATM service (a deliberate\nrestriction of a financial-institution off-ramp surface), not a mere\nnon-recognition statement. The \"bitcoin is a virtual commodity not a\ncurrency\" framing accompanies the order but the load-bearing fact is the\nactive prohibition on banks dealing in/converting bitcoin.\n\nWhy trigger.type=nation_state_block: closest enum for a single-country\nfinancial-regulator payment-rail prohibition (same enum as the sibling\nchina-pboc-crypto-ban-2013-12 and russia-cbr-bitcoin-information-letter-2014\nhistorical-baseline events). \u00a75.2 maps nation_state_block \u2192 S4_nation_state.\n\nWhy historical_baseline tier / analysis_use=historical_baseline: 2014 falls\nin the historical_baseline_2013_2016 tier; excluded from the 2017+\ncomparable-analysis denominator.\n\nWhy empirical_shape=comparison / admission_tier=empirical_case: exactly one\nobserved_change layer (offramp_cex) with strong attribution (plausible).\n\nWhy attribution=plausible (not direct): per codebook \u00a71.5 and \u00a78.4, the\naction is documented by contemporaneous press (semi_primary_wayback) quoting\nthe FSC announcement, not by the FSC's own primary_legal order. The primary\nFSC instrument was not pinned in this draft pass; conservative default\napplied.\n\nHuman audit follow-up: (i) re-pin the Taipei Times Wayback snapshot timestamp;\n(ii) locate the FSC's primary announcement (fsc.gov.tw press release,\n2014-01) to support elevation to direct; (iii) decide whether the Robocoin\nATM denial warrants a separate enumerated target row.\n",
+    "analysis_notes": "**PRIMARY-SOURCE REPAIR 2026-06-01** \u2014 pinned official FSC English and Chinese\npress releases for the 2014-01-06 Bitcoin ATM / financial-institution\nrestriction. Removed `evidence_tier=attested_secondary`, upgraded\n`primary_source_verified=true`, changed the off-ramp observation to\n`attribution=direct`, and narrowed the scoped claim to the official FSC text:\nbanks and other financial institutions may not accept/exchange Bitcoin or\nprovide Bitcoin-related services through bank ATMs. The prior Robocoin-specific\nlanguage remains only as contemporaneous media context, not the official\ngovernment claim.\n\n**ADMITTED 2026-05-31** (genuine review: TASK-2 lower-tier Pass 2. Rendered+grepped the captured source \u2014 core restriction substantiated (5/7-7/7 terms). The wave-1/2 VERIFY-FLAG was an OFAC-template \"specific-address\" boilerplate that does not apply to a national ban; removed. Initially admitted at evidence_tier=attested_secondary (\u00a710), then upgraded by the 2026-06-01 primary-source repair above.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission).\n\nEvent: Taiwan Financial Supervisory Commission (FSC), jointly with the\ncentral bank, on 2014-01-06 barred local banks and financial institutions\nfrom accepting/exchanging bitcoin or providing Bitcoin-related services\nthrough bank ATMs. \u00a79 INCLUDE:\nthis is a payment-rail prohibition + denial of ATM service (a deliberate\nrestriction of a financial-institution off-ramp surface), not a mere\nnon-recognition statement. The \"bitcoin is a virtual commodity not a\ncurrency\" framing accompanies the order but the load-bearing fact is the\nactive prohibition on banks dealing in/converting bitcoin.\n\nWhy trigger.type=nation_state_block: closest enum for a single-country\nfinancial-regulator payment-rail prohibition (same enum as the sibling\nchina-pboc-crypto-ban-2013-12 and russia-cbr-bitcoin-information-letter-2014\nhistorical-baseline events). \u00a75.2 maps nation_state_block \u2192 S4_nation_state.\n\nWhy historical_baseline tier / analysis_use=historical_baseline: 2014 falls\nin the historical_baseline_2013_2016 tier; excluded from the 2017+\ncomparable-analysis denominator.\n\nWhy empirical_shape=comparison / admission_tier=empirical_case: exactly one\nobserved_change layer (offramp_cex) with direct attribution.\n\nWhy attribution=direct: the official FSC English and Chinese press releases\nare pinned and directly state that banks and financial institutions may not\naccept/exchange Bitcoin or provide related bank-ATM services.\n\nRemaining caution: the official FSC pages were captured from live fsc.gov.tw\nusing allow-insecure-tls because the local TLS validator rejected the FSC\ncertificate chain. The replayable evidence is the pinned body_hash/body_path,\nnot live URL availability.\n",
     "analysis_use": "historical_baseline",
-    "codebook_version": "3.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
@@ -56514,7 +56514,7 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "The FSC announcement does not direct takedown of specific frontends;\nRobocoin is a physical-ATM deployment, not a web frontend. not_applicable\non scope-mismatch grounds.\n",
+        "note": "The FSC announcement does not direct takedown of specific frontends;\nthe regulated surface is financial-institution acceptance/conversion and\nbank ATM service provision, not a web frontend. not_applicable on\nscope-mismatch grounds.\n",
         "status": "not_applicable"
       },
       {
@@ -56524,26 +56524,24 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "The FSC order directly barred Taiwan banks and financial institutions\nfrom accepting or converting bitcoin and from operating bitcoin ATMs as\na payment tool. This is a payment-rail / off-ramp prohibition at the\ninstitution-class level. partially_measured: the prohibition is\ndocumented in the contemporaneous Taipei Times report (replayable\nbody_hash) but no enumerated bank-by-bank counterfactual or quantitative\noff-ramp measurement slice has been pinned in this draft authoring pass.\n",
+        "note": "The FSC order directly barred Taiwan banks and financial institutions\nfrom accepting or converting bitcoin and from operating bitcoin ATMs as\na payment tool. This is a payment-rail / off-ramp prohibition at the\ninstitution-class level. Marked measured for the scoped denominator:\nthe official FSC press release defines the affected regulated class and\nprohibited service surface; it does not require a bank-by-bank roster.\n",
         "scope": [
           "taiwan_bank_bitcoin_conversion_and_atm_payment_rails"
         ],
-        "status": "partially_measured"
+        "status": "measured"
       }
     ],
     "created_at": "2026-05-31T00:00:00+00:00",
     "empirical_shape": "comparison",
-    "evidence_caveat": "Taiwan FSC Jan-2014 directive barring banks from handling bitcoin + banning bitcoin ATMs. \u00a79-clear restriction, documented; attested_secondary on a single captured source.",
-    "evidence_tier": "attested_secondary",
     "id": "taiwan-fsc-bitcoin-bank-atm-ban-2014-01",
     "jurisdiction": [
       "TW"
     ],
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "taiwan_bank_bitcoin_rail_class",
-        "attribution": "plausible",
+        "attribution": "direct",
         "delta_hours": 0,
         "event": "fsc_barred_banks_from_bitcoin_conversion_and_atms",
         "layer": "offramp_cex",
@@ -56551,10 +56549,26 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:fc7886ec985edc6772079f79dc2fc4a8528b4525ba428f44429ce1b6b1fb8d4c",
+            "body_path": "sources/http_captures/taiwan-fsc-bitcoin-bank-atm-ban-2014-01/primary-fsc-press-live/www.fsc.gov.tw__en-home.jsp__dbeef62d88.html",
+            "evidence_use": "replayable",
+            "note": "Official FSC English press release. attribution=direct: the FSC itself\nstates that banks and other financial institutions may not accept or\nexchange Bitcoin or provide related services for Bitcoin through bank\nATMs.\n",
+            "type": "primary_government",
+            "url": "https://www.fsc.gov.tw/en/home.jsp?aplistdn=ou%3Dnews%2Cou%3Dmultisite%2Cou%3Denglish%2Cou%3Dap_root%2Co%3Dfsc%2Cc%3Dtw&dataserno=202011120011&dtable=News&id=54&mcustomize=multimessage_view.jsp&parentpath=0"
+          },
+          {
+            "body_hash": "sha256:8c780a7d93396ee37ef651978bea26cf7058995996264bc0674084743e11e4c1",
+            "body_path": "sources/http_captures/taiwan-fsc-bitcoin-bank-atm-ban-2014-01/primary-fsc-press-live/www.fsc.gov.tw__ch-home.jsp__899be8f835.html",
+            "evidence_use": "replayable",
+            "note": "Official FSC Chinese press release carrying the same restriction in\nthe original-language government publication.\n",
+            "type": "primary_government",
+            "url": "https://www.fsc.gov.tw/ch/home.jsp?dataserno=201401060003&dtable=News&id=96&mcustomize=news_view.jsp&parentpath=0%2C2"
+          },
+          {
             "body_hash": "sha256:a5fb9b0d0ff23f4f567c245dfa54e12c0917c75388d5a15412753c81034a801d",
             "body_path": "sources/http_captures/taiwan-fsc-bitcoin-bank-atm-ban-2014-01/primary/web.archive.org__web-20140110000000-http-www.taipeitimes.com-News-biz-archives-2014-01-07-2003580688__46d53f886c.html",
             "evidence_use": "replayable",
-            "note": "Taipei Times 2014-01-07 \"FSC bans banks using bitcoins\": the FSC\nbarred banks/financial institutions from bitcoin conversion or using\nbitcoin as a payment tool via ATMs, and stated \"financial\ninstitutions may not accept bitcoins or provide conversion.\"\nattribution=plausible (per codebook \u00a71.5/\u00a78.4): the action is\ncarried by contemporaneous press (semi_primary_wayback) quoting the\nFSC, not the FSC's own primary_legal order text; the primary FSC\ninstrument has not been pinned in this draft pass.\n",
+            "note": "Taipei Times 2014-01-07 \"FSC bans banks using bitcoins\": the FSC\nbarred banks/financial institutions from bitcoin conversion or using\nbitcoin as a payment tool via ATMs, and stated \"financial\ninstitutions may not accept bitcoins or provide conversion.\"\nRetained as contemporaneous corroboration; no longer the load-bearing\nsource after the official FSC pages were pinned.\n",
             "type": "semi_primary_wayback",
             "url": "http://www.taipeitimes.com/News/biz/archives/2014/01/07/2003580688",
             "wayback": "https://web.archive.org/web/20140109163139/http://www.taipeitimes.com/News/biz/archives/2014/01/07/2003580688"
@@ -56564,14 +56578,14 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "russia-cbr-bitcoin-information-letter-2014",
       "jordan-cbj-crypto-banking-ban-2014"
     ],
     "research_stratum": "S4_nation_state",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Taiwan's FSC on 2014-01-06 barred banks and financial institutions from\nbitcoin conversion/acceptance and from operating bitcoin ATMs, and refused\nRobocoin ATM installation. Effect carried at the offramp_cex\n(payment-rail) layer at institution-class level.\"\n",
+    "scoped_claim": "\"Taiwan's FSC on 2014-01-06 barred banks and financial institutions from\naccepting or exchanging Bitcoin and from providing Bitcoin-related services\nthrough bank ATMs. Effect carried at the offramp_cex (payment-rail) layer at\ninstitution-class level with direct attribution to the official FSC press\nrelease.\"\n",
     "status": "admitted",
     "tags": [
       "nation_state_block",
@@ -56583,15 +56597,15 @@
       "historical_baseline"
     ],
     "target": {
-      "actor_name": "Taiwan banks / financial institutions + Robocoin bitcoin ATM (class)",
+      "actor_name": "Taiwan banks / financial institutions and bitcoin ATM services (class)",
       "actor_type": "taiwan_financial_institution_class",
       "canonical_domains": [],
       "chains": [
         "bitcoin"
       ],
-      "entity": "Taiwan banks / financial institutions + Robocoin bitcoin ATM (class)",
+      "entity": "Taiwan banks / financial institutions and bitcoin ATM services (class)",
       "enumeration": "subset",
-      "enumeration_note": "Canonical target is the class of Taiwan banks and financial institutions\nbarred from accepting/converting bitcoin or operating bitcoin ATMs, plus\nthe specific Robocoin bitcoin-ATM deployment whose installation the FSC\nrefused to approve. Class-level target (no enumerated roster of banks);\nenumeration=subset because the FSC order addresses the financial-\ninstitution population class and the named Robocoin ATM deployment without\na fixed entity list.\n",
+      "enumeration_note": "Canonical target is the class of Taiwan banks and financial institutions\nbarred from accepting or exchanging Bitcoin or providing Bitcoin-related\nservices through bank ATMs. Class-level target (no enumerated roster of\nbanks); enumeration=subset because the FSC press release addresses the\nfinancial-institution population class rather than a fixed entity list.\n",
       "kind": "entity",
       "protocol": null
     },
@@ -56600,10 +56614,26 @@
       "actor": "TW_FSC",
       "citation": [
         {
+          "body_hash": "sha256:fc7886ec985edc6772079f79dc2fc4a8528b4525ba428f44429ce1b6b1fb8d4c",
+          "body_path": "sources/http_captures/taiwan-fsc-bitcoin-bank-atm-ban-2014-01/primary-fsc-press-live/www.fsc.gov.tw__en-home.jsp__dbeef62d88.html",
+          "evidence_use": "replayable",
+          "note": "Official FSC English press release dated 2014-01-06, \"Financial\nInstitutions' ATMs may not Provide Related Services for Bitcoin.\"\nThe FSC states that Bitcoin is not currency but a virtual asset, cannot\nbe used as a commonly accepted payment tool, and therefore banks and\nother financial institutions may not accept or exchange Bitcoin or\nprovide related services for Bitcoin through bank ATMs. Captured with\ncertificate verification disabled because the local TLS validator failed\non the FSC certificate chain; the body is pinned by hash and path.\n",
+          "type": "primary_government",
+          "url": "https://www.fsc.gov.tw/en/home.jsp?aplistdn=ou%3Dnews%2Cou%3Dmultisite%2Cou%3Denglish%2Cou%3Dap_root%2Co%3Dfsc%2Cc%3Dtw&dataserno=202011120011&dtable=News&id=54&mcustomize=multimessage_view.jsp&parentpath=0"
+        },
+        {
+          "body_hash": "sha256:8c780a7d93396ee37ef651978bea26cf7058995996264bc0674084743e11e4c1",
+          "body_path": "sources/http_captures/taiwan-fsc-bitcoin-bank-atm-ban-2014-01/primary-fsc-press-live/www.fsc.gov.tw__ch-home.jsp__899be8f835.html",
+          "evidence_use": "replayable",
+          "note": "Official FSC Chinese press release dated 2014-01-06, \"\u91d1\u878d\u6a5f\u69cbATM\u4e0d\u5f97\u63d0\u4f9b\u6bd4\u7279\u5e63\n\u76f8\u95dc\u670d\u52d9.\" The Chinese text states that Bitcoin is a virtual commodity\nrather than currency and that banks and other financial institutions may\nnot accept or exchange Bitcoin or provide Bitcoin-related services\nthrough bank ATMs.\n",
+          "type": "primary_government",
+          "url": "https://www.fsc.gov.tw/ch/home.jsp?dataserno=201401060003&dtable=News&id=96&mcustomize=news_view.jsp&parentpath=0%2C2"
+        },
+        {
           "body_hash": "sha256:a5fb9b0d0ff23f4f567c245dfa54e12c0917c75388d5a15412753c81034a801d",
           "body_path": "sources/http_captures/taiwan-fsc-bitcoin-bank-atm-ban-2014-01/primary/web.archive.org__web-20140110000000-http-www.taipeitimes.com-News-biz-archives-2014-01-07-2003580688__46d53f886c.html",
           "evidence_use": "replayable",
-          "note": "Taipei Times report \"FSC bans banks using bitcoins\" (published\n2014-01-07, reporting the FSC's 2014-01-06 announcement). The\nFinancial Supervisory Commission \"barred local banks and financial\ninstitutions from bitcoin conversion or using the virtual currency as\na payment tool via automated teller machines (ATMs)\" and stated that\n\"financial institutions may not accept bitcoins or provide conversion\nin an effort to avoid consumer disputes and related trading risks.\"\nThis was issued jointly with the central bank, which ruled bitcoin \"a\nvirtual commodity, not a currency.\" The announcement followed\nRobocoin's plan to install bitcoin ATMs in Taiwan; the FSC stated such\ninstallation would require FSC approval, which would not be given.\nWayback snapshot 20140109163139 (contemporaneous, ~3 days post-event)\ncaptured replayable body_hash. Snapshot timestamp to be re-pinned\nduring human audit.\n",
+          "note": "Taipei Times report \"FSC bans banks using bitcoins\" (published\n2014-01-07, reporting the FSC's 2014-01-06 announcement). The\nFinancial Supervisory Commission \"barred local banks and financial\ninstitutions from bitcoin conversion or using the virtual currency as\na payment tool via automated teller machines (ATMs)\" and stated that\n\"financial institutions may not accept bitcoins or provide conversion\nin an effort to avoid consumer disputes and related trading risks.\"\nThis was issued jointly with the central bank, which ruled bitcoin \"a\nvirtual commodity, not a currency.\" The announcement followed\nRobocoin's plan to install bitcoin ATMs in Taiwan; the FSC stated such\ninstallation would require FSC approval, which would not be given.\nWayback snapshot 20140109163139 (contemporaneous, ~3 days post-event)\ncaptured replayable body_hash. Retained as contemporaneous corroboration\nand context for the proposed bitcoin-ATM entry.\n",
           "type": "semi_primary_wayback",
           "url": "http://www.taipeitimes.com/News/biz/archives/2014/01/07/2003580688",
           "wayback": "https://web.archive.org/web/20140109163139/http://www.taipeitimes.com/News/biz/archives/2014/01/07/2003580688"
@@ -56613,13 +56643,13 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "FSC announcement reported 2014-01-06 (Taipei Times publication\n2014-01-07; CoinDesk and TechCrunch contemporaneous coverage\n2014-01-05/06). Day-level precision; the FSC statement does not carry\nintra-day publication timing in the public record.\n",
-          "type": "semi_primary_wayback"
+          "note": "FSC English and Chinese press releases are both dated 2014-01-06. Day-level\nprecision; the FSC page does not carry intra-day publication timing.\n",
+          "type": "primary_government"
         }
       ],
       "type": "nation_state_block"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "task-force-rusich-ofac-2022-09.yaml",

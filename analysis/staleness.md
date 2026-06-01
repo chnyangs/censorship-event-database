@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T12:56:36Z`
+Generated at: `2026-06-01T14:19:21Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -366,7 +366,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `t3-bybit-hack-usdt-freeze-2025-03` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `t3-financial-crime-unit-launch-2024-09` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `taiwan-fsc-aml-vasp-regime-2021-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `task-force-rusich-ofac-2022-09` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `tengyue-chemical-fentanyl-ofac-2025-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `teraexchange-cftc-bitcoin-swap-2015` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
@@ -672,7 +672,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `t3-bybit-hack-usdt-freeze-2025-03` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `t3-financial-crime-unit-launch-2024-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `taiwan-fsc-aml-vasp-regime-2021-2024` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `taiwan-fsc-bitcoin-bank-atm-ban-2014-01` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `task-force-rusich-ofac-2022-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `tengyue-chemical-fentanyl-ofac-2025-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `terror-financing-crypto-seizure-doj-2020` — audit=no_audit_recorded, verification=ok, verif_age=1d
