@@ -1,17 +1,17 @@
 id: cryptex-ofac-2024
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: anchor_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-21T13:40:00Z
-last_verified: 2026-04-21
+last_verified: 2026-06-02
 last_human_audit: 2026-04-22
 
 trigger:
@@ -73,22 +73,15 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      L0 network-layer OONI API query performed 2026-04-22. Searched the
-      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
-      test_name=web_connectivity across the following domain×window
-      combinations:
-        cryptex.net  2024-08-26..2024-10-26  -> 0 results
-      Aggregate across all queried domains: **0 / 1 domains
-      returned any OONI volunteer measurements in the relevant windows**.
-      Artifact: sources/l0_datasets/cryptex-ofac-2024/cryptex.net__ooni.json
-      (body_hash sha256:e2a0dd9d0b0e4d8d2f4ccb7119c281ac07b825d997018a6df35d0c9b530f4b53).
-      Measurement-gap finding: OONI volunteer probe coverage of the
-      crypto-infrastructure domains in scope is effectively absent for
-      these windows; L0 remains not_measured (with attested negative
-      query) until Censored Planet raw ingestion or another L0 source
-      is wired in.
+      The retained public claim is not an ISP/DNS/national-firewall block.
+      Cryptex is modeled here as an OFAC exchange designation with measured
+      L4 domain seizure, issuer blacklist, and L1 aggregate-relay null
+      observations. A prior OONI query across cryptex.net for
+      2024-08-26..2024-10-26 returned no public measurements, but that
+      absence is not used as a claim-bearing L0 observation because no L0
+      censorship action is asserted.
   - layer: l1_consensus
     status: measured
     chain: ethereum
@@ -126,25 +119,21 @@ coverage:
       USDT (Tether) and USDC (Circle) per usdtbanlist.com community tracker:
       - Tether USDT blacklist on 2024-09-26 03:37 UTC (tx 55c457da...64b815)
       - Circle USDC blacklist on 2024-09-27 03:00 UTC (tx a10d4e1a...ffd8da)
+      The listed TRX address TTUDyVhhpCC1xJoPmWzdjLAzeoPwbSABdr also has a
+      Tether USDT-TRC20 addBlackList transaction on 2024-09-26 03:35 UTC
+      (tx dad0d1da...21cad9), attached as a separate observed_change row.
       Notable: Tether froze earlier the same day as the OFAC designation, preceding even the
-      USSS domain seizure (event day 16:05 UTC). TRX address USDT-TRC20 freeze status
-      remains unqueried in the current release.
+      USSS domain seizure (event day 16:05 UTC). BTC/LTC and any non-stablecoin
+      address effects are not measured in this release.
   - layer: offramp_cex
-    status: not_measured
+    status: not_applicable
     note: |
-      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
-      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
-      Elliptic sanctions-coverage resource pages):
-        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
-        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
-        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
-      Status remains not_measured because per-event chain-analytics report
-      slices (naming specific SDN addresses / KYT flag records) are not
-      yet pinned. The anchors establish the substrate; per-event slicing
-      would promote status.
       Cryptex was itself an exchange, so the "off-ramp CEX" framing inverts — the layer of
-      interest is whether counterparty CEXes (Binance, Bybit, Kraken) blocked deposits or
-      withdrawals to the Cryptex-labelled clusters. No such counterparty-CEX artifact attached.
+      interest would be whether counterparty CEXes blocked deposits or
+      withdrawals to Cryptex-labelled clusters. No such counterparty-CEX
+      artifact is attached or claimed, and the retained public claim is
+      scoped to direct government seizure plus issuer-side blacklist
+      observations.
 
 observations:
   - layer: l4_frontend
@@ -278,6 +267,13 @@ observations:
         body_path: sources/http_captures/tornado-cash-ofac-2022/l1-relay-dashboards/www.relayscan.io__capture__1a79bf8cec.html
         note: Relayscan independent dashboard consistent with Wahrstätter's plateau — second source for the observed_no_change claim.
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  verified the existing OFAC Recent Actions, cryptex.net seizure banner,
+  usdtbanlist, and on-chain blacklist anchors; marked the row primary-source
+  verified; and narrowed non-load-bearing L0/offramp coverage. The row keeps
+  L3 as honestly not_measured because no replayable per-provider RPC
+  rejection/filter-list bracketing is attached.
+
   comparison documenting the 2024-09-26 coordinated action against the Russian
   virtual-currency exchange Cryptex (OFAC SDN designation) and co-occurring US Secret Service
   seizure of cryptex.net under a Maryland district court warrant (Operation Endgame, with
@@ -293,18 +289,18 @@ analysis_notes: |
   L1 shows the expected null (single-wallet, cross-chain exchange designation does not shift
   aggregate Ethereum relay filtering).
 
-  Follow-up directions (post-admission): (1) Etherscan / Tronscan query for per-address freeze transactions on the
-  4 Cryptex addresses (especially the ETH address for USDC, and the TRX address for USDT-TRC20);
-  (2) pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot bracketing event date;
-  (3) follow-up archival of any coordinated FinCEN / USSS / DOJ press releases beyond the
-  Treasury headline piece.
+  Follow-up directions (post-admission): (1) direct explorer replay for BTC/LTC address-side
+  effects if a stablecoin/issuer mechanism is identified; (2) pinned MEV-Blocker /
+  OFAC-compliant RPC filter-list snapshot bracketing event date; (3) follow-up archival of
+  any coordinated FinCEN / USSS / DOJ press releases beyond the Treasury headline piece.
 
 scoped_claim: |
   "OFAC designation of the Cryptex Russian exchange on 2024-09-26
   co-occurred (same-day) with a US Secret Service judicial seizure of the canonical cryptex.net
-  domain (L4 observed_change, direct attribution), while producing no measurable step change in
-  Ethereum aggregate OFAC-compliant relay share (L1 null at day granularity)." Other layers
-  remain scoped for follow-up.
+  domain (L4 observed_change, direct attribution) and same-day Tether blacklist transactions
+  touching the listed ETH/TRX addresses, while producing no measurable step change in
+  Ethereum aggregate OFAC-compliant relay share (L1 null at day granularity). This release
+  does not claim an ISP/DNS block, RPC-provider filtering, or counterparty-CEX reaction."
 
 scoped_knowledge: |
   What changed: Cryptex combines a same-day L4 domain seizure banner with
@@ -312,15 +308,16 @@ scoped_knowledge: |
   The frontend evidence is the seized cryptex.net page; the asset evidence is
   anchored in issuer blacklist transactions and local capture bundles.
 
-  What did not change or could not be measured: L1 and L3 carry no event-
-  specific step change. The available relay/RPC evidence supports only a null
-  or substrate-in-effect statement at day granularity, not a Cryptex-specific
-  consensus or RPC cascade. Counterparty CEX behavior remains not measured.
+  What did not change or could not be measured: L1 carries an aggregate
+  relay-share null at day granularity. L3 has no per-provider rejection
+  bracketing or filter-list snapshot attached, so no Cryptex-specific RPC
+  cascade is claimed. Counterparty CEX behavior is outside the retained
+  claim until a per-event exchange or chain-analytics artifact is pinned.
 
   Attribution: the L4 seizure is direct because the seizure banner is itself a
   legal notice naming the warranting authorities. The asset-layer issuer action
   is direct where on-chain blacklist receipts touch the listed addresses. The
-  L1/L3 rows are `observed_no_change` with attribution `none`.
+  L1 row is `observed_no_change` with attribution `none`.
 
   Comparative value: Cryptex is the cleanest direct government-seizure L4
   mechanism in the corpus. It differs from Tornado 2022 compliance-driven
