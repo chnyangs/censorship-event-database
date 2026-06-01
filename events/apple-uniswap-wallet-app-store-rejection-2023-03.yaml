@@ -2,16 +2,16 @@ id: apple-uniswap-wallet-app-store-rejection-2023-03
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - apple-india-crypto-exchange-removal-2024-01
@@ -22,6 +22,20 @@ trigger:
   timestamp: 2023-03-03T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://blog.uniswap.org/uniswap-mobile-wallet-early-access
+      body_hash: sha256:9c5bfeac32305cb73c8dcfbc16665fb3af9201acc48f95982ed71ffd7603987f
+      body_path: sources/http_captures/apple-uniswap-wallet-app-store-rejection-2023-03/official-uniswap-blog/blog.uniswap.org__uniswap-mobile-wallet-early-access__fd779939e8.html
+      evidence_use: replayable
+      note: |
+        Uniswap Labs first-party blog post, "Uniswap Mobile App Early
+        Access" (2023-03-03). The captured page states that Apple approved
+        Uniswap's first build in October, rejected the final build shortly
+        before the planned December launch, and still would not green-light
+        the launch despite Uniswap responding to Apple's concerns and
+        saying it complied with Apple's guidelines. It also records
+        TestFlight early access while Uniswap waited for App Store approval.
+        Captured 2026-06-01.
     - type: semi_primary_wayback
       url: https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
       wayback: https://web.archive.org/web/20250428020543/https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
@@ -39,11 +53,13 @@ trigger:
         "self-custody", "approve", and "wallet". Verified via grep of the
         pinned body.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_corporate
       note: |
-        Day-level: Uniswap's launch announcement and Apple's refusal were
-        reported 2023-03-03. (An earlier rejection had stalled the planned
-        December 2022 launch per the same coverage.)
+        Day-level: Uniswap's first-party launch/early-access post is dated
+        2023-03-03 and records Apple's unresolved App Store approval refusal.
+        An earlier final-build rejection had stalled the planned December
+        2022 launch; the corpus event date records the public 2023-03-03
+        limited-release / disclosure date.
 
 target:
   kind: entity
@@ -98,8 +114,8 @@ coverage:
       Uniswap self-custody Wallet, denying iOS users access to the app via
       the App Store distribution surface (the user-facing access /
       front-end layer), despite Apple approving comparable self-custody
-      swapping wallets. Attested in the pinned Fortune coverage plus the
-      CoinDesk corroboration.
+      swapping wallets. Attested in the pinned Uniswap Labs first-party
+      blog post plus Fortune and CoinDesk corroboration.
 
 observations:
   - layer: l4_frontend
@@ -111,6 +127,24 @@ observations:
     precision: day
     country: US
     sources:
+      - type: primary_corporate
+        url: https://blog.uniswap.org/uniswap-mobile-wallet-early-access
+        body_hash: sha256:9c5bfeac32305cb73c8dcfbc16665fb3af9201acc48f95982ed71ffd7603987f
+        body_path: sources/http_captures/apple-uniswap-wallet-app-store-rejection-2023-03/official-uniswap-blog/blog.uniswap.org__uniswap-mobile-wallet-early-access__fd779939e8.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [apple_app_store, uniswap_labs]
+          countries: [US]
+          time_window:
+            - 2023-03-03T00:00:00Z
+            - 2023-03-31T23:59:59Z
+        note: |
+          Uniswap's own 2023-03-03 post records the app-store gatekeeping
+          state: Apple approved an earlier build, rejected the final build
+          before the planned December launch, and had not green-lit the
+          public App Store release by the March early-access announcement.
+          attribution remains plausible because this is Uniswap's account
+          of Apple's review decision and Apple gave no public rationale.
       - type: semi_primary_wayback
         url: https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
         wayback: https://web.archive.org/web/20250428020543/https://fortune.com/crypto/2023/03/03/uniswap-wallet-apple-app-store/
@@ -147,6 +181,18 @@ observations:
           Independent semi-primary second anchor.
 
 analysis_notes: |
+  **SOURCE-STRENGTHENED 2026-06-01** (quality-loop primary-trigger repair):
+  pinned Uniswap Labs' first-party "Uniswap Mobile App Early Access" blog
+  post as a local `body_hash` / `body_path` replay artifact. The post
+  directly records Apple's October first-build approval, final-build
+  rejection before the planned December launch, unresolved refusal to
+  green-light the public App Store launch, Uniswap's guideline-compliance
+  position, and TestFlight early-access workaround. This upgrades the
+  trigger and observed app-store gatekeeping evidence floor to primary
+  corporate while preserving `attribution=plausible`: Apple did not publish
+  a rationale, and the direct evidence is Uniswap's first-party account of
+  the review outcome rather than an Apple statement.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 S5-corporate
   draft, adversarial-verify verdict=KEEP (sources real + on-topic + §9 in-scope + not dup), AND
   passes strict admission validation; origin agent_draft -> human_reviewed).
@@ -158,15 +204,21 @@ analysis_notes: |
   and we don't know why"). Uniswap routed around it via TestFlight (10,000
   users). An app-store gatekeeping denial of a major crypto app — same
   app-store-gatekeeper pattern as apple-india-crypto-exchange-removal-2024-01.
+  The first-party Uniswap blog source was captured and pinned on 2026-06-01;
+  Fortune and CoinDesk remain corroborating replay anchors.
 
   comparison shape: 1 observed_change layer (l4_frontend, the app
   distribution / access surface) with attribution=plausible. attribution
   held at plausible because Apple gave no public rationale (reason unstated
-  by the gatekeeper; only Uniswap's account is on record). l0/l1/l3/
+  by the gatekeeper; Uniswap's account is first-party for the affected app,
+  but not an Apple rationale). l0/l1/l3/
   asset_onchain/offramp_cex not_applicable. Sources verified via WebSearch
   + capture 2026-05-31 (Fortune primary lead + CoinDesk corroboration,
   body_hash-pinned; grep-confirmed "App Store" / "Apple" / "self-custody" /
   "won't green-light"; no fabrication).
+  Uniswap official source captured 2026-06-01 and grep-confirmed for
+  "Apple", "rejected the final build", "won't green-light our launch",
+  "100% compliant", "Testflight", and App Store approval context.
 
   Codebook decisions applied:
   - §9 in scope: app-store removal / refusal of a legitimate crypto app is
@@ -182,12 +234,14 @@ analysis_notes: |
     per §4.
 
 scoped_claim: |
-  "Apple's App Store review refused (2023-03-03) to approve the Uniswap
-  self-custody Wallet for iOS, denying iOS users App Store access to the
-  app despite Apple approving comparable self-custody swapping wallets and
-  giving no public reason — a 1-layer l4_frontend observed_change
-  (attribution=plausible) of app-store gatekeeping against a major crypto
-  app. Same gatekeeper pattern as apple-india-crypto-exchange-removal-2024-01."
+  "Uniswap Labs' first-party 2023-03-03 early-access post records that
+  Apple's App Store review had rejected the final Uniswap Wallet iOS build
+  before the planned December launch and still would not green-light the
+  public launch, so Uniswap distributed early access through TestFlight
+  instead. This is a 1-layer l4_frontend observed_change
+  (attribution=plausible, because Apple gave no public reason) of app-store
+  gatekeeping against a major crypto app. Same gatekeeper pattern as
+  apple-india-crypto-exchange-removal-2024-01."
 
 tags:
   - corporate_policy_change

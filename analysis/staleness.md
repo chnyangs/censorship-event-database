@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T04:52:47Z`
+Generated at: `2026-06-01T05:04:01Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -33,7 +33,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `algeria-finance-law-2018-crypto-prohibition` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `alphabay-hansa-doj-2017` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
 | `apple-india-crypto-exchange-removal-2024-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `apple-uniswap-wallet-app-store-rejection-2023-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `apple-uniswap-wallet-app-store-rejection-2023-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `argentina-bcra-banks-crypto-services-ban-2022-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `argentina-cnv-psav-registration-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `argentina-uif-resolution-300-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -440,7 +440,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `al-law-hezbollah-crypto-ofac-2024-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `algeria-finance-law-2018-crypto-prohibition` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `apple-india-crypto-exchange-removal-2024-01` — audit=no_audit_recorded, verification=ok, verif_age=11d
-- `apple-uniswap-wallet-app-store-rejection-2023-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `apple-uniswap-wallet-app-store-rejection-2023-03` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `argentina-bcra-banks-crypto-services-ban-2022-05` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `argentina-cnv-psav-registration-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `argentina-uif-resolution-300-2014` — audit=no_audit_recorded, verification=ok, verif_age=11d
