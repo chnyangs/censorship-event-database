@@ -19464,9 +19464,9 @@
   {
     "_source_file": "egypt-cbe-banking-law-194-2020.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review: TASK-2 lower-tier Pass 2. Rendered+grepped the captured source \u2014 core restriction substantiated (5/7-7/7 terms). The wave-1/2 VERIFY-FLAG was an OFAC-template \"specific-address\" boilerplate that does not apply to a national ban; removed. Admitted at evidence_tier=attested_secondary (\u00a710), single source, filterable.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 2; sources\nverified+captured, awaiting human admission).\n\ncomparison documenting Egypt's Central Bank and Banking System Law No. 194 of\n2020 (promulgated/published 2020-09-15, in force 2020-09-16), Article 206 of\nwhich strictly prohibits the issuance, trading, promotion, or operation of any\ncrypto-asset platform without prior approval from the Central Bank of Egypt\n(CBE). Because the CBE has not issued any such license, Article 206 operates as\na de facto national prohibition, backed by imprisonment and fines up to EGP 10\nmillion. Same nation-state-prohibition family as Myanmar CBM 2020 and Cambodia\nNBC 2018. (The CBE's earlier consumer warnings, e.g. Jan 2018, are context-only\nper \u00a79; the load-bearing in-scope action is the Law 194/2020 statutory\nprohibition, not the advisory.)\n\nPer codebook \u00a75.1, trigger.type=nation_state_block is the canonical fit: a\nnation-state statute making crypto issuance/trading/platform-operation illegal\nwithout a (non-existent) license. Per \u00a75.2, research_stratum=S4_nation_state is\npermitted.\n\nPer \u00a79 inclusion boundary: in scope \u2014 a deliberate state prohibition denying\nlegitimate crypto issuance/trading/platform-operation service to Egyptian\nusers, enforced by criminal penalties (imprisonment + fines), distinct from the\nCBE's prior soft consumer warnings (which would be context-only).\n\nWhy offramp_cex plausible (not direct): the load-bearing captured evidence is\nEgyptian law-firm secondary analysis (Youssry Saleh) reproducing Article 206,\nnot the official gazette / CBE instrument text, and the prohibition is\nclass-level (no platform named). Conservative-default rule (\u00a78.4) applied \u2192\nplausible. A human reviewer may elevate to direct if a primary gazette / CBE\ninstrument capture is pinned.\n\nWhy L0/L1/L3/asset_onchain not_applicable: legality/licensing action,\npre-Merge/pre-Flashbots era, no issuer-side on-chain freeze.\n\nWhy temporal_tier=comparable_main_2017_present / analysis_use=\ncomparable_analysis: 2020-09-15 sits in the 2017+ comparable corpus.\n\nHuman audit follow-up: pin the official gazette / CBE primary instrument text for\nArticle 206 of Law No. 194 of 2020 to support elevation to direct.\n",
+    "analysis_notes": "**SOURCE REPAIR 2026-06-02** Official FRA regulations page and linked image-only\nLaw No. 194/2020 PDF pinned locally. Rendered page 102 shows Article 206's\nprohibition on issuing, trading, promoting, creating/operating platforms for,\nor carrying out related activities involving cryptocurrency/electronic money\nwithout the required board license. Rendered page 110 shows Article 225's\npenalty provision including Article 206 violations. Removed\n`evidence_tier=attested_secondary`, upgraded `primary_source_verified=true`,\nand changed observation attribution from plausible to direct. Narrowed the\nclaim away from the previous \"no CBE license has been issued\" de facto-ban\ninference because that statement is not needed for the official-law claim.\n\n**ADMITTED 2026-05-31** (genuine review: TASK-2 lower-tier Pass 2. Rendered+grepped the captured source \u2014 core restriction substantiated (5/7-7/7 terms). The wave-1/2 VERIFY-FLAG was an OFAC-template \"specific-address\" boilerplate that does not apply to a national ban; removed. Admitted at evidence_tier=attested_secondary (\u00a710), single source, filterable.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 2; sources\nverified+captured, awaiting human admission).\n\ncomparison documenting Egypt's Central Bank and Banking System Law No. 194 of\n2020 (promulgated/published 2020-09-15, in force 2020-09-16), Article 206 of\nwhich strictly prohibits the issuance, trading, promotion, or operation of any\ncrypto-asset platform without the required license/authorization, backed by\nimprisonment and fines up to EGP 10 million. Same nation-state-prohibition\nfamily as Myanmar CBM 2020 and Cambodia NBC 2018. (The CBE's earlier consumer\nwarnings, e.g. Jan 2018, are context-only\nper \u00a79; the load-bearing in-scope action is the Law 194/2020 statutory\nprohibition, not the advisory.)\n\nPer codebook \u00a75.1, trigger.type=nation_state_block is the canonical fit: a\nnation-state statute making crypto issuance/trading/platform-operation illegal\nwithout a (non-existent) license. Per \u00a75.2, research_stratum=S4_nation_state is\npermitted.\n\nPer \u00a79 inclusion boundary: in scope \u2014 a deliberate state prohibition denying\nlegitimate crypto issuance/trading/platform-operation service to Egyptian\nusers, enforced by criminal penalties (imprisonment + fines), distinct from the\nCBE's prior soft consumer warnings (which would be context-only).\n\nWhy offramp_cex direct: the official FRA-hosted legal PDF itself contains the\nArticle 206 crypto/electronic-money prohibition and the Article 225 penalty\nprovision including Article 206 violations. The law-firm source is retained as\nEnglish-language corroboration, but it is no longer load-bearing.\n\nWhy L0/L1/L3/asset_onchain not_applicable: legality/licensing action,\npre-Merge/pre-Flashbots era, no issuer-side on-chain freeze.\n\nWhy temporal_tier=comparable_main_2017_present / analysis_use=\ncomparable_analysis: 2020-09-15 sits in the 2017+ comparable corpus.\n\nRemaining limitation: the official PDF is image-only, so replay depends on the\ncaptured PDF body hash plus rendered page verification rather than text grep.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "3.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
@@ -19494,7 +19494,7 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Article 206 of Law No. 194 of 2020 strictly prohibits the issuance,\ntrading, promotion, or operation of any crypto-asset platform without prior\nCBE approval (no license has been issued), backed by imprisonment and fines\nup to EGP 10 million \u2014 a national prohibition on the Egyptian crypto\ntrading/platform-operation surface. Carried at offramp_cex as the closest\nlayer for a trading/platform-operation prohibition. Load-bearing\nobservation attached below as observed_change with plausible attribution\n(the load-bearing captured evidence is law-firm secondary analysis\nreproducing the statute, not the official gazette text).\n",
+        "note": "Article 206 of Law No. 194 of 2020 strictly prohibits the issuance,\ntrading, promotion, or operation of any crypto-asset platform without prior\nlicensing/authorization, backed by penalties that include imprisonment and\nfines up to EGP 10 million. Carried at offramp_cex as the closest layer for\na trading/platform-operation prohibition. Load-bearing observation\nattached below as observed_change with direct attribution to the official\nlegal text.\n",
         "scope": [
           "egypt_crypto_issuance_trading_and_platform_operation"
         ],
@@ -19503,17 +19503,15 @@
     ],
     "created_at": "2026-05-31T00:00:00+00:00",
     "empirical_shape": "comparison",
-    "evidence_caveat": "Egypt CBE Banking Law 194/2020 (Art 206) prohibiting unlicensed crypto issuance/trading/promotion. \u00a79-clear restriction, documented; attested_secondary on a single captured source.",
-    "evidence_tier": "attested_secondary",
     "id": "egypt-cbe-banking-law-194-2020",
     "jurisdiction": [
       "EG"
     ],
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "egyptian_crypto_ecosystem",
-        "attribution": "plausible",
+        "attribution": "direct",
         "delta_hours": 0,
         "event": "crypto_issuance_trading_promotion_platform_prohibited_article_206",
         "layer": "offramp_cex",
@@ -19521,10 +19519,26 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:3010c9baac36284c3fbf1aeb04f9f859d6a4ab80af0fbe3c2255aa2aeb93393a",
+            "body_path": "sources/http_captures/egypt-cbe-banking-law-194-2020/primary-fra-law-v1/fra.gov.eg__regulations-D9-82-D8-A7-D9-86-D9-88-D9-86--D8-B1-D9-82-D9-85-194--D9-84-D8-B3-D9-86-D8-A9-2020__059ec583b5.html",
+            "evidence_use": "replayable",
+            "note": "FRA regulations page identifying Law No. 194 of 2020 and linking the\nofficial law PDF.\n",
+            "type": "primary_government",
+            "url": "https://fra.gov.eg/regulations/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-194-%D9%84%D8%B3%D9%86%D8%A9-2020/"
+          },
+          {
+            "body_hash": "sha256:349b17f58a17f3025a35747f9fafa5739eb0ed01e02ffdf050fadf0671f8706a",
+            "body_path": "sources/http_captures/egypt-cbe-banking-law-194-2020/primary-fra-law-v1/fra.gov.eg__wp-content-uploads-2025-01-D9-82-D8-A7-D9-86-D9-88-D9-86--D8-A7-D9-84-D8-A8-D9-86-D9-83--D8-A7-D9-84-D9-85-D8-B1-D9-83-D8-B2-D9-8A--D8-A8-D8-A7-D9-84-D8-A7__298496545b.bin",
+            "evidence_use": "replayable",
+            "note": "Official image-only PDF of Law No. 194 of 2020. Rendered page 102\nshows Article 206's cryptocurrency/electronic-money restriction, and\nrendered page 110 shows Article 225's penalty provision including\nArticle 206 violations.\n",
+            "type": "primary_legal",
+            "url": "https://fra.gov.eg/wp-content/uploads/2025/01/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%A8%D9%86%D9%83-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AF%D8%B1%D8%A7%D9%83.pdf"
+          },
+          {
             "body_hash": "sha256:9bd42acfbb503ff79c5319ca30f3deb48f4ce3f831236bf0b7057b2f9519efea",
             "body_path": "sources/http_captures/egypt-cbe-banking-law-194-2020/primary/web.archive.org__web-20260117012007-https-youssrysaleh.com-en-cryptocurrency-legality-in-egypt__07ac104a1e.html",
             "evidence_use": "replayable",
-            "note": "attribution=plausible per codebook \u00a71: the action is causally\nconsistent with the named Article 206 of Law No. 194 of 2020, but the\nload-bearing captured evidence is law-firm secondary analysis (Youssry\nSaleh) reproducing the statute rather than the official gazette\ninstrument text, and the prohibition is class-level (names no specific\nplatform). A primary gazette / CBE instrument capture would be required\nto elevate to direct.\n",
+            "note": "English-language corroboration of the Article 206 crypto prohibition;\nno longer load-bearing after the official FRA legal PDF was pinned.\n",
             "type": "supporting_journalism",
             "url": "https://web.archive.org/web/20260117012007/https://youssrysaleh.com/en/cryptocurrency-legality-in-egypt/",
             "wayback": "https://web.archive.org/web/20260117012007/https://youssrysaleh.com/en/cryptocurrency-legality-in-egypt/"
@@ -19534,14 +19548,14 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "myanmar-cbm-crypto-prohibition-directive-9-2020",
       "cambodia-nbc-joint-crypto-prohibition-2018-05"
     ],
     "research_stratum": "S4_nation_state",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"On 2020-09-15 Egypt promulgated Central Bank and Banking System Law No. 194 of\n2020, whose Article 206 strictly prohibits the issuance, trading, promotion, or\noperation of any crypto-asset platform without prior CBE approval (no license\nissued), backed by imprisonment and fines up to EGP 10 million. The offramp_cex\nlayer carries the load-bearing plausible-attribution observation at class\nlevel.\"\n",
+    "scoped_claim": "\"On 2020-09-15 Egypt promulgated Central Bank and Banking System Law No. 194 of\n2020, whose Article 206 strictly prohibits the issuance, trading, promotion, or\noperation of cryptocurrency/electronic-money platforms or related activities\nwithout the required board license, backed by penalties that include\nimprisonment and fines up to EGP 10 million. The offramp_cex layer carries the\nload-bearing direct-attribution observation at class level.\"\n",
     "status": "admitted",
     "tags": [
       "nation_state_block",
@@ -19557,7 +19571,7 @@
       "chains": [],
       "entity": "Egyptian crypto users / exchanges / platform operators (class)",
       "enumeration": "subset",
-      "enumeration_note": "All persons and platforms in Egypt barred from issuing, trading, promoting,\nor operating any crypto-asset platform without prior CBE approval (Article\n206, Law No. 194 of 2020). No CBE license has been issued, making the\nprovision a de facto prohibition. No specific exchange enumerated;\nclass-level prohibition matching the sibling nation-state-prohibition\nconvention (Myanmar 2020, Cambodia 2018).\n",
+      "enumeration_note": "All persons and platforms in Egypt barred from issuing, trading, promoting,\nor operating any crypto-asset platform without the license required by\nArticle 206 of Law No. 194 of 2020. No specific exchange is enumerated;\nclass-level restriction matching the sibling nation-state-prohibition\nconvention (Myanmar 2020, Cambodia 2018).\n",
       "kind": "entity",
       "protocol": null
     },
@@ -19566,10 +19580,26 @@
       "actor": "EG_CBE",
       "citation": [
         {
+          "body_hash": "sha256:3010c9baac36284c3fbf1aeb04f9f859d6a4ab80af0fbe3c2255aa2aeb93393a",
+          "body_path": "sources/http_captures/egypt-cbe-banking-law-194-2020/primary-fra-law-v1/fra.gov.eg__regulations-D9-82-D8-A7-D9-86-D9-88-D9-86--D8-B1-D9-82-D9-85-194--D9-84-D8-B3-D9-86-D8-A9-2020__059ec583b5.html",
+          "evidence_use": "replayable",
+          "note": "Official Egyptian Financial Regulatory Authority regulations page for\nLaw No. 194 of 2020 on the Central Bank and banking system. The captured\npage identifies the law and links the official PDF used below.\n",
+          "type": "primary_government",
+          "url": "https://fra.gov.eg/regulations/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-194-%D9%84%D8%B3%D9%86%D8%A9-2020/"
+        },
+        {
+          "body_hash": "sha256:349b17f58a17f3025a35747f9fafa5739eb0ed01e02ffdf050fadf0671f8706a",
+          "body_path": "sources/http_captures/egypt-cbe-banking-law-194-2020/primary-fra-law-v1/fra.gov.eg__wp-content-uploads-2025-01-D9-82-D8-A7-D9-86-D9-88-D9-86--D8-A7-D9-84-D8-A8-D9-86-D9-83--D8-A7-D9-84-D9-85-D8-B1-D9-83-D8-B2-D9-8A--D8-A8-D8-A7-D9-84-D8-A7__298496545b.bin",
+          "evidence_use": "replayable",
+          "note": "Official image-only PDF of Law No. 194 of 2020, linked from the FRA\nregulations page. Rendered PDF page 102 shows Article 206 prohibiting,\nwithout a board-issued license, the issuance, trading, promotion,\nplatform creation/operation, or related activities for cryptocurrency\nand electronic money. Rendered PDF page 110 shows the penalties chapter\nincluding violations of Article 206, with imprisonment and fines from\nEGP 1 million to EGP 10 million.\n",
+          "type": "primary_legal",
+          "url": "https://fra.gov.eg/wp-content/uploads/2025/01/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%A8%D9%86%D9%83-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AF%D8%B1%D8%A7%D9%83.pdf"
+        },
+        {
           "body_hash": "sha256:9bd42acfbb503ff79c5319ca30f3deb48f4ce3f831236bf0b7057b2f9519efea",
           "body_path": "sources/http_captures/egypt-cbe-banking-law-194-2020/primary/web.archive.org__web-20260117012007-https-youssrysaleh.com-en-cryptocurrency-legality-in-egypt__07ac104a1e.html",
           "evidence_use": "replayable",
-          "note": "Youssry Saleh Law Firm (Egypt) analysis \"Cryptocurrency legality in\nEgypt.\" Captured page states: \"The Egyptian regulatory framework on\ncryptocurrencies is based on the Central Bank and Banking System Law No.\n194 of 2020. Under the letter of Article 206 of this law, the issuance,\ntrading, promotion, or operation of any platform that deals with crypto\nassets without prior approval from the Central Bank of Egypt (CBE) is\nstrictly prohibited. Violating any of these provisions attracts\nfar-reaching penalties, including imprisonment, while fines of up to EGP\n1 million to EGP 10 million can also apply.\" Law No. 194 of 2020 was\npromulgated/published 2020-09-15 (entry into force 2020-09-16). Egyptian\nlaw-firm secondary analysis reproducing the statutory prohibition; the\nofficial gazette / CBE primary instrument text was not captured in this\ndraft pass.\n",
+          "note": "Youssry Saleh Law Firm (Egypt) analysis \"Cryptocurrency legality in\nEgypt.\" Captured page states: \"The Egyptian regulatory framework on\ncryptocurrencies is based on the Central Bank and Banking System Law No.\n194 of 2020. Under the letter of Article 206 of this law, the issuance,\ntrading, promotion, or operation of any platform that deals with crypto\nassets without prior approval from the Central Bank of Egypt (CBE) is\nstrictly prohibited. Violating any of these provisions attracts\nfar-reaching penalties, including imprisonment, while fines of up to EGP\n1 million to EGP 10 million can also apply.\" Law No. 194 of 2020 was\npromulgated/published 2020-09-15 (entry into force 2020-09-16). Egyptian\nlaw-firm secondary analysis reproducing the statutory prohibition;\nretained only as English-language corroboration after the official FRA\nlaw PDF was pinned.\n",
           "type": "supporting_journalism",
           "url": "https://web.archive.org/web/20260117012007/https://youssrysaleh.com/en/cryptocurrency-legality-in-egypt/",
           "wayback": "https://web.archive.org/web/20260117012007/https://youssrysaleh.com/en/cryptocurrency-legality-in-egypt/"
@@ -19579,13 +19609,17 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Central Bank and Banking System Law No. 194 of 2020 published in the\nofficial gazette 2020-09-15 (entered into force 2020-09-16) per Egyptian\nlegal sources. Day-level precision.\n",
-          "type": "supporting_journalism"
+          "note": "FRA official page identifies Law No. 194 of 2020; the PDF header shows\nthe official-gazette issue dated 2020-09-15. Day-level precision.\n",
+          "type": "primary_government"
+        },
+        {
+          "note": "Official image-only PDF of Law No. 194 of 2020; rendered pages carry the\nofficial-gazette date 2020-09-15. Day-level precision.\n",
+          "type": "primary_legal"
         }
       ],
       "type": "nation_state_block"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "ens-eth-domain-tornado-resolution-2022.yaml",

@@ -140,7 +140,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `ecuador-national-assembly-bitcoin-ban-2014-07` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `egold-doj-guilty-plea-2008-07` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
 | `egold-doj-indictment-2007-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
-| `egypt-cbe-banking-law-194-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
+| `egypt-cbe-banking-law-194-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `ens-eth-domain-tornado-resolution-2022` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `etherscan-tornado-cash-ui-label-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 16 | ok | no_audit_recorded |
 | `etoro-us-ada-trx-delisting-2021-12` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-01 | 1 | ok | ok |
@@ -518,7 +518,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `dydx-tornado-account-block-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `eba-virtual-currencies-opinion-eba-op-2014-08` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `ecuador-national-assembly-bitcoin-ban-2014-07` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `egypt-cbe-banking-law-194-2020` — audit=no_audit_recorded, verification=ok, verif_age=2d
+- `egypt-cbe-banking-law-194-2020` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `ens-eth-domain-tornado-resolution-2022` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `etherscan-tornado-cash-ui-label-2022` — audit=no_audit_recorded, verification=ok, verif_age=16d
 - `eu-12th-russia-sanctions-2023` — audit=no_audit_recorded, verification=ok, verif_age=41d

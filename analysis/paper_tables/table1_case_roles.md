@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `137626c` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `27a6912` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -129,7 +129,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `ecuador-national-assembly-bitcoin-ban-2014-07` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `asset` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `egold-doj-guilty-plea-2008-07` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-20` | `2026-05-20` |
 | `egold-doj-indictment-2007-04` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `2026-05-31` |
-| `egypt-cbe-banking-law-194-2020` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `egypt-cbe-banking-law-194-2020` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `etherscan-tornado-cash-ui-label-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
 | `etoro-us-ada-trx-delisting-2021-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-31` |
 | `eu-12th-russia-sanctions-2023` | `empirical_case` | `S6_supranational` | `comparison` | `non_us_sanctions` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
