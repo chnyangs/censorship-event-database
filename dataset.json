@@ -8278,18 +8278,14 @@
   {
     "_source_file": "blender-ofac-2022.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison documenting the first-ever OFAC sanction of a virtual currency\nmixer. Blender.io was designated 94 days before Tornado Cash and tests whether the Tornado\ncascade shape generalizes to the mixer class, or whether Tornado's cross-layer reaction was\ndriven by Tornado-specific properties (Ethereum native, smart-contract-based, USDC-\ninteracting).\n\nKey structural differences from Tornado 2022:\n- Bitcoin-only (no asset_onchain layer, no ETH PBS-relay analogue)\n- Pre-Merge (no L1 Ethereum infrastructure existed yet)\n- Operator-run mixer service, not a smart-contract protocol\n- Centralized domain operator who could physically shut the service down\n\nThe one grounded observation is at L4 frontend: blender.io was reduced to a default nginx\nlanding page within 10 days of designation. This is the cleanest \"operator-abandonment\"\npattern in the dataset \u2014 the Blender operators themselves dismantled the application rather\nthan fighting or relocating. This contrasts with Sinbad 2023-11 (foreign mixer, domain and\nservice persistent post-designation) and Tornado 2022 (US-compliance-driven collapse of US-\nhosted frontend infrastructure while the underlying Ethereum protocol remained operational\nbecause it could not be turned off).\n\nFollow-up directions (post-admission): (1) chain-analytics firm report (Chainalysis / TRM Labs / Elliptic)\ntagging of Blender-clustered BTC addresses, quantifying CEX deposit blocks; (2) any news\nor legal archive for the Blender operators' post-2022 fate.\n\nAdmitting conservatively as comparison rather than comparison \u2014 the dataset's\nBitcoin-only event class currently has no observed_change at L1 / asset / RPC layers because\nthose layers are structurally not_applicable for Bitcoin. The L4 observed_change alone is\nenough to meet comparison's 1-2 changed-layer requirement once the draft is promoted.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nverified the existing OFAC Recent Actions, Treasury press-release, and\nBlender Wayback captures by body hash; marked the row primary-source\nverified; and narrowed coverage taxonomy to the retained public claim.\nThis event now measures the OFAC designation plus L4 operator-side\napplication teardown. L0 network blocking is out of scope because no\nISP/DNS censorship claim is retained. Off-ramp/CEX effects remain an\nexplicit unmeasured follow-up until a public per-event exchange or\nchain-analytics slice names Blender-tagged BTC addresses.\n\ncomparison documenting the first-ever OFAC sanction of a virtual currency\nmixer. Blender.io was designated 94 days before Tornado Cash and tests whether the Tornado\ncascade shape generalizes to the mixer class, or whether Tornado's cross-layer reaction was\ndriven by Tornado-specific properties (Ethereum native, smart-contract-based, USDC-\ninteracting).\n\nKey structural differences from Tornado 2022:\n- Bitcoin-only (no asset_onchain layer, no ETH PBS-relay analogue)\n- Pre-Merge (no L1 Ethereum infrastructure existed yet)\n- Operator-run mixer service, not a smart-contract protocol\n- Centralized domain operator who could physically shut the service down\n\nThe one grounded observation is at L4 frontend: blender.io was reduced to a default nginx\nlanding page within 10 days of designation. This is the cleanest \"operator-abandonment\"\npattern in the dataset \u2014 the Blender operators themselves dismantled the application rather\nthan fighting or relocating. This contrasts with Sinbad 2023-11 (foreign mixer, domain and\nservice persistent post-designation) and Tornado 2022 (US-compliance-driven collapse of US-\nhosted frontend infrastructure while the underlying Ethereum protocol remained operational\nbecause it could not be turned off).\n\nFollow-up directions (post-admission): (1) chain-analytics firm report (Chainalysis / TRM Labs / Elliptic)\ntagging of Blender-clustered BTC addresses, quantifying CEX deposit blocks; (2) any news\nor legal archive for the Blender operators' post-2022 fate.\n\nAdmitting conservatively as comparison rather than comparison \u2014 the dataset's\nBitcoin-only event class currently has no observed_change at L1 / asset / RPC layers because\nthose layers are structurally not_applicable for Bitcoin. The L4 observed_change alone is\nenough to meet comparison's 1-2 changed-layer requirement once the draft is promoted.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across the following domain\u00d7window\ncombinations:\n  blender.io  2022-04-06..2022-06-06  -> 0 results\n  blender.to  2022-04-06..2022-06-06  -> 0 results\nAggregate across all queried domains: **0 / 2 domains\nreturned any OONI volunteer measurements in the relevant windows**.\nArtifact: sources/l0_datasets/blender-ofac-2022/blender.io__ooni.json\n(body_hash sha256:ffe796621d887d03d7e644dbf08c2c964addbee849e6bb6e63813400b4eb3a85).\nMeasurement-gap finding: OONI volunteer probe coverage of the\ncrypto-infrastructure domains in scope is effectively absent for\nthese windows; L0 remains not_measured (with attested negative\nquery) until Censored Planet raw ingestion or another L0 source\nis wired in.\n",
-        "scope": [
-          "blender.io",
-          "blender.to"
-        ],
-        "status": "not_measured"
+        "note": "The retained claim is not an ISP/DNS/national-firewall block. Blender\nis modeled as an OFAC designation plus operator-side web-application\nteardown, measured at L4 via Wayback. A prior OONI query across\nblender.io / blender.to for 2022-04-06..2022-06-06 returned no public\nmeasurements, but the absence of OONI volunteer data is not used as a\nclaim-bearing L0 observation because no L0 censorship action is\nasserted.\n",
+        "status": "not_applicable"
       },
       {
         "chain": "bitcoin",
@@ -8329,7 +8325,7 @@
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-04-21",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "frontend:blender_io",
@@ -8343,6 +8339,7 @@
           {
             "body_hash": "sha256:e5e5eaae392f6c13af512e1000be2270a5b983fe5ca84457a3a0507a2cb31ad0",
             "body_path": "sources/http_captures/blender-ofac-2022/frontend-wayback/web.archive.org__web-20220516113713-http-blender.io__240e6c7838.html",
+            "evidence_use": "replayable",
             "note": "Wayback snapshot 10 days post-designation. 200 OK, 705-byte body carrying the default\nnginx welcome page verbatim (\"Welcome to nginx! ... For online documentation and\nsupport please refer to nginx.org . Commercial support is available at nginx.com .\nThank you for using nginx.\"). No Blender.io application content remains. Interpreted\nas operator-driven teardown: the Blender operators removed the mixer application\nfrom their own web server. attribution=plausible rather than direct because the OFAC\ndesignation did not itself require operators to take this action \u2014 this was a\nvoluntary response by the service operator to US sanctions exposure (or to concurrent\nlaw-enforcement attention).\n",
             "type": "semi_primary_wayback",
             "url": "https://web.archive.org/web/20220516113713/http://blender.io/"
@@ -8350,6 +8347,7 @@
           {
             "body_hash": "sha256:52cf5226e2f155aff279a140d5fc7555f1c0faddec59f77ecba48df5a70c35b4",
             "body_path": "sources/http_captures/blender-ofac-2022/press-release/home.treasury.gov__news-press-releases-jy0768__25ddcdc9ec.html",
+            "evidence_use": "replayable",
             "note": "Treasury press release \"U.S. Treasury Issues First-Ever Sanctions on a Virtual\nCurrency Mixer, Targets DPRK Cyber Threats\" \u2014 primary_legal, anchors the\nUS-government-attested disruption of Blender. The release explicitly names\nBlender.io as the target and describes the designation's intent to disrupt the\nservice. Used as the second admission-grade source for the L4 observed_change\nclaim (the Wayback nginx-default capture is the measurement; this is the legal\nattribution that the designation targeted Blender specifically).\n",
             "type": "primary_legal",
             "url": "https://home.treasury.gov/news/press-releases/jy0768",
@@ -8360,7 +8358,7 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "tornado-cash-ofac-2022",
       "sinbad-ofac-2023"
@@ -8445,16 +8443,20 @@
         {
           "body_hash": "sha256:088245cfd0563f12865e84bf51db27dffdd2de2eadb742d278b3f901ca55f3ee",
           "body_path": "sources/http_captures/blender-ofac-2022/ofac-recent-actions/ofac.treasury.gov__recent-actions-20220506__7887ae4d27.html",
+          "evidence_use": "replayable",
           "note": "OFAC Recent Actions page for 2022-05-06. First crypto mixer ever sanctioned by OFAC\n(predates Tornado Cash 2022-08-08 by 94 days). Entity BLENDER.IO (aka BLENDERIO /\n@BLENDERIO_ENGLISH / @BLENDERIO_RUSSIAN / @MADEAMAZE_BOT) with 45 unique Bitcoin\naddresses attached. Same-day action updated DPRK/Lazarus designations on the same\npage but those are separate entity entries (8 ETH addresses on the page belong to\nLazarus-adjacent entities, not Blender). Tags for Blender: [DPRK3] [CYBER2].\n",
           "type": "primary_legal",
           "url": "https://ofac.treasury.gov/recent-actions/20220506",
           "wayback": "https://web.archive.org/web/20260421135013/https://ofac.treasury.gov/recent-actions/20220506"
         },
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "Treasury press release \"U.S. Treasury Issues First-Ever Sanctions on a Virtual Currency Mixer, Targets DPRK Cyber Threats\" (2022-05-06).",
+          "body_hash": "sha256:52cf5226e2f155aff279a140d5fc7555f1c0faddec59f77ecba48df5a70c35b4",
+          "body_path": "sources/http_captures/blender-ofac-2022/press-release/home.treasury.gov__news-press-releases-jy0768__25ddcdc9ec.html",
+          "evidence_use": "replayable",
+          "note": "Treasury press release \"U.S. Treasury Issues First-Ever Sanctions on\na Virtual Currency Mixer, Targets DPRK Cyber Threats\" (2022-05-06).\nThe local capture names Blender.io, describes the first-ever mixer\ndesignation, and states the OFAC action blocks property / interests\nin property of Blender.io in U.S. possession or control.\n",
           "type": "primary_legal",
-          "url": "https://home.treasury.gov/news/press-releases/jy0768"
+          "url": "https://home.treasury.gov/news/press-releases/jy0768",
+          "wayback": "https://web.archive.org/web/20260421234013/https://home.treasury.gov/news/press-releases/jy0768"
         }
       ],
       "timestamp": "2022-05-06T00:00:00+00:00",
@@ -8467,7 +8469,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "blockfi-multistate-cease-desist-bia-2021-07.yaml",
