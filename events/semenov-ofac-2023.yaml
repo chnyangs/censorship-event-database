@@ -1,17 +1,17 @@
 id: semenov-ofac-2023
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-21T13:25:00Z
-last_verified: 2026-04-21
+last_verified: 2026-06-02
 last_human_audit: 2026-04-22
 
 related_events:
@@ -30,6 +30,7 @@ trigger:
       wayback: https://web.archive.org/web/20260421132042/https://ofac.treasury.gov/recent-actions/20230823
       body_hash: sha256:e737ce9ccd1c0df53d103f6bd89836357112eddc8cf1df504d522a4189cce02a
       body_path: sources/http_captures/semenov-ofac-2023/ofac-recent-actions/ofac.treasury.gov__recent-actions-20230823__371ac1b7ba.html
+      evidence_use: replayable
       note: |
         OFAC Recent Actions page for 2023-08-23. The individual designation of Roman Semenov
         (Tornado Cash co-founder; Dubai, UAE; DOB 1987-11-08; [DPRK3] [CYBER2] tags) includes
@@ -75,11 +76,13 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      No new L0 network-layer artifact attached for the 2023-08-23 Semenov event. tornado.cash is
-      outside OONI's regular probe rotation for this window (same gap as tornado-cash-ofac-2022);
-      this row remains a coverage gap until OONI / Censored Planet coverage is added.
+      The retained public claim is an individual/address-set OFAC designation
+      with L1 aggregate relay null evidence and issuer-freeze observations.
+      Semenov himself has no canonical public domain or ISP/DNS blocking
+      surface in this row. Tornado Cash domains remain contextual related-event
+      background, not L0 targets for this individual-designation case.
   - layer: l1_consensus
     status: measured
     chain: ethereum
@@ -89,22 +92,23 @@ coverage:
       as observation: pre-event 14d mean 38.45% ± 0.96, event-day 37.03%, post-event 14d mean
       39.57% ± 1.27. Null shape: the individual designation did not shift relay OFAC-compliance.
   - layer: l3_rpc
-    status: not_measured
+    status: not_applicable
     provider_scope: public_only
     note: |
-      No first-party RPC-filter-list snapshot, provider docs/status
-      change, or replayable rejection bracketing 2023-08-23 is attached.
-      Public RPC substrate snapshots are treated as background context,
-      not event-specific L3 measurement coverage.
+      No Semenov-specific RPC surface is asserted. RPC-filter-list snapshots
+      for Tornado Cash contracts are modeled in the protocol-level Tornado
+      events, not in this individual/address-set designation. Marked
+      not_applicable for the scoped claim rather than as an unmeasured layer.
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     scope:
       - tornado.cash
       - app.tornado.cash
     note: |
-      Tornado frontends were already offline from the 2022-08-08 cascade; no fresh canonical
-      frontend action expected or documented for 2023-08-23. No third-party frontend artifact
-      (1inch, Uniswap Labs, etc.) naming Semenov specifically is attached.
+      Tornado frontends were already offline from the 2022-08-08 protocol-level
+      cascade, and Semenov's 2023-08-23 individual designation did not target
+      a Semenov-operated public frontend. No L4 claim is retained here; any
+      Tornado frontend state belongs to the related Tornado protocol rows.
   - layer: asset_onchain
     status: measured
     chain: ethereum
@@ -223,6 +227,16 @@ observations:
           Relayscan (Flashbots-operated) independent dashboard consistent with the Wahrstätter
           plateau — second source for the observed_no_change claim.
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  verified the existing OFAC Recent Actions trigger capture by body hash,
+  marked the row primary-source verified, and narrowed coverage to the actual
+  retained claim. This is an individual/address-set designation with two
+  measured surfaces: L1 aggregate relay-share no-change and asset-layer issuer
+  freezes. L0, L3, and L4 Tornado Cash surfaces are protocol-level context, not
+  Semenov-specific target layers. Off-ramp/CEX remains an explicit unmeasured
+  follow-up until a public exchange, compliance, or chain-analytics slice names
+  the eight Semenov addresses.
+
   comparison documenting the 2023-08-23 OFAC individual designation of Roman Semenov
   (Tornado Cash co-founder), co-occurring with the DOJ SDNY indictment of Semenov + Storm. The
   target is an individual (8 ETH wallet addresses) rather than a protocol, so the cross-layer
@@ -235,11 +249,12 @@ analysis_notes: |
   they support the argument that post-initial-cascade additions or individual designations do
   not trigger fresh aggregate L1 reactions.
 
-  Follow-up directions (post-admission): (1) Etherscan query for USDC/USDT freeze transactions on the 8 Semenov
-  addresses between 2023-08-23 and 2023-10-23; (2) pinned RPC filter list bracketing event date;
-  (3) pinned CEX policy artifact naming Semenov specifically; and (4) opening a companion
-  DOJ-indictment event (Storm + Semenov, SDNY 2023-08-23) as an S3 entry — the two events share
-  a day and support multi-agency analysis.
+  Follow-up directions (post-admission): (1) complete per-address receipt
+  packet for all 8 USDC and USDT freeze transactions rather than only the
+  representative tx plus usdtbanlist aggregate; (2) pinned CEX policy or
+  chain-analytics artifact naming Semenov specifically; and (3) opening a
+  companion DOJ-indictment event (Storm + Semenov, SDNY 2023-08-23) as an S3
+  entry — the two events share a day and support multi-agency analysis.
 
 scoped_claim: |
   "Individual OFAC designation of Roman Semenov on
