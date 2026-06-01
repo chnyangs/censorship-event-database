@@ -4,22 +4,22 @@
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **405 events**: **367 admitted** / 28 draft / 10 rejected.
+- **405 events**: **366 admitted** / 29 draft / 10 rejected.
 - **Integrity**: `scripts/validate.py` passes **405 / 405 [OK]**; `make check` passes. All changes remain local, never pushed.
-- **This session continuation delivered +106 net admitted** (corpus 261 → 367), plus codebook **4.0.0** (`evidence_tier`).
+- **This session continuation delivered +105 net admitted** (corpus 261 → 366), plus codebook **4.0.0** (`evidence_tier`).
 
 ### 2026-06-01 quality-loop addendum
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
 - Under that stricter operational review, release-ready cases are **261** (11 complete / 250 scoped) and
-  admitted-but-blocked cases are **106**. This is a deliberate paper-risk surfacing change, not a corpus
+  admitted-but-blocked cases are **105**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **277 high / 85 medium / 5 low**; attribution reliability
-  **237 high / 130 medium / 0 low**. Current admitted paper roles are
-  **261 aggregate_datapoint / 98 null_control / 5 appendix_only / 3 paper_anchor**.
+  observation reliability **277 high / 85 medium / 4 low**; attribution reliability
+  **236 high / 130 medium / 0 low**. Current admitted paper roles are
+  **261 aggregate_datapoint / 97 null_control / 5 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -101,23 +101,29 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   release-ready null_control: the 2022-12-13 DOJ indictment is preserved as the trigger, but the FTX off-ramp
   freeze is treated as already in place under the 2022-11-11 Chapter 11 estate rather than as a new
   DOJ-attributable observed_change.
+  Table 6 now applies the same claim-usable evidence rule as `analysis/review-report.*`: null-denominator
+  anchors ignore sources marked `contextual_unarchived` or `non_admission`. Under that stricter rule,
+  `ens-eth-domain-tornado-resolution-2022` is demoted back to a draft candidate because its retained ENS
+  app / eth.limo bodies are current-state scoping artifacts, not claim-usable 2022 no-change evidence. It
+  can be reconsidered only after timestamped 2022 Wayback or equivalent ENS governance/operator evidence is
+  pinned and human re-admission happens.
 
-## Admitted composition (367)
+## Admitted composition (366)
 | dimension | breakdown |
 |---|---|
-| **research_stratum** | S4_nation_state 111 · S5_corporate 96 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
-| **temporal_tier** | comparable_main_2017_present 307 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 329 · **attested_secondary 38** (lower-tier, filterable — see codebook §10) |
-| **admission_tier** | empirical_case 265 · null_case 98 · anchor_case 4 |
-| **empirical_shape** | comparison 267 · null_event 98 · cascade 2 |
+| **research_stratum** | S4_nation_state 111 · S5_corporate 95 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
+| **temporal_tier** | comparable_main_2017_present 306 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
+| **evidence_tier** | admission_grade 328 · **attested_secondary 38** (lower-tier, filterable — see codebook §10) |
+| **admission_tier** | empirical_case 265 · null_case 97 · anchor_case 4 |
+| **empirical_shape** | comparison 267 · null_event 97 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
-censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **37
+censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **38
 `attested_secondary`** rows are the well-documented single-source national bans + corporate restrictions admitted
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.
 
-## What this session changed (261 → 367 net)
+## What this session changed (261 → 366 net)
 1. **Waves 1–3 fully processed** (S1/S3/S4/S5/S6 bulk authoring → adversarial verify → admit), corpus → 322.
 2. **Task 1 — VERIFY-FLAG refinement** (+9): 5 OFAC null_cases + 4 non-OFAC; softened SDN-entry/penalty
    over-claims to match captured sources; 2 held with corrected flags. → 331.

@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T03:53:57Z`
+Generated at: `2026-06-01T04:09:15Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -141,7 +141,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `egold-doj-guilty-plea-2008-07` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
 | `egold-doj-indictment-2007-04` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `egypt-cbe-banking-law-194-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `ens-eth-domain-tornado-resolution-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
+| `ens-eth-domain-tornado-resolution-2022` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `etherscan-tornado-cash-ui-label-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `etoro-us-ada-trx-delisting-2021-12` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `eu-12th-russia-sanctions-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
@@ -519,7 +519,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `eba-virtual-currencies-opinion-eba-op-2014-08` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `ecuador-national-assembly-bitcoin-ban-2014-07` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `egypt-cbe-banking-law-194-2020` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `ens-eth-domain-tornado-resolution-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `ens-eth-domain-tornado-resolution-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `etherscan-tornado-cash-ui-label-2022` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `eu-12th-russia-sanctions-2023` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `eu-14th-russia-sanctions-spfs-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d

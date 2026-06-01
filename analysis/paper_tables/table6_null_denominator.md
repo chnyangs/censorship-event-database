@@ -1,8 +1,8 @@
-# Table 6 · Null-case denominator (n=98)
+# Table 6 · Null-case denominator (n=97)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4ee1e3c` · generated `2026-06-01T03:53:57Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `7c0cb78` · generated `2026-06-01T04:09:15Z`
 
-Supports the **null-event interpretation note** in `derived/archetype_distribution.md`. (C6 was demoted to exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md §C6`.) Each row lists the event's `observed_no_change` layers + the evidence-anchor types their sources carry. Per validator rule, `scope_descriptor` defines the covered scope but is not an evidence anchor by itself; each `observed_no_change` row needs at least one replayable artifact such as `body_hash`+`body_path`, `query_hash`, or `measurement_ids`.
+Supports the **null-event interpretation note** in `derived/archetype_distribution.md`. (C6 was demoted to exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md §C6`.) Each row lists the event's `observed_no_change` layers + the claim-usable evidence-anchor types their sources carry. Per validator rule, `scope_descriptor` defines the covered scope but is not an evidence anchor by itself; each `observed_no_change` row needs at least one claim-usable replayable artifact such as `body_hash`+`body_path`, `query_hash`, or `measurement_ids`. Sources marked `evidence_use=contextual_unarchived` or `evidence_use=non_admission` are deliberately excluded.
 
 | event_id | stratum | observed_no_change layers | evidence anchors present |
 | --- | --- | --- | --- |
@@ -24,7 +24,6 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `consensys-metamask-infura-rpc-data-collection-2022-11` | `S5_corporate` | `l3_rpc` | `body_hash+body_path` |
 | `derakhshan-alivand-irgc-crypto-ofac-2025-09` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `dkba-burma-scam-compound-ofac-2025-11` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
-| `ens-eth-domain-tornado-resolution-2022` | `S5_corporate` | `l4_frontend` | `body_hash+body_path` |
 | `eu-14th-russia-sanctions-spfs-2024` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `eu-15th-russia-sanctions-2024` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `eu-amla-anti-money-laundering-authority-regulation-2024` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
@@ -105,4 +104,4 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `zheng-yan-fentanyl-ofac-2019-08` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `zservers-ofac-2025` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 
-`evidence_anchors_present = NONE` indicates a validator regression (admission rules require at least one replayable artifact; `scope_descriptor` alone is insufficient). The generator aborts with a non-zero exit when any row is anchorless, so a NONE row can never reach `analysis/paper_tables/`.
+`evidence_anchors_present = NONE` indicates a validator regression (admission rules require at least one claim-usable replayable artifact; `scope_descriptor` alone is insufficient). The generator aborts with a non-zero exit when any row is anchorless, so a NONE row can never reach `analysis/paper_tables/`.

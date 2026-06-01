@@ -1,25 +1,25 @@
 # Jurisdictional distribution (derived)
 
-Generated: `2026-06-01T03:53:57Z`. Corpus: n = 367 events.
+Generated: `2026-06-01T04:09:15Z`. Corpus: n = 366 events.
 
 ## By region
 
 | region | events touching | share of corpus |
 | --- | ---: | ---: |
-| US | 158 | 43.1% |
+| US | 158 | 43.2% |
 | Europe (EU+UK+CH+non-bloc) | 58 | 15.8% |
-| Rest of World | 68 | 18.5% |
-| Corporate (no jurisdiction) | 49 | 13.4% |
+| Rest of World | 68 | 18.6% |
+| Corporate (no jurisdiction) | 48 | 13.1% |
 | Other | 85 | 23.2% |
-| **CORPUS TOTAL** | **367** | — |
-_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (418) ≥ corpus total (367). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
+| **CORPUS TOTAL** | **366** | — |
+_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (417) ≥ corpus total (366). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
 
 ## By country / bloc
 
 | jurisdiction code | events |
 | --- | ---: |
 | `US` | 158 |
-| `corporate_global` | 49 |
+| `corporate_global` | 48 |
 | `EU` | 28 |
 | `RU` | 19 |
 | `UK` | 16 |

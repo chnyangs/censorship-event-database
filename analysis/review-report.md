@@ -9,13 +9,13 @@ This file is the operational summary for the repo's two current priorities:
 
 - Event count: `405`
 - Release-ready cases: `261`
-- Admitted but release-blocked cases: `106`
+- Admitted but release-blocked cases: `105`
 - Fully complete release-ready cases: `11`
 - Scope-limited release-ready cases: `250`
 - Working drafts: `2`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 261, 'null_control': 98, 'appendix_only': 43, 'paper_anchor': 3}`
-- Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, magic-eden-ofac-sanctioned-country-block, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06, vietnam-sbv-bitcoin-prohibition-statement-2014-02`
+- Paper-use roles: `{'aggregate_datapoint': 261, 'null_control': 97, 'appendix_only': 44, 'paper_anchor': 3}`
+- Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, ens-eth-domain-tornado-resolution-2022, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, magic-eden-ofac-sanctioned-country-block, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06, vietnam-sbv-bitcoin-prohibition-statement-2014-02`
 
 ## Cases
 
@@ -1914,25 +1914,22 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `ens-eth-domain-tornado-resolution-2022`
 
-- Status: `admitted`
-- Readiness: `admitted_scope_blocked`
-- Paper-use role: `null_control`
-- Trigger reliability: `medium`
+- Status: `draft`
+- Readiness: `needs_re_scoping`
+- Paper-use role: `appendix_only`
+- Trigger reliability: `high`
 - Observation reliability: `low`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
 - Note: At least one no-change observation lacks replayable, claim-usable evidence.
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
+- Note: Case shape is visible but the case is not yet admitted.
 - Blocker: At least one null/no-change row cannot support a denominator claim with its current evidence_use markings.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Attach a replayable null-observation anchor or mark the row outside the denominator.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
-- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+- Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `etherscan-tornado-cash-ui-label-2022`
 

@@ -111,6 +111,36 @@ def test_build_paper_tables_aborts_on_anchorless_null(corpus_with_anchorless_nul
     assert "ABORT" in result.stderr
 
 
+def test_build_paper_tables_ignores_non_admission_null_anchor(tmp_path):
+    """A body_hash on a source marked non_admission is replayable context,
+    not claim-usable denominator evidence."""
+    fake_events = tmp_path / "events"
+    shutil.copytree(REPO_ROOT / "events", fake_events)
+
+    target = fake_events / "iran-ransomware-ofac-2018.yaml"
+    e = yaml.safe_load(target.read_text())
+    for obs in e.get("observations") or []:
+        if obs.get("observation_kind") != "observed_no_change":
+            continue
+        for src in obs.get("sources") or []:
+            src["evidence_use"] = "non_admission"
+    target.write_text(yaml.dump(e, sort_keys=False))
+
+    out_dir = tmp_path / "paper_tables"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "build_paper_tables.py"),
+            "--events-dir", str(fake_events),
+            "--out-dir", str(out_dir),
+        ],
+        capture_output=True, text=True,
+    )
+    assert result.returncode != 0
+    assert "iran-ransomware-ofac-2018" in result.stderr
+    assert "ABORT" in result.stderr
+
+
 def test_table2_suppresses_l3_partial_only_rate(tmp_path):
     rows = [{
         "layer": "l3_rpc",

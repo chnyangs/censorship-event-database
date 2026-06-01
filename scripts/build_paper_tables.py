@@ -734,10 +734,26 @@ def build_table5(
 # ---------- Table 6: null-case denominator ----------
 
 NULL_EVIDENCE_KINDS = [
-    ("body_hash+body_path", lambda s: bool(s.get("body_hash")) and bool(s.get("body_path"))),
-    ("query_hash", lambda s: bool(s.get("query_hash"))),
-    ("measurement_ids", lambda s: isinstance(s.get("measurement_ids"), list) and bool(s.get("measurement_ids"))),
+    (
+        "body_hash+body_path",
+        lambda s: _claim_usable_source(s) and bool(s.get("body_hash")) and bool(s.get("body_path")),
+    ),
+    ("query_hash", lambda s: _claim_usable_source(s) and bool(s.get("query_hash"))),
+    (
+        "measurement_ids",
+        lambda s: (
+            _claim_usable_source(s)
+            and isinstance(s.get("measurement_ids"), list)
+            and bool(s.get("measurement_ids"))
+        ),
+    ),
 ]
+
+NON_ADMISSION_EVIDENCE_USES = {"contextual_unarchived", "non_admission"}
+
+
+def _claim_usable_source(source: dict[str, Any]) -> bool:
+    return source.get("evidence_use") not in NON_ADMISSION_EVIDENCE_USES
 
 
 def build_table6(
@@ -758,11 +774,13 @@ def build_table6(
         "`derived/archetype_distribution.md`. (C6 was demoted to "
         "exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md "
         "§C6`.) Each row lists the event's `observed_no_change` layers + "
-        "the evidence-anchor types their sources carry. Per validator "
-        "rule, `scope_descriptor` defines the covered scope but is not an "
+        "the claim-usable evidence-anchor types their sources carry. Per "
+        "validator rule, `scope_descriptor` defines the covered scope but is not an "
         "evidence anchor by itself; each `observed_no_change` row needs at "
-        "least one replayable artifact such as `body_hash`+`body_path`, "
-        "`query_hash`, or `measurement_ids`."
+        "least one claim-usable replayable artifact such as "
+        "`body_hash`+`body_path`, `query_hash`, or `measurement_ids`. "
+        "Sources marked `evidence_use=contextual_unarchived` or "
+        "`evidence_use=non_admission` are deliberately excluded."
     )
     lines.append("")
     lines.append(
@@ -805,7 +823,7 @@ def build_table6(
     lines.append("")
     lines.append(
         "`evidence_anchors_present = NONE` indicates a validator regression "
-        "(admission rules require at least one replayable artifact; "
+        "(admission rules require at least one claim-usable replayable artifact; "
         "`scope_descriptor` alone is insufficient). "
         "The generator aborts with a non-zero exit when any row is anchorless, "
         "so a NONE row can never reach `analysis/paper_tables/`."

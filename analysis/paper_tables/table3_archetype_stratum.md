@@ -1,6 +1,6 @@
 # Table 3 · Archetype × research-stratum cross-tab
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4ee1e3c` · generated `2026-06-01T03:53:57Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `7c0cb78` · generated `2026-06-01T04:09:15Z`
 
 Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). Rows: rule-based deterministic archetypes. Columns: research strata (admission stratification, NOT jurisdiction / population weighting). Promotion from descriptive table to paper claim requires `observation_kind` κ ≥ 0.6.
 
@@ -11,7 +11,7 @@ Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). R
 | `cex_only` | 2 | 0 | 40 | 65 | 51 | 14 | 172 |
 | `multi_layer` | 3 | 1 | 10 | 10 | 5 | 0 | 29 |
 | `other_single_layer` | 0 | 0 | 0 | 7 | 2 | 0 | 9 |
-| `null_event` | 35 | 0 | 13 | 24 | 10 | 16 | 98 |
-| **total** | **52** | **1** | **77** | **111** | **96** | **30** | **367** |
+| `null_event` | 35 | 0 | 13 | 24 | 9 | 16 | 97 |
+| **total** | **52** | **1** | **77** | **111** | **95** | **30** | **366** |
 
 A non-empty cell is a descriptive statement about the admitted corpus, not a prevalence estimate. Strata are NOT equal-weighted and are NOT a population sample.
