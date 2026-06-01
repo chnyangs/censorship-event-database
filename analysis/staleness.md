@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T12:44:40Z`
+Generated at: `2026-06-01T12:56:36Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -85,7 +85,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `bybit-canada-exit-2023-05` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-06-01 | 0 | ok | ok |
 | `bybit-france-exit-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `bybit-singapore-exit-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
-| `cambodia-nbc-joint-crypto-prohibition-2018-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `cambodia-nbc-joint-crypto-prohibition-2018-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `canada-convoy-freeze-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `canada-csa-binance-withdrawal-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
 | `celsius-bankruptcy-mashinsky-doj-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
@@ -476,7 +476,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `btc-e-doj-2017` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `bybit-france-exit-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `bybit-singapore-exit-2022` — audit=no_audit_recorded, verification=ok, verif_age=15d
-- `cambodia-nbc-joint-crypto-prohibition-2018-05` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `cambodia-nbc-joint-crypto-prohibition-2018-05` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `canada-convoy-freeze-2022` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `celsius-multistate-cease-desist-earn-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `cftc-defi-opyn-zeroex-deridex-2023-09` — audit=no_audit_recorded, verification=ok, verif_age=1d

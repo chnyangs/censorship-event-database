@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `0785824` · generated `2026-06-01T12:44:40Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `143c3a7` · generated `2026-06-01T12:56:36Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -79,7 +79,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `bybit-canada-exit-2023-05` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `2026-05-31` |
 | `bybit-france-exit-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `bybit-singapore-exit-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-17` | `—` |
-| `cambodia-nbc-joint-crypto-prohibition-2018-05` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `cambodia-nbc-joint-crypto-prohibition-2018-05` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `canada-convoy-freeze-2022` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `canada-csa-binance-withdrawal-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `celsius-bankruptcy-mashinsky-doj-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
