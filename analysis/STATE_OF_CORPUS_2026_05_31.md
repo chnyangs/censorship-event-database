@@ -12,13 +12,13 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **268** (11 complete / 257 scoped) and
-  admitted-but-blocked cases are **97**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **269** (11 complete / 258 scoped) and
+  admitted-but-blocked cases are **96**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **283 high / 82 medium / 0 low**; attribution reliability
-  **241 high / 124 medium / 0 low**. Current admitted paper roles are
+  observation reliability **284 high / 81 medium / 0 low**; attribution reliability
+  **242 high / 123 medium / 0 low**. Current admitted paper roles are
   **264 aggregate_datapoint / 97 null_control / 1 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
@@ -113,12 +113,15 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   narrowed from direct to plausible; and `tornado-cash-storm-conviction-2025` is demoted to draft because the
   retained chilling-effect observation lacks a concrete operator/repository/on-chain artifact.
   The latest primary-trigger repairs pin official Bybit and Paxos Canada-withdrawal notices, Coinbase's
-  official MiCA non-compliant stablecoin help article, and Uniswap Labs' first-party early-access post for
-  the Apple App Store rejection. Bybit/Paxos are upgraded out of `attested_secondary`; Coinbase moves from
-  blocked to release-ready scoped with trigger/observation/attribution all high; Uniswap Wallet moves from
-  blocked to release-ready scoped with trigger/observation high while attribution stays plausible because
-  Apple gave no public rationale. The CSA/OSC, MiCA, and app-store-review rationales remain scoped to the
-  source-supported policy actions, with trade-press mementos retained only as corroboration where relevant.
+  official MiCA non-compliant stablecoin help article, Uniswap Labs' first-party early-access post for the
+  Apple App Store rejection, and the ShapeShift-authored Medium mirror of Erik Voorhees' original ShapeShift
+  Membership announcement. Bybit/Paxos are upgraded out of `attested_secondary`; Coinbase moves from blocked
+  to release-ready scoped with trigger/observation/attribution all high; Uniswap Wallet moves from blocked to
+  release-ready scoped with trigger/observation high while attribution stays plausible because Apple gave no
+  public rationale; ShapeShift moves from blocked to release-ready scoped with trigger/observation/attribution
+  all high while preserving the no-named-enforcement-action rationale as contextual. The CSA/OSC, MiCA,
+  app-store-review, and regulatory-environment rationales remain scoped to the source-supported policy
+  actions, with trade-press mementos retained only as corroboration where relevant.
 
 ## Admitted composition (365)
 | dimension | breakdown |
