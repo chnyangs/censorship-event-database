@@ -1149,6 +1149,30 @@ footer.site-footer {
   .cov-val { display: none; }
   .locus-name, .cov-name { font-size: .8rem; }
 }
+
+/* ---- Rendered docs (docs/*.md -> on-site HTML) ---- */
+.doc-page { max-width: 82ch; margin: 1.4rem auto 2rem; line-height: 1.68; }
+.doc-page > :first-child { margin-top: 0; }
+.doc-page h1 { font-family: var(--font-display); font-size: 2rem; line-height: 1.15; margin: 0 0 .9rem; }
+.doc-page h2 { font-size: 1.42rem; margin: 2.1rem 0 .7rem; padding-bottom: .3rem; border-bottom: 1px solid var(--border); }
+.doc-page h3 { font-size: 1.16rem; margin: 1.6rem 0 .5rem; }
+.doc-page h4 { font-size: 1.02rem; margin: 1.3rem 0 .4rem; color: var(--text-soft); }
+.doc-page p, .doc-page li { color: var(--text); }
+.doc-page a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+.doc-page a:hover { color: var(--link-hover); }
+.doc-page code { font-family: var(--font-mono); font-size: .86em; background: var(--bg-sunken); padding: .12em .4em; border-radius: 4px; }
+.doc-page pre { background: var(--bg-sunken); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; overflow: auto; margin: 1rem 0; }
+.doc-page pre code { background: none; padding: 0; font-size: .82rem; line-height: 1.55; }
+.doc-page table { border-collapse: collapse; margin: 1.1rem 0; font-size: .88rem; display: block; overflow-x: auto; }
+.doc-page th, .doc-page td { border: 1px solid var(--border); padding: .45rem .65rem; text-align: left; vertical-align: top; }
+.doc-page th { background: var(--bg-sunken); font-weight: 600; }
+.doc-page blockquote { margin: 1rem 0; padding: .6rem 1rem; border-left: 3px solid var(--accent); background: var(--bg-card); color: var(--text-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.doc-page hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+.doc-page ul, .doc-page ol { padding-left: 1.45rem; }
+.doc-page li { margin: .25rem 0; }
+.doc-page img { max-width: 100%; height: auto; }
+.doc-page .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: .6rem 1rem; margin: 0 0 1.4rem; font-size: .9rem; }
+.doc-page .toc ul { padding-left: 1.1rem; }
 """
 
 
@@ -3266,25 +3290,138 @@ def _repo_tracked_md() -> set[str]:
     return _TRACKED_MD_CACHE
 
 
-_MD_HREF_RE = re.compile(r'href="((?:\.\./)*)([A-Za-z0-9_./-]+\.md)"')
+# href="<../prefix><path>.md<#frag>", skipping absolute http(s) links.
+_MD_HREF_RE = re.compile(r'href="(?!https?://)((?:\.\./)*)([A-Za-z0-9_./-]+)\.md(#[^"]*)?"')
 
 
-def rewrite_md_links_to_github(html: str, meta: dict | None) -> str:
-    """Point in-repo .md doc links at GitHub's rendered blob view. Under
-    `.nojekyll` (set by .github/workflows/site.yml) GitHub Pages serves .md as
-    raw source, so an in-site `docs/methodology.md` link shows source code.
-    GitHub renders the same markdown (tables, code, headings). Untracked .md
-    (e.g. generated evidence chains) is left as-is to avoid a blob 404."""
+def _github_blob(meta: dict | None) -> str | None:
     base = ((meta or {}).get("dataset_url") or "").rstrip("/")
-    if not base:
-        return html
+    return f"{base}/blob/main/" if base else None
+
+
+def rewrite_links_index(html: str, meta: dict | None) -> str:
+    """For the dashboard + event pages: `docs/X.md` links -> the on-site rendered
+    `docs/X.html`; any other in-repo .md (analysis/derived/sources reports) ->
+    GitHub's rendered blob view. Under `.nojekyll` GitHub Pages serves raw .md as
+    source, so we never link to a raw .md on the Pages site."""
+    blob = _github_blob(meta)
     tracked = _repo_tracked_md()
 
     def repl(m: "re.Match[str]") -> str:
-        path = m.group(2)
-        return f'href="{base}/blob/main/{path}"' if path in tracked else m.group(0)
+        prefix, path, frag = m.group(1), m.group(2), m.group(3) or ""
+        if path.startswith("docs/"):
+            return f'href="{prefix}{path}.html{frag}"'
+        if blob and f"{path}.md" in tracked:
+            return f'href="{blob}{path}.md"'
+        return m.group(0)
 
     return _MD_HREF_RE.sub(repl, html)
+
+
+def rewrite_links_doc(html: str, meta: dict | None) -> str:
+    """For rendered doc pages (under site/docs/): sibling `*.md` -> the rendered
+    `*.html`; links that leave docs/ (`../analysis/..`, `../derived/..`) -> GitHub
+    blob (those artifacts are not rendered on-site)."""
+    blob = _github_blob(meta)
+    tracked = _repo_tracked_md()
+
+    def repl(m: "re.Match[str]") -> str:
+        prefix, path, frag = m.group(1), m.group(2), m.group(3) or ""
+        if prefix:  # leaves the docs/ tree -> external artifact
+            repo = f"{path}.md"
+            return f'href="{blob}{repo}"' if (blob and repo in tracked) else m.group(0)
+        return f'href="{path}.html{frag}"'  # sibling doc, rendered on-site
+
+    return _MD_HREF_RE.sub(repl, html)
+
+
+def _doc_title(body_html: str, rel: pathlib.Path) -> str:
+    m = re.search(r"<h1[^>]*>(.*?)</h1>", body_html, re.S)
+    if m:
+        text = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        if text:
+            return text
+    return titleify(rel.stem)
+
+
+def _doc_page_shell(title: str, body_html: str, back: str, meta: dict | None) -> str:
+    dv = (meta or {}).get("dataset_version") or ""
+    gh = ((meta or {}).get("dataset_url") or "https://github.com/chnyangs/censorship-event-database").rstrip("/")
+    ver = f" · v{escape(dv)}" if dv else ""
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escape(title)} — Chain Censorship Events</title>
+  <link rel="stylesheet" href="{back}styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand"><a href="{back}index.html">Chain Censorship Events</a><span class="brand-tag">docs</span></div>
+    <div class="header-spacer"></div>
+    <a class="header-link" href="{back}index.html">← Dashboard</a>
+    <a class="header-link" href="{gh}" rel="noopener">GitHub</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀ light</button>
+  </div>
+</header>
+<main class="page">
+  <article class="doc-page">
+{body_html}
+  </article>
+  <footer class="site-footer">
+    <div>Chain Censorship Events Database{ver} · rendered on-site from <code>docs/</code> markdown</div>
+    <div><a href="{back}index.html">Dashboard</a> · <a href="{gh}">GitHub</a></div>
+  </footer>
+</main>
+<script src="{back}site.js"></script>
+</body>
+</html>"""
+
+
+def render_docs_to_html(docs_dir: pathlib.Path, site_dir: pathlib.Path, meta: dict | None) -> int:
+    """Render docs/*.md into styled on-site HTML (site/docs/*.html) so GitHub
+    Pages serves rendered documentation, not raw markdown source. Non-.md assets
+    (images, pdfs) are copied as-is. Raw .md is intentionally NOT deployed
+    (Pages serves .md as text/source under .nojekyll). Degrades to copying raw
+    .md if python-markdown is unavailable."""
+    if not docs_dir.is_dir():
+        return 0
+    dest = site_dir / "docs"
+    dest.mkdir(parents=True, exist_ok=True)
+    try:
+        import markdown as _md
+    except ImportError:
+        _md = None
+    n = 0
+    for src in sorted(docs_dir.rglob("*")):
+        if not src.is_file():
+            continue
+        rel = src.relative_to(docs_dir)
+        if src.suffix.lower() == ".md":
+            if _md is None:
+                target = dest / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, target)  # fallback: raw markdown
+                n += 1
+                continue
+            body = _md.markdown(
+                src.read_text(encoding="utf-8"),
+                extensions=["tables", "fenced_code", "toc", "sane_lists", "attr_list"],
+            )
+            back = "../" * len(rel.parts)
+            page = rewrite_links_doc(_doc_page_shell(_doc_title(body, rel), body, back, meta), meta)
+            target = (dest / rel).with_suffix(".html")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(page)
+            n += 1
+        else:
+            target = dest / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, target)
+            n += 1
+    return n
 
 
 def render_index(events: list[dict], meta: dict | None = None) -> str:
@@ -3465,7 +3602,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
   <div class="section-heading" id="layers">
     <div>
       <h2>Layer Observability</h2>
-      <p class="meta">Each layer card separates observed changes, observed no-change rows, and the measured/partial coverage denominator. The stack runs <strong>L0 → L1 → L3 → L4</strong> plus <code>asset_onchain</code> and <code>offramp_cex</code>: <strong>L2 (rollup / sequencer filtering) is intentionally omitted</strong> — it is scoped to a separate L2-tracker project, not this corpus (see <a href="docs/methodology.md">methodology</a>).</p>
+      <p class="meta">Each layer card separates observed changes, observed no-change rows, and the measured/partial coverage denominator. The stack runs <strong>L0 → L1 → L3 → L4</strong> plus <code>asset_onchain</code> and <code>offramp_cex</code>: <strong>L2 (rollup / sequencer filtering) is intentionally omitted</strong> — it is scoped to a separate L2-tracker project, not this corpus (see <a href="docs/l2-scope-boundary.md">L2 scope boundary</a>).</p>
     </div>
   </div>
   {render_layer_board(events)}
@@ -3749,20 +3886,20 @@ def main() -> int:
     for e in events:
         slug = e.get("id", "unknown")
         (site_dir / "events" / f"{slug}.html").write_text(
-            rewrite_md_links_to_github(render_event_page(e, events, meta), meta)
+            rewrite_links_index(render_event_page(e, events, meta), meta)
         )
 
     copy_yaml_raw(events_dir, site_dir)
-    n_docs = copy_docs_tree(DOCS_DIR, site_dir)
+    n_docs = render_docs_to_html(DOCS_DIR, site_dir, meta)
     n_artifacts = copy_dashboard_artifacts(site_dir)
     copy_meta(site_dir)
     n_irr = write_h1_irr_packet(site_dir, meta)
 
     (site_dir / "index.html").write_text(
-        rewrite_md_links_to_github(render_index(events, meta), meta)
+        rewrite_links_index(render_index(events, meta), meta)
     )
     (site_dir / "audit.html").write_text(
-        rewrite_md_links_to_github(render_audit_console(events, site_dir, meta), meta)
+        rewrite_links_index(render_audit_console(events, site_dir, meta), meta)
     )
 
     print(
