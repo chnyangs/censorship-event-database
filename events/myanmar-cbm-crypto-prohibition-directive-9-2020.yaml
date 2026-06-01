@@ -1,19 +1,17 @@
 id: myanmar-cbm-crypto-prohibition-directive-9-2020
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "Myanmar Central Bank 2020 directive prohibiting crypto dealing. §9-clear restriction, documented; attested_secondary on a single captured source."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 
 related_events:
   - cambodia-nbc-joint-crypto-prohibition-2018-05
@@ -25,6 +23,21 @@ trigger:
   timestamp: 2020-05-15T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.mfiu.gov.mm/sites/default/files/document/files/2020%20Annual%20Report%20%28English%20Version%29.pdf
+      body_hash: sha256:34c72f7b4b9149a3da0bf9aa77a26c09b667a458b58dc4b052005d8f9e639a17
+      body_path: sources/http_captures/myanmar-cbm-crypto-prohibition-directive-9-2020/primary-mfiu-annual-report-v1/www.mfiu.gov.mm__sites-default-files-document-files-2020-20Annual-20Report-20-28English-20Version-29.pdf__1b0a29a98a.bin
+      evidence_use: replayable
+      note: |
+        Official Myanmar Financial Intelligence Unit AML/CFT 2020 Annual Report
+        PDF. Annex (S) reproduces Central Bank of Myanmar Notification No.
+        9/2020 dated 2020-05-15. Extracted text shows CBM states it does not
+        allow financial institutions, including banks, to deal with digital
+        currency, does not recognize digital currency as legal currency, names
+        Bitcoin, Litecoin, Ethereum, and Perfect Money as examples of digital
+        currencies being dealt/exchanged through Facebook accounts or websites,
+        and states that legal violations may be punished by imprisonment, fine,
+        or both.
     - type: supporting_journalism
       url: https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/
       wayback: https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/
@@ -46,30 +59,32 @@ trigger:
         not granted permission to financial institutions within Myanmar to trade
         digital currencies (the Foreign Exchange Management Law and Financial
         Institutions Law "cement the illegality of cryptocurrency transactions").
-        Law-firm secondary analysis reproducing the directive; the CBM's own
-        Notification No. 9/2020 instrument text was not located on a stable
-        English-language web page in this draft pass.
+        Law-firm secondary interpretation retained as corroboration; no longer
+        load-bearing after the official MFIU annual-report reproduction of the
+        CBM notification was pinned.
   timestamp_sources:
-    - type: supporting_journalism
+    - type: primary_government
       note: |
-        CBM Notification No. 9/2020 reported issued May 2020; contemporaneous
-        coverage and law-firm analyses date it 2020-05-15. Day-level precision;
-        the directive does not carry intra-day publication timing in the public
-        English-language record.
+        MFIU Annual Report Annex (S) reproduces CBM Notification No. 9/2020 and
+        gives the Gregorian date as 2020-05-15. Day-level precision; no intra-day
+        publication timing is available in the public record.
 
 target:
   kind: entity
-  entity: "Myanmar crypto users / exchanges / financial institutions (class)"
+  entity: "Myanmar financial institutions / digital-currency dealing class"
   enumeration: subset
   enumeration_note: |
-    All persons residing in Myanmar and financial institutions barred from the
-    sale, purchase, or exchange of unregulated digital currencies (Bitcoin,
-    Litecoin, Ethereum, Perfect Money named as a non-exhaustive list). No
-    specific exchange or platform enumerated; class-level prohibition matching
-    the sibling nation-state-prohibition convention (Cambodia 2018, Nepal 2017).
+    CBM Notification No. 9/2020 states that CBM does not allow financial
+    institutions, including banks, to deal with digital currency or recognize
+    digital currency as legal currency. It also names Bitcoin, Litecoin,
+    Ethereum, and Perfect Money as examples of digital currencies being
+    dealt/exchanged through personal Facebook accounts or websites, and warns
+    that legal violations may be punished. No specific exchange or platform is
+    enumerated; scoped as a class-level financial-institution / trading-service
+    restriction rather than a complete named-provider list.
   protocol: null
   actor_type: myanmar_crypto_ecosystem
-  actor_name: Myanmar crypto users / exchanges / financial institutions (class)
+  actor_name: Myanmar financial institutions / digital-currency dealing class
   chains: []
   canonical_domains: []
 
@@ -104,27 +119,34 @@ coverage:
     status: measured
     scope: [myanmar_crypto_trading_and_banking_rails]
     note: |
-      CBM Notification No. 9/2020 prohibits the sale, purchase, or exchange of
-      unregulated digital currencies by all persons residing in Myanmar, with no
-      permission granted to financial institutions to trade them and enforcement
-      via account closure and legal action under the AML Law and Financial
-      Institutions Law — a national prohibition on the Myanmar crypto
-      trading/banking surface. Carried at offramp_cex as the closest layer for a
-      trading/payment-rail prohibition. Load-bearing observation attached below
-      as observed_change with plausible attribution (the load-bearing captured
-      evidence is law-firm secondary analysis reproducing the directive, not the
-      CBM instrument text).
+      CBM Notification No. 9/2020 states that CBM does not allow financial
+      institutions, including banks, to deal with digital currency or recognize
+      it as legal currency, and names public digital-currency dealing/exchange
+      through Facebook accounts or websites as the risk context. Carried at
+      offramp_cex as the closest layer for a banking/trading-service
+      prohibition. Load-bearing observation attached below with direct
+      attribution to the official reproduced CBM notification.
 
 observations:
   - layer: offramp_cex
     actor: myanmar_crypto_ecosystem
-    event: crypto_sale_purchase_exchange_prohibited_directive_9_2020
+    event: financial_institution_digital_currency_dealing_not_allowed_directive_9_2020
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2020-05-15T00:00:00Z
     precision: day
     delta_hours: 0
     sources:
+      - type: primary_government
+        url: https://www.mfiu.gov.mm/sites/default/files/document/files/2020%20Annual%20Report%20%28English%20Version%29.pdf
+        body_hash: sha256:34c72f7b4b9149a3da0bf9aa77a26c09b667a458b58dc4b052005d8f9e639a17
+        body_path: sources/http_captures/myanmar-cbm-crypto-prohibition-directive-9-2020/primary-mfiu-annual-report-v1/www.mfiu.gov.mm__sites-default-files-document-files-2020-20Annual-20Report-20-28English-20Version-29.pdf__1b0a29a98a.bin
+        evidence_use: replayable
+        note: |
+          Official MFIU Annual Report PDF, Annex (S), reproducing CBM
+          Notification No. 9/2020 dated 2020-05-15. The extracted text directly
+          supports the financial-institution digital-currency dealing
+          restriction and the no-legal-currency recognition statement.
       - type: supporting_journalism
         url: https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/
         wayback: https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/
@@ -132,44 +154,51 @@ observations:
         body_path: sources/http_captures/myanmar-cbm-crypto-prohibition-directive-9-2020/primary/web.archive.org__web-20260120112720-https-www.tilleke.com-insights-myanmars-central-bank-issues-further-warning-against-crypto-trading__53bb7afc72.html
         evidence_use: replayable
         note: |
-          attribution=plausible per codebook §1: the action is causally
-          consistent with the named CBM Notification No. 9/2020, but the
-          load-bearing captured evidence is law-firm secondary analysis (Tilleke
-          & Gibbins) reproducing the directive rather than the CBM instrument
-          text, and the prohibition is class-level (names no specific exchange).
-          A primary CBM Notification No. 9/2020 capture would be required to
-          elevate to direct.
+          English-language law-firm interpretation of the same CBM notification.
+          Retained as corroboration only; the direct attribution now rests on the
+          official MFIU annual-report reproduction of the CBM notification.
 
 analysis_notes: |
+  **SOURCE REPAIR 2026-06-02** Official MFIU AML/CFT 2020 Annual Report PDF
+  pinned locally; Annex (S) reproduces CBM Notification No. 9/2020 dated
+  2020-05-15. Removed `evidence_tier=attested_secondary`, upgraded
+  `primary_source_verified=true`, and changed attribution from plausible to
+  direct for the official-text-supported claim. Also narrowed the previous
+  all-residents sale/purchase/exchange prohibition language: the official
+  English reproduction directly supports a financial-institution dealing ban,
+  non-recognition as legal currency, and punishment for violations of applicable
+  laws, while the broader "all persons residing in Myanmar" phrasing remains a
+  secondary-law-firm interpretation rather than the load-bearing scoped claim.
+
   **ADMITTED 2026-05-31** (genuine review: TASK-2 lower-tier Pass 2. Rendered+grepped the captured source — core restriction substantiated (5/7-7/7 terms). The wave-1/2 VERIFY-FLAG was an OFAC-template "specific-address" boilerplate that does not apply to a national ban; removed. Admitted at evidence_tier=attested_secondary (§10), single source, filterable.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 2; sources
   verified+captured, awaiting human admission).
 
   comparison documenting the Central Bank of Myanmar (CBM) Notification No.
-  9/2020 (issued May 2020, dated 2020-05-15 in the public record) prohibiting all
-  persons residing in Myanmar from the sale, purchase, or exchange of unregulated
-  digital currencies (Bitcoin, Litecoin, Ethereum, Perfect Money named), with no
-  permission granted to financial institutions to trade them and enforcement via
-  account closure and legal action under the Central Bank of Myanmar Law, the
-  Anti-Money Laundering Law and the Financial Institutions Law. Same
-  nation-state-prohibition family as Cambodia NBC 2018 and Nepal NRB 2017.
+  9/2020 (dated 2020-05-15 in the official MFIU annual-report reproduction)
+  stating that CBM does not allow financial institutions, including banks, to
+  deal with digital currency and does not recognize digital currency as legal
+  currency. The notification names Bitcoin, Litecoin, Ethereum, and Perfect
+  Money as examples of digital currencies being dealt/exchanged through personal
+  Facebook accounts or websites, and states that violations of laws may be
+  punished by imprisonment, fine, or both. Same nation-state-prohibition family
+  as Cambodia NBC 2018 and Nepal NRB 2017, but scoped more narrowly to the
+  official-text-supported banking/trading-service restriction.
 
   Per codebook §5.1, trigger.type=nation_state_block is the canonical fit: a
-  nation-state directive making crypto sale/purchase/exchange illegal. Per §5.2,
-  research_stratum=S4_nation_state is permitted.
+  nation-state central-bank directive denying financial-institution involvement
+  in digital-currency dealing and treating digital currency as non-legal
+  currency. Per §5.2, research_stratum=S4_nation_state is permitted.
 
   Per §9 inclusion boundary: in scope — a deliberate state prohibition denying
-  legitimate crypto trading/exchange service to Myanmar users with active
-  enforcement (account closure, legal action), distinct from a pure soft advisory
-  (the directive declares the activity illegal and is enforced, not merely
-  warned-against).
+  legitimate financial-institution and trading-service involvement in digital
+  currency, distinct from a pure soft advisory because the notification uses
+  "does not allow" language for financial institutions and invokes punishment
+  for legal violations.
 
-  Why offramp_cex plausible (not direct): the load-bearing captured evidence is
-  law-firm secondary analysis (Tilleke & Gibbins) reproducing the directive, not
-  the CBM Notification No. 9/2020 instrument text, and the prohibition is
-  class-level (no exchange named). Conservative-default rule (§8.4) applied →
-  plausible. A human reviewer may elevate to direct if a primary CBM instrument
-  capture is pinned.
+  Why offramp_cex direct: the official MFIU-hosted annual report reproduces the
+  CBM notification text in English. Tilleke & Gibbins remains a useful
+  secondary interpretation, but it is no longer the load-bearing evidence.
 
   Why L0/L1/L3/asset_onchain not_applicable: legality/payment-rail action,
   pre-Merge/pre-Flashbots era, no issuer-side on-chain freeze.
@@ -177,17 +206,18 @@ analysis_notes: |
   Why temporal_tier=comparable_main_2017_present / analysis_use=
   comparable_analysis: 2020-05-15 sits in the 2017+ comparable corpus.
 
-  Human audit follow-up: locate the CBM's own Notification No. 9/2020 instrument text
-  (cbm.gov.mm, 2020-05) to support elevation to direct; confirm the exact
-  intra-month issuance date.
+  Remaining limitation: the source is an official annual-report reproduction of
+  the CBM notification rather than a standalone cbm.gov.mm notification page.
 
 scoped_claim: |
   "On 2020-05-15 the Central Bank of Myanmar issued Notification No. 9/2020
-  prohibiting all persons residing in Myanmar from the sale, purchase, or
-  exchange of unregulated digital currencies (Bitcoin, Litecoin, Ethereum,
-  Perfect Money), with enforcement via account closure and legal action under
-  the AML Law and Financial Institutions Law. The offramp_cex layer carries the
-  load-bearing plausible-attribution observation at class level."
+  stating that CBM does not allow financial institutions, including banks, to
+  deal with digital currency and does not recognize digital currency as legal
+  currency; it names Bitcoin, Litecoin, Ethereum, and Perfect Money as examples
+  of digital currencies being dealt/exchanged through Facebook accounts or
+  websites and states that legal violations may be punished by imprisonment,
+  fine, or both. The offramp_cex layer carries the load-bearing
+  direct-attribution observation at class level."
 
 tags:
   - nation_state_block
