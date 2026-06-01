@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T00:00:42Z`
+Generated at: `2026-06-01T00:13:27Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 281, 'ok': 124}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 282, 'ok': 123}
 - **Verification** (`last_verified`): {'ok': 405}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 281, 'ok': 124}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 282, 'ok': 123}
 
 ## Flag legend
 
@@ -235,7 +235,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `korea-travel-rule-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `kraken-monero-eu-delisting-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `kraken-sec-staking-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
-| `kraken-sec-unregistered-exchange-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `kraken-sec-unregistered-exchange-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `kraken-uk-derivatives-exit-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `kucoin-canada-exit-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `kucoin-doj-2024` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
@@ -585,6 +585,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `korea-fsc-privacy-coin-delisting-mandate-2021-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `korea-travel-rule-2022` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `kraken-monero-eu-delisting-2024` — audit=no_audit_recorded, verification=ok, verif_age=15d
+- `kraken-sec-unregistered-exchange-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `kraken-uk-derivatives-exit-2021` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `kucoin-canada-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `kucoin-netherlands-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d

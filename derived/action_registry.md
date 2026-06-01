@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `66cd488` · generated `2026-06-01T00:00:42Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8726393` · generated `2026-06-01T00:13:27Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **330**
+- Canonical physical actions: **329**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -184,7 +184,6 @@ This registry deduplicates physical actions that appear in more than one event r
 | `korea-travel-rule-2022:0:offramp_cex:kr_regulated_vasp_ecosystem:travel_rule_effective_across_all_kr_vasps` | 1 | 0 | 1 | offramp_cex | `korea-travel-rule-2022::offramp_cex` |
 | `kraken-monero-eu-delisting-2024:0:offramp_cex:exchange:kraken:kraken_spot_pair_removal_xmr_eea_cohort` | 1 | 0 | 1 | offramp_cex | `kraken-monero-eu-delisting-2024::offramp_cex` |
 | `kraken-sec-staking-2023:0:offramp_cex:exchange:kraken_us_staking:us_onchain_staking_service_discontinued` | 1 | 0 | 1 | offramp_cex | `kraken-sec-staking-2023::offramp_cex` |
-| `kraken-sec-unregistered-exchange-2023:0:offramp_cex:exchange:kraken:kraken_corporate_response_issued_asserting_continued_us_service` | 1 | 0 | 1 | offramp_cex | `kraken-sec-unregistered-exchange-2023::offramp_cex` |
 | `kraken-uk-derivatives-exit-2021:0:offramp_cex:kraken_futures_uk:uk_retail_derivatives_access_restricted_to_professional_clients` | 1 | 0 | 1 | offramp_cex | `kraken-uk-derivatives-exit-2021::offramp_cex` |
 | `kucoin-canada-exit-2023:0:offramp_cex:exchange:kucoin_canada:kucoin_canada_offramp_shutdown` | 1 | 0 | 1 | offramp_cex | `kucoin-canada-exit-2023::offramp_cex` |
 | `kucoin-doj-2024:0:l4_frontend:frontend:kucoin_com:kucoin_us_user_offboarding_announcement` | 1 | 0 | 1 | l4_frontend | `kucoin-doj-2024::l4_frontend` |

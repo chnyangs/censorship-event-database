@@ -6,13 +6,12 @@ primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
+empirical_shape: null_event
+admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
-last_human_audit: 2026-05-16
+last_verified: 2026-06-01
 
 related_events:
   - kraken-sec-staking-2023
@@ -28,148 +27,97 @@ trigger:
   citation:
     - type: primary_legal
       url: https://www.sec.gov/news/press-release/2023-237
-      wayback: https://web.archive.org/web/2023/https://www.sec.gov/news/press-release/2023-237
-      evidence_use: contextual_unarchived
+      body_hash: sha256:54d889d68c895c04a684b3b1272203287842228a1c8fe24931437185f388430a
+      body_path: sources/http_captures/kraken-sec-unregistered-exchange-2023/primary/www.sec.gov__news-press-release-2023-237__a3b13547f9.html
       note: |
-        SEC press release 2023-237 (2023-11-20): "SEC Charges Kraken for
-        Operating as an Unregistered Securities Exchange, Broker, Dealer,
-        and Clearing Agency." Civil action in N.D. Cal. against Payward Inc.
-        and Payward Ventures Inc. (collectively Kraken) alleging that since
-        at least 2018 Kraken commingled customer assets with corporate funds
-        and operated an unregistered national securities exchange, broker,
-        dealer, and clearing agency for crypto-asset securities. Distinct
-        from the 2023-02-09 SEC settlement of Kraken's staking-as-a-service
-        program (see kraken-sec-staking-2023): that earlier matter resolved
-        an unregistered-securities-offering theory for the staking product;
-        this 2023-11-20 case attacks the underlying exchange / broker /
-        clearing registration status. Wayback anchor is a 2023 calendar-
-        folder pointer rather than a pinned snapshot timestamp of the
-        specific press item. Marked evidence_use=contextual_unarchived
-        because the authoring LLM agent did not personally pin a Wayback
-        timestamp or compute a body_hash; pinned snapshot + body_hash must
-        be re-captured during human audit before this citation may serve
-        as an admission anchor in its own right. 2025-03-27 SEC dismissed
-        the action with prejudice under the Atkins administration.
-    - type: primary_corporate
-      url: https://blog.kraken.com/news/sec-charges
-      wayback: https://web.archive.org/web/2023/https://blog.kraken.com/news/sec-charges
-      evidence_use: contextual_unarchived
-      note: |
-        Kraken corporate response posted to blog.kraken.com in November 2023
-        (Wayback 2023 calendar-folder anchor) framing the SEC complaint as a
-        registration dispute, asserting that Kraken does not list securities,
-        committing to defend the case, and stating that customer products
-        and services remained operational and unchanged. Marked
-        evidence_use=contextual_unarchived because the LLM agent did not
-        personally pin a Wayback snapshot or compute a body_hash; the
-        platform-side artifact must be re-pinned during human audit. The
-        Kraken post is load-bearing for the offramp_cex observed_no_change
-        claim below: it records the platform-side assertion that no service
-        was withdrawn on or immediately after 2023-11-20.
+        SEC press release 2023-237, dated 2023-11-20, announcing the civil
+        action against Payward Inc. and Payward Ventures Inc. for allegedly
+        operating Kraken as an unregistered securities exchange, broker,
+        dealer, and clearing agency. Captured locally 2026-06-01 with
+        replayable body_hash/body_path. This is the legal trigger; it is
+        distinct from the February 2023 Kraken staking settlement.
   timestamp_sources:
     - type: primary_legal
       note: |
         Day-level timing per SEC press release 2023-237 dated 2023-11-20.
-        The civil complaint was filed the same day in the U.S. District
-        Court for the Northern District of California.
 
 target:
   kind: entity
   entity: kraken_unregistered_exchange_sec_target_2023
   enumeration: complete
   enumeration_note: |
-    Payward Inc. and Payward Ventures Inc. (the two Kraken operating
-    entities named in the SEC complaint). Securities-law allegations are
-    pleaded at the exchange-registration / broker / dealer / clearing-agency
-    level, not as a token-by-token securities determination. The complaint
-    references multiple crypto-asset securities traded on Kraken (including
-    tokens previously named as securities in SEC v. Coinbase and SEC v.
-    Binance) but does not constitute a token delisting or chain-level event.
-    No on-chain addresses; this is an entity-level securities-enforcement
-    target.
+    Payward Inc. and Payward Ventures Inc., the two Kraken operating entities
+    named in the SEC complaint. The action is an entity-level securities-law
+    registration case, not a token delisting, frontend block, fiat-rail
+    cutoff, or on-chain asset action.
   actor_type: exchange_securities_enforcement
   actor_name: Kraken / Payward Inc. + Payward Ventures Inc.
   chains: []
   canonical_domains:
     - kraken.com
+    - blog.kraken.com
 
 jurisdiction: [US]
 
 coverage:
   - layer: l0_network
     status: not_applicable
+    note: |
+      SEC civil-enforcement action; no domain, DNS, TCP, or ISP filtering
+      primitive is implicated.
   - layer: l1_consensus
     status: not_applicable
     note: |
-      Securities-law civil action; no protocol-level consensus impact.
+      Securities-law civil action; no protocol-level validator or consensus
+      mechanism is implicated.
   - layer: l3_rpc
     status: not_applicable
+    note: |
+      No public-RPC provider, filter list, or endpoint policy is implicated.
   - layer: l4_frontend
     status: not_measured
     scope: [kraken.com]
     note: |
-      No admission-grade L4 frontend diff is retained. Unlike sec-v-binance-2023
-      (which had Binance.US support-notice artifacts) or kraken-sec-staking-2023
-      (which had a same-day Kraken platform statement triggering a U.S.
-      staking-service shutdown), the 2023-11-20 unregistered-exchange action
-      did not produce a contemporaneous Kraken platform service withdrawal
-      with a retainable frontend diff. The Kraken blog response is captured
-      as a primary_corporate citation but is treated as platform statement,
-      not as a frontend takedown artifact.
+      No admission-grade kraken.com service-page or supported-asset frontend
+      diff is retained. The row is intentionally not coded as a frontend
+      takedown, geofence, token-listing change, or support-page withdrawal.
   - layer: asset_onchain
     status: not_applicable
+    note: |
+      No stablecoin-issuer freeze, blacklist transaction, SDN address set, or
+      other asset-onchain primitive is implicated.
   - layer: offramp_cex
     status: measured
     scope: [kraken.com]
     note: |
-      Kraken issued a contemporaneous corporate response on blog.kraken.com
-      asserting that customer products and services remained operational and
-      unchanged following the 2023-11-20 SEC filing. The platform-side
-      change retained here is the issuance of that public response stance
-      (a new Kraken platform statement directly framed against the SEC
-      complaint), not a service withdrawal. This is the structural inverse
-      of the kraken-sec-staking-2023 sibling (which produced a direct U.S.
-      staking-service shutdown announced via the same platform-blog channel)
-      and of sec-v-binance-2023 (which produced scoped Binance.US platform /
-      USD fiat-rail restrictions). The retained observation is the platform-
-      response posting; an independent Wayback diff of kraken.com service
-      pages across the SEC-action window is deferred to human audit before
-      claiming a service-level no-change at measured-strength.
+      Measured as a null-control denominator at the CEX/off-ramp layer. The
+      SEC trigger is primary-legal and Kraken's same-day primary-corporate
+      response states that the action did not alter the products or services
+      offered to clients. This supports a no-service-withdrawal comparator,
+      not a positive censorship-change observation.
 
 observations:
   - layer: offramp_cex
     actor: exchange:kraken
-    event: kraken_corporate_response_issued_asserting_continued_us_service
-    observation_kind: observed_change
-    attribution: plausible
+    event: no_contemporaneous_kraken_service_withdrawal_after_sec_unregistered_exchange_complaint
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2023-11-20T00:00:00Z
     precision: day
-    delta_hours: 0
     window:
       - 2023-11-20T00:00:00Z
       - 2023-12-20T23:59:59Z
     note: |
-      The observed platform-side change is the issuance of the Kraken
-      corporate response on blog.kraken.com, a new public stance framed
-      directly against the SEC 2023-11-20 complaint. Unlike kraken-sec-
-      staking-2023 (which used the same platform-blog channel to announce
-      a U.S. staking-service shutdown), this November-2023 response asserts
-      continued operational status of customer products and services. The
-      retained change is therefore the platform-stance issuance, not a
-      service withdrawal — making this the structural inverse of the
-      February sibling. attribution=plausible because Kraken's same-day
-      response is causally tied to the SEC action via the post's own
-      framing, while the dataset does not retain an independent denominator
-      sweep proving service-level continuity beyond Kraken's own assertion.
-      DRYRUN: a real release should pin a Wayback diff of kraken.com
-      service / supported-asset pages across the 2023-11-20 → 2023-12-20
-      window to strengthen the platform-stance claim with an independent
-      service-level denominator.
+      Null-control observation. The SEC action is retained as an enforcement
+      trigger that did not produce a contemporaneous Kraken service withdrawal
+      in the evidence retained here. The Kraken blog response is evidence for
+      the null comparator; the publication of that response is not itself
+      counted as an observed censorship change.
     sources:
-      - type: primary_corporate
-        url: https://blog.kraken.com/news/sec-charges
-        wayback: https://web.archive.org/web/2023/https://blog.kraken.com/news/sec-charges
-        evidence_use: contextual_unarchived
+      - type: primary_legal
+        url: https://www.sec.gov/news/press-release/2023-237
+        body_hash: sha256:54d889d68c895c04a684b3b1272203287842228a1c8fe24931437185f388430a
+        body_path: sources/http_captures/kraken-sec-unregistered-exchange-2023/primary/www.sec.gov__news-press-release-2023-237__a3b13547f9.html
         scope_descriptor:
           providers: [kraken_platform]
           countries: [US]
@@ -178,140 +126,73 @@ observations:
             - 2023-12-20T23:59:59Z
           addresses_cohort: kraken_entity_level
         note: |
-          Kraken corporate response posted in November 2023 asserting that
-          customer products and services remained operational and unchanged
-          following the SEC complaint, and framing the action as a
-          registration dispute Kraken would defend. Used as the platform-
-          side anchor for the observed_change at offramp_cex (issuance of
-          the platform-stance response). DRYRUN: Wayback anchor is a 2023
-          calendar-folder pointer; pinned snapshot timestamp and body_hash
-          deferred to human audit.
-
-recovery:
-  - layer: offramp_cex
-    resolved: true
-    resolved_timestamp: 2025-03-27T00:00:00Z
-    citation:
-      - type: primary_legal
-        url: https://www.sec.gov/news/press-release/2023-237
-        wayback: https://web.archive.org/web/2025/https://www.sec.gov/news/press-release/2023-237
-        evidence_use: contextual_unarchived
+          REJECTION/NULL-control legal trigger anchor. The SEC source
+          establishes the enforcement action and target entities, but does not
+          identify a Kraken service withdrawal, frontend block, fiat-rail
+          cutoff, or on-chain asset action.
+      - type: primary_corporate
+        url: https://blog.kraken.com/news/kraken-continues-to-fight-for-its-mission-and-crypto-innovation-in-the-united-states
+        body_hash: sha256:2d1f67aa6b9412788d49bc3a4952918c315672168cc1bf5a1bfce067e66cbb70
+        body_path: sources/http_captures/kraken-sec-unregistered-exchange-2023/primary/blog.kraken.com__news-kraken-continues-to-fight-for-its-mission-and-crypto-innovation-in-the-united-states__eb2c51915d.html
+        scope_descriptor:
+          providers: [kraken_platform]
+          countries: [US]
+          time_window:
+            - 2023-11-20T00:00:00Z
+            - 2023-12-20T23:59:59Z
+          addresses_cohort: kraken_entity_level
         note: |
-          2025-03-27 SEC voluntarily dismissed the action with prejudice
-          under the Atkins administration as part of a broader rollback of
-          Gensler-era crypto-enforcement civil cases (cf. SEC v. Coinbase,
-          SEC v. Binance also dismissed in the same enforcement-rollback
-          window). DRYRUN: dismissal anchor is referenced via the same
-          calendar-folder Wayback pointer pending pinned snapshot of the
-          SEC dismissal filing / press item; the specific dismissal-order
-          docket URL must be added during human audit.
-    note: |
-      The 2025-03-27 dismissal closes the SEC civil case without an
-      adjudicated securities-status determination for Kraken's listed
-      crypto assets, leaving the underlying registration question unresolved
-      on the merits. The offramp_cex layer is coded resolved=true because
-      the platform-stance response retained as the observed_change was
-      defensive (asserting continued service) and the legal pressure that
-      prompted it was withdrawn.
+          Kraken's same-day corporate response to the SEC complaint states
+          that the action did not change the products or client services then
+          offered by Kraken. Used here as replayable support for observed
+          no-change, not as a positive observed_change event.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **QUALITY-LOOP RECODE 2026-06-01** (automated repair; no new human-audit
+  stamp). The original row admitted a positive observed_change at the
+  offramp_cex layer by treating Kraken's corporate response as a
+  platform-side change. That was too permissive for paper use: issuing a
+  litigation response is not itself a censorship, access-denial, delisting,
+  off-ramp, or service-withdrawal event.
 
-  comparison shape: 1 observed_no_change layer (offramp_cex) anchored to
-  Kraken's contemporaneous corporate response. The case is admitted here
-  as an empirical_case via attribution-strong sibling rather than as an
-  L4 / on-chain cascade: it sits inside the 2023 US-federal-enforcement
-  frame alongside sec-v-coinbase-2023 (2023-06-06), sec-v-binance-2023
-  (2023-06-05), sec-v-bittrex-2023, and kraken-sec-staking-2023
-  (2023-02-09), but produced a notably different platform-side reaction:
-  Kraken absorbed the SEC pressure without a same-day or near-term US
-  customer service withdrawal, unlike the staking-program sibling.
+  This version recodes the event as an admitted null_case / null_event
+  denominator. The legal trigger is still important for the 2023 US federal
+  enforcement frame, but the retained empirical content is negative: unlike
+  the February 2023 Kraken staking settlement, the November 2023
+  unregistered-exchange complaint did not produce a same-day Kraken product
+  shutdown, token delisting, frontend block, fiat-rail cutoff, or on-chain
+  asset action in the retained evidence.
 
-  Distinct from kraken-sec-staking-2023 (which is the Feb-2023 staking
-  settlement, load-bearing at offramp_cex with a direct U.S. staking-
-  service shutdown). The two Kraken SEC cases sit in the same calendar
-  year but attack different theories: the February case was an
-  unregistered-securities-offering claim against the staking product, and
-  the November case is an unregistered-exchange / broker / dealer /
-  clearing-agency claim against the trading venue itself. Treating them
-  as a sibling pair is essential to avoid double-counting platform-side
-  reactions across the dataset.
-
-  Paper-relevant contrast: pairs naturally with sec-v-coinbase-2023 as
-  exchange-registration civil enforcement that did not produce a
-  contemporaneous CEX service withdrawal — both cases load-bear
-  analytically as comparable_analysis rows showing that securities-law
-  pressure on US exchange operators does not deterministically produce
-  on-platform censorship at the offramp_cex layer. Contrast with the
-  staking-program siblings (kraken-sec-staking-2023, sec-v-coinbase-2023's
-  state-scoped staking restrictions) which did produce direct or scoped
-  service withdrawals.
-
-  2025-03-27 dismissal: tracked in the recovery block. The dismissal does
-  not establish a securities-status determination for Kraken's listed
-  assets; it only closes the SEC civil case. Cross-event cohort with
-  SEC v. Coinbase and SEC v. Binance dismissals in the same enforcement-
-  rollback window under the Atkins administration.
-
-  DRYRUN caveats: trigger primary citations (SEC press release 2023-237,
-  Kraken blog response) are asserted with 2023-calendar-folder Wayback
-  pointers; pinned snapshot timestamps and body_hash capture are deferred
-  to the human-audit pass. For non-DRYRUN release, capture body_hash +
-  body_path for: (1) the SEC press release 2023-237 permalink, (2) the
-  Kraken blog corporate-response page (specific permalink to be
-  identified during audit; the slug `news/sec-charges` is the working
-  reference), (3) the 2025-03-27 SEC dismissal filing / press item, and
-  (4) a Wayback diff sweep of kraken.com service / supported-asset pages
-  across the 2023-11-20 → 2023-12-20 window to convert offramp_cex from
-  partially_measured to measured. Marked evidence_use=contextual_unarchived
-  on all citations to flag the unarchived state per validator policy.
+  Replayable anchors were added for both load-bearing sources: SEC press
+  release 2023-237 and Kraken's 2023-11-20 corporate response. The old
+  `blog.kraken.com/news/sec-charges` slug returned 404 during repair; the
+  canonical Kraken permalink is now recorded directly. The 2025 dismissal is
+  contextual legal history and is no longer modeled as recovery, because no
+  service-level observed_change is admitted in this row.
 
 scoped_claim: |
-  "The 2023-11-20 SEC v. Payward (Kraken) unregistered-exchange action is
-  admitted only for a scoped offramp_cex platform-stance response: Kraken
-  posted a contemporaneous corporate response on blog.kraken.com asserting
-  continued operational status of customer products and services and
-  framing the action as a registration dispute to be defended. The row
-  does not claim a Kraken.com frontend takedown, token delisting, fiat-rail
-  disruption, on-chain asset freeze, or L1/L3 effect; it is paired with
-  kraken-sec-staking-2023 (sibling, which load-bears at offramp_cex with
-  a direct US staking-service shutdown) as the two-case Kraken-SEC
-  enforcement cohort."
+  "The 2023-11-20 SEC unregistered-exchange action against Kraken is retained
+  as a null-control comparator: the SEC action occurred, Kraken issued a
+  same-day response stating that client products and services continued, and
+  the dataset does not admit any Kraken frontend takedown, token delisting,
+  fiat-rail disruption, on-chain asset freeze, or L1/L3 effect for this event."
 
 scoped_knowledge: |
-  What changed: the platform-side stance toward US regulatory pressure.
-  Kraken issued a public corporate response on blog.kraken.com on or
-  near 2023-11-20 asserting continued operational status of customer
-  products and services and framing the SEC complaint as a registration
-  dispute. This is the retained observed_change at offramp_cex — the
-  issuance of a new platform-stance artifact, not a service withdrawal.
-  No contemporaneous Kraken support notice, geofence, or service-
-  withdrawal artifact has been retained. The SEC civil case itself
-  proceeded through 2024 and was dismissed 2025-03-27.
+  What changed: no censorship/access-denial layer is admitted. The SEC filed
+  the action and Kraken publicly responded, but that response is evidence for
+  a no-service-withdrawal comparator rather than a changed service layer.
 
-  What did not change or could not be measured: no on-chain effect, no
-  asset-issuer freeze, no L4 frontend takedown, no fiat-rail disruption
-  artifact, no token delisting. The named tokens cited in the complaint
-  are not target chains for L1/L3 measurement but referenced exhibits
-  of the securities-law theory. No admission-grade kraken.com service /
-  supported-asset frontend diff is retained — the offramp_cex measured
-  status relies on the Kraken platform-stance response, not on an
-  independent Wayback denominator sweep proving service-level continuity.
+  What did not change or could not be measured: no on-chain effect, asset
+  issuer freeze, L4 frontend takedown, fiat-rail disruption, or token delisting
+  is retained. No independent kraken.com service-page denominator sweep is
+  pinned, so the row should not be used to claim comprehensive service
+  continuity beyond the named null-control window and sources.
 
-  Attribution: plausible. The Kraken response is causally tied to the
-  SEC action via the post's own framing, but the dataset does not retain
-  an independent service-level denominator beyond Kraken's own assertion.
-
-  Comparative value: high. The Kraken pair (Feb-2023 staking
-  settlement + Nov-2023 unregistered-exchange action) is the cleanest
-  intra-issuer contrast in the 2023 US-federal-enforcement frame:
-  same target operator, two SEC civil actions in the same calendar
-  year, two different platform-side reactions. The staking case
-  produced a direct US service shutdown; the unregistered-exchange
-  case produced no platform-side service withdrawal. This is exactly
-  the kind of paired comparison that distinguishes
-  registration-pressure-without-service-effect from
-  registration-pressure-with-service-effect at offramp_cex.
+  Comparative value: this is the clean intra-operator contrast to
+  kraken-sec-staking-2023. Same operator and same regulator in 2023, but the
+  February staking settlement produced a direct US staking-service shutdown
+  while the November exchange-registration complaint is retained as a
+  no-service-withdrawal null comparator.
 
 tags:
   - sec_enforcement
@@ -319,5 +200,5 @@ tags:
   - exchange_civil_action
   - kraken
   - unregistered_exchange
-  - dismissed_2025
-  - dryrun_2026_05_16
+  - null_case
+  - null_control

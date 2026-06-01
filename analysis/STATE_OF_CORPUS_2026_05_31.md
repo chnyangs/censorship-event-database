@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **252** (11 complete / 241 scoped) and
-  admitted-but-blocked cases are **115**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **253** (11 complete / 242 scoped) and
+  admitted-but-blocked cases are **114**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **269 high / 81 medium / 17 low**; attribution reliability
-  **231 high / 136 medium / 0 low**. Current admitted paper roles are
-  **251 aggregate_datapoint / 96 null_control / 17 appendix_only / 3 paper_anchor**.
+  observation reliability **270 high / 81 medium / 16 low**; attribution reliability
+  **232 high / 135 medium / 0 low**. Current admitted paper roles are
+  **251 aggregate_datapoint / 97 null_control / 16 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -64,6 +64,9 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `binance-us-staking-end-2023` is now rejected as an unsupported false-positive / duplicate-scope row: the
   replayable Binance.US and Guardian anchors support the SEC-v-Binance platform/off-ramp reaction already
   admitted in `sec-v-binance-2023`, not a standalone 2023-06-09 Binance.US all-staking shutdown.
+  `kraken-sec-unregistered-exchange-2023` now has local SEC and Kraken replay anchors and is recoded from a
+  positive empirical observed-change row to a null-control no-service-withdrawal comparator for the November
+  2023 SEC unregistered-exchange complaint.
 
 ## Admitted composition (367)
 | dimension | breakdown |
@@ -71,8 +74,8 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 | **research_stratum** | S4_nation_state 111 · S5_corporate 96 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 307 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
 | **evidence_tier** | admission_grade 333 · **attested_secondary 34** (lower-tier, filterable — see codebook §10) |
-| **admission_tier** | empirical_case 266 · null_case 96 · anchor_case 5 |
-| **empirical_shape** | comparison 269 · null_event 96 · cascade 2 |
+| **admission_tier** | empirical_case 265 · null_case 97 · anchor_case 5 |
+| **empirical_shape** | comparison 268 · null_event 97 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
 censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **34

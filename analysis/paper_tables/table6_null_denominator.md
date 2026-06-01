@@ -1,6 +1,6 @@
-# Table 6 · Null-case denominator (n=96)
+# Table 6 · Null-case denominator (n=97)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `66cd488` · generated `2026-06-01T00:00:42Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8726393` · generated `2026-06-01T00:13:27Z`
 
 Supports the **null-event interpretation note** in `derived/archetype_distribution.md`. (C6 was demoted to exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md §C6`.) Each row lists the event's `observed_no_change` layers + the evidence-anchor types their sources carry. Per validator rule, `scope_descriptor` defines the covered scope but is not an evidence anchor by itself; each `observed_no_change` row needs at least one replayable artifact such as `body_hash`+`body_path`, `query_hash`, or `measurement_ids`.
 
@@ -53,6 +53,7 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `karpeles-arrest-tokyo-mtgox-2015` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `kb-vostok-russia-drone-ofac-2024-08` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `kingdom-trust-fincen-2021` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
+| `kraken-sec-unregistered-exchange-2023` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `kucoin-netherlands-exit-2023` | `S5_corporate` | `offramp_cex` | `body_hash+body_path` |
 | `lazarus-entity-ofac-2019` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `lazarus-laundering-ofac-2020` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |

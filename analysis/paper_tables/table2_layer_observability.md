@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `66cd488` · generated `2026-06-01T00:00:42Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8726393` · generated `2026-06-01T00:13:27Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -13,7 +13,7 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 | `l3_rpc` | 16 | 2 | 5 | 9 | 351 | 2 | 4 | 7 | 0 | 2/2 (100.0%) | 6/7 (85.7%) |
 | `l4_frontend` | 136 | 55 | 28 | 53 | 231 | 50 | 24 | 80 | 0 | 50/55 (90.9%) | 74/83 (89.2%) |
 | `asset_onchain` | 46 | 18 | 2 | 26 | 321 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
-| `offramp_cex` | 313 | 234 | 53 | 26 | 54 | 156 | 43 | 209 | 0 | 156/234 (66.7%) | 199/287 (69.3%) |
+| `offramp_cex` | 313 | 234 | 53 | 26 | 54 | 155 | 43 | 208 | 0 | 155/234 (66.2%) | 198/287 (69.0%) |
 
 A rate of `—` indicates a zero denominator; it is an **observability gap**, not an attested negative.
 `unique changed actions` deduplicates physical actions that are intentionally linked across event records via `observations[].action_id` (for example, the Circle USDC Tornado blacklist transaction appears in both the OFAC-triggered event and the issuer-action event). Event-rate columns remain event-record denominators; action counts are reported separately so the two units are not conflated.
@@ -26,4 +26,4 @@ A rate of `—` indicates a zero denominator; it is an **observability gap**, no
 - **`l1_consensus`** sensitive (Δ=0.625): 0/8 (0.00) strict · 2/8 (0.25) current · 10/16 (0.62) permissive.
 - **`l3_rpc`** sensitive (Δ=-0.1429): 2/2 (1.00) strict · 2/2 (1.00) current · 6/7 (0.86) permissive.
 - **`l4_frontend`** sensitive (Δ=0.3098): 32/55 (0.58) strict · 50/55 (0.91) current · 74/83 (0.89) permissive.
-- **`offramp_cex`** sensitive (Δ=0.296): 93/234 (0.40) strict · 156/234 (0.67) current · 199/287 (0.69) permissive.
+- **`offramp_cex`** sensitive (Δ=0.2925): 93/234 (0.40) strict · 155/234 (0.66) current · 198/287 (0.69) permissive.

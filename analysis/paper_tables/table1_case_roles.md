@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=367)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `66cd488` · generated `2026-06-01T00:00:42Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8726393` · generated `2026-06-01T00:13:27Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -9,8 +9,8 @@ Supports `docs/paper_claims.md §0` (case-role convention). Each event's admissi
 | admission_tier | count |
 | --- | ---: |
 | `anchor_case` | 5 |
-| `empirical_case` | 266 |
-| `null_case` | 96 |
+| `empirical_case` | 265 |
+| `null_case` | 97 |
 | **total** | **367** |
 
 | trigger precision bucket | count |
@@ -219,7 +219,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `korea-travel-rule-2022` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `kraken-monero-eu-delisting-2024` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-17` | `—` |
 | `kraken-sec-staking-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
-| `kraken-sec-unregistered-exchange-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `sec_action` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
+| `kraken-sec-unregistered-exchange-2023` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `sec_action` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-06-01` | `—` |
 | `kraken-uk-derivatives-exit-2021` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-17` | `—` |
 | `kucoin-canada-exit-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-17` | `—` |
 | `kucoin-doj-2024` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-16` | `2026-05-16` |
