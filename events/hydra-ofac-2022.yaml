@@ -1,17 +1,20 @@
 id: hydra-ofac-2022
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-21T12:33:00Z
-last_verified: 2026-04-21
+last_verified: 2026-06-02
+
+related_events:
+  - garantex-ofac-2022
 
 trigger:
   type: ofac_sdn_designation
@@ -24,12 +27,14 @@ trigger:
       wayback: https://web.archive.org/web/20260421105315/https://ofac.treasury.gov/recent-actions/20220405
       body_hash: sha256:ec142cf1769df2bcd14d092b808673b0c5f2d3d643d0cc4590d76aafc3cb87ec
       body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/ofac.treasury.gov__recent-actions-20220405__594c05f6bc.html
+      evidence_use: replayable
       note: OFAC Recent Actions entry for the 2022-04-05 Hydra Market designation
     - type: primary_legal
       url: https://home.treasury.gov/news/press-releases/jy0701
       wayback: https://web.archive.org/web/20260421105351/https://home.treasury.gov/news/press-releases/jy0701
       body_hash: sha256:c89cf47b10bfcbc59e21337ede7ffbe862daadee7544b32f927aab1778d0e398
       body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/home.treasury.gov__news-press-releases-jy0701__1d13c92377.html
+      evidence_use: replayable
       note: Treasury press release announcing sanctions on Hydra and Garantex
 
 target:
@@ -50,8 +55,13 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
-    note: Onion-service and jurisdictional access effects have not been queried against Censored Planet / OONI for this event; eligible jurisdictions include RU, DE but no measurement artifact is attached
+    status: not_applicable
+    note: |
+      This row measures a coordinated law-enforcement takedown and OFAC
+      designation of the Hydra onion-service marketplace, not ISP/DNS or
+      national-firewall blocking. There is no public clearnet domain or
+      jurisdictional network-block claim retained in the scoped claim, so
+      OONI/Censored Planet reachability is out of scope for this event.
   - layer: l1_consensus
     status: not_applicable
     note: Darknet marketplace designation does not map cleanly to consensus-layer filtering
@@ -59,28 +69,28 @@ coverage:
     status: not_applicable
     note: No public RPC dependency is central to the trigger object
   - layer: l4_frontend
-    status: partially_measured
+    status: measured
     scope:
       - Hydra onion sites
-      - related marketplace availability
-  - layer: asset_onchain
-    status: not_measured
-    note: Associated addresses are listed, but no issuer-freeze evidence has been attached yet
-  - layer: offramp_cex
-    status: not_measured
-    scope:
-      - Garantex and partner-exchange implications
     note: |
-      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
-      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
-      Elliptic sanctions-coverage resource pages):
-        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
-        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
-        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
-      Status remains not_measured because per-event chain-analytics report
-      slices (naming specific SDN addresses / KYT flag records) are not
-      yet pinned. The anchors establish the substrate; per-event slicing
-      would promote status.
+      Load-bearing layer. Treasury states that German Federal Criminal
+      Police shut down Hydra servers in Germany on 2022-04-05, and the
+      OFAC Recent Actions record lists the Hydra Market entity plus its
+      onion-service addresses. This supports the retained L4/onion-service
+      disruption claim without asserting broader darknet-market availability.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      OFAC lists more than 100 XBT addresses associated with Hydra, but
+      Bitcoin has no issuer-admin freeze primitive. The row does not claim
+      a stablecoin issuer freeze or other asset-admin action.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      The same Treasury press release also sanctions Garantex, but this
+      event's target is Hydra Market. Off-ramp / exchange effects belong
+      to the sibling Garantex row or later exchange-compliance rows, not
+      to this Hydra-targeted L4 takedown measurement.
 
 observations:
   - layer: l4_frontend
@@ -96,12 +106,14 @@ observations:
         wayback: https://web.archive.org/web/20260421105351/https://home.treasury.gov/news/press-releases/jy0701
         body_hash: sha256:c89cf47b10bfcbc59e21337ede7ffbe862daadee7544b32f927aab1778d0e398
         body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/home.treasury.gov__news-press-releases-jy0701__1d13c92377.html
+        evidence_use: replayable
         note: Treasury states German authorities shut down Hydra servers in Germany on the same day
       - type: primary_legal
         url: https://ofac.treasury.gov/recent-actions/20220405
         wayback: https://web.archive.org/web/20260421105315/https://ofac.treasury.gov/recent-actions/20220405
         body_hash: sha256:ec142cf1769df2bcd14d092b808673b0c5f2d3d643d0cc4590d76aafc3cb87ec
         body_path: sources/http_captures/hydra-ofac-2022/backfill-1.3/ofac.treasury.gov__recent-actions-20220405__594c05f6bc.html
+        evidence_use: replayable
         note: OFAC designation lists Hydra Market and associated onion addresses
 
 recovery:
@@ -110,6 +122,17 @@ recovery:
     note: This event is modeled as a disruptive takedown rather than a reversible short-term toggle
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  verified the existing Treasury Recent Actions and Treasury press-release
+  captures by body hash, marked the row primary-source verified, and
+  narrowed coverage taxonomy to the retained claim. This row now measures
+  the Hydra-targeted L4 onion-service takedown only. L0 network blocking is
+  out of scope because no ISP/DNS censorship claim is retained; asset_onchain
+  is not applicable because the listed assets are XBT addresses with no
+  issuer freeze primitive; and off-ramp/CEX consequences are assigned to
+  the sibling Garantex row or later exchange-compliance rows rather than
+  duplicated here.
+
   Scoped release claim: the 2022-04-05 Hydra designation and same-day German
   action disrupted Hydra's frontend / marketplace availability. This admitted
   baseline is not yet claiming an asset-layer or off-ramp cascade. The case
