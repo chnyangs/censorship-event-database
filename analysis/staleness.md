@@ -391,7 +391,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `tornado-cash-pertsev-doj-indictment-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `tornado-cash-storm-conviction-2025` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `tornado-cash-tornadocash-org-seizure-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 16 | ok | no_audit_recorded |
-| `tradehill-dwolla-payment-cutoff-2012-02` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
+| `tradehill-dwolla-payment-cutoff-2012-02` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
 | `trustwallet-sanctioned-token-ui-update-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `turkey-cbrt-crypto-ban-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
 | `turkey-cmb-casp-licensing-law-7518-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |

@@ -61415,9 +61415,9 @@
   {
     "_source_file": "tradehill-dwolla-payment-cutoff-2012-02.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**AUTHORED 2026-05-31** (overnight census tick 3, human:xiangwen\nautonomous mandate) as a discovery_only_2007_2012 S5 event. TradeHill\n(early U.S. Bitcoin exchange) had its Dwolla fiat payment rail severed\nin early 2012, a major factor in the exchange ceasing operations;\nTradeHill sued Dwolla (2012-03). One of the earliest documented\nfinancial-rail de-risking / payment-processor-denial censorship cases\nagainst a crypto exchange (offramp_cex), predating the 2013 banking\nde-risking wave (cf. bitfloor-capital-one-debanking-2013-04,\nregistered). comparison shape, single offramp_cex observed_change,\nattribution=plausible (the payment cutoff is documented; its\ncharacterization as regulatory-pressure-driven is the lawsuit's\nallegation rather than a direct admission of a compliance mandate).\nSources verified via WebSearch + capture 2026-05-31 (VentureBeat +\nAmerican Banker, both body_hash-pinned; no fabrication).\nDiscovery-tier-only (analysis_use=discovery_ledger_only).\n",
+    "analysis_notes": "**SOURCE REPAIR 2026-06-02**: Added the primary TradeHill shutdown\nannouncement by Jered Kenna (TradeHill) on Bitcointalk, captured locally\nwith body_hash/body_path and grep-verified for author, timestamp,\nshutdown/deposit-return language, money-transmission licensing, multiple\nbank-account closures, Paxum, payment-processor loss, and Dwolla\nclarification. Re-scoped the row so the directly attributed observed\nchange is TradeHill's own 2012-02-13 trading/deposit halt and client-fund\nreturn. Dwolla remains a documented payment-processor component supported\nby the same-thread clarification and later TradeHill v. Dwolla reporting,\nbut the row no longer claims Dwolla alone directly caused the shutdown.\n\n**AUTHORED 2026-05-31** (overnight census tick 3, human:xiangwen\nautonomous mandate) as a discovery_only_2007_2012 S5 event. TradeHill\n(early U.S. Bitcoin exchange) had its Dwolla fiat payment rail severed\nin early 2012, a major factor in the exchange ceasing operations;\nTradeHill sued Dwolla (2012-03). One of the earliest documented\nfinancial-rail de-risking / payment-processor-denial censorship cases\nagainst a crypto exchange (offramp_cex), predating the 2013 banking\nde-risking wave (cf. bitfloor-capital-one-debanking-2013-04,\nregistered). comparison shape, single offramp_cex observed_change,\nattribution=plausible (the payment cutoff is documented; its\ncharacterization as regulatory-pressure-driven is the lawsuit's\nallegation rather than a direct admission of a compliance mandate).\nSources verified via WebSearch + capture 2026-05-31 (VentureBeat +\nAmerican Banker, both body_hash-pinned; no fabrication).\nDiscovery-tier-only (analysis_use=discovery_ledger_only).\n",
     "analysis_use": "discovery_ledger_only",
-    "codebook_version": "2.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
@@ -61446,7 +61446,7 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer. Dwolla's withdrawal of payment-processing\nservice severed TradeHill's primary fiat on/off-ramp, a major\nfactor in the exchange ceasing operations in early 2012. Attested\nin contemporaneous trade press and the TradeHill v. Dwolla suit.\n",
+        "note": "Load-bearing layer. TradeHill immediately stopped trading/deposits\nand returned client funds on 2012-02-13. Its primary announcement\nattributes the shutdown to money-transmission licensing pressure,\nmultiple bank-account closures, Paxum's decision to close Bitcoin\nbusiness accounts, and a payment processor removing more than\n$100,000 without notice; the same thread separately identifies Dwolla\nas a larger-than-$10k payment-processor issue, and later reporting\ncovers the TradeHill v. Dwolla suit.\n",
         "scope": [
           "tradehill"
         ],
@@ -61460,23 +61460,43 @@
       "US"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
-        "actor": "payment_processor:dwolla",
-        "attribution": "plausible",
+        "actor": "exchange:tradehill",
+        "attribution": "direct",
         "country": "US",
         "delta_hours": 0,
-        "event": "dwolla_severs_tradehill_fiat_payment_rail",
+        "event": "tradehill_halts_trading_deposits_and_returns_client_funds",
         "layer": "offramp_cex",
         "observation_kind": "observed_change",
-        "precision": "week",
+        "precision": "day",
         "sources": [
+          {
+            "body_hash": "sha256:fb9e8e442f03e0e98bd80b611fa9cdf969d26aafe133dc6583e6a11e2d9e5417",
+            "body_path": "sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary-tradehill-bitcointalk-v1/bitcointalk.org__index.php__864a09c795.html",
+            "evidence_use": "replayable",
+            "note": "TradeHill CEO Jered Kenna's primary announcement: TradeHill was\nimmediately shutting down trading/deposits and returning client\nfunds. The same post gives the causal bundle as increasing\nregulation / money-transmission licensing, multiple bank-account\nclosures, Paxum closing Bitcoin-business accounts, and a payment\nprocessor removing more than $100,000 without notice; a later\nsame-thread reply clarifies Dwolla was a larger-than-$10k issue\nwhile separate from the Paxum shutdown. attribution=direct for the\nTradeHill service shutdown itself; the row does not claim Dwolla\nalone directly caused the shutdown.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "tradehill"
+              ],
+              "time_window": [
+                "2012-02-13T00:00:00+00:00",
+                "2012-02-14T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://bitcointalk.org/index.php?topic=63749.0"
+          },
           {
             "body_hash": "sha256:2a5326490ca22c4e42abdb9d64d4d26038a72ed276c9a8da6b653896fd8f1cb0",
             "body_path": "sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary/web.archive.org__web-20211026183118-https-venturebeat.com-2012-03-07-tradehill-sues-suing-dwolla-bitcoin__512fa258ef.html",
             "evidence_use": "replayable",
-            "note": "VentureBeat 2012-03-07 reporting on TradeHill v. Dwolla:\nDwolla's reversal/withholding of payments and service cutoff\nsevered TradeHill's fiat rail. attribution=plausible: the\ncutoff is documented but its characterization as\ncompliance/regulatory-pressure-driven (vs a private business\ndispute) is the suit's allegation, not a direct admission.\n",
+            "note": "VentureBeat 2012-03-07 reporting on TradeHill v. Dwolla:\nDwolla's reversal/withholding of payments and service cutoff\ncontributed to TradeHill's fiat-rail failure. Corroborating\nsemi-primary litigation/reporting anchor for the Dwolla component,\nnot the sole trigger source.\n",
             "scope_descriptor": {
               "countries": [
                 "US"
@@ -61519,7 +61539,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "bitcoinica-shutdown-2012-05",
       "bitfloor-capital-one-debanking-2013-04",
@@ -61527,7 +61547,7 @@
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Payment processor Dwolla's early-2012 severance of TradeHill's fiat\npayment rail (reversing/withholding payments and cutting off service)\nproduced an offramp_cex cascade (TradeHill ceased operations); the\nrow claims a single-layer offramp shutdown with attribution=plausible.\nDiscovery-tier only; no comparable-analysis use.\"\n",
+    "scoped_claim": "\"TradeHill's 2012-02-13 announcement halted trading/deposits and returned\nclient funds after a bundled fiat-rail/compliance shock: money-transmission\nlicensing pressure, multiple bank-account closures, Paxum closing Bitcoin\nbusiness accounts, and a payment-processor dispute later litigated as\nTradeHill v. Dwolla. The row claims one directly attributed\nofframp_cex/exchange-service shutdown by TradeHill, while treating Dwolla\nas a documented component rather than the sole proved cause. Discovery-tier\nonly; no comparable-analysis use.\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -61541,20 +61561,28 @@
       "offramp_shutdown"
     ],
     "target": {
-      "actor_name": "Dwolla (payment processor) vs TradeHill",
-      "actor_type": "payment_processor_service_denial",
+      "actor_name": "TradeHill Bitcoin exchange fiat/off-ramp service",
+      "actor_type": "exchange_service_shutdown",
       "canonical_domains": [
         "tradehill.com"
       ],
-      "entity": "Dwolla (payment processor) vs TradeHill",
+      "entity": "TradeHill Bitcoin exchange fiat/off-ramp service",
       "enumeration": "complete",
-      "enumeration_note": "TradeHill, Inc. (early U.S.-based Bitcoin exchange) as the affected\nentity whose Dwolla-mediated fiat payment rail was severed. Single\nnamed affected exchange; no on-chain addresses (the action is a\npayment-processor service cutoff at the fiat off-ramp).\n",
+      "enumeration_note": "TradeHill, Inc. (early U.S.-based Bitcoin exchange) as the affected\nentity whose trading/deposit service was halted and client funds were\nreturned. Single named affected exchange; no on-chain addresses (the\naction is a fiat off-ramp / exchange-service shutdown shaped by money-\ntransmission licensing, bank-account closures, Paxum's Bitcoin-account\nclosure, and a Dwolla/payment-processor dispute).\n",
       "kind": "entity"
     },
     "temporal_tier": "discovery_only_2007_2012",
     "trigger": {
-      "actor": "dwolla_payment_processor",
+      "actor": "tradehill_exchange",
       "citation": [
+        {
+          "body_hash": "sha256:fb9e8e442f03e0e98bd80b611fa9cdf969d26aafe133dc6583e6a11e2d9e5417",
+          "body_path": "sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary-tradehill-bitcointalk-v1/bitcointalk.org__index.php__864a09c795.html",
+          "evidence_use": "replayable",
+          "note": "Primary TradeHill announcement by Jered Kenna (TradeHill) on\nBitcointalk, 2012-02-13 22:30:57 forum timestamp. The post states\nthat TradeHill was immediately shutting down trading/deposits and\nreturning client funds because increasing regulation meant it could\nnot operate without money-transmission licensing, combined with\nmultiple bank-account closures, Paxum closing Bitcoin-business\naccounts, and a payment processor removing more than $100,000\nwithout notice. A later same-thread Jered Kenna reply clarifies that\nDwolla's amount was larger than $10k and that the Paxum shutdown was\nseparate. Local capture grep-verified the author, timestamp, shutdown\nlanguage, money-transmission-licensing language, Paxum/bank-account\nclosures, and payment-processor/Dwolla clarification.\n",
+          "type": "primary_corporate",
+          "url": "https://bitcointalk.org/index.php?topic=63749.0"
+        },
         {
           "body_hash": "sha256:2a5326490ca22c4e42abdb9d64d4d26038a72ed276c9a8da6b653896fd8f1cb0",
           "body_path": "sources/http_captures/tradehill-dwolla-payment-cutoff-2012-02/primary/web.archive.org__web-20211026183118-https-venturebeat.com-2012-03-07-tradehill-sues-suing-dwolla-bitcoin__512fa258ef.html",
@@ -61575,16 +61603,16 @@
         }
       ],
       "timestamp": "2012-02-13T00:00:00+00:00",
-      "timestamp_precision": "week",
+      "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Week-level precision (coarsest available): TradeHill's Dwolla-related payment\nproblems and wind-down occurred in early 2012 (exchange\nceased ~Feb 2012; lawsuit filed 2012-03). No exact sub-day\ncutoff timestamp is documented in public sources.\n",
-          "type": "semi_primary_wayback"
+          "note": "Day-level precision from the primary TradeHill Bitcointalk\nannouncement posted by Jered Kenna (TradeHill) on 2012-02-13.\nThe forum shows a sub-day timestamp, but the row uses day precision\nbecause public timezone normalization for the forum display is not\npart of the source contract.\n",
+          "type": "primary_corporate"
         }
       ],
       "type": "corporate_policy_change"
     },
-    "version": "0.2"
+    "version": "0.3"
   },
   {
     "_source_file": "trustwallet-sanctioned-token-ui-update-2022.yaml",

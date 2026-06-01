@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `a7b40fe` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `c3a88e8` · generated `2026-06-02T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -299,7 +299,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `tornado-cash-ofac-delisting-2025:3:l1_consensus:pbs_relay_ecosystem_aggregate:censoring_relay_share_dropped_post_delisting` | 1 | 0 | 1 | l1_consensus | `tornado-cash-ofac-delisting-2025::l1_consensus` |
 | `tornado-cash-ofac-redesignation-2022:0:asset_onchain:tether_usdt_issuer:tether_froze_one_of_92_tornado_addresses_in_retroactive_sweep` | 1 | 0 | 1 | asset_onchain | `tornado-cash-ofac-redesignation-2022::asset_onchain` |
 | `tornado-cash-tornadocash-org-seizure-2022:0:l4_frontend:domain_entrypoint:tornado_cash_team:tornadocash_org_canonical_domain_rendered_unreachable_after_ofac_sdn` | 1 | 0 | 1 | l4_frontend | `tornado-cash-tornadocash-org-seizure-2022::l4_frontend` |
-| `tradehill-dwolla-payment-cutoff-2012-02:0:offramp_cex:payment_processor:dwolla:dwolla_severs_tradehill_fiat_payment_rail` | 1 | 0 | 1 | offramp_cex | `tradehill-dwolla-payment-cutoff-2012-02::offramp_cex` |
+| `tradehill-dwolla-payment-cutoff-2012-02:0:offramp_cex:exchange:tradehill:tradehill_halts_trading_deposits_and_returns_client_funds` | 1 | 0 | 1 | offramp_cex | `tradehill-dwolla-payment-cutoff-2012-02::offramp_cex` |
 | `turkey-cbrt-crypto-ban-2021:0:offramp_cex:turkish_payment_ecosystem:try_payment_rail_to_crypto_severed` | 1 | 0 | 1 | offramp_cex | `turkey-cbrt-crypto-ban-2021::offramp_cex` |
 | `uk-fca-binance-markets-2021:0:offramp_cex:binance_markets_limited:bml_regulated_business_restriction_remained_in_place` | 1 | 0 | 1 | offramp_cex | `uk-fca-binance-markets-2021::offramp_cex` |
 | `uk-fca-binance-markets-2021:1:l4_frontend:binance_markets_limited:fca_required_binance_notice_and_promotion_removal_complied` | 1 | 0 | 1 | l4_frontend | `uk-fca-binance-markets-2021::l4_frontend` |
