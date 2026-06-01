@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T11:50:49Z`
+Generated at: `2026-06-01T12:19:10Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -407,7 +407,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `uniswap-tokenized-stocks-delisting-2021-07` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `unsc-resolution-2371-dprk-crypto-2017` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `upbit-bithumb-regulatory-delisting-purge-2021-06` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
-| `upbit-privacy-coin-delisting-2019-09` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
+| `upbit-privacy-coin-delisting-2019-09` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-06-01 | 0 | ok | ok |
 | `uzbekistan-napp-vasp-licensing-2022-07` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `venezuela-sunacrip-mining-exchange-halt-2023-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `vietnam-sbv-bitcoin-prohibition-statement-2014-02` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |

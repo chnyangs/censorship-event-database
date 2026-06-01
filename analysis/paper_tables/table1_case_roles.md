@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `93a10f9` · generated `2026-06-01T11:50:49Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `1c9c65c` · generated `2026-06-01T12:19:10Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -368,7 +368,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `uniswap-tokenized-stocks-delisting-2021-07` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
 | `unsc-resolution-2371-dprk-crypto-2017` | `null_case` | `S6_supranational` | `null_event` | `non_us_sanctions` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `upbit-bithumb-regulatory-delisting-purge-2021-06` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
-| `upbit-privacy-coin-delisting-2019-09` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | · | · | `2026-05-31` | `2026-05-31` |
+| `upbit-privacy-coin-delisting-2019-09` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-31` |
 | `uzbekistan-napp-vasp-licensing-2022-07` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `venezuela-sunacrip-mining-exchange-halt-2023-03` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `other_single_layer` | · | · | `2026-05-31` | `—` |
 | `vietnam-sbv-payment-prohibition-2017-10` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
