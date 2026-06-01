@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `279`
-- Admitted but release-blocked cases: `86`
+- Release-ready cases: `280`
+- Admitted but release-blocked cases: `85`
 - Fully complete release-ready cases: `11`
-- Scope-limited release-ready cases: `268`
+- Scope-limited release-ready cases: `269`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 41, 'paper_anchor': 3}`
@@ -1890,21 +1890,14 @@ This file is the operational summary for the repo's two current priorities:
 ### `etoro-us-ada-trx-delisting-2021-12`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
-- Observation reliability: `medium`
-- Attribution reliability: `medium`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
-- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-12th-russia-sanctions-2023`

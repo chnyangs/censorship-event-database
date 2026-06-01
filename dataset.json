@@ -19832,7 +19832,7 @@
   {
     "_source_file": "etoro-us-ada-trx-delisting-2021-12.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. \u00a79-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook \u00a710) \u2014 single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). eToro announced\n(2021-11-23) it would remove US-customer access to Cardano (ADA) and\nTron (TRX) effective 2021-12-26 (no new positions; staking removed),\nciting the evolving US regulatory environment \u2014 a US-scoped corporate\ndelisting in the run-up to broader SEC scrutiny of crypto brokerages\n(later: sec-etoro-cease-crypto-trading-2024-09, cf. related_events).\ncomparison shape, single offramp_cex observed_change.\nattribution=plausible: eToro's \"regulatory concerns\" statement is\ngeneric and no named US regulatory order designates ADA/TRX, so the\nsecurities-regulatory motive is class-level contextual inference (\u00a71.1),\nconservatively coded plausible over direct per \u00a78(4). ADA/TRX are\nindependent base-chain assets, so l0/l1/l3/l4/asset_onchain are\nnot_applicable. jurisdiction=US. Source verified via WebSearch + capture\n2026-05-31 (NewsBTC, body_hash-pinned; the US-only December 26 2021\ncutoff + staking removal grep-verified; no fabrication).\n",
+    "analysis_notes": "**PRIMARY-SOURCE REPAIR 2026-06-01** (quality loop): pinned eToro's\nfirst-party \"Important update regarding ADA and TRX\" Wayback memento\n(2021-11-24 00:54:43 UTC) as a local `body_hash` / `body_path` replay\nartifact. The row no longer uses `evidence_tier=attested_secondary`: the\neToro-authored update is the claim-usable trigger and observed-change anchor.\nattribution is upgraded from plausible to direct for eToro's own US-customer\nADA/TRX access limitation; the regulatory rationale remains deliberately\nscoped as generic regulatory-environment context because the update does not\ncite a named US order designating ADA/TRX.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent:\nTASK-2 lower-tier at the time of admission; superseded by the 2026-06-01\nprimary-source repair. \u00a79-clear, well-documented deliberate restriction;\nverified clean with no fabrication in bulk adversarial-verify.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). eToro announced\n(2021-11-23) it would remove US-customer access to Cardano (ADA) and\nTron (TRX) effective 2021-12-26 (no new positions; staking removed),\nciting the evolving US regulatory environment \u2014 a US-scoped corporate\ndelisting in the run-up to broader SEC scrutiny of crypto brokerages\n(later: sec-etoro-cease-crypto-trading-2024-09, cf. related_events).\ncomparison shape, single offramp_cex observed_change.\nattribution=direct for eToro's own US-customer access limitation; eToro's\n\"evolving regulatory environment\" rationale is generic and no named US\nregulatory order designates ADA/TRX, so the securities-regulatory motive\nremains scoped as contextual background rather than a per-target legal cause.\nADA/TRX are independent base-chain assets, so l0/l1/l3/l4/asset_onchain are\nnot_applicable. jurisdiction=US. Sources verified via WebSearch + capture\n2026-05-31/2026-06-01 (NewsBTC and official eToro, body_hash-pinned; the\nUS-only December 26 2021 cutoff + staking removal grep-verified; no\nfabrication).\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "3.0.0",
     "coverage": [
@@ -19862,7 +19862,7 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer. eToro removed US-customer access to ADA and TRX\neffective 2021-12-26 (no new positions; staking removed), severing\nthe eToro brokerage off-ramp for these assets for US users.\nAttested in contemporaneous trade press, body_hash-pinned.\n",
+        "note": "Load-bearing layer. eToro removed US-customer access to ADA and TRX\neffective 2021-12-26 (no new positions; staking removed), severing\nthe eToro brokerage off-ramp for these assets for US users.\nAttested in eToro's first-party update and corroborated by\ncontemporaneous trade press, both body_hash-pinned.\n",
         "scope": [
           "etoro_us_ada",
           "etoro_us_trx"
@@ -19872,18 +19872,16 @@
     ],
     "created_at": "2026-05-31T00:00:00+00:00",
     "empirical_shape": "comparison",
-    "evidence_caveat": "eToro Dec-2021 delisting of ADA/TRX for US customers (regulatory). \u00a79-clear delisting, documented; attested_secondary on a single captured source.",
-    "evidence_tier": "attested_secondary",
     "id": "etoro-us-ada-trx-delisting-2021-12",
     "jurisdiction": [
       "US"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "exchange:etoro",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": "US",
         "event": "etoro_removes_us_customer_access_to_ada_trx",
         "layer": "offramp_cex",
@@ -19891,10 +19889,31 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:708cafdf381ecc0a944adce3d02eca6a4630f9c1f7045828a0ea7bde6567a547",
+            "body_path": "sources/http_captures/etoro-us-ada-trx-delisting-2021-12/official-etoro-20211124/web.archive.org__web-20211124005443-https-www.etoro.com-en-us-news-and-analysis-etoro-updates-important-update-regarding-ada-and-trx__e5607995f5.html",
+            "evidence_use": "replayable",
+            "note": "eToro first-party update: US users would no longer be able to\nopen new ADA or TRX positions starting 2021-12-26, staking for\nboth assets would end on 2021-12-31, and final staking rewards\nwould be paid on 2022-01-15. attribution=direct for eToro's\nown US-customer ADA/TRX access limitation; the regulatory\nrationale remains scoped to eToro's generic \"evolving\nregulatory environment\" language, not a named US order.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "etoro"
+              ],
+              "time_window": [
+                "2021-11-23T00:00:00+00:00",
+                "2022-01-15T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.etoro.com/en-us/news-and-analysis/etoro-updates/important-update-regarding-ada-and-trx/",
+            "wayback": "https://web.archive.org/web/20211124005443/https://www.etoro.com/en-us/news-and-analysis/etoro-updates/important-update-regarding-ada-and-trx/"
+          },
+          {
             "body_hash": "sha256:bd4e428548456eb5bfe69c831125cae7fea120dd4ef9e2b39261b3d901b68c40",
             "body_path": "sources/http_captures/etoro-us-ada-trx-delisting-2021-12/primary/web.archive.org__web-20250617083522-https-www.newsbtc.com-news-cardano-etoro-announces-cardano-ada-and-tron-trx-delisting-points-to-regulatory-concerns__9e6c9d8a83.html",
             "evidence_use": "replayable",
-            "note": "NewsBTC: eToro to remove US-customer access to ADA and TRX on\n2021-12-26 (no new positions; staking removed), citing the\nevolving regulatory environment. attribution=plausible: the\ndelisting and its US-only scope are directly observed and eToro\ncited \"regulatory concerns\" generically, but no named US\nregulatory order designates ADA/TRX, so the securities-regulatory\nmotive is class-level contextual inference (\u00a71.1), not a\nper-target stated cause.\n",
+            "note": "NewsBTC: eToro to remove US-customer access to ADA and TRX on\n2021-12-26 (no new positions; staking removed), citing the\nevolving regulatory environment. Retained as corroborating\ncontemporaneous coverage; the first-party eToro capture added on\n2026-06-01 supersedes the earlier lower-tier source posture.\n",
             "scope_descriptor": {
               "countries": [
                 "US"
@@ -19916,13 +19935,13 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "sec-etoro-cease-crypto-trading-2024-09"
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"eToro's 2021-12-26 removal of US-customer access to Cardano (ADA) and\nTron (TRX) \u2014 no new positions, staking removed, citing the evolving US\nregulatory environment \u2014 severed the eToro brokerage off-ramp for these\nassets for US users; single-layer offramp_cex observed_change,\nattribution=plausible (generic 'regulatory concerns', no named order).\"\n",
+    "scoped_claim": "\"eToro's 2021-12-26 removal of US-customer access to Cardano (ADA) and\nTron (TRX) \u2014 no new positions, staking removed, citing the evolving US\nregulatory environment \u2014 severed the eToro brokerage off-ramp for these\nassets for US users; single-layer offramp_cex observed_change,\nattribution=direct for eToro's own access limitation (the regulatory\nrationale is generic context, not a named order).\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -19953,6 +19972,15 @@
       "actor": "etoro",
       "citation": [
         {
+          "body_hash": "sha256:708cafdf381ecc0a944adce3d02eca6a4630f9c1f7045828a0ea7bde6567a547",
+          "body_path": "sources/http_captures/etoro-us-ada-trx-delisting-2021-12/official-etoro-20211124/web.archive.org__web-20211124005443-https-www.etoro.com-en-us-news-and-analysis-etoro-updates-important-update-regarding-ada-and-trx__e5607995f5.html",
+          "evidence_use": "replayable",
+          "note": "eToro first-party update, Wayback memento 2021-11-24 00:54:43\nUTC. The captured page is titled \"Important update regarding ADA\nand TRX\" and records publication on 2021-11-23. It states that\nUS users would no longer be able to open new Cardano (ADA) or\nTRON (TRX) positions from 2021-12-26, that staking for those\nassets would end on 2021-12-31, and that the changes were due\nto business-related considerations in the evolving regulatory\nenvironment.\n",
+          "type": "primary_corporate",
+          "url": "https://www.etoro.com/en-us/news-and-analysis/etoro-updates/important-update-regarding-ada-and-trx/",
+          "wayback": "https://web.archive.org/web/20211124005443/https://www.etoro.com/en-us/news-and-analysis/etoro-updates/important-update-regarding-ada-and-trx/"
+        },
+        {
           "body_hash": "sha256:bd4e428548456eb5bfe69c831125cae7fea120dd4ef9e2b39261b3d901b68c40",
           "body_path": "sources/http_captures/etoro-us-ada-trx-delisting-2021-12/primary/web.archive.org__web-20250617083522-https-www.newsbtc.com-news-cardano-etoro-announces-cardano-ada-and-tron-trx-delisting-points-to-regulatory-concerns__9e6c9d8a83.html",
           "evidence_use": "replayable",
@@ -19966,8 +19994,8 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level precision: announced 2021-11-23 (Wayback first-capture\nbanner), effective 2021-12-26 (no new positions for US users),\nstaking removed thereafter. Trigger timestamp set to the\n2021-11-23 announcement date.\n",
-          "type": "semi_primary_wayback"
+          "note": "Day-level precision: eToro's first-party page records\ndatePublished=2021-11-23T06:30:19+00:00 and was first archived by\nWayback at 2021-11-24T00:54:43Z. Trigger timestamp set to the\n2021-11-23 announcement date; the operative no-new-position date\nis 2021-12-26.\n",
+          "type": "primary_corporate"
         }
       ],
       "type": "corporate_policy_change"

@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ff0c8be` · generated `2026-06-01T11:07:46Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `575b085` · generated `2026-06-01T11:33:54Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -131,7 +131,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `egold-doj-indictment-2007-04` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `2026-05-31` |
 | `egypt-cbe-banking-law-194-2020` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `etherscan-tornado-cash-ui-label-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
-| `etoro-us-ada-trx-delisting-2021-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | · | · | `2026-05-31` | `2026-05-31` |
+| `etoro-us-ada-trx-delisting-2021-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-31` |
 | `eu-12th-russia-sanctions-2023` | `empirical_case` | `S6_supranational` | `comparison` | `non_us_sanctions` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `eu-14th-russia-sanctions-spfs-2024` | `null_case` | `S6_supranational` | `null_event` | `non_us_sanctions` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `eu-15th-russia-sanctions-2024` | `null_case` | `S6_supranational` | `null_event` | `non_us_sanctions` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |

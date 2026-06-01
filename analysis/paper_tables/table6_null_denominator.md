@@ -1,6 +1,6 @@
 # Table 6 · Null-case denominator (n=97)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ff0c8be` · generated `2026-06-01T11:07:46Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `575b085` · generated `2026-06-01T11:33:54Z`
 
 Supports the **null-event interpretation note** in `derived/archetype_distribution.md`. (C6 was demoted to exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md §C6`.) Each row lists the event's `observed_no_change` layers + the claim-usable evidence-anchor types their sources carry. Per validator rule, `scope_descriptor` defines the covered scope but is not an evidence anchor by itself; each `observed_no_change` row needs at least one claim-usable replayable artifact such as `body_hash`+`body_path`, `query_hash`, or `measurement_ids`. Sources marked `evidence_use=contextual_unarchived` or `evidence_use=non_admission` are deliberately excluded.
 
