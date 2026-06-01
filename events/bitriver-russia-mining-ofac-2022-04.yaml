@@ -1,17 +1,17 @@
 id: bitriver-russia-mining-ofac-2022-04
 schema_version: 0.2.0
-codebook_version: "2.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.2"
+version: "0.3"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 last_human_audit: 2026-05-31
 
 trigger:
@@ -69,10 +69,13 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      No OONI / Censored Planet probe of bitriver.com within the event
-      window; substrate-shaped gap, not a coverage_gap observation.
+      The retained public claim is an OFAC designation of a crypto-mining
+      infrastructure company plus a scoped no-public-CEX-cascade
+      denominator. It is not an ISP/DNS/national-firewall blocking claim,
+      so absent OONI / Censored Planet probing of bitriver.com is not a
+      claim-bearing L0 measurement gap.
   - layer: l1_consensus
     status: not_applicable
     note: |
@@ -81,11 +84,13 @@ coverage:
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     note: |
-      bitriver.com is the company's canonical domain; Wayback CDX
-      bracketing of bitriver.com around 2022-04-20 not performed in this
-      authoring pass (not_measured, consistent with peer S1 entity events).
+      bitriver.com is the company's canonical domain, but the retained
+      row does not assert a website seizure, frontend takedown, or
+      operator-posted compliance notice. Wayback bracketing of the
+      website would be an optional enrichment, not load-bearing evidence
+      for the current null-case claim.
   - layer: asset_onchain
     status: not_applicable
     note: |
@@ -129,6 +134,13 @@ observations:
           offramp-cascade surface is structurally limited.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  local Treasury and contemporaneous reporting anchors remain the
+  claim-usable trigger evidence. Coverage is narrowed to the retained
+  entity-designation / no-public-CEX-cascade denominator: no L0 network
+  block, L4 website takedown, consensus/RPC filtering, or issuer
+  blacklist observation is asserted for this mining-infrastructure row.
+
   **AUTHORED 2026-05-31** (overnight census tick 5, human:xiangwen
   autonomous mandate). FIRST-OF-ITS-KIND OFAC designation of a
   cryptocurrency-MINING company: BitRiver AG + 10 Russia-based

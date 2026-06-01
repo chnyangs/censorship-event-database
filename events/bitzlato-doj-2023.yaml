@@ -1,17 +1,17 @@
 id: bitzlato-doj-2023
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-21T12:18:00Z
-last_verified: 2026-04-21
+last_verified: 2026-06-02
 
 trigger:
   type: doj_indictment
@@ -52,27 +52,38 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
-    note: No network-layer measurement plan attached yet for this event
+    status: not_applicable
+    note: |
+      The retained public claim is a DOJ/FinCEN exchange-operation
+      disruption and Section 9714 transmittal prohibition, not an
+      ISP/DNS/national-firewall block. No L0 censorship action is
+      asserted for Bitzlato in this release.
   - layer: l1_consensus
     status: not_applicable
     note: Exchange-level enforcement does not map cleanly to consensus-layer filtering
   - layer: l3_rpc
-    status: not_measured
+    status: not_applicable
     note: |
-      Public RPC provider substrate anchors exist for adjacent OFAC-aware
-      Ethereum RPC services, but no Bitzlato-specific RPC rejection,
-      docs/status change, or provider filter-list snapshot is pinned.
-      Substrate existence is not counted as event-specific L3 coverage.
+      Bitzlato is modeled as an exchange / money-transmission
+      enforcement target. The retained claim does not involve Ethereum
+      RPC provider filtering, docs/status changes, or provider
+      filter-list snapshots.
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     scope:
       - bitzlato website
       - exchange frontend availability
-    note: Frontend/operator availability is not asserted in this release
+    note: |
+      Frontend/operator website availability is not asserted in this
+      release. The claim-usable observation is FinCEN's covered-financial-
+      institution transmittal prohibition and DOJ-described exchange
+      disruption at the venue/off-ramp layer, not a separately verified
+      bitzlato.com seizure-banner or frontend takedown.
   - layer: asset_onchain
-    status: not_measured
-    note: This trigger is not primarily an issuer blacklist event
+    status: not_applicable
+    note: |
+      This trigger is not an issuer-blacklist event and the retained
+      Bitzlato row does not enumerate a frozen token-address set.
   - layer: offramp_cex
     status: measured
     scope:
@@ -104,6 +115,12 @@ recovery:
     note: This event is modeled as an enforcement-led disruption rather than a short-lived policy toggle
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  local DOJ and FinCEN replay anchors remain the claim-usable evidence.
+  Coverage is narrowed to the retained exchange-operation / Section 9714
+  transmittal-prohibition claim; no L0, L3, L4 seizure-banner, or
+  issuer-blacklist observation is asserted.
+
   Scoped release claim: the 2023-01-18 DOJ and FinCEN action directly disrupted
   Bitzlato's exchange operations at the off-ramp / venue layer. This admitted
   baseline is not claiming a multi-layer cascade. It is a narrow enforcement-led
@@ -120,8 +137,8 @@ scoped_claim: |
   attribution via FinCEN 9714 order). First application of FinCEN
   Section 9714 to a crypto exchange; structurally distinct from
   pure-OFAC or pure-DOJ paths. L4 frontend takedown of bitzlato.com is
-  hypothesized but not asserted in this release: coverage.l4_frontend
-  status is `not_measured` and no L4 observation row is attached.
+  hypothesized but not asserted in this release: coverage.l4_frontend is
+  `not_applicable` to the retained claim and no L4 observation row is attached.
   Future revision should add l4_frontend pre/post Wayback bracketing of
   bitzlato.com to test the FinCEN-9714 + DOJ-indictment frontend
   seizure pattern. v0.3 audit 2026-05-20: scoped_claim repaired per

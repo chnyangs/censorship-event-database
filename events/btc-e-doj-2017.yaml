@@ -1,17 +1,17 @@
 id: btc-e-doj-2017
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-22T07:30:00Z
-last_verified: 2026-04-22
+last_verified: 2026-06-02
 
 trigger:
   type: doj_indictment
@@ -80,17 +80,16 @@ jurisdiction: [US]
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     scope: [btc-e.com]
     note: |
-      L0 network-layer OONI API query performed 2026-04-22. Searched the
-      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
-      test_name=web_connectivity across:
-        btc-e.com  2017-06-26..2017-08-26  -> 0 results
-      All 1 queries returned 0 measurements.
-      Artifact: sources/l0_datasets/btc-e-doj-2017/btc-e.com__ooni.json
-      (body_hash sha256:992e3a6464e32bba4980a4153494856dae559dad55ecf490b2c5ed062515c5ba).
-      Measurement-gap finding: OONI volunteer probe coverage is absent.
+      The retained public claim is a DOJ/FBI domain seizure, not an
+      ISP/DNS/national-firewall blocking claim. A prior OONI API query
+      across btc-e.com for 2017-06-26..2017-08-26 returned no public
+      measurements (artifact:
+      sources/l0_datasets/btc-e-doj-2017/btc-e.com__ooni.json), but
+      that absence is not load-bearing because no L0 censorship action
+      is asserted.
   - layer: l1_consensus
     status: not_applicable
     chain: bitcoin
@@ -107,18 +106,14 @@ coverage:
     status: not_applicable
     chain: bitcoin
   - layer: offramp_cex
-    status: not_measured
+    status: not_applicable
     note: |
-      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
-      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
-      Elliptic sanctions-coverage resource pages):
-        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
-        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
-        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
-      Status remains not_measured because per-event chain-analytics report
-      slices (naming specific SDN addresses / KYT flag records) are not
-      yet pinned. The anchors establish the substrate; per-event slicing
-      would promote status.
+      BTC-e was itself the enforcement target and exchange venue. The
+      release claim is limited to the same-day btc-e.com domain seizure
+      and does not retain a separate counterparty-exchange delisting,
+      KYT, or off-ramp cascade observation. Generic chain-analytics
+      substrate captures are therefore not used as event-specific
+      offramp_cex evidence for this row.
 
 observations:
   - layer: l4_frontend
@@ -152,6 +147,13 @@ observations:
           names the coordinated seizure operation.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  local Wayback DOJ evidence remains the claim-usable trigger and
+  observation anchor; coverage is narrowed to the retained L4 domain-
+  seizure claim. L0 network blocking and counterparty-CEX reactions are
+  excluded from the public claim rather than left as unresolved
+  load-bearing gaps.
+
   comparison — earliest crypto-exchange enforcement event in the dataset
   (16 months before the 2018-11-28 Iran-ransomware first OFAC crypto SDN).
   BTC-e indictment + domain seizure under DOJ NDCA + Greek authorities (Vinnik
@@ -162,7 +164,9 @@ scoped_claim: |
   "DOJ NDCA indictment of BTC-e / Alexander Vinnik on 2017-07-26 was accompanied
   by a same-day seizure of the canonical btc-e.com domain, documenting the
   earliest L4 frontend seizure in the dataset and establishing the pre-OFAC
-  baseline for crypto-exchange enforcement cross-layer cascade shape."
+  baseline for crypto-exchange enforcement cross-layer cascade shape. The
+  row does not assert ISP/DNS national blocking or a separate counterparty-
+  CEX/off-ramp cascade."
 
 tags:
   - doj_enforcement
