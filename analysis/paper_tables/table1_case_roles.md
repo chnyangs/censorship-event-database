@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c85ecaa` · generated `2026-06-01T04:41:31Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `db44253` · generated `2026-06-01T04:52:47Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -109,7 +109,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `circle-usdc-tornado-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `address_set` | `subset` | 1 | `asset_only` | ✓ | · | `2026-04-22` | `—` |
 | `cloudflare-ethereum-gateway-tornado-block-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `other_single_layer` | ✓ | · | `2026-05-21` | `—` |
 | `coin-mx-doj-murgio-2015` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-20` | `2026-05-20` |
-| `coinbase-eu-usdt-stablecoin-delisting-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
+| `coinbase-eu-usdt-stablecoin-delisting-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `—` |
 | `coinbase-india-exit-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `domain` | `complete` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `coinbase-irs-john-doe-summons-2016` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `court_civil_order` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `coinbase-japan-exit-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |

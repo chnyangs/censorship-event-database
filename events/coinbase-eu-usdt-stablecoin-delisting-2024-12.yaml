@@ -2,16 +2,16 @@ id: coinbase-eu-usdt-stablecoin-delisting-2024-12
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - eu-mica-2023
@@ -24,6 +24,23 @@ trigger:
   timestamp: 2024-12-13T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://help.coinbase.com/en/coinbase/other-topics/other/mica-restricted-stablecoins
+      body_hash: sha256:f4e774d7a1798d685490dba8925605288e320cea68c5e7d678966c793fe9ae1f
+      body_path: sources/http_captures/coinbase-eu-usdt-stablecoin-delisting-2024-12/official-coinbase-help/help.coinbase.com__en-coinbase-other-topics-other-mica-restricted-stablecoins__bdef00ee95.html
+      evidence_use: replayable
+      note: |
+        Coinbase Help official article, "MiCA non-compliant stablecoins."
+        The captured page states that, on 2024-12-13 and due to MiCA
+        regulations, Coinbase began restricting services for stablecoins
+        that had not achieved MiCA compliance for retail customers of
+        Coinbase Luxembourg S.A., Coinbase Europe Limited, Coinbase Custody
+        International Limited, and Coinbase Germany GmbH. It enumerates
+        USDT, PAX, PYUSD, GUSD, GYEN, and DAI as the restricted assets,
+        describes trade and receive restrictions, and states that USDC and
+        EURC continue to be supported. Captured 2026-06-01; retained
+        contemporaneous trade-press mementos below corroborate the original
+        2024 announcement/effective-date context.
     - type: semi_primary_wayback
       url: https://decrypt.co/296453/coinbase-europe-delists-usdt
       wayback: https://web.archive.org/web/20241213163322/https://decrypt.co/296453/coinbase-europe-delists-usdt
@@ -52,13 +69,13 @@ trigger:
         body verifies the MiCA-driven delisting plan. Independent second
         semi-primary anchor (announcement → 2024-12-13 effective date).
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_corporate
       note: |
-        Day-level precision: delisting effective for EEA retail "Starting
-        Dec. 13" 2024 (Decrypt memento 2024-12-13), per the MiCA exchange
-        deadline (full implementation 2024-12-31). The plan was announced
-        2024-10-04 (Cointelegraph). Recorded event date 2024-12-13
-        (effective delisting).
+        Day-level precision: Coinbase's official help article states that
+        "On December 13, 2024" Coinbase began restricting services for the
+        six MiCA-non-compliant stablecoins. The contemporaneous trade-press
+        mementos below corroborate the 2024 announcement/effective-date
+        context. Recorded event date 2024-12-13 (effective restriction).
 
 target:
   kind: asset
@@ -125,12 +142,31 @@ observations:
     actor: exchange:coinbase
     event: coinbase_eea_retail_delists_non_mica_compliant_stablecoins
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2024-12-13T00:00:00Z
     precision: day
     delta_hours: 0
     country: EU
     sources:
+      - type: primary_corporate
+        url: https://help.coinbase.com/en/coinbase/other-topics/other/mica-restricted-stablecoins
+        body_hash: sha256:f4e774d7a1798d685490dba8925605288e320cea68c5e7d678966c793fe9ae1f
+        body_path: sources/http_captures/coinbase-eu-usdt-stablecoin-delisting-2024-12/official-coinbase-help/help.coinbase.com__en-coinbase-other-topics-other-mica-restricted-stablecoins__bdef00ee95.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [coinbase]
+          countries: [EU]
+          time_window:
+            - 2024-12-13T00:00:00Z
+            - 2026-06-01T23:59:59Z
+        note: |
+          Coinbase's own help article records the MiCA stablecoin
+          restriction: services for USDT/PAX/PYUSD/GUSD/GYEN/DAI were
+          restricted from 2024-12-13 for retail customers of Coinbase
+          Luxembourg, Coinbase Europe, Coinbase Custody International, and
+          Coinbase Germany; trade and receive are restricted, while USDC
+          and EURC remain supported. attribution=direct for the
+          Coinbase-authored policy and stated MiCA-compliance rationale.
       - type: semi_primary_wayback
         url: https://decrypt.co/296453/coinbase-europe-delists-usdt
         wayback: https://web.archive.org/web/20241213163322/https://decrypt.co/296453/coinbase-europe-delists-usdt
@@ -167,10 +203,20 @@ observations:
           Independent second semi-primary anchor.
 
 analysis_notes: |
+  **SOURCE-STRENGTHENED 2026-06-01** (quality-loop primary-trigger repair):
+  pinned Coinbase's official "MiCA non-compliant stablecoins" help article
+  as a local `body_hash` / `body_path` replay artifact. The official article
+  directly states the 2024-12-13 start date, MiCA rationale, affected
+  Coinbase European entities, six-asset set (USDT/PAX/PYUSD/GUSD/GYEN/DAI),
+  trade/receive restrictions, and USDC/EURC exception. attribution is
+  upgraded from plausible to direct for Coinbase's own policy action; the
+  existing Decrypt/Cointelegraph mementos remain as contemporaneous
+  corroboration of the original 2024 announcement/effective-date context.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: MiCA-driven Coinbase
   EU USDT delisting; captured source supports the delisting action; attribution downgraded
-  direct->plausible to match evidence floor — semi-primary only, no pinned primary corporate doc;
-  passes strict admission validation).
+  direct->plausible to match evidence floor at admission time — this was repaired on
+  2026-06-01 with a pinned Coinbase primary corporate doc; passes strict admission validation).
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
   verified+captured, awaiting human admission).
 
@@ -208,6 +254,9 @@ analysis_notes: |
   Sources verified via WebSearch + captured 2026-05-31 (Decrypt +
   Cointelegraph, body_hash-pinned; Decrypt grep-confirmed for "Starting
   Dec. 13", the six-asset set, and the MiCA rationale; no fabrication).
+  Coinbase official source captured 2026-06-01 and grep-confirmed for
+  "On December 13, 2024", the six-asset set, the affected Coinbase European
+  entities, trade/receive restrictions, and the USDC/EURC exception.
 
 scoped_claim: |
   "Coinbase Europe / Coinbase Germany's 2024-12-13 delisting of six

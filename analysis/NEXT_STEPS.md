@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **266 release-ready** cases, **99 admitted-but-blocked** cases, admitted observation reliability
-      **281 high / 84 medium / 0 low**, and admitted attribution reliability **240 high / 125 medium / 0 low**.
+      **267 release-ready** cases, **98 admitted-but-blocked** cases, admitted observation reliability
+      **282 high / 83 medium / 0 low**, and admitted attribution reliability **241 high / 124 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -167,10 +167,15 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       out of the blocked/lower-tier queue by pinning official Bybit and Paxos corporate notices locally,
       removing `evidence_tier=attested_secondary`, and upgrading the company-authored market-exit observations
       to direct attribution while keeping the CSA/OSC regulatory framing as contextual rationale.
+      Follow-on primary-trigger repair also moved `coinbase-eu-usdt-stablecoin-delisting-2024-12` out of
+      the blocked queue by pinning Coinbase's official MiCA non-compliant stablecoin help article locally,
+      upgrading the trigger/observation/attribution scores to high, and retaining Decrypt/Cointelegraph
+      mementos only as contemporaneous corroboration.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
-      The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
-      `scores.attribution_reliability=="low"` in `analysis/review-report.json`, then either:
+      The next automated repair loop should prioritize remaining primary-trigger blockers and rows with
+      `scores.observation_reliability=="medium"` or `scores.attribution_reliability=="medium"` in
+      `analysis/review-report.json`, then either:
       attach replayable claim-usable primary/semi-primary anchors, narrow/drop the weak observation, or leave
       the case blocked when no public replayable source exists. Do **not** convert contextual sources to
       claim-usable merely to improve counts.

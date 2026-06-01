@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `c85ecaa` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:41:31Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `db44253` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:52:47Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -22,6 +22,21 @@
 
 ### Trigger citations
 
+- **`primary_corporate`**
+  - URL: <https://help.coinbase.com/en/coinbase/other-topics/other/mica-restricted-stablecoins>
+  - body_hash: `sha256:f4e774d7a1798d685490dba8925605288e320cea68c5e7d678966c793fe9ae1f`
+  - body_path: `sources/http_captures/coinbase-eu-usdt-stablecoin-delisting-2024-12/official-coinbase-help/help.coinbase.com__en-coinbase-other-topics-other-mica-restricted-stablecoins__bdef00ee95.html`
+  > Coinbase Help official article, "MiCA non-compliant stablecoins."
+> The captured page states that, on 2024-12-13 and due to MiCA
+> regulations, Coinbase began restricting services for stablecoins
+> that had not achieved MiCA compliance for retail customers of
+> Coinbase Luxembourg S.A., Coinbase Europe Limited, Coinbase Custody
+> International Limited, and Coinbase Germany GmbH. It enumerates
+> USDT, PAX, PYUSD, GUSD, GYEN, and DAI as the restricted assets,
+> describes trade and receive restrictions, and states that USDC and
+> EURC continue to be supported. Captured 2026-06-01; retained
+> contemporaneous trade-press mementos below corroborate the original
+> 2024 announcement/effective-date context.
 - **`semi_primary_wayback`**
   - URL: <https://decrypt.co/296453/coinbase-europe-delists-usdt>
   - Wayback: <https://web.archive.org/web/20241213163322/https://decrypt.co/296453/coinbase-europe-delists-usdt>
@@ -61,7 +76,7 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `plausible` · Δt = 0h
+### offramp_cex · attribution: `direct` · Δt = 0h
 
 **Event label**: `coinbase_eea_retail_delists_non_mica_compliant_stablecoins`
 
@@ -69,6 +84,17 @@
 
 **Sources**:
 
+- **`primary_corporate`**
+  - URL: <https://help.coinbase.com/en/coinbase/other-topics/other/mica-restricted-stablecoins>
+  - body_hash: `sha256:f4e774d7a1798d685490dba8925605288e320cea68c5e7d678966c793fe9ae1f`
+  - body_path: `sources/http_captures/coinbase-eu-usdt-stablecoin-delisting-2024-12/official-coinbase-help/help.coinbase.com__en-coinbase-other-topics-other-mica-restricted-stablecoins__bdef00ee95.html`
+  > Coinbase's own help article records the MiCA stablecoin
+> restriction: services for USDT/PAX/PYUSD/GUSD/GYEN/DAI were
+> restricted from 2024-12-13 for retail customers of Coinbase
+> Luxembourg, Coinbase Europe, Coinbase Custody International, and
+> Coinbase Germany; trade and receive are restricted, while USDC
+> and EURC remain supported. attribution=direct for the
+> Coinbase-authored policy and stated MiCA-compliance rationale.
 - **`semi_primary_wayback`**
   - URL: <https://decrypt.co/296453/coinbase-europe-delists-usdt>
   - Wayback: <https://web.archive.org/web/20241213163322/https://decrypt.co/296453/coinbase-europe-delists-usdt>
@@ -100,7 +126,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `c85ecaa`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `db44253`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

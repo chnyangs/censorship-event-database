@@ -12,13 +12,13 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **266** (11 complete / 255 scoped) and
-  admitted-but-blocked cases are **99**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **267** (11 complete / 256 scoped) and
+  admitted-but-blocked cases are **98**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **281 high / 84 medium / 0 low**; attribution reliability
-  **240 high / 125 medium / 0 low**. Current admitted paper roles are
+  observation reliability **282 high / 83 medium / 0 low**; attribution reliability
+  **241 high / 124 medium / 0 low**. Current admitted paper roles are
   **264 aggregate_datapoint / 97 null_control / 1 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
@@ -112,9 +112,11 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `voyager-bankruptcy-doj-objection-2023` is explicitly `evidence_tier=attested_secondary` with attribution
   narrowed from direct to plausible; and `tornado-cash-storm-conviction-2025` is demoted to draft because the
   retained chilling-effect observation lacks a concrete operator/repository/on-chain artifact.
-  The latest primary-trigger repair pins official Bybit and Paxos Canada-withdrawal notices, upgrades both
-  company-authored market-exit observations to direct attribution, and removes both rows from the
-  `attested_secondary` tier while keeping the CSA/OSC regulatory rationale contextual.
+  The latest primary-trigger repairs pin official Bybit and Paxos Canada-withdrawal notices plus Coinbase's
+  official MiCA non-compliant stablecoin help article. Bybit/Paxos are upgraded out of `attested_secondary`;
+  Coinbase moves from blocked to release-ready scoped with trigger/observation/attribution all high. The
+  CSA/OSC and MiCA regulatory rationales remain scoped to the source-supported company-authored policy
+  actions, with trade-press mementos retained only as corroboration where relevant.
 
 ## Admitted composition (365)
 | dimension | breakdown |

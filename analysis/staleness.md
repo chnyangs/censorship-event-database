@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T04:41:31Z`
+Generated at: `2026-06-01T04:52:47Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -118,7 +118,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `circle-usdc-tornado-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `cloudflare-ethereum-gateway-tornado-block-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `coin-mx-doj-murgio-2015` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
-| `coinbase-eu-usdt-stablecoin-delisting-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `coinbase-eu-usdt-stablecoin-delisting-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `coinbase-india-exit-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `coinbase-irs-john-doe-summons-2016` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
 | `coinbase-japan-exit-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -504,7 +504,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `circle-usdc-svb-policy-statement-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `circle-usdc-tornado-2022` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `cloudflare-ethereum-gateway-tornado-block-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=11d
-- `coinbase-eu-usdt-stablecoin-delisting-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `coinbase-eu-usdt-stablecoin-delisting-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `coinbase-india-exit-2022` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `coinbase-japan-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `colonial-pipeline-darkside-ransom-clawback-doj-2021` — audit=no_audit_recorded, verification=ok, verif_age=1d
