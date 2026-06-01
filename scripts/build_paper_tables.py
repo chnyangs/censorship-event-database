@@ -380,13 +380,34 @@ def build_table2(
         "separately so the two units are not conflated."
     )
     lines.append("")
+    rows_by_layer = {row["layer"]: row for row in layer_rows}
+    l3_row = rows_by_layer.get("l3_rpc")
+    if l3_row:
+        l3_measured = l3_row["measured_count"]
+        l3_partial = l3_row["partially_measured_count"]
+        if l3_measured == 0:
+            if l3_partial:
+                lines.append(
+                    "`l3_rpc` has no measured denominator in this snapshot. "
+                    "Its partial rows are named observations only; do not cite "
+                    "them as an L3 conditional rate."
+                )
+            else:
+                lines.append(
+                    "`l3_rpc` has no measured or partial denominator in this "
+                    "snapshot; it is an observability gap, not a zero-reaction "
+                    "finding."
+                )
+        else:
+            lines.append(
+                f"`l3_rpc` has {l3_measured} measured denominator event(s) "
+                f"and {l3_partial} partial denominator event(s) in this "
+                "snapshot. Any L3 statement must carry the inline denominator "
+                "above and the sensitivity-rubric context below; do not turn "
+                "the named rows into a provider-population claim."
+            )
     lines.append(
-        "`l3_rpc` has no measured denominator in this release. Its two "
-        "partial rows are named Flashbots git-history observations only; "
-        "do not cite them as an L3 conditional rate."
-    )
-    lines.append(
-        "`asset_onchain` remains **not reported as a rate** at v0.1 — "
+        "`asset_onchain` remains **not reported as a rate** in this snapshot — "
         "the admission rubric requires the change as the admission anchor, "
         "so the ratio is structurally circular (see "
         "[`docs/paper_claims.md §C1` 'Not said'](../../docs/paper_claims.md))."

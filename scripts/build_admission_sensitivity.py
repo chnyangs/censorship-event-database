@@ -152,8 +152,8 @@ def _compute_all(events: list[dict]) -> list[dict[str, Any]]:
             and results["current"]["denominator"] == 0
             and results["permissive"]["denominator"] > 0
         ):
-            # L3 has only named Flashbots git-history observations in v0.1.
-            # Keep the counts, but suppress the permissive-only conditional rate.
+            # If L3 only has partial denominator rows, keep the counts but
+            # suppress the permissive-only conditional rate.
             row["permissive_rate"] = None
             row["strict_permissive_delta"] = None
             row["sensitivity"] = "undefined"
@@ -205,6 +205,19 @@ def _write_csv(rows: list[dict[str, Any]], path: pathlib.Path) -> None:
 
 def _write_md(rows: list[dict[str, Any]], path: pathlib.Path,
               event_count: int) -> None:
+    zero_strict_layers = [
+        r["layer"] for r in rows
+        if r["strict_den"] == 0 and r["current_den"] == 0
+    ]
+    suppressed_l3 = any(
+        r["layer"] == "l3_rpc"
+        and r["strict_den"] == 0
+        and r["current_den"] == 0
+        and r["permissive_den"] > 0
+        and r["permissive_rate"] is None
+        for r in rows
+    )
+
     md = [
         "# Admission-protocol sensitivity ablation",
         "",
@@ -263,16 +276,25 @@ def _write_md(rows: list[dict[str, Any]], path: pathlib.Path,
         "(≥ 10 percentage points) between strict and permissive. "
         "The paper must report both rates and disclose the "
         "admission choice in the claim's phrasing.",
-        "- A layer with `—` denominator under *strict* means no "
-        "events have `measured` coverage at that layer (the "
-        "`l0_network` and `l3_rpc` cases at v0.1). For those layers "
-        "the paper should phrase the rate as an observability gap, "
-        "not a conditional rate.",
-        "- For `l3_rpc`, the permissive counts are retained only as "
-        "two named Flashbots git-history observations; the rate is "
-        "suppressed because the layer has no measured denominator.",
         "- For `asset_onchain`, counts are retained but rates are retracted "
         "because measured admission requires an asset-layer change anchor.",
+    ])
+    if zero_strict_layers:
+        layers = ", ".join(f"`{layer}`" for layer in zero_strict_layers)
+        md.append(
+            "- A layer with `—` denominator under *strict/current* has no "
+            f"`measured` coverage under those rubrics ({layers} in this "
+            "snapshot). Phrase those cells as observability gaps; permissive "
+            "partial-coverage counts are sensitivity-only unless a paper table "
+            "explicitly emits a matched denominator."
+        )
+    if suppressed_l3:
+        md.append(
+            "- For `l3_rpc`, permissive counts are retained as named partial "
+            "observations only when there is no measured denominator; in that "
+            "case the rate is suppressed."
+        )
+    md.extend([
         "",
         "This ablation is the reviewer-facing answer to "
         "\"can you inflate changed_given_measured by labeling events "

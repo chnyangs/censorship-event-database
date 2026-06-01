@@ -135,3 +135,30 @@ def test_source_commit_drift_warns_without_matching_source_hash() -> None:
         "dataset.meta.json source_commit=parent1 but HEAD=head999; "
         "source_commit is display metadata only"
     ]
+
+
+def test_table2_l3_prose_rejects_stale_no_denominator_claim() -> None:
+    errors: list[str] = []
+
+    check_paper_readiness.check_table2_layer_prose(
+        [{"layer": "l3_rpc", "measured_count": "1"}],
+        "`l3_rpc` has no measured denominator in this release.",
+        errors,
+    )
+
+    assert errors == [
+        "Table 2 prose says `l3_rpc` has no measured denominator, "
+        "but derived/layer_observability.csv reports measured_count=1"
+    ]
+
+
+def test_table2_l3_prose_accepts_matching_measured_claim() -> None:
+    errors: list[str] = []
+
+    check_paper_readiness.check_table2_layer_prose(
+        [{"layer": "l3_rpc", "measured_count": "1"}],
+        "`l3_rpc` has 1 measured denominator event(s) in this snapshot.",
+        errors,
+    )
+
+    assert not errors

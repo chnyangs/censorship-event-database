@@ -665,6 +665,35 @@ def check_source_manifest(errors: list[str]) -> None:
             )
 
 
+def check_table2_layer_prose(
+    layer_rows: list[dict[str, str]],
+    table2_text: str,
+    errors: list[str],
+) -> None:
+    """Guard against generated Table 2 prose contradicting live layer rows."""
+    rows_by_layer = {row.get("layer"): row for row in layer_rows}
+    l3_row = rows_by_layer.get("l3_rpc")
+    if not l3_row:
+        return
+
+    measured = as_int(l3_row.get("measured_count")) or 0
+    says_no_measured = "`l3_rpc` has no measured denominator" in table2_text
+    says_measured_count = re.search(
+        r"`l3_rpc` has \d+ measured denominator event\(s\)",
+        table2_text,
+    )
+    if measured > 0 and says_no_measured:
+        errors.append(
+            "Table 2 prose says `l3_rpc` has no measured denominator, "
+            f"but derived/layer_observability.csv reports measured_count={measured}"
+        )
+    if measured == 0 and says_measured_count:
+        errors.append(
+            "Table 2 prose reports measured `l3_rpc` denominator events, "
+            "but derived/layer_observability.csv reports measured_count=0"
+        )
+
+
 def kappa_value(report: dict[str, Any], variable: str) -> float | None:
     variables = report.get("variables") or {}
     value = (variables.get(variable) or {}).get("kappa")
@@ -1050,6 +1079,8 @@ def main() -> int:
 
     try:
         layer_rows = read_csv(derived_dir / "layer_observability.csv")
+        table2_text = (paper_tables_dir / "table2_layer_observability.md").read_text()
+        check_table2_layer_prose(layer_rows, table2_text, errors)
         for row in layer_rows:
             not_measured = int(row.get("not_measured_count") or 0)
             if not_measured > 0 and row.get("changed_given_applicable"):
