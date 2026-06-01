@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=367)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c5a73a6` · generated `2026-06-01T03:21:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4acc680` · generated `2026-06-01T03:34:29Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -8,15 +8,15 @@ Supports `docs/paper_claims.md §0` (case-role convention). Each event's admissi
 
 | admission_tier | count |
 | --- | ---: |
-| `anchor_case` | 5 |
-| `empirical_case` | 265 |
+| `anchor_case` | 4 |
+| `empirical_case` | 266 |
 | `null_case` | 97 |
 | **total** | **367** |
 
 | trigger precision bucket | count |
 | --- | ---: |
-| `hour` | 10 |
-| `day` | 357 |
+| `hour` | 11 |
+| `day` | 356 |
 
 Only the `hour`-precision subset is admissible for hour-granularity latency claims (Table 4).
 
@@ -188,7 +188,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `indonesia-bi-bitcoin-warning-2014` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `indonesia-bi-payment-instrument-prohibition-2018-01` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `indonesia-kominfo-exchange-social-account-block-2024-07` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-31` | `—` |
-| `infura-alchemy-tornado-rpc-block-2022` | `anchor_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `address_set` | `subset` | 2 | `multi_layer` | ✓ | · | `2026-05-16` | `2026-05-16` |
+| `infura-alchemy-tornado-rpc-block-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `hour` | `protocol` | `subset` | 1 | `other_single_layer` | ✓ | · | `2026-06-01` | `—` |
 | `infura-metamask-donetsk-luhansk-block-2022-03` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 2 | `multi_layer` | ✓ | · | `2026-05-21` | `—` |
 | `iran-cbi-crypto-banking-prohibition-2018` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `iran-cbi-exchange-payment-gateway-block-2024-12` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |

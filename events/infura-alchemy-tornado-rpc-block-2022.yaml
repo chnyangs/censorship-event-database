@@ -1,122 +1,85 @@
 id: infura-alchemy-tornado-rpc-block-2022
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
-admission_tier: anchor_case
+admission_tier: empirical_case
+evidence_tier: attested_secondary
+evidence_caveat: "Infura/Alchemy August-2022 Tornado Cash API-access restriction is §9-clear and contemporaneously reported, but no provider-controlled event-specific artifact or replayed RPC rejection is pinned. Admitted as attested_secondary on one captured supporting source; attribution held at plausible."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
-last_human_audit: 2026-05-16
+last_verified: 2026-06-01
 
 related_events:
   - tornado-cash-ofac-2022
   - tornado-cash-ofac-delisting-2025
   - circle-usdc-tornado-2022
+  - metamask-eth-phishing-detect-tornado-additions-2022
 
 trigger:
   type: corporate_policy_change
-  actor: consensys_infura
-  timestamp: 2022-08-09T00:00:00Z
-  timestamp_precision: day
+  actor: infura_and_alchemy
+  timestamp: 2022-08-09T11:41:30Z
+  timestamp_precision: hour
   citation:
     - type: primary_corporate
       url: https://infura.io/terms
-      wayback: https://web.archive.org/web/2022/https://infura.io/terms
       evidence_use: contextual_unarchived
       note: |
-        Infura (ConsenSys-operated managed-Ethereum-RPC service) updated its
-        Terms of Service in August 2022 to assert OFAC-compliance screening
-        of RPC requests touching sanctioned addresses; the Tornado Cash
-        contract set (per the 2022-08-08 SDN designation, see related event
-        tornado-cash-ofac-2022) was the first concrete enforcement target.
-        Wayback anchor is a 2022 calendar-folder pointer at infura.io/terms
-        rather than a pinned snapshot of the ToS revision; the exact
-        revision URL and snapshot timestamp must be re-pinned during human
-        audit before this citation may serve as an admission anchor in its
-        own right. Marked evidence_use=contextual_unarchived per validator
-        policy for unarchived sources.
+        Current Infura / ConsenSys terms are retained only as corporate-policy
+        context for sanctions-compliance screening by a managed Ethereum
+        infrastructure provider. This URL is not used as a specific
+        August-2022 Tornado Cash block anchor because no pinned historical
+        provider-controlled revision is attached in this row.
     - type: primary_corporate
       url: https://docs.alchemy.com/reference/compliance-program
-      wayback: https://web.archive.org/web/2022/https://docs.alchemy.com/reference/compliance-program
       evidence_use: contextual_unarchived
       note: |
-        Alchemy Insights support / docs page describing the firm's
-        OFAC-compliance screening of managed-RPC requests. Alchemy
-        independently confirmed (via support article and customer
-        communications, August 2022) that RPC requests targeting the
-        2022-08-08 OFAC Tornado Cash address set would be rejected.
-        Wayback anchor is a 2022 calendar-folder pointer; the exact
-        revision URL and snapshot timestamp must be re-pinned during
-        human audit. Marked evidence_use=contextual_unarchived.
+        Current Alchemy compliance documentation is retained only as
+        corporate-policy context. This URL is not used as a specific
+        August-2022 Tornado Cash block anchor because no pinned historical
+        provider-controlled revision is attached in this row.
     - type: supporting_journalism
-      url: https://cointelegraph.com/news/infura-blocks-some-areas-from-accessing-ethereum-and-its-testnets
-      wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/infura-blocks-some-areas-from-accessing-ethereum-and-its-testnets
-      evidence_use: contextual_unarchived
+      url: https://www.theblock.co/post/162402/infura-and-alchemy-blocking-access-to-tornado-cash
+      body_hash: sha256:558d879c7918b26d44647717640d85a2da7b46fb7183755c2172c36cf5f6e385
+      body_path: sources/http_captures/infura-alchemy-tornado-rpc-block-2022/primary/www.theblock.co__post-162402-infura-and-alchemy-blocking-access-to-tornado-cash__96bfbc9227.html
+      evidence_use: replayable
       note: |
-        Cointelegraph contemporaneous coverage of the Infura RPC block
-        of Tornado-related requests (August 2022). Triangulation source
-        for the day-level timing; not primary. Marked
-        evidence_use=contextual_unarchived pending human-audit Wayback pin.
-    - type: supporting_journalism
-      url: https://www.theblock.co/post/162680
-      wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162680
-      evidence_use: contextual_unarchived
-      note: |
-        The Block contemporaneous coverage of the joint Infura/Alchemy
-        RPC-provider response to the 2022-08-08 Tornado Cash OFAC
-        designation. Triangulation source. Marked
-        evidence_use=contextual_unarchived pending human-audit Wayback pin.
+        Captured The Block article published 2022-08-09 7:41AM EDT reports
+        that Infura and Alchemy were blocking Ethereum API access for Tornado
+        Cash users after the OFAC designation. The article is the load-bearing
+        event-specific source for this lower-tier row; it is not a
+        provider-controlled primary source.
   timestamp_sources:
-    - type: primary_corporate
+    - type: supporting_journalism
       note: |
-        Day-level timing per Infura ToS update and Alchemy support-article
-        publication dates in August 2022. The Infura+Alchemy joint
-        enforcement window is asserted as 2022-08-09 (next business day
-        after the 2022-08-08 OFAC SDN designation) through approximately
-        2022-08-12; precision=day reflects the LLM-author's inability to
-        pin a sub-day timestamp from the public corporate statements.
+        Hour-level timestamp from the captured The Block publication metadata
+        (2022-08-09 7:41AM EDT / 11:41:30Z). The source describes the block as
+        already in effect at publication time, so the event timestamp is an
+        observation timestamp rather than a provider announcement time.
 
 target:
-  kind: address_set
+  kind: protocol
+  protocol: tornado_cash
   enumeration: subset
   enumeration_note: |
-    Infura and Alchemy applied OFAC-screening filters to RPC requests
-    touching the 2022-08-08 Tornado Cash SDN address set (the 38
-    Ethereum addresses enumerated under tornado-cash-ofac-2022 /
-    target.addresses). This target is the same address universe as the
-    OFAC trigger event but the L3 enforcement perimeter is a subset
-    because (a) the corporate-policy statements did not enumerate the
-    addresses verbatim and (b) the operational block was implemented
-    against the SDN list as a moving reference, not a fixed snapshot.
-    The flashbots/rpc-endpoint server/ofacblacklist.go commit
-    92ab6b1f (Tornado Cash address additions, see
-    tornado-cash-ofac-2022 observations[l3_rpc]) is treated here as
-    the canonical address-list reference for the same enforcement
-    perimeter applied by Infura and Alchemy; the eight anchor pool
-    addresses are listed below as the addresses Infura/Alchemy
-    statements demonstrably blocked.
-  protocol: tornado_cash
+    Tornado Cash users interacting through the Tornado Cash front-end path
+    with Infura or Alchemy Ethereum API endpoints. The captured source says
+    the restriction was limited to front-end code / API access and that direct
+    command-line method calling remained possible. This row therefore does
+    not claim a complete protocol block, a full RPC-network block, or a fixed
+    provider-enumerated address set.
   actor_type: rpc_provider
   actor_name: Infura (ConsenSys) and Alchemy Insights
   chains: [ethereum]
   canonical_domains:
     - infura.io
     - alchemy.com
-  addresses:
-    - "0x722122dF12D4e14e13Ac3b6895a86e84145b6967"
-    - "0x8589427373D6D84E98730D7795D8f6f8731FDA16"
-    - "0x4736dCf1b7A3d580672CcE6E7c65cd5cc9cFBa9D"
-    - "0xD4B88Df4D29F5CedD6857912842cff3b20C8Cfa3"
-    - "0xFD8610d20aA15b7B2E3Be39B396a1bC3516c7144"
-    - "0x910Cbd523D972eb0a6f4cAe4618aD62622b39DbF"
-    - "0xA160cdAB225685dA1d56aa342Ad8841c3b53f291"
-    - "0xD96f2B1c14Db8458374d9Aca76E26c3D18364307"
 
 jurisdiction: [US, corporate_global]
 
@@ -124,302 +87,129 @@ coverage:
   - layer: l0_network
     status: not_applicable
     note: |
-      RPC-provider compliance filtering is an application-layer JSON-RPC
-      response policy, not an ISP-level DNS or routing block. The Infura
-      and Alchemy domains (infura.io, alchemy.com, *.alchemyapi.io,
-      *.infura.io) remained globally reachable; the block is in the
-      RPC response logic.
+      The retained claim is provider-side Ethereum API / node-infrastructure
+      filtering, not ISP-level DNS, IP, or routing interference.
   - layer: l1_consensus
     status: not_applicable
     chain: ethereum
     note: |
-      Pre-Merge Ethereum (Paris was 2022-09-15, 37 days after this event);
-      PBS relay-censorship infrastructure did not exist yet. The
-      consensus-layer effect of the 2022-08-08 OFAC trigger is captured
-      in the related event tornado-cash-ofac-2022 observations[l1] for
-      the post-Merge window.
+      The event predates Ethereum's Merge and concerns API-provider access
+      paths rather than validator, relay, proposer-builder, or consensus-layer
+      filtering.
   - layer: l3_rpc
-    status: measured
+    status: partially_measured
     chain: ethereum
     provider_scope: public_and_enterprise
     note: |
-      Load-bearing layer for this event. Infura (ConsenSys) and Alchemy
-      Insights are the two dominant US-jurisdiction public+enterprise
-      Ethereum RPC providers; the L3 column of the paper's Table 2
-      treats these two providers as the substrate. Both providers
-      published corporate-policy statements in August 2022 asserting
-      OFAC-compliance screening of RPC requests touching the 2022-08-08
-      Tornado Cash SDN addresses, and both providers implemented the
-      block in their managed-RPC response logic within days of the OFAC
-      designation. **First documented L3 RPC-provider sanctions block
-      in the corpus** — a load-bearing event for the paper's L3 layer.
-      Coverage status is `measured` because both named providers'
-      corporate statements are pinned (pending body_hash on human
-      audit); the provider universe at L3 is bounded to the two named
-      providers via the scope_descriptor on each L3 observation.
+      Load-bearing layer. The captured article reports that Infura and
+      Alchemy, two named Ethereum API / node-infrastructure providers, blocked
+      Tornado Cash access through their Ethereum API paths. Coverage is only
+      partially_measured because this row does not pin a provider-controlled
+      historical policy artifact or a replayed RPC/API rejection trace.
   - layer: l4_frontend
-    status: partially_measured
-    scope:
-      - metamask
-      - app.uniswap.org
-      - aggregator_uis_using_infura_default_rpc
+    status: not_measured
     note: |
-      Downstream frontend cascade observed at L4: MetaMask (which used
-      Infura as its default Ethereum RPC backend) and aggregator UIs
-      using Infura/Alchemy as default RPC endpoints surfaced broken
-      Tornado-related interactions for end users in the same window
-      (2022-08-09 to 2022-08-12). partially_measured because the L4
-      effect is a downstream consequence of the L3 block (not an
-      independent frontend-operator policy decision) and the user-
-      facing behavior is recoverable only via Wayback / aggregator
-      forum captures. Observation attached below at
-      attribution=plausible.
+      The captured article describes the restriction as operating through
+      Tornado Cash front-end code and mentions downstream wallet context, but
+      this repaired row does not retain a separate L4 frontend observation
+      because no frontend-operator artifact or reproducible UI diff is pinned.
   - layer: asset_onchain
     status: not_applicable
     note: |
-      No issuer-level stablecoin freeze primitive is invoked by the
-      L3 RPC block (the Circle USDC freeze is the sibling asset-layer
-      action, captured separately in circle-usdc-tornado-2022).
+      No issuer freeze or on-chain asset-control primitive is asserted here.
+      Circle's USDC freeze is represented in circle-usdc-tornado-2022.
   - layer: offramp_cex
     status: not_applicable
     note: |
-      RPC-provider block is upstream of CEX off-ramps; the off-ramp
-      reaction (dYdX, etc.) is captured under the OFAC trigger event
-      tornado-cash-ofac-2022 observations[offramp_cex].
+      Infura and Alchemy are infrastructure/API providers, not centralized
+      exchange fiat off-ramps.
 
 observations:
   - layer: l3_rpc
-    actor: rpc_provider:consensys_infura
-    event: infura_rpc_block_of_tornado_cash_sdn_addresses
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2022-08-09T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_corporate
-        url: https://infura.io/terms
-        wayback: https://web.archive.org/web/2022/https://infura.io/terms
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - consensys_infura
-          time_window:
-            - 2022-08-09T00:00:00Z
-            - 2022-08-12T23:59:59Z
-        note: |
-          Infura (ConsenSys) Terms of Service update of August 2022 is
-          the canonical corporate-policy statement of the OFAC-screening
-          policy applied to managed-RPC requests touching sanctioned
-          addresses. attribution=direct because the corporate-policy
-          source is the operator naming the action; the Tornado Cash
-          SDN set (per tornado-cash-ofac-2022) is the documented first
-          enforcement perimeter. DRYRUN: pinned Wayback snapshot and
-          body_hash for the specific ToS revision are deferred to the
-          human-audit pass; marked evidence_use=contextual_unarchived
-          per validator policy.
-      - type: supporting_journalism
-        url: https://cointelegraph.com/news/infura-blocks-some-areas-from-accessing-ethereum-and-its-testnets
-        wayback: https://web.archive.org/web/2022/https://cointelegraph.com/news/infura-blocks-some-areas-from-accessing-ethereum-and-its-testnets
-        evidence_use: contextual_unarchived
-        note: |
-          Cointelegraph contemporaneous coverage of the Infura RPC block,
-          retained for day-level timing triangulation. DRYRUN: pinned
-          Wayback snapshot deferred to human audit.
-  - layer: l3_rpc
-    actor: rpc_provider:alchemy_insights
-    event: alchemy_rpc_block_of_tornado_cash_sdn_addresses
-    observation_kind: observed_change
-    attribution: direct
-    timestamp: 2022-08-09T00:00:00Z
-    precision: day
-    delta_hours: 0
-    sources:
-      - type: primary_corporate
-        url: https://docs.alchemy.com/reference/compliance-program
-        wayback: https://web.archive.org/web/2022/https://docs.alchemy.com/reference/compliance-program
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers:
-            - alchemy_insights
-          time_window:
-            - 2022-08-09T00:00:00Z
-            - 2022-08-12T23:59:59Z
-        note: |
-          Alchemy Insights support / docs page describing the firm's
-          OFAC-compliance screening of managed-RPC requests, with the
-          2022-08-08 OFAC Tornado Cash address set as the first
-          enforcement perimeter. attribution=direct because the source
-          is Alchemy's own corporate-policy statement naming the action.
-          DRYRUN: pinned Wayback snapshot and body_hash for the specific
-          revision are deferred to the human-audit pass; marked
-          evidence_use=contextual_unarchived per validator policy.
-      - type: supporting_journalism
-        url: https://www.theblock.co/post/162680
-        wayback: https://web.archive.org/web/2022/https://www.theblock.co/post/162680
-        evidence_use: contextual_unarchived
-        note: |
-          The Block contemporaneous coverage of the joint Infura/Alchemy
-          RPC-provider response, retained for triangulation. DRYRUN:
-          pinned Wayback snapshot deferred to human audit.
-  - layer: l4_frontend
-    actor: frontend:wallets_and_aggregators_using_infura_default_rpc
-    event: downstream_wallet_and_aggregator_ui_broke_for_tornado_interactions
+    actor: rpc_provider:infura_and_alchemy
+    event: infura_alchemy_tornado_cash_api_access_block
     observation_kind: observed_change
     attribution: plausible
-    timestamp: 2022-08-10T00:00:00Z
-    precision: day
-    delta_hours: 24
+    timestamp: 2022-08-09T11:41:30Z
+    precision: hour
+    delta_hours: 0
     sources:
-      - type: primary_corporate
-        url: https://infura.io/terms
-        wayback: https://web.archive.org/web/2022/https://infura.io/terms
-        evidence_use: contextual_unarchived
+      - type: supporting_journalism
+        url: https://www.theblock.co/post/162402/infura-and-alchemy-blocking-access-to-tornado-cash
+        body_hash: sha256:558d879c7918b26d44647717640d85a2da7b46fb7183755c2172c36cf5f6e385
+        body_path: sources/http_captures/infura-alchemy-tornado-rpc-block-2022/primary/www.theblock.co__post-162402-infura-and-alchemy-blocking-access-to-tornado-cash__96bfbc9227.html
+        evidence_use: replayable
         scope_descriptor:
           providers:
             - consensys_infura
             - alchemy_insights
-          domains:
-            - metamask.io
-            - app.uniswap.org
+          protocol: tornado_cash
           time_window:
             - 2022-08-09T00:00:00Z
-            - 2022-08-12T23:59:59Z
+            - 2022-08-09T23:59:59Z
         note: |
-          Infura ToS update is the upstream corporate-policy anchor for
-          the downstream L4 cascade: MetaMask (using Infura as default
-          Ethereum RPC) and aggregator UIs surfaced broken Tornado
-          interactions in the same window. attribution=plausible
-          because the L4 effect is a downstream consequence of the L3
-          block rather than an independent frontend-operator policy
-          decision, and no first-party MetaMask/aggregator corporate
-          statement in-this-event explicitly names Tornado Cash as the
-          reason for the user-facing breakage. DRYRUN: pinned Wayback
-          snapshot and body_hash deferred to human audit.
+          The captured article states that Infura and Alchemy were blocking
+          Ethereum API access for Tornado Cash users and that users relying on
+          Alchemy or Infura endpoints were unable to use the privacy service
+          through the affected front-end path. attribution=plausible because
+          the retained source is contemporaneous journalism, not a
+          provider-controlled block notice or a replayed RPC/API rejection.
 
 recovery:
   - layer: l3_rpc
     resolved: false
     note: |
-      The Infura and Alchemy OFAC-screening policies are not reversed
-      in the initial cascade window; the 2025-03-21 OFAC delisting
-      (see tornado-cash-ofac-delisting-2025) is the candidate
-      L3 recovery anchor and is tracked separately.
+      No provider-side reversal is pinned in this row. The later OFAC
+      delisting is tracked separately in tornado-cash-ofac-delisting-2025.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.2 corporate_policy discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **REPAIRED 2026-06-01** (quality loop). The previous version overclaimed
+  this row as a direct, provider-primary, anchor_case L3+L4 cascade. The
+  retained evidence is a captured The Block article, so this version narrows
+  the case to a one-layer l3_rpc/API observed_change, marks
+  evidence_tier=attested_secondary, downgrades attribution to plausible, and
+  removes the unpinned L4 frontend-cascade observation.
 
-  **First documented L3 RPC-provider sanctions block in the corpus.**
-  Within 24-96h of the 2022-08-08 OFAC SDN designation of Tornado Cash,
-  the two dominant US-jurisdiction public+enterprise Ethereum RPC
-  providers — Infura (ConsenSys) and Alchemy Insights — both
-  independently stopped relaying RPC requests touching the OFAC-listed
-  Tornado Cash contract addresses. This is the load-bearing L3 anchor
-  for the paper's Table 2 cross-layer observability matrix: prior to
-  this event the L3 column had no primary_corporate evidence of a
-  sanctions-driven managed-RPC block; after this event the L3 column
-  is anchored on two named providers' own corporate-policy statements
-  (with the contemporaneous Flashbots flashbots/rpc-endpoint
-  ofacblacklist.go commit at 92ab6b1f providing the ecosystem-anchor
-  parallel — see tornado-cash-ofac-2022 observations[l3_rpc]).
+  Method boundary: this row is useful as an aggregate S5 corporate datapoint
+  showing that named infrastructure providers were reported to block Tornado
+  Cash access shortly after the 2022-08-08 OFAC designation. It should not be
+  cited as a first documented L3 sanctions block, a provider-admitted direct
+  block, a full address-set RPC block, or an L4 frontend cascade unless future
+  work pins provider-controlled historical artifacts or replayable rejection
+  traces.
 
-  Stratum coding: S5_corporate. The OFAC SDN designation is the
-  upstream trigger (related event tornado-cash-ofac-2022), but Infura
-  and Alchemy chose to apply the block as a corporate-compliance
-  policy, not as an OFAC-compelled action — neither provider was
-  named in the OFAC designation, and the L3 RPC-relay layer is not
-  itself a regulated activity under the Treasury secondary-sanctions
-  authority. The corporate-policy character is what makes this a
-  paper-relevant L3 anchor for the broader "L3 substrate is
-  corporate-policy-driven, not OFAC-compelled" claim.
-
-  Empirical shape: comparison (2 distinct observed_change layers —
-  L3 RPC load-bearing, L4 frontend downstream-cascade secondary).
-  Admission tier: anchor_case (≥2 strong-attribution observed_change
-  layers: L3-Infura direct + L3-Alchemy direct + L4-cascade
-  plausible). Paper-spotlight quality because (a) it is the first
-  primary_corporate L3 block in the corpus, (b) it is the structural
-  cousin to the L4 frontend-delisting anchor uniswap-frontend-delisting-2023
-  (both isolate the corporate-operator / protocol-layer split for
-  the same Tornado Cash trigger family), and (c) it pairs with
-  circle-usdc-tornado-2022 to anchor the "fast issuer + fast RPC
-  + slow off-ramp" 2022 corporate-cascade triangle.
-
-  DRYRUN caveats: the four primary_corporate and supporting_journalism
-  citations all carry 2022-calendar-folder Wayback pointers rather
-  than pinned snapshots; pinned snapshot timestamps and body_hash
-  captures are deferred to the human-audit pass. For non-DRYRUN
-  release, capture body_hash + body_path for: (1) the specific Infura
-  ToS revision of August 2022 (compare archive.org snapshots
-  2022-08-09..2022-08-12 for the "OFAC sanctions" / "prohibited
-  jurisdictions" addition); (2) the specific Alchemy support /
-  compliance-program page revision of August 2022; (3) the
-  Cointelegraph and The Block article permalinks. Marked
-  evidence_use=contextual_unarchived on all citations to flag the
-  unarchived state per validator policy.
+  Live URL drift / 404 handling: the attempted Cointelegraph URL returned 404
+  during the 2026-06-01 repair and is not retained as evidence. The replayable
+  anchor for the admitted observation is the local The Block capture with
+  body_hash/body_path.
 
 scoped_claim: |
-  "The 2022-08-09 Infura and Alchemy RPC-provider blocks of requests
-  touching the 2022-08-08 OFAC Tornado Cash SDN address set constitute
-  the first documented L3 RPC-provider sanctions block in the corpus,
-  with two named providers' own corporate-policy statements
-  (attribution=direct) and a downstream L4 wallet/aggregator UI
-  cascade (attribution=plausible, via Infura's MetaMask-default-RPC
-  position). The row does not claim ISP-level connectivity blocking,
-  consensus-layer (PBS) effect, on-chain asset freeze, or off-ramp
-  severance — those are sibling-event rows under tornado-cash-ofac-2022
-  / circle-usdc-tornado-2022."
+  "On 2022-08-09, contemporaneous reporting stated that Infura and Alchemy
+  were blocking Ethereum API access for Tornado Cash users through affected
+  front-end paths after the 2022-08-08 OFAC designation. In this dataset the
+  row is a one-layer S5 corporate l3_rpc/API observed_change with
+  attribution=plausible and evidence_tier=attested_secondary; it does not
+  claim provider-primary attribution, a complete RPC-network block, a fixed
+  address-set block, L0/L1/asset/off-ramp effects, or a separately measured
+  L4 frontend cascade."
 
 scoped_knowledge: |
-  What changed: this row is the L3 column anchor for the 2022-08-08
-  OFAC Tornado Cash trigger family. Retained changed layers are L3
-  RPC (Infura, direct; Alchemy, direct) and L4 frontend (downstream
-  wallet/aggregator cascade, plausible).
+  Retained: a narrow L3 API / node-infrastructure restriction reported for
+  Infura and Alchemy on 2022-08-09, pinned to a local capture of The Block.
 
-  What did not change or could not be measured: L0 network is not
-  applicable (the block is in JSON-RPC response logic, not DNS or
-  routing); L1 consensus is not applicable (pre-Merge by 37 days, PBS
-  did not exist); asset_onchain and offramp_cex are not applicable
-  here because those layers are captured in the sibling events
-  (circle-usdc-tornado-2022 for the asset layer; the tornado-cash-ofac-2022
-  composite for the off-ramp layer).
-
-  Attribution: L3 rows are direct because the primary_corporate
-  sources are the operators' own ToS / compliance-policy statements
-  naming the action. L4 row is plausible because the downstream UI
-  breakage is a side-effect of the upstream L3 block rather than an
-  independent frontend-operator policy decision, and no first-party
-  MetaMask/aggregator statement in-this-event explicitly names
-  Tornado Cash as the reason for the user-facing breakage.
-
-  Comparative value: this is the L3 sibling of uniswap-frontend-delisting-2023
-  (L4 corporate frontend delisting) and circle-usdc-tornado-2022
-  (asset-layer issuer freeze) — three S5_corporate empirical_case
-  /anchor_case rows that together compose the paper's "corporate-
-  cascade triangle" downstream of the OFAC trigger. Coded as
-  S5_corporate (not S1_ofac_sdn) because the L3 RPC-relay layer is
-  not itself OFAC-compelled — Infura and Alchemy chose to apply
-  the block as corporate compliance policy. This stratum choice is
-  load-bearing for the paper's L3-column claim about substrate
-  governance.
-
-  DRYRUN risk: the four corporate-policy citations are unarchived;
-  before paper-release the human-audit pass must pin Wayback
-  snapshots and body_hashes for the Infura ToS revision, Alchemy
-  compliance page, and journalism triangulation links. If
-  archive.org coverage of the August 2022 ToS/compliance revisions
-  proves recoverable only at calendar-folder granularity (rather
-  than at the exact-revision snapshot level), the L3 observations
-  should be downgraded from direct to plausible to reflect the
-  weaker primary-source anchor.
+  Excluded: provider-primary admission, direct attribution, complete address
+  enumeration, command-line / direct contract unavailability, and a separate
+  L4 wallet or aggregator UI observation. Those claims require additional
+  provider-controlled archives, reproducible RPC/API rejection evidence, or
+  frontend-specific artifacts.
 
 tags:
   - corporate_policy_change
   - rpc_filtering
+  - api_access_block
   - infura
   - alchemy
   - consensys
   - tornado_cash_thread
-  - l3_anchor
-  - first_documented_l3_rpc_block
-  - dryrun_2026_05_16
+  - attested_secondary
+  - quality_loop_2026_06_01

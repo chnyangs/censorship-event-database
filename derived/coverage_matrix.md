@@ -1,6 +1,6 @@
 # Coverage matrix
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-01` · commit `c5a73a6` · generated `2026-06-01T03:21:56Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-01` · commit `4acc680` · generated `2026-06-01T03:34:29Z`
 
 One row per event-layer pair. This is the explicit denominator surface: `measured_rate_denominator` rows can support conditional rates; `observability_gap`, `named_partial_only_no_conditional_rate`, and `descriptive_only_structural_circularity_v0_1` rows cannot.
 
@@ -10,8 +10,8 @@ One row per event-layer pair. This is the explicit denominator surface: `measure
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `l0_network` | 0 | 3 | 0 | 0 | 38 | 326 |
 | `l1_consensus` | 8 | 8 | 0 | 0 | 3 | 348 |
-| `l3_rpc` | 2 | 0 | 5 | 0 | 9 | 351 |
-| `l4_frontend` | 54 | 25 | 0 | 0 | 56 | 232 |
+| `l3_rpc` | 1 | 0 | 6 | 0 | 9 | 351 |
+| `l4_frontend` | 54 | 24 | 0 | 0 | 57 | 232 |
 | `asset_onchain` | 0 | 0 | 0 | 20 | 26 | 321 |
 | `offramp_cex` | 237 | 49 | 0 | 0 | 27 | 54 |
 

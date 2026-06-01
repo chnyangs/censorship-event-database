@@ -1,6 +1,6 @@
 # Audit worksheet — `dydx-tornado-account-block-2022-08`
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c5a73a6` · generated `2026-06-01T03:21:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4acc680` · generated `2026-06-01T03:34:29Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S5_corporate`

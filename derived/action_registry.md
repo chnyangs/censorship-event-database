@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c5a73a6` · generated `2026-06-01T03:21:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4acc680` · generated `2026-06-01T03:34:29Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **323**
+- Canonical physical actions: **321**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -154,9 +154,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `indonesia-bappebti-illegal-exchange-block-2023:1:offramp_cex:cex:offshore_cex_id_cohort:offshore_cex_idr_rail_severance_cascade` | 1 | 0 | 1 | offramp_cex | `indonesia-bappebti-illegal-exchange-block-2023::offramp_cex` |
 | `indonesia-bi-payment-instrument-prohibition-2018-01:0:offramp_cex:indonesian_payment_processor_ecosystem:payment_operators_barred_from_processing_virtual_currency_transactions` | 1 | 0 | 1 | offramp_cex | `indonesia-bi-payment-instrument-prohibition-2018-01::offramp_cex` |
 | `indonesia-kominfo-exchange-social-account-block-2024-07:0:l4_frontend:kominfo_bappebti:foreign_exchange_social_media_accounts_blocked` | 1 | 0 | 1 | l4_frontend | `indonesia-kominfo-exchange-social-account-block-2024-07::l4_frontend` |
-| `infura-alchemy-tornado-rpc-block-2022:0:l3_rpc:rpc_provider:consensys_infura:infura_rpc_block_of_tornado_cash_sdn_addresses` | 1 | 0 | 1 | l3_rpc | `infura-alchemy-tornado-rpc-block-2022::l3_rpc` |
-| `infura-alchemy-tornado-rpc-block-2022:1:l3_rpc:rpc_provider:alchemy_insights:alchemy_rpc_block_of_tornado_cash_sdn_addresses` | 1 | 0 | 1 | l3_rpc | `infura-alchemy-tornado-rpc-block-2022::l3_rpc` |
-| `infura-alchemy-tornado-rpc-block-2022:2:l4_frontend:frontend:wallets_and_aggregators_using_infura_default_rpc:downstream_wallet_and_aggregator_ui_broke_for_tornado_interactions` | 1 | 0 | 1 | l4_frontend | `infura-alchemy-tornado-rpc-block-2022::l4_frontend` |
+| `infura-alchemy-tornado-rpc-block-2022:0:l3_rpc:rpc_provider:infura_and_alchemy:infura_alchemy_tornado_cash_api_access_block` | 1 | 0 | 1 | l3_rpc | `infura-alchemy-tornado-rpc-block-2022::l3_rpc` |
 | `infura-metamask-donetsk-luhansk-block-2022-03:0:l3_rpc:rpc_provider:consensys_infura:infura_rpc_ip_geo_block_of_donetsk_luhansk_regions` | 1 | 0 | 1 | l3_rpc | `infura-metamask-donetsk-luhansk-block-2022-03::l3_rpc` |
 | `infura-metamask-donetsk-luhansk-block-2022-03:1:l4_frontend:frontend:metamask_wallet_ui:metamask_ui_error_state_for_blocked_region_users_including_overblock_venezuela_iran` | 1 | 0 | 1 | l4_frontend | `infura-metamask-donetsk-luhansk-block-2022-03::l4_frontend` |
 | `iran-cbi-crypto-banking-prohibition-2018:0:offramp_cex:iranian_bank_and_credit_institution_class:rial_banking_channel_severed_industry_wide` | 1 | 0 | 1 | offramp_cex | `iran-cbi-crypto-banking-prohibition-2018::offramp_cex` |

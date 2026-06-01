@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T03:21:56Z`
+Generated at: `2026-06-01T03:34:29Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 288, 'ok': 117}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 289, 'ok': 116}
 - **Verification** (`last_verified`): {'ok': 405}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 288, 'ok': 117}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 289, 'ok': 116}
 
 ## Flag legend
 
@@ -202,7 +202,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `indonesia-bi-bitcoin-warning-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `indonesia-bi-payment-instrument-prohibition-2018-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `indonesia-kominfo-exchange-social-account-block-2024-07` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `infura-alchemy-tornado-rpc-block-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `infura-alchemy-tornado-rpc-block-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `infura-metamask-donetsk-luhansk-block-2022-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `iran-cbi-crypto-banking-prohibition-2018` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `iran-cbi-exchange-payment-gateway-block-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
@@ -563,6 +563,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `indonesia-bi-bitcoin-warning-2014` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `indonesia-bi-payment-instrument-prohibition-2018-01` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `indonesia-kominfo-exchange-social-account-block-2024-07` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `infura-alchemy-tornado-rpc-block-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `infura-metamask-donetsk-luhansk-block-2022-03` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `iran-cbi-crypto-banking-prohibition-2018` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `iran-cbi-exchange-payment-gateway-block-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=1d
