@@ -246,7 +246,7 @@ STATIC_CSS = """\
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 64px; }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -1434,6 +1434,15 @@ STATIC_JS = """\
   // Re-apply when hero "cascade events" / "OFAC SDN" chip links (or a user
   // pasting a deep-linked URL into the address bar) change the hash.
   window.addEventListener('hashchange', () => {
+    const raw = location.hash.replace(/^#/, '');
+    // A bare section anchor (#findings, #layers, #artifacts, #events, ...) is
+    // plain navigation: scroll to that section and DO NOT touch filter state or
+    // force the events table into view. Filter deep-links carry "key=value".
+    if (raw && !raw.includes('=')) {
+      const sec = document.getElementById(raw);
+      if (sec) { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    }
+    // Otherwise treat the hash as filter deep-link state (e.g. #shape=cascade).
     for (const f in facets) facets[f].clear();
     chipBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
     if (searchInput) searchInput.value = '';
