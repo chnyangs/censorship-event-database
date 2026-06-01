@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `8726393` · generated `2026-06-01T00:13:27Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `5cd78e4` · generated `2026-06-01T00:23:54Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **329**
+- Canonical physical actions: **326**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -263,11 +263,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `sec-v-binance-2023:0:offramp_cex:exchange:binance_us:binance_us_platform_and_usd_rail_restrictions_after_sec_action` | 1 | 0 | 1 | offramp_cex | `sec-v-binance-2023::offramp_cex` |
 | `sec-v-bittrex-2023:0:offramp_cex:exchange:bittrex_us:bittrex_us_exchange_wind_down_and_chapter_11_off_ramp_freeze` | 1 | 0 | 1 | offramp_cex | `sec-v-bittrex-2023::offramp_cex` |
 | `sec-v-coinbase-2023:0:offramp_cex:exchange:coinbase_staking:retail_staking_new_funds_restricted_in_four_states` | 1 | 0 | 1 | offramp_cex | `sec-v-coinbase-2023::offramp_cex` |
-| `sec-v-ripple-2020:0:l4_frontend:frontend:ripple_com:ripple_corporate_response_to_sec_complaint_published_on_investor_relations_frontend` | 1 | 0 | 1 | l4_frontend | `sec-v-ripple-2020::l4_frontend` |
-| `sec-v-ripple-2020:1:offramp_cex:exchange:coinbase:coinbase_suspended_xrp_trading_for_us_users_citing_sec_complaint` | 1 | 0 | 1 | offramp_cex | `sec-v-ripple-2020::offramp_cex` |
-| `sec-v-ripple-2020:2:offramp_cex:exchange:bitstamp:bitstamp_halted_xrp_trading_and_deposits_for_us_users_citing_sec_complaint` | 1 | 0 | 1 | offramp_cex | `sec-v-ripple-2020::offramp_cex` |
-| `sec-v-ripple-2020:3:offramp_cex:exchange:binance_us:binance_us_delisted_xrp_citing_sec_complaint` | 1 | 0 | 1 | offramp_cex | `sec-v-ripple-2020::offramp_cex` |
-| `sec-v-ripple-2020:4:offramp_cex:exchange:kraken:kraken_suspended_xrp_trading_for_us_users_citing_sec_complaint` | 1 | 0 | 1 | offramp_cex | `sec-v-ripple-2020::offramp_cex` |
+| `sec-v-ripple-2020:0:offramp_cex:exchange:coinbase:coinbase_announced_xrp_trading_suspension_citing_sec_ripple_action` | 1 | 0 | 1 | offramp_cex | `sec-v-ripple-2020::offramp_cex` |
+| `sec-v-ripple-2020:1:offramp_cex:exchange:bitstamp:bitstamp_announced_xrp_trading_and_deposit_halt_for_us_customers_citing_sec_filing` | 1 | 0 | 1 | offramp_cex | `sec-v-ripple-2020::offramp_cex` |
 | `sec-v-telegram-ton-2020:0:offramp_cex:issuer:telegram_ton:sec_injunction_triggered_issuer_cancellation_of_gram_token_distribution_and_ton_mainnet_launch` | 1 | 0 | 1 | offramp_cex | `sec-v-telegram-ton-2020::offramp_cex` |
 | `sec-voorhees-satoshidice-2014:0:offramp_cex:exchange:satoshidice_operator:us_unregistered_securities_offering_ceased_via_sec_settlement` | 1 | 0 | 1 | offramp_cex | `sec-voorhees-satoshidice-2014::offramp_cex` |
 | `sec-voorhees-satoshidice-2014:1:l4_frontend:frontend:satoshidice_com:satoshidice_us_user_geofence_and_voorhees_divestment_codified_by_sec_settlement` | 1 | 0 | 1 | l4_frontend | `sec-voorhees-satoshidice-2014::l4_frontend` |

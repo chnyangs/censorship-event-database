@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **253** (11 complete / 242 scoped) and
-  admitted-but-blocked cases are **114**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **254** (11 complete / 243 scoped) and
+  admitted-but-blocked cases are **113**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **270 high / 81 medium / 16 low**; attribution reliability
-  **232 high / 135 medium / 0 low**. Current admitted paper roles are
-  **251 aggregate_datapoint / 97 null_control / 16 appendix_only / 3 paper_anchor**.
+  observation reliability **271 high / 81 medium / 15 low**; attribution reliability
+  **233 high / 134 medium / 0 low**. Current admitted paper roles are
+  **252 aggregate_datapoint / 97 null_control / 15 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -67,6 +67,9 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `kraken-sec-unregistered-exchange-2023` now has local SEC and Kraken replay anchors and is recoded from a
   positive empirical observed-change row to a null-control no-service-withdrawal comparator for the November
   2023 SEC unregistered-exchange complaint.
+  `sec-v-ripple-2020` now has local SEC, Coinbase, and Bitstamp replay anchors and is narrowed from a broad
+  two-layer/four-exchange cascade to the source-supported Coinbase/Bitstamp CEX/off-ramp comparison; the
+  previously unanchored Ripple.com L4, Binance.US, and Kraken observations are no longer load-bearing.
 
 ## Admitted composition (367)
 | dimension | breakdown |

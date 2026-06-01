@@ -52294,46 +52294,44 @@
   {
     "_source_file": "sec-v-ripple-2020.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison \u2014 SEC v. Ripple Labs Inc. (2020-12-22) is the cleanest\nofframp_cex cascade in the S3 SEC stratum: a single SEC civil\nsecurities-law complaint precipitated a documented ~4-week wave of US\ncentralized-exchange delistings of XRP, with each exchange's official\nannouncement explicitly citing the SEC filing as the legal cause. The\nobserved cascade spans four major US-facing CEXes (Coinbase 2020-12-28,\nBitstamp 2021-01-04 effective 2021-01-08, Binance.US 2021-01-11 effective\n2021-01-13, Kraken 2021-01-29) plus the Ripple corporate\ninvestor-relations L4 frontend response. The case structurally\ncontrasts with sec-v-coinbase-2023 / sec-v-binance-2023 (where the SEC\nnamed the exchanges themselves and where the off-ramp cascade is\nexchange-scoped service restriction rather than third-party listing\nremoval): here the SEC named the token issuer, and the cascade is\nexchanges removing the named token from their US-customer offerings.\n\nThe empirical_shape is comparison: two distinct observed_change layers\n(l4_frontend at ripple.com, offramp_cex across four exchanges). The\nofframp_cex layer carries four observation rows (one per delisting\nexchange) all coded attribution=direct because each exchange's own\ndelisting announcement explicitly cites the 2020-12-22 SEC complaint as\nthe legal basis. The L4 row records Ripple's own corporate response on\nripple.com.\n\nSubsequent procedural milestones are out of scope for this admission\nrow: 2023-07-13 Judge Analisa Torres partial summary judgment (XRP\nprogrammatic sales to retail not securities; institutional sales were),\n2024 settlement with reduced civil penalty. Downstream relistings by the\nsame exchanges after the 2023 summary judgment are separate events not\ncoded here.\n",
+    "analysis_notes": "**QUALITY-LOOP REPAIR 2026-06-01** (automated source repair; no new\nhuman-audit stamp). The original row made a broader two-layer/four-exchange\nclaim but depended on wildcard Wayback pointers and an incorrect or\nnon-load-bearing Ripple.com litigation URL. During repair, the SEC trigger,\nCoinbase official blog post, and Bitstamp official blog post were captured\nlocally with body_hash/body_path anchors.\n\nThis version narrows the admitted empirical content to a replayable\ntwo-operator offramp_cex comparison: Coinbase announced a full XRP trading\nsuspension for 2021-01-19, and Bitstamp announced a U.S.-customer XRP\ntrading/deposit halt for 2021-01-08. Both corporate sources explicitly\nconnect their actions to the SEC action/filing against Ripple. The prior\nBinance.US, Kraken, and Ripple.com L4 observations are removed from the\nadmitted observation set until replayable official anchors are available.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No network-layer (L0) reachability blocking is implicated by an SEC\ncivil securities-law complaint. None of ripple.com, coinbase.com,\nbitstamp.net, binance.us, or kraken.com became unreachable; the\ncascade is an exchange/issuer application-layer event. not_applicable\non substrate-mismatch grounds.\n",
+        "note": "No network-layer reachability blocking is implicated by an SEC civil\nsecurities-law complaint. The retained effects are exchange listing and\ndeposit/trading restrictions, not DNS, routing, TCP, or ISP filtering.\n",
         "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
-        "note": "The XRP Ledger consensus continued operating normally; the SEC theory\nis securities-law over Ripple's offering conduct, not a protocol\nsanction. No validator-set primitive engaged. not_applicable on\nsubstrate-mismatch grounds.\n",
+        "note": "The XRP Ledger consensus mechanism continued operating; the SEC theory\nconcerns securities-law treatment of Ripple's offering conduct, not a\nprotocol-level validator or consensus primitive.\n",
         "status": "not_applicable"
       },
       {
         "layer": "l3_rpc",
-        "note": "No public-RPC provider filter-list change attaches to the SEC v.\nRipple complaint. The L3 substrate (MEV-Boost / Flashbots Protect /\nMEV-Blocker / Infura) is orthogonal to a centralized-exchange\ndelisting cascade on XRP. not_applicable on substrate-mismatch\ngrounds.\n",
+        "note": "No public-RPC provider filter-list change attaches to the SEC v. Ripple\ncomplaint. The L3 substrate is orthogonal to a centralized-exchange\nXRP listing restriction.\n",
         "status": "not_applicable"
       },
       {
         "layer": "l4_frontend",
-        "note": "Load-bearing layer 1 of 2. Ripple Labs corporate investor-relations\nfrontend (ripple.com) hosted the official corporate response\nannouncement on 2020-12-22 contesting the SEC complaint as a\nmisapplication of securities law and signalling Ripple would defend\nvigorously. Attached below as observed_change with attribution=direct\nvia Ripple's own corporate statement on the company-controlled\nfrontend. This is an issuer-driven L4 corporate-response change, not\na state-mandated takedown.\n",
+        "note": "The previous row treated a Ripple.com litigation-response page as a\npositive L4 observation, but the retained URL was a later procedural\narticle rather than a replayable 2020 same-day frontend change. This\nrepair therefore retracts the L4 observed_change and leaves Ripple.com\nunmeasured for this event.\n",
         "scope": [
           "ripple.com"
         ],
-        "status": "measured"
+        "status": "not_measured"
       },
       {
         "layer": "asset_onchain",
-        "note": "The SEC complaint does not engage an issuer-side address blacklist or\nstablecoin-freeze primitive on XRP; XRP balances continued to be\nheld, transferred, and traded on non-US venues. No on-chain freeze\ntx-hash is published as part of this enforcement action.\nnot_applicable on substrate-mismatch grounds.\n",
+        "note": "The SEC complaint did not engage an issuer-side address blacklist or\nstablecoin-freeze primitive on XRP. No on-chain freeze tx_hash is part\nof this enforcement action.\n",
         "status": "not_applicable"
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer 2 of 2. Cleanest offramp_cex cascade in the S3\nSEC stratum: within ~4 weeks of the 2020-12-22 SEC complaint,\nfour US-facing centralized exchanges (Coinbase, Bitstamp,\nBinance.US, Kraken) suspended or delisted XRP trading for US\nusers. Each exchange's announcement explicitly cited the SEC's\nfiling as the precipitating legal cause. Attribution coded direct\non the per-exchange rows because the exchanges' own statements\ncite the SEC complaint as the legal trigger; the proximate\ndecision-maker is each exchange's compliance team, and the legal\nmechanism the exchanges name is the SEC complaint itself.\n",
+        "note": "Load-bearing layer. Coinbase and Bitstamp each published official\ncorporate announcements restricting XRP trading for U.S. customers\nafter the SEC's 2020-12-22 action against Ripple. Both sources are\nlocally captured with body_hash/body_path anchors. The earlier\nBinance.US and Kraken rows are retracted from this event's admitted\nobservation set until replayable official source anchors are pinned.\n",
         "scope": [
           "coinbase_xrp_us_listing",
-          "bitstamp_xrp_us_listing",
-          "binance_us_xrp_listing",
-          "kraken_xrp_us_listing"
+          "bitstamp_xrp_us_listing"
         ],
         "status": "measured"
       }
@@ -52344,59 +52342,22 @@
     "jurisdiction": [
       "US"
     ],
-    "last_human_audit": "2026-05-16",
-    "last_verified": "2026-05-16",
+    "last_verified": "2026-06-01",
     "observations": [
-      {
-        "actor": "frontend:ripple_com",
-        "attribution": "direct",
-        "delta_hours": 0,
-        "event": "ripple_corporate_response_to_sec_complaint_published_on_investor_relations_frontend",
-        "layer": "l4_frontend",
-        "observation_kind": "observed_change",
-        "precision": "day",
-        "sources": [
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "Ripple corporate investor-relations insights/blog hosted the\n2020-12-22 corporate response to the SEC complaint contesting the\ncharacterization of XRP as a security and committing to defend\nthe case. attribution=direct because the Ripple frontend itself\nis the conduit through which the issuer's corporate response was\ndelivered; the corporate-policy decision and the L4 announcement\nare co-located in the same corporate actor. Wayback wildcard\npointer (web/2021/) in lieu of a pinned-timestamp snapshot;\nevidence_use=contextual_unarchived pending human-audit re-pin.\n",
-            "scope_descriptor": {
-              "countries": [
-                "US"
-              ],
-              "providers": [
-                "ripple_com_frontend"
-              ],
-              "time_window": [
-                "2020-12-22T00:00:00+00:00",
-                "2021-01-31T23:59:59+00:00"
-              ]
-            },
-            "type": "primary_corporate",
-            "url": "https://ripple.com/insights/ripple-cleared-of-two-key-claims-in-sec-lawsuit/",
-            "wayback": "https://web.archive.org/web/2021/https://ripple.com/insights/"
-          },
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "Ripple corporate landing page (ripple.com) served as the canonical\nfrontend anchor for ongoing investor-relations updates on the SEC\nlitigation through 2021. Wayback wildcard pointer pending\nhuman-audit re-pin for a pinned-timestamp snapshot.\n",
-            "type": "primary_corporate",
-            "url": "https://ripple.com/",
-            "wayback": "https://web.archive.org/web/2021/https://ripple.com/"
-          }
-        ],
-        "timestamp": "2020-12-22T00:00:00+00:00"
-      },
       {
         "actor": "exchange:coinbase",
         "attribution": "direct",
         "delta_hours": 144,
-        "event": "coinbase_suspended_xrp_trading_for_us_users_citing_sec_complaint",
+        "event": "coinbase_announced_xrp_trading_suspension_citing_sec_ripple_action",
         "layer": "offramp_cex",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "Coinbase corporate blog post (2020-12-28): \"An update on XRP.\"\nAnnounces Coinbase will suspend the XRP trading pair on\nCoinbase.com, Coinbase Pro, Coinbase Prime, and the Coinbase\nconsumer mobile applications effective 2021-01-19 at 10:00 AM\nPST. The announcement explicitly cites \"the SEC's filing of\nlitigation against Ripple Labs\" as the precipitating legal\nbasis. attribution=direct because the Coinbase frontend\nstatement names the SEC complaint as the legal cause and\nCoinbase is the proximate decision-maker for its own listing.\nWayback wildcard pointer (web/2021/) in lieu of a pinned-\ntimestamp snapshot; evidence_use=contextual_unarchived pending\nhuman-audit re-pin.\n",
+            "body_hash": "sha256:e74df8a12efb71d5a738a46138d3f27cce630d5fcee4f2cc63c91676c7cacd79",
+            "body_path": "sources/http_captures/sec-v-ripple-2020/primary/www.coinbase.com__en-ca-blog-coinbase-will-suspend-trading-in-xrp-on-january-19__0087ac7275.html",
+            "evidence_use": "replayable",
+            "note": "Coinbase official blog post by Paul Grewal, dated 2020-12-28,\nstates that, in light of the SEC's action/lawsuit against Ripple\nLabs, Coinbase would move XRP trading to limit-only and fully\nsuspend XRP trading on 2021-01-19 at 10:00 PST. Captured locally\n2026-06-01 from the current Coinbase canonical blog URL. This\nsupports direct attribution for Coinbase's own listing action.\n",
             "scope_descriptor": {
               "addresses_cohort": "coinbase_us_xrp_listing",
               "countries": [
@@ -52412,8 +52373,7 @@
               ]
             },
             "type": "primary_corporate",
-            "url": "https://blog.coinbase.com/an-update-on-xrp-3547f8b88f87",
-            "wayback": "https://web.archive.org/web/2021/https://blog.coinbase.com/an-update-on-xrp-3547f8b88f87"
+            "url": "https://www.coinbase.com/en-ca/blog/coinbase-will-suspend-trading-in-xrp-on-january-19"
           }
         ],
         "timestamp": "2020-12-28T00:00:00+00:00",
@@ -52425,15 +52385,17 @@
       {
         "actor": "exchange:bitstamp",
         "attribution": "direct",
-        "delta_hours": 312,
-        "event": "bitstamp_halted_xrp_trading_and_deposits_for_us_users_citing_sec_complaint",
+        "delta_hours": 72,
+        "event": "bitstamp_announced_xrp_trading_and_deposit_halt_for_us_customers_citing_sec_filing",
         "layer": "offramp_cex",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "Bitstamp corporate statement (late 2020-12 / early 2021-01)\nannouncing the halt of XRP trading and deposits for US-resident\ncustomers, explicitly citing the SEC's 2020-12-22 filing against\nRipple Labs as the precipitating legal cause. The halt took\neffect 2021-01-08 (US-customer-scope). attribution=direct\nbecause the Bitstamp frontend statement names the SEC complaint\nas the legal cause and Bitstamp is the proximate decision-maker\nfor its own US-customer listing. Wayback wildcard pointer\n(web/2021/) in lieu of a pinned-timestamp snapshot;\nevidence_use=contextual_unarchived pending human-audit re-pin.\n",
+            "body_hash": "sha256:3ce5db1098cc44bdd69d0789c8cf64831997eb016487650b25667f290f7dbc3e",
+            "body_path": "sources/http_captures/sec-v-ripple-2020/primary/blog.bitstamp.net__post-xrp-trading-and-deposits-be-halted-us-customers__e9c675f146.html",
+            "evidence_use": "replayable",
+            "note": "Bitstamp official blog post dated 2020-12-25 states that, in\nlight of the recent SEC filing against Ripple Labs alleging XRP is\na security, Bitstamp would halt all XRP trading and deposits for\nU.S. customers on 2021-01-08 at 21:00 UTC while preserving\nwithdrawals. Captured locally 2026-06-01 from Bitstamp's current\nblog URL. This supports direct attribution for Bitstamp's own\nU.S.-customer trading/deposit restriction.\n",
             "scope_descriptor": {
               "addresses_cohort": "bitstamp_us_xrp_listing",
               "countries": [
@@ -52443,91 +52405,18 @@
                 "bitstamp_spot"
               ],
               "time_window": [
-                "2021-01-04T00:00:00+00:00",
+                "2020-12-25T00:00:00+00:00",
                 "2021-01-08T23:59:59+00:00"
               ]
             },
             "type": "primary_corporate",
-            "url": "https://www.bitstamp.net/article/bitstamp-statement-xrp/",
-            "wayback": "https://web.archive.org/web/2021/https://www.bitstamp.net/article/bitstamp-statement-xrp/"
+            "url": "https://blog.bitstamp.net/post/xrp-trading-and-deposits-be-halted-us-customers/"
           }
         ],
-        "timestamp": "2021-01-04T00:00:00+00:00",
+        "timestamp": "2020-12-25T00:00:00+00:00",
         "window": [
           "2020-12-22T00:00:00+00:00",
-          "2021-01-19T23:59:59+00:00"
-        ]
-      },
-      {
-        "actor": "exchange:binance_us",
-        "attribution": "direct",
-        "delta_hours": 480,
-        "event": "binance_us_delisted_xrp_citing_sec_complaint",
-        "layer": "offramp_cex",
-        "observation_kind": "observed_change",
-        "precision": "day",
-        "sources": [
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "Binance.US support notice (2021-01-11): \"Notice of Delisting:\nXRP.\" Announces Binance.US will halt XRP trading effective\n2021-01-13 at 10:00 AM EST, explicitly citing \"the SEC's filing\nof litigation against Ripple Labs alleging that XRP is an\nunregistered security\" as the basis. attribution=direct because\nthe Binance.US frontend statement names the SEC complaint as\nthe legal cause and Binance.US is the proximate decision-maker\nfor its own US-customer listing. Wayback wildcard pointer\n(web/2021/) in lieu of a pinned-timestamp snapshot;\nevidence_use=contextual_unarchived pending human-audit re-pin.\n",
-            "scope_descriptor": {
-              "addresses_cohort": "binance_us_xrp_listing",
-              "countries": [
-                "US"
-              ],
-              "providers": [
-                "binance_us_spot"
-              ],
-              "time_window": [
-                "2021-01-11T00:00:00+00:00",
-                "2021-01-13T23:59:59+00:00"
-              ]
-            },
-            "type": "primary_corporate",
-            "url": "https://support.binance.us/en/articles/4592956-notice-of-delisting-xrp",
-            "wayback": "https://web.archive.org/web/2021/https://support.binance.us/en/articles/4592956-notice-of-delisting-xrp"
-          }
-        ],
-        "timestamp": "2021-01-11T00:00:00+00:00",
-        "window": [
-          "2020-12-22T00:00:00+00:00",
-          "2021-01-13T23:59:59+00:00"
-        ]
-      },
-      {
-        "actor": "exchange:kraken",
-        "attribution": "direct",
-        "delta_hours": 912,
-        "event": "kraken_suspended_xrp_trading_for_us_users_citing_sec_complaint",
-        "layer": "offramp_cex",
-        "observation_kind": "observed_change",
-        "precision": "day",
-        "sources": [
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "Kraken blog post (2021-01-29): \"Kraken to Suspend Trading for\nXRP for US Residents Only.\" Announces Kraken will suspend XRP\ntrading for US-resident clients effective 2021-01-29 at 5:00 PM\nPST, explicitly citing the SEC's complaint against Ripple Labs\nas the legal basis. attribution=direct because the Kraken\nfrontend statement names the SEC complaint as the legal cause\nand Kraken is the proximate decision-maker for its own\nUS-customer listing. Wayback wildcard pointer (web/2021/) in\nlieu of a pinned-timestamp snapshot; evidence_use=contextual_unarchived\npending human-audit re-pin.\n",
-            "scope_descriptor": {
-              "addresses_cohort": "kraken_us_xrp_listing",
-              "countries": [
-                "US"
-              ],
-              "providers": [
-                "kraken_spot"
-              ],
-              "time_window": [
-                "2021-01-29T00:00:00+00:00",
-                "2021-02-01T23:59:59+00:00"
-              ]
-            },
-            "type": "primary_corporate",
-            "url": "https://blog.kraken.com/news/kraken-to-suspend-trading-for-xrp-for-us-residents-only",
-            "wayback": "https://web.archive.org/web/2021/https://blog.kraken.com/news/kraken-to-suspend-trading-for-xrp-for-us-residents-only"
-          }
-        ],
-        "timestamp": "2021-01-29T00:00:00+00:00",
-        "window": [
-          "2020-12-22T00:00:00+00:00",
-          "2021-02-01T23:59:59+00:00"
+          "2021-01-08T23:59:59+00:00"
         ]
       }
     ],
@@ -52541,8 +52430,8 @@
     ],
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2020-12-22 SEC v. Ripple Labs Inc. civil securities-law complaint\nproduced a two-layer cascade in the dataset: an L4 frontend corporate\nresponse on ripple.com, and an offramp_cex cascade in which four major\nUS-facing centralized exchanges (Coinbase, Bitstamp, Binance.US, Kraken)\nsuspended or delisted XRP for US users within ~4 weeks, with each\nexchange's official announcement explicitly citing the SEC complaint as\nthe legal basis. The row asserts only these two observational axes and\ndoes not claim L0 network, L1 consensus, L3 RPC, or asset_onchain\neffects; downstream procedural milestones (2023 partial summary\njudgment, 2024 settlement, post-2023 relistings) are separate events\noutside the scope of this admission.\"\n",
-    "scoped_knowledge": "What changed: a single SEC securities-law civil complaint against the\nXRP token issuer produced (a) an issuer-side L4 corporate response on\nripple.com and (b) a tight ~4-week cascade of US-facing centralized\nexchange delistings of XRP for US customers. Each exchange's\nannouncement explicitly names the SEC complaint as the legal cause,\nmaking this the cleanest direct-attribution offramp_cex cascade in the\nS3 SEC stratum.\n\nWhat did not change or could not be measured: no XRP Ledger L1\nconsensus or validator-set change; no public-RPC L3 filter-list update;\nno asset_onchain issuer freeze (XRP continued to be held and\ntransferable on chain and on non-US venues); no network-layer\nreachability change at any of the exchange domains. The row does not\nclaim Ripple corporate frontend takedown, only an issuer-side response\npublication.\n\nAttribution: direct on all five observed_change rows because each\nprimary corporate source explicitly names the 2020-12-22 SEC complaint\nas the legal trigger for the action described. The proximate decision-\nmaker for each delisting is the exchange's own compliance team; the\ncausal anchor stated by each exchange is the SEC filing. The dataset\ndoes not therefore claim SEC-only end-to-end causation, but the\nexchanges' own attribution language meets the \"direct\" threshold.\n",
+    "scoped_claim": "\"The 2020-12-22 SEC v. Ripple Labs Inc. civil securities-law action is\nretained as a narrowed CEX/off-ramp comparison: Coinbase and Bitstamp each\nissued official, replayably captured announcements restricting XRP trading\nfor U.S. customers after the SEC action/filing against Ripple. The row does\nnot claim a Ripple.com L4 frontend change, Binance.US/Kraken coverage, L0\nnetwork blocking, L1 consensus impact, L3 RPC filtering, or asset-onchain\nfreezes.\"\n",
+    "scoped_knowledge": "What changed: Coinbase and Bitstamp each announced XRP trading restrictions\nfor U.S. customers in the days after the SEC's 2020-12-22 Ripple action.\nCoinbase announced a move to limit-only trading followed by full XRP\ntrading suspension on 2021-01-19; Bitstamp announced a U.S.-customer XRP\ntrading and deposit halt effective 2021-01-08.\n\nWhat did not change or could not be measured: no XRP Ledger L1 consensus or\nvalidator-set change; no public-RPC L3 filter-list update; no asset-onchain\nissuer freeze; no network-layer reachability change. The previously coded\nRipple.com L4, Binance.US, and Kraken observations are not admitted in this\nrepaired version because replayable official anchors are not retained here.\n\nAttribution: direct for the two retained exchange observations because each\nofficial corporate source names the SEC action or filing against Ripple as\nthe legal context for the exchange's own XRP trading restriction. The row\ndoes not claim SEC-only end-to-end causation for every market participant.\n",
     "status": "admitted",
     "tags": [
       "sec_enforcement",
@@ -52552,24 +52441,19 @@
       "xrp",
       "offramp_cex",
       "exchange_delisting_cascade",
-      "cleanest_offramp_cex_cascade_s3",
-      "dryrun_2026_05_16",
-      "phase_a1_2026_05_16"
+      "quality_loop_2026_06_01"
     ],
     "target": {
       "actor_name": "Ripple Labs Inc / Garlinghouse / Larsen",
       "actor_type": "token_issuer_securities_enforcement",
       "canonical_domains": [
-        "ripple.com",
         "coinbase.com",
-        "bitstamp.net",
-        "binance.us",
-        "kraken.com"
+        "bitstamp.net"
       ],
       "chains": [],
       "entity": "ripple_labs_garlinghouse_larsen_xrp_exchange_cascade_2020",
       "enumeration": "subset",
-      "enumeration_note": "Ripple Labs Inc. corporate entity + individual co-defendants Bradley\nGarlinghouse (CEO) and Christian Larsen (co-founder/executive chairman).\nThe securities-law theory operates at token-offering level (XRP coded as\nan unregistered security in the complaint); no on-chain address set is\ntargeted. The downstream off-ramp cascade scope is the four US-facing\ncentralized exchanges that delisted XRP for US users within ~4 weeks:\nCoinbase (coinbase.com / pro.coinbase.com), Bitstamp (bitstamp.net),\nBinance.US (binance.us), and Kraken (kraken.com). The Ripple corporate\ninvestor-relations frontend (ripple.com) hosted official corporate\nresponse statements during the window.\n",
+      "enumeration_note": "Ripple Labs Inc. corporate entity plus individual co-defendants Bradley\nGarlinghouse and Christian Larsen are the legal targets named by the SEC.\nThe retained downstream observation scope is narrowed to the two\nUS-facing centralized-exchange actions with replayable official\ncorporate sources pinned in this repair pass: Coinbase and Bitstamp. The\nrow no longer admits the prior Binance.US, Kraken, or Ripple.com L4\nobservations because those load-bearing sources were not replayably\nanchored in the retained evidence.\n",
       "kind": "entity"
     },
     "temporal_tier": "comparable_main_2017_present",
@@ -52577,24 +52461,25 @@
       "actor": "US_SEC",
       "citation": [
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "SEC press release 2020-338 (2020-12-22): \"SEC Charges Ripple and Two\nExecutives with Conducting $1.3 Billion Unregistered Securities\nOffering.\" Civil action in SDNY against Ripple Labs Inc., CEO Bradley\nGarlinghouse, and co-founder Christian Larsen, alleging the\ndefendants raised over $1.3B through an unregistered, ongoing\ndigital-asset securities offering of XRP since 2013. Marked\nevidence_use=contextual_unarchived because in this DRYRUN the\nauthoring LLM agent did not personally pin a Wayback snapshot\ntimestamp or compute a body_hash; SEC press-release URL slugs are\nstable and routinely captured by Wayback through 2020-2024. Pinned\nsnapshot timestamp + body_hash to be re-anchored during human audit\nbefore this citation may serve as an admission anchor in its own\nright.\n",
+          "body_hash": "sha256:5bea8f0f40ef78c32abd795f49ac508529e2d0bc6dee88ff110596007f4b910e",
+          "body_path": "sources/http_captures/sec-v-ripple-2020/primary/www.sec.gov__news-press-release-2020-338__1549f335ea.html",
+          "evidence_use": "replayable",
+          "note": "SEC press release 2020-338, dated 2020-12-22, announcing the civil\naction against Ripple Labs Inc., Bradley Garlinghouse, and Christian\nLarsen for an alleged unregistered ongoing digital-asset securities\noffering of XRP. Captured locally 2026-06-01 with replayable\nbody_hash/body_path.\n",
           "type": "primary_legal",
-          "url": "https://www.sec.gov/news/press-release/2020-338",
-          "wayback": "https://web.archive.org/web/2021/https://www.sec.gov/news/press-release/2020-338"
+          "url": "https://www.sec.gov/news/press-release/2020-338"
         }
       ],
       "timestamp": "2020-12-22T00:00:00+00:00",
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level timing per the 2020-12-22 SEC press release filing date.\n",
+          "note": "Day-level timing per the SEC press release dated 2020-12-22.\n",
           "type": "primary_legal"
         }
       ],
       "type": "sec_action"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "sec-v-telegram-ton-2020.yaml",

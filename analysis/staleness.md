@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T00:13:27Z`
+Generated at: `2026-06-01T00:23:54Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 282, 'ok': 123}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 283, 'ok': 122}
 - **Verification** (`last_verified`): {'ok': 405}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 282, 'ok': 123}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 283, 'ok': 122}
 
 ## Flag legend
 
@@ -345,7 +345,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `sec-v-coinbase-2023` | `admitted` | `human_authored` | 2026-05-06 | 26 | ok | 2026-05-06 | 26 | ok | ok |
 | `sec-v-coinbase-staking-wells-2023` | `rejected` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `sec-v-ftx-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `sec-v-ripple-2020` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `sec-v-ripple-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `sec-v-telegram-ton-2020` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
 | `sec-v-uniswap-wells-notice-2024` | `rejected` | `human_authored` | — | — | no_audit_recorded | 2026-05-06 | 26 | ok | no_audit_recorded |
 | `sec-voorhees-satoshidice-2014` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
@@ -653,6 +653,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `sec-tokenlot-unregistered-broker-2018-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `sec-v-coinbase-staking-wells-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `sec-v-ftx-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `sec-v-ripple-2020` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `sec-v-uniswap-wells-notice-2024` — audit=no_audit_recorded, verification=ok, verif_age=26d
 - `shapeshift-mandatory-kyc-anonymity-end-2018-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `singapore-mas-retail-crypto-restriction-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d

@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **253 release-ready** cases, **114 admitted-but-blocked** cases, observation reliability
-      **270 high / 81 medium / 16 low**, and attribution reliability **232 high / 135 medium / 0 low**.
+      **254 release-ready** cases, **113 admitted-but-blocked** cases, observation reliability
+      **271 high / 81 medium / 15 low**, and attribution reliability **233 high / 134 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -113,7 +113,11 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       in `sec-v-binance-2023`, not a standalone 2023-06-09 all-staking shutdown. Follow-on quality-loop
       audit recoded `kraken-sec-unregistered-exchange-2023` from a positive empirical observed-change row to
       a null-control no-service-withdrawal comparator, with SEC and Kraken replay anchors pinned locally for
-      the November 2023 unregistered-exchange complaint and same-day platform response.
+      the November 2023 unregistered-exchange complaint and same-day platform response. Follow-on repair
+      also moved `sec-v-ripple-2020` out of the low-observation queue with local SEC, Coinbase, and Bitstamp
+      replay anchors, while narrowing the row from a broad two-layer/four-exchange cascade to the
+      source-supported Coinbase/Bitstamp CEX/off-ramp comparison and dropping unanchored Ripple.com L4,
+      Binance.US, and Kraken observations from the admitted observation set.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
