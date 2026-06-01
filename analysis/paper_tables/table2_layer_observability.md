@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ad910b8` · generated `2026-06-01T00:40:01Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `f70cc98` · generated `2026-06-01T00:48:55Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -26,4 +26,4 @@ A rate of `—` indicates a zero denominator; it is an **observability gap**, no
 - **`l1_consensus`** sensitive (Δ=0.625): 0/8 (0.00) strict · 2/8 (0.25) current · 10/16 (0.62) permissive.
 - **`l3_rpc`** sensitive (Δ=-0.1429): 2/2 (1.00) strict · 2/2 (1.00) current · 6/7 (0.86) permissive.
 - **`l4_frontend`** sensitive (Δ=0.3229): 30/53 (0.57) strict · 48/53 (0.91) current · 72/81 (0.89) permissive.
-- **`offramp_cex`** sensitive (Δ=0.2925): 93/234 (0.40) strict · 155/234 (0.66) current · 198/287 (0.69) permissive.
+- **`offramp_cex`** sensitive (Δ=0.2967): 92/234 (0.39) strict · 155/234 (0.66) current · 198/287 (0.69) permissive.
