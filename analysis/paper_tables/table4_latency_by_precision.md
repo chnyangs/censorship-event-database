@@ -1,6 +1,6 @@
 # Table 4 · Latency evidence surface (precision-filtered)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `698540a` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `66cd488` · generated `2026-06-01T00:00:42Z`
 
 Supports **C3** (`docs/paper_claims.md §1`). Only triggers with hour-or-better precision contribute to the hour-granularity panel; day-precision triggers are reported separately. `trigger_is_action` events (C4) are excluded from both panels and surfaced in Panel C — their t≈0 is a record-level artifact, not a measured delta.
 
@@ -28,7 +28,7 @@ Day-precision triggers cannot support hour-granularity latency claims. The event
 | ambiguous_boundary | 6 | `aeza-group-ofac-2025`, `chatex-ofac-2021`, `circle-usdc-cryptex-freeze-2024`, `crypto-com-eu-usdt-stablecoin-delisting-2025-01`, `lockbit-affiliates-ofac-2024`, `semenov-ofac-2023` |
 | **total** | **198** | |
 
-## Panel C · Excluded from both panels — `trigger_is_action` (n=68)
+## Panel C · Excluded from both panels — `trigger_is_action` (n=67)
 
 | event_id | trigger_type |
 | --- | --- |
@@ -48,7 +48,6 @@ Day-precision triggers cannot support hour-granularity latency claims. The event
 | `binance-russia-exit-commex-2023` | `corporate_policy_change` |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08` | `corporate_policy_change` |
 | `binance-uk-new-user-halt-2023-10` | `corporate_policy_change` |
-| `binance-us-staking-end-2023` | `corporate_policy_change` |
 | `bitcoinica-shutdown-2012-05` | `corporate_policy_change` |
 | `bitfloor-capital-one-debanking-2013-04` | `corporate_policy_change` |
 | `bybit-canada-exit-2023-05` | `corporate_policy_change` |

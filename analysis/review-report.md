@@ -9,7 +9,7 @@ This file is the operational summary for the repo's two current priorities:
 
 - Event count: `405`
 - Release-ready cases: `252`
-- Admitted but release-blocked cases: `116`
+- Admitted but release-blocked cases: `115`
 - Fully complete release-ready cases: `11`
 - Scope-limited release-ready cases: `241`
 - Working drafts: `2`
@@ -591,24 +591,17 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `binance-us-staking-end-2023`
 
-- Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Status: `rejected`
+- Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
-- Observation reliability: `low`
-- Attribution reliability: `medium`
-- Coverage completeness: `medium`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Note: One layer remains explicitly unmeasured.
-- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
-- Next action: Either measure the remaining layer or document why it is out of scope.
-- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case shape is visible but the case is not yet admitted.
+- Next action: Promote to admitted once promotion-gate criteria are met.
 
 ### `bitcoin-fog-sterlingov-doj-2024`
 

@@ -4,22 +4,22 @@
 Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 
 ## Headline
-- **405 events**: **368 admitted** / 28 draft / 9 rejected.
+- **405 events**: **367 admitted** / 28 draft / 10 rejected.
 - **Integrity**: `scripts/validate.py` passes **405 / 405 [OK]**; `make check` passes. All changes remain local, never pushed.
-- **This session continuation delivered +107 admitted** (corpus 261 → 368), plus codebook **4.0.0** (`evidence_tier`).
+- **This session continuation delivered +106 net admitted** (corpus 261 → 367), plus codebook **4.0.0** (`evidence_tier`).
 
 ### 2026-06-01 quality-loop addendum
-- Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
+- `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
 - Under that stricter operational review, release-ready cases are **252** (11 complete / 241 scoped) and
-  admitted-but-blocked cases are **116**. This is a deliberate paper-risk surfacing change, not a corpus
+  admitted-but-blocked cases are **115**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **269 high / 81 medium / 18 low**; attribution reliability
-  **231 high / 137 medium / 0 low**. Current admitted paper roles are
-  **251 aggregate_datapoint / 96 null_control / 18 appendix_only / 3 paper_anchor**.
+  observation reliability **269 high / 81 medium / 17 low**; attribution reliability
+  **231 high / 136 medium / 0 low**. Current admitted paper roles are
+  **251 aggregate_datapoint / 96 null_control / 17 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -61,15 +61,18 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `korea-fsc-ico-ban-2017` now has the official FSC 2017-09-29 Korean press-release PDF pinned locally and is
   narrowed from a drifted English index plus unpinned exchange-frontend cascade to the source-supported ICO /
   credit-extension prohibition itself.
+  `binance-us-staking-end-2023` is now rejected as an unsupported false-positive / duplicate-scope row: the
+  replayable Binance.US and Guardian anchors support the SEC-v-Binance platform/off-ramp reaction already
+  admitted in `sec-v-binance-2023`, not a standalone 2023-06-09 Binance.US all-staking shutdown.
 
-## Admitted composition (368)
+## Admitted composition (367)
 | dimension | breakdown |
 |---|---|
-| **research_stratum** | S4_nation_state 111 · S5_corporate 97 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
-| **temporal_tier** | comparable_main_2017_present 308 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 334 · **attested_secondary 34** (lower-tier, filterable — see codebook §10) |
-| **admission_tier** | empirical_case 267 · null_case 96 · anchor_case 5 |
-| **empirical_shape** | comparison 270 · null_event 96 · cascade 2 |
+| **research_stratum** | S4_nation_state 111 · S5_corporate 96 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
+| **temporal_tier** | comparable_main_2017_present 307 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
+| **evidence_tier** | admission_grade 333 · **attested_secondary 34** (lower-tier, filterable — see codebook §10) |
+| **admission_tier** | empirical_case 266 · null_case 96 · anchor_case 5 |
+| **empirical_shape** | comparison 269 · null_event 96 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
 censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **34
@@ -77,11 +80,11 @@ censorship actions are observed at 1–2 layers; OFAC designations are `null_cas
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.
 
-## What this session changed (261 → 368)
+## What this session changed (261 → 367 net)
 1. **Waves 1–3 fully processed** (S1/S3/S4/S5/S6 bulk authoring → adversarial verify → admit), corpus → 322.
 2. **Task 1 — VERIFY-FLAG refinement** (+9): 5 OFAC null_cases + 4 non-OFAC; softened SDN-entry/penalty
    over-claims to match captured sources; 2 held with corrected flags. → 331.
-3. **Task 2 — source-strengthening** (+37): +3 via official-PDF capture (philippines-bsp / argentina-bcra /
+3. **Task 2 — source-strengthening** (+37 before later false-positive rejection): +3 via official-PDF capture (philippines-bsp / argentina-bcra /
    ecuador-COMF, all Wayback-archived); +34 via the new **`evidence_tier=attested_secondary`** lower tier
    (25 clean + 9 flagged national bans; 1 of those was later upgraded to admission-grade by item 11). → 368.
 4. **Codebook 4.0.0** — added `evidence_tier` (orthogonal source-strength grade) + §10 + validator support;

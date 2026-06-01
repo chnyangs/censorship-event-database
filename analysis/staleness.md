@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T00:00:00Z`
+Generated at: `2026-06-01T00:00:42Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 280, 'ok': 125}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 281, 'ok': 124}
 - **Verification** (`last_verified`): {'ok': 405}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 280, 'ok': 125}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 281, 'ok': 124}
 
 ## Flag legend
 
@@ -58,7 +58,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `binance-russia-exit-commex-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `binance-uk-new-user-halt-2023-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `binance-us-staking-end-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `binance-us-staking-end-2023` | `rejected` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `bitcoin-fog-sterlingov-doj-2024` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `bitcoin-maven-tetley-doj-2018` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `bitcoinica-shutdown-2012-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -455,6 +455,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `binance-nigeria-naira-services-end-2024-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `binance-palestinian-accounts-seizure-israel-2023-11` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `binance-uk-new-user-halt-2023-10` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `binance-us-staking-end-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `bitcoin-fog-sterlingov-doj-2024` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `bitcoin-maven-tetley-doj-2018` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `bitcoinica-shutdown-2012-05` — audit=no_audit_recorded, verification=ok, verif_age=11d

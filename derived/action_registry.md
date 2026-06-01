@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `698540a` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `66cd488` · generated `2026-06-01T00:00:42Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **331**
+- Canonical physical actions: **330**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -40,7 +40,6 @@ This registry deduplicates physical actions that appear in more than one event r
 | `binance-russia-exit-commex-2023:1:offramp_cex:exchange:binance_russia:binance_rub_rails_wound_down_and_migrated_to_commex` | 1 | 0 | 1 | offramp_cex | `binance-russia-exit-commex-2023::offramp_cex` |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08:0:offramp_cex:exchange:binance:binance_freezes_lobaev_account_after_ukrainian_le_pressure` | 1 | 0 | 1 | offramp_cex | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08::offramp_cex` |
 | `binance-uk-new-user-halt-2023-10:0:offramp_cex:exchange:binance:binance_stops_accepting_new_uk_users_fca_promotions_regime` | 1 | 0 | 1 | offramp_cex | `binance-uk-new-user-halt-2023-10::offramp_cex` |
-| `binance-us-staking-end-2023:0:offramp_cex:exchange:binance_us_staking:us_cex_staking_service_discontinued_autonomous` | 1 | 0 | 1 | offramp_cex | `binance-us-staking-end-2023::offramp_cex` |
 | `bitcoinica-shutdown-2012-05:0:offramp_cex:bitcoinica_operator:operator_led_shutdown_of_bitcoinica_trading_platform_after_hack` | 1 | 0 | 1 | offramp_cex | `bitcoinica-shutdown-2012-05::offramp_cex` |
 | `bitfinex-cftc-retail-commodity-2016:0:offramp_cex:exchange:bitfinex:cftc_ordered_bitfinex_cease_desist_for_financed_retail_bitcoin_transactions` | 1 | 0 | 1 | offramp_cex | `bitfinex-cftc-retail-commodity-2016::offramp_cex` |
 | `bitfinex-tether-cftc-2021:0:offramp_cex:exchange:bitfinex:cftc_ordered_bitfinex_us_retail_financed_commodity_product_remediation_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-cftc-2021::offramp_cex` |

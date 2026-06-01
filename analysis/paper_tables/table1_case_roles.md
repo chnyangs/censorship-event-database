@@ -1,6 +1,6 @@
-# Table 1 · Case roles (n=368)
+# Table 1 · Case roles (n=367)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `698540a` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `66cd488` · generated `2026-06-01T00:00:42Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -9,14 +9,14 @@ Supports `docs/paper_claims.md §0` (case-role convention). Each event's admissi
 | admission_tier | count |
 | --- | ---: |
 | `anchor_case` | 5 |
-| `empirical_case` | 267 |
+| `empirical_case` | 266 |
 | `null_case` | 96 |
-| **total** | **368** |
+| **total** | **367** |
 
 | trigger precision bucket | count |
 | --- | ---: |
 | `hour` | 10 |
-| `day` | 358 |
+| `day` | 357 |
 
 Only the `hour`-precision subset is admissible for hour-granularity latency claims (Table 4).
 
@@ -57,7 +57,6 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `binance-russia-exit-commex-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 2 | `multi_layer` | ✓ | · | `2026-05-16` | `2026-05-16` |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
 | `binance-uk-new-user-halt-2023-10` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
-| `binance-us-staking-end-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-16` | `2026-05-16` |
 | `bitcoinica-shutdown-2012-05` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
 | `bitfinex-cftc-retail-commodity-2016` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `bitfinex-tether-cftc-2021` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
