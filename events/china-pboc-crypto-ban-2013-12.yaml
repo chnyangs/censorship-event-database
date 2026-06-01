@@ -1,6 +1,6 @@
 id: china-pboc-crypto-ban-2013-12
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
@@ -9,13 +9,13 @@ analysis_use: historical_baseline
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:40:00Z
-last_verified: 2026-05-16
-last_human_audit: 2026-05-16
+last_verified: 2026-06-01
 
 related_events:
   - china-pboc-crypto-ban-2021
+  - china-pboc-banks-close-exchange-accounts-2014-04
   - india-rbi-crypto-ban-2018
   - nigeria-cbn-crypto-ban-2021
   - turkey-cbrt-crypto-ban-2021
@@ -27,81 +27,54 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/2982357/index.html
-      wayback: https://web.archive.org/web/2014/http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/2982357/index.html
-      evidence_use: contextual_unarchived
+      url: https://www.pbc.gov.cn/tiaofasi/144941/3581332/3587306/index.html
+      body_hash: sha256:054dce6a61ceda31c3438ee10b9c81da2eb42c05bf487d319273b32a96c8d3a0
+      body_path: sources/http_captures/china-pboc-crypto-ban-2013-12/primary/www.pbc.gov.cn__tiaofasi-144941-3581332-3587306-index.html__ae42a4eb2c.html
+      evidence_use: replayable
       note: |
-        PBOC original publication of Notice 2013/289 (公告 [2013]289号 /
-        "Notice on Preventing Bitcoin Risks" / 关于防范比特币风险的通知),
-        issued 2013-12-05 jointly by five PRC ministries: People's Bank
-        of China (PBOC), Ministry of Industry and Information Technology
-        (MIIT), China Banking Regulatory Commission (CBRC), China
-        Securities Regulatory Commission (CSRC), and China Insurance
-        Regulatory Commission (CIRC). Core provisions: (1) classified
-        Bitcoin as a "virtual commodity" rather than legal-tender
-        currency; (2) prohibited financial institutions and payment
-        service providers from buying/selling Bitcoin or providing
-        Bitcoin-related custody, payment, conversion, or insurance
-        services; (3) required Bitcoin exchanges to register with MIIT
-        as "internet information service providers" and to comply with
-        anti-money-laundering identification rules; (4) directed banks
-        to refuse Bitcoin-related accounts. The pbc.gov.cn URL path
-        format has changed since 2013; the provisional wayback
-        anchor uses Wayback Machine year-prefix lookup and the specific
-        capture timestamp requires re-pinning during human audit before
-        this citation may serve as an admission anchor in its own right.
-        Marked evidence_use=contextual_unarchived pending that re-pin.
+        People's Bank of China official notice landing page for Notice
+        银发〔2013〕289号, naming PBOC, MIIT, CBRC, CSRC, and CIRC as
+        issuing authorities and linking the official notice PDF.
+        Captured locally after the legacy pbc.gov.cn path had drifted.
     - type: primary_legal
-      url: http://www.gov.cn/gzdt/2013-12/05/content_2542584.htm
-      evidence_use: contextual_unarchived
+      url: https://www.pbc.gov.cn/tiaofasi/fileDir/resource/cms/2018/07/2018072615002921168.pdf
+      body_hash: sha256:5522c48edcffc33d96c13d41d44cfe8dfd0791c211ed93885e188a3bc15a1b9b
+      body_path: sources/http_captures/china-pboc-crypto-ban-2013-12/primary/www.pbc.gov.cn__tiaofasi-fileDir-resource-cms-2018-07-2018072615002921168.pdf__7180e9bb41.bin
+      evidence_use: replayable
       note: |
-        State Council (gov.cn) reproduction of the joint five-ministry
-        announcement of Notice 2013/289 on 2013-12-05. Marked
-        evidence_use=contextual_unarchived; the live gov.cn URL has
-        path-format drift since 2013 and the specific Wayback snapshot
-        timestamp is to be re-pinned during human audit.
-    - type: supporting_tracker
-      url: https://www.loc.gov/item/global-legal-monitor/2014-01-13/china-regulators-issue-notice-on-bitcoin-risks/
-      wayback: https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2014-01-13/china-regulators-issue-notice-on-bitcoin-risks/
-      evidence_use: contextual_unarchived
+        Official PBOC-hosted PDF attachment for Notice 银发〔2013〕289号.
+        This is the primary legal artifact for the five-ministry notice.
+    - type: primary_legal
+      url: https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2013/art_d7241872221f43708e47fd30ac30eac0.html
+      body_hash: sha256:fd834ddbf817a7e65d70ba0e13e2ee1695dbd039e09918e1e1eee4d348c1c70a
+      body_path: sources/http_captures/china-pboc-crypto-ban-2013-12/primary/www.miit.gov.cn__zwgk-zcwj-wjfb-tz-art-2013-art_d7241872221f43708e47fd30ac30eac0.html__a2558c2094.html
+      evidence_use: replayable
       note: |
-        US Library of Congress Global Legal Monitor entry titled
-        "China: Regulators Issue Notice on Bitcoin Risks" dated
-        2014-01-13, providing an English-language summary of Notice
-        2013/289 and naming all five issuing PRC ministries. Used
-        here as a contextual translation anchor; the live loc.gov URL
-        format is stable and routinely captured by Wayback, but the
-        specific snapshot timestamp is to be re-pinned during human
-        audit. Marked evidence_use=contextual_unarchived pending that
-        re-pin.
+        MIIT official full-text reproduction of the five-ministry notice.
+        The captured body includes the operative section requiring financial
+        institutions and payment institutions not to conduct Bitcoin-related
+        business.
   timestamp_sources:
     - type: primary_legal
       note: |
-        Notice 2013/289 carries a 2013-12-05 issuance date. The notice
-        text and all contemporaneous Chinese-language and English-language
-        secondary coverage agree on the 2013-12-05 publication day.
-        Day-level precision is appropriate because the PRC ministerial
-        joint notice does not carry intra-day publication timing in the
-        public record.
+        The five-ministry notice was published on 2013-12-05. Day-level
+        precision is used because the notice does not carry a sub-day
+        publication time.
 
 target:
   kind: entity
-  entity: china_financial_institution_exchange_ecosystem_ban_2013
+  entity: prc_financial_institutions_payment_providers_bitcoin_services
   enumeration: subset
   enumeration_note: |
-    Canonical target is the PRC policy directive itself, addressed to
-    (a) Chinese financial institutions and payment service providers
-    (prohibited from Bitcoin-related services), and (b) Chinese
-    Bitcoin exchanges (required to register with MIIT and apply AML
-    identification). Named affected exchanges in the 2013-12 window
-    include BTC China (btcchina.com), OKCoin (okcoin.cn / okcoin.com),
-    and Huobi (huobi.com); these are recorded as implicit second-order
-    targets in observations.scope_descriptor rather than enumerated
-    in canonical_domains, matching the sibling
-    china-pboc-crypto-ban-2021 convention.
-  protocol: null
-  actor_type: chinese_crypto_ecosystem
-  actor_name: PRC financial-institution + exchange ecosystem (class)
+    The retained target is the regulated PRC financial-institution and
+    payment-institution class covered by Notice 银发〔2013〕289号. The notice
+    also imposed filing/AML obligations on Bitcoin trading websites, but
+    this repaired row does not use exchange-side CNY-deposit pauses as the
+    load-bearing observation because those require separate exchange or
+    contemporaneous press anchors.
+  protocol: bitcoin
+  actor_type: financial_institution_payment_provider_class
+  actor_name: PRC financial institutions and payment institutions
   chains:
     - bitcoin
   canonical_domains: []
@@ -113,29 +86,18 @@ coverage:
   - layer: l0_network
     status: not_applicable
     note: |
-      Notice 2013/289 does not direct ISP-level domain blocking or
-      DNS interference. PRC network-layer blocking of crypto-exchange
-      domains is a downstream and later phenomenon (2017+ phased ISP
-      action against domestic exchanges; broader 2021 enforcement) that
-      is not part of this 2013-12-05 trigger. L0 marked not_applicable
-      consistent with India 2018 / Nigeria 2021 / Turkey 2021 sibling
-      treatment of banking-and-exchange-rail nation-state events.
+      Notice 银发〔2013〕289号 is a financial/payment-rail directive, not an
+      ISP, DNS, IP, or routing block.
   - layer: l1_consensus
     status: not_applicable
     note: |
-      Bitcoin proof-of-work consensus in 2013-12 has no protocol-level
-      relay-filter primitive analogous to the post-Merge Ethereum PBS
-      relay surface. The Ethereum Merge itself is ~9 years downstream
-      (2022-09-15). not_applicable on construct-did-not-exist grounds.
+      Bitcoin consensus rules were not changed and no validator or mining
+      censorship primitive is asserted.
   - layer: l3_rpc
     status: not_applicable
     note: |
-      The MEV-Boost / Flashbots Protect / MEV-Blocker public-RPC
-      compliance substrate that the L3 layer measures did not exist in
-      2013; Flashbots Protect launched 2022-11 and MEV-Blocker launched
-      2023-03-27. not_applicable on construct-did-not-exist grounds,
-      consistent with the L3 treatment in china-pboc-crypto-ban-2021
-      and other pre-Merge nation-state events.
+      The 2013 Bitcoin banking-rail directive predates the Ethereum
+      RPC/MEV-era provider-compliance substrate tracked by the L3 layer.
   - layer: l4_frontend
     status: not_measured
     scope:
@@ -143,176 +105,117 @@ coverage:
       - okcoin.cn
       - huobi.com
     note: |
-      Chinese Bitcoin exchange frontends (BTC China, OKCoin, Huobi) did
-      add Bitcoin-trading-paused and CNY-deposit-paused notices on
-      their homepages within ~2 weeks of the PBOC notice, per
-      contemporaneous Chinese and English crypto-press coverage.
-      Wayback bracketing of those homepage snapshots is plausibly
-      feasible (Wayback CDX coverage of btcchina.com and huobi.com in
-      2013-12 / 2014-01 is non-trivial) but the specific snapshot URLs
-      have not been pinned in this authoring pass. L4 status remains
-      not_measured pending the Wayback-capture pass that an admission
-      anchor at this layer would require; that pass is a follow-up
-      task and is also the gating step for promoting this event from
-      empirical_case to anchor_case.
+      Exchange-facing website notices and CNY-deposit interruptions may be
+      measurable in contemporaneous exchange pages or press, but this repaired
+      row does not retain an L4 observation because no exchange-controlled UI
+      archive is pinned here.
   - layer: asset_onchain
     status: not_applicable
     note: |
-      Bitcoin native asset has no issuer-side blacklist / freeze admin
-      method. The 2013 directive does not engage a stablecoin-issuer
-      admin path (USDT first issued ~2014-10; chainwide admin freezes
-      arose later). not_applicable on construct-did-not-exist grounds.
+      Bitcoin has no issuer-admin blacklist or freeze primitive; the notice
+      did not invoke any on-chain asset-control mechanism.
   - layer: offramp_cex
     status: measured
     scope:
-      - btc_china
-      - okcoin
-      - huobi
+      - prc_financial_institutions
+      - prc_payment_institutions
     note: |
-      Notice 2013/289 is by construction an off-ramp / financial-rail
-      event: it directs PRC banks and payment companies to refuse
-      Bitcoin-related accounts and prohibits institutional Bitcoin
-      services. Within ~13 days of the notice (by ~2013-12-18) the three
-      dominant PRC Bitcoin exchanges of the period (BTC China, OKCoin,
-      Huobi) paused new CNY deposits in compliance, an action widely
-      documented in contemporaneous Chinese and English crypto press.
-      The PBOC notice text itself names the regulatory mandate, giving
-      direct attribution at this layer. Marked measured; load-bearing
-      observation attached below as observation_kind=observed_change
-      with attribution=direct.
+      Load-bearing layer. The notice requires financial institutions and
+      payment institutions not to price products/services in Bitcoin, buy or
+      sell Bitcoin, underwrite Bitcoin-related insurance, or directly/indirectly
+      provide Bitcoin registration, trading, clearing, settlement, payment,
+      exchange, custody, collateral, or Bitcoin-related financial-product
+      services.
 
 observations:
   - layer: offramp_cex
-    actor: prc_bitcoin_exchange_ecosystem
-    event: cny_deposit_channels_paused_industry_wide
+    actor: regulator:pboc_miit_cbrc_csrc_circ
+    event: financial_and_payment_institution_bitcoin_service_prohibition
     observation_kind: observed_change
     attribution: direct
-    timestamp: 2013-12-18T00:00:00Z
+    timestamp: 2013-12-05T00:00:00Z
     precision: day
-    delta_hours: 312
+    delta_hours: 0
     sources:
       - type: primary_legal
-        url: http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/2982357/index.html
-        wayback: https://web.archive.org/web/2014/http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/2982357/index.html
-        evidence_use: contextual_unarchived
+        url: https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2013/art_d7241872221f43708e47fd30ac30eac0.html
+        body_hash: sha256:fd834ddbf817a7e65d70ba0e13e2ee1695dbd039e09918e1e1eee4d348c1c70a
+        body_path: sources/http_captures/china-pboc-crypto-ban-2013-12/primary/www.miit.gov.cn__zwgk-zcwj-wjfb-tz-art-2013-art_d7241872221f43708e47fd30ac30eac0.html__a2558c2094.html
+        evidence_use: replayable
+        scope_descriptor:
+          regulated_classes:
+            - financial_institutions
+            - payment_institutions
+          jurisdiction: CN
+          time_window:
+            - 2013-12-05T00:00:00Z
+            - 2013-12-05T23:59:59Z
         note: |
-          PBOC Notice 2013/289 is the legal instrument. The notice
-          explicitly prohibits PRC financial institutions and payment
-          service providers from offering Bitcoin-related custody,
-          payment, conversion, or insurance services, and directs banks
-          to refuse Bitcoin-related accounts; this is the regulatory
-          mandate that drove the observed industry-wide CNY-deposit
-          pause at BTC China, OKCoin, and Huobi. attribution=direct
-          because the notice text names the regulatory mandate.
-          Provisional wayback anchor; specific snapshot timestamp
-          requires human-audit re-pinning before this citation may
-          carry an admission anchor on its own.
-      - type: supporting_tracker
-        url: https://www.loc.gov/item/global-legal-monitor/2014-01-13/china-regulators-issue-notice-on-bitcoin-risks/
-        wayback: https://web.archive.org/web/2020/https://www.loc.gov/item/global-legal-monitor/2014-01-13/china-regulators-issue-notice-on-bitcoin-risks/
-        evidence_use: contextual_unarchived
+          MIIT's official full-text copy states that financial institutions
+          and payment institutions must not conduct Bitcoin-related business,
+          including Bitcoin registration, trading, clearing, settlement,
+          payment, exchange, custody, collateral, insurance, or related
+          financial-product services. attribution=direct because the primary
+          legal instrument itself names the regulated service prohibition.
+      - type: primary_legal
+        url: https://www.pbc.gov.cn/tiaofasi/fileDir/resource/cms/2018/07/2018072615002921168.pdf
+        body_hash: sha256:5522c48edcffc33d96c13d41d44cfe8dfd0791c211ed93885e188a3bc15a1b9b
+        body_path: sources/http_captures/china-pboc-crypto-ban-2013-12/primary/www.pbc.gov.cn__tiaofasi-fileDir-resource-cms-2018-07-2018072615002921168.pdf__7180e9bb41.bin
+        evidence_use: replayable
+        scope_descriptor:
+          regulated_classes:
+            - financial_institutions
+            - payment_institutions
+          jurisdiction: CN
         note: |
-          Library of Congress Global Legal Monitor 2014-01-13 English
-          summary of Notice 2013/289, naming all five issuing
-          ministries and the four core provisions. Corroborates the
-          regulatory mandate behind the observed CNY-deposit pause at
-          the PRC exchange triad. Specific Wayback snapshot timestamp
-          requires re-pinning in human audit.
+          PBOC-hosted PDF copy of the same five-ministry notice, retained as
+          the primary central-bank legal artifact.
 
 analysis_notes: |
-  NEW EVENT AUTHORED — DRYRUN 2026-05-16. Phase 2 of the
-  2026-05-16 staged-release plan: historical-baseline P0 anchor for
-  the 2013-12-05 PBOC Notice 2013/289 ("Notice on Preventing Bitcoin
-  Risks", 关于防范比特币风险的通知, 公告 [2013]289号). Per Agent B M2
-  finding, this event had no candidate-ledger entry because the
-  non_us_state_archives source frame was planned:-not-ingested until
-  2026-05-16. Authored by LLM in this pass; origin=human_reviewed for
-  validator compatibility, but human re-verification of (i) the
-  bilingual PBOC source citation reachability and pbc.gov.cn /
-  gov.cn snapshot pinning and (ii) the L4 frontend Wayback captures
-  for BTC China / OKCoin / Huobi homepages is required before this
-  stamp is treated as a real human audit. The last_human_audit field
-  is a DRYRUN marker and must be replaced by a real human audit per
-  the project convention.
+  **REPAIRED 2026-06-01** (quality loop). The previous row depended on
+  contextual/year-prefix source pointers and described a later
+  exchange-side CNY-deposit pause that was not independently pinned in the
+  row. This repair captures official PBOC and MIIT artifacts and narrows the
+  observation to the five-ministry notice's directly stated financial/payment
+  institution Bitcoin-service prohibition.
 
-  This event is the direct cross-temporal sibling of the already-admitted
-  china-pboc-crypto-ban-2021; the pair should be treated as the
-  canonical 2013 / 2021 PBOC comparison case in the dataset. The 2013
-  notice was the first comprehensive PRC central-bank action against
-  Bitcoin and established the regulatory frame (Bitcoin as virtual
-  commodity, banks excluded, exchanges treated as internet-information-
-  service providers under MIIT) that the 2021 nine-ministry joint
-  notice extended into a full ban on crypto-business activity.
+  Method boundary: this is a historical-baseline S4 nation-state
+  banking/payment-rail restriction. It should not be cited as a separately
+  measured BTC China / OKCoin / Huobi CNY-deposit-pause event unless a future
+  pass pins exchange-side announcements or contemporaneous replayable
+  exchange-specific sources.
 
-  Substantive findings:
-  - Five-ministry joint notice (PBOC + MIIT + CBRC + CSRC + CIRC).
-  - Bitcoin classified as a "virtual commodity," not currency.
-  - Financial institutions and payment service providers prohibited
-    from offering Bitcoin-related services (custody / payment /
-    conversion / insurance).
-  - Bitcoin exchanges required to register with MIIT as
-    "internet information service providers" and to apply AML
-    identification.
-  - Banks directed to refuse Bitcoin-related accounts.
-  - Observed cascade: within ~13 days, BTC China (~2013-12-18 CNY
-    deposit pause), OKCoin, and Huobi all paused CNY deposit channels
-    in compliance.
-
-  Why historical_baseline tier: events 2013-2016 belong to the
-  historical_baseline_2013_2016 temporal tier per the 2008+ tiered
-  frame in sampling/frame.yaml. analysis_use=historical_baseline
-  excludes this row from the 2017+ comparable-analysis denominator,
-  matching the validator's tier-vs-analysis-use consistency rule. The
-  paper treats the 2013-2016 tier as cross-temporal context anchored
-  on the 2021 sibling that does sit in the comparable corpus.
-
-  Why empirical_case rather than anchor_case: the LLM authoring
-  constraint in this pass is that Wayback captures for the L4
-  frontend reactions at BTC China / OKCoin / Huobi homepages have
-  not been personally re-verified. Per the project convention,
-  anchor_case promotion requires the actual Wayback-capture pass on
-  L4 frontend evidence; that pass is a follow-up turn. Until it
-  lands, the event admits at empirical_case on the strength of the
-  direct-attribution offramp_cex observation alone.
-
-  Why L0/L1/L3/asset_onchain are not_applicable: Notice 2013/289 is a
-  banking-and-exchange-rail directive, not a network-layer block; the
-  Ethereum PBS-era L1/L3 measurement primitives do not exist in 2013;
-  Bitcoin native asset has no issuer-side admin freeze primitive.
-  This treatment is consistent with the sibling 2021 event's
-  L1/L3/asset_onchain reasoning (which uses the same construct-did-not-
-  exist logic for the same pre-Merge dimensions) and with the
-  India 2018 / Nigeria 2021 / Turkey 2021 banking-rail-severance
-  pattern more broadly.
+  Live URL drift handling: the legacy pbc.gov.cn and gov.cn paths in the old
+  row had drifted or returned 404. The retained replay path is now local
+  body_hash/body_path capture of the current PBOC official landing page, PBOC
+  official PDF, and MIIT official full-text notice.
 
 scoped_claim: |
-  PBOC Notice 2013/289 of 2013-12-05 directed Chinese banks and payment
-  service providers to refuse Bitcoin-related accounts and services; within
-  ~13 days the PRC Bitcoin-exchange triad (BTC China, OKCoin, Huobi) paused
-  CNY deposit channels in compliance. The offramp_cex layer carries the
-  load-bearing direct-attribution observation; L4 frontend reactions are
-  consistent with the cascade but require a Wayback-capture pass before they
-  may anchor a separate observed_change row.
+  "On 2013-12-05, PBOC, MIIT, CBRC, CSRC, and CIRC issued Notice
+  银发〔2013〕289号, prohibiting PRC financial institutions and payment
+  institutions from providing Bitcoin-related services. In this dataset the
+  row is a one-layer historical-baseline S4 offramp_cex/payment-rail
+  observed_change with attribution=direct, anchored in captured official
+  PBOC/MIIT artifacts. It does not claim ISP blocking, consensus-layer
+  effects, RPC-provider filtering, issuer asset freezes, or a separately
+  measured exchange-frontend/CNY-deposit cascade."
 
 scoped_knowledge: |
-  This event is the cross-temporal sibling of china-pboc-crypto-ban-2021
-  and gives the dataset its earliest PRC central-bank crypto action. The
-  comparison pair (2013 first-touch banking exclusion vs 2021 nine-ministry
-  full ban) is a within-jurisdiction longitudinal anchor: the 2013 notice
-  established Bitcoin as a "virtual commodity" with banks-may-not-service
-  posture but stopped short of declaring crypto-business activity illegal;
-  the 2021 notice escalated to a comprehensive ban on virtual-currency
-  business activity. The cascade shape in 2013 is comparison-not-cascade
-  because the construct-did-not-exist layers (L1, L3, asset_onchain) and
-  the policy scope itself (banking-rail-only, not network or
-  payment-on-ramp) limited the observable cross-layer surface. The 2013
-  case is the canonical historical-baseline comparison row for cross-
-  temporal nation-state-block analysis.
+  This is the 2013 PRC first-touch banking/payment-rail restriction that
+  precedes the stronger 2021 PRC virtual-currency-business ban. The retained
+  longitudinal contrast is narrow: 2013 excludes regulated financial and
+  payment institutions from Bitcoin-related services while still treating
+  Bitcoin as a virtual commodity; 2021 escalates to a broader prohibition on
+  virtual-currency business activities. Exchange-side operational reactions
+  belong in separate rows or future evidence upgrades if pinned.
 
 tags:
   - nation_state_block
   - china
   - pboc
-  - crypto_ban
-  - historical_anchor
+  - miit
+  - bitcoin
+  - historical_baseline
   - banking_rail_severance
+  - payment_rail_restriction
+  - quality_loop_2026_06_01

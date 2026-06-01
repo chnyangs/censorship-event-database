@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4acc680` · generated `2026-06-01T03:34:29Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ea43eeb` · generated `2026-06-01T03:45:56Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -71,7 +71,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `china-nft-secondary-trading-self-discipline-2022-06:0:l4_frontend:platform_cohort:prc_digital_collectibles:secondary_trading_ui_removed_on_permissioned_nft_platforms` | 1 | 0 | 1 | l4_frontend | `china-nft-secondary-trading-self-discipline-2022-06::l4_frontend` |
 | `china-pboc-banks-alipay-payment-channel-block-2021-06:0:offramp_cex:cn_bank_and_payment_app_ecosystem:crypto_payment_channels_cut_and_accounts_closed` | 1 | 0 | 1 | offramp_cex | `china-pboc-banks-alipay-payment-channel-block-2021-06::offramp_cex` |
 | `china-pboc-banks-close-exchange-accounts-2014-04:0:offramp_cex:prc_bitcoin_exchange_ecosystem:exchange_bank_accounts_closed_following_pboc_deadline` | 1 | 0 | 1 | offramp_cex | `china-pboc-banks-close-exchange-accounts-2014-04::offramp_cex` |
-| `china-pboc-crypto-ban-2013-12:0:offramp_cex:prc_bitcoin_exchange_ecosystem:cny_deposit_channels_paused_industry_wide` | 1 | 0 | 1 | offramp_cex | `china-pboc-crypto-ban-2013-12::offramp_cex` |
+| `china-pboc-crypto-ban-2013-12:0:offramp_cex:regulator:pboc_miit_cbrc_csrc_circ:financial_and_payment_institution_bitcoin_service_prohibition` | 1 | 0 | 1 | offramp_cex | `china-pboc-crypto-ban-2013-12::offramp_cex` |
 | `china-pboc-crypto-ban-2021:0:offramp_cex:exchange:huobi:mainland_china_user_accounts_retired` | 1 | 0 | 1 | offramp_cex | `china-pboc-crypto-ban-2021::offramp_cex` |
 | `china-pboc-crypto-ban-2021:1:offramp_cex:exchange:binance:china_pboc_update_announcement` | 1 | 0 | 1 | offramp_cex | `china-pboc-crypto-ban-2021::offramp_cex` |
 | `china-pboc-exchange-access-block-2019-06:0:offramp_cex:shanghai_crypto_service_ecosystem:pboc_shanghai_ordered_probe_rectification_of_local_crypto_services` | 1 | 0 | 1 | offramp_cex | `china-pboc-exchange-access-block-2019-06::offramp_cex` |

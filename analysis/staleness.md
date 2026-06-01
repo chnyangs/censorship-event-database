@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T03:34:29Z`
+Generated at: `2026-06-01T03:45:56Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 289, 'ok': 116}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 290, 'ok': 115}
 - **Verification** (`last_verified`): {'ok': 405}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 289, 'ok': 116}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 290, 'ok': 115}
 
 ## Flag legend
 
@@ -101,7 +101,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `china-nft-secondary-trading-self-discipline-2022-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `china-pboc-banks-alipay-payment-channel-block-2021-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `china-pboc-banks-close-exchange-accounts-2014-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `china-pboc-crypto-ban-2013-12` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `china-pboc-crypto-ban-2013-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `china-pboc-crypto-ban-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 41 | ok | no_audit_recorded |
 | `china-pboc-exchange-access-block-2019-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `china-pboc-exchange-shutdown-2017-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -488,6 +488,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `china-nft-secondary-trading-self-discipline-2022-06` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `china-pboc-banks-alipay-payment-channel-block-2021-06` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `china-pboc-banks-close-exchange-accounts-2014-04` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `china-pboc-crypto-ban-2013-12` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `china-pboc-crypto-ban-2021` — audit=no_audit_recorded, verification=ok, verif_age=41d
 - `china-pboc-exchange-access-block-2019-06` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `china-pboc-exchange-shutdown-2017-09` — audit=no_audit_recorded, verification=ok, verif_age=11d
