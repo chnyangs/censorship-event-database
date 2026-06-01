@@ -1,6 +1,6 @@
 # Table 3 · Archetype × research-stratum cross-tab
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `1a4f712` · generated `2026-06-01T10:02:21Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `2bea37a` · generated `2026-06-01T10:12:12Z`
 
 Descriptive support for parked **C2** and **C5** (`docs/paper_claims.md §1`). Rows: rule-based deterministic archetypes. Columns: research strata (admission stratification, NOT jurisdiction / population weighting). Promotion from descriptive table to paper claim requires `observation_kind` κ ≥ 0.6.
 
