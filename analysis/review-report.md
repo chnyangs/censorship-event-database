@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `288`
-- Admitted but release-blocked cases: `77`
+- Release-ready cases: `289`
+- Admitted but release-blocked cases: `76`
 - Fully complete release-ready cases: `11`
-- Scope-limited release-ready cases: `277`
+- Scope-limited release-ready cases: `278`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 41, 'paper_anchor': 3}`
@@ -3164,22 +3164,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `korea-fiu-isms-real-name-exchange-shutdown-2021-09`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
-- Observation reliability: `medium`
-- Attribution reliability: `medium`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
-- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 

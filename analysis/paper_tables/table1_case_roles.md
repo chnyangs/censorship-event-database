@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `b524247` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `38556e8` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -211,7 +211,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `kb-vostok-russia-drone-ofac-2024-08` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
 | `kenya-cbk-virtual-currency-circular-2015-12` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `kingdom-trust-fincen-2021` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `fincen_action` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
-| `korea-fiu-isms-real-name-exchange-shutdown-2021-09` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `korea-fiu-isms-real-name-exchange-shutdown-2021-09` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `korea-fsc-ico-ban-2017` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-16` |
 | `korea-fsc-institutional-restriction-2017` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `2026-05-17` |
 | `korea-fsc-privacy-coin-delisting-mandate-2021-03` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |

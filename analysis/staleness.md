@@ -228,7 +228,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `kb-vostok-russia-drone-ofac-2024-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `kenya-cbk-virtual-currency-circular-2015-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `kingdom-trust-fincen-2021` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
-| `korea-fiu-isms-real-name-exchange-shutdown-2021-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
+| `korea-fiu-isms-real-name-exchange-shutdown-2021-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `korea-fsc-ico-ban-2017` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-06-01 | 1 | ok | ok |
 | `korea-fsc-institutional-restriction-2017` | `admitted` | `human_reviewed` | 2026-05-17 | 16 | ok | 2026-05-21 | 12 | ok | ok |
 | `korea-fsc-privacy-coin-delisting-mandate-2021-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
@@ -586,7 +586,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `kazakhstan-internet-shutdown-mining-2022-01` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `kb-vostok-russia-drone-ofac-2024-08` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `kenya-cbk-virtual-currency-circular-2015-12` — audit=no_audit_recorded, verification=ok, verif_age=2d
-- `korea-fiu-isms-real-name-exchange-shutdown-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=2d
+- `korea-fiu-isms-real-name-exchange-shutdown-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `korea-fsc-privacy-coin-delisting-mandate-2021-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `korea-travel-rule-2022` — audit=no_audit_recorded, verification=ok, verif_age=41d
 - `kraken-monero-eu-delisting-2024` — audit=no_audit_recorded, verification=ok, verif_age=16d
