@@ -1,19 +1,17 @@
 id: vietnam-sbv-payment-prohibition-2017-10
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "State Bank of Vietnam Oct-2017 prohibition of bitcoin as a lawful means of payment (Decree 80/2016; fines from 2018). §9-clear restriction, widely documented; attested_secondary on a single captured state-news source."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 
 related_events:
   - nepal-nrb-bitcoin-ban-2017-08
@@ -22,9 +20,40 @@ related_events:
 trigger:
   type: regulatory_enforcement
   actor: VN_SBV
-  timestamp: 2017-10-30T00:00:00Z
+  timestamp: 2017-10-28T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://baochinhphu.vn/nhnn-cam-su-dung-bitcoin-102229280.htm
+      body_hash: sha256:0c03b52ce2c8a6f04146c2a9efd7d9581c72d4e8706959a933f7bcc26f3652ef
+      body_path: sources/http_captures/vietnam-sbv-payment-prohibition-2017-10/primary-government-v1/baochinhphu.vn__nhnn-cam-su-dung-bitcoin-102229280.htm__0209e3409f.html
+      evidence_use: replayable
+      note: |
+        Bao Dien tu Chinh phu / Government Electronic Newspaper report
+        published 2017-10-28 11:56, stating "Theo Ngan hang Nha nuoc
+        Viet Nam" that issuing, supplying, and using bitcoin and similar
+        virtual currencies as a means of payment is prohibited in Vietnam.
+        The same official-government report cites Decree 101/2012 as
+        amended by Decree 80/2016, the illegal-payment-instrument ban,
+        administrative fines of 150-200 million VND under Decree 96/2014,
+        and possible criminal liability from 2018-01-01 under Criminal
+        Code Article 206. The captured body is gzip-encoded; `gzip -cd`
+        grep-verified the title, NHNN attribution, prohibition language,
+        fine range, and 2018-01-01 criminal-liability language.
+    - type: primary_government
+      url: https://www.sbv.gov.vn/w/sbv554224/-/categories/93909
+      body_hash: sha256:86c8042e70b51ae658ba950279819ba1697cec0e887d7a30f8088681ace20075
+      body_path: sources/http_captures/vietnam-sbv-payment-prohibition-2017-10/primary-government-v1/www.sbv.gov.vn__w-sbv554224---categories-93909__a8d054950b.html
+      evidence_use: replayable
+      note: |
+        Official State Bank of Vietnam retrospective page captured live
+        2026-06-01. It separately describes Official Letter 5747/NHNN-PC
+        dated 2017-07-21 and the 2017-10-28 SBV press statement to press
+        agencies, stating that bitcoin and similar virtual currencies are
+        not lawful means of payment and that issuing, supplying, and using
+        them as a means of payment is prohibited in Vietnam. Local grep
+        verified the 5747/NHNN-PC reference, 2017-10-28 press-statement
+        reference, and payment-prohibition language.
     - type: semi_primary_wayback
       url: http://vietnamnews.vn/economy/416480/sbv-says-bitcoin-prohibited-in-viet-nam.html
       wayback: https://web.archive.org/web/20171101125722/http://vietnamnews.vn/economy/416480/sbv-says-bitcoin-prohibited-in-viet-nam.html
@@ -52,11 +81,14 @@ trigger:
         an unlawful means of payment and that payment use is prohibited with fines.
         Retrospective secondary tracker; body_hash captured 2026-05-31.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_government
       note: |
-        SBV public statement reported 2017-10-30 (Viet Nam News, archived 2017-11-01);
-        underlying SBV Official Letter No. 5747/NHNN-PC dated 2017-07-21. Day-level
-        precision on the 2017-10-30 public-statement date.
+        Official Government Electronic Newspaper publication timestamp
+        2017-10-28 11:56 and SBV retrospective reference to a 2017-10-28
+        SBV press statement to press agencies. The underlying Official
+        Letter No. 5747/NHNN-PC is dated 2017-07-21, but the public
+        prohibition statement is anchored to 2017-10-28. Day-level precision
+        is retained for corpus consistency.
 
 target:
   kind: entity
@@ -93,25 +125,62 @@ coverage:
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: partially_measured
+    status: measured
     note: |
       The prohibition operates at the off-ramp / payment surface: SBV declared bitcoin
       an unlawful means of payment and prohibited its issuance, supply and use as
       payment, with administrative fines (150-200 million VND) from 2018-01-01 under
-      Decree 96/2014/ND-CP. Carried as observed_change with attribution=plausible: the
-      contemporaneous state-news report documents the prohibition, but this pass did
-      not capture the SBV Official Letter 5747/NHNN-PC primary text or a quantitative
-      measurement, so coverage is partially_measured.
+      Decree 96/2014/ND-CP and possible criminal liability under Criminal Code Article
+      206 from 2018-01-01. Carried as observed_change with attribution=direct: the
+      official government report attributes the prohibition to NHNN, and the official
+      SBV retrospective page corroborates Official Letter 5747/NHNN-PC and the
+      2017-10-28 press statement. The row claims a class-level payment-use prohibition,
+      not a measured exchange shutdown.
 
 observations:
   - layer: offramp_cex
     actor: vietnamese_crypto_payment_ecosystem
     event: bitcoin_payment_use_prohibited_with_fines_by_sbv
     observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2017-10-30T00:00:00Z
+    attribution: direct
+    timestamp: 2017-10-28T00:00:00Z
     precision: day
     sources:
+      - type: primary_government
+        url: https://baochinhphu.vn/nhnn-cam-su-dung-bitcoin-102229280.htm
+        body_hash: sha256:0c03b52ce2c8a6f04146c2a9efd7d9581c72d4e8706959a933f7bcc26f3652ef
+        body_path: sources/http_captures/vietnam-sbv-payment-prohibition-2017-10/primary-government-v1/baochinhphu.vn__nhnn-cam-su-dung-bitcoin-102229280.htm__0209e3409f.html
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [VN]
+          time_window:
+            - 2017-10-28T00:00:00Z
+            - 2018-01-01T00:00:00Z
+        note: |
+          Official Government Electronic Newspaper report, 2017-10-28:
+          according to the State Bank of Vietnam, issuing, supplying, and
+          using bitcoin and similar virtual currencies as a means of payment
+          is prohibited in Vietnam. It also states the 150-200 million VND
+          administrative fine under Decree 96/2014 and possible criminal
+          liability from 2018-01-01. attribution=direct for the class-level
+          payment-use prohibition; this row does not claim a named exchange
+          shutdown or user offboarding measurement.
+      - type: primary_government
+        url: https://www.sbv.gov.vn/w/sbv554224/-/categories/93909
+        body_hash: sha256:86c8042e70b51ae658ba950279819ba1697cec0e887d7a30f8088681ace20075
+        body_path: sources/http_captures/vietnam-sbv-payment-prohibition-2017-10/primary-government-v1/www.sbv.gov.vn__w-sbv554224---categories-93909__a8d054950b.html
+        evidence_use: replayable
+        scope_descriptor:
+          countries: [VN]
+          time_window:
+            - 2017-07-21T00:00:00Z
+            - 2017-10-28T23:59:59Z
+        note: |
+          Official SBV retrospective page describing Official Letter
+          5747/NHNN-PC dated 2017-07-21 and the 2017-10-28 press statement
+          to press agencies. It corroborates that bitcoin and similar virtual
+          currencies were not lawful means of payment and that issuing,
+          supplying, and using them as payment was prohibited.
       - type: semi_primary_wayback
         url: http://vietnamnews.vn/economy/416480/sbv-says-bitcoin-prohibited-in-viet-nam.html
         wayback: https://web.archive.org/web/20171101125722/http://vietnamnews.vn/economy/416480/sbv-says-bitcoin-prohibited-in-viet-nam.html
@@ -121,8 +190,9 @@ observations:
         note: |
           Viet Nam News 2017-10-30 (archived 2017-11-01): SBV declared bitcoin not a
           lawful means of payment; issuance/supply/use as payment prohibited with
-          150-200 million VND fines from 2018-01-01. attribution=plausible per §1.5
-          (contemporaneous state-news report; SBV primary letter not captured here).
+          150-200 million VND fines from 2018-01-01. Retained as contemporaneous
+          state-news corroboration; the official-government and SBV captures above
+          now carry the load-bearing admission-grade source contract.
       - type: supporting_tracker
         url: https://freemanlaw.com/cryptocurrency/vietnam/
         wayback: https://web.archive.org/web/20220629153357/https://freemanlaw.com/cryptocurrency/vietnam/
@@ -133,11 +203,25 @@ observations:
           Freeman Law tracker corroborating the SBV payment-use prohibition and fines.
 
 analysis_notes: |
+  **SOURCE REPAIR 2026-06-02**: Added replayable primary_government captures
+  from Bao Dien tu Chinh phu / Government Electronic Newspaper and the official
+  SBV retrospective page. The government report is a contemporaneous 2017-10-28
+  publication attributing to NHNN the prohibition on issuing, supplying, and
+  using bitcoin or similar virtual currencies as a means of payment, including
+  the 150-200 million VND fine range and possible criminal liability from
+  2018-01-01. The SBV page corroborates Official Letter 5747/NHNN-PC and the
+  2017-10-28 press statement. Re-scoped from attested_secondary to admission-
+  grade primary-government evidence, changed the trigger/observation date from
+  the Viet Nam News 2017-10-30 report date to the official 2017-10-28 public-
+  statement date, and upgraded attribution to direct for the class-level payment
+  prohibition. The row still does not claim a named exchange shutdown or
+  user-offboarding measurement.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. §9-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook §10) — single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
   awaiting human admission).
 
-  State Bank of Vietnam (SBV) public statement of 2017-10-30 declared bitcoin and similar
+  State Bank of Vietnam (SBV) public statement of 2017-10-28 declared bitcoin and similar
   virtual currencies not a lawful means of payment, and prohibited their issuance, supply
   and use as a means of payment under Decree 101/2012 (amended by Decree 80/2016), with
   administrative fines of 150-200 million VND under Decree 96/2014/ND-CP effective
@@ -155,14 +239,16 @@ analysis_notes: |
 
   Why comparable_main_2017_present / comparable_analysis: 2017 event, post-2017 tier.
 
-  Draft pending human audit of (i) SBV Official Letter 5747/NHNN-PC primary text and
-  (ii) any quantitative offramp_cex measurement.
+  The source-repaired row is admission-grade for the class-level payment-use prohibition.
+  A separate quantitative off-ramp / exchange-side measurement was not located and is not
+  claimed.
 
 scoped_claim: |
-  The SBV's 2017-10-30 statement (per Official Letter 5747/NHNN-PC, 2017-07-21) prohibited
+  The SBV's 2017-10-28 public statement (per Official Letter 5747/NHNN-PC, 2017-07-21) prohibited
   the issuance, supply and use of bitcoin and similar virtual currencies as a means of
-  payment in Vietnam, with administrative fines from 2018-01-01. Effect carried at
-  offramp_cex (observed_change, plausible) at class level.
+  payment in Vietnam, with administrative fines and possible criminal liability from
+  2018-01-01. Effect carried at offramp_cex (observed_change, direct) at class level;
+  no named exchange shutdown or user offboarding is claimed.
 
 tags:
   - regulatory_enforcement
