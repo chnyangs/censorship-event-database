@@ -44,7 +44,7 @@ Among the seven explicit choices that distinguish this project:
 4. **Attribution discipline.** `direct` vs `plausible` vs `none` are reported separately in every paper table; collapsing them is a phrasing violation, not a cosmetic choice.
 5. **Null cases with evidence anchors, not prose.** An `observed_no_change` row requires at least one of `body_hash`+`body_path`, `query_hash`, or `measurement_ids`; a structured `scope_descriptor` can define the covered scope but is not itself a replayable evidence anchor.
 6. **Fail-closed paper-table generator + admission-sensitivity ablation.** `make paper-tables` aborts if a null case is anchorless, if a precision bucket is ambiguous, or if a rate would be emitted without a matched denominator. `make admission-sensitivity` recomputes per-layer rates under three rubrics; `l4_frontend` (Δ=0.13) and `l1_consensus` (Δ=0.29) are flagged sensitive and the paper reports all three rubrics. `l3_rpc` has named Flashbots partial observations but no emitted conditional rate. `asset_onchain` is structurally circular at v0.1 (the admission rubric requires the change as the admission anchor) and **its rate is retracted** in favor of a descriptive observation — see [`docs/paper_claims.md §C1`](docs/paper_claims.md) "Not said".
-7. **Schema + admission protocol as a durable artifact.** Other researchers can fork the schema, run the validator, and measure events we did not cover. Layer 2 below.
+7. **Schema + admission protocol as a durable artifact.** Other researchers can fork the schema, run the validator, and measure events we did not cover. Framework component below.
 
 Delta over prior art:
 
@@ -53,19 +53,20 @@ Delta over prior art:
 - **Chainalysis / Elliptic / TRM** — asset-layer freezes under proprietary feeds, not event-keyed with open provenance. Delta: openness + admission protocol + body-hash anchoring.
 - **Nadler & Schär / OFAC event-study papers in finance** — economic / flow-level analyses. Delta: we target stack reactions, not price/volume, and do not attempt event-study finance methodology.
 
-The deliverable has two layers:
+The deliverable has two components:
 
-- **Layer 1** — a 52-admitted-event corpus (cutoff 2026-05-15; 53 YAML records total, including 1 rejected registry row) under a coverage-denominator discipline, with the Flashbots bidirectional case as a worked mechanism study.
-- **Layer 2** — sampling frame (`sampling/frame.yaml`), trigger registry (`analysis/trigger_registry/`), public validation contract (JSON Schema in `schema/event.schema.json` plus admission checks in `scripts/validate.py`), coverage matrix (`derived/coverage_matrix.*`), L0 OONI denominator summary (`derived/l0_coverage_summary.*`), and paper-table generator (`scripts/build_paper_tables.py`) that make the methodology forkable.
+- **Corpus component** — a 52-admitted-event corpus (cutoff 2026-05-15; 53 YAML records total, including 1 rejected registry row) under a coverage-denominator discipline, with the Flashbots bidirectional case as a worked mechanism study.
+- **Framework component** — sampling frame (`sampling/frame.yaml`), trigger registry (`analysis/trigger_registry/`), public validation contract (JSON Schema in `schema/event.schema.json` plus admission checks in `scripts/validate.py`), coverage matrix (`derived/coverage_matrix.*`), L0 OONI denominator summary (`derived/l0_coverage_summary.*`), and paper-table generator (`scripts/build_paper_tables.py`) that make the methodology forkable.
 
-Layer 2 is the more durable contribution: the framework stays citable when the specific events age.
+The framework component is the more durable contribution: the methodology stays citable when the specific events age.
 
 ## 2. Non-goals (read before citing)
 
 What this repository is *not*, even though a casual reader might expect it to be:
 
 - **Not a cascade rate estimator.** The admitted corpus contains 4 `multi_layer` events under the deterministic archetype classifier; that is not a prevalence estimate for cross-layer cascades in the population. See the FORBID list in [docs/paper_claims.md §5](docs/paper_claims.md) and the survivorship discussion in §3.
-- **Not a six-layer coverage claim.** Of the six layers, `l0_network` has zero `measured` denominators and `l3_rpc` has zero `measured` denominators at v0.1.0; their conditional rates are `—`, with L3 retained only as named Flashbots partial observations. Upper-layer (frontend / asset / off-ramp) evidence is where the corpus actually has mass. [Table 2](analysis/paper_tables/table2_layer_observability.md) is the honest picture.
+- **Not a six-tracked-layer coverage claim.** Of the six tracked layers, `l0_network` has zero `measured` denominators and `l3_rpc` has zero `measured` denominators at v0.1.0; their conditional rates are `—`, with L3 retained only as named Flashbots partial observations. Upper-layer (frontend / asset / off-ramp) evidence is where the corpus actually has mass. [Table 2](analysis/paper_tables/table2_layer_observability.md) is the honest picture.
+- **Not a rollup / sequencer L2 tracker.** Rollup and sequencer censorship is intentionally outside the current sampling frame. It has no denominator in the layer tables; it is not a measured-zero or per-event `not_measured` result. See [docs/l2-scope-boundary.md](docs/l2-scope-boundary.md).
 - **Not a predictive model.** No rate from this corpus supports a claim about future enforcement. [docs/limitations-and-use.md §2.1](docs/limitations-and-use.md).
 - **Not a compliance service or risk-scoring tool.** [docs/limitations-and-use.md §2.3](docs/limitations-and-use.md).
 - **Not a general censorship prevalence statement.** The sampling frame is events with an admissible evidence surface, not a population sample. [docs/paper_claims.md §0 Sampling frame](docs/paper_claims.md).
@@ -287,7 +288,7 @@ Proposed structure:
 6. **Limitations and scope boundary** — sampling frame is admissibility-bounded, English-indexable, and US/EU-trigger-dominant; survivorship bias in the evidence substrate is structural; hour-precision latency is supportable only on named events, not as a distribution; the substrate census is bounded to the candidates list and excludes private repos / server-side compliance. κ for `coverage_status`, `observation_kind`, and `attribution` is currently a *self-consistency check* (LLM-assisted blinded recode under same-family provenance), not an `independent_human` reliability estimate; an independent-human pass is v0.2 open work.
 7. **Open dataset + schema + replication package** — Zenodo-minted DOI, fail-closed regeneration pipeline gated by `make paper-check`, byte-stable artifacts under `SOURCE_DATE_EPOCH`, per-event audit worksheets, CC-BY-4.0 data + MIT code, CI exercises the full reproduction path.
 
-**Primary contribution (framework-level)**: a forkable admission protocol + paper-table generator + substrate census methodology that make cross-layer enforcement observability measurable with coverage-matched conditional rates, attribution discipline, body-hash-anchored evidence, three-rubric sensitivity reporting, and a tiered substrate census with parallel wide / narrow ledgers. Layer 2 in the Thesis.
+**Primary contribution (framework-level)**: a forkable admission protocol + paper-table generator + substrate census methodology that make cross-layer enforcement observability measurable with coverage-matched conditional rates, attribution discipline, body-hash-anchored evidence, three-rubric sensitivity reporting, and a tiered substrate census with parallel wide / narrow ledgers. This is the framework component of the thesis, not a rollup/sequencer L2 measurement claim.
 
 **Substantive findings** (paper §3–§5):
 

@@ -11,6 +11,9 @@ points at the authoritative source of truth in the repo rather than restating it
   precision-aware, multi-source-verified observations of how each event
   propagated through network (L0), consensus (L1), RPC (L3), frontend (L4),
   asset on-chain, and CEX off-ramp layers.
+  Rollup / sequencer L2 is intentionally excluded from this corpus and has no
+  denominator in the reported layer tables (see
+  [l2-scope-boundary.md](l2-scope-boundary.md)).
 - **Intended tasks**: event-study analysis of regulatory cascades; empirical
   baseline for censorship-resistance claims; reference for journalism, policy,
   and systems research. Not for compliance, legal determination, or predictive
@@ -42,11 +45,12 @@ points at the authoritative source of truth in the repo rather than restating it
   null). Rules for each are in `validate.py::_check_field_consistency`.
 - **Null cases**: `null_event` rows with `observed_no_change` observations are
   deliberately included to avoid survivorship bias.
-- **Missingness**: every layer is explicitly accounted for — `measured` /
+- **Missingness**: every tracked layer is explicitly accounted for — `measured` /
   `partially_measured` / `not_measured` / `not_applicable`. Missing fields are
   a validation error, not a silent gap (README §10.5). The generated
   [coverage matrix](../derived/coverage_matrix.md) is the event-by-layer
-  denominator surface.
+  denominator surface. Excluded surfaces such as rollup / sequencer L2 are not
+  represented as per-event `not_measured` rows.
 
 ## 3. Collection process
 

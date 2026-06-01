@@ -25,6 +25,7 @@ Reference documentation for the Cross-Layer Censorship Event Study Database. Alr
 | L0 OONI query denominator surface | [`../derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md) |
 | L3 provider/event denominator census | [`../derived/l3_provider_census.md`](../derived/l3_provider_census.md) |
 | L0/L3 zero-denominator appendix and phrasing locks | [`l0-l3-denominator-appendix.md`](l0-l3-denominator-appendix.md) |
+| L2 rollup / sequencer scope boundary and allowed phrasing | [`l2-scope-boundary.md`](l2-scope-boundary.md) |
 | External benchmark crosswalk for OONI / Censored Planet / Tornado studies / MEV Watch / compliance-transparency sources | [`../analysis/external_crosschecks/README.md`](../analysis/external_crosschecks/README.md) |
 | Local source artifact hash manifest | [`../sources/source_manifest.md`](../sources/source_manifest.md) |
 | Inter-rater reliability protocol — runnable via `make irr-sample` / `make irr-kappa`; report at `analysis/inter_rater/kappa_report.md` | (script-only; see [`paper_claims.md §0`](paper_claims.md) "κ-floor language") |

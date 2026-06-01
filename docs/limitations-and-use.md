@@ -51,6 +51,11 @@ as `observability_gap`, `named_partial_only_no_conditional_rate`, or
 `descriptive_only_structural_circularity_v0_1` cannot support conditional
 rates.
 
+Rollup / sequencer L2 is excluded from the current sampling frame rather
+than represented as a measured layer. It has no row in the coverage matrix
+and no denominator in the paper tables. See
+[`l2-scope-boundary.md`](l2-scope-boundary.md).
+
 Events are excluded or left as future work when the only evidence is
 private compliance telemetry, rumor-only social media, inaccessible paid
 KYT systems, or a broad policy change without a concrete target.

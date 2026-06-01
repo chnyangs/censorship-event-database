@@ -21,7 +21,7 @@ See [methodology §3](methodology.md) for full criteria. Quick reference:
 2. Create event YAML from `templates/event.yaml` or
    `python3 scripts/new_event.py <slug>` when the trigger is promoted.
 3. Fill `trigger`, `target`, `jurisdiction`.
-4. Fill `coverage[]` for **all six layers** before adding any interpretive claim. Speculative work stays in coverage notes, not in observations.
+4. Fill `coverage[]` for **all six tracked layers** before adding any interpretive claim. Speculative work stays in coverage notes, not in observations.
 5. Add only `observations[]` entries that are already evidence-backed per [methodology §5](methodology.md).
 6. For any current-state web evidence, capture a local bundle: `python3 scripts/capture_http_artifact.py --output-dir sources/http_captures/<slug>/... <url...>`.
 7. QA loop (§3 below).

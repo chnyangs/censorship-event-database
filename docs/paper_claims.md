@@ -68,7 +68,7 @@ Why this framing, not the alternatives:
   and is under-powered in Panel A of Table 4 at the current corpus
   size.
 - "**Six-layer cascade dataset**" (earlier framing) over-sold: two of
-  six layers have zero measured denominators at v0.1.0. The honest
+  six tracked layers have zero measured denominators at v0.1.0. The honest
   framing is *upper-stack observability under coverage-denominator
   discipline, with a worked mechanism case on operator source code*.
 
@@ -76,6 +76,9 @@ Why this framing, not the alternatives:
 
 - Not a predictive model of future enforcement.
 - Not a claim that un-measured layers did or did not react.
+- Not a rollup / sequencer L2 measurement. L2 is outside the current
+  sampling frame and has no denominator in the layer tables; do not describe
+  it as measured-zero or as per-event `not_measured`.
 - Not a claim about private compliance signals (issuer internal
   intelligence, KYT flags, private law-enforcement channels).
 - Not a stack-exposure score — the rubric in

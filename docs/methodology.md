@@ -114,9 +114,20 @@ Used in every YAML field. Centralized in `schema/controlled_vocab.yaml`.
 | `corporate_policy_change` | Issuer / exchange / frontend policy change |
 | `nation_state_block` | Country-level infrastructure block (e.g. CN 2021 ban) |
 
-### 2.2 Layers (matches README §3.2)
+### 2.2 Tracked layers (matches README §3.2)
 
 `l0_network` · `l1_consensus` · `l3_rpc` · `l4_frontend` · `asset_onchain` · `offramp_cex`
+
+Rollup and sequencer-layer censorship is intentionally **not** a seventh
+tracked layer in this corpus. `l2_rollup` is absent from
+`schema/controlled_vocab.yaml`, `schema/event.schema.json`, the coverage
+matrix, and paper tables. This is an out-of-scope sampling-frame decision,
+not a `not_measured` row and not a measured-zero result. L2 requires a
+separate tracker because the unit of observation is transaction inclusion,
+sequencer/batcher/proposer behavior, forced-inclusion windows, bridge and
+withdrawal paths, and rollup-specific operator evidence rather than the
+event-layer surfaces used here. See
+[`l2-scope-boundary.md`](l2-scope-boundary.md).
 
 ### 2.3 Source types
 
@@ -502,6 +513,6 @@ The methodology is silent about (and the dataset will explicitly flag gaps for):
 - **Non-English legal triggers**: procedure §7.1 step 4 depends on translated regulatory corpora; coverage is uneven.
 - **Pre-PBS L1 filtering** (before mid-2022): no dataset exists; events from this period have `l1_consensus: not_available_pre_2022`.
 - **Code-hosting / domain / app-distribution enforcement**: some removals happen at GitHub, registrar, CDN, DNS host, or app-store layers; these are partially covered and remain sparse outside major incidents.
-- **Layer-2 sequencer filtering**: handled by the separate L2 tracker project (P2 in the portfolio), not here.
+- **Layer-2 sequencer filtering**: excluded from this corpus and handled by a separate L2 tracker design; it has no denominator in the current layer tables (see [`l2-scope-boundary.md`](l2-scope-boundary.md)).
 
 These are **features, not bugs**: explicit scope boundaries make the paper's claims falsifiable and the dataset honest.

@@ -54,7 +54,7 @@ Interpret it as an aid, not a substitute for reading the case:
 - `attribution_reliability` drops when retained changed layers are mostly plausible rather than direct; for `null_event` / `null_case` rows, scoped `observed_no_change` evidence is evaluated without requiring changed-layer attribution.
 - `coverage_completeness` is driven by how many layers remain `not_measured`.
 - `case_shape_completeness` asks whether the file already contains a stable empirical shape.
-- `overall_readiness` should be read with scope in mind: a case can be ready for a narrow release claim without being complete across all six layers.
+- `overall_readiness` should be read with scope in mind: a case can be ready for a narrow release claim without being complete across all six tracked layers.
 
 ## 4. Admission guidance
 
