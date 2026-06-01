@@ -1,12 +1,12 @@
 # Audit worksheet — `cryptex-ofac-2024`
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `3f1a9f2` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `60f1d90` · generated `2026-06-02T00:00:00Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S1_ofac_sdn`
 - **empirical_shape**: `comparison`
 - **status**: `admitted`
-- **last_verified**: `2026-04-21`
+- **last_verified**: `2026-06-02`
 - **last_human_audit**: `2026-04-22`  ← update after sign-off
 
 ## 0. How to use this worksheet
@@ -30,9 +30,10 @@ Sign-off rules for the trigger: timestamp precision must match the citation gran
 
 > "OFAC designation of the Cryptex Russian exchange on 2024-09-26
 > co-occurred (same-day) with a US Secret Service judicial seizure of the canonical cryptex.net
-> domain (L4 observed_change, direct attribution), while producing no measurable step change in
-> Ethereum aggregate OFAC-compliant relay share (L1 null at day granularity)." Other layers
-> remain scoped for follow-up.
+> domain (L4 observed_change, direct attribution) and same-day Tether blacklist transactions
+> touching the listed ETH/TRX addresses, while producing no measurable step change in
+> Ethereum aggregate OFAC-compliant relay share (L1 null at day granularity). This release
+> does not claim an ISP/DNS block, RPC-provider filtering, or counterparty-CEX reaction."
 > 
 
 - [ ] Scoped claim does NOT overread the evidence (e.g. "the SDN caused X" when attribution is `plausible`).

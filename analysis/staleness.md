@@ -125,7 +125,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `coinflip-cftc-derivabit-2015` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `colonial-pipeline-darkside-ransom-clawback-doj-2021` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `consensys-metamask-infura-rpc-data-collection-2022-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
-| `cryptex-ofac-2024` | `admitted` | `human_authored` | 2026-04-22 | 41 | ok | 2026-04-21 | 42 | ok | ok |
+| `cryptex-ofac-2024` | `admitted` | `human_authored` | 2026-04-22 | 41 | ok | 2026-06-02 | 0 | ok | ok |
 | `cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
 | `crypto-capital-fowler-doj-2019` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `crypto-com-eu-usdt-stablecoin-delisting-2025-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
