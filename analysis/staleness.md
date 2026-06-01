@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T12:35:41Z`
+Generated at: `2026-06-01T12:44:40Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -257,7 +257,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `metamask-eth-phishing-detect-tornado-additions-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `metamask-snaps-region-restrictions-2023-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `mica-l2-esma-eba-rts-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `morocco-office-des-changes-crypto-ban-2017-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `morocco-office-des-changes-crypto-ban-2017-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `mtgox-bankruptcy-tokyo-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `mtgox-coinlab-civil-2013` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
 | `mtgox-dhs-dwolla-wells-fargo-seizure-2013` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
@@ -606,7 +606,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `metamask-eth-phishing-detect-tornado-additions-2022` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `metamask-snaps-region-restrictions-2023-09` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `mica-l2-esma-eba-rts-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d
-- `morocco-office-des-changes-crypto-ban-2017-11` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `morocco-office-des-changes-crypto-ban-2017-11` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `mtgox-bankruptcy-tokyo-2014` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `mtgox-dhs-dwolla-wells-fargo-seizure-2013` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `mtgox-june-2011-hack-trading-suspension` — audit=no_audit_recorded, verification=ok, verif_age=11d

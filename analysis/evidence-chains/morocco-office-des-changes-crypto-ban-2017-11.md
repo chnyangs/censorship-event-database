@@ -2,24 +2,43 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `4e61290` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T12:35:41Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `0785824` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T12:44:40Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> Morocco's Office des Changes and Bank Al-Maghrib declared on 2017-11-21 that
-> cryptocurrency transactions are banned and punishable by fines under the foreign-exchange
-> regulations. Effect carried at offramp_cex (observed_change, plausible) at class level.
+> Morocco's Office des Changes declared in its 2017-11-20 communique that virtual-currency
+> transactions constitute infractions of the foreign-exchange regulations and are
+> punishable by sanctions and fines. Effect carried at offramp_cex (observed_change,
+> plausible) at class level, with official Office des Changes HTML and PDF anchors.
 
 ## 1. Trigger
 
 - **Type**: `regulatory_enforcement`
 - **Actor**: `MA_OFFICE_DES_CHANGES`
-- **Timestamp**: `2017-11-21 00:00:00+00:00` (precision: `day`)
+- **Timestamp**: `2017-11-20 00:00:00+00:00` (precision: `day`)
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://www.oc.gov.ma/fr/actualites/communique-mise-au-point-au-sujet-de-l-utilisation-des-monnaies-virtuelles>
+  - body_hash: `sha256:ca3f1c1ded2254ee75c78f960d93c80e28e46e5445ecff0b92d244d4afddf583`
+  - body_path: `sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/primary-office-des-changes-page/www.oc.gov.ma__fr-actualites-communique-mise-au-point-au-sujet-de-l-utilisation-des-monnaies-virtuelles__1f1d7aa6bb.html`
+  > Official Office des Changes page for the communique "Mise au point au
+> sujet de l'utilisation des monnaies virtuelles." The page states that
+> transactions carried out via virtual currencies constitute an infraction
+> of Morocco's foreign-exchange regulations and are subject to sanctions
+> and fines under the texts in force; foreign financial transactions must
+> pass through authorized intermediaries and quoted foreign currencies.
+- **`primary_government`**
+  - URL: <https://www.oc.gov.ma/sites/default/files/2018-05/communique%CC%81%20monnaies%20virtuelles%20fr.pdf>
+  - body_hash: `sha256:a2b36ed7b6eb898f8ae2c8bc6c4d5b41640372410b9ce26ef1b8f18e65771cdd`
+  - body_path: `sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/primary-office-des-changes-pdf/www.oc.gov.ma__sites-default-files-2018-05-communique-CC-81-20monnaies-20virtuelles-20fr.pdf__4cc6ec2c28.bin`
+  > Official PDF attachment to the Office des Changes page, dated Rabat,
+> 2017-11-20. The PDF carries the same load-bearing language: virtual-
+> currency transactions are infractions of the foreign-exchange rules and
+> are subject to sanctions and fines.
 - **`semi_primary_wayback`**
   - URL: <https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/>
   - Wayback: <https://web.archive.org/web/20171209152107/https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/>
@@ -62,10 +81,26 @@
 
 **Event label**: `crypto_transactions_declared_illegal_with_fines_by_office_des_changes`
 
-**Timestamp**: `2017-11-21 00:00:00+00:00` (precision: `day`)
+**Timestamp**: `2017-11-20 00:00:00+00:00` (precision: `day`)
 
 **Sources**:
 
+- **`primary_government`**
+  - URL: <https://www.oc.gov.ma/fr/actualites/communique-mise-au-point-au-sujet-de-l-utilisation-des-monnaies-virtuelles>
+  - body_hash: `sha256:ca3f1c1ded2254ee75c78f960d93c80e28e46e5445ecff0b92d244d4afddf583`
+  - body_path: `sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/primary-office-des-changes-page/www.oc.gov.ma__fr-actualites-communique-mise-au-point-au-sujet-de-l-utilisation-des-monnaies-virtuelles__1f1d7aa6bb.html`
+  > Official Office des Changes page: virtual-currency transactions
+> constitute an infraction of Morocco's foreign-exchange regulations
+> and are subject to sanctions and fines. attribution remains plausible
+> because the instrument is class-level and does not name specific
+> exchanges or operators.
+- **`primary_government`**
+  - URL: <https://www.oc.gov.ma/sites/default/files/2018-05/communique%CC%81%20monnaies%20virtuelles%20fr.pdf>
+  - body_hash: `sha256:a2b36ed7b6eb898f8ae2c8bc6c4d5b41640372410b9ce26ef1b8f18e65771cdd`
+  - body_path: `sources/http_captures/morocco-office-des-changes-crypto-ban-2017-11/primary-office-des-changes-pdf/www.oc.gov.ma__sites-default-files-2018-05-communique-CC-81-20monnaies-20virtuelles-20fr.pdf__4cc6ec2c28.bin`
+  > Official PDF attachment dated 2017-11-20, carrying the same
+> infraction, sanctions/fines, authorized-intermediary, and
+> Bank-Al-Maghrib-listed-currency language as the HTML page.
 - **`semi_primary_wayback`**
   - URL: <https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/>
   - Wayback: <https://web.archive.org/web/20171209152107/https://www.moroccoworldnews.com/2017/11/234382/bitcoin-morocco-cryptocurrencies-economy/>
@@ -94,7 +129,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `4e61290`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `0785824`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
