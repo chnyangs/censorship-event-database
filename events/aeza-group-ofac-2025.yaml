@@ -1,17 +1,17 @@
 id: aeza-group-ofac-2025
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-22T02:30:00Z
-last_verified: 2026-04-22
+last_verified: 2026-06-02
 
 trigger:
   type: ofac_sdn_designation
@@ -65,19 +65,16 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     scope: [aeza.ru, aeza.net]
     note: |
-      L0 network-layer OONI API query performed 2026-04-22. Searched the
-      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
-      test_name=web_connectivity across:
-        aeza.net  2025-06-01..2025-08-01  -> 0 results
-        aeza.ru  2025-06-01..2025-08-01  -> 0 results
-        aezadns.com  2025-06-01..2025-08-01  -> 0 results
-      All 3 queries returned 0 measurements.
-      Artifact: sources/l0_datasets/aeza-group-ofac-2025/aeza.net__ooni.json
-      (body_hash sha256:43fbb3d557333a0af403d950db2c8320ef9417cf9183b1a9a692e145f73bc0fc).
-      Measurement-gap finding: OONI volunteer probe coverage is absent.
+      The retained public claim is not an ISP/DNS/national-firewall block.
+      Aeza is modeled as an OFAC designation of an upstream bulletproof
+      hosting provider plus an issuer-side TRON USDT blacklist observation.
+      A prior OONI query across aeza.net, aeza.ru, and aezadns.com for
+      2025-06-01..2025-08-01 returned no public measurements, but that
+      absence is not used as a claim-bearing L0 observation because no L0
+      censorship action is asserted.
   - layer: l1_consensus
     status: not_applicable
     chain: tron
@@ -86,9 +83,13 @@ coverage:
     status: not_applicable
     chain: tron
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     scope: [aeza.ru, aeza.net]
-    note: Wayback CDX for aeza.ru / aeza.net in the 2025-06 / 2025-07 window is not included in this release (CDX API timed out during automated capture). The public claim excludes L4 until direct Wayback snapshot anchors are attached.
+    note: |
+      Website availability is non-load-bearing for this row. The retained
+      claim excludes Aeza website takedown, geofence, operator notice, or
+      post-designation persistence until direct Wayback snapshot anchors are
+      attached.
   - layer: asset_onchain
     status: measured
     chain: tron
@@ -97,18 +98,13 @@ coverage:
       **1/1 blocked**. Tether USDT-TRC20 froze TU4tDFRvcKhAZ1jdihojmBWZqvJhQCnJ4F on
       **2025-07-02 06:25 UTC — ~30 hours after OFAC designation** (2025-07-01).
   - layer: offramp_cex
-    status: not_measured
+    status: not_applicable
     note: |
-      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
-      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
-      Elliptic sanctions-coverage resource pages):
-        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
-        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
-        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
-      Status remains not_measured because per-event chain-analytics report
-      slices (naming specific SDN addresses / KYT flag records) are not
-      yet pinned. The anchors establish the substrate; per-event slicing
-      would promote status.
+      Aeza is a hosting/infrastructure-provider designation, not a
+      counterparty-CEX deposit/withdrawal case. The retained observation is
+      issuer-side TRON USDT blacklisting of the listed address; no exchange
+      or chain-analytics artifact naming a counterparty-CEX reaction is
+      attached or claimed.
 
 observations:
   - layer: asset_onchain
@@ -131,6 +127,14 @@ observations:
         note: usdtbanlist.com community tracker archival anchor.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  verified the OFAC Recent Actions replay anchor and the locally pinned
+  usdtbanlist/TRON blacklist evidence; marked the row primary-source
+  verified; and narrowed the public claim to the measured OFAC designation
+  plus issuer-side TRON USDT blacklist. L0, L4, and offramp_cex are
+  non-load-bearing for this row: no ISP/DNS block, Aeza website availability
+  outcome, or counterparty-CEX/KYT reaction is retained.
+
   comparison documenting the 2025-07-01 OFAC designation of the Aeza Group
   bulletproof-hosting network. Entity-level designation of a hosting-infrastructure
   provider is structurally distinct from the exchange / mixer / wallet cases in the
@@ -138,15 +142,18 @@ analysis_notes: |
   consumer-facing crypto service. The on-chain footprint is small (1 TRX address) but the
   off-chain (hosting infrastructure, UK corporate shell) surface is large.
 
-  Follow-up directions (post-admission): (1) Wayback CDX for aeza.ru / aeza.net post-event (did UK-side
-  pressure shut aeza.net but leave aeza.ru untouched?); (2) Tether query on the TRX
-  address; (3) UK Companies House state changes on AEZA INTERNATIONAL LTD.
+  Follow-up directions (post-admission): (1) Wayback CDX for aeza.ru / aeza.net post-event
+  if an L4 website-availability claim is desired; (2) direct TronGrid/Tronscan receipt
+  replay for the listed blacklist transaction; (3) UK Companies House state changes on
+  AEZA INTERNATIONAL LTD.
 
 scoped_claim: |
   "OFAC designation of the Aeza Group Russian bulletproof-hosting network on 2025-07-01
   targeted an upstream infrastructure layer rather than a consumer-facing crypto service.
-  Primary observational gap: Wayback post-event snapshots of aeza.ru / aeza.net and TRX
-  freeze data not yet attached."
+  The retained changed-layer observation is Tether USDT-TRC20 blacklisting of the one
+  listed TRX address on 2025-07-02 06:25 UTC, about 30 hours after designation. This
+  release does not claim an ISP/DNS block, Aeza website takedown or persistence outcome,
+  or counterparty-CEX/KYT reaction."
 
 tags:
   - sanctions

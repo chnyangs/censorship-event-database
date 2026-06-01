@@ -1,17 +1,17 @@
 id: garantex-ofac-2022
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-21T12:27:00Z
-last_verified: 2026-04-21
+last_verified: 2026-06-02
 
 trigger:
   type: ofac_sdn_designation
@@ -52,16 +52,14 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      L0 network-layer OONI API query performed 2026-04-22. Searched the
-      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
-      test_name=web_connectivity across:
-        garantex.io  2022-03-05..2022-05-05  -> 0 results
-      All 1 queries returned 0 measurements.
-      Artifact: sources/l0_datasets/garantex-ofac-2022/garantex.io__ooni.json
-      (body_hash sha256:496498f4762d8c5b6bdc0af3820c117154d5687863bfc2de53bbe02e158d7fae).
-      Measurement-gap finding: OONI volunteer probe coverage is absent.
+      The retained public claim is not an ISP/DNS/national-firewall block.
+      Garantex is modeled here as an OFAC exchange designation with a
+      measured off-ramp / venue-layer legal constraint. A prior OONI query
+      across garantex.io for 2022-03-05..2022-05-05 returned no public
+      measurements, but that absence is not used as a claim-bearing L0
+      observation because no L0 censorship action is asserted.
   - layer: l1_consensus
     status: not_applicable
     note: Exchange designation does not map cleanly to consensus filtering
@@ -73,27 +71,23 @@ coverage:
       MEV-Blocker launched 2023-03-27) did not exist at event time. Same
       construct-did-not-exist reasoning as L1 consensus coverage for
       pre-Merge events. not_applicable rather than not_measured.
-      L3 RPC-layer public-provider filter-list pin: the two dominant
-      OFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker
-      (mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both
-      captured 2026-04-22 as ecosystem-level primary_corporate anchors for
-      L3-layer reasoning:
-        mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67
-        docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282
-      Status remains not_measured because per-event bracketing snapshots
-      of the provider filter lists (pre-event / event-day / post-event) are
-      not yet pinned from the Wayback CDX. The anchors establish the
-      measurement substrate; per-event slices would promote status to
-      partially_measured.
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     scope:
       - garantex.io
       - related frontend availability
-    note: Frontend/operator availability is not asserted in this release
+    note: |
+      Frontend/operator availability is not asserted in this release. This
+      row is scoped to the OFAC/Treasury venue-layer designation; no
+      garantex.io takedown, geofence, operator notice, or post-designation
+      frontend persistence claim is retained.
   - layer: asset_onchain
-    status: not_measured
-    note: Trigger is not primarily an issuer blacklist event
+    status: not_applicable
+    note: |
+      Trigger is modeled as an entity/exchange designation rather than an
+      issuer-blacklist event. This row does not enumerate Garantex's listed
+      SDN digital-currency addresses at the target level and does not retain
+      a token-freeze or issuer-side blacklist observation.
   - layer: offramp_cex
     status: measured
     scope:
@@ -127,6 +121,14 @@ recovery:
     note: Subsequent U.S. action in 2025 suggests the exchange or successor infrastructure remained active
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):
+  verified the existing OFAC Recent Actions and Treasury press-release
+  replay anchors; marked the row primary-source verified; and narrowed the
+  public claim to the measured venue/off-ramp legal constraint. L0, L4,
+  asset-onchain, L1, and L3 are non-load-bearing for this row: no ISP/DNS
+  block, frontend takedown/persistence, issuer blacklist, consensus, or RPC
+  filtering claim is retained.
+
   Scoped release claim: the 2022-04-05 OFAC action directly designated Garantex
   and constrained the exchange at the off-ramp / venue layer. This admitted
   baseline is not yet claiming broader frontend, RPC, or consensus-layer effects.
@@ -134,17 +136,12 @@ analysis_notes: |
   modeling before additional downstream artifacts are attached.
 
 scoped_claim: |
-  "OFAC designation of Garantex on 2022-04-05 (co-designated with Hydra)
-  documents a Russia-operated exchange SDN. L4 frontend persistence is
-  hypothesized but not asserted in this release: l4_frontend coverage
-  status is `not_measured` and no L4 observation row is attached.
-  Future revision should add l4_frontend pre/post Wayback bracketing of
-  garantex.io to test the foreign-operated-exchange persistence pattern
-  observed in related events (sinbad-ofac-2023, grinex-garantex-
-  successor-ofac-2025). v0.3 audit 2026-05-19: scoped_claim repaired
-  per audit_log row 218 (qid=93 garantex needs_recheck) which flagged
-  the original wording for asserting L4 observed_no_change without
-  supporting observation row."
+  "OFAC/Treasury's 2022-04-05 designation of Garantex documents a
+  Russia-operated virtual-currency exchange SDN and directly constrains
+  U.S.-person dealings with the venue. This release treats the row as a
+  venue/off-ramp legal-constraint datapoint only. It does not claim an
+  ISP/DNS block, garantex.io frontend takedown or persistence outcome,
+  issuer-side token freeze, consensus-layer filtering, or RPC filtering."
 
 tags:
   - sanctions
