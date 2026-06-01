@@ -1,24 +1,24 @@
 # Jurisdictional distribution (derived)
 
-Generated: `2026-06-01T04:09:15Z`. Corpus: n = 366 events.
+Generated: `2026-06-01T04:23:47Z`. Corpus: n = 365 events.
 
 ## By region
 
 | region | events touching | share of corpus |
 | --- | ---: | ---: |
-| US | 158 | 43.2% |
-| Europe (EU+UK+CH+non-bloc) | 58 | 15.8% |
+| US | 157 | 43.0% |
+| Europe (EU+UK+CH+non-bloc) | 58 | 15.9% |
 | Rest of World | 68 | 18.6% |
-| Corporate (no jurisdiction) | 48 | 13.1% |
-| Other | 85 | 23.2% |
-| **CORPUS TOTAL** | **366** | — |
-_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (417) ≥ corpus total (366). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
+| Corporate (no jurisdiction) | 48 | 13.2% |
+| Other | 85 | 23.3% |
+| **CORPUS TOTAL** | **365** | — |
+_Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in both US and Europe, so column sum (416) ≥ corpus total (365). Share column shows what fraction of admitted events touched the region, not the region's exclusive share._
 
 ## By country / bloc
 
 | jurisdiction code | events |
 | --- | ---: |
-| `US` | 158 |
+| `US` | 157 |
 | `corporate_global` | 48 |
 | `EU` | 28 |
 | `RU` | 19 |
@@ -80,7 +80,7 @@ _Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in 
 | --- | ---: |
 | `US_OFAC` | 53 |
 | `US_SEC` | 25 |
-| `US_DOJ_SDNY` | 14 |
+| `US_DOJ_SDNY` | 13 |
 | `EU_Council` | 13 |
 | `US_CFTC` | 9 |
 | `binance` | 8 |

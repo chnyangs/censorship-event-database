@@ -1,6 +1,6 @@
-# Table 1 · Case roles (n=366)
+# Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `7c0cb78` · generated `2026-06-01T04:09:15Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `210aa10` · generated `2026-06-01T04:23:47Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -9,14 +9,14 @@ Supports `docs/paper_claims.md §0` (case-role convention). Each event's admissi
 | admission_tier | count |
 | --- | ---: |
 | `anchor_case` | 4 |
-| `empirical_case` | 265 |
+| `empirical_case` | 264 |
 | `null_case` | 97 |
-| **total** | **366** |
+| **total** | **365** |
 
 | trigger precision bucket | count |
 | --- | ---: |
 | `hour` | 11 |
-| `day` | 355 |
+| `day` | 354 |
 
 Only the `hour`-precision subset is admissible for hour-granularity latency claims (Table 4).
 
@@ -239,7 +239,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `morocco-office-des-changes-crypto-ban-2017-11` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `mtgox-bankruptcy-tokyo-2014` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 2 | `multi_layer` | ✓ | · | `2026-05-21` | `—` |
 | `mtgox-coinlab-civil-2013` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `court_civil_order` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
-| `mtgox-dhs-dwolla-wells-fargo-seizure-2013` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-20` | `—` |
+| `mtgox-dhs-dwolla-wells-fargo-seizure-2013` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `mtgox-june-2011-hack-trading-suspension` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `mtgox-mizuho-wire-pressure-2012` | `null_case` | `S5_corporate` | `null_event` | `corporate_policy_change` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `mtgox-usd-withdrawal-suspension-2013-06` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
@@ -252,7 +252,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `nigeria-binance-network-block-2024-02` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-31` | `2026-05-31` |
 | `nigeria-cbn-crypto-ban-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-04-22` | `—` |
 | `nydfs-bitlicense-2015-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-16` | `2026-05-16` |
-| `oecd-carf-2022` | `empirical_case` | `S6_supranational` | `comparison` | `supranational_regulation` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
+| `oecd-carf-2022` | `empirical_case` | `S6_supranational` | `comparison` | `supranational_regulation` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-16` |
 | `ofac-dprk-it-worker-sim-hyon-sop-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
 | `ofac-hamas-buy-cash-msb-2023-10` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-20` | `2026-05-20` |
 | `ofac-hamas-gaza-now-2024-03` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
@@ -351,7 +351,6 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `tornado-cash-ofac-delisting-2025` | `empirical_case` | `S2_ofac_removal` | `cascade` | `ofac_sdn_removal` | `day` | `address_set` | `complete` | 4 | `multi_layer` | · | ✓ | `2026-04-21` | `—` |
 | `tornado-cash-ofac-redesignation-2022` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 1 | `asset_only` | · | · | `2026-04-21` | `2026-04-22` |
 | `tornado-cash-pertsev-doj-indictment-2023` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `doj_indictment` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
-| `tornado-cash-storm-conviction-2025` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `complete` | 1 | `frontend_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `tornado-cash-tornadocash-org-seizure-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
 | `tradehill-dwolla-payment-cutoff-2012-02` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
 | `trustwallet-sanctioned-token-ui-update-2022` | `null_case` | `S5_corporate` | `null_event` | `corporate_policy_change` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
@@ -373,7 +372,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `uzbekistan-napp-vasp-licensing-2022-07` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `venezuela-sunacrip-mining-exchange-halt-2023-03` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `other_single_layer` | · | · | `2026-05-31` | `—` |
 | `vietnam-sbv-payment-prohibition-2017-10` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
-| `voyager-bankruptcy-doj-objection-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `court_civil_order` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
+| `voyager-bankruptcy-doj-objection-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `court_civil_order` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `2026-05-31` |
 | `webmoney-ukraine-tax-police-freeze-2013-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `welcome-to-video-doj-2019` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-16` | `2026-05-16` |

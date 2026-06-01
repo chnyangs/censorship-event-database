@@ -9,9 +9,9 @@ analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-06-01
 last_human_audit: 2026-05-16
 
 related_events:
@@ -48,6 +48,19 @@ trigger:
         for 2027 (covering 2026 calendar-year transactions) in 48+
         jurisdictions that committed to early adoption in the 2023-11-10
         joint statement.
+    - type: primary_legal
+      url: https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/06/international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc/896d79d1-en.pdf
+      evidence_use: replayable
+      body_hash: sha256:7a0e714da7e13beca33b83ec0f7b17f4173de8abca71d7c099317d1789489d1c
+      body_path: sources/http_captures/oecd-carf-2022/official-2023-oecd-pdf/www.oecd.org__content-dam-oecd-en-publications-reports-2023-06-international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc-896d79d1-en.pdf__2dd99adf58.bin
+      note: |
+        OECD official PDF, International Standards for Automatic Exchange of
+        Information in Tax Matters: Crypto-Asset Reporting Framework and 2023
+        update to the CRS. This replayable consolidated official artifact
+        preserves the CARF rules and commentary, including RCASP reporting
+        obligations, and is used as the claim-usable anchor for the row. The
+        original 2022 OECD release page above remains the timestamp/context
+        pointer for the 2022-10-10 publication event.
   timestamp_sources:
     - type: primary_legal
       note: |
@@ -121,6 +134,22 @@ observations:
     delta_hours: 0
     sources:
       - type: primary_legal
+        url: https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/06/international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc/896d79d1-en.pdf
+        evidence_use: replayable
+        body_hash: sha256:7a0e714da7e13beca33b83ec0f7b17f4173de8abca71d7c099317d1789489d1c
+        body_path: sources/http_captures/oecd-carf-2022/official-2023-oecd-pdf/www.oecd.org__content-dam-oecd-en-publications-reports-2023-06-international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc-896d79d1-en.pdf__2dd99adf58.bin
+        scope_descriptor:
+          providers: [oecd_rcasp_aggregate, oecd_carf_adopting_jurisdictions]
+          time_window:
+            - 2022-10-10T00:00:00Z
+            - 2027-01-01T00:00:00Z
+          addresses_cohort: all_carf_in_scope_rcasps
+        note: |
+          Claim-usable official CARF rules/commentary anchor. The PDF defines
+          Reporting Crypto-Asset Service Providers and their reporting and
+          due-diligence obligations for Relevant Transactions, which is the
+          retained offramp_cex / RCASP reporting-obligation observation.
+      - type: primary_legal
         url: https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
         wayback: https://web.archive.org/web/20260516000000/https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm
         scope_descriptor:
@@ -157,6 +186,11 @@ observations:
         evidence_use: contextual_unarchived
 
 analysis_notes: |
+  **REPAIRED 2026-06-01** (quality-loop low-observation pass): pinned an
+  official OECD PDF body_hash/body_path for the CARF rules and commentary.
+  The original 2022 OECD release page remains a timestamp/context pointer,
+  but the claim-usable observation now rests on a replayable OECD artifact.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.3 supranational discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
 
   comparison documenting the OECD's 2022-10-10 Crypto-Asset Reporting
@@ -195,10 +229,10 @@ analysis_notes: |
   statutes) are direct implementations of CARF rather than independent
   triggers; the first reporting cycle under CARF is scheduled for 2027
   (covering 2026 calendar-year transactions). For a real release,
-  replace this DRYRUN marker after human audit and pin a verified
-  Wayback snapshot + body_hash / body_path capture of the OECD CARF
-  publication via scripts/capture_http_artifact.py; additionally pin
-  the 2023-11-10 CARF MCAA joint statement and one domestic
+  replace this DRYRUN marker after human audit. The 2026-06-01 repair
+  pinned a body_hash / body_path capture of the OECD CARF consolidated
+  publication; additionally pin the 2023-11-10 CARF MCAA joint statement
+  and one domestic
   transposition instrument (e.g. EU DAC8 OJ publication) as
   cross-reference anchors.
 
@@ -214,7 +248,9 @@ scoped_claim: |
   environment alongside EU MiCA (eu-mica-2023) and FATF Recommendation
   15 (fatf-r15-vasp-travel-rule-2019). Empirical_shape=comparison;
   load-bearing axis is offramp_cex at the RCASP reporting-obligation
-  layer."
+  layer. The replayable source anchor is the official OECD consolidated
+  CARF standards PDF, with the original 2022 release page retained as a
+  timestamp/context pointer."
 
 tags:
   - supranational_regulation

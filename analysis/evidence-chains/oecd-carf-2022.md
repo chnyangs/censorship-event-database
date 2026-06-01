@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S6_supranational` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `7c0cb78` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:09:15Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `210aa10` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:23:47Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -19,7 +19,9 @@
 > environment alongside EU MiCA (eu-mica-2023) and FATF Recommendation
 > 15 (fatf-r15-vasp-travel-rule-2019). Empirical_shape=comparison;
 > load-bearing axis is offramp_cex at the RCASP reporting-obligation
-> layer."
+> layer. The replayable source anchor is the official OECD consolidated
+> CARF standards PDF, with the original 2022 release page retained as a
+> timestamp/context pointer."
 
 ## 1. Trigger
 
@@ -51,6 +53,17 @@
 > for 2027 (covering 2026 calendar-year transactions) in 48+
 > jurisdictions that committed to early adoption in the 2023-11-10
 > joint statement.
+- **`primary_legal`**
+  - URL: <https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/06/international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc/896d79d1-en.pdf>
+  - body_hash: `sha256:7a0e714da7e13beca33b83ec0f7b17f4173de8abca71d7c099317d1789489d1c`
+  - body_path: `sources/http_captures/oecd-carf-2022/official-2023-oecd-pdf/www.oecd.org__content-dam-oecd-en-publications-reports-2023-06-international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc-896d79d1-en.pdf__2dd99adf58.bin`
+  > OECD official PDF, International Standards for Automatic Exchange of
+> Information in Tax Matters: Crypto-Asset Reporting Framework and 2023
+> update to the CRS. This replayable consolidated official artifact
+> preserves the CARF rules and commentary, including RCASP reporting
+> obligations, and is used as the claim-usable anchor for the row. The
+> original 2022 OECD release page above remains the timestamp/context
+> pointer for the 2022-10-10 publication event.
 
 ## 2. Target
 
@@ -80,6 +93,14 @@
 
 **Sources**:
 
+- **`primary_legal`**
+  - URL: <https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/06/international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc/896d79d1-en.pdf>
+  - body_hash: `sha256:7a0e714da7e13beca33b83ec0f7b17f4173de8abca71d7c099317d1789489d1c`
+  - body_path: `sources/http_captures/oecd-carf-2022/official-2023-oecd-pdf/www.oecd.org__content-dam-oecd-en-publications-reports-2023-06-international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc-896d79d1-en.pdf__2dd99adf58.bin`
+  > Claim-usable official CARF rules/commentary anchor. The PDF defines
+> Reporting Crypto-Asset Service Providers and their reporting and
+> due-diligence obligations for Relevant Transactions, which is the
+> retained offramp_cex / RCASP reporting-obligation observation.
 - **`primary_legal`**
   - URL: <https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm>
   - Wayback: <https://web.archive.org/web/20260516000000/https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm>
@@ -117,7 +138,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `7c0cb78`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `210aa10`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

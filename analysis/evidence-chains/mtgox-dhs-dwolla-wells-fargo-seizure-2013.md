@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `7c0cb78` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-20` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:09:15Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `210aa10` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:23:47Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -36,6 +36,15 @@
 > landing page is retained as a contextual pointer. evidence_use=
 > contextual_unarchived: no body_hash captured in this session, and the
 > original 2013 warrant PDF is not exposed via a stable justice.gov URL.
+- **`primary_legal`**
+  - URL: <https://s3.documentcloud.org/documents/701175/mt-gox-dwolla-warrant-idg-news-service.pdf>
+  - body_hash: `sha256:04ff80914c3061095ad2bd61399660d960fcbccec90d7e52eddfcb520ce2969c`
+  - body_path: `sources/http_captures/mtgox-dhs-dwolla-wells-fargo-seizure-2013/legal-warrant/s3.documentcloud.org__documents-701175-mt-gox-dwolla-warrant-idg-news-service.pdf__7680342661.bin`
+  > Scanned copy of the federal seizure warrant made public through
+> DocumentCloud / IDG News Service. The warrant is the load-bearing
+> legal artifact for the 2013-05-14 Dwolla / Mutum Sigillum seizure;
+> local capture pinned 2026-06-01. The justice.gov office page above
+> is retained only as an office-of-record context pointer.
 - **`supporting_journalism`**
   - URL: <https://techcrunch.com/2013/05/16/mt-gox-dwolla-account-money-seizure/>
   - Wayback: <https://web.archive.org/web/20140102083717/http://techcrunch.com/2013/05/16/mt-gox-dwolla-account-money-seizure/>
@@ -83,6 +92,14 @@
 **Sources**:
 
 - **`primary_legal`**
+  - URL: <https://s3.documentcloud.org/documents/701175/mt-gox-dwolla-warrant-idg-news-service.pdf>
+  - body_hash: `sha256:04ff80914c3061095ad2bd61399660d960fcbccec90d7e52eddfcb520ce2969c`
+  - body_path: `sources/http_captures/mtgox-dhs-dwolla-wells-fargo-seizure-2013/legal-warrant/s3.documentcloud.org__documents-701175-mt-gox-dwolla-warrant-idg-news-service.pdf__7680342661.bin`
+  > Claim-usable primary legal warrant copy for the Mutum Sigillum /
+> Mt. Gox Dwolla-account seizure. This replaces the prior structural
+> dependence on an unarchived justice.gov office pointer for direct
+> attribution.
+- **`primary_legal`**
   - URL: <https://www.justice.gov/usao-md>
   - Wayback: <https://web.archive.org/web/20150228114134/http://www.justice.gov:80/usao-md>
   > Direct attribution: the 2013-05-14 seizure warrant (Case 1:13-mc-
@@ -115,7 +132,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `7c0cb78`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `210aa10`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

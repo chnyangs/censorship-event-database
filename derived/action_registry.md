@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `7c0cb78` · generated `2026-06-01T04:09:15Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `210aa10` · generated `2026-06-01T04:23:47Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **320**
+- Canonical physical actions: **319**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -298,7 +298,6 @@ This registry deduplicates physical actions that appear in more than one event r
 | `tornado-cash-ofac-delisting-2025:2:l3_rpc:flashbots_rpc_endpoint:ofac_blacklist_deletion` | 1 | 0 | 1 | l3_rpc | `tornado-cash-ofac-delisting-2025::l3_rpc` |
 | `tornado-cash-ofac-delisting-2025:3:l1_consensus:pbs_relay_ecosystem_aggregate:censoring_relay_share_dropped_post_delisting` | 1 | 0 | 1 | l1_consensus | `tornado-cash-ofac-delisting-2025::l1_consensus` |
 | `tornado-cash-ofac-redesignation-2022:0:asset_onchain:tether_usdt_issuer:tether_froze_one_of_92_tornado_addresses_in_retroactive_sweep` | 1 | 0 | 1 | asset_onchain | `tornado-cash-ofac-redesignation-2022::asset_onchain` |
-| `tornado-cash-storm-conviction-2025:0:l4_frontend:open_source_privacy_tool_developer_ecosystem:operator_narrative_personal_risk_reassessment_post_storm_conviction` | 1 | 0 | 1 | l4_frontend | `tornado-cash-storm-conviction-2025::l4_frontend` |
 | `tornado-cash-tornadocash-org-seizure-2022:0:l4_frontend:domain_entrypoint:tornado_cash_team:tornadocash_org_canonical_domain_rendered_unreachable_after_ofac_sdn` | 1 | 0 | 1 | l4_frontend | `tornado-cash-tornadocash-org-seizure-2022::l4_frontend` |
 | `tradehill-dwolla-payment-cutoff-2012-02:0:offramp_cex:payment_processor:dwolla:dwolla_severs_tradehill_fiat_payment_rail` | 1 | 0 | 1 | offramp_cex | `tradehill-dwolla-payment-cutoff-2012-02::offramp_cex` |
 | `turkey-cbrt-crypto-ban-2021:0:offramp_cex:turkish_payment_ecosystem:try_payment_rail_to_crypto_severed` | 1 | 0 | 1 | offramp_cex | `turkey-cbrt-crypto-ban-2021::offramp_cex` |

@@ -1,18 +1,17 @@
 id: tornado-cash-storm-conviction-2025
 schema_version: 0.2.0
 codebook_version: "1.0.0"
-status: admitted
+status: draft
 primary_source_verified: false
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: human_reviewed
-version: "0.1"
+origin: agent_draft
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
-last_human_audit: 2026-05-16
+last_verified: 2026-06-01
 
 related_events:
   - storm-semenov-doj-2023
@@ -26,8 +25,9 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+      url: https://www.justice.gov/usao-sdny/pr/founder-tornado-cash-crypto-mixing-service-convicted-knowingly-transmitting-criminal
       wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+      evidence_use: contextual_unarchived
       note: |
         DOJ USAO-SDNY press release (2025-08-06): "Roman Storm Convicted Of
         Conspiracy Charge Relating To Tornado Cash." SDNY jury returned a
@@ -152,8 +152,9 @@ observations:
       - 2025-11-06T23:59:59Z
     sources:
       - type: primary_legal
-        url: https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+        url: https://www.justice.gov/usao-sdny/pr/founder-tornado-cash-crypto-mixing-service-convicted-knowingly-transmitting-criminal
         wayback: https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash
+        evidence_use: contextual_unarchived
         scope_descriptor:
           providers: [open_source_privacy_tool_developer_ecosystem_aggregate]
           time_window:
@@ -175,10 +176,18 @@ observations:
           of repository archival or maintainer transitions in the
           90 days post-verdict; (c) EFF / Coin Center amicus filings
           framing the verdict as a developer-liability precedent.
-        evidence_use: contextual_unarchived
-
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **DEMOTED 2026-06-01** (quality-loop low-observation pass): reverted from
+  admitted to draft because the retained observed_change is a plausible
+  ecosystem "chilling effect" narrative, not a measured L4/frontend,
+  repository-state, operator-statement, or on-chain availability observation.
+  The legal conviction itself appears sourceable through DOJ, but that does
+  not by itself satisfy the event's changed-layer admission floor. Re-admission
+  requires a replayable claim-usable DOJ/legal anchor plus either a concrete
+  post-verdict operator/repository artifact for the changed layer or a
+  measured null/no-change artifact if the row is recoded as a null comparator.
+
+  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
 
   comparison — the 2025-08-06 SDNY jury verdict convicting Roman Storm
   on Count 1 (conspiracy to operate an unlicensed money transmitting
@@ -231,29 +240,23 @@ analysis_notes: |
   litigation pressure while DOJ pressed forward with the criminal
   prosecution to verdict.
 
-  Empirical_shape = comparison (1 observed_change layer: l4_frontend on
-  the operator-narrative axis, attribution=plausible); admission_tier =
-  empirical_case (1 strong-attribution observed_change layer satisfies
-  ≥1 requirement). For a real release, replace this DRYRUN marker after
-  human audit and pin a verified Wayback snapshot + body_hash /
-  body_path capture of the DOJ press release via
-  scripts/capture_http_artifact.py; additionally pin operator-narrative
-  primary artifacts (Railgun / Aztec / Privacy Pools maintainer
-  statements, EFF / Coin Center amicus filings) to promote the L4
-  operator-narrative attribution from plausible toward direct.
+  Empirical_shape remains comparison only as a draft hypothesis. The current
+  file does not yet carry a claim-usable observed_change source at the L4
+  operator-narrative layer, nor a measured asset_onchain observed_no_change
+  row. For a real release, pin a verified DOJ/legal archive plus
+  operator-narrative primary artifacts (Railgun / Aztec / Privacy Pools
+  maintainer statements, EFF / Coin Center filings) or recode the event as a
+  null comparator after pinning post-verdict on-chain/frontend measurements.
 
 scoped_claim: |
-  "The 2025-08-06 SDNY jury verdict convicted Roman Storm on Count 1 of
+  "Draft candidate only: the 2025-08-06 SDNY jury verdict convicted Roman Storm on Count 1 of
   the 2023 Tornado Cash indictment (conspiracy to operate an unlicensed
   money transmitting business, 18 U.S.C. § 1960) while hanging on the
-  money-laundering and IEEPA-sanctions counts. The conviction produced
-  observed_no_change on the asset_onchain layer (the 98 Tornado Cash
-  mixer contracts continued live, attribution=none) and a plausible
-  observed_change on the L4 operator-narrative axis (first US developer-
-  criminal-conviction precedent for non-custodial privacy-protocol
-  authoring; personal-risk reassessment channel for similar developers).
-  Empirical_shape=comparison; structurally separates developer-criminal-
-  liability from protocol-substrate-availability."
+  money-laundering and IEEPA-sanctions counts. This file is not admitted:
+  it does not yet pin a measured post-verdict on-chain/no-change artifact or
+  a concrete operator/repository changed-layer artifact. It is retained as a
+  candidate for separating developer-criminal-liability from protocol-
+  substrate-availability once those artifacts exist."
 
 tags:
   - doj_indictment

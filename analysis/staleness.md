@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T04:09:15Z`
+Generated at: `2026-06-01T04:23:47Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 291, 'ok': 114}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 292, 'ok': 113}
 - **Verification** (`last_verified`): {'ok': 405}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 291, 'ok': 114}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 292, 'ok': 113}
 
 ## Flag legend
 
@@ -260,7 +260,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `morocco-office-des-changes-crypto-ban-2017-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `mtgox-bankruptcy-tokyo-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `mtgox-coinlab-civil-2013` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
-| `mtgox-dhs-dwolla-wells-fargo-seizure-2013` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-20 | 12 | ok | no_audit_recorded |
+| `mtgox-dhs-dwolla-wells-fargo-seizure-2013` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `mtgox-june-2011-hack-trading-suspension` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `mtgox-mizuho-wire-pressure-2012` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `mtgox-usd-withdrawal-suspension-2013-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -277,7 +277,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015` | `rejected` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-20 | 12 | ok | no_audit_recorded |
 | `nydfs-bittrex-bitlicense-denial-2019-04` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `oasis-app-wormhole-counter-exploit-2023-02` | `rejected` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-20 | 12 | ok | no_audit_recorded |
-| `oecd-carf-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `oecd-carf-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-06-01 | 0 | ok | ok |
 | `ofac-dprk-it-worker-sim-hyon-sop-2023-04` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
 | `ofac-hamas-buy-cash-msb-2023-10` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
 | `ofac-hamas-gaza-now-2024-03` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
@@ -389,7 +389,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `tornado-cash-ofac-delisting-2025` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 41 | ok | no_audit_recorded |
 | `tornado-cash-ofac-redesignation-2022` | `admitted` | `human_authored` | 2026-04-22 | 40 | ok | 2026-04-21 | 41 | ok | ok |
 | `tornado-cash-pertsev-doj-indictment-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `tornado-cash-storm-conviction-2025` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `tornado-cash-storm-conviction-2025` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `tornado-cash-tornadocash-org-seizure-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `tradehill-dwolla-payment-cutoff-2012-02` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `trustwallet-sanctioned-token-ui-update-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
@@ -412,7 +412,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `venezuela-sunacrip-mining-exchange-halt-2023-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `vietnam-sbv-bitcoin-prohibition-statement-2014-02` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `vietnam-sbv-payment-prohibition-2017-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `voyager-bankruptcy-doj-objection-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
+| `voyager-bankruptcy-doj-objection-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `webmoney-ukraine-tax-police-freeze-2013-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `welcome-to-video-doj-2019` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
@@ -608,7 +608,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `mica-l2-esma-eba-rts-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `morocco-office-des-changes-crypto-ban-2017-11` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `mtgox-bankruptcy-tokyo-2014` — audit=no_audit_recorded, verification=ok, verif_age=11d
-- `mtgox-dhs-dwolla-wells-fargo-seizure-2013` — audit=no_audit_recorded, verification=ok, verif_age=12d
+- `mtgox-dhs-dwolla-wells-fargo-seizure-2013` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `mtgox-june-2011-hack-trading-suspension` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `mtgox-mizuho-wire-pressure-2012` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `mtgox-usd-withdrawal-suspension-2013-06` — audit=no_audit_recorded, verification=ok, verif_age=11d
@@ -691,6 +691,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `tornado-cash-github-takedown-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `tornado-cash-ofac-delisting-2025` — audit=no_audit_recorded, verification=ok, verif_age=41d
 - `tornado-cash-pertsev-doj-indictment-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `tornado-cash-storm-conviction-2025` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `tornado-cash-tornadocash-org-seizure-2022` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `trustwallet-sanctioned-token-ui-update-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `turkey-cbrt-crypto-ban-2021` — audit=no_audit_recorded, verification=ok, verif_age=40d
@@ -710,7 +711,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `venezuela-sunacrip-mining-exchange-halt-2023-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `vietnam-sbv-bitcoin-prohibition-statement-2014-02` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `vietnam-sbv-payment-prohibition-2017-10` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `voyager-bankruptcy-doj-objection-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `voyager-bankruptcy-doj-objection-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `webmoney-ukraine-tax-police-freeze-2013-06` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `wikileaks-amazon-aws-eviction-2010-12` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `wikileaks-bank-of-america-block-2010-12` — audit=no_audit_recorded, verification=ok, verif_age=11d

@@ -38862,7 +38862,7 @@
   {
     "_source_file": "mtgox-dhs-dwolla-wells-fargo-seizure-2013.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16 staged-\nrelease plan, historical_baseline_2013_2016 tier fill): authored end-to-end\nby LLM agent from sources/historical_baseline_2013_2016/triage_manifest.json.\nThe DHS/HSI seizure of the Mutum Sigillum / Wells Fargo / Dwolla account\n(Case 1:13-mc-01162-WMN, D. Md.) was the first major US federal enforcement\nagainst a bitcoin exchange and the operational predicate for the Mt. Gox\nUSD-withdrawal cascade that culminated in the February 2014 Mt. Gox\nbankruptcy. evidence_use=contextual_unarchived across all citations because\nprimary-legal body_hash has not been captured into sources/http_captures/ in\nthis session; the original 2013 warrant PDF is not exposed via a stable\njustice.gov URL. Status remains draft pending real-archive capture and human\nreview.\n\ncomparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/\nasset_onchain are all not_applicable because mtgox.com remained reachable\nand serving frontend pages, the Bitcoin protocol layers tracked by this\ndataset did not exist in their measured forms in 2013, and the action\noperated on USD held in US bank/payment-processor accounts rather than on\non-chain BTC. The single load-bearing observation is the USD-on-ramp\nclosure at Mt. Gox's US-vantage Dwolla/Wells Fargo rail, attribution=direct\nvia the named seizure warrant.\n\nHistorical-baseline placement: this event is the earliest US federal\nfiat-rail enforcement action against a bitcoin exchange in the dataset,\npredating the 2014-01-26 Shrem/Faiella arrests (shrem-faiella-bitcoin-\nexchange-2014), the 2014 Kraken/Powell unlicensed-exchange action, and the\n2017-07-26 BTC-e DOJ indictment by ~4 years. Establishes the pre-OFAC,\npre-comparable-corpus baseline for fiat-payment-rail-mediated offramp_cex\nenforcement.\n",
+    "analysis_notes": "**REPAIRED 2026-06-01** (quality-loop low-observation pass): added a\nreplayable scanned primary legal copy of the 2013-05-14 seizure warrant\nfrom DocumentCloud / IDG News Service. The justice.gov USAO-MD page remains\ncontextual only; the warrant PDF is now the claim-usable direct-attribution\nanchor for the Mt. Gox / Mutum Sigillum / Dwolla USD-rail seizure.\n\n**NEW EVENT AUTHORED - DRYRUN 2026-05-16** (Phase B of 2026-05-16 staged-\nrelease plan, historical_baseline_2013_2016 tier fill): authored end-to-end\nby LLM agent from sources/historical_baseline_2013_2016/triage_manifest.json.\nThe DHS/HSI seizure of the Mutum Sigillum / Wells Fargo / Dwolla account\n(Case 1:13-mc-01162-WMN, D. Md.) was the first major US federal enforcement\nagainst a bitcoin exchange and the operational predicate for the Mt. Gox\nUSD-withdrawal cascade that culminated in the February 2014 Mt. Gox\nbankruptcy. evidence_use=contextual_unarchived across all citations because\nprimary-legal body_hash has not been captured into sources/http_captures/ in\nthis session; the original 2013 warrant PDF is not exposed via a stable\njustice.gov URL. This caveat is superseded for claim use by the 2026-06-01\nDocumentCloud/S3 warrant capture above.\n\ncomparison shape: 1 observed_change layer (offramp_cex). L0/L1/L3/L4/\nasset_onchain are all not_applicable because mtgox.com remained reachable\nand serving frontend pages, the Bitcoin protocol layers tracked by this\ndataset did not exist in their measured forms in 2013, and the action\noperated on USD held in US bank/payment-processor accounts rather than on\non-chain BTC. The single load-bearing observation is the USD-on-ramp\nclosure at Mt. Gox's US-vantage Dwolla/Wells Fargo rail, attribution=direct\nvia the named seizure warrant.\n\nHistorical-baseline placement: this event is the earliest US federal\nfiat-rail enforcement action against a bitcoin exchange in the dataset,\npredating the 2014-01-26 Shrem/Faiella arrests (shrem-faiella-bitcoin-\nexchange-2014), the 2014 Kraken/Powell unlicensed-exchange action, and the\n2017-07-26 BTC-e DOJ indictment by ~4 years. Establishes the pre-OFAC,\npre-comparable-corpus baseline for fiat-payment-rail-mediated offramp_cex\nenforcement.\n",
     "analysis_use": "historical_baseline",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -38910,7 +38910,7 @@
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-05-20",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "exchange:mtgox",
@@ -38921,6 +38921,28 @@
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
+          {
+            "body_hash": "sha256:04ff80914c3061095ad2bd61399660d960fcbccec90d7e52eddfcb520ce2969c",
+            "body_path": "sources/http_captures/mtgox-dhs-dwolla-wells-fargo-seizure-2013/legal-warrant/s3.documentcloud.org__documents-701175-mt-gox-dwolla-warrant-idg-news-service.pdf__7680342661.bin",
+            "evidence_use": "replayable",
+            "note": "Claim-usable primary legal warrant copy for the Mutum Sigillum /\nMt. Gox Dwolla-account seizure. This replaces the prior structural\ndependence on an unarchived justice.gov office pointer for direct\nattribution.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "mtgox",
+                "dwolla",
+                "veridian_credit_union"
+              ],
+              "time_window": [
+                "2013-05-14T00:00:00+00:00",
+                "2013-05-16T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://s3.documentcloud.org/documents/701175/mt-gox-dwolla-warrant-idg-news-service.pdf"
+          },
           {
             "evidence_use": "contextual_unarchived",
             "note": "Direct attribution: the 2013-05-14 seizure warrant (Case 1:13-mc-\n01162-WMN, D. Md.) explicitly named the Mutum Sigillum Dwolla\naccount that constituted Mt. Gox's primary US-customer USD on-ramp.\nThe action closed that rail. evidence_use=contextual_unarchived\nbecause the original warrant PDF is not exposed via a stable\njustice.gov URL and no body_hash was captured into\nsources/http_captures/ in this session.\n",
@@ -39018,6 +39040,14 @@
           "wayback": "https://web.archive.org/web/20150228114134/http://www.justice.gov:80/usao-md"
         },
         {
+          "body_hash": "sha256:04ff80914c3061095ad2bd61399660d960fcbccec90d7e52eddfcb520ce2969c",
+          "body_path": "sources/http_captures/mtgox-dhs-dwolla-wells-fargo-seizure-2013/legal-warrant/s3.documentcloud.org__documents-701175-mt-gox-dwolla-warrant-idg-news-service.pdf__7680342661.bin",
+          "evidence_use": "replayable",
+          "note": "Scanned copy of the federal seizure warrant made public through\nDocumentCloud / IDG News Service. The warrant is the load-bearing\nlegal artifact for the 2013-05-14 Dwolla / Mutum Sigillum seizure;\nlocal capture pinned 2026-06-01. The justice.gov office page above\nis retained only as an office-of-record context pointer.\n",
+          "type": "primary_legal",
+          "url": "https://s3.documentcloud.org/documents/701175/mt-gox-dwolla-warrant-idg-news-service.pdf"
+        },
+        {
           "body_hash": "sha256:630176609b63ac524ce6aaa15b87fc0c02c97fde3bd34c10a80090a18e5001c6",
           "body_path": "sources/http_captures/mtgox-dhs-dwolla-wells-fargo-seizure-2013/primary/web.archive.org__web-20140102083717-http-techcrunch.com-2013-05-16-mt-gox-dwolla-account-money-seizure__401e53cca3.html",
           "evidence_use": "replayable",
@@ -39046,7 +39076,7 @@
       ],
       "type": "doj_seizure_order"
     },
-    "version": "0.2"
+    "version": "0.3"
   },
   {
     "_source_file": "mtgox-june-2011-hack-trading-suspension.yaml",
@@ -41542,7 +41572,7 @@
   {
     "_source_file": "oecd-carf-2022.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.3 supranational discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison documenting the OECD's 2022-10-10 Crypto-Asset Reporting\nFramework (CARF) publication \u2014 the first binding supranational\ncrypto tax-reporting standard. CARF is a companion to the 2014\nCommon Reporting Standard (CRS) and operates at the OECD level with\nG20 endorsement, distinct from EU-level instruments like MiCA\n(eu-mica-2023) and FATF-level instruments like Recommendation 15 +\nthe VASP Travel Rule (fatf-r15-vasp-travel-rule-2019). Together\nthese three supranational instruments form the regulatory substrate\nlayer of the dataset: CARF (tax-reporting), MiCA (market-conduct +\nlicensing), FATF R.15 (AML / Travel Rule). Each operates on the\nRCASP / CASP / VASP entity class with overlapping but distinct\nreporting and conduct obligations.\n\nLoad-bearing structure: offramp_cex is the load-bearing observation\naxis. CARF defines the RCASP entity class and mandates transaction-\nlevel reporting to domestic tax authorities (then automatically\nexchanged across jurisdictions under CRS-equivalent mechanics). The\nframework is metadata-collection at the off-ramp interface \u2014 distinct\nfrom MiCA's market-conduct / licensing axis and from FATF R.15's\nAML / Travel Rule axis. Paper-relevant because it captures a\ncensorship-adjacent regulatory event at the metadata / tax-reporting\nlayer rather than at the asset- or list-layer; CARF is the third\nmajor supranational instrument shaping the RCASP operating\nenvironment alongside MiCA and FATF R.15.\n\nEmpirical_shape = comparison (1 observed_change layer: offramp_cex,\nattribution=direct on the primary legal instrument); admission_tier\n= empirical_case (1 strong-attribution observed_change layer\nsatisfies the \u22651 requirement). The CARF text itself defines the\nRCASP entity class and reporting obligations, supporting\nattribution=direct on the regulatory-framework axis. Downstream\ndomestic transpositions (EU DAC8 2023-10-17, UK 2024 Finance Act,\nAustralia / Canada / Japan / Singapore / Korea implementation\nstatutes) are direct implementations of CARF rather than independent\ntriggers; the first reporting cycle under CARF is scheduled for 2027\n(covering 2026 calendar-year transactions). For a real release,\nreplace this DRYRUN marker after human audit and pin a verified\nWayback snapshot + body_hash / body_path capture of the OECD CARF\npublication via scripts/capture_http_artifact.py; additionally pin\nthe 2023-11-10 CARF MCAA joint statement and one domestic\ntransposition instrument (e.g. EU DAC8 OJ publication) as\ncross-reference anchors.\n",
+    "analysis_notes": "**REPAIRED 2026-06-01** (quality-loop low-observation pass): pinned an\nofficial OECD PDF body_hash/body_path for the CARF rules and commentary.\nThe original 2022 OECD release page remains a timestamp/context pointer,\nbut the claim-usable observation now rests on a replayable OECD artifact.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.3 supranational discovery; lean run): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison documenting the OECD's 2022-10-10 Crypto-Asset Reporting\nFramework (CARF) publication \u2014 the first binding supranational\ncrypto tax-reporting standard. CARF is a companion to the 2014\nCommon Reporting Standard (CRS) and operates at the OECD level with\nG20 endorsement, distinct from EU-level instruments like MiCA\n(eu-mica-2023) and FATF-level instruments like Recommendation 15 +\nthe VASP Travel Rule (fatf-r15-vasp-travel-rule-2019). Together\nthese three supranational instruments form the regulatory substrate\nlayer of the dataset: CARF (tax-reporting), MiCA (market-conduct +\nlicensing), FATF R.15 (AML / Travel Rule). Each operates on the\nRCASP / CASP / VASP entity class with overlapping but distinct\nreporting and conduct obligations.\n\nLoad-bearing structure: offramp_cex is the load-bearing observation\naxis. CARF defines the RCASP entity class and mandates transaction-\nlevel reporting to domestic tax authorities (then automatically\nexchanged across jurisdictions under CRS-equivalent mechanics). The\nframework is metadata-collection at the off-ramp interface \u2014 distinct\nfrom MiCA's market-conduct / licensing axis and from FATF R.15's\nAML / Travel Rule axis. Paper-relevant because it captures a\ncensorship-adjacent regulatory event at the metadata / tax-reporting\nlayer rather than at the asset- or list-layer; CARF is the third\nmajor supranational instrument shaping the RCASP operating\nenvironment alongside MiCA and FATF R.15.\n\nEmpirical_shape = comparison (1 observed_change layer: offramp_cex,\nattribution=direct on the primary legal instrument); admission_tier\n= empirical_case (1 strong-attribution observed_change layer\nsatisfies the \u22651 requirement). The CARF text itself defines the\nRCASP entity class and reporting obligations, supporting\nattribution=direct on the regulatory-framework axis. Downstream\ndomestic transpositions (EU DAC8 2023-10-17, UK 2024 Finance Act,\nAustralia / Canada / Japan / Singapore / Korea implementation\nstatutes) are direct implementations of CARF rather than independent\ntriggers; the first reporting cycle under CARF is scheduled for 2027\n(covering 2026 calendar-year transactions). For a real release,\nreplace this DRYRUN marker after human audit. The 2026-06-01 repair\npinned a body_hash / body_path capture of the OECD CARF consolidated\npublication; additionally pin the 2023-11-10 CARF MCAA joint statement\nand one domestic\ntransposition instrument (e.g. EU DAC8 OJ publication) as\ncross-reference anchors.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -41581,7 +41611,7 @@
       "corporate_global"
     ],
     "last_human_audit": "2026-05-16",
-    "last_verified": "2026-05-16",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "oecd_rcasp_ecosystem",
@@ -41592,6 +41622,25 @@
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
+          {
+            "body_hash": "sha256:7a0e714da7e13beca33b83ec0f7b17f4173de8abca71d7c099317d1789489d1c",
+            "body_path": "sources/http_captures/oecd-carf-2022/official-2023-oecd-pdf/www.oecd.org__content-dam-oecd-en-publications-reports-2023-06-international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc-896d79d1-en.pdf__2dd99adf58.bin",
+            "evidence_use": "replayable",
+            "note": "Claim-usable official CARF rules/commentary anchor. The PDF defines\nReporting Crypto-Asset Service Providers and their reporting and\ndue-diligence obligations for Relevant Transactions, which is the\nretained offramp_cex / RCASP reporting-obligation observation.\n",
+            "scope_descriptor": {
+              "addresses_cohort": "all_carf_in_scope_rcasps",
+              "providers": [
+                "oecd_rcasp_aggregate",
+                "oecd_carf_adopting_jurisdictions"
+              ],
+              "time_window": [
+                "2022-10-10T00:00:00+00:00",
+                "2027-01-01T00:00:00+00:00"
+              ]
+            },
+            "type": "primary_legal",
+            "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/06/international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc/896d79d1-en.pdf"
+          },
           {
             "evidence_use": "contextual_unarchived",
             "note": "OECD CARF publication 2022-10-10 is the primary legal instrument.\nThe OECD Committee on Fiscal Affairs (acting at G20 instruction)\nis the direct supranational actor. CARF-adopting jurisdictions\nsubsequently transpose the framework into domestic law (e.g. EU\nvia DAC8 Directive 2023/2226 adopted 2023-10-17; UK via 2024\nFinance Act amendments; 48+ jurisdictions per the 2023-11-10\njoint statement) and impose CARF-equivalent reporting on RCASPs\ndomiciled or operating in their territory. attribution=direct\nbecause the CARF text itself defines the RCASP entity class and\nmandates the reporting behavior; the supranational framework is\nthe substantive driver, with subsequent domestic transposition\nacts as direct implementations rather than independent triggers.\n",
@@ -41629,7 +41678,7 @@
     ],
     "research_stratum": "S6_supranational",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The OECD's 2022-10-10 Crypto-Asset Reporting Framework (CARF)\npublication established the first binding supranational crypto\ntax-reporting standard, mandating that Reporting Crypto-Asset\nService Providers (RCASPs) \u2014 centralized exchanges, brokers,\ndealers, and crypto ATM operators \u2014 report relevant crypto-asset\ntransactions to domestic tax authorities for automatic exchange\nunder CRS-equivalent mechanics. CARF is the third major\nsupranational instrument shaping the RCASP / CASP / VASP operating\nenvironment alongside EU MiCA (eu-mica-2023) and FATF Recommendation\n15 (fatf-r15-vasp-travel-rule-2019). Empirical_shape=comparison;\nload-bearing axis is offramp_cex at the RCASP reporting-obligation\nlayer.\"\n",
+    "scoped_claim": "\"The OECD's 2022-10-10 Crypto-Asset Reporting Framework (CARF)\npublication established the first binding supranational crypto\ntax-reporting standard, mandating that Reporting Crypto-Asset\nService Providers (RCASPs) \u2014 centralized exchanges, brokers,\ndealers, and crypto ATM operators \u2014 report relevant crypto-asset\ntransactions to domestic tax authorities for automatic exchange\nunder CRS-equivalent mechanics. CARF is the third major\nsupranational instrument shaping the RCASP / CASP / VASP operating\nenvironment alongside EU MiCA (eu-mica-2023) and FATF Recommendation\n15 (fatf-r15-vasp-travel-rule-2019). Empirical_shape=comparison;\nload-bearing axis is offramp_cex at the RCASP reporting-obligation\nlayer. The replayable source anchor is the official OECD consolidated\nCARF standards PDF, with the original 2022 release page retained as a\ntimestamp/context pointer.\"\n",
     "status": "admitted",
     "tags": [
       "supranational_regulation",
@@ -41661,6 +41710,14 @@
           "type": "primary_legal",
           "url": "https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm",
           "wayback": "https://web.archive.org/web/20260516000000/https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm"
+        },
+        {
+          "body_hash": "sha256:7a0e714da7e13beca33b83ec0f7b17f4173de8abca71d7c099317d1789489d1c",
+          "body_path": "sources/http_captures/oecd-carf-2022/official-2023-oecd-pdf/www.oecd.org__content-dam-oecd-en-publications-reports-2023-06-international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc-896d79d1-en.pdf__2dd99adf58.bin",
+          "evidence_use": "replayable",
+          "note": "OECD official PDF, International Standards for Automatic Exchange of\nInformation in Tax Matters: Crypto-Asset Reporting Framework and 2023\nupdate to the CRS. This replayable consolidated official artifact\npreserves the CARF rules and commentary, including RCASP reporting\nobligations, and is used as the claim-usable anchor for the row. The\noriginal 2022 OECD release page above remains the timestamp/context\npointer for the 2022-10-10 publication event.\n",
+          "type": "primary_legal",
+          "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/06/international-standards-for-automatic-exchange-of-information-in-tax-matters_ab3a23bc/896d79d1-en.pdf"
         }
       ],
       "timestamp": "2022-10-10T00:00:00+00:00",
@@ -41673,7 +41730,7 @@
       ],
       "type": "supranational_regulation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "ofac-dprk-it-worker-sim-hyon-sop-2023-04.yaml",
@@ -60290,7 +60347,7 @@
   {
     "_source_file": "tornado-cash-storm-conviction-2025.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison \u2014 the 2025-08-06 SDNY jury verdict convicting Roman Storm\non Count 1 (conspiracy to operate an unlicensed money transmitting\nbusiness, 18 U.S.C. \u00a7 1960) is the **conviction milestone** downstream\nof the 2023-08-23 indictment (storm-semenov-doj-2023, admitted as\nnull_case). The jury hung on Count 2 (conspiracy to commit money\nlaundering, 18 U.S.C. \u00a7 1956(h)) and Count 3 (conspiracy to violate\nIEEPA, 50 U.S.C. \u00a7 1705). Co-defendant Roman Semenov remained at\nlarge (Dubai) and was not tried.\n\n**Document overlap with storm-semenov-doj-2023**: this verdict event\nis the conviction milestone of the criminal-prosecution chain that\nbegan with the 2023-08-23 indictment (admitted as null_case because\nthe indictment alone produced no measured cross-layer cascade). The\nverdict event is admitted SEPARATELY because the conviction (not the\nindictment) is the first US developer-liability precedent on the\n\u00a7 1960 unlicensed-MTB theory against a non-custodial privacy protocol\n\u2014 a load-bearing legal-doctrinal milestone distinct from the\ncharging-document stage. Care: do NOT double-count developer-\nenforcement cascade artifacts at both events; the 2023-08-23 indictment\nevent holds the indictment+OFAC-companion null-cascade evidence, while\nthis 2025-08-06 verdict event holds the conviction-precedent + operator-\nnarrative chilling-effect layer.\n\nLoad-bearing structure: asset_onchain layer is the load-bearing axis,\ncarrying TWO conceptual phenomena: (1) observed_no_change at\nattribution=none on the Tornado Cash contract substrate \u2014 the 98 mixer\ncontracts continued live post-verdict because the conviction targets\nthe developer (Storm), not the immutable non-custodial protocol code;\n(2) the **operator-narrative** observed_change at attribution=plausible\nis recorded on L4 frontend rather than asset_onchain (the validator\nrequires primary_onchain sources for asset_onchain observed_change\nrows; the operator-narrative chilling-effect channel does not have a\ntx_hash-backed substrate, so it is recorded on the L4 ecosystem axis\nwhere developer-repository state lives). This structural decomposition\nis the paper-worthy contribution: the first US developer-criminal-\nconviction for protocol-authoring produced zero on-chain cascade\n(contracts immutable, non-custodial) but a non-zero ecosystem-level\npersonal-risk-reassessment channel for similar privacy-tool authors.\n\nRelationship to tornado-cash-ofac-2022 (2022-08-08 OFAC SDN listing,\ncascade anchor) and tornado-cash-ofac-delisting-2025 (2025-03-21 OFAC\nremoval, reverse-cascade anchor): the verdict sits ~4.5 months AFTER\nthe OFAC delisting \u2014 a temporally awkward ordering where the protocol\naddresses had already been removed from the SDN list before the\ndeveloper was convicted on the \u00a7 1960 count. This sequencing is\nitself a paper-worthy datapoint: the Treasury (OFAC) and Justice\n(DOJ) branches of US federal enforcement diverged on the Tornado\nCash file, with OFAC reversing its 2022 listing under Van Loon\nlitigation pressure while DOJ pressed forward with the criminal\nprosecution to verdict.\n\nEmpirical_shape = comparison (1 observed_change layer: l4_frontend on\nthe operator-narrative axis, attribution=plausible); admission_tier =\nempirical_case (1 strong-attribution observed_change layer satisfies\n\u22651 requirement). For a real release, replace this DRYRUN marker after\nhuman audit and pin a verified Wayback snapshot + body_hash /\nbody_path capture of the DOJ press release via\nscripts/capture_http_artifact.py; additionally pin operator-narrative\nprimary artifacts (Railgun / Aztec / Privacy Pools maintainer\nstatements, EFF / Coin Center amicus filings) to promote the L4\noperator-narrative attribution from plausible toward direct.\n",
+    "analysis_notes": "**DEMOTED 2026-06-01** (quality-loop low-observation pass): reverted from\nadmitted to draft because the retained observed_change is a plausible\necosystem \"chilling effect\" narrative, not a measured L4/frontend,\nrepository-state, operator-statement, or on-chain availability observation.\nThe legal conviction itself appears sourceable through DOJ, but that does\nnot by itself satisfy the event's changed-layer admission floor. Re-admission\nrequires a replayable claim-usable DOJ/legal anchor plus either a concrete\npost-verdict operator/repository artifact for the changed layer or a\nmeasured null/no-change artifact if the row is recoded as a null comparator.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison \u2014 the 2025-08-06 SDNY jury verdict convicting Roman Storm\non Count 1 (conspiracy to operate an unlicensed money transmitting\nbusiness, 18 U.S.C. \u00a7 1960) is the **conviction milestone** downstream\nof the 2023-08-23 indictment (storm-semenov-doj-2023, admitted as\nnull_case). The jury hung on Count 2 (conspiracy to commit money\nlaundering, 18 U.S.C. \u00a7 1956(h)) and Count 3 (conspiracy to violate\nIEEPA, 50 U.S.C. \u00a7 1705). Co-defendant Roman Semenov remained at\nlarge (Dubai) and was not tried.\n\n**Document overlap with storm-semenov-doj-2023**: this verdict event\nis the conviction milestone of the criminal-prosecution chain that\nbegan with the 2023-08-23 indictment (admitted as null_case because\nthe indictment alone produced no measured cross-layer cascade). The\nverdict event is admitted SEPARATELY because the conviction (not the\nindictment) is the first US developer-liability precedent on the\n\u00a7 1960 unlicensed-MTB theory against a non-custodial privacy protocol\n\u2014 a load-bearing legal-doctrinal milestone distinct from the\ncharging-document stage. Care: do NOT double-count developer-\nenforcement cascade artifacts at both events; the 2023-08-23 indictment\nevent holds the indictment+OFAC-companion null-cascade evidence, while\nthis 2025-08-06 verdict event holds the conviction-precedent + operator-\nnarrative chilling-effect layer.\n\nLoad-bearing structure: asset_onchain layer is the load-bearing axis,\ncarrying TWO conceptual phenomena: (1) observed_no_change at\nattribution=none on the Tornado Cash contract substrate \u2014 the 98 mixer\ncontracts continued live post-verdict because the conviction targets\nthe developer (Storm), not the immutable non-custodial protocol code;\n(2) the **operator-narrative** observed_change at attribution=plausible\nis recorded on L4 frontend rather than asset_onchain (the validator\nrequires primary_onchain sources for asset_onchain observed_change\nrows; the operator-narrative chilling-effect channel does not have a\ntx_hash-backed substrate, so it is recorded on the L4 ecosystem axis\nwhere developer-repository state lives). This structural decomposition\nis the paper-worthy contribution: the first US developer-criminal-\nconviction for protocol-authoring produced zero on-chain cascade\n(contracts immutable, non-custodial) but a non-zero ecosystem-level\npersonal-risk-reassessment channel for similar privacy-tool authors.\n\nRelationship to tornado-cash-ofac-2022 (2022-08-08 OFAC SDN listing,\ncascade anchor) and tornado-cash-ofac-delisting-2025 (2025-03-21 OFAC\nremoval, reverse-cascade anchor): the verdict sits ~4.5 months AFTER\nthe OFAC delisting \u2014 a temporally awkward ordering where the protocol\naddresses had already been removed from the SDN list before the\ndeveloper was convicted on the \u00a7 1960 count. This sequencing is\nitself a paper-worthy datapoint: the Treasury (OFAC) and Justice\n(DOJ) branches of US federal enforcement diverged on the Tornado\nCash file, with OFAC reversing its 2022 listing under Van Loon\nlitigation pressure while DOJ pressed forward with the criminal\nprosecution to verdict.\n\nEmpirical_shape remains comparison only as a draft hypothesis. The current\nfile does not yet carry a claim-usable observed_change source at the L4\noperator-narrative layer, nor a measured asset_onchain observed_no_change\nrow. For a real release, pin a verified DOJ/legal archive plus\noperator-narrative primary artifacts (Railgun / Aztec / Privacy Pools\nmaintainer statements, EFF / Coin Center filings) or recode the event as a\nnull comparator after pinning post-verdict on-chain/frontend measurements.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -60336,8 +60393,7 @@
     "jurisdiction": [
       "US"
     ],
-    "last_human_audit": "2026-05-16",
-    "last_verified": "2026-05-16",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "open_source_privacy_tool_developer_ecosystem",
@@ -60361,7 +60417,7 @@
               ]
             },
             "type": "primary_legal",
-            "url": "https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash",
+            "url": "https://www.justice.gov/usao-sdny/pr/founder-tornado-cash-crypto-mixing-service-convicted-knowingly-transmitting-criminal",
             "wayback": "https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash"
           }
         ],
@@ -60372,7 +60428,7 @@
         ]
       }
     ],
-    "origin": "human_reviewed",
+    "origin": "agent_draft",
     "primary_source_verified": false,
     "related_events": [
       "storm-semenov-doj-2023",
@@ -60381,8 +60437,8 @@
     ],
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2025-08-06 SDNY jury verdict convicted Roman Storm on Count 1 of\nthe 2023 Tornado Cash indictment (conspiracy to operate an unlicensed\nmoney transmitting business, 18 U.S.C. \u00a7 1960) while hanging on the\nmoney-laundering and IEEPA-sanctions counts. The conviction produced\nobserved_no_change on the asset_onchain layer (the 98 Tornado Cash\nmixer contracts continued live, attribution=none) and a plausible\nobserved_change on the L4 operator-narrative axis (first US developer-\ncriminal-conviction precedent for non-custodial privacy-protocol\nauthoring; personal-risk reassessment channel for similar developers).\nEmpirical_shape=comparison; structurally separates developer-criminal-\nliability from protocol-substrate-availability.\"\n",
-    "status": "admitted",
+    "scoped_claim": "\"Draft candidate only: the 2025-08-06 SDNY jury verdict convicted Roman Storm on Count 1 of\nthe 2023 Tornado Cash indictment (conspiracy to operate an unlicensed\nmoney transmitting business, 18 U.S.C. \u00a7 1960) while hanging on the\nmoney-laundering and IEEPA-sanctions counts. This file is not admitted:\nit does not yet pin a measured post-verdict on-chain/no-change artifact or\na concrete operator/repository changed-layer artifact. It is retained as a\ncandidate for separating developer-criminal-liability from protocol-\nsubstrate-availability once those artifacts exist.\"\n",
+    "status": "draft",
     "tags": [
       "doj_indictment",
       "doj_conviction",
@@ -60411,9 +60467,10 @@
       "actor": "US_DOJ_SDNY",
       "citation": [
         {
+          "evidence_use": "contextual_unarchived",
           "note": "DOJ USAO-SDNY press release (2025-08-06): \"Roman Storm Convicted Of\nConspiracy Charge Relating To Tornado Cash.\" SDNY jury returned a\npartial verdict convicting Storm on Count 1 of the 2023 indictment\n\u2014 conspiracy to operate an unlicensed money transmitting business\n(18 U.S.C. \u00a7 1960). The jury hung on Count 2 (conspiracy to commit\nmoney laundering, 18 U.S.C. \u00a7 1956(h)) and Count 3 (conspiracy to\nviolate the International Emergency Economic Powers Act / IEEPA,\n50 U.S.C. \u00a7 1705). This event captures the **conviction milestone**\ndownstream of the 2023-08-23 indictment (storm-semenov-doj-2023,\nadmitted as null_case). trigger.type=doj_indictment is retained\nbecause the conviction is a downstream stage of the same DOJ\ncriminal-prosecution chain (no separate trigger taxon exists for\nverdicts in the schema enum).\n",
           "type": "primary_legal",
-          "url": "https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash",
+          "url": "https://www.justice.gov/usao-sdny/pr/founder-tornado-cash-crypto-mixing-service-convicted-knowingly-transmitting-criminal",
           "wayback": "https://web.archive.org/web/20260516000000/https://www.justice.gov/usao-sdny/pr/roman-storm-convicted-conspiracy-charge-relating-tornado-cash"
         }
       ],
@@ -60427,7 +60484,7 @@
       ],
       "type": "doj_indictment"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "tornado-cash-tornadocash-org-seizure-2022.yaml",
@@ -64151,7 +64208,7 @@
   {
     "_source_file": "voyager-bankruptcy-doj-objection-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-17** (Phase E expansion;\nbankruptcy-court-objection sub-frame of S3 DOJ enforcement):\nauthored by LLM agent without personally verifying Wayback /\nbody_hash; origin=agent_draft pending human review. Real release\nmust replace this DRYRUN marker with a human-verified audit after\npinning the actual S.D.N.Y. bankruptcy docket entries (Case No.\n22-10943) for the U.S. Trustee's plan-confirmation objection and\nthe 2023-03-08 notice of appeal of Judge Wiles's 2023-03-07\nconfirmation order, plus an archived snapshot of Binance.US's\n2023-04-25 deal-abandonment statement.\n\ncomparison \u2014 M&A-cancellation variant of the lender-bankruptcy\ntwin. Distinct from the criminal Voyager / Alameda investigations\n(which target individual executive conduct) and from\ncelsius-bankruptcy-mashinsky-doj-2023 (which codifies platform\ncollapse via post-petition criminal indictment); here, the DOJ acts\npre-confirmation via the U.S. Trustee's bankruptcy-court objection\n+ appeal pathway, citing AML / sanctions-enforcement grounds against\nthe plan's third-party releases and the Binance.US acquisition\nroute. Single-layer offramp_cex observed_change with direct\nattribution \u2192 empirical_case admission tier. The trigger.type is\ncourt_civil_order (codebook \u00a75.1: DOJ-via-bankruptcy-court objection\nis a civil court mechanism, not a doj_indictment or doj_seizure_order).\nStratum S3_doj_sec_cftc_fiod per \u00a75.2.\n",
+    "analysis_notes": "**REPAIRED 2026-06-01** (quality-loop low-observation pass): recoded this\nrow to `evidence_tier=attested_secondary` and relabeled the changed-layer\nattribution from direct to plausible. The public packet now has replayable\nCoinDesk and Reuters-syndicated captures plus a generic Stretto docket\ncapture, but it still lacks the specific U.S. Trustee docket PDFs and a\nfirst-party Binance.US termination artifact required for admission-grade\ndirect attribution.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-17** (Phase E expansion;\nbankruptcy-court-objection sub-frame of S3 DOJ enforcement):\nauthored by LLM agent without personally verifying Wayback /\nbody_hash; origin=agent_draft pending human review. Real release\nmust replace this DRYRUN marker with a human-verified audit after\npinning the actual S.D.N.Y. bankruptcy docket entries (Case No.\n22-10943) for the U.S. Trustee's plan-confirmation objection and\nthe 2023-03-08 notice of appeal of Judge Wiles's 2023-03-07\nconfirmation order, plus an archived snapshot of Binance.US's\n2023-04-25 deal-abandonment statement.\n\ncomparison \u2014 M&A-cancellation variant of the lender-bankruptcy\ntwin. Distinct from the criminal Voyager / Alameda investigations\n(which target individual executive conduct) and from\ncelsius-bankruptcy-mashinsky-doj-2023 (which codifies platform\ncollapse via post-petition criminal indictment); here, the DOJ acts\npre-confirmation via the U.S. Trustee's bankruptcy-court objection\n+ appeal pathway, citing AML / sanctions-enforcement grounds against\nthe plan's third-party releases and the Binance.US acquisition\nroute. Single-layer offramp_cex observed_change with plausible\nattribution and attested_secondary source tier \u2192 empirical_case\nadmission tier, but filter/down-weight for headline claims. The trigger.type is\ncourt_civil_order (codebook \u00a75.1: DOJ-via-bankruptcy-court objection\nis a civil court mechanism, not a doj_indictment or doj_seizure_order).\nStratum S3_doj_sec_cftc_fiod per \u00a75.2.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -64190,7 +64247,7 @@
           "wayback": "https://web.archive.org/web/20230310074649/https://www.coindesk.com/policy/2023/03/10/us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus"
         },
         "layer": "offramp_cex",
-        "note": "Voyager's centralized lending platform IS the off-ramp; the DOJ\nobjection blocked the planned Binance.US acquisition route and\nforced Voyager into self-liquidation distributions. Binance.US\nformally abandoned the Voyager acquisition 2023-04-25, citing\n\"hostile and uncertain regulatory climate.\" This is the\nload-bearing layer for the cascade shape (M&A-cancellation\nvariant of the lender-bankruptcy twin).\n",
+        "note": "Voyager's centralized lending platform IS the off-ramp; the DOJ\nobjection and emergency-stay litigation interrupted the planned\nBinance.US acquisition route, and Binance.US formally abandoned the\nacquisition 2023-04-25 citing a \"hostile and uncertain regulatory\nclimate.\" The row treats the DOJ-to-termination causal pathway as\nplausible lower-tier evidence rather than direct attribution until\nspecific docket PDFs and first-party termination artifacts are pinned.\n",
         "scope": [
           "voyager_lending_platform",
           "binance_us_acquisition"
@@ -64200,19 +64257,21 @@
     ],
     "created_at": "2026-05-17T00:00:00+00:00",
     "empirical_shape": "comparison",
+    "evidence_caveat": "Voyager/Binance.US deal cancellation is \u00a79-clear and contemporaneously documented, but the retained public packet is lower-tier: replayable CoinDesk/Reuters-syndicated reporting plus a generic Stretto docket capture, not the specific U.S. Trustee docket PDFs or a first-party Binance.US termination notice. Use as attested_secondary and down-weight/filter in headline claims.",
+    "evidence_tier": "attested_secondary",
     "id": "voyager-bankruptcy-doj-objection-2023",
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-05-21",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "lending_platform:voyager_digital",
-        "attribution": "direct",
+        "attribution": "plausible",
         "delta_hours": 0,
         "event": "voyager_binance_us_acquisition_blocked_by_doj_objection",
         "layer": "offramp_cex",
-        "note": "DOJ (via U.S. Trustee's Office) filed notice of appeal 2023-03-08\nof the 2023-03-07 bankruptcy court order confirming Voyager's\nChapter 11 plan and Binance.US asset sale, then moved 2023-03-14\nto vacate the plan's third-party release provisions on AML /\nsanctions-enforcement grounds. District Judge Jennifer Rearden\n(S.D.N.Y.) granted DOJ's emergency stay 2023-03-27. The cascade\nculminated 2023-04-25 when Binance.US abandoned the acquisition\nciting the \"hostile and uncertain regulatory climate.\"\nattribution=direct: the DOJ objection explicitly names the\nVoyager plan + Binance.US deal as the operative target, and\nBinance.US's withdrawal announcement cites the regulatory\nobjections as cause (codebook \u00a71.2 analog for offramp_cex / M&A\nblocking).\n",
+        "note": "DOJ (via U.S. Trustee's Office) filed notice of appeal 2023-03-08\nof the 2023-03-07 bankruptcy court order confirming Voyager's\nChapter 11 plan and Binance.US asset sale, then moved 2023-03-14\nto vacate the plan's third-party release provisions on AML /\nsanctions-enforcement grounds. District Judge Jennifer Rearden\n(S.D.N.Y.) granted DOJ's emergency stay 2023-03-27. The cascade\nculminated 2023-04-25 when Binance.US abandoned the acquisition\nciting the \"hostile and uncertain regulatory climate.\"\nattribution=plausible: the DOJ objection and emergency stay are\nreplayably documented and contemporaneous reporting ties the deal\ntermination to regulatory uncertainty, but this repair does not pin\nthe specific U.S. Trustee docket PDFs or first-party Binance.US\ntermination notice needed for direct attribution.\n",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
@@ -64236,6 +64295,7 @@
             "wayback": "https://web.archive.org/web/20230310074649/https://www.coindesk.com/policy/2023/03/10/us-doj-appeals-new-york-judges-decision-to-approve-voyagers-sale-to-binanceus"
           },
           {
+            "evidence_use": "contextual_unarchived",
             "note": "Cointelegraph: U.S. Trustee Harrington's 2023-03-14 motion\ntargets the plan's third-party release provisions on grounds\nthat they would impede AML / sanctions enforcement against\npersons carrying out the sale. Wayback capture not retained\nthis session (Cointelegraph URL returned no CDX mementos).\n",
             "type": "supporting_journalism",
             "url": "https://cointelegraph.com/news/us-officials-appeal-protections-for-voyager-execs-in-binance-us-sale",
@@ -64249,6 +64309,14 @@
             "type": "supporting_journalism",
             "url": "https://www.coindesk.com/policy/2023/04/01/us-government-case-against-voyager-binanceus-deal-has-substantial-merits-judge-says",
             "wayback": "https://web.archive.org/web/20230401153120/https://www.coindesk.com/policy/2023/04/01/us-government-case-against-voyager-binanceus-deal-has-substantial-merits-judge-says"
+          },
+          {
+            "body_hash": "sha256:2a7c1591f24179e1d6b8764565696982dc0491b72557ae1f20a74378ac2feeab",
+            "body_path": "sources/http_captures/voyager-bankruptcy-doj-objection-2023/binance-termination/www.investing.com__news-stock-market-news-binanceus-calls-off-13-billion-deal-for-voyagers-assets-3064146__3c5bb35bf4.html",
+            "evidence_use": "replayable",
+            "note": "Reuters-syndicated report, captured via Investing.com on\n2026-06-01, documenting Binance.US's 2023-04-25 termination of\nthe Voyager asset-purchase agreement and the stated \"hostile and\nuncertain regulatory climate\" rationale. Retained as supporting\nevidence; not enough by itself to earn direct attribution.\n",
+            "type": "supporting_journalism",
+            "url": "https://www.investing.com/news/stock-market-news/binanceus-calls-off-13-billion-deal-for-voyagers-assets-3064146"
           },
           {
             "body_hash": "sha256:9521dc8f420e8bdf5c011d45c49a92e91878c79b0254c6fc3c92e91bf742a993",
@@ -64275,7 +64343,7 @@
     ],
     "research_stratum": "S3_doj_sec_cftc_fiod",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2023-03-08 DOJ (U.S. Trustee) objection and appeal of Voyager\nDigital's Chapter 11 plan-confirmation order, citing AML /\nsanctions-enforcement grounds against the plan's third-party\nreleases and the Binance.US acquisition route, codifies a\nsingle-layer offramp_cex observation: it blocked the planned\nBinance.US acquisition (formally abandoned 2023-04-25) and forced\nVoyager into self-liquidation distributions. M&A-cancellation\nvariant of the lender-bankruptcy twin; distinct from the criminal\nVoyager / Alameda executive investigations.\"\n",
+    "scoped_claim": "\"The 2023-03-08 DOJ (U.S. Trustee) objection and appeal of Voyager\nDigital's Chapter 11 plan-confirmation order, citing AML /\nsanctions-enforcement grounds against the plan's third-party\nreleases and the Binance.US acquisition route, codifies a\nsingle-layer offramp_cex observation: the proposed Binance.US\nacquisition was stayed amid the government challenge and later\nabandoned on 2023-04-25, pushing Voyager toward direct customer\ndistributions. M&A-cancellation variant of the lender-bankruptcy\ntwin; attribution is plausible and evidence_tier=attested_secondary\nuntil specific docket PDFs and a first-party termination artifact are\npinned.\"\n",
     "status": "admitted",
     "tags": [
       "doj_enforcement",
@@ -64345,7 +64413,7 @@
       ],
       "type": "court_civil_order"
     },
-    "version": "0.2"
+    "version": "0.3"
   },
   {
     "_source_file": "wang-hongfei-fentanyl-precursor-ofac-2023-04.yaml",

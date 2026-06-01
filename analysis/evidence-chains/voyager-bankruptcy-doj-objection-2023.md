@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S3_doj_sec_cftc_fiod` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `7c0cb78` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:09:15Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `210aa10` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T04:23:47Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -12,11 +12,13 @@
 > Digital's Chapter 11 plan-confirmation order, citing AML /
 > sanctions-enforcement grounds against the plan's third-party
 > releases and the Binance.US acquisition route, codifies a
-> single-layer offramp_cex observation: it blocked the planned
-> Binance.US acquisition (formally abandoned 2023-04-25) and forced
-> Voyager into self-liquidation distributions. M&A-cancellation
-> variant of the lender-bankruptcy twin; distinct from the criminal
-> Voyager / Alameda executive investigations."
+> single-layer offramp_cex observation: the proposed Binance.US
+> acquisition was stayed amid the government challenge and later
+> abandoned on 2023-04-25, pushing Voyager toward direct customer
+> distributions. M&A-cancellation variant of the lender-bankruptcy
+> twin; attribution is plausible and evidence_tier=attested_secondary
+> until specific docket PDFs and a first-party termination artifact are
+> pinned."
 
 ## 1. Trigger
 
@@ -83,7 +85,7 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `direct` · Δt = 0h
+### offramp_cex · attribution: `plausible` · Δt = 0h
 
 **Event label**: `voyager_binance_us_acquisition_blocked_by_doj_objection`
 
@@ -118,6 +120,15 @@
 > Voyager-Binance.US deal has "substantial" merits, granting
 > emergency stay of the sale. Wayback memento 20230401153120
 > captured 2026-05-21.
+- **`supporting_journalism`**
+  - URL: <https://www.investing.com/news/stock-market-news/binanceus-calls-off-13-billion-deal-for-voyagers-assets-3064146>
+  - body_hash: `sha256:2a7c1591f24179e1d6b8764565696982dc0491b72557ae1f20a74378ac2feeab`
+  - body_path: `sources/http_captures/voyager-bankruptcy-doj-objection-2023/binance-termination/www.investing.com__news-stock-market-news-binanceus-calls-off-13-billion-deal-for-voyagers-assets-3064146__3c5bb35bf4.html`
+  > Reuters-syndicated report, captured via Investing.com on
+> 2026-06-01, documenting Binance.US's 2023-04-25 termination of
+> the Voyager asset-purchase agreement and the stated "hostile and
+> uncertain regulatory climate" rationale. Retained as supporting
+> evidence; not enough by itself to earn direct attribution.
 - **`primary_legal`**
   - URL: <https://cases.stretto.com/Voyager/court-docket>
   - Wayback: <https://web.archive.org/web/20260517000000/https://cases.stretto.com/Voyager/court-docket>
@@ -139,7 +150,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `7c0cb78`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `210aa10`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
