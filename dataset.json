@@ -4257,7 +4257,7 @@
   {
     "_source_file": "binance-netherlands-exit-2023-07.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 S5-corporate\ndraft, adversarial-verify verdict=KEEP (sources real + on-topic + \u00a79 in-scope + not dup), AND\npasses strict admission validation; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). On 2023-06-16 Binance announced\nit would exit the Netherlands after failing to obtain a Dutch VASP\nregistration from De Nederlandsche Bank (DNB): it stopped registering new\nDutch users immediately, and from 2023-07-17 halted trading for existing\nDutch users, who could only withdraw assets thereafter (Binance referred\nusers to rival Coinmerce). This is a corporate jurisdiction exit by a major\ncentralized exchange driven by inability to clear the national VASP regime \u2014\nin scope per codebook \u00a79 (corporate jurisdiction exit/geofence). comparison\nshape, single offramp_cex observed_change, attribution=plausible (exit is\ndirectly observed; captured anchors are trade press, not a Binance primary\nnotice). asset_onchain not_applicable (CEX market exit, no on-chain freeze,\nno \u00a71.6 tx_hash floor). Distinct from netherlands-dnb-binance-warning-2021\n(the prior DNB unregistered-service warning/fine, S4) and\nkucoin-netherlands-exit-2023 (sibling exchange, same DNB-driven 2023 exodus).\nSources verified via WebSearch 2026-05-31; Decrypt + CryptoSlate captured +\nbody_hash pinned; grep of the Decrypt body confirms \"Binance to Leave\nNetherlands\", \"VASP License\", \"starting July 17, trading in the Netherlands\nwill be halted\", \"no longer registering new users\", \"withdrawing funds\" (no\nfabrication).\n",
+    "analysis_notes": "**PRIMARY-SOURCE REPAIR 2026-06-01** (quality loop): pinned the official\nBinance Support Wayback memento for \"Notice on Changes of Services in the\nNetherlands\" (2023-06-16 17:19:24 UTC). The captured body contains the\nBinance-authored no-new-Dutch-users / 2023-07-17 withdraw-only service-change\nstatement and the VASP-registration rationale. Trigger and observation are\nnow first-party replayable; attribution for Binance's own market-withdrawal\naction is upgraded from plausible to direct. Coverage remains\npartially_measured because the row still describes a national market-access\nwithdrawal, not a per-user account enumeration.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 S5-corporate\ndraft, adversarial-verify verdict=KEEP (sources real + on-topic + \u00a79 in-scope + not dup), AND\npasses strict admission validation; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). On 2023-06-16 Binance announced\nit would exit the Netherlands after failing to obtain a Dutch VASP\nregistration from De Nederlandsche Bank (DNB): it stopped registering new\nDutch users immediately, and from 2023-07-17 halted trading for existing\nDutch users, who could only withdraw assets thereafter (Binance referred\nusers to rival Coinmerce). This is a corporate jurisdiction exit by a major\ncentralized exchange driven by inability to clear the national VASP regime \u2014\nin scope per codebook \u00a79 (corporate jurisdiction exit/geofence). comparison\nshape, single offramp_cex observed_change, attribution=direct (Binance\nprimary notice added on 2026-06-01). asset_onchain not_applicable (CEX market exit, no on-chain freeze,\nno \u00a71.6 tx_hash floor). Distinct from netherlands-dnb-binance-warning-2021\n(the prior DNB unregistered-service warning/fine, S4) and\nkucoin-netherlands-exit-2023 (sibling exchange, same DNB-driven 2023 exodus).\nSources verified via WebSearch 2026-05-31; Decrypt + CryptoSlate captured +\nbody_hash pinned; grep of the Decrypt body confirms \"Binance to Leave\nNetherlands\", \"VASP License\", \"starting July 17, trading in the Netherlands\nwill be halted\", \"no longer registering new users\", \"withdrawing funds\" (no\nfabrication).\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "3.0.0",
     "coverage": [
@@ -4300,11 +4300,11 @@
       "NL"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "exchange:binance_nl",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": "NL",
         "delta_hours": 0,
         "event": "binance_netherlands_market_withdrawal_announced",
@@ -4313,10 +4313,31 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:01617926483c08666d267f9f54ab30377ca18fec9f517fcc86f5360bd413631b",
+            "body_path": "sources/http_captures/binance-netherlands-exit-2023-07/official-binance-wayback/web.archive.org__web-20230616171924-https-www.binance.com-en-support-announcement-notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced__517a24b988.html",
+            "evidence_use": "replayable",
+            "note": "Binance first-party support notice for the Netherlands service\nchanges. The captured body states that no new Dutch resident users\nwould be accepted and that existing Dutch resident users would be\nwithdraw-only from 2023-07-17, with purchases, trades, and deposits\ndisabled. attribution=direct for Binance's own market-withdrawal\naction.\n",
+            "scope_descriptor": {
+              "countries": [
+                "NL"
+              ],
+              "providers": [
+                "binance"
+              ],
+              "time_window": [
+                "2023-06-16T00:00:00+00:00",
+                "2023-07-17T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced",
+            "wayback": "https://web.archive.org/web/20230616171924/https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced"
+          },
+          {
             "body_hash": "sha256:f409e0479abad2aeabc1ee9beb7596da07c4276a2dcdb945eb39b2fbaf8b8180",
             "body_path": "sources/http_captures/binance-netherlands-exit-2023-07/primary/web.archive.org__web-20251212094859-https-decrypt.co-144920-binance-to-leave-netherlands-after-failing-to-acquire-vasp-license__2fe0a699ed.html",
             "evidence_use": "replayable",
-            "note": "Decrypt 2023-06-16: Binance to leave the Netherlands after failing to\nacquire a VASP license; no longer registering new Dutch users; trading\nhalted 2023-07-17; withdraw-only thereafter. attribution=plausible: the\nmarket withdrawal is directly observed; the captured anchor is trade\npress (not a Binance primary notice).\n",
+            "note": "Decrypt 2023-06-16: Binance to leave the Netherlands after failing to\nacquire a VASP license; no longer registering new Dutch users; trading\nhalted 2023-07-17; withdraw-only thereafter. Legacy attribution note\nsuperseded by the Binance primary notice added on 2026-06-01; retained\nas corroborating trade coverage.\n",
             "scope_descriptor": {
               "countries": [
                 "NL"
@@ -4359,14 +4380,14 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "kucoin-netherlands-exit-2023",
       "netherlands-dnb-binance-warning-2021"
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Binance's 2023-06-16 withdrawal from the Netherlands (new-user registration\nstopped immediately; trading halted 2023-07-17, withdraw-only) after failing\nto secure a Dutch VASP registration is a single-layer offramp_cex\nobserved_change with attribution=plausible, part of the 2023 Dutch exchange\nexodus (cf. KuCoin).\"\n",
+    "scoped_claim": "\"Binance's 2023-06-16 withdrawal from the Netherlands (new-user registration\nstopped immediately; trading halted 2023-07-17, withdraw-only) after failing\nto secure a Dutch VASP registration is a single-layer offramp_cex\nobserved_change with attribution=direct, part of the 2023 Dutch exchange\nexodus (cf. KuCoin).\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -4395,6 +4416,15 @@
     "trigger": {
       "actor": "binance",
       "citation": [
+        {
+          "body_hash": "sha256:01617926483c08666d267f9f54ab30377ca18fec9f517fcc86f5360bd413631b",
+          "body_path": "sources/http_captures/binance-netherlands-exit-2023-07/official-binance-wayback/web.archive.org__web-20230616171924-https-www.binance.com-en-support-announcement-notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced__517a24b988.html",
+          "evidence_use": "replayable",
+          "note": "Binance Support notice, Wayback memento 2023-06-16 17:19:24 UTC:\n\"Notice on Changes of Services in the Netherlands.\" Captured body\ncontains the Binance-authored statement that Binance was leaving the\nDutch market, would accept no new Netherlands-resident users\nimmediately, and from 2023-07-17 would allow existing Dutch resident\nusers only to withdraw assets, with no further purchases, trades, or\ndeposits. This upgrades the trigger from semi-primary trade coverage\nto a replayable first-party corporate source.\n",
+          "type": "primary_corporate",
+          "url": "https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced",
+          "wayback": "https://web.archive.org/web/20230616171924/https://www.binance.com/en/support/announcement/notice-on-changes-of-services-in-the-netherlands-b5a647be31cf469b87fc3337fd461ced"
+        },
         {
           "body_hash": "sha256:f409e0479abad2aeabc1ee9beb7596da07c4276a2dcdb945eb39b2fbaf8b8180",
           "body_path": "sources/http_captures/binance-netherlands-exit-2023-07/primary/web.archive.org__web-20251212094859-https-decrypt.co-144920-binance-to-leave-netherlands-after-failing-to-acquire-vasp-license__2fe0a699ed.html",
@@ -5244,7 +5274,7 @@
   {
     "_source_file": "binance-uk-new-user-halt-2023-10.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. \u00a79-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook \u00a710) \u2014 single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Binance's 2023-10-16\ndecision to temporarily stop accepting new UK users to comply with the\nUK FCA financial-promotions regime, after its FCA-approved promotions\napprover Rebuildingsociety.com (REBS) was barred by the FCA on\n2023-10-10 from greenlighting crypto financial promotions. Single\nofframp_cex observed_change geofencing new-UK-user onboarding;\ncomparison shape. attribution=plausible per \u00a71.1: the onboarding halt\nis directly observed and Binance states FCA-promotions-regime\ncompliance as the cause, but it is a self-imposed corporate compliance\nstep (not a direct FCA order against Binance); the regulator-causation\nchain runs through the REBS approver bar, so class-level inference is\nretained. UK jurisdiction. Distinct from uk-fca-binance-markets-2021\n(the 2021 FCA consumer-warning/markets-cease-and-desist on Binance\nMarkets Ltd) \u2014 this 2023 row is the financial-promotions-regime\nnew-user onboarding halt. l0/l1/l3/l4/asset_onchain not_applicable (an\nonboarding/compliance restriction, not a network/UI block or asset\nfreeze). NOTE for human reviewer: the captured Binance en-GB blog page\nis a JS shell with no article text, so it is NOT cited; the load-bearing\nsource is The Block (body_hash-pinned). The \"temporary\" framing and\nsearch for a new approver are reported but the eventual resolution is\nnot coded here. Sources verified via WebSearch + captured 2026-05-31\n(The Block, body_hash-pinned; no fabrication).\n",
+    "analysis_notes": "**PRIMARY-SOURCE REPAIR 2026-06-01** (quality loop): pinned the official\nBinance Blog Wayback memento for \"Update on Binance for UK users\"\n(2023-10-16 15:28:36 UTC). The captured body contains the REBS/FCA financial-\npromotions background and the operative \"from Monday 16 October 2023 at 5pm UK\ntime, Binance will stop accepting new UK users\" statement. This supersedes the\nearlier `attested_secondary` admission caveat; the row now has a first-party\ncorporate trigger/observation anchor, and attribution for Binance's own\nonboarding halt is direct while the regulator-causation chain remains routed\nthrough REBS.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent:\nTASK-2 lower-tier at the time of admission; superseded by the 2026-06-01\nprimary-source repair. \u00a79-clear, deliberate restriction; verified clean in\nbulk adversarial-verify with no fabrication.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Binance's 2023-10-16\ndecision to temporarily stop accepting new UK users to comply with the\nUK FCA financial-promotions regime, after its FCA-approved promotions\napprover Rebuildingsociety.com (REBS) was barred by the FCA on\n2023-10-10 from greenlighting crypto financial promotions. Single\nofframp_cex observed_change geofencing new-UK-user onboarding;\ncomparison shape. attribution=direct for Binance's own onboarding halt;\nthe regulator-causation chain still runs through the REBS approver bar, so\nthe row does not claim a direct FCA order against Binance. UK jurisdiction.\nDistinct from uk-fca-binance-markets-2021\n(the 2021 FCA consumer-warning/markets-cease-and-desist on Binance\nMarkets Ltd) \u2014 this 2023 row is the financial-promotions-regime\nnew-user onboarding halt. l0/l1/l3/l4/asset_onchain not_applicable (an\nonboarding/compliance restriction, not a network/UI block or asset\nfreeze). The earlier 2026-05-31 Binance en-GB attempt produced a JS-shell\ncaveat, but the 2026-06-01 Wayback memento contains the article body and is\nnow cited directly. The \"temporary\" framing and search for a new approver are\nreported but the eventual resolution is not coded here. Sources verified via\nWebSearch + captured 2026-05-31/2026-06-01 (The Block and official Binance\nBlog, body_hash-pinned; no fabrication).\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "3.0.0",
     "coverage": [
@@ -5282,17 +5312,15 @@
     ],
     "created_at": "2026-05-31T00:00:00+00:00",
     "empirical_shape": "comparison",
-    "evidence_caveat": "Binance UK Oct-2023 halt of new-user onboarding (FCA financial-promotions regime). \u00a79-clear restriction, documented; attested_secondary on a single captured source.",
-    "evidence_tier": "attested_secondary",
     "id": "binance-uk-new-user-halt-2023-10",
     "jurisdiction": [
       "UK"
     ],
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "exchange:binance",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": "UK",
         "delta_hours": 0,
         "event": "binance_stops_accepting_new_uk_users_fca_promotions_regime",
@@ -5301,10 +5329,31 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:c943fd2bddc6c2cf9ace48131fd44bd71c96445f7b076a2909ff72a8221848a1",
+            "body_path": "sources/http_captures/binance-uk-new-user-halt-2023-10/official-binance-wayback/web.archive.org__web-20231016152836-https-www.binance.com-en-GB-blog-all-update-on-binance-for-uk-users-937596818854026589__5e20698543.html",
+            "evidence_use": "replayable",
+            "note": "Binance first-party blog post stating that Binance would stop\naccepting new UK users from Monday 2023-10-16 at 5pm UK time, while\nexisting UK users would retain current services if they completed the\nrequired Investor Declaration and Appropriateness Test. attribution=\ndirect for Binance's own onboarding halt; the FCA/REBS regulatory\nchain remains described as the cause without treating the action as a\ndirect FCA order against Binance.\n",
+            "scope_descriptor": {
+              "countries": [
+                "UK"
+              ],
+              "providers": [
+                "binance"
+              ],
+              "time_window": [
+                "2023-10-16T16:00:00+00:00",
+                "2023-10-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589",
+            "wayback": "https://web.archive.org/web/20231016152836/https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589"
+          },
+          {
             "body_hash": "sha256:8dd55e39e5f52cbe99f24c92a7a599d107ca39f501dacbdd16f2918b70d7433c",
             "body_path": "sources/http_captures/binance-uk-new-user-halt-2023-10/primary/web.archive.org__web-20231018060034-https-www.theblock.co-post-257721-binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction__e41e95ff76.html",
             "evidence_use": "replayable",
-            "note": "The Block 2023-10-16: Binance temporarily stops accepting new UK\nusers from 16 Oct 2023 to comply with the FCA financial-\npromotions regime after its approver Rebuildingsociety.com was\nbarred (10 Oct 2023). attribution=plausible: the halt is directly\nobserved and Binance attributes it to FCA promotions-regime\ncompliance, but the action is a self-imposed corporate\ncompliance step, not a direct FCA order naming Binance \u2014 the\nregulator-causation chain runs through the REBS approver bar.\n",
+            "note": "The Block 2023-10-16: Binance temporarily stops accepting new UK\nusers from 16 Oct 2023 to comply with the FCA financial-\npromotions regime after its approver Rebuildingsociety.com was\nbarred (10 Oct 2023). Legacy attribution note superseded by the\nBinance primary blog capture added on 2026-06-01; retained as\ncorroborating trade coverage.\n",
             "scope_descriptor": {
               "countries": [
                 "UK"
@@ -5326,13 +5375,13 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "uk-fca-binance-markets-2021"
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Binance's 2023-10-16 halt on accepting new UK users (to comply with\nthe FCA financial-promotions regime after its approver REBS was barred\non 2023-10-10) severed the Binance off-ramp for new UK customers;\nsingle-layer offramp_cex observed_change, attribution=plausible (a\nself-imposed corporate compliance step, not a direct FCA order against\nBinance).\"\n",
+    "scoped_claim": "\"Binance's 2023-10-16 halt on accepting new UK users (to comply with\nthe FCA financial-promotions regime after its approver REBS was barred\non 2023-10-10) severed the Binance off-ramp for new UK customers;\nsingle-layer offramp_cex observed_change, attribution=direct for Binance's\nown onboarding halt (the regulatory-causation chain runs through REBS, not a\ndirect FCA order against Binance).\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -5357,6 +5406,15 @@
     "trigger": {
       "actor": "binance",
       "citation": [
+        {
+          "body_hash": "sha256:c943fd2bddc6c2cf9ace48131fd44bd71c96445f7b076a2909ff72a8221848a1",
+          "body_path": "sources/http_captures/binance-uk-new-user-halt-2023-10/official-binance-wayback/web.archive.org__web-20231016152836-https-www.binance.com-en-GB-blog-all-update-on-binance-for-uk-users-937596818854026589__5e20698543.html",
+          "evidence_use": "replayable",
+          "note": "Binance Blog, \"Update on Binance for UK users,\" Wayback memento\n2023-10-16 15:28:36 UTC. Captured body states that the UK Financial\nPromotions Regime came into effect on 2023-10-08, that FCA requirements\non Rebuildingsociety.com forced withdrawal of Binance-related promotion\napprovals, and that from Monday 2023-10-16 at 5pm UK time Binance would\nstop accepting new UK users.\n",
+          "type": "primary_corporate",
+          "url": "https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589",
+          "wayback": "https://web.archive.org/web/20231016152836/https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589"
+        },
         {
           "body_hash": "sha256:8dd55e39e5f52cbe99f24c92a7a599d107ca39f501dacbdd16f2918b70d7433c",
           "body_path": "sources/http_captures/binance-uk-new-user-halt-2023-10/primary/web.archive.org__web-20231018060034-https-www.theblock.co-post-257721-binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction__e41e95ff76.html",

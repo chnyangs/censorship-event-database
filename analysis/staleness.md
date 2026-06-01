@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T10:47:34Z`
+Generated at: `2026-06-01T11:07:46Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -51,13 +51,13 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `binance-eea-usdt-spot-delisting-2025-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `binance-hamas-account-freeze-israel-2023-10` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `binance-monero-global-delisting-2024-02` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
-| `binance-netherlands-exit-2023-07` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
+| `binance-netherlands-exit-2023-07` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-06-01 | 0 | ok | ok |
 | `binance-nigeria-naira-services-end-2024-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `binance-palestinian-accounts-seizure-israel-2023-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `binance-privacy-coin-delisting-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `binance-russia-exit-commex-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
-| `binance-uk-new-user-halt-2023-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `binance-uk-new-user-halt-2023-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `binance-us-staking-end-2023` | `rejected` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `bitcoin-fog-sterlingov-doj-2024` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `bitcoin-maven-tetley-doj-2018` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
@@ -456,7 +456,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `binance-palestinian-accounts-seizure-israel-2023-11` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `binance-privacy-coin-delisting-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `binance-russia-exit-commex-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
-- `binance-uk-new-user-halt-2023-10` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `binance-uk-new-user-halt-2023-10` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `binance-us-staking-end-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `bitcoin-fog-sterlingov-doj-2024` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `bitcoin-maven-tetley-doj-2018` — audit=no_audit_recorded, verification=ok, verif_age=1d

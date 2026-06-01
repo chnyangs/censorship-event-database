@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `292f041` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T10:47:34Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `ff0c8be` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T11:07:46Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -11,9 +11,9 @@
 > "Binance's 2023-10-16 halt on accepting new UK users (to comply with
 > the FCA financial-promotions regime after its approver REBS was barred
 > on 2023-10-10) severed the Binance off-ramp for new UK customers;
-> single-layer offramp_cex observed_change, attribution=plausible (a
-> self-imposed corporate compliance step, not a direct FCA order against
-> Binance)."
+> single-layer offramp_cex observed_change, attribution=direct for Binance's
+> own onboarding halt (the regulatory-causation chain runs through REBS, not a
+> direct FCA order against Binance)."
 
 ## 1. Trigger
 
@@ -23,6 +23,17 @@
 
 ### Trigger citations
 
+- **`primary_corporate`**
+  - URL: <https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589>
+  - Wayback: <https://web.archive.org/web/20231016152836/https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589>
+  - body_hash: `sha256:c943fd2bddc6c2cf9ace48131fd44bd71c96445f7b076a2909ff72a8221848a1`
+  - body_path: `sources/http_captures/binance-uk-new-user-halt-2023-10/official-binance-wayback/web.archive.org__web-20231016152836-https-www.binance.com-en-GB-blog-all-update-on-binance-for-uk-users-937596818854026589__5e20698543.html`
+  > Binance Blog, "Update on Binance for UK users," Wayback memento
+> 2023-10-16 15:28:36 UTC. Captured body states that the UK Financial
+> Promotions Regime came into effect on 2023-10-08, that FCA requirements
+> on Rebuildingsociety.com forced withdrawal of Binance-related promotion
+> approvals, and that from Monday 2023-10-16 at 5pm UK time Binance would
+> stop accepting new UK users.
 - **`semi_primary_wayback`**
   - URL: <https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction>
   - Wayback: <https://web.archive.org/web/20231018060034/https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction>
@@ -51,7 +62,7 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `plausible` · Δt = 0h
+### offramp_cex · attribution: `direct` · Δt = 0h
 
 **Event label**: `binance_stops_accepting_new_uk_users_fca_promotions_regime`
 
@@ -59,6 +70,18 @@
 
 **Sources**:
 
+- **`primary_corporate`**
+  - URL: <https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589>
+  - Wayback: <https://web.archive.org/web/20231016152836/https://www.binance.com/en-GB/blog/all/update-on-binance-for-uk-users-937596818854026589>
+  - body_hash: `sha256:c943fd2bddc6c2cf9ace48131fd44bd71c96445f7b076a2909ff72a8221848a1`
+  - body_path: `sources/http_captures/binance-uk-new-user-halt-2023-10/official-binance-wayback/web.archive.org__web-20231016152836-https-www.binance.com-en-GB-blog-all-update-on-binance-for-uk-users-937596818854026589__5e20698543.html`
+  > Binance first-party blog post stating that Binance would stop
+> accepting new UK users from Monday 2023-10-16 at 5pm UK time, while
+> existing UK users would retain current services if they completed the
+> required Investor Declaration and Appropriateness Test. attribution=
+> direct for Binance's own onboarding halt; the FCA/REBS regulatory
+> chain remains described as the cause without treating the action as a
+> direct FCA order against Binance.
 - **`semi_primary_wayback`**
   - URL: <https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction>
   - Wayback: <https://web.archive.org/web/20231018060034/https://www.theblock.co/post/257721/binance-to-temporarily-stop-accepting-new-uk-users-after-fca-restriction>
@@ -67,11 +90,9 @@
   > The Block 2023-10-16: Binance temporarily stops accepting new UK
 > users from 16 Oct 2023 to comply with the FCA financial-
 > promotions regime after its approver Rebuildingsociety.com was
-> barred (10 Oct 2023). attribution=plausible: the halt is directly
-> observed and Binance attributes it to FCA promotions-regime
-> compliance, but the action is a self-imposed corporate
-> compliance step, not a direct FCA order naming Binance — the
-> regulator-causation chain runs through the REBS approver bar.
+> barred (10 Oct 2023). Legacy attribution note superseded by the
+> Binance primary blog capture added on 2026-06-01; retained as
+> corroborating trade coverage.
 
 ## 5. Honest coverage gaps
 
@@ -83,7 +104,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `292f041`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ff0c8be`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

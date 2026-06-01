@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `292f041` · generated `2026-06-01T10:47:34Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ff0c8be` · generated `2026-06-01T11:07:46Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -50,13 +50,13 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `binance-eea-usdt-spot-delisting-2025-03` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `binance-hamas-account-freeze-israel-2023-10` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
 | `binance-monero-global-delisting-2024-02` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
-| `binance-netherlands-exit-2023-07` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
+| `binance-netherlands-exit-2023-07` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `2026-05-31` |
 | `binance-nigeria-naira-services-end-2024-03` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
 | `binance-palestinian-accounts-seizure-israel-2023-11` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
 | `binance-privacy-coin-delisting-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `—` |
 | `binance-russia-exit-commex-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `—` |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
-| `binance-uk-new-user-halt-2023-10` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
+| `binance-uk-new-user-halt-2023-10` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `—` |
 | `bitcoinica-shutdown-2012-05` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
 | `bitfinex-cftc-retail-commodity-2016` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `bitfinex-tether-cftc-2021` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-16` | `2026-05-16` |
