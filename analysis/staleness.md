@@ -99,7 +99,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `china-inner-mongolia-mining-ban-2021-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `china-ndrc-mining-eliminated-industry-notice-2021-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `china-nft-secondary-trading-self-discipline-2022-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
-| `china-pboc-banks-alipay-payment-channel-block-2021-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
+| `china-pboc-banks-alipay-payment-channel-block-2021-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `china-pboc-banks-close-exchange-accounts-2014-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `china-pboc-crypto-ban-2013-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `china-pboc-crypto-ban-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 42 | ok | no_audit_recorded |
@@ -486,7 +486,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `china-inner-mongolia-mining-ban-2021-05` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `china-ndrc-mining-eliminated-industry-notice-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `china-nft-secondary-trading-self-discipline-2022-06` — audit=no_audit_recorded, verification=ok, verif_age=12d
-- `china-pboc-banks-alipay-payment-channel-block-2021-06` — audit=no_audit_recorded, verification=ok, verif_age=2d
+- `china-pboc-banks-alipay-payment-channel-block-2021-06` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `china-pboc-banks-close-exchange-accounts-2014-04` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `china-pboc-crypto-ban-2013-12` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `china-pboc-crypto-ban-2021` — audit=no_audit_recorded, verification=ok, verif_age=42d

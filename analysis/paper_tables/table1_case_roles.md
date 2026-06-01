@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `fd81985` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `b524247` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -92,7 +92,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `china-inner-mongolia-mining-ban-2021-05` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `other_single_layer` | · | · | `2026-05-21` | `—` |
 | `china-ndrc-mining-eliminated-industry-notice-2021-09` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `china-nft-secondary-trading-self-discipline-2022-06` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-21` | `—` |
-| `china-pboc-banks-alipay-payment-channel-block-2021-06` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `china-pboc-banks-alipay-payment-channel-block-2021-06` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `china-pboc-banks-close-exchange-accounts-2014-04` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `china-pboc-crypto-ban-2013-12` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `china-pboc-crypto-ban-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `hour` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-04-21` | `—` |
