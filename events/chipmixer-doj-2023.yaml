@@ -1,17 +1,17 @@
 id: chipmixer-doj-2023
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S3_doj_sec_cftc_fiod
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_authored
-version: "0.1"
+version: "0.2"
 created_at: 2026-04-22T02:10:00Z
-last_verified: 2026-04-22
+last_verified: 2026-06-02
 
 trigger:
   type: doj_seizure_order
@@ -20,18 +20,27 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://www.justice.gov/usao-edpa/pr/platform-used-launder-ransomware-proceeds-seized-coordinated-international-operation
-      body_hash: sha256:bf9db0c3926262d81d1c79dacf2ee916719cf42412d5666937c5138cb09f2e65
-      body_path: sources/http_captures/chipmixer-doj-2023/doj-press-release/www.justice.gov__usao-edpa-pr-platform-used-launder-ransomware-proceeds-seized-coordinated-international-operation__778427a127.html
+      url: https://www.justice.gov/usao-edpa/pr/justice-department-investigation-leads-takedown-darknet-cryptocurrency-mixer-processed
+      evidence_use: contextual_unarchived
       note: |
-        DOJ USAO Eastern District of Pennsylvania press release for the 2023-03-15 seizure of
-        ChipMixer Bitcoin mixer service. Joint operation: USAO EDPA + FBI + BKA (Germany) +
-        HSI + Frankfurt ZIT + Poland Cybercrime Bureau + Zurich Cantonal Police + Europol.
-        DOJ dismantled infrastructure seized ~1,909 BTC (~$46.5M) and indicted operator
-        Minh Quôc Nguyên (Vietnamese national).
+        DOJ USAO Eastern District of Pennsylvania press release for the 2023-03-15 takedown of
+        ChipMixer Bitcoin mixer service. The legacy local CLI capture of an older DOJ slug returned
+        an Akamai interstitial rather than article text, and current CLI access to justice.gov is
+        WAF-gated on this network path; this row therefore treats the DOJ page as contextual only.
+        The load-bearing replayable trigger/observation anchor is the same-day FBI seizure banner
+        below.
+    - type: primary_legal
+      url: https://web.archive.org/web/20230315170606/https://chipmixer.com/
+      body_hash: sha256:280d29cf15a4a644dc174f059f031e3e067cd56d0bd52b5de305ccdb022eb2bd
+      body_path: sources/http_captures/chipmixer-doj-2023/frontend-wayback/web.archive.org__web-20230315170606-https-chipmixer.com__4c13a2baa9.html
+      note: |
+        Wayback snapshot of chipmixer.com on 2023-03-15 17:06 UTC carrying the FBI seizure
+        banner. The banner states that the domain was seized under an EDPA seizure warrant and
+        names the coordinating US and European law-enforcement agencies. This is the replayable
+        legal trigger anchor used for the retained L4 seizure claim.
   timestamp_sources:
     - type: primary_legal
-      note: Day-level via DOJ press release.
+      note: Day-level via the DOJ press release and same-day seizure-banner memento.
 
 target:
   kind: entity
@@ -57,17 +66,15 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     scope: [chipmixer.com]
     note: |
-      L0 network-layer OONI API query performed 2026-04-22. Searched the
-      public OONI Explorer API (api.ooni.io/api/v1/measurements) for
-      test_name=web_connectivity across:
-        chipmixer.com  2023-02-01..2023-04-15  -> 0 results
-      All 1 queries returned 0 measurements.
+      No ISP/DNS/national network-blocking claim is retained for this row. The 2026-04-22
+      OONI API query found no public web_connectivity measurements for chipmixer.com in the
+      2023-02-01..2023-04-15 window, but that absence is treated only as measurement-gap
+      context, not as a load-bearing no-change observation.
       Artifact: sources/l0_datasets/chipmixer-doj-2023/chipmixer.com__ooni.json
       (body_hash sha256:f776c4d51e63caa3226624ba046363f9baca426a8617a1a59aea53ec9c220dfc).
-      Measurement-gap finding: OONI volunteer probe coverage is absent.
   - layer: l1_consensus
     status: not_applicable
     chain: bitcoin
@@ -86,18 +93,11 @@ coverage:
     status: not_applicable
     chain: bitcoin
   - layer: offramp_cex
-    status: not_measured
+    status: not_applicable
     note: |
-      Chain-analytics anchors pinned 2026-04-22 as primary_corporate
-      substrate for per-event offramp_cex reasoning (Chainalysis, TRM,
-      Elliptic sanctions-coverage resource pages):
-        Chainalysis: body_hash sha256:3e1256b8b50e6ac640e8bac70fc39002fb6f3b617ecfc4c5b08bab5be8e50fb7
-        TRM Labs: body_hash sha256:f62bbdf351fab8b7ae5f209d1cc7930ab0432b07dc807783203d440fbf704b1a
-        Elliptic: body_hash sha256:91743178595b02163d79610dbdc330922531fcbfec50476b77857a7d18e6681a
-      Status remains not_measured because per-event chain-analytics report
-      slices (naming specific SDN addresses / KYT flag records) are not
-      yet pinned. The anchors establish the substrate; per-event slicing
-      would promote status.
+      No exchange, KYT-provider, or off-ramp reaction is claimed for this event. Generic
+      chain-analytics sanctions-coverage pages are not event-specific and are not load-bearing
+      for the retained ChipMixer L4 seizure claim.
 
 observations:
   - layer: l4_frontend
@@ -133,6 +133,12 @@ observations:
           (1766 bytes, digest RUUHGEVKNXANWAAEZMWB47KYB2OQZIJF). Confirms pre-event state.
 
 analysis_notes: |
+  Source/coverage repair 2026-06-02: the old DOJ live capture was an Akamai interstitial,
+  so the DOJ press release is retained only as contextual_unarchived. The replayable
+  primary-legal anchor for the retained claim is the local Wayback capture of the FBI
+  seizure banner. L0 and offramp_cex are non-load-bearing and are explicitly out of the
+  public claim rather than open empirical obligations.
+
   comparison documenting the international takedown of ChipMixer Bitcoin mixer on
   2023-03-15. Joint FBI + BKA + Poland + Switzerland + HSI + Europol operation; domain
   seizure + ~$46.5M BTC seized + operator indictment. The L4 observed_change is direct
@@ -145,8 +151,8 @@ analysis_notes: |
 scoped_claim: |
   "DOJ EDPA seizure of ChipMixer on 2023-03-15 produced a direct L4 observed_change within
   17h (canonical chipmixer.com substituted with an FBI seizure banner). Joint-action footprint:
-  US + 4 European cooperating agencies + Europol. Establishes the 'cross-border
-  law-enforcement seizure' pattern for Bitcoin mixer frontends."
+  US + 4 European cooperating agencies + Europol. No ISP/DNS block, asset freeze, or exchange
+  off-ramp reaction is claimed for this row."
 
 tags:
   - doj_seizure

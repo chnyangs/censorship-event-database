@@ -1,17 +1,17 @@
 id: genesis-market-ofac-2023-04
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 last_human_audit: 2026-05-31
 
 trigger:
@@ -58,10 +58,11 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      No OONI / Censored Planet probe of Genesis Market domains within the
-      event window. Substrate-shaped gap, not a coverage_gap observation.
+      No ISP/DNS/national network-blocking claim is retained for this OFAC row. The
+      Treasury trigger names an entity target and does not enumerate a network-access
+      measurement surface for this event.
   - layer: l1_consensus
     status: not_applicable
     note: |
@@ -70,13 +71,14 @@ coverage:
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     note: |
       Genesis Market's domains were seized in the parallel Operation
       Cookie Monster action (FBI/DOJ + international partners), but that
       seizure is a separate legal instrument from the OFAC SDN designation
-      tracked by this event, and no Wayback CDX bracketing of the Genesis
-      Market frontend has been captured in this authoring pass. not_measured.
+      tracked by this event. This row does not retain a frontend-seizure
+      claim; the retained observation is the absence of a public CEX cascade
+      for the OFAC entity designation.
   - layer: asset_onchain
     status: not_applicable
     note: |
@@ -120,6 +122,11 @@ observations:
           surface is structurally limited.
 
 analysis_notes: |
+  Source/coverage repair 2026-06-02: Treasury jy1388 remains the replayable
+  primary-legal trigger anchor. L0 and L4 are explicitly non-load-bearing for this OFAC
+  null-control row because the parallel Operation Cookie Monster domain seizure is a
+  separate legal instrument, not this event's retained observation.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk
   adversarial-verify clean (no VERIFY-FLAG) AND strict admission validation — captured primary/
   semi-primary sources meet the §1.6/threshold floor; origin agent_draft -> human_reviewed).
