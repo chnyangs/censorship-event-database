@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `575b085` · generated `2026-06-01T11:33:54Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `93a10f9` · generated `2026-06-01T11:50:49Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -29,7 +29,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `binance-cftc-2023:0:offramp_cex:exchange:binance:cftc_complaint_initiates_binance_us_rails_enforcement_axis` | 1 | 0 | 1 | offramp_cex | `binance-cftc-2023::offramp_cex` |
 | `binance-com-us-customer-geofence-2019-06:0:offramp_cex:exchange:binance:binance_com_bars_us_persons_from_trading_and_deposits` | 1 | 0 | 1 | offramp_cex | `binance-com-us-customer-geofence-2019-06::offramp_cex` |
 | `binance-dex-29-country-geoblock-2019-07:0:l4_frontend:frontend:binance_org:binance_org_dex_frontend_geoblocks_29_countries` | 1 | 0 | 1 | l4_frontend | `binance-dex-29-country-geoblock-2019-07::l4_frontend` |
-| `binance-eea-usdt-spot-delisting-2025-03:0:offramp_cex:exchange:binance:binance_delists_usdt_spot_pairs_for_eea_users` | 1 | 0 | 1 | offramp_cex | `binance-eea-usdt-spot-delisting-2025-03::offramp_cex` |
+| `binance-eea-usdt-spot-delisting-2025-03:0:offramp_cex:exchange:binance:binance_delists_non_mica_stablecoin_spot_pairs_for_eea_users` | 1 | 0 | 1 | offramp_cex | `binance-eea-usdt-spot-delisting-2025-03::offramp_cex` |
 | `binance-hamas-account-freeze-israel-2023-10:0:offramp_cex:exchange:binance_il:binance_freezes_hamas_linked_accounts_at_israeli_le_request` | 1 | 0 | 1 | offramp_cex | `binance-hamas-account-freeze-israel-2023-10::offramp_cex` |
 | `binance-monero-global-delisting-2024-02:0:offramp_cex:exchange:binance:binance_removes_xmr_global_spot_markets_privacy_coin_delisting` | 1 | 0 | 1 | offramp_cex | `binance-monero-global-delisting-2024-02::offramp_cex` |
 | `binance-netherlands-exit-2023-07:0:offramp_cex:exchange:binance_nl:binance_netherlands_market_withdrawal_announced` | 1 | 0 | 1 | offramp_cex | `binance-netherlands-exit-2023-07::offramp_cex` |

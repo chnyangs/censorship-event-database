@@ -3760,7 +3760,7 @@
   {
     "_source_file": "binance-eea-usdt-spot-delisting-2025-03.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. \u00a79-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook \u00a710) \u2014 single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Binance's 2025-03-03\nannouncement to delist non-MiCA-compliant stablecoin trading pairs \u2014\nincluding USDT spot pairs \u2014 for EEA users, with spot removal by\n2025-03-31 (margin from 2025-03-27; USDT derivatives retained, MiCA-\ncompliant USDC/EURI kept). Part of the MiCA stablecoin-delisting wave\n(cf. Coinbase Dec-2024, Crypto.com Jan-2025; related EU-MiCA events).\ncomparison shape, single offramp_cex observed_change,\nattribution=plausible per \u00a71.1/\u00a71.4-analogue (MiCA cause reported in\ntrade press; no captured Binance notice naming a specific MiCA\ninstrument \u2014 class-level inference). EU jurisdiction. Per \u00a71.6 /\nbinance-busd precedent the stablecoin action is carried at offramp_cex,\nNOT asset_onchain (Binance is not the USDT issuer). target.enumeration=\nsubset (USDT focal; remaining stablecoins class-level, \u00a77). NOTE for\nhuman reviewer: Binance also retains a primary_corporate Binance Square/\nsupport notice (urls in WebSearch results) \u2014 a future capture could\nupgrade this to a primary_corporate anchor (the binance.com snapshot\nwas not archived at capture time, so a trade-press semi_primary anchor\nis used). Source verified via WebSearch + captured 2026-05-31 (Finance\nMagnates, body_hash-pinned, USDT/MiCA/EEA/spot grep-confirmed; no\nfabrication).\n",
+    "analysis_notes": "**SOURCE-STRENGTHENED 2026-06-01** (quality-loop primary-trigger repair):\npinned Binance's official CMS API payload for announcement\nbcaa1f68d6a6450099056ff694ad6c46 as a local `body_hash` / `body_path`\nreplay artifact after direct HTML capture returned a CloudFront WAF\nchallenge. The official payload directly states the EEA scope, MiCA /\nregulatory-compliance rationale, affected stablecoin set (USDT, FDUSD,\nTUSD, USDP, DAI, AEUR, XUSD, PAXG), spot-pair delisting cutoff\n(2025-03-31 23:59 UTC), custody/deposit/withdrawal/Convert exceptions,\nand USDC/EURI/EUR exception. attribution is upgraded from plausible to\ndirect for Binance's own policy action; the Finance Magnates Wayback\nmemento remains as contemporaneous corroboration. `evidence_tier=\nattested_secondary` was removed because the event now has a pinned\nprimary corporate artifact.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. \u00a79-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook \u00a710) \u2014 single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). Binance's 2025-03-03\nannouncement to delist non-MiCA-compliant stablecoin trading pairs \u2014\nincluding USDT spot pairs \u2014 for EEA users, with spot removal by\n2025-03-31 (margin from 2025-03-27; USDT derivatives retained, MiCA-\ncompliant USDC/EURI kept). Part of the MiCA stablecoin-delisting wave\n(cf. Coinbase Dec-2024, Crypto.com Jan-2025; related EU-MiCA events).\ncomparison shape, single offramp_cex observed_change,\nattribution=plausible per \u00a71.1/\u00a71.4-analogue (MiCA cause reported in\ntrade press; no captured Binance notice naming a specific MiCA\ninstrument \u2014 class-level inference at admission time; repaired to\nattribution=direct on 2026-06-01 with Binance primary corporate API\ncapture). EU jurisdiction. Per \u00a71.6 /\nbinance-busd precedent the stablecoin action is carried at offramp_cex,\nNOT asset_onchain (Binance is not the issuer of the affected stablecoins).\ntarget.enumeration=complete after primary-source repair because Binance's\nown announcement names the affected stablecoin set. Admission-time source\nfloor was the Finance Magnates Wayback memento; the 2026-06-01 repair\nreplaces that lower-tier limitation with a pinned Binance primary corporate\nCMS artifact while retaining the trade-press memento as corroboration.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "3.0.0",
     "coverage": [
@@ -3788,38 +3788,63 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer. Binance removed USDT (and other non-MiCA-\ncompliant stablecoin) spot trading pairs for EEA users by\n2025-03-31, severing the Binance spot off-ramp for USDT in the EEA\nunder MiCA (derivatives retained). Attested in contemporaneous\ncoverage.\n",
+        "note": "Load-bearing layer. Binance removed USDT, FDUSD, TUSD, USDP, DAI,\nAEUR, XUSD, and PAXG non-MiCA-compliant stablecoin spot trading\npairs for EEA users by 2025-03-31, severing the Binance spot\noff-ramp for the named stablecoin set in the EEA under MiCA\n(custody/deposit/withdrawal retained). Attested in Binance's\nofficial announcement and contemporaneous coverage.\n",
         "scope": [
-          "binance_usdt_spot_eea"
+          "binance_eea_usdt_spot_pairs",
+          "binance_eea_fdusd_spot_pairs",
+          "binance_eea_tusd_spot_pairs",
+          "binance_eea_usdp_spot_pairs",
+          "binance_eea_dai_spot_pairs",
+          "binance_eea_aeur_spot_pairs",
+          "binance_eea_xusd_spot_pairs",
+          "binance_eea_paxg_spot_pairs"
         ],
         "status": "measured"
       }
     ],
     "created_at": "2026-05-31T00:00:00+00:00",
     "empirical_shape": "comparison",
-    "evidence_caveat": "Binance March-2025 delisting of non-MiCA-compliant stablecoin spot pairs (incl. USDT) for EEA users. \u00a79-clear delisting, widely documented; attested_secondary on a single captured source.",
-    "evidence_tier": "attested_secondary",
     "id": "binance-eea-usdt-spot-delisting-2025-03",
     "jurisdiction": [
       "EU"
     ],
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "exchange:binance",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": null,
         "delta_hours": 672,
-        "event": "binance_delists_usdt_spot_pairs_for_eea_users",
+        "event": "binance_delists_non_mica_stablecoin_spot_pairs_for_eea_users",
         "layer": "offramp_cex",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:ab9421ce805ee409ca5d0cc720ecd4ff3a0a5887b843de0d1c5f7f73d43e4343",
+            "body_path": "sources/http_captures/binance-eea-usdt-spot-delisting-2025-03/primary/www.binance.com__bapi-composite-v1-public-cms-article-detail-query__3f0c263400.json",
+            "evidence_use": "replayable",
+            "note": "Binance's own announcement states that, from 2025-03-31\n23:59 UTC onward, non-MiCA-compliant spot pairs will be fully\ndelisted for EEA users and users will no longer be able to\ntrade those pairs. It also states that custody, withdrawal,\ndeposit, and Binance Convert sale routes remain available.\nattribution=direct for the Binance-authored policy and stated\nregulatory-compliance rationale.\n",
+            "scope_descriptor": {
+              "countries": [
+                "EU"
+              ],
+              "providers": [
+                "binance"
+              ],
+              "time_window": [
+                "2025-03-03T00:00:00+00:00",
+                "2025-03-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=bcaa1f68d6a6450099056ff694ad6c46"
+          },
+          {
             "body_hash": "sha256:c8e6dc2f6cbf689fa951e3ff8560c97e317c1771c1d5a2a88f8714c79826fb18",
             "body_path": "sources/http_captures/binance-eea-usdt-spot-delisting-2025-03/primary/web.archive.org__web-20250401151406-https-www.financemagnates.com-cryptocurrency-binance-finally-delists-tether-usdt-from-european-spot-trading-in-compliance-with-mica__5e927feefb.html",
             "evidence_use": "replayable",
-            "note": "Finance Magnates: Binance USDT spot-pair EEA delisting\n(announced 2025-03-03, effective 2025-03-31; derivatives\nretained). attribution=plausible per \u00a71.4 analogue: the MiCA\ncause is reported and the action is a MiCA-compliance offramp\nrestriction, but this is trade-press coverage of a Binance\npolicy rather than a captured Binance notice citing a specific\nMiCA instrument; class-level inference.\n",
+            "note": "Finance Magnates: Binance USDT spot-pair EEA delisting\n(announced 2025-03-03, effective 2025-03-31; derivatives\nretained). Retained as contemporaneous corroboration of the\nBinance official CMS announcement.\n",
             "scope_descriptor": {
               "countries": [
                 "EU"
@@ -3841,7 +3866,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "crypto-com-eu-usdt-stablecoin-delisting-2025-01",
       "eu-mica-2023",
@@ -3850,7 +3875,7 @@
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Binance's 2025-03 delisting of USDT spot trading pairs (and other non-\nMiCA-compliant stablecoins) for EEA users \u2014 announced 2025-03-03,\neffective 2025-03-31, derivatives retained \u2014 severed the Binance spot\noff-ramp for USDT in the EEA under MiCA; single-layer offramp_cex\nobserved_change, attribution=plausible (MiCA cause reported, no captured\nBinance notice naming a specific instrument).\"\n",
+    "scoped_claim": "\"Binance's 2025-03 delisting of USDT spot trading pairs (and other non-\nMiCA-compliant stablecoins) for EEA users \u2014 announced 2025-03-03,\neffective 2025-03-31 \u2014 severed the Binance spot off-ramp for USDT and\nthe named non-MiCA-compliant stablecoin set in the EEA under MiCA;\nsingle-layer offramp_cex observed_change, attribution=direct via\nBinance's official announcement.\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -3864,21 +3889,29 @@
       "offramp_shutdown"
     ],
     "target": {
-      "actor_name": "USDT spot pairs (+ non-MiCA stablecoins) on Binance for EEA users",
+      "actor_name": "Non-MiCA-compliant stablecoin spot pairs on Binance for EEA users",
       "actor_type": "stablecoin_offramp_restriction",
-      "asset": "USDT",
-      "chains": [
-        "ethereum",
-        "tron"
+      "asset": "USDT, FDUSD, TUSD, USDP, DAI, AEUR, XUSD, PAXG",
+      "canonical_domains": [
+        "binance.com"
       ],
-      "enumeration": "subset",
-      "enumeration_note": "USDT (Tether) spot trading pairs are the load-bearing named target;\nBinance's action covers nine non-MiCA-compliant stablecoins for EEA\nusers (incl. FDUSD, TUSD, USDP, DAI, AEUR, UST, USTC, PAXG). Coded\nas subset: USDT is the enumerated focal asset, the remaining set is\nclass-level (non-MiCA-compliant stablecoins), per \u00a77.\n",
+      "chains": [],
+      "enumeration": "complete",
+      "enumeration_note": "Binance's official announcement enumerates the affected\nnon-MiCA-compliant stablecoin set for EEA users: USDT, FDUSD, TUSD,\nUSDP, DAI, AEUR, XUSD, and PAXG. Complete enumeration of the named\nBinance EEA spot-pair delisting set; USDC, EURI, and EUR pairs remain\navailable and unchanged.\n",
       "kind": "asset"
     },
     "temporal_tier": "comparable_main_2017_present",
     "trigger": {
       "actor": "binance",
       "citation": [
+        {
+          "body_hash": "sha256:ab9421ce805ee409ca5d0cc720ecd4ff3a0a5887b843de0d1c5f7f73d43e4343",
+          "body_path": "sources/http_captures/binance-eea-usdt-spot-delisting-2025-03/primary/www.binance.com__bapi-composite-v1-public-cms-article-detail-query__3f0c263400.json",
+          "evidence_use": "replayable",
+          "note": "Binance official CMS API payload for announcement\nbcaa1f68d6a6450099056ff694ad6c46, \"Binance Will Delist\nNon-MiCA Compliant Stablecoin Trading Pairs For EEA Users on\n2025-03-31.\" The captured JSON states the announcement affects\nEEA users, cites EU stablecoin guidance / regulatory requirements,\nenumerates USDT, FDUSD, TUSD, USDP, DAI, AEUR, XUSD, and PAXG,\nand says non-MiCA-compliant spot pairs will be fully delisted\nfrom 2025-03-31 23:59 UTC onward. Captured 2026-06-01 via\nBinance's public CMS endpoint after the HTML page returned a\nCloudFront WAF challenge to non-browser capture.\n",
+          "type": "primary_corporate",
+          "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=bcaa1f68d6a6450099056ff694ad6c46"
+        },
         {
           "body_hash": "sha256:c8e6dc2f6cbf689fa951e3ff8560c97e317c1771c1d5a2a88f8714c79826fb18",
           "body_path": "sources/http_captures/binance-eea-usdt-spot-delisting-2025-03/primary/web.archive.org__web-20250401151406-https-www.financemagnates.com-cryptocurrency-binance-finally-delists-tether-usdt-from-european-spot-trading-in-compliance-with-mica__5e927feefb.html",
@@ -3891,9 +3924,15 @@
       ],
       "timestamp": "2025-03-03T00:00:00+00:00",
       "timestamp_precision": "day",
+      "timestamp_sources": [
+        {
+          "note": "Day-level precision retained: the Binance official announcement is\npublished 2025-03-03 and gives exact product cutoffs. The trigger\nis the day-level corporate announcement; the exact 2025-03-31\n23:59 UTC cutoff is preserved in the source notes.\n",
+          "type": "primary_corporate"
+        }
+      ],
       "type": "corporate_policy_change"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "binance-hamas-account-freeze-israel-2023-10.yaml",
