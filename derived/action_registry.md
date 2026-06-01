@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `24d80a4` · generated `2026-06-01T01:03:45Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `558ea65` · generated `2026-06-01T01:29:23Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -191,8 +191,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `liberty-reserve-coordinated-takedown-2013-05:1:offramp_cex:exchange:liberty_reserve:liberty_reserve_digital_currency_service_ceased_globally` | 1 | 0 | 1 | offramp_cex | `liberty-reserve-coordinated-takedown-2013-05::offramp_cex` |
 | `liberty-reserve-costa-rica-license-denial-2011-03:0:offramp_cex:regulator:CR_SUGEF:sugef_refuses_to_license_liberty_reserve_creating_unlicensed_operation_status` | 1 | 0 | 1 | offramp_cex | `liberty-reserve-costa-rica-license-denial-2011-03::offramp_cex` |
 | `lockbit-affiliates-ofac-2024:0:asset_onchain:circle_usdc_issuer:circle_usdc_blacklist_next_day` | 1 | 0 | 1 | asset_onchain | `lockbit-affiliates-ofac-2024::asset_onchain` |
-| `malaysia-sc-binance-disable-2021:0:l4_frontend:frontend:binance_com_my_geo_and_mobile_apps:binance_my_website_and_apps_disabled_per_sc_order` | 1 | 0 | 1 | l4_frontend | `malaysia-sc-binance-disable-2021::l4_frontend` |
-| `malaysia-sc-binance-disable-2021:1:offramp_cex:cex:binance_malaysia_cohort:binance_my_myr_rail_severance_cascade` | 1 | 0 | 1 | offramp_cex | `malaysia-sc-binance-disable-2021::offramp_cex` |
+| `malaysia-sc-binance-disable-2021:0:l4_frontend:frontend:binance_com_my_geo_and_mobile_apps:sc_ordered_binance_my_website_apps_and_messaging_disablement` | 1 | 0 | 1 | l4_frontend | `malaysia-sc-binance-disable-2021::l4_frontend` |
+| `malaysia-sc-binance-disable-2021:1:offramp_cex:cex:binance_malaysia_cohort:myr_pairs_payment_options_and_p2p_products_restriction_announced` | 1 | 0 | 1 | offramp_cex | `malaysia-sc-binance-disable-2021::offramp_cex` |
 | `metamask-eth-phishing-detect-tornado-additions-2022:0:l4_frontend:wallet_ui:consensys_metamask:metamask_eth_phishing_detect_blocklist_added_tornado_cash_interaction_entries` | 1 | 0 | 1 | l4_frontend | `metamask-eth-phishing-detect-tornado-additions-2022::l4_frontend` |
 | `metamask-snaps-region-restrictions-2023-09:0:l4_frontend:wallet_provider:consensys_metamask:snaps_directory_allowlist_launch_with_per_snap_regional_filtering` | 1 | 0 | 1 | l4_frontend | `metamask-snaps-region-restrictions-2023-09::l4_frontend` |
 | `metamask-snaps-region-restrictions-2023-09:1:l3_rpc:wallet_provider:consensys_metamask:snap_internal_rpc_endpoints_gated_via_l4_directory_allowlist` | 1 | 0 | 1 | l3_rpc | `metamask-snaps-region-restrictions-2023-09::l3_rpc` |

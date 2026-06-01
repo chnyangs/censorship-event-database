@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **255** (11 complete / 244 scoped) and
-  admitted-but-blocked cases are **112**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **256** (11 complete / 245 scoped) and
+  admitted-but-blocked cases are **111**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **273 high / 82 medium / 12 low**; attribution reliability
+  observation reliability **274 high / 82 medium / 11 low**; attribution reliability
   **234 high / 133 medium / 0 low**. Current admitted paper roles are
-  **255 aggregate_datapoint / 97 null_control / 12 appendix_only / 3 paper_anchor**.
+  **256 aggregate_datapoint / 97 null_control / 11 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -82,6 +82,10 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   restriction announcement and the 2021-09-27 regulated-payment-services restriction announcement. The row is
   narrowed away from the unpinned 2022 binance.sg exit cascade, is explicitly `evidence_tier=attested_secondary`,
   and remains blocked only for a missing replayable official MAS primary trigger artifact.
+  `malaysia-sc-binance-disable-2021` now replaces generic SC media-index citations with pinned SC media-release
+  and administrative-actions captures plus a 2021 Wayback capture of Binance's Malaysia product-restriction
+  support announcement. The row is release-ready scoped and narrowed to the SC website/app/messaging disable
+  directive plus Binance-announced MYR product restrictions, with no broader bank-rail or live-URL-only claim.
 
 ## Admitted composition (367)
 | dimension | breakdown |

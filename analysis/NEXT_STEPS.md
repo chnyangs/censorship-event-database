@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **255 release-ready** cases, **112 admitted-but-blocked** cases, observation reliability
-      **273 high / 82 medium / 12 low**, and attribution reliability **234 high / 133 medium / 0 low**.
+      **256 release-ready** cases, **111 admitted-but-blocked** cases, observation reliability
+      **274 high / 82 medium / 11 low**, and attribution reliability **234 high / 133 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -132,6 +132,11 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       regulated-payment-services restrictions; the row is narrowed away from the unpinned 2022 binance.sg exit
       cascade, explicitly marked `evidence_tier=attested_secondary`, and remains blocked only for a missing
       replayable official MAS primary trigger artifact.
+      Follow-on repair also moved `malaysia-sc-binance-disable-2021` out of the low-observation queue by
+      replacing generic SC media-index citations with pinned SC media-release and administrative-actions captures
+      plus a 2021 Wayback capture of Binance's Malaysia product-restriction support announcement; the row is
+      release-ready scoped and narrowed to the SC website/app/messaging disable directive plus Binance-announced
+      MYR product restrictions, with no broader Malaysian-bank rail claim.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
