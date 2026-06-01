@@ -1,6 +1,6 @@
 # Admission-protocol sensitivity ablation
 
-Generated: `2026-06-01T10:19:59Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 365 events.
+Generated: `2026-06-01T10:34:09Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 365 events.
 
 Three admission rubrics applied to the coverage-matched `changed_given_coverage` rate per layer:
 
@@ -25,8 +25,7 @@ The `strict_permissive_delta` column is the absolute change in rate from strict 
 
 - A **robust** layer means the rate does not depend on the partially_measured admission decision; a reader cannot accuse the authors of inflating the ratio by relaxing coverage.
 - A **sensitive** layer means the rate moves substantially (≥ 10 percentage points) between strict and permissive. The paper must report both rates and disclose the admission choice in the claim's phrasing.
-- A layer with `—` denominator under *strict* means no events have `measured` coverage at that layer (the `l0_network` and `l3_rpc` cases at v0.1). For those layers the paper should phrase the rate as an observability gap, not a conditional rate.
-- For `l3_rpc`, the permissive counts are retained only as two named Flashbots git-history observations; the rate is suppressed because the layer has no measured denominator.
 - For `asset_onchain`, counts are retained but rates are retracted because measured admission requires an asset-layer change anchor.
+- A layer with `—` denominator under *strict/current* has no `measured` coverage under those rubrics (`l0_network` in this snapshot). Phrase those cells as observability gaps; permissive partial-coverage counts are sensitivity-only unless a paper table explicitly emits a matched denominator.
 
 This ablation is the reviewer-facing answer to "can you inflate changed_given_measured by labeling events `partially_measured` loosely?". If every paper-cited rate is in the `robust` tier, the answer is defensibly no.
