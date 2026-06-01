@@ -221,7 +221,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `japan-fsa-stablecoin-psa-effective-2023-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-16 | 17 | ok | no_audit_recorded |
 | `japan-fsa-travel-rule-effective-2023-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `japan-fsa-zaif-orders-2018-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
-| `jordan-cbj-bank-crypto-prohibition-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
+| `jordan-cbj-bank-crypto-prohibition-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `karpeles-arrest-tokyo-mtgox-2015` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
 | `kazakhstan-digital-assets-law-2023-02` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `kazakhstan-internet-shutdown-mining-2022-01` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
@@ -581,7 +581,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `japan-fsa-stablecoin-psa-effective-2023-06` — audit=no_audit_recorded, verification=ok, verif_age=17d
 - `japan-fsa-travel-rule-effective-2023-06` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `japan-fsa-zaif-orders-2018-09` — audit=no_audit_recorded, verification=ok, verif_age=12d
-- `jordan-cbj-bank-crypto-prohibition-2014` — audit=no_audit_recorded, verification=ok, verif_age=2d
+- `jordan-cbj-bank-crypto-prohibition-2014` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `kazakhstan-digital-assets-law-2023-02` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `kazakhstan-internet-shutdown-mining-2022-01` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `kb-vostok-russia-drone-ofac-2024-08` — audit=no_audit_recorded, verification=ok, verif_age=2d
