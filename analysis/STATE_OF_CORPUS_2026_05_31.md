@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **257** (11 complete / 246 scoped) and
-  admitted-but-blocked cases are **110**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **258** (11 complete / 247 scoped) and
+  admitted-but-blocked cases are **109**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **275 high / 82 medium / 10 low**; attribution reliability
+  observation reliability **275 high / 83 medium / 9 low**; attribution reliability
   **235 high / 132 medium / 0 low**. Current admitted paper roles are
-  **257 aggregate_datapoint / 97 null_control / 10 appendix_only / 3 paper_anchor**.
+  **258 aggregate_datapoint / 97 null_control / 9 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -91,18 +91,23 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `regulatory_enforcement`, narrowed to DNB's warning/fine for unregistered Binance exchange and custody
   services in the Netherlands, and no longer carries the unpinned 2022/2023 market-exit cascade already modeled
   by `binance-netherlands-exit-2023-07`.
+  `opensea-iran-cuba-sanctions-block-2022` now replaces its generic OpenSea blog / wildcard Wayback scaffold
+  with dated 2022 OpenSea TOS Wayback captures plus local Decrypt, Artnet, and Washington Times/AP Cuba
+  reporting captures. The Cuba row is relabeled `plausible`, the event is explicitly
+  `evidence_tier=attested_secondary`, and the case moves from appendix-only / blocked to release-ready scoped
+  aggregate use while staying filterable for strict evidence-tier analyses.
 
 ## Admitted composition (367)
 | dimension | breakdown |
 |---|---|
 | **research_stratum** | S4_nation_state 111 · S5_corporate 96 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 307 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 331 · **attested_secondary 36** (lower-tier, filterable — see codebook §10) |
+| **evidence_tier** | admission_grade 330 · **attested_secondary 37** (lower-tier, filterable — see codebook §10) |
 | **admission_tier** | empirical_case 265 · null_case 97 · anchor_case 5 |
 | **empirical_shape** | comparison 268 · null_event 97 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
-censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **36
+censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **37
 `attested_secondary`** rows are the well-documented single-source national bans + corporate restrictions admitted
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.

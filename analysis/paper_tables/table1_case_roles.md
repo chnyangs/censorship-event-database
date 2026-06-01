@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=367)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `878f8b5` · generated `2026-06-01T01:45:33Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4b6ca9a` · generated `2026-06-01T01:54:35Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -268,7 +268,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `okx-india-exit-2024-03` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `—` |
 | `okx-nigeria-exit-2024-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `okx-privacy-token-delist-2024` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-16` | `2026-05-16` |
-| `opensea-iran-cuba-sanctions-block-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
+| `opensea-iran-cuba-sanctions-block-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-06-01` | `—` |
 | `orca-dex-us-frontend-block-2023-03` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-31` | `—` |
 | `pakistan-sbp-crypto-prohibition-2018-04` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `pancakeswap-sanctioned-country-frontend-geofence-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `domain` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-31` | `2026-05-31` |

@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **257 release-ready** cases, **110 admitted-but-blocked** cases, observation reliability
-      **275 high / 82 medium / 10 low**, and attribution reliability **235 high / 132 medium / 0 low**.
+      **258 release-ready** cases, **109 admitted-but-blocked** cases, observation reliability
+      **275 high / 83 medium / 9 low**, and attribution reliability **235 high / 132 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -142,6 +142,11 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       enforcement-page, and fine-decision PDF captures; the row is recoded as `regulatory_enforcement` and
       narrowed to DNB's warning/fine for unregistered Binance exchange and custody services in the Netherlands,
       with no retained claim about an unpinned frontend/user-offboarding cascade or the later 2023 market exit.
+      Follow-on repair also moved `opensea-iran-cuba-sanctions-block-2022` out of the low-observation queue by
+      replacing generic OpenSea blog / wildcard Wayback scaffolding with dated 2022 OpenSea TOS Wayback captures
+      plus local Decrypt, Artnet, and Washington Times/AP Cuba reporting captures; the Cuba observation is
+      relabeled `plausible`, the event is explicitly `evidence_tier=attested_secondary`, and it is now a
+      release-ready scoped aggregate datapoint rather than `appendix_only`.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
@@ -151,7 +156,7 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       claim-usable merely to improve counts.
 - [ ] **`evidence_tier` IRR pass.** Codebook 4.0.0 added a decision-rule (the `attested_secondary` tier). The
       codebook's own "Effective" convention requires a new IRR pass on ≥ 10 events for a decision-rule change.
-      Run a 2-coder IRR pass on a 10–15 event sample of the 36 `attested_secondary` rows to confirm inter-rater
+      Run a 2-coder IRR pass on a 10–15 event sample of the 37 `attested_secondary` rows to confirm inter-rater
       agreement on (a) §9-clarity and (b) the single-source judgment. Record κ. This is outstanding process debt.
       Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md` plus the machine-readable
       `analysis/evidence_tier_irr_packet_2026_05_31.csv`; both are intentionally blank and must not be treated as

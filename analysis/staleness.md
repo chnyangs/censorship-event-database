@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T01:45:33Z`
+Generated at: `2026-06-01T01:54:35Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -294,7 +294,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `okx-monero-global-delisting-2024` | `rejected` | `agent_draft` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `okx-nigeria-exit-2024-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `okx-privacy-token-delist-2024` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
-| `opensea-iran-cuba-sanctions-block-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
+| `opensea-iran-cuba-sanctions-block-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `orca-dex-us-frontend-block-2023-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `pakistan-sbp-crypto-prohibition-2018-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `pancakeswap-sanctioned-country-frontend-geofence-2022` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
@@ -625,7 +625,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `okx-india-exit-2024-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `okx-monero-global-delisting-2024` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `okx-nigeria-exit-2024-08` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `opensea-iran-cuba-sanctions-block-2022` — audit=no_audit_recorded, verification=ok, verif_age=11d
+- `opensea-iran-cuba-sanctions-block-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `orca-dex-us-frontend-block-2023-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `pakistan-sbp-crypto-prohibition-2018-04` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `paxos-busd-nydfs-minting-stop-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
