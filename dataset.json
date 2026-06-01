@@ -55719,17 +55719,14 @@
   {
     "_source_file": "suex-ofac-2021.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison documenting the first OFAC designation of a crypto exchange (SUEX\nOTC, 2021-09-21). Pre-Merge by 359 days, so L1 consensus layer is structurally\nnot_applicable. The foreign-operated exchange (Russia + Czech Republic) had no US\ninfrastructure dependency and the canonical suex.io domain remained fully operational for\nat least 5 days post-designation \u2014 another L4 observed_no_change case, structurally\nconsistent with Sinbad 2023-11 (foreign mixer persists) but distinct from Tornado 2022\n(US-hosted frontend collapses within 22h).\n\nFollow-up directions (post-admission): (1) Tether freeze query on the 4 ETH USDT addresses (highest probability\nof a fresh freeze given Tether's typical behaviour toward OFAC-listed entities); (2)\nEtherscan query for USDC blacklist on the 4 ETH addresses; (3) pinned chain-analytics firm\n(Chainalysis) SUEX cluster tagging report; (4) SUEX's eventual fate \u2014 later Wayback\nsnapshots or press reporting on whether the service stopped operating.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nverified the existing OFAC Recent Actions, on-chain, and suex.io Wayback\nreplay anchors by validation; marked the row primary-source verified; and\nnarrowed L0/L3 taxonomy to the retained claim. This row measures the\nCircle USDC asset blacklist for all four listed ETH addresses and the\nsame-week suex.io frontend observed_no_change window. It does not claim\nan ISP/DNS block, and the event predates the public Ethereum RPC-filtering\nsubstrate, so those layers are non-load-bearing for this row. Counterparty\nCEX/off-ramp reactions remain honestly not_measured until a per-event\nchain-analytics or exchange artifact is pinned.\n\ncomparison documenting the first OFAC designation of a crypto exchange (SUEX\nOTC, 2021-09-21). Pre-Merge by 359 days, so L1 consensus layer is structurally\nnot_applicable. The foreign-operated exchange (Russia + Czech Republic) had no US\ninfrastructure dependency and the canonical suex.io domain remained fully operational for\nat least 5 days post-designation \u2014 an L4 observed_no_change case, structurally\ndistinct from Chatex's operator-posted compliance notice and from Tornado 2022's\nUS-side compliance cascade.\n\nRemaining follow-up directions: (1) pin a per-event chain-analytics firm\nreport or exchange artifact naming SUEX-tagged deposit clusters before\nclaiming counterparty CEX/off-ramp behavior; (2) if using later SUEX\nshutdown history, keep it outside this event's 5-day frontend\nobserved_no_change window unless a dated operator/Wayback artifact supports\na separate follow-on claim.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across:\n  suex.io  2021-08-21..2021-10-21  -> 0 results\nAll 1 queries returned 0 measurements.\nArtifact: sources/l0_datasets/suex-ofac-2021/suex.io__ooni.json\n(body_hash sha256:792ebc3e6dd883c0ee1cddc742d4c7b9e6d297ffe8473e496e7cb21e9b717209).\nMeasurement-gap finding: OONI volunteer probe coverage is absent.\n",
-        "scope": [
-          "suex.io"
-        ],
-        "status": "not_measured"
+        "note": "The retained public claim is not an ISP/DNS/national-firewall block.\nSUEX is modeled as an OFAC exchange designation with measured\nissuer-side asset blacklist evidence and a measured suex.io L4\nobserved_no_change window. A prior OONI query across suex.io for\n2021-08-21..2021-10-21 returned no public measurements, but the\nabsence of OONI volunteer data is not used as a claim-bearing L0\nobservation because no L0 censorship action is asserted.\n",
+        "status": "not_applicable"
       },
       {
         "chain": "ethereum",
@@ -55739,7 +55736,7 @@
       },
       {
         "layer": "l3_rpc",
-        "note": "Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-compliance-adjacent\npublic Ethereum RPC substrate (Flashbots Protect launched 2022-11,\nMEV-Blocker launched 2023-03-27) did not exist at event time. Same\nconstruct-did-not-exist reasoning as L1 consensus coverage for\npre-Merge events. not_applicable rather than not_measured.\nL3 RPC-layer public-provider filter-list pin: the two dominant\nOFAC-compliance-adjacent public Ethereum RPC providers are MEV-Blocker\n(mevblocker.io) and Flashbots Protect (docs.flashbots.net). Both\ncaptured 2026-04-22 as ecosystem-level primary_corporate anchors for\nL3-layer reasoning:\n  mevblocker.io landing: body_hash sha256:f580083a67f052d2d8301dc1975c6f1f369474d25a10f0587ef081f70379cc67\n  docs.flashbots.net/flashbots-protect/quick-start: body_hash sha256:b937ed96974815d638d2db412ad674d417ae71f0295f625c8cec839638307282\nStatus remains not_measured because per-event bracketing snapshots\nof the provider filter lists (pre-event / event-day / post-event) are\nnot yet pinned from the Wayback CDX. The anchors establish the\nmeasurement substrate; per-event slices would promote status to\npartially_measured.\n",
+        "note": "Pre-Merge event (Ethereum Merge 2022-09-15). The OFAC-compliance-adjacent\npublic Ethereum RPC substrate (Flashbots Protect launched 2022-11,\nMEV-Blocker launched 2023-03-27) did not exist at event time. Same\nconstruct-did-not-exist reasoning as L1 consensus coverage for\npre-Merge events. not_applicable rather than not_measured.\n",
         "status": "not_applicable"
       },
       {
@@ -55774,7 +55771,7 @@
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-04-21",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "circle_usdc_issuer",
@@ -55842,7 +55839,7 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "chatex-ofac-2021",
       "garantex-ofac-2022",
@@ -55850,7 +55847,7 @@
     ],
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"OFAC designation of SUEX OTC on 2021-09-21 \u2014 the first\nexchange-level crypto sanction \u2014 did not disrupt the canonical suex.io frontend within a\n5-day post-event window; the Russian-and-Czech-operated exchange continued to serve its\nfull application. L1 consensus layer is not_applicable by construction (pre-Merge).\"\n",
+    "scoped_claim": "\"OFAC designation of SUEX OTC on 2021-09-21 \u2014 the first\nexchange-level crypto sanction \u2014 produced a Circle USDC blacklist of all\nfour listed ETH addresses about 50 hours later, but did not disrupt the\ncanonical suex.io frontend within a 5-day post-event window; the\nRussian-and-Czech-operated exchange continued to serve its full\napplication. L1/L3 are not applicable by construction for this pre-Merge,\npre-public-RPC-filtering event; CEX/off-ramp reactions remain unmeasured.\"\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -55924,7 +55921,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "switzerland-finma-tezos-zg-2018.yaml",

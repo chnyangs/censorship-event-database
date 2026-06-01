@@ -361,7 +361,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `south-africa-fsca-crypto-financial-product-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `sri-lanka-cbsl-crypto-warning-fx-directive-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `storm-semenov-doj-2023` | `admitted` | `human_authored` | 2026-05-15 | 18 | ok | 2026-04-22 | 41 | ok | ok |
-| `suex-ofac-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 42 | ok | no_audit_recorded |
+| `suex-ofac-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `switzerland-finma-tezos-zg-2018` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `t3-bybit-hack-usdt-freeze-2025-03` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `t3-financial-crime-unit-launch-2024-09` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
@@ -667,7 +667,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `singapore-mas-retail-crypto-restriction-2022` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `south-africa-fsca-crypto-financial-product-2022` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `sri-lanka-cbsl-crypto-warning-fx-directive-2021` — audit=no_audit_recorded, verification=ok, verif_age=2d
-- `suex-ofac-2021` — audit=no_audit_recorded, verification=ok, verif_age=42d
+- `suex-ofac-2021` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `switzerland-finma-tezos-zg-2018` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `t3-bybit-hack-usdt-freeze-2025-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `t3-financial-crime-unit-launch-2024-09` — audit=no_audit_recorded, verification=ok, verif_age=2d
