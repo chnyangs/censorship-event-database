@@ -1,10 +1,10 @@
 # Table 7 · Jurisdictional composition of the admitted corpus
 
-Generated: `2026-06-01T10:34:09Z`.
+Generated: `2026-06-01T10:47:34Z`.
 
 **US-trigger share** (events with `US` in `jurisdiction`): 157/365 (43.0%) · **non-US-trigger share**: 208/365 (57.0%).
 
-The v0.1 corpus is US-trigger-dominant (43.0% of admitted events have `US` in their jurisdiction list); second-most-touched region (under inclusive multi-jurisdiction counting): **Other** (85 events). Non-Western state-actor jurisdictions (RU / CN / IN / KR / NG / TR) account for ~14.8% of country-level mentions. **Region row counts use inclusive multi-jurisdiction membership** — an event with `[UK, US]` is counted in both the US and Europe rows; do not read region shares as a partition. This concentration is a property of the sampling frame, not of the underlying phenomenon, and is driven by the frame's public-English-language-archival requirement combined with the high absolute volume of OFAC / DOJ / SEC activity in 2022-2025. The paper's landscape claims must be bounded accordingly; see `docs/paper_claims.md §0 Sampling frame` and `docs/datasheet.md §3` for the honest statement.
+This snapshot is US-trigger-heavy (43.0% of admitted events have `US` in their jurisdiction list); second-most-touched region (under inclusive multi-jurisdiction counting): **Other** (85 events). Non-Western state-actor jurisdictions (RU / CN / IN / KR / NG / TR) account for ~14.8% of country-level mentions. **Region row counts use inclusive multi-jurisdiction membership** — an event with `[UK, US]` is counted in both the US and Europe rows; do not read region shares as a partition. This concentration is a property of the sampling frame, not of the underlying phenomenon, and is driven by the frame's public-English-language-archival requirement combined with the high absolute volume of OFAC / DOJ / SEC activity in 2022-2025. The paper's landscape claims must be bounded accordingly; see `docs/paper_claims.md §0 Sampling frame` and `docs/datasheet.md §3` for the honest statement.
 
 ## Distribution by region (inclusive)
 
@@ -80,6 +80,6 @@ _Region rows are inclusive — an event with jurisdictions `[UK, US]` counts in 
 
 ## What this table says (phrasing-lock)
 
-- PREFER: "the v0.1 corpus is US-trigger-dominant and English-indexable", "~75% of admitted events have `US` in their jurisdiction list", "events outside the US/Europe block are thinner in the v0.1 frame".
+- PREFER: "the current admitted corpus is US-trigger-heavy and English-indexable (157/365, 43.0%)", "region shares are inclusive, not a partition", "events outside the US/Europe block are thinner in this evidence frame".
 - FORBID: "censorship is concentrated in the US", "non-Western jurisdictions do not censor crypto", "US is the primary site of crypto censorship". All three inversions confuse the sampling frame for the phenomenon.
 - FORBID treating region shares as a partition that sums to 100% — they sum higher because of multi-jurisdiction events.
