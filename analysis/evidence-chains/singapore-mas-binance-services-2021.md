@@ -2,22 +2,23 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (2 changed layer(s): `l4_frontend`, `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `2dfaf57` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `3a48c00` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
 > "MAS's 2021-09-02 Binance.com Investor Alert List / Payment Services Act
-> order is retained as an attested-secondary trigger. Binance.com then
-> announced Singapore-user restrictions in two replayably captured
-> first-party notices: on 2021-09-05 it announced cessation of SGD trading
-> pairs, SGD payment options, and Singapore app-store availability effective
-> 2021-09-10; on 2021-09-27 it announced that Singapore users would lose
-> access to fiat deposits, spot trading, fiat-channel crypto purchases, and
-> liquid swap effective 2021-10-26. The row does not claim L0 blocking, L1
-> consensus impact, L3 RPC filtering, asset-onchain action, or an
-> independently pinned 2022 binance.sg shutdown observation."
+> stop-solicitation action is confirmed by MAS's official 2022 statement and
+> timestamped by the contemporaneous CNA report. Binance.com then announced
+> Singapore-user restrictions in two replayably captured first-party notices:
+> on 2021-09-05 it announced cessation of SGD trading pairs, SGD payment
+> options, and Singapore app-store availability effective 2021-09-10; on
+> 2021-09-27 it announced that Singapore users would lose access to fiat
+> deposits, spot trading, fiat-channel crypto purchases, and liquid swap
+> effective 2021-10-26. The row does not claim L0 blocking, L1 consensus
+> impact, L3 RPC filtering, asset-onchain action, or an independently pinned
+> 2022 binance.sg shutdown observation."
 
 ## 1. Trigger
 
@@ -27,6 +28,23 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://www.mas.gov.sg/news/media-releases/2022/mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx>
+  - Wayback: <https://web.archive.org/web/20221122070943/https://www.mas.gov.sg/news/media-releases/2022/mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx>
+  - body_hash: `sha256:e7a4e70bfd452534a7499251b1cc6c7df2e17c17af7381e9e6537b198bc8e895`
+  - body_path: `sources/http_captures/singapore-mas-binance-services-2021/primary-mas-ftx-statement-wayback/web.archive.org__web-20221122070943-https-www.mas.gov.sg-news-media-releases-2022-mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx__d06051d7ae.html`
+  > Official MAS media release, published 2022-11-21 and archived by
+> Wayback on 2022-11-22, retrospectively explains why Binance.com was
+> placed on the Investor Alert List: Binance had solicited Singapore
+> users without a licence, accepted Singapore-specific payment modes
+> including PayNow and PayLah, and was referred by MAS to the Commercial
+> Affairs Department for possible Payment Services Act contravention.
+> MAS also states that it required Binance to stop soliciting Singapore
+> users and that Binance put in place measures including geo-blocking
+> Singapore IP addresses and removing its mobile application from
+> Singapore app stores. This primary government artifact confirms the
+> load-bearing official trigger and response mechanism; the day-level
+> 2021-09-02 timestamp remains anchored to the contemporaneous CNA report.
 - **`supporting_journalism`**
   - URL: <https://www.channelnewsasia.com/business/binanace-mas-payment-services-act-investor-alert-list-2152346>
   - Wayback: <https://web.archive.org/web/20210902120336/https://www.channelnewsasia.com/business/binanace-mas-payment-services-act-investor-alert-list-2152346>
@@ -38,9 +56,9 @@
 > reports that MAS placed Binance.com on the Investor Alert List
 > because Binance.com was not regulated or licensed in Singapore to
 > provide payment services. This is a contemporaneous supporting
-> source carrying MAS spokesperson statements; no replayable official
-> MAS body artifact is retained in this repair pass, so the event is
-> marked evidence_tier=attested_secondary.
+> source carrying MAS spokesperson statements. Retained for the
+> contemporaneous date; the load-bearing official trigger/causality
+> anchor is now the archived MAS 2022 statement above.
 
 ## 2. Target
 
@@ -59,7 +77,7 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### l4_frontend · attribution: `plausible` · Δt = 72h
+### l4_frontend · attribution: `direct` · Δt = 72h
 
 **Event label**: `sgd_pairs_payments_and_app_store_removal_announced`
 
@@ -75,12 +93,21 @@
   > Binance support announcement archived 2021-09-05 states that
 > Binance would cease, in Singapore, SGD trading pairs, SGD payment
 > options, and app availability in the Singapore iOS and Google Play
-> stores effective 2021-09-10 04:00 UTC. Attribution is plausible
-> rather than direct because the announcement cites local-regulatory
-> compliance but does not name MAS or the Investor Alert List in the
-> retained body text.
+> stores effective 2021-09-10 04:00 UTC. The announcement itself
+> cites local-regulatory compliance without naming MAS, so the MAS
+> source below carries the direct trigger attribution.
+- **`primary_government`**
+  - URL: <https://www.mas.gov.sg/news/media-releases/2022/mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx>
+  - Wayback: <https://web.archive.org/web/20221122070943/https://www.mas.gov.sg/news/media-releases/2022/mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx>
+  - body_hash: `sha256:e7a4e70bfd452534a7499251b1cc6c7df2e17c17af7381e9e6537b198bc8e895`
+  - body_path: `sources/http_captures/singapore-mas-binance-services-2021/primary-mas-ftx-statement-wayback/web.archive.org__web-20221122070943-https-www.mas.gov.sg-news-media-releases-2022-mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx__d06051d7ae.html`
+  > Official MAS statement confirming that MAS required Binance to stop
+> soliciting Singapore users and that Binance put in place measures
+> including geo-blocking Singapore IP addresses and removing its mobile
+> application from Singapore app stores. This source supplies
+> attribution=direct for the app/geofence portion of the observation.
 
-### offramp_cex · attribution: `plausible` · Δt = 600h
+### offramp_cex · attribution: `direct` · Δt = 600h
 
 **Event label**: `regulated_payment_services_access_restriction_announced`
 
@@ -97,9 +124,20 @@
 > effective 2021-10-26 04:00 UTC, users in Singapore would not be
 > able to access Binance.com functions including fiat deposit
 > services, spot trading of cryptocurrencies, cryptocurrency
-> purchases through fiat channels, and liquid swap. Attribution is
-> plausible because the announcement frames the restriction as
-> compliance with local regulation without explicitly naming MAS.
+> purchases through fiat channels, and liquid swap. The announcement
+> frames the restriction as compliance with local regulation without
+> explicitly naming MAS, so the MAS source below carries the direct
+> trigger attribution.
+- **`primary_government`**
+  - URL: <https://www.mas.gov.sg/news/media-releases/2022/mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx>
+  - Wayback: <https://web.archive.org/web/20221122070943/https://www.mas.gov.sg/news/media-releases/2022/mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx>
+  - body_hash: `sha256:e7a4e70bfd452534a7499251b1cc6c7df2e17c17af7381e9e6537b198bc8e895`
+  - body_path: `sources/http_captures/singapore-mas-binance-services-2021/primary-mas-ftx-statement-wayback/web.archive.org__web-20221122070943-https-www.mas.gov.sg-news-media-releases-2022-mas-statement-to-address-misconceptions-in-the-wake-of-collapse-of-ftx__d06051d7ae.html`
+  > Official MAS statement confirming that MAS required Binance to stop
+> soliciting Singapore users and that Binance's measures were intended
+> to demonstrate that it had ceased soliciting and providing services
+> to Singapore users. This source supplies attribution=direct for the
+> Binance.com Singapore-user service-restriction observation.
 
 ## 5. Honest coverage gaps
 
@@ -113,7 +151,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `2dfaf57`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `3a48c00`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

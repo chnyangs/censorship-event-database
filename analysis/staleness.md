@@ -356,7 +356,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `silk-road-doj-seizure-2013` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `sinbad-doj-2024` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `sinbad-ofac-2023` | `admitted` | `human_authored` | 2026-05-15 | 18 | ok | 2026-04-21 | 42 | ok | ok |
-| `singapore-mas-binance-services-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
+| `singapore-mas-binance-services-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `singapore-mas-retail-crypto-restriction-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `south-africa-fsca-crypto-financial-product-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `sri-lanka-cbsl-crypto-warning-fx-directive-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
@@ -663,7 +663,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `sec-v-ripple-2020` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `sec-v-uniswap-wells-notice-2024` — audit=no_audit_recorded, verification=ok, verif_age=27d
 - `shapeshift-mandatory-kyc-anonymity-end-2018-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `singapore-mas-binance-services-2021` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `singapore-mas-binance-services-2021` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `singapore-mas-retail-crypto-restriction-2022` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `south-africa-fsca-crypto-financial-product-2022` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `sri-lanka-cbsl-crypto-warning-fx-directive-2021` — audit=no_audit_recorded, verification=ok, verif_age=2d

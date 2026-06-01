@@ -8,9 +8,9 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `296`
-- Admitted but release-blocked cases: `69`
-- Fully complete release-ready cases: `11`
+- Release-ready cases: `297`
+- Admitted but release-blocked cases: `68`
+- Fully complete release-ready cases: `12`
 - Scope-limited release-ready cases: `285`
 - Working drafts: `3`
 - Cases with gap markers: `0`
@@ -5082,18 +5082,13 @@ This file is the operational summary for the repo's two current priorities:
 ### `singapore-mas-binance-services-2021`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_complete`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
+- Trigger reliability: `high`
 - Observation reliability: `high`
-- Attribution reliability: `medium`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `high`
-- Note: Trigger evidence lacks a primary citation.
-- Note: Some changed layers are plausible rather than direct trigger attributions.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 
 ### `singapore-mas-retail-crypto-restriction-2022`
 
