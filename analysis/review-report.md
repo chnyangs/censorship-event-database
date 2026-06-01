@@ -8,13 +8,13 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `254`
-- Admitted but release-blocked cases: `113`
+- Release-ready cases: `255`
+- Admitted but release-blocked cases: `112`
 - Fully complete release-ready cases: `11`
-- Scope-limited release-ready cases: `243`
+- Scope-limited release-ready cases: `244`
 - Working drafts: `2`
 - Cases with gap markers: `0`
-- Paper-use roles: `{'aggregate_datapoint': 252, 'null_control': 97, 'appendix_only': 53, 'paper_anchor': 3}`
+- Paper-use roles: `{'aggregate_datapoint': 253, 'null_control': 97, 'appendix_only': 52, 'paper_anchor': 3}`
 - Draft priority order: `ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, revil-vasinskyi-polyanin-doj-2021, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, magic-eden-ofac-sanctioned-country-block, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06, vietnam-sbv-bitcoin-prohibition-statement-2014-02`
 
 ## Cases
@@ -535,19 +535,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `binance-russia-exit-commex-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
-- Paper-use role: `appendix_only`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `low`
-- Attribution reliability: `medium`
-- Coverage completeness: `high`
-- Case-shape completeness: `high`
-- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `medium`
+- Case-shape completeness: `medium`
+- Note: One layer remains explicitly unmeasured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Either measure the remaining layer or document why it is out of scope.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `binance-russia-gunmaker-asset-freeze-ukraine-2022-08`
 

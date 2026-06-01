@@ -4869,46 +4869,46 @@
   {
     "_source_file": "binance-russia-exit-commex-2023.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/binance-russia-exit-commex-2023.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\ncomparison documenting Binance Holdings Limited's 2023-09-27 full\ndivestiture of its Russia-market business to the newly-created CommEX\nexchange, in the immediate wake of: (a) the US Treasury OFAC pressure\ncampaign culminating in the 2023-11-21 4-framework Binance settlement\n(binance-4framework-2023, ~2 months downstream of this row), and\n(b) the EU sanctions-package escalation against ruble-denominated crypto\nrails (eu-russia-crypto-wallet-cap-2022, eu-russia-full-crypto-wallet-\nban-2022, eu-12th-russia-sanctions-2023). Structurally, the event is a\nvoluntary corporate-policy market withdrawal at the offramp_cex layer\nwith co-located L4 frontend notice surface, but operationally it is\npositioned as a regulatory-pressure-response market exit. The migration-\nto-successor pattern (Binance Russia \u2192 CommEX) parallels the\nGarantex \u2192 Grinex successor pattern (grinex-garantex-successor-ofac-2025)\nbut at corporate-divestiture rather than OFAC-listing register. CommEX\nitself ceased operations approximately one year later (2024-09);\ndownstream events to be coded separately.\n\nTwo observed_change layers (l4_frontend, offramp_cex) with attribution=\ndirect via the Binance corporate blog primary anchor. L0 / L1 / L3 /\nasset_onchain are all not_applicable on substrate-mismatch grounds \u2014\nthis is a CEX corporate-policy event, not a protocol or network\nprimitive engagement. Sibling of coinbase-india-exit-2022 in the S5\ncorporate-policy / market-exit cluster, distinguished by the successor-\nexchange migration corridor (Binance Russia \u2192 CommEX) absent from the\nCoinbase India retreat (which was a clean exit, no successor).\n",
+    "analysis_notes": "**QUALITY-LOOP REPAIR 2026-06-01** (automated source repair; no new\nhuman-audit stamp). The prior row made a broader two-layer claim using\nBinance live-blog, CommEX landing-page, and PRNewswire wildcard Wayback\nanchors. During repair, the Binance live URL returned a CloudFront/WAF\nchallenge with an empty body and the CommEX URL did not resolve locally.\nThose sources are therefore not retained as load-bearing evidence.\n\nThis version narrows the admitted empirical content to the replayable\nBinance-issued PRNewswire release: Binance sold the entirety of its\nRussia business to CommEX, began Russian-user off-boarding and\nredirection, and announced that all exchange services and business lines\nin Russia would be sunset over the following months. The row keeps\nCommEX as the named counterparty and migration destination, but it does\nnot claim an independently measured CommEX frontend landing page or\nRUB-specific P2P rail wind-down.\n\nThe broader OFAC/EU sanctions environment remains contextual through\nrelated_events, but the retained direct-attribution observation is the\nBinance corporate market-exit decision itself, not a claim that OFAC or\nEU sanctions directly ordered this specific sale.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No network-layer (L0) reachability blocking is implicated by the\nBinance Russia exit. binance.com remained globally reachable from\nRussian vantage points before, during, and after the 2023-09-27\nannouncement; the cascade is a corporate-policy market withdrawal\nexecuted at the application / off-ramp layer, not an ISP-level DNS /\nTCP block. not_applicable on substrate-mismatch grounds.\n",
+        "note": "No network-layer reachability blocking is implicated by the Binance\nRussia exit. The retained evidence supports a corporate market\nwithdrawal and user off-boarding process, not an ISP, DNS, TCP, or\nrouting restriction.\n",
         "status": "not_applicable"
       },
       {
         "chain": "ethereum",
         "layer": "l1_consensus",
-        "note": "The Binance Russia exit is a CEX market-withdrawal under post-US-DOJ\nand EU-sanctions-compliance pressure; no protocol-layer (L1)\nvalidator-set or PBS-relay primitive is engaged. not_applicable on\nsubstrate-mismatch grounds.\n",
+        "note": "The Binance Russia exit is a centralized-exchange market-withdrawal\nevent. No protocol-layer validator-set or consensus primitive is\nengaged.\n",
         "status": "not_applicable"
       },
       {
         "layer": "l3_rpc",
-        "note": "No public-RPC provider filter-list change attaches to the corporate\nsale of Binance's Russia business. The L3 substrate (MEV-Boost /\nFlashbots Protect / MEV-Blocker / Infura) is orthogonal to a CEX-level\nmarket-exit decision. not_applicable on substrate-mismatch grounds.\n",
+        "note": "No public-RPC provider filter-list change attaches to the corporate\nsale of Binance's Russia business. The L3 substrate is orthogonal to\nthe retained CEX market-exit observation.\n",
         "status": "not_applicable"
       },
       {
         "layer": "l4_frontend",
-        "note": "Load-bearing layer 1 of 2. Binance Russian-locale frontend surfaces\n(binance.com Russian-language pages, in-account notifications shown to\nRussian-resident users) directly hosted the 2023-09-27 transition\nannouncement and the subsequent migration timeline notices through\nthe up-to-one-year off-boarding window. CommEX corporate frontend\n(commex.com) served as the migration-destination landing page. This\nis an exchange-driven frontend-layer corporate-policy change rather\nthan a state-mandated takedown; attached below as observed_change\nwith attribution=direct via the Binance corporate blog post.\n",
+        "note": "The previous row treated Binance Russian-locale frontend notices and\na CommEX destination landing page as a positive L4 observed_change.\nThe 2026-06-01 capture pass found the Binance live URL behind a WAF\nchallenge with an empty body, and the CommEX URL no longer resolved\nlocally. Because neither page is retained as a replayable\nclaim-usable L4 anchor, this layer is retracted to not_measured.\n",
         "scope": [
           "binance.com",
           "commex.com"
         ],
-        "status": "measured"
+        "status": "not_measured"
       },
       {
         "layer": "asset_onchain",
-        "note": "The Russia market exit does not engage a stablecoin-issuer freeze or\nOFAC SDN-list address designation primitive. User BUSD / USDT / USDC\nbalances migrated administratively to CommEX accounts; no\nissuer-level address blacklist was published. not_applicable on\nsubstrate-mismatch grounds.\n",
+        "note": "The Russia market exit did not engage a stablecoin-issuer freeze,\naddress blacklist, or other asset-onchain primitive. User asset\ntreatment is described as part of the exchange off-boarding process.\n",
         "status": "not_applicable"
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer 2 of 2. Binance's Russian-ruble (RUB) P2P merchant\nrails and Russian-user fiat on/off-ramps were the operational core of\nthe divested business. Post-2023-09-27, Russian users were directed\nto migrate to CommEX-operated rails; Binance's own RUB-denominated\nP2P book was wound down over the announced one-year transition\nwindow. Attached below as observed_change with attribution=direct.\nThe 2024-09 subsequent shutdown of CommEX itself is downstream of\nthis event row and is not coded here.\n",
+        "note": "Load-bearing layer. The Binance-issued release states that Binance\nsold the entirety of its Russia business to CommEX, would redirect a\nportion of Russian KYC'd new-user registration to CommEX, and would\nsunset all exchange services and business lines in Russia over the\nfollowing months. This repaired row does not make a separate\nRUB-specific rail claim beyond that source-supported market-exit and\nuser-migration observation.\n",
         "scope": [
-          "binance_rub_rails",
-          "commex_rub_rails"
+          "binance_russia_exchange_services",
+          "commex_user_migration_corridor"
         ],
         "status": "measured"
       }
@@ -4920,67 +4920,29 @@
       "RU",
       "corporate_global"
     ],
-    "last_human_audit": "2026-05-16",
-    "last_verified": "2026-05-16",
+    "last_verified": "2026-06-01",
     "observations": [
-      {
-        "actor": "frontend:binance_com",
-        "attribution": "direct",
-        "delta_hours": 0,
-        "event": "binance_russia_exit_announcement_and_commex_migration_notices",
-        "layer": "l4_frontend",
-        "observation_kind": "observed_change",
-        "precision": "day",
-        "sources": [
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "Binance corporate blog hosted the 2023-09-27 transition\nannouncement and acted as the canonical anchor for subsequent\nRussian-user migration notices. attribution=direct because the\nBinance frontend itself is the conduit through which the\nmarket-exit notice was delivered to Russian users; the corporate\ndecision and the frontend-layer announcement are co-located in\nthe same corporate actor. Wayback wildcard pointer in lieu of a\npinned-timestamp snapshot; evidence_use=contextual_unarchived\npending human-audit re-pin.\n",
-            "scope_descriptor": {
-              "countries": [
-                "RU"
-              ],
-              "providers": [
-                "binance_com_frontend",
-                "commex_com_frontend"
-              ],
-              "time_window": [
-                "2023-09-27T00:00:00+00:00",
-                "2024-09-27T23:59:59+00:00"
-              ]
-            },
-            "type": "primary_corporate",
-            "url": "https://www.binance.com/en/blog/ecosystem/binance-fully-exits-russia-with-sale-to-commex-3550293696068383963",
-            "wayback": "https://web.archive.org/web/2023/https://www.binance.com/en/blog/ecosystem/binance-fully-exits-russia-with-sale-to-commex-3550293696068383963"
-          },
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "CommEX corporate frontend hosted the migration-destination\nlanding page for Russian Binance users. Acts as the\ncounterparty-side L4 anchor for the migration corridor.\nWayback wildcard pointer; evidence_use=contextual_unarchived\npending human-audit re-pin.\n",
-            "type": "primary_corporate",
-            "url": "https://commex.com/en/blog/post-detail/commex-announcement",
-            "wayback": "https://web.archive.org/web/2023/https://commex.com/en/blog/post-detail/commex-announcement"
-          }
-        ],
-        "timestamp": "2023-09-27T00:00:00+00:00"
-      },
       {
         "actor": "exchange:binance_russia",
         "attribution": "direct",
         "delta_hours": 0,
-        "event": "binance_rub_rails_wound_down_and_migrated_to_commex",
+        "event": "binance_russia_business_sale_user_offboarding_and_exchange_service_sunset",
         "layer": "offramp_cex",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
           {
-            "evidence_use": "contextual_unarchived",
-            "note": "Binance corporate announcement is the legal-economic instrument\nexecuting the full divestiture of Russia-business RUB rails to\nCommEX. attribution=direct because Binance (the operator of the\ndivested rails) made and announced the unilateral corporate\ndecision; the OFAC + EU sanctions enforcement context is the\nplausible upstream pressure but the proximate cause of the\noff-ramp restructuring is the Binance corporate sale instrument\nitself. Wayback wildcard pointer; evidence_use=contextual_unarchived\npending human-audit re-pin.\n",
+            "body_hash": "sha256:a6cdb7081b51df793a5beefc20866e02cf41d33d0141f1ddade7c9f94f102200",
+            "body_path": "sources/http_captures/binance-russia-exit-commex-2023/primary/www.prnewswire.com__news-releases-binance-fully-exits-russia-with-sale-to-commex-301940042.html__e360ad5131.html",
+            "evidence_use": "replayable",
+            "note": "Binance-issued PRNewswire release states that Binance entered an\nagreement to sell its entire Russia business to CommEX, with\nexisting Russian-user off-boarding over up to one year, some\nRussian KYC'd new-user registrations redirected to CommEX, and all\nBinance exchange services and business lines in Russia sunset over\nthe following months. Attribution is direct because Binance is the\nannouncing actor and operator of the divested Russia-market\nexchange services.\n",
             "scope_descriptor": {
               "countries": [
                 "RU"
               ],
               "providers": [
-                "binance_rub_rails",
-                "commex_rub_rails"
+                "binance_russia_exchange_services",
+                "commex_user_migration_corridor"
               ],
               "time_window": [
                 "2023-09-27T00:00:00+00:00",
@@ -4988,15 +4950,7 @@
               ]
             },
             "type": "primary_corporate",
-            "url": "https://www.binance.com/en/blog/ecosystem/binance-fully-exits-russia-with-sale-to-commex-3550293696068383963",
-            "wayback": "https://web.archive.org/web/2023/https://www.binance.com/en/blog/ecosystem/binance-fully-exits-russia-with-sale-to-commex-3550293696068383963"
-          },
-          {
-            "evidence_use": "contextual_unarchived",
-            "note": "PRNewswire mirror corroborates the divestiture terms (no ongoing\nrevenue share, no option to repurchase, one-year user-migration\nwindow). Provides redundant corporate anchor for the RUB-rail\nrestructuring. Wayback wildcard pointer pending human-audit\nre-pin.\n",
-            "type": "primary_corporate",
-            "url": "https://www.prnewswire.com/news-releases/binance-fully-exits-russia-with-sale-to-commex-301940042.html",
-            "wayback": "https://web.archive.org/web/2023/https://www.prnewswire.com/news-releases/binance-fully-exits-russia-with-sale-to-commex-301940042.html"
+            "url": "https://www.prnewswire.com/news-releases/binance-fully-exits-russia-with-sale-to-commex-301940042.html"
           }
         ],
         "timestamp": "2023-09-27T00:00:00+00:00"
@@ -5013,7 +4967,7 @@
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2023-09-27 Binance Holdings Limited divestiture of its Russia-market\nbusiness to the newly-created CommEX exchange, executed under US Treasury\nOFAC pressure and contemporaneous EU sanctions-enforcement concerns about\nruble-denominated crypto trading, produced a two-layer cascade in the\ndataset: an L4 frontend transition notice on binance.com (Russian-locale)\nplus a destination landing on commex.com, and an offramp_cex restructuring\nin which Binance RUB on/off-ramp rails were wound down and the Russian\nuser book was administratively migrated to CommEX over an announced\none-year window. The row asserts only these two observational axes and\ndoes not claim L0 network, L1 consensus, L3 RPC, or asset_onchain\neffects; the downstream 2024-09 CommEX shutdown is a separate event row\noutside the scope of this admission.\"\n",
+    "scoped_claim": "\"The 2023-09-27 Binance Holdings Limited Russia-market divestiture to\nCommEX is retained as a narrowed CEX/off-ramp market-exit observation:\nBinance's own PRNewswire release announced the sale of the entirety of\nits Russia business, up-to-one-year off-boarding for existing Russian\nusers, redirection of some Russian KYC'd new-user registration to CommEX,\nand sunset of all Binance exchange services and business lines in Russia\nover the following months. The row does not claim a replayably measured\nBinance/CommEX L4 frontend change, RUB-specific rail shutdown, L0\nnetwork blocking, L1 consensus impact, L3 RPC filtering, or asset-onchain\nfreeze.\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -5022,11 +4976,9 @@
       "binance",
       "commex",
       "successor_exchange",
-      "ofac_pressure",
-      "eu_sanctions_context",
+      "regulatory_context",
       "offramp_cex",
-      "dryrun_2026_05_16",
-      "phase6c_2026_05_16"
+      "quality_loop_2026_06_01"
     ],
     "target": {
       "actor_name": "Binance Holdings Limited (Russia market) / CommEX",
@@ -5038,7 +4990,7 @@
       "chains": [],
       "entity": "binance_russia_market_business_line_commex_migration_2023",
       "enumeration": "subset",
-      "enumeration_note": "Binance Holdings Limited (corporate entity) Russia-market business line,\nconsisting of (a) the Russian-user account base on binance.com,\n(b) Russian-ruble (RUB) on/off-ramp peer-to-peer (P2P) merchant rails,\nand (c) Russian-localized frontend surfaces (binance.com Russian-locale\npages, Russian-language regional notices). The 2023-09-27 sale to CommEX\nis the corporate divestiture instrument; the target on the Binance side\nis the Russia-business book of users + RUB rails, not the global\nbinance.com domain (which remained globally operational). On the CommEX\nside the target is the newly-launched commex.com exchange platform\nreceiving migrating Russian Binance accounts.\n",
+      "enumeration_note": "Binance Holdings Limited Russia-market business line and the affected\nRussian-user migration corridor to CommEX. This repaired row no longer\ntreats Russian-localized Binance pages, in-account notifications, a\nCommEX landing page, or RUB-specific P2P rails as independently\nmeasured surfaces. The retained target is the source-supported\ncorporate divestiture, Russian-user off-boarding, new-user redirection,\nand sunset of Binance exchange services and business lines in Russia.\n",
       "kind": "entity"
     },
     "temporal_tier": "comparable_main_2017_present",
@@ -5046,38 +4998,25 @@
       "actor": "binance_holdings_limited",
       "citation": [
         {
-          "evidence_use": "contextual_unarchived",
-          "note": "Binance corporate blog post (2023-09-27): \"Binance Fully Exits Russia\nWith Sale to CommEX.\" Announces complete divestiture of Binance's\nRussia business to CommEX, a newly-launched exchange. Binance stated\nthe transition would take \"off-boarding existing Russian users\" via\nan orderly migration of accounts to CommEX over up to one year, with\nBinance retaining no ongoing revenue share or option to repurchase.\nMarked evidence_use=contextual_unarchived because in this DRYRUN the\nauthoring LLM agent did not personally pin a Wayback snapshot\ntimestamp or compute a body_hash; the Binance blog URL slug is stable\nand routinely captured by Wayback in 2023 and remains the canonical\ncorporate anchor. Pinned snapshot timestamp + body_hash to be\nre-anchored during human audit before this citation may serve as an\nadmission anchor in its own right.\n",
+          "body_hash": "sha256:a6cdb7081b51df793a5beefc20866e02cf41d33d0141f1ddade7c9f94f102200",
+          "body_path": "sources/http_captures/binance-russia-exit-commex-2023/primary/www.prnewswire.com__news-releases-binance-fully-exits-russia-with-sale-to-commex-301940042.html__e360ad5131.html",
+          "evidence_use": "replayable",
+          "note": "Binance-issued PRNewswire release dated 2023-09-27 announcing that\nBinance had agreed to sell the entirety of its Russia business to\nCommEX. The release states that existing Russian-user off-boarding\nwould take up to one year, that some Russian KYC'd new-user\nregistration would be redirected to CommEX, and that Binance would\nsunset all exchange services and business lines in Russia over the\nfollowing months. Captured locally 2026-06-01 with replayable\nbody_hash/body_path.\n",
           "type": "primary_corporate",
-          "url": "https://www.binance.com/en/blog/ecosystem/binance-fully-exits-russia-with-sale-to-commex-3550293696068383963",
-          "wayback": "https://web.archive.org/web/2023/https://www.binance.com/en/blog/ecosystem/binance-fully-exits-russia-with-sale-to-commex-3550293696068383963"
-        },
-        {
-          "evidence_use": "contextual_unarchived",
-          "note": "PRNewswire mirror of the 2023-09-27 Binance corporate announcement\n(\"Binance fully exits Russia with sale to CommEX\"). Confirms the\nsame-day sale terms: full divestiture, up-to-one-year transition\nwindow for existing Russian users to migrate to CommEX, no ongoing\nownership stake or revenue share retained by Binance. Wayback\nwildcard pointer (web/2023/) in lieu of a pinned-timestamp snapshot;\nevidence_use=contextual_unarchived pending human-audit re-pin.\n",
-          "type": "primary_corporate",
-          "url": "https://www.prnewswire.com/news-releases/binance-fully-exits-russia-with-sale-to-commex-301940042.html",
-          "wayback": "https://web.archive.org/web/2023/https://www.prnewswire.com/news-releases/binance-fully-exits-russia-with-sale-to-commex-301940042.html"
-        },
-        {
-          "evidence_use": "contextual_unarchived",
-          "note": "CommEX launch announcement (late 2023-09): newly-created exchange\npositioned as the destination for migrating Russian Binance users.\nCommEX described itself as an independent operator with no formal\nownership ties to Binance; subsequent reporting and the eventual\n2024-09 CommEX shutdown rendered the independence claim contentious.\nPinned here as primary-corporate context for the counterparty side\nof the Russia-business sale. Wayback wildcard pointer in lieu of\npinned snapshot; evidence_use=contextual_unarchived pending human\naudit.\n",
-          "type": "primary_corporate",
-          "url": "https://commex.com/en/blog/post-detail/commex-announcement",
-          "wayback": "https://web.archive.org/web/2023/https://commex.com/en/blog/post-detail/commex-announcement"
+          "url": "https://www.prnewswire.com/news-releases/binance-fully-exits-russia-with-sale-to-commex-301940042.html"
         }
       ],
       "timestamp": "2023-09-27T00:00:00+00:00",
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level precision per the 2023-09-27 Binance corporate blog\nannouncement and same-day PRNewswire mirror.\n",
+          "note": "Day-level precision per the 2023-09-27 Binance-issued PRNewswire\nrelease.\n",
           "type": "primary_corporate"
         }
       ],
       "type": "corporate_policy_change"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "binance-russia-gunmaker-asset-freeze-ukraine-2022-08.yaml",

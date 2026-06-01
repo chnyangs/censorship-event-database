@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **254 release-ready** cases, **113 admitted-but-blocked** cases, observation reliability
-      **271 high / 81 medium / 15 low**, and attribution reliability **233 high / 134 medium / 0 low**.
+      **255 release-ready** cases, **112 admitted-but-blocked** cases, observation reliability
+      **272 high / 81 medium / 14 low**, and attribution reliability **234 high / 133 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -117,7 +117,11 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       also moved `sec-v-ripple-2020` out of the low-observation queue with local SEC, Coinbase, and Bitstamp
       replay anchors, while narrowing the row from a broad two-layer/four-exchange cascade to the
       source-supported Coinbase/Bitstamp CEX/off-ramp comparison and dropping unanchored Ripple.com L4,
-      Binance.US, and Kraken observations from the admitted observation set.
+      Binance.US, and Kraken observations from the admitted observation set. Follow-on repair also moved
+      `binance-russia-exit-commex-2023` out of the low-observation queue with a local PRNewswire/Binance
+      release anchor, while narrowing the row from an unpinned Binance/CommEX L4 plus RUB-rails cascade to the
+      source-supported Binance Russia-market sale, user off-boarding, CommEX migration, and service-sunset
+      observation.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or

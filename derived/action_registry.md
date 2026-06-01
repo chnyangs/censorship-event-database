@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `5cd78e4` · generated `2026-06-01T00:23:54Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `ad910b8` · generated `2026-06-01T00:40:01Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **326**
+- Canonical physical actions: **325**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -36,8 +36,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `binance-nigeria-naira-services-end-2024-03:0:offramp_cex:exchange:binance:binance_discontinues_all_nigerian_naira_services` | 1 | 0 | 1 | offramp_cex | `binance-nigeria-naira-services-end-2024-03::offramp_cex` |
 | `binance-palestinian-accounts-seizure-israel-2023-11:0:offramp_cex:exchange:binance:binance_blocks_palestinian_user_accounts_under_israeli_nbctf_order` | 1 | 0 | 1 | offramp_cex | `binance-palestinian-accounts-seizure-israel-2023-11::offramp_cex` |
 | `binance-privacy-coin-delisting-2023:0:offramp_cex:exchange:binance:binance_spot_pair_removal_privacy_asset_cohort_eu_member_state_users` | 1 | 0 | 1 | offramp_cex | `binance-privacy-coin-delisting-2023::offramp_cex` |
-| `binance-russia-exit-commex-2023:0:l4_frontend:frontend:binance_com:binance_russia_exit_announcement_and_commex_migration_notices` | 1 | 0 | 1 | l4_frontend | `binance-russia-exit-commex-2023::l4_frontend` |
-| `binance-russia-exit-commex-2023:1:offramp_cex:exchange:binance_russia:binance_rub_rails_wound_down_and_migrated_to_commex` | 1 | 0 | 1 | offramp_cex | `binance-russia-exit-commex-2023::offramp_cex` |
+| `binance-russia-exit-commex-2023:0:offramp_cex:exchange:binance_russia:binance_russia_business_sale_user_offboarding_and_exchange_service_sunset` | 1 | 0 | 1 | offramp_cex | `binance-russia-exit-commex-2023::offramp_cex` |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08:0:offramp_cex:exchange:binance:binance_freezes_lobaev_account_after_ukrainian_le_pressure` | 1 | 0 | 1 | offramp_cex | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08::offramp_cex` |
 | `binance-uk-new-user-halt-2023-10:0:offramp_cex:exchange:binance:binance_stops_accepting_new_uk_users_fca_promotions_regime` | 1 | 0 | 1 | offramp_cex | `binance-uk-new-user-halt-2023-10::offramp_cex` |
 | `bitcoinica-shutdown-2012-05:0:offramp_cex:bitcoinica_operator:operator_led_shutdown_of_bitcoinica_trading_platform_after_hack` | 1 | 0 | 1 | offramp_cex | `bitcoinica-shutdown-2012-05::offramp_cex` |
