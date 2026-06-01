@@ -194,7 +194,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `hongkong-sfc-vatp-licensing-2023-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `huobi-htx-privacy-coin-delisting-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `hydra-doj-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
-| `hydra-ofac-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 42 | ok | no_audit_recorded |
+| `hydra-ofac-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `iceland-cbi-foreign-exchange-bitcoin-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-16 | 17 | ok | no_audit_recorded |
 | `india-fiu-offshore-vda-block-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-06-01 | 1 | ok | ok |
 | `india-rbi-crypto-ban-2018` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
@@ -558,7 +558,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `hongkong-sfc-vatp-licensing-2023-06` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `huobi-htx-privacy-coin-delisting-2024` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `hydra-doj-2022` — audit=no_audit_recorded, verification=ok, verif_age=41d
-- `hydra-ofac-2022` — audit=no_audit_recorded, verification=ok, verif_age=42d
+- `hydra-ofac-2022` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `iceland-cbi-foreign-exchange-bitcoin-2014` — audit=no_audit_recorded, verification=ok, verif_age=17d
 - `india-rbi-crypto-ban-2018` — audit=no_audit_recorded, verification=ok, verif_age=41d
 - `indonesia-bappebti-illegal-exchange-block-2023` — audit=no_audit_recorded, verification=ok, verif_age=12d
