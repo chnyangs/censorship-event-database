@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4b6ca9a` · generated `2026-06-01T01:54:35Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c5a73a6` · generated `2026-06-01T03:21:56Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **324**
+- Canonical physical actions: **323**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -148,8 +148,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `huobi-htx-privacy-coin-delisting-2024:0:offramp_cex:exchange:huobi:huobi_spot_pair_removal_privacy_asset_cohort_2022` | 1 | 0 | 1 | offramp_cex | `huobi-htx-privacy-coin-delisting-2024::offramp_cex` |
 | `hydra-doj-2022:0:l4_frontend:frontend:hydra_darknet_marketplace:tor_infrastructure_seized_by_bka` | 1 | 0 | 1 | l4_frontend | `hydra-doj-2022::l4_frontend` |
 | `hydra-ofac-2022:0:l4_frontend:marketplace:hydra:marketplace_disrupted_or_unavailable` | 1 | 0 | 1 | l4_frontend | `hydra-ofac-2022::l4_frontend` |
-| `india-fiu-offshore-vda-block-2023:0:l4_frontend:app_store:apple_in,google_play_in:nine_offshore_vda_apps_removed_from_in_regional_storefronts` | 1 | 0 | 1 | l4_frontend | `india-fiu-offshore-vda-block-2023::l4_frontend` |
-| `india-fiu-offshore-vda-block-2023:1:offramp_cex:offshore_vda_exchange_class:in_users:inr_rails_severed_for_in_users_of_named_offshore_vda_exchanges` | 1 | 0 | 1 | offramp_cex | `india-fiu-offshore-vda-block-2023::offramp_cex` |
+| `india-fiu-offshore-vda-block-2023:0:l0_network:regulator:in_meity_isp_cascade:in_vantage_dns_blocking_of_binance_domain` | 1 | 0 | 1 | l0_network | `india-fiu-offshore-vda-block-2023::l0_network` |
 | `india-rbi-crypto-ban-2018:0:offramp_cex:indian_crypto_exchange_ecosystem:rupee_banking_channel_severed_industry_wide` | 1 | 0 | 1 | offramp_cex | `india-rbi-crypto-ban-2018::offramp_cex` |
 | `indonesia-bappebti-illegal-exchange-block-2023:0:l4_frontend:frontend:offshore_cex_id_geo_cohort:offshore_cex_frontends_blocked_id_via_kominfo` | 1 | 0 | 1 | l4_frontend | `indonesia-bappebti-illegal-exchange-block-2023::l4_frontend` |
 | `indonesia-bappebti-illegal-exchange-block-2023:1:offramp_cex:cex:offshore_cex_id_cohort:offshore_cex_idr_rail_severance_cascade` | 1 | 0 | 1 | offramp_cex | `indonesia-bappebti-illegal-exchange-block-2023::offramp_cex` |

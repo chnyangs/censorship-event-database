@@ -1,6 +1,6 @@
 id: india-fiu-offshore-vda-block-2023
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
@@ -9,9 +9,9 @@ analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-06-01
 last_human_audit: 2026-05-16
 
 related_events:
@@ -27,42 +27,27 @@ trigger:
   timestamp_precision: day
   citation:
     - type: primary_legal
-      url: https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1991372
-      wayback: https://web.archive.org/web/2024/https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1991372
-      evidence_use: contextual_unarchived
+      url: https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1991372&reg=3&lang=2
+      body_hash: sha256:d9d8feef882663606925889fb566c76b8a271d007809c52607fcc748baa1df3a
+      body_path: sources/http_captures/india-fiu-offshore-vda-block-2023/primary/www.pib.gov.in__Pressreleaseshare.aspx__fbb11e0f0b.html
+      evidence_use: replayable
       note: |
         FIU-IND (Financial Intelligence Unit, India) press release dated
         2023-12-28 announcing compliance show-cause notices issued to nine
         offshore Virtual Digital Asset (VDA) service providers — Binance,
-        Kraken, KuCoin, Huobi, OKX, Bitstamp, MEXC Global, BitTrex, and
-        Gate.io — for operating in India without registration as Reporting
+        KuCoin, Huobi, Kraken, Gate.io, Bittrex, Bitstamp, MEXC Global, and
+        Bitfinex — for operating in India without registration as Reporting
         Entities under the Prevention of Money Laundering Act (PMLA). The
-        FIU-IND further wrote to the Ministry of Electronics and Information
-        Technology (MEITY) recommending URL blocking under section 69A of
-        the IT Act. Wayback wildcard pointer (web/2024/) in lieu of a
-        pinned-timestamp snapshot; evidence_use=contextual_unarchived
-        because a body_hash+body_path pair has not been captured into
-        sources/http_captures/india-fiu-offshore-vda-block-2023/ in this
-        session. Pinned archive deferred to follow-up authoring pass.
-    - type: primary_legal
-      url: https://www.meity.gov.in/
-      evidence_use: contextual_unarchived
-      note: |
-        Ministry of Electronics and Information Technology (MEITY) URL
-        blocking order issued in early January 2024 implementing the FIU-IND
-        recommendation. ISPs in India were directed to block access to the
-        nine named offshore VDA exchange domains; Apple App Store (IN) and
-        Google Play (IN) removed the corresponding apps from the Indian
-        regional storefronts in mid-January 2024. Specific blocking-order
-        document not publicly released; contextual_unarchived in lieu of a
-        pinned primary-legal anchor.
+        release also states that FIU-IND wrote to the Secretary, Ministry of
+        Electronics and Information Technology (MEITY), to block the URLs of
+        those entities. Captured with a browser user agent because the live
+        endpoint returned HTTP 403 to the default capture agent.
   timestamp_sources:
     - type: primary_legal
       note: |
         Day-level precision. FIU-IND show-cause notices issued 2023-12-28
-        per the PIB press release; MEITY URL blocking order followed in
-        early January 2024 and app-store regional removals occurred
-        mid-January 2024.
+        per the PIB press release. Later OONI measurements below anchor the
+        first retained observed network-layer change for this event.
 
 target:
   kind: entity
@@ -70,12 +55,12 @@ target:
   enumeration: subset
   enumeration_note: |
     Nine named offshore Virtual Digital Asset (VDA) service providers as
-    accessed from Indian IP ranges: Binance, Kraken, KuCoin, Huobi, OKX,
-    Bitstamp, MEXC Global, BitTrex, and Gate.io. Enumeration is the FIU-IND
-    show-cause notice population; not all named platforms may show
-    identical app-store / web / re-registration outcomes (e.g., Binance
-    and KuCoin subsequently re-registered with FIU-IND in 2024 and were
-    unblocked, while others remained blocked).
+    enumerated in the FIU-IND press release: Binance, KuCoin, Huobi,
+    Kraken, Gate.io, Bittrex, Bitstamp, MEXC Global, and Bitfinex.
+    This repaired parent row measures only a `binance.com` L0 subset from
+    Indian OONI probes; Apple App Store and Google Play removals are carried
+    by sibling S5 rows rather than duplicated here. OKX appears in app-store
+    sibling reporting but is not in the FIU-IND named-nine trigger list.
   protocol: null
   actor_type: offshore_vda_service_providers
   actor_name: Offshore VDA exchanges (FIU-IND show-cause class, IN-vantage access)
@@ -85,144 +70,145 @@ target:
     - kraken.com
     - kucoin.com
     - huobi.com
-    - okx.com
     - bitstamp.net
     - mexc.com
     - bittrex.com
     - gate.io
+    - bitfinex.com
 
 jurisdiction: [IN]
 
 coverage:
   - layer: l0_network
-    status: not_measured
-    scope: [binance.com, kraken.com, kucoin.com, huobi.com, okx.com, bitstamp.net, mexc.com, bittrex.com, gate.io]
+    status: partially_measured
+    scope: [binance.com]
     note: |
-      ISP-level blocking of nine offshore VDA exchange domains from Indian
-      vantage points under MEITY section 69A IT Act order following the
-      FIU-IND 2023-12-28 show-cause notices. OONI Probe IN measurements
-      and Censored Planet IN-vantage probes for the nine domains over
-      2024-01 to 2024-02 would be the load-bearing replayable artifacts.
-      In this draft the L0 layer is coverage=not_measured because the
-      OONI Explorer batch query has not been executed in this session.
-      A follow-up OONI / Censored Planet pull is required to elevate L0
-      to admission-anchor-grade and pin measurement_ids. No observation
-      row attached at L0 (validator enforces observed_change requires
-      measured / partially_measured coverage).
+      OONI IN web_connectivity measurements for https://www.binance.com/
+      over 2024-01-12 through 2024-02-15 include confirmed DNS-blocking
+      anomalies on AS55836 and non-anomalous rows on other Indian ASNs.
+      Coded as partially_measured: the replayable OONI artifacts establish
+      observed Indian-vantage DNS blocking on sampled networks, not a
+      universal nationwide block for all FIU-IND named platforms.
+    denominator_artifact:
+      type: semi_primary_measurement
+      url: https://api.ooni.io/api/v1/measurements?probe_cc=IN&test_name=web_connectivity&input=https%3A%2F%2Fwww.binance.com%2F&since=2024-01-12&until=2024-02-15&limit=20
+      body_hash: sha256:f4a98fc7a093f25a27e9ab6ade83f39a512330077977ea1b7216ca8fe3bdead5
+      body_path: sources/http_captures/india-fiu-offshore-vda-block-2023/ooni/api.ooni.io__api-v1-measurements__d2e076e2fe.json
+      measurement_ids:
+        - 20240211085150.499106_IN_webconnectivity_0048f0197fac6b4c
+        - 20240213080807.771762_IN_webconnectivity_c288a60728d119c1
+        - 20240213092932.061005_IN_webconnectivity_ecdb2dfb8255e767
+      note: |
+        OONI measurement-index query over Indian probes for
+        https://www.binance.com/ after the FIU-IND 2023-12-28 notice and
+        URL-block recommendation. The listed raw measurement IDs report
+        confirmed DNS-blocking fingerprints on AS55836. The same query also
+        includes non-anomalous Indian rows, so the denominator is the sampled
+        Indian OONI measurement set rather than all Indian networks.
   - layer: l1_consensus
     status: not_applicable
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: partially_measured
+    status: not_measured
     scope: [apple_app_store_in, google_play_in]
     note: |
-      Apple App Store (IN regional storefront) and Google Play (IN regional
-      storefront) removed the nine offshore VDA exchange apps from Indian
-      availability in mid-January 2024 following the MEITY URL block order.
-      App-store regional unavailability is a load-bearing L4 frontend
-      enforcement vector distinct from the ISP-level L0 block. Replayable
-      app-store archive captures deferred; contextual_unarchived sourcing
-      via press coverage.
+      Parent row no longer duplicates app-store observations. Apple App
+      Store IN and Google Play IN removals are represented by the sibling
+      corporate rows `apple-india-crypto-exchange-removal-2024-01` and
+      `google-play-india-crypto-exchange-removal-2024-01`.
   - layer: asset_onchain
     status: not_applicable
   - layer: offramp_cex
-    status: partially_measured
+    status: not_measured
     scope: [offshore_vda_inr_rails]
     note: |
-      INR (Indian rupee) on/off-ramp severance for Indian users of the nine
-      named offshore VDA exchanges following the MEITY URL block and
-      app-store regional removals. Downstream consequence of L0 access
-      severance plus app-store unavailability. Binance and KuCoin
-      subsequently re-registered with FIU-IND as Reporting Entities under
-      PMLA in 2024 and partially restored Indian access. Replayable
-      exchange corporate-notice / regional-restriction archives deferred.
+      No retained parent-row claim about INR rail severance. Any future
+      off-ramp claim needs exchange-side or payment-rail evidence specific
+      to the affected India user cohort.
 
 observations:
-  - layer: l4_frontend
-    actor: app_store:apple_in,google_play_in
-    event: nine_offshore_vda_apps_removed_from_in_regional_storefronts
+  - layer: l0_network
+    actor: regulator:in_meity_isp_cascade
+    event: in_vantage_dns_blocking_of_binance_domain
     observation_kind: observed_change
     attribution: plausible
-    timestamp: 2024-01-15T00:00:00Z
-    precision: day
-    delta_hours: 432
+    timestamp_range:
+      - 2024-02-11T08:51:50Z
+      - 2024-02-13T09:29:31Z
+    precision: second
+    country: IN
+    delta_hours: 1089
     sources:
-      - type: primary_legal
-        url: https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1991372
-        wayback: https://web.archive.org/web/2024/https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1991372
-        evidence_use: contextual_unarchived
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/measurements?probe_cc=IN&test_name=web_connectivity&input=https%3A%2F%2Fwww.binance.com%2F&since=2024-01-12&until=2024-02-15&limit=20
+        body_hash: sha256:f4a98fc7a093f25a27e9ab6ade83f39a512330077977ea1b7216ca8fe3bdead5
+        body_path: sources/http_captures/india-fiu-offshore-vda-block-2023/ooni/api.ooni.io__api-v1-measurements__d2e076e2fe.json
+        measurement_ids:
+          - 20240211085150.499106_IN_webconnectivity_0048f0197fac6b4c
+          - 20240213080807.771762_IN_webconnectivity_c288a60728d119c1
+          - 20240213092932.061005_IN_webconnectivity_ecdb2dfb8255e767
         scope_descriptor:
-          providers: [apple_app_store_in, google_play_in]
+          providers: [binance]
           countries: [IN]
+          networks:
+            - AS55836
           time_window:
-            - 2024-01-10T00:00:00Z
+            - 2024-01-12T00:00:00Z
             - 2024-02-15T23:59:59Z
         note: |
-          App-store regional removal of the nine offshore VDA apps from
-          Apple App Store IN and Google Play IN in mid-January 2024
-          implementing the FIU-IND / MEITY enforcement cascade.
-          Attribution annotated plausible because the FIU-IND PIB press
-          release is the load-bearing regulatory anchor but no archived
-          app-store regional-availability snapshot has been pinned in
-          this session. Replayable archive deferred.
-  - layer: offramp_cex
-    actor: offshore_vda_exchange_class:in_users
-    event: inr_rails_severed_for_in_users_of_named_offshore_vda_exchanges
-    observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2024-01-15T00:00:00Z
-    precision: day
-    delta_hours: 432
-    sources:
-      - type: primary_legal
-        url: https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1991372
-        wayback: https://web.archive.org/web/2024/https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1991372
-        evidence_use: contextual_unarchived
-        scope_descriptor:
-          providers: [offshore_vda_inr_rails]
-          countries: [IN]
-          time_window:
-            - 2024-01-10T00:00:00Z
-            - 2024-04-15T23:59:59Z
+          OONI IN web_connectivity query for https://www.binance.com/
+          returns confirmed DNS-blocking rows on AS55836 on 2024-02-11
+          and 2024-02-13. The query also includes non-anomalous Indian
+          rows on other ASNs, so attribution is plausible and coverage is
+          partially_measured rather than a universal India blocking claim.
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/raw_measurement?measurement_uid=20240213092932.061005_IN_webconnectivity_ecdb2dfb8255e767
+        body_hash: sha256:658ab21577b5bb8a41140b49ec9d41601418111269896ae510d7e87c5cff02a9
+        body_path: sources/http_captures/india-fiu-offshore-vda-block-2023/ooni/api.ooni.io__api-v1-raw_measurement__85fae4fd13.json
+        measurement_ids:
+          - 20240213092932.061005_IN_webconnectivity_ecdb2dfb8255e767
         note: |
-          INR on/off-ramp severance for Indian users of the nine named
-          offshore VDA exchanges following the MEITY URL block and
-          app-store regional removals. Attribution=plausible because
-          the regulatory cascade is documented but no archived exchange
-          corporate notice has been pinned. Wayback wildcard pointer
-          in lieu of a pinned-timestamp snapshot.
+          Raw OONI measurement body for AS55836. The measurement records
+          `blocking=dns`, `accessible=false`, and
+          `dns_consistency=inconsistent` for https://www.binance.com/.
+      - type: semi_primary_measurement
+        url: https://api.ooni.io/api/v1/raw_measurement?measurement_uid=20240211085150.499106_IN_webconnectivity_0048f0197fac6b4c
+        body_hash: sha256:e96be7aa234e9e0f0df730da967a2c6932e07eeb2872421cae426c0263d93918
+        body_path: sources/http_captures/india-fiu-offshore-vda-block-2023/ooni/api.ooni.io__api-v1-raw_measurement__765f8b495e.json
+        measurement_ids:
+          - 20240211085150.499106_IN_webconnectivity_0048f0197fac6b4c
+        note: |
+          Raw OONI measurement body for AS55836. The measurement records
+          `blocking=dns`, `accessible=false`, and
+          `dns_consistency=inconsistent` for https://www.binance.com/.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22 candidate stubs per user instruction to push remaining backlog to dryrun-complete state): promoted from candidate_triggers/india-fiu-offshore-vda-block-2023.yaml. Authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.
+  **QUALITY-LOOP REPAIR 2026-06-01** (automated source and scope repair; no
+  new human-audit stamp). This row previously relied on an unpinned PIB URL,
+  duplicated app-store observations that already have sibling S5 rows, and an
+  unsupported INR-rail claim. The repair pins the official PIB press release,
+  corrects the FIU-IND named-nine enumeration by replacing OKX with Bitfinex,
+  and recodes the retained observation to an OONI-backed L0 subset:
+  confirmed DNS blocking of https://www.binance.com/ from sampled Indian OONI
+  probes on AS55836 in February 2024.
 
-  comparison documenting the FIU-IND 2023-12-28 show-cause notices to nine
-  offshore Virtual Digital Asset (VDA) exchanges (Binance, Kraken, KuCoin,
-  Huobi, OKX, Bitstamp, MEXC Global, BitTrex, Gate.io) for operating without
-  PMLA registration, followed by a MEITY section 69A IT Act URL blocking
-  order in early January 2024 and app-store regional removals in mid-
-  January 2024. Structurally distinct from the India 2018 RBI banking-rail
-  ban (offramp-only, industry-wide INR severance via banking sector) and
-  closer in shape to the Philippines 2024 NTC Binance block (state-mandated
-  L0 network blocking of named exchange domains) but with a substantially
-  broader enumeration (nine platforms rather than one). Load-bearing axes:
-  L0 network reachability (ISP-level blocking, IN vantage; coverage
-  not_measured pending OONI follow-up), L4 frontend (app-store regional
-  removal), and offramp_cex (INR rail severance for affected exchanges).
-  Subsequent re-registration of Binance and KuCoin with FIU-IND under
-  PMLA in 2024 partially reversed the block for those two platforms and
-  is a natural candidate for a follow-up reversal-comparison event.
+  The retained parent-row claim is deliberately narrow. It does not claim
+  all nine FIU-IND named domains were blocked across all Indian networks, does
+  not duplicate Apple App Store / Google Play removals, and does not claim INR
+  on/off-ramp severance. App-store enforcement remains represented by the
+  sibling corporate rows; off-ramp claims require exchange-side or payment-rail
+  evidence before re-entry.
 
 scoped_claim: |
-  "The FIU-IND 2023-12-28 show-cause notices and the subsequent MEITY
-  section 69A URL blocking order severed Indian-vantage access to nine
-  named offshore VDA exchange domains (Binance, Kraken, KuCoin, Huobi,
-  OKX, Bitstamp, MEXC Global, BitTrex, Gate.io) and removed corresponding
-  apps from Apple App Store IN and Google Play IN regional storefronts in
-  mid-January 2024. Observational axes at l4_frontend (app-store regional
-  removal) and offramp_cex (INR rail severance). L0 admission-anchor-grade
-  promotion pending OONI Probe IN / Censored Planet follow-up batch query
-  for the nine domains over 2024-01 to 2024-02."
+  "FIU-IND's 2023-12-28 press release issued show-cause notices to nine
+  offshore VDA service providers and stated that FIU-IND wrote to MEITY to
+  block those entities' URLs. In OONI IN web_connectivity measurements over
+  2024-01-12 to 2024-02-15, https://www.binance.com/ showed confirmed
+  DNS-blocking fingerprints on sampled Indian AS55836 measurements on
+  2024-02-11 and 2024-02-13. This row claims only that sampled
+  India-vantage L0 subset; it does not claim nationwide blocking across all
+  FIU-IND named domains, app-store removals, or INR rail severance."
 
 tags:
   - nation_state_block
@@ -231,8 +217,7 @@ tags:
   - meity
   - pmla
   - offshore_vda
-  - l4_frontend
-  - app_store_regional_removal
-  - offramp_severance
-  - dryrun_2026_05_16
-  - phase6c_2026_05_16
+  - l0_network
+  - ooni_measurement
+  - dns_blocking
+  - quality_loop_2026_06_01

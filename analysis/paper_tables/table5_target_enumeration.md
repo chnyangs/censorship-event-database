@@ -1,6 +1,6 @@
 # Table 5 · Complete-vs-subset target stratification
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `4b6ca9a` · generated `2026-06-01T01:54:35Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c5a73a6` · generated `2026-06-01T03:21:56Z`
 
 Supports `docs/paper_claims.md §4 item 5`. Stratifies events by whether their `target` enumerates the **complete** set of in-scope addresses/entities/domains or only a **subset**. Complete enumeration supports stronger causal statements about the address set; subset enumeration should be cited with that qualifier.
 
@@ -26,6 +26,6 @@ Supports `docs/paper_claims.md §4 item 5`. Stratifies events by whether their `
 | enum \ archetype | asset_only | frontend_only | cex_only | multi_layer | other_single_layer | null_event | total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `complete` | 8 | 7 | 38 | 4 | 0 | 14 | 71 |
-| `subset` | 6 | 38 | 135 | 27 | 7 | 83 | 296 |
+| `subset` | 6 | 38 | 135 | 26 | 8 | 83 | 296 |
 
 A `subset` row means OFAC/DOJ named specific addresses or entities rather than an entire protocol; downstream layer-change claims must say `observed on the named subset`, not `on the protocol as a whole`.
