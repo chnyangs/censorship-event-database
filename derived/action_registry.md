@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `27a6912` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `038e378` · generated `2026-06-02T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -198,7 +198,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `mtgox-dhs-dwolla-wells-fargo-seizure-2013:0:offramp_cex:exchange:mtgox:usd_onramp_closed_via_dwolla_account_seizure` | 1 | 0 | 1 | offramp_cex | `mtgox-dhs-dwolla-wells-fargo-seizure-2013::offramp_cex` |
 | `mtgox-june-2011-hack-trading-suspension:0:offramp_cex:exchange:mtgox:trading_suspended_post_hack_2011_06` | 1 | 0 | 1 | offramp_cex | `mtgox-june-2011-hack-trading-suspension::offramp_cex` |
 | `mtgox-usd-withdrawal-suspension-2013-06:0:offramp_cex:exchange:mtgox:usd_withdrawal_suspended_globally` | 1 | 0 | 1 | offramp_cex | `mtgox-usd-withdrawal-suspension-2013-06::offramp_cex` |
-| `myanmar-cbm-crypto-prohibition-directive-9-2020:0:offramp_cex:myanmar_crypto_ecosystem:crypto_sale_purchase_exchange_prohibited_directive_9_2020` | 1 | 0 | 1 | offramp_cex | `myanmar-cbm-crypto-prohibition-directive-9-2020::offramp_cex` |
+| `myanmar-cbm-crypto-prohibition-directive-9-2020:0:offramp_cex:myanmar_crypto_ecosystem:financial_institution_digital_currency_dealing_not_allowed_directive_9_2020` | 1 | 0 | 1 | offramp_cex | `myanmar-cbm-crypto-prohibition-directive-9-2020::offramp_cex` |
 | `nepal-nrb-bitcoin-ban-2017-08:0:offramp_cex:nepali_bitcoin_exchange_operators:domestic_bitcoin_exchange_channel_shut_by_nrb_ban_and_cib_arrests` | 1 | 0 | 1 | offramp_cex | `nepal-nrb-bitcoin-ban-2017-08::offramp_cex` |
 | `nepal-nrb-comprehensive-crypto-ban-2021-09:0:offramp_cex:nation_state:nepal_crypto_perimeter:nepal_crypto_transaction_usage_mining_declared_illegal_comprehensive` | 1 | 0 | 1 | offramp_cex | `nepal-nrb-comprehensive-crypto-ban-2021-09::offramp_cex` |
 | `netherlands-dnb-binance-warning-2021:0:offramp_cex:regulator:dnb:dnb_warning_and_fine_for_binance_unregistered_crypto_services` | 1 | 0 | 1 | offramp_cex | `netherlands-dnb-binance-warning-2021::offramp_cex` |

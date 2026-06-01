@@ -2,18 +2,20 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `27a6912` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `038e378` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
 > "On 2020-05-15 the Central Bank of Myanmar issued Notification No. 9/2020
-> prohibiting all persons residing in Myanmar from the sale, purchase, or
-> exchange of unregulated digital currencies (Bitcoin, Litecoin, Ethereum,
-> Perfect Money), with enforcement via account closure and legal action under
-> the AML Law and Financial Institutions Law. The offramp_cex layer carries the
-> load-bearing plausible-attribution observation at class level."
+> stating that CBM does not allow financial institutions, including banks, to
+> deal with digital currency and does not recognize digital currency as legal
+> currency; it names Bitcoin, Litecoin, Ethereum, and Perfect Money as examples
+> of digital currencies being dealt/exchanged through Facebook accounts or
+> websites and states that legal violations may be punished by imprisonment,
+> fine, or both. The offramp_cex layer carries the load-bearing
+> direct-attribution observation at class level."
 
 ## 1. Trigger
 
@@ -23,6 +25,19 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://www.mfiu.gov.mm/sites/default/files/document/files/2020%20Annual%20Report%20%28English%20Version%29.pdf>
+  - body_hash: `sha256:34c72f7b4b9149a3da0bf9aa77a26c09b667a458b58dc4b052005d8f9e639a17`
+  - body_path: `sources/http_captures/myanmar-cbm-crypto-prohibition-directive-9-2020/primary-mfiu-annual-report-v1/www.mfiu.gov.mm__sites-default-files-document-files-2020-20Annual-20Report-20-28English-20Version-29.pdf__1b0a29a98a.bin`
+  > Official Myanmar Financial Intelligence Unit AML/CFT 2020 Annual Report
+> PDF. Annex (S) reproduces Central Bank of Myanmar Notification No.
+> 9/2020 dated 2020-05-15. Extracted text shows CBM states it does not
+> allow financial institutions, including banks, to deal with digital
+> currency, does not recognize digital currency as legal currency, names
+> Bitcoin, Litecoin, Ethereum, and Perfect Money as examples of digital
+> currencies being dealt/exchanged through Facebook accounts or websites,
+> and states that legal violations may be punished by imprisonment, fine,
+> or both.
 - **`supporting_journalism`**
   - URL: <https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/>
   - Wayback: <https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/>
@@ -42,44 +57,51 @@
 > not granted permission to financial institutions within Myanmar to trade
 > digital currencies (the Foreign Exchange Management Law and Financial
 > Institutions Law "cement the illegality of cryptocurrency transactions").
-> Law-firm secondary analysis reproducing the directive; the CBM's own
-> Notification No. 9/2020 instrument text was not located on a stable
-> English-language web page in this draft pass.
+> Law-firm secondary interpretation retained as corroboration; no longer
+> load-bearing after the official MFIU annual-report reproduction of the
+> CBM notification was pinned.
 
 ## 2. Target
 
 - **Kind**: `entity`
 - **Enumeration**: `subset`
-- **Actor name**: Myanmar crypto users / exchanges / financial institutions (class)
+- **Actor name**: Myanmar financial institutions / digital-currency dealing class
 
-> All persons residing in Myanmar and financial institutions barred from the
-> sale, purchase, or exchange of unregulated digital currencies (Bitcoin,
-> Litecoin, Ethereum, Perfect Money named as a non-exhaustive list). No
-> specific exchange or platform enumerated; class-level prohibition matching
-> the sibling nation-state-prohibition convention (Cambodia 2018, Nepal 2017).
+> CBM Notification No. 9/2020 states that CBM does not allow financial
+> institutions, including banks, to deal with digital currency or recognize
+> digital currency as legal currency. It also names Bitcoin, Litecoin,
+> Ethereum, and Perfect Money as examples of digital currencies being
+> dealt/exchanged through personal Facebook accounts or websites, and warns
+> that legal violations may be punished. No specific exchange or platform is
+> enumerated; scoped as a class-level financial-institution / trading-service
+> restriction rather than a complete named-provider list.
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### offramp_cex · attribution: `plausible` · Δt = 0h
+### offramp_cex · attribution: `direct` · Δt = 0h
 
-**Event label**: `crypto_sale_purchase_exchange_prohibited_directive_9_2020`
+**Event label**: `financial_institution_digital_currency_dealing_not_allowed_directive_9_2020`
 
 **Timestamp**: `2020-05-15 00:00:00+00:00` (precision: `day`)
 
 **Sources**:
 
+- **`primary_government`**
+  - URL: <https://www.mfiu.gov.mm/sites/default/files/document/files/2020%20Annual%20Report%20%28English%20Version%29.pdf>
+  - body_hash: `sha256:34c72f7b4b9149a3da0bf9aa77a26c09b667a458b58dc4b052005d8f9e639a17`
+  - body_path: `sources/http_captures/myanmar-cbm-crypto-prohibition-directive-9-2020/primary-mfiu-annual-report-v1/www.mfiu.gov.mm__sites-default-files-document-files-2020-20Annual-20Report-20-28English-20Version-29.pdf__1b0a29a98a.bin`
+  > Official MFIU Annual Report PDF, Annex (S), reproducing CBM
+> Notification No. 9/2020 dated 2020-05-15. The extracted text directly
+> supports the financial-institution digital-currency dealing
+> restriction and the no-legal-currency recognition statement.
 - **`supporting_journalism`**
   - URL: <https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/>
   - Wayback: <https://web.archive.org/web/20260120112720/https://www.tilleke.com/insights/myanmars-central-bank-issues-further-warning-against-crypto-trading/>
   - body_hash: `sha256:0cd2cf34c9e091564c0875bfbf30099d5b3dda95acdd2a35738889da5bae2e48`
   - body_path: `sources/http_captures/myanmar-cbm-crypto-prohibition-directive-9-2020/primary/web.archive.org__web-20260120112720-https-www.tilleke.com-insights-myanmars-central-bank-issues-further-warning-against-crypto-trading__53bb7afc72.html`
-  > attribution=plausible per codebook §1: the action is causally
-> consistent with the named CBM Notification No. 9/2020, but the
-> load-bearing captured evidence is law-firm secondary analysis (Tilleke
-> & Gibbins) reproducing the directive rather than the CBM instrument
-> text, and the prohibition is class-level (names no specific exchange).
-> A primary CBM Notification No. 9/2020 capture would be required to
-> elevate to direct.
+  > English-language law-firm interpretation of the same CBM notification.
+> Retained as corroboration only; the direct attribution now rests on the
+> official MFIU annual-report reproduction of the CBM notification.
 
 ## 5. Honest coverage gaps
 
@@ -92,7 +114,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `27a6912`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `038e378`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
