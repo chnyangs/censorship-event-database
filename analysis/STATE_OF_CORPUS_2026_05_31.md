@@ -12,13 +12,13 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **270** (11 complete / 259 scoped) and
-  admitted-but-blocked cases are **95**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **273** (11 complete / 262 scoped) and
+  admitted-but-blocked cases are **92**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **285 high / 80 medium / 0 low**; attribution reliability
-  **243 high / 122 medium / 0 low**. Current admitted paper roles are
+  observation reliability **286 high / 79 medium / 0 low**; attribution reliability
+  **244 high / 121 medium / 0 low**. Current admitted paper roles are
   **264 aggregate_datapoint / 97 null_control / 1 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
@@ -125,6 +125,13 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   mirror because `binance.com` returned a WAF challenge on this network path. The CSA/OSC, MiCA,
   app-store-review, regulatory-environment, and privacy-coin/regulatory rationales remain scoped to the
   source-supported policy actions, with trade-press mementos retained only as corroboration where relevant.
+  The next primary/source repair batch moves three more rows out of the blocked queue:
+  `ecuador-national-assembly-bitcoin-ban-2014-07` now cites the official COMF PDF at trigger level while
+  preserving plausible attribution for the bitcoin-specific legal interpretation; `russia-dfa-law-2020` now
+  cites a replayable Russian Prosecutor General Office mirror page plus its image-based 259-FZ PDF after the
+  `publication.pravo.gov.ru` live endpoint timed out from this network; and
+  `bittrex-privacy-coin-delisting-2021-01` now cites the official Bittrex Global Zendesk notice and uses
+  direct attribution for the market-removal action while leaving the AML/KYC/regulatory rationale contextual.
 
 ## Admitted composition (365)
 | dimension | breakdown |

@@ -2,16 +2,16 @@ id: russia-dfa-law-2020
 schema_version: 0.2.0
 codebook_version: "1.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.2"
+version: "0.3"
 created_at: 2026-05-17T00:00:00Z
-last_verified: 2026-05-21
+last_verified: 2026-06-01
 
 related_events:
   - russia-cbr-crypto-payment-ban-2022
@@ -23,6 +23,32 @@ trigger:
   timestamp: 2020-07-31T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://epp.genproc.gov.ru/ru/proc_69/activity/combating-corruption/zakon/federal/e1274142/
+      body_hash: sha256:d96837dc2d2264ce364420d6a405f9fa150962a77a6a55fb23cffae8ea799661
+      body_path: sources/http_captures/russia-dfa-law-2020/official-genproc/epp.genproc.gov.ru__ru-proc_69-activity-combating-corruption-zakon-federal-e1274142__c0c6e222ea.html
+      evidence_use: replayable
+      note: |
+        Official Russian Prosecutor General Office regional page for
+        Federal Law No. 259-FZ dated 2020-07-31, titled "On Digital
+        Financial Assets, Digital Currency, and Amendments to Certain
+        Legislative Acts of the Russian Federation" and linking the
+        official-law PDF attachment `0001202007310056.pdf`. Used as the
+        replayable government trigger anchor after the primary
+        publication.pravo.gov.ru page timed out from this network.
+    - type: primary_legal
+      url: https://epp.genproc.gov.ru/upload/iblock/ecc/0lcdna46y4x18br587z1b0xps44tl0xt.pdf
+      body_hash: sha256:e8d3e525b371e6f4fc66a6407ccbc81f67cb9448294b5104fb6a350c2d66c873
+      body_path: sources/http_captures/russia-dfa-law-2020/official-genproc/epp.genproc.gov.ru__upload-iblock-ecc-0lcdna46y4x18br587z1b0xps44tl0xt.pdf__19be3772f2.bin
+      evidence_use: replayable
+      note: |
+        Official PDF attachment from the Russian Prosecutor General Office
+        page, named for the publication.pravo.gov.ru document identifier
+        `0001202007310056.pdf`. The PDF is image-based in this local capture
+        (`pdftotext` does not expose substantive article text), so it is used
+        as a replayable visual/legal artifact for the 259-FZ instrument and
+        paired with the page-level government metadata plus the existing LoC
+        and Crowdfund summaries for machine-readable payment-use details.
     - type: semi_primary_wayback
       url: https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/
       wayback: https://web.archive.org/web/20210920180643/https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/
@@ -66,6 +92,11 @@ trigger:
         2020-07-31. Used as a contextual regional-organization
         anchor. Wayback re-pin required at human audit.
   timestamp_sources:
+    - type: primary_government
+      note: |
+        The official Russian Prosecutor General Office page names Federal Law
+        No. 259-FZ as dated 2020-07-31 and links the `0001202007310056.pdf`
+        legal attachment. Day-level precision remains appropriate.
     - type: primary_legal
       note: |
         Federal Law No. 259-FZ carries a signing date of 2020-07-31
@@ -211,6 +242,16 @@ observations:
           re-pin required at human audit.
 
 analysis_notes: |
+  **QUALITY-LOOP REPAIR 2026-06-01** (automated source repair; no new
+  human-audit stamp). The official publication.pravo.gov.ru page for
+  document 0001202007310056 timed out from this network, so this repair
+  captured the Russian Prosecutor General Office official government mirror
+  page and its attached `0001202007310056.pdf` legal artifact. The HTML page
+  is machine-readable and names Federal Law No. 259-FZ dated 2020-07-31; the
+  attached PDF is replayable but image-based, so the detailed payment-use
+  prohibition remains supported by the existing LoC and Crowdfund summaries.
+  No empirical-shape or null-event posture changed.
+
   **PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by
   human:xiangwen as null_case. LoC Global Legal Monitor Wayback
   20210920180643 + Crowdfund Insider Wayback 20200805224916 reclassified

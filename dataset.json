@@ -7827,7 +7827,7 @@
   {
     "_source_file": "bittrex-privacy-coin-delisting-2021-01.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**AUTHORED 2026-05-31** (overnight census tick 8, human:xiangwen\nautonomous mandate). Bittrex's 2021-01-01 announcement to delist\nprivacy coins Monero/Zcash/Dash (markets removed 2021-01-15 23:00 UTC)\n\u2014 the FIRST U.S.-based exchange to delist privacy coins, an early node\nin the privacy-coin-delisting wave later joined by Kraken/Huobi/OKX/\nBinance (cf. related_events). comparison shape, single offramp_cex\nobserved_change, attribution=plausible (the delisting is directly\nobserved but Bittrex stated no explicit reason; the KYC/AML compliance\nmotive is contextual). XMR/ZEC/DASH are independent base-chain assets,\nso l0/l1/l3/l4/asset_onchain are not_applicable. Sources verified via\nWebSearch + capture 2026-05-31 (CoinDesk + Decrypt, body_hash-pinned;\nno fabrication).\n",
+    "analysis_notes": "**QUALITY-LOOP REPAIR 2026-06-01** (automated source repair; no new\nhuman-audit stamp). Captured the official Bittrex Global Zendesk article\nfor the XMR/ZEC/DASH/GRIN delisting and added it as the first-party\noperator source at trigger and observation level. The row remains scoped\nto the January 2021 XMR/ZEC/DASH cohort because the official article's\nGRIN footnote records a later May 2021 removal. attribution is now direct\nfor the market-removal action itself; any AML/KYC or regulatory motive\nremains contextual because Bittrex did not state one in the captured body.\n\n**AUTHORED 2026-05-31** (overnight census tick 8, human:xiangwen\nautonomous mandate). Bittrex's 2021-01-01 announcement to delist\nprivacy coins Monero/Zcash/Dash (markets removed 2021-01-15 23:00 UTC)\n\u2014 the FIRST U.S.-based exchange to delist privacy coins, an early node\nin the privacy-coin-delisting wave later joined by Kraken/Huobi/OKX/\nBinance (cf. related_events). comparison shape, single offramp_cex\nobserved_change, attribution=plausible (the delisting is directly\nobserved but Bittrex stated no explicit reason; the KYC/AML compliance\nmotive is contextual). XMR/ZEC/DASH are independent base-chain assets,\nso l0/l1/l3/l4/asset_onchain are not_applicable. Sources verified via\nWebSearch + capture 2026-05-31 (CoinDesk + Decrypt, body_hash-pinned;\nno fabrication).\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "2.0.0",
     "coverage": [
@@ -7873,11 +7873,11 @@
       "US"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "exchange:bittrex",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": "US",
         "delta_hours": 336,
         "event": "bittrex_removes_xmr_zec_dash_privacy_coin_markets",
@@ -7886,10 +7886,30 @@
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:933c8cd6fb17fc7e94d67faec7ed7890dab04d61a18b2ca9f3917654e74205b4",
+            "body_path": "sources/http_captures/bittrex-privacy-coin-delisting-2021-01/official-bittrex-global/bittrexglobal.zendesk.com__hc-en-us-articles-6448634669083-Delisting-of-XMR-ZEC-DASH-and-GRIN__251360c3ae.html",
+            "evidence_use": "replayable",
+            "note": "First-party Bittrex Global support article listing the Dash,\nMonero, and Zcash markets and the 2021-01-15 23:00 UTC removal\ntime. attribution=direct for the market-removal action itself.\nThe article does not give an AML/KYC or regulatory rationale, so\nthe motive remains contextual and is not claimed as direct.\n",
+            "scope_descriptor": {
+              "countries": [
+                "US"
+              ],
+              "providers": [
+                "bittrex"
+              ],
+              "time_window": [
+                "2021-01-01T00:00:00+00:00",
+                "2021-01-31T23:59:59+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://bittrexglobal.zendesk.com/hc/en-us/articles/6448634669083-Delisting-of-XMR-ZEC-DASH-and-GRIN"
+          },
+          {
             "body_hash": "sha256:ba86a3e7b95a384c04b8e01c605aa340bd79d92ad1860e9b9cd27e996a379da5",
             "body_path": "sources/http_captures/bittrex-privacy-coin-delisting-2021-01/primary/web.archive.org__web-20210105000000-https-www.coindesk.com-markets-2021-01-01-bittrex-to-delist-privacy-coins-monero-dash-and-zcash__20b4279319.html",
             "evidence_use": "replayable",
-            "note": "CoinDesk 2021-01-01: Bittrex XMR/ZEC/DASH market removal\n(effective 2021-01-15). attribution=plausible: the delisting is\ndirectly observed, but Bittrex gave no explicit reason, so the\nKYC/AML-compliance motive is the contextual inference rather\nthan a stated rationale.\n",
+            "note": "CoinDesk 2021-01-01: Bittrex XMR/ZEC/DASH market removal\n(effective 2021-01-15). Used as the announcement-date and\nU.S.-exchange-context anchor; the KYC/AML-compliance motive is\ncontextual rather than a stated Bittrex rationale.\n",
             "scope_descriptor": {
               "countries": [
                 "US"
@@ -7932,7 +7952,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "kraken-monero-eu-delisting-2024",
       "huobi-htx-privacy-coin-delisting-2024",
@@ -7940,7 +7960,7 @@
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Bittrex's 2021-01-15 removal of the Monero/Zcash/Dash trading markets\n(the first U.S.-exchange privacy-coin delisting) severed the Bittrex\nofframp for these assets; single-layer offramp_cex observed_change with\nattribution=plausible (no explicit Bittrex rationale stated).\"\n",
+    "scoped_claim": "\"Bittrex's 2021-01-15 removal of the Monero/Zcash/Dash trading markets\n(the first U.S.-exchange privacy-coin delisting) severed the Bittrex\nofframp for these assets; single-layer offramp_cex observed_change with\nattribution=direct for the market-removal action. No explicit Bittrex\nregulatory rationale is claimed.\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -7962,13 +7982,21 @@
         "dash"
       ],
       "enumeration": "complete",
-      "enumeration_note": "Three privacy-coin markets removed from Bittrex: Monero (XMR), Zcash\n(ZEC), Dash (DASH). Complete enumeration of the delisted asset set;\nthe action removes the Bittrex trading/offramp markets for these\nbase-chain assets (no contract; the assets remain on their own chains).\n",
+      "enumeration_note": "Three privacy-coin markets removed from Bittrex: Monero (XMR), Zcash\n(ZEC), Dash (DASH). Complete enumeration of the delisted asset set;\nthe action removes the Bittrex trading/offramp markets for these\nbase-chain assets (no contract; the assets remain on their own chains).\nThe official Bittrex Global support article also lists Grin (GRIN), but\nits footnote records a later May 2021 removal; this event retains the\nJanuary 2021 XMR/ZEC/DASH cohort only.\n",
       "kind": "asset"
     },
     "temporal_tier": "comparable_main_2017_present",
     "trigger": {
       "actor": "bittrex",
       "citation": [
+        {
+          "body_hash": "sha256:933c8cd6fb17fc7e94d67faec7ed7890dab04d61a18b2ca9f3917654e74205b4",
+          "body_path": "sources/http_captures/bittrex-privacy-coin-delisting-2021-01/official-bittrex-global/bittrexglobal.zendesk.com__hc-en-us-articles-6448634669083-Delisting-of-XMR-ZEC-DASH-and-GRIN__251360c3ae.html",
+          "evidence_use": "replayable",
+          "note": "Bittrex Global official support article \"Delisting of XMR, ZEC,\nDASH, and GRIN.\" The captured body states that Bittrex Global would\nremove Monero, Dash, Zcash, and Grin, and lists the Dash, Monero,\nand Zcash trading markets to be removed on 2021-01-15 23:00 UTC.\nIt is used as the first-party operator anchor for the market-removal\nmechanics. The article does not state a regulatory rationale; that\nmotive remains contextual rather than direct.\n",
+          "type": "primary_corporate",
+          "url": "https://bittrexglobal.zendesk.com/hc/en-us/articles/6448634669083-Delisting-of-XMR-ZEC-DASH-and-GRIN"
+        },
         {
           "body_hash": "sha256:ba86a3e7b95a384c04b8e01c605aa340bd79d92ad1860e9b9cd27e996a379da5",
           "body_path": "sources/http_captures/bittrex-privacy-coin-delisting-2021-01/primary/web.archive.org__web-20210105000000-https-www.coindesk.com-markets-2021-01-01-bittrex-to-delist-privacy-coins-monero-dash-and-zcash__20b4279319.html",
@@ -7992,13 +8020,17 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
+          "note": "Bittrex Global's official support article gives the effective market-\nremoval timestamp, 2021-01-15 23:00 UTC, for the Dash, Monero, and\nZcash market set retained in this row. The 2021-01-01 announcement\ndate remains anchored by contemporaneous CoinDesk/Decrypt coverage.\n",
+          "type": "primary_corporate"
+        },
+        {
           "note": "Day-level precision: announced 2021-01-01, effective 2021-01-15\n23:00 UTC per the cited coverage.\n",
           "type": "semi_primary_wayback"
         }
       ],
       "type": "corporate_policy_change"
     },
-    "version": "0.2"
+    "version": "0.3"
   },
   {
     "_source_file": "bitzlato-doj-2023.yaml",
@@ -18729,7 +18761,7 @@
   {
     "_source_file": "ecuador-national-assembly-bitcoin-ban-2014-07.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 source-strengthen. Pinned the official Codigo Organico Monetario y Financiero PDF (primary_legal, 156pp, Wayback-archived) \u2014 the legal basis (USD-only + prohibition of unauthorized payment methods); meets admission floor. attribution stays plausible (Code does not name bitcoin).)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,\nawaiting human admission). Ecuador's National Assembly amended the monetary/financial\ncode on 2014-07-23 to prohibit decentralized digital currencies (Bitcoin) while\nauthorizing a state-run electronic money system (Dinero Electronico). Historical-baseline\ntier (2014). One observed_change layer (offramp_cex / payment-rail prohibition) ->\nempirical_shape=comparison. attribution=plausible per codebook \u00a71.1 (journalism source,\nclass-level target). HUMAN REVIEW: locate and pin the primary Codigo Organico Monetario y\nFinanciero text to consider elevating to direct.\n",
+    "analysis_notes": "**QUALITY-LOOP REPAIR 2026-06-01** (automated source-link repair; no new\nhuman-audit stamp). The official Codigo Organico Monetario y Financiero PDF\nwas already captured and verified on the observation row; this repair promotes\nthe same replayable primary_legal artifact to trigger.citation so the legal\ninstrument no longer depends only on CoinDesk. Attribution stays plausible:\nthe primary legal text anchors the monetary/payment-law restriction, while the\nbitcoin-specific framing and 2014-07-23 assembly-vote timestamp remain carried\nby contemporaneous reporting.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 source-strengthen. Pinned the official Codigo Organico Monetario y Financiero PDF (primary_legal, 156pp, Wayback-archived) \u2014 the legal basis (USD-only + prohibition of unauthorized payment methods); meets admission floor. attribution stays plausible (Code does not name bitcoin).)\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,\nawaiting human admission). Ecuador's National Assembly amended the monetary/financial\ncode on 2014-07-23 to prohibit decentralized digital currencies (Bitcoin) while\nauthorizing a state-run electronic money system (Dinero Electronico). Historical-baseline\ntier (2014). One observed_change layer (offramp_cex / payment-rail prohibition) ->\nempirical_shape=comparison. attribution=plausible per codebook \u00a71.1 (journalism source,\nclass-level target). HUMAN REVIEW: locate and pin the primary Codigo Organico Monetario y\nFinanciero text to consider elevating to direct.\n",
     "analysis_use": "historical_baseline",
     "codebook_version": "3.0.0",
     "coverage": [
@@ -18768,7 +18800,7 @@
     "jurisdiction": [
       "EC"
     ],
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "ecuador_payment_rail_ecosystem",
@@ -18800,7 +18832,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "bolivia-bcb-crypto-prohibition-2014"
     ],
@@ -18830,6 +18862,15 @@
       "actor": "EC_NATIONAL_ASSEMBLY",
       "citation": [
         {
+          "body_hash": "sha256:f8ca23dec7c8d481e9bc5e5ac284e465ae7c9b6908474d76d319fc988f188478",
+          "body_path": "sources/http_captures/ecuador-national-assembly-bitcoin-ban-2014-07/primary/www.cosede.gob.ec__wp-content-uploads-2018-08-COMF.pdf__ce39262a7f.bin",
+          "evidence_use": "replayable",
+          "note": "Codigo Organico Monetario y Financiero (Registro Oficial 2014-09-12)\nprimary legal text. Local PDF extraction verifies the Asamblea Nacional\ncertification, the monetary/financial-code instrument, US-dollar legal-\ntender framing, and prohibition of monetary/payment circulation not\nauthorized by the Junta de Politica y Regulacion Monetaria y Financiera.\nThis primary_legal artifact anchors the legal instrument and class-level\npayment-rail restriction. The exact 2014-07-23 assembly-vote timestamp\nremains anchored by contemporaneous reporting; the legal text itself\ncertifies first/second debate dates and later publication/objection dates.\n",
+          "type": "primary_legal",
+          "url": "https://www.cosede.gob.ec/wp-content/uploads/2018/08/COMF.pdf",
+          "wayback": "https://web.archive.org/web/20260531042728/https://www.cosede.gob.ec/wp-content/uploads/2018/08/COMF.pdf"
+        },
+        {
           "body_hash": "sha256:f1b980f4d1e23822b5b771209bbb54688c388a1e109a22ea3edac51007556fbf",
           "body_path": "sources/http_captures/ecuador-national-assembly-bitcoin-ban-2014-07/primary/web.archive.org__web-20140725000000-https-www.coindesk.com-markets-2014-07-25-ecuador-bans-bitcoin-plans-own-digital-money__3ec3340cd2.html",
           "note": "National Assembly of Ecuador approved amendments to the country's monetary and\nfinancial laws (91 votes in favor) that prohibit decentralized digital currencies\n(Bitcoin) while authorizing a state-run electronic money system (Dinero\nElectronico). Reported 2014-07-25 by CoinDesk; the assembly vote occurred\n2014-07-23. The amended Codigo Organico Monetario y Financiero bars the\ncirculation of non-sanctioned digital currencies through any channel.\n",
@@ -18842,13 +18883,17 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
+          "note": "The Codigo Organico Monetario y Financiero PDF certifies Asamblea\nNacional debate/approval history and Registro Oficial publication, but\ndoes not by itself establish the 2014-07-23 news timestamp. Retained as\nthe primary legal-instrument date bracket rather than the sole timestamp\nanchor.\n",
+          "type": "primary_legal"
+        },
+        {
           "note": "Assembly vote 2014-07-23; bill then sent to President Correa for signature.",
           "type": "supporting_journalism"
         }
       ],
       "type": "nation_state_block"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "egold-doj-guilty-plea-2008-07.yaml",
@@ -47961,7 +48006,7 @@
   {
     "_source_file": "russia-dfa-law-2020.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by\nhuman:xiangwen as null_case. LoC Global Legal Monitor Wayback\n20210920180643 + Crowdfund Insider Wayback 20200805224916 reclassified\nsemi_primary_wayback (2 independent meets admission), replayable\nbody_hash. coverage_gap->observed_no_change. coverage[offramp_cex]\nnot_measured->measured. Federal Law 259-FZ (DFA Law) signed 2020-07-31,\neff 2021-01-01 - defines digital currency status, prohibits payments;\nframework law, no per-event rail cascade. null_event/null_case preserved.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-17**. Phase Wave 2.2D\ncomparable-main authoring pass for Russian Federal Law No. 259-FZ\n\"On Digital Financial Assets, Digital Currency, and Amendments to\nCertain Legislative Acts of the Russian Federation\", signed by\nPresident Vladimir Putin on 2020-07-31 and effective 2021-01-01.\norigin=agent_draft and status=draft; human re-verification of\n(i) the Library of Congress source URL reachability and Wayback\nsnapshot pinning, (ii) the Crowdfund Insider and Eurasian Group\njournalism snapshots, and (iii) any contemporaneous Russian\nasset-onchain or offramp class-level measurement is required\nbefore this event may be promoted to human_reviewed.\n\nWhy comparable_main / comparable_analysis tier: 2020 falls inside\nthe 2017+ comparable analysis frame. analysis_use=comparable_\nanalysis is the canonical form (codebook \u00a76); aliases\n\"comparative_analysis\" / \"contextual_baseline\" are not accepted\nby the validator.\n\nWhy empirical_shape=null_event / admission_tier=null_case: zero\nobserved_change observations. 259-FZ is foundational framework\nlaw that defines and circumscribes crypto activity in Russia but\ndid not actuate a per-event L0/L1/L3/L4/asset_onchain/offramp_cex\ncascade on the 2020-07-31 signing or 2021-01-01 effective date.\nThe downstream Russian enforcement vectors (2022-01-20 CBR\nconsultation paper, 2024-12 regional mining ban) are sibling\nevents. The single observation row is observation_kind=\ncoverage_gap with attribution=unknown, which does not contribute\ntoward empirical_shape or admission_tier per codebook \u00a73 / \u00a74.\nnull_event is the conservative shape consistent with the task-\nbrief hint.\n\nWhy trigger.type=regulatory_enforcement (NOT nation_state_block):\nper codebook \u00a75.1, regulatory_enforcement is the canonical trigger\ntype for non-US national regulator administrative enforcement that\nis NOT a network-layer or payment-rail block. 259-FZ is\nfoundational federal law defining cryptocurrency status and\ncircumscribing payment use; it is not itself a Roskomnadzor\nISP/DNS block directive nor an enacted payment-rail severance.\nnation_state_block is reserved for actuated ISP/DNS or payment-\nrail blocks (KZ shutdown, CN PBoC banking-rail severance, NG CBN,\nIN RBI, TR CBRT). research_stratum=S4_nation_state is permitted\nfor both trigger types per codebook \u00a75.2.\n\nWhy target.kind=entity / enumeration=subset: schema target_kinds\ndoes not include \"regulatory_class\"; entity is the closest enum\nfor a population/activity-class target. enumeration=subset rather\nthan complete because the law addresses an activity class\n(issuance, circulation, payment use) without a fixed roster of\nnamed entities. Matches the sibling russia-cbr-crypto-payment-\nban-2022 pattern.\n\nWhy all coverage layers are not_applicable except asset_onchain\nand offramp_cex: L0 \u2014 no Roskomnadzor blocking directive in the\nlaw; L1 \u2014 no consensus-layer primitive engaged; L3 \u2014 no public-\nRPC compliance substrate engaged; L4 \u2014 no frontend takedown\ndirective. asset_onchain (not_measured) \u2014 the law constrains\ncryptocurrency activity by Russian residents but does not\ndirectly actuate issuer-side admin freezes; future enforcement\nsub-events could populate. offramp_cex (not_measured) \u2014 the law\nprohibits payment use by Russian residents but did not actuate\na per-event off-ramp shock; coverage_gap row recorded.\n\nCross-temporal context: 259-FZ is the upstream foundational\nanchor for the Russian crypto regulatory regime. The 2022-01-20\nCBR consultation paper (russia-cbr-crypto-payment-ban-2022)\nproposed a fuller ban that was not enacted; the 2024-12 regional\nmining ban (russia-mining-regional-ban-2024-12) implemented a\npartial mining restriction. Together these three events form a\nwithin-jurisdiction longitudinal anchor for Russian federal\ncrypto-disposition. The task brief explicitly identifies 259-FZ\nas \"foundational law preceding the 2022 CBR payment ban and\n2024 mining laws\".\n\nEvidence-use posture: all three citations are marked\nevidence_use=contextual_unarchived because Wayback anchors are\nprovisional (year-prefix wildcard per codebook convention) and\nrequire specific snapshot timestamp re-pinning at human audit.\nPer task brief evidence_use=contextual_unarchived applies to all\nsources.\n",
+    "analysis_notes": "**QUALITY-LOOP REPAIR 2026-06-01** (automated source repair; no new\nhuman-audit stamp). The official publication.pravo.gov.ru page for\ndocument 0001202007310056 timed out from this network, so this repair\ncaptured the Russian Prosecutor General Office official government mirror\npage and its attached `0001202007310056.pdf` legal artifact. The HTML page\nis machine-readable and names Federal Law No. 259-FZ dated 2020-07-31; the\nattached PDF is replayable but image-based, so the detailed payment-use\nprohibition remains supported by the existing LoC and Crowdfund summaries.\nNo empirical-shape or null-event posture changed.\n\n**PROMOTED 2026-05-21** (c) Batch C-4 audit (S4 null_event group) by\nhuman:xiangwen as null_case. LoC Global Legal Monitor Wayback\n20210920180643 + Crowdfund Insider Wayback 20200805224916 reclassified\nsemi_primary_wayback (2 independent meets admission), replayable\nbody_hash. coverage_gap->observed_no_change. coverage[offramp_cex]\nnot_measured->measured. Federal Law 259-FZ (DFA Law) signed 2020-07-31,\neff 2021-01-01 - defines digital currency status, prohibits payments;\nframework law, no per-event rail cascade. null_event/null_case preserved.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-17**. Phase Wave 2.2D\ncomparable-main authoring pass for Russian Federal Law No. 259-FZ\n\"On Digital Financial Assets, Digital Currency, and Amendments to\nCertain Legislative Acts of the Russian Federation\", signed by\nPresident Vladimir Putin on 2020-07-31 and effective 2021-01-01.\norigin=agent_draft and status=draft; human re-verification of\n(i) the Library of Congress source URL reachability and Wayback\nsnapshot pinning, (ii) the Crowdfund Insider and Eurasian Group\njournalism snapshots, and (iii) any contemporaneous Russian\nasset-onchain or offramp class-level measurement is required\nbefore this event may be promoted to human_reviewed.\n\nWhy comparable_main / comparable_analysis tier: 2020 falls inside\nthe 2017+ comparable analysis frame. analysis_use=comparable_\nanalysis is the canonical form (codebook \u00a76); aliases\n\"comparative_analysis\" / \"contextual_baseline\" are not accepted\nby the validator.\n\nWhy empirical_shape=null_event / admission_tier=null_case: zero\nobserved_change observations. 259-FZ is foundational framework\nlaw that defines and circumscribes crypto activity in Russia but\ndid not actuate a per-event L0/L1/L3/L4/asset_onchain/offramp_cex\ncascade on the 2020-07-31 signing or 2021-01-01 effective date.\nThe downstream Russian enforcement vectors (2022-01-20 CBR\nconsultation paper, 2024-12 regional mining ban) are sibling\nevents. The single observation row is observation_kind=\ncoverage_gap with attribution=unknown, which does not contribute\ntoward empirical_shape or admission_tier per codebook \u00a73 / \u00a74.\nnull_event is the conservative shape consistent with the task-\nbrief hint.\n\nWhy trigger.type=regulatory_enforcement (NOT nation_state_block):\nper codebook \u00a75.1, regulatory_enforcement is the canonical trigger\ntype for non-US national regulator administrative enforcement that\nis NOT a network-layer or payment-rail block. 259-FZ is\nfoundational federal law defining cryptocurrency status and\ncircumscribing payment use; it is not itself a Roskomnadzor\nISP/DNS block directive nor an enacted payment-rail severance.\nnation_state_block is reserved for actuated ISP/DNS or payment-\nrail blocks (KZ shutdown, CN PBoC banking-rail severance, NG CBN,\nIN RBI, TR CBRT). research_stratum=S4_nation_state is permitted\nfor both trigger types per codebook \u00a75.2.\n\nWhy target.kind=entity / enumeration=subset: schema target_kinds\ndoes not include \"regulatory_class\"; entity is the closest enum\nfor a population/activity-class target. enumeration=subset rather\nthan complete because the law addresses an activity class\n(issuance, circulation, payment use) without a fixed roster of\nnamed entities. Matches the sibling russia-cbr-crypto-payment-\nban-2022 pattern.\n\nWhy all coverage layers are not_applicable except asset_onchain\nand offramp_cex: L0 \u2014 no Roskomnadzor blocking directive in the\nlaw; L1 \u2014 no consensus-layer primitive engaged; L3 \u2014 no public-\nRPC compliance substrate engaged; L4 \u2014 no frontend takedown\ndirective. asset_onchain (not_measured) \u2014 the law constrains\ncryptocurrency activity by Russian residents but does not\ndirectly actuate issuer-side admin freezes; future enforcement\nsub-events could populate. offramp_cex (not_measured) \u2014 the law\nprohibits payment use by Russian residents but did not actuate\na per-event off-ramp shock; coverage_gap row recorded.\n\nCross-temporal context: 259-FZ is the upstream foundational\nanchor for the Russian crypto regulatory regime. The 2022-01-20\nCBR consultation paper (russia-cbr-crypto-payment-ban-2022)\nproposed a fuller ban that was not enacted; the 2024-12 regional\nmining ban (russia-mining-regional-ban-2024-12) implemented a\npartial mining restriction. Together these three events form a\nwithin-jurisdiction longitudinal anchor for Russian federal\ncrypto-disposition. The task brief explicitly identifies 259-FZ\nas \"foundational law preceding the 2022 CBR payment ban and\n2024 mining laws\".\n\nEvidence-use posture: all three citations are marked\nevidence_use=contextual_unarchived because Wayback anchors are\nprovisional (year-prefix wildcard per codebook convention) and\nrequire specific snapshot timestamp re-pinning at human audit.\nPer task brief evidence_use=contextual_unarchived applies to all\nsources.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -48002,7 +48047,7 @@
     "jurisdiction": [
       "RU"
     ],
-    "last_verified": "2026-05-21",
+    "last_verified": "2026-06-01",
     "observations": [
       {
         "actor": "russia_resident_crypto_offramp_class",
@@ -48040,7 +48085,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "russia-cbr-crypto-payment-ban-2022",
       "russia-mining-regional-ban-2024-12"
@@ -48080,6 +48125,22 @@
       "actor": "RU_FEDERAL_LAW",
       "citation": [
         {
+          "body_hash": "sha256:d96837dc2d2264ce364420d6a405f9fa150962a77a6a55fb23cffae8ea799661",
+          "body_path": "sources/http_captures/russia-dfa-law-2020/official-genproc/epp.genproc.gov.ru__ru-proc_69-activity-combating-corruption-zakon-federal-e1274142__c0c6e222ea.html",
+          "evidence_use": "replayable",
+          "note": "Official Russian Prosecutor General Office regional page for\nFederal Law No. 259-FZ dated 2020-07-31, titled \"On Digital\nFinancial Assets, Digital Currency, and Amendments to Certain\nLegislative Acts of the Russian Federation\" and linking the\nofficial-law PDF attachment `0001202007310056.pdf`. Used as the\nreplayable government trigger anchor after the primary\npublication.pravo.gov.ru page timed out from this network.\n",
+          "type": "primary_government",
+          "url": "https://epp.genproc.gov.ru/ru/proc_69/activity/combating-corruption/zakon/federal/e1274142/"
+        },
+        {
+          "body_hash": "sha256:e8d3e525b371e6f4fc66a6407ccbc81f67cb9448294b5104fb6a350c2d66c873",
+          "body_path": "sources/http_captures/russia-dfa-law-2020/official-genproc/epp.genproc.gov.ru__upload-iblock-ecc-0lcdna46y4x18br587z1b0xps44tl0xt.pdf__19be3772f2.bin",
+          "evidence_use": "replayable",
+          "note": "Official PDF attachment from the Russian Prosecutor General Office\npage, named for the publication.pravo.gov.ru document identifier\n`0001202007310056.pdf`. The PDF is image-based in this local capture\n(`pdftotext` does not expose substantive article text), so it is used\nas a replayable visual/legal artifact for the 259-FZ instrument and\npaired with the page-level government metadata plus the existing LoC\nand Crowdfund summaries for machine-readable payment-use details.\n",
+          "type": "primary_legal",
+          "url": "https://epp.genproc.gov.ru/upload/iblock/ecc/0lcdna46y4x18br587z1b0xps44tl0xt.pdf"
+        },
+        {
           "body_hash": "sha256:2847c0f365eaa143a82c41587b75f315230dedf331f56abe3d3aac1c1ea6ae91",
           "body_path": "sources/http_captures/russia-dfa-law-2020/primary/web.archive.org__web-20210920180643-https-www.loc.gov-item-global-legal-monitor-2021-01-11-russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations__642ebaba84.html",
           "evidence_use": "contextual_unarchived",
@@ -48109,13 +48170,17 @@
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
+          "note": "The official Russian Prosecutor General Office page names Federal Law\nNo. 259-FZ as dated 2020-07-31 and links the `0001202007310056.pdf`\nlegal attachment. Day-level precision remains appropriate.\n",
+          "type": "primary_government"
+        },
+        {
           "note": "Federal Law No. 259-FZ carries a signing date of 2020-07-31\nby President Putin, with effective date 2021-01-01. Multiple\nsecondary sources (Library of Congress, Crowdfund Insider,\nDechert, IBA, Lexology) corroborate the 2020-07-31 signing.\nDay-level precision is appropriate.\n",
           "type": "primary_legal"
         }
       ],
       "type": "regulatory_enforcement"
     },
-    "version": "0.2"
+    "version": "0.3"
   },
   {
     "_source_file": "russia-election-interference-ofac-2020.yaml",

@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **270 release-ready** cases, **95 admitted-but-blocked** cases, admitted observation reliability
-      **285 high / 80 medium / 0 low**, and admitted attribution reliability **243 high / 122 medium / 0 low**.
+      **273 release-ready** cases, **92 admitted-but-blocked** cases, admitted observation reliability
+      **286 high / 79 medium / 0 low**, and admitted attribution reliability **244 high / 121 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -187,6 +187,13 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       primary_corporate anchor. Trigger, observation, and attribution now score high; attribution is direct for
       Binance's market-removal action, while the privacy/regulatory motive remains contextual because Binance
       used a generic listing-review rationale.
+      Follow-on primary/source repair also moved `ecuador-national-assembly-bitcoin-ban-2014-07`,
+      `russia-dfa-law-2020`, and `bittrex-privacy-coin-delisting-2021-01` out of the blocked queue. Ecuador now
+      cites the already captured official COMF PDF at trigger level while preserving plausible attribution for
+      the bitcoin-specific interpretation; Russia DFA now cites a replayable Russian Prosecutor General Office
+      mirror page plus its image-based 259-FZ PDF after `publication.pravo.gov.ru` timed out from this network;
+      Bittrex now cites the official Bittrex Global Zendesk delisting notice and uses direct attribution for the
+      market-removal action while leaving the regulatory/AML rationale contextual.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize remaining primary-trigger blockers and rows with

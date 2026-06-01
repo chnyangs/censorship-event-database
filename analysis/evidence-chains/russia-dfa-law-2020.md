@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `34b152d` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T05:22:19Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `0b7e0bd` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T09:13:36Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -18,6 +18,28 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://epp.genproc.gov.ru/ru/proc_69/activity/combating-corruption/zakon/federal/e1274142/>
+  - body_hash: `sha256:d96837dc2d2264ce364420d6a405f9fa150962a77a6a55fb23cffae8ea799661`
+  - body_path: `sources/http_captures/russia-dfa-law-2020/official-genproc/epp.genproc.gov.ru__ru-proc_69-activity-combating-corruption-zakon-federal-e1274142__c0c6e222ea.html`
+  > Official Russian Prosecutor General Office regional page for
+> Federal Law No. 259-FZ dated 2020-07-31, titled "On Digital
+> Financial Assets, Digital Currency, and Amendments to Certain
+> Legislative Acts of the Russian Federation" and linking the
+> official-law PDF attachment `0001202007310056.pdf`. Used as the
+> replayable government trigger anchor after the primary
+> publication.pravo.gov.ru page timed out from this network.
+- **`primary_legal`**
+  - URL: <https://epp.genproc.gov.ru/upload/iblock/ecc/0lcdna46y4x18br587z1b0xps44tl0xt.pdf>
+  - body_hash: `sha256:e8d3e525b371e6f4fc66a6407ccbc81f67cb9448294b5104fb6a350c2d66c873`
+  - body_path: `sources/http_captures/russia-dfa-law-2020/official-genproc/epp.genproc.gov.ru__upload-iblock-ecc-0lcdna46y4x18br587z1b0xps44tl0xt.pdf__19be3772f2.bin`
+  > Official PDF attachment from the Russian Prosecutor General Office
+> page, named for the publication.pravo.gov.ru document identifier
+> `0001202007310056.pdf`. The PDF is image-based in this local capture
+> (`pdftotext` does not expose substantive article text), so it is used
+> as a replayable visual/legal artifact for the 259-FZ instrument and
+> paired with the page-level government metadata plus the existing LoC
+> and Crowdfund summaries for machine-readable payment-use details.
 - **`semi_primary_wayback`**
   - URL: <https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/>
   - Wayback: <https://web.archive.org/web/20210920180643/https://www.loc.gov/item/global-legal-monitor/2021-01-11/russian-federation-new-bill-defines-cryptocurrency-proposes-tax-regulations/>
@@ -117,7 +139,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `34b152d`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `0b7e0bd`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

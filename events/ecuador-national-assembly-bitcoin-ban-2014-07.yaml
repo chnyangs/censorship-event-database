@@ -2,16 +2,16 @@ id: ecuador-national-assembly-bitcoin-ban-2014-07
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: historical_baseline_2013_2016
 analysis_use: historical_baseline
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - bolivia-bcb-crypto-prohibition-2014
@@ -22,6 +22,22 @@ trigger:
   timestamp: 2014-07-23T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_legal
+      url: https://www.cosede.gob.ec/wp-content/uploads/2018/08/COMF.pdf
+      wayback: https://web.archive.org/web/20260531042728/https://www.cosede.gob.ec/wp-content/uploads/2018/08/COMF.pdf
+      body_hash: sha256:f8ca23dec7c8d481e9bc5e5ac284e465ae7c9b6908474d76d319fc988f188478
+      body_path: sources/http_captures/ecuador-national-assembly-bitcoin-ban-2014-07/primary/www.cosede.gob.ec__wp-content-uploads-2018-08-COMF.pdf__ce39262a7f.bin
+      evidence_use: replayable
+      note: |
+        Codigo Organico Monetario y Financiero (Registro Oficial 2014-09-12)
+        primary legal text. Local PDF extraction verifies the Asamblea Nacional
+        certification, the monetary/financial-code instrument, US-dollar legal-
+        tender framing, and prohibition of monetary/payment circulation not
+        authorized by the Junta de Politica y Regulacion Monetaria y Financiera.
+        This primary_legal artifact anchors the legal instrument and class-level
+        payment-rail restriction. The exact 2014-07-23 assembly-vote timestamp
+        remains anchored by contemporaneous reporting; the legal text itself
+        certifies first/second debate dates and later publication/objection dates.
     - type: supporting_journalism
       url: https://web.archive.org/web/20140725000000/https://www.coindesk.com/markets/2014/07/25/ecuador-bans-bitcoin-plans-own-digital-money
       wayback: https://web.archive.org/web/20211018105941/https://www.coindesk.com/markets/2014/07/25/ecuador-bans-bitcoin-plans-own-digital-money/
@@ -35,6 +51,13 @@ trigger:
         2014-07-23. The amended Codigo Organico Monetario y Financiero bars the
         circulation of non-sanctioned digital currencies through any channel.
   timestamp_sources:
+    - type: primary_legal
+      note: |
+        The Codigo Organico Monetario y Financiero PDF certifies Asamblea
+        Nacional debate/approval history and Registro Oficial publication, but
+        does not by itself establish the 2014-07-23 news timestamp. Retained as
+        the primary legal-instrument date bracket rather than the sole timestamp
+        anchor.
     - type: supporting_journalism
       note: Assembly vote 2014-07-23; bill then sent to President Correa for signature.
 
@@ -111,6 +134,15 @@ observations:
           named target). Conservative choice pending primary-text verification.
 
 analysis_notes: |
+  **QUALITY-LOOP REPAIR 2026-06-01** (automated source-link repair; no new
+  human-audit stamp). The official Codigo Organico Monetario y Financiero PDF
+  was already captured and verified on the observation row; this repair promotes
+  the same replayable primary_legal artifact to trigger.citation so the legal
+  instrument no longer depends only on CoinDesk. Attribution stays plausible:
+  the primary legal text anchors the monetary/payment-law restriction, while the
+  bitcoin-specific framing and 2014-07-23 assembly-vote timestamp remain carried
+  by contemporaneous reporting.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 source-strengthen. Pinned the official Codigo Organico Monetario y Financiero PDF (primary_legal, 156pp, Wayback-archived) — the legal basis (USD-only + prohibition of unauthorized payment methods); meets admission floor. attribution stays plausible (Code does not name bitcoin).)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
   awaiting human admission). Ecuador's National Assembly amended the monetary/financial
