@@ -1081,6 +1081,73 @@ footer.site-footer {
   body { background: #fff; color: #000; }
   .section-card { break-inside: avoid; }
 }
+
+/* ---- Expressive analysis layer (findings + cross-layer viz) ---- */
+.viz-meter { height: 6px; border-radius: 999px; background: var(--bg-sunken); overflow: hidden; margin: .5rem 0; }
+.viz-meter > span { display: block; height: 100%; border-radius: 999px; }
+.viz-stack { display: flex; height: 14px; border-radius: 5px; overflow: hidden; background: var(--bg-sunken); }
+.viz-stack > span { display: block; height: 100%; }
+.viz-stack > span:not(:last-child) { box-shadow: 1px 0 0 var(--bg-card); }
+
+.findings-grid {
+  display: grid; gap: .9rem; margin: .4rem 0 1.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.finding-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.05rem;
+}
+.finding-number { font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.finding-label { margin-top: .35rem; font-weight: 600; font-size: .92rem; }
+.finding-detail { margin: .35rem 0 0; color: var(--text-muted); font-size: .82rem; line-height: 1.45; }
+
+.locus-board, .cov-board, .year-board { display: flex; flex-direction: column; gap: .5rem; margin: .3rem 0 1.6rem; }
+.locus-row { display: grid; grid-template-columns: 150px 1fr 110px; align-items: center; gap: .8rem; }
+.locus-name, .cov-name { display: flex; align-items: center; gap: .45rem; font-size: .9rem; font-weight: 600; }
+.locus-name .dot, .cov-name .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.locus-track { height: 18px; border-radius: 5px; background: var(--bg-sunken); overflow: hidden; }
+.locus-track > span { display: block; height: 100%; border-radius: 5px; }
+.locus-val { font-size: .85rem; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+.locus-val strong { color: var(--text); font-size: 1.05rem; }
+.locus-val .gap { color: var(--bad-fg); }
+
+.year-row { display: grid; grid-template-columns: 52px 1fr 42px; align-items: center; gap: .7rem; }
+.year-name { font-size: .82rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.year-track { width: var(--scale, 100%); min-width: 18px; }
+.year-val { font-size: .8rem; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+
+.cov-row { display: grid; grid-template-columns: 150px 1fr 80px; align-items: center; gap: .8rem; }
+.cov-track { }
+.cov-val { font-size: .8rem; color: var(--text-muted); text-align: right; }
+
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin: .2rem 0 .7rem; }
+.legend-item { display: inline-flex; align-items: center; gap: .35rem; font-size: .78rem; color: var(--text-muted); }
+.legend-item .sw, .ready-sub .sw { width: 11px; height: 11px; border-radius: 3px; flex: none; display: inline-block; }
+
+.jur-grid, .ready-grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: .3rem 0 1.6rem; }
+.jur-col, .ready-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.jur-col h3, .ready-head { margin: 0 0 .6rem; font-size: .95rem; }
+.jur-col h3 .meta { font-weight: 400; }
+.jur-row { display: grid; grid-template-columns: 96px 1fr 76px; align-items: center; gap: .6rem; margin: .3rem 0; }
+.jur-row.mini { grid-template-columns: 56px 1fr 40px; }
+.jur-name { font-size: .85rem; font-weight: 600; }
+.jur-track { height: 14px; border-radius: 4px; background: var(--bg-sunken); overflow: hidden; }
+.jur-track > span { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+.jur-val { font-size: .8rem; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+.jur-val strong { color: var(--text); }
+
+.ready-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .4rem; }
+.ready-head .meta { font-weight: 400; }
+.ready-block .viz-stack { height: 18px; }
+.ready-sub { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin-top: .55rem; font-size: .8rem; color: var(--text-muted); }
+.ready-sub span { display: inline-flex; align-items: center; gap: .35rem; }
+
+@media (max-width: 640px) {
+  .locus-row { grid-template-columns: 110px 1fr 76px; gap: .5rem; }
+  .cov-row { grid-template-columns: 110px 1fr; }
+  .cov-val { display: none; }
+  .locus-name, .cov-name { font-size: .8rem; }
+}
 """
 
 
@@ -2776,6 +2843,400 @@ def render_artifact_cards() -> str:
     return '<div class="artifact-grid">' + "".join(html_cards) + "</div>"
 
 
+# ---------------------------------------------------------------------------
+# Findings & cross-layer analysis (expressive dashboard layer)
+# ---------------------------------------------------------------------------
+
+ARCHETYPE_ORDER = [
+    "cex_only", "frontend_only", "asset_only",
+    "multi_layer", "other_single_layer", "null_event",
+]
+ARCHETYPE_LABEL = {
+    "cex_only": "Off-ramp / CEX",
+    "frontend_only": "Frontend",
+    "asset_only": "Asset on-chain",
+    "multi_layer": "Multi-layer cascade",
+    "other_single_layer": "Other single layer",
+    "null_event": "Null (no observed change)",
+}
+ARCHETYPE_COLOR = {
+    "cex_only": "var(--layer-offramp_cex)",
+    "frontend_only": "var(--layer-l4_frontend)",
+    "asset_only": "var(--layer-asset_onchain)",
+    "multi_layer": "var(--layer-l1_consensus)",
+    "other_single_layer": "var(--layer-l3_rpc)",
+    "null_event": "color-mix(in srgb, var(--text-soft) 55%, transparent)",
+}
+COVERAGE_ORDER = ["measured", "partially_measured", "not_measured", "not_applicable"]
+COVERAGE_LABEL = {
+    "measured": "measured",
+    "partially_measured": "partial",
+    "not_measured": "observability gap",
+    "not_applicable": "not applicable",
+}
+COVERAGE_COLOR = {
+    "measured": "var(--ok-fg)",
+    "partially_measured": "var(--warn-fg)",
+    "not_measured": "var(--bad-fg)",
+    "not_applicable": "color-mix(in srgb, var(--text-soft) 40%, transparent)",
+}
+EUROPE_CODES = {
+    "EU", "UK", "CH", "DE", "NL", "FR", "PL", "PT", "BE", "NO",
+    "DK", "IE", "ES", "IT", "AT", "SE", "FI", "CY", "MT", "LU",
+}
+
+
+def event_archetype(event: dict) -> str:
+    """Deterministic archetype (mirrors derived/event_archetypes rules)."""
+    ch = changed_layers(event)
+    n = len(ch)
+    if n == 0:
+        return "null_event"
+    if n >= 2:
+        return "multi_layer"
+    if ch == {"asset_onchain"}:
+        return "asset_only"
+    if ch == {"l4_frontend"}:
+        return "frontend_only"
+    if ch == {"offramp_cex"}:
+        return "cex_only"
+    return "other_single_layer"
+
+
+def compute_corpus_analytics(events: list[dict]) -> dict[str, Any]:
+    arch: collections.Counter = collections.Counter()
+    arch_by_year: dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
+    locus: collections.Counter = collections.Counter()
+    cov: dict[str, collections.Counter] = {L: collections.Counter() for L in LAYER_ORDER}
+    jur: collections.Counter = collections.Counter()
+    region: collections.Counter = collections.Counter()
+    evidence: collections.Counter = collections.Counter()
+    for e in events:
+        a = event_archetype(e)
+        arch[a] += 1
+        y = str((e.get("trigger") or {}).get("timestamp", ""))[:4]
+        if y.isdigit():
+            arch_by_year[y][a] += 1
+        for layer in changed_layers(e):
+            locus[layer] += 1
+        for row in e.get("coverage") or []:
+            if isinstance(row, dict) and row.get("layer") in cov:
+                cov[row["layer"]][row.get("status") or "unknown"] += 1
+        jset = set(e.get("jurisdiction") or [])
+        for j in jset:
+            jur[j] += 1
+        if "US" in jset:
+            region["US"] += 1
+        if jset & EUROPE_CODES:
+            region["Europe"] += 1
+        if "corporate_global" in jset:
+            region["Corporate"] += 1
+        if jset - EUROPE_CODES - {"US", "corporate_global", "UN"}:
+            region["Rest of world"] += 1
+        evidence[e.get("evidence_tier") or "admission_grade"] += 1
+    return {
+        "n": len(events),
+        "arch": arch,
+        "arch_by_year": arch_by_year,
+        "locus": locus,
+        "cov": cov,
+        "jur": jur,
+        "region": region,
+        "evidence": evidence,
+    }
+
+
+def load_review_readiness() -> dict[str, Any] | None:
+    """Canonical release-readiness rollup, parsed from analysis/review-report.md
+    (the project's own reported headline) so the dashboard matches the report
+    rather than re-deriving it. Falls back to None if the report is absent."""
+    try:
+        text = (REPO_ROOT / "analysis/review-report.md").read_text()
+    except (FileNotFoundError, OSError):
+        return None
+
+    def grab(label: str) -> int | None:
+        m = re.search(re.escape(label) + r":\s*`?(\d+)`?", text)
+        return int(m.group(1)) if m else None
+
+    ready = grab("Release-ready cases")
+    blocked = grab("Admitted but release-blocked cases")
+    if ready is None or blocked is None:
+        return None
+    return {
+        "ready": ready,
+        "blocked": blocked,
+        "total": ready + blocked,
+        "complete": grab("Fully complete release-ready cases") or 0,
+        "scoped": grab("Scope-limited release-ready cases") or 0,
+    }
+
+
+def _pct(n: int, d: int) -> float:
+    return (100.0 * n / d) if d else 0.0
+
+
+def viz_meter(pct: float, color: str, label: str = "") -> str:
+    """A single proportional fill bar."""
+    return (
+        f'<div class="viz-meter" title="{escape(label)}">'
+        f'<span style="width:{max(0.0, min(100.0, pct)):.1f}%;background:{color}"></span></div>'
+    )
+
+
+def viz_stack(segments: list[tuple[int, str, str]], total: int) -> str:
+    """A stacked proportional bar. segments = [(value, color, label)]."""
+    total = total or 1
+    parts = []
+    for value, color, label in segments:
+        if value <= 0:
+            continue
+        parts.append(
+            f'<span style="width:{_pct(value, total):.2f}%;background:{color}" '
+            f'title="{escape(label)}: {value} ({_pct(value, total):.0f}%)"></span>'
+        )
+    return f'<div class="viz-stack">{"".join(parts)}</div>'
+
+
+def render_findings_band(an: dict, region: collections.Counter) -> str:
+    n = an["n"] or 1
+    arch = an["arch"]
+    locus = an["locus"]
+    cex = arch.get("cex_only", 0)
+    casc = arch.get("multi_layer", 0)
+    l0 = locus.get("l0_network", 0)
+    us = region.get("US", 0)
+    nul = arch.get("null_event", 0)
+    findings = [
+        (f"{_pct(cex, n):.0f}%", cex, "land at the off-ramp (CEX) layer",
+         "The fiat off-ramp is where most observed crypto censorship lands — not the protocol.",
+         _pct(cex, n), "var(--layer-offramp_cex)"),
+        (f"{_pct(casc, n):.0f}%", casc, "are true multi-layer cascades",
+         "Cross-layer cascades are rare; most events change a single layer or none.",
+         _pct(casc, n), "var(--layer-l1_consensus)"),
+        (f"{l0}", l0, "events have an observed L0 network block",
+         "The network layer is almost never the observed locus (38 rows are observability gaps).",
+         _pct(l0, n), "var(--layer-l0_network)"),
+        (f"{_pct(us, n):.0f}%", us, "of events touch a US trigger",
+         "US enforcement dominates the corpus, with a long nation-state tail.",
+         _pct(us, n), "var(--accent)"),
+        (f"{_pct(nul, n):.0f}%", nul, "are null events (no observed change)",
+         "Designations with no measured downstream effect — denominator controls, not absences.",
+         _pct(nul, n), "color-mix(in srgb, var(--text-soft) 55%, transparent)"),
+    ]
+    cards = []
+    for big, _count, label, detail, pct, color in findings:
+        cards.append(
+            '<article class="finding-card">'
+            f'<div class="finding-number" style="color:{color}">{escape(big)}</div>'
+            f'<div class="finding-label">{escape(label)}</div>'
+            f'{viz_meter(pct, color)}'
+            f'<p class="finding-detail">{escape(detail)}</p>'
+            '</article>'
+        )
+    return f'<div class="findings-grid" aria-label="Headline findings">{"".join(cards)}</div>'
+
+
+def render_layer_locus(an: dict) -> str:
+    """Signature view: where observed censorship lands across the six layers."""
+    locus = an["locus"]
+    cov = an["cov"]
+    mx = max([locus.get(L, 0) for L in LAYER_ORDER] + [1])
+    ranked = sorted(LAYER_ORDER, key=lambda L: locus.get(L, 0), reverse=True)
+    rows = []
+    for layer in ranked:
+        v = locus.get(layer, 0)
+        gap = cov[layer].get("not_measured", 0)
+        gap_note = f' · <span class="gap">{gap} gap</span>' if gap else ""
+        rows.append(
+            '<div class="locus-row">'
+            f'<div class="locus-name"><span class="dot" style="background:var(--layer-{layer})"></span>{escape(LAYER_LABEL[layer])}</div>'
+            f'<div class="locus-track"><span style="width:{_pct(v, mx):.1f}%;background:var(--layer-{layer})"></span></div>'
+            f'<div class="locus-val"><strong>{v}</strong>{gap_note}</div>'
+            '</div>'
+        )
+    return f'<div class="locus-board">{"".join(rows)}</div>'
+
+
+def render_temporal_evolution(an: dict) -> str:
+    """Archetype mix by year — how the locus of censorship shifted over time."""
+    aby = an["arch_by_year"]
+    years = sorted(y for y in aby if y.isdigit())
+    if not years:
+        return ""
+    mx = max((sum(aby[y].values()) for y in years), default=1)
+    rows = []
+    for y in years:
+        c = aby[y]
+        tot = sum(c.values())
+        segs = [(c.get(a, 0), ARCHETYPE_COLOR[a], ARCHETYPE_LABEL[a]) for a in ARCHETYPE_ORDER]
+        rows.append(
+            '<div class="year-row">'
+            f'<div class="year-name">{escape(y)}</div>'
+            f'<div class="year-track" style="--scale:{_pct(tot, mx):.1f}%">{viz_stack(segs, tot)}</div>'
+            f'<div class="year-val">{tot}</div>'
+            '</div>'
+        )
+    legend = "".join(
+        f'<span class="legend-item"><span class="sw" style="background:{ARCHETYPE_COLOR[a]}"></span>{escape(ARCHETYPE_LABEL[a])}</span>'
+        for a in ARCHETYPE_ORDER
+    )
+    return f'<div class="legend">{legend}</div><div class="year-board">{"".join(rows)}</div>'
+
+
+def render_coverage_honesty(an: dict) -> str:
+    """Denominator honesty: measured vs partial vs observability-gap per layer."""
+    cov = an["cov"]
+    rows = []
+    for layer in LAYER_ORDER:
+        c = cov[layer]
+        tot = sum(c.get(s, 0) for s in COVERAGE_ORDER) or 1
+        segs = [(c.get(s, 0), COVERAGE_COLOR[s], COVERAGE_LABEL[s]) for s in COVERAGE_ORDER]
+        measured = c.get("measured", 0) + c.get("partially_measured", 0)
+        rows.append(
+            '<div class="cov-row">'
+            f'<div class="cov-name"><span class="dot" style="background:var(--layer-{layer})"></span>{escape(LAYER_LABEL[layer])}</div>'
+            f'<div class="cov-track">{viz_stack(segs, tot)}</div>'
+            f'<div class="cov-val">{measured} obs.</div>'
+            '</div>'
+        )
+    legend = "".join(
+        f'<span class="legend-item"><span class="sw" style="background:{COVERAGE_COLOR[s]}"></span>{escape(COVERAGE_LABEL[s])}</span>'
+        for s in COVERAGE_ORDER
+    )
+    return f'<div class="legend">{legend}</div><div class="cov-board">{"".join(rows)}</div>'
+
+
+def render_jurisdiction(an: dict) -> str:
+    jur = an["jur"]
+    region = an["region"]
+    n = an["n"] or 1
+    region_rows = []
+    for name in ("US", "Europe", "Rest of world", "Corporate"):
+        v = region.get(name, 0)
+        region_rows.append(
+            '<div class="jur-row">'
+            f'<div class="jur-name">{escape(name)}</div>'
+            f'<div class="jur-track"><span style="width:{_pct(v, n):.1f}%"></span></div>'
+            f'<div class="jur-val"><strong>{v}</strong> · {_pct(v, n):.0f}%</div>'
+            '</div>'
+        )
+    top = jur.most_common(12)
+    mx = max([v for _, v in top] + [1])
+    country_rows = []
+    for code, v in top:
+        country_rows.append(
+            '<div class="jur-row mini">'
+            f'<div class="jur-name"><code>{escape(code)}</code></div>'
+            f'<div class="jur-track"><span style="width:{_pct(v, mx):.1f}%"></span></div>'
+            f'<div class="jur-val">{v}</div>'
+            '</div>'
+        )
+    return (
+        '<div class="jur-grid">'
+        '<div class="jur-col"><h3>By region <span class="meta">(inclusive — events may touch several)</span></h3>'
+        f'{"".join(region_rows)}</div>'
+        '<div class="jur-col"><h3>Top jurisdictions</h3>'
+        f'{"".join(country_rows)}</div>'
+        '</div>'
+    )
+
+
+def render_readiness(an: dict, readiness: dict | None) -> str:
+    evidence = an["evidence"]
+    attested = evidence.get("attested_secondary", 0)
+    grade = evidence.get("admission_grade", 0)
+    blocks = []
+    if readiness:
+        total = readiness["total"] or 1
+        ready = readiness["ready"]
+        blocked = readiness["blocked"]
+        segs = [
+            (ready, "var(--ok-fg)", "release-ready"),
+            (blocked, "var(--warn-fg)", "admitted but blocked"),
+        ]
+        blocks.append(
+            '<div class="ready-block">'
+            '<div class="ready-head"><strong>Release readiness</strong>'
+            f'<span class="meta">{ready} ready · {blocked} blocked of {readiness["total"]} admitted</span></div>'
+            f'{viz_stack(segs, total)}'
+            '<div class="ready-sub">'
+            f'<span><span class="sw" style="background:var(--ok-fg)"></span>release-ready <strong>{ready}</strong> ({readiness["complete"]} complete · {readiness["scoped"]} scoped)</span>'
+            f'<span><span class="sw" style="background:var(--warn-fg)"></span>admitted but blocked <strong>{blocked}</strong></span>'
+            '</div></div>'
+        )
+    et_total = (grade + attested) or 1
+    et_segs = [
+        (grade, "var(--accent)", "admission_grade"),
+        (attested, "var(--layer-l4_frontend)", "attested_secondary"),
+    ]
+    blocks.append(
+        '<div class="ready-block">'
+        '<div class="ready-head"><strong>Evidence tier</strong>'
+        f'<span class="meta">codebook §10 · {attested} admitted below the strict floor, explicitly filterable</span></div>'
+        f'{viz_stack(et_segs, et_total)}'
+        '<div class="ready-sub">'
+        f'<span><span class="sw" style="background:var(--accent)"></span>admission_grade <strong>{grade}</strong></span>'
+        f'<span><span class="sw" style="background:var(--layer-l4_frontend)"></span>attested_secondary <strong>{attested}</strong></span>'
+        '</div></div>'
+    )
+    return f'<div class="ready-grid">{"".join(blocks)}</div>'
+
+
+def render_analysis_block(events: list[dict], meta: dict | None = None) -> str:
+    an = compute_corpus_analytics(events)
+    readiness = load_review_readiness()
+    return f"""
+  <div class="section-heading" id="findings">
+    <div>
+      <h2>What this corpus shows</h2>
+      <p class="meta">Headline patterns across the {an['n']} admitted records. These describe this curated corpus, not the external population of all censorship events.</p>
+    </div>
+  </div>
+  {render_findings_band(an, an['region'])}
+
+  <div class="section-heading" id="where-it-lands">
+    <div>
+      <h2>Where censorship lands</h2>
+      <p class="meta">Count of events with an <strong>observed change</strong> at each layer. The off-ramp (CEX) layer dominates; the network/consensus/RPC base is rarely the observed locus.</p>
+    </div>
+  </div>
+  {render_layer_locus(an)}
+
+  <div class="section-heading" id="evolution">
+    <div>
+      <h2>How the locus shifted over time</h2>
+      <p class="meta">Archetype mix by trigger year (bar length scaled to that year's event count). Off-ramp/CEX restrictions grew to dominate as the corpus moves toward the present.</p>
+    </div>
+  </div>
+  {render_temporal_evolution(an)}
+
+  <div class="section-heading" id="measurability">
+    <div>
+      <h2>Measurability &amp; the denominator</h2>
+      <p class="meta">Per-layer coverage status. An <span style="color:var(--bad-fg)">observability gap</span> means the layer is unmeasured under the frame — never read it as censorship absence.</p>
+    </div>
+  </div>
+  {render_coverage_honesty(an)}
+
+  <div class="section-heading" id="jurisdiction">
+    <div>
+      <h2>Jurisdictional concentration</h2>
+      <p class="meta">Which actors drive the corpus. Region rows are inclusive, so an event touching several regions counts in each.</p>
+    </div>
+  </div>
+  {render_jurisdiction(an)}
+
+  <div class="section-heading" id="readiness">
+    <div>
+      <h2>Evidence quality &amp; release readiness</h2>
+      <p class="meta">The corpus is transparent about what is release-ready vs still blocked, and which rows sit on the lower <code>attested_secondary</code> evidence tier.</p>
+    </div>
+  </div>
+  {render_readiness(an, readiness)}
+"""
+
+
 def render_index(events: list[dict], meta: dict | None = None) -> str:
     meta = meta or load_meta()
     dv = meta.get("dataset_version") or "unknown"
@@ -2897,6 +3358,7 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
   <div class="site-header-inner">
     <div class="brand"><a href="./index.html">Chain Censorship Events</a><span class="brand-tag">database</span></div>
     <div class="header-spacer"></div>
+    <a class="header-link optional" href="#findings">Findings</a>
     <a class="header-link optional" href="#layers">Layers</a>
     <a class="header-link optional" href="#artifacts">Artifacts</a>
     <a class="header-link optional" href="#events">Events</a>
@@ -2939,6 +3401,8 @@ def render_index(events: list[dict], meta: dict | None = None) -> str:
 
   {render_signal_cards(events, shape_counts, tier_counts)}
   {render_review_queue_dashboard()}
+
+  {render_analysis_block(events, meta)}
 
   <section class="boundary-note">
     <strong>Interpretation boundary.</strong>
