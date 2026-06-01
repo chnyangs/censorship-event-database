@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `c736a32` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `b6c6fae` · generated `2026-06-02T00:00:00Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -8,7 +8,7 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 
 | layer | applicable | measured | partial | not_measured | not_applicable | changed events (measured) | changed events (partial) | unique changed actions | duplicate action rows | changed/measured | changed/measured+partial |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `l0_network` | 39 | 0 | 3 | 36 | 326 | 0 | 3 | 3 | 0 | — | 3/3 (100.0%) |
+| `l0_network` | 38 | 0 | 3 | 35 | 327 | 0 | 3 | 3 | 0 | — | 3/3 (100.0%) |
 | `l1_consensus` | 19 | 8 | 8 | 3 | 346 | 2 | 8 | 10 | 0 | 2/8 (25.0%) | 10/16 (62.5%) |
 | `l3_rpc` | 16 | 1 | 6 | 9 | 349 | 1 | 5 | 6 | 0 | 1/1 (100.0%) | 6/7 (85.7%) |
 | `l4_frontend` | 132 | 55 | 21 | 56 | 233 | 50 | 18 | 74 | 0 | 50/55 (90.9%) | 68/76 (89.5%) |

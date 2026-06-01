@@ -11357,7 +11357,7 @@
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
     "scoped_claim": "\"OFAC designation of Chatex on 2021-11-08 produced a direct L4 frontend change within\n9 days in the form of an operator-posted compliance notice freezing customer withdrawals,\nmechanistically distinct from the same-quarter SUEX case (no frontend reaction) despite\nboth being foreign exchange entities sanctioned under the same policy push.\"\n",
-    "scoped_knowledge": "What changed: Chatex produced two admission-grade changed-layer observations:\na next-day asset-layer Circle USDC blacklist for 5 of 6 Ethereum addresses\nand a first-party chatex.com compliance notice nine days after designation.\n\nWhat did not change or could not be measured: L1 and L3 are structurally\nnot applicable because the event is pre-Merge and pre-public OFAC-compliant\nRPC substrates. L0 and counterparty off-ramp behavior remain not measured.\nThe 2023 Tether freeze is tracked only as a follow-on reaction via\n`tether-retroactive-sweep-2023`.\n\nAttribution: both retained changed layers are direct. The Circle action is\nanchored by on-chain blacklist evidence and the frontend notice itself names\nthe sanctions-listing trigger and customer-funds restriction.\n\nComparative value: Chatex is the cleanest operator-compliance frontend case.\nIt contrasts with SUEX and Sinbad foreign-operator persistence, and with\nCryptex / BTC-e law-enforcement seizure banners.\n",
+    "scoped_knowledge": "What changed: Chatex produced two admission-grade changed-layer observations:\na next-day asset-layer Circle USDC blacklist for 5 of 6 Ethereum addresses\nand a first-party chatex.com compliance notice nine days after designation.\n\nWhat did not change or could not be measured: L1 and L3 are structurally\nnot applicable because the event is pre-Merge and pre-public OFAC-compliant\nRPC substrates. L0 and counterparty off-ramp behavior remain not measured.\nThe 2023 Tether freeze is tracked only as a follow-on reaction via\n`tether-retroactive-sweep-2023`.\n\nAttribution: both retained changed layers are direct. The Circle action is\nanchored by on-chain blacklist evidence and the frontend notice itself names\nthe sanctions-listing trigger and customer-funds restriction.\n\nComparative value: Chatex is the cleanest operator-compliance frontend case.\nIt contrasts with SUEX / Grinex foreign-operator persistence, Sinbad's\nsame-week seizure-before-OFAC null control, and Cryptex / BTC-e\nlaw-enforcement seizure banners.\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -54599,7 +54599,7 @@
   {
     "_source_file": "sinbad-doj-2024.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\n**Brief-vs-reality discrepancy documented (per brief instruction).** The\nauthoring brief specified `trigger.timestamp=2024-02-21T00:00:00Z` and an\noperator name \"Mehdi Borchashvili (or successor \u2014 verify against DOJ\npress release).\" Cross-checking against the canonical DOJ press release\nsurfaced three corrections:\n  (1) The DOJ press release announcing the Sinbad operator indictment is\n      dated 2025-01-10 (NOT 2024-02-21); the underlying NDGA grand-jury\n      indictment was returned 2025-01-07. No DOJ Sinbad-specific press\n      release exists for 2024-02-21.\n  (2) The DOJ-indicted operators are three Russian nationals \u2014 Roman\n      Vitalyevich Ostapenko, Alexander Evgenievich Oleynik, and Anton\n      Vyachlavovich Tarasov \u2014 NOT \"Mehdi Borchashvili.\" Per separate\n      WIRED reporting, \"Mehdi\" is the alias used by Sinbad's claimed\n      founder, but the DOJ indictment does not name any \"Borchashvili\"\n      and does not resolve whether the \"Mehdi\" persona maps to any of\n      the three indicted Russian nationals.\n  (3) The actor is US_DOJ_NDGA (Office of Public Affairs press release\n      announcing an NDGA grand-jury indictment), not a generic US_DOJ.\n      The canonical sinbad.io domain was already seized on 2023-11-27\n      (i.e. ~2 days BEFORE the OFAC SDN \u2014 not \"~3 months later\" as the\n      brief asserted) via FBI seizure warrant in coordinated action with\n      Netherlands FIOD and Finland NBI. The 2025-01-10 DOJ event is\n      therefore the criminal-charges-against-operator companion to the\n      2023-11-27 same-week seizure, not a free-standing post-OFAC\n      seizure.\nThese corrections are applied to the row; the brief's intent (capture\nthe DOJ side of the Sinbad enforcement complex, distinct from the OFAC\nSDN at sinbad-ofac-2023) is preserved.\n\ncomparison \u2014 Sinbad-DOJ-2024 (now 2025-01-10) is a structural twin of\nhelix-doj-mixer-2020 (single-jurisdiction US operator indictment) and a\ncousin of chipmixer-doj-2023 / samourai-doj-2024 (coordinated US +\nEuropean seizure-plus-indictment). Unlike chipmixer / samourai (where\ndomain seizure and operator indictment landed on the same day),\nSinbad's enforcement was time-split: the 2023-11-27 domain seizure\nproduced the same-week L4 effect (recorded contextually via\nsinbad-ofac-2023 and the contemporaneous-reporting trail), while this\n2025-01-10 event records the operator-state transition that closes the\nloop ~13 months later. Two observed_change layers (l4_frontend +\nofframp_cex) with direct attribution \u2192 empirical_case admission tier\nwith comparison shape.\n\nDistinguishing structural feature vs. the mixer-indictment comparison\nset: Sinbad uniquely shows a coordinated multi-jurisdictional seizure\n(US + NL + Finland) PAIRED WITH a single-jurisdictional US-only\noperator indictment ~13 months later. Finland (FI) is not in the\ncontrolled jurisdictions vocab; the cooperating Finnish NBI role is\ndocumented narratively but not as a jurisdiction enum entry.\n\nFollow-up directions for the next human audit pass: (a) pin a verified\nWayback capture of the 2025-01-10 DOJ press release with body_hash /\nbody_path; (b) capture the 2023-11-27 FBI seizure banner page at\nsinbad.io (currently only narratively cited) \u2014 this would convert one\nof the two observation rows from indictment-anchored to seizure-banner\nanchored; (c) attempt to resolve the \"Mehdi\" alias \u2194 Ostapenko /\nOleynik / Tarasov mapping question; (d) reconcile the apparent\ninconsistency between the sinbad-ofac-2023 L4 observed_no_change\n(sinbad.io reachable through 2023-12-09 per Wayback) and this row's\nprimary-legal assertion that the domain was seized 2023-11-27 \u2014 likely\nexplained by a mirror domain vs. canonical-domain distinction, but\nshould be verified.\n",
+    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase A.1 of comprehensive collection plan; us_federal_enforcement frame discovery): authored by LLM agent without personally verifying Wayback/body_hash; origin=human_reviewed required by validator. Real release must replace this DRYRUN marker with a human-verified audit after pinning real archive anchors.\n\n**Brief-vs-reality discrepancy documented (per brief instruction).** The\nauthoring brief specified `trigger.timestamp=2024-02-21T00:00:00Z` and an\noperator name \"Mehdi Borchashvili (or successor \u2014 verify against DOJ\npress release).\" Cross-checking against the canonical DOJ press release\nsurfaced three corrections:\n  (1) The DOJ press release announcing the Sinbad operator indictment is\n      dated 2025-01-10 (NOT 2024-02-21); the underlying NDGA grand-jury\n      indictment was returned 2025-01-07. No DOJ Sinbad-specific press\n      release exists for 2024-02-21.\n  (2) The DOJ-indicted operators are three Russian nationals \u2014 Roman\n      Vitalyevich Ostapenko, Alexander Evgenievich Oleynik, and Anton\n      Vyachlavovich Tarasov \u2014 NOT \"Mehdi Borchashvili.\" Per separate\n      WIRED reporting, \"Mehdi\" is the alias used by Sinbad's claimed\n      founder, but the DOJ indictment does not name any \"Borchashvili\"\n      and does not resolve whether the \"Mehdi\" persona maps to any of\n      the three indicted Russian nationals.\n  (3) The actor is US_DOJ_NDGA (Office of Public Affairs press release\n      announcing an NDGA grand-jury indictment), not a generic US_DOJ.\n      The canonical sinbad.io domain was already seized on 2023-11-27\n      (i.e. ~2 days BEFORE the OFAC SDN \u2014 not \"~3 months later\" as the\n      brief asserted) via FBI seizure warrant in coordinated action with\n      Netherlands FIOD and Finland NBI. The 2025-01-10 DOJ event is\n      therefore the criminal-charges-against-operator companion to the\n      2023-11-27 same-week seizure, not a free-standing post-OFAC\n      seizure.\nThese corrections are applied to the row; the brief's intent (capture\nthe DOJ side of the Sinbad enforcement complex, distinct from the OFAC\nSDN at sinbad-ofac-2023) is preserved.\n\ncomparison \u2014 Sinbad-DOJ-2024 (now 2025-01-10) is a structural twin of\nhelix-doj-mixer-2020 (single-jurisdiction US operator indictment) and a\ncousin of chipmixer-doj-2023 / samourai-doj-2024 (coordinated US +\nEuropean seizure-plus-indictment). Unlike chipmixer / samourai (where\ndomain seizure and operator indictment landed on the same day),\nSinbad's enforcement was time-split: the 2023-11-27 domain seizure\nproduced the same-week L4 effect (recorded contextually via\nsinbad-ofac-2023 and the contemporaneous-reporting trail), while this\n2025-01-10 event records the operator-state transition that closes the\nloop ~13 months later. Two observed_change layers (l4_frontend +\nofframp_cex) with direct attribution \u2192 empirical_case admission tier\nwith comparison shape.\n\nDistinguishing structural feature vs. the mixer-indictment comparison\nset: Sinbad uniquely shows a coordinated multi-jurisdictional seizure\n(US + NL + Finland) PAIRED WITH a single-jurisdictional US-only\noperator indictment ~13 months later. Finland (FI) is not in the\ncontrolled jurisdictions vocab; the cooperating Finnish NBI role is\ndocumented narratively but not as a jurisdiction enum entry.\n\nFollow-up directions for the next human audit pass: (a) pin a verified\nWayback capture of the 2025-01-10 DOJ press release with body_hash /\nbody_path; (b) capture the earliest available 2023-11-27/2023-11-29 FBI\nseizure banner page at sinbad.io as direct L4 evidence; (c) attempt to\nresolve the \"Mehdi\" alias \u2194 Ostapenko / Oleynik / Tarasov mapping\nquestion. The prior apparent inconsistency with sinbad-ofac-2023 is now\nresolved: those sibling Wayback captures show seizure banners, not an\noperational post-OFAC Sinbad frontend.\n",
     "analysis_use": "comparable_analysis",
     "codebook_version": "1.0.0",
     "coverage": [
@@ -54625,7 +54625,7 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "The canonical sinbad.io frontend was juridically anchored as seized by\nthe time of this 2025-01-10 DOJ indictment unsealing: the domain was\ntaken down on 2023-11-27 via FBI seizure warrant in coordinated\naction with the Netherlands FIOD and Finland NBI (~roughly 13 months\nprior). The 2025-01-10 operator indictment converts the frontend's\nstate from \"seized but operator at large / under investigation\" to\n\"seized + named operators indicted + 2 of 3 arrested\" \u2014 a structural\nfinality on the frontend layer. attribution=direct via the DOJ\nprimary-legal anchor, which explicitly references the prior\ndomain-seizure operation. Sibling row sinbad-ofac-2023 records\nsinbad.io was reachable through at least 2023-12-09 (the Wayback\nanchors there reflect the operator's pre-seizure mirror, not the\nseized-domain banner \u2014 the seizure took effect at the canonical\nsinbad.io address on 2023-11-27 according to the DOJ release and\ncontemporaneous reporting; the 2023-12-09 sibling capture appears to\nreflect either a still-live mirror or a Wayback-archived snapshot of\nan unseized variant. This discrepancy is left as a known\ncross-event-anchor question for the next human audit pass).\n",
+        "note": "The canonical sinbad.io frontend was juridically anchored as seized by\nthe time of this 2025-01-10 DOJ indictment unsealing: the domain was\ntaken down on 2023-11-27 via FBI seizure warrant in coordinated\naction with the Netherlands FIOD and Finland NBI (~roughly 13 months\nprior). The 2025-01-10 operator indictment converts the frontend's\nstate from \"seized but operator at large / under investigation\" to\n\"seized + named operators indicted + 2 of 3 arrested\" \u2014 a structural\nfinality on the frontend layer. attribution=direct via the DOJ\nprimary-legal anchor, which explicitly references the prior\ndomain-seizure operation. Sibling row sinbad-ofac-2023 now records\nthe corrected Wayback interpretation: the 2023-11-29 and 2023-12-09\ncaptures are canonical-domain seizure-banner pages, not proof that\nthe pre-seizure mixer frontend remained operational after OFAC\ndesignation.\n",
         "scope": [
           "sinbad.io"
         ],
@@ -54773,17 +54773,17 @@
   {
     "_source_file": "sinbad-ofac-2023.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**LAST_HUMAN_AUDIT STAMP \u2014 DRYRUN 2026-05-15**: stamped by automated pipeline-demo per `analysis/null_audits/AGGREGATE.md`. Both LLM cross-audit agents (A,B) converged on `pass` or `pass_with_concerns`; this stamp records that the case has been pre-screened by 2 LLM agents and would be a human-audit candidate for the next iteration. The corpus-wide `offramp_cex.measured` convention concern is unresolved (see AGGREGATE.md P2). For a real release, replace this DRYRUN marker with a human-verified audit.\n\n  null_event documenting the 2023-11-29 OFAC designation of the Sinbad Bitcoin\nmixer as a Tornado Cash successor for DPRK laundering. The cross-layer cascade shape is\nfundamentally different from Ethereum-protocol cases because (a) Bitcoin has no PBS / relay\ncensorship analogue (L1 not_applicable), (b) Bitcoin has no issuer freeze (asset_onchain\nnot_applicable), and (c) the mixer operates its own domain rather than depending on a\nsmart-contract protocol that lives on-chain.\n\nThe one grounded observation is at L4 frontend: sinbad.io remained reachable and\ncontent-identical from event day through at least 10 days post-event. This is a\npaper-worthy contrast to the Tornado 2022 L4 observation (tornado.cash was taken offline\nwithin ~22 hours). The difference reflects infrastructure ownership: Tornado's canonical\nfrontend was hosted via Cloudflare / Fleek-adjacent US infrastructure and was taken down by\ncompliance-driven service providers, whereas Sinbad operated its own domain + onion mirror\nand was not subject to US-side takedown pressure in the short term.\n\nFollow-up directions (post-admission): (1) CEX compliance statements or chain-analytics reports tying the 2 BTC\naddresses to specific exchange freezes; (2) follow-up Wayback snapshots through 2024 to\ndocument the eventual fate of sinbad.io (did operators eventually abandon the domain?); and\n(3) any public-press or DOJ action against Sinbad operators.\n",
+    "analysis_notes": "**SOURCE/COVERAGE/CLAIM REPAIRED 2026-06-02** (quality-loop semantic repair):\nverified the existing OFAC Recent Actions, Treasury press-release, and\nsinbad.io Wayback captures by body hash; marked the row primary-source\nverified; and corrected the L4 interpretation. The local Wayback bodies do\nnot support the earlier \"frontend remained operational\" phrasing: both the\n2023-11-29 and 2023-12-09 captures are seizure-banner pages. This row is\ntherefore retained as a null-control for additional OFAC-triggered L4 change\nafter the same-week law-enforcement seizure state was already visible, not as\na foreign-operator frontend-persistence example. L0 network blocking is out\nof scope because no ISP/DNS censorship action is asserted. Off-ramp/CEX\neffects remain explicitly unmeasured until a public per-event exchange or\nchain-analytics slice names the two Sinbad BTC addresses.\n\n**LAST_HUMAN_AUDIT STAMP \u2014 DRYRUN 2026-05-15**: stamped by automated pipeline-demo per `analysis/null_audits/AGGREGATE.md`. Both LLM cross-audit agents (A,B) converged on `pass` or `pass_with_concerns`; this stamp records that the case has been pre-screened by 2 LLM agents and would be a human-audit candidate for the next iteration. The corpus-wide `offramp_cex.measured` convention concern is unresolved (see AGGREGATE.md P2). For a real release, replace this DRYRUN marker with a human-verified audit.\n\n  null_event documenting the 2023-11-29 OFAC designation of the Sinbad Bitcoin\nmixer as a Tornado Cash successor for DPRK laundering. The cross-layer cascade shape is\nfundamentally different from Ethereum-protocol cases because (a) Bitcoin has no PBS / relay\ncensorship analogue (L1 not_applicable), (b) Bitcoin has no issuer freeze (asset_onchain\nnot_applicable), and (c) the mixer operates its own domain rather than depending on a\nsmart-contract protocol that lives on-chain.\n\nThe one grounded observation is at L4 frontend: sinbad.io served a\nlaw-enforcement seizure banner on event day and still served a seizure banner\n10 days later. This makes the row a same-week enforcement-sequencing null:\nthe public OFAC SDN designation is not treated as the L4 takedown trigger\nbecause the canonical-domain seizure state was already visible in the\nWayback captures. The row should not be used as evidence that Sinbad's\ncanonical frontend remained operational after designation.\n\nFollow-up directions (post-admission): (1) CEX compliance statements or chain-analytics reports tying the 2 BTC\naddresses to specific exchange freezes; (2) follow-up Wayback snapshots through 2024 to\ndocument the eventual fate of sinbad.io (did operators eventually abandon the domain?); and\n(3) any public-press or DOJ action against Sinbad operators.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across the following domain\u00d7window\ncombinations:\n  sinbad.io  2023-10-29..2023-12-29  -> 0 results\nAggregate across all queried domains: **0 / 1 domains\nreturned any OONI volunteer measurements in the relevant windows**.\nArtifact: sources/l0_datasets/sinbad-ofac-2023/sinbad.io__ooni.json\n(body_hash sha256:49ee17fdf4f0ed0625fa39f3348845b36a70ec3e5119d364f06d95153c6762c6).\nMeasurement-gap finding: OONI volunteer probe coverage of the\ncrypto-infrastructure domains in scope is effectively absent for\nthese windows; L0 remains not_measured (with attested negative\nquery) until Censored Planet raw ingestion or another L0 source\nis wired in.\n",
+        "note": "The retained null-control claim is not an ISP/DNS/national-firewall block.\nSinbad is modeled here as an OFAC SDN designation plus a measured\ncanonical-domain seizure-banner state at L4. The earlier OONI API query\nfound 0 public web_connectivity measurements for sinbad.io during\n2023-10-29..2023-12-29 (artifact:\nsources/l0_datasets/sinbad-ofac-2023/sinbad.io__ooni.json; body_hash\nsha256:49ee17fdf4f0ed0625fa39f3348845b36a70ec3e5119d364f06d95153c6762c6),\nbut absence of OONI volunteer data is not used as a claim-bearing L0\nobservation because no L0 censorship action is asserted.\n",
         "scope": [
           "sinbad.io"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "chain": "bitcoin",
@@ -54799,7 +54799,7 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "Canonical sinbad.io domain verified reachable and content-identical on 2023-11-29 (event\nday, snapshot at 23:25 UTC) and 2023-12-09 (10 days post-event); Wayback digests match,\nindicating no operator takedown and no US-side CDN drop in that window. Attached as\nobserved_no_change.\n",
+        "note": "Wayback captures show that the canonical sinbad.io domain was already\nserving a law-enforcement seizure banner on 2023-11-29 at 23:25 UTC and\nstill served a seizure banner on 2023-12-09. The observation is therefore\nnot evidence of operational frontend persistence; it is a scoped\nobserved_no_change row showing no additional OFAC-triggered L4 transition\nafter the same-week FBI / FIOD / NBI seizure state was already visible.\n",
         "scope": [
           "sinbad.io"
         ],
@@ -54830,13 +54830,13 @@
       "US"
     ],
     "last_human_audit": "2026-05-15",
-    "last_verified": "2026-04-21",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "frontend:sinbad_io",
         "attribution": "none",
         "delta_hours": 23.4,
-        "event": "canonical_frontend_remained_reachable_and_unchanged_through_designation",
+        "event": "canonical_frontend_seizure_banner_persisted_after_ofac_designation",
         "layer": "l4_frontend",
         "observation_kind": "observed_no_change",
         "precision": "minute",
@@ -54845,14 +54845,16 @@
             "body_hash": "sha256:c97c13e8e6f23839ea53e5bc2f8f7b3a69894fb6c72c4ee34f6174e1a2566ba4",
             "body_path": "sources/http_captures/sinbad-ofac-2023/frontend-wayback/web.archive.org__web-20231129232541-http-sinbad.io__a971040b77.html",
             "evidence_group_id": "sinbad-io-wayback-same-day",
-            "note": "Wayback snapshot on event day 2023-11-29 at 23:25:41 UTC (\u224823 hours after the OFAC\ndesignation was posted). Response 200, digest IS6YYGAQL2HB2VBBPESTEURU4ZVB236P. Same\ndigest observed at 2023-11-30 08:09 and 2023-12-04 (revisit) per Wayback CDX \u2014\ncontent was identical through early December.\n",
+            "evidence_use": "replayable",
+            "note": "Wayback snapshot on event day 2023-11-29 at 23:25:41 UTC (\u224823 hours\nafter the OFAC designation was posted). Response 200; page title and\nimage alt text state that the service had been seized in a coordinated\nlaw-enforcement action by the FBI, Netherlands FIOD, and Finland NBI.\nThis supports an already-seized canonical-domain state, not an\noperational Sinbad frontend.\n",
             "type": "semi_primary_wayback",
             "url": "https://web.archive.org/web/20231129232541/http://sinbad.io/"
           },
           {
             "body_hash": "sha256:f9528eab19a8bf734e03bd9419677740b07408c22c9cbcde31a665e8ba4c83fb",
             "body_path": "sources/http_captures/sinbad-ofac-2023/frontend-wayback/web.archive.org__web-20231209124309-https-sinbad.io__65c801905c.html",
-            "note": "Second Wayback snapshot 10 days post-event (2023-12-09 12:43 UTC); 200 OK, digest\nFI6T7CEP7FCV7ODO6YLF66RALUWSH5SL \u2014 a variant of the earlier page but with matching\ncore structure, demonstrating the frontend remained operational. Independent anchor\nfrom the event-day snapshot.\n",
+            "evidence_use": "replayable",
+            "note": "Second Wayback snapshot 10 days post-event (2023-12-09 12:43 UTC);\n200 OK with the same \"This Website Has Been Seized\" title and seizure\nbanner text. This anchors persistence of the seizure-banner state\nafter the OFAC designation, not persistence of the pre-seizure mixer\nservice.\n",
             "type": "semi_primary_wayback",
             "url": "https://web.archive.org/web/20231209124309/https://sinbad.io/"
           }
@@ -54865,10 +54867,10 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"OFAC designation of the Sinbad Bitcoin mixer on\n2023-11-29 did not cause a short-term takedown of the canonical sinbad.io frontend\n(reachable with identical content 23 hours post-event and 10 days post-event), in\nstructural contrast to the Ethereum-protocol Tornado Cash 2022 case where frontend\ndisruption occurred within ~22 hours.\"\n",
+    "scoped_claim": "\"OFAC designated the Sinbad Bitcoin mixer on 2023-11-29. Local Wayback\ncaptures show the canonical sinbad.io domain was already serving a coordinated\nlaw-enforcement seizure banner 23 hours after the OFAC posting and still\nserved a seizure banner 10 days later. This row is a null-control for\nadditional OFAC-triggered L4 change, not evidence that the pre-seizure\nSinbad frontend remained operational.\"\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -54901,6 +54903,7 @@
         {
           "body_hash": "sha256:ec3e5d7d3d5c0e7e5bc70c4241ccbcb57d329294be09724fdd736cd5ba3af850",
           "body_path": "sources/http_captures/sinbad-ofac-2023/ofac-recent-actions/ofac.treasury.gov__recent-actions-20231129__1876f9adb5.html",
+          "evidence_use": "replayable",
           "note": "OFAC Recent Actions page for 2023-11-29. SDN entry SINBAD (a.k.a. SINBAD.IO) \u2014 Bitcoin\nmixer, DPRK-linked; tags [DPRK3] [CYBER2]; designated as a Tornado Cash-successor mixer.\n2 XBT addresses attached to the entity SDN entry; no ETH / stablecoin addresses on this\nevent.\n",
           "type": "primary_legal",
           "url": "https://ofac.treasury.gov/recent-actions/20231129",
@@ -54909,7 +54912,7 @@
         {
           "body_hash": "sha256:8953cd84fc18034316fcf2a5eaca663dd7669d7a603f1485f605b3f8f26351f7",
           "body_path": "sources/http_captures/sinbad-ofac-2023/v0_3_repair/home.treasury.gov__news-press-releases-jy1933__e05f867e9a.html",
-          "evidence_use": "contextual_unarchived",
+          "evidence_use": "replayable",
           "note": "Treasury press release \"Treasury Sanctions Mixer Used by the DPRK\" (2023-11-29).",
           "type": "primary_legal",
           "url": "https://home.treasury.gov/news/press-releases/jy1933"
@@ -54925,7 +54928,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "singapore-mas-binance-services-2021.yaml",
@@ -67811,7 +67814,7 @@
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No OONI / Censored Planet query attempted for hosting-related domains within the event window; substrate-shaped gap, not a coverage_gap observation. Sibling `sinbad-ofac-2023` sets the L0-honesty bar with an attested OONI-negative query \u2014 applying the same standard would require either an OONI/CP probe of `zservers.ru` or an explicit \"no domain to probe\" justification.",
+        "note": "No OONI / Censored Planet query attempted for hosting-related domains within the event window; substrate-shaped gap, not a coverage_gap observation. Sibling `sinbad-ofac-2023` retains an OONI-negative artifact for provenance, but its repaired public claim does not use that artifact as a claim-bearing L0 observation. Applying an L0 standard here would require either an OONI/CP probe of `zservers.ru` or an explicit \"no domain to probe\" justification.",
         "status": "not_measured"
       },
       {

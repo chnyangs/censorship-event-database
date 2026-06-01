@@ -2,17 +2,18 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `c736a32` · **Schema**: `0.2.0` · **Event last_verified**: `2026-04-21` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `b6c6fae` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "OFAC designation of the Sinbad Bitcoin mixer on
-> 2023-11-29 did not cause a short-term takedown of the canonical sinbad.io frontend
-> (reachable with identical content 23 hours post-event and 10 days post-event), in
-> structural contrast to the Ethereum-protocol Tornado Cash 2022 case where frontend
-> disruption occurred within ~22 hours."
+> "OFAC designated the Sinbad Bitcoin mixer on 2023-11-29. Local Wayback
+> captures show the canonical sinbad.io domain was already serving a coordinated
+> law-enforcement seizure banner 23 hours after the OFAC posting and still
+> served a seizure banner 10 days later. This row is a null-control for
+> additional OFAC-triggered L4 change, not evidence that the pre-seizure
+> Sinbad frontend remained operational."
 
 ## 1. Trigger
 
@@ -58,7 +59,7 @@
 
 ## 4. No-change observations (where applicable)
 
-### l4_frontend — `canonical_frontend_remained_reachable_and_unchanged_through_designation`
+### l4_frontend — `canonical_frontend_seizure_banner_persisted_after_ofac_designation`
 
 **Window**: `2023-11-29 00:00:00+00:00` → `2023-12-09 23:59:59+00:00`
 
@@ -68,27 +69,29 @@
   - URL: <https://web.archive.org/web/20231129232541/http://sinbad.io/>
   - body_hash: `sha256:c97c13e8e6f23839ea53e5bc2f8f7b3a69894fb6c72c4ee34f6174e1a2566ba4`
   - body_path: `sources/http_captures/sinbad-ofac-2023/frontend-wayback/web.archive.org__web-20231129232541-http-sinbad.io__a971040b77.html`
-  > Wayback snapshot on event day 2023-11-29 at 23:25:41 UTC (≈23 hours after the OFAC
-> designation was posted). Response 200, digest IS6YYGAQL2HB2VBBPESTEURU4ZVB236P. Same
-> digest observed at 2023-11-30 08:09 and 2023-12-04 (revisit) per Wayback CDX —
-> content was identical through early December.
+  > Wayback snapshot on event day 2023-11-29 at 23:25:41 UTC (≈23 hours
+> after the OFAC designation was posted). Response 200; page title and
+> image alt text state that the service had been seized in a coordinated
+> law-enforcement action by the FBI, Netherlands FIOD, and Finland NBI.
+> This supports an already-seized canonical-domain state, not an
+> operational Sinbad frontend.
 - **`semi_primary_wayback`**
   - URL: <https://web.archive.org/web/20231209124309/https://sinbad.io/>
   - body_hash: `sha256:f9528eab19a8bf734e03bd9419677740b07408c22c9cbcde31a665e8ba4c83fb`
   - body_path: `sources/http_captures/sinbad-ofac-2023/frontend-wayback/web.archive.org__web-20231209124309-https-sinbad.io__65c801905c.html`
-  > Second Wayback snapshot 10 days post-event (2023-12-09 12:43 UTC); 200 OK, digest
-> FI6T7CEP7FCV7ODO6YLF66RALUWSH5SL — a variant of the earlier page but with matching
-> core structure, demonstrating the frontend remained operational. Independent anchor
-> from the event-day snapshot.
+  > Second Wayback snapshot 10 days post-event (2023-12-09 12:43 UTC);
+> 200 OK with the same "This Website Has Been Seized" title and seizure
+> banner text. This anchors persistence of the seizure-banner state
+> after the OFAC designation, not persistence of the pre-seizure mixer
+> service.
 
 ## 5. Honest coverage gaps
 
-- **l0_network** (`not_measured`): L0 network-layer OONI API query performed 2026-04-22. Searched the
 - **offramp_cex** (`not_measured`): Chain-analytics anchors pinned 2026-04-22 as primary_corporate
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `c736a32`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `b6c6fae`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
