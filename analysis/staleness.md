@@ -229,7 +229,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `kenya-cbk-virtual-currency-circular-2015-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `kingdom-trust-fincen-2021` | `admitted` | `human_reviewed` | 2026-05-20 | 12 | ok | 2026-05-20 | 12 | ok | ok |
 | `korea-fiu-isms-real-name-exchange-shutdown-2021-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
-| `korea-fsc-ico-ban-2017` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
+| `korea-fsc-ico-ban-2017` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-06-01 | 0 | ok | ok |
 | `korea-fsc-institutional-restriction-2017` | `admitted` | `human_reviewed` | 2026-05-17 | 15 | ok | 2026-05-21 | 11 | ok | ok |
 | `korea-fsc-privacy-coin-delisting-mandate-2021-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `korea-travel-rule-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |

@@ -2,7 +2,7 @@ id: korea-fsc-ico-ban-2017
 schema_version: 0.2.0
 codebook_version: "1.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
@@ -11,7 +11,7 @@ admission_tier: empirical_case
 origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-16
+last_verified: 2026-06-01
 last_human_audit: 2026-05-16
 
 related_events:
@@ -24,36 +24,28 @@ trigger:
   timestamp: 2017-09-29T00:00:00Z
   timestamp_precision: day
   citation:
-    - type: primary_legal
-      url: https://www.fsc.go.kr/eng/new_press
-      wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/new_press
-      evidence_use: contextual_unarchived
+    - type: primary_government
+      url: https://fsc.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=72848&fileTy=ATTACH&fileNo=2
+      body_hash: sha256:978442427b2eeb4d4ed3d7d542962099322979b6212e5a1fbe0b2fe329f30d04
+      body_path: sources/http_captures/korea-fsc-ico-ban-2017/primary/fsc.go.kr__comm-getFile__ad65ee6d53.bin
+      evidence_use: replayable
       note: |
-        South Korea Financial Services Commission (FSC) press release index
-        (English site) — announcing a full ban on all forms of Initial Coin
-        Offerings (ICOs) and prohibition on margin trading in crypto-assets,
-        issued 2017-09-29. The FSC statement followed a joint Financial-
-        Stability-Coordination meeting of the FSC, the Ministry of Strategy
-        and Finance, the Bank of Korea, the National Tax Service, and the
-        Korea Financial Intelligence Unit (KFIU), making Korea the second
-        major Asian jurisdiction (after China's PBOC 2017-09-04 notice) to
-        impose a blanket ICO ban in 2017. Core provisions: (1) ban on all
-        token-issuance fundraising regardless of technical structure,
-        (2) prohibition on lending and margin trading of virtual assets at
-        regulated financial institutions, (3) directive to enforcement
-        agencies to investigate manipulative trading and unlawful fund
-        flows. The fsc.go.kr URL path format has drifted since 2017; the
-        provisional Wayback anchor uses year-prefix lookup and the specific
-        capture timestamp requires re-pinning during human audit before
-        this citation may serve as an admission anchor in its own right.
-        Marked evidence_use=contextual_unarchived pending that re-pin.
+        Financial Services Commission (FSC) official 2017-09-29 Korean
+        press-release PDF for the virtual-currency joint TF meeting. The
+        PDF states that the meeting adopted "all forms of ICO prohibition"
+        and prohibited credit extension such as money lending / coin-margin
+        trading by virtual-currency handlers, including blocking related
+        financial-company business partnerships. Captured 2026-06-01 from
+        FSC attachment fileNo=2; PDF text was extracted locally and grepped
+        for ICO, all-forms prohibition, credit-extension prohibition, and
+        margin-trading terms. This replaces the old drifted English press
+        index pointer.
   timestamp_sources:
-    - type: primary_legal
+    - type: primary_government
       note: |
-        Day-level precision is appropriate: the FSC 2017-09-29 press
-        statement was issued as a same-day announcement of the joint
-        financial-stability meeting. Intra-day publication timing is not
-        carried in the public English-site press index.
+        Day-level precision is appropriate: the FSC PDF is dated
+        2017-09-29 and the document header states 2017-09-29 10:00 for
+        the joint virtual-currency TF meeting.
 
 target:
   kind: entity
@@ -64,11 +56,11 @@ target:
     (a) Korean crypto token issuers and ICO promoters (full ban on
     token-issuance fundraising), and (b) Korean financial institutions
     offering margin/lending products for crypto-assets (prohibition).
-    Affected named exchanges in the 2017-Q4 window include Upbit, Bithumb,
-    Coinone, and Korbit; these are recorded as implicit second-order
-    targets in observation scope rather than enumerated in
-    canonical_domains, matching the sibling china-pboc-crypto-ban-2013-12
-    and china-pboc-crypto-ban-2021 convention.
+    The retained target is class-level rather than a named-exchange
+    census: the FSC source governs ICO fundraising and virtual-currency-
+    handler credit extension / coin-margin trading without enumerating
+    platform domains. Any Upbit / Bithumb / Coinone / Korbit platform
+    reaction would require a separate operator or Wayback evidence pass.
   actor_type: korean_crypto_ecosystem
   actor_name: KR ICO + crypto-margin sector (class)
   chains: []
@@ -103,21 +95,15 @@ coverage:
       measures did not exist in 2017. not_applicable on
       construct-did-not-exist grounds.
   - layer: l4_frontend
-    status: not_measured
-    scope:
-      - upbit.com
-      - bithumb.com
-      - coinone.co.kr
-      - korbit.co.kr
+    status: not_applicable
     note: |
-      Korean crypto exchange frontends (Upbit, Bithumb, Coinone, Korbit)
-      added ICO-related disclosures and margin-trading-suspension notices
-      on their homepages in the weeks following the 2017-09-29 FSC
-      statement. Wayback bracketing of those homepage snapshots is
-      plausibly feasible but the specific snapshot URLs have not been
-      pinned in this authoring pass. L4 remains not_measured pending the
-      Wayback-capture pass that an admission anchor at this layer would
-      require.
+      The retained claim is the FSC policy prohibition on ICO fundraising
+      and virtual-currency-handler credit extension / coin-margin trading.
+      The official source does not require a named exchange website,
+      wallet UI, or app-store frontend change, and this release row does
+      not retain the earlier unverified homepage-disclosure cascade claim.
+      L4 is therefore outside the scoped observation rather than a
+      measured surface.
   - layer: asset_onchain
     status: not_applicable
     note: |
@@ -128,22 +114,18 @@ coverage:
   - layer: offramp_cex
     status: measured
     scope:
-      - upbit
-      - bithumb
-      - coinone
-      - korbit
+      - korean_virtual_currency_handlers
+      - regulated_financial_company_partnerships
     note: |
       The FSC 2017-09-29 statement is by construction an issuer-rail and
       regulated-financial-institution event: it bans ICO token-issuance
       fundraising and prohibits margin/lending crypto products at
-      regulated financial institutions. The four dominant Korean
-      crypto exchanges of the period (Upbit, Bithumb, Coinone, Korbit)
-      complied across Q4-2017 / Q1-2018 with the directive and the
-      follow-on 2018-01-30 real-name banking mandate (KFIU 2018). The
-      FSC statement itself names the regulatory mandate, giving direct
-      attribution at this layer. Marked measured; load-bearing
-      observation attached below as observation_kind=observed_change
-      with attribution=direct.
+      regulated financial institutions. The measured row is the regulator-
+      issued prohibition itself, not a separate platform-by-platform
+      compliance census. The FSC statement directly names the regulatory
+      mandate, giving direct attribution at this layer. Marked measured;
+      load-bearing observation attached below as observation_kind=
+      observed_change with attribution=direct.
 
 observations:
   - layer: offramp_cex
@@ -155,41 +137,35 @@ observations:
     precision: day
     delta_hours: 0
     sources:
-      - type: primary_legal
-        url: https://www.fsc.go.kr/eng/new_press
-        wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/new_press
-        evidence_use: contextual_unarchived
+      - type: primary_government
+        url: https://fsc.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=72848&fileTy=ATTACH&fileNo=2
+        body_hash: sha256:978442427b2eeb4d4ed3d7d542962099322979b6212e5a1fbe0b2fe329f30d04
+        body_path: sources/http_captures/korea-fsc-ico-ban-2017/primary/fsc.go.kr__comm-getFile__ad65ee6d53.bin
+        evidence_use: replayable
         note: |
-          KR FSC is the primary legal actor. Effective 2017-09-29; the
-          statement bans all forms of ICOs regardless of technical
-          structure and prohibits margin/lending crypto products at
-          regulated Korean financial institutions. Direct attribution:
-          the FSC statement itself mandates the behavior across the
-          regulated Korean crypto-exchange sector (Upbit, Bithumb,
-          Coinone, Korbit). The follow-on 2018-01-30 real-name banking
-          mandate (KFIU 2018) operationalized the order at the
-          bank-account-rail layer. Provisional wayback anchor uses
-          year-prefix lookup; specific snapshot timestamp requires
-          re-pinning during human audit.
-      - type: primary_legal
-        url: https://www.fsc.go.kr/eng/new_press
-        wayback: https://web.archive.org/web/2017/https://www.fsc.go.kr/eng/new_press
-        evidence_use: contextual_unarchived
-        note: |
-          Second anchor to the same FSC English-site press index, marking
-          the joint Financial-Stability-Coordination meeting
-          (FSC + MOSF + BOK + NTS + KFIU) origin of the 2017-09-29
-          announcement. The 2018-01-30 KFIU real-name banking mandate
-          is the immediate downstream operational rule and is treated
-          here as a coda within the same regulatory action rather than
-          as a separate event.
-
+          FSC official 2017-09-29 Korean press-release PDF. Load-bearing
+          lines state that all forms of ICO are prohibited regardless of
+          technical terminology and that credit extension by virtual-
+          currency handlers, including money lending / coin-margin trading,
+          is not permitted, with related financial-company partnerships
+          blocked. Direct attribution is to the FSC joint-TF announcement
+          itself; this row does not claim separately observed exchange
+          homepage changes.
 analysis_notes: |
+  **SOURCE REPAIRED 2026-06-01** (automated source-hardening pass).
+  Captured the official FSC Korean press-release PDF attachment for
+  2017-09-29 (sha256:978442427b2e...). Replaced the drifted English press
+  index URL with a replayable primary_government artifact and narrowed the
+  retained observation to the regulator-issued ICO / credit-extension
+  prohibition itself. Removed the earlier unpinned L4 homepage-disclosure
+  cascade from the release claim; any platform-level frontend reaction would
+  require a separate Wayback/platform evidence pass.
+
   NEW EVENT AUTHORED — DRYRUN 2026-05-16 (Phase A.4 non_us_state
   discovery; lean run): authored by LLM agent without personally
   verifying Wayback/body_hash; origin=human_reviewed required by
-  validator. Real release must replace this DRYRUN marker with a
-  human-verified audit after pinning real archive anchors.
+  validator. The 2026-06-01 source-hardening pass pins the official FSC
+  PDF, but does not create a new human-audit stamp.
 
   Foundational Asia regulator action. South Korea's FSC 2017-09-29
   statement is the direct sibling to China PBOC's 2017-09-04 ICO ban
@@ -208,24 +184,21 @@ analysis_notes: |
     Korean financial institutions.
   - Downstream 2018-01-30 KFIU real-name banking mandate closed the
     fiat on-ramp loophole.
-  - Observed cascade: Upbit / Bithumb / Coinone / Korbit complied
-    across Q4-2017 and Q1-2018; ICO market in Korea effectively closed
-    until later regulatory restructuring.
+  - Retained observation: the official regulator-issued prohibition on ICO
+    fundraising and virtual-currency-handler credit extension / coin-margin
+    trading. Platform-by-platform compliance is not retained without
+    separate primary or replayable operator evidence.
 
   Why temporal_tier=comparable_main_2017_present and
   analysis_use=comparable_analysis: 2017-09-29 sits in the 2017+
   comparable corpus; matches sibling china-pboc-crypto-ban-2021 and
   korea-travel-rule-2022 treatment for cross-jurisdiction analysis.
 
-  Why empirical_case rather than anchor_case: the LLM authoring
-  constraint in this pass is that Wayback captures for the L4 frontend
-  reactions at Upbit / Bithumb / Coinone / Korbit homepages have not
-  been personally re-verified, and the FSC press-release English-site
-  index has drifted URL path format since 2017 (year-prefix Wayback
-  lookup only). Per project convention, anchor_case promotion requires
-  the actual Wayback-capture pass on L4 frontend evidence; that pass is
-  a follow-up turn. Until it lands, the event admits at empirical_case
-  on the strength of the direct-attribution offramp_cex observation.
+  Why empirical_case rather than anchor_case: this row now has a
+  replayable primary FSC artifact, but it remains a lean single-layer
+  comparison case. Anchor-case promotion would require additional
+  platform-side or banking-rail evidence rather than the unsupported L4
+  homepage cascade that was removed in the 2026-06-01 repair.
 
   Why L0/L1/L3/asset_onchain are not_applicable: the FSC directive is
   a banking-and-exchange-rail action, not a network-layer block; the
@@ -237,14 +210,13 @@ analysis_notes: |
   pattern.
 
 scoped_claim: |
-  The KR FSC 2017-09-29 joint statement imposed a full ban on all forms
-  of ICOs and prohibited margin/lending crypto products at regulated
-  Korean financial institutions, with the regulated Korean
-  crypto-exchange sector (Upbit, Bithumb, Coinone, Korbit) complying
-  across Q4-2017 / Q1-2018. The offramp_cex layer carries the
-  load-bearing direct-attribution observation; L4 frontend reactions
-  are consistent with the cascade but require a Wayback-capture pass
-  before they may anchor a separate observed_change row.
+  The KR FSC 2017-09-29 joint virtual-currency TF statement imposed a
+  full ban on all forms of ICO fundraising and prohibited credit-extension
+  products such as money lending / coin-margin trading by virtual-currency
+  handlers, including blocking related financial-company business
+  partnerships. The retained measured surface is the off-ramp / regulated-
+  financial-institution policy prohibition itself; this event does not
+  claim separately observed exchange-frontend changes.
 
 scoped_knowledge: |
   Foundational Asia regulator action paired with the China PBOC

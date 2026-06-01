@@ -12,14 +12,14 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - Corpus counts are unchanged, but `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **251** (11 complete / 240 scoped) and
-  admitted-but-blocked cases are **117**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **252** (11 complete / 241 scoped) and
+  admitted-but-blocked cases are **116**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **268 high / 81 medium / 19 low**; attribution reliability
-  **230 high / 138 medium / 0 low**. Current admitted paper roles are
-  **250 aggregate_datapoint / 96 null_control / 19 appendix_only / 3 paper_anchor**.
+  observation reliability **269 high / 81 medium / 18 low**; attribution reliability
+  **231 high / 137 medium / 0 low**. Current admitted paper roles are
+  **251 aggregate_datapoint / 96 null_control / 18 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -58,6 +58,9 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   staged-service-restoration notices pinned locally, and is narrowed from an overclaimed Coincheck
   business-suspension / regulator-ordered freeze narrative to the source-supported business-improvement-order
   and remediation-gated withdrawal/sale restoration path.
+  `korea-fsc-ico-ban-2017` now has the official FSC 2017-09-29 Korean press-release PDF pinned locally and is
+  narrowed from a drifted English index plus unpinned exchange-frontend cascade to the source-supported ICO /
+  credit-extension prohibition itself.
 
 ## Admitted composition (368)
 | dimension | breakdown |

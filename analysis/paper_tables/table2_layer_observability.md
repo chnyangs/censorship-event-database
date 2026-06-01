@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `89285c6` · generated `2026-06-01T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `698540a` · generated `2026-06-01T00:00:00Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -11,7 +11,7 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 | `l0_network` | 41 | 0 | 2 | 39 | 327 | 0 | 2 | 2 | 0 | — | 2/2 (100.0%) |
 | `l1_consensus` | 19 | 8 | 8 | 3 | 349 | 2 | 8 | 10 | 0 | 2/8 (25.0%) | 10/16 (62.5%) |
 | `l3_rpc` | 16 | 2 | 5 | 9 | 352 | 2 | 4 | 7 | 0 | 2/2 (100.0%) | 6/7 (85.7%) |
-| `l4_frontend` | 138 | 55 | 28 | 55 | 230 | 50 | 24 | 80 | 0 | 50/55 (90.9%) | 74/83 (89.2%) |
+| `l4_frontend` | 137 | 55 | 28 | 54 | 231 | 50 | 24 | 80 | 0 | 50/55 (90.9%) | 74/83 (89.2%) |
 | `asset_onchain` | 46 | 18 | 2 | 26 | 322 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
 | `offramp_cex` | 314 | 235 | 53 | 26 | 54 | 157 | 43 | 210 | 0 | 157/235 (66.8%) | 200/288 (69.4%) |
 
