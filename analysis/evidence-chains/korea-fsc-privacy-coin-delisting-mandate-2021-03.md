@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (1 changed layer(s): `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `1c9c65c` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T12:19:10Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `4e61290` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T12:35:41Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -11,8 +11,9 @@
 > "South Korea's FSC enforcement-decree amendment, effective March 2021 (Special
 > Financial Transactions Information Act commencement 2021-03-25), bars licensed
 > Korean crypto exchanges from handling privacy / 'dark' coins (Monero, Dash,
-> Zcash), forcing domestic delisting of that asset class. Captured at class level
-> at the offramp_cex layer; no per-exchange or on-chain enumeration claimed."
+> Zcash), forcing domestic delisting of that asset class. Captured with official
+> FSC/FIU HTML and PDF anchors at class level at the offramp_cex layer; no
+> per-exchange or on-chain enumeration claimed."
 
 ## 1. Trigger
 
@@ -22,6 +23,24 @@
 
 ### Trigger citations
 
+- **`primary_government`**
+  - URL: <https://fsc.go.kr/no010101/75591>
+  - body_hash: `sha256:a2c7fdcad3bd103de21b2e38077b851fc63e3ee7792180b45a2f1798b8701ff2`
+  - body_path: `sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-nowww/fsc.go.kr__no010101-75591__80c5090d3f.html`
+  > Official FSC/FIU press release, captured 2026-06-01. The release
+> states that the amended Specific Financial Transaction Information
+> reporting/supervision regulation was completed and effective 2021-03-25,
+> and that VASPs are prohibited from handling virtual assets whose
+> transaction histories are difficult to identify and whose money-
+> laundering risk is high, so-called "dark coins."
+- **`primary_government`**
+  - URL: <https://fsc.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=75591&fileTy=ATTACH&fileNo=2>
+  - body_hash: `sha256:010a8ed8d4c6d10d2aed336211eca9d7a6f05d7e923fb6c084d4a0a2edec15a7`
+  - body_path: `sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-pdf/fsc.go.kr__comm-getFile__99d4d4b302.bin`
+  > Official PDF attachment to the FSC/FIU release. The PDF text carries
+> the same 2021-03-25 effective date and VASP handling prohibition for
+> so-called dark coins; it is retained as a second official replayable
+> anchor for the page body.
 - **`supporting_journalism`**
   - URL: <https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins>
   - Wayback: <https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins>
@@ -65,6 +84,21 @@
 
 **Sources**:
 
+- **`primary_government`**
+  - URL: <https://fsc.go.kr/no010101/75591>
+  - body_hash: `sha256:a2c7fdcad3bd103de21b2e38077b851fc63e3ee7792180b45a2f1798b8701ff2`
+  - body_path: `sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-nowww/fsc.go.kr__no010101-75591__80c5090d3f.html`
+  > Official FSC/FIU release: VASPs are prohibited from handling
+> virtual assets whose transaction histories are difficult to identify
+> and whose money-laundering risk is high, so-called "dark coins."
+> attribution remains plausible because the source binds the VASP /
+> asset class rather than enumerating a specific exchange operator.
+- **`primary_government`**
+  - URL: <https://fsc.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=75591&fileTy=ATTACH&fileNo=2>
+  - body_hash: `sha256:010a8ed8d4c6d10d2aed336211eca9d7a6f05d7e923fb6c084d4a0a2edec15a7`
+  - body_path: `sources/http_captures/korea-fsc-privacy-coin-delisting-mandate-2021-03/primary-fsc-pdf/fsc.go.kr__comm-getFile__99d4d4b302.bin`
+  > Official PDF attachment carrying the same dark-coin handling
+> prohibition and effective-date text as the FSC/FIU HTML release.
 - **`supporting_journalism`**
   - URL: <https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins>
   - Wayback: <https://web.archive.org/web/20260114063228/https://cointelegraph.com/news/south-korean-financial-watchdog-to-ban-privacy-coins>
@@ -94,7 +128,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `1c9c65c`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `4e61290`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

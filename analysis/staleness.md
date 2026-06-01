@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T12:19:10Z`
+Generated at: `2026-06-01T12:35:41Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -231,7 +231,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `korea-fiu-isms-real-name-exchange-shutdown-2021-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `korea-fsc-ico-ban-2017` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-06-01 | 0 | ok | ok |
 | `korea-fsc-institutional-restriction-2017` | `admitted` | `human_reviewed` | 2026-05-17 | 15 | ok | 2026-05-21 | 11 | ok | ok |
-| `korea-fsc-privacy-coin-delisting-mandate-2021-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `korea-fsc-privacy-coin-delisting-mandate-2021-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `korea-travel-rule-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
 | `kraken-monero-eu-delisting-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `kraken-sec-staking-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 16 | ok | 2026-05-16 | 16 | ok | ok |
@@ -587,7 +587,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `kb-vostok-russia-drone-ofac-2024-08` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `kenya-cbk-virtual-currency-circular-2015-12` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `korea-fiu-isms-real-name-exchange-shutdown-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `korea-fsc-privacy-coin-delisting-mandate-2021-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `korea-fsc-privacy-coin-delisting-mandate-2021-03` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `korea-travel-rule-2022` — audit=no_audit_recorded, verification=ok, verif_age=40d
 - `kraken-monero-eu-delisting-2024` — audit=no_audit_recorded, verification=ok, verif_age=15d
 - `kraken-sec-unregistered-exchange-2023` — audit=no_audit_recorded, verification=ok, verif_age=0d
