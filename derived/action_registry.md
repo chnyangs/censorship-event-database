@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `f70cc98` · generated `2026-06-01T00:48:55Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `24d80a4` · generated `2026-06-01T01:03:45Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -274,8 +274,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `silk-road-doj-seizure-2013:0:l4_frontend:frontend:silkroadmarket_org:tor_marketplace_and_clearnet_domain_seized_by_fbi` | 1 | 0 | 1 | l4_frontend | `silk-road-doj-seizure-2013::l4_frontend` |
 | `sinbad-doj-2024:0:l4_frontend:frontend:sinbad_io:sinbad_frontend_seizure_finality_anchored_by_operator_indictment` | 1 | 0 | 1 | l4_frontend | `sinbad-doj-2024::l4_frontend` |
 | `sinbad-doj-2024:1:offramp_cex:mixer:sinbad_io:sinbad_operator_indicted_two_of_three_arrested` | 1 | 0 | 1 | offramp_cex | `sinbad-doj-2024::offramp_cex` |
-| `singapore-mas-binance-services-2021:0:l4_frontend:frontend:binance_com_en_sg_geo:sg_user_product_restrictions_announced` | 1 | 0 | 1 | l4_frontend | `singapore-mas-binance-services-2021::l4_frontend` |
-| `singapore-mas-binance-services-2021:1:offramp_cex:cex:binance_sg_cohort:sgd_rails_and_binance_sg_operational_exit` | 1 | 0 | 1 | offramp_cex | `singapore-mas-binance-services-2021::offramp_cex` |
+| `singapore-mas-binance-services-2021:0:l4_frontend:frontend:binance_com_sg_app_and_sgd_surface:sgd_pairs_payments_and_app_store_removal_announced` | 1 | 0 | 1 | l4_frontend | `singapore-mas-binance-services-2021::l4_frontend` |
+| `singapore-mas-binance-services-2021:1:offramp_cex:cex:binance_com_singapore_users:regulated_payment_services_access_restriction_announced` | 1 | 0 | 1 | offramp_cex | `singapore-mas-binance-services-2021::offramp_cex` |
 | `singapore-mas-retail-crypto-restriction-2022:0:l4_frontend:frontend:sg_dpt_marketing_cohort:sg_dpt_public_marketing_takedown` | 1 | 0 | 1 | l4_frontend | `singapore-mas-retail-crypto-restriction-2022::l4_frontend` |
 | `singapore-mas-retail-crypto-restriction-2022:1:offramp_cex:cex:sg_dpt_retail_onboarding_cohort:sg_dpt_retail_onboarding_friction_increase` | 1 | 0 | 1 | offramp_cex | `singapore-mas-retail-crypto-restriction-2022::offramp_cex` |
 | `sri-lanka-cbsl-crypto-warning-fx-directive-2021:0:offramp_cex:sri_lanka_bank_card_payment_ecosystem:bank_card_payment_channel_for_crypto_prohibited` | 1 | 0 | 1 | offramp_cex | `sri-lanka-cbsl-crypto-warning-fx-directive-2021::offramp_cex` |

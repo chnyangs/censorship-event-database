@@ -2,22 +2,22 @@
 
 **Status**: `admitted` · **Stratum**: `S4_nation_state` · **Shape**: `comparison` (2 changed layer(s): `l4_frontend`, `offramp_cex`) · **Tier**: `empirical_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `f70cc98` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-16` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T00:48:55Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-01` · **Source commit**: `24d80a4` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-01` · **Tool version**: `0.1.0` · **Generated**: `2026-06-01T01:03:45Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
 ## Scoped claim
 
-> "MAS Investor Alert List placement of Binance.com on 2021-09-02
-> plus the accompanying Payment Services Act warning precipitated
-> a fast L4-frontend response (Binance announced SG-user product
-> restrictions 2021-09-05, three days later) and a slow-cascade
-> offramp severance routing through the local Binance entity
-> (Binance Asia Services withdrew its PSA licence application
-> 2021-12; binance.sg ceased SG operations 2022-02). Load-bearing
-> observational axes are L4 frontend (Binance SG-user product
-> restrictions) and offramp_cex (SGD rails) at the Binance-SG
-> cohort level."
+> "MAS's 2021-09-02 Binance.com Investor Alert List / Payment Services Act
+> order is retained as an attested-secondary trigger. Binance.com then
+> announced Singapore-user restrictions in two replayably captured
+> first-party notices: on 2021-09-05 it announced cessation of SGD trading
+> pairs, SGD payment options, and Singapore app-store availability effective
+> 2021-09-10; on 2021-09-27 it announced that Singapore users would lose
+> access to fiat deposits, spot trading, fiat-channel crypto purchases, and
+> liquid swap effective 2021-10-26. The row does not claim L0 blocking, L1
+> consensus impact, L3 RPC filtering, asset-onchain action, or an
+> independently pinned 2022 binance.sg shutdown observation."
 
 ## 1. Trigger
 
@@ -27,20 +27,20 @@
 
 ### Trigger citations
 
-- **`primary_legal`**
-  - URL: <https://www.mas.gov.sg/news/>
-  - Wayback: <https://web.archive.org/web/20210902000000*/mas.gov.sg>
-  > Monetary Authority of Singapore (MAS) press release dated
-> 2021-09-02 placing Binance.com on the MAS Investor Alert List
-> (IAL) and warning that Binance may be in breach of the Payment
-> Services Act (PSA) by providing payment services to Singapore
-> residents without the required licence. The IAL listing is
-> Singapore's standard investor-protection mechanism flagging
-> unregulated entities soliciting Singapore residents. DRYRUN
-> promotion: real anchor (MAS press release index) asserted;
-> Wayback / body-hash capture deferred to non-DRYRUN release.
-> Marked contextual_unarchived to flag the unarchived state
-> explicitly.
+- **`supporting_journalism`**
+  - URL: <https://www.channelnewsasia.com/business/binanace-mas-payment-services-act-investor-alert-list-2152346>
+  - Wayback: <https://web.archive.org/web/20210902120336/https://www.channelnewsasia.com/business/binanace-mas-payment-services-act-investor-alert-list-2152346>
+  - body_hash: `sha256:32c4408f99c135d8e334c9330e4a782fa1f8f89467cb7565ef6f70b9f4cdcfb4`
+  - body_path: `sources/http_captures/singapore-mas-binance-services-2021/secondary/web.archive.org__web-20210902120336-https-www.channelnewsasia.com-business-binanace-mas-payment-services-act-investor-alert-list-2152346__f038367c14.html`
+  > CNA archived 2021-09-02 reports MAS's same-day order that the
+> operator of Binance.com stop providing regulated payment services
+> to Singapore residents and cease soliciting such business. It also
+> reports that MAS placed Binance.com on the Investor Alert List
+> because Binance.com was not regulated or licensed in Singapore to
+> provide payment services. This is a contemporaneous supporting
+> source carrying MAS spokesperson statements; no replayable official
+> MAS body artifact is retained in this repair pass, so the event is
+> marked evidence_tier=attested_secondary.
 
 ## 2. Target
 
@@ -59,42 +59,47 @@
 
 ## 3. Changed-layer observations (supports the scoped claim)
 
-### l4_frontend · attribution: `direct` · Δt = 72h
+### l4_frontend · attribution: `plausible` · Δt = 72h
 
-**Event label**: `sg_user_product_restrictions_announced`
+**Event label**: `sgd_pairs_payments_and_app_store_removal_announced`
 
 **Timestamp**: `2021-09-05 00:00:00+00:00` (precision: `day`)
 
 **Sources**:
 
-- **`primary_legal`**
-  - URL: <https://www.mas.gov.sg/news/>
-  - Wayback: <https://web.archive.org/web/20210902000000*/mas.gov.sg>
-  > MAS 2021-09-02 IAL listing is the regulatory anchor. Binance
-> 2021-09-05 announcement to restrict Singapore-resident user
-> access to certain product types on binance.com cited the
-> MAS notice; attribution=direct at the MAS-listing-as-trigger
-> level. DRYRUN: pinned Wayback captures for the Binance
-> 2021-09-05 restriction announcement deferred.
+- **`primary_corporate`**
+  - URL: <https://www.binance.com/en/support/announcement/a38b8ee33ba847f9b91562b8709fe539>
+  - Wayback: <https://web.archive.org/web/20210905110009/https://www.binance.com/en/support/announcement/a38b8ee33ba847f9b91562b8709fe539>
+  - body_hash: `sha256:b2aa10a72fef66f205df87b9ca97139c5cc2cdb1da614b21705fa62e589f1117`
+  - body_path: `sources/http_captures/singapore-mas-binance-services-2021/binance/web.archive.org__web-20210905110009-https-www.binance.com-en-support-announcement-a38b8ee33ba847f9b91562b8709fe539__962711f1fb.html`
+  > Binance support announcement archived 2021-09-05 states that
+> Binance would cease, in Singapore, SGD trading pairs, SGD payment
+> options, and app availability in the Singapore iOS and Google Play
+> stores effective 2021-09-10 04:00 UTC. Attribution is plausible
+> rather than direct because the announcement cites local-regulatory
+> compliance but does not name MAS or the Investor Alert List in the
+> retained body text.
 
-### offramp_cex · attribution: `direct` · Δt = 3648h
+### offramp_cex · attribution: `plausible` · Δt = 600h
 
-**Event label**: `sgd_rails_and_binance_sg_operational_exit`
+**Event label**: `regulated_payment_services_access_restriction_announced`
 
-**Timestamp**: `2022-02-01 00:00:00+00:00` (precision: `day`)
+**Timestamp**: `2021-09-27 00:00:00+00:00` (precision: `day`)
 
 **Sources**:
 
-- **`primary_legal`**
-  - URL: <https://www.mas.gov.sg/news/>
-  - Wayback: <https://web.archive.org/web/20220201000000*/mas.gov.sg>
-  > MAS 2021-09-02 IAL listing initiated a cascade culminating
-> in Binance Asia Services Pte Ltd withdrawing its PSA licence
-> application (2021-12) and binance.sg ceasing SG operations
-> (2022-02). SG retail users of binance.com lost SGD rail
-> access. DRYRUN: pinned anchors for the 2021-12 licence
-> withdrawal and 2022-02 binance.sg exit announcements
-> deferred.
+- **`primary_corporate`**
+  - URL: <https://www.binance.com/en/support/announcement/34c6c158d03a4877a4e13cf0927468bc>
+  - Wayback: <https://web.archive.org/web/20210927094020/https://www.binance.com/en/support/announcement/34c6c158d03a4877a4e13cf0927468bc>
+  - body_hash: `sha256:cb2ec1ee0da10ae36815394bfb5c63cb658de30df521562583c9501d2cc0abcd`
+  - body_path: `sources/http_captures/singapore-mas-binance-services-2021/binance/web.archive.org__web-20210927094020-https-www.binance.com-en-support-announcement-34c6c158d03a4877a4e13cf0927468bc__1d7298135a.html`
+  > Binance support announcement archived 2021-09-27 states that,
+> effective 2021-10-26 04:00 UTC, users in Singapore would not be
+> able to access Binance.com functions including fiat deposit
+> services, spot trading of cryptocurrencies, cryptocurrency
+> purchases through fiat channels, and liquid swap. Attribution is
+> plausible because the announcement frames the restriction as
+> compliance with local regulation without explicitly naming MAS.
 
 ## 5. Honest coverage gaps
 
@@ -108,7 +113,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `f70cc98`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `24d80a4`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

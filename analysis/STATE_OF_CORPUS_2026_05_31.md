@@ -17,9 +17,9 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **272 high / 82 medium / 13 low**; attribution reliability
+  observation reliability **273 high / 82 medium / 12 low**; attribution reliability
   **234 high / 133 medium / 0 low**. Current admitted paper roles are
-  **254 aggregate_datapoint / 97 null_control / 13 appendix_only / 3 paper_anchor**.
+  **255 aggregate_datapoint / 97 null_control / 12 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
 - Latest automated repairs: `sec-shavers-btcst-2013` now has local SEC complaint and press-release
@@ -77,18 +77,23 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   inaccurate eight-asset cohort to the final five-asset EU4 restriction cohort supported by local Wayback
   captures of contemporaneous The Block / Blockworks reporting; it is explicitly `evidence_tier=attested_secondary`
   and remains blocked only for a missing replayable first-party Binance notice.
+  `singapore-mas-binance-services-2021` now replaces generic MAS news-index citations with a replayable
+  2021-09-02 CNA trigger report plus first-party Binance Wayback captures for the 2021-09-05 SGD/app-store
+  restriction announcement and the 2021-09-27 regulated-payment-services restriction announcement. The row is
+  narrowed away from the unpinned 2022 binance.sg exit cascade, is explicitly `evidence_tier=attested_secondary`,
+  and remains blocked only for a missing replayable official MAS primary trigger artifact.
 
 ## Admitted composition (367)
 | dimension | breakdown |
 |---|---|
 | **research_stratum** | S4_nation_state 111 · S5_corporate 96 · S3_doj_sec_cftc_fiod 77 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 307 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 332 · **attested_secondary 35** (lower-tier, filterable — see codebook §10) |
+| **evidence_tier** | admission_grade 331 · **attested_secondary 36** (lower-tier, filterable — see codebook §10) |
 | **admission_tier** | empirical_case 265 · null_case 97 · anchor_case 5 |
 | **empirical_shape** | comparison 268 · null_event 97 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
-censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **35
+censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **36
 `attested_secondary`** rows are the well-documented single-source national bans + corporate restrictions admitted
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.

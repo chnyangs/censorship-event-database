@@ -70,7 +70,7 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
       **255 release-ready** cases, **112 admitted-but-blocked** cases, observation reliability
-      **272 high / 82 medium / 13 low**, and attribution reliability **234 high / 133 medium / 0 low**.
+      **273 high / 82 medium / 12 low**, and attribution reliability **234 high / 133 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -126,6 +126,12 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       five-asset EU4 restriction cohort, pinning The Block / Blockworks Wayback captures locally, and explicitly
       marking the row `evidence_tier=attested_secondary`; it remains blocked only for the missing replayable
       first-party Binance notice.
+      Follow-on repair also moved `singapore-mas-binance-services-2021` out of the low-observation queue by
+      replacing generic MAS news-index citations with a replayable 2021-09-02 CNA trigger report and two
+      first-party Binance Wayback captures for the 2021-09-05 SGD/app-store restrictions and 2021-09-27
+      regulated-payment-services restrictions; the row is narrowed away from the unpinned 2022 binance.sg exit
+      cascade, explicitly marked `evidence_tier=attested_secondary`, and remains blocked only for a missing
+      replayable official MAS primary trigger artifact.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
@@ -135,7 +141,7 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       claim-usable merely to improve counts.
 - [ ] **`evidence_tier` IRR pass.** Codebook 4.0.0 added a decision-rule (the `attested_secondary` tier). The
       codebook's own "Effective" convention requires a new IRR pass on ≥ 10 events for a decision-rule change.
-      Run a 2-coder IRR pass on a 10–15 event sample of the 35 `attested_secondary` rows to confirm inter-rater
+      Run a 2-coder IRR pass on a 10–15 event sample of the 36 `attested_secondary` rows to confirm inter-rater
       agreement on (a) §9-clarity and (b) the single-source judgment. Record κ. This is outstanding process debt.
       Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md` plus the machine-readable
       `analysis/evidence_tier_irr_packet_2026_05_31.csv`; both are intentionally blank and must not be treated as
