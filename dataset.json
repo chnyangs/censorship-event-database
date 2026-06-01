@@ -11208,17 +11208,14 @@
   {
     "_source_file": "chatex-ofac-2021.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "comparison documenting the second OFAC exchange designation. Unlike SUEX\n(2021-09-21) where suex.io remained fully operational post-designation, Chatex's operators\nimmediately complied with the OFAC action: they posted a public notice naming the legal\nauthority (EO 13694), cancelled an ongoing token sale, and self-imposed a customer-funds\nfreeze. This contrast inside the same 2-month window (SUEX vs Chatex) suggests operator\ncompliance posture is driven by factors other than the OFAC action itself \u2014 possibly the\npresence of EU-resident operators (Chatex: Estonia / Latvia) vs Russia-only (SUEX), or\ndiffering legal-counsel advice.\n\nThe Chatex L4 change is the cleanest \"operator-compliance\" mechanism in the dataset: not a\nUS-compliance-driven takedown (Tornado), not a law-enforcement seizure (Cryptex), not an\noperator-abandonment (Blender), not a foreign persistence (Sinbad / SUEX). This is a fifth\ndistinct L4 mechanism.\n\nPre-Merge by 311 days \u2014 L1 layer not_applicable. Asset-onchain evidence now\nconfirms a separate next-day Circle batch-blacklist of 5/6 Chatex ETH\naddresses, while the later Tether sweep is retained only as a follow-on\ncross-event reaction because the 750-day lag defeats direct attribution.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIRED 2026-06-02** (quality-loop scope repair):\nverified the existing OFAC Recent Actions, on-chain, and chatex.com\nWayback replay anchors by validation; marked the row primary-source\nverified; and narrowed L0 taxonomy to the retained claim. This row\nmeasures Chatex's operator-posted L4 compliance notice and the next-day\nCircle USDC asset blacklist. It does not claim an ISP/DNS block, so the\nearlier no-OONI-results note is preserved only as non-load-bearing\nbackground. Counterparty CEX/off-ramp reactions remain honestly\nnot_measured until a per-event chain-analytics or exchange artifact is\npinned.\n\ncomparison documenting the second OFAC exchange designation. Unlike SUEX\n(2021-09-21) where suex.io remained fully operational post-designation, Chatex's operators\nimmediately complied with the OFAC action: they posted a public notice naming the legal\nauthority (EO 13694), cancelled an ongoing token sale, and self-imposed a customer-funds\nfreeze. This contrast inside the same 2-month window (SUEX vs Chatex) suggests operator\ncompliance posture is driven by factors other than the OFAC action itself \u2014 possibly the\npresence of EU-resident operators (Chatex: Estonia / Latvia) vs Russia-only (SUEX), or\ndiffering legal-counsel advice.\n\nThe Chatex L4 change is the cleanest \"operator-compliance\" mechanism in the dataset: not a\nUS-compliance-driven takedown (Tornado), not a law-enforcement seizure (Cryptex), not an\noperator-abandonment (Blender), not a foreign persistence (Sinbad / SUEX). This is a fifth\ndistinct L4 mechanism.\n\nPre-Merge by 311 days \u2014 L1 layer not_applicable. Asset-onchain evidence now\nconfirms a separate next-day Circle batch-blacklist of 5/6 Chatex ETH\naddresses, while the later Tether sweep is retained only as a follow-on\ncross-event reaction because the 750-day lag defeats direct attribution.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "L0 network-layer OONI API query performed 2026-04-22. Searched the\npublic OONI Explorer API (api.ooni.io/api/v1/measurements) for\ntest_name=web_connectivity across:\n  chatex.com  2021-10-08..2021-12-08  -> 0 results\nAll 1 queries returned 0 measurements.\nArtifact: sources/l0_datasets/chatex-ofac-2021/chatex.com__ooni.json\n(body_hash sha256:8d0875b6f857e05f7dd87ec896400d8a5e8a1c87ccdfeb6f8d6fcf54223a0aac).\nMeasurement-gap finding: OONI volunteer probe coverage is absent.\n",
-        "scope": [
-          "chatex.com"
-        ],
-        "status": "not_measured"
+        "note": "The retained public claim is not an ISP/DNS/national-firewall block.\nChatex is modeled as an OFAC exchange designation with measured\noperator-side L4 compliance notice and issuer-side asset blacklist\nobservations. A prior OONI query across chatex.com for\n2021-10-08..2021-12-08 returned no public measurements, but the\nabsence of OONI volunteer data is not used as a claim-bearing L0\nobservation because no L0 censorship action is asserted.\n",
+        "status": "not_applicable"
       },
       {
         "chain": "ethereum",
@@ -11286,7 +11283,7 @@
     "jurisdiction": [
       "US"
     ],
-    "last_verified": "2026-04-22",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "circle_usdc_issuer",
@@ -11350,14 +11347,14 @@
       }
     ],
     "origin": "human_authored",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "suex-ofac-2021"
     ],
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
     "scoped_claim": "\"OFAC designation of Chatex on 2021-11-08 produced a direct L4 frontend change within\n9 days in the form of an operator-posted compliance notice freezing customer withdrawals,\nmechanistically distinct from the same-quarter SUEX case (no frontend reaction) despite\nboth being foreign exchange entities sanctioned under the same policy push.\"\n",
-    "scoped_knowledge": "What changed: Chatex produced two admission-grade changed-layer observations:\na next-day asset-layer Circle USDC blacklist for 5 of 6 Ethereum addresses\nand a first-party chatex.com compliance notice nine days after designation.\n\nWhat did not change or could not be measured: L1 and L3 are structurally\nnot applicable because the event is pre-Merge and pre-public OFAC-compliant\nRPC substrates. L0 and counterparty off-ramp behavior remain not measured.\nThe 2023 Tether freeze is tracked only as a follow-on reaction via\n`tether-retroactive-sweep-2023`.\n\nAttribution: both retained changed layers are direct. The Circle action is\nanchored by on-chain blacklist evidence and the frontend notice itself names\nthe sanctions-listing trigger and customer-funds restriction.\n\nComparative value: Chatex is the cleanest operator-compliance frontend case.\nIt contrasts with SUEX / Grinex foreign-operator persistence, Sinbad's\nsame-week seizure-before-OFAC null control, and Cryptex / BTC-e\nlaw-enforcement seizure banners.\n",
+    "scoped_knowledge": "What changed: Chatex produced two admission-grade changed-layer observations:\na next-day asset-layer Circle USDC blacklist for 5 of 6 Ethereum addresses\nand a first-party chatex.com compliance notice nine days after designation.\n\nWhat did not change or could not be measured: L0 is outside the retained\nclaim because no ISP/DNS/network-blocking action is asserted. L1 and L3\nare structurally not applicable because the event is pre-Merge and\npre-public OFAC-compliant RPC substrates. Counterparty off-ramp behavior\nremains not measured.\nThe 2023 Tether freeze is tracked only as a follow-on reaction via\n`tether-retroactive-sweep-2023`.\n\nAttribution: both retained changed layers are direct. The Circle action is\nanchored by on-chain blacklist evidence and the frontend notice itself names\nthe sanctions-listing trigger and customer-funds restriction.\n\nComparative value: Chatex is the cleanest operator-compliance frontend case.\nIt contrasts with SUEX / Grinex foreign-operator persistence, Sinbad's\nsame-week seizure-before-OFAC null control, and Cryptex / BTC-e\nlaw-enforcement seizure banners.\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -11443,7 +11440,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "china-fentanyl-network-ofac-2023-10.yaml",

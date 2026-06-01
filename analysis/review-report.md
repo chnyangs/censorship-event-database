@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `302`
-- Admitted but release-blocked cases: `63`
+- Release-ready cases: `303`
+- Admitted but release-blocked cases: `62`
 - Fully complete release-ready cases: `12`
-- Scope-limited release-ready cases: `290`
+- Scope-limited release-ready cases: `291`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 41, 'paper_anchor': 3}`
@@ -1074,16 +1074,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `chatex-ofac-2021`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `medium`
 - Case-shape completeness: `high`
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Note: One layer remains explicitly unmeasured.
+- Next action: Either measure the remaining layer or document why it is out of scope.
 
 ### `china-fentanyl-network-ofac-2023-10`
 

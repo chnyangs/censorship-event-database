@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `cba4eca` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `bb7ed29` · generated `2026-06-02T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -86,7 +86,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `cftc-defi-opyn-zeroex-deridex-2023-09` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-31` | `—` |
 | `cftc-v-ftx-2022` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `cftc_action` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
 | `cftc-v-ooki-dao-2022` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `cftc_action` | `day` | `entity` | `complete` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
-| `chatex-ofac-2021` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 2 | `multi_layer` | · | · | `2026-04-22` | `—` |
+| `chatex-ofac-2021` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 2 | `multi_layer` | · | · | `2026-06-02` | `—` |
 | `china-fentanyl-network-ofac-2023-10` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
 | `china-ico-ban-2017-09` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `2026-05-16` |
 | `china-inner-mongolia-mining-ban-2021-05` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `other_single_layer` | · | · | `2026-05-21` | `—` |

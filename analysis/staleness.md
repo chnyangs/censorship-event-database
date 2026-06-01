@@ -93,7 +93,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `cftc-defi-opyn-zeroex-deridex-2023-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `cftc-v-ftx-2022` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
 | `cftc-v-ooki-dao-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
-| `chatex-ofac-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 41 | ok | no_audit_recorded |
+| `chatex-ofac-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `china-fentanyl-network-ofac-2023-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `china-ico-ban-2017-09` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-21 | 12 | ok | ok |
 | `china-inner-mongolia-mining-ban-2021-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
@@ -481,7 +481,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `celsius-multistate-cease-desist-earn-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `cftc-defi-opyn-zeroex-deridex-2023-09` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `cftc-v-ooki-dao-2022` — audit=no_audit_recorded, verification=ok, verif_age=41d
-- `chatex-ofac-2021` — audit=no_audit_recorded, verification=ok, verif_age=41d
+- `chatex-ofac-2021` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `china-fentanyl-network-ofac-2023-10` — audit=no_audit_recorded, verification=ok, verif_age=2d
 - `china-inner-mongolia-mining-ban-2021-05` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `china-ndrc-mining-eliminated-industry-notice-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=0d
