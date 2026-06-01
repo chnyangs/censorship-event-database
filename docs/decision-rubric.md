@@ -117,9 +117,11 @@ entity (or US-compliance-adjacent infrastructure)?
   such as Tornado `tornado.cash` (~22h via compliance-driven CDN drop),
   dYdX (~34h), and Cryptex (same-day USSS seizure).
 - **Yes, foreign operator + foreign infrastructure**: compare against
-  admitted persistence examples such as Sinbad `sinbad.io` reachable
-  10+ days post-event, SUEX `suex.io` remaining up, and Grinex remaining
-  up before the Tether freeze.
+  admitted persistence examples such as SUEX `suex.io` remaining up and
+  Grinex remaining up before the Tether freeze. Do not use
+  `sinbad-ofac-2023` for this pattern: its corrected Wayback anchors show
+  a seizure-banner state after OFAC designation, not an operational
+  frontend that remained up.
 - **No canonical domain** (individual designations, hosting providers
   with no customer-facing site): L4 is `not_applicable`.
 
@@ -192,7 +194,8 @@ historical pattern class the situation most resembles:
 |---|---|---|
 | **US-protocol cascade** (3+ layers, anchor) | `tornado-cash-ofac-2022`, `tornado-cash-ofac-delisting-2025` | L1 + L4 + asset + offramp |
 | **US-exchange seizure** | `cryptex-ofac-2024`, `bitzlato-doj-2023`, `samourai-doj-2024` | L4 (USSS banner) + asset |
-| **Foreign-operator persistence (null)** | `sinbad-ofac-2023`, `suex-ofac-2021`, `grinex-garantex-successor-ofac-2025` (partial) | asset only; L4 remains up |
+| **Foreign-operator persistence (null)** | `suex-ofac-2021`, `grinex-garantex-successor-ofac-2025` (partial) | asset only; L4 remains up |
+| **Same-week seizure before OFAC public designation (null)** | `sinbad-ofac-2023` | L4 seizure banner already present; no additional OFAC-triggered L4 change |
 | **Individual-wallet (null L4, fast asset)** | `semenov-ofac-2023`, `lockbit-affiliates-ofac-2024` | asset only |
 | **Individual-BTC-only (anchored null control)** | `lazarus-laundering-ofac-2020`, `matveev-ofac-2023`, `iran-ransomware-ofac-2018` | offramp_cex null only |
 | **Entity-only (null)** | `lazarus-entity-ofac-2019`, `sichuan-silence-ofac-2024` | offramp_cex null only |
