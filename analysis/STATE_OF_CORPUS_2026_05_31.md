@@ -12,13 +12,13 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
 - `analysis/review-report.*` now scores observation reliability and direct
   attribution against **claim-usable evidence** only: replayable sources whose `evidence_use` is not
   `contextual_unarchived` or `non_admission`.
-- Under that stricter operational review, release-ready cases are **264** (11 complete / 253 scoped) and
-  admitted-but-blocked cases are **101**. This is a deliberate paper-risk surfacing change, not a corpus
+- Under that stricter operational review, release-ready cases are **266** (11 complete / 255 scoped) and
+  admitted-but-blocked cases are **99**. This is a deliberate paper-risk surfacing change, not a corpus
   shrink: low/medium cases remain in the dataset, but their paper use is now more visibly gated until the
   underlying source rows are upgraded or narrowed.
 - Current admitted-case reliability distribution after the stricter pass and subsequent quality-loop repairs:
-  observation reliability **279 high / 86 medium / 0 low**; attribution reliability
-  **238 high / 127 medium / 0 low**. Current admitted paper roles are
+  observation reliability **281 high / 84 medium / 0 low**; attribution reliability
+  **240 high / 125 medium / 0 low**. Current admitted paper roles are
   **264 aggregate_datapoint / 97 null_control / 1 appendix_only / 3 paper_anchor**.
   Paper-anchor promotion is now gated on release readiness: blocked `anchor_case` rows remain admitted but are
   reported as `appendix_only` until their blockers are cleared.
@@ -112,18 +112,21 @@ Detailed tick-by-tick log: `analysis/overnight_collection_notes_2026_05_31.md`.
   `voyager-bankruptcy-doj-objection-2023` is explicitly `evidence_tier=attested_secondary` with attribution
   narrowed from direct to plausible; and `tornado-cash-storm-conviction-2025` is demoted to draft because the
   retained chilling-effect observation lacks a concrete operator/repository/on-chain artifact.
+  The latest primary-trigger repair pins official Bybit and Paxos Canada-withdrawal notices, upgrades both
+  company-authored market-exit observations to direct attribution, and removes both rows from the
+  `attested_secondary` tier while keeping the CSA/OSC regulatory rationale contextual.
 
 ## Admitted composition (365)
 | dimension | breakdown |
 |---|---|
 | **research_stratum** | S4_nation_state 111 · S5_corporate 95 · S3_doj_sec_cftc_fiod 76 · S1_ofac_sdn 52 · S6_supranational 30 · S2_ofac_removal 1 |
 | **temporal_tier** | comparable_main_2017_present 305 · historical_baseline_2013_2016 40 · discovery_only_2007_2012 20 |
-| **evidence_tier** | admission_grade 326 · **attested_secondary 39** (lower-tier, filterable — see codebook §10) |
+| **evidence_tier** | admission_grade 328 · **attested_secondary 37** (lower-tier, filterable — see codebook §10) |
 | **admission_tier** | empirical_case 264 · null_case 97 · anchor_case 4 |
 | **empirical_shape** | comparison 266 · null_event 97 · cascade 2 |
 
 **Reading the table:** the census is dominated by single/low-layer `comparison` and `null` events (expected — most
-censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **39
+censorship actions are observed at 1–2 layers; OFAC designations are `null_case` denominators). The **37
 `attested_secondary`** rows are the well-documented single-source national bans + corporate restrictions admitted
 below the strict source floor — they are explicitly tagged so any IRR / κ / headline-census computation can
 exclude or down-weight them with `evidence_tier == attested_secondary`.

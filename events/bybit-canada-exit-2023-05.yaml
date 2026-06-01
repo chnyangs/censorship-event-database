@@ -2,18 +2,16 @@ id: bybit-canada-exit-2023-05
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "Bybit May-2023 exit from Canada (CSA regime). §9-clear service withdrawal, documented; attested_secondary on a single captured source."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 last_human_audit: 2026-05-31
 
 related_events:
@@ -26,6 +24,20 @@ trigger:
   timestamp: 2023-05-30T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://announcements.bybitglobal.com/en/article/notice-on-exit-from-canadian-market-bltc1bfb8746d077fda/
+      body_hash: sha256:a802fe5845ac3071f4bbd7b438903a39be4c11464e5ba742737727e35b7c4699
+      body_path: sources/http_captures/bybit-canada-exit-2023-05/official-bybit-notice/announcements.bybitglobal.com__en-article-notice-on-exit-from-canadian-market-bltc1bfb8746d077fda__5dc8a1eae2.html
+      evidence_use: replayable
+      note: |
+        Bybit official announcement, "Notice on Exit from Canadian Market,"
+        published 2023-05-30. The captured page states that Bybit is
+        pausing availability of products and services to Canadian nationals
+        and residents; new account opening and new positions were unavailable
+        from 2023-05-31, and product tables record multiple trading, fiat,
+        and earn surfaces as not available from 2023-07-31, with residual
+        wind-down/liquidation dates through 2023-09-30. This is the
+        claim-usable primary corporate trigger and observation anchor.
     - type: semi_primary_wayback
       url: https://www.coindesk.com/business/2023/05/30/crypto-exchange-bybit-exit-canada-citing-recent-regulatory-development
       wayback: https://web.archive.org/web/20250505011102/https://www.coindesk.com/business/2023/05/30/crypto-exchange-bybit-exit-canada-citing-recent-regulatory-development
@@ -41,11 +53,13 @@ trigger:
         "until July 31 to make new deposits", "withdraw or reduce their positions".
         Wayback 20250505011102 pinned.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_corporate
       note: |
-        Day-level precision: Bybit's exit notice dated 2023-05-30 per the cited
-        CoinDesk coverage (new onboarding stops 2023-05-31; deposit/contract
-        deadline 2023-07-31).
+        Day-level precision: Bybit's official exit notice was published
+        2023-05-30. New account opening / new positions stopped from
+        2023-05-31; product availability tables mark multiple Canadian-user
+        product surfaces unavailable from 2023-07-31, with final wind-down
+        actions through 2023-09-30.
 
 target:
   kind: entity
@@ -103,12 +117,34 @@ observations:
     actor: exchange:bybit_ca
     event: bybit_canadian_market_withdrawal_announced
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2023-05-30T00:00:00Z
     precision: day
     delta_hours: 0
     country: CA
     sources:
+      - type: primary_corporate
+        url: https://announcements.bybitglobal.com/en/article/notice-on-exit-from-canadian-market-bltc1bfb8746d077fda/
+        body_hash: sha256:a802fe5845ac3071f4bbd7b438903a39be4c11464e5ba742737727e35b7c4699
+        body_path: sources/http_captures/bybit-canada-exit-2023-05/official-bybit-notice/announcements.bybitglobal.com__en-article-notice-on-exit-from-canadian-market-bltc1bfb8746d077fda__5dc8a1eae2.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [bybit]
+          countries: [CA]
+          time_window:
+            - 2023-05-30T00:00:00Z
+            - 2023-09-30T23:59:59Z
+        note: |
+          Bybit's own notice records the Canada market exit: product and
+          service availability was paused for Canadian nationals and
+          residents, new accounts and new positions were unavailable from
+          2023-05-31, and the notice's product table records multiple spot,
+          derivatives, earn, fiat, bot, and copy-trading surfaces as not
+          available from 2023-07-31, with wind-down/liquidation actions
+          through 2023-09-30. attribution=direct for the Bybit-authored
+          corporate exit; the CSA/regulatory-development rationale remains
+          a scoped background rationale, not a claim of a named order
+          compelling Bybit specifically.
       - type: semi_primary_wayback
         url: https://www.coindesk.com/business/2023/05/30/crypto-exchange-bybit-exit-canada-citing-recent-regulatory-development
         wayback: https://web.archive.org/web/20250505011102/https://www.coindesk.com/business/2023/05/30/crypto-exchange-bybit-exit-canada-citing-recent-regulatory-development
@@ -124,13 +160,20 @@ observations:
         note: |
           CoinDesk 2023-05-30: Bybit exits Canada citing recent regulatory
           development; new onboarding stops 2023-05-31, deposit/contract deadline
-          2023-07-31, withdraw-only thereafter. attribution=plausible: the market
-          withdrawal is directly observed and Bybit cites a "regulatory
-          development," but the captured CoinDesk report (not a Bybit primary
-          notice) is the anchor and does not enumerate the specific CSA
-          provisions, so the regulatory-cause framing is contextual.
+          2023-07-31, withdraw-only thereafter. Retained as corroborating
+          contemporaneous reporting and regulatory-context evidence.
 
 analysis_notes: |
+  **SOURCE-STRENGTHENED 2026-06-01** (quality-loop primary-trigger repair):
+  pinned Bybit's official 2023-05-30 "Notice on Exit from Canadian Market"
+  announcement as a local `body_hash` / `body_path` replay artifact. The row no
+  longer uses `evidence_tier=attested_secondary`: the Bybit-authored notice is
+  the claim-usable trigger and observed-change anchor. attribution is upgraded
+  from plausible to direct for the corporate exit itself; the regulatory
+  rationale remains deliberately scoped as generic regulatory-development
+  context because the notice does not enumerate a named Bybit-specific CSA
+  order.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. §9-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook §10) — single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
   verified+captured, awaiting human admission). On 2023-05-30 Bybit announced
@@ -155,11 +198,14 @@ analysis_notes: |
   stage; promotion would benefit from a second anchor.
 
 scoped_claim: |
-  "Bybit's 2023-05-30 withdrawal from the Canadian market (onboarding stop
-  2023-05-31, deposit/contract deadline 2023-07-31) following the CSA's
-  tightened crypto-platform regime is a single-layer offramp_cex
-  observed_change with attribution=plausible, part of the 2023 exchange exodus
-  from Canada (cf. Binance/KuCoin)."
+  "Bybit's official 2023-05-30 Canada-market exit notice paused products and
+  services for Canadian nationals/residents (new accounts and new positions
+  unavailable from 2023-05-31; multiple spot, derivatives, earn, fiat, bot,
+  and copy-trading surfaces unavailable from 2023-07-31, with residual
+  wind-down through 2023-09-30). This is a single-layer offramp_cex
+  observed_change with direct attribution to Bybit's corporate policy action;
+  the CSA/regulatory-development framing is retained only as contextual
+  rationale."
 
 tags:
   - corporate_policy_change

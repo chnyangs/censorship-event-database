@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `210aa10` · generated `2026-06-01T04:23:47Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-01` · commit `c85ecaa` · generated `2026-06-01T04:41:31Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -76,7 +76,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `brazil-bacen-stablecoin-restriction-2023` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `brazil-bcb-comunicado-25306-2014` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `btc-e-doj-2017` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_indictment` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-04-22` | `—` |
-| `bybit-canada-exit-2023-05` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
+| `bybit-canada-exit-2023-05` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-06-01` | `2026-05-31` |
 | `bybit-france-exit-2024-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `bybit-singapore-exit-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-17` | `—` |
 | `cambodia-nbc-joint-crypto-prohibition-2018-05` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
@@ -272,7 +272,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `pakistan-sbp-crypto-prohibition-2018-04` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `pancakeswap-sanctioned-country-frontend-geofence-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `domain` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-31` | `2026-05-31` |
 | `paxos-busd-nydfs-minting-stop-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
-| `paxos-canada-exit-2023-04` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
+| `paxos-canada-exit-2023-04` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `—` |
 | `pecunix-bullion-transfer-2008` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
 | `pertsev-nl-arrest-2022` | `null_case` | `S3_doj_sec_cftc_fiod` | `null_event` | `doj_indictment` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `2026-05-15` |
 | `philippines-bsp-vasp-license-moratorium-2022-09` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |

@@ -2,18 +2,16 @@ id: paxos-canada-exit-2023-04
 schema_version: 0.2.0
 codebook_version: "3.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "Paxos April-2023 exit from Canada (CSA regime). §9-clear service withdrawal, documented; attested_secondary on a single captured source."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-01
 
 related_events:
   - canada-csa-binance-withdrawal-2023
@@ -26,6 +24,19 @@ trigger:
   timestamp: 2023-04-12T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_corporate
+      url: https://support.paxos.com/articles/3570242566-paxos-withdrawal-from-canada
+      body_hash: sha256:bffcd3c6765a875abff57a45dfdc3716d6217a3937298a0766c6325a1edc2196
+      body_path: sources/http_captures/paxos-canada-exit-2023-04/official-paxos-canada-support/support.paxos.com__hc-en-us-articles-14791919809812-Paxos-Withdrawal-from-Canada__59e2fa6332.html
+      evidence_use: replayable
+      note: |
+        Paxos Knowledge Base official article, "Paxos Withdrawal from
+        Canada." The captured page states that Paxos asks Canadian users to
+        withdraw all balances, that accounts with no funds would be
+        automatically closed on May 9, and that beginning June 2 accounts
+        would be disabled except for access and withdrawals; users would not
+        have full platform access to initiate new trades. This is the
+        claim-usable primary corporate trigger and observation anchor.
     - type: semi_primary_wayback
       url: https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada
       wayback: https://web.archive.org/web/20240810111740/https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada/
@@ -44,11 +55,13 @@ trigger:
         the 2023-06-02 effective date, and the CSA regulatory context.
         Verified via grep of the pinned body.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_corporate
       note: |
-        Day-level trigger timing: Paxos website announcement dated
-        2023-04-12; empty accounts closed 2023-05-09; all remaining
-        accounts disabled (withdraw-only) 2023-06-02.
+        Day-level trigger timing: Paxos's official support article is the
+        corporate notice. The existing contemporaneous report dates the
+        announcement to 2023-04-12; the official article records empty-account
+        closure on 2023-05-09 and disabled accounts / withdraw-only access
+        beginning 2023-06-02.
 
 target:
   kind: entity
@@ -119,11 +132,31 @@ observations:
     actor: exchange:paxos_canada
     event: paxos_canada_offramp_shutdown
     observation_kind: observed_change
-    attribution: plausible
+    attribution: direct
     timestamp: 2023-06-02T00:00:00Z
     precision: day
     country: CA
     sources:
+      - type: primary_corporate
+        url: https://support.paxos.com/articles/3570242566-paxos-withdrawal-from-canada
+        body_hash: sha256:bffcd3c6765a875abff57a45dfdc3716d6217a3937298a0766c6325a1edc2196
+        body_path: sources/http_captures/paxos-canada-exit-2023-04/official-paxos-canada-support/support.paxos.com__hc-en-us-articles-14791919809812-Paxos-Withdrawal-from-Canada__59e2fa6332.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [paxos]
+          countries: [CA]
+          time_window:
+            - 2023-04-12T00:00:00Z
+            - 2023-06-02T23:59:59Z
+        note: |
+          Paxos's own support article records the Canada withdrawal path:
+          users were asked to withdraw all balances, empty accounts would
+          close on 2023-05-09, and beginning 2023-06-02 accounts would be
+          disabled except for access and withdrawals, with no full platform
+          access to initiate new trades. attribution=direct for the
+          Paxos-authored corporate service restriction; the CSA/OSC
+          regulatory framing remains contextual unless supported by a
+          separate primary legal trigger.
       - type: semi_primary_wayback
         url: https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada
         wayback: https://web.archive.org/web/20240810111740/https://www.coindesk.com/business/2023/04/12/blockchain-financial-services-firm-paxos-is-withdrawing-from-canada/
@@ -138,13 +171,19 @@ observations:
             - 2023-06-02T23:59:59Z
         note: |
           Paxos 2023-06-02 disabling of Canadian accounts (empty accounts
-          closed 2023-05-09). attribution=plausible: the off-ramp shutdown
-          is directly observed in contemporaneous coverage, but the captured
-          anchor is semi-primary (no Paxos primary notice pinned), so the
-          link to the 2023-02-22 CSA framework is the reporter-attributed
-          rationale rather than a primary Paxos-stated trigger.
+          closed 2023-05-09). Retained as contemporaneous corroboration and
+          source for the 2023-04-12 announcement date plus CSA-context frame.
 
 analysis_notes: |
+  **SOURCE-STRENGTHENED 2026-06-01** (quality-loop primary-trigger repair):
+  pinned Paxos's official "Paxos Withdrawal from Canada" support article as a
+  local `body_hash` / `body_path` replay artifact. The row no longer uses
+  `evidence_tier=attested_secondary`: the Paxos-authored article is the
+  claim-usable trigger and observed-change anchor. attribution is upgraded from
+  plausible to direct for Paxos's own account-disable / withdraw-only action;
+  CSA/OSC remains a contextual rationale unless a separate primary legal
+  trigger is load-bearing.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. §9-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook §10) — single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 3; sources
   verified+captured, awaiting human admission). Paxos's 2023-04-12
@@ -177,13 +216,12 @@ analysis_notes: |
     per §4.
 
 scoped_claim: |
-  "Paxos on 2023-04-12 announced withdrawal from the Canadian market
-  effective 2023-06-02 (empty accounts closed 2023-05-09), disabling
-  Canadian-resident accounts to withdraw-only amid the CSA's 2023-02-22
-  undertaking framework — a 1-layer offramp_cex observed_change
-  (attribution=plausible) for the Paxos Canada cohort. Structurally an S5
-  corporate-policy retreat sibling to the S4 CSA-driven Binance Canada
-  withdrawal (canada-csa-binance-withdrawal-2023)."
+  "Paxos's official Canada-withdrawal notice asked Canadian users to withdraw
+  all balances, closed empty accounts on 2023-05-09, and disabled remaining
+  accounts beginning 2023-06-02 except for access and withdrawals, leaving no
+  full platform access to initiate new trades. This is a 1-layer offramp_cex
+  observed_change with direct attribution to Paxos's corporate policy action;
+  the CSA/OSC regulatory frame is retained as contextual rationale."
 
 tags:
   - corporate_policy_change

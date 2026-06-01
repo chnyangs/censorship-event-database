@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-01T04:23:47Z`
+Generated at: `2026-06-01T04:41:31Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -82,7 +82,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `brazil-bacen-stablecoin-restriction-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `brazil-bcb-comunicado-25306-2014` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `btc-e-doj-2017` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 40 | ok | no_audit_recorded |
-| `bybit-canada-exit-2023-05` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
+| `bybit-canada-exit-2023-05` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-06-01 | 0 | ok | ok |
 | `bybit-france-exit-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `bybit-singapore-exit-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 15 | ok | no_audit_recorded |
 | `cambodia-nbc-joint-crypto-prohibition-2018-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
@@ -299,7 +299,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `pakistan-sbp-crypto-prohibition-2018-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
 | `pancakeswap-sanctioned-country-frontend-geofence-2022` | `admitted` | `human_reviewed` | 2026-05-31 | 1 | ok | 2026-05-31 | 1 | ok | ok |
 | `paxos-busd-nydfs-minting-stop-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
-| `paxos-canada-exit-2023-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
+| `paxos-canada-exit-2023-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 0 | ok | no_audit_recorded |
 | `pecunix-bullion-transfer-2008` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 11 | ok | no_audit_recorded |
 | `pertsev-nl-arrest-2022` | `admitted` | `human_authored` | 2026-05-15 | 17 | ok | 2026-04-22 | 40 | ok | ok |
 | `philippines-bsp-vasp-license-moratorium-2022-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 1 | ok | no_audit_recorded |
@@ -632,7 +632,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `orca-dex-us-frontend-block-2023-03` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `pakistan-sbp-crypto-prohibition-2018-04` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `paxos-busd-nydfs-minting-stop-2023` — audit=no_audit_recorded, verification=ok, verif_age=11d
-- `paxos-canada-exit-2023-04` — audit=no_audit_recorded, verification=ok, verif_age=1d
+- `paxos-canada-exit-2023-04` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `pecunix-bullion-transfer-2008` — audit=no_audit_recorded, verification=ok, verif_age=11d
 - `philippines-bsp-vasp-license-moratorium-2022-09` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `philippines-sec-binance-block-2024` — audit=no_audit_recorded, verification=ok, verif_age=11d

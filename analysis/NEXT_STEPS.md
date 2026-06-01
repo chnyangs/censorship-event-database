@@ -69,8 +69,8 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
 - [ ] **Claim-usable evidence repair.** `analysis/review-report.*` now excludes
       `evidence_use=contextual_unarchived` and `evidence_use=non_admission` sources from observation
       reliability and direct-attribution scoring. This surfaced the current paper-risk queue:
-      **264 release-ready** cases, **101 admitted-but-blocked** cases, admitted observation reliability
-      **279 high / 86 medium / 0 low**, and admitted attribution reliability **238 high / 127 medium / 0 low**.
+      **266 release-ready** cases, **99 admitted-but-blocked** cases, admitted observation reliability
+      **281 high / 84 medium / 0 low**, and admitted attribution reliability **240 high / 125 medium / 0 low**.
       The latest repairs moved `sec-shavers-btcst-2013`, `sec-v-telegram-ton-2020`, and
       `bitfinex-cftc-retail-commodity-2016` out of this queue by replacing contextual/stale pointers with
       replayable legal and operator-side anchors and, where needed, narrowing over-specific claims to the
@@ -163,6 +163,10 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       `evidence_tier=attested_secondary` with attribution narrowed from direct to plausible; and
       `tornado-cash-storm-conviction-2025` is demoted to draft because the retained chilling-effect observation
       is not yet backed by a concrete operator/repository/on-chain artifact.
+      Follow-on primary-trigger repair moved `bybit-canada-exit-2023-05` and `paxos-canada-exit-2023-04`
+      out of the blocked/lower-tier queue by pinning official Bybit and Paxos corporate notices locally,
+      removing `evidence_tier=attested_secondary`, and upgrading the company-authored market-exit observations
+      to direct attribution while keeping the CSA/OSC regulatory framing as contextual rationale.
       Paper-anchor promotion now additionally requires release readiness, so blocked `anchor_case` rows are
       kept as `appendix_only` until their evidence or coverage blockers are cleared.
       The next automated repair loop should prioritize rows with `scores.observation_reliability=="low"` or
@@ -172,7 +176,7 @@ Carried forward from the 2026-05-31 session close and updated by the 2026-06-01 
       claim-usable merely to improve counts.
 - [ ] **`evidence_tier` IRR pass.** Codebook 4.0.0 added a decision-rule (the `attested_secondary` tier). The
       codebook's own "Effective" convention requires a new IRR pass on ≥ 10 events for a decision-rule change.
-      Run a 2-coder IRR pass on a 10–15 event sample of the 39 `attested_secondary` rows to confirm inter-rater
+      Run a 2-coder IRR pass on a 10–15 event sample of the 37 `attested_secondary` rows to confirm inter-rater
       agreement on (a) §9-clarity and (b) the single-source judgment. Record κ. This is outstanding process debt.
       Prep packet created at `analysis/evidence_tier_irr_packet_2026_05_31.md` plus the machine-readable
       `analysis/evidence_tier_irr_packet_2026_05_31.csv`; both are intentionally blank and must not be treated as
