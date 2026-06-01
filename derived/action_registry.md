@@ -1,6 +1,6 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `295a15d` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `137626c` · generated `2026-06-02T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
@@ -131,7 +131,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `garantex-besciokov-mira-serda-doj-2025:1:offramp_cex:us_doj:garantex_exchange_operations_disrupted_by_indictment_and_seizure` | 1 | 0 | 1 | offramp_cex | `garantex-besciokov-mira-serda-doj-2025::offramp_cex` |
 | `garantex-ofac-2022:0:offramp_cex:exchange:garantex:exchange_designated_and_operations_constrained` | 1 | 0 | 1 | offramp_cex | `garantex-ofac-2022::offramp_cex` |
 | `gate-io-privacy-coin-perpetuals-delisting-2024-12:0:offramp_cex:exchange:gate_io:gateio_removes_xmr_dash_zec_zen_xvg_perpetual_markets` | 1 | 0 | 1 | offramp_cex | `gate-io-privacy-coin-perpetuals-delisting-2024-12::offramp_cex` |
-| `gemini-netherlands-exit-2023-11:0:offramp_cex:exchange:gemini_nl:gemini_netherlands_market_withdrawal_announced` | 1 | 0 | 1 | offramp_cex | `gemini-netherlands-exit-2023-11::offramp_cex` |
+| `gemini-netherlands-exit-2023-11:0:offramp_cex:exchange:gemini_nl:gemini_netherlands_market_exit_effective` | 1 | 0 | 1 | offramp_cex | `gemini-netherlands-exit-2023-11::offramp_cex` |
 | `genesis-sec-gemini-earn-2023:0:offramp_cex:lending_platform:gemini_earn_program:unregistered_lending_program_charged_and_terminated` | 1 | 0 | 1 | offramp_cex | `genesis-sec-gemini-earn-2023::offramp_cex` |
 | `genesis-sec-gemini-earn-2023:1:offramp_cex:lending_platform:genesis_global_capital:genesis_chapter_11_filing_freezes_lender_estate` | 1 | 0 | 1 | offramp_cex | `genesis-sec-gemini-earn-2023::offramp_cex` |
 | `germany-bafin-binance-licence-withdrawal-2023:0:offramp_cex:cex:binance_germany_cohort:binance_de_crypto_custody_licence_application_withdrawn` | 1 | 0 | 1 | offramp_cex | `germany-bafin-binance-licence-withdrawal-2023::offramp_cex` |

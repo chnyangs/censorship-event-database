@@ -25529,9 +25529,9 @@
   {
     "_source_file": "gemini-netherlands-exit-2023-11.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 S5-corporate\ndraft, adversarial-verify verdict=KEEP (sources real + on-topic + \u00a79 in-scope + not dup), AND\npasses strict admission validation; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). On 2023-09-29 (notice to Dutch\nusers dated 2023-09-26) Gemini announced it would cease offering crypto\nservices in the Netherlands by 2023-11-17, citing requirements imposed by De\nNederlandsche Bank (DNB) on crypto exchanges; Dutch users were asked to\nwithdraw their crypto and fiat balances by that date. This is a corporate\njurisdiction exit by a centralized exchange driven by a national regulatory\nregime \u2014 in scope per codebook \u00a79 (corporate jurisdiction exit/geofence).\ncomparison shape, single offramp_cex observed_change, attribution=plausible\n(exit is directly observed; captured anchors are trade press, not a Gemini\nprimary notice). asset_onchain not_applicable (CEX market exit, no on-chain\nfreeze, no \u00a71.6 tx_hash floor). Same DNB-driven 2023 Dutch exchange exodus as\nbinance-netherlands-exit-2023-07 and kucoin-netherlands-exit-2023. Sources\nverified via WebSearch 2026-05-31; CoinDesk + Unlock-BC captured + body_hash\npinned; grep of the CoinDesk body confirms \"Gemini\", \"Netherlands\",\n\"requirements imposed by the De Nederlandsche Bank (DNB)\", \"withdrawn their\ncrypto and fiat balances by Nov. 17\" (no fabrication).\n",
+    "analysis_notes": "**QUALITY-LOOP REPAIR 2026-06-02** (automated source and scope repair; no\nnew human-audit stamp). Replaced the load-bearing press-only trigger with a\nfirst-party Gemini Help Center Wayback memento for the Netherlands account\nclosure. The row is now scoped to the source-supported 2023-11-17 effective\nclosure / no-access state rather than the earlier press-report date. Trigger,\nobservation, and attribution are primary_corporate-backed; coverage is\nmeasured for the Gemini Netherlands customer access surface, without claiming\na per-user account list or balance enumeration.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: wave-3 S5-corporate\ndraft, adversarial-verify verdict=KEEP (sources real + on-topic + \u00a79 in-scope + not dup), AND\npasses strict admission validation; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 3; sources\nverified+captured, awaiting human admission). On 2023-09-29 (notice to Dutch\nusers dated 2023-09-26) Gemini announced it would cease offering crypto\nservices in the Netherlands by 2023-11-17, citing requirements imposed by De\nNederlandsche Bank (DNB) on crypto exchanges; Dutch users were asked to\nwithdraw their crypto and fiat balances by that date. This is a corporate\njurisdiction exit by a centralized exchange driven by a national regulatory\nregime \u2014 in scope per codebook \u00a79 (corporate jurisdiction exit/geofence).\ncomparison shape, single offramp_cex observed_change, attribution=plausible\n(exit is directly observed; captured anchors are trade press, not a Gemini\nprimary notice). asset_onchain not_applicable (CEX market exit, no on-chain\nfreeze, no \u00a71.6 tx_hash floor). Same DNB-driven 2023 Dutch exchange exodus as\nbinance-netherlands-exit-2023-07 and kucoin-netherlands-exit-2023. Sources\nverified via WebSearch 2026-05-31; CoinDesk + Unlock-BC captured + body_hash\npinned; grep of the CoinDesk body confirms \"Gemini\", \"Netherlands\",\n\"requirements imposed by the De Nederlandsche Bank (DNB)\", \"withdrawn their\ncrypto and fiat balances by Nov. 17\" (no fabrication).\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "3.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
@@ -25558,11 +25558,11 @@
       },
       {
         "layer": "offramp_cex",
-        "note": "Load-bearing layer. Gemini (a centralized exchange / off-ramp) ceased\nDutch operations due to DNB requirements on crypto exchanges, severing\nthe Gemini off-ramp for Netherlands residents (balances to be withdrawn\nby 2023-11-17). Partially_measured: the corporate-disclosure anchor is\nreplayable via wayback but the per-user offramp impact set is not\nenumerated at this draft stage.\n",
+        "note": "Load-bearing layer. Gemini (a centralized exchange / off-ramp) ceased\nDutch operations due to DNB requirements on crypto exchanges. Gemini's\nfirst-party support page states that all affected accounts were closed as\nof 2023-11-17 and Dutch users could no longer access Gemini exchange or\ncustody services. Measured for the scoped Gemini Netherlands customer\naccess surface; no per-user account list or asset balance set is claimed.\n",
         "scope": [
           "gemini_nl_retail"
         ],
-        "status": "partially_measured"
+        "status": "measured"
       }
     ],
     "created_at": "2026-05-31T00:00:00+00:00",
@@ -25572,23 +25572,44 @@
       "NL"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "exchange:gemini_nl",
-        "attribution": "plausible",
+        "attribution": "direct",
         "country": "NL",
         "delta_hours": 0,
-        "event": "gemini_netherlands_market_withdrawal_announced",
+        "event": "gemini_netherlands_market_exit_effective",
         "layer": "offramp_cex",
         "observation_kind": "observed_change",
         "precision": "day",
         "sources": [
           {
+            "body_hash": "sha256:2c3471a8fb196710e613f237bc94f72cf068094491acdecc77c61ab1c4a2e9fd",
+            "body_path": "sources/http_captures/gemini-netherlands-exit-2023-11/primary-gemini-wayback-v1/web.archive.org__web-20231208060627-https-support.gemini.com-hc-en-us-articles-19053340588187-Gemini-closing-accounts-in-the-Netherlands-Everything-you-need-to-know__23d44b8427.html",
+            "evidence_use": "replayable",
+            "note": "Gemini first-party support-page memento: Gemini no longer offered\ncrypto services to the Dutch market from 2023-11-17 due to DNB\nrequirements; all affected accounts were closed as of 2023-11-17\nand Dutch users could no longer access Gemini exchange or custody\nservices. Direct attribution is structurally earned by the\nprimary_corporate source.\n",
+            "scope_descriptor": {
+              "countries": [
+                "NL"
+              ],
+              "providers": [
+                "gemini"
+              ],
+              "time_window": [
+                "2023-11-17T00:00:00+00:00",
+                "2023-12-08T06:06:27+00:00"
+              ]
+            },
+            "type": "primary_corporate",
+            "url": "https://support.gemini.com/hc/en-us/articles/19053340588187-Gemini-closing-accounts-in-the-Netherlands-Everything-you-need-to-know",
+            "wayback": "https://web.archive.org/web/20231208060627/https://support.gemini.com/hc/en-us/articles/19053340588187-Gemini-closing-accounts-in-the-Netherlands-Everything-you-need-to-know"
+          },
+          {
             "body_hash": "sha256:18d5f55197f40afa004b6ed0a8bbd240cbefac4e140233e5c52c886a9079ecda",
             "body_path": "sources/http_captures/gemini-netherlands-exit-2023-11/primary/web.archive.org__web-20240615053708-https-www.coindesk.com-policy-2023-09-29-gemini-to-cease-offering-crypto-services-in-netherlands-in-november__7aed9116c7.html",
             "evidence_use": "replayable",
-            "note": "CoinDesk 2023-09-29: Gemini to cease Netherlands crypto services in\nNovember due to DNB requirements; users to withdraw by 2023-11-17.\nattribution=plausible: the market withdrawal is directly observed; the\ncaptured anchor is trade press (not a Gemini primary notice) and the\nDNB-requirement framing is as reported.\n",
+            "note": "CoinDesk 2023-09-29: Gemini to cease Netherlands crypto services in\nNovember due to DNB requirements; users to withdraw by 2023-11-17.\nRetained as contemporaneous semi-primary context for the earlier\ncustomer-notice/reporting window; not load-bearing for direct\nattribution after the Gemini support-page repair.\n",
             "scope_descriptor": {
               "countries": [
                 "NL"
@@ -25627,18 +25648,18 @@
             "wayback": "https://web.archive.org/web/20250624003219/https://www.unlock-bc.com/109313/gemini-halts-operations-in-netherlands-amid-regulatory-challenges/"
           }
         ],
-        "timestamp": "2023-09-29T00:00:00+00:00"
+        "timestamp": "2023-11-17T00:00:00+00:00"
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "binance-netherlands-exit-2023-07",
       "kucoin-netherlands-exit-2023"
     ],
     "research_stratum": "S5_corporate",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"Gemini's 2023-09-29 decision to cease Netherlands crypto services by\n2023-11-17, citing DNB requirements on crypto exchanges, is a single-layer\nofframp_cex observed_change with attribution=plausible, part of the 2023\nDutch exchange exodus (cf. Binance/KuCoin).\"\n",
+    "scoped_claim": "\"Gemini's 2023-11-17 effective closure of affected Netherlands accounts,\nleaving Dutch users unable to access Gemini exchange or custody services and\nciting DNB requirements on crypto exchanges, is a single-layer offramp_cex\nobserved_change with direct attribution, part of the 2023 Dutch exchange\nexodus (cf. Binance/KuCoin).\"\n",
     "status": "admitted",
     "tags": [
       "corporate_policy_change",
@@ -25667,6 +25688,15 @@
       "actor": "gemini",
       "citation": [
         {
+          "body_hash": "sha256:2c3471a8fb196710e613f237bc94f72cf068094491acdecc77c61ab1c4a2e9fd",
+          "body_path": "sources/http_captures/gemini-netherlands-exit-2023-11/primary-gemini-wayback-v1/web.archive.org__web-20231208060627-https-support.gemini.com-hc-en-us-articles-19053340588187-Gemini-closing-accounts-in-the-Netherlands-Everything-you-need-to-know__23d44b8427.html",
+          "evidence_use": "replayable",
+          "note": "Gemini Help Center Wayback memento captured 2023-12-08 for \"Gemini\nclosing accounts in the Netherlands - Everything you need to know\".\nThe first-party page states that Gemini is no longer offering crypto\nservices to the Dutch market from 2023-11-17 due to requirements\nimposed by De Nederlandsche Bank (DNB), and that all affected accounts\nwere closed as of 2023-11-17 with Dutch users no longer able to access\nGemini exchange or custody services. Grep-confirmed: Netherlands,\n17th November 2023, DNB, affected accounts closed, exchange or custody\nservices.\n",
+          "type": "primary_corporate",
+          "url": "https://support.gemini.com/hc/en-us/articles/19053340588187-Gemini-closing-accounts-in-the-Netherlands-Everything-you-need-to-know",
+          "wayback": "https://web.archive.org/web/20231208060627/https://support.gemini.com/hc/en-us/articles/19053340588187-Gemini-closing-accounts-in-the-Netherlands-Everything-you-need-to-know"
+        },
+        {
           "body_hash": "sha256:18d5f55197f40afa004b6ed0a8bbd240cbefac4e140233e5c52c886a9079ecda",
           "body_path": "sources/http_captures/gemini-netherlands-exit-2023-11/primary/web.archive.org__web-20240615053708-https-www.coindesk.com-policy-2023-09-29-gemini-to-cease-offering-crypto-services-in-netherlands-in-november__7aed9116c7.html",
           "evidence_use": "replayable",
@@ -25676,12 +25706,12 @@
           "wayback": "https://web.archive.org/web/20240615053708/https://www.coindesk.com/policy/2023/09/29/gemini-to-cease-offering-crypto-services-in-netherlands-in-november/"
         }
       ],
-      "timestamp": "2023-09-29T00:00:00+00:00",
+      "timestamp": "2023-11-17T00:00:00+00:00",
       "timestamp_precision": "day",
       "timestamp_sources": [
         {
-          "note": "Day-level precision: announced 2023-09-29; user withdrawal deadline\n2023-11-17 per the cited coverage.\n",
-          "type": "semi_primary_wayback"
+          "note": "Day-level precision: the first-party Gemini support page states that\nDutch-market services ended and affected accounts were closed as of\n2023-11-17. Semi-primary coverage preserves the earlier 2023-09-26/29\ncustomer-notice/reporting context, but the load-bearing trigger date is\nthe source-supported effective closure date.\n",
+          "type": "primary_corporate"
         }
       ],
       "type": "corporate_policy_change"

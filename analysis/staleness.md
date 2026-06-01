@@ -179,7 +179,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `garantex-besciokov-mira-serda-doj-2025` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `garantex-ofac-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-21 | 42 | ok | no_audit_recorded |
 | `gate-io-privacy-coin-perpetuals-delisting-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
-| `gemini-netherlands-exit-2023-11` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
+| `gemini-netherlands-exit-2023-11` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
 | `genesis-market-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
 | `genesis-sec-gemini-earn-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `germany-bafin-binance-licence-withdrawal-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-06-01 | 1 | ok | ok |
