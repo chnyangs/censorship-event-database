@@ -349,7 +349,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `sec-v-telegram-ton-2020` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `sec-v-uniswap-wells-notice-2024` | `rejected` | `human_authored` | — | — | no_audit_recorded | 2026-05-06 | 27 | ok | no_audit_recorded |
 | `sec-voorhees-satoshidice-2014` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
-| `semenov-ofac-2023` | `admitted` | `human_authored` | 2026-04-22 | 41 | ok | 2026-04-21 | 42 | ok | ok |
+| `semenov-ofac-2023` | `admitted` | `human_authored` | 2026-04-22 | 41 | ok | 2026-06-02 | 0 | ok | ok |
 | `shapeshift-mandatory-kyc-anonymity-end-2018-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `shrem-faiella-bitcoin-exchange-2014` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `sichuan-silence-ofac-2024` | `admitted` | `human_authored` | 2026-05-15 | 18 | ok | 2026-04-22 | 41 | ok | ok |
