@@ -1,19 +1,17 @@
 id: nepal-nrb-bitcoin-ban-2017-08
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-evidence_tier: attested_secondary
-evidence_caveat: "Nepal Rastra Bank Aug-2017 notice declaring all bitcoin transactions illegal (arrests followed Oct-2017). §9-clear hard ban, documented; attested_secondary on a single captured source."
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 
 related_events:
   - bangladesh-bb-bitcoin-warning-2014
@@ -25,6 +23,30 @@ trigger:
   timestamp: 2017-08-13T00:00:00Z
   timestamp_precision: day
   citation:
+    - type: primary_government
+      url: https://www.nrb.org.np/contents/uploads/2019/12/BitcoinNotice.pdf
+      wayback: https://web.archive.org/web/20190628001730id_/https://nrb.org.np/fxm/notices/BitcoinNotice.pdf
+      body_hash: sha256:078c0b471d4f1588e31658a7c2e155aa90033ed586c05cdc4f9b8b2d6afb4721
+      body_path: sources/http_captures/nepal-nrb-bitcoin-ban-2017-08/primary-nrb-bitcoin-notice-live/www.nrb.org.np__contents-uploads-2019-12-BitcoinNotice.pdf__de5bdd24e0.bin
+      evidence_use: replayable
+      note: |
+        Nepal Rastra Bank (Foreign Exchange Management Department) Bitcoin notice,
+        captured from the migrated official NRB PDF path. Rendered PDF verifies the
+        NRB seal/header, notice title, legal-basis references to the Nepal Rastra Bank
+        Act and Foreign Exchange Act, and the operative instruction that Bitcoin-related
+        transactions in Nepal are completely illegal and should not be conducted. The
+        same PDF body is also pinned as a raw Wayback memento of the legacy NRB URL
+        below (identical sha256).
+    - type: primary_government
+      url: https://nrb.org.np/fxm/notices/BitcoinNotice.pdf
+      wayback: https://web.archive.org/web/20190628001730id_/https://nrb.org.np/fxm/notices/BitcoinNotice.pdf
+      body_hash: sha256:078c0b471d4f1588e31658a7c2e155aa90033ed586c05cdc4f9b8b2d6afb4721
+      body_path: sources/http_captures/nepal-nrb-bitcoin-ban-2017-08/primary-nrb-bitcoin-notice-wayback-2019-raw/web.archive.org__web-20190628001730id_-https-nrb.org.np-fxm-notices-BitcoinNotice.pdf__2489834dfd.bin
+      evidence_use: replayable
+      note: |
+        Raw Wayback capture of the legacy NRB PDF URL, archived 2019-06-28. The body
+        hash matches the current migrated NRB-hosted PDF exactly, giving a durable
+        replayable primary-government anchor if the live URL later drifts.
     - type: semi_primary_wayback
       url: http://kathmandupost.ekantipur.com/news/2017-10-06/7-nabbed-for-running-bitcoin-exchange-business.html
       wayback: https://web.archive.org/web/20171006193823/http://kathmandupost.ekantipur.com/news/2017-10-06/7-nabbed-for-running-bitcoin-exchange-business.html
@@ -53,11 +75,11 @@ trigger:
         declaring all bitcoin transactions illegal. Retrospective secondary tracker;
         body_hash captured 2026-05-31.
   timestamp_sources:
-    - type: semi_primary_wayback
+    - type: primary_government
       note: |
-        NRB notice dated 2017-08-13 (Nepali calendar 2074/04/29). Day-level
-        precision. The 2017-10-06 CIB arrests are the first documented enforcement
-        of that prohibition.
+        NRB notice dated Nepali calendar 2074/04/29, equivalent to 2017-08-13.
+        Day-level precision is taken from the official NRB PDF itself. The
+        2017-10-06 CIB arrests are retained as downstream enforcement evidence.
 
 target:
   kind: entity
@@ -99,23 +121,42 @@ coverage:
     status: partially_measured
     note: |
       The prohibition operates at the off-ramp / exchange surface: NRB declared all
-      bitcoin transactions illegal under the Foreign Exchange (Regulation) Act 1962,
-      and the CIB arrested seven domestic bitcoin exchange operators on 2017-10-06,
-      shutting the domestic exchange channel. Carried as observed_change with
-      attribution=plausible: the contemporaneous Kathmandu Post report documents the
-      enforcement, but this authoring pass did not capture the NRB notice primary
-      legal text or a quantitative exchange-volume measurement, so coverage is
-      partially_measured rather than measured.
+      Bitcoin-related transactions illegal under Nepal's central-bank and foreign-
+      exchange legal framework, and the CIB arrested seven domestic bitcoin exchange
+      operators on 2017-10-06. Carried as observed_change with attribution=direct
+      because the NRB primary notice itself names the prohibited transaction surface;
+      coverage remains partially_measured because no quantitative exchange-volume
+      measurement or complete domestic-platform roster is captured.
 
 observations:
   - layer: offramp_cex
     actor: nepali_bitcoin_exchange_operators
     event: domestic_bitcoin_exchange_channel_shut_by_nrb_ban_and_cib_arrests
     observation_kind: observed_change
-    attribution: plausible
-    timestamp: 2017-10-06T00:00:00Z
+    attribution: direct
+    timestamp: 2017-08-13T00:00:00Z
     precision: day
     sources:
+      - type: primary_government
+        url: https://www.nrb.org.np/contents/uploads/2019/12/BitcoinNotice.pdf
+        wayback: https://web.archive.org/web/20190628001730id_/https://nrb.org.np/fxm/notices/BitcoinNotice.pdf
+        body_hash: sha256:078c0b471d4f1588e31658a7c2e155aa90033ed586c05cdc4f9b8b2d6afb4721
+        body_path: sources/http_captures/nepal-nrb-bitcoin-ban-2017-08/primary-nrb-bitcoin-notice-live/www.nrb.org.np__contents-uploads-2019-12-BitcoinNotice.pdf__de5bdd24e0.bin
+        evidence_use: replayable
+        note: |
+          Official NRB notice declaring Bitcoin-related transactions in Nepal illegal
+          and instructing the public not to conduct or cause such transactions. This
+          primary-government source carries attribution=direct for the class-level
+          offramp/exchange-surface restriction.
+      - type: primary_government
+        url: https://nrb.org.np/fxm/notices/BitcoinNotice.pdf
+        wayback: https://web.archive.org/web/20190628001730id_/https://nrb.org.np/fxm/notices/BitcoinNotice.pdf
+        body_hash: sha256:078c0b471d4f1588e31658a7c2e155aa90033ed586c05cdc4f9b8b2d6afb4721
+        body_path: sources/http_captures/nepal-nrb-bitcoin-ban-2017-08/primary-nrb-bitcoin-notice-wayback-2019-raw/web.archive.org__web-20190628001730id_-https-nrb.org.np-fxm-notices-BitcoinNotice.pdf__2489834dfd.bin
+        evidence_use: replayable
+        note: |
+          Raw Wayback replay of the same official NRB notice PDF from the legacy URL;
+          same sha256 as the migrated live NRB-hosted copy.
       - type: semi_primary_wayback
         url: http://kathmandupost.ekantipur.com/news/2017-10-06/7-nabbed-for-running-bitcoin-exchange-business.html
         wayback: https://web.archive.org/web/20171006193823/http://kathmandupost.ekantipur.com/news/2017-10-06/7-nabbed-for-running-bitcoin-exchange-business.html
@@ -124,10 +165,10 @@ observations:
         evidence_use: replayable
         note: |
           Kathmandu Post 2017-10-06: CIB of Nepal Police arrested seven persons for
-          running bitcoin exchange businesses, the first enforcement of the NRB
-          2017-08-13 prohibition. attribution=plausible per codebook §1.5 (the
-          enforcement is documented in contemporaneous press but the NRB primary
-          legal instrument was not captured in this pass).
+          running bitcoin exchange businesses, the first captured downstream
+          enforcement report following the NRB 2017-08-13 prohibition. Retained as
+          enforcement-context corroboration; the load-bearing attribution is the NRB
+          primary notice above.
       - type: supporting_tracker
         url: https://freemanlaw.com/cryptocurrency/nepal/
         wayback: https://web.archive.org/web/20220127132508/https://freemanlaw.com/cryptocurrency/nepal/
@@ -139,6 +180,16 @@ observations:
           2017-08-13 notice date.
 
 analysis_notes: |
+  **SOURCE REPAIR 2026-06-02** (automated source-strengthening pass). Pinned the official
+  Nepal Rastra Bank Bitcoin notice PDF from the migrated NRB URL and a raw 2019 Wayback
+  replay of the legacy NRB URL; both bodies have identical sha256. Rendered PDF verified
+  the NRB seal/header, Foreign Exchange Management Department notice title, date
+  2074/04/29 (2017-08-13), and operative instruction that Bitcoin-related transactions
+  in Nepal are completely illegal and should not be conducted. Removed
+  evidence_tier=attested_secondary and upgraded primary_source_verified=true. The
+  Kathmandu Post arrest report remains as downstream enforcement context rather than
+  the load-bearing trigger anchor.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen reviewing agent: TASK-2 lower-tier. §9-clear, well-documented deliberate restriction admitted at evidence_tier=attested_secondary (codebook §10) — single captured contemporaneous source; verified clean (no fabrication) in bulk adversarial-verify; filterable via evidence_tier.)
   **NEW EVENT AUTHORED — DRYRUN 2026-05-31** (census bulk wave 1; sources verified+captured,
   awaiting human admission).
@@ -157,22 +208,22 @@ analysis_notes: |
   The NRB notice is an FX-control-law prohibition enforced via police action, matching
   the bangladesh-bb-bitcoin-warning-2014 sibling treatment.
 
-  Why attribution=plausible (not direct): per §1.5, direct requires the blocking
-  authority's primary instrument citing the target. This pass captured contemporaneous
-  Nepali primary-press documenting the enforcement plus a retrospective tracker for the
-  legal basis, but did not capture the NRB notice primary legal text; conservative
-  plausible per §8.4.
+  Why attribution=direct: the official NRB notice is the blocking authority's primary
+  instrument and directly names the Bitcoin transaction surface as illegal in Nepal.
+  The CIB arrests are corroborating downstream enforcement evidence rather than the
+  attribution anchor.
 
   Why comparable_main_2017_present / comparable_analysis: 2017 event, post-2017 tier.
 
-  Draft pending human audit of (i) the NRB 2017-08-13 notice primary legal text, and
-  (ii) any quantitative exchange-volume measurement for offramp_cex.
+  Remaining scope limitation: no quantitative exchange-volume measurement or complete
+  domestic-platform roster is captured, so coverage remains partially_measured.
 
 scoped_claim: |
-  Nepal Rastra Bank's 2017-08-13 notice declared all bitcoin transactions illegal under
-  the Foreign Exchange (Regulation) Act 1962; on 2017-10-06 the CIB arrested seven
-  domestic bitcoin exchange operators, shutting the domestic exchange channel. Effect
-  carried at offramp_cex (observed_change, plausible) at class level.
+  Nepal Rastra Bank's 2017-08-13 notice declared Bitcoin-related transactions illegal
+  in Nepal under the central-bank and foreign-exchange legal framework; on 2017-10-06
+  the CIB arrested seven domestic bitcoin exchange operators in the first captured
+  downstream enforcement report. Effect carried at offramp_cex (observed_change,
+  direct) at class level.
 
 tags:
   - regulatory_enforcement
