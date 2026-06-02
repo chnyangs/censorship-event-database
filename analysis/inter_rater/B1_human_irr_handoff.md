@@ -38,11 +38,17 @@ From `analysis/inter_rater/kappa_report.md` (mode
 
 **The CI is the new, load-bearing fact.** `attribution` κ=0.58 on n=20 has a 95%
 bootstrap CI spanning the entire [0, 1] range: the point estimate cannot clear
-(or fail) the project's κ≥0.6 gate at this sample size. Before a *publishable*
-attribution reliability claim, the attribution IRR sample must be enlarged well
-beyond n=20 (size it empirically — re-run the bootstrap on a pilot human batch
-until the CI half-width is tolerable, e.g. ≤±0.15). `coverage_status` and
+(or fail) the project's κ≥0.6 gate at this sample size. `coverage_status` and
 `observation_kind` are saturated at κ=1.0 and need no enlargement.
+
+**Powered attribution packet — DONE.** A larger blind sample (n=157,
+`analysis/inter_rater_powered/`) has been generated so the human attribution κ
+lands with a CI half-width near ±0.14 (simulated [0.44, 0.69]) instead of ±0.36.
+**Honest limit:** enlarging tightens the CI but does not raise κ — if the true
+agreement is ≈0.58, even the full 342-observation population yields a CI that
+still straddles 0.6 (simulated [0.48, 0.68]). Clearing the gate therefore
+requires improving the codebook §1 attribution rubric to raise true agreement,
+not just more rows. See `analysis/inter_rater_powered/README.md`.
 
 ## Turnkey steps for the real human pass
 
