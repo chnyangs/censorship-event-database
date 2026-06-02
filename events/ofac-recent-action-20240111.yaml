@@ -1,17 +1,17 @@
 id: ofac-recent-action-20240111
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-20
+last_verified: 2026-06-02
 last_human_audit: 2026-05-20
 
 related_events:
@@ -107,35 +107,34 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      No L0 OONI / Censored Planet probe slice attached. Substrate not
-      mobilized because the underlying crypto-relevant change is an
-      administrative SDN re-listing rather than a fresh enforcement action.
+      No network-layer censorship claim is retained for this administrative
+      metadata-refresh row. The crypto-relevant CHATEX address set was
+      already live from the 2021-11-08 designation and is analyzed in
+      `chatex-ofac-2021`; this 2024-01-11 row makes no fresh L0 claim.
   - layer: l1_consensus
-    status: not_measured
+    status: not_applicable
     note: |
-      No event-specific L1 Wahrstätter / relayscan slice attached. The
-      CHATEX SDN entry has been live since 2021-11-08; a 2024-01-11
-      metadata refresh would not be expected to shift aggregate Ethereum
-      relay OFAC-compliance.
+      No event-specific L1 claim is retained. The CHATEX SDN entry and its
+      Ethereum addresses had already been live since 2021-11-08; this
+      metadata refresh introduced no new Ethereum address cohort.
   - layer: l3_rpc
-    status: not_measured
+    status: not_applicable
     provider_scope: public_only
     note: |
-      No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot
-      bracketing 2024-01-11. The Chatex addresses had already been on
-      stablecoin issuer blacklists since 2021-11-09 (see
-      `chatex-ofac-2021`) and would already be reflected in any
-      address-keyed RPC filter list.
+      No RPC/filter-list claim is retained for this administrative
+      metadata-refresh row. Address-keyed RPC effects for the unchanged
+      CHATEX cohort belong to the original 2021 designation event, not this
+      non-substantive 2024 update.
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     scope: [chatex.com]
     note: |
-      No Wayback bracketing of chatex.com around 2024-01-11 is attached.
-      The chatex.com operator-compliance notice is anchored on 2021-11-17
-      in `chatex-ofac-2021`; whether the operator notice persisted
-      through 2024-01-11 has not been re-pinned in this release.
+      No frontend claim is retained for this administrative metadata-refresh
+      row. The chatex.com operator-compliance notice is anchored on
+      2021-11-17 in `chatex-ofac-2021`; this row does not re-count or
+      re-measure that 2021 frontend response.
   - layer: asset_onchain
     status: not_applicable
     chain: ethereum
@@ -194,6 +193,15 @@ observations:
           finding for an administrative metadata refresh.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned OFAC Recent
+  Actions 20240111 Wayback capture against its recorded SHA-256 and
+  re-grepped the local body for the CHATEX and digital-currency-address
+  update text. Coverage was narrowed to the row's actual contribution: an
+  administrative metadata-refresh/null-control denominator, with no fresh
+  L0/L1/RPC/frontend/asset claim retained. The only measured observation
+  remains the aggregate absence of a fresh public CEX policy statement for
+  the unchanged CHATEX address cohort in the 14-day post-update window.
+
   **NEW EVENT AUTHORED — DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22
   candidate stubs per user instruction to push remaining backlog to
   dryrun-complete state): promoted from
@@ -276,7 +284,9 @@ scoped_claim: |
   cyber-related SDN entry (30 addresses unchanged from 2021-11-08), and a
   periodic Federal Civil Penalties inflation adjustment. The crypto-relevant
   content does not constitute a fresh enforcement event; cascade analysis
-  for the listed addresses is anchored in `chatex-ofac-2021`."
+  for the listed addresses is anchored in `chatex-ofac-2021`. No
+  L0/L1/RPC/frontend/asset claim is retained for this administrative row;
+  only the absence of a fresh public CEX policy statement is measured."
 
 tags:
   - sanctions

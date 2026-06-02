@@ -1,17 +1,17 @@
 id: ofac-hamas-buy-cash-msb-2023-10
 schema_version: 0.2.0
-codebook_version: "1.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-16T00:00:00Z
-last_verified: 2026-05-20
+last_verified: 2026-06-02
 last_human_audit: 2026-05-20
 
 related_events:
@@ -107,12 +107,12 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      No canonical Buy Cash MSB web frontend has been pinned by the
-      LLM-author at draft time; an L0 network-layer scope cannot be
-      bracketed without a confirmed domain. Status remains not_measured
-      pending human-audit pinning of any Buy Cash-affiliated domain.
+      No network-layer censorship claim is retained for this row. The
+      source-backed target is the Gaza-based Buy Cash virtual-currency MSB
+      and its single XBT address; no confirmed DNS endpoint is part of the
+      scoped claim, so an L0 OONI/Censored Planet probe is outside scope.
   - layer: l1_consensus
     status: not_applicable
     chain: bitcoin
@@ -130,12 +130,11 @@ coverage:
       Bitcoin-only target. v0.3 audit 2026-05-20 factual correction:
       status changed from not_measured to not_applicable (Bitcoin-native).
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     note: |
-      No canonical Buy Cash MSB frontend pinned. Status remains
-      not_measured pending identification of any operator-controlled UI
-      surface (likely never had a public clearnet web presence given the
-      MSB's Gaza-based informal-finance profile).
+      No frontend claim is retained for this row. The retained observation
+      is the legal/off-ramp severance of a designated virtual-currency MSB;
+      no operator-controlled UI surface is identified or measured here.
   - layer: asset_onchain
     status: not_applicable
     chain: bitcoin
@@ -210,6 +209,15 @@ observations:
           claim.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned Treasury jy1816
+  and OFAC Recent Actions 20231018 Wayback captures against their recorded
+  SHA-256 hashes and re-grepped the local bodies for Buy Cash, virtual
+  currency, and the single XBT address. Coverage was narrowed to the
+  source-backed off-ramp/MSB severance claim: no L0 or frontend claim is
+  retained without a confirmed Buy Cash DNS/UI endpoint, and the Bitcoin
+  asset layer remains structurally not_applicable because no issuer-freeze
+  primitive exists.
+
   **v0.3 audit 2026-05-20 (c) Batch C-1 promoted draft→admitted with
   FACTUAL CORRECTION**: original Wave-2 draft incorrectly framed this
   event as 2-layer cascade (offramp_cex direct + asset_onchain plausible
@@ -246,9 +254,9 @@ analysis_notes: |
   trigger for SUEX 2021-09 / Chatex 2021-11 and protocol-level
   privacy-mixer trigger for Tornado 2022-08); (b) target is a
   foreign-operated virtual-currency MSB with no US-hosted
-  infrastructure dependency — direct US ramp closure is the action
-  itself, but no canonical Buy Cash frontend has been pinned for the
-  L0/L4 layers; (c) target is Bitcoin-only (single XBT address), which
+  infrastructure dependency — direct US ramp closure is the action itself,
+  and no network/frontend claim is retained without a confirmed Buy Cash
+  DNS/UI endpoint; (c) target is Bitcoin-only (single XBT address), which
   structurally rules out issuer-level asset_onchain freeze cascades
   available to EVM-targeting siblings (cryptex-ofac-2024,
   tornado-cash-ofac-2022).
@@ -265,16 +273,20 @@ analysis_notes: |
   contextual artifacts but are no longer cited as load-bearing
   evidence in this YAML.
 
-  Follow-up directions (post-admission): (1) human-audit Wayback +
-  body_hash pin of jy1816 and the OFAC Recent Actions 2023-10-18
-  page; (2) full enumeration of Buy Cash digital-currency addresses
-  from the SDN entry, with per-address usdtbanlist.com sweep against
-  Tether and USDC issuers; (3) per-CEX KYT-flagging anchors
-  (Chainalysis Reactor, TRM, Elliptic per-event report slices); (4)
-  L1 consensus-layer (post-Merge) PBS / MEV-Boost relay-filter
-  bracketing snapshots around 2023-10-18; (5) L3 RPC-provider
-  (MEV-Blocker, Flashbots Protect) filter-list bracketing snapshots
-  around 2023-10-18.
+  Follow-up directions (post-admission): optional enrichment is limited to
+  per-CEX KYT / deposit-cluster evidence for the single XBT address, or a
+  replayable Buy Cash DNS/UI endpoint if one is independently identified.
+  L1/L3 Ethereum filter-list enrichment is not applicable to this
+  Bitcoin-only event.
+
+scoped_claim: |
+  "The 2023-10-18 OFAC designation of Buy Cash Money and Money Transfer
+  Company (Khan Yunis, Gaza) is coded as a direct off-ramp / virtual-
+  currency-MSB severance event: the SDN action itself closes the US-
+  property / US-person transaction surface and exposes counterparties to
+  sanctions risk. Buy Cash's only OFAC-named crypto address is a single
+  Bitcoin XBT address, so no issuer-level asset freeze is applicable; no
+  L0/L4 frontend claim is retained without a confirmed DNS/UI endpoint."
 
 tags:
   - sanctions

@@ -1,17 +1,17 @@
 id: zheng-yan-fentanyl-ofac-2019-08
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 last_human_audit: 2026-05-31
 
 trigger:
@@ -62,11 +62,12 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      No OONI / Censored Planet probe in scope; the designees are
-      individuals, not a hosted platform with a canonical domain to
-      probe. Substrate-shaped gap, not a coverage_gap observation.
+      No network-layer censorship claim is retained for this row. The
+      designees are individuals/DTO entities rather than a DNS-anchored
+      crypto platform with a canonical service endpoint, so an L0
+      OONI/Censored Planet probe is outside the scoped claim.
   - layer: l1_consensus
     status: not_applicable
     note: |
@@ -79,15 +80,14 @@ coverage:
     note: |
       No canonical web frontend attached to the designated individuals.
   - layer: asset_onchain
-    status: not_measured
+    status: not_applicable
     note: |
       The SDN entries attach cryptocurrency addresses (Bitcoin named in
-      press release sm756; Litecoin in the SDN-list entries), but no
-      primary_onchain freeze/blacklist receipt has been captured for
-      this draft (BTC/LTC have no issuer-level freeze mechanism analogous
-      to USDT/USDC blacklisting). asset_onchain effect deferred per
-      codebook §1.6; the measurable cross-layer surface is carried at
-      offramp_cex below.
+      press release sm756; Litecoin in the SDN-list entries). BTC/LTC have
+      no issuer-level freeze or blacklist primitive analogous to USDT/USDC
+      blacklisting, so no asset_onchain issuer-freeze claim is applicable
+      to this event. The retained measurable surface is the aggregate
+      public CEX-disclosure null observation below.
   - layer: offramp_cex
     status: measured
 
@@ -122,6 +122,15 @@ observations:
           observation's scope.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned Treasury sm756
+  Wayback capture against its recorded SHA-256 and re-grepped the local body
+  for the Zheng/Yan digital-currency/Bitcoin nexus. Coverage was narrowed
+  from prior L0/asset_onchain gap coding to the actual scoped claim: no
+  network, RPC, frontend, or issuer-freeze layer is retained for this
+  individual/DTO BTC/LTC-address designation; the only measured layer is
+  aggregate public CEX-disclosure silence in the 14-day post-designation
+  window.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1
   VERIFY-FLAG — captured Treasury press release sm756 substantiates the designation, the Bitcoin
   digital-currency address nexus, and the "first OFAC narcotics designation to enumerate
@@ -149,7 +158,8 @@ scoped_claim: |
   Zheng, and Xiaobing Yan (the first OFAC narcotics designation to attach
   crypto addresses) listed Bitcoin addresses (Litecoin additionally per the SDN-list entries); no public CEX
   cascade was documented in the 14-day window. null_case: individual-
-  trafficker target with limited measurable cross-layer surface."
+  trafficker target with limited measurable cross-layer surface; no
+  network/RPC/frontend or issuer-freeze claim is retained for this row."
 
 tags:
   - ofac_sdn_designation

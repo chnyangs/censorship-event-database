@@ -1,17 +1,17 @@
 id: media-land-volosovik-bulletproof-ofac-2025-11
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 
 trigger:
   type: ofac_sdn_designation
@@ -68,6 +68,8 @@ target:
   actor_name: Media Land LLC + Aleksandr Volosovik
   chains: [bitcoin]
   canonical_domains: []
+  addresses:
+    - "18dLDAWi8LmrHbEq3QzDJb9SLxCf4uimXB"
 
 jurisdiction:
   - US
@@ -98,14 +100,12 @@ coverage:
       The designation targets a hosting operator's corporate/personal
       SDN status, not a crypto web-service operator's canonical frontend.
   - layer: asset_onchain
-    status: not_measured
+    status: not_applicable
     chain: bitcoin
     note: |
       One Bitcoin address is attached to the Volosovik SDN entry, but
-      native BTC has no issuer-level freeze primitive, so there is no
-      on-chain freeze receipt to capture. No primary_onchain tx_hash
-      pinned in this draft authoring pass (codebook §1.6 defers the floor
-      for drafts).
+      native BTC has no issuer-level freeze or blacklist primitive, so no
+      asset_onchain issuer-freeze claim is applicable to this event.
   - layer: offramp_cex
     status: measured
 
@@ -142,6 +142,15 @@ observations:
           freeze primitive), limiting the measurable cross-layer surface.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned OFAC Recent
+  Actions 20251119 Wayback capture against its recorded SHA-256 and
+  re-grepped the local body for Media Land / Volosovik and the listed XBT
+  address. Added the Volosovik Bitcoin address to `target.addresses` and
+  narrowed asset_onchain from an unmeasured tx-hash gap to not_applicable,
+  because native BTC has no issuer-freeze primitive. L0 remains
+  not_measured: Media Land is a hosting provider and an AS/domain
+  measurement could be performed, but no replayable L0 slice is pinned.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk
   adversarial-verify clean (no VERIFY-FLAG) AND strict admission validation — captured primary/
   semi-primary sources meet the §1.6/threshold floor; origin agent_draft -> human_reviewed).

@@ -1,17 +1,17 @@
 id: wang-hongfei-fentanyl-precursor-ofac-2023-04
 schema_version: 0.2.0
-codebook_version: "3.0.0"
+codebook_version: "4.0.0"
 status: admitted
-primary_source_verified: false
+primary_source_verified: true
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: null_event
 admission_tier: null_case
 origin: human_reviewed
-version: "0.1"
+version: "0.2"
 created_at: 2026-05-31T00:00:00Z
-last_verified: 2026-05-31
+last_verified: 2026-06-02
 last_human_audit: 2026-05-31
 
 trigger:
@@ -60,11 +60,12 @@ jurisdiction:
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
-      No OONI / Censored Planet probe in scope; the designees are
-      individuals/firms, not a hosted platform with a canonical domain.
-      Substrate-shaped gap, not a coverage_gap observation.
+      No network-layer censorship claim is retained for this row. The
+      designees are individuals/firms rather than a DNS-anchored crypto
+      platform with a canonical service endpoint, so an L0 OONI/Censored
+      Planet probe is outside the scoped claim.
   - layer: l1_consensus
     status: not_applicable
     note: |
@@ -77,14 +78,14 @@ coverage:
     note: |
       No canonical web frontend attached to the designated parties.
   - layer: asset_onchain
-    status: not_measured
+    status: not_applicable
     note: |
       The SDN entry attaches Bitcoin address
-      3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML, but no primary_onchain freeze/
-      blacklist receipt has been captured for this draft (BTC has no
-      issuer-level freeze mechanism analogous to USDT/USDC blacklisting).
-      asset_onchain effect deferred per codebook §1.6; the measurable
-      cross-layer surface is carried at offramp_cex below.
+      3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML. Bitcoin has no issuer-level
+      freeze or blacklist primitive analogous to USDT/USDC blacklisting, so
+      no asset_onchain issuer-freeze claim is applicable to this event. The
+      retained measurable surface is the aggregate public CEX-disclosure
+      null observation below.
   - layer: offramp_cex
     status: measured
 
@@ -120,6 +121,14 @@ observations:
           observation's scope.
 
 analysis_notes: |
+  **SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned Treasury jy1413
+  Wayback capture against its recorded SHA-256 and re-grepped the local body
+  for the Wang/WSBT Bitcoin-wallet nexus. Coverage was narrowed from prior
+  L0/asset_onchain gap coding to the actual scoped claim: no network,
+  RPC, frontend, or issuer-freeze layer is retained for this individual/firm
+  Bitcoin-address designation; the only measured layer is aggregate public
+  CEX-disclosure silence in the 14-day post-designation window.
+
   **ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1
   VERIFY-FLAG. Captured Treasury press release jy1413 substantiates the designation + crypto nexus
   (rendered+grepped: Bitcoin + cryptocurrency + wallet present). Specific identifiers not in the press release (literal
@@ -144,7 +153,8 @@ scoped_claim: |
   WSBT/SXPC (fentanyl-precursor suppliers) attached a Bitcoin address (the specific
   address is enumerated in the SDN-list entry, not in press release jy1413); no public CEX cascade was documented
   in the 14-day window. null_case: precursor-network target with limited
-  measurable cross-layer surface."
+  measurable cross-layer surface; no network/RPC/frontend or issuer-freeze
+  claim is retained for this row."
 
 tags:
   - ofac_sdn_designation
