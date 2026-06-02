@@ -36,7 +36,7 @@ COMPARE_OUT ?= -
     er-training-template audit-archive repair-evidence-anchors \
     event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
     admission-sensitivity jurisdiction derived \
-    audit-worksheets paper-tables paper-check paper-release-check paper-regenerate-check test \
+    audit-worksheets paper-tables paper-macros paper-check paper-release-check paper-regenerate-check test \
     render-site render-evidence render-evidence-all compare \
     ooni-scan l0-query-metadata usdt-scan operator-census capture \
     irr-sample irr-packet irr-kappa evidence-tier-irr-kappa \
@@ -286,6 +286,9 @@ paper-tables paper-regenerate-check source-manifest temporal-ledger: export SOUR
 endif
 paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
+
+paper-macros: derived
+	$(PYTHON) scripts/build_paper_macros.py
 
 paper-check: paper-tables
 	$(PYTHON) scripts/check_paper_readiness.py
