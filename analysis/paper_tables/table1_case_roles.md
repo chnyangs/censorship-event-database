@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `cdc9fa8` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `84e7c21` · generated `2026-06-02T00:04:45Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -232,7 +232,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `makerdao-emergency-shutdown-contingency-2022-08` | `null_case` | `S5_corporate` | `null_event` | `corporate_policy_change` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `malaysia-sc-binance-disable-2021` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-06-01` | `—` |
 | `matveev-ofac-2023` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-04-22` | `2026-05-15` |
-| `media-land-volosovik-bulletproof-ofac-2025-11` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `—` |
+| `media-land-volosovik-bulletproof-ofac-2025-11` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-02` | `—` |
 | `metamask-eth-phishing-detect-tornado-additions-2022` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-17` | `—` |
 | `metamask-snaps-region-restrictions-2023-09` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 2 | `multi_layer` | ✓ | · | `2026-05-17` | `—` |
 | `mica-l2-esma-eba-rts-2024` | `null_case` | `S6_supranational` | `null_event` | `supranational_regulation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
@@ -254,10 +254,10 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `nydfs-bitlicense-2015-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `oecd-carf-2022` | `empirical_case` | `S6_supranational` | `comparison` | `supranational_regulation` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-01` | `2026-05-16` |
 | `ofac-dprk-it-worker-sim-hyon-sop-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
-| `ofac-hamas-buy-cash-msb-2023-10` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-05-20` | `2026-05-20` |
+| `ofac-hamas-buy-cash-msb-2023-10` | `empirical_case` | `S1_ofac_sdn` | `comparison` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 1 | `cex_only` | · | · | `2026-06-02` | `2026-05-20` |
 | `ofac-hamas-gaza-now-2024-03` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
 | `ofac-houthi-al-jamal-crypto-refresh-2024-12` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
-| `ofac-recent-action-20240111` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
+| `ofac-recent-action-20240111` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-06-02` | `2026-05-20` |
 | `ofac-trickbot-conti-eleven-2023-09` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
 | `ofac-zhdanova-russian-elite-launderer-2023-11` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `complete` | 0 | `null_event` | · | · | `2026-05-20` | `2026-05-20` |
 | `okex-privacy-coin-delisting-2019-09` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `asset` | `complete` | 1 | `cex_only` | · | · | `2026-05-31` | `2026-05-31` |
@@ -373,7 +373,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `venezuela-sunacrip-mining-exchange-halt-2023-03` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `other_single_layer` | · | · | `2026-05-31` | `—` |
 | `vietnam-sbv-payment-prohibition-2017-10` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
 | `voyager-bankruptcy-doj-objection-2023` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `court_civil_order` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-06-02` | `—` |
-| `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `2026-05-31` |
+| `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-02` | `2026-05-31` |
 | `webmoney-ukraine-tax-police-freeze-2013-06` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `welcome-to-video-doj-2019` | `empirical_case` | `S3_doj_sec_cftc_fiod` | `comparison` | `doj_seizure_order` | `day` | `entity` | `subset` | 1 | `frontend_only` | · | · | `2026-05-16` | `2026-05-16` |
 | `wikileaks-amazon-aws-eviction-2010-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
@@ -385,7 +385,7 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `wikileaks-visa-europe-suspension-2010-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
 | `wikileaks-wau-holland-tax-status-challenge-2010-12` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
 | `wikileaks-western-union-interdiction-2010-12` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `cex_only` | ✓ | · | `2026-05-21` | `—` |
-| `zheng-yan-fentanyl-ofac-2019-08` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-31` | `2026-05-31` |
+| `zheng-yan-fentanyl-ofac-2019-08` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-06-02` | `2026-05-31` |
 | `zimbabwe-rbz-circular-2-2018-golix` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `zimbabwe-rbz-circular-2-2018-golix-ban` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-31` | `—` |
 | `zservers-ofac-2025` | `null_case` | `S1_ofac_sdn` | `null_event` | `ofac_sdn_designation` | `day` | `address_set` | `complete` | 0 | `null_event` | · | · | `2026-04-22` | `2026-05-15` |

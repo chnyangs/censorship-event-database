@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `313`
-- Admitted but release-blocked cases: `52`
+- Release-ready cases: `318`
+- Admitted but release-blocked cases: `47`
 - Fully complete release-ready cases: `12`
-- Scope-limited release-ready cases: `301`
+- Scope-limited release-ready cases: `306`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 40, 'paper_anchor': 4}`
@@ -3470,18 +3470,17 @@ This file is the operational summary for the repo's two current priorities:
 ### `media-land-volosovik-bulletproof-ofac-2025-11`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
+- Note: One layer remains explicitly unmeasured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Either measure the remaining layer or document why it is out of scope.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `metamask-eth-phishing-detect-tornado-additions-2022`
@@ -3874,17 +3873,16 @@ This file is the operational summary for the repo's two current priorities:
 ### `ofac-hamas-buy-cash-msb-2023-10`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `ofac-hamas-gaza-now-2024-03`
@@ -3937,18 +3935,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `ofac-recent-action-20240111`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `ofac-trickbot-conti-eleven-2023-09`
@@ -5922,18 +5917,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `wang-hongfei-fentanyl-precursor-ofac-2023-04`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `webmoney-ukraine-tax-police-freeze-2013-06`
@@ -6109,18 +6101,15 @@ This file is the operational summary for the repo's two current priorities:
 ### `zheng-yan-fentanyl-ofac-2019-08`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `low`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `zimbabwe-rbz-circular-2-2018-golix-ban`

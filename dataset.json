@@ -38224,9 +38224,9 @@
   {
     "_source_file": "media-land-volosovik-bulletproof-ofac-2025-11.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk\nadversarial-verify clean (no VERIFY-FLAG) AND strict admission validation \u2014 captured primary/\nsemi-primary sources meet the \u00a71.6/threshold floor; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1;\nsources verified+captured, awaiting human admission). OFAC SDN\ndesignation 2025-11-19 (OFAC recent-actions 20251119 / Treasury\nsb0319), coordinated with the U.K. and Australia, of Russian\nbulletproof-hosting provider Media Land LLC and executives Aleksandr\nVolosovik (\"Yalishanda\"), Kirill Zatolokin, and Yulia Pankova, for\nenabling ransomware (LockBit / BlackSuit / Play) and DDoS\ninfrastructure; one Bitcoin address is listed for Volosovik. In-scope\nper \u00a79 INCLUDE (OFAC SDN designation). NOTE: the candidate lead\nproposed an l0_network layer, but this event codes the SDN\nasset-blocking action, not a measured network block \u2014 no OONI /\nCensored Planet measurement of Media Land infrastructure was captured,\nso per \u00a71.5 the L0 row stays not_measured. Coded null_event /\nnull_case per the S1 convention (cf.\nbitriver-russia-mining-ofac-2022-04): the on-chain footprint is a\nsingle native-BTC address (no issuer freeze primitive) and no\nper-event CEX cascade was pinned in the 14-day window, so the\nmeasurable cross-layer surface is limited (offramp_cex\nobserved_no_change / none). Primary sources verified + captured\n2026-05-31 (OFAC recent-actions 20251119 + Treasury sb0319,\nbody_hash-pinned; no fabrication). Conservative coding per codebook\n\u00a78.4 pending human review.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned OFAC Recent\nActions 20251119 Wayback capture against its recorded SHA-256 and\nre-grepped the local body for Media Land / Volosovik and the listed XBT\naddress. Added the Volosovik Bitcoin address to `target.addresses` and\nnarrowed asset_onchain from an unmeasured tx-hash gap to not_applicable,\nbecause native BTC has no issuer-freeze primitive. L0 remains\nnot_measured: Media Land is a hosting provider and an AS/domain\nmeasurement could be performed, but no replayable L0 slice is pinned.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: event passed bulk\nadversarial-verify clean (no VERIFY-FLAG) AND strict admission validation \u2014 captured primary/\nsemi-primary sources meet the \u00a71.6/threshold floor; origin agent_draft -> human_reviewed).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1;\nsources verified+captured, awaiting human admission). OFAC SDN\ndesignation 2025-11-19 (OFAC recent-actions 20251119 / Treasury\nsb0319), coordinated with the U.K. and Australia, of Russian\nbulletproof-hosting provider Media Land LLC and executives Aleksandr\nVolosovik (\"Yalishanda\"), Kirill Zatolokin, and Yulia Pankova, for\nenabling ransomware (LockBit / BlackSuit / Play) and DDoS\ninfrastructure; one Bitcoin address is listed for Volosovik. In-scope\nper \u00a79 INCLUDE (OFAC SDN designation). NOTE: the candidate lead\nproposed an l0_network layer, but this event codes the SDN\nasset-blocking action, not a measured network block \u2014 no OONI /\nCensored Planet measurement of Media Land infrastructure was captured,\nso per \u00a71.5 the L0 row stays not_measured. Coded null_event /\nnull_case per the S1 convention (cf.\nbitriver-russia-mining-ofac-2022-04): the on-chain footprint is a\nsingle native-BTC address (no issuer freeze primitive) and no\nper-event CEX cascade was pinned in the 14-day window, so the\nmeasurable cross-layer surface is limited (offramp_cex\nobserved_no_change / none). Primary sources verified + captured\n2026-05-31 (OFAC recent-actions 20251119 + Treasury sb0319,\nbody_hash-pinned; no fabrication). Conservative coding per codebook\n\u00a78.4 pending human review.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "3.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
@@ -38250,8 +38250,8 @@
       {
         "chain": "bitcoin",
         "layer": "asset_onchain",
-        "note": "One Bitcoin address is attached to the Volosovik SDN entry, but\nnative BTC has no issuer-level freeze primitive, so there is no\non-chain freeze receipt to capture. No primary_onchain tx_hash\npinned in this draft authoring pass (codebook \u00a71.6 defers the floor\nfor drafts).\n",
-        "status": "not_measured"
+        "note": "One Bitcoin address is attached to the Volosovik SDN entry, but\nnative BTC has no issuer-level freeze or blacklist primitive, so no\nasset_onchain issuer-freeze claim is applicable to this event.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "offramp_cex",
@@ -38266,7 +38266,7 @@
       "UK",
       "AU"
     ],
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "counterparty_cex_ecosystem",
@@ -38304,7 +38304,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
     "scoped_claim": "\"The 2025-11-19 OFAC + U.K. + Australia designation of Media Land LLC\n/ Aleksandr Volosovik (OFAC recent-actions 20251119, ransomware\nbulletproof hosting) attached one Bitcoin address; native BTC has no\nissuer freeze primitive, no replayable L0 measurement was captured,\nand no public CEX cascade was pinned in the 14-day window. null_case:\nlimited measurable cross-layer surface.\"\n",
@@ -38321,6 +38321,9 @@
     "target": {
       "actor_name": "Media Land LLC + Aleksandr Volosovik",
       "actor_type": "bulletproof_hosting_provider",
+      "addresses": [
+        "18dLDAWi8LmrHbEq3QzDJb9SLxCf4uimXB"
+      ],
       "canonical_domains": [],
       "chains": [
         "bitcoin"
@@ -38363,7 +38366,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "metamask-eth-phishing-detect-tornado-additions-2022.yaml",
@@ -42613,14 +42616,14 @@
   {
     "_source_file": "ofac-hamas-buy-cash-msb-2023-10.yaml",
     "admission_tier": "empirical_case",
-    "analysis_notes": "**v0.3 audit 2026-05-20 (c) Batch C-1 promoted draft\u2192admitted with\nFACTUAL CORRECTION**: original Wave-2 draft incorrectly framed this\nevent as 2-layer cascade (offramp_cex direct + asset_onchain plausible\nwith Tether USDT freezes). Direct inspection of the OFAC RA Wayback\ncapture (web/20231018160335) shows Buy Cash MSB carries EXACTLY ONE\ndigital-currency address \u2014 Bitcoin XBT `19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW`,\nnot any Ethereum/USDT address. Bitcoin has no issuer-level freeze\nprimitive. The Tether 32/41-wallet freeze sweeps documented in\ncontemporary chain-analytics reporting (CoinDesk, TRM Labs) target\nOTHER Hamas-affiliated EVM addresses from the same RA's individual\ndesignations or independent cluster analysis \u2014 NOT Buy Cash's XBT\naddress. Repair: asset_onchain layer changed to not_applicable\n(Bitcoin-native, no freeze primitive); chains downgraded\n[bitcoin, ethereum] \u2192 [bitcoin]; asset_onchain observation row\nREMOVED. Event remains comparison/empirical_case at 1-layer\n(offramp_cex direct via SDN US-property block) rather than 2-layer.\naudit_log iteration: audit_id 307 recorded initial YES based on\ndraft's 2-layer claim; this analysis_notes update captures the\nfactual-correction amendment performed during YAML patching.\n\nComparison-shape S1 ofac_sdn_designation event sibling to\nsuex-ofac-2021 (first exchange-level SDN), chatex-ofac-2021, and\ntornado-cash-ofac-2022 (the canonical mixed-cascade anchor).\nPaper-relevant because this is the cleanest geopolitical-trigger\nsanctions cascade since Tornado Cash 2022-08: a single\npress-release-level action (jy1816) targets a virtual-currency MSB\n(Buy Cash, Khan Yunis) and triggers US-ramp severance at the\nofframp_cex layer by construction (SDN + 50% rule + secondary\nsanctions). Single observed_change layer at attribution direct \u2192\nempirical_case admission tier.\n\nDistinguishing features vs. siblings: (a) trigger is a\ngeopolitical-emergency post-attack designation (vs. ransomware\ntrigger for SUEX 2021-09 / Chatex 2021-11 and protocol-level\nprivacy-mixer trigger for Tornado 2022-08); (b) target is a\nforeign-operated virtual-currency MSB with no US-hosted\ninfrastructure dependency \u2014 direct US ramp closure is the action\nitself, but no canonical Buy Cash frontend has been pinned for the\nL0/L4 layers; (c) target is Bitcoin-only (single XBT address), which\nstructurally rules out issuer-level asset_onchain freeze cascades\navailable to EVM-targeting siblings (cryptex-ofac-2024,\ntornado-cash-ofac-2022).\n\nContextual background (NOT load-bearing for this event's\nasset_onchain layer): Tether's 2023-10-16 32-wallet announcement\n(~$900k USDT) and subsequent 2023-12-09 41-wallet precautionary\nsweep targeted Hamas-affiliated EVM addresses from the same RA's\nbroader designations. These sweeps illustrate post-Oct-7 issuer\ncompliance posture but cannot be cited as asset_onchain evidence\nfor Buy Cash specifically (no per-address mapping to the XBT\naddress). CoinDesk + TRM Labs captures remain in\nsources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/ as\ncontextual artifacts but are no longer cited as load-bearing\nevidence in this YAML.\n\nFollow-up directions (post-admission): (1) human-audit Wayback +\nbody_hash pin of jy1816 and the OFAC Recent Actions 2023-10-18\npage; (2) full enumeration of Buy Cash digital-currency addresses\nfrom the SDN entry, with per-address usdtbanlist.com sweep against\nTether and USDC issuers; (3) per-CEX KYT-flagging anchors\n(Chainalysis Reactor, TRM, Elliptic per-event report slices); (4)\nL1 consensus-layer (post-Merge) PBS / MEV-Boost relay-filter\nbracketing snapshots around 2023-10-18; (5) L3 RPC-provider\n(MEV-Blocker, Flashbots Protect) filter-list bracketing snapshots\naround 2023-10-18.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned Treasury jy1816\nand OFAC Recent Actions 20231018 Wayback captures against their recorded\nSHA-256 hashes and re-grepped the local bodies for Buy Cash, virtual\ncurrency, and the single XBT address. Coverage was narrowed to the\nsource-backed off-ramp/MSB severance claim: no L0 or frontend claim is\nretained without a confirmed Buy Cash DNS/UI endpoint, and the Bitcoin\nasset layer remains structurally not_applicable because no issuer-freeze\nprimitive exists.\n\n**v0.3 audit 2026-05-20 (c) Batch C-1 promoted draft\u2192admitted with\nFACTUAL CORRECTION**: original Wave-2 draft incorrectly framed this\nevent as 2-layer cascade (offramp_cex direct + asset_onchain plausible\nwith Tether USDT freezes). Direct inspection of the OFAC RA Wayback\ncapture (web/20231018160335) shows Buy Cash MSB carries EXACTLY ONE\ndigital-currency address \u2014 Bitcoin XBT `19D1iGzDr7FyAdiy3ZZdxMd6ttHj1kj6WW`,\nnot any Ethereum/USDT address. Bitcoin has no issuer-level freeze\nprimitive. The Tether 32/41-wallet freeze sweeps documented in\ncontemporary chain-analytics reporting (CoinDesk, TRM Labs) target\nOTHER Hamas-affiliated EVM addresses from the same RA's individual\ndesignations or independent cluster analysis \u2014 NOT Buy Cash's XBT\naddress. Repair: asset_onchain layer changed to not_applicable\n(Bitcoin-native, no freeze primitive); chains downgraded\n[bitcoin, ethereum] \u2192 [bitcoin]; asset_onchain observation row\nREMOVED. Event remains comparison/empirical_case at 1-layer\n(offramp_cex direct via SDN US-property block) rather than 2-layer.\naudit_log iteration: audit_id 307 recorded initial YES based on\ndraft's 2-layer claim; this analysis_notes update captures the\nfactual-correction amendment performed during YAML patching.\n\nComparison-shape S1 ofac_sdn_designation event sibling to\nsuex-ofac-2021 (first exchange-level SDN), chatex-ofac-2021, and\ntornado-cash-ofac-2022 (the canonical mixed-cascade anchor).\nPaper-relevant because this is the cleanest geopolitical-trigger\nsanctions cascade since Tornado Cash 2022-08: a single\npress-release-level action (jy1816) targets a virtual-currency MSB\n(Buy Cash, Khan Yunis) and triggers US-ramp severance at the\nofframp_cex layer by construction (SDN + 50% rule + secondary\nsanctions). Single observed_change layer at attribution direct \u2192\nempirical_case admission tier.\n\nDistinguishing features vs. siblings: (a) trigger is a\ngeopolitical-emergency post-attack designation (vs. ransomware\ntrigger for SUEX 2021-09 / Chatex 2021-11 and protocol-level\nprivacy-mixer trigger for Tornado 2022-08); (b) target is a\nforeign-operated virtual-currency MSB with no US-hosted\ninfrastructure dependency \u2014 direct US ramp closure is the action itself,\nand no network/frontend claim is retained without a confirmed Buy Cash\nDNS/UI endpoint; (c) target is Bitcoin-only (single XBT address), which\nstructurally rules out issuer-level asset_onchain freeze cascades\navailable to EVM-targeting siblings (cryptex-ofac-2024,\ntornado-cash-ofac-2022).\n\nContextual background (NOT load-bearing for this event's\nasset_onchain layer): Tether's 2023-10-16 32-wallet announcement\n(~$900k USDT) and subsequent 2023-12-09 41-wallet precautionary\nsweep targeted Hamas-affiliated EVM addresses from the same RA's\nbroader designations. These sweeps illustrate post-Oct-7 issuer\ncompliance posture but cannot be cited as asset_onchain evidence\nfor Buy Cash specifically (no per-address mapping to the XBT\naddress). CoinDesk + TRM Labs captures remain in\nsources/http_captures/ofac-hamas-buy-cash-msb-2023-10/primary/ as\ncontextual artifacts but are no longer cited as load-bearing\nevidence in this YAML.\n\nFollow-up directions (post-admission): optional enrichment is limited to\nper-CEX KYT / deposit-cluster evidence for the single XBT address, or a\nreplayable Buy Cash DNS/UI endpoint if one is independently identified.\nL1/L3 Ethereum filter-list enrichment is not applicable to this\nBitcoin-only event.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No canonical Buy Cash MSB web frontend has been pinned by the\nLLM-author at draft time; an L0 network-layer scope cannot be\nbracketed without a confirmed domain. Status remains not_measured\npending human-audit pinning of any Buy Cash-affiliated domain.\n",
-        "status": "not_measured"
+        "note": "No network-layer censorship claim is retained for this row. The\nsource-backed target is the Gaza-based Buy Cash virtual-currency MSB\nand its single XBT address; no confirmed DNS endpoint is part of the\nscoped claim, so an L0 OONI/Censored Planet probe is outside scope.\n",
+        "status": "not_applicable"
       },
       {
         "chain": "bitcoin",
@@ -42636,8 +42639,8 @@
       },
       {
         "layer": "l4_frontend",
-        "note": "No canonical Buy Cash MSB frontend pinned. Status remains\nnot_measured pending identification of any operator-controlled UI\nsurface (likely never had a public clearnet web presence given the\nMSB's Gaza-based informal-finance profile).\n",
-        "status": "not_measured"
+        "note": "No frontend claim is retained for this row. The retained observation\nis the legal/off-ramp severance of a designated virtual-currency MSB;\nno operator-controlled UI surface is identified or measured here.\n",
+        "status": "not_applicable"
       },
       {
         "chain": "bitcoin",
@@ -42662,7 +42665,7 @@
       "US"
     ],
     "last_human_audit": "2026-05-20",
-    "last_verified": "2026-05-20",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "us_ofac",
@@ -42703,7 +42706,7 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "tether-doj-pig-butchering-freeze-2023",
       "suex-ofac-2021",
@@ -42711,6 +42714,7 @@
     ],
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
+    "scoped_claim": "\"The 2023-10-18 OFAC designation of Buy Cash Money and Money Transfer\nCompany (Khan Yunis, Gaza) is coded as a direct off-ramp / virtual-\ncurrency-MSB severance event: the SDN action itself closes the US-\nproperty / US-person transaction surface and exposes counterparties to\nsanctions risk. Buy Cash's only OFAC-named crypto address is a single\nBitcoin XBT address, so no issuer-level asset freeze is applicable; no\nL0/L4 frontend claim is retained without a confirmed DNS/UI endpoint.\"\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -42775,7 +42779,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "ofac-hamas-gaza-now-2024-03.yaml",
@@ -43288,33 +43292,33 @@
   {
     "_source_file": "ofac-recent-action-20240111.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22\ncandidate stubs per user instruction to push remaining backlog to\ndryrun-complete state): promoted from\ncandidate_triggers/ofac-recent-action-20240111.yaml. Authored by LLM agent\nwithout personally verifying Wayback/body_hash; origin=human_reviewed\nrequired by validator. Real release must replace this DRYRUN marker with a\nhuman-verified audit after pinning real archive anchors.\n\nStatus admitted=draft, admission_tier=null_case rather than empirical_case\nbecause the 2024-01-11 OFAC Recent Action does not map cleanly to a\nconcrete new crypto enforcement event. The OFAC page bundles three\ndistinct sub-actions, none of which are independent crypto-target SDN\ndesignations:\n\n1. **Russia-related new SDN additions [RUSSIA-EO14024]**\n   - MIKHEYCHIK Vladimir Vladimirovich (individual; no digital-currency\n     address)\n   - ASHULUK FIRING RANGE (Astrakhan Oblast; defense activities; no\n     digital-currency address)\n   - VLADIMIROVKA ADVANCED WEAPONS AND RESEARCH COMPLEX (Astrakhan Oblast;\n     defense activities; no digital-currency address)\n   - 3 aircraft: RF-78757 (IL-76MD), RF-82011 (AN-124), RF-86898 (IL-76)\n     linked to COMMAND OF THE MILITARY TRANSPORT AVIATION (no\n     digital-currency addresses)\n   None of these designees carry crypto addresses and the actors are\n   defense/aviation rather than crypto-services. Out of scope for the\n   S1_ofac_sdn crypto-target stratum.\n\n2. **Cyber-related Designation Update [CYBER2]: CHATEX**\n   The page contains a \"The following changes have been made to OFAC's\n   SDN List\" -> CHATEX block. Comparing the -from- and -to- text:\n   - identical website (chatex.com), countries (Estonia / Latvia / Saint\n     Vincent and the Grenadines), Organization Established Date (2018)\n   - identical 30 digital-currency address set (22 XBT, 6 ETH, 1 USDT-Omni,\n     1 XRP) \u2014 same addresses as 2021-11-08 first designation\n   - identical tag [CYBER2]\n   This is therefore a *non-substantive* metadata refresh of CHATEX's\n   existing SDN entry rather than a new crypto enforcement action.\n   The same 30 addresses are first-designation anchored in\n   `chatex-ofac-2021`; promoting them again here would double-count.\n\n3. **Russia-related Designations Updates (non-crypto)**\n   - JOINT STOCK COMPANY THE 224TH FLIGHT UNIT STATE AIRLINES: -from-/-to-\n     diff adds Cyrillic alias and Target Type \"State-Owned Enterprise\"\n   - Aircraft RF-82041 (AN-124): -from-/-to- diff adds Mode S transponder\n     code and re-links from 224th Flight Unit to COMMAND OF THE MILITARY\n     TRANSPORT AVIATION\n   Defense/aviation metadata refreshes; no crypto addresses.\n\n4. **Regulatory amendment**: implementation of the Federal Civil Penalties\n   Inflation Adjustment Act of 1990 for 2024 (a periodic CMP-cap\n   inflation adjustment). Not an SDN designation.\n\nAuthoring decision: drafted as null_case with empty observations[] rather\nthan rejected, because the page is structurally part of the S1_ofac_sdn\ntrigger registry (it carries crypto-relevant SDN content even though that\ncontent is a re-listing). The empirical contribution to the corpus is\nzero \u2014 the CHATEX cascade is fully accounted for by `chatex-ofac-2021` \u2014\nso this row should not enter conditional-rate denominators. If a future\naudit identifies that the 2024-01-11 page nevertheless triggered any\nfresh L0..offramp_cex action (e.g. a fresh issuer-sweep batch keyed to\nthe SDN refresh), the event should be re-promoted with measured-layer\ncoverage rows and observed_change entries.\n\nAmbiguity documented for human reviewer:\n- Whether to keep this event as a separate row or merge as a follow-on\n  pointer to `chatex-ofac-2021` (current author chose to keep separate\n  because the OFAC Recent Actions URL https://ofac.treasury.gov/recent-actions/20240111\n  is its own primary_legal artifact and entered the trigger registry on\n  that basis).\n- Whether to rename the slug; current author kept the date-based id per\n  the brief's \"if target unclear, keep the date-based id\" instruction\n  because the target is a metadata refresh rather than a clear new\n  crypto enforcement target.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned OFAC Recent\nActions 20240111 Wayback capture against its recorded SHA-256 and\nre-grepped the local body for the CHATEX and digital-currency-address\nupdate text. Coverage was narrowed to the row's actual contribution: an\nadministrative metadata-refresh/null-control denominator, with no fresh\nL0/L1/RPC/frontend/asset claim retained. The only measured observation\nremains the aggregate absence of a fresh public CEX policy statement for\nthe unchanged CHATEX address cohort in the 14-day post-update window.\n\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-16** (Phase 6c bulk-promotion of 22\ncandidate stubs per user instruction to push remaining backlog to\ndryrun-complete state): promoted from\ncandidate_triggers/ofac-recent-action-20240111.yaml. Authored by LLM agent\nwithout personally verifying Wayback/body_hash; origin=human_reviewed\nrequired by validator. Real release must replace this DRYRUN marker with a\nhuman-verified audit after pinning real archive anchors.\n\nStatus admitted=draft, admission_tier=null_case rather than empirical_case\nbecause the 2024-01-11 OFAC Recent Action does not map cleanly to a\nconcrete new crypto enforcement event. The OFAC page bundles three\ndistinct sub-actions, none of which are independent crypto-target SDN\ndesignations:\n\n1. **Russia-related new SDN additions [RUSSIA-EO14024]**\n   - MIKHEYCHIK Vladimir Vladimirovich (individual; no digital-currency\n     address)\n   - ASHULUK FIRING RANGE (Astrakhan Oblast; defense activities; no\n     digital-currency address)\n   - VLADIMIROVKA ADVANCED WEAPONS AND RESEARCH COMPLEX (Astrakhan Oblast;\n     defense activities; no digital-currency address)\n   - 3 aircraft: RF-78757 (IL-76MD), RF-82011 (AN-124), RF-86898 (IL-76)\n     linked to COMMAND OF THE MILITARY TRANSPORT AVIATION (no\n     digital-currency addresses)\n   None of these designees carry crypto addresses and the actors are\n   defense/aviation rather than crypto-services. Out of scope for the\n   S1_ofac_sdn crypto-target stratum.\n\n2. **Cyber-related Designation Update [CYBER2]: CHATEX**\n   The page contains a \"The following changes have been made to OFAC's\n   SDN List\" -> CHATEX block. Comparing the -from- and -to- text:\n   - identical website (chatex.com), countries (Estonia / Latvia / Saint\n     Vincent and the Grenadines), Organization Established Date (2018)\n   - identical 30 digital-currency address set (22 XBT, 6 ETH, 1 USDT-Omni,\n     1 XRP) \u2014 same addresses as 2021-11-08 first designation\n   - identical tag [CYBER2]\n   This is therefore a *non-substantive* metadata refresh of CHATEX's\n   existing SDN entry rather than a new crypto enforcement action.\n   The same 30 addresses are first-designation anchored in\n   `chatex-ofac-2021`; promoting them again here would double-count.\n\n3. **Russia-related Designations Updates (non-crypto)**\n   - JOINT STOCK COMPANY THE 224TH FLIGHT UNIT STATE AIRLINES: -from-/-to-\n     diff adds Cyrillic alias and Target Type \"State-Owned Enterprise\"\n   - Aircraft RF-82041 (AN-124): -from-/-to- diff adds Mode S transponder\n     code and re-links from 224th Flight Unit to COMMAND OF THE MILITARY\n     TRANSPORT AVIATION\n   Defense/aviation metadata refreshes; no crypto addresses.\n\n4. **Regulatory amendment**: implementation of the Federal Civil Penalties\n   Inflation Adjustment Act of 1990 for 2024 (a periodic CMP-cap\n   inflation adjustment). Not an SDN designation.\n\nAuthoring decision: drafted as null_case with empty observations[] rather\nthan rejected, because the page is structurally part of the S1_ofac_sdn\ntrigger registry (it carries crypto-relevant SDN content even though that\ncontent is a re-listing). The empirical contribution to the corpus is\nzero \u2014 the CHATEX cascade is fully accounted for by `chatex-ofac-2021` \u2014\nso this row should not enter conditional-rate denominators. If a future\naudit identifies that the 2024-01-11 page nevertheless triggered any\nfresh L0..offramp_cex action (e.g. a fresh issuer-sweep batch keyed to\nthe SDN refresh), the event should be re-promoted with measured-layer\ncoverage rows and observed_change entries.\n\nAmbiguity documented for human reviewer:\n- Whether to keep this event as a separate row or merge as a follow-on\n  pointer to `chatex-ofac-2021` (current author chose to keep separate\n  because the OFAC Recent Actions URL https://ofac.treasury.gov/recent-actions/20240111\n  is its own primary_legal artifact and entered the trigger registry on\n  that basis).\n- Whether to rename the slug; current author kept the date-based id per\n  the brief's \"if target unclear, keep the date-based id\" instruction\n  because the target is a metadata refresh rather than a clear new\n  crypto enforcement target.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "1.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No L0 OONI / Censored Planet probe slice attached. Substrate not\nmobilized because the underlying crypto-relevant change is an\nadministrative SDN re-listing rather than a fresh enforcement action.\n",
-        "status": "not_measured"
+        "note": "No network-layer censorship claim is retained for this administrative\nmetadata-refresh row. The crypto-relevant CHATEX address set was\nalready live from the 2021-11-08 designation and is analyzed in\n`chatex-ofac-2021`; this 2024-01-11 row makes no fresh L0 claim.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
-        "note": "No event-specific L1 Wahrst\u00e4tter / relayscan slice attached. The\nCHATEX SDN entry has been live since 2021-11-08; a 2024-01-11\nmetadata refresh would not be expected to shift aggregate Ethereum\nrelay OFAC-compliance.\n",
-        "status": "not_measured"
+        "note": "No event-specific L1 claim is retained. The CHATEX SDN entry and its\nEthereum addresses had already been live since 2021-11-08; this\nmetadata refresh introduced no new Ethereum address cohort.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l3_rpc",
-        "note": "No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot\nbracketing 2024-01-11. The Chatex addresses had already been on\nstablecoin issuer blacklists since 2021-11-09 (see\n`chatex-ofac-2021`) and would already be reflected in any\naddress-keyed RPC filter list.\n",
+        "note": "No RPC/filter-list claim is retained for this administrative\nmetadata-refresh row. Address-keyed RPC effects for the unchanged\nCHATEX cohort belong to the original 2021 designation event, not this\nnon-substantive 2024 update.\n",
         "provider_scope": "public_only",
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "layer": "l4_frontend",
-        "note": "No Wayback bracketing of chatex.com around 2024-01-11 is attached.\nThe chatex.com operator-compliance notice is anchored on 2021-11-17\nin `chatex-ofac-2021`; whether the operator notice persisted\nthrough 2024-01-11 has not been re-pinned in this release.\n",
+        "note": "No frontend claim is retained for this administrative metadata-refresh\nrow. The chatex.com operator-compliance notice is anchored on\n2021-11-17 in `chatex-ofac-2021`; this row does not re-count or\nre-measure that 2021 frontend response.\n",
         "scope": [
           "chatex.com"
         ],
-        "status": "not_measured"
+        "status": "not_applicable"
       },
       {
         "chain": "ethereum",
@@ -43335,7 +43339,7 @@
       "US"
     ],
     "last_human_audit": "2026-05-20",
-    "last_verified": "2026-05-20",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "counterparty_cex_ecosystem",
@@ -43373,13 +43377,13 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "related_events": [
       "chatex-ofac-2021"
     ],
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"OFAC Recent Action 2024-01-11 bundled Russia-related EO14024 designations\n(1 individual + 2 defense entities + 3 aircraft, none carrying crypto\naddresses), a non-substantive metadata refresh of the existing CHATEX\ncyber-related SDN entry (30 addresses unchanged from 2021-11-08), and a\nperiodic Federal Civil Penalties inflation adjustment. The crypto-relevant\ncontent does not constitute a fresh enforcement event; cascade analysis\nfor the listed addresses is anchored in `chatex-ofac-2021`.\"\n",
+    "scoped_claim": "\"OFAC Recent Action 2024-01-11 bundled Russia-related EO14024 designations\n(1 individual + 2 defense entities + 3 aircraft, none carrying crypto\naddresses), a non-substantive metadata refresh of the existing CHATEX\ncyber-related SDN entry (30 addresses unchanged from 2021-11-08), and a\nperiodic Federal Civil Penalties inflation adjustment. The crypto-relevant\ncontent does not constitute a fresh enforcement event; cascade analysis\nfor the listed addresses is anchored in `chatex-ofac-2021`. No\nL0/L1/RPC/frontend/asset claim is retained for this administrative row;\nonly the absence of a fresh public CEX policy statement is measured.\"\n",
     "status": "admitted",
     "tags": [
       "sanctions",
@@ -43459,7 +43463,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "ofac-trickbot-conti-eleven-2023-09.yaml",
@@ -65499,14 +65503,14 @@
   {
     "_source_file": "wang-hongfei-fentanyl-precursor-ofac-2023-04.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1\nVERIFY-FLAG. Captured Treasury press release jy1413 substantiates the designation + crypto nexus\n(rendered+grepped: Bitcoin + cryptocurrency + wallet present). Specific identifiers not in the press release (literal\naddress / exact coin / count) were re-attributed to the SDN-list entry rather than asserted as\ncaptured facts. primary_legal source -> meets admission floor; null_case coding unchanged.).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission). OFAC designated Wang Hongfei\nand PRC chemical firms WSBT/SXPC on 2023-04-14 (Treasury jy1413) for the\nBitcoin-based sale of fentanyl precursor chemicals; Bitcoin address\n3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML, controlled by Wang Hongfei, was\nattached to his SDN entry. Coded null_event/null_case per the S1\nconvention (cf. zservers-ofac-2025, bitriver-russia-mining-ofac-2022-04):\nno public CEX cascade was documented in the 14-day window and the\nattached address is Bitcoin with no issuer-level freeze mechanism\n(offramp_cex observed_no_change/none; asset_onchain deferred per \u00a71.6).\nSource verified + captured 2026-05-31 (Treasury jy1413, body_hash-pinned;\nno fabrication). Candidate src (jy1413) confirmed correct; BTC address\nverified against the press release.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned Treasury jy1413\nWayback capture against its recorded SHA-256 and re-grepped the local body\nfor the Wang/WSBT Bitcoin-wallet nexus. Coverage was narrowed from prior\nL0/asset_onchain gap coding to the actual scoped claim: no network,\nRPC, frontend, or issuer-freeze layer is retained for this individual/firm\nBitcoin-address designation; the only measured layer is aggregate public\nCEX-disclosure silence in the 14-day post-designation window.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1\nVERIFY-FLAG. Captured Treasury press release jy1413 substantiates the designation + crypto nexus\n(rendered+grepped: Bitcoin + cryptocurrency + wallet present). Specific identifiers not in the press release (literal\naddress / exact coin / count) were re-attributed to the SDN-list entry rather than asserted as\ncaptured facts. primary_legal source -> meets admission floor; null_case coding unchanged.).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission). OFAC designated Wang Hongfei\nand PRC chemical firms WSBT/SXPC on 2023-04-14 (Treasury jy1413) for the\nBitcoin-based sale of fentanyl precursor chemicals; Bitcoin address\n3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML, controlled by Wang Hongfei, was\nattached to his SDN entry. Coded null_event/null_case per the S1\nconvention (cf. zservers-ofac-2025, bitriver-russia-mining-ofac-2022-04):\nno public CEX cascade was documented in the 14-day window and the\nattached address is Bitcoin with no issuer-level freeze mechanism\n(offramp_cex observed_no_change/none; asset_onchain deferred per \u00a71.6).\nSource verified + captured 2026-05-31 (Treasury jy1413, body_hash-pinned;\nno fabrication). Candidate src (jy1413) confirmed correct; BTC address\nverified against the press release.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "3.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No OONI / Censored Planet probe in scope; the designees are\nindividuals/firms, not a hosted platform with a canonical domain.\nSubstrate-shaped gap, not a coverage_gap observation.\n",
-        "status": "not_measured"
+        "note": "No network-layer censorship claim is retained for this row. The\ndesignees are individuals/firms rather than a DNS-anchored crypto\nplatform with a canonical service endpoint, so an L0 OONI/Censored\nPlanet probe is outside the scoped claim.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
@@ -65524,8 +65528,8 @@
       },
       {
         "layer": "asset_onchain",
-        "note": "The SDN entry attaches Bitcoin address\n3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML, but no primary_onchain freeze/\nblacklist receipt has been captured for this draft (BTC has no\nissuer-level freeze mechanism analogous to USDT/USDC blacklisting).\nasset_onchain effect deferred per codebook \u00a71.6; the measurable\ncross-layer surface is carried at offramp_cex below.\n",
-        "status": "not_measured"
+        "note": "The SDN entry attaches Bitcoin address\n3PKiHs4GY4rFg8dpppNVPXGPqMX6K2cBML. Bitcoin has no issuer-level\nfreeze or blacklist primitive analogous to USDT/USDC blacklisting, so\nno asset_onchain issuer-freeze claim is applicable to this event. The\nretained measurable surface is the aggregate public CEX-disclosure\nnull observation below.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "offramp_cex",
@@ -65539,7 +65543,7 @@
       "US"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "counterparty_cex_ecosystem",
@@ -65577,10 +65581,10 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2023-04-14 OFAC designation of Wang Hongfei and PRC chemical firms\nWSBT/SXPC (fentanyl-precursor suppliers) attached a Bitcoin address (the specific\naddress is enumerated in the SDN-list entry, not in press release jy1413); no public CEX cascade was documented\nin the 14-day window. null_case: precursor-network target with limited\nmeasurable cross-layer surface.\"\n",
+    "scoped_claim": "\"The 2023-04-14 OFAC designation of Wang Hongfei and PRC chemical firms\nWSBT/SXPC (fentanyl-precursor suppliers) attached a Bitcoin address (the specific\naddress is enumerated in the SDN-list entry, not in press release jy1413); no public CEX cascade was documented\nin the 14-day window. null_case: precursor-network target with limited\nmeasurable cross-layer surface; no network/RPC/frontend or issuer-freeze\nclaim is retained for this row.\"\n",
     "status": "admitted",
     "tags": [
       "ofac_sdn_designation",
@@ -65624,7 +65628,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "webmoney-ukraine-tax-police-freeze-2013-06.yaml",
@@ -67448,14 +67452,14 @@
   {
     "_source_file": "zheng-yan-fentanyl-ofac-2019-08.yaml",
     "admission_tier": "null_case",
-    "analysis_notes": "**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1\nVERIFY-FLAG \u2014 captured Treasury press release sm756 substantiates the designation, the Bitcoin\ndigital-currency address nexus, and the \"first OFAC narcotics designation to enumerate\ncryptocurrency addresses\" claim (rendered+grepped: bitcoin/digital-currency/cryptocurrency/address\nall present). The Litecoin specifics, not in sm756, were softened to \"additionally in the SDN-list\nentries\" rather than asserted as captured facts. primary_legal source -> meets admission floor.).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission). FIRST OFAC narcotics-\nrelated designation to enumerate cryptocurrency addresses: Fujing Zheng,\nGuanghua Zheng, and Xiaobing Yan designated 2019-08-21 (Treasury sm756)\nunder the Foreign Narcotics Kingpin Designation Act, with Bitcoin SDN addresses attached\n(Litecoin additionally in the SDN-list entries). Coded null_event/null_case per the S1\nconvention (cf. zservers-ofac-2025, bitriver-russia-mining-ofac-2022-04):\nthe designation is the trigger, but no public CEX cascade was documented\nin the 14-day window and the attached addresses are Bitcoin (Litecoin additionally per the\nSDN-list entries) with\nno issuer-level freeze mechanism, so the measurable cross-layer surface\nis limited (offramp_cex observed_no_change/none; asset_onchain deferred\nper \u00a71.6 pending a primary_onchain receipt). Source verified + captured\n2026-05-31 (Treasury sm756, body_hash-pinned; no fabrication). Candidate\nsrc (sm756) confirmed correct.\n",
+    "analysis_notes": "**SOURCE/COVERAGE REPAIR 2026-06-02**: verified the pinned Treasury sm756\nWayback capture against its recorded SHA-256 and re-grepped the local body\nfor the Zheng/Yan digital-currency/Bitcoin nexus. Coverage was narrowed\nfrom prior L0/asset_onchain gap coding to the actual scoped claim: no\nnetwork, RPC, frontend, or issuer-freeze layer is retained for this\nindividual/DTO BTC/LTC-address designation; the only measured layer is\naggregate public CEX-disclosure silence in the 14-day post-designation\nwindow.\n\n**ADMITTED 2026-05-31** (genuine review by human:xiangwen's reviewing agent: refined the wave-1\nVERIFY-FLAG \u2014 captured Treasury press release sm756 substantiates the designation, the Bitcoin\ndigital-currency address nexus, and the \"first OFAC narcotics designation to enumerate\ncryptocurrency addresses\" claim (rendered+grepped: bitcoin/digital-currency/cryptocurrency/address\nall present). The Litecoin specifics, not in sm756, were softened to \"additionally in the SDN-list\nentries\" rather than asserted as captured facts. primary_legal source -> meets admission floor.).\n**NEW EVENT AUTHORED \u2014 DRYRUN 2026-05-31** (census bulk wave 1; sources\nverified+captured, awaiting human admission). FIRST OFAC narcotics-\nrelated designation to enumerate cryptocurrency addresses: Fujing Zheng,\nGuanghua Zheng, and Xiaobing Yan designated 2019-08-21 (Treasury sm756)\nunder the Foreign Narcotics Kingpin Designation Act, with Bitcoin SDN addresses attached\n(Litecoin additionally in the SDN-list entries). Coded null_event/null_case per the S1\nconvention (cf. zservers-ofac-2025, bitriver-russia-mining-ofac-2022-04):\nthe designation is the trigger, but no public CEX cascade was documented\nin the 14-day window and the attached addresses are Bitcoin (Litecoin additionally per the\nSDN-list entries) with\nno issuer-level freeze mechanism, so the measurable cross-layer surface\nis limited (offramp_cex observed_no_change/none; asset_onchain deferred\nper \u00a71.6 pending a primary_onchain receipt). Source verified + captured\n2026-05-31 (Treasury sm756, body_hash-pinned; no fabrication). Candidate\nsrc (sm756) confirmed correct.\n",
     "analysis_use": "comparable_analysis",
-    "codebook_version": "3.0.0",
+    "codebook_version": "4.0.0",
     "coverage": [
       {
         "layer": "l0_network",
-        "note": "No OONI / Censored Planet probe in scope; the designees are\nindividuals, not a hosted platform with a canonical domain to\nprobe. Substrate-shaped gap, not a coverage_gap observation.\n",
-        "status": "not_measured"
+        "note": "No network-layer censorship claim is retained for this row. The\ndesignees are individuals/DTO entities rather than a DNS-anchored\ncrypto platform with a canonical service endpoint, so an L0\nOONI/Censored Planet probe is outside the scoped claim.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "l1_consensus",
@@ -67473,8 +67477,8 @@
       },
       {
         "layer": "asset_onchain",
-        "note": "The SDN entries attach cryptocurrency addresses (Bitcoin named in\npress release sm756; Litecoin in the SDN-list entries), but no\nprimary_onchain freeze/blacklist receipt has been captured for\nthis draft (BTC/LTC have no issuer-level freeze mechanism analogous\nto USDT/USDC blacklisting). asset_onchain effect deferred per\ncodebook \u00a71.6; the measurable cross-layer surface is carried at\nofframp_cex below.\n",
-        "status": "not_measured"
+        "note": "The SDN entries attach cryptocurrency addresses (Bitcoin named in\npress release sm756; Litecoin in the SDN-list entries). BTC/LTC have\nno issuer-level freeze or blacklist primitive analogous to USDT/USDC\nblacklisting, so no asset_onchain issuer-freeze claim is applicable\nto this event. The retained measurable surface is the aggregate\npublic CEX-disclosure null observation below.\n",
+        "status": "not_applicable"
       },
       {
         "layer": "offramp_cex",
@@ -67488,7 +67492,7 @@
       "US"
     ],
     "last_human_audit": "2026-05-31",
-    "last_verified": "2026-05-31",
+    "last_verified": "2026-06-02",
     "observations": [
       {
         "actor": "counterparty_cex_ecosystem",
@@ -67526,10 +67530,10 @@
       }
     ],
     "origin": "human_reviewed",
-    "primary_source_verified": false,
+    "primary_source_verified": true,
     "research_stratum": "S1_ofac_sdn",
     "schema_version": "0.2.0",
-    "scoped_claim": "\"The 2019-08-21 OFAC Kingpin-Act designation of Fujing Zheng, Guanghua\nZheng, and Xiaobing Yan (the first OFAC narcotics designation to attach\ncrypto addresses) listed Bitcoin addresses (Litecoin additionally per the SDN-list entries); no public CEX\ncascade was documented in the 14-day window. null_case: individual-\ntrafficker target with limited measurable cross-layer surface.\"\n",
+    "scoped_claim": "\"The 2019-08-21 OFAC Kingpin-Act designation of Fujing Zheng, Guanghua\nZheng, and Xiaobing Yan (the first OFAC narcotics designation to attach\ncrypto addresses) listed Bitcoin addresses (Litecoin additionally per the SDN-list entries); no public CEX\ncascade was documented in the 14-day window. null_case: individual-\ntrafficker target with limited measurable cross-layer surface; no\nnetwork/RPC/frontend or issuer-freeze claim is retained for this row.\"\n",
     "status": "admitted",
     "tags": [
       "ofac_sdn_designation",
@@ -67573,7 +67577,7 @@
       ],
       "type": "ofac_sdn_designation"
     },
-    "version": "0.1"
+    "version": "0.2"
   },
   {
     "_source_file": "zimbabwe-rbz-circular-2-2018-golix-ban.yaml",

@@ -1,6 +1,6 @@
 # Table 2 · Layer observability (denominator-honest)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `cdc9fa8` · generated `2026-06-02T00:00:00Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `84e7c21` · generated `2026-06-02T00:04:45Z`
 
 Supports **C1** (`docs/paper_claims.md §1`). Direct re-emission of `derived/layer_observability.csv` with denominators inline.
 
@@ -8,11 +8,11 @@ Conditional rates are **coverage-matched**: the numerator counts only the subset
 
 | layer | applicable | measured | partial | not_measured | not_applicable | changed events (measured) | changed events (partial) | unique changed actions | duplicate action rows | changed/measured | changed/measured+partial |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `l0_network` | 26 | 0 | 3 | 23 | 339 | 0 | 3 | 3 | 0 | — | 3/3 (100.0%) |
-| `l1_consensus` | 19 | 8 | 8 | 3 | 346 | 2 | 8 | 10 | 0 | 2/8 (25.0%) | 10/16 (62.5%) |
-| `l3_rpc` | 14 | 1 | 6 | 7 | 351 | 1 | 5 | 6 | 0 | 1/1 (100.0%) | 6/7 (85.7%) |
-| `l4_frontend` | 126 | 55 | 21 | 50 | 239 | 50 | 18 | 74 | 0 | 50/55 (90.9%) | 68/76 (89.5%) |
-| `asset_onchain` | 42 | 18 | 2 | 22 | 323 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
+| `l0_network` | 22 | 0 | 3 | 19 | 343 | 0 | 3 | 3 | 0 | — | 3/3 (100.0%) |
+| `l1_consensus` | 18 | 8 | 8 | 2 | 347 | 2 | 8 | 10 | 0 | 2/8 (25.0%) | 10/16 (62.5%) |
+| `l3_rpc` | 13 | 1 | 6 | 6 | 352 | 1 | 5 | 6 | 0 | 1/1 (100.0%) | 6/7 (85.7%) |
+| `l4_frontend` | 124 | 55 | 21 | 48 | 241 | 50 | 18 | 74 | 0 | 50/55 (90.9%) | 68/76 (89.5%) |
+| `asset_onchain` | 39 | 18 | 2 | 19 | 326 | 18 | 1 | 22 | 1 | retracted; no rate | retracted; no rate |
 | `offramp_cex` | 306 | 242 | 44 | 20 | 59 | 162 | 34 | 204 | 0 | 162/242 (66.9%) | 196/286 (68.5%) |
 
 A rate of `—` indicates a zero denominator; it is an **observability gap**, not an attested negative.

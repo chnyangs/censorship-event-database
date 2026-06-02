@@ -2,7 +2,7 @@
 
 **Status**: `admitted` · **Stratum**: `S1_ofac_sdn` · **Shape**: `null_event` (0 changed layer(s): none) · **Tier**: `null_case`
 
-**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `cdc9fa8` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-20` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:00:00Z`
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-02` · **Source commit**: `84e7c21` · **Schema**: `0.2.0` · **Event last_verified**: `2026-06-02` · **Tool version**: `0.1.0` · **Generated**: `2026-06-02T00:04:45Z`
 
 > ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
 
@@ -14,7 +14,9 @@
 > cyber-related SDN entry (30 addresses unchanged from 2021-11-08), and a
 > periodic Federal Civil Penalties inflation adjustment. The crypto-relevant
 > content does not constitute a fresh enforcement event; cascade analysis
-> for the listed addresses is anchored in `chatex-ofac-2021`."
+> for the listed addresses is anchored in `chatex-ofac-2021`. No
+> L0/L1/RPC/frontend/asset claim is retained for this administrative row;
+> only the absence of a fresh public CEX policy statement is measured."
 
 ## 1. Trigger
 
@@ -92,10 +94,7 @@
 
 ## 5. Honest coverage gaps
 
-- **l0_network** (`not_measured`): No L0 OONI / Censored Planet probe slice attached. Substrate not
-- **l1_consensus** (`not_measured`): No event-specific L1 Wahrstätter / relayscan slice attached. The
-- **l3_rpc** (`not_measured`): No pinned MEV-Blocker / OFAC-compliant RPC filter-list snapshot
-- **l4_frontend** (`not_measured`): No Wayback bracketing of chatex.com around 2024-01-11 is attached.
+*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
 
 ## 7. Related events
 
@@ -103,7 +102,7 @@
 
 ## 8. How to audit this chain
 
-1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `cdc9fa8`).
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `84e7c21`).
 2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
 3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
 4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).

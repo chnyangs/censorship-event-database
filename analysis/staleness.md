@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-02T00:00:00Z`
+Generated at: `2026-06-02T00:04:45Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -253,7 +253,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `makerdao-emergency-shutdown-contingency-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `malaysia-sc-binance-disable-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 1 | ok | no_audit_recorded |
 | `matveev-ofac-2023` | `admitted` | `human_authored` | 2026-05-15 | 18 | ok | 2026-04-22 | 41 | ok | ok |
-| `media-land-volosovik-bulletproof-ofac-2025-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
+| `media-land-volosovik-bulletproof-ofac-2025-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `metamask-eth-phishing-detect-tornado-additions-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 16 | ok | no_audit_recorded |
 | `metamask-snaps-region-restrictions-2023-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 16 | ok | no_audit_recorded |
 | `mica-l2-esma-eba-rts-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
@@ -279,11 +279,11 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `oasis-app-wormhole-counter-exploit-2023-02` | `rejected` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-20 | 13 | ok | no_audit_recorded |
 | `oecd-carf-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-06-01 | 1 | ok | ok |
 | `ofac-dprk-it-worker-sim-hyon-sop-2023-04` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
-| `ofac-hamas-buy-cash-msb-2023-10` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
+| `ofac-hamas-buy-cash-msb-2023-10` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-06-02 | 0 | ok | ok |
 | `ofac-hamas-gaza-now-2024-03` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
 | `ofac-hamas-irgc-virtual-currency-network-2024-01` | `rejected` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
 | `ofac-houthi-al-jamal-crypto-refresh-2024-12` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
-| `ofac-recent-action-20240111` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
+| `ofac-recent-action-20240111` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-06-02 | 0 | ok | ok |
 | `ofac-trickbot-conti-eleven-2023-09` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
 | `ofac-zhdanova-russian-elite-launderer-2023-11` | `admitted` | `human_reviewed` | 2026-05-20 | 13 | ok | 2026-05-20 | 13 | ok | ok |
 | `okex-privacy-coin-delisting-2019-09` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
@@ -413,7 +413,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `vietnam-sbv-bitcoin-prohibition-statement-2014-02` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `vietnam-sbv-payment-prohibition-2017-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
 | `voyager-bankruptcy-doj-objection-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 0 | ok | no_audit_recorded |
-| `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
+| `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
 | `webmoney-ukraine-tax-police-freeze-2013-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `welcome-to-video-doj-2019` | `admitted` | `human_reviewed` | 2026-05-16 | 17 | ok | 2026-05-16 | 17 | ok | ok |
 | `wikileaks-amazon-aws-eviction-2010-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
@@ -425,7 +425,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `wikileaks-visa-europe-suspension-2010-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `wikileaks-wau-holland-tax-status-challenge-2010-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
 | `wikileaks-western-union-interdiction-2010-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 12 | ok | no_audit_recorded |
-| `zheng-yan-fentanyl-ofac-2019-08` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-05-31 | 2 | ok | ok |
+| `zheng-yan-fentanyl-ofac-2019-08` | `admitted` | `human_reviewed` | 2026-05-31 | 2 | ok | 2026-06-02 | 0 | ok | ok |
 | `zimbabwe-rbz-circular-2-2018-golix-ban` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `zimbabwe-rbz-circular-2-2018-golix` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 2 | ok | no_audit_recorded |
 | `zservers-ofac-2025` | `admitted` | `human_authored` | 2026-05-15 | 18 | ok | 2026-04-22 | 41 | ok | ok |
@@ -602,7 +602,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `magic-eden-ofac-sanctioned-country-block` — audit=no_audit_recorded, verification=ok, verif_age=1d
 - `makerdao-emergency-shutdown-contingency-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=12d
 - `malaysia-sc-binance-disable-2021` — audit=no_audit_recorded, verification=ok, verif_age=1d
-- `media-land-volosovik-bulletproof-ofac-2025-11` — audit=no_audit_recorded, verification=ok, verif_age=2d
+- `media-land-volosovik-bulletproof-ofac-2025-11` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `metamask-eth-phishing-detect-tornado-additions-2022` — audit=no_audit_recorded, verification=ok, verif_age=16d
 - `metamask-snaps-region-restrictions-2023-09` — audit=no_audit_recorded, verification=ok, verif_age=16d
 - `mica-l2-esma-eba-rts-2024` — audit=no_audit_recorded, verification=ok, verif_age=12d
