@@ -5,9 +5,9 @@ the latest IRR run, or where Phase A-F authoring agents independently surfaced
 ambiguity. It is the **canonical reference** that LLM authoring agents and human
 coders MUST consult before assigning these fields.
 
-**Version**: 4.0.0.
+**Version**: 4.1.0.
 
-**Effective**: 2026-05-31 (4.0.0); 2026-05-31 (3.0.0); 2026-05-30 (2.0.0); 2026-05-19 (1.0.1). Codebook updates require:
+**Effective**: 2026-06-02 (4.1.0); 2026-05-31 (4.0.0); 2026-05-31 (3.0.0); 2026-05-30 (2.0.0); 2026-05-19 (1.0.1). Codebook updates require:
 1. A new IRR pass on at least 10 events covering the edge case.
 2. A `**CODEBOOK CHANGE — YYYY-MM-DD**` entry in this file's changelog.
 3. Re-coding of all events touching the changed field, with `last_human_audit`
@@ -24,6 +24,27 @@ a citation in this codebook contradicts agent intuition, the codebook wins.
 
 ## Changelog
 
+- **CODEBOOK CHANGE — 2026-06-02** — **§1.0 added: unified attribution decision
+  procedure (clarification, NOT a rule change).** Consolidates the scattered
+  (A)/(B) two-prong test from §1.1–§1.5 into one procedure with an explicit
+  enumeration of what satisfies prong (B), promoting readings the §1.3 worked
+  examples already established into operational rules: an on-chain
+  `addBlackList(SDN)` tx or a versioned commit to a public filter list satisfies
+  (B); generic "we comply" boilerplate and third-party-only attribution do not.
+  Crucially it separates (A) target-naming from (B) operator-linkage and states
+  that `direct` needs BOTH — so an inferred-target freeze with an on-chain tx
+  (hack response, sealed civil case, proactive unit) stays `plausible`. Directly
+  targets the documented κ=0.58 driver (interpretive variation on the (B)
+  public-confirmation reading; all three disagreement rows were `asset_onchain`
+  freezes). **Version 4.0.0 → 4.1.0 (minor)** per the §"Effective" convention:
+  this is a clarification, not a decision-rule change — no criterion moves, so
+  re-coding is *vacuously satisfied*. A corpus consistency scan confirmed it: all
+  five `asset_onchain` `plausible` observations carry an on-chain tx yet
+  correctly stay `plausible` because the trigger never named the address (A
+  fails), and the 25 `asset_onchain` `direct` rows are unaffected. The required
+  new IRR pass is the prepared powered attribution packet
+  (`analysis/inter_rater_powered/`, n=157). Existing events keep their
+  `codebook_version`.
 - **CODEBOOK CHANGE — 2026-05-31** — **§10 added: `evidence_tier` (lower-admission tier).**
   Introduces an event-level `evidence_tier` field — ORTHOGONAL to `admission_tier` — grading SOURCE
   strength (vs `admission_tier`, which grades EMPIRICAL strength). Default (absent) = `admission_grade`
@@ -98,6 +119,60 @@ a citation in this codebook contradicts agent intuition, the codebook wins.
 ---
 
 ## §1 Attribution (the κ=0.5833 driver)
+
+### §1.0 Decision procedure (apply first, uniformly across all layers)
+
+The historical κ=0.58 disagreement was **not** about the §1.1 definitions but
+about inconsistent readings of prong (B) — what counts as the operator
+"publicly referencing" the trigger (all three disagreement rows were
+`asset_onchain` freezes where one coder demanded a press release and another
+accepted the on-chain blacklist transaction). Apply the SAME two-prong test to
+every layer, then read the result off the table; §1.2 (asset), §1.4
+(frontend/RPC), and §1.5 (L0) only specialize the windows and examples.
+
+- **(A) Target naming.** Does the trigger name the specific target the action
+  falls on — a wallet/address, a domain/AS-set, or a named entity *whose
+  on-chain addresses the trigger itself lists*? Naming the entity but **not** the
+  specific addresses/targets is only a *partial* (A).
+- **(B) Operator linkage.** Did the **acting operator itself** tie its action to
+  the trigger? (B) is satisfied by ANY ONE of:
+  1. a public statement by the operator citing the trigger (blog, ToS/policy
+     update, press confirmation, court/regulatory filing);
+  2. an **on-chain transaction the operator itself executed with a
+     *trigger-named* address as a parameter** (e.g. an issuer's
+     `addBlackList(0x…SDN…)`) — the transaction *is* the public confirmation; no
+     separate written statement is required;
+  3. a **versioned commit by the operator** adding the trigger-named target to a
+     published filter list (e.g. an OFAC address added to a public blocklist).
+  (B) is **NOT** satisfied by generic "we comply with OFAC" boilerplate that does
+  not reference the specific trigger, nor by a third-party (Chainalysis /
+  Elliptic / TRM) attribution of the freeze absent any operator action.
+
+- **(A) and (B) are independent; `direct` requires BOTH.** The on-chain tx in
+  (B)(2) settles *operator linkage*, never *target naming*. A freeze whose target
+  the operator or a third party **inferred** — a hacker address after a hack
+  (`t3-bybit-hack-usdt-freeze-2025-03`,
+  `circle-usdc-multichain-hack-freeze-2023-07`), an address under a sealed civil
+  case the trigger does not enumerate
+  (`circle-usdc-sealed-civil-case-16-address-freeze-2026-03`), or a proactive
+  financial-crime-unit action (`t3-financial-crime-unit-launch-2024-09`) — is
+  `plausible` even though an on-chain blacklist tx exists, because (A) fails: the
+  trigger did not name the address. Contrast the `direct` freezes (cryptex,
+  semenov; §1.3) where the OFAC SDN *listed the ETH addresses* and the issuer
+  then executed the on-chain freeze.
+
+| (A) target named | (B) operator linked | → `attribution` |
+|---|---|---|
+| yes | yes | `direct` |
+| partial (entity, not the address) | yes, operator explicitly cites the trigger | `direct` (guilt-by-association boundary; §1.3 ex. 4, dYdX) |
+| yes | no | `plausible` |
+| no / class-level inference only | (either) | `plausible` |
+| transition observed, linkage unresolved | — | `unknown` |
+
+**Window rule.** The per-layer windows (§1.2 ≤24h, §1.4 ≤7d) mark when (B) is
+*presumptively* self-evident; they are not cutoffs. An action **outside** the
+window is still `direct` if (B) holds explicitly; an action **inside** it is not
+`direct` on timing alone if (B) fails. Timing supports (B); it never replaces it.
 
 ### §1.1 Canonical definitions
 

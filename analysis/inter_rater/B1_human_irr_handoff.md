@@ -48,7 +48,12 @@ lands with a CI half-width near ±0.14 (simulated [0.44, 0.69]) instead of ±0.3
 agreement is ≈0.58, even the full 342-observation population yields a CI that
 still straddles 0.6 (simulated [0.48, 0.68]). Clearing the gate therefore
 requires improving the codebook §1 attribution rubric to raise true agreement,
-not just more rows. See `analysis/inter_rater_powered/README.md`.
+not just more rows. **That rubric fix is now in place**: codebook 4.1.0 adds a
+unified §1.0 decision procedure that separates prong (A) target-naming from
+prong (B) operator-linkage and enumerates what satisfies (B) — directly aimed at
+the documented (B)-reading disagreement (on-chain blacklist tx vs press release).
+The human pass should code against codebook ≥4.1.0. See
+`analysis/inter_rater_powered/README.md`.
 
 ## Turnkey steps for the real human pass
 
