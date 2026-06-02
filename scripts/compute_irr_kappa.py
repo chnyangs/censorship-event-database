@@ -27,6 +27,8 @@ from typing import Iterable
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from _dataset_meta import now_utc_iso  # noqa: E402
+from _kappa_ci import (  # noqa: E402
+    bootstrap_ci, cohen_kappa_value, fleiss_kappa_value)
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 
@@ -140,6 +142,7 @@ def _fleiss_kappa(per_row_votes: list[list[str]]) -> dict:
         "n_total_rows": len(per_row_votes),
         "n_raters": n_raters,
         "label_set": labels,
+        "kappa_ci": bootstrap_ci(coded, fleiss_kappa_value),
     }
 
 
@@ -219,6 +222,7 @@ def _cohens_kappa(pairs: list[tuple[str, str, str, str]]) -> dict:
         "n_total": len(pairs),
         "confusion": conf,
         "label_set": labels,
+        "kappa_ci": bootstrap_ci(coded, cohen_kappa_value),
     }
 
 
@@ -236,6 +240,12 @@ def _interpret(k: float | None) -> str:
     if k < 0.8:
         return "substantial"
     return "almost perfect"
+
+
+def _ci_str(ci: dict | None) -> str:
+    if not ci:
+        return ""
+    return f" [{ci['ci_low']}, {ci['ci_high']}]"
 
 
 def _render_confusion(conf: dict[str, dict[str, int]]) -> list[str]:
@@ -315,7 +325,7 @@ def main() -> int:
         f"- **Prompt / rubric version**: `{cp['prompt_version'] or '—'}`",
         f"- **Notes**: {cp['notes'] or '—'}",
         "",
-        "| variable | n coded / n total | observed agreement | Cohen's κ (vs gold) | Fleiss' κ (across LLM agents) | label |",
+        "| variable | n coded / n total | observed agreement | Cohen's κ (vs gold) [95% CI] | Fleiss' κ (across LLM agents) | label |",
         "| --- | --- | --- | --- | --- | --- |",
     ]
     for var in vars_list:
@@ -363,10 +373,12 @@ def main() -> int:
             if agent_fleiss and agent_fleiss.get("fleiss_kappa") is not None
             else "—"
         )
+        kappa_cell = ("—" if res['kappa'] is None
+                      else f"{res['kappa']}{_ci_str(res.get('kappa_ci'))}")
         md.append(
             f"| `{var}` | {res['n_coded']} / {res['n_total']} | "
             f"{res['observed_agreement'] if res['observed_agreement'] is not None else '—'} | "
-            f"{res['kappa'] if res['kappa'] is not None else '—'} | "
+            f"{kappa_cell} | "
             f"{fleiss_str} | "
             f"{_interpret(res['kappa'])} |"
         )
@@ -381,6 +393,11 @@ def main() -> int:
             f"- observed agreement p_o = {res['observed_agreement']}",
             f"- expected agreement p_e = {res['expected_agreement']}",
             f"- Cohen's κ = **{res['kappa']}** ({_interpret(res['kappa'])})",
+            (f"- 95% CI (bootstrap, B={res['kappa_ci']['n_boot']}): "
+             f"**[{res['kappa_ci']['ci_low']}, {res['kappa_ci']['ci_high']}]**, "
+             f"SE = {res['kappa_ci']['se']}"
+             if res.get("kappa_ci")
+             else "- 95% CI: — (coded-n too small for a bootstrap interval)"),
             "",
             "### Confusion matrix",
             "",
@@ -395,6 +412,16 @@ def main() -> int:
         "marginals): < 0.2 slight, 0.2–0.4 fair, 0.4–0.6 moderate, "
         "0.6–0.8 substantial, > 0.8 almost perfect on the Landis & "
         "Koch scale.",
+        "",
+        "**Read κ with its CI, not as a point.** Each κ above carries a "
+        "seeded nonparametric bootstrap 95% CI (B=2000 resamples of the "
+        "coded cells). On the small coded-n of this subset those intervals "
+        "are wide, so a point estimate near the 0.6 paper-readiness gate "
+        "is not a clean pass/fail: a variable whose CI straddles 0.6 has "
+        "not been shown to clear it. Perfect-agreement variables yield a "
+        "degenerate [1.0, 1.0] interval (every resample agrees), which is "
+        "honest but reflects the easy variables, not the contested ones. "
+        "Any published κ must be cited with its CI and coded-n.",
         "",
         "**What this κ does and does not establish — read before "
         "citing.** Under the Landis & Koch scale, κ ≥ 0.8 is labeled "

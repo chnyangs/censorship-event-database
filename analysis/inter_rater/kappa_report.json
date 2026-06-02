@@ -5,7 +5,7 @@
     "notes": "DRYRUN 2026-05-15: 3 LLM agents (A/B/C) ran the blind recode. coder_mode set to independent_human_dryrun_llm_simulated specifically so a dryrun release pipeline can accept the artifact only when --allow-dryrun-human-gates is passed, while making it visually obvious to any future reader that this is NOT a real independent-human pass. A real release decision must (a) run an actual independent human IRR pass, (b) revert this mode to independent_human, and (c) re-run scripts/release_signoff.py without --allow-dryrun-human-gates. Until then, all \u03ba values must be cited as self-consistency / consensus, not reliability.",
     "prompt_version": "2026-04-26-irr-prompt-v2-3x \u00b7 DRYRUN labeled"
   },
-  "generated_at": "2026-05-15T12:01:34Z",
+  "generated_at": "2026-06-02T03:49:00Z",
   "variables": {
     "attribution": {
       "agreement": 0.85,
@@ -22,6 +22,13 @@
       "expected_agreement": 0.64,
       "fleiss_across_agents": {
         "fleiss_kappa": 0.6825,
+        "kappa_ci": {
+          "ci_high": 0.9179,
+          "ci_low": 0.3464,
+          "method": "nonparametric percentile bootstrap, B=2000, seeded",
+          "n_boot": 2000,
+          "se": 0.151
+        },
         "label_set": [
           "direct",
           "plausible"
@@ -33,6 +40,13 @@
         "pe_bar": 0.58
       },
       "kappa": 0.5833,
+      "kappa_ci": {
+        "ci_high": 1.0,
+        "ci_low": 0.0,
+        "method": "nonparametric percentile bootstrap, B=2000, seeded",
+        "n_boot": 2000,
+        "se": 0.2218
+      },
       "label_set": [
         "direct",
         "plausible"
@@ -72,6 +86,13 @@
       },
       "expected_agreement": 0.44,
       "kappa": 1.0,
+      "kappa_ci": {
+        "ci_high": 1.0,
+        "ci_low": 1.0,
+        "method": "nonparametric percentile bootstrap, B=2000, seeded",
+        "n_boot": 2000,
+        "se": 0.0
+      },
       "label_set": [
         "measured",
         "not_applicable",
@@ -97,6 +118,13 @@
       "expected_agreement": 0.68,
       "fleiss_across_agents": {
         "fleiss_kappa": 1.0,
+        "kappa_ci": {
+          "ci_high": 1.0,
+          "ci_low": 1.0,
+          "method": "nonparametric percentile bootstrap, B=2000, seeded",
+          "n_boot": 2000,
+          "se": 0.0
+        },
         "label_set": [
           "observed_change",
           "observed_no_change"
@@ -108,6 +136,13 @@
         "pe_bar": 0.68
       },
       "kappa": 1.0,
+      "kappa_ci": {
+        "ci_high": 1.0,
+        "ci_low": 1.0,
+        "method": "nonparametric percentile bootstrap, B=2000, seeded",
+        "n_boot": 2000,
+        "se": 0.0
+      },
       "label_set": [
         "observed_change",
         "observed_no_change"

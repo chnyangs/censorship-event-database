@@ -1,6 +1,6 @@
 # Inter-rater reliability report
 
-Generated: `2026-05-15T12:01:34Z` · computer `scripts/compute_irr_kappa.py` · blind/key inputs from `analysis/inter_rater/`.
+Generated: `2026-06-02T03:49:00Z` · computer `scripts/compute_irr_kappa.py` · blind/key inputs from `analysis/inter_rater/`.
 
 ## Coder provenance
 
@@ -9,11 +9,11 @@ Generated: `2026-05-15T12:01:34Z` · computer `scripts/compute_irr_kappa.py` · 
 - **Prompt / rubric version**: `2026-04-26-irr-prompt-v2-3x · DRYRUN labeled`
 - **Notes**: DRYRUN 2026-05-15: 3 LLM agents (A/B/C) ran the blind recode. coder_mode set to independent_human_dryrun_llm_simulated specifically so a dryrun release pipeline can accept the artifact only when --allow-dryrun-human-gates is passed, while making it visually obvious to any future reader that this is NOT a real independent-human pass. A real release decision must (a) run an actual independent human IRR pass, (b) revert this mode to independent_human, and (c) re-run scripts/release_signoff.py without --allow-dryrun-human-gates. Until then, all κ values must be cited as self-consistency / consensus, not reliability.
 
-| variable | n coded / n total | observed agreement | Cohen's κ (vs gold) | Fleiss' κ (across LLM agents) | label |
+| variable | n coded / n total | observed agreement | Cohen's κ (vs gold) [95% CI] | Fleiss' κ (across LLM agents) | label |
 | --- | --- | --- | --- | --- | --- |
-| `coverage_status` | 90 / 90 | 1.0 | 1.0 | — | almost perfect |
-| `observation_kind` | 25 / 25 | 1.0 | 1.0 | 1.0 (3r) | almost perfect |
-| `attribution` | 20 / 20 | 0.85 | 0.5833 | 0.6825 (3r) | moderate |
+| `coverage_status` | 90 / 90 | 1.0 | 1.0 [1.0, 1.0] | — | almost perfect |
+| `observation_kind` | 25 / 25 | 1.0 | 1.0 [1.0, 1.0] | 1.0 (3r) | almost perfect |
+| `attribution` | 20 / 20 | 0.85 | 0.5833 [0.0, 1.0] | 0.6825 (3r) | moderate |
 
 ## `coverage_status` detail
 
@@ -21,6 +21,7 @@ Generated: `2026-05-15T12:01:34Z` · computer `scripts/compute_irr_kappa.py` · 
 - observed agreement p_o = 1.0
 - expected agreement p_e = 0.44
 - Cohen's κ = **1.0** (almost perfect)
+- 95% CI (bootstrap, B=2000): **[1.0, 1.0]**, SE = 0.0
 
 ### Confusion matrix
 
@@ -37,6 +38,7 @@ Generated: `2026-05-15T12:01:34Z` · computer `scripts/compute_irr_kappa.py` · 
 - observed agreement p_o = 1.0
 - expected agreement p_e = 0.68
 - Cohen's κ = **1.0** (almost perfect)
+- 95% CI (bootstrap, B=2000): **[1.0, 1.0]**, SE = 0.0
 
 ### Confusion matrix
 
@@ -51,6 +53,7 @@ Generated: `2026-05-15T12:01:34Z` · computer `scripts/compute_irr_kappa.py` · 
 - observed agreement p_o = 0.85
 - expected agreement p_e = 0.64
 - Cohen's κ = **0.5833** (moderate)
+- 95% CI (bootstrap, B=2000): **[0.0, 1.0]**, SE = 0.2218
 
 ### Confusion matrix
 
@@ -62,6 +65,8 @@ Generated: `2026-05-15T12:01:34Z` · computer `scripts/compute_irr_kappa.py` · 
 ## Interpretation
 
 Cohen's κ thresholds (Landis & Koch 1977 — still the most cited convention despite known limitations with skewed marginals): < 0.2 slight, 0.2–0.4 fair, 0.4–0.6 moderate, 0.6–0.8 substantial, > 0.8 almost perfect on the Landis & Koch scale.
+
+**Read κ with its CI, not as a point.** Each κ above carries a seeded nonparametric bootstrap 95% CI (B=2000 resamples of the coded cells). On the small coded-n of this subset those intervals are wide, so a point estimate near the 0.6 paper-readiness gate is not a clean pass/fail: a variable whose CI straddles 0.6 has not been shown to clear it. Perfect-agreement variables yield a degenerate [1.0, 1.0] interval (every resample agrees), which is honest but reflects the easy variables, not the contested ones. Any published κ must be cited with its CI and coded-n.
 
 **What this κ does and does not establish — read before citing.** Under the Landis & Koch scale, κ ≥ 0.8 is labeled *almost perfect agreement*. That label applies to **inter-coder agreement under the protocol's coder-provenance mode** (see `coder_provenance.mode` above). It does NOT establish *inter-rater reliability* in the audited-research sense unless that mode is `independent_human` and the second coder is demonstrably blind to the gold coder's reasoning.
 

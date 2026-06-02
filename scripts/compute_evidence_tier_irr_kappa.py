@@ -17,6 +17,7 @@ from typing import Any
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from _dataset_meta import now_utc_iso, repo_relative_path  # noqa: E402
+from _kappa_ci import bootstrap_ci, cohen_kappa_value  # noqa: E402
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 DEFAULT_PACKET = REPO_ROOT / "analysis" / "evidence_tier_irr_packet_2026_05_31.csv"
@@ -86,6 +87,7 @@ def cohens_kappa(pairs: list[tuple[str, str]]) -> dict[str, Any]:
             "n_coded": 0,
             "label_set": [],
             "confusion": {},
+            "kappa_ci": None,
             "reason": "no fully coded rows",
         }
     labels = sorted({label for pair in coded for label in pair})
@@ -105,6 +107,7 @@ def cohens_kappa(pairs: list[tuple[str, str]]) -> dict[str, Any]:
         "n_coded": n,
         "label_set": labels,
         "confusion": confusion,
+        "kappa_ci": bootstrap_ci(coded, cohen_kappa_value),
     }
 
 
@@ -163,12 +166,14 @@ def render_markdown(report: dict[str, Any]) -> str:
         f"Status: `{report['status']}`",
         f"Coder provenance: `{report['coder_provenance']['mode']}`",
         "",
-        "| variable | coded | incomplete | kappa | observed | expected | labels |",
+        "| variable | coded | incomplete | kappa [95% CI] | observed | expected | labels |",
         "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     for field, stats in report["variables"].items():
         labels = ", ".join(f"`{label}`" for label in stats.get("label_set") or [])
-        kappa = "NA" if stats.get("kappa") is None else f"{stats['kappa']:.4f}"
+        ci = stats.get("kappa_ci")
+        ci_str = f" [{ci['ci_low']}, {ci['ci_high']}]" if ci else ""
+        kappa = "NA" if stats.get("kappa") is None else f"{stats['kappa']:.4f}{ci_str}"
         observed = "NA" if stats.get("observed_agreement") is None else f"{stats['observed_agreement']:.4f}"
         expected = "NA" if stats.get("expected_agreement") is None else f"{stats['expected_agreement']:.4f}"
         lines.append(
