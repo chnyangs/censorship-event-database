@@ -1,0 +1,128 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": { "@id": "cr:data", "@type": "@json" },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": { "@id": "cr:dataType", "@type": "@vocab" },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "censorship-event-database",
+  "alternateName": "Cross-Layer Censorship Event Database",
+  "description": "A denominator-aware, cross-layer, longitudinal (2007-2026) event corpus of crypto-stack censorship. Each record is an event: a legal/state/corporate trigger together with its observed per-layer reactions across six layers (L0 network, L1 consensus, L3 RPC, L4 frontend, asset_onchain, off-ramp CEX). Unmeasured event x layer cells are recorded as observability gaps, never as zeros; conditional rates are reported only against a public evidence denominator. The release surface is all 405 event YAML records; the paper analysis corpus is the 365 admitted events.",
+  "conditionsOfAccess": "Open access.",
+  "creator": {
+    "@type": "sc:Person",
+    "name": "Yang, Xiangwen",
+    "sameAs": "https://orcid.org/0000-0002-4529-5776"
+  },
+  "datePublished": "2026",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://github.com/chnyangs/censorship-event-database",
+  "version": "0.2.0-rc-dryrun-11",
+  "citeAs": "Yang, Xiangwen. (2026). Cross-Layer Censorship Event Database (version 0.2.0-rc-dryrun-11). https://github.com/chnyangs/censorship-event-database. See CITATION.cff for canonical BibTeX / APA / DOI.",
+  "keywords": [
+    "censorship measurement",
+    "cryptocurrency",
+    "blockchain",
+    "OFAC sanctions",
+    "cross-layer",
+    "denominator-aware",
+    "event corpus"
+  ],
+  "isLiveDataset": true,
+  "personalSensitiveInformation": "Records describe public enforcement events (sanctions designations, delistings, takedowns) and cite publicly documented wallet addresses already named in OFAC SDN or court records; no private personal data is introduced.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The dataset repository (events, schema, codebook, derived artifacts, and paper tables).",
+      "contentUrl": "https://github.com/chnyangs/censorship-event-database",
+      "encodingFormat": "git+https",
+      "sha256": "main"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "event-records",
+      "name": "event-records",
+      "description": "One YAML file per event (405 records), validated against schema/event.schema.json (schema_version 0.2.0).",
+      "containedIn": { "@id": "repo" },
+      "encodingFormat": "application/yaml",
+      "includes": "events/*.yaml"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "event-schema",
+      "name": "event-schema",
+      "description": "JSON Schema for an event record.",
+      "containedIn": { "@id": "repo" },
+      "contentUrl": "schema/event.schema.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "codebook",
+      "name": "codebook",
+      "description": "Coding rules for fuzzy edges (attribution, coverage status, admission tier, evidence tier). Version 4.1.0.",
+      "containedIn": { "@id": "repo" },
+      "contentUrl": "schema/codebook.md",
+      "encodingFormat": "text/markdown"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "events",
+      "name": "events",
+      "description": "Censorship events. 405 total records; 365 admitted (status=admitted) form the paper analysis corpus; 30 draft and 10 rejected are released for transparency. Strata: S1 OFAC SDN (55), S2 OFAC removal (1), S3 DOJ/SEC/CFTC/FIOD (90), S4 nation-state (122), S5 corporate (107), S6 supranational (30).",
+      "key": { "@id": "events/id" },
+      "field": [
+        { "@type": "cr:Field", "@id": "events/id", "name": "id", "description": "Stable event identifier (slug).", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/status", "name": "status", "description": "admitted | draft | rejected. Admitted (365) is the paper corpus.", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/research_stratum", "name": "research_stratum", "description": "Trigger family S1-S6.", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/empirical_shape", "name": "empirical_shape", "description": "cascade | comparison | null_event.", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/admission_tier", "name": "admission_tier", "description": "anchor_case | empirical_case | null_case.", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/evidence_tier", "name": "evidence_tier", "description": "Source-strength grade orthogonal to admission_tier; absent = admission_grade, else attested_secondary.", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/trigger", "name": "trigger", "description": "The legal/state/corporate action that initiates the event (type, date, actor, citation).", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/target", "name": "target", "description": "The platform/asset/user the trigger acts upon.", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/jurisdiction", "name": "jurisdiction", "description": "ISO-3166 jurisdiction code(s).", "dataType": "sc:Text", "repeated": true },
+        { "@type": "cr:Field", "@id": "events/coverage", "name": "coverage", "description": "Per-layer coverage status: measured | partially_measured | not_measured | not_applicable.", "dataType": "sc:Text", "repeated": true },
+        { "@type": "cr:Field", "@id": "events/observations", "name": "observations", "description": "Per-layer observations: layer, observation_kind (observed_change | observed_no_change), attribution (direct | plausible | unknown | none), sources/anchors.", "dataType": "sc:Text", "repeated": true },
+        { "@type": "cr:Field", "@id": "events/temporal_tier", "name": "temporal_tier", "description": "discovery_only_2007_2012 | historical_baseline_2013_2016 | comparable_main_2017_present.", "dataType": "sc:Text" },
+        { "@type": "cr:Field", "@id": "events/scoped_claim", "name": "scoped_claim", "description": "One-sentence narrow empirical claim the event supports.", "dataType": "sc:Text" }
+      ]
+    }
+  ]
+}
