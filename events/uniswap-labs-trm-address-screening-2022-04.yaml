@@ -1,0 +1,213 @@
+id: uniswap-labs-trm-address-screening-2022-04
+schema_version: 0.2.0
+codebook_version: "4.0.0"
+status: admitted
+primary_source_verified: true
+research_stratum: S5_corporate
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: human_reviewed
+version: "0.2"
+created_at: 2026-05-16T00:00:00Z
+last_verified: 2026-06-05
+
+related_events:
+  - tornado-cash-frontend-tornado-cash-eth-block-2022-04
+  - aave-tornado-frontend-block-2022-08
+  - uniswap-frontend-delisting-2023
+
+trigger:
+  type: corporate_policy_change
+  actor: uniswap_labs
+  timestamp: 2022-04-19T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_corporate
+      url: https://blog.uniswap.org/trm
+      wayback: https://web.archive.org/web/20230330015248/https://blog.uniswap.org/trm
+      body_hash: sha256:97cbcdcf1912c8c37ea25ea4e4e09081e581b792e758e84ca4551c35926414e2
+      body_path: sources/http_captures/uniswap-labs-trm-address-screening-2022-04/primary/web.archive.org__web-20220824000000-https-blog.uniswap.org-trm__6bc512d432.html
+      evidence_use: replayable
+      note: |
+        Uniswap Labs official "Address Screening Update" blog post, dated
+        2022-04-19 in the captured page. The post states that the Uniswap
+        Labs App had long blocked addresses on the OFAC sanctions list and
+        that, with TRM Labs, Uniswap Labs was now blocking wallet addresses
+        associated with illicit activity from interacting with the Uniswap
+        Labs App. It also states that Uniswap Labs does not control user
+        access to the Uniswap Protocol through any portal other than its own
+        app. Primary corporate trigger and mechanism anchor.
+    - type: semi_primary_wayback
+      url: https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
+      wayback: https://web.archive.org/web/20220815231904/https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
+      body_hash: sha256:5f565d9df6ffe166766c152d4046138c4b026b965ef071055f92b1f4be52e1e9
+      body_path: sources/http_captures/uniswap-labs-trm-address-screening-2022-04/primary/web.archive.org__web-20220824000000-https-www.theblock.co-post-143036-uniswap-labs-now-blocks-crypto-wallets-frontend__c337ab2c5e.html
+      evidence_use: replayable
+      note: |
+        The Block article published 2022-04-22, captured in a 2022 Wayback
+        memento, reporting that Uniswap Labs had begun blocking crypto
+        wallet addresses found to be engaged in illegal activity from the
+        app frontend; it identifies the TRM Labs partnership, risk
+        categories including sanctions and stolen funds, and the
+        frontend/protocol split. Used as contemporaneous corroboration for
+        the day-level Uniswap Labs address-screening rollout.
+  timestamp_sources:
+    - type: primary_corporate
+      note: |
+        Day-level precision follows the Uniswap Labs blog date shown in the
+        captured page: 2022-04-19. The Block's 2022-04-22 memento confirms
+        that the policy was public and already active that week.
+
+target:
+  kind: entity
+  enumeration: subset
+  enumeration_note: |
+    The target is the Uniswap Labs App wallet-screening perimeter:
+    addresses flagged by TRM Labs risk intelligence and addresses already
+    on the OFAC sanctions list. The exact moving address universe is not
+    publicly enumerated by Uniswap Labs, so the target remains `entity`
+    rather than a fixed address_set and enumeration is `subset`.
+  entity: Uniswap Labs App wallet-screening perimeter
+  actor_type: dex_frontend_operator
+  actor_name: Uniswap Labs (app.uniswap.org)
+  chains: [ethereum]
+  canonical_domains:
+    - app.uniswap.org
+
+jurisdiction: [US, corporate_global]
+
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: |
+      The action is application/frontend wallet screening at the Uniswap
+      Labs App, not DNS, routing, or ISP-level blocking.
+  - layer: l1_consensus
+    status: not_applicable
+    chain: ethereum
+    note: |
+      The Uniswap Protocol smart contracts on Ethereum remained reachable;
+      Uniswap Labs' own post distinguishes its control over the app from
+      the decentralized protocol. No consensus-layer restriction is claimed.
+  - layer: l3_rpc
+    status: not_applicable
+    note: |
+      The action is not a JSON-RPC provider block. Later Tornado Cash L3
+      reactions are tracked under separate Infura/Alchemy/Cloudflare rows.
+  - layer: l4_frontend
+    status: measured
+    scope:
+      - app.uniswap.org
+    note: |
+      Load-bearing layer. Uniswap Labs' own blog states that wallet
+      addresses associated with illicit activity were blocked from
+      interacting with the Uniswap Labs App through a TRM Labs screening
+      integration. The Block's 2022-04-22 memento corroborates the same
+      app-frontend restriction and the frontend/protocol split.
+  - layer: asset_onchain
+    status: not_applicable
+    note: |
+      No token issuer freeze or contract-level blacklist is invoked by this
+      frontend policy.
+  - layer: offramp_cex
+    status: not_applicable
+    note: |
+      Uniswap Labs is a DEX frontend operator; this row does not claim a
+      centralized exchange account, custody, withdrawal, or fiat off-ramp
+      restriction.
+
+observations:
+  - layer: l4_frontend
+    actor: frontend:uniswap_labs
+    event: uniswap_labs_trm_screening_block_of_illicit_wallets
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2022-04-19T00:00:00Z
+    precision: day
+    delta_hours: 0
+    sources:
+      - type: primary_corporate
+        url: https://blog.uniswap.org/trm
+        wayback: https://web.archive.org/web/20230330015248/https://blog.uniswap.org/trm
+        body_hash: sha256:97cbcdcf1912c8c37ea25ea4e4e09081e581b792e758e84ca4551c35926414e2
+        body_path: sources/http_captures/uniswap-labs-trm-address-screening-2022-04/primary/web.archive.org__web-20220824000000-https-blog.uniswap.org-trm__6bc512d432.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [uniswap_labs]
+          countries: [corporate_global]
+          time_window:
+            - 2022-04-19T00:00:00Z
+            - 2022-04-22T23:59:59Z
+        note: |
+          Uniswap Labs' own post records the app-level block: with TRM Labs,
+          wallet addresses associated with illicit activity were blocked from
+          interacting with the Uniswap Labs App. attribution=direct for the
+          Uniswap Labs frontend policy and mechanism.
+      - type: semi_primary_wayback
+        url: https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
+        wayback: https://web.archive.org/web/20220815231904/https://www.theblock.co/post/143036/uniswap-labs-now-blocks-crypto-wallets-frontend
+        body_hash: sha256:5f565d9df6ffe166766c152d4046138c4b026b965ef071055f92b1f4be52e1e9
+        body_path: sources/http_captures/uniswap-labs-trm-address-screening-2022-04/primary/web.archive.org__web-20220824000000-https-www.theblock.co-post-143036-uniswap-labs-now-blocks-crypto-wallets-frontend__c337ab2c5e.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [uniswap_labs]
+          countries: [corporate_global]
+          time_window:
+            - 2022-04-22T00:00:00Z
+            - 2022-04-22T23:59:59Z
+        note: |
+          The Block 2022-04-22 corroborates that Uniswap Labs had begun
+          blocking crypto wallet addresses from the app frontend, identifies
+          the TRM Labs partnership, and states that the Uniswap Protocol
+          remained usable through alternative hosted websites or direct
+          protocol interaction.
+
+recovery:
+  - layer: l4_frontend
+    resolved: false
+    note: |
+      No public reversal of the general Uniswap Labs TRM address-screening
+      policy is pinned in this row. The 2022-08 Tornado Cash cascade and the
+      2023 Uniswap token-list restriction are tracked as separate events and
+      should not be treated as reversals of this April 2022 app-screening
+      policy.
+
+analysis_notes: |
+  **SCOPE-CORRECTED 2026-06-05** (quality-loop repair; no new human
+  admission claim): the legacy row `uniswap-balancer-tornado-frontend-
+  block-2022-08` mixed a primary Uniswap Labs April 2022 address-screening
+  source with August 2022 Tornado/Balancer cascade reporting. The primary
+  Uniswap Labs source supports a narrower event: Uniswap Labs' own
+  2022-04-19 TRM address-screening policy for the Uniswap Labs App. It does
+  not support a first-party Balancer claim and does not itself establish a
+  new 2022-08-12 Tornado-specific Uniswap trigger. This repair therefore
+  drops Balancer from the load-bearing observation set, changes the trigger
+  date to the source-supported 2022-04-19 Uniswap Labs post, and retains
+  the April 2022 The Block memento as contemporaneous corroboration.
+
+  **PROMOTED 2026-05-21** (legacy C-5 audit history retained for provenance):
+  the admitted row's Uniswap leg was anchored on the Uniswap Labs blog and
+  The Block; the Balancer leg had only semi-primary reporting and is no
+  longer load-bearing after this scope correction.
+
+scoped_claim: |
+  "Uniswap Labs' 2022-04-19 Address Screening Update documents an
+  L4-only corporate-policy change: the Uniswap Labs App blocked wallet
+  addresses associated with illicit activity, using TRM Labs screening,
+  while the underlying Uniswap Protocol remained reachable through other
+  portals or direct contract interaction. The row does not claim a
+  2022-08-12 Tornado-specific Uniswap action, a Balancer Labs action,
+  network/RPC censorship, consensus-layer effect, asset freeze, or CEX
+  off-ramp restriction."
+
+tags:
+  - corporate_policy_change
+  - frontend_address_screening
+  - trm_labs
+  - uniswap_labs
+  - dex_frontend
+  - ofac_sanctions_screening
+  - frontend_protocol_split
+  - scope_corrected_2026_06_05

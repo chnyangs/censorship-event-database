@@ -16,7 +16,6 @@ last_verified: 2026-05-21
 related_events:
   - tornado-cash-ofac-2022
   - aave-tornado-frontend-block-2022-08
-  - uniswap-balancer-tornado-frontend-block-2022-08
 
 trigger:
   type: corporate_policy_change
@@ -271,17 +270,16 @@ analysis_notes: |
   promote origin to human_reviewed.
 
   Comparison-shape S5 corporate-policy-change event sibling to
-  aave-tornado-frontend-block-2022-08 and
-  uniswap-balancer-tornado-frontend-block-2022-08. The dYdX
+  aave-tornado-frontend-block-2022-08. The dYdX
   2022-08-11 account-block is the first major operator-acknowledged
   *history-based* "guilt by association" block in the corpus —
   accounts blocked because their wallets received Tornado-Cash-
   traceable funds at any point in the past, regardless of whether
   the holder knowingly used the mixer or whether the wallet
   currently held any Tornado-tainted balance. This is structurally
-  distinct from the contemporaneous Aave (2022-08-13) and Uniswap/
-  Balancer block actions, which were implemented as wallet-connect
-  screening on the frontend layer alone: dYdX is structurally a
+  distinct from the contemporaneous Aave frontend block, which was
+  implemented as wallet-connect screening on the frontend layer alone:
+  dYdX is structurally a
   *hybrid CEX* (centralized matching engine + onchain StarkEx
   settlement), so the same account-flag action surfaces
   simultaneously at L4 (trading UI blocked) and offramp_cex
@@ -301,8 +299,7 @@ analysis_notes: |
   OFAC designation, and the company is a non-US-jurisdictional
   exchange operator that voluntarily restricted Tornado-tainted
   accounts. The corporate-policy character is what makes this an
-  S5_corporate row sibling to aave-tornado-frontend-block-2022-08
-  and uniswap-balancer-tornado-frontend-block-2022-08 rather than
+  S5_corporate row sibling to aave-tornado-frontend-block-2022-08 rather than
   an S1_ofac_sdn row.
 
   Note on dYdX-row deduplication: the tornado-cash-ofac-2022
@@ -348,8 +345,7 @@ scoped_claim: |
   association' block downstream of the 2022-08-08 OFAC trigger
   (related event tornado-cash-ofac-2022). Paper-relevant as the
   hybrid-CEX vertex of the S5_corporate cascade (alongside
-  aave-tornado-frontend-block-2022-08 at L4 and
-  uniswap-balancer-tornado-frontend-block-2022-08 at L4)."
+  aave-tornado-frontend-block-2022-08 at L4)."
 
 scoped_knowledge: |
   What changed: this row is the hybrid-CEX (l4_frontend +
