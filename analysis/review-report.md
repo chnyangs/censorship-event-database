@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `318`
-- Admitted but release-blocked cases: `47`
+- Release-ready cases: `319`
+- Admitted but release-blocked cases: `46`
 - Fully complete release-ready cases: `12`
-- Scope-limited release-ready cases: `306`
+- Scope-limited release-ready cases: `307`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 40, 'paper_anchor': 4}`
@@ -5403,19 +5403,18 @@ This file is the operational summary for the repo's two current priorities:
 ### `thailand-sec-binance-bybit-c-and-d-2021`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
-- Coverage completeness: `low`
+- Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: Some changed layers are plausible rather than direct trigger attributions.
-- Note: Multiple layers remain explicitly unmeasured; coverage is thin.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
-- Next action: Either measure more layers or explicitly narrow the public claim for this case.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `thailand-sec-crypto-payment-ban-2022-04`
