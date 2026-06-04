@@ -96,6 +96,7 @@ help:
 	    'make derived               # all derived research artifacts in one shot' \
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
+	    'make paper-macros          # reproducible LaTeX paper-number macros → paper_numbers.tex' \
 	    'make paper-check           # non-mutating paper-facing claim/table/audit-coherence checks' \
 	    'make paper-release-check   # strict submission/release paper gate' \
 	    'make paper-regenerate-check # rebuild paper dependencies, then run paper-check' \
@@ -282,7 +283,7 @@ audit-worksheets:
 # number in the paper must come from this artifact at a given
 # source_commit.
 ifndef SOURCE_DATE_EPOCH
-paper-tables paper-regenerate-check source-manifest temporal-ledger: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+paper-tables paper-macros paper-check paper-release-check paper-regenerate-check source-manifest temporal-ledger: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
@@ -290,13 +291,13 @@ paper-tables: derived
 paper-macros: derived
 	$(PYTHON) scripts/build_paper_macros.py
 
-paper-check: paper-tables
+paper-check: paper-tables paper-macros
 	$(PYTHON) scripts/check_paper_readiness.py
 
-paper-release-check: paper-tables
+paper-release-check: paper-tables paper-macros
 	$(PYTHON) scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 
-paper-regenerate-check: trigger-registry temporal-ledger source-manifest paper-tables paper-check
+paper-regenerate-check: trigger-registry temporal-ledger source-manifest paper-tables paper-macros paper-check
 
 # Pytest suite for classifier / coverage-numerator / recovery-filter /
 # paper-table fail-closed invariants (install with `pip install -r
@@ -403,7 +404,7 @@ regenerate: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 regenerate: validate schema-check dataset trigger-registry temporal-ledger source-manifest event-metrics action-registry layer-observability archetypes coverage-matrix \
             admission-sensitivity jurisdiction \
-            paper-tables status review staleness census-registry-check \
+            paper-tables paper-macros status review staleness census-registry-check \
             render-site irr-packet render-evidence-all audit-worksheets paper-check
 	@echo "[regenerate] all derived artifacts rebuilt and gated"
 
