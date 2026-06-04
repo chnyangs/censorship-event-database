@@ -1,11 +1,11 @@
 # Source Artifact Manifest
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-02` · commit `47f4858` · generated `2026-06-04T14:27:22Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-05` · commit `5fba5c6` · generated `2026-06-05T00:00:00Z`
 
 This manifest lists local source artifacts included in the release reproduction surface and records their SHA-256 hashes. Re-fetchable operator-census repository clones and large upstream dumps excluded by `.gitignore` are intentionally not listed; their retrieval policy is recorded in `sources/external_retrieval_receipts.yaml`.
 
 - Files: 3002
-- Total bytes: 356321530
+- Total bytes: 356321450
 
 ## By Artifact Family
 

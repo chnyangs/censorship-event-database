@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `47f4858` · generated `2026-06-04T14:27:22Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-05` · commit `5fba5c6` · generated `2026-06-05T00:00:00Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **319**
+- Canonical physical actions: **318**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -307,9 +307,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `uk-fca-crypto-promotion-rule-2023:1:offramp_cex:kucoin_global:kucoin_restricted_uk_retail_customers_in_response_to_fca_financial_promotions_regime` | 1 | 0 | 1 | offramp_cex | `uk-fca-crypto-promotion-rule-2023::offramp_cex` |
 | `uk-fca-crypto-promotion-rule-2023:2:l4_frontend:frontend:bybit_kucoin_uk_geo:uk_geo_frontend_banners_and_kyc_restrictions_added_on_bybit_and_kucoin_uk_vantage` | 1 | 0 | 1 | l4_frontend | `uk-fca-crypto-promotion-rule-2023::l4_frontend` |
 | `ukraine-virtual-assets-law-2022-03:0:offramp_cex:nssmc:ua_vasp_licensing_regime:ua_law_on_virtual_assets_signed_vasp_licensing_framework_established` | 1 | 0 | 1 | offramp_cex | `ukraine-virtual-assets-law-2022-03::offramp_cex` |
-| `uniswap-balancer-tornado-frontend-block-2022-08:0:l4_frontend:frontend:uniswap_labs:uniswap_labs_trm_screening_block_of_tornado_tainted_addresses` | 1 | 0 | 1 | l4_frontend | `uniswap-balancer-tornado-frontend-block-2022-08::l4_frontend` |
-| `uniswap-balancer-tornado-frontend-block-2022-08:1:l4_frontend:frontend:balancer_labs:balancer_labs_trm_screening_block_of_tornado_tainted_addresses` | 1 | 0 | 1 | l4_frontend | `uniswap-balancer-tornado-frontend-block-2022-08::l4_frontend` |
 | `uniswap-frontend-delisting-2023:0:l4_frontend:frontend:uniswap_labs:uniswap_labs_restricted_100_plus_tokens_from_frontend_ui` | 1 | 0 | 1 | l4_frontend | `uniswap-frontend-delisting-2023::l4_frontend` |
+| `uniswap-labs-trm-address-screening-2022-04:0:l4_frontend:frontend:uniswap_labs:uniswap_labs_trm_screening_block_of_illicit_wallets` | 1 | 0 | 1 | l4_frontend | `uniswap-labs-trm-address-screening-2022-04::l4_frontend` |
 | `uniswap-tokenized-stocks-delisting-2021-07:0:l4_frontend:frontend:uniswap_labs:uniswap_labs_restricted_tokenized_equity_cohort_from_frontend_ui_preemptive` | 1 | 0 | 1 | l4_frontend | `uniswap-tokenized-stocks-delisting-2021-07::l4_frontend` |
 | `upbit-bithumb-regulatory-delisting-purge-2021-06:0:offramp_cex:exchange:upbit_bithumb:upbit_bithumb_delist_altcoins_and_dark_coins_pre_fiu_registration` | 1 | 0 | 1 | offramp_cex | `upbit-bithumb-regulatory-delisting-purge-2021-06::offramp_cex` |
 | `upbit-privacy-coin-delisting-2019-09:0:offramp_cex:exchange:upbit:upbit_ends_support_for_six_privacy_coin_markets` | 1 | 0 | 1 | offramp_cex | `upbit-privacy-coin-delisting-2019-09::offramp_cex` |

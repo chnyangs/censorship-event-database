@@ -1,6 +1,6 @@
 # Audit worksheet — `dydx-tornado-account-block-2022-08`
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `47f4858` · generated `2026-06-04T14:27:22Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-05` · commit `5fba5c6` · generated `2026-06-05T00:00:00Z`
 
 - **admission_tier**: `anchor_case`
 - **research_stratum**: `S5_corporate`
@@ -40,8 +40,7 @@ Sign-off rules for the trigger: timestamp precision must match the citation gran
 > association' block downstream of the 2022-08-08 OFAC trigger
 > (related event tornado-cash-ofac-2022). Paper-relevant as the
 > hybrid-CEX vertex of the S5_corporate cascade (alongside
-> aave-tornado-frontend-block-2022-08 at L4 and
-> uniswap-balancer-tornado-frontend-block-2022-08 at L4)."
+> aave-tornado-frontend-block-2022-08 at L4)."
 > 
 
 - [ ] Scoped claim does NOT overread the evidence (e.g. "the SDN caused X" when attribution is `plausible`).

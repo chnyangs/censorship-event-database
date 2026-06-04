@@ -1,6 +1,6 @@
 # Table 1 · Case roles (n=365)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-02` · commit `47f4858` · generated `2026-06-04T14:27:22Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-05` · commit `5fba5c6` · generated `2026-06-05T00:00:00Z`
 
 Supports `docs/paper_claims.md §0` (case-role convention). Each event's admission tier determines how it may be cited: `anchor_case` = named in narrative and figures; `empirical_case` = aggregate-count contributor only; `null_case` = denominator for `observed_no_change` claims only.
 
@@ -362,8 +362,8 @@ Only the `hour`-precision subset is admissible for hour-granularity latency clai
 | `uk-fca-crypto-promotion-rule-2023` | `empirical_case` | `S4_nation_state` | `comparison` | `regulatory_enforcement` | `day` | `entity` | `subset` | 2 | `multi_layer` | · | · | `2026-05-21` | `—` |
 | `uk-hmrc-bitcoin-vat-brief-09-14-2014` | `null_case` | `S4_nation_state` | `null_event` | `regulatory_enforcement` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `ukraine-virtual-assets-law-2022-03` | `empirical_case` | `S4_nation_state` | `comparison` | `nation_state_block` | `day` | `entity` | `subset` | 1 | `cex_only` | · | · | `2026-05-21` | `—` |
-| `uniswap-balancer-tornado-frontend-block-2022-08` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
 | `uniswap-frontend-delisting-2023` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-04-22` | `—` |
+| `uniswap-labs-trm-address-screening-2022-04` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-06-05` | `—` |
 | `uniswap-token-list-curation-default-2021` | `null_case` | `S5_corporate` | `null_event` | `corporate_policy_change` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |
 | `uniswap-tokenized-stocks-delisting-2021-07` | `empirical_case` | `S5_corporate` | `comparison` | `corporate_policy_change` | `day` | `entity` | `subset` | 1 | `frontend_only` | ✓ | · | `2026-05-21` | `—` |
 | `unsc-resolution-2371-dprk-crypto-2017` | `null_case` | `S6_supranational` | `null_event` | `non_us_sanctions` | `day` | `entity` | `subset` | 0 | `null_event` | · | · | `2026-05-21` | `—` |

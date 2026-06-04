@@ -8,10 +8,10 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `405`
-- Release-ready cases: `320`
-- Admitted but release-blocked cases: `45`
+- Release-ready cases: `321`
+- Admitted but release-blocked cases: `44`
 - Fully complete release-ready cases: `12`
-- Scope-limited release-ready cases: `308`
+- Scope-limited release-ready cases: `309`
 - Working drafts: `3`
 - Cases with gap markers: `0`
 - Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 40, 'paper_anchor': 4}`
@@ -5721,27 +5721,20 @@ This file is the operational summary for the repo's two current priorities:
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
-### `uniswap-balancer-tornado-frontend-block-2022-08`
+### `uniswap-frontend-delisting-2023`
 
 - Status: `admitted`
-- Readiness: `admitted_scope_blocked`
+- Readiness: `release_ready_scoped`
 - Paper-use role: `aggregate_datapoint`
-- Trigger reliability: `medium`
-- Observation reliability: `medium`
-- Attribution reliability: `medium`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Trigger evidence lacks a primary citation.
-- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
-- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
-- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
-### `uniswap-frontend-delisting-2023`
+### `uniswap-labs-trm-address-screening-2022-04`
 
 - Status: `admitted`
 - Readiness: `release_ready_scoped`
