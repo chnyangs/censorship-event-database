@@ -94,21 +94,20 @@ jurisdiction: [TH]
 
 coverage:
   - layer: l0_network
-    status: not_measured
+    status: not_applicable
     note: |
       TH SEC criminal complaint is a regulator-directed legal-process
       action filed with the Royal Thai Police ECD against Binance; it is
-      not an ISP / DNS / network-level block. No L0 measurement of Thai
-      ISP-level reachability to binance.com / bybit.com is retained in
-      this file. Distinct from the later (2024-2025) TH MDES / SEC
-      coordinated network-block wave that did target unlicensed
-      exchanges at the ISP layer.
+      not an ISP / DNS / network-level block, so no L0 reachability claim
+      is load-bearing for this row. Distinct from the later (2024-2025)
+      TH MDES / SEC coordinated network-block wave that did target
+      unlicensed exchanges at the ISP layer.
   - layer: l1_consensus
     status: not_applicable
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: not_measured
+    status: not_applicable
     scope: [binance.com, bybit.com]
     note: |
       No regulator-directed disable order on the binance.com or
@@ -116,12 +115,12 @@ coverage:
       (contrast Malaysia SC 2021-07-30 which did compel a frontend
       disable for MY users). The TH SEC instrument is a criminal
       complaint filed with the police, not a disable directive, so no
-      L4-frontend operator-state change is load-bearing for this row.
+      L4-frontend operator-state change is claimed for this row.
   - layer: asset_onchain
     status: not_applicable
     note: No SDN listing; no stablecoin-issuer freeze primitive applicable.
   - layer: offramp_cex
-    status: measured
+    status: partially_measured
     scope:
       - binance_thb_rail
       - bybit_thb_rail
@@ -136,8 +135,9 @@ coverage:
       via binance.com / bybit.com (Thai-bank card-deposit and P2P-THB
       rails) without a direct banking-prohibition directive. The cascade
       is downstream of the criminal complaint rather than a TH SEC
-      banking-rail order; partially_measured pending pinned anchors for
-      contemporaneous Binance / Bybit THB-rail public-facing notices.
+      banking-rail order; status=partially_measured because no
+      contemporaneous Binance / Bybit THB-rail public-facing notices are
+      pinned in this row.
 
 observations:
   - layer: offramp_cex
@@ -281,6 +281,14 @@ analysis_notes: |
   THB-rail notices, Bangkok Post 2142503, and TH SEC News_Detail
   SECID=10613 for the later Bybit-specific criminal complaint if the
   cross-target subset is preserved.
+
+  Scope repair 2026-06-04: L0 network and L4 frontend coverage were
+  narrowed from not_measured to not_applicable because the row explicitly
+  does not claim a Thai ISP/DNS block or a regulator-directed Binance /
+  Bybit frontend disable order. The load-bearing offramp_cex layer is
+  retained but set to partially_measured because the official TH SEC
+  legal anchor proves the unlicensed-operator enforcement action, while
+  contemporaneous operator-side THB-rail notices remain unpinned.
 
 scoped_claim: |
   "Thailand SEC criminal complaint filed 2021-07-02 against Binance
