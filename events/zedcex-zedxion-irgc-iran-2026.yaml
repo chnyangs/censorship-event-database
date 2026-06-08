@@ -1,0 +1,86 @@
+id: zedcex-zedxion-irgc-iran-2026
+schema_version: 0.2.0
+codebook_version: "4.1.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-06-08T00:00:00Z
+last_verified: 2026-06-08
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2026-01-30T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://home.treasury.gov/news/press-releases/sb0375
+      evidence_use: contextual_unarchived
+      note: |
+        OFAC press release sb0375 (2026-01-30) — first designation of IRGC-linked digital
+        asset exchanges Zedcex Exchange Ltd and Zedxion Exchange Ltd (both UK-registered),
+        linked to Babak Morteza Zanjani. LIVE URL: human promoter must capture Wayback +
+        body_hash (treasury.gov blocks automated capture).
+    - type: supporting_tracker
+      url: https://www.elliptic.co/blog/ofac-sanctions-exchanges-zedcex-and-zedxion-for-assisting-in-iranian-sanctions-evasion-and-irgc-operations
+      body_hash: sha256:5dccacfc8d17b4dd74c3f7bbb6b9ae1892857a60a6d42a662a64579e93a842b2
+      body_path: sources/http_captures/zedcex-zedxion-irgc-iran-2026/secondary/www.elliptic.co__blog-ofac-sanctions-exchanges-zedcex-and-zedxion-for-assisting-in-iranian-sanctions-evasion-and-irgc-operations__e4aafa5453.html
+      evidence_use: replayable
+      note: Elliptic analysis (captured 2026-06-08) of the Zedcex/Zedxion IRGC designations.
+target:
+  kind: entity
+  entity: "Zedcex Exchange Ltd; Zedxion Exchange Ltd (IRGC-linked, UK-registered)"
+  enumeration: subset
+  actor_type: exchange
+  chains: []
+jurisdiction:
+  - US
+  - UK
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: l1_consensus
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+
+observations:
+  - layer: offramp_cex
+    actor: us_ofac
+    event: zedcex_zedxion_irgc_sdn_designation
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2026-01-30T00:00:00Z
+    precision: day
+    sources:
+      - type: supporting_tracker
+        url: https://www.elliptic.co/blog/ofac-sanctions-exchanges-zedcex-and-zedxion-for-assisting-in-iranian-sanctions-evasion-and-irgc-operations
+        body_hash: sha256:5dccacfc8d17b4dd74c3f7bbb6b9ae1892857a60a6d42a662a64579e93a842b2
+        body_path: sources/http_captures/zedcex-zedxion-irgc-iran-2026/secondary/www.elliptic.co__blog-ofac-sanctions-exchanges-zedcex-and-zedxion-for-assisting-in-iranian-sanctions-evasion-and-irgc-operations__e4aafa5453.html
+        note: |
+          DRAFT: Zedcex/Zedxion SDN-designated (first IRGC-linked exchange action); off-ramp
+          enforcement. Human promoter must capture the treasury primary before admission.
+
+analysis_notes: >
+  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate (corroborated by TRM, Elliptic,
+  CoinDesk, Cointelegraph). First-ever IRGC-linked exchange designation. NOT YET ADMITTED:
+  human must capture the treasury.gov primary to Wayback + body_hash before promotion.
+scoped_claim: "On 2026-01-30 OFAC made its first designation of IRGC-linked digital asset exchanges, sanctioning UK-registered Zedcex and Zedxion."

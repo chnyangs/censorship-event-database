@@ -1,0 +1,87 @@
+id: nobitex-iran-exchanges-economic-fury-2026
+schema_version: 0.2.0
+codebook_version: "4.1.0"
+status: draft
+primary_source_verified: false
+research_stratum: S1_ofac_sdn
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-06-08T00:00:00Z
+last_verified: 2026-06-08
+
+trigger:
+  type: ofac_sdn_designation
+  actor: US_OFAC
+  timestamp: 2026-06-02T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: primary_government
+      url: https://home.treasury.gov/news/press-releases/sb0519
+      evidence_use: contextual_unarchived
+      note: |
+        OFAC press release sb0519 (2026-06-02) "Economic Fury Targets Iran's Largest Digital
+        Asset Exchange" — designates Nobitex, Wallex, Bitpin, Ramzinex + named individuals
+        (Amir Hossein Rad chairman; Seyed Ali Khoee CEO; others). LIVE URL: human promoter
+        must capture Wayback + body_hash (treasury.gov blocks automated capture).
+    - type: supporting_tracker
+      url: https://www.elliptic.co/blog/ofac-sanctions-nobitex-and-three-other-iranian-cryptoasset-exchanges
+      body_hash: sha256:d0b1b114d0e3277bbe52c50e4de22fe998f83dc63c2057f7741e89c73a25046d
+      body_path: sources/http_captures/nobitex-iran-exchanges-economic-fury-2026/secondary/www.elliptic.co__blog-ofac-sanctions-nobitex-and-three-other-iranian-cryptoasset-exchanges__586854ed64.html
+      evidence_use: replayable
+      note: Elliptic analysis (captured 2026-06-08) of the Nobitex/Wallex/Bitpin/Ramzinex designations.
+target:
+  kind: entity
+  entity: "Nobitex; Wallex; Bitpin; Ramzinex (Iranian crypto exchanges)"
+  enumeration: subset
+  actor_type: exchange
+  chains: []
+jurisdiction:
+  - US
+  - IR
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: l1_consensus
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: l4_frontend
+    status: not_measured
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+
+observations:
+  - layer: offramp_cex
+    actor: us_ofac
+    event: iran_exchanges_sdn_designation
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2026-06-02T00:00:00Z
+    precision: day
+    sources:
+      - type: supporting_tracker
+        url: https://www.elliptic.co/blog/ofac-sanctions-nobitex-and-three-other-iranian-cryptoasset-exchanges
+        body_hash: sha256:d0b1b114d0e3277bbe52c50e4de22fe998f83dc63c2057f7741e89c73a25046d
+        body_path: sources/http_captures/nobitex-iran-exchanges-economic-fury-2026/secondary/www.elliptic.co__blog-ofac-sanctions-nobitex-and-three-other-iranian-cryptoasset-exchanges__586854ed64.html
+        note: |
+          DRAFT: Nobitex/Wallex/Bitpin/Ramzinex SDN-designated; US persons & services must
+          block them (off-ramp enforcement). Human promoter must capture the treasury primary
+          and enrich any specific operator delisting/frontend reactions.
+
+analysis_notes: >
+  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate (corroborated by Elliptic,
+  Chainalysis, TRM, CoinDesk). NOT YET ADMITTED: human must capture the treasury.gov primary
+  to Wayback + body_hash and enrich the offramp_cex / l4_frontend observations before promotion.
+scoped_claim: "On 2026-06-02 OFAC designated Nobitex, Wallex, Bitpin, and Ramzinex — Iran's largest crypto exchanges — for sanctions evasion and terror finance."
