@@ -1515,15 +1515,15 @@ STATIC_JS = """\
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // ---------------- H2 review wizard: one card per screen ----------------
-  (function initReviewWizard() {
-    const wiz = document.getElementById('h2-wizard');
-    if (!wiz) return;
+  // ---------------- review wizards: one card per screen (H2 + evidence-tier) ----------------
+  (function initReviewWizards() {
+   document.querySelectorAll('.review-wizard').forEach(function (wiz) {
+    if (!wiz.id) return;
     const steps = Array.from(wiz.querySelectorAll('.review-step'));
     const total = steps.length;
     if (!total) return;
-    const POS_KEY = 'h2-wizard-pos';
-    const REV_KEY = 'h2-reviews';
+    const POS_KEY = 'wizpos-' + wiz.id;
+    const REV_KEY = 'wizrev-' + wiz.id;
     const countEl = wiz.querySelector('.wizard-count');
     const fillEl = wiz.querySelector('.wizard-meter-fill');
     const dotsEl = wiz.querySelector('.wizard-dots');
@@ -1589,7 +1589,7 @@ STATIC_JS = """\
         else if (a === 'export') {
           const blob = new Blob([JSON.stringify(Object.values(reviews), null, 2)], { type: 'application/json' });
           const url = URL.createObjectURL(blob); const a2 = document.createElement('a');
-          a2.href = url; a2.download = 'h2-null-case-reviews.json'; a2.click(); URL.revokeObjectURL(url);
+          a2.href = url; a2.download = (wiz.dataset.exportName || wiz.id) + '-reviews.json'; a2.click(); URL.revokeObjectURL(url);
         } else if (a === 'reset') {
           if (confirm('Clear all saved H2 reviews and progress in this browser?')) {
             reviews = {}; localStorage.removeItem(REV_KEY); localStorage.removeItem(POS_KEY);
@@ -1600,12 +1600,15 @@ STATIC_JS = """\
     });
     document.addEventListener('keydown', e => {
       if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) return;
+      const r = wiz.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;  // only navigate the on-screen wizard
       if (e.key === 'ArrowRight') show(cur + 1);
       else if (e.key === 'ArrowLeft') show(cur - 1);
     });
 
     steps.forEach((_, i) => markBadge(i));
     show(cur);
+   });
   })();
 })();
 """
@@ -2296,6 +2299,65 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
         </article>
         """)
 
+    # H4 · Evidence-tier IRR: one card per attested_secondary admitted event.
+    et_events = [
+        e for e in events
+        if e.get("evidence_tier") == "attested_secondary" and e.get("status") == "admitted"
+    ]
+    n_et = len(et_events)
+    et_cards = []
+    for i, event in enumerate(et_events):
+        slug = event.get("id") or ""
+        caveat = event.get("evidence_caveat") or ""
+        claim = event.get("scoped_claim") or ""
+        stratum = event.get("research_stratum") or ""
+        out_id = f"et-output-{slug}"
+        reviewed = [
+            artifact(f"raw/{slug}.yaml", "event_yaml"),
+            artifact(f"events/{slug}.html", "rendered_event_page"),
+            artifact("schema/codebook.md", "codebook"),
+            *standard_docs,
+        ]
+        et_cards.append(f"""
+        <article class="audit-panel review-step{' is-active' if i == 0 else ''}" id="et-{escape(slug)}" data-step="{i}" data-slug="{escape(slug)}">
+          <div class="step-head">
+            <span class="step-index">Event {i + 1} <span class="muted">of {n_et}</span></span>
+            <span class="step-reviewed-badge" hidden>✓ reviewed</span>
+          </div>
+          <h3>{escape(titleify(slug))}</h3>
+          <p class="meta"><code>{escape(slug)}</code> · stratum <code>{escape(stratum)}</code> · tier <code>attested_secondary</code></p>
+          <div class="audit-note">
+            <strong>Evidence caveat — why this event sits below the strict floor</strong>
+            <p>{escape(caveat) if caveat else '<span class="muted">No caveat recorded.</span>'}</p>
+            <strong>Scoped claim</strong>
+            <p>{escape(claim) if claim else '<span class="muted">—</span>'}</p>
+          </div>
+          <div class="audit-links">
+            <a href="events/{escape(slug)}.html">Rendered event page</a>
+            <a href="raw/{escape(slug)}.yaml">Raw YAML</a>
+            <a href="schema/codebook.md">Codebook §9 (scope) / §10 (evidence_tier)</a>
+          </div>
+          {render_audit_form(
+              audit_type="evidence_tier",
+              task_id=slug,
+              event_id=slug,
+              reviewed_artifacts=reviewed,
+              output_id=out_id,
+              decision_options=[
+                  ("keep_attested_secondary", "keep - attested_secondary is correct"),
+                  ("upgrade_admission_grade", "upgrade - meets the strict admission_grade floor"),
+                  ("downgrade_or_reject", "downgrade / reject - not §9-clear or under-sourced"),
+                  ("needs_more_evidence", "needs more evidence"),
+              ],
+              checklist=[
+                  ("section9_clear", "Restriction is clearly in scope under codebook §9"),
+                  ("single_source_ok", "Single-contemporaneous-source caveat is acceptable for the lower tier"),
+                  ("no_asset_onchain_waiver", "Does NOT waive the §1.6 asset_onchain primary_onchain floor"),
+              ],
+          )}
+        </article>
+        """)
+
     release_reviewed = [
         artifact("docs/a-class-submission-readiness.md", "readiness_plan"),
         artifact("analysis/a_class_submission_gap_report.md", "gap_report"),
@@ -2323,6 +2385,7 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
     <div class="header-spacer"></div>
     <a class="header-link optional" href="h1_irr_packet/index.html">IRR packet</a>
     <a class="header-link optional" href="#h2-null-cases">Null cases</a>
+    <a class="header-link optional" href="#h4-evidence-tier">Evidence tier</a>
     <a class="header-link optional" href="#h3-release">Release</a>
     <a class="header-link" href="./index.html">Dashboard</a>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀ light</button>
@@ -2355,6 +2418,7 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
       <div class="status-line"><span><span class="label">H1</span><br><strong>independent-human IRR pending</strong></span><span class="status-dot warn"></span></div>
       <div class="status-line"><span><span class="label">H2</span><br><strong>{len(NULL_DENOMINATOR_AUDIT_CASES)} null cases pending</strong></span><span class="status-dot warn"></span></div>
       <div class="status-line"><span><span class="label">H3</span><br><strong>release sign-off pending</strong></span><span class="status-dot warn"></span></div>
+      <div class="status-line"><span><span class="label">H4</span><br><strong>{n_et} evidence-tier reviews pending</strong></span><span class="status-dot warn"></span></div>
     </aside>
   </section>
 
@@ -2368,6 +2432,7 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
     <article class="audit-panel"><h3>H1 · Independent IRR</h3><p>Use the separate H1-only packet. Do not send this full console to IRR coders.</p><a href="h1_irr_packet/index.html">Open H1-only packet</a></article>
     <article class="audit-panel"><h3>H2 · Null denominators</h3><p>Review 13 observed-no-change cases and decide pass/re-scope/exclude.</p><a href="#h2-null-cases">Open H2 cards</a></article>
     <article class="audit-panel"><h3>H3 · Release sign-off</h3><p>Confirm version/date, clean tree, strict gate, and release authority.</p><a href="#h3-release">Open H3 form</a></article>
+    <article class="audit-panel"><h3>H4 · Evidence-tier IRR</h3><p>Review {n_et} attested_secondary events one card at a time; decide keep/upgrade/downgrade.</p><a href="#h4-evidence-tier">Open H4 wizard</a></article>
   </div>
 
   <section class="audit-console" id="h1-irr">
@@ -2391,7 +2456,7 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
     </div>
   </div>
   <section class="audit-console">
-    <div class="review-wizard" id="h2-wizard" data-total="{n_null}">
+    <div class="review-wizard" id="h2-wizard" data-total="{n_null}" data-export-name="h2-null-case">
       <div class="wizard-bar" role="navigation" aria-label="Review navigation">
         <button class="button secondary" type="button" data-wizard="prev" aria-label="Previous case">← Prev</button>
         <div class="wizard-progress">
@@ -2406,6 +2471,33 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
       <div class="wizard-bar wizard-bar-bottom">
         <button class="button" type="button" data-wizard="save-next">✓ Mark reviewed &amp; next</button>
         <button class="button secondary" type="button" data-wizard="export">⤓ Export {n_null} reviews (JSON)</button>
+        <button class="button secondary" type="button" data-wizard="reset" title="Clear saved progress in this browser">Reset progress</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-heading" id="h4-evidence-tier">
+    <div>
+      <h2>H4 · Evidence-Tier IRR</h2>
+      <p class="meta">One <code>attested_secondary</code> event per screen ({n_et} total). Confirm §9 scope + single-source adequacy, decide keep / upgrade / downgrade, then save &amp; next. Progress saved in your browser.</p>
+    </div>
+  </div>
+  <section class="audit-console">
+    <div class="review-wizard" id="et-wizard" data-total="{n_et}" data-export-name="evidence-tier">
+      <div class="wizard-bar" role="navigation" aria-label="Evidence-tier review navigation">
+        <button class="button secondary" type="button" data-wizard="prev" aria-label="Previous event">← Prev</button>
+        <div class="wizard-progress">
+          <span class="wizard-count" aria-live="polite">Event 1 of {n_et}</span>
+          <div class="wizard-meter"><div class="wizard-meter-fill"></div></div>
+          <div class="wizard-dots" aria-hidden="true"></div>
+          <span class="wizard-done-count muted"></span>
+        </div>
+        <button class="button secondary" type="button" data-wizard="next" aria-label="Next event">Next →</button>
+      </div>
+      {''.join(et_cards)}
+      <div class="wizard-bar wizard-bar-bottom">
+        <button class="button" type="button" data-wizard="save-next">✓ Mark reviewed &amp; next</button>
+        <button class="button secondary" type="button" data-wizard="export">⤓ Export {n_et} reviews (JSON)</button>
         <button class="button secondary" type="button" data-wizard="reset" title="Clear saved progress in this browser">Reset progress</button>
       </div>
     </div>
