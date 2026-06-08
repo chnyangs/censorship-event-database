@@ -615,6 +615,43 @@ h3 { font-size: 1.03rem; margin: 1.4rem 0 0.4rem; }
   min-height: 150px;
 }
 
+/* ------------------------------------------------------- review wizard (H2) */
+.review-wizard { display: flex; flex-direction: column; gap: 1rem; }
+/* one card per screen: hide every step except the active one */
+.review-wizard .review-step { display: none; }
+.review-wizard .review-step.is-active { display: block; animation: stepFade .18s ease; }
+@keyframes stepFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.review-step.is-reviewed { border-left: 3px solid var(--ok-fg, #2e7d32); }
+.step-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .2rem; }
+.step-index { font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+.step-reviewed-badge {
+  font-size: .78rem; font-weight: 700; color: var(--ok-fg, #2e7d32);
+  background: color-mix(in srgb, var(--ok-fg, #2e7d32) 14%, transparent);
+  padding: .12rem .5rem; border-radius: 999px;
+}
+.wizard-bar {
+  position: sticky; top: .4rem; z-index: 5;
+  display: flex; align-items: center; gap: .8rem;
+  padding: .55rem .7rem; border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-card) 95%, transparent);
+  border: 1px solid var(--border, rgba(128,128,128,.25));
+  backdrop-filter: blur(6px);
+}
+.wizard-bar-bottom { position: static; flex-wrap: wrap; justify-content: center; }
+.wizard-progress { flex: 1; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; min-width: 0; }
+.wizard-count { font-weight: 700; font-size: .92rem; white-space: nowrap; }
+.wizard-meter { flex: 1; min-width: 80px; height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--text-muted) 25%, transparent); overflow: hidden; }
+.wizard-meter-fill { height: 100%; width: 0%; background: var(--ok-fg, #2e7d32); transition: width .2s ease; }
+.wizard-dots { display: flex; gap: 5px; flex-wrap: wrap; }
+.wizard-dot {
+  width: 13px; height: 13px; border-radius: 50%; cursor: pointer; border: none; padding: 0;
+  background: color-mix(in srgb, var(--text-muted) 35%, transparent); transition: transform .1s ease;
+}
+.wizard-dot:hover { transform: scale(1.25); }
+.wizard-dot.is-active { outline: 2px solid var(--text); outline-offset: 1px; }
+.wizard-dot.is-done { background: var(--ok-fg, #2e7d32); }
+.wizard-done-count { font-size: .82rem; white-space: nowrap; }
+
 /* ------------------------------------------------------------- legacy hero */
 .hero {
   margin-top: 1.6rem; padding: 1.6rem 1.8rem 1.2rem;
@@ -1477,6 +1514,99 @@ STATIC_JS = """\
     const t = document.getElementById('events-table');
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+
+  // ---------------- H2 review wizard: one card per screen ----------------
+  (function initReviewWizard() {
+    const wiz = document.getElementById('h2-wizard');
+    if (!wiz) return;
+    const steps = Array.from(wiz.querySelectorAll('.review-step'));
+    const total = steps.length;
+    if (!total) return;
+    const POS_KEY = 'h2-wizard-pos';
+    const REV_KEY = 'h2-reviews';
+    const countEl = wiz.querySelector('.wizard-count');
+    const fillEl = wiz.querySelector('.wizard-meter-fill');
+    const dotsEl = wiz.querySelector('.wizard-dots');
+    const doneCountEl = wiz.querySelector('.wizard-done-count');
+    let reviews = {};
+    try { reviews = JSON.parse(localStorage.getItem(REV_KEY) || '{}'); } catch (e) { reviews = {}; }
+    let cur = parseInt(localStorage.getItem(POS_KEY) || '0', 10);
+    if (isNaN(cur) || cur < 0 || cur >= total) cur = 0;
+
+    const dots = steps.map((s, i) => {
+      const d = document.createElement('button');
+      d.type = 'button'; d.className = 'wizard-dot';
+      d.title = (i + 1) + '. ' + (s.dataset.slug || '');
+      d.addEventListener('click', () => show(i));
+      dotsEl.appendChild(d);
+      return d;
+    });
+
+    function isReviewed(i) { return !!reviews[steps[i].dataset.slug]; }
+    function markBadge(i) {
+      const b = steps[i].querySelector('.step-reviewed-badge');
+      if (b) b.hidden = !isReviewed(i);
+      steps[i].classList.toggle('is-reviewed', isReviewed(i));
+    }
+    function refreshChrome() {
+      if (countEl) countEl.textContent = 'Case ' + (cur + 1) + ' of ' + total;
+      const doneN = steps.filter((_, i) => isReviewed(i)).length;
+      if (fillEl) fillEl.style.width = Math.round((doneN / total) * 100) + '%';
+      if (doneCountEl) doneCountEl.textContent = doneN + '/' + total + ' reviewed';
+      dots.forEach((d, i) => {
+        d.classList.toggle('is-active', i === cur);
+        d.classList.toggle('is-done', isReviewed(i));
+      });
+    }
+    function show(i) {
+      cur = Math.max(0, Math.min(total - 1, i));
+      steps.forEach((s, k) => s.classList.toggle('is-active', k === cur));
+      localStorage.setItem(POS_KEY, String(cur));
+      refreshChrome();
+      wiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function captureCurrent() {
+      const form = steps[cur].querySelector('.audit-form');
+      const rec = { slug: steps[cur].dataset.slug, reviewed_at: new Date().toISOString() };
+      if (form) {
+        form.querySelectorAll('input, select, textarea').forEach(el => {
+          if (!el.name) return;
+          if (el.type === 'checkbox') rec[el.name] = el.checked;
+          else if (el.value) rec[el.name] = el.value;
+        });
+      }
+      reviews[rec.slug] = rec;
+      localStorage.setItem(REV_KEY, JSON.stringify(reviews));
+      markBadge(cur);
+    }
+
+    wiz.querySelectorAll('[data-wizard]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const a = btn.dataset.wizard;
+        if (a === 'prev') show(cur - 1);
+        else if (a === 'next') show(cur + 1);
+        else if (a === 'save-next') { captureCurrent(); show(Math.min(total - 1, cur + 1)); }
+        else if (a === 'export') {
+          const blob = new Blob([JSON.stringify(Object.values(reviews), null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob); const a2 = document.createElement('a');
+          a2.href = url; a2.download = 'h2-null-case-reviews.json'; a2.click(); URL.revokeObjectURL(url);
+        } else if (a === 'reset') {
+          if (confirm('Clear all saved H2 reviews and progress in this browser?')) {
+            reviews = {}; localStorage.removeItem(REV_KEY); localStorage.removeItem(POS_KEY);
+            steps.forEach((_, i) => markBadge(i)); show(0);
+          }
+        }
+      });
+    });
+    document.addEventListener('keydown', e => {
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) return;
+      if (e.key === 'ArrowRight') show(cur + 1);
+      else if (e.key === 'ArrowLeft') show(cur - 1);
+    });
+
+    steps.forEach((_, i) => markBadge(i));
+    show(cur);
+  })();
 })();
 """
 
@@ -2086,7 +2216,8 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
     ]
 
     null_cards = []
-    for slug in NULL_DENOMINATOR_AUDIT_CASES:
+    n_null = len(NULL_DENOMINATOR_AUDIT_CASES)
+    for i, slug in enumerate(NULL_DENOMINATOR_AUDIT_CASES):
         event = by_id.get(slug) or {}
         title = titleify(slug)
         status, note = NULL_AUDIT_PRESTATUS.get(
@@ -2121,7 +2252,11 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
         ) or '<div class="muted">No replay artifact path found in event YAML.</div>'
         out_id = f"audit-output-{slug}"
         null_cards.append(f"""
-        <article class="audit-panel{priority_cls}" id="audit-{escape(slug)}">
+        <article class="audit-panel review-step{' is-active' if i == 0 else ''}{priority_cls}" id="audit-{escape(slug)}" data-step="{i}" data-slug="{escape(slug)}">
+          <div class="step-head">
+            <span class="step-index">Case {i + 1} <span class="muted">of {n_null}</span></span>
+            <span class="step-reviewed-badge" hidden>✓ reviewed</span>
+          </div>
           <h3>{escape(title)}</h3>
           <p class="meta"><code>{escape(slug)}</code> · LLM pre-audit: <code>{escape(status)}</code></p>
           <p>{escape(note)}</p>
@@ -2252,11 +2387,28 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
   <div class="section-heading" id="h2-null-cases">
     <div>
       <h2>H2 · Null-Case Denominator Audit</h2>
-      <p class="meta">Each card generates a standalone audit record. Send different cards to different auditors if needed.</p>
+      <p class="meta">One case per screen. Read it, fill the decision and comments, hit <strong>Mark reviewed &amp; next</strong>. Progress is saved in your browser; export when done.</p>
     </div>
   </div>
   <section class="audit-console">
-    {''.join(null_cards)}
+    <div class="review-wizard" id="h2-wizard" data-total="{n_null}">
+      <div class="wizard-bar" role="navigation" aria-label="Review navigation">
+        <button class="button secondary" type="button" data-wizard="prev" aria-label="Previous case">← Prev</button>
+        <div class="wizard-progress">
+          <span class="wizard-count" aria-live="polite">Case 1 of {n_null}</span>
+          <div class="wizard-meter"><div class="wizard-meter-fill"></div></div>
+          <div class="wizard-dots" aria-hidden="true"></div>
+          <span class="wizard-done-count muted"></span>
+        </div>
+        <button class="button secondary" type="button" data-wizard="next" aria-label="Next case">Next →</button>
+      </div>
+      {''.join(null_cards)}
+      <div class="wizard-bar wizard-bar-bottom">
+        <button class="button" type="button" data-wizard="save-next">✓ Mark reviewed &amp; next</button>
+        <button class="button secondary" type="button" data-wizard="export">⤓ Export {n_null} reviews (JSON)</button>
+        <button class="button secondary" type="button" data-wizard="reset" title="Clear saved progress in this browser">Reset progress</button>
+      </div>
+    </div>
   </section>
 
   <section class="audit-console" id="h3-release">
