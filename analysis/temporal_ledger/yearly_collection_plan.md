@@ -1,6 +1,6 @@
 # Yearly Collection Plan
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-05` · generated `2026-06-05T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-08` · generated `2026-06-08T23:08:53Z`
 
 This is the year-level control surface for the 2008+ tiered frame. It is derived from the monthly discovery ledger and trigger registry; it is not a paper denominator.
 
@@ -22,11 +22,11 @@ This is the year-level control surface for the 2008+ tiered frame. It is derived
 | 2019 | `comparable_main_2017_present` | 72 | 12 | 60 | 17 | 14 | 12 | 0 | 0 | 3 | triage pending source-frame months |
 | 2020 | `comparable_main_2017_present` | 72 | 15 | 57 | 23 | 15 | 13 | 0 | 0 | 4 | triage pending source-frame months |
 | 2021 | `comparable_main_2017_present` | 72 | 24 | 48 | 47 | 41 | 37 | 0 | 0 | 2 | triage pending source-frame months |
-| 2022 | `comparable_main_2017_present` | 72 | 36 | 36 | 76 | 65 | 60 | 0 | 0 | 4 | triage pending source-frame months |
-| 2023 | `comparable_main_2017_present` | 72 | 42 | 30 | 100 | 83 | 79 | 0 | 0 | 6 | triage pending source-frame months |
-| 2024 | `comparable_main_2017_present` | 72 | 35 | 37 | 70 | 53 | 51 | 0 | 0 | 9 | triage pending source-frame months |
-| 2025 | `comparable_main_2017_present` | 72 | 22 | 50 | 42 | 28 | 25 | 0 | 0 | 7 | triage pending source-frame months |
-| 2026 | `comparable_main_2017_present` | 36 | 5 | 31 | 5 | 3 | 1 | 0 | 0 | 2 | triage pending source-frame months |
+| 2022 | `comparable_main_2017_present` | 72 | 36 | 36 | 77 | 66 | 60 | 0 | 1 | 4 | triage pending source-frame months |
+| 2023 | `comparable_main_2017_present` | 72 | 42 | 30 | 101 | 84 | 79 | 0 | 1 | 6 | triage pending source-frame months |
+| 2024 | `comparable_main_2017_present` | 72 | 36 | 36 | 71 | 54 | 51 | 0 | 1 | 9 | triage pending source-frame months |
+| 2025 | `comparable_main_2017_present` | 72 | 24 | 48 | 46 | 32 | 25 | 0 | 4 | 7 | triage pending source-frame months |
+| 2026 | `comparable_main_2017_present` | 36 | 12 | 24 | 16 | 11 | 1 | 0 | 5 | 2 | triage pending source-frame months |
 
 ## Use
 
