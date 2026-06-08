@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-08` · commit `7c8f923` · generated `2026-06-08T23:08:53Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-08` · commit `3db0429` · generated `2026-06-08T23:15:56Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 
@@ -8,7 +8,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | count | value | target | gap |
 | --- | ---: | ---: | ---: |
-| raw registry rows | 515 | audit surface | — |
+| raw registry rows | 527 | audit surface | — |
 | distinct in-frame triggers | 410 | 150-250 milestone | 0 |
 | admitted events | 365 | 120 quality milestone | 0 |
 
@@ -17,9 +17,8 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | registry_status | count |
 | --- | ---: |
 | `admitted` | 365 |
-| `candidate` | 12 |
-| `draft` | 33 |
-| `promoted_to_event` | 48 |
+| `draft` | 45 |
+| `promoted_to_event` | 60 |
 | `rejected` | 10 |
 | `screened_no_extractor_target` | 47 |
 
@@ -27,7 +26,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | temporal_tier | rows |
 | --- | ---: |
-| `comparable_main_2017_present` | 438 |
+| `comparable_main_2017_present` | 450 |
 | `discovery_only_2007_2012` | 22 |
 | `historical_baseline_2013_2016` | 55 |
 
@@ -35,7 +34,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | analysis_use | rows |
 | --- | ---: |
-| `comparable_analysis` | 438 |
+| `comparable_analysis` | 450 |
 | `discovery_ledger_only` | 22 |
 | `historical_baseline` | 55 |
 

@@ -1,0 +1,76 @@
+id: kucoin-cftc-permanent-us-ban-2026
+schema_version: 0.2.0
+codebook_version: "4.1.0"
+status: draft
+primary_source_verified: false
+research_stratum: S3_doj_sec_cftc_fiod
+temporal_tier: comparable_main_2017_present
+analysis_use: comparable_analysis
+empirical_shape: comparison
+admission_tier: empirical_case
+origin: agent_draft
+version: "0.1"
+created_at: 2026-06-08T00:00:00Z
+last_verified: 2026-06-08
+
+trigger:
+  type: cftc_action
+  actor: CFTC / SDNY federal court
+  timestamp: 2026-03-31T00:00:00Z
+  timestamp_precision: day
+  citation:
+    - type: supporting_journalism
+      url: https://www.coindesk.com/policy/2026/03/31/kucoin-permanently-barred-from-u-s-after-cftc-order-following-usd297-million-doj-case
+      body_hash: sha256:fd06143123e5d721057503aff76426cd30fa9b38d4825ddddbd3519ca8f189a9
+      body_path: sources/http_captures/kucoin-cftc-permanent-us-ban-2026/source/www.coindesk.com__policy-2026-03-31-kucoin-permanently-barred-from-u-s-after-cftc-order-following-usd297-million-doj-case__1522cafc40.html
+      evidence_use: replayable
+      note: |
+        Captured 2026-06-08. Agent-discovered candidate; human promoter must confirm/upgrade
+        to an official primary before admission.
+target:
+  kind: entity
+  entity: "kucoin cftc permanent us ban 2026"
+  enumeration: subset
+  chains: []
+jurisdiction:
+  - US
+coverage:
+  - layer: l0_network
+    status: not_applicable
+    note: Draft skeleton; human to enrich or confirm not_applicable.
+  - layer: l1_consensus
+    status: not_applicable
+    note: Draft skeleton; human to enrich or confirm not_applicable.
+  - layer: l3_rpc
+    status: not_applicable
+    note: Draft skeleton; human to enrich or confirm not_applicable.
+  - layer: l4_frontend
+    status: not_applicable
+    note: Draft skeleton; human to enrich or confirm not_applicable.
+  - layer: asset_onchain
+    status: not_applicable
+    note: Draft skeleton; human to enrich or confirm not_applicable.
+  - layer: offramp_cex
+    status: partially_measured
+    note: Draft skeleton; human to enrich or confirm not_applicable.
+
+observations:
+  - layer: offramp_cex
+    actor: cftc_/_sdny_federal_court
+    event: kucoin_cftc_permanent_us_ban_2026_reaction
+    observation_kind: observed_change
+    attribution: direct
+    timestamp: 2026-03-31T00:00:00Z
+    precision: day
+    sources:
+      - type: supporting_journalism
+        url: https://www.coindesk.com/policy/2026/03/31/kucoin-permanently-barred-from-u-s-after-cftc-order-following-usd297-million-doj-case
+        body_hash: sha256:fd06143123e5d721057503aff76426cd30fa9b38d4825ddddbd3519ca8f189a9
+        body_path: sources/http_captures/kucoin-cftc-permanent-us-ban-2026/source/www.coindesk.com__policy-2026-03-31-kucoin-permanently-barred-from-u-s-after-cftc-order-following-usd297-million-doj-case__1522cafc40.html
+        evidence_use: replayable
+        note: |
+          DRAFT observed_change at offramp_cex, attribution direct.
+analysis_notes: >
+  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate. status:draft, NOT admitted.
+  Human must capture the official primary + enrich observations before promotion. AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion). DISTINCT from existing kucoin-doj-2024 event (2024-03-26 DOJ indictment + CFTC consent order). This is a 2026-03-31 SDNY court-issued permanent injunction converting the temporary US exit into a permanent ban. Human promoter must: (1) locate CFTC press release on cftc.gov fo
+scoped_claim: "AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion)"

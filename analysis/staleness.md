@@ -1,6 +1,6 @@
 # Staleness report
 
-Generated at: `2026-06-08T20:56:21Z`
+Generated at: `2026-06-08T23:15:56Z`
 Red threshold: audits / verifications older than `90` days.
 Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
@@ -8,9 +8,9 @@ Most recent agent activity in `candidate_triggers/`: `none recorded`.
 
 Two dimensions tracked per event; missing values surface as explicit gaps, never masked.
 
-- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 295, 'ok': 113}
-- **Verification** (`last_verified`): {'ok': 408}
-- **Row-level summary** (worst of the two): {'no_audit_recorded': 295, 'ok': 113}
+- **Adversarial audit** (`last_human_audit`): {'no_audit_recorded': 307, 'ok': 113}
+- **Verification** (`last_verified`): {'ok': 420}
+- **Row-level summary** (worst of the two): {'no_audit_recorded': 307, 'ok': 113}
 
 ## Flag legend
 
@@ -85,6 +85,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `bybit-canada-exit-2023-05` | `admitted` | `human_reviewed` | 2026-05-31 | 8 | ok | 2026-06-01 | 7 | ok | ok |
 | `bybit-france-exit-2024-12` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 7 | ok | no_audit_recorded |
 | `bybit-singapore-exit-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 22 | ok | no_audit_recorded |
+| `cambodia-kok-an-pig-butchering-crypto-2026` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `cambodia-nbc-joint-crypto-prohibition-2018-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 7 | ok | no_audit_recorded |
 | `canada-convoy-freeze-2022` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 47 | ok | no_audit_recorded |
 | `canada-csa-binance-withdrawal-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 23 | ok | 2026-05-16 | 23 | ok | ok |
@@ -111,6 +112,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `china-weibo-crypto-exchange-purge-2021-03` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `chinyong-kim-sang-man-dprk-it-worker-ofac-2023-05` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
 | `chipmixer-doj-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-06-02 | 6 | ok | no_audit_recorded |
+| `circle-freeze-zama-cusdc-court-order-2026` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `circle-usdc-cryptex-freeze-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `circle-usdc-multichain-hack-freeze-2023-07` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
 | `circle-usdc-sealed-civil-case-16-address-freeze-2026-03` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
@@ -132,6 +134,8 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `datacell-v-valitor-iceland-district-court-2012-07` | `admitted` | `human_reviewed` | 2026-05-20 | 19 | ok | 2026-05-20 | 19 | ok | ok |
 | `derakhshan-alivand-irgc-crypto-ofac-2025-09` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
 | `dkba-burma-scam-compound-ofac-2025-11` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
+| `dprk-it-workers-amnokgang-vietnam-2026` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
+| `dprk-song-kum-hyok-andariel-it-workers-2025` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `dprk-usdt-network-ofac-2025` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 47 | ok | no_audit_recorded |
 | `dydx-canada-frontend-wind-down-2023-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
 | `dydx-tornado-account-block-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
@@ -143,6 +147,9 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `egypt-cbe-banking-law-194-2020` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 6 | ok | no_audit_recorded |
 | `ens-eth-domain-tornado-resolution-2022` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-01 | 7 | ok | no_audit_recorded |
 | `etherscan-tornado-cash-ui-label-2022` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 22 | ok | no_audit_recorded |
+| `ethiopia-nbe-crypto-ban-2022-06` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
+| `ethiopia-nbe-exchange-website-block-2025-11` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
+| `ethiopia-nbe-p2p-birr-crypto-ban-2026-02` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `etoro-us-ada-trx-delisting-2021-12` | `admitted` | `human_reviewed` | 2026-05-31 | 8 | ok | 2026-06-01 | 7 | ok | ok |
 | `eu-12th-russia-sanctions-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 47 | ok | no_audit_recorded |
 | `eu-14th-russia-sanctions-spfs-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
@@ -155,12 +162,14 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `eu-amla-anti-money-laundering-authority-regulation-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `eu-amlr-eu-single-rulebook-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `eu-belarus-crypto-services-ban-2022` | `admitted` | `human_reviewed` | 2026-05-21 | 18 | ok | 2026-05-21 | 18 | ok | ok |
+| `eu-belarus-crypto-wallet-ban-2025` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `eu-dac8-crypto-asset-reporting-directive-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `eu-mica-2023` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 47 | ok | no_audit_recorded |
 | `eu-russia-crypto-wallet-cap-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 23 | ok | 2026-05-16 | 23 | ok | ok |
 | `eu-russia-full-crypto-wallet-ban-2022` | `admitted` | `human_reviewed` | 2026-05-16 | 23 | ok | 2026-05-16 | 23 | ok | ok |
 | `eu-tfr-recast-2023` | `admitted` | `human_reviewed` | 2026-05-16 | 23 | ok | 2026-05-16 | 23 | ok | ok |
 | `evil-corp-ofac-2024-10` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
+| `falcon-labs-cftc-us-access-ban-2024` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `fatf-grey-list-crypto-related-actions-2023-2024` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `fatf-r15-vasp-travel-rule-2019` | `admitted` | `human_reviewed` | 2026-05-16 | 23 | ok | 2026-05-16 | 23 | ok | ok |
 | `fatf-targeted-update-va-vasp-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
@@ -238,6 +247,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `kraken-sec-unregistered-exchange-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 7 | ok | no_audit_recorded |
 | `kraken-uk-derivatives-exit-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 22 | ok | no_audit_recorded |
 | `kucoin-canada-exit-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 22 | ok | no_audit_recorded |
+| `kucoin-cftc-permanent-us-ban-2026` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `kucoin-doj-2024` | `admitted` | `human_reviewed` | 2026-05-16 | 23 | ok | 2026-05-16 | 23 | ok | ok |
 | `kucoin-netherlands-exit-2023` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `kuwait-cma-virtual-assets-prohibition-2023-07` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
@@ -273,6 +283,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `netwalker-vachon-desjardins-doj-2022` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
 | `nigeria-binance-network-block-2024-02` | `admitted` | `human_reviewed` | 2026-05-31 | 8 | ok | 2026-05-31 | 8 | ok | ok |
 | `nigeria-cbn-crypto-ban-2021` | `admitted` | `human_authored` | — | — | no_audit_recorded | 2026-04-22 | 47 | ok | no_audit_recorded |
+| `nigeria-sec-binance-cease-solicitation-2023-07` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `nobitex-iran-exchanges-economic-fury-2026` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `nydfs-bitlicense-2015-06` | `admitted` | `human_reviewed` | 2026-05-16 | 23 | ok | 2026-05-16 | 23 | ok | ok |
 | `nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015` | `rejected` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-20 | 19 | ok | no_audit_recorded |
@@ -385,6 +396,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 | `thailand-sec-binance-bybit-c-and-d-2021` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-21 | 18 | ok | no_audit_recorded |
 | `thailand-sec-crypto-payment-ban-2022-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-31 | 8 | ok | no_audit_recorded |
 | `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-01 | 7 | ok | no_audit_recorded |
+| `thailand-sec-unlicensed-exchange-block-2025-06` | `draft` | `agent_draft` | — | — | no_audit_recorded | 2026-06-08 | 0 | ok | no_audit_recorded |
 | `tornado-cash-frontend-tornado-cash-eth-block-2022-04` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-05-17 | 22 | ok | no_audit_recorded |
 | `tornado-cash-github-takedown-2022-08` | `admitted` | `human_reviewed` | — | — | no_audit_recorded | 2026-06-02 | 6 | ok | no_audit_recorded |
 | `tornado-cash-ofac-2022` | `admitted` | `human_authored` | 2026-04-22 | 47 | ok | 2026-04-21 | 48 | ok | ok |
@@ -479,6 +491,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `btc-e-doj-2017` — audit=no_audit_recorded, verification=ok, verif_age=6d
 - `bybit-france-exit-2024-12` — audit=no_audit_recorded, verification=ok, verif_age=7d
 - `bybit-singapore-exit-2022` — audit=no_audit_recorded, verification=ok, verif_age=22d
+- `cambodia-kok-an-pig-butchering-crypto-2026` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `cambodia-nbc-joint-crypto-prohibition-2018-05` — audit=no_audit_recorded, verification=ok, verif_age=7d
 - `canada-convoy-freeze-2022` — audit=no_audit_recorded, verification=ok, verif_age=47d
 - `celsius-multistate-cease-desist-earn-2021-09` — audit=no_audit_recorded, verification=ok, verif_age=8d
@@ -501,6 +514,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `china-weibo-crypto-exchange-purge-2021-03` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `chinyong-kim-sang-man-dprk-it-worker-ofac-2023-05` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `chipmixer-doj-2023` — audit=no_audit_recorded, verification=ok, verif_age=6d
+- `circle-freeze-zama-cusdc-court-order-2026` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `circle-usdc-cryptex-freeze-2024` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `circle-usdc-multichain-hack-freeze-2023-07` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `circle-usdc-sealed-civil-case-16-address-freeze-2026-03` — audit=no_audit_recorded, verification=ok, verif_age=8d
@@ -516,6 +530,8 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `crypto-com-eu-usdt-stablecoin-delisting-2025-01` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `derakhshan-alivand-irgc-crypto-ofac-2025-09` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `dkba-burma-scam-compound-ofac-2025-11` — audit=no_audit_recorded, verification=ok, verif_age=8d
+- `dprk-it-workers-amnokgang-vietnam-2026` — audit=no_audit_recorded, verification=ok, verif_age=0d
+- `dprk-song-kum-hyok-andariel-it-workers-2025` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `dprk-usdt-network-ofac-2025` — audit=no_audit_recorded, verification=ok, verif_age=47d
 - `dydx-canada-frontend-wind-down-2023-04` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `dydx-tornado-account-block-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=18d
@@ -524,6 +540,9 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `egypt-cbe-banking-law-194-2020` — audit=no_audit_recorded, verification=ok, verif_age=6d
 - `ens-eth-domain-tornado-resolution-2022` — audit=no_audit_recorded, verification=ok, verif_age=7d
 - `etherscan-tornado-cash-ui-label-2022` — audit=no_audit_recorded, verification=ok, verif_age=22d
+- `ethiopia-nbe-crypto-ban-2022-06` — audit=no_audit_recorded, verification=ok, verif_age=0d
+- `ethiopia-nbe-exchange-website-block-2025-11` — audit=no_audit_recorded, verification=ok, verif_age=0d
+- `ethiopia-nbe-p2p-birr-crypto-ban-2026-02` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `eu-12th-russia-sanctions-2023` — audit=no_audit_recorded, verification=ok, verif_age=47d
 - `eu-14th-russia-sanctions-spfs-2024` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `eu-15th-russia-sanctions-2024` — audit=no_audit_recorded, verification=ok, verif_age=18d
@@ -533,9 +552,11 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `eu-20th-russia-sanctions-crypto-sectoral-ban-2026` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `eu-amla-anti-money-laundering-authority-regulation-2024` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `eu-amlr-eu-single-rulebook-2024` — audit=no_audit_recorded, verification=ok, verif_age=18d
+- `eu-belarus-crypto-wallet-ban-2025` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `eu-dac8-crypto-asset-reporting-directive-2023` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `eu-mica-2023` — audit=no_audit_recorded, verification=ok, verif_age=47d
 - `evil-corp-ofac-2024-10` — audit=no_audit_recorded, verification=ok, verif_age=8d
+- `falcon-labs-cftc-us-access-ban-2024` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `fatf-grey-list-crypto-related-actions-2023-2024` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `fatf-targeted-update-va-vasp-2021` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `fatf-targeted-update-va-vasp-2023` — audit=no_audit_recorded, verification=ok, verif_age=18d
@@ -596,6 +617,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `kraken-sec-unregistered-exchange-2023` — audit=no_audit_recorded, verification=ok, verif_age=7d
 - `kraken-uk-derivatives-exit-2021` — audit=no_audit_recorded, verification=ok, verif_age=22d
 - `kucoin-canada-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=22d
+- `kucoin-cftc-permanent-us-ban-2026` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `kucoin-netherlands-exit-2023` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `kuwait-cma-virtual-assets-prohibition-2023-07` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07` — audit=no_audit_recorded, verification=ok, verif_age=8d
@@ -623,6 +645,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `netherlands-dnb-binance-warning-2021` — audit=no_audit_recorded, verification=ok, verif_age=7d
 - `netwalker-vachon-desjardins-doj-2022` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `nigeria-cbn-crypto-ban-2021` — audit=no_audit_recorded, verification=ok, verif_age=47d
+- `nigeria-sec-binance-cease-solicitation-2023-07` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `nobitex-iran-exchanges-economic-fury-2026` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `nydfs-bitlicense-bitfinex-kraken-shapeshift-exit-2015` — audit=no_audit_recorded, verification=ok, verif_age=19d
 - `nydfs-bittrex-bitlicense-denial-2019-04` — audit=no_audit_recorded, verification=ok, verif_age=8d
@@ -692,6 +715,7 @@ Two dimensions tracked per event; missing values surface as explicit gaps, never
 - `thailand-sec-binance-bybit-c-and-d-2021` — audit=no_audit_recorded, verification=ok, verif_age=18d
 - `thailand-sec-crypto-payment-ban-2022-04` — audit=no_audit_recorded, verification=ok, verif_age=8d
 - `thailand-sec-meme-fan-nft-exchange-token-ban-2021-06` — audit=no_audit_recorded, verification=ok, verif_age=7d
+- `thailand-sec-unlicensed-exchange-block-2025-06` — audit=no_audit_recorded, verification=ok, verif_age=0d
 - `tornado-cash-frontend-tornado-cash-eth-block-2022-04` — audit=no_audit_recorded, verification=ok, verif_age=22d
 - `tornado-cash-github-takedown-2022-08` — audit=no_audit_recorded, verification=ok, verif_age=6d
 - `tornado-cash-ofac-delisting-2025` — audit=no_audit_recorded, verification=ok, verif_age=48d

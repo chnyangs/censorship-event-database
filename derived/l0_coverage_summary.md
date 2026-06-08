@@ -1,6 +1,6 @@
 # L0 OONI coverage summary
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-08` · commit `7c8f923` · generated `2026-06-08T23:08:53Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-08` · commit `3db0429` · generated `2026-06-08T23:15:56Z`
 
 This artifact summarizes archived OONI web-connectivity query outputs for candidate L0 network-layer evidence. It is denominator-aware: `no_ooni_measurements` means the public OONI query returned no measurements for that domain/window, not that blocking was absent.
 
