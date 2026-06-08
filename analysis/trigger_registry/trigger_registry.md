@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-05` · commit `5fba5c6` · generated `2026-06-05T00:00:00Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-05` · commit `5fba5c6` · generated `2026-06-08T20:56:21Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 
@@ -8,8 +8,8 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | count | value | target | gap |
 | --- | ---: | ---: | ---: |
-| raw registry rows | 497 | audit surface | — |
-| distinct in-frame triggers | 395 | 150-250 milestone | 0 |
+| raw registry rows | 512 | audit surface | — |
+| distinct in-frame triggers | 410 | 150-250 milestone | 0 |
 | admitted events | 365 | 120 quality milestone | 0 |
 
 ## Status distribution
@@ -17,6 +17,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | registry_status | count |
 | --- | ---: |
 | `admitted` | 365 |
+| `candidate` | 15 |
 | `draft` | 30 |
 | `promoted_to_event` | 45 |
 | `rejected` | 10 |
@@ -26,7 +27,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | temporal_tier | rows |
 | --- | ---: |
-| `comparable_main_2017_present` | 420 |
+| `comparable_main_2017_present` | 435 |
 | `discovery_only_2007_2012` | 22 |
 | `historical_baseline_2013_2016` | 55 |
 
@@ -34,7 +35,7 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | analysis_use | rows |
 | --- | ---: |
-| `comparable_analysis` | 420 |
+| `comparable_analysis` | 435 |
 | `discovery_ledger_only` | 22 |
 | `historical_baseline` | 55 |
 
@@ -42,12 +43,12 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | stratum | in-frame triggers | admitted | v0.2 admitted min | min gap | v0.2 admitted milestone | milestone gap | v0.2 candidate min | candidate gap |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `S1_ofac_sdn` | 54 | 52 | 30 | 0 | 35 | 0 | 50 | 0 |
+| `S1_ofac_sdn` | 60 | 52 | 30 | 0 | 35 | 0 | 50 | 0 |
 | `S2_ofac_removal` | 1 | 1 | 5 | 4 | 10 | 9 | 10 | 9 |
-| `S3_doj_sec_cftc_fiod` | 85 | 76 | 20 | 0 | 30 | 0 | 40 | 0 |
-| `S4_nation_state` | 120 | 111 | 10 | 0 | 20 | 0 | 20 | 0 |
-| `S5_corporate` | 105 | 95 | 10 | 0 | 15 | 0 | 20 | 0 |
-| `S6_supranational` | 30 | 30 | 5 | 0 | 10 | 0 | 10 | 0 |
+| `S3_doj_sec_cftc_fiod` | 87 | 76 | 20 | 0 | 30 | 0 | 40 | 0 |
+| `S4_nation_state` | 125 | 111 | 10 | 0 | 20 | 0 | 20 | 0 |
+| `S5_corporate` | 106 | 95 | 10 | 0 | 15 | 0 | 20 | 0 |
+| `S6_supranational` | 31 | 30 | 5 | 0 | 10 | 0 | 10 | 0 |
 
 ## Phrasing lock
 
