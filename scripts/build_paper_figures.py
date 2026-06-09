@@ -85,11 +85,11 @@ ARCHETYPE_COLORS = {
     "other_single_layer": WONG["pink"],
 }
 ARCHETYPE_LABELS = {
-    "cex_only":          "CEX-only (172)",
-    "null_event":        "Null event (97)",
-    "frontend_only":     "Frontend-only (44)",
+    "cex_only":          "CEX-only (184)",
+    "null_event":        "Null event (106)",
+    "frontend_only":     "Frontend-only (45)",
     "multi_layer":       "Multi-layer (29)",
-    "asset_only":        "Asset-only (14)",
+    "asset_only":        "Asset-only (19)",
     "other_single_layer": "Other (9)",
 }
 
@@ -157,10 +157,118 @@ def load_admitted_events():
 
 admitted = load_admitted_events()
 n_admitted = len(admitted)
-assert n_admitted == 365, (
-    f"Expected 365 admitted events, got {n_admitted}. "
+assert n_admitted == 392, (
+    f"Expected 392 admitted events, got {n_admitted}. "
     "Run `make derived` to refresh derived files."
 )
+
+# ---------------------------------------------------------------------------
+# Fig 1 — HERO (page-1 concept figure): trigger fan-out grid for the
+# 2022-08-08 OFAC Tornado Cash designation. One trigger, six layers, three-state
+# coverage coloring. Shows the unit of analysis (a single event) and makes the
+# "observability gap != zero" rule visceral before any aggregate number appears.
+# Data: events/tornado-cash-ofac-2022.yaml (coverage[] + observations[]).
+# Honesty note: in THIS event asset_onchain is measured + observed_change
+# (direct, Circle on-chain tx); the corpus-wide asset rate retraction is an
+# AGGREGATE property and is stated in the caption, not drawn on this cell.
+# ---------------------------------------------------------------------------
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
+
+# (layer_key, label, coverage_state, outcome, annotation)  — verbatim from event
+FANOUT = [
+    ("l0_network",   "L0 network",     "gap",      "none",
+     "OONI: 0 volunteer probes in window → coverage gap.\n“---” is undefined, not 0% censored."),
+    ("l1_consensus", "L1 consensus",   "partial",  "change",
+     "Censoring-relay share 10.8% → 41.1% (post-Merge\nsubset, +39 d).  partial · plausible"),
+    ("l3_rpc",       "L3 RPC",         "partial",  "change",
+     "Flashbots rpc-endpoint OFAC filter committed +2 h 50 m\n(primary-source bookend).  partial · direct"),
+    ("l4_frontend",  "L4 frontend",    "measured", "change",
+     "tornado.cash UI / GitHub offline ≈ +22 h.\nmeasured · plausible"),
+    ("asset_onchain","Asset on-chain", "measured", "change",
+     "Circle USDC blacklists pool address +5 h 53 m\n(on-chain tx).  measured · direct †"),
+    ("offramp_cex",  "Off-ramp CEX",   "partial",  "change",
+     "dYdX flags accounts, close-only mode +34 h.\npartial · direct"),
+]
+
+COVERAGE_FILL = {
+    "measured": WONG["green"],
+    "partial":  WONG["yellow"],
+    "gap":      "white",
+}
+
+fig1, ax1 = plt.subplots(figsize=(7.0, 2.75))
+fig1.subplots_adjust(left=0.005, right=0.995, top=0.99, bottom=0.005)
+ax1.set_xlim(0, 1)
+ax1.set_ylim(0, 1)
+ax1.axis("off")
+
+n = len(FANOUT)
+top, bot = 0.86, 0.16
+ys = [top - (i + 0.5) * (top - bot) / n for i in range(n)]
+
+# Title
+ax1.text(0.5, 0.965,
+         "One OFAC trigger, six observability fates — Tornado Cash, 2022-08-08",
+         ha="center", va="top", fontsize=8.5, fontweight="bold")
+
+# Trigger node (far left)
+trig_cx, trig_y = 0.075, 0.5
+ax1.add_patch(FancyBboxPatch((0.01, trig_y - 0.17), 0.13, 0.34,
+             boxstyle="round,pad=0.004,rounding_size=0.02",
+             facecolor=WONG["black"], edgecolor="none", zorder=3))
+ax1.text(trig_cx, trig_y,
+         "OFAC SDN\ndesignation\n—\nTornado Cash\n2022-08-08\n13:30 UTC",
+         ha="center", va="center", color="white", fontsize=6.0,
+         zorder=4, linespacing=1.25)
+
+name_x = 0.295
+cell_x0, cell_x1 = 0.305, 0.45
+ann_x = 0.475
+row = (top - bot) / n
+
+for (key, label, cov, outcome, ann), y in zip(FANOUT, ys):
+    # fan arrow trigger -> cell
+    ax1.add_patch(FancyArrowPatch((0.145, trig_y), (cell_x0 - 0.004, y),
+                 arrowstyle="-|>", mutation_scale=7, color="#AAAAAA",
+                 lw=0.7, zorder=1))
+    # layer name (right-aligned, left of the cell)
+    ax1.text(name_x, y, label, ha="right", va="center",
+             fontsize=6.8, fontweight="bold")
+    # coverage cell
+    hatch = "////" if cov == "gap" else None
+    ax1.add_patch(Rectangle((cell_x0, y - row * 0.34), cell_x1 - cell_x0, row * 0.68,
+                 facecolor=COVERAGE_FILL[cov], edgecolor=WONG["black"],
+                 linewidth=0.8, linestyle=("--" if cov == "gap" else "-"),
+                 hatch=hatch, zorder=2))
+    # outcome glyph inside cell
+    cx = (cell_x0 + cell_x1) / 2
+    if outcome == "change":
+        ax1.text(cx, y, "▲ reaction", ha="center", va="center",
+                 fontsize=6.0, color=WONG["black"], zorder=3, fontweight="bold")
+    else:
+        ax1.text(cx, y, "— no obs.", ha="center", va="center",
+                 fontsize=6.0, color="#444444", zorder=4, style="italic",
+                 bbox=dict(boxstyle="square,pad=0.15", facecolor="white",
+                           edgecolor="none"))
+    # annotation (right)
+    ax1.text(ann_x, y, ann, ha="left", va="center",
+             fontsize=5.6, linespacing=1.12, color="#222222")
+
+# Coverage-state legend (bottom)
+leg_y = 0.05
+lx = 0.305
+for ck, lab in [("measured", "measured"),
+                ("partial", "partially measured"),
+                ("gap", "observability gap  (“---”, never 0%)")]:
+    ax1.add_patch(Rectangle((lx, leg_y), 0.016, 0.028,
+                 facecolor=COVERAGE_FILL[ck], edgecolor=WONG["black"],
+                 linewidth=0.6, hatch=("////" if ck == "gap" else None)))
+    ax1.text(lx + 0.022, leg_y + 0.014, lab, ha="left", va="center", fontsize=5.8)
+    lx += 0.165 if ck == "measured" else 0.20
+
+fig1.savefig(FIGS_DIR / "fig1_tornado_fanout.pdf", bbox_inches="tight", dpi=300)
+plt.close(fig1)
+print("Wrote fig1_tornado_fanout.pdf")
 
 # ---------------------------------------------------------------------------
 # Fig 2 — Corpus composition: archetype × stratum
@@ -193,13 +301,13 @@ for ev in admitted:
 # Stratum canonical values are admitted-only from table3 cross-tab, NOT the
 # all-registry counts in paper_numbers.tex / dataset.meta.json (those = 420).
 CANONICAL_ARCH = {
-    "cex_only": 172, "null_event": 97, "frontend_only": 44,
-    "multi_layer": 29, "asset_only": 14, "other_single_layer": 9,
+    "cex_only": 184, "null_event": 106, "frontend_only": 45,
+    "multi_layer": 29, "asset_only": 19, "other_single_layer": 9,
 }
 # Admitted-only stratum counts (from table3_archetype_stratum.md totals):
 CANONICAL_STRAT_ADMITTED = {
-    "S1_ofac_sdn": 52, "S2_ofac_removal": 1, "S3_doj_sec_cftc_fiod": 76,
-    "S4_nation_state": 111, "S5_corporate": 95, "S6_supranational": 30,
+    "S1_ofac_sdn": 60, "S2_ofac_removal": 1, "S3_doj_sec_cftc_fiod": 81,
+    "S4_nation_state": 117, "S5_corporate": 102, "S6_supranational": 31,
 }
 for k, v in CANONICAL_ARCH.items():
     if arch_counts.get(k) != v:
@@ -264,25 +372,25 @@ layer_rate = {
     "l0_network":   None,           # zero measured denominator → observability gap
     "l1_consensus": 10/16,          # 10/16
     "l3_rpc":       6/7,            # 6/7
-    "l4_frontend":  68/76,          # 68/76
+    "l4_frontend":  69/77,          # 69/77
     "asset_onchain": None,          # retracted (circular)
-    "offramp_cex":  196/286,        # 196/286
+    "offramp_cex":  208/307,        # 208/307
 }
 layer_denom = {
-    "l0_network":   (0, 3, 18),     # (measured, partial, not_measured)
+    "l0_network":   (0, 3, 19),     # (measured, partial, not_measured)
     "l1_consensus": (8, 8, 2),
     "l3_rpc":       (1, 6, 6),
-    "l4_frontend":  (55, 21, 46),
-    "asset_onchain": (18, 2, 19),
-    "offramp_cex":  (241, 45, 20),
+    "l4_frontend":  (56, 21, 46),
+    "asset_onchain": (22, 3, 20),
+    "offramp_cex":  (256, 51, 20),
 }
 layer_frac_label = {
     "l0_network":   "—",
     "l1_consensus": "10/16",
     "l3_rpc":       "6/7",
-    "l4_frontend":  "68/76",
+    "l4_frontend":  "69/77",
     "asset_onchain": "retracted",
-    "offramp_cex":  "196/286",
+    "offramp_cex":  "208/307",
 }
 
 # Admission-sensitivity ablation (strict / current / permissive)
@@ -290,10 +398,10 @@ layer_frac_label = {
 ablation = {
     "l0_network":   (None, None, 1.00),     # only partial; permissive only
     "l1_consensus": (0.00, 0.25, 0.625),
-    "l3_rpc":       (1.00, 1.00, 0.857),
-    "l4_frontend":  (0.582, 0.909, 0.895),
+    "l3_rpc":       (1.00, 1.00, 0.8571),
+    "l4_frontend":  (0.5893, 0.9107, 0.8961),
     "asset_onchain": (None, None, None),    # retracted
-    "offramp_cex":  (0.473, 0.668, 0.685),
+    "offramp_cex":  (0.4688, 0.6523, 0.6775),
 }
 
 fig3, ax3 = plt.subplots(figsize=(COL_W, 2.8))

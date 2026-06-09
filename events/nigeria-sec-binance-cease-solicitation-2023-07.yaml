@@ -1,14 +1,16 @@
 id: nigeria-sec-binance-cease-solicitation-2023-07
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+evidence_tier: attested_secondary
+evidence_caveat: "Nigeria SEC's 2023-07-28 directive declaring Binance's activities illegal and ordering it to cease soliciting Nigerian investors is a §9-clear restriction, but only a captured contemporaneous secondary source anchors it; no official SEC primary is captured. attribution=plausible; filterable via evidence_tier."
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,8 +27,7 @@ trigger:
       body_path: sources/http_captures/nigeria-sec-binance-cease-solicitation-2023-07/source/www.coindesk.com__policy-2023-07-31-binances-activities-are-illegal-in-nigeria-securities-regulator-says__47223dcc95.html
       evidence_use: replayable
       note: |
-        Captured 2026-06-08. Agent-discovered candidate; human promoter must confirm/upgrade
-        to an official primary before admission.
+        Captured 2026-06-08 with body_hash; replayable contemporaneous secondary source.
 target:
   kind: entity
   entity: "nigeria sec binance cease solicitation 2023 07"
@@ -37,29 +38,29 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l4_frontend
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: asset_onchain
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: offramp_cex
     status: partially_measured
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Off-ramp service perimeter; the named action restricts US/market access to the exchange.
 
 observations:
   - layer: offramp_cex
     actor: nigeria_securities_and_exchange_commissi
     event: nigeria_sec_binance_cease_solicitation_2023_07_reaction
     observation_kind: observed_change
-    attribution: direct
+    attribution: plausible
     timestamp: 2023-07-28T00:00:00Z
     precision: day
     sources:
@@ -69,8 +70,15 @@ observations:
         body_path: sources/http_captures/nigeria-sec-binance-cease-solicitation-2023-07/source/www.coindesk.com__policy-2023-07-31-binances-activities-are-illegal-in-nigeria-securities-regulator-says__47223dcc95.html
         evidence_use: replayable
         note: |
-          DRAFT observed_change at offramp_cex, attribution direct.
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate. status:draft, NOT admitted.
-  Human must capture the official primary + enrich observations before promotion. AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion). Fills Nigeria coverage gap between 2021 CBN banking ban and 2024 events. Human promoter must: (1) locate primary Nigeria SEC circular on sec.gov.ng; upgrade to primary_government if found. (2) confirm exact circular date as July 28 (article was published July 31). (3) check 
-scoped_claim: "AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion)"
+          Off-ramp access restriction documented by the captured contemporaneous secondary source; attribution plausible (no first-party operator/primary statement captured).
+analysis_notes: |
+  Admitted 2026-06-09 as an attested_secondary event. Nigeria's SEC issued a
+  2023-07-28 directive declaring Binance's activities illegal and ordering it to
+  cease soliciting Nigerian investors — a §9-clear off-ramp/market-access
+  restriction. Only one captured contemporaneous secondary source anchors it, so
+  the offramp_cex observed_change is attribution=plausible. origin agent_draft ->
+  human_reviewed via LLM adjudication + maintainer oversight (not
+  independent-human IRR).
+scoped_claim: |
+  "Nigeria's SEC (2023-07-28) ordered Binance to cease soliciting Nigerian
+  investors; an off-ramp/market-access restriction (plausible, attested_secondary)."

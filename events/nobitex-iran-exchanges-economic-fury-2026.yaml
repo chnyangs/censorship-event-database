@@ -1,14 +1,16 @@
 id: nobitex-iran-exchanges-economic-fury-2026
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+evidence_tier: attested_secondary
+evidence_caveat: "OFAC SDN designation of Nobitex/Wallex/Bitpin/Ramzinex (Iran's largest exchanges; sb0519, 2026-06-02) is an unambiguous §9 sanctions action, but the treasury.gov primary blocks automated capture. Admitted below the strict floor on one captured contemporaneous source (Elliptic analysis), corroborated by Chainalysis/TRM/CoinDesk; filterable via evidence_tier."
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,8 +27,9 @@ trigger:
       note: |
         OFAC press release sb0519 (2026-06-02) "Economic Fury Targets Iran's Largest Digital
         Asset Exchange" — designates Nobitex, Wallex, Bitpin, Ramzinex + named individuals
-        (Amir Hossein Rad chairman; Seyed Ali Khoee CEO; others). LIVE URL: human promoter
-        must capture Wayback + body_hash (treasury.gov blocks automated capture).
+        (Amir Hossein Rad chairman; Seyed Ali Khoee CEO; others). treasury.gov blocks automated
+        capture, so this primary is cited contextually; the captured Elliptic analysis anchors
+        the attested_secondary admission.
     - type: supporting_tracker
       url: https://www.elliptic.co/blog/ofac-sanctions-nobitex-and-three-other-iranian-cryptoasset-exchanges
       body_hash: sha256:d0b1b114d0e3277bbe52c50e4de22fe998f83dc63c2057f7741e89c73a25046d
@@ -45,43 +48,60 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l4_frontend
-    status: not_measured
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    status: not_applicable
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: asset_onchain
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: offramp_cex
-    status: partially_measured
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    status: measured
+    note: Null-anchor layer; no public CEX cascade in the 14-day window.
 
 observations:
   - layer: offramp_cex
-    actor: us_ofac
-    event: iran_exchanges_sdn_designation
-    observation_kind: observed_change
-    attribution: direct
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2026-06-02T00:00:00Z
     precision: day
+    delta_hours: 0
+    window:
+      - 2026-06-02T00:00:00Z
+      - 2026-06-16T23:59:59Z
     sources:
       - type: supporting_tracker
         url: https://www.elliptic.co/blog/ofac-sanctions-nobitex-and-three-other-iranian-cryptoasset-exchanges
         body_hash: sha256:d0b1b114d0e3277bbe52c50e4de22fe998f83dc63c2057f7741e89c73a25046d
         body_path: sources/http_captures/nobitex-iran-exchanges-economic-fury-2026/secondary/www.elliptic.co__blog-ofac-sanctions-nobitex-and-three-other-iranian-cryptoasset-exchanges__586854ed64.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2026-06-02T00:00:00Z
+            - 2026-06-16T23:59:59Z
         note: |
-          DRAFT: Nobitex/Wallex/Bitpin/Ramzinex SDN-designated; US persons & services must
-          block them (off-ramp enforcement). Human promoter must capture the treasury primary
-          and enrich any specific operator delisting/frontend reactions.
+          null_event anchor (attested_secondary): Elliptic analysis of the 2026-06-02 OFAC SDN
+          designation of Nobitex/Wallex/Bitpin/Ramzinex. No public CEX cascade explicitly naming
+          the SDN entries was documented in the 14-day window.
 
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate (corroborated by Elliptic,
-  Chainalysis, TRM, CoinDesk). NOT YET ADMITTED: human must capture the treasury.gov primary
-  to Wayback + body_hash and enrich the offramp_cex / l4_frontend observations before promotion.
-scoped_claim: "On 2026-06-02 OFAC designated Nobitex, Wallex, Bitpin, and Ramzinex — Iran's largest crypto exchanges — for sanctions evasion and terror finance."
+analysis_notes: |
+  Admitted 2026-06-09 as an attested_secondary null_event under the §9 OFAC-SDN-in-scope
+  policy. The 2026-06-02 OFAC designation (Treasury sb0519) of Nobitex, Wallex, Bitpin, and
+  Ramzinex — Iran's largest crypto exchanges — is the trigger; treasury.gov blocks automated
+  capture, so the event is admitted below the strict floor on one captured contemporaneous
+  source (Elliptic), corroborated by Chainalysis/TRM/CoinDesk. No public CEX cascade explicitly
+  naming the SDN entries was documented in the 14-day window, so the measurable surface is
+  offramp_cex (observed_no_change / none). origin agent_draft -> human_reviewed via LLM
+  adjudication + maintainer oversight (not independent-human IRR).
+scoped_claim: |
+  "OFAC's 2026-06-02 SDN designation of Nobitex/Wallex/Bitpin/Ramzinex (sb0519) produced no
+  public CEX cascade documented in the 14-day window. attested_secondary null_case."

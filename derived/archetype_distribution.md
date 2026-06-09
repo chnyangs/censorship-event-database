@@ -1,6 +1,6 @@
 # Archetype distribution report
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-08` · commit `3db0429` · generated `2026-06-08T23:15:56Z` (events: 365)
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-08` · commit `e26a704` · generated `2026-06-09T00:10:09Z` (events: 392)
 
 ## 1. Classification rules (deterministic, priority-ordered)
 
@@ -25,13 +25,13 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 
 | Archetype | Count | % |
 | --- | ---: | ---: |
-| `asset_only` | 14 | 3.8% |
-| `frontend_only` | 44 | 12.1% |
-| `cex_only` | 172 | 47.1% |
-| `multi_layer` | 29 | 7.9% |
-| `other_single_layer` | 9 | 2.5% |
-| `null_event` | 97 | 26.6% |
-| **total** | **365** | **100.0%** |
+| `asset_only` | 19 | 4.8% |
+| `frontend_only` | 45 | 11.5% |
+| `cex_only` | 184 | 46.9% |
+| `multi_layer` | 29 | 7.4% |
+| `other_single_layer` | 9 | 2.3% |
+| `null_event` | 106 | 27.0% |
+| **total** | **392** | **100.0%** |
 
 ### 2a. `multi_layer` signatures
 
@@ -50,36 +50,36 @@ Latency-regime (bands on `time_to_first_change_hours`): `synchronous` ≤ 1h · 
 
 | Regime | Count | % |
 | --- | ---: | ---: |
-| `synchronous` | 208 | 57.0% |
-| `acute` | 17 | 4.7% |
-| `delayed` | 26 | 7.1% |
-| `lagged` | 15 | 4.1% |
-| `none` | 99 | 27.1% |
+| `synchronous` | 221 | 56.4% |
+| `acute` | 21 | 5.4% |
+| `delayed` | 26 | 6.6% |
+| `lagged` | 16 | 4.1% |
+| `none` | 108 | 27.6% |
 
 ### 2c. Archetype × latency cross-tab
 
 | archetype \ latency | synchronous | acute | delayed | lagged | none | total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `asset_only` | 3 | 6 | 2 | 3 | 0 | 14 |
-| `frontend_only` | 36 | 4 | 3 | 1 | 0 | 44 |
-| `cex_only` | 140 | 4 | 20 | 8 | 0 | 172 |
+| `asset_only` | 5 | 9 | 2 | 3 | 0 | 19 |
+| `frontend_only` | 37 | 4 | 3 | 1 | 0 | 45 |
+| `cex_only` | 150 | 5 | 20 | 9 | 0 | 184 |
 | `multi_layer` | 22 | 3 | 1 | 2 | 1 | 29 |
 | `other_single_layer` | 7 | 0 | 0 | 1 | 1 | 9 |
-| `null_event` | 0 | 0 | 0 | 0 | 97 | 97 |
+| `null_event` | 0 | 0 | 0 | 0 | 106 | 106 |
 
 ## 3. Exemplar cases
 
 Up to 5 events per class, selected by admission tier then slug.
 
-### `asset_only`  (14 events)
+### `asset_only`  (19 events)
 
 - `aeza-group-ofac-2025` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain` · latency `delayed` (t=30.4h)
 - `circle-usdc-cryptex-freeze-2024` · tier `empirical_case` · stratum `S5_corporate` · signature `asset_onchain` · latency `acute` (t=27.0h)
+- `circle-usdc-multichain-hack-freeze-2023-07` · tier `empirical_case` · stratum `S5_corporate` · signature `asset_onchain` · latency `synchronous` (t=0.0h)
+- `circle-usdc-sealed-civil-case-16-address-freeze-2026-03` · tier `empirical_case` · stratum `S5_corporate` · signature `asset_onchain` · latency `acute` (t=19.0h)
 - `circle-usdc-tornado-2022` · tier `empirical_case` · stratum `S5_corporate` · signature `asset_onchain` · latency `synchronous` (t=0.0h)
-- `dprk-usdt-network-ofac-2025` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain` · latency `acute` (t=21.6h)
-- `funnull-cdn-ofac-2025` · tier `empirical_case` · stratum `S1_ofac_sdn` · signature `asset_onchain` · latency `acute` (t=7.8h)
 
-### `frontend_only`  (44 events)
+### `frontend_only`  (45 events)
 
 - `1inch-us-geofence-2021-09` · tier `empirical_case` · stratum `S5_corporate` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 - `aave-arc-fireblocks-whitelist-2022-01` · tier `empirical_case` · stratum `S5_corporate` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
@@ -87,13 +87,13 @@ Up to 5 events per class, selected by admission tier then slug.
 - `alphabay-hansa-doj-2017` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 - `apple-india-crypto-exchange-removal-2024-01` · tier `empirical_case` · stratum `S5_corporate` · signature `l4_frontend` · latency `synchronous` (t=0.0h)
 
-### `cex_only`  (172 events)
+### `cex_only`  (184 events)
 
 - `1mdc-egold-account-freeze-2007-04` · tier `empirical_case` · stratum `S3_doj_sec_cftc_fiod` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `algeria-finance-law-2018-crypto-prohibition` · tier `empirical_case` · stratum `S4_nation_state` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `argentina-bcra-banks-crypto-services-ban-2022-05` · tier `empirical_case` · stratum `S4_nation_state` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 - `australia-asic-binance-derivatives-2023` · tier `empirical_case` · stratum `S4_nation_state` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
-- `bcbs-cryptoasset-prudential-standard-sco60-2022` · tier `empirical_case` · stratum `S6_supranational` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
+- `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09` · tier `empirical_case` · stratum `S4_nation_state` · signature `offramp_cex` · latency `synchronous` (t=0.0h)
 
 ### `multi_layer`  (29 events)
 
@@ -111,7 +111,7 @@ Up to 5 events per class, selected by admission tier then slug.
 - `india-fiu-offshore-vda-block-2023` · tier `empirical_case` · stratum `S4_nation_state` · signature `l0_network` · latency `lagged` (t=1089.0h)
 - `infura-alchemy-tornado-rpc-block-2022` · tier `empirical_case` · stratum `S5_corporate` · signature `l3_rpc` · latency `synchronous` (t=0.0h)
 
-### `null_event`  (97 events)
+### `null_event`  (106 events)
 
 - `al-law-hezbollah-crypto-ofac-2024-03` · tier `null_case` · stratum `S1_ofac_sdn` · signature `none` · latency `none` (t=—)
 - `argentina-cnv-psav-registration-2024` · tier `null_case` · stratum `S4_nation_state` · signature `none` · latency `none` (t=—)
@@ -123,10 +123,10 @@ Up to 5 events per class, selected by admission tier then slug.
 
 - `tornado-cash-ofac-delisting-2025` is the dataset's sole reversal event. Archetype `multi_layer` is assigned by the same rule as forward events (changed-layer set); direction is NOT encoded in the archetype. Consumers drawing recovery claims from this row should carry n=1 explicitly.
 - **9 event(s)** landed in `other_single_layer` — a singleton change at L0 / L1 / L3. This class exists as a safety catch; if populated, expand the taxonomy rather than leave it here: `china-inner-mongolia-mining-ban-2021-05`, `china-sichuan-mining-ban-2021-06`, `cloudflare-ethereum-gateway-tornado-block-2022-08`, `india-fiu-offshore-vda-block-2023`, `infura-alchemy-tornado-rpc-block-2022`, `iran-government-mining-electricity-restriction-2021`, `kazakhstan-internet-shutdown-mining-2022-01`, `russia-mining-regional-ban-2024-12`, `venezuela-sunacrip-mining-exchange-halt-2023-03`
-- `null_event` count is 97. Each such event carries at least one `observed_no_change` row whose source supplies a falsifiable evidence anchor — per validator rule, any one of `query_hash`, `measurement_ids`, `body_hash`+`body_path`, or a structured `scope_descriptor` is sufficient (not all four, and not necessarily `scope_descriptor`). Reading the null-event count as 'censorship did not happen' still requires checking the per-layer coverage composition in `derived/layer_observability.csv` — absence of observation is NOT absence of phenomenon.
+- `null_event` count is 106. Each such event carries at least one `observed_no_change` row whose source supplies a falsifiable evidence anchor — per validator rule, any one of `query_hash`, `measurement_ids`, `body_hash`+`body_path`, or a structured `scope_descriptor` is sufficient (not all four, and not necessarily `scope_descriptor`). Reading the null-event count as 'censorship did not happen' still requires checking the per-layer coverage composition in `derived/layer_observability.csv` — absence of observation is NOT absence of phenomenon.
 - `multi_layer` contains 29 events across 8 distinct signature(s). If signature diversity is low, claims about 'multi-layer cascade heterogeneity' should carry that caveat explicitly.
-- `synchronous` (≤1h) bucket: 208 events. **67 have `trigger_is_action=true`** (all `corporate_policy_change` — trigger.timestamp and observed_change.timestamp are identical in the record, so t=0 is a record-level artifact, not a measured delta): `1inch-us-geofence-2021-09`, `aave-arc-fireblocks-whitelist-2022-01`, `aave-tornado-frontend-block-2022-08`, `apple-india-crypto-exchange-removal-2024-01`, `apple-uniswap-wallet-app-store-rejection-2023-03`, `augur-v2-us-uk-geofence-2020-07`, `binance-busd-wind-down-2024`, `binance-com-us-customer-geofence-2019-06`, `binance-hamas-account-freeze-israel-2023-10`, `binance-netherlands-exit-2023-07`, `binance-nigeria-naira-services-end-2024-03`, `binance-palestinian-accounts-seizure-israel-2023-11`, `binance-privacy-coin-delisting-2023`, `binance-russia-exit-commex-2023`, `binance-russia-gunmaker-asset-freeze-ukraine-2022-08`, `binance-uk-new-user-halt-2023-10`, `bitcoinica-shutdown-2012-05`, `bitfloor-capital-one-debanking-2013-04`, `bybit-canada-exit-2023-05`, `bybit-singapore-exit-2022`, `circle-usdc-tornado-2022`, `cloudflare-ethereum-gateway-tornado-block-2022-08`, `coinbase-eu-usdt-stablecoin-delisting-2024-12`, `coinbase-japan-exit-2023`, `dydx-tornado-account-block-2022-08`, `etherscan-tornado-cash-ui-label-2022`, `gate-io-privacy-coin-perpetuals-delisting-2024-12`, `gemini-netherlands-exit-2023-11`, `google-play-india-crypto-exchange-removal-2024-01`, `huobi-htx-privacy-coin-delisting-2024`, `infura-alchemy-tornado-rpc-block-2022`, `infura-metamask-donetsk-luhansk-block-2022-03`, `kraken-monero-eu-delisting-2024`, `kraken-uk-derivatives-exit-2021`, `metamask-eth-phishing-detect-tornado-additions-2022`, `metamask-snaps-region-restrictions-2023-09`, `mtgox-bankruptcy-tokyo-2014`, `mtgox-usd-withdrawal-suspension-2013-06`, `okx-india-exit-2024-03`, `okx-privacy-token-delist-2024`, `opensea-iran-cuba-sanctions-block-2022`, `pancakeswap-sanctioned-country-frontend-geofence-2022`, `paxos-busd-nydfs-minting-stop-2023`, `pecunix-bullion-transfer-2008`, `pump-fun-uk-fca-geofence-2024-12`, `shapeshift-mandatory-kyc-anonymity-end-2018-09`, `tether-doj-pig-butchering-freeze-2023`, `tether-dprk-precommit-freeze-2025`, `tether-garantex-usdt-freeze-2025-03`, `tether-pig-butchering-second-wave-2024`, `tether-retroactive-sweep-2023`, `tornado-cash-frontend-tornado-cash-eth-block-2022-04`, `tornado-cash-github-takedown-2022-08`, `tornado-cash-tornadocash-org-seizure-2022`, `tradehill-dwolla-payment-cutoff-2012-02`, `uniswap-frontend-delisting-2023`, `uniswap-labs-trm-address-screening-2022-04`, `uniswap-tokenized-stocks-delisting-2021-07`, `upbit-bithumb-regulatory-delisting-purge-2021-06`, `wikileaks-amazon-aws-eviction-2010-12`, `wikileaks-bank-of-america-block-2010-12`, `wikileaks-everydns-domain-termination-2010-12`, `wikileaks-mastercard-suspension-2010-12`, `wikileaks-paypal-freeze-2010-12`, `wikileaks-postfinance-account-closure-2010-12`, `wikileaks-visa-europe-suspension-2010-12`, `wikileaks-western-union-interdiction-2010-12`. The remaining 141 carry distinct external triggers and observed a change within 1h. When reporting latency distributions, aggregate the two subsets separately rather than collapsing them into a single 'synchronous' count.
-- `lagged` (>30d) bucket: 15 events spanning 4 stratum/strata (S1_ofac_sdn, S3_doj_sec_cftc_fiod, S4_nation_state, S5_corporate). The group is heterogeneous in trigger type; consumers citing these events should enumerate them individually rather than treat the bucket as a single mechanism. Events: `canada-csa-binance-withdrawal-2023`, `cftc-v-ooki-dao-2022`, `etoro-us-ada-trx-delisting-2021-12`, `india-fiu-offshore-vda-block-2023`, `india-rbi-crypto-ban-2018`, `japan-fsa-coincheck-orders-2018`, `kazakhstan-digital-assets-law-2023-02`, `paxos-canada-exit-2023-04`, `russia-election-interference-ofac-2020`, `russian-cyber-theft-ofac-2020`, `sec-v-coinbase-2023`, `sec-v-telegram-ton-2020`, `shrem-faiella-bitcoin-exchange-2014`, `tornado-cash-ofac-redesignation-2022`, `uk-fca-binance-markets-2021`.
+- `synchronous` (≤1h) bucket: 221 events. **70 have `trigger_is_action=true`** (all `corporate_policy_change` — trigger.timestamp and observed_change.timestamp are identical in the record, so t=0 is a record-level artifact, not a measured delta): `1inch-us-geofence-2021-09`, `aave-arc-fireblocks-whitelist-2022-01`, `aave-tornado-frontend-block-2022-08`, `apple-india-crypto-exchange-removal-2024-01`, `apple-uniswap-wallet-app-store-rejection-2023-03`, `augur-v2-us-uk-geofence-2020-07`, `binance-busd-wind-down-2024`, `binance-com-us-customer-geofence-2019-06`, `binance-hamas-account-freeze-israel-2023-10`, `binance-netherlands-exit-2023-07`, `binance-nigeria-naira-services-end-2024-03`, `binance-palestinian-accounts-seizure-israel-2023-11`, `binance-privacy-coin-delisting-2023`, `binance-russia-exit-commex-2023`, `binance-russia-gunmaker-asset-freeze-ukraine-2022-08`, `binance-uk-new-user-halt-2023-10`, `bitcoinica-shutdown-2012-05`, `bitfloor-capital-one-debanking-2013-04`, `bybit-canada-exit-2023-05`, `bybit-singapore-exit-2022`, `circle-usdc-multichain-hack-freeze-2023-07`, `circle-usdc-tornado-2022`, `cloudflare-ethereum-gateway-tornado-block-2022-08`, `coinbase-eu-usdt-stablecoin-delisting-2024-12`, `coinbase-japan-exit-2023`, `dydx-tornado-account-block-2022-08`, `etherscan-tornado-cash-ui-label-2022`, `gate-io-privacy-coin-perpetuals-delisting-2024-12`, `gemini-netherlands-exit-2023-11`, `google-play-india-crypto-exchange-removal-2024-01`, `huobi-htx-privacy-coin-delisting-2024`, `infura-alchemy-tornado-rpc-block-2022`, `infura-metamask-donetsk-luhansk-block-2022-03`, `kraken-monero-eu-delisting-2024`, `kraken-uk-derivatives-exit-2021`, `magic-eden-ofac-sanctioned-country-block`, `metamask-eth-phishing-detect-tornado-additions-2022`, `metamask-snaps-region-restrictions-2023-09`, `mtgox-bankruptcy-tokyo-2014`, `mtgox-usd-withdrawal-suspension-2013-06`, `okx-india-exit-2024-03`, `okx-privacy-token-delist-2024`, `opensea-iran-cuba-sanctions-block-2022`, `pancakeswap-sanctioned-country-frontend-geofence-2022`, `paxos-busd-nydfs-minting-stop-2023`, `pecunix-bullion-transfer-2008`, `pump-fun-uk-fca-geofence-2024-12`, `shapeshift-mandatory-kyc-anonymity-end-2018-09`, `t3-bybit-hack-usdt-freeze-2025-03`, `tether-doj-pig-butchering-freeze-2023`, `tether-dprk-precommit-freeze-2025`, `tether-garantex-usdt-freeze-2025-03`, `tether-pig-butchering-second-wave-2024`, `tether-retroactive-sweep-2023`, `tornado-cash-frontend-tornado-cash-eth-block-2022-04`, `tornado-cash-github-takedown-2022-08`, `tornado-cash-tornadocash-org-seizure-2022`, `tradehill-dwolla-payment-cutoff-2012-02`, `uniswap-frontend-delisting-2023`, `uniswap-labs-trm-address-screening-2022-04`, `uniswap-tokenized-stocks-delisting-2021-07`, `upbit-bithumb-regulatory-delisting-purge-2021-06`, `wikileaks-amazon-aws-eviction-2010-12`, `wikileaks-bank-of-america-block-2010-12`, `wikileaks-everydns-domain-termination-2010-12`, `wikileaks-mastercard-suspension-2010-12`, `wikileaks-paypal-freeze-2010-12`, `wikileaks-postfinance-account-closure-2010-12`, `wikileaks-visa-europe-suspension-2010-12`, `wikileaks-western-union-interdiction-2010-12`. The remaining 151 carry distinct external triggers and observed a change within 1h. When reporting latency distributions, aggregate the two subsets separately rather than collapsing them into a single 'synchronous' count.
+- `lagged` (>30d) bucket: 16 events spanning 4 stratum/strata (S1_ofac_sdn, S3_doj_sec_cftc_fiod, S4_nation_state, S5_corporate). The group is heterogeneous in trigger type; consumers citing these events should enumerate them individually rather than treat the bucket as a single mechanism. Events: `bitfinex-us-retail-customer-exit-2017-11`, `canada-csa-binance-withdrawal-2023`, `cftc-v-ooki-dao-2022`, `etoro-us-ada-trx-delisting-2021-12`, `india-fiu-offshore-vda-block-2023`, `india-rbi-crypto-ban-2018`, `japan-fsa-coincheck-orders-2018`, `kazakhstan-digital-assets-law-2023-02`, `paxos-canada-exit-2023-04`, `russia-election-interference-ofac-2020`, `russian-cyber-theft-ofac-2020`, `sec-v-coinbase-2023`, `sec-v-telegram-ton-2020`, `shrem-faiella-bitcoin-exchange-2014`, `tornado-cash-ofac-redesignation-2022`, `uk-fca-binance-markets-2021`.
 
 ## 5. Hand-eyeball checklist
 

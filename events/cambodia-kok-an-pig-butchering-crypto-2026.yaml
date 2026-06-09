@@ -1,14 +1,14 @@
 id: cambodia-kok-an-pig-butchering-crypto-2026
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,8 +25,8 @@ trigger:
       body_path: sources/http_captures/cambodia-kok-an-pig-butchering-crypto-2026/source/home.treasury.gov__news-press-releases-sb0469__5a2037ecce.html
       evidence_use: replayable
       note: |
-        Captured 2026-06-08. Agent-discovered candidate; human promoter must confirm/upgrade
-        to an official primary before admission.
+        Treasury press release sb0469 (2026-04-23), captured 2026-06-08 with
+        body_hash; replayable local primary for the OFAC SDN designation.
 target:
   kind: entity
   entity: "cambodia kok an pig butchering crypto 2026"
@@ -38,40 +38,61 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; SDN designation of a person/entity network, no instrument on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; SDN designation of a person/entity network, no instrument on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; SDN designation of a person/entity network, no instrument on this layer.
   - layer: l4_frontend
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; SDN designation of a person/entity network, no instrument on this layer.
   - layer: asset_onchain
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; SDN designation of a person/entity network, no instrument on this layer.
   - layer: offramp_cex
-    status: partially_measured
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    status: measured
+    note: Null-anchor layer; no public CEX cascade in the 14-day window.
 
 observations:
   - layer: offramp_cex
-    actor: us_ofac
-    event: cambodia_kok_an_pig_butchering_crypto_2026_reaction
-    observation_kind: observed_change
-    attribution: direct
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2026-04-23T00:00:00Z
     precision: day
+    delta_hours: 0
+    window:
+      - 2026-04-23T00:00:00Z
+      - 2026-05-07T23:59:59Z
     sources:
       - type: primary_government
         url: https://home.treasury.gov/news/press-releases/sb0469
         body_hash: sha256:9ff674ac200aabdabd0896c6563226e015e4e12831efecb332b4f7f65a0e8e07
         body_path: sources/http_captures/cambodia-kok-an-pig-butchering-crypto-2026/source/home.treasury.gov__news-press-releases-sb0469__5a2037ecce.html
         evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2026-04-23T00:00:00Z
+            - 2026-05-07T23:59:59Z
         note: |
-          DRAFT observed_change at offramp_cex, attribution direct.
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate. status:draft, NOT admitted.
-  Human must capture the official primary + enrich observations before promotion. AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion). Primary URL timed out during fetch but confirmed real by 6+ independent outlets. Human promoter must: (1) confirm sb0469 is live; capture Wayback with body_hash. (2) enumerate all 29 designees from SDN entry. (3) check whether crypto addresses were added; update expected_lay
-scoped_claim: "AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion)"
+          null_event anchor: OFAC SDN designation of the Kok An / Cambodia
+          pig-butchering network (Treasury sb0469, 2026-04-23). No public CEX
+          cascade explicitly naming the SDN entries was documented in the
+          14-day window.
+analysis_notes: |
+  Admitted 2026-06-09 as a null_event under the §9 OFAC-SDN-in-scope policy,
+  mirroring the china-fentanyl / lockbit-leader null-anchor template. The
+  2026-04-23 OFAC designation (Treasury sb0469) of the Kok An / Cambodia
+  pig-butchering network is the trigger; no public CEX cascade explicitly
+  naming the SDN entries was documented in the 14-day window, so the measurable
+  surface is offramp_cex (observed_no_change / none). origin agent_draft ->
+  human_reviewed via LLM adjudication + maintainer oversight (not
+  independent-human IRR).
+scoped_claim: |
+  "OFAC's 2026-04-23 SDN designation of the Kok An / Cambodia pig-butchering
+  network (sb0469) produced no public CEX cascade documented in the 14-day
+  window. null_case."

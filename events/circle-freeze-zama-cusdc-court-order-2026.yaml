@@ -1,14 +1,16 @@
 id: circle-freeze-zama-cusdc-court-order-2026
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S5_corporate
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+evidence_tier: attested_secondary
+evidence_caveat: "Circle's court-TRO freeze of Zama's cUSDC contract (~$12.5M USDC, 2026-05-29, lifted ~2026-06-01 after the court found Zama was not a party to the underlying Overnight Finance dispute) is a §9-clear collateral issuer freeze, but no primary_onchain tx_hash and no primary corporate/legal source is captured — only one contemporaneous secondary source (CryptoTimes). Per §1.6 no asset_onchain observed_change is claimed; admitted attested_secondary as a null_case documenting the reported freeze."
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,11 +27,11 @@ trigger:
       body_path: sources/http_captures/circle-freeze-zama-cusdc-court-order-2026/source/www.cryptotimes.io__2026-06-02-court-lifts-freeze-on-zamas-cusdc-contract-restoring-12-5m-usdc__166d0be9ad.html
       evidence_use: replayable
       note: |
-        Captured 2026-06-08. Agent-discovered candidate; human promoter must confirm/upgrade
-        to an official primary before admission.
+        Captured 2026-06-08 with body_hash; replayable contemporaneous secondary source
+        (CryptoTimes) for the reported freeze and its reversal.
 target:
   kind: asset
-  entity: "circle freeze zama cusdc court order 2026"
+  asset: usdc
   enumeration: subset
   chains: []
 jurisdiction:
@@ -37,41 +39,63 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l4_frontend
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: asset_onchain
-    status: partially_measured
-    note: Draft skeleton; human to enrich or confirm not_applicable.
-  - layer: offramp_cex
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: |
+      Circle's cUSDC freeze is reported but no captured primary_onchain tx_hash;
+      per codebook §1.6 no on-chain claim is made.
+  - layer: offramp_cex
+    status: measured
+    note: Null-anchor layer; no public CEX cascade in the 14-day window.
 
 observations:
-  - layer: asset_onchain
-    actor: circle_(on_tro_from_ndca_federal_court)
-    event: circle_freeze_zama_cusdc_court_order_2026_reaction
-    observation_kind: observed_change
-    attribution: direct
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2026-05-29T00:00:00Z
     precision: day
+    delta_hours: 0
+    window:
+      - 2026-05-29T00:00:00Z
+      - 2026-06-12T23:59:59Z
     sources:
       - type: supporting_journalism
         url: https://www.cryptotimes.io/2026/06/02/court-lifts-freeze-on-zamas-cusdc-contract-restoring-12-5m-usdc/
         body_hash: sha256:56527f13529c94018c8afcad416835d8e605067036fddcf50dec5155757f4b99
         body_path: sources/http_captures/circle-freeze-zama-cusdc-court-order-2026/source/www.cryptotimes.io__2026-06-02-court-lifts-freeze-on-zamas-cusdc-contract-restoring-12-5m-usdc__166d0be9ad.html
         evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2026-05-29T00:00:00Z
+            - 2026-06-12T23:59:59Z
         note: |
-          DRAFT observed_change at asset_onchain, attribution direct.
-          DRAFT/DEFERRED §1.6: primary_onchain tx_hash floor deferred for the draft.
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate. status:draft, NOT admitted.
-  Human must capture the official primary + enrich observations before promotion. AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion). KEY FEATURE: This event has a RESOLUTION — freeze was lifted ~3 days later (~June 1, 2026) after the court found it unwarranted. Zama was NOT a party to the underlying lawsuit (Overnight Finance civil dispute); this is a collateral freeze on an innocent platform. Human promo
-scoped_claim: "AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion)"
+          null_event anchor (attested_secondary): CryptoTimes reports Circle froze Zama's cUSDC
+          contract under an NDCA TRO (~2026-05-29) and the freeze was lifted ~2026-06-01. No
+          primary_onchain tx_hash is captured; per §1.6 no asset_onchain change is claimed.
+analysis_notes: |
+  Admitted 2026-06-09 as an attested_secondary null_event. Circle, on an NDCA
+  federal-court TRO, froze Zama's cUSDC contract (~$12.5M USDC) on ~2026-05-29; the
+  freeze was lifted ~2026-06-01 after the court found Zama was not a party to the
+  underlying Overnight Finance dispute — a collateral freeze on an innocent platform,
+  subsequently reversed. Only one contemporaneous secondary source (CryptoTimes) is
+  captured and no primary_onchain tx_hash exists, so per §1.6 no asset_onchain
+  observed_change is claimed; the event is admitted attested_secondary as a null_case
+  documenting the reported-and-reversed freeze. origin agent_draft -> human_reviewed via
+  LLM adjudication + maintainer oversight (not independent-human IRR).
+scoped_claim: |
+  "Circle froze Zama's cUSDC (~$12.5M) under an NDCA TRO on ~2026-05-29 and reversed it
+  ~2026-06-01; reported by a single secondary source, no tx_hash captured. attested_secondary
+  null_case."

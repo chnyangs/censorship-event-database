@@ -1,6 +1,6 @@
 # Admission-protocol sensitivity ablation
 
-Generated: `2026-06-08T23:15:56Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 365 events.
+Generated: `2026-06-09T00:10:09Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 392 events.
 
 Three admission rubrics applied to the coverage-matched `changed_given_coverage` rate per layer:
 
@@ -17,9 +17,9 @@ The `strict_permissive_delta` column is the absolute change in rate from strict 
 | `l0_network` | — / 0 = — | — / 0 = — | 3/3 = 1.000 | — | **undefined** |
 | `l1_consensus` | 0/8 = 0.000 | 2/8 = 0.250 | 10/16 = 0.625 | 0.625 | **sensitive** |
 | `l3_rpc` | 1/1 = 1.000 | 1/1 = 1.000 | 6/7 = 0.857 | -0.1429 | **sensitive** |
-| `l4_frontend` | 32/55 = 0.582 | 50/55 = 0.909 | 68/76 = 0.895 | 0.3129 | **sensitive** |
-| `asset_onchain` | 18/18 = retracted | 18/18 = retracted | 19/20 = retracted | — | **retracted_structural** |
-| `offramp_cex` | 114/241 = 0.473 | 161/241 = 0.668 | 196/286 = 0.685 | 0.2123 | **sensitive** |
+| `l4_frontend` | 33/56 = 0.589 | 51/56 = 0.911 | 69/77 = 0.896 | 0.3068 | **sensitive** |
+| `asset_onchain` | 20/22 = retracted | 22/22 = retracted | 24/25 = retracted | — | **retracted_structural** |
+| `offramp_cex` | 120/256 = 0.469 | 167/256 = 0.652 | 208/307 = 0.677 | 0.2087 | **sensitive** |
 
 ## Interpretation
 

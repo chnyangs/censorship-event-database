@@ -1,14 +1,16 @@
 id: sinaloa-cartel-eth-addresses-fentanyl-2026
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+evidence_tier: attested_secondary
+evidence_caveat: "Sinaloa Cartel fentanyl-cell OFAC SDN designation (sb0503, 2026-05-20) is an unambiguous §9 sanctions action, but the treasury.gov primary blocks automated capture and could not be pinned as a replayable memento. Admitted below the strict floor on one captured contemporaneous source (TRM Labs analysis enumerating the six SDN-listed ETH addresses), corroborated by Chainalysis/Elliptic/CoinDesk; filterable via evidence_tier."
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,8 +27,9 @@ trigger:
       note: |
         OFAC press release sb0503 (2026-05-20) "Treasury Disrupts Sinaloa Cartel
         Narco-Terrorist Fentanyl Trafficking Operations" — 11 individuals + 2 entities,
-        6 Ethereum addresses to the SDN list. LIVE URL: human promoter must capture a
-        Wayback memento + body_hash (treasury.gov blocks automated capture).
+        6 Ethereum addresses to the SDN list. treasury.gov blocks automated capture, so
+        this primary is cited contextually; the captured TRM Labs analysis carries the
+        enumerated addresses and anchors the attested_secondary admission.
     - type: supporting_tracker
       url: https://www.trmlabs.com/resources/blog/ofac-sanctions-sinaloa-cartel-network-including-six-ethereum-addresses
       body_hash: sha256:8456cbe000486fc421a2d00f1c171224e70df3afa894159fc7285a8ec9caac68
@@ -52,45 +55,65 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; SDN designation of a cartel cell, no instrument on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; SDN designation of a cartel cell, no instrument on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; SDN designation of a cartel cell, no instrument on this layer.
   - layer: l4_frontend
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; SDN designation of a cartel cell, no instrument on this layer.
   - layer: asset_onchain
-    status: partially_measured
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
-  - layer: offramp_cex
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: |
+      Six ETH addresses were SDN-listed, but no captured primary_onchain freeze
+      tx_hash is pinned; per codebook §1.6 no on-chain claim is made.
+  - layer: offramp_cex
+    status: measured
+    note: Null-anchor layer; no public CEX cascade in the 14-day window.
 
 observations:
-  - layer: asset_onchain
-    actor: us_ofac
-    event: sinaloa_eth_addresses_sdn_listed
-    observation_kind: observed_change
-    attribution: direct
+  - layer: offramp_cex
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2026-05-20T00:00:00Z
     precision: day
+    delta_hours: 0
+    window:
+      - 2026-05-20T00:00:00Z
+      - 2026-06-03T23:59:59Z
     sources:
       - type: supporting_tracker
         url: https://www.trmlabs.com/resources/blog/ofac-sanctions-sinaloa-cartel-network-including-six-ethereum-addresses
         body_hash: sha256:8456cbe000486fc421a2d00f1c171224e70df3afa894159fc7285a8ec9caac68
         body_path: sources/http_captures/sinaloa-cartel-eth-addresses-fentanyl-2026/secondary/www.trmlabs.com__resources-blog-ofac-sanctions-sinaloa-cartel-network-including-six-ethereum-addresses__0979a17909.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2026-05-20T00:00:00Z
+            - 2026-06-03T23:59:59Z
         note: |
-          DRAFT/DEFERRED §1.6: six ETH addresses added to the SDN list. The primary_onchain
-          tx_hash floor (e.g. an issuer addBlackList or the Chainalysis SanctionsList oracle
-          add-tx for each address) is DEFERRED for the draft; human promoter must anchor it
-          before admission.
+          null_event anchor (attested_secondary): TRM Labs analysis of the
+          2026-05-20 OFAC SDN designation of the Sinaloa Cartel fentanyl cell
+          (six ETH addresses). No public CEX cascade explicitly naming the SDN
+          entries was documented in the 14-day window.
 
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate (designation + all six
-  addresses corroborated by TRM Labs, Chainalysis, Elliptic, CoinDesk). NOT YET ADMITTED:
-  human must (1) capture the treasury.gov primary to Wayback + body_hash, (2) add the
-  asset_onchain observation with a primary_onchain tx_hash per codebook §1.6 before promotion.
-scoped_claim: "On 2026-05-20 OFAC added six Ethereum addresses tied to a Sinaloa Cartel fentanyl-proceeds laundering cell to the SDN list."
+analysis_notes: |
+  Admitted 2026-06-09 as an attested_secondary null_event under the §9
+  OFAC-SDN-in-scope policy. The 2026-05-20 OFAC designation (Treasury sb0503) of
+  a Sinaloa Cartel fentanyl-laundering cell named six ETH addresses; treasury.gov
+  blocks automated capture, so the event is admitted below the strict floor on
+  one captured contemporaneous source (TRM Labs), corroborated by
+  Chainalysis/Elliptic/CoinDesk. No primary_onchain freeze tx_hash is captured,
+  so per §1.6 no asset_onchain claim is made; the measurable surface is
+  offramp_cex (observed_no_change / none). origin agent_draft -> human_reviewed
+  via LLM adjudication + maintainer oversight (not independent-human IRR).
+scoped_claim: |
+  "OFAC's 2026-05-20 SDN designation of a Sinaloa Cartel fentanyl cell (sb0503)
+  added six Ethereum addresses to the SDN list; no public CEX cascade was
+  documented in the 14-day window. attested_secondary null_case."

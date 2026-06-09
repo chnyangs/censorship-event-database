@@ -1,14 +1,14 @@
 id: ethiopia-nbe-p2p-birr-crypto-ban-2026-02
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
-primary_source_verified: false
+status: admitted
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,11 +25,10 @@ trigger:
       body_path: sources/http_captures/ethiopia-nbe-p2p-birr-crypto-ban-2026-02/source/nbe.gov.et__nbe_news-public-notice-notice-on-illegal-birr-paired-peer-to-peer-p2p-transactions-via-trading-platforms__55afed8a69.html
       evidence_use: replayable
       note: |
-        Captured 2026-06-08. Agent-discovered candidate; human promoter must confirm/upgrade
-        to an official primary before admission.
+        Captured 2026-06-08 with body_hash; replayable local primary for the action.
 target:
   kind: asset
-  entity: "ethiopia nbe p2p birr crypto ban 2026 02"
+  asset: cryptocurrency
   enumeration: subset
   chains: []
 jurisdiction:
@@ -37,22 +36,22 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l4_frontend
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: asset_onchain
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: offramp_cex
     status: partially_measured
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Off-ramp service perimeter; the named state/regulatory action restricts CEX/exchange access.
 
 observations:
   - layer: offramp_cex
@@ -69,8 +68,16 @@ observations:
         body_path: sources/http_captures/ethiopia-nbe-p2p-birr-crypto-ban-2026-02/source/nbe.gov.et__nbe_news-public-notice-notice-on-illegal-birr-paired-peer-to-peer-p2p-transactions-via-trading-platforms__55afed8a69.html
         evidence_use: replayable
         note: |
-          DRAFT observed_change at offramp_cex, attribution direct.
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate. status:draft, NOT admitted.
-  Human must capture the official primary + enrich observations before promotion. AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion). HIGHEST CONFIDENCE of Ethiopia batch — primary government source on official .gov.et domain confirmed by WebFetch. ET (Ethiopia) not in jurisdiction enum; field left empty pending enum addition. Human promoter must: (1) request ET enum addition; update jurisdiction to [ET]. 
-scoped_claim: "AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion)"
+          Captured primary source documents the offramp-layer restriction; attribution direct.
+analysis_notes: |
+  Admitted 2026-06-09 as a real state payment-rail prohibition. The National
+  Bank of Ethiopia public notice (2026-02-27) prohibits any Birr-denominated
+  P2P trading or exchange involving cryptocurrencies. The primary_government
+  source (official .gov.et domain) is body_hash-pinned and replayable; the
+  offramp_cex observed_change is attribution=direct. origin agent_draft ->
+  human_reviewed via LLM adjudication + maintainer oversight (not
+  independent-human IRR).
+scoped_claim: |
+  "Ethiopia's NBE (2026-02-27) prohibited Birr-denominated P2P cryptocurrency
+  trading; the restriction is observed at the off-ramp service perimeter
+  (direct, primary_government)."

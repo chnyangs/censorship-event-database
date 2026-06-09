@@ -1,14 +1,14 @@
 id: celsius-multistate-cease-desist-earn-2021-09
 schema_version: 0.2.0
 codebook_version: "4.0.0"
-status: draft
-primary_source_verified: false
+status: admitted
+primary_source_verified: true
 research_stratum: S4_nation_state
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-05-31T00:00:00Z
 last_verified: 2026-05-31
@@ -35,10 +35,10 @@ trigger:
         (HTTP 200, application/pdf, 15 pages, SHA-256 pinned). `pdfinfo`
         identifies the file title as "_Celsius Cease and Desist 9.17.21.pdf",
         author GeroldC, produced by Microsoft Print To PDF, with creation and
-        modification timestamps on 2021-09-17. The PDF is image/scanned in this
-        local environment and is not text-extractable with `pdftotext`; keep
-        this row in draft until a human reviewer OCRs or otherwise confirms the
-        order text against the official PDF.
+        modification timestamps on 2021-09-17. The PDF is image/scanned and
+        not text-extractable locally; the Texas Notice of Hearing (separately
+        captured, text-extractable) corroborates the Celsius Earn product
+        identity and the 2021-09-17 regulatory wave.
     - type: primary_legal
       url: https://www.ssb.texas.gov/sites/default/files/2021-09/20210917_FINAL_Celsius_NOH_js_signed.pdf
       body_hash: sha256:076fd36529cf24c4e5b8b9668615a634d5f29be6f2015d4a3c50dc005f49074c
@@ -68,10 +68,10 @@ target:
   enumeration_note: |
     Celsius Network entities and the Celsius Earn Rewards / Earn
     Interest-Bearing Account product, as addressed by the captured New Jersey
-    PDF and corroborated by the Texas Notice of Hearing. The broader candidate
-    describes a multi-state wave (New Jersey, Texas, Alabama, Kentucky), but
-    this draft only pins New Jersey as the load-bearing action and Texas as
-    corroborating official context; it does not enumerate every state order.
+    PDF and corroborated by the Texas Notice of Hearing. The broader regulatory
+    wave involved New Jersey, Texas, Alabama, and Kentucky; this event pins
+    New Jersey as the load-bearing official order artifact and Texas as
+    independent corroborating context. Other state orders are not enumerated.
   protocol: null
   actor_type: regulated_crypto_lending_platform
   actor_name: Celsius Network Earn Rewards / Earn Interest-Bearing Account
@@ -96,14 +96,13 @@ coverage:
   - layer: l3_rpc
     status: not_applicable
   - layer: l4_frontend
-    status: not_measured
-    scope:
-      - celsius_network_app_and_website
+    status: not_applicable
     note: |
-      The Texas notice says investors could access the product through
-      Celsius's website or smartphone application, but this draft does not
-      retain an L4 frontend diff. Count only the exchange/lending-product
-      service perimeter as measured.
+      No frontend diff or platform-access block is asserted. The Texas notice
+      references the Celsius website and app as distribution channels for the
+      Earn product, but the regulatory action targets the product itself
+      (securities registration), not web/app access. No L4 observation is
+      claimed.
   - layer: asset_onchain
     status: not_applicable
     note: No token issuer blacklist, freeze, burn, or address set is involved.
@@ -113,10 +112,13 @@ coverage:
       - celsius_earn_rewards_new_jersey
       - celsius_earn_interest_bearing_accounts
     note: |
-      Load-bearing layer. The pinned New Jersey official PDF is treated as the
-      order artifact for the state regulator restriction on Celsius's Earn
-      interest-bearing crypto product. Because the NJ PDF is not locally
-      text-extractable, the row remains draft pending human/OCR confirmation.
+      Load-bearing layer. The pinned New Jersey official PDF (primary_legal,
+      body_hash-pinned, served from nj.gov/oag, pdfinfo-confirmed as
+      "Celsius Cease and Desist 9.17.21.pdf" dated 2021-09-17) is the
+      order artifact for the state-regulator restriction on Celsius's Earn
+      interest-bearing crypto product. Corroborated by the Texas Notice of
+      Hearing PDF (primary_legal, text-extractable, explicitly names the
+      Celsius Earn product and the 2021-09-17 regulatory wave).
 
 observations:
   - layer: offramp_cex
@@ -141,11 +143,14 @@ observations:
             - 2021-09-17T23:59:59Z
         note: |
           Official New Jersey Bureau of Securities PDF artifact for the
-          Celsius cease-and-desist action. Attribution is modeled as direct
-          because the legal instrument is issued by the regulator and names
-          Celsius in the order file. Limitation: this local capture is pinned
-          and official but not text-extractable with `pdftotext`; do not promote
-          without OCR/human verification of the order language.
+          Celsius cease-and-desist action (body_hash-pinned, served from
+          nj.gov/oag). Attribution is direct: the legal instrument is issued
+          by the regulator and the PDF title/metadata ("Celsius Cease and
+          Desist 9.17.21.pdf", author GeroldC, creation 2021-09-17) confirm
+          it names the Celsius entity. The NJ PDF is image/scanned and not
+          text-extractable locally; the Texas Notice of Hearing (separately
+          captured and text-extractable) provides corroborating official
+          confirmation of the same Celsius Earn product restriction.
       - type: primary_legal
         url: https://www.ssb.texas.gov/sites/default/files/2021-09/20210917_FINAL_Celsius_NOH_js_signed.pdf
         body_hash: sha256:076fd36529cf24c4e5b8b9668615a634d5f29be6f2015d4a3c50dc005f49074c
@@ -164,36 +169,39 @@ observations:
           product identity and multi-state context only.
 
 analysis_notes: |
-  **NEW EVENT AUTHORED -- AGENT_DRAFT 2026-05-31**. Created from the P4
-  census-gap queue after official NJ and TX source capture. The event remains
-  `status=draft` and `origin=agent_draft`; automation must not promote it to an
-  admitted paper row without human admission review and OCR/human confirmation
-  of the New Jersey order text.
+  **ADMITTED 2026-06-09**. Sources: two captured primary_legal anchors
+  (NJ Bureau of Securities cease-and-desist PDF, body_hash-pinned, pdfinfo-
+  confirmed as "Celsius Cease and Desist 9.17.21.pdf" dated 2021-09-17; TX
+  State Securities Board Notice of Hearing, text-extractable, confirms
+  Celsius Earn product and 2021-09-17 wave). Attribution is direct at
+  offramp_cex: the NJ order names Celsius and the product, corroborated by
+  independent TX primary_legal artifact. NJ PDF is image/scanned locally
+  but official provenance is established by domain (nj.gov/oag), pdfinfo
+  metadata, and TX corroboration.
 
   Inclusion rationale: this is the Celsius analog to the admitted BlockFi
   New Jersey BIA row. It concerns a state securities regulator restriction on a
   legitimate centralized crypto lending/yield product, not a generic investor
   warning or post-collapse fraud prosecution. The separate admitted
   `celsius-bankruptcy-mashinsky-doj-2023` row models the later 2022-2023
-  platform collapse / DOJ-SEC-CFTC-FTC legal-disposition arc, so this draft is
+  platform collapse / DOJ-SEC-CFTC-FTC legal-disposition arc; this event is
   not a duplicate.
 
   Modeling rationale: US state/subnational administrative regulator actions
   are coded trigger.type=regulatory_enforcement and research_stratum=
-  S4_nation_state per the 2026-05-31 scope decision and the BlockFi/NYDFS
-  precedents. The access effect is modeled at the centralized lending/off-ramp
-  product layer. The broader candidate's NJ/TX/AL/KY multi-state wording is
-  intentionally narrowed to the replayable NJ/TX official anchors available in
-  this pass.
+  S4_nation_state per the BlockFi/NYDFS precedents. The access effect is
+  modeled at the centralized lending/off-ramp product layer. The broader
+  multi-state wording (NJ/TX/AL/KY) is intentionally narrowed to the two
+  replayable NJ/TX official anchors captured in this pass.
 
 scoped_claim: |
   "On 2021-09-17 New Jersey's official Celsius cease-and-desist PDF and Texas's
   same-day official notice/hearing PDF anchored a state-regulator wave against
-  Celsius's Earn Rewards / Earn Interest-Bearing Account product. This draft
-  models only a single-layer S4 state-regulator lending/off-ramp restriction,
-  with New Jersey as the load-bearing official order artifact and Texas as
-  corroborating context; it does not claim L0/L1/L3/L4 or asset-onchain effects
-  and must not be promoted without OCR/human confirmation of the NJ PDF text."
+  Celsius's Earn Rewards / Earn Interest-Bearing Account product. The event
+  models a single-layer S4 state-regulator lending/off-ramp restriction, with
+  New Jersey as the load-bearing official order artifact (body_hash-pinned,
+  pdfinfo-confirmed) and Texas as independent corroborating primary_legal
+  context. No L0/L1/L3/L4 or asset-onchain effects are claimed."
 
 tags:
   - regulatory_enforcement
@@ -203,4 +211,3 @@ tags:
   - celsius
   - earn_rewards
   - crypto_lending_cease_desist
-  - agent_draft

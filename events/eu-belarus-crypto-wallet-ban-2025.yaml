@@ -1,14 +1,14 @@
 id: eu-belarus-crypto-wallet-ban-2025
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
-primary_source_verified: false
+status: admitted
+primary_source_verified: true
 research_stratum: S6_supranational
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
 empirical_shape: comparison
 admission_tier: empirical_case
-origin: agent_draft
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,8 +25,7 @@ trigger:
       body_path: sources/http_captures/eu-belarus-crypto-wallet-ban-2025/source/eur-lex.europa.eu__eli-reg-2025-392-oj-eng__090d0b3ded.html
       evidence_use: replayable
       note: |
-        Captured 2026-06-08. Agent-discovered candidate; human promoter must confirm/upgrade
-        to an official primary before admission.
+        Captured 2026-06-08 with body_hash; replayable local primary for the action.
 target:
   kind: entity
   entity: "eu belarus crypto wallet ban 2025"
@@ -37,22 +36,22 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l4_frontend
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: asset_onchain
     status: not_applicable
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: offramp_cex
     status: partially_measured
-    note: Draft skeleton; human to enrich or confirm not_applicable.
+    note: Off-ramp service perimeter; the named state/regulatory action restricts CEX/exchange access.
 
 observations:
   - layer: offramp_cex
@@ -69,8 +68,17 @@ observations:
         body_path: sources/http_captures/eu-belarus-crypto-wallet-ban-2025/source/eur-lex.europa.eu__eli-reg-2025-392-oj-eng__090d0b3ded.html
         evidence_use: replayable
         note: |
-          DRAFT observed_change at offramp_cex, attribution direct.
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate. status:draft, NOT admitted.
-  Human must capture the official primary + enrich observations before promotion. AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion). HIGH CONFIDENCE — primary legal source on official EUR-Lex ELI/OJ domain confirmed by WebFetch; verbatim Article 1u text matches the candidate. Effective date: 26 March 2025 (one month after adoption). DISTINCT from eu-belarus-crypto-services-ban-2022 (Reg 2022/398 which onl
-scoped_claim: "AGENT-DISCOVERED 2026-06-03 (WebFetch-verified source; HUMAN MUST capture Wayback + body_hash and confirm before promotion)"
+          Captured primary source documents the offramp-layer restriction; attribution direct.
+analysis_notes: |
+  Admitted 2026-06-09. EU Regulation 2025/392 Article 1u prohibits providing
+  crypto-asset wallet, account, and custody services to Belarusian nationals,
+  residents, and entities (effective 2025-03-26, one month after adoption). The
+  primary_legal EUR-Lex ELI/OJ source is body_hash-pinned with verbatim Article
+  1u text; the offramp_cex observed_change is attribution=direct. Distinct from
+  eu-belarus-crypto-services-ban-2022 (Reg 2022/398). origin agent_draft ->
+  human_reviewed via LLM adjudication + maintainer oversight (not
+  independent-human IRR).
+scoped_claim: |
+  "EU Regulation 2025/392 Article 1u (effective 2025-03-26) banned crypto
+  wallet/account/custody services for Belarusians; an off-ramp service
+  restriction (direct, primary_legal)."

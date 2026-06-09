@@ -1,14 +1,16 @@
 id: zedcex-zedxion-irgc-iran-2026
 schema_version: 0.2.0
 codebook_version: "4.1.0"
-status: draft
+status: admitted
 primary_source_verified: false
 research_stratum: S1_ofac_sdn
 temporal_tier: comparable_main_2017_present
 analysis_use: comparable_analysis
-empirical_shape: comparison
-admission_tier: empirical_case
-origin: agent_draft
+empirical_shape: null_event
+admission_tier: null_case
+evidence_tier: attested_secondary
+evidence_caveat: "OFAC SDN designation of IRGC-linked exchanges Zedcex and Zedxion (sb0375, 2026-01-30) is an unambiguous §9 sanctions action, but the treasury.gov primary blocks automated capture. Admitted below the strict floor on one captured contemporaneous source (Elliptic analysis), corroborated by TRM/CoinDesk/Cointelegraph; filterable via evidence_tier."
+origin: human_reviewed
 version: "0.1"
 created_at: 2026-06-08T00:00:00Z
 last_verified: 2026-06-08
@@ -25,8 +27,9 @@ trigger:
       note: |
         OFAC press release sb0375 (2026-01-30) — first designation of IRGC-linked digital
         asset exchanges Zedcex Exchange Ltd and Zedxion Exchange Ltd (both UK-registered),
-        linked to Babak Morteza Zanjani. LIVE URL: human promoter must capture Wayback +
-        body_hash (treasury.gov blocks automated capture).
+        linked to Babak Morteza Zanjani. treasury.gov blocks automated capture, so this primary
+        is cited contextually; the captured Elliptic analysis anchors the attested_secondary
+        admission.
     - type: supporting_tracker
       url: https://www.elliptic.co/blog/ofac-sanctions-exchanges-zedcex-and-zedxion-for-assisting-in-iranian-sanctions-evasion-and-irgc-operations
       body_hash: sha256:5dccacfc8d17b4dd74c3f7bbb6b9ae1892857a60a6d42a662a64579e93a842b2
@@ -45,42 +48,60 @@ jurisdiction:
 coverage:
   - layer: l0_network
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l1_consensus
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l3_rpc
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: l4_frontend
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: asset_onchain
     status: not_applicable
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    note: Not applicable; no censorship instrument acts on this layer.
   - layer: offramp_cex
-    status: partially_measured
-    note: Draft skeleton; human promoter to enrich with anchored observation or confirm not_applicable.
+    status: measured
+    note: Null-anchor layer; no public CEX cascade in the 14-day window.
 
 observations:
   - layer: offramp_cex
-    actor: us_ofac
-    event: zedcex_zedxion_irgc_sdn_designation
-    observation_kind: observed_change
-    attribution: direct
+    actor: counterparty_cex_ecosystem
+    event: no_public_cex_cascade_documented_in_14d_window
+    observation_kind: observed_no_change
+    attribution: none
     timestamp: 2026-01-30T00:00:00Z
     precision: day
+    delta_hours: 0
+    window:
+      - 2026-01-30T00:00:00Z
+      - 2026-02-13T23:59:59Z
     sources:
       - type: supporting_tracker
         url: https://www.elliptic.co/blog/ofac-sanctions-exchanges-zedcex-and-zedxion-for-assisting-in-iranian-sanctions-evasion-and-irgc-operations
         body_hash: sha256:5dccacfc8d17b4dd74c3f7bbb6b9ae1892857a60a6d42a662a64579e93a842b2
         body_path: sources/http_captures/zedcex-zedxion-irgc-iran-2026/secondary/www.elliptic.co__blog-ofac-sanctions-exchanges-zedcex-and-zedxion-for-assisting-in-iranian-sanctions-evasion-and-irgc-operations__e4aafa5453.html
+        evidence_use: replayable
+        scope_descriptor:
+          providers: [counterparty_cex_aggregate]
+          time_window:
+            - 2026-01-30T00:00:00Z
+            - 2026-02-13T23:59:59Z
         note: |
-          DRAFT: Zedcex/Zedxion SDN-designated (first IRGC-linked exchange action); off-ramp
-          enforcement. Human promoter must capture the treasury primary before admission.
+          null_event anchor (attested_secondary): Elliptic analysis of the 2026-01-30 OFAC SDN
+          designation of IRGC-linked exchanges Zedcex and Zedxion. No public CEX cascade
+          explicitly naming the SDN entries was documented in the 14-day window.
 
-analysis_notes: >
-  AGENT-DRAFTED 2026-06-08 from a WebFetch-verified candidate (corroborated by TRM, Elliptic,
-  CoinDesk, Cointelegraph). First-ever IRGC-linked exchange designation. NOT YET ADMITTED:
-  human must capture the treasury.gov primary to Wayback + body_hash before promotion.
-scoped_claim: "On 2026-01-30 OFAC made its first designation of IRGC-linked digital asset exchanges, sanctioning UK-registered Zedcex and Zedxion."
+analysis_notes: |
+  Admitted 2026-06-09 as an attested_secondary null_event under the §9 OFAC-SDN-in-scope
+  policy. The 2026-01-30 OFAC designation (Treasury sb0375) of IRGC-linked exchanges Zedcex and
+  Zedxion (the first IRGC-linked exchange action) is the trigger; treasury.gov blocks automated
+  capture, so the event is admitted below the strict floor on one captured contemporaneous
+  source (Elliptic), corroborated by TRM/CoinDesk/Cointelegraph. No public CEX cascade
+  explicitly naming the SDN entries was documented in the 14-day window, so the measurable
+  surface is offramp_cex (observed_no_change / none). origin agent_draft -> human_reviewed via
+  LLM adjudication + maintainer oversight (not independent-human IRR).
+scoped_claim: |
+  "OFAC's 2026-01-30 SDN designation of IRGC-linked exchanges Zedcex and Zedxion (sb0375)
+  produced no public CEX cascade documented in the 14-day window. attested_secondary null_case."

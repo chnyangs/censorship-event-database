@@ -1,10 +1,10 @@
 # Physical action registry
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-08` · commit `3db0429` · generated `2026-06-08T23:15:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-08` · commit `e26a704` · generated `2026-06-09T00:10:09Z`
 
 This registry deduplicates physical actions that appear in more than one event record. Event-level rates remain event-record denominators; this table is the corpus-level action denominator.
 
-- Canonical physical actions: **318**
+- Canonical physical actions: **336**
 - Duplicated action rows: **1**
 - Actions with duplicates: **1**
 
@@ -22,6 +22,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `argentina-bcra-banks-crypto-services-ban-2022-05:0:offramp_cex:argentine_financial_institution_ecosystem:bank_crypto_services_prohibited_class_wide_de_facto_ban` | 1 | 0 | 1 | offramp_cex | `argentina-bcra-banks-crypto-services-ban-2022-05::offramp_cex` |
 | `augur-v2-us-uk-geofence-2020-07:0:l4_frontend:frontend:forecast_foundation:augur_v2_us_uk_geofence_primary_confirmation_gap` | 1 | 0 | 1 | l4_frontend | `augur-v2-us-uk-geofence-2020-07::l4_frontend` |
 | `australia-asic-binance-derivatives-2023:0:offramp_cex:cex:binance_australia_derivatives_cohort:binance_australia_derivatives_afsl_cancelled_operations_shut_down` | 1 | 0 | 1 | offramp_cex | `australia-asic-binance-derivatives-2023::offramp_cex` |
+| `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09:0:offramp_cex:bangladesh_virtual_asset_fx_activity_class:virtual_asset_dealing_and_facilitation_not_permitted_by_bangladesh_bank` | 1 | 0 | 1 | offramp_cex | `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09::offramp_cex` |
 | `bcbs-cryptoasset-prudential-standard-sco60-2022:0:offramp_cex:regulator:bcbs:bcbs_imposes_punitive_capital_treatment_on_group2_cryptoassets` | 1 | 0 | 1 | offramp_cex | `bcbs-cryptoasset-prudential-standard-sco60-2022::offramp_cex` |
 | `belgium-fsma-binance-cease-2023:0:offramp_cex:cex:binance_belgium_cohort:binance_belgium_services_ordered_to_cease_and_assets_repatriated` | 1 | 0 | 1 | offramp_cex | `belgium-fsma-binance-cease-2023::offramp_cex` |
 | `binance-4framework-2023:1:offramp_cex:exchange:binance:compliance_remediation_program_mandated` | 1 | 0 | 1 | offramp_cex | `binance-4framework-2023::offramp_cex` |
@@ -39,12 +40,14 @@ This registry deduplicates physical actions that appear in more than one event r
 | `binance-russia-exit-commex-2023:0:offramp_cex:exchange:binance_russia:binance_russia_business_sale_user_offboarding_and_exchange_service_sunset` | 1 | 0 | 1 | offramp_cex | `binance-russia-exit-commex-2023::offramp_cex` |
 | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08:0:offramp_cex:exchange:binance:binance_freezes_lobaev_account_after_ukrainian_le_pressure` | 1 | 0 | 1 | offramp_cex | `binance-russia-gunmaker-asset-freeze-ukraine-2022-08::offramp_cex` |
 | `binance-uk-new-user-halt-2023-10:0:offramp_cex:exchange:binance:binance_stops_accepting_new_uk_users_fca_promotions_regime` | 1 | 0 | 1 | offramp_cex | `binance-uk-new-user-halt-2023-10::offramp_cex` |
+| `bitcoin-maven-tetley-doj-2018:0:offramp_cex:individual_msb:bitcoin_maven:tetley_bitcoin_for_cash_msb_terminated_by_doj_sentencing` | 1 | 0 | 1 | offramp_cex | `bitcoin-maven-tetley-doj-2018::offramp_cex` |
 | `bitcoinica-shutdown-2012-05:0:offramp_cex:bitcoinica_operator:operator_led_shutdown_of_bitcoinica_trading_platform_after_hack` | 1 | 0 | 1 | offramp_cex | `bitcoinica-shutdown-2012-05::offramp_cex` |
 | `bitfinex-cftc-retail-commodity-2016:0:offramp_cex:exchange:bitfinex:cftc_ordered_bitfinex_cease_desist_for_financed_retail_bitcoin_transactions` | 1 | 0 | 1 | offramp_cex | `bitfinex-cftc-retail-commodity-2016::offramp_cex` |
 | `bitfinex-tether-cftc-2021:0:offramp_cex:exchange:bitfinex:cftc_ordered_bitfinex_us_retail_financed_commodity_product_remediation_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-cftc-2021::offramp_cex` |
 | `bitfinex-tether-cftc-2021:1:offramp_cex:tether_usdt_issuer:cftc_ordered_tether_usdt_reserve_disclosure_remediation_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-cftc-2021::offramp_cex` |
 | `bitfinex-tether-nyag-2021:0:offramp_cex:exchange:bitfinex:nyag_ordered_bitfinex_tether_ny_resident_trading_prohibition_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-nyag-2021::offramp_cex` |
 | `bitfinex-tether-nyag-2021:1:offramp_cex:tether_usdt_issuer:nyag_ordered_tether_usdt_reserve_attestation_regime_change_2021` | 1 | 0 | 1 | offramp_cex | `bitfinex-tether-nyag-2021::offramp_cex` |
+| `bitfinex-us-retail-customer-exit-2017-11:0:offramp_cex:exchange:bitfinex:bitfinex_terminates_us_retail_access` | 1 | 0 | 1 | offramp_cex | `bitfinex-us-retail-customer-exit-2017-11::offramp_cex` |
 | `bitfloor-capital-one-debanking-2013-04:0:offramp_cex:bank:capital_one:capital_one_closes_bitfloor_usd_bank_account` | 1 | 0 | 1 | offramp_cex | `bitfloor-capital-one-debanking-2013-04::offramp_cex` |
 | `bitmex-cftc-doj-2020:0:l4_frontend:frontend:bitmex_com:bitmex_us_retail_geoblock_and_kyc_mandate_announcement` | 1 | 0 | 1 | l4_frontend | `bitmex-cftc-doj-2020::l4_frontend` |
 | `bitmex-cftc-doj-2020:1:offramp_cex:exchange:bitmex:bitmex_us_retail_rails_restricted_and_global_kyc_enforced` | 1 | 0 | 1 | offramp_cex | `bitmex-cftc-doj-2020::offramp_cex` |
@@ -61,6 +64,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `canada-convoy-freeze-2022:0:offramp_cex:ca_regulated_cex_ecosystem:canadian_regulated_exchanges_frozen_convoy_addresses` | 1 | 0 | 1 | offramp_cex | `canada-convoy-freeze-2022::offramp_cex` |
 | `canada-csa-binance-withdrawal-2023:0:offramp_cex:exchange:binance_canada:binance_canada_market_withdrawal_announcement` | 1 | 0 | 1 | offramp_cex | `canada-csa-binance-withdrawal-2023::offramp_cex` |
 | `celsius-bankruptcy-mashinsky-doj-2023:0:offramp_cex:lending_platform:celsius_network:celsius_lending_platform_collapse_codified_by_doj_sec_cftc_ftc_actions` | 1 | 0 | 1 | offramp_cex | `celsius-bankruptcy-mashinsky-doj-2023::offramp_cex` |
+| `celsius-multistate-cease-desist-earn-2021-09:0:offramp_cex:lending_platform:celsius_earn_rewards_nj:celsius_earn_interest_accounts_ordered_to_cease_new_jersey` | 1 | 0 | 1 | offramp_cex | `celsius-multistate-cease-desist-earn-2021-09::offramp_cex` |
 | `cftc-defi-opyn-zeroex-deridex-2023-09:0:l4_frontend:defi_operators:opyn_zeroex_deridex_us:cftc_orders_three_defi_operators_to_cease_offering_to_us_persons` | 1 | 0 | 1 | l4_frontend | `cftc-defi-opyn-zeroex-deridex-2023-09::l4_frontend` |
 | `cftc-v-ooki-dao-2022:0:l4_frontend:frontend:ooki_dao:cftc_enforced_frontend_geo_blocking_us_via_default_judgment` | 1 | 0 | 1 | l4_frontend | `cftc-v-ooki-dao-2022::l4_frontend` |
 | `chatex-ofac-2021:0:asset_onchain:circle_usdc_issuer:usdc_blacklist_next_day_5_of_6_eth_addresses` | 1 | 0 | 1 | asset_onchain | `chatex-ofac-2021::asset_onchain` |
@@ -86,6 +90,8 @@ This registry deduplicates physical actions that appear in more than one event r
 | `chipmixer-doj-2023:0:l4_frontend:frontend:chipmixer_com:canonical_domain_seized_by_fbi_and_international_partners` | 1 | 0 | 1 | l4_frontend | `chipmixer-doj-2023::l4_frontend` |
 | `circle-usdc-blacklist-cryptex-2024-0xa10d4e1a29a6eb30579b8cba5e1316d27ab120eff5944cce6836c8a837ffd8da` | 1 | 0 | 1 | asset_onchain | `circle-usdc-cryptex-freeze-2024::asset_onchain` |
 | `circle-usdc-blacklist-tornado-2022-0xa61326744a21ce8d5397831d107ee14909b3f4eaaaddbf1f3dce879a19e30dd9` | 2 | 1 | 2 | asset_onchain | `tornado-cash-ofac-2022::asset_onchain` |
+| `circle-usdc-multichain-blacklist-2023-07-block-17643245` | 1 | 0 | 1 | asset_onchain | `circle-usdc-multichain-hack-freeze-2023-07::asset_onchain` |
+| `circle-usdc-sealed-civil-case-16-address-freeze-2026-03:0:asset_onchain:circle_usdc_issuer:circle_blacklisted_16_usdc_business_wallets_sealed_ny_case` | 1 | 0 | 1 | asset_onchain | `circle-usdc-sealed-civil-case-16-address-freeze-2026-03::asset_onchain` |
 | `cloudflare-ethereum-gateway-tornado-block-2022-08:0:l3_rpc:gateway_operator:cloudflare:cloudflare_ethereum_gateway_blocked_ofac_tornado_cash_addresses` | 1 | 0 | 1 | l3_rpc | `cloudflare-ethereum-gateway-tornado-block-2022-08::l3_rpc` |
 | `coin-mx-doj-murgio-2015:0:offramp_cex:exchange:coin_mx:coin_mx_ceases_operations_and_hope_fcu_usd_rails_severed_following_indictment` | 1 | 0 | 1 | offramp_cex | `coin-mx-doj-murgio-2015::offramp_cex` |
 | `coinbase-eu-usdt-stablecoin-delisting-2024-12:0:offramp_cex:exchange:coinbase:coinbase_eea_retail_delists_non_mica_compliant_stablecoins` | 1 | 0 | 1 | offramp_cex | `coinbase-eu-usdt-stablecoin-delisting-2024-12::offramp_cex` |
@@ -99,6 +105,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `cryptex-ofac-2024:3:asset_onchain:circle_usdc_issuer:usdc_blacklist_next_day_event` | 1 | 0 | 1 | asset_onchain | `cryptex-ofac-2024::asset_onchain` |
 | `cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024:0:l4_frontend:us_secret_service:doj_secret_service_seizes_cryptex_uaps_pm2btc_domains` | 1 | 0 | 1 | l4_frontend | `cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024::l4_frontend` |
 | `cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024:1:offramp_cex:us_doj_edva:cryptex_uaps_pm2btc_exchange_services_shut_down` | 1 | 0 | 1 | offramp_cex | `cryptex-uaps-pm2btc-ivanov-shakhmametov-doj-2024::offramp_cex` |
+| `crypto-capital-fowler-doj-2019:0:offramp_cex:law_enforcement:us_doj_sdny:fowler_crypto_capital_shadow_banking_service_terminated_by_doj_enforcement` | 1 | 0 | 1 | offramp_cex | `crypto-capital-fowler-doj-2019::offramp_cex` |
 | `crypto-com-eu-usdt-stablecoin-delisting-2025-01:0:offramp_cex:exchange:crypto_com:cryptocom_suspends_usdt_and_nine_tokens_for_eea_users` | 1 | 0 | 1 | offramp_cex | `crypto-com-eu-usdt-stablecoin-delisting-2025-01::offramp_cex` |
 | `datacell-v-valitor-iceland-district-court-2012-07:0:offramp_cex:is_reykjavik_district_court:court_ordered_restoration_of_valitor_datacell_merchant_gateway_for_wikileaks_donations` | 1 | 0 | 1 | offramp_cex | `datacell-v-valitor-iceland-district-court-2012-07::offramp_cex` |
 | `dprk-usdt-network-ofac-2025:0:asset_onchain:tether_usdt_issuer:tether_ofac_day_reactive_freeze_28_of_53_addresses` | 1 | 0 | 1 | asset_onchain | `dprk-usdt-network-ofac-2025::asset_onchain` |
@@ -112,6 +119,7 @@ This registry deduplicates physical actions that appear in more than one event r
 | `egold-doj-indictment-2007-04:0:offramp_cex:exchange:e_gold:egold_operations_restricted_under_federal_indictment` | 1 | 0 | 1 | offramp_cex | `egold-doj-indictment-2007-04::offramp_cex` |
 | `egypt-cbe-banking-law-194-2020:0:offramp_cex:egyptian_crypto_ecosystem:crypto_issuance_trading_promotion_platform_prohibited_article_206` | 1 | 0 | 1 | offramp_cex | `egypt-cbe-banking-law-194-2020::offramp_cex` |
 | `etherscan-tornado-cash-ui-label-2022:0:l4_frontend:frontend:etherscan:etherscan_applied_ofac_blocked_nametag_on_tornado_cash_contract_pages` | 1 | 0 | 1 | l4_frontend | `etherscan-tornado-cash-ui-label-2022::l4_frontend` |
+| `ethiopia-nbe-p2p-birr-crypto-ban-2026-02:0:offramp_cex:national_bank_of_ethiopia_(nbe):ethiopia_nbe_p2p_birr_crypto_ban_2026_02_reaction` | 1 | 0 | 1 | offramp_cex | `ethiopia-nbe-p2p-birr-crypto-ban-2026-02::offramp_cex` |
 | `etoro-us-ada-trx-delisting-2021-12:0:offramp_cex:exchange:etoro:etoro_removes_us_customer_access_to_ada_trx` | 1 | 0 | 1 | offramp_cex | `etoro-us-ada-trx-delisting-2021-12::offramp_cex` |
 | `eu-12th-russia-sanctions-2023:0:offramp_cex:eu_casp_ecosystem:eu_casps_required_to_close_russian_user_accounts` | 1 | 0 | 1 | offramp_cex | `eu-12th-russia-sanctions-2023::offramp_cex` |
 | `eu-16th-russia-sanctions-2025:0:offramp_cex:regulator:eu_council:eu_16th_package_extends_transaction_ban_to_casps_and_spfs_banks` | 1 | 0 | 1 | offramp_cex | `eu-16th-russia-sanctions-2025::offramp_cex` |
@@ -119,10 +127,12 @@ This registry deduplicates physical actions that appear in more than one event r
 | `eu-19th-russia-sanctions-a7a5-crypto-ban-2025:0:offramp_cex:regulator:eu_council:eu_19th_package_prohibits_transactions_in_a7a5_stablecoin` | 1 | 0 | 1 | offramp_cex | `eu-19th-russia-sanctions-a7a5-crypto-ban-2025::offramp_cex` |
 | `eu-20th-russia-sanctions-crypto-sectoral-ban-2026:0:offramp_cex:regulator:eu_council:eu_20th_package_total_sectoral_ban_on_russia_crypto_providers_platforms` | 1 | 0 | 1 | offramp_cex | `eu-20th-russia-sanctions-crypto-sectoral-ban-2026::offramp_cex` |
 | `eu-8th-package-russia-crypto-services-ban-2022-10:0:offramp_cex:regulator:eu_council:eu_prohibits_all_crypto_services_to_russian_persons` | 1 | 0 | 1 | offramp_cex | `eu-8th-package-russia-crypto-services-ban-2022-10::offramp_cex` |
+| `eu-belarus-crypto-wallet-ban-2025:0:offramp_cex:european_union_/_council_of_the_eu:eu_belarus_crypto_wallet_ban_2025_reaction` | 1 | 0 | 1 | offramp_cex | `eu-belarus-crypto-wallet-ban-2025::offramp_cex` |
 | `eu-mica-2023:0:offramp_cex:eu_casp_ecosystem:eu_mica_regulation_published_phased_rollout_begins` | 1 | 0 | 1 | offramp_cex | `eu-mica-2023::offramp_cex` |
 | `eu-russia-crypto-wallet-cap-2022:0:offramp_cex:eu_casp_ecosystem:eu_regulation_2022_576_created_eur_10k_crypto_wallet_account_custody_cap` | 1 | 0 | 1 | offramp_cex | `eu-russia-crypto-wallet-cap-2022::offramp_cex` |
 | `eu-russia-full-crypto-wallet-ban-2022:0:offramp_cex:eu_casp_ecosystem:eu_regulation_2022_1904_removed_crypto_wallet_threshold_for_russian_persons` | 1 | 0 | 1 | offramp_cex | `eu-russia-full-crypto-wallet-ban-2022::offramp_cex` |
 | `eu-tfr-recast-2023:0:offramp_cex:eu_casp_ecosystem:eu_tfr_recast_adopted_zero_threshold_travel_rule_for_casps` | 1 | 0 | 1 | offramp_cex | `eu-tfr-recast-2023::offramp_cex` |
+| `falcon-labs-cftc-us-access-ban-2024:0:offramp_cex:cftc:falcon_labs_cftc_us_access_ban_2024_reaction` | 1 | 0 | 1 | offramp_cex | `falcon-labs-cftc-us-access-ban-2024::offramp_cex` |
 | `fatf-r15-vasp-travel-rule-2019:0:offramp_cex:fatf_member_state_vasp_aggregate:fatf_r15_inr_adopted_vasp_travel_rule_supranational_trigger` | 1 | 0 | 1 | offramp_cex | `fatf-r15-vasp-travel-rule-2019::offramp_cex` |
 | `fincen-eric-powers-p2p-exchanger-2019-04:0:offramp_cex:us_fincen:fincen_industry_bar_terminates_p2p_bitcoin_exchanger` | 1 | 0 | 1 | offramp_cex | `fincen-eric-powers-p2p-exchanger-2019-04::offramp_cex` |
 | `funnull-cdn-ofac-2025:0:asset_onchain:circle_usdc_issuer:circle_usdc_blacklist_same_day` | 1 | 0 | 1 | asset_onchain | `funnull-cdn-ofac-2025::asset_onchain` |
@@ -181,12 +191,15 @@ This registry deduplicates physical actions that appear in more than one event r
 | `kraken-sec-staking-2023:0:offramp_cex:exchange:kraken_us_staking:us_onchain_staking_service_discontinued` | 1 | 0 | 1 | offramp_cex | `kraken-sec-staking-2023::offramp_cex` |
 | `kraken-uk-derivatives-exit-2021:0:offramp_cex:kraken_futures_uk:uk_retail_derivatives_access_restricted_to_professional_clients` | 1 | 0 | 1 | offramp_cex | `kraken-uk-derivatives-exit-2021::offramp_cex` |
 | `kucoin-canada-exit-2023:0:offramp_cex:exchange:kucoin_canada:kucoin_canada_offramp_shutdown` | 1 | 0 | 1 | offramp_cex | `kucoin-canada-exit-2023::offramp_cex` |
+| `kucoin-cftc-permanent-us-ban-2026:0:offramp_cex:cftc_/_sdny_federal_court:kucoin_cftc_permanent_us_ban_2026_reaction` | 1 | 0 | 1 | offramp_cex | `kucoin-cftc-permanent-us-ban-2026::offramp_cex` |
 | `kucoin-doj-2024:0:l4_frontend:frontend:kucoin_com:kucoin_us_user_offboarding_announcement` | 1 | 0 | 1 | l4_frontend | `kucoin-doj-2024::l4_frontend` |
 | `kucoin-doj-2024:1:offramp_cex:exchange:kucoin:kucoin_exits_us_market_with_300m_cftc_settlement` | 1 | 0 | 1 | offramp_cex | `kucoin-doj-2024::offramp_cex` |
+| `kuwait-cma-virtual-assets-prohibition-2023-07:0:offramp_cex:kuwait_virtual_asset_regulated_activity_class:virtual_asset_payment_investment_vasp_and_mining_prohibited` | 1 | 0 | 1 | offramp_cex | `kuwait-cma-virtual-assets-prohibition-2023-07::offramp_cex` |
 | `liberty-reserve-coordinated-takedown-2013-05:0:l4_frontend:us_doj_sdny:doj_seizes_libertyreserve_com_and_four_other_domains` | 1 | 0 | 1 | l4_frontend | `liberty-reserve-coordinated-takedown-2013-05::l4_frontend` |
 | `liberty-reserve-coordinated-takedown-2013-05:1:offramp_cex:exchange:liberty_reserve:liberty_reserve_digital_currency_service_ceased_globally` | 1 | 0 | 1 | offramp_cex | `liberty-reserve-coordinated-takedown-2013-05::offramp_cex` |
 | `liberty-reserve-costa-rica-license-denial-2011-03:0:offramp_cex:regulator:CR_SUGEF:sugef_refuses_to_license_liberty_reserve_creating_unlicensed_operation_status` | 1 | 0 | 1 | offramp_cex | `liberty-reserve-costa-rica-license-denial-2011-03::offramp_cex` |
 | `lockbit-affiliates-ofac-2024:0:asset_onchain:circle_usdc_issuer:circle_usdc_blacklist_next_day` | 1 | 0 | 1 | asset_onchain | `lockbit-affiliates-ofac-2024::asset_onchain` |
+| `magic-eden-ofac-sanctioned-country-block:0:l4_frontend:frontend:magic_eden:magic_eden_services_blocked_for_ofac_sanctioned_countries` | 1 | 0 | 1 | l4_frontend | `magic-eden-ofac-sanctioned-country-block::l4_frontend` |
 | `malaysia-sc-binance-disable-2021:0:l4_frontend:frontend:binance_com_my_geo_and_mobile_apps:sc_ordered_binance_my_website_apps_and_messaging_disablement` | 1 | 0 | 1 | l4_frontend | `malaysia-sc-binance-disable-2021::l4_frontend` |
 | `malaysia-sc-binance-disable-2021:1:offramp_cex:cex:binance_malaysia_cohort:myr_pairs_payment_options_and_p2p_products_restriction_announced` | 1 | 0 | 1 | offramp_cex | `malaysia-sc-binance-disable-2021::offramp_cex` |
 | `metamask-eth-phishing-detect-tornado-additions-2022:0:l4_frontend:wallet_ui:consensys_metamask:metamask_eth_phishing_detect_blocklist_added_tornado_cash_interaction_entries` | 1 | 0 | 1 | l4_frontend | `metamask-eth-phishing-detect-tornado-additions-2022::l4_frontend` |
@@ -205,9 +218,11 @@ This registry deduplicates physical actions that appear in more than one event r
 | `nigeria-binance-network-block-2024-02:0:l0_network:nigeria_ncc:ncc_telco_block_of_binance_and_other_exchange_domains` | 1 | 0 | 1 | l0_network | `nigeria-binance-network-block-2024-02::l0_network` |
 | `nigeria-binance-network-block-2024-02:1:offramp_cex:exchange:binance_nigeria:nigerian_user_access_to_binance_offramp_severed` | 1 | 0 | 1 | offramp_cex | `nigeria-binance-network-block-2024-02::offramp_cex` |
 | `nigeria-cbn-crypto-ban-2021:0:offramp_cex:nigerian_crypto_banking_ecosystem:naira_banking_channel_severed_industry_wide` | 1 | 0 | 1 | offramp_cex | `nigeria-cbn-crypto-ban-2021::offramp_cex` |
+| `nigeria-sec-binance-cease-solicitation-2023-07:0:offramp_cex:nigeria_securities_and_exchange_commissi:nigeria_sec_binance_cease_solicitation_2023_07_reaction` | 1 | 0 | 1 | offramp_cex | `nigeria-sec-binance-cease-solicitation-2023-07::offramp_cex` |
 | `nydfs-bitlicense-2015-06:0:l4_frontend:frontend:kraken:kraken_ny_exit_farewell_announcement` | 1 | 0 | 1 | l4_frontend | `nydfs-bitlicense-2015-06::l4_frontend` |
 | `nydfs-bitlicense-2015-06:1:l4_frontend:frontend:shapeshift:shapeshift_ny_exit_announcement` | 1 | 0 | 1 | l4_frontend | `nydfs-bitlicense-2015-06::l4_frontend` |
 | `nydfs-bitlicense-2015-06:2:l4_frontend:frontend:bitfinex:bitfinex_ny_exit_geofence` | 1 | 0 | 1 | l4_frontend | `nydfs-bitlicense-2015-06::l4_frontend` |
+| `nydfs-bittrex-bitlicense-denial-2019-04:0:offramp_cex:exchange:bittrex_new_york:bittrex_new_york_operations_cease_and_60_day_wind_down` | 1 | 0 | 1 | offramp_cex | `nydfs-bittrex-bitlicense-denial-2019-04::offramp_cex` |
 | `oecd-carf-2022:0:offramp_cex:oecd_rcasp_ecosystem:oecd_carf_published_first_binding_supranational_crypto_tax_reporting_standard` | 1 | 0 | 1 | offramp_cex | `oecd-carf-2022::offramp_cex` |
 | `ofac-hamas-buy-cash-msb-2023-10:0:offramp_cex:us_ofac:sdn_designation_of_buy_cash_msb_severs_us_ramp_access` | 1 | 0 | 1 | offramp_cex | `ofac-hamas-buy-cash-msb-2023-10::offramp_cex` |
 | `okex-privacy-coin-delisting-2019-09:0:offramp_cex:exchange:okex_korea:okex_korea_removes_five_privacy_coin_markets` | 1 | 0 | 1 | offramp_cex | `okex-privacy-coin-delisting-2019-09::offramp_cex` |
@@ -275,12 +290,15 @@ This registry deduplicates physical actions that appear in more than one event r
 | `singapore-mas-retail-crypto-restriction-2022:1:offramp_cex:cex:sg_dpt_retail_onboarding_cohort:sg_dpt_retail_onboarding_friction_increase` | 1 | 0 | 1 | offramp_cex | `singapore-mas-retail-crypto-restriction-2022::offramp_cex` |
 | `sri-lanka-cbsl-crypto-warning-fx-directive-2021:0:offramp_cex:sri_lanka_bank_card_payment_ecosystem:bank_card_payment_channel_for_crypto_prohibited` | 1 | 0 | 1 | offramp_cex | `sri-lanka-cbsl-crypto-warning-fx-directive-2021::offramp_cex` |
 | `suex-ofac-2021:0:asset_onchain:circle_usdc_issuer:circle_batch_blacklisted_all_4_eth_addresses` | 1 | 0 | 1 | asset_onchain | `suex-ofac-2021::asset_onchain` |
+| `t3-bybit-hack-usdt-freeze-2025-03:0:asset_onchain:t3_financial_crime_unit:t3_fcu_freezes_bybit_hack_usdt_subset` | 1 | 0 | 1 | asset_onchain | `t3-bybit-hack-usdt-freeze-2025-03::asset_onchain` |
 | `taiwan-fsc-bitcoin-bank-atm-ban-2014-01:0:offramp_cex:taiwan_bank_bitcoin_rail_class:fsc_barred_banks_from_bitcoin_conversion_and_atms` | 1 | 0 | 1 | offramp_cex | `taiwan-fsc-bitcoin-bank-atm-ban-2014-01::offramp_cex` |
 | `teraexchange-cftc-bitcoin-swap-2015:0:offramp_cex:regulator:us_cftc:cftc_order_imposing_cease_and_desist_and_undertakings_on_sef_for_bitcoin_swap` | 1 | 0 | 1 | offramp_cex | `teraexchange-cftc-bitcoin-swap-2015::offramp_cex` |
 | `tether-doj-pig-butchering-freeze-2023:0:asset_onchain:tether_usdt_issuer:tether_added_blacklist_for_doj_usss_pig_butchering_cluster` | 1 | 0 | 1 | asset_onchain | `tether-doj-pig-butchering-freeze-2023::asset_onchain` |
 | `tether-doj-pig-butchering-freeze-2023:1:offramp_cex:tether_usdt_issuer:tether_froze_225m_at_doj_request_non_ofac_trigger` | 1 | 0 | 1 | offramp_cex | `tether-doj-pig-butchering-freeze-2023::offramp_cex` |
 | `tether-dprk-precommit-freeze-2025:0:asset_onchain:tether_usdt_issuer:batch_freeze_dprk_cluster_pre_ofac_designation` | 1 | 0 | 1 | asset_onchain | `tether-dprk-precommit-freeze-2025::asset_onchain` |
 | `tether-garantex-usdt-freeze-2025-03:0:offramp_cex:exchange:garantex:garantex_suspends_all_services_after_tether_usdt_freeze` | 1 | 0 | 1 | offramp_cex | `tether-garantex-usdt-freeze-2025-03::offramp_cex` |
+| `tether-ofac-iran-economic-fury-344m-freeze-2026-04:0:asset_onchain:tether_usdt_issuer:tether_froze_344m_usdt_central_bank_iran_two_addresses` | 1 | 0 | 1 | asset_onchain | `tether-ofac-iran-economic-fury-344m-freeze-2026-04::asset_onchain` |
+| `tether-okx-doj-pig-butchering-225m-freeze-2025-06:0:asset_onchain:tether_usdt_issuer:tether_destroyed_blacklisted_225m_usdt_for_doj_dc_forfeiture` | 1 | 0 | 1 | asset_onchain | `tether-okx-doj-pig-butchering-225m-freeze-2025-06::asset_onchain` |
 | `tether-pig-butchering-second-wave-2024:0:offramp_cex:tether_usdt_issuer:tether_froze_apac_pig_butchering_cohort_june_2024` | 1 | 0 | 1 | offramp_cex | `tether-pig-butchering-second-wave-2024::offramp_cex` |
 | `tether-retroactive-sweep-2023:0:asset_onchain:tether_usdt_issuer:retroactive_batch_freeze_historical_sdn_eth_cluster` | 1 | 0 | 1 | asset_onchain | `tether-retroactive-sweep-2023::asset_onchain` |
 | `thailand-bot-bitcoin-prohibition-2013:0:offramp_cex:cex:bitcoin_co_ltd_th:bitcoin_co_ltd_thailand_exchange_services_suspended_per_bot_advisement` | 1 | 0 | 1 | offramp_cex | `thailand-bot-bitcoin-prohibition-2013::offramp_cex` |
