@@ -102,6 +102,13 @@ NULL_DENOMINATOR_AUDIT_CASES = [
     "sinbad-ofac-2023",
     "storm-semenov-doj-2023",
     "zservers-ofac-2025",
+    # 2026-06-09 §9-audit / OFAC-null promotions (admission_grade null_case):
+    "fayzimatov-alqaeda-syria-ofac-2021-07",
+    "task-force-rusich-ofac-2022-09",
+    "dprk-song-kum-hyok-andariel-it-workers-2025",
+    "dprk-it-workers-amnokgang-vietnam-2026",
+    "cambodia-kok-an-pig-butchering-crypto-2026",
+    "netwalker-vachon-desjardins-doj-2022",
 ]
 
 NULL_AUDIT_PRESTATUS = {
@@ -2430,7 +2437,7 @@ def render_audit_console(events: list[dict], site_dir: pathlib.Path, meta: dict 
 
   <div class="audit-task-list">
     <article class="audit-panel"><h3>H1 · Independent IRR</h3><p>Use the separate H1-only packet. Do not send this full console to IRR coders.</p><a href="h1_irr_packet/index.html">Open H1-only packet</a></article>
-    <article class="audit-panel"><h3>H2 · Null denominators</h3><p>Review 13 observed-no-change cases and decide pass/re-scope/exclude.</p><a href="#h2-null-cases">Open H2 cards</a></article>
+    <article class="audit-panel"><h3>H2 · Null denominators</h3><p>Review {len(NULL_DENOMINATOR_AUDIT_CASES)} observed-no-change cases and decide pass/re-scope/exclude.</p><a href="#h2-null-cases">Open H2 cards</a></article>
     <article class="audit-panel"><h3>H3 · Release sign-off</h3><p>Confirm version/date, clean tree, strict gate, and release authority.</p><a href="#h3-release">Open H3 form</a></article>
     <article class="audit-panel"><h3>H4 · Evidence-tier IRR</h3><p>Review {n_et} attested_secondary events one card at a time; decide keep/upgrade/downgrade.</p><a href="#h4-evidence-tier">Open H4 wizard</a></article>
   </div>
