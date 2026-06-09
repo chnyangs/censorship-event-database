@@ -39,7 +39,7 @@ COMPARE_OUT ?= -
     audit-worksheets paper-tables paper-macros paper-check paper-release-check paper-regenerate-check test \
     render-site render-evidence render-evidence-all compare \
     ooni-scan l0-query-metadata usdt-scan operator-census capture \
-    irr-sample irr-packet irr-kappa evidence-tier-irr-kappa \
+    irr-sample irr-packet irr-open irr-kappa evidence-tier-irr-kappa \
     check check-network check-all \
     regenerate clean
 
@@ -116,6 +116,7 @@ help:
 	    'make operator-census       # multi-repo git-history scan of operator compliance' \
 	    'make irr-sample            # stratified blind sample for inter-rater reliability' \
 	    'make irr-packet            # blank independent-human IRR packet under site/h1_irr_packet/' \
+	    'make irr-open              # build + open the IRR packet HTML page (macOS)' \
 	    'make irr-kappa             # compute Cohen'"'"'s κ on filled-in blind worksheets' \
 	    'make evidence-tier-irr-kappa # compute codebook-4.0 evidence_tier κ after human coding' \
 	    'make capture URL=<url> OUT=<dir>   # capture a single URL with body_hash' \
@@ -370,6 +371,12 @@ irr-sample:
 
 irr-packet:
 	$(PYTHON) scripts/build_irr_packet.py
+
+# Build the IRR packet HTML page (render-site emits index.html + assets;
+# irr-packet writes the blank worksheet CSVs into the same dir) and open
+# it in the default browser (macOS `open`).
+irr-open: render-site irr-packet
+	open $(SITE_DIR)/h1_irr_packet/index.html
 
 irr-kappa:
 	$(PYTHON) scripts/compute_irr_kappa.py
