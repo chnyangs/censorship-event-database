@@ -506,6 +506,21 @@ punitive capital weights that force debanking); otherwise context-only.
 legitimate crypto platform/asset/user?" If yes → include. If the platform merely failed, or the
 target was a pure scam, or the instrument is only advisory → exclude (or null/context).
 
+**§9.1 Concrete-effect clarification (2026-06-09 §9 consistency audit).** A case is IN
+SCOPE when the state or issuer action produces at least one concrete crypto-stack effect:
+**(A)** shutdown, seizure, or material access disruption of a crypto platform/service
+(exchange, mixer, darknet market, payment processor, MSB off-ramp — including *illegal*
+platforms); **(B)** an OFAC/SDN designation (unconditionally, even where the measured
+on-chain/CEX cascade is null); or **(C)** an issuer-executed on-chain blacklist/freeze of
+specific addresses, or a state-obtained physical seizure or civil-forfeiture order for
+*specific* crypto holdings. Effect (C) is in scope even where the only named subjects are
+individual criminals rather than a platform, PROVIDED a discrete crypto asset or service
+surface (not merely an individual's general finances) is the object of the action. A
+prosecution of an individual who merely *used* crypto as a payment or investment vehicle,
+with none of (A)/(B)/(C), is OUT — it censors no crypto service or asset. The 2026-06-09
+audit (analysis/draft_adjudication_2026-06-09.md) found the corpus internally consistent
+under this rule (no admitted event requires removal).
+
 ## §10 Evidence tier (`evidence_tier`) — source-strength grade, orthogonal to admission tier
 
 `admission_tier` (§4) grades **empirical** strength (how many `observed_change` layers). `evidence_tier`

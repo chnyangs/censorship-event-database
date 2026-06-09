@@ -86,11 +86,11 @@ ARCHETYPE_COLORS = {
 }
 ARCHETYPE_LABELS = {
     "cex_only":          "CEX-only (184)",
-    "null_event":        "Null event (106)",
-    "frontend_only":     "Frontend-only (45)",
+    "null_event":        "Null event (107)",
+    "frontend_only":     "Frontend-only (46)",
     "multi_layer":       "Multi-layer (29)",
-    "asset_only":        "Asset-only (19)",
-    "other_single_layer": "Other (9)",
+    "asset_only":        "Asset-only (21)",
+    "other_single_layer": "Other (11)",
 }
 
 # IEEE single-column width in inches
@@ -157,8 +157,8 @@ def load_admitted_events():
 
 admitted = load_admitted_events()
 n_admitted = len(admitted)
-assert n_admitted == 392, (
-    f"Expected 392 admitted events, got {n_admitted}. "
+assert n_admitted == 398, (
+    f"Expected 398 admitted events, got {n_admitted}. "
     "Run `make derived` to refresh derived files."
 )
 
@@ -301,13 +301,13 @@ for ev in admitted:
 # Stratum canonical values are admitted-only from table3 cross-tab, NOT the
 # all-registry counts in paper_numbers.tex / dataset.meta.json (those = 420).
 CANONICAL_ARCH = {
-    "cex_only": 184, "null_event": 106, "frontend_only": 45,
-    "multi_layer": 29, "asset_only": 19, "other_single_layer": 9,
+    "cex_only": 184, "null_event": 107, "frontend_only": 46,
+    "multi_layer": 29, "asset_only": 21, "other_single_layer": 11,
 }
 # Admitted-only stratum counts (from table3_archetype_stratum.md totals):
 CANONICAL_STRAT_ADMITTED = {
-    "S1_ofac_sdn": 60, "S2_ofac_removal": 1, "S3_doj_sec_cftc_fiod": 81,
-    "S4_nation_state": 117, "S5_corporate": 102, "S6_supranational": 31,
+    "S1_ofac_sdn": 60, "S2_ofac_removal": 1, "S3_doj_sec_cftc_fiod": 84,
+    "S4_nation_state": 119, "S5_corporate": 103, "S6_supranational": 31,
 }
 for k, v in CANONICAL_ARCH.items():
     if arch_counts.get(k) != v:
@@ -372,25 +372,25 @@ layer_rate = {
     "l0_network":   None,           # zero measured denominator → observability gap
     "l1_consensus": 10/16,          # 10/16
     "l3_rpc":       6/7,            # 6/7
-    "l4_frontend":  69/77,          # 69/77
+    "l4_frontend":  70/78,          # 70/78
     "asset_onchain": None,          # retracted (circular)
-    "offramp_cex":  208/307,        # 208/307
+    "offramp_cex":  208/308,        # 208/308
 }
 layer_denom = {
-    "l0_network":   (0, 3, 19),     # (measured, partial, not_measured)
+    "l0_network":   (0, 5, 19),     # (measured, partial, not_measured)
     "l1_consensus": (8, 8, 2),
     "l3_rpc":       (1, 6, 6),
-    "l4_frontend":  (56, 21, 46),
-    "asset_onchain": (22, 3, 20),
-    "offramp_cex":  (256, 51, 20),
+    "l4_frontend":  (57, 21, 46),
+    "asset_onchain": (23, 4, 22),
+    "offramp_cex":  (257, 51, 21),
 }
 layer_frac_label = {
     "l0_network":   "—",
     "l1_consensus": "10/16",
     "l3_rpc":       "6/7",
-    "l4_frontend":  "69/77",
+    "l4_frontend":  "70/78",
     "asset_onchain": "retracted",
-    "offramp_cex":  "208/307",
+    "offramp_cex":  "208/308",
 }
 
 # Admission-sensitivity ablation (strict / current / permissive)
@@ -399,9 +399,9 @@ ablation = {
     "l0_network":   (None, None, 1.00),     # only partial; permissive only
     "l1_consensus": (0.00, 0.25, 0.625),
     "l3_rpc":       (1.00, 1.00, 0.8571),
-    "l4_frontend":  (0.5893, 0.9107, 0.8961),
+    "l4_frontend":  (0.5965, 0.9123, 0.8974),
     "asset_onchain": (None, None, None),    # retracted
-    "offramp_cex":  (0.4688, 0.6523, 0.6775),
+    "offramp_cex":  (0.4669, 0.6498, 0.6753),
 }
 
 fig3, ax3 = plt.subplots(figsize=(COL_W, 2.8))

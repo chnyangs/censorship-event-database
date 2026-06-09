@@ -1,6 +1,6 @@
 # Admission-protocol sensitivity ablation
 
-Generated: `2026-06-09T00:10:09Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 392 events.
+Generated: `2026-06-09T03:28:59Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 398 events.
 
 Three admission rubrics applied to the coverage-matched `changed_given_coverage` rate per layer:
 
@@ -14,12 +14,12 @@ The `strict_permissive_delta` column is the absolute change in rate from strict 
 
 | layer | strict (num/den = rate) | current | permissive | Δ | sensitivity |
 | --- | --- | --- | --- | --- | --- |
-| `l0_network` | — / 0 = — | — / 0 = — | 3/3 = 1.000 | — | **undefined** |
+| `l0_network` | — / 0 = — | — / 0 = — | 5/5 = 1.000 | — | **undefined** |
 | `l1_consensus` | 0/8 = 0.000 | 2/8 = 0.250 | 10/16 = 0.625 | 0.625 | **sensitive** |
 | `l3_rpc` | 1/1 = 1.000 | 1/1 = 1.000 | 6/7 = 0.857 | -0.1429 | **sensitive** |
-| `l4_frontend` | 33/56 = 0.589 | 51/56 = 0.911 | 69/77 = 0.896 | 0.3068 | **sensitive** |
-| `asset_onchain` | 20/22 = retracted | 22/22 = retracted | 24/25 = retracted | — | **retracted_structural** |
-| `offramp_cex` | 120/256 = 0.469 | 167/256 = 0.652 | 208/307 = 0.677 | 0.2087 | **sensitive** |
+| `l4_frontend` | 34/57 = 0.597 | 52/57 = 0.912 | 70/78 = 0.897 | 0.3009 | **sensitive** |
+| `asset_onchain` | 20/23 = retracted | 23/23 = retracted | 26/27 = retracted | — | **retracted_structural** |
+| `offramp_cex` | 120/257 = 0.467 | 167/257 = 0.650 | 208/308 = 0.675 | 0.2084 | **sensitive** |
 
 ## Interpretation
 

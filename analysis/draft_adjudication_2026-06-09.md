@@ -75,3 +75,31 @@ The 5 deferred DOJ-criminal drafts lean §9-EXCLUDE under the DOJ clause, but
 terror-financing-seizure-2020 has an admitted analog (israel-nbctf-hamas-2021),
 and the corpus already admits many OFAC criminal designations. A §9 consistency
 sweep of existing admitted DOJ/seizure events is recommended before submission.
+
+---
+
+## §9 consistency audit + final codings (2026-06-09, second pass)
+
+A read-only multi-agent §9 consistency audit (17 Explore/read-only agents)
+classified the 5 deferred DOJ-criminal drafts plus 11 admitted analogs against a
+refined §9 test. **Finding: the corpus is internally consistent** under the
+de-facto rule — a concrete crypto-stack effect of type (A) platform takedown,
+(B) OFAC designation, or (C) issuer freeze / asset seizure-or-forfeiture is
+necessary and sufficient for in-scope admission; no admitted event requires
+removal. Codified as **§9.1** in `schema/codebook.md`.
+
+Outcome — 6 more events admitted (corpus 392 -> 398):
+- **colonial-pipeline-darkside** (type-C BTC seizure, tx_hash-anchored),
+  **t3-financial-crime-unit** (type-C USDT issuer freeze, 2 tx_hashes),
+  **terror-financing-seizure** (type-A al-Qassam website takedown at L4 +
+  type-C 155-BTC forfeiture), **netwalker** (type-C 719 BTC seizure; coded
+  null_event with an offramp null-anchor — legally attested but no tx_hash).
+- **thailand-sec-exchange-block** + **ethiopia-nbe-website-block** recoded as
+  `l0_network` ISP/DNS blocks (attested_secondary, attribution plausible),
+  consistent with the india-fiu / nigeria-binance-network / philippines
+  precedent. L0 measured count stays 0, so the "L0 reported as ---" finding holds.
+
+Still draft (6): bitcoin-fog (needs §1.6 null recode), ethiopia-nbe-crypto-ban-2022
+(advisory, under-sourced), ren-protocol-ftx (author-parked), ens-eth-tornado
+(needs a 2022 ENS Wayback), tornado-cash-storm-conviction (DOJ source Wayback
+slug mismatch), revil (seizure legally attested but not on-chain-anchored).
