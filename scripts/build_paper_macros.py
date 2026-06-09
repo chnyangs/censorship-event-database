@@ -13,9 +13,13 @@ compile (the path is configurable via --out).
 from __future__ import annotations
 
 import argparse
+import collections
 import csv
+import glob
 import json
 import pathlib
+
+import yaml
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_OUT = REPO / "6a1d66df502cdc827ad0999d" / "paper_numbers.tex"
@@ -102,6 +106,41 @@ def main() -> int:
             f"\\newcommand{{\\arch{cs}}}{{{c}}}",
             f"\\newcommand{{\\arch{cs}Pct}}{{{_pct(c, n_admit)}}}",
         ]
+    lines.append("")
+    lines.append("% --- strata / case-roles / temporal tiers / jurisdiction (admitted) ---")
+    adm = []
+    for f in sorted(glob.glob(str(REPO / "events" / "*.yaml"))):
+        d = yaml.safe_load(open(f))
+        if isinstance(d, dict) and d.get("status") == "admitted":
+            adm.append(d)
+    strat = collections.Counter(d.get("research_stratum") for d in adm)
+    role = collections.Counter(d.get("admission_tier") for d in adm)
+    ttier = collections.Counter(d.get("temporal_tier") for d in adm)
+    jur_us = sum(1 for d in adm if "US" in (
+        [d.get("jurisdiction")] if isinstance(d.get("jurisdiction"), str)
+        else (d.get("jurisdiction") or [])))
+    STRAT_CS = {"S1_ofac_sdn": "StratOfac", "S2_ofac_removal": "StratOfacRem",
+                "S3_doj_sec_cftc_fiod": "StratDoj", "S4_nation_state": "StratNation",
+                "S5_corporate": "StratCorp", "S6_supranational": "StratSupra"}
+    ROLE_CS = {"anchor_case": "RoleAnchor", "empirical_case": "RoleEmpirical",
+               "null_case": "RoleNull"}
+    TTIER_CS = {"discovery_only_2007_2012": "TierDiscovery",
+                "historical_baseline_2013_2016": "TierHistorical",
+                "comparable_main_2017_present": "TierComparable"}
+    for k, cs in STRAT_CS.items():
+        lines.append(f"\\newcommand{{\\{cs}}}{{{strat.get(k, 0)}}}")
+    for k, cs in ROLE_CS.items():
+        lines.append(f"\\newcommand{{\\{cs}}}{{{role.get(k, 0)}}}")
+    for k, cs in TTIER_CS.items():
+        lines.append(f"\\newcommand{{\\{cs}}}{{{ttier.get(k, 0)}}}")
+    lines.append(f"\\newcommand{{\\JurUS}}{{{jur_us}}}")
+    lines.append(f"\\newcommand{{\\JurUSPct}}{{{_pct(jur_us, n_admit)}}}")
+    prec = collections.Counter((d.get("trigger") or {}).get("timestamp_precision") for d in adm)
+    lines.append(f"\\newcommand{{\\PrecHourBetter}}{{{sum(prec[p] for p in ('second', 'minute', 'hour', 'hour_range'))}}}")
+    lines.append(f"\\newcommand{{\\PrecDayCoarser}}{{{prec['day'] + prec['week']}}}")
+    lines.append(f"\\newcommand{{\\PrecDay}}{{{prec['day']}}}")
+    lines.append(f"\\newcommand{{\\PrecWeek}}{{{prec['week']}}}")
+
     lines.append("")
     lines.append("% --- admission-sensitivity ablation (strict/current/permissive) ---")
     with (REPO / "derived" / "admission_sensitivity.csv").open() as f:
