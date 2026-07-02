@@ -135,11 +135,35 @@ def main() -> int:
         lines.append(f"\\newcommand{{\\{cs}}}{{{ttier.get(k, 0)}}}")
     lines.append(f"\\newcommand{{\\JurUS}}{{{jur_us}}}")
     lines.append(f"\\newcommand{{\\JurUSPct}}{{{_pct(jur_us, n_admit)}}}")
+    jur = collections.Counter()
+    for d in adm:
+        j = d.get("jurisdiction")
+        j = [j] if isinstance(j, str) else (j or [])
+        for x in j:
+            jur[x] += 1
+    JUR_CS = {"corporate_global": "JurCorpGlobal", "EU": "JurEU", "RU": "JurRU",
+              "UK": "JurUK", "CN": "JurCN", "JP": "JurJP"}
+    for k, cs in JUR_CS.items():
+        lines.append(f"\\newcommand{{\\{cs}}}{{{jur.get(k, 0)}}}")
     prec = collections.Counter((d.get("trigger") or {}).get("timestamp_precision") for d in adm)
-    lines.append(f"\\newcommand{{\\PrecHourBetter}}{{{sum(prec[p] for p in ('second', 'minute', 'hour', 'hour_range'))}}}")
+    hourbetter = ("second", "minute", "hour", "hour_range")
+    lines.append(f"\\newcommand{{\\PrecHourBetter}}{{{sum(prec[p] for p in hourbetter)}}}")
     lines.append(f"\\newcommand{{\\PrecDayCoarser}}{{{prec['day'] + prec['week']}}}")
     lines.append(f"\\newcommand{{\\PrecDay}}{{{prec['day']}}}")
     lines.append(f"\\newcommand{{\\PrecWeek}}{{{prec['week']}}}")
+    # latency-precision accounting: event_metrics carries trigger_is_action
+    # (t=0 record-level identity rows, excluded from reaction-latency).
+    metrics = _load_json("derived/event_metrics.json")
+    tia = {r["event_id"]: r.get("trigger_is_action") for r in metrics}
+    n_action = sum(1 for d in adm if tia.get(d.get("id")))
+    n_hour_nonaction = sum(
+        1 for d in adm
+        if (d.get("trigger") or {}).get("timestamp_precision") in hourbetter
+        and not tia.get(d.get("id")))
+    lines.append(f"\\newcommand{{\\TriggerIsAction}}{{{n_action}}}")
+    lines.append(f"\\newcommand{{\\PrecHourNonAction}}{{{n_hour_nonaction}}}")
+    n_privtool = sum(1 for r in metrics if r.get("target_is_privacy_tool"))
+    lines.append(f"\\newcommand{{\\PrivacyToolTargets}}{{{n_privtool}}}")
 
     lines.append("")
     lines.append("% --- admission-sensitivity ablation (strict/current/permissive) ---")
