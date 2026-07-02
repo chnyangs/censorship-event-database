@@ -1,0 +1,274 @@
+# Evidence chain — `circle-usdc-sealed-civil-case-16-address-freeze-2026-03`
+
+**Status**: `admitted` · **Stratum**: `S5_corporate` · **Shape**: `comparison` (1 changed layer(s): `asset_onchain`) · **Tier**: `empirical_case`
+
+**Dataset version**: `0.2.0-rc-dryrun-11` · **Dataset cutoff**: `2026-06-08` · **Source commit**: `ee7bf1a` · **Schema**: `0.2.0` · **Event last_verified**: `2026-05-31` · **Tool version**: `0.1.0` · **Generated**: `2026-06-25T23:48:26Z`
+
+> ⚠️ **This output is auditable evidence, not advice.** Read [`docs/limitations-and-use.md`](../../docs/limitations-and-use.md) before using any claim below in a brief, memo, or risk model.
+
+## Scoped claim
+
+> "On 2026-03-23 Circle reportedly blacklisted 16 unrelated USDC
+> business/service addresses citing a sealed NY civil case. AMLBot
+> enumerates the full 16-address set, including the DFINITY ckETH minter;
+> Ethereum receipts confirm all 16 USDC Blacklisted(address) logs between
+> 18:59:11 and 19:43:59 UTC. The Goated.com address was later
+> UnBlacklisted(address) at 2026-03-26 00:17:47 UTC after public
+> criticism. Single-layer asset_onchain observed_change,
+> attribution=plausible, coverage measured."
+
+## 1. Trigger
+
+- **Type**: `corporate_policy_change`
+- **Actor**: `circle_usdc_issuer`
+- **Timestamp**: `2026-03-23 00:00:00+00:00` (precision: `day`)
+
+### Trigger citations
+
+- **`semi_primary_wayback`**
+  - URL: <https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/>
+  - Wayback: <https://web.archive.org/web/20260407171557/https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/>
+  - body_hash: `sha256:1fca05e20b1236ccc89862b94f29fd2c1fc1be7dfd64cc724d87398af30523d1`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260407171557-https-www.ccn.com-news-crypto-circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why__3f4a9b8e89.html`
+  > CCN: Circle froze 16 unrelated USDC business hot wallets on
+> 2026-03-23, tied to a sealed U.S. civil lawsuit in a New York
+> court, disrupting exchanges, online casinos, forex platforms, and
+> payment processors. ZachXBT criticized the broad action as
+> incompetent ("potentially the most incompetent" freeze in 5+
+> years), noting no clear link between the wallets. Circle unfroze
+> one Goated.com wallet holding 130,966 USDC on 2026-03-26 after
+> backlash. Wayback 20260407171557 pinned.
+- **`semi_primary_wayback`**
+  - URL: <https://www.theblock.co/post/395190/circle-unfreezes-usdc>
+  - Wayback: <https://web.archive.org/web/20260402130148/https://www.theblock.co/post/395190/circle-unfreezes-usdc>
+  - body_hash: `sha256:1eab6ba1366fb1cf6829c03bf55be5c1cf46539d46d88e87fd08479a05a567af`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260402130148-https-www.theblock.co-post-395190-circle-unfreezes-usdc__13c810b467.html`
+  > The Block (byline 2026-03-25): Circle unfroze one of the 16
+> blacklisted USDC wallets following backlash; ZachXBT said "The NY
+> civil case is sealed and they have provided absolutely ZERO basis
+> to freeze all of these business addresses." The unfrozen wallet
+> (0x61f…e543, tied to Goated.com) holds 130,966 USDC per Arkham.
+> Independent second semi-primary anchor.
+- **`semi_primary_wayback`**
+  - URL: <https://blog.amlbot.com/circle-froze-16-business-hot-wallets-including-a-blockchain-bridge-smart-contract/>
+  - Wayback: <https://web.archive.org/web/20260531073322/https://blog.amlbot.com/circle-froze-16-business-hot-wallets-including-a-blockchain-bridge-smart-contract/>
+  - body_hash: `sha256:9a0a0893c00282a06c25e29cd1fcca6ae946588ebd36214727fa3214e4304f61`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/blog.amlbot.com__circle-froze-16-business-hot-wallets-including-a-blockchain-bridge-smart-contract__9bf8691e70.html`
+  > AMLBot investigation 2026-03-26: enumerates all 16 affected
+> addresses, names the publicly identified businesses (Rain.gg,
+> Clash.gg, Whale.io, Goated.com, 500 Casino, Finrax, Herofx, and
+> Coinsbuy with two addresses), identifies seven initially unknown
+> addresses including the DFINITY ckETH minter, and pins the ckETH
+> minter blacklist transaction. Wayback 20260531073322 pinned.
+
+## 2. Target
+
+- **Kind**: `address_set`
+- **Enumeration**: `complete`
+- **Actor name**: 16 USDC business/service wallets (sealed NY civil case)
+- **Chains**: `ethereum`
+- **Addresses**: 16 total (enumerated in event YAML)
+
+> 16 USDC business hot wallets (exchanges, online casinos, forex
+> platforms, payment processors, plus initially unknown service
+> addresses) blacklisted by Circle. AMLBot's 2026-03-26 investigation
+> enumerates all 16 addresses; each address has a matching same-day
+> USDC Blacklisted(address) receipt in the 2026-03-23 batch. The
+> complete set is therefore public and chain-verified here, even though
+> the underlying civil case remains sealed.
+
+## 3. Changed-layer observations (supports the scoped claim)
+
+### asset_onchain · attribution: `plausible` · Δt = 18.99h
+
+**Event label**: `circle_blacklisted_16_usdc_business_wallets_sealed_ny_case`
+
+**Timestamp**: `2026-03-23 18:59:11+00:00` (precision: `second`)
+
+**Sources**:
+
+- **`semi_primary_wayback`**
+  - URL: <https://blog.amlbot.com/circle-froze-16-business-hot-wallets-including-a-blockchain-bridge-smart-contract/>
+  - Wayback: <https://web.archive.org/web/20260531073322/https://blog.amlbot.com/circle-froze-16-business-hot-wallets-including-a-blockchain-bridge-smart-contract/>
+  - body_hash: `sha256:9a0a0893c00282a06c25e29cd1fcca6ae946588ebd36214727fa3214e4304f61`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/blog.amlbot.com__circle-froze-16-business-hot-wallets-including-a-blockchain-bridge-smart-contract__9bf8691e70.html`
+  > AMLBot enumerates the complete 16-address target set and reports
+> that Circle blacklisted the addresses on 2026-03-23 in response
+> to a sealed U.S. civil court order. It publicly identifies
+> Rain.gg, Clash.gg, Whale.io, Goated.com, 500 Casino, Finrax,
+> Herofx, and two Coinsbuy addresses; seven additional addresses
+> were initially unknown, including the DFINITY ckETH minter.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0x19a581fe8d8a300c53da8e6e261a9fd0c09c47d5acc5a8677f7a8c7f949ec07b>
+  - tx_hash: `0x19a581fe8d8a300c53da8e6e261a9fd0c09c47d5acc5a8677f7a8c7f949ec07b`
+  > USDC Blacklisted(address) log for
+> 0x61f08d119974a3d9915f06765d83fe1aa677e543 in Ethereum block
+> 24722223 at 2026-03-23 19:11:35 UTC. The address matches the
+> captured source's public truncation (0x61f...e543). Receipt
+> status=0x1 and topic
+> 0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855
+> are cached under sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0x451c3b66561da4fa0f9769aaa2b6096ac430e0692012ddb4497638874ad62958>
+  - tx_hash: `0x451c3b66561da4fa0f9769aaa2b6096ac430e0692012ddb4497638874ad62958`
+  > USDC Blacklisted(address) log for Herofx
+> 0x2704ba2d5d3544e6292d9aca536b6bbbfebd80e9 in Ethereum block
+> 24722161 at 2026-03-23 18:59:11 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xff01e903d70618724233518a8315134ca5560f08d76dde66323018b76faa7817>
+  - tx_hash: `0xff01e903d70618724233518a8315134ca5560f08d76dde66323018b76faa7817`
+  > USDC Blacklisted(address) log for Coinsbuy
+> 0x22face80f43b857141e9752c3bae8c3309fcdd0f in Ethereum block
+> 24722162 at 2026-03-23 18:59:23 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xf4080ba2c142fcf27c93ec545a7316ced4de6fd579fa741ac75569b4c8d3d186>
+  - tx_hash: `0xf4080ba2c142fcf27c93ec545a7316ced4de6fd579fa741ac75569b4c8d3d186`
+  > USDC Blacklisted(address) log for the DFINITY ckETH minter
+> 0xb25ea1d493b49a1ded42ac5b1208cc618f9a9b80 in Ethereum block
+> 24722171 at 2026-03-23 19:01:11 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0x36d71f32599a673998b629472e1113cbef2a437bb58b73bb12e7c69156848bd0>
+  - tx_hash: `0x36d71f32599a673998b629472e1113cbef2a437bb58b73bb12e7c69156848bd0`
+  > USDC Blacklisted(address) log for
+> 0x090aac31fca0d19f91e30e02ec8217098a3a4446 in Ethereum block
+> 24722176 at 2026-03-23 19:02:11 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0x095f52c482279ba69bf62cc6564f3cb3a56004fbae6e6b05d28aeb52a3cc51c7>
+  - tx_hash: `0x095f52c482279ba69bf62cc6564f3cb3a56004fbae6e6b05d28aeb52a3cc51c7`
+  > USDC Blacklisted(address) log for
+> 0xbfca3e2097baa1eb354e9d915180707dde1027f2 in Ethereum block
+> 24722186 at 2026-03-23 19:04:11 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xd6ff5263214b50a5b90ba8689f81de9829e47b20fa6557259d754b0e5ecbaa3b>
+  - tx_hash: `0xd6ff5263214b50a5b90ba8689f81de9829e47b20fa6557259d754b0e5ecbaa3b`
+  > USDC Blacklisted(address) log for Rain.gg
+> 0x87d18ee84e8f4f5709cbf3500179a4c601da12ce in Ethereum block
+> 24722193 at 2026-03-23 19:05:35 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xb7f47ee00ffca6d46795f5cbd5702291ed419148eb54b14ea3175ac39d6a2c6c>
+  - tx_hash: `0xb7f47ee00ffca6d46795f5cbd5702291ed419148eb54b14ea3175ac39d6a2c6c`
+  > USDC Blacklisted(address) log for Whale.io
+> 0x4bd282c083d9ec35aa6c3e0f366d79f12f3a1630 in Ethereum block
+> 24722199 at 2026-03-23 19:06:47 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xcda6a29887934cd157211d5e9a2fcbd518fc4e4d5ec09fd0c174c5e90674626a>
+  - tx_hash: `0xcda6a29887934cd157211d5e9a2fcbd518fc4e4d5ec09fd0c174c5e90674626a`
+  > USDC Blacklisted(address) log for
+> 0x00e84a0b678cd4584a9a377d334c810025970873 in Ethereum block
+> 24722201 at 2026-03-23 19:07:11 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xc15b51b4f872c952fd86bba375833f291c73ed2017a403dc0f3273f2e0ce774b>
+  - tx_hash: `0xc15b51b4f872c952fd86bba375833f291c73ed2017a403dc0f3273f2e0ce774b`
+  > USDC Blacklisted(address) log for Coinsbuy
+> 0x5f9acf4e85aa7283e0c16dd94cbc942f9d625151 in Ethereum block
+> 24722208 at 2026-03-23 19:08:35 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xa32c8f72f3125c8899dee36343cec8982c8680808b29d1b971a9ad606d8c6f38>
+  - tx_hash: `0xa32c8f72f3125c8899dee36343cec8982c8680808b29d1b971a9ad606d8c6f38`
+  > USDC Blacklisted(address) log for
+> 0xf9e83020cccbd1a95f0f257a5a9e3d58149762f8 in Ethereum block
+> 24722218 at 2026-03-23 19:10:35 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xfdf311db203099da46c8437b6e3a1c38e1704a816ae2f66c12ff1920dfbb5118>
+  - tx_hash: `0xfdf311db203099da46c8437b6e3a1c38e1704a816ae2f66c12ff1920dfbb5118`
+  > USDC Blacklisted(address) log for
+> 0xfb3a175ce3cb33d9f464a3c5ea0b834dae2aaaf6 in Ethereum block
+> 24722219 at 2026-03-23 19:10:47 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0x07179494116f5968066adc68036d9d9834be43ef314f6540b641a64bd48be9e7>
+  - tx_hash: `0x07179494116f5968066adc68036d9d9834be43ef314f6540b641a64bd48be9e7`
+  > USDC Blacklisted(address) log for
+> 0x3b848ac300b9e0d260e812b628b87a03d278db95 in Ethereum block
+> 24722221 at 2026-03-23 19:11:11 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0x54575c8f685280cddaa4adfc6cae032dbc9feee8cb1e9aed4f5638c8984a9517>
+  - tx_hash: `0x54575c8f685280cddaa4adfc6cae032dbc9feee8cb1e9aed4f5638c8984a9517`
+  > USDC Blacklisted(address) log for Clash.gg
+> 0x9e2a58d257963a276452fff1be94c0eb7e2775cc in Ethereum block
+> 24722224 at 2026-03-23 19:11:47 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0x9256cb93446d3e7b36353e7297808309624c47769f901c1bababeb3ba8dfcc90>
+  - tx_hash: `0x9256cb93446d3e7b36353e7297808309624c47769f901c1bababeb3ba8dfcc90`
+  > USDC Blacklisted(address) log for Finrax
+> 0x258494a21d9ea90fcbcb9e22bd57c6899de0d995 in Ethereum block
+> 24722384 at 2026-03-23 19:43:47 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`primary_onchain`**
+  - URL: <https://etherscan.io/tx/0xe330e98984113b7514ca5fefc7bc1b4256919e0daa558a5e4319a58618a2da2f>
+  - tx_hash: `0xe330e98984113b7514ca5fefc7bc1b4256919e0daa558a5e4319a58618a2da2f`
+  > USDC Blacklisted(address) log for 500 Casino
+> 0x68416debc20d13e5ef694cdcac9506f4c1a20184 in Ethereum block
+> 24722385 at 2026-03-23 19:43:59 UTC. Receipt cached under
+> sources/onchain_receipts.
+- **`semi_primary_wayback`**
+  - URL: <https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/>
+  - Wayback: <https://web.archive.org/web/20260407171557/https://www.ccn.com/news/crypto/circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why/>
+  - body_hash: `sha256:1fca05e20b1236ccc89862b94f29fd2c1fc1be7dfd64cc724d87398af30523d1`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260407171557-https-www.ccn.com-news-crypto-circle-first-froze-16-usdc-wallets-and-now-unfreezing-them-heres-why__3f4a9b8e89.html`
+  > CCN: Circle blacklisted 16 unrelated USDC business hot wallets
+> on 2026-03-23 tied to a sealed NY civil case; unfroze one
+> (Goated.com, 130,966 USDC) on 2026-03-26. attribution=plausible
+> per §1.2: the underlying civil case is SEALED and Circle did not
+> publicly reference an order naming the specific addresses, so
+> the trigger does not publicly name the target (class-level
+> inference required); ZachXBT publicly characterized the basis as
+> undisclosed/overbroad.
+- **`semi_primary_wayback`**
+  - URL: <https://www.theblock.co/post/395190/circle-unfreezes-usdc>
+  - Wayback: <https://web.archive.org/web/20260402130148/https://www.theblock.co/post/395190/circle-unfreezes-usdc>
+  - body_hash: `sha256:1eab6ba1366fb1cf6829c03bf55be5c1cf46539d46d88e87fd08479a05a567af`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/web.archive.org__web-20260402130148-https-www.theblock.co-post-395190-circle-unfreezes-usdc__13c810b467.html`
+  > The Block corroboration: one of the 16 blacklisted USDC wallets
+> (0x61f…e543, Goated.com, 130,966 USDC) unfrozen after backlash;
+> ZachXBT: "The NY civil case is sealed and they have provided
+> absolutely ZERO basis to freeze all of these business
+> addresses." Independent second semi-primary anchor.
+- **`primary_corporate`**
+  - URL: <https://support.dfinity.org/hc/en-us/articles/20273018220180-What-are-ckETH-and-ckERC-20-tokens>
+  - body_hash: `sha256:e64797bbb71d1a4eff933b6620798fe0f1a79792d4168403c747107797d40310`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/support.dfinity.org__hc-en-us-articles-20273018220180-What-are-ckETH-and-ckERC-20-tokens__a93f3cc9c3.html`
+  > DFINITY support documentation identifies
+> 0xb25eA1D493B49a1DeD42aC5B1208cC618f9A9B80 as the Ethereum-side
+> wallet used when ICP ckETH/ckERC-20 users convert back to
+> Ethereum. This corroborates AMLBot's identification of the
+> blacklisted address as shared bridge infrastructure.
+- **`supporting_community`**
+  - URL: <https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773>
+  - Wayback: <https://web.archive.org/web/20260531073352/https://forum.dfinity.org/t/ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing/65773>
+  - body_hash: `sha256:b39f1be39a13efa3cec50a0f871de3f278f80ade0b389bd5d683f4fbee644b8c`
+  - body_path: `sources/http_captures/circle-usdc-sealed-civil-case-16-address-freeze-2026-03/primary/forum.dfinity.org__t-ckbridge-ethereum-address-blacklisted-by-circle-usdc-withdrawals-failing-65773__a9df92b4ab.html`
+  > Internet Computer Developer Forum thread reporting that the
+> ckBridge Ethereum address was blacklisted by Circle and that
+> USDC withdrawals from ICP to Ethereum were failing; a DFINITY
+> developer confirmed that Circle blacklisted the minter and
+> linked the matching Etherscan transaction.
+
+## 5. Honest coverage gaps
+
+*No layers are `not_measured` for this event — every applicable layer is `measured`, `partially_measured`, or `not_applicable`.*
+
+## 7. Related events
+
+- [`circle-usdc-cryptex-freeze-2024`](./circle-usdc-cryptex-freeze-2024.md)
+- [`circle-usdc-tornado-2022`](./circle-usdc-tornado-2022.md)
+
+## 8. How to audit this chain
+
+1. Clone the repository at tag `v0.2.0-rc-dryrun-11` (commit `ee7bf1a`).
+2. For each source above, fetch the file at its `body_path` and compute its sha256. It must match the recorded `body_hash`.
+3. For each primary-onchain source, look up the `tx_hash` on the respective block explorer. The tx should exist in the block referenced or within the same day.
+4. If any check fails, file an issue per [`docs/audit-protocol.md`](../../docs/audit-protocol.md).
+

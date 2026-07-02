@@ -1,6 +1,6 @@
 # Admission-protocol sensitivity ablation
 
-Generated: `2026-06-09T03:28:59Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 398 events.
+Generated: `2026-06-25T23:48:26Z` · generator `scripts/build_admission_sensitivity.py` · corpus n = 398 events.
 
 Three admission rubrics applied to the coverage-matched `changed_given_coverage` rate per layer:
 

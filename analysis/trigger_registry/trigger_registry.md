@@ -1,6 +1,6 @@
 # Trigger registry
 
-Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-08` · commit `3db0429` · generated `2026-06-08T23:15:56Z`
+Dataset snapshot: v0.2.0-rc-dryrun-11 · cutoff `2026-06-08` · commit `ee7bf1a` · generated `2026-06-25T23:48:26Z`
 
 This is the pre-admission registry surface. It includes every YAML event plus any candidate trigger stubs under `candidate_triggers/`, so future case expansion is explicit instead of anecdotal.
 
@@ -9,17 +9,17 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 | count | value | target | gap |
 | --- | ---: | ---: | ---: |
 | raw registry rows | 527 | audit surface | — |
-| distinct in-frame triggers | 410 | 150-250 milestone | 0 |
-| admitted events | 365 | 120 quality milestone | 0 |
+| distinct in-frame triggers | 404 | 150-250 milestone | 0 |
+| admitted events | 398 | 120 quality milestone | 0 |
 
 ## Status distribution
 
 | registry_status | count |
 | --- | ---: |
-| `admitted` | 365 |
-| `draft` | 45 |
+| `admitted` | 398 |
+| `draft` | 6 |
 | `promoted_to_event` | 60 |
-| `rejected` | 10 |
+| `rejected` | 16 |
 | `screened_no_extractor_target` | 47 |
 
 ## Temporal tier distribution
@@ -42,12 +42,12 @@ This is the pre-admission registry surface. It includes every YAML event plus an
 
 | stratum | in-frame triggers | admitted | v0.2 admitted min | min gap | v0.2 admitted milestone | milestone gap | v0.2 candidate min | candidate gap |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `S1_ofac_sdn` | 60 | 52 | 30 | 0 | 35 | 0 | 50 | 0 |
+| `S1_ofac_sdn` | 60 | 60 | 30 | 0 | 35 | 0 | 50 | 0 |
 | `S2_ofac_removal` | 1 | 1 | 5 | 4 | 10 | 9 | 10 | 9 |
-| `S3_doj_sec_cftc_fiod` | 87 | 76 | 20 | 0 | 30 | 0 | 40 | 0 |
-| `S4_nation_state` | 125 | 111 | 10 | 0 | 20 | 0 | 20 | 0 |
-| `S5_corporate` | 106 | 95 | 10 | 0 | 15 | 0 | 20 | 0 |
-| `S6_supranational` | 31 | 30 | 5 | 0 | 10 | 0 | 10 | 0 |
+| `S3_doj_sec_cftc_fiod` | 87 | 84 | 20 | 0 | 30 | 0 | 40 | 0 |
+| `S4_nation_state` | 120 | 119 | 10 | 0 | 20 | 0 | 20 | 0 |
+| `S5_corporate` | 105 | 103 | 10 | 0 | 15 | 0 | 20 | 0 |
+| `S6_supranational` | 31 | 31 | 5 | 0 | 10 | 0 | 10 | 0 |
 
 ## Phrasing lock
 

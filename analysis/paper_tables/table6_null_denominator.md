@@ -1,6 +1,6 @@
-# Table 6 · Null-case denominator (n=97)
+# Table 6 · Null-case denominator (n=107)
 
-Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-08` · commit `3db0429` · generated `2026-06-08T23:15:56Z`
+Dataset snapshot: **v0.2.0-rc-dryrun-11** · cutoff `2026-06-08` · commit `ee7bf1a` · generated `2026-06-25T23:48:26Z`
 
 Supports the **null-event interpretation note** in `derived/archetype_distribution.md`. (C6 was demoted to exemplar-inside-C1 on 2026-04-24 — see `docs/paper_claims.md §C6`.) Each row lists the event's `observed_no_change` layers + the claim-usable evidence-anchor types their sources carry. Per validator rule, `scope_descriptor` defines the covered scope but is not an evidence anchor by itself; each `observed_no_change` row needs at least one claim-usable replayable artifact such as `body_hash`+`body_path`, `query_hash`, or `measurement_ids`. Sources marked `evidence_use=contextual_unarchived` or `evidence_use=non_admission` are deliberately excluded.
 
@@ -17,13 +17,17 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `botnet-911-s5-ofac-2024-05` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `brazil-bacen-stablecoin-restriction-2023` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
 | `brazil-bcb-comunicado-25306-2014` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
+| `cambodia-kok-an-pig-butchering-crypto-2026` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `cftc-v-ftx-2022` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `china-fentanyl-network-ofac-2023-10` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `chinyong-kim-sang-man-dprk-it-worker-ofac-2023-05` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
+| `circle-freeze-zama-cusdc-court-order-2026` | `S5_corporate` | `offramp_cex` | `body_hash+body_path` |
 | `circle-usdc-svb-policy-statement-2023` | `S5_corporate` | `offramp_cex` | `body_hash+body_path` |
 | `consensys-metamask-infura-rpc-data-collection-2022-11` | `S5_corporate` | `l3_rpc` | `body_hash+body_path` |
 | `derakhshan-alivand-irgc-crypto-ofac-2025-09` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `dkba-burma-scam-compound-ofac-2025-11` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
+| `dprk-it-workers-amnokgang-vietnam-2026` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
+| `dprk-song-kum-hyok-andariel-it-workers-2025` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `eu-14th-russia-sanctions-spfs-2024` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `eu-15th-russia-sanctions-2024` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `eu-amla-anti-money-laundering-authority-regulation-2024` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
@@ -35,6 +39,7 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `fatf-targeted-update-va-vasp-2021` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `fatf-targeted-update-va-vasp-2023` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `fatf-virtual-currencies-key-definitions-2014` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
+| `fayzimatov-alqaeda-syria-ofac-2021-07` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `fincen-virtual-currency-msb-guidance-2013` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `france-amf-binance-psan-2022` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
 | `fsb-crypto-asset-recommendations-2023` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
@@ -66,6 +71,8 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `mtgox-mizuho-wire-pressure-2012` | `S5_corporate` | `offramp_cex` | `body_hash+body_path` |
 | `nemesis-parsarad-darknet-ofac-2025-03` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `netex24-bitpapa-russia-crypto-ofac-2024-03` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
+| `netwalker-vachon-desjardins-doj-2022` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
+| `nobitex-iran-exchanges-economic-fury-2026` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `ofac-dprk-it-worker-sim-hyon-sop-2023-04` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `ofac-hamas-gaza-now-2024-03` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `ofac-houthi-al-jamal-crypto-refresh-2024-12` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
@@ -84,11 +91,13 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `salame-ftx-campaign-finance-doj-2023` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `sec-v-ftx-2022` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `sichuan-silence-ofac-2024` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
+| `sinaloa-cartel-eth-addresses-fentanyl-2026` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `sinbad-ofac-2023` | `S1_ofac_sdn` | `l4_frontend` | `body_hash+body_path` |
 | `south-africa-fsca-crypto-financial-product-2022` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
 | `storm-semenov-doj-2023` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
 | `switzerland-finma-tezos-zg-2018` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
 | `taiwan-fsc-aml-vasp-regime-2021-2024` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
+| `task-force-rusich-ofac-2022-09` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `tengyue-chemical-fentanyl-ofac-2025-09` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `tether-tron-philippines-pdea-freeze-2024` | `S5_corporate` | `offramp_cex` | `body_hash+body_path` |
 | `tornado-cash-pertsev-doj-indictment-2023` | `S3_doj_sec_cftc_fiod` | `offramp_cex` | `body_hash+body_path` |
@@ -101,6 +110,7 @@ Supports the **null-event interpretation note** in `derived/archetype_distributi
 | `unsc-resolution-2371-dprk-crypto-2017` | `S6_supranational` | `offramp_cex` | `body_hash+body_path` |
 | `uzbekistan-napp-vasp-licensing-2022-07` | `S4_nation_state` | `offramp_cex` | `body_hash+body_path` |
 | `wang-hongfei-fentanyl-precursor-ofac-2023-04` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
+| `zedcex-zedxion-irgc-iran-2026` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `zheng-yan-fentanyl-ofac-2019-08` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 | `zservers-ofac-2025` | `S1_ofac_sdn` | `offramp_cex` | `body_hash+body_path` |
 

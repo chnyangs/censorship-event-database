@@ -8,14 +8,14 @@ This file is the operational summary for the repo's two current priorities:
 ## Process
 
 - Event count: `420`
-- Release-ready cases: `321`
-- Admitted but release-blocked cases: `44`
+- Release-ready cases: `346`
+- Admitted but release-blocked cases: `52`
 - Fully complete release-ready cases: `12`
-- Scope-limited release-ready cases: `309`
-- Working drafts: `18`
-- Cases with gap markers: `14`
-- Paper-use roles: `{'aggregate_datapoint': 264, 'null_control': 97, 'appendix_only': 55, 'paper_anchor': 4}`
-- Draft priority order: `circle-freeze-zama-cusdc-court-order-2026, ethiopia-nbe-crypto-ban-2022-06, ethiopia-nbe-exchange-website-block-2025-11, kucoin-cftc-permanent-us-ban-2026, nigeria-sec-binance-cease-solicitation-2023-07, thailand-sec-unlicensed-exchange-block-2025-06, ren-protocol-shutdown-alameda-ftx-2022-12, ethiopia-nbe-p2p-birr-crypto-ban-2026-02, sinaloa-cartel-eth-addresses-fentanyl-2026, zedcex-zedxion-irgc-iran-2026, cambodia-kok-an-pig-butchering-crypto-2026, dprk-it-workers-amnokgang-vietnam-2026, dprk-song-kum-hyok-andariel-it-workers-2025, eu-belarus-crypto-wallet-ban-2025, falcon-labs-cftc-us-access-ban-2024, bitcoin-fog-sterlingov-doj-2024, netwalker-vachon-desjardins-doj-2022, nobitex-iran-exchanges-economic-fury-2026, revil-vasinskyi-polyanin-doj-2021, tornado-cash-storm-conviction-2025, circle-usdc-sealed-civil-case-16-address-freeze-2026-03, ens-eth-domain-tornado-resolution-2022, task-force-rusich-ofac-2022-09, terror-financing-crypto-seizure-doj-2020, bangladesh-bank-fepd-virtual-assets-prohibition-2022-09, bitcoin-maven-tetley-doj-2018, bitfinex-us-retail-customer-exit-2017-11, bittrex-global-shutdown-2023-11, celsius-multistate-cease-desist-earn-2021-09, circle-usdc-multichain-hack-freeze-2023-07, colonial-pipeline-darkside-ransom-clawback-doj-2021, crypto-capital-fowler-doj-2019, fayzimatov-alqaeda-syria-ofac-2021-07, japan-fsa-margin-leverage-cap-2x-2020-05, kuwait-cma-virtual-assets-prohibition-2023-07, kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07, lebanon-bdl-bitcoin-warning-2013-12, magic-eden-ofac-sanctioned-country-block, nydfs-bittrex-bitlicense-denial-2019-04, saudi-standing-committee-virtual-currency-warning-2018-08, t3-bybit-hack-usdt-freeze-2025-03, t3-financial-crime-unit-launch-2024-09, tether-ofac-iran-economic-fury-344m-freeze-2026-04, tether-okx-doj-pig-butchering-225m-freeze-2025-06, vietnam-sbv-bitcoin-prohibition-statement-2014-02`
+- Scope-limited release-ready cases: `334`
+- Working drafts: `2`
+- Cases with gap markers: `1`
+- Paper-use roles: `{'aggregate_datapoint': 287, 'null_control': 107, 'appendix_only': 22, 'paper_anchor': 4}`
+- Draft priority order: `ethiopia-nbe-crypto-ban-2022-06, ren-protocol-shutdown-alameda-ftx-2022-12, bitcoin-fog-sterlingov-doj-2024, revil-vasinskyi-polyanin-doj-2021, tornado-cash-storm-conviction-2025, ens-eth-domain-tornado-resolution-2022`
 
 ## Cases
 
@@ -254,16 +254,16 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `bangladesh-bank-fepd-virtual-assets-prohibition-2022-09`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bangladesh-bb-bitcoin-warning-2014`
 
@@ -587,16 +587,16 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `bitcoin-maven-tetley-doj-2018`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bitcoinica-shutdown-2012-05`
 
@@ -656,16 +656,16 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `bitfinex-us-retail-customer-exit-2017-11`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `bitfloor-capital-one-debanking-2013-04`
 
@@ -746,7 +746,7 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `bittrex-global-shutdown-2023-11`
 
-- Status: `draft`
+- Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
@@ -948,21 +948,17 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `cambodia-kok-an-pig-butchering-crypto-2026`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `cambodia-nbc-joint-crypto-prohibition-2018-05`
 
@@ -1024,18 +1020,16 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `celsius-multistate-cease-desist-earn-2021-09`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `medium`
+- Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: One layer remains explicitly unmeasured.
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Either measure the remaining layer or document why it is out of scope.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `cftc-defi-opyn-zeroex-deridex-2023-09`
 
@@ -1390,30 +1384,20 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `circle-freeze-zama-cusdc-court-order-2026`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `null_control`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
-- Attribution reliability: `medium`
-- Coverage completeness: `medium`
-- Case-shape completeness: `low`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Pin down the target set more concretely in the event file.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `circle-usdc-cryptex-freeze-2024`
 
@@ -1430,24 +1414,24 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `circle-usdc-multichain-hack-freeze-2023-07`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Some changed layers are plausible rather than direct trigger attributions.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `circle-usdc-sealed-civil-case-16-address-freeze-2026-03`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
@@ -1455,11 +1439,11 @@ This file is the operational summary for the repo's two current priorities:
 - Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Some changed layers are plausible rather than direct trigger attributions.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `circle-usdc-svb-policy-statement-2023`
 
@@ -1591,18 +1575,18 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `colonial-pipeline-darkside-ransom-clawback-doj-2021`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Some changed layers are plausible rather than direct trigger attributions.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `consensys-metamask-infura-rpc-data-collection-2022-11`
 
@@ -1646,18 +1630,18 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `crypto-capital-fowler-doj-2019`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `crypto-com-eu-usdt-stablecoin-delisting-2025-01`
 
@@ -1726,39 +1710,31 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `dprk-it-workers-amnokgang-vietnam-2026`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `dprk-song-kum-hyok-andariel-it-workers-2025`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `high`
 - Attribution reliability: `high`
-- Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `dprk-usdt-network-ofac-2025`
 
@@ -1918,74 +1894,64 @@ This file is the operational summary for the repo's two current priorities:
 ### `ethiopia-nbe-crypto-ban-2022-06`
 
 - Status: `draft`
-- Readiness: `working_draft`
+- Readiness: `needs_re_scoping`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `medium`
 - Observation reliability: `low`
-- Attribution reliability: `medium`
-- Coverage completeness: `medium`
+- Attribution reliability: `low`
+- Coverage completeness: `low`
 - Case-shape completeness: `low`
 - Note: Trigger evidence lacks a primary citation.
 - Note: Trigger is primary, but target scope or enumeration still looks coarse.
 - Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: No observed_change entries remain, so attribution cannot be evaluated.
 - Note: Retained observations still carry gap markers; case shape is not stable.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
 - Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
 - Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
+- Blocker: The file does not currently retain a stable changed-layer claim.
+- Blocker: Every layer is not_applicable; no coverage claim is possible.
 - Blocker: Core observations still contain unresolved evidence scaffolding.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
 - Next action: Pin down the target set more concretely in the event file.
 - Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
 
 ### `ethiopia-nbe-exchange-website-block-2025-11`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
-- Case-shape completeness: `low`
+- Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `ethiopia-nbe-p2p-birr-crypto-ban-2026-02`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
-- Trigger reliability: `medium`
-- Observation reliability: `low`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
+- Trigger reliability: `high`
+- Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: Trigger is primary, but target scope or enumeration still looks coarse.
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
+- Case-shape completeness: `medium`
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Tighten target enumeration or target scope before treating the trigger as settled.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Pin down the target set more concretely in the event file.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `etoro-us-ada-trx-delisting-2021-12`
 
@@ -2154,21 +2120,18 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `eu-belarus-crypto-wallet-ban-2025`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
+- Case-shape completeness: `medium`
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `eu-dac8-crypto-asset-reporting-directive-2023`
 
@@ -2256,21 +2219,18 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `falcon-labs-cftc-us-access-ban-2024`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
+- Case-shape completeness: `medium`
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `fatf-grey-list-crypto-related-actions-2023-2024`
 
@@ -2343,17 +2303,17 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `fayzimatov-alqaeda-syria-ofac-2021-07`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `fbi-bitcoin-intelligence-assessment-2012-04`
 
@@ -3110,7 +3070,7 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `japan-fsa-margin-leverage-cap-2x-2020-05`
 
-- Status: `draft`
+- Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
@@ -3448,27 +3408,25 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `kucoin-cftc-permanent-us-ban-2026`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
-- Case-shape completeness: `low`
+- Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `kucoin-doj-2024`
 
@@ -3499,20 +3457,20 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `kuwait-cma-virtual-assets-prohibition-2023-07`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `kyrgyzstan-nbkr-virtual-currency-payment-warning-2014-07`
 
-- Status: `draft`
+- Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
@@ -3554,7 +3512,7 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `lebanon-bdl-bitcoin-warning-2013-12`
 
-- Status: `draft`
+- Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
@@ -3621,16 +3579,16 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `magic-eden-ofac-sanctioned-country-block`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `makerdao-emergency-shutdown-contingency-2022-08`
 
@@ -3936,23 +3894,19 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `netwalker-vachon-desjardins-doj-2022`
 
-- Status: `draft`
-- Readiness: `needs_re_scoping`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `low`
-- Attribution reliability: `low`
+- Observation reliability: `high`
+- Attribution reliability: `high`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: No observed_change entries remain, so attribution cannot be evaluated.
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: One layer remains explicitly unmeasured.
-- Note: Case shape is visible but the case is not yet admitted.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: The file does not currently retain a stable changed-layer claim.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Either measure the remaining layer or document why it is out of scope.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `nigeria-binance-network-block-2024-02`
 
@@ -3989,48 +3943,39 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `nigeria-sec-binance-cease-solicitation-2023-07`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
-- Attribution reliability: `medium`
-- Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: Trigger evidence lacks a primary citation.
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
-
-### `nobitex-iran-exchanges-economic-fury-2026`
-
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
-- Trigger reliability: `high`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
 - Case-shape completeness: `medium`
-- Note: At least one changed layer depends only on contextual/non-admission or non-replayable evidence.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Note: One layer remains explicitly unmeasured.
-- Note: Case shape is visible but the case is not yet admitted.
-- Blocker: At least one retained changed layer does not satisfy the admission source rule with replayable, claim-usable evidence.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Next action: Either strengthen the weak changed layer with replayable admission-usable evidence or drop it from observations.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
-- Next action: Either measure the remaining layer or document why it is out of scope.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Trigger evidence lacks a primary citation.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
+- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Blocker: Add a primary trigger source before treating the trigger as settled.
+- Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
+- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
+
+### `nobitex-iran-exchanges-economic-fury-2026`
+
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
+- Trigger reliability: `high`
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `nydfs-bitlicense-2015-06`
 
@@ -4067,16 +4012,16 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `nydfs-bittrex-bitlicense-denial-2019-04`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `oasis-app-wormhole-counter-exploit-2023-02`
 
@@ -4866,7 +4811,7 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `saudi-standing-committee-virtual-currency-warning-2018-08`
 
-- Status: `draft`
+- Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
@@ -5272,24 +5217,17 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `sinaloa-cartel-eth-addresses-fentanyl-2026`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `low`
-- Attribution reliability: `medium`
-- Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `sinbad-doj-2024`
 
@@ -5416,9 +5354,9 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `t3-bybit-hack-usdt-freeze-2025-03`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
@@ -5426,16 +5364,16 @@ This file is the operational summary for the repo's two current priorities:
 - Case-shape completeness: `medium`
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `t3-financial-crime-unit-launch-2024-09`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `medium`
@@ -5443,10 +5381,10 @@ This file is the operational summary for the repo's two current priorities:
 - Case-shape completeness: `medium`
 - Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `taiwan-fsc-aml-vasp-regime-2021-2024`
 
@@ -5479,9 +5417,9 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `task-force-rusich-ofac-2022-09`
 
-- Status: `draft`
-- Readiness: `needs_re_scoping`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
@@ -5489,10 +5427,10 @@ This file is the operational summary for the repo's two current priorities:
 - Case-shape completeness: `medium`
 - Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `tengyue-chemical-fentanyl-ofac-2025-09`
 
@@ -5527,19 +5465,19 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `terror-financing-crypto-seizure-doj-2020`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `low`
 - Case-shape completeness: `medium`
 - Note: Multiple layers remain explicitly unmeasured; coverage is thin.
-- Note: Case shape is visible but the case is not yet admitted.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Multiple layers remain effectively unmeasured, so the case is only complete within a narrow scope.
 - Next action: Either measure more layers or explicitly narrow the public claim for this case.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `tether-doj-pig-butchering-freeze-2023`
 
@@ -5585,29 +5523,29 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `tether-ofac-iran-economic-fury-344m-freeze-2026-04`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `tether-okx-doj-pig-butchering-225m-freeze-2025-06`
 
-- Status: `draft`
-- Readiness: `candidate_for_admission`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `high`
 - Observation reliability: `high`
 - Attribution reliability: `high`
 - Coverage completeness: `high`
 - Case-shape completeness: `medium`
-- Note: Case shape is visible but the case is not yet admitted.
-- Next action: Promote to admitted once promotion-gate criteria are met.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `tether-pig-butchering-second-wave-2024`
 
@@ -5723,27 +5661,25 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `thailand-sec-unlicensed-exchange-block-2025-06`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `admitted_scope_blocked`
+- Paper-use role: `aggregate_datapoint`
 - Trigger reliability: `medium`
-- Observation reliability: `low`
+- Observation reliability: `medium`
 - Attribution reliability: `medium`
 - Coverage completeness: `medium`
-- Case-shape completeness: `low`
+- Case-shape completeness: `medium`
 - Note: Trigger evidence lacks a primary citation.
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
+- Note: At least one changed layer is carried by semi-primary or lower-tier replayable evidence rather than a primary artifact.
+- Note: Some changed layers are plausible rather than direct trigger attributions.
 - Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
 - Blocker: Add a primary trigger source before treating the trigger as settled.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
 - Next action: Pin a primary legal, government, corporate, or on-chain trigger artifact.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
+- Next action: Upgrade semi-primary changed-layer evidence to a primary artifact where feasible.
+- Next action: Look for operator-side or first-party artifacts that can move plausible attribution toward direct.
 - Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `tornado-cash-frontend-tornado-cash-eth-block-2022-04`
 
@@ -6170,7 +6106,7 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `vietnam-sbv-bitcoin-prohibition-statement-2014-02`
 
-- Status: `draft`
+- Status: `rejected`
 - Readiness: `candidate_for_admission`
 - Paper-use role: `appendix_only`
 - Trigger reliability: `high`
@@ -6394,24 +6330,17 @@ This file is the operational summary for the repo's two current priorities:
 
 ### `zedcex-zedxion-irgc-iran-2026`
 
-- Status: `draft`
-- Readiness: `working_draft`
-- Paper-use role: `appendix_only`
+- Status: `admitted`
+- Readiness: `release_ready_scoped`
+- Paper-use role: `null_control`
 - Trigger reliability: `high`
-- Observation reliability: `low`
-- Attribution reliability: `medium`
-- Coverage completeness: `medium`
-- Case-shape completeness: `low`
-- Note: At least one retained observation still depends on unresolved evidence scaffolding.
-- Note: At least one direct-attribution changed layer is backed only by semi-primary sources; the direct label is not structurally earned.
-- Note: No layers are explicitly unmeasured, but fewer than half are fully measured.
-- Note: Retained observations still carry gap markers; case shape is not stable.
-- Blocker: Core observations still contain unresolved evidence placeholders or coverage-gap scaffolding.
-- Blocker: A direct-attribution changed layer lacks any primary_* source.
-- Blocker: Core observations still contain unresolved evidence scaffolding.
-- Next action: Replace placeholder notes with archived artifacts, receipts, or concrete measurement outputs.
-- Next action: Upgrade the direct-attribution changed layer with a primary source, or relabel its attribution to plausible.
-- Next action: Upgrade partially_measured layers to measured, or narrow the scoped claim.
+- Observation reliability: `high`
+- Attribution reliability: `high`
+- Coverage completeness: `high`
+- Case-shape completeness: `medium`
+- Note: Null case is supported by observed_no_change rows; changed-layer attribution is not applicable.
+- Note: Case is admitted and at its empirical_shape floor; shape is stable but lean.
+- Next action: Seek an additional changed-layer observation to move shape from lean to richly fleshed out.
 
 ### `zheng-yan-fentanyl-ofac-2019-08`
 
