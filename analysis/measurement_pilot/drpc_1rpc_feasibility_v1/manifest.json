@@ -1,0 +1,150 @@
+{
+  "created_before_queries_at_utc": "2026-09-20T13:02:14.109804Z",
+  "historical_source": "Same excluded2022pilot block; independent header checks permitted, no provider-behavior or target nonresponse claim",
+  "max_attempts_per_query": 1,
+  "maximum_logical_queries": 16,
+  "minimum_query_delay_seconds": 1,
+  "providers": {
+    "drpc_public": {
+      "capture_dir": "sources/measurement_panel/expanded_transport_sources/drpc_public/attempt_1",
+      "endpoint": "https://eth.drpc.org/",
+      "official_url": "https://drpc.org/docs/ethereum-api",
+      "sha256": "sha256:b5be43fc8b1fc992b69d0a0f2910f7dbacc83f30aad905a5e717679b369c7b82"
+    },
+    "one_rpc_public": {
+      "capture_dir": "sources/measurement_panel/expanded_transport_sources/one_rpc_public/attempt_1",
+      "endpoint": "https://public.1rpc.io/eth",
+      "official_url": "https://docs.1rpc.io/using-the-web3-api/networks",
+      "sha256": "sha256:ca383fb58dfe37e46206a22cafb57528f1ef75679f454dce7c70cc419c33fc2c"
+    }
+  },
+  "queries": [
+    {
+      "id": "chain_id",
+      "method": "eth_chainId",
+      "params": []
+    },
+    {
+      "id": "historical_block",
+      "method": "eth_getBlockByNumber",
+      "params": [
+        "0xe97ccb",
+        false
+      ]
+    },
+    {
+      "id": "usdc_span_10",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "fromBlock": "0xe97ccb",
+          "toBlock": "0xe97cd4",
+          "topics": [
+            [
+              "0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855",
+              "0x117e3210bb9aa7d9baff172026820255c6f6c30ba8999d1c2fd88e2848137c4e"
+            ],
+            "0x0000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16"
+          ]
+        }
+      ],
+      "span": 10
+    },
+    {
+      "id": "usdc_span_100",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "fromBlock": "0xe97ccb",
+          "toBlock": "0xe97d2e",
+          "topics": [
+            [
+              "0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855",
+              "0x117e3210bb9aa7d9baff172026820255c6f6c30ba8999d1c2fd88e2848137c4e"
+            ],
+            "0x0000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16"
+          ]
+        }
+      ],
+      "span": 100
+    },
+    {
+      "id": "usdc_span_1000",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "fromBlock": "0xe97ccb",
+          "toBlock": "0xe980b2",
+          "topics": [
+            [
+              "0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855",
+              "0x117e3210bb9aa7d9baff172026820255c6f6c30ba8999d1c2fd88e2848137c4e"
+            ],
+            "0x0000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16"
+          ]
+        }
+      ],
+      "span": 1000
+    },
+    {
+      "id": "usdt_span_10",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "fromBlock": "0xe97ccb",
+          "toBlock": "0xe97cd4",
+          "topics": [
+            [
+              "0x42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc",
+              "0xd7e9ec6e6ecd65492dce6bf513cd6867560d49544421d0783ddf06e76c24470c"
+            ]
+          ]
+        }
+      ],
+      "span": 10
+    },
+    {
+      "id": "usdt_span_100",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "fromBlock": "0xe97ccb",
+          "toBlock": "0xe97d2e",
+          "topics": [
+            [
+              "0x42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc",
+              "0xd7e9ec6e6ecd65492dce6bf513cd6867560d49544421d0783ddf06e76c24470c"
+            ]
+          ]
+        }
+      ],
+      "span": 100
+    },
+    {
+      "id": "usdt_span_1000",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "fromBlock": "0xe97ccb",
+          "toBlock": "0xe980b2",
+          "topics": [
+            [
+              "0x42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc",
+              "0xd7e9ec6e6ecd65492dce6bf513cd6867560d49544421d0783ddf06e76c24470c"
+            ]
+          ]
+        }
+      ],
+      "span": 1000
+    }
+  ],
+  "stop_on_first_rate_limit": true,
+  "study_role": "feasibility_pilot_excluded_from_evaluation",
+  "target": "0x8589427373d6d84e98730d7795d8f6f8731fda16"
+}

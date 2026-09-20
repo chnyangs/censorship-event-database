@@ -1,0 +1,92 @@
+{
+  "cohort_manifest_sha256": "sha256:50c6843a955a39c31070247dd45f8518510afbd3cf3ced14cf6d722cf0cfc55d",
+  "cohort_units_sha256": "sha256:2cc59809d9241ebca236c4badd645d0401e0225b14257a7cfca8c610fa13958d",
+  "collector_sha256": "sha256:b7137c36e81ebe29346e4c7879d9d2c77a5381b9150dca6f0d3838ca885afe99",
+  "created_before_page_queries_at_utc": "2026-09-20T13:17:15.162575Z",
+  "cursor_rule": "Official implementation orders(block_number,index)descending and excludes the cursor; seed(maxBlock+1,0)includes all declared upper-bound logs. Preserve server next_page_params exactly except enforcing the unchanged topic.",
+  "endpoint_origin": "https://eth.blockscout.com",
+  "first_block_inclusive": 14477774,
+  "full_window_response_classification": null,
+  "human_reference_complete": false,
+  "independent_chain_completeness_verified": false,
+  "last_block_inclusive": 24050082,
+  "max_attempts_per_page": 1,
+  "max_pages_per_stream": 3,
+  "maximum_page_bytes": 1048576,
+  "maximum_page_requests": 12,
+  "minimum_delay_seconds": 1.0,
+  "official_sources": {
+    "current_docs": {
+      "path": "analysis/public_blockchain_discovery/blockscout_v1/captures/current_docs/attempt_1/response.body",
+      "sha256": "sha256:4fef256e40095012dc3b7cb996bc7a85d875032f518c969d0ab943a546752de0"
+    },
+    "current_official_controller": {
+      "path": "analysis/public_blockchain_discovery/blockscout_v1/captures/current_official_controller/attempt_1/response.body",
+      "sha256": "sha256:376d6856ee50ae403aa32127cde5eef0e2af85a1888d2a7c7b2599b456995423"
+    },
+    "official_chain_query": {
+      "path": "analysis/public_blockchain_discovery/blockscout_v1/captures/official_chain_query/attempt_1/response.body",
+      "sha256": "sha256:aa386780e9925abf663a045b54a082415ac0a178848381f8b52f8fad98e65637"
+    }
+  },
+  "selection": "All four predeclared issuer add/remove topics over the global source-cohort block span; no target addresses or observed response labels in request filters",
+  "snapshot_records_sha256": "sha256:8545ddac200622b7e5ecd98038f12f7878f84d8abac26be7f9f145da9efb0cd9",
+  "streams": [
+    {
+      "contract": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "direction": "add",
+      "event_signature": "Blacklisted(address)",
+      "id": "usdc_add",
+      "issuer": "usdc",
+      "seed_cursor": {
+        "block_number": 24050083,
+        "index": 0,
+        "items_count": 0
+      },
+      "topic": "0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855"
+    },
+    {
+      "contract": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "direction": "remove",
+      "event_signature": "UnBlacklisted(address)",
+      "id": "usdc_remove",
+      "issuer": "usdc",
+      "seed_cursor": {
+        "block_number": 24050083,
+        "index": 0,
+        "items_count": 0
+      },
+      "topic": "0x117e3210bb9aa7d9baff172026820255c6f6c30ba8999d1c2fd88e2848137c4e"
+    },
+    {
+      "contract": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "direction": "add",
+      "event_signature": "AddedBlackList(address)",
+      "id": "usdt_add",
+      "issuer": "usdt",
+      "seed_cursor": {
+        "block_number": 24050083,
+        "index": 0,
+        "items_count": 0
+      },
+      "topic": "0x42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc"
+    },
+    {
+      "contract": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "direction": "remove",
+      "event_signature": "RemovedBlackList(address)",
+      "id": "usdt_remove",
+      "issuer": "usdt",
+      "seed_cursor": {
+        "block_number": 24050083,
+        "index": 0,
+        "items_count": 0
+      },
+      "topic": "0xd7e9ec6e6ecd65492dce6bf513cd6867560d49544421d0783ddf06e76c24470c"
+    }
+  ],
+  "study_role": "source_defined_issuer_event_index_collection_human_reference_pending",
+  "termination_rule": "Stop on null next_page_params or after a valid descending page reaches below the declared lower block; cap or any invalid page leaves the stream incomplete",
+  "transport_library_sha256": "sha256:8c32a68b431df3911f6701f221034715ebd54b72edccda22bbbd10c4f138f067",
+  "upstream_operator_independence_verified": false
+}

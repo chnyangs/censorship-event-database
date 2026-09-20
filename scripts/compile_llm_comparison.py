@@ -1,110 +1,142 @@
-"""
-compile_llm_comparison.py — final 4-group comparison for the coverage-prediction
-task on the recent holdout (year >= 2025), with event-level bootstrap 95% CIs.
+"""Score coverage predictors with fixed classes and event-level bootstrap CIs.
 
-Groups: simple baselines (B0 majority / B1 stratum) + 3 LLM configs loaded from
-/tmp/llmpred_<model>_<mode>.json (haiku zeroshot / sonnet zeroshot / sonnet grounded).
+Defaults to current-corpus statistical baselines. New LLM artifacts are included
+only via --predictions and must align by event ID and gold labels. The optional
+--include-legacy view re-scores frozen arrays against THEIR OWN saved labels;
+it cannot establish event identity, current-corpus comparability, or a rerun.
 """
-import glob, json, collections, sys
+import argparse
+import json
+from pathlib import Path
+
 import numpy as np
-import yaml
 
-CUTOFF = int(sys.argv[1]) if len(sys.argv) > 1 else 2025
-
-LAYERS = ["l0_network", "l1_consensus", "l3_rpc", "l4_frontend", "asset_onchain", "offramp_cex"]
-COVER = ["measured", "partially_measured", "not_measured", "not_applicable"]
-NA = "not_applicable"
-rng = np.random.default_rng(20260609)
-
-
-def load():
-    rows = []
-    for f in sorted(glob.glob("events/*.yaml")):
-        d = yaml.safe_load(open(f))
-        if not isinstance(d, dict) or d.get("status") != "admitted":
-            continue
-        trig = d.get("trigger") or {}
-        ts = str(trig.get("timestamp") or "")
-        if not ts[:4].isdigit():
-            continue
-        jur = d.get("jurisdiction") or []
-        jur = [jur] if isinstance(jur, str) else jur
-        cov = {c["layer"]: c.get("status") for c in (d.get("coverage") or []) if isinstance(c, dict)}
-        rows.append({"feat": {"stratum": d.get("research_stratum") or "?"},
-                     "labels": {L: (cov.get(L, NA) if cov.get(L, NA) in COVER else NA) for L in LAYERS},
-                     "year": int(ts[:4])})
-    return rows
-
-
-def macro_f1(gold, pred):
-    f1s = []
-    for c in set(gold) | set(pred):
-        tp = sum(g == c and p == c for g, p in zip(gold, pred))
-        fp = sum(g != c and p == c for g, p in zip(gold, pred))
-        fn = sum(g == c and p != c for g, p in zip(gold, pred))
-        pr = tp / (tp + fp) if tp + fp else 0.0
-        rc = tp / (tp + fn) if tp + fn else 0.0
-        f1s.append(2 * pr * rc / (pr + rc) if pr + rc else 0.0)
-    return float(np.mean(f1s)) if f1s else 0.0
-
-
-def scope_f1(g, p):
-    return macro_f1(["na" if x == NA else "app" for x in g], ["na" if x == NA else "app" for x in p])
-
-
-def cond_quality(g, p):
-    idx = [i for i, x in enumerate(g) if x != NA]
-    return macro_f1([g[i] for i in idx], [p[i] for i in idx]) if idx else float("nan")
+from benchmark_coverage_prediction import (
+    COVER, LAYERS, METRIC_VERSION, REPO, SEED, cond_quality, fit_conditional,
+    fit_majority, macro_f1, scope_f1,
+)
+from llm_baseline_coverage import INVALID, load
 
 
 def metrics(gold, pred, ev_idx):
-    """gold/pred: {layer:[per-event...]}. ev_idx: event indices to include."""
-    f1, sc, cq = [], [], []
-    for L in LAYERS:
-        g = [gold[L][i] for i in ev_idx]
-        p = [pred[L][i] for i in ev_idx]
-        f1.append(macro_f1(g, p)); sc.append(scope_f1(g, p)); cq.append(cond_quality(g, p))
-    return np.mean(f1), np.mean(sc), np.nanmean(cq)
+    """Average per-layer scores, resampling each event jointly across layers."""
+    values = [[], [], []]
+    for layer in LAYERS:
+        g = [gold[layer][i] for i in ev_idx]
+        p = [pred[layer][i] for i in ev_idx]
+        for scores, metric in zip(values, (macro_f1, scope_f1, cond_quality)):
+            scores.append(metric(g, p))
+    return tuple(float(np.mean([v for v in scores if np.isfinite(v)]))
+                 if any(np.isfinite(v) for v in scores) else float("nan")
+                 for scores in values)
 
 
-rows = load()
-train = [r for r in rows if r["year"] < CUTOFF]
-test = [r for r in rows if r["year"] >= CUTOFF]
-n = len(test)
+def validate_snapshot(data):
+    n = data.get("n")
+    if not isinstance(n, int) or n < 1:
+        raise ValueError("artifact must declare a positive n")
+    for key in ("gold", "pred"):
+        if not isinstance(data.get(key), dict) or set(data[key]) != set(LAYERS):
+            raise ValueError(f"{key}: expected all six layers")
+        for layer in LAYERS:
+            values = data[key][layer]
+            if not isinstance(values, list) or len(values) != n:
+                raise ValueError(f"{key}/{layer}: wrong length")
+            allowed = COVER if key == "gold" else [*COVER, INVALID]
+            if any(value not in allowed for value in values):
+                raise ValueError(f"{key}/{layer}: invalid labels")
+    return n
 
-# B0 / B1 predictions on test (fit on train)
-maj = {L: collections.Counter(r["labels"][L] for r in train).most_common(1)[0][0] for L in LAYERS}
-strat_tab = {L: collections.defaultdict(collections.Counter) for L in LAYERS}
-for L in LAYERS:
-    for r in train:
-        strat_tab[L][r["feat"]["stratum"]][r["labels"][L]] += 1
-def b1(s, L):
-    c = strat_tab[L].get(s); return c.most_common(1)[0][0] if c else maj[L]
 
-gold = {L: [r["labels"][L] for r in test] for L in LAYERS}
-methods = {
-    "B0 majority":      {L: [maj[L]] * n for L in LAYERS},
-    "B1 stratum":       {L: [b1(r["feat"]["stratum"], L) for r in test] for L in LAYERS},
-}
-for tag, fn in [("LLM haiku (zero-shot)", "haiku_zeroshot"),
-                ("LLM sonnet (zero-shot)", "sonnet_zeroshot"),
-                ("LLM sonnet (grounded)", "sonnet_grounded")]:
-    try:
-        methods[tag] = json.load(open(f"/tmp/llmpred_{fn}_{CUTOFF}.json"))["pred"]
-    except FileNotFoundError:
-        pass
+def align_current_predictions(data, test):
+    """Reject positional/legacy joins; even ID-aligned gold must be unchanged."""
+    n = validate_snapshot(data)
+    ids = data.get("event_ids")
+    target_ids = [r["event_id"] for r in test]
+    if (not isinstance(ids, list) or len(ids) != n or len(set(ids)) != n
+            or len(set(target_ids)) != len(target_ids) or set(ids) != set(target_ids)):
+        raise ValueError("event IDs missing, duplicated, or different from current holdout")
+    if not data.get("prompt_version"):
+        raise ValueError("prompt provenance missing; use the separate legacy view")
+    index = {event_id: i for i, event_id in enumerate(ids)}
+    for r in test:
+        for layer in LAYERS:
+            if data["gold"][layer][index[r["event_id"]]] != r["labels"][layer]:
+                raise ValueError("saved gold labels differ from current corpus")
+    return {layer: [data["pred"][layer][index[r["event_id"]]] for r in test]
+            for layer in LAYERS}
 
-print(f"Coverage-prediction · recent holdout (trigger year >= {CUTOFF}, n={n}); train(<{CUTOFF})={len(train)}")
-print(f"event-level bootstrap 95% CI (1000 resamples)\n")
-print(f"{'method':24s}{'4cls-F1 [95% CI]':>22s}{'scope-F1 [95% CI]':>22s}{'cond-qual [95% CI]':>22s}")
-allidx = list(range(n))
-for name, pred in methods.items():
-    pt = metrics(gold, pred, allidx)
-    boots = np.array([metrics(gold, pred, list(rng.choice(allidx, n, replace=True))) for _ in range(1000)])
-    lo, hi = np.nanpercentile(boots, 2.5, axis=0), np.nanpercentile(boots, 97.5, axis=0)
-    cells = "".join(f"{f'{pt[k]:.3f} [{lo[k]:.2f},{hi[k]:.2f}]':>22s}" for k in range(3))
-    print(f"{name:24s}{cells}")
 
-print("\nCAVEATS: LLM rows are REFERENCE baselines — (1) gold is LLM-coded so they carry")
-print("shared-process bias; (2) n=42 is small (wide CIs); (3) LLM-prior, not a trained")
-print("temporal learner. CHEAT-baseline honesty check (separate run): 4cls-F1 ~0.05 << B0.")
+def summarize(name, gold, pred, n_boot=1000):
+    n = len(gold[LAYERS[0]])
+    if not n:
+        raise ValueError("empty evaluation set")
+    indices = list(range(n))
+    point = metrics(gold, pred, indices)
+    rng = np.random.default_rng(SEED)
+    boots = np.array([metrics(gold, pred, rng.choice(indices, n, replace=True))
+                      for _ in range(n_boot)])
+    cells = []
+    for k in range(3):
+        finite = boots[np.isfinite(boots[:, k]), k]
+        if n < 2 or len(finite) < 2:
+            cells.append(f"{point[k]:.3f} [CI unavailable]")
+        else:
+            lo, hi = np.percentile(finite, [2.5, 97.5])
+            cells.append(f"{point[k]:.3f} [{lo:.3f}, {hi:.3f}] (B={len(finite)}/{n_boot})")
+    print(f"{name}: n={n}; " + "; ".join(
+        f"{label}={cell}" for label, cell in zip(("4class", "scope", "cond-quality"), cells)))
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("cutoff", type=int, nargs="?", default=2025)
+    parser.add_argument("--predictions", action="append", type=Path, default=[])
+    parser.add_argument("--include-legacy", action="store_true")
+    parser.add_argument("--bootstrap", type=int, default=1000)
+    args = parser.parse_args(argv)
+    if args.bootstrap < 2:
+        parser.error("--bootstrap must be at least 2")
+    rows = load()
+    train = [r for r in rows if r["year"] < args.cutoff]
+    test = [r for r in rows if r["year"] >= args.cutoff]
+    if not train or not test:
+        parser.error("nonempty train and test splits are required")
+    # Shared fitters use (coverage, reaction) pairs; reactions are unused here.
+    fit_rows = [{**r, "labels": {layer: (value, None) for layer, value in r["labels"].items()}}
+                for r in train]
+    gold = {layer: [r["labels"][layer] for r in test] for layer in LAYERS}
+    print(f"Current corpus: train<{args.cutoff} n={len(train)}; test>={args.cutoff} n={len(test)}")
+    print(f"{METRIC_VERSION}; absent classes contribute 0; event bootstrap resamples all six layers together.")
+    for name, fitter in (("B0 majority", fit_majority),
+                         ("B1 stratum", lambda tr: fit_conditional(tr, lambda f: f["stratum"]))):
+        predictor = fitter(fit_rows)
+        pred = {layer: [predictor(r["feat"], layer) for r in test] for layer in LAYERS}
+        summarize(name, gold, pred, args.bootstrap)
+    for path in args.predictions:
+        data = json.loads(path.read_text())
+        if data.get("cutoff") != args.cutoff:
+            parser.error(f"{path}: cutoff differs from requested split")
+        try:
+            pred = align_current_predictions(data, test)
+        except ValueError as exc:
+            parser.error(f"{path}: {exc}")
+        summarize(f"LLM reference {path.name} prompt={data['prompt_version']}", gold, pred, args.bootstrap)
+    if args.include_legacy:
+        print("\nLEGACY FROZEN SNAPSHOTS — independent view, not comparable to current-corpus baselines.")
+        print("Old prompts included corpus conclusions; no event IDs/prompt hashes; no LLM rerun occurred.")
+        suffix = f"_{args.cutoff}" if args.cutoff != 2025 else ""
+        for path in sorted((REPO / "analysis/benchmark").glob(f"llmpred_*{suffix}.json")):
+            if args.cutoff == 2025 and path.stem.endswith("_2023"):
+                continue
+            data = json.loads(path.read_text())
+            validate_snapshot(data)
+            summarize(f"LEGACY {path.name}", data["gold"], data["pred"], args.bootstrap)
+    else:
+        print("Frozen legacy LLM outputs excluded; --include-legacy re-scores their saved labels separately.")
+    print("All scores are corpus-label prediction diagnostics, not independent validity or censorship estimates.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

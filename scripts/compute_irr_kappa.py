@@ -89,22 +89,26 @@ def _join_blind_key(blind: list[dict], key: list[dict]) -> list[tuple[str, str, 
     return pairs
 
 
-def _fleiss_kappa(per_row_votes: list[list[str]]) -> dict:
+def _fleiss_kappa(per_row_votes: list[list[str]], event_ids: list[str] | None = None) -> dict:
     """Fleiss' κ across n_raters on each row.
 
     `per_row_votes[i]` = list of labels the n_raters assigned to row i.
     Rows where any rater produced an empty string are dropped from the
     coded set. Returns kappa + observed/expected agreement + label set.
     """
-    coded = [v for v in per_row_votes if all(x and x.strip() for x in v)]
+    if event_ids is not None and len(event_ids) != len(per_row_votes):
+        raise ValueError("event_ids and votes differ in length")
+    indices = [i for i, v in enumerate(per_row_votes) if v and all(x and x.strip() for x in v)]
+    coded = [per_row_votes[i] for i in indices]
+    clusters = [event_ids[i] for i in indices] if event_ids is not None else None
     if not coded:
         return {"fleiss_kappa": None, "p_bar": None, "pe_bar": None,
                 "n_coded_rows": 0, "n_total_rows": len(per_row_votes),
                 "n_raters": (len(per_row_votes[0]) if per_row_votes else 0),
                 "reason": "no fully-coded rows"}
     n_raters = len(coded[0])
-    if any(len(v) != n_raters for v in coded):
-        return {"fleiss_kappa": None, "reason": "inconsistent rater counts",
+    if n_raters < 2 or any(len(v) != n_raters for v in coded):
+        return {"fleiss_kappa": None, "reason": "at least two consistent raters required",
                 "n_coded_rows": len(coded), "n_total_rows": len(per_row_votes)}
     labels = sorted({label for row in coded for label in row})
     n_rows = len(coded)
@@ -130,19 +134,18 @@ def _fleiss_kappa(per_row_votes: list[list[str]]) -> dict:
         p_i_values.append(p_i)
     p_bar = sum(p_i_values) / n_rows
     pe_bar = sum(v * v for v in p_j.values())
-    if pe_bar >= 1.0:
-        fleiss_kappa = 1.0
-    else:
-        fleiss_kappa = (p_bar - pe_bar) / (1 - pe_bar)
+    fleiss_kappa = fleiss_kappa_value(coded)
     return {
-        "fleiss_kappa": round(fleiss_kappa, 4),
+        "fleiss_kappa": round(fleiss_kappa, 4) if fleiss_kappa is not None else None,
+        "reason": "expected agreement is one; kappa undefined" if fleiss_kappa is None else None,
         "p_bar": round(p_bar, 4),
         "pe_bar": round(pe_bar, 4),
         "n_coded_rows": n_rows,
         "n_total_rows": len(per_row_votes),
         "n_raters": n_raters,
         "label_set": labels,
-        "kappa_ci": bootstrap_ci(coded, fleiss_kappa_value),
+        "n_events": len(set(clusters)) if clusters is not None else None,
+        "kappa_ci": bootstrap_ci(coded, fleiss_kappa_value, cluster_ids=clusters),
     }
 
 
@@ -191,7 +194,9 @@ def _majority_vote(agent_csvs: list[list[dict]]) -> dict[str, tuple[str, list[st
 
 
 def _cohens_kappa(pairs: list[tuple[str, str, str, str]]) -> dict:
-    coded = [(a, b) for _, _, a, b in pairs if a and b]
+    complete = [(event, a, b) for event, _, a, b in pairs if a and b]
+    coded = [(a, b) for _, a, b in complete]
+    clusters = [event for event, _, _ in complete] if all(event for event, _, _ in complete) else None
     if not coded:
         return {"kappa": None, "agreement": None, "n_coded": 0,
                 "n_total": len(pairs),
@@ -209,12 +214,10 @@ def _cohens_kappa(pairs: list[tuple[str, str, str, str]]) -> dict:
     marg_b = {b: sum(conf[a][b] for a in labels) / n for b in labels}
     po = sum(conf[x][x] for x in labels) / n
     pe = sum(marg_a[x] * marg_b[x] for x in labels)
-    if pe >= 1.0:
-        kappa = 1.0
-    else:
-        kappa = (po - pe) / (1 - pe)
+    kappa = cohen_kappa_value(coded)
     return {
-        "kappa": round(kappa, 4),
+        "kappa": round(kappa, 4) if kappa is not None else None,
+        "reason": "expected agreement is one; kappa undefined" if kappa is None else None,
         "observed_agreement": round(po, 4),
         "expected_agreement": round(pe, 4),
         "agreement": round(po, 4),  # alias for readability
@@ -222,7 +225,8 @@ def _cohens_kappa(pairs: list[tuple[str, str, str, str]]) -> dict:
         "n_total": len(pairs),
         "confusion": conf,
         "label_set": labels,
-        "kappa_ci": bootstrap_ci(coded, cohen_kappa_value),
+        "n_events": len(set(clusters)) if clusters is not None else None,
+        "kappa_ci": bootstrap_ci(coded, cohen_kappa_value, cluster_ids=clusters),
     }
 
 
@@ -335,14 +339,18 @@ def main() -> int:
         agent_csvs = _load_agent_csvs(base, var)
         agent_fleiss: dict | None = None
         if agent_csvs and len(agent_csvs) >= 2:
-            agent_fleiss = _fleiss_kappa([
-                [(r.get("recode_value") or "").strip()
-                 for r in agent_rows]
-                for agent_rows in zip(*[list(c) for c in
-                                        # align by row_id
-                                        [sorted(c, key=lambda r: int(r["row_id"]))
-                                         for c in agent_csvs]])
-            ])
+            agents = [{r["row_id"]: r for r in rows} for rows in agent_csvs]
+            if any(len(a) != len(rows) for a, rows in zip(agents, agent_csvs)):
+                raise ValueError("duplicate row_id in agent worksheet")
+            row_ids = sorted(agents[0])
+            if any(set(a) != set(row_ids) for a in agents):
+                raise ValueError("agent row_id sets differ; cannot silently truncate votes")
+            event_by_row = {r["row_id"]: r["event_id"]
+                            for r in _load_csv(base / f"{var}_key.csv")}
+            agent_fleiss = _fleiss_kappa(
+                [[(a[rid].get("recode_value") or "").strip() for a in agents]
+                 for rid in row_ids],
+                [event_by_row[rid] for rid in row_ids])
             # majority-vote → master blind CSV
             master_path = base / f"{var}_blind.csv"
             master_rows = _load_csv(master_path)
@@ -393,11 +401,15 @@ def main() -> int:
             f"- observed agreement p_o = {res['observed_agreement']}",
             f"- expected agreement p_e = {res['expected_agreement']}",
             f"- Cohen's κ = **{res['kappa']}** ({_interpret(res['kappa'])})",
-            (f"- 95% CI (bootstrap, B={res['kappa_ci']['n_boot']}): "
+            f"- Undefined-statistic reason: {res.get('reason') or 'not applicable'}",
+            (f"- 95% CI ({res['kappa_ci']['resampling_unit']}-cluster bootstrap, "
+             f"units={res['kappa_ci']['n_units']}, "
+             f"defined B={res['kappa_ci']['n_boot']}/{res['kappa_ci']['n_boot_requested']}): "
              f"**[{res['kappa_ci']['ci_low']}, {res['kappa_ci']['ci_high']}]**, "
-             f"SE = {res['kappa_ci']['se']}"
+             f"SE = {res['kappa_ci']['se']}; undefined resamples="
+             f"{res['kappa_ci']['n_boot_undefined']}"
              if res.get("kappa_ci")
-             else "- 95% CI: — (coded-n too small for a bootstrap interval)"),
+             else "- 95% CI: — (undefined statistic or insufficient independent units/resamples)"),
             "",
             "### Confusion matrix",
             "",
@@ -414,14 +426,16 @@ def main() -> int:
         "Koch scale.",
         "",
         "**Read κ with its CI, not as a point.** Each κ above carries a "
-        "seeded nonparametric bootstrap 95% CI (B=2000 resamples of the "
-        "coded cells). On the small coded-n of this subset those intervals "
+        "seeded nonparametric bootstrap 95% CI (B=2000, resampling whole "
+        "events when event IDs are available). On small event samples the intervals "
         "are wide, so a point estimate near the 0.6 paper-readiness gate "
         "is not a clean pass/fail: a variable whose CI straddles 0.6 has "
-        "not been shown to clear it. Perfect-agreement variables yield a "
-        "degenerate [1.0, 1.0] interval (every resample agrees), which is "
-        "honest but reflects the easy variables, not the contested ones. "
-        "Any published κ must be cited with its CI and coded-n.",
+        "not been shown to clear it. If expected agreement is one, κ is "
+        "undefined even when observed agreement is 100%. Undefined bootstrap "
+        "resamples are counted and excluded; an interval is conditional on "
+        "the remaining defined resamples. A [1, 1] interval on multi-label "
+        "perfect agreement does not establish population-wide reliability. "
+        "Report κ with its CI, number of events/cells, and undefined-resample count.",
         "",
         "**What this κ does and does not establish — read before "
         "citing.** Under the Landis & Koch scale, κ ≥ 0.8 is labeled "
@@ -439,8 +453,8 @@ def main() -> int:
         "  model family / training distribution as a likely "
         "  author-assist substrate, and the gold and recode share "
         "  systematic biases. Cite as `self-consistency, single-coder "
-        "  LLM-assisted recode` and treat the κ floor as a *lower bound* "
-        "  on consistency, not a reliability estimate.",
+        "  LLM-assisted recode`; this is not an independent-human "
+        "  reliability estimate or a statistical lower bound on validity.",
         "- `llm_assisted_consensus_3x`: same caveat, with three blind "
         "  LLM agents majority-voted into the master recode and Fleiss' "
         "  κ reported across agents. Cite as consensus self-consistency, "

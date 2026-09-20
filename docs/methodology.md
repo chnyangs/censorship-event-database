@@ -1,3 +1,11 @@
+> **Two-arm revision (2026-09-20):** This file documents the legacy collection
+> procedure, not proof that each record meets the intended semantics.
+> The [active validation protocol](two-arm-validation-protocol.md) now separates
+> applicability, queried coverage, action stage, and evidence support.
+> Source hashes alone do not validate scoped negatives; absent evidence is not
+> inapplicability. Corpus-wide adjudication and migration are pending.
+> See [the execution plan](two-arm-execution-plan.md).
+
 # Methodology — Cross-Layer Censorship Event Study Database
 
 This document specifies **exactly how** an event enters the dataset: what we treat as a trigger, how we reconstruct the cascade per layer, how we verify, how we archive, and how lightweight watcher jobs support both historical backfill and new-event capture. This is the reproducibility contract for the dataset and the methodology appendix for the eventual paper.
@@ -272,21 +280,23 @@ Every procedure below is a recipe: input = trigger + target + time window, outpu
 
 **Primary instruments**: Censored Planet BigQuery (weekly snapshots since 2018), OONI public API (volunteer probes).
 
-**v0.1 execution note**: the committed denominator audit is OONI-only.
-`derived/l0_coverage_summary.*` summarizes archived OONI query cells and
-currently finds no measurement rows for the queried event/domain windows.
-Censored Planet ingestion remains a v0.2 expansion task; until it lands, the
-paper may report only an OONI denominator gap, not a completed CP + OONI
-cross-check.
+**Execution scope**: the legacy v0.1 audit in
+`derived/l0_coverage_summary.*` returned no rows for its 23 archived OONI query
+cells. The later [bounded follow-up](../analysis/evidence_repairs/l0_ooni_raw_recovery/README.md)
+completed 624 country/day/domain metadata queries and recovered all nine
+selected Ethiopian raw records through the official POST archive. All nine
+share AS24757; Thailand returned zero metadata rows. Raw identity validation
+does not establish blocking, and human raw/control interpretation remains
+pending. Censored Planet ingestion remains unexecuted: neither campaign is a
+completed CP + OONI cross-check. The new sidecars do not alter canonical event
+labels or create a population denominator.
 
 Procedure:
 
 1. Resolve target to a set of **crypto-relevant domains**: official site, RPC endpoints, block explorer, mixer UI, wallet app backend, CDN endpoints listed in frontend `<script>` tags.
 2. Query Censored Planet for each domain × jurisdiction × (window start .. window end). Extract reachability state transitions. At v0.1 this step is specified but not yet ingested into committed derived artifacts.
-3. Cross-check with OONI `web_connectivity` measurements from the same jurisdiction. At v0.1 the OONI query artifact is the only committed L0 denominator audit.
-4. First decide whether there is an **observed reachability change**. That requires either:
-   - both CP and OONI showing a transition within ±24h, or
-   - one primary-legal source (e.g. ISP notice, government directive) documenting the block.
+3. Cross-check with OONI `web_connectivity` measurements from the same jurisdiction. Preserve every returned row, including non-anomalous rows, and inspect raw test/control results before interpretation.
+4. First decide whether there is an **observed reachability change** from scoped technical observations and reviewed controls. Agreement between CP and OONI can strengthen a transition claim where both have coverage. A primary legal or operator notice supports a mandate, announcement or stated effective time; by itself it does not establish technical execution or supply a measurement denominator.
 5. Then decide attribution:
    - `direct` if a legal / operator source names the target or order explicitly,
    - `plausible` if the transition starts inside the observation window, matches the target domain set, and no broader outage signal appears in IODA / Cloudflare Radar,

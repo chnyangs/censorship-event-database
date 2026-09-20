@@ -1,0 +1,108 @@
+python3 scripts/prepare_validation_cohort.py
+python3 scripts/sync_snapshot_descriptors.py
+python3 scripts/audit_measurement_semantics.py --out-dir "analysis/measurement_audit"
+mkdir -p "analysis/benchmark/"
+python3 scripts/benchmark_coverage_prediction.py > "analysis/benchmark/coverage_prediction.txt.tmp"
+{
+  "adjudicated_actions": 0,
+  "cached_pages_in_window": 46,
+  "cached_pages_outside_window": 28,
+  "calendar_days": 1461,
+  "candidate_page_address_pairs": 261,
+  "date_review_required_pages": 0,
+  "distinct_candidate_hex_strings": 124,
+  "extraction_limit": "Visible-text 0x plus 40 hex characters only; chain, target, action type, eligibility and completeness require adjudication. Empty extraction is not an exclusion decision.",
+  "frame_completeness": "not_assessed",
+  "human_gold_available": false,
+  "network_requests": 0,
+  "outcome_queries_executed": 0,
+  "pages_with_candidate_hex_strings": 11,
+  "procedure_version": "1.0.0",
+  "source_input_hash": "sha256:93412e40de4f25407d92f69a582226cebac007c796f3cb371cac5cf99718a2ef",
+  "status": "local_preflight_only_outcome_study_not_executed",
+  "unassessed_no_cache_days": 1415,
+  "window_end": "2025-12-31",
+  "window_start": "2022-01-01"
+}
+Snapshot descriptors already synchronized
+python3 scripts/build_dataset.py --json-out dataset.json --csv-out dataset.csv --meta-out dataset.meta.json
+{
+  "out_dir": "analysis/measurement_audit",
+  "admitted": {
+    "events": 398,
+    "expected_layer_cells": 2388,
+    "recorded_layer_cells": 2388,
+    "layer_status_counts": {
+      "measured": 346,
+      "not_applicable": 1831,
+      "not_measured": 116,
+      "partially_measured": 95
+    },
+    "observation_kind_counts": {
+      "observed_change": 342,
+      "observed_no_change": 118
+    },
+    "null_events": 107,
+    "null_events_with_trigger_source_overlap": 103,
+    "no_change_rows_with_trigger_source_overlap": 108,
+    "no_change_overlap_by_layer": {
+      "asset_onchain": 2,
+      "l1_consensus": 1,
+      "l3_rpc": 1,
+      "l4_frontend": 4,
+      "offramp_cex": 100
+    },
+    "changed_rows_with_trigger_source_overlap": 292,
+    "changed_events_with_trigger_source_overlap": 263,
+    "na_missing_evidence_note_flags": 102,
+    "na_flagged_events": 94
+  }
+}
+mkdir -p "../6a1d66df502cdc827ad0999d"
+cp "analysis/measurement_audit/paper_numbers.tex" "../6a1d66df502cdc827ad0999d/measurement_audit_numbers.tex"
+Wrote 420 events to dataset.json and dataset.csv
+Wrote metadata to dataset.meta.json (version=0.2.0-rc-dryrun-11, cutoff=2026-06-08, commit=dea3924)
+python3 scripts/build_event_metrics.py --out-dir derived
+python3 scripts/build_action_registry.py --out-dir derived
+python3 scripts/build_layer_observability.py --out-dir derived
+[build_layer_observability] wrote 6 rows (one per layer) to layer_observability.csv + layer_observability.json + layer_observability.meta.json (dataset v0.2.0-rc-dryrun-11 cutoff 2026-06-08)
+python3 scripts/assign_archetypes.py --out-dir derived
+[build_event_metrics] wrote 398 rows to event_metrics.csv + event_metrics.json + event_metrics.meta.json (dataset v0.2.0-rc-dryrun-11 cutoff 2026-06-08)
+python3 scripts/build_coverage_matrix.py --out-dir derived
+[build_action_registry] wrote action_registry.csv + action_registry.json + action_registry.md + action_registry.meta.json
+python3 scripts/build_l0_coverage_summary.py --out-dir derived
+mv "analysis/benchmark/coverage_prediction.txt.tmp" "analysis/benchmark/coverage_prediction.txt"
+python3 scripts/build_l3_provider_census.py --out-dir derived
+[l3-provider-census] wrote 12 rows to derived/
+python3 scripts/build_admission_sensitivity.py --out-dir derived
+[assign_archetypes] wrote 398 rows to event_archetypes.csv + event_archetypes.json + archetype_distribution.md + event_archetypes.meta.json
+            asset_only: 21
+         frontend_only: 46
+              cex_only: 184
+           multi_layer: 29
+    other_single_layer: 11
+            null_event: 107
+python3 scripts/build_jurisdiction_distribution.py --out-dir derived
+[build_coverage_matrix] wrote 2520 event-layer rows to derived/
+[admission-sensitivity] wrote derived/admission_sensitivity.{csv,md,meta.json}
+[build_l0_coverage_summary] wrote 26 rows to derived
+[jurisdiction] wrote derived/jurisdiction_distribution.{csv,md} and /home/k1y9/project/github.chnyangs/TODOs/7-Censorship-Event-Dataset/censorship-event-database/analysis/paper_tables/table7_jurisdiction_distribution.md
+[derived] all derived artifacts rebuilt under derived/
+python3 scripts/build_paper_tables.py
+python3 scripts/build_paper_macros.py --out "../6a1d66df502cdc827ad0999d/paper_numbers.tex"
+python3 scripts/build_paper_figures.py --out "../6a1d66df502cdc827ad0999d/figs"
+/home/k1y9/.local/lib/python3.12/site-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[macros] wrote ../6a1d66df502cdc827ad0999d/paper_numbers.tex (97 macros)
+[build_paper_tables] wrote core tables + index to analysis/paper_tables/ (dataset v0.2.0-rc-dryrun-11 cutoff 2026-06-08)
+Wrote fig1_tornado_fanout.pdf
+Wrote fig2_corpus_composition.pdf
+Wrote fig3_visibility_gradient.pdf
+Wrote fig4_collection_density.pdf
+Wrote fig5_jurisdiction_concentration.pdf
+
+All figures written to: ../6a1d66df502cdc827ad0999d/figs
+  fig2_corpus_composition.pdf   — archetype + stratum stacked bars
+  fig3_visibility_gradient.pdf  — provisional coded-change fractions
+  fig4_collection_density.pdf   — collection density by year (NOT phenomenon density)
+  fig5_jurisdiction_concentration.pdf — jurisdiction top-15 (evidence-frame framing)

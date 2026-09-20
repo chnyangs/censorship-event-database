@@ -1,6 +1,5 @@
 """
-benchmark_coverage_prediction.py — a first, runnable version of the
-"coverage-prediction" benchmark task proposed by the storyline panel (Q3).
+Exploratory coverage-label prediction diagnostics for the curated corpus.
 
 TASK (denominator-honest, two-stage):
   Input  : a trigger descriptor  (stratum, trigger_type, US-touch, target_kind, year)
@@ -9,24 +8,23 @@ TASK (denominator-honest, two-stage):
            then, ONLY on layers predicted measured/partial, a binary REACTION
            prediction (observed_change vs observed_no_change).
 
-WHY THIS SHAPE: it mirrors the paper's D4 denominator rule. Reaction is scored
-only where coverage is measured/partial -- a model is never rewarded (or asked)
-to fabricate a reaction on an observability gap. Mispredicting a true gap/NA
-layer as `measured` is penalised by the coverage-state macro-F1, which is the
-benchmark's central honesty property.
+Scores describe predictions of curated corpus labels, not independently
+measured enforcement or the missingness mechanism. Reaction scores use the
+same gold measured/partial cells: oracle-coverage scores ignore the predicted
+coverage, whereas end-to-end scores count a predicted coverage gap as an
+abstention/error. Coverage errors are additionally scored over every layer.
 
-EVALUATION: rolling-origin temporal CV (no future leak). For each test year T,
+EVALUATION: rolling-origin chronological CV. For each test year T,
 train ONLY on events with trigger year < T; predict events in year T; pool the
-(gold, pred) pairs across all test years 2017..2026 and report per-layer macro-F1
-with bootstrap 95% CIs. The single-2026-holdout (train<=2025) is reported
-separately and is currently N=1 (blocked on draft admission).
+(gold, pred) pairs across test years from 2017 and report per-layer macro-F1
+with bootstrap 95% CIs. Chronological rows do not prove that retrospectively
+curated descriptors are free from hindsight or other feature leakage.
 
 Baselines (honest, immediately reproducible):
   B0 majority         : per-layer global modal coverage state (training split)
   B1 stratum_mode     : per-layer modal coverage state | stratum
   B2 stratum+trigger  : per-layer modal coverage state | (stratum, trigger_type)
-  CHEAT always-measured: predicts measured+change everywhere -- included ONLY to
-                         demonstrate the scoring penalises gap-fabrication.
+  Always measured     : diagnostic that predicts measured coverage everywhere.
 
 Run:  python scripts/benchmark_coverage_prediction.py
 """
@@ -43,8 +41,11 @@ EVENTS = REPO / "events"
 LAYERS = ["l0_network", "l1_consensus", "l3_rpc", "l4_frontend",
           "asset_onchain", "offramp_cex"]
 COVER = ["measured", "partially_measured", "not_measured", "not_applicable"]
+REACTION = ["observed_change", "observed_no_change"]
+OBSERVED = {"measured", "partially_measured"}
+ABSTAIN = "__abstain__"
+METRIC_VERSION = "fixed_classes_v2"
 SEED = 20260609
-rng = np.random.default_rng(SEED)
 
 
 # --------------------------------------------------------------------------
@@ -78,15 +79,16 @@ def load():
         }
         labels = {}
         for L in LAYERS:
-            cs = cov.get(L, "not_applicable")
+            cs = cov.get(L)
             if cs not in COVER:
-                cs = "not_applicable"
+                raise ValueError(f"{f}: missing or invalid coverage state for {L}: {cs!r}")
             r = react.get(L, set())
             reaction = ("observed_change" if "observed_change" in r
                         else ("observed_no_change" if "observed_no_change" in r
                               else None))
             labels[L] = (cs, reaction)
-        rows.append({"feat": feat, "labels": labels, "year": year})
+        rows.append({"event_id": d.get("id") or Path(f).stem,
+                     "feat": feat, "labels": labels, "year": year})
     return rows
 
 
@@ -140,8 +142,20 @@ def fit_reaction(train, keyfn):
 # --------------------------------------------------------------------------
 # 3. Metrics
 # --------------------------------------------------------------------------
-def macro_f1(gold, pred):
-    classes = set(gold) | set(pred)
+def macro_f1(gold, pred, classes=COVER):
+    """Fixed-class macro F1; an absent class contributes zero (zero_division=0).
+
+    A prediction outside ``classes`` (e.g. abstention) is an error for its gold
+    class, never an extra class that changes the averaging denominator.
+    """
+    if len(gold) != len(pred):
+        raise ValueError("gold/prediction lengths differ")
+    if len(gold) == 0:
+        return float("nan")
+    if not classes or len(set(classes)) != len(classes):
+        raise ValueError("classes must be a nonempty fixed set")
+    if any(g not in classes for g in gold):
+        raise ValueError("gold label outside the fixed class set")
     f1s = []
     for c in classes:
         tp = sum(g == c and p == c for g, p in zip(gold, pred))
@@ -153,33 +167,34 @@ def macro_f1(gold, pred):
     return float(np.mean(f1s)) if f1s else 0.0
 
 
-# The 4-class macro-F1 above conflates two questions and is dragged down by rare
-# classes (partially_measured / not_measured have few examples on L0/L1/L3). We
-# therefore also report two interpretable sub-metrics that decompose the task:
+# Two additional metrics separate the recorded scope from coverage quality:
 #   SCOPE-F1  : binary "is this layer in scope for the trigger" (applicable vs
-#               not_applicable) -- the predictable part (stratum -> touched layers).
+#               not_applicable).
 #   COND-QUAL : among gold-applicable layers only, 3-class macro-F1 over the
 #               coverage quality {measured, partially_measured, not_measured} --
-#               the genuinely hard, discriminative part. NA is excluded from gold
+#               coverage quality. NA is excluded from gold
 #               but a model that predicts NA on an applicable layer is still wrong.
 def scope_f1(gold, pred):
     gs = ["na" if g == "not_applicable" else "app" for g in gold]
-    ps = ["na" if p == "not_applicable" else "app" for p in pred]
-    return macro_f1(gs, ps)
+    ps = [("na" if p == "not_applicable" else "app") if p in COVER else "__invalid__"
+          for p in pred]
+    return macro_f1(gs, ps, classes=("na", "app"))
 
 
 def cond_quality(gold, pred):
     idx = [i for i, g in enumerate(gold) if g != "not_applicable"]
     if not idx:
         return float("nan")
-    return macro_f1([gold[i] for i in idx], [pred[i] for i in idx])
+    return macro_f1([gold[i] for i in idx], [pred[i] for i in idx],
+                    classes=COVER[:3])
 
 
-def boot_ci(gold, pred, n=1000):
+def boot_ci(gold, pred, n=1000, seed=SEED):
     gold, pred = np.array(gold), np.array(pred)
     if len(gold) < 3:
         return (float("nan"), float("nan"))
     vals = []
+    rng = np.random.default_rng(seed)
     idx = np.arange(len(gold))
     for _ in range(n):
         s = rng.choice(idx, len(idx), replace=True)
@@ -194,7 +209,7 @@ def rolling_eval(rows, fit_fn, react_fn=None):
     """Return pooled per-layer (gold,pred) over test years; no future leak."""
     years = sorted({r["year"] for r in rows})
     pool = {L: ([], []) for L in LAYERS}       # coverage gold/pred
-    rpool = {L: ([], []) for L in LAYERS}       # reaction gold/pred (gold meas/part only)
+    rpool = {L: {"gold": [], "oracle": [], "end_to_end": []} for L in LAYERS}
     for T in years:
         if T < 2017:
             continue
@@ -208,16 +223,19 @@ def rolling_eval(rows, fit_fn, react_fn=None):
             for L in LAYERS:
                 g_cs, g_rk = r["labels"][L]
                 pool[L][0].append(g_cs)
-                pool[L][1].append(cov_pred(r["feat"], L))
-                if g_cs in ("measured", "partially_measured") and g_rk and rcv_pred:
-                    rpool[L][0].append(g_rk)
-                    rpool[L][1].append(rcv_pred(r["feat"], L))
+                p_cs = cov_pred(r["feat"], L)
+                pool[L][1].append(p_cs)
+                if g_cs in OBSERVED and g_rk and rcv_pred:
+                    p_rk = rcv_pred(r["feat"], L)
+                    rpool[L]["gold"].append(g_rk)
+                    rpool[L]["oracle"].append(p_rk)
+                    rpool[L]["end_to_end"].append(p_rk if p_cs in OBSERVED else ABSTAIN)
     return pool, rpool
 
 
 def report(name, pool, rpool=None):
     print(f"\n### {name} — rolling-origin temporal CV (test years 2017+, pooled)")
-    print(f"{'layer':16s}{'4cls-F1':>9s}{'scope-F1':>10s}{'cond-qual':>11s}{'n_test':>8s}")
+    print(f"{'layer':16s}{'4cls-F1':>9s}{'scope-F1':>10s}{'cond-qual':>11s}{'n_test':>8s}  coverage F1 95% CI")
     f1_all, sc_all, cq_all = [], [], []
     for L in LAYERS:
         g, p = pool[L]
@@ -229,73 +247,49 @@ def report(name, pool, rpool=None):
         if not np.isnan(cq):
             cq_all.append(cq)
         cq_str = f"{cq:.3f}" if not np.isnan(cq) else "  n/a"
-        print(f"{L:16s}{f1:>9.3f}{sc:>10.3f}{cq_str:>11s}{len(g):>8d}")
+        lo, hi = boot_ci(g, p)
+        print(f"{L:16s}{f1:>9.3f}{sc:>10.3f}{cq_str:>11s}{len(g):>8d}  [{lo:.3f}, {hi:.3f}]")
+        print("  gold support:", {c: g.count(c) for c in COVER})
     print(f"{'MEAN':16s}{np.mean(f1_all):>9.3f}{np.mean(sc_all):>10.3f}{np.mean(cq_all):>11.3f}")
     if rpool:
-        print("  conditional reaction accuracy (gold measured/partial layers only):")
+        print("  Reaction on identical gold measured/partial cells: oracle vs coverage-gated end-to-end")
         for L in LAYERS:
-            g, p = rpool[L]
+            g = rpool[L]["gold"]
             if g:
-                acc = np.mean([a == b for a, b in zip(g, p)])
-                print(f"    {L:16s} acc={acc:.3f}  (n={len(g)})")
+                for mode in ("oracle", "end_to_end"):
+                    p = rpool[L][mode]
+                    acc = np.mean([a == b for a, b in zip(g, p)])
+                    f1 = macro_f1(g, p, classes=REACTION)
+                    print(f"    {L:16s} {mode:12s} acc={acc:.3f} F1={f1:.3f} "
+                          f"n={len(g)} abstentions={p.count(ABSTAIN)}")
     return {"f1": float(np.mean(f1_all)),
             "scope": float(np.mean(sc_all)),
             "cond": float(np.mean(cq_all))}
 
 
-# --------------------------------------------------------------------------
-# main
-# --------------------------------------------------------------------------
-rows = load()
-print(f"Admitted events with a trigger year: {len(rows)}")
-yc = collections.Counter(r["year"] for r in rows)
-print("test-fold sizes (events per year):",
-      {y: yc[y] for y in sorted(yc) if y >= 2017})
+def main():
+    rows = load()
+    print(f"Admitted events with a trigger year: {len(rows)}")
+    print(f"Metric version: {METRIC_VERSION}; absent fixed classes contribute zero.")
+    print("Scores use curated corpus labels, not independent enforcement ground truth.")
+    print("Coverage CI resamples events within each layer; events are distinct rows.")
+    yc = collections.Counter(r["year"] for r in rows)
+    print("Test events per year:", {y: yc[y] for y in sorted(yc) if y >= 2017})
+    baselines = [
+        ("B0 majority", fit_majority, lambda tr: fit_reaction(tr, lambda f: None)),
+        ("B1 stratum", lambda tr: fit_conditional(tr, lambda f: f["stratum"]),
+         lambda tr: fit_reaction(tr, lambda f: f["stratum"])),
+        ("B2 stratum+trigger",
+         lambda tr: fit_conditional(tr, lambda f: (f["stratum"], f["trigger_type"])),
+         lambda tr: fit_reaction(tr, lambda f: (f["stratum"], f["trigger_type"]))),
+        ("Always measured", lambda tr: lambda feat, layer: "measured", None),
+    ]
+    for name, fit_fn, react_fn in baselines:
+        report(name, *rolling_eval(rows, fit_fn, react_fn))
+    print("Reaction metrics are undefined on unmeasured cells; no labels are imputed there.")
+    print("This benchmark predicts corpus coding/coverage choices; it does not validate those choices.")
+    return 0
 
-# coverage-state base distribution per layer (why some layers are 'easy')
-print("\ncoverage-state distribution per layer (admitted):")
-for L in LAYERS:
-    c = collections.Counter(r["labels"][L][0] for r in rows)
-    print(f"  {L:16s}", {k: c[k] for k in COVER if c[k]})
 
-results = {}
-results["B0 majority"] = report(
-    "B0 majority", *rolling_eval(rows, fit_majority,
-                                 lambda tr: fit_reaction(tr, lambda f: f["stratum"])))
-results["B1 stratum_mode"] = report(
-    "B1 stratum_mode",
-    *rolling_eval(rows, lambda tr: fit_conditional(tr, lambda f: f["stratum"]),
-                  lambda tr: fit_reaction(tr, lambda f: f["stratum"])))
-results["B2 stratum+trigger"] = report(
-    "B2 stratum+trigger",
-    *rolling_eval(rows,
-                  lambda tr: fit_conditional(tr, lambda f: (f["stratum"], f["trigger_type"])),
-                  lambda tr: fit_reaction(tr, lambda f: (f["stratum"], f["trigger_type"]))))
-
-# CHEAT baseline: always predict 'measured' (the gap-fabrication failure mode)
-def fit_cheat(train):
-    return lambda feat, L: "measured"
-results["CHEAT always-measured"] = report(
-    "CHEAT always-measured (should LOSE to honest baselines)",
-    rolling_eval(rows, fit_cheat)[0])
-
-print("\n" + "=" * 64)
-print("SUMMARY — mean per-layer scores (higher = better):")
-print(f"  {'baseline':26s}{'4cls-F1':>9s}{'scope-F1':>10s}{'cond-qual':>11s}")
-for k, v in results.items():
-    print(f"  {k:26s}{v['f1']:>9.3f}{v['scope']:>10.3f}{v['cond']:>11.3f}")
-print("\nReading:")
-print("  scope-F1  (is-layer-in-scope): the predictable part; conditioning on")
-print("            stratum (B1/B2) lifts it over majority (B0).")
-print("  cond-qual (coverage quality | in-scope): the OPEN part. Simple baselines")
-print("            collapse to the modal 'not_applicable' and score ~0 on most")
-print("            layers (only off-ramp is non-trivial) -> large headroom.")
-print("  honesty   : CHEAT (fabricate 'measured' everywhere) must LOSE to B0 on")
-print("            4cls-F1 -- it does, by ~5x -- proving gap-fabrication is penalised.")
-print("  signal    : B1/B2 (stratum-conditioned) beat B0 on scope-F1 and 4cls-F1.")
-
-# single-2026 holdout (headline demo; currently thin)
-test26 = [r for r in rows if r["year"] == 2026]
-print(f"\n2026 holdout (train<=2025): test N = {len(test26)} "
-      f"-> illustrative only at this size (grows as 2026 draft holds clear); "
-      f"the rolling-origin CV above is the primary evaluation.")
+if __name__ == "__main__":
+    raise SystemExit(main())

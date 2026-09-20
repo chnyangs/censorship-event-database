@@ -13,13 +13,14 @@ the kappa report does not churn the artifact.
 from __future__ import annotations
 
 import random
+import math
 
 N_BOOT = 2000
 SEED = 20260602
 
 
 def cohen_kappa_value(coded: list[tuple[str, str]]) -> float | None:
-    """Cohen's kappa from ``(a, b)`` coded pairs; ``None`` if no coded cells."""
+    """Cohen's kappa; undefined when empty or expected agreement is one."""
     if not coded:
         return None
     labels = sorted({a for a, _ in coded} | {b for _, b in coded})
@@ -31,7 +32,7 @@ def cohen_kappa_value(coded: list[tuple[str, str]]) -> float | None:
     marg_a = {a: sum(conf[a].values()) / n for a in labels}
     marg_b = {b: sum(conf[a][b] for a in labels) / n for b in labels}
     pe = sum(marg_a[x] * marg_b[x] for x in labels)
-    return 1.0 if pe >= 1.0 else (po - pe) / (1.0 - pe)
+    return None if pe >= 1.0 else (po - pe) / (1.0 - pe)
 
 
 def fleiss_kappa_value(rows: list[list[str]]) -> float | None:
@@ -59,27 +60,42 @@ def fleiss_kappa_value(rows: list[list[str]]) -> float | None:
         p_i.append((s - n_raters) / (n_raters * (n_raters - 1)))
     p_bar = sum(p_i) / n_rows
     pe_bar = sum(v * v for v in p_j.values())
-    return 1.0 if pe_bar >= 1.0 else (p_bar - pe_bar) / (1.0 - pe_bar)
+    return None if pe_bar >= 1.0 else (p_bar - pe_bar) / (1.0 - pe_bar)
 
 
 def bootstrap_ci(items: list, stat_fn, n_boot: int = N_BOOT,
-                 seed: int = SEED) -> dict | None:
+                 seed: int = SEED, cluster_ids: list | None = None) -> dict | None:
     """Seeded percentile bootstrap 95% CI for ``stat_fn`` over ``items``.
 
-    Resamples ``items`` with replacement ``n_boot`` times, recomputes the
-    statistic, and returns the 2.5/97.5 percentiles plus the bootstrap SE.
-    Returns ``None`` when there are fewer than two items or the statistic is
-    undefined on the full sample (so callers can render an honest dash).
+    When cluster IDs are supplied, sample whole events and retain all their
+    cells together. Otherwise sample rows. Undefined/nonfinite resamples are
+    excluded and counted explicitly; the resulting interval is conditional on
+    defined resamples. Undefined full-sample statistics and fewer than two
+    independent sampling units have no CI.
     """
     n = len(items)
-    if n < 2 or stat_fn(items) is None:
+    if n_boot < 2:
+        raise ValueError("n_boot must be at least two")
+    if cluster_ids is not None:
+        if len(cluster_ids) != n or any(c is None or c == "" for c in cluster_ids):
+            raise ValueError("cluster_ids must identify every item")
+        clusters = {}
+        for item, cluster_id in zip(items, cluster_ids):
+            clusters.setdefault(cluster_id, []).append(item)
+        units = list(clusters.values())
+    else:
+        units = [[item] for item in items]
+    if len(units) < 2:
+        return None
+    point = stat_fn(items)
+    if point is None or not math.isfinite(point):
         return None
     rng = random.Random(seed)
     est: list[float] = []
     for _ in range(n_boot):
-        sample = [items[rng.randrange(n)] for _ in range(n)]
+        sample = [item for _ in units for item in units[rng.randrange(len(units))]]
         k = stat_fn(sample)
-        if k is not None:
+        if k is not None and math.isfinite(k):
             est.append(k)
     if len(est) < 2:
         return None
@@ -96,5 +112,10 @@ def bootstrap_ci(items: list, stat_fn, n_boot: int = N_BOOT,
         "ci_high": round(_pct(0.975), 4),
         "se": round(var ** 0.5, 4),
         "n_boot": len(est),
+        "n_boot_requested": n_boot,
+        "n_boot_undefined": n_boot - len(est),
+        "conditional_on_defined_resamples": len(est) != n_boot,
+        "resampling_unit": "event" if cluster_ids is not None else "row",
+        "n_units": len(units),
         "method": f"nonparametric percentile bootstrap, B={n_boot}, seeded",
     }

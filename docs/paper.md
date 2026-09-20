@@ -1,40 +1,40 @@
-# Paper Surface
+# Paper: shared database, domain research, and measurement validity
 
-This tracked file is the public manuscript wrapper for the current working
-paper surface. It is intentionally not a submission-formatted paper draft.
-The claim lock in [`paper_claims.md`](paper_claims.md), the generated tables in
-[`../analysis/paper_tables/`](../analysis/paper_tables/), and the release gates
-in [`a-class-submission-readiness.md`](a-class-submission-readiness.md) control
-what the paper may say.
+Working title: **Measuring Cross-Layer Crypto Censorship: Enforcement Evidence
+and Observation Limits**.
 
-If a private LaTeX or Overleaf working copy exists outside the public artifact
-set, it is downstream of this repository's claim lock. A disagreement between
-private manuscript prose and `paper_claims.md` is resolved in favor of the
-claim lock.
+The paper is organized around a shared database, Arm 1 (restriction/execution/
+recovery behavior), Arm 2 (observation methods and error), and their connection:
+which domain conclusions survive independent validation and correction.
 
-## Current Snapshot
+- RQ1: Which actors and layers carry documented restrictions, and how do
+  restriction/recovery unfold within a defined event/operator scope?
+- RQ2: Which actions and scoped negatives can each evidence channel establish,
+  with what coverage and coding error?
+- RQ3: How do applicability, source-support, and coverage corrections change RQ1?
 
-Use [`../dataset.meta.json`](../dataset.meta.json) and
-[`../analysis/paper_tables/table1_case_roles.md`](../analysis/paper_tables/table1_case_roles.md)
-for live corpus counts. Do not hand-copy admitted-event, total-event, or
-cutoff numbers into this wrapper.
+Implemented: legacy event registry, deterministic semantic screening,
+review queues, blank reviewer packets, revised artifact/metric tooling, automated
+OFAC frame traversal, source-verified panel sidecars, excluded historical-data
+feasibility pilots, a source-defined endpoint-snapshot collector, and
+joint-analysis software with reference-readiness gates. The full machine
+candidate endpoint campaign, indexed-event traversal and matching, public
+disclosure collection, OONI metadata and raw-record recovery, and a frozen
+cross-transport subset have also executed with explicit gaps. The offline
+[validation progress report](../analysis/validation_progress/README.md), schema
+`1.1.0`, validates the separate retrieval stages: nine selected OONI records
+were recovered and identity-checked through the POST archive; dRPC matched
+149/149 subset queries, and 1RPC matched 8 of 10 attempts before stopping.
+These are collection and transport results, not independently adjudicated
+enforcement findings.
+Pending: human eligibility and source-support adjudication, independent
+reference labels, validated correction effects, and strict archival release.
 
-## Required Claim Sources
+Current aggregate tables describe existing coding; they are not enforcement
+prevalence, confirmed negatives, or a test of administrative control.
 
-- Sampling frame and limitations: [`paper_claims.md`](paper_claims.md),
-  [`limitations-and-use.md`](limitations-and-use.md), and
-  [`datasheet.md`](datasheet.md).
-- Layer observability and denominator language:
-  [`../analysis/paper_tables/table2_layer_observability.md`](../analysis/paper_tables/table2_layer_observability.md)
-  plus [`../derived/admission_sensitivity.md`](../derived/admission_sensitivity.md).
-- Latency and trigger precision:
-  [`../analysis/paper_tables/table4_latency_by_precision.md`](../analysis/paper_tables/table4_latency_by_precision.md).
-- Null-denominator interpretation:
-  [`../analysis/paper_tables/table6_null_denominator.md`](../analysis/paper_tables/table6_null_denominator.md).
-
-## Release Blockers
-
-This remains a working snapshot until the release checklist clears the
-independent-human reliability, evidence-tier IRR, null-case audit, and
-submission sign-off gates. The wrapper exists so the public repository keeps a
-stable paper-facing entry point while the formatted manuscript evolves.
+See [execution plan](two-arm-execution-plan.md),
+[validation protocol](two-arm-validation-protocol.md),
+[claim policy](paper_claims.md), and [artifact reproduction](paper-artifacts.md).
+The source manuscript is maintained in the sibling paper repository; use
+PAPER_DIR to connect it explicitly to the artifact.

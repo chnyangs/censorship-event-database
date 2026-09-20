@@ -14,7 +14,9 @@ def test_json_capture_keeps_body_and_metadata_separate(tmp_path, monkeypatch):
     output_dir = repo_root / "sources" / "http_captures" / "json-case"
     url = "https://example.test/api/query.json?x=1"
 
-    def fake_capture_url(url_arg, timeout, allow_insecure_tls=False, user_agent=capture.USER_AGENT):
+    def fake_capture_url(url_arg, timeout, allow_insecure_tls=False,
+                         user_agent=capture.USER_AGENT, referer=None,
+                         accept=None, accept_language=None):
         return {
             "requested_url": url_arg,
             "final_url": url_arg,
@@ -53,7 +55,7 @@ def test_json_capture_keeps_body_and_metadata_separate(tmp_path, monkeypatch):
     assert metadata["metadata_path"] == str(meta_path.relative_to(repo_root))
 
 
-def test_capture_url_uses_user_agent_override(monkeypatch):
+def test_capture_url_uses_user_agent_and_referer_overrides(monkeypatch):
     seen = {}
 
     class FakeHeaders:
@@ -81,6 +83,9 @@ def test_capture_url_uses_user_agent_override(monkeypatch):
 
     def fake_urlopen(request, timeout, context):
         seen["user_agent"] = request.get_header("User-agent")
+        seen["referer"] = request.get_header("Referer")
+        seen["accept"] = request.get_header("Accept")
+        seen["accept_language"] = request.get_header("Accept-language")
         return FakeResponse()
 
     monkeypatch.setattr(capture.urllib.request, "urlopen", fake_urlopen)
@@ -89,9 +94,16 @@ def test_capture_url_uses_user_agent_override(monkeypatch):
         "https://example.test/api",
         timeout=1,
         user_agent="Mozilla/5.0 evidence-capture",
+        referer="https://search.example.test/result",
+        accept="text/html,*/*;q=0.8",
+        accept_language="en-US,en;q=0.9",
     )
 
     assert seen["user_agent"] == "Mozilla/5.0 evidence-capture"
+    assert seen["referer"] == "https://search.example.test/result"
+    assert seen["accept"] == "text/html,*/*;q=0.8"
+    assert seen["accept_language"] == "en-US,en;q=0.9"
+    assert result["request_headers"]["Referer"] == "https://search.example.test/result"
     assert result["sha256"] == hashlib.sha256(b'{"ok": true}').hexdigest()
 
 

@@ -1,0 +1,186 @@
+{
+  "behavioral_limit": "Present RPC access to historical chain data does not observe historical provider filtering, transaction inclusion, or private exchange behavior",
+  "created_before_outcome_queries_at_utc": "2026-09-20T12:20:11.778667Z",
+  "credential_required_not_queried": [
+    "infura",
+    "quicknode"
+  ],
+  "endpoints": {
+    "alchemy_public": "https://eth-mainnet.g.alchemy.com/public",
+    "flashbots": "https://rpc.flashbots.net"
+  },
+  "excluded_episode_family": "tornado_cash",
+  "full_cohort_execution": false,
+  "full_protocol_window_covered": false,
+  "historical_block": 15307826,
+  "historical_slice": [
+    15307825,
+    15307826
+  ],
+  "max_attempts_per_query": 2,
+  "panel_sidecar_sha256": "sha256:1463de69bbcf1e4a46346372b2b08ddc20762805a2c464f5b975e141a4262039",
+  "queries": [
+    {
+      "id": "chain_id",
+      "method": "eth_chainId",
+      "params": []
+    },
+    {
+      "id": "historical_block",
+      "method": "eth_getBlockByNumber",
+      "params": [
+        "0xe99432",
+        false
+      ]
+    },
+    {
+      "id": "usdc_code_latest",
+      "method": "eth_getCode",
+      "params": [
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "latest"
+      ]
+    },
+    {
+      "id": "usdc_code_historical",
+      "method": "eth_getCode",
+      "params": [
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0xe99432"
+      ]
+    },
+    {
+      "id": "usdc_blacklist_state_before",
+      "method": "eth_call",
+      "params": [
+        {
+          "data": "0xfe575a870000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16",
+          "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        },
+        "0xe99431"
+      ]
+    },
+    {
+      "id": "usdc_blacklist_state_after",
+      "method": "eth_call",
+      "params": [
+        {
+          "data": "0xfe575a870000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16",
+          "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        },
+        "0xe99432"
+      ]
+    },
+    {
+      "id": "usdc_logs",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "fromBlock": "0xe99431",
+          "toBlock": "0xe99432",
+          "topics": [
+            [
+              "0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855",
+              "0x117e3210bb9aa7d9baff172026820255c6f6c30ba8999d1c2fd88e2848137c4e"
+            ],
+            "0x0000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "usdt_code_latest",
+      "method": "eth_getCode",
+      "params": [
+        "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "latest"
+      ]
+    },
+    {
+      "id": "usdt_code_historical",
+      "method": "eth_getCode",
+      "params": [
+        "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "0xe99432"
+      ]
+    },
+    {
+      "id": "usdt_blacklist_state_before",
+      "method": "eth_call",
+      "params": [
+        {
+          "data": "0xe47d60600000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16",
+          "to": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+        },
+        "0xe99431"
+      ]
+    },
+    {
+      "id": "usdt_blacklist_state_after",
+      "method": "eth_call",
+      "params": [
+        {
+          "data": "0xe47d60600000000000000000000000008589427373d6d84e98730d7795d8f6f8731fda16",
+          "to": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+        },
+        "0xe99432"
+      ]
+    },
+    {
+      "id": "usdt_logs",
+      "method": "eth_getLogs",
+      "params": [
+        {
+          "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "fromBlock": "0xe99431",
+          "toBlock": "0xe99432",
+          "topics": [
+            [
+              "0x42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc",
+              "0xd7e9ec6e6ecd65492dce6bf513cd6867560d49544421d0783ddf06e76c24470c"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "usdc_historical_implementation",
+      "method": "eth_getStorageAt",
+      "params": [
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x7050c9e0f4ca769c69bd3a8ef740bc37934f8e2c036e5a723fd8ee048ed3f8c3",
+        "0xe99432"
+      ]
+    },
+    {
+      "id": "usdt_historical_deprecated",
+      "method": "eth_call",
+      "params": [
+        {
+          "data": "0x0e136b19",
+          "to": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+        },
+        "0xe99432"
+      ]
+    },
+    {
+      "id": "usdt_historical_upgraded_address",
+      "method": "eth_call",
+      "params": [
+        {
+          "data": "0x26976e3f",
+          "to": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+        },
+        "0xe99432"
+      ]
+    }
+  ],
+  "selection": "Known historical Tornado Cash positive-control example from existing YAML; intentionally outcome-informed training, never evaluation sampling",
+  "study_role": "feasibility_pilot_excluded_from_evaluation",
+  "target_address": "0x8589427373d6d84e98730d7795d8f6f8731fda16",
+  "timestamp_check_window_utc": [
+    "2022-08-08T00:00:00Z",
+    "2022-08-09T00:00:00Z"
+  ]
+}

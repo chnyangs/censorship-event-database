@@ -1,0 +1,100 @@
+{
+  "proposal_version": "l0-machine-sidecar-1",
+  "created_on_utc": "2026-09-20",
+  "review_status": "machine_proposed_not_human_reviewed",
+  "automatically_applied": false,
+  "canonical_event_edited": false,
+  "schema_compatibility": "Semantic proposal for a future schema migration, not an executable patch against current schema 0.2.0.",
+  "measurement_evidence": {
+    "event_window_measurement_denominator": null,
+    "distinct_probe_count": null,
+    "observed_asn_count": null,
+    "network_failure_count": null,
+    "censorship_rate": null,
+    "status": "historical_retrieval_unresolved",
+    "readiness_gate_satisfied": false
+  },
+  "event_id": "ethiopia-nbe-exchange-website-block-2025-11",
+  "canonical_input": {
+    "path": "events/ethiopia-nbe-exchange-website-block-2025-11.yaml",
+    "sha256": "d079882752675fdd76e4a52c792a1c42c8c4617ab0e8f5333c5672e4e49a04fd",
+    "bytes": 4627
+  },
+  "evidence": [
+    {
+      "kind": "cached_secondary_html",
+      "path": "sources/http_captures/ethiopia-nbe-exchange-website-block-2025-11/source/addisinsight.net__2025-11-06-binance-confirms-talks-with-ethiopian-regulators-as-website-access-gets-restricted__e31e7f4729.html",
+      "sha256": "0f879dd9a24d203ddbdf3aa6efe0eaee926c82c932a6ed5c1e76d49cb6f9ba07",
+      "bytes": 231536,
+      "declared_yaml_hash_verified": true
+    },
+    {
+      "kind": "new_secondary_html",
+      "record": {
+        "body_hash": "sha256:41673d5ec617bb5dab19bc29e6855f60f9a7f82010a103ef76222d438ee6d8f8",
+        "body_path": "sources/evidence_repairs/l0_followup/responses/41673d5ec617bb5dab19bc29e6855f60f9a7f82010a103ef76222d438ee6d8f8.body",
+        "bytes": 256686,
+        "content_type": "text/html; charset=UTF-8",
+        "error": null,
+        "final_url": "https://addisinsight.net/2025/11/06/binance-confirms-talks-with-ethiopian-regulators-as-website-access-gets-restricted/",
+        "finished_at_utc": "2026-09-20T12:16:05.515270+00:00",
+        "http_status": 200,
+        "requested_url": "https://addisinsight.net/2025/11/06/binance-confirms-talks-with-ethiopian-regulators-as-website-access-gets-restricted/",
+        "started_at_utc": "2026-09-20T12:16:04.191934+00:00"
+      }
+    }
+  ],
+  "issues": [
+    {
+      "fields": [
+        "trigger.timestamp",
+        "trigger.timestamp_precision",
+        "observations[0].timestamp",
+        "observations[0].precision",
+        "observations[0].delta_hours"
+      ],
+      "current_claim": "2025-10-01T00:00:00Z, day precision, delta_hours=0",
+      "finding": "The 6 November report describes roughly the preceding three weeks. It supports neither 1 October, an exact onset day, nor a zero trigger-to-response lag."
+    },
+    {
+      "fields": [
+        "trigger.actor",
+        "observations[0].event",
+        "coverage[0].note"
+      ],
+      "finding": "The source reports local access failure and VPN access, but supplies no raw probes or denominator, ISP/DNS mechanism confirmation, or first-party NBE/FIS order. Agency, mechanism, and execution timing remain reported/inferred rather than directly measured."
+    },
+    {
+      "fields": [
+        "coverage[5].status",
+        "coverage[5].note"
+      ],
+      "finding": "Not separately measured does not establish not_applicable. The same source separately mentions P2P buying restrictions while apps remain accessible; this deserves surface-specific review rather than attributing every restriction to L0."
+    }
+  ],
+  "proposed_semantics": {
+    "record_role": "reported_restriction_registry_entry",
+    "publication_date": "2025-11-06",
+    "onset_time": {
+      "status": "approximate_relative_report",
+      "source_phrase": "Over the past three weeks",
+      "relative_to_publication_date": "2025-11-06",
+      "point_timestamp": null,
+      "hard_interval_start": null,
+      "hard_interval_end": null,
+      "note": "Do not convert a rounded relative phrase into an exact onset or exact lower bound."
+    },
+    "trigger_to_observed_response_hours": null,
+    "l0_measurement_coverage": "not_measured",
+    "l0_reported_claim": "Journalism reports access restrictions for Binance, OKX, and Bybit website users in Ethiopia.",
+    "reported_actor_attribution": "secondary_source_only_pending_verification",
+    "affected_domains": [
+      "binance.com",
+      "okx.com",
+      "bybit.com"
+    ],
+    "empirical_network_outcome": "unknown",
+    "retain_registry_record": true,
+    "needs_human_adjudication": true
+  }
+}

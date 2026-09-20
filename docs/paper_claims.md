@@ -1,6 +1,40 @@
+# Active claim policy — two-arm revision, 2026-09-20
+
+This policy governs the revised manuscript and supersedes stronger interpretations
+in the historical claim catalog retained below.
+
+| Claim | Current allowance |
+| --- | --- |
+| Registry/admitted counts | Counts of current statuses, not independently validated facts |
+| Legacy layer fractions/archetypes | Descriptive coding summaries only |
+| Null events | Records coded as no change; not confirmed behavioral negatives |
+| Source overlap/N/A screening | Review flags; not automatic errors or population error rates |
+| Administrative control / visibility | Hypothesis requiring controlled observation and independent control labels |
+| Code history | Source-code changes; production behavior requires deployment/runtime evidence |
+| Independent human validation | Pending; LLM recoding and prefilled answers do not count |
+| Bounded validation cohort | Official enumeration and machine candidate collection may be reported with their exact coverage and gaps; independent eligibility, source-support labels, causal attribution, and correction-based results remain pending |
+| Release / DOI | Working snapshot; no formal archival release is asserted |
+| Coverage prediction | Exploratory legacy-label task; not evidence of enforcement validity |
+
+The data model distinguishes applicability, query coverage, action stage, and
+source support/attribution. Old records have not yet been universally migrated.
+Unresolved semantic rows must remain flagged until evidence-based correction;
+passing a schema, hash check, or code test does not certify them.
+
+The shared registry and validation cohort support **Arm 1: domain behavior** and
+**Arm 2: measurement validity/error**. The final integrated result must evaluate
+how measurement corrections affect domain conclusions.
+
+See [the execution plan](two-arm-execution-plan.md) and
+[validation protocol](two-arm-validation-protocol.md).
+
+---
+
+## Historical claim catalog (legacy implementation; not current inference permission)
+
 # Paper claims · working A-class submission lock
 
-> **Status**: submission-lock draft. Every promoted claim below must stay
+> **Historical status (superseded)**: submission-lock draft. Every promoted claim below must stay
 > bounded by its table source, case-role scope, denominator class, and audit
 > gate. The current working snapshot is not strict-submission-ready until the
 > Human-Expert-Audit items in [`../human-audit.md`](../human-audit.md) are
@@ -8,8 +42,8 @@
 > `python3 scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability`
 > passes from a clean intended source tree.
 
-This file is the single source of truth for "what the paper actually
-argues." Each claim states:
+This historical catalog previously specified the paper argument. It is retained
+for traceability; the active policy above governs current claims. Each old entry states:
 
 - the **claim sentence** (one unambiguous line),
 - **evidence source** (specific `derived/` path + derivation),
@@ -18,11 +52,11 @@ argues." Each claim states:
 - **phrasing lock** (exact verbs permitted; see
   `docs/limitations-and-use.md §6`).
 
-Changes to this file are the only legitimate way to re-aim the paper.
+Do not promote historical claims without applying the active evidence policy.
 
 ## 0. Framing and estimand
 
-**Dataset snapshot**: v0.2.0-rc-dryrun-11 · cutoff 2026-06-01 · 405 YAML records, 365 admitted events, 30 draft rows, and 10 rejected registry rows. Live snapshot counts are emitted by [`dataset.meta.json`](../dataset.meta.json) and [Table 1](../analysis/paper_tables/table1_case_roles.md); update those artifacts rather than hardcoding paper numbers here.
+**Historical snapshot, not the current counts**: v0.2.0-rc-dryrun-11 · cutoff 2026-06-01 · 405 YAML records, 365 admitted events, 30 draft rows, and 10 rejected registry rows. Live snapshot counts are emitted by [`dataset.meta.json`](../dataset.meta.json) and [Table 1](../analysis/paper_tables/table1_case_roles.md); update those artifacts rather than hardcoding paper numbers here.
 
 ### Primary finding (headline) and primary estimand
 

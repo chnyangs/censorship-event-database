@@ -1,0 +1,114 @@
+{
+  "status": "bounded_retrieval_completed_with_unresolved_event_denominators",
+  "human_review_status": "not_reviewed",
+  "completed_http_request_count": 52,
+  "initial_http_request_count": 44,
+  "later_sec_http_request_count": 8,
+  "later_sec_http_status_counts": {"200": 3, "403": 5},
+  "event_window_query_count": 32,
+  "event_window_queries_with_request_failure": 32,
+  "successful_narrow_or_country_checks": [
+    {
+      "request": {
+        "requested_url": "https://api.ooni.io/api/v1/measurements?probe_cc=ET&since=2025-11-06&until=2025-11-07&domain=binance.com&test_name=web_connectivity&limit=10",
+        "started_at_utc": "2026-09-20T12:19:58.860528+00:00",
+        "http_status": 200,
+        "body_path": "sources/evidence_repairs/l0_followup/responses/b60cde572fe069f9d608eb8af24a1f10210cbccd7537e654a8b8db4ffcd80f81.body",
+        "body_hash": "sha256:b60cde572fe069f9d608eb8af24a1f10210cbccd7537e654a8b8db4ffcd80f81",
+        "error": null,
+        "final_url": "https://api.ooni.io/api/v1/measurements?probe_cc=ET&since=2025-11-06&until=2025-11-07&domain=binance.com&test_name=web_connectivity&limit=10",
+        "content_type": "application/json",
+        "bytes": 134,
+        "finished_at_utc": "2026-09-20T12:20:15.423272+00:00"
+      },
+      "payload": {
+        "metadata": {
+          "count": 0,
+          "current_page": 1,
+          "limit": 10,
+          "next_url": null,
+          "offset": 0,
+          "pages": 0,
+          "query_time": 10.487743616104126
+        },
+        "results": []
+      },
+      "use": "narrow_query_availability_only"
+    },
+    {
+      "request": {
+        "requested_url": "https://api.ooni.io/api/v1/aggregation?probe_cc=TH&since=2025-06-28&until=2025-06-29&test_name=web_connectivity",
+        "started_at_utc": "2026-09-20T12:20:39.684587+00:00",
+        "http_status": 200,
+        "body_path": "sources/evidence_repairs/l0_followup/responses/c2dfbcd7a8487e479a9b8fe9bd1a3b8202fa1190ca234f437ac8420d0fe58464.body",
+        "body_hash": "sha256:c2dfbcd7a8487e479a9b8fe9bd1a3b8202fa1190ca234f437ac8420d0fe58464",
+        "error": null,
+        "final_url": "https://api.ooni.io/api/v1/aggregation?probe_cc=TH&since=2025-06-28&until=2025-06-29&test_name=web_connectivity",
+        "content_type": "application/json",
+        "bytes": 253,
+        "finished_at_utc": "2026-09-20T12:21:15.848882+00:00"
+      },
+      "payload": {
+        "v": 0,
+        "dimension_count": 0,
+        "db_stats": {
+          "row_count": 1484847,
+          "bytes": 39466800,
+          "total_row_count": 1484847,
+          "elapsed_seconds": 35.02023720741272
+        },
+        "result": {
+          "anomaly_count": 498,
+          "confirmed_count": 36,
+          "failure_count": 211,
+          "ok_count": 9373,
+          "measurement_count": 10118
+        }
+      },
+      "use": "country_api_diagnostic_not_a_target_denominator"
+    }
+  ],
+  "cached_inventory": {
+    "path": "sources/evidence_repairs/l0_followup/cache_inventory_20260920.json",
+    "sha256": "c0a20eca592c3cfcafa338a9be0da0812269203e54aba0a3d577c7d20ac22998",
+    "bytes": 10619
+  },
+  "source_artifact_notes": {
+    "sec_official_text": {
+      "path": "sources/evidence_repairs/l0_followup/sec_ooni_browser_response_20260920.json",
+      "sha256": "62a89b2d5cfc73cc370dc3814d9efa8b6d66b2aeea05eec1fb1e40d902f9e0a7",
+      "bytes": 14625
+    },
+    "raw_sec_http403": "Early direct notice requests returned 403; later requests with explicit browser headers and SEC-search referer returned HTTP200 original HTML for both English notices. Retained 403 bodies and failed-attempt manifests are retrieval gaps, never substantive SEC notice evidence.",
+    "later_sec_successful_captures": [
+      {
+        "manifest": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-warning/manifest.json",
+        "body_sha256": "b6926f82f7e47e8d568b92b2db5e97c511b49dde9ac74e87d48c86a449c23b8c",
+        "use": "Original SECID12047 announcement HTML: 29 May announcement and 28 June scheduled access restriction only."
+      },
+      {
+        "manifest": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-captured/manifest.json",
+        "body_sha256": "d7422faba55eb4a363c0a3f428701db919e3298390c6cb80d2b33608b3cf3431",
+        "use": "Original SECID12048 reminder HTML: 26 June reminder and the same scheduled effect; not actual execution."
+      },
+      {
+        "manifest": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-search/manifest.json",
+        "body_sha256": "be33dd2cf74836eb576a35b87a10b2688986d42fa72e37604d8d2ef5c3abbd8d",
+        "use": "Official search discovery only; first 10 of 11 reported results, no exhaustive-search inference."
+      }
+    ],
+    "later_sec_attempt_gap_manifests": [
+      "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec/manifest.json",
+      "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-browser/manifest.json",
+      "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-full-query/manifest.json",
+      "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-pdf/manifest.json",
+      "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-referer/manifest.json"
+    ],
+    "later_sec_collector_provenance_limit": "Successful notice captures preserve actual request headers, response metadata and body hashes. They do not record a contemporaneous script hash; the final capture_http_artifact.py hash in artifact_hashes.json is a reproduction aid only. The denied PDF request does not establish a related PDF exists.",
+    "original_manifests": "Preserved as originally emitted; the first run predates the explicit historical_measurement_denominator field. All failed event queries have null denominators in query_summary.json.",
+    "exact_url_run_script_sha256": "6e9e45a6343519ad0904f34f443713e2731a534312916fd841d09aa6ab999203",
+    "initial_domain_run_script_hash": null,
+    "script_provenance_limit": "Initial domain run omitted script hash. The subsequent script adds explicit null denominator and CLI reproducibility options. Request URLs, timing and response artifacts are retained."
+  },
+  "remaining_constraint": "Neither full event-country-domain window has a successfully retrieved historical measurement index or raw/control evidence. Narrow empty query and country-total diagnostic cannot substitute for these target denominators. Dataset absence cannot be inferred from timeouts."
+}

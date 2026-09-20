@@ -103,16 +103,16 @@ operational feed. If you need those, buy them.
 Documented in [`docs/chain-coverage-note.md`](chain-coverage-note.md)
 and in each event's `coverage[].note` fields. Key structural gaps:
 
-- **L0 network layer**: 0 / 23 queried crypto domains had any OONI
-  volunteer measurement in the event-bracketing windows. In the current
-  corpus, `l0_network` is therefore an **observability gap**, not an
-  attested-negative layer: `derived/layer_observability.*` currently
-  shows no measured denominator and no admitted `observed_change` or
-  `observed_no_change` rows at L0, while
-  [`derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md)
-  records all 23 query windows as `no_ooni_measurements`. Any L0
-  discussion in downstream tools must be framed as "not measured here",
-  not as evidence that network-layer reactions did not occur.
+- **L0 network layer**: the legacy
+  [`OONI query audit`](../derived/l0_coverage_summary.md) returned no rows
+  for 23 archived query cells; these are not 23 distinct domains. A later,
+  separately frozen [follow-up](../analysis/evidence_repairs/l0_ooni_raw_recovery/README.md)
+  completed 624 country/day/domain queries and recovered nine identity-valid
+  Ethiopian raw records, all from AS24757. Thailand returned no metadata rows.
+  The unchanged canonical corpus still has no measured L0 conditional-rate
+  denominator. Neither zero query results nor the newly recovered anomaly and
+  control fields establish access, blocking or a population rate. Human
+  interpretation and any canonical migration remain pending.
 - **Solana / Polygon / BNB Chain**: no events in the dataset target
   addresses on these chains. This is an observed feature of the current
   admitted corpus and source frame, not proof of complete chain-level

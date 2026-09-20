@@ -77,8 +77,12 @@ def _validate_value(row_id: str, column: str, value: str) -> str:
     return normalized
 
 
-def cohens_kappa(pairs: list[tuple[str, str]]) -> dict[str, Any]:
+def cohens_kappa(pairs: list[tuple[str, str]], event_ids: list[str] | None = None) -> dict[str, Any]:
+    if event_ids is not None and len(event_ids) != len(pairs):
+        raise ValueError("event IDs and coded pairs differ in length")
     coded = [(a, b) for a, b in pairs if a and b]
+    clusters = ([event_ids[i] for i, (a, b) in enumerate(pairs) if a and b]
+                if event_ids is not None else None)
     if not coded:
         return {
             "kappa": None,
@@ -99,15 +103,16 @@ def cohens_kappa(pairs: list[tuple[str, str]]) -> dict[str, Any]:
     marg_a = {label: sum(confusion[label].values()) / n for label in labels}
     marg_b = {label: sum(confusion[a][label] for a in labels) / n for label in labels}
     expected = sum(marg_a[label] * marg_b[label] for label in labels)
-    kappa = 1.0 if expected >= 1.0 else (observed - expected) / (1.0 - expected)
+    kappa = cohen_kappa_value(coded)
     return {
-        "kappa": round(kappa, 4),
+        "kappa": round(kappa, 4) if kappa is not None else None,
+        "reason": "expected agreement is one; kappa undefined" if kappa is None else None,
         "observed_agreement": round(observed, 4),
         "expected_agreement": round(expected, 4),
         "n_coded": n,
         "label_set": labels,
         "confusion": confusion,
-        "kappa_ci": bootstrap_ci(coded, cohen_kappa_value),
+        "kappa_ci": bootstrap_ci(coded, cohen_kappa_value, cluster_ids=clusters),
     }
 
 
@@ -129,7 +134,7 @@ def build_report(
             if not (a_value and b_value):
                 missing_ids.append(row_id)
             pairs.append((a_value, b_value))
-        stats = cohens_kappa(pairs)
+        stats = cohens_kappa(pairs, event_ids=[row["id"].strip() for row in rows])
         stats["n_total"] = len(rows)
         stats["n_incomplete"] = len(missing_ids)
         variables[field] = stats
@@ -165,6 +170,9 @@ def render_markdown(report: dict[str, Any]) -> str:
         f"Generated: `{report['generated_at']}`",
         f"Status: `{report['status']}`",
         f"Coder provenance: `{report['coder_provenance']['mode']}`",
+        "Worksheet completion describes filled cells, not a passed reliability threshold.",
+        "Expected agreement of one makes kappa undefined; 100% observed agreement is still reported.",
+        "CIs resample whole events; undefined resamples are excluded and counted in JSON.",
         "",
         "| variable | coded | incomplete | kappa [95% CI] | observed | expected | labels |",
         "| --- | ---: | ---: | ---: | ---: | ---: | --- |",

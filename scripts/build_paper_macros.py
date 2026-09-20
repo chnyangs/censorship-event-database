@@ -7,8 +7,8 @@ generator reads (derived/*.json, derived/admission_sensitivity.csv,
 dataset.meta.json). Re-run after `make derived` whenever the corpus advances;
 main.tex \\input{paper_numbers.tex} and uses the macros.
 
-Output target is the Overleaf project dir so the paper picks it up on its next
-compile (the path is configurable via --out).
+Output defaults to the sibling Overleaf project when present, otherwise to
+analysis/manuscript in a standalone clone. Override the file with --out.
 """
 from __future__ import annotations
 
@@ -22,7 +22,14 @@ import pathlib
 import yaml
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
-DEFAULT_OUT = REPO / "6a1d66df502cdc827ad0999d" / "paper_numbers.tex"
+
+
+def default_paper_dir(repo: pathlib.Path = REPO) -> pathlib.Path:
+    sibling = repo.parent / "6a1d66df502cdc827ad0999d"
+    return sibling if (sibling / "main.tex").is_file() else repo / "analysis" / "manuscript"
+
+
+DEFAULT_OUT = default_paper_dir() / "paper_numbers.tex"
 
 # LaTeX control sequences must be letters only — map layer ids to letter names.
 LAYER_CS = {
@@ -86,14 +93,19 @@ def main() -> int:
         gap = row["not_measured_count"]
         den = meas + part
         num = row["changed_under_measured_or_partial_count"]
+        # Descriptive counts remain available; suppressed or undefined rates
+        # must not silently become publishable percentages via a macro.
+        suppressed = row["layer"] in {"l0_network", "asset_onchain"} or not den
+        rate = r"\textemdash{}" if suppressed else f"{num}/{den}"
+        pct = r"\textemdash{}" if suppressed else _pct(num, den)
         lines += [
             f"\\newcommand{{\\{cs}Meas}}{{{meas}}}",
             f"\\newcommand{{\\{cs}Part}}{{{part}}}",
             f"\\newcommand{{\\{cs}Gap}}{{{gap}}}",
             f"\\newcommand{{\\{cs}Den}}{{{den}}}",
             f"\\newcommand{{\\{cs}Num}}{{{num}}}",
-            f"\\newcommand{{\\{cs}Rate}}{{{num}/{den}}}",
-            f"\\newcommand{{\\{cs}Pct}}{{{_pct(num, den)}}}",
+            f"\\newcommand{{\\{cs}Rate}}{{{rate}}}",
+            f"\\newcommand{{\\{cs}Pct}}{{{pct}}}",
         ]
     lines.append("")
     lines.append("% --- archetypes (share of admitted corpus) ---")
@@ -169,6 +181,8 @@ def main() -> int:
     lines.append("% --- admission-sensitivity ablation (strict/current/permissive) ---")
     with (REPO / "derived" / "admission_sensitivity.csv").open() as f:
         for r in csv.DictReader(f):
+            if r["layer"] in {"l0_network", "asset_onchain"}:
+                continue
             cs = LAYER_CS.get(r["layer"])
             if not cs:
                 continue

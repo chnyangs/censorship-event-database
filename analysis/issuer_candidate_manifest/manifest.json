@@ -1,0 +1,55 @@
+{
+  "balance_policy": "No holdings or balance-based eligibility filter; zero and unknown balances stay in the measurement denominator.",
+  "counts": {
+    "first_batch_query_units": 2,
+    "issuer_query_units": 70,
+    "measurement_units": 35,
+    "source_row_dispositions": {
+      "machine_candidate": 35,
+      "pending_action_adjudication": 33,
+      "pending_family_adjudication": 16,
+      "pilot_family_excluded": 332
+    },
+    "source_rows": 416,
+    "unclassified_hex_rows_pending": 4,
+    "unique_action_urls": 18
+  },
+  "first_batch_selection": "Earliest trigger date then action URL among source-eligible nonpilot candidates; all addresses/directions of that action crossed with both issuers.",
+  "frozen_at_utc": "2026-09-20T12:33:27.442778Z",
+  "horizon_rule": "For h in 1,7,14,30 the deadline lies in [d+h,d+h+1). Preserve both endpoints; changes in that interval have timing ambiguity, not an exact h-day classification.",
+  "human_gold": false,
+  "inputs": {
+    "protocol_sha256": "sha256:e780cddb42bfbb014404bf05e6bdff1e81e95889eb26a661774b67673f21dbec",
+    "script_sha256": "sha256:c75b34eb09dae44d2241ea2f3405a7f550e16d4e2d38f679dc4271e0ee4a7976",
+    "source_frame_input_hash": "sha256:6a5c4de562d43d5bb0860a31dab59b316bd418988b99ec7b040d9b5d4547473a",
+    "source_frame_summary_sha256": "sha256:debf101b30a75800c4ef744500a51b66de85e0df6a76b37b37a3ca77083f7b8f",
+    "source_proposals_sha256": "sha256:81445776f5f1712d9f7958292893089853fb63d64d89b44817a72319e215c4a6",
+    "unclassified_hex_queue_sha256": "sha256:fde609471de598988d80644a50a19ce5b789d29b99551e10682008cdbfe90fc3"
+  },
+  "issuer_identity_status": "Canonical Ethereum contracts checked against linked official issuer documentation; historical ABI/proxy verification required by collection adapter.",
+  "issuers": [
+    {
+      "chain_id": 1,
+      "contract_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "official_identity_source": "https://developers.circle.com/stablecoins/usdc-contract-addresses",
+      "symbol": "USDC"
+    },
+    {
+      "chain_id": 1,
+      "contract_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "official_identity_source": "https://tether.to/en/supported-protocols/",
+      "symbol": "USDT"
+    }
+  ],
+  "measurement_unit": "action_url x normalized_address x proposed_direction",
+  "outcome_queries_executed": 0,
+  "pilot_rule": "Exclude explicit Tornado Cash target names; reserve related-name/domain/shared-address ambiguities pending family adjudication.",
+  "protocol_path": "docs/two-arm-validation-protocol.md",
+  "protocol_version": "issuer-source-candidate-window-v1",
+  "schema_version": "1.0.0",
+  "script_version": "1.0.0",
+  "source_frame_directory": "analysis/validation_frame",
+  "source_row_retention": "All input rows retained with canonical row hash and 1-based data-row number; aliases only collapsed for measurement, never claimed target-deduplicated.",
+  "status": "machine_frozen_not_human_adjudicated",
+  "window_rule": "Day trigger [d,d+1); query [d-7,d+31), UTC; no invented exact trigger time."
+}

@@ -76,6 +76,21 @@ def parse_args() -> argparse.Namespace:
         help="HTTP User-Agent header for sources that reject the default capture agent.",
     )
     parser.add_argument(
+        "--referer",
+        default=None,
+        help="Optional public referring URL required by some source anti-bot filters.",
+    )
+    parser.add_argument(
+        "--accept",
+        default=None,
+        help="Optional HTTP Accept header required by some source anti-bot filters.",
+    )
+    parser.add_argument(
+        "--accept-language",
+        default=None,
+        help="Optional HTTP Accept-Language header required by some sources.",
+    )
+    parser.add_argument(
         "--allow-insecure-tls",
         action="store_true",
         help=(
@@ -161,8 +176,21 @@ def capture_url(
     timeout: float,
     allow_insecure_tls: bool = False,
     user_agent: str = USER_AGENT,
+    referer: str | None = None,
+    accept: str | None = None,
+    accept_language: str | None = None,
 ) -> dict[str, Any]:
-    request = urllib.request.Request(url, headers={"User-Agent": user_agent})
+    headers = {"User-Agent": user_agent}
+    if referer is not None:
+        parsed_referer = urllib.parse.urlparse(referer)
+        if parsed_referer.scheme not in {"http", "https"} or not parsed_referer.netloc:
+            raise ValueError("--referer must be an absolute HTTP(S) URL")
+        headers["Referer"] = referer
+    if accept is not None:
+        headers["Accept"] = accept
+    if accept_language is not None:
+        headers["Accept-Language"] = accept_language
+    request = urllib.request.Request(url, headers=headers)
     fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     context = ssl._create_unverified_context() if allow_insecure_tls else None
     with urllib.request.urlopen(request, timeout=timeout, context=context) as response:
@@ -179,6 +207,7 @@ def capture_url(
             "content_length": len(body),
             "sha256": hashlib.sha256(body).hexdigest(),
             "title": extract_title(body, content_type),
+            "request_headers": headers,
             "body": body,
         }
 
@@ -313,7 +342,15 @@ def main() -> int:
         captured_ok = False
 
         try:
-            capture = capture_url(url, args.timeout, args.allow_insecure_tls, args.user_agent)
+            capture = capture_url(
+                url,
+                args.timeout,
+                args.allow_insecure_tls,
+                args.user_agent,
+                args.referer,
+                args.accept,
+                args.accept_language,
+            )
             captured_ok = True
         except urllib.error.HTTPError as exc:
             failures += 1

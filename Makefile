@@ -18,6 +18,14 @@ EVIDENCE_DIR    ?= analysis/evidence-chains
 TRIGGER_REGISTRY_DIR ?= analysis/trigger_registry
 TEMPORAL_LEDGER_DIR ?= analysis/temporal_ledger
 SOURCE_MANIFEST_PREFIX ?= sources/source_manifest
+# This workspace keeps the manuscript beside the dataset repository. A
+# standalone clone writes reviewable artifacts locally; override PAPER_DIR
+# for any other checkout layout. See docs/paper-artifacts.md.
+PAPER_DIR ?= $(if $(wildcard ../6a1d66df502cdc827ad0999d/main.tex),../6a1d66df502cdc827ad0999d,analysis/manuscript)
+BENCHMARK_OUT ?= analysis/benchmark/coverage_prediction.txt
+MEASUREMENT_AUDIT_DIR ?= analysis/measurement_audit
+VALIDATION_PROGRESS_DIR ?= analysis/validation_progress
+VALIDATION_PROGRESS_TEX ?= $(PAPER_DIR)/measurement_progress_numbers.tex
 
 # ---- Framework Layer B (case-based retrieval) inputs ----
 # Override when querying: make compare LIKE=sinbad-ofac-2023 TOP=5
@@ -29,14 +37,14 @@ COMPARE_OUT ?= -
 
 .PHONY: help \
     validate schema-check validate-citations validate-archives verify-citations freshness \
-    draft-gaps status review staleness dataset ofac-recent-action-candidates trigger-registry temporal-ledger source-manifest census-registry-check \
+    draft-gaps status review staleness snapshot-descriptors dataset ofac-recent-action-candidates trigger-registry temporal-ledger source-manifest census-registry-check \
     ingestion-db ingestion-register-sources ingestion-bootstrap ingestion-status ingestion-report \
     ofac-canary ofac-canary-status review-next review-export review-packets review-triage \
     human-audit-worksheet evidence-repair-plan source-discovery-worklist non-human-todo-list \
     er-training-template audit-archive repair-evidence-anchors \
     event-metrics action-registry layer-observability archetypes coverage-matrix l0-coverage-summary l3-provider-census \
     admission-sensitivity jurisdiction derived \
-    audit-worksheets paper-tables paper-macros paper-check paper-release-check paper-regenerate-check test \
+    audit-worksheets paper-tables paper-macros paper-figures benchmark measurement-audit validation-cohort-preflight validation-frame validation-frame-offline validation-progress issuer-candidate-verify joint-validation paper-artifacts paper-check paper-release-check paper-regenerate-check test \
     render-site render-evidence render-evidence-all compare \
     ooni-scan l0-query-metadata usdt-scan operator-census capture \
     irr-sample irr-packet irr-open irr-kappa evidence-tier-irr-kappa \
@@ -59,6 +67,7 @@ help:
 	    'make review                # write $(REVIEW_JSON) + $(REVIEW_MD)' \
 	    'make staleness             # write $(STALENESS_JSON) + $(STALENESS_MD)' \
 	    'make dataset               # rebuild $(DATASET_JSON) + $(DATASET_CSV) + $(DATASET_META)' \
+	    'make snapshot-descriptors  # sync README / Zenodo / Croissant from source YAML + CFF' \
 	    'make ofac-recent-action-candidates # materialize OFAC backfill stubs from cached triage' \
 	    'make trigger-registry      # pre-admission trigger registry + sampling-frame gaps' \
 	    'make temporal-ledger       # 2008+ monthly source-frame discovery ledger' \
@@ -91,13 +100,23 @@ help:
 	    'make coverage-matrix       # explicit event×layer denominator eligibility surface' \
 	    'make l0-coverage-summary   # denominator-aware OONI query summary for L0 artifacts' \
 	    'make l3-provider-census    # L3 provider/event denominator census; no v0.1 rate' \
-	    'make admission-sensitivity # strict/current/permissive admission-rubric ablation' \
+	    'make admission-sensitivity # coverage/attribution filter sensitivity on fixed admitted set' \
 	    'make jurisdiction          # jurisdictional composition of the admitted corpus (Table 7)' \
 	    'make derived               # all derived research artifacts in one shot' \
 	    'make audit-worksheets      # per-event audit worksheets (default: anchor cases)' \
 	    'make paper-tables          # reproducible paper tables → analysis/paper_tables/' \
 	    'make paper-macros          # reproducible LaTeX paper-number macros → paper_numbers.tex' \
-	    'make paper-check           # non-mutating paper-facing claim/table/audit-coherence checks' \
+	    'make paper-figures         # current-corpus PDFs → $(PAPER_DIR)/figs/' \
+	    'make benchmark             # exploratory label-prediction output → $(BENCHMARK_OUT)' \
+	    'make measurement-audit     # evidence-semantic audit + manuscript audit macros' \
+	    'make validation-cohort-preflight # inventory cached frame sources; no outcome measurement' \
+	    'make validation-frame      # fetch complete official year listings and action pages' \
+	    'make validation-frame-offline # rederive saved source frame without network' \
+	    'make validation-progress   # cross-check local progress + $(VALIDATION_PROGRESS_TEX); no network' \
+	    'make issuer-candidate-verify # verify frozen source-based issuer candidate bundle' \
+	    'make joint-validation      # legacy missingness diagnostics; references remain separate' \
+	    'make paper-artifacts       # all manuscript TeX inputs + tables + figures + benchmark; no network' \
+	    'make paper-check           # regenerate dependencies, then check paper readiness' \
 	    'make paper-release-check   # strict submission/release paper gate' \
 	    'make paper-regenerate-check # rebuild paper dependencies, then run paper-check' \
 	    'make test                  # pytest regression suite for classifier + numerator rules' \
@@ -160,7 +179,11 @@ review:
 staleness:
 	$(PYTHON) scripts/staleness_report.py --json-out $(STALENESS_JSON) --md-out $(STALENESS_MD)
 
-dataset:
+# Descriptors are source-hash inputs and must be stable BEFORE dataset metadata.
+snapshot-descriptors:
+	$(PYTHON) scripts/sync_snapshot_descriptors.py
+
+dataset: snapshot-descriptors
 	$(PYTHON) scripts/build_dataset.py --json-out $(DATASET_JSON) --csv-out $(DATASET_CSV) --meta-out $(DATASET_META)
 
 ofac-recent-action-candidates:
@@ -232,40 +255,40 @@ er-training-template:
 audit-archive:
 	$(PYTHON) scripts/ingestion_v03.py archive-audit-log
 
-l3-provider-census:
+l3-provider-census: dataset
 	$(PYTHON) scripts/build_l3_provider_census.py --out-dir $(DERIVED_DIR)
 
-event-metrics:
+event-metrics: dataset
 	$(PYTHON) scripts/build_event_metrics.py --out-dir $(DERIVED_DIR)
 
-action-registry:
+action-registry: dataset
 	$(PYTHON) scripts/build_action_registry.py --out-dir $(DERIVED_DIR)
 
-layer-observability:
+layer-observability: dataset
 	$(PYTHON) scripts/build_layer_observability.py --out-dir $(DERIVED_DIR)
 
-archetypes:
+archetypes: dataset
 	$(PYTHON) scripts/assign_archetypes.py --out-dir $(DERIVED_DIR)
 
 coverage-matrix: dataset
 	$(PYTHON) scripts/build_coverage_matrix.py --out-dir $(DERIVED_DIR)
 
-l0-coverage-summary:
+l0-coverage-summary: dataset
 	$(PYTHON) scripts/build_l0_coverage_summary.py --out-dir $(DERIVED_DIR)
 
-# Admission-protocol sensitivity ablation: recomputes the per-layer
-# change rate under strict/current/permissive admission rubrics and
+# Coding-filter sensitivity on one fixed admitted set: recomputes the per-layer
+# change rate under strict/current/permissive coverage/attribution filters and
 # labels each as robust/moderate/sensitive (see
 # derived/admission_sensitivity.md). Reviewer-facing answer to
 # "can partially_measured loosening inflate the rate?".
-admission-sensitivity:
+admission-sensitivity: dataset
 	$(PYTHON) scripts/build_admission_sensitivity.py --out-dir $(DERIVED_DIR)
 
 # Jurisdictional composition of the admitted corpus (Table 7). The
 # US-trigger share + non-US split is the honest sampling-frame
 # statement reviewers asked for; the paper's abstract and §1 must
 # cite this table when framing the corpus.
-jurisdiction:
+jurisdiction: dataset
 	$(PYTHON) scripts/build_jurisdiction_distribution.py --out-dir $(DERIVED_DIR)
 
 # Per-event audit worksheets for human sign-off (default: anchor cases).
@@ -284,13 +307,48 @@ audit-worksheets:
 # number in the paper must come from this artifact at a given
 # source_commit.
 ifndef SOURCE_DATE_EPOCH
-paper-tables paper-macros paper-check paper-release-check paper-regenerate-check source-manifest temporal-ledger: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
+paper-tables paper-macros paper-figures benchmark measurement-audit validation-cohort-preflight validation-frame validation-frame-offline issuer-candidate-verify joint-validation paper-artifacts paper-check paper-release-check paper-regenerate-check source-manifest temporal-ledger: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 paper-tables: derived
 	$(PYTHON) scripts/build_paper_tables.py
 
-paper-macros: derived
-	$(PYTHON) scripts/build_paper_macros.py
+measurement-audit:
+	$(PYTHON) scripts/audit_measurement_semantics.py --out-dir "$(MEASUREMENT_AUDIT_DIR)"
+	mkdir -p "$(PAPER_DIR)"
+	cp "$(MEASUREMENT_AUDIT_DIR)/paper_numbers.tex" "$(PAPER_DIR)/measurement_audit_numbers.tex"
+
+paper-macros: derived measurement-audit
+	$(PYTHON) scripts/build_paper_macros.py --out "$(PAPER_DIR)/paper_numbers.tex"
+
+paper-figures: derived
+	$(PYTHON) scripts/build_paper_figures.py --out "$(PAPER_DIR)/figs"
+
+# This predicts existing labels; it does not establish evidence validity.
+# Atomic replacement preserves the previous report if execution fails.
+benchmark:
+	mkdir -p "$(dir $(BENCHMARK_OUT))"
+	$(PYTHON) scripts/benchmark_coverage_prediction.py > "$(BENCHMARK_OUT).tmp"
+	mv "$(BENCHMARK_OUT).tmp" "$(BENCHMARK_OUT)"
+
+validation-cohort-preflight:
+	$(PYTHON) scripts/prepare_validation_cohort.py
+
+validation-frame:
+	$(PYTHON) scripts/build_validation_frame.py
+
+validation-frame-offline:
+	$(PYTHON) scripts/build_validation_frame.py --offline
+
+validation-progress:
+	$(PYTHON) scripts/build_validation_progress.py --out-dir "$(VALIDATION_PROGRESS_DIR)" --tex-out "$(VALIDATION_PROGRESS_TEX)"
+
+issuer-candidate-verify:
+	$(PYTHON) scripts/prepare_issuer_candidate_manifest.py --verify
+
+joint-validation:
+	$(PYTHON) scripts/analyze_joint_validation.py
+
+paper-artifacts: paper-tables paper-macros validation-progress paper-figures benchmark
 
 paper-check: paper-tables paper-macros
 	$(PYTHON) scripts/check_paper_readiness.py
@@ -298,7 +356,7 @@ paper-check: paper-tables paper-macros
 paper-release-check: paper-tables paper-macros
 	$(PYTHON) scripts/check_paper_readiness.py --strict-audit --strict-null-audit --strict-repro --strict-reliability
 
-paper-regenerate-check: trigger-registry temporal-ledger source-manifest paper-tables paper-macros paper-check
+paper-regenerate-check: trigger-registry temporal-ledger source-manifest paper-artifacts paper-check
 
 # Pytest suite for classifier / coverage-numerator / recovery-filter /
 # paper-table fail-closed invariants (install with `pip install -r
@@ -307,8 +365,8 @@ paper-regenerate-check: trigger-registry temporal-ledger source-manifest paper-t
 test:
 	$(PYTHON) -m pytest tests/ -v
 
-# Umbrella target: rebuild every derived artifact (dataset.meta.json must
-# land first so downstream scripts read the latest version/cutoff).
+# Umbrella target: each generator depends on dataset so dataset.meta.json
+# lands first, including under parallel make.
 ifndef SOURCE_DATE_EPOCH
 derived coverage-matrix trigger-registry temporal-ledger: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
@@ -411,7 +469,7 @@ regenerate: export SOURCE_DATE_EPOCH := $(REPRO_SOURCE_DATE_EPOCH)
 endif
 regenerate: validate schema-check dataset trigger-registry temporal-ledger source-manifest event-metrics action-registry layer-observability archetypes coverage-matrix \
             admission-sensitivity jurisdiction \
-            paper-tables paper-macros status review staleness census-registry-check \
+            paper-artifacts status review staleness census-registry-check \
             render-site irr-packet render-evidence-all audit-worksheets paper-check
 	@echo "[regenerate] all derived artifacts rebuilt and gated"
 

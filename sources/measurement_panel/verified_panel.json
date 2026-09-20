@@ -1,0 +1,436 @@
+{
+  "contracts": {
+    "usdc": {
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "address_source_match": true,
+      "canonical_address_source": "circle_addresses",
+      "event_signatures": [
+        "Blacklisted(address)",
+        "UnBlacklisted(address)"
+      ],
+      "historical_caveat": "Proxy implementation must be resolved at each historical block and its deployed ABI verified; current master source is not historical bytecode proof.",
+      "historical_implementation_verified": false,
+      "indexed_address": true,
+      "interface_source": "circle_blacklist_source",
+      "interface_source_match": true,
+      "read_signature": "isBlacklisted(address)",
+      "selector": "0xfe575a87",
+      "topics": [
+        "0xffa4e6181777692565cf28528fc88fd1516ea86b56da075235fa575af6a4b855",
+        "0x117e3210bb9aa7d9baff172026820255c6f6c30ba8999d1c2fd88e2848137c4e"
+      ]
+    },
+    "usdt": {
+      "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "address_source_match": true,
+      "canonical_address_source": "tether_addresses",
+      "event_signatures": [
+        "AddedBlackList(address)",
+        "RemovedBlackList(address)"
+      ],
+      "historical_caveat": "Legacy contract has deprecated/upgradedAddress forwarding; verify these historical values. Etherscan source for issuer-linked canonical address is a secondary verification service, not independent bytecode reproduction.",
+      "historical_implementation_verified": false,
+      "indexed_address": false,
+      "interface_source": "tether_verified_contract",
+      "interface_source_match": true,
+      "read_signature": "isBlackListed(address)",
+      "selector": "0xe47d6060",
+      "topics": [
+        "0x42e160154868087d6bfdc0ca23d96a1c1cfa32f1b72ba9ba27b69b98a0d819dc",
+        "0xd7e9ec6e6ecd65492dce6bf513cd6867560d49544421d0783ddf06e76c24470c"
+      ]
+    }
+  },
+  "disclosure_limit": "Captured current index/policy pages establish public source availability only. No historical archive sweep, target-specific negative, private account outcome, or historical service-access outcome is established.",
+  "disclosure_panel": [
+    {
+      "current_source_match": true,
+      "historical_archive_completeness": "unverified",
+      "index_url": "https://www.coinbase.com/blog",
+      "name": "Coinbase",
+      "source_ids": [
+        "coinbase_index",
+        "coinbase_sanctions_disclosure"
+      ]
+    },
+    {
+      "current_source_match": true,
+      "historical_archive_completeness": "unverified",
+      "index_url": "https://blog.kraken.com/",
+      "name": "Kraken",
+      "source_ids": [
+        "kraken_index",
+        "kraken_sanctions_disclosure"
+      ]
+    },
+    {
+      "current_source_match": false,
+      "historical_archive_completeness": "unverified",
+      "index_url": "https://www.binance.com/en/support/announcement",
+      "name": "Binance",
+      "source_ids": [
+        "binance_announcement_index"
+      ]
+    }
+  ],
+  "independent_human_validation": false,
+  "main_cohort_execution_manifest_frozen": false,
+  "pilot_contract_prerequisites_met": true,
+  "prepared_at_utc": "2026-09-20T12:19:43.371740Z",
+  "protected_proposed_manifest_unchanged": "analysis/validation_cohort/panel_manifest.json",
+  "rpc_panel": [
+    {
+      "caveat": "Current endpoint and repository describe current interfaces; read calls do not test historical transaction filtering or production policy.",
+      "credentials": "none documented for this public endpoint",
+      "current_documentation_match": true,
+      "endpoint": "https://rpc.flashbots.net",
+      "historical_existence_interval": "pending",
+      "name": "Flashbots Protect",
+      "source_ids": [
+        "flashbots_docs",
+        "flashbots_public_repo"
+      ]
+    },
+    {
+      "credentials": "API key; unavailable in this no-key pilot",
+      "current_documentation_match": true,
+      "endpoint_template": "https://mainnet.infura.io/v3/{API_KEY}",
+      "historical_existence_interval": "pending",
+      "name": "Infura",
+      "pilot_status": "not_queried_credentials_required",
+      "source_ids": [
+        "infura_docs"
+      ]
+    },
+    {
+      "caveat": "Public access tier is distinct from keyed archive access; historical method availability must be tested, not assumed.",
+      "credentials": "none for documented public endpoint",
+      "current_documentation_match": true,
+      "endpoint": "https://eth-mainnet.g.alchemy.com/public",
+      "historical_existence_interval": "pending",
+      "name": "Alchemy",
+      "source_ids": [
+        "alchemy_endpoints"
+      ]
+    },
+    {
+      "credentials": "per-account endpoint/token; unavailable in this no-key pilot",
+      "current_documentation_match": true,
+      "endpoint_template": "https://{endpoint}.quiknode.pro/{auth-token}/",
+      "historical_existence_interval": "pending",
+      "name": "QuickNode",
+      "pilot_status": "not_queried_credentials_required",
+      "source_ids": [
+        "quicknode_endpoints"
+      ]
+    }
+  ],
+  "signature_hash_method": "Ethereum Keccak-256 of canonical signatures; selectors use first 4 bytes. Not NIST SHA3-256. Constants reproducible with Crypto.Hash.keccak; collector needs no crypto dependency.",
+  "sources": [
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:0e9f3ec40e7474ae8f842f38af55fc2fa3a8b6ef04c8569a9d10d3d7520ed280",
+          "content_assertions": {
+            "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/circle_addresses/attempt_1",
+      "source_id": "circle_addresses",
+      "status": "captured_content_assertions_pass",
+      "url": "https://developers.circle.com/stablecoins/usdc-contract-addresses"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:c788c40515a7255735bae06bebe0025af70a3713097bcc10293bd263f098ba90",
+          "content_assertions": {
+            "event Blacklisted(address indexed": true,
+            "event UnBlacklisted(address indexed": true,
+            "function isBlacklisted": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/circle_blacklist_source/attempt_1",
+      "source_id": "circle_blacklist_source",
+      "status": "captured_content_assertions_pass",
+      "url": "https://raw.githubusercontent.com/circlefin/stablecoin-evm/master/contracts/v1/Blacklistable.sol"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:51f3c781cbe1c6556a0c4b795046f5cd12e69b465631f6e85f239f0bf7443036",
+          "content_assertions": {
+            "IMPLEMENTATION_SLOT": true,
+            "org.zeppelinos.proxy.implementation": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/circle_proxy_source/attempt_1",
+      "source_id": "circle_proxy_source",
+      "status": "captured_content_assertions_pass",
+      "url": "https://raw.githubusercontent.com/circlefin/stablecoin-evm/master/contracts/upgradeability/UpgradeabilityProxy.sol"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:13e99cc890522a74fc9963821a7dee3ba9e3bb2f06c23bdc23cda256a7def81f",
+          "content_assertions": {
+            "0xdac17f958d2ee523a2206206994597c13d831ec7": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/tether_addresses/attempt_1",
+      "source_id": "tether_addresses",
+      "status": "captured_content_assertions_pass",
+      "url": "https://tether.to/en/supported-protocols/"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:7439e96b304380b8c5ace44d5636d38f32ac67682528e9f9a89b02e25916bbc8",
+          "content_assertions": {
+            "deprecated": true,
+            "event AddedBlackList(address": true,
+            "event RemovedBlackList(address": true,
+            "isBlackListed": true,
+            "upgradedAddress": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/tether_verified_contract/attempt_1",
+      "source_id": "tether_verified_contract",
+      "status": "captured_content_assertions_pass",
+      "url": "https://etherscan.io/address/0xdAC17F958D2ee523a2206206994597C13D831ec7#code"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:e5c99473dbd70fe86f2a26778f1ed85cd412e1a234f24d964243472a048d5642",
+          "content_assertions": {
+            "eth_getLogs": true,
+            "eth_getStorageAt": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/ethereum_json_rpc/attempt_1",
+      "source_id": "ethereum_json_rpc",
+      "status": "captured_content_assertions_pass",
+      "url": "https://ethereum.org/en/developers/docs/apis/json-rpc/"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:f36b49611975b7bc425ccc85320dbe52dca798c2257833c91196b3a3aa1fcc9b",
+          "content_assertions": {
+            "rpc.flashbots.net": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/flashbots_docs/attempt_1",
+      "source_id": "flashbots_docs",
+      "status": "captured_content_assertions_pass",
+      "url": "https://docs.flashbots.net/flashbots-protect/quick-start"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:2469965b6d41301be89eef032a28834b8f9c8b809ac15ca43ddfdca7ab791818",
+          "content_assertions": {
+            "rpc.flashbots.net": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/flashbots_public_repo/attempt_1",
+      "source_id": "flashbots_public_repo",
+      "status": "captured_content_assertions_pass",
+      "url": "https://raw.githubusercontent.com/flashbots/rpc-endpoint/main/README.md"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:6e2900d266fec7e61f1335f392d42f9f6770aa0933da5d892451dc7c499d51d8",
+          "content_assertions": {
+            "API key": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/infura_docs/attempt_1",
+      "source_id": "infura_docs",
+      "status": "captured_content_assertions_pass",
+      "url": "https://docs.metamask.io/services/get-started/"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:644b2ba664ddffa9df28b439fbc5f7c70901d6338fc47a0ba604c2bbeb30a7fb",
+          "content_assertions": {
+            "https://eth-mainnet.g.alchemy.com/public": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/alchemy_endpoints/attempt_1",
+      "source_id": "alchemy_endpoints",
+      "status": "captured_content_assertions_pass",
+      "url": "https://www.alchemy.com/rpc/ethereum"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:ba8dd968f7456a6cb4f7b6f46420b21e3caea2a70f95cd8356412e1b691b5af5",
+          "content_assertions": {
+            "auth-token": true,
+            "quiknode.pro": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/quicknode_endpoints/attempt_1",
+      "source_id": "quicknode_endpoints",
+      "status": "captured_content_assertions_pass",
+      "url": "https://www.quicknode.com/docs/ethereum/endpoints"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:b05544eb2ddbbd6aa13ee6ce65e55a2cb995220b1d4af9348504bd3f528f63d2",
+          "content_assertions": {
+            "sanctions": true
+          },
+          "http_status": 403,
+          "number": 1,
+          "transport_error": "HTTP Error 403: Forbidden"
+        },
+        {
+          "body_sha256": "sha256:a9bac53e32151e92ba8a97a7c5e97d4fa944414004316a94e7fee815882c49a9",
+          "content_assertions": {
+            "sanctions": true
+          },
+          "http_status": 403,
+          "number": 2,
+          "transport_error": "HTTP Error 403: Forbidden"
+        }
+      ],
+      "source_id": "coinbase_sanctions_disclosure",
+      "status": "unavailable_or_content_unverified",
+      "url": "https://www.coinbase.com/blog/using-crypto-tech-to-promote-sanctions-compliance"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:a7aef318ec669957096f3cc70d4f34266452071bd315cc74b08e7054fd83aadd",
+          "content_assertions": {
+            "Coinbase": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/coinbase_index/attempt_1",
+      "source_id": "coinbase_index",
+      "status": "captured_content_assertions_pass",
+      "url": "https://www.coinbase.com/blog"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:ec7af47715b7329ff5da051ecc3b15ee1f88800298fec0917ebbbc896271f146",
+          "content_assertions": {
+            "sanctions": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/kraken_sanctions_disclosure/attempt_1",
+      "source_id": "kraken_sanctions_disclosure",
+      "status": "captured_content_assertions_pass",
+      "url": "https://blog.kraken.com/news/strengthening-sanctions-compliance"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:a477244e07514b0caf4985de7f3fb9a826b5a7b5ea3190570b267898d5707cce",
+          "content_assertions": {
+            "Kraken": true
+          },
+          "http_status": 200,
+          "number": 1,
+          "transport_error": null
+        }
+      ],
+      "capture_path": "sources/measurement_panel/kraken_index/attempt_1",
+      "source_id": "kraken_index",
+      "status": "captured_content_assertions_pass",
+      "url": "https://blog.kraken.com/"
+    },
+    {
+      "attempts": [
+        {
+          "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_assertions": {
+            "announcement": false
+          },
+          "http_status": 202,
+          "number": 1,
+          "transport_error": null
+        },
+        {
+          "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_assertions": {
+            "announcement": false
+          },
+          "http_status": 202,
+          "number": 2,
+          "transport_error": null
+        }
+      ],
+      "source_id": "binance_announcement_index",
+      "status": "unavailable_or_content_unverified",
+      "url": "https://www.binance.com/en/support/announcement"
+    }
+  ],
+  "status": "machine_prepared_current_source_checks_historical_verification_pending",
+  "still_required_for_T4": [
+    "T3 frame reconciliation and independently checked eligibility",
+    "historical implementation/ABI and provider existence intervals",
+    "historical archive completeness",
+    "independent source and action-stage adjudication",
+    "frozen main-cohort execution manifest"
+  ]
+}

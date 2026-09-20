@@ -59,3 +59,13 @@ def test_invalid_label_fails_closed() -> None:
 
     with pytest.raises(evidence_irr.PacketError, match="expected one of"):
         evidence_irr.build_report(rows, allow_incomplete=True)
+
+
+def test_constant_labels_leave_kappa_undefined_and_renderable() -> None:
+    report = evidence_irr.build_report([_row("case-a", "yes", "yes"),
+                                        _row("case-b", "yes", "yes")])
+    stats = report["variables"]["tier_ok"]
+    assert stats["observed_agreement"] == 1.0
+    assert stats["kappa"] is None
+    assert stats["kappa_ci"] is None
+    assert "NA" in evidence_irr.render_markdown(report)

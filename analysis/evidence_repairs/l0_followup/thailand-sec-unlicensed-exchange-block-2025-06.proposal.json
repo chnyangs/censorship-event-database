@@ -1,0 +1,154 @@
+{
+  "proposal_version": "l0-machine-sidecar-1",
+  "created_on_utc": "2026-09-20",
+  "review_status": "machine_proposed_not_human_reviewed",
+  "automatically_applied": false,
+  "canonical_event_edited": false,
+  "schema_compatibility": "Semantic proposal for a future schema migration, not an executable patch against current schema 0.2.0.",
+  "measurement_evidence": {
+    "event_window_measurement_denominator": null,
+    "distinct_probe_count": null,
+    "observed_asn_count": null,
+    "network_failure_count": null,
+    "censorship_rate": null,
+    "status": "historical_retrieval_unresolved",
+    "readiness_gate_satisfied": false
+  },
+  "event_id": "thailand-sec-unlicensed-exchange-block-2025-06",
+  "canonical_input": {
+    "path": "events/thailand-sec-unlicensed-exchange-block-2025-06.yaml",
+    "sha256": "3c321431786b0fc1894d5da980372df41b23751f2ea1e242cdfcdb65a17878cc",
+    "bytes": 4611
+  },
+  "evidence": [
+    {
+      "kind": "cached_secondary_html",
+      "path": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/source/www.coindesk.com__policy-2025-05-30-thailand-to-block-okx-bybit-and-others-citing-lack-of-license__a4a714d62f.html",
+      "sha256": "de5f8b03a889014f0449ca55769a9ecf8aa413fde60284d3aeda1ff73cb9f73b",
+      "bytes": 469114,
+      "declared_yaml_hash_verified": true
+    },
+    {
+      "kind": "browser_tool_rendered_official_page_text",
+      "artifact": {
+        "path": "sources/evidence_repairs/l0_followup/sec_ooni_browser_response_20260920.json",
+        "sha256": "62a89b2d5cfc73cc370dc3814d9efa8b6d66b2aeea05eec1fb1e40d902f9e0a7",
+        "bytes": 14625
+      },
+      "official_urls": [
+        "https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12047",
+        "https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12048"
+      ],
+      "capture_limit": "The browser tool returned official-page text, distinct from original HTML. Early direct requests received HTTP403; later browser-header and SEC-search-referer requests successfully captured both notice HTML bodies below. Denial-body hashes are not substantive SEC notice evidence."
+    },
+    {
+      "kind": "captured_official_notice_html",
+      "url": "https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12047",
+      "path": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-warning/www.sec.or.th__EN-Pages-News_Detail.aspx__d855395129.html",
+      "sha256": "b6926f82f7e47e8d568b92b2db5e97c511b49dde9ac74e87d48c86a449c23b8c",
+      "bytes": 95152,
+      "http_status": 200,
+      "captured_at_utc": "2026-09-20T13:24:10Z",
+      "manifest_path": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-warning/manifest.json",
+      "supports": "SEC announcement 134/2025 dated 29 May 2025 and access restrictions scheduled for 28 June 2025; not actual execution."
+    },
+    {
+      "kind": "captured_official_notice_html",
+      "url": "https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12048",
+      "path": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-captured/www.sec.or.th__EN-Pages-News_Detail.aspx__41141cabed.html",
+      "sha256": "d7422faba55eb4a363c0a3f428701db919e3298390c6cb80d2b33608b3cf3431",
+      "bytes": 94044,
+      "http_status": 200,
+      "captured_at_utc": "2026-09-20T13:24:03Z",
+      "manifest_path": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-captured/manifest.json",
+      "supports": "SEC reminder 160/2025 dated 26 June 2025 and the same scheduled effect; not a post-implementation observation."
+    },
+    {
+      "kind": "captured_official_search_html_discovery_only",
+      "url": "https://secsearch.sec.or.th/?search=1000x",
+      "path": "sources/http_captures/thailand-sec-unlicensed-exchange-block-2025-06/official-sec-search/secsearch.sec.or.th__capture__8d27065f42.html",
+      "sha256": "be33dd2cf74836eb576a35b87a10b2688986d42fa72e37604d8d2ef5c3abbd8d",
+      "bytes": 30277,
+      "http_status": 200,
+      "captured_at_utc": "2026-09-20T13:22:01Z",
+      "capture_limit": "Only search results 1–10 of 11 are captured. This is a discovery page, not an exhaustive archive search or execution evidence."
+    }
+  ],
+  "issues": [
+    {
+      "fields": [
+        "evidence_caveat",
+        "primary_source_verified",
+        "trigger.citation"
+      ],
+      "finding": "Two official SEC announcements are now identified, browser-read and captured as HTTP200 original HTML with verified hashes after earlier 403 attempts. The current absence-of-primary-source claim can be proposed for revision after source/adjudication review; primary_source_verified is not automatically changed."
+    },
+    {
+      "fields": [
+        "trigger.timestamp",
+        "observations[0].timestamp",
+        "observations[0].delta_hours",
+        "scoped_claim"
+      ],
+      "finding": "28 June is the announced scheduled access-restriction date. The official announcements precede that date and do not prove execution or a zero-hour observed reaction. Announcement and effective-date stages must be distinct."
+    },
+    {
+      "fields": [
+        "target.entity",
+        "target.enumeration"
+      ],
+      "finding": "SEC explicitly enumerates five platforms: Bybit, 1000X, CoinEx, OKX, XT.COM. Current other unlicensed exchanges can be replaced by this bounded announced list, without claiming all affected hostnames are enumerated."
+    }
+  ],
+  "proposed_semantics": {
+    "record_role": "documented_planned_restriction_registry_entry",
+    "announcement": {
+      "local_date": "2025-05-29",
+      "timezone": "Asia/Bangkok",
+      "precision": "day",
+      "stage": "public_announcement_and_SEC_referral_to_MDES",
+      "point_timestamp": null,
+      "source_url": "https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12047"
+    },
+    "reminder": {
+      "local_date": "2025-06-26",
+      "precision": "day",
+      "source_url": "https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12048"
+    },
+    "scheduled_effect": {
+      "local_date": "2025-06-28",
+      "timezone": "Asia/Bangkok",
+      "precision": "day",
+      "stage": "planned_access_restriction",
+      "point_timestamp": null,
+      "utc_day_interval_start": "2025-06-27T17:00:00Z",
+      "utc_day_interval_end_exclusive": "2025-06-28T17:00:00Z",
+      "note": "UTC interval translates the announced local calendar day; neither endpoint is an observed implementation time."
+    },
+    "actual_network_restriction_onset": null,
+    "trigger_to_observed_response_hours": null,
+    "l0_measurement_coverage": "not_measured",
+    "empirical_network_outcome": "unknown",
+    "announced_platforms": [
+      "Bybit",
+      "1000X",
+      "CoinEx",
+      "OKX",
+      "XT.COM"
+    ],
+    "announced_domains": [
+      "bybit.com",
+      "1000x.live",
+      "coinex.com",
+      "okx.com",
+      "xt.com"
+    ],
+    "announced_okx_path": "/th",
+    "actor_roles": {
+      "public_announcement_and_referral": "SEC",
+      "announced_restriction_implementer": "MDES"
+    },
+    "retain_registry_record": true,
+    "needs_human_adjudication": true
+  }
+}

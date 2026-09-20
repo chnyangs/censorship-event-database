@@ -1,108 +1,55 @@
+"""Optional LLM reference runner; importing this module never calls an LLM.
+
+Usage: python scripts/llm_baseline_coverage.py MODEL MODE [CUTOFF] [WORKERS]
+The codebook_v2 prompt is neutral: only grounded mode receives training priors.
+Existing frozen outputs used an earlier prompt and have NOT been regenerated.
+A chronological corpus split does not establish an LLM's knowledge cutoff or
+exclude pretraining contamination. Gold labels remain curator/LLM-assisted.
 """
-llm_baseline_coverage.py — LLM reference baselines for the coverage-prediction task.
-
-Calls the local `claude` CLI (subscription auth) as a PREDICTOR: given only a
-trigger descriptor (zero-shot) or descriptor + train-set coverage priors
-(grounded), the model predicts the 6-layer coverage-state vector. Scored with the
-SAME metrics as the simple baselines (scope-F1 / cond-qual / 4-class macro-F1) on
-a recent holdout (year >= 2025; the model's cutoff is earlier so it cannot recall
-these events). CLI calls run in parallel to amortise cold-start.
-
-Usage:  python scripts/llm_baseline_coverage.py <haiku|sonnet> <zeroshot|grounded> [workers]
-Writes per-event predictions to /tmp/llmpred_<model>_<mode>.json for later compile.
-
-CAVEATS (printed): (1) gold labels are LLM-coded -> shared-process bias; read as a
-REFERENCE, not ground truth. (2) LLM-prior baseline, not a strict temporal-holdout
-learner. (3) grounded mode is in-context learning on the train split only.
-"""
-
-import glob, json, subprocess, sys, collections
+import argparse
+import collections
+import hashlib
+import json
+import subprocess
+import sys
 from concurrent.futures import ThreadPoolExecutor
-import numpy as np
-import yaml
+from pathlib import Path
 
-MODEL = sys.argv[1] if len(sys.argv) > 1 else "haiku"
-MODE = sys.argv[2] if len(sys.argv) > 2 else "zeroshot"
-CUTOFF = int(sys.argv[3]) if len(sys.argv) > 3 else 2025
-WORKERS = int(sys.argv[4]) if len(sys.argv) > 4 else 8
-LAYERS = ["l0_network", "l1_consensus", "l3_rpc", "l4_frontend",
-          "asset_onchain", "offramp_cex"]
-COVER = ["measured", "partially_measured", "not_measured", "not_applicable"]
+import numpy as np
+
+from benchmark_coverage_prediction import (
+    COVER, LAYERS, METRIC_VERSION, cond_quality, load as load_events,
+    macro_f1, scope_f1,
+)
+
 NA = "not_applicable"
-STRATA = ["S1_ofac_sdn", "S2_ofac_removal", "S3_doj_sec_cftc_fiod",
-          "S4_nation_state", "S5_corporate", "S6_supranational"]
+INVALID = "__invalid__"
+PROMPT_VERSION = "codebook_v2"
 
 
 def load():
-    rows = []
-    for f in sorted(glob.glob("events/*.yaml")):
-        d = yaml.safe_load(open(f))
-        if not isinstance(d, dict) or d.get("status") != "admitted":
-            continue
-        trig = d.get("trigger") or {}
-        ts = str(trig.get("timestamp") or "")
-        if not ts[:4].isdigit():
-            continue
-        jur = d.get("jurisdiction") or []
-        jur = [jur] if isinstance(jur, str) else jur
-        cov = {c["layer"]: c.get("status") for c in (d.get("coverage") or [])
-               if isinstance(c, dict)}
-        rows.append({
-            "feat": {"stratum": d.get("research_stratum") or "?",
-                     "trigger_type": trig.get("type") or "?",
-                     "us": "US" in jur,
-                     "target_kind": (d.get("target") or {}).get("kind") or "?",
-                     "year": int(ts[:4])},
-            "labels": {L: (cov.get(L, NA) if cov.get(L, NA) in COVER else NA) for L in LAYERS},
-            "year": int(ts[:4])})
-    return rows
+    rows = load_events()
+    return [{**r, "labels": {layer: value[0] for layer, value in r["labels"].items()}}
+            for r in rows]
 
 
-def macro_f1(gold, pred):
-    f1s = []
-    for c in set(gold) | set(pred):
-        tp = sum(g == c and p == c for g, p in zip(gold, pred))
-        fp = sum(g != c and p == c for g, p in zip(gold, pred))
-        fn = sum(g == c and p != c for g, p in zip(gold, pred))
-        pr = tp / (tp + fp) if tp + fp else 0.0
-        rc = tp / (tp + fn) if tp + fn else 0.0
-        f1s.append(2 * pr * rc / (pr + rc) if pr + rc else 0.0)
-    return float(np.mean(f1s)) if f1s else 0.0
-
-
-def scope_f1(g, p):
-    return macro_f1(["na" if x == NA else "app" for x in g],
-                    ["na" if x == NA else "app" for x in p])
-
-
-def cond_quality(g, p):
-    idx = [i for i, x in enumerate(g) if x != NA]
-    return macro_f1([g[i] for i in idx], [p[i] for i in idx]) if idx else float("nan")
-
-
-# ---- build prompt ----
-BASE = """You predict, for a NEW crypto-censorship enforcement trigger, which stack layers will carry PUBLIC, REPLAYABLE evidence of a reaction — the COVERAGE STATE per layer. You are NOT predicting whether enforcement happens; you predict WHERE observable public evidence will exist.
+BASE = """Predict the recorded coverage state for each stack layer from the trigger descriptor. Coverage describes the availability of public evidence in a study; it does not itself establish whether an enforcement reaction occurred.
 
 Six stack layers:
-- l0_network: ISP/DNS/national network blocking, app-store/geo removals (poorest public evidence).
-- l1_consensus: relay/builder/validator OFAC filtering on Ethereum.
-- l3_rpc: node-provider (Infura/Alchemy/Flashbots) endpoint or address blocks.
-- l4_frontend: web/app UI geoblock, takedown, app-store removal, domain seizure.
-- asset_onchain: token-issuer on-chain freeze/blacklist (USDC/USDT); needs an on-chain tx.
-- offramp_cex: centralized-exchange delisting, KYC gating, jurisdiction exit, account freeze (by far the largest public-evidence denominator).
+- l0_network: ISP, IP, DNS, or other network reachability restrictions.
+- l1_consensus: transaction inclusion by block builders, relays, or validators.
+- l3_rpc: access restrictions at RPC providers or endpoints.
+- l4_frontend: web or app access restrictions, takedowns, app-store removals, or domain seizures.
+- asset_onchain: token-issuer freezes or blacklists recorded on-chain.
+- offramp_cex: centralized-exchange access, delistings, jurisdiction exits, or account restrictions.
 
 Coverage states:
-- measured: this layer is systematically observed for this kind of event, with replayable evidence.
-- partially_measured: partially observed / a named partial denominator only.
-- not_measured: this layer could be relevant but is typically NOT publicly observed (an observability GAP).
-- not_applicable: this trigger's instrument does not act on this layer at all.
+- measured: a replayable measurement artifact exists for this event's layer and scope.
+- partially_measured: a replayable measurement artifact exists but does not exhaust the scope.
+- not_measured: no replayable measurement artifact has been captured for the in-scope layer.
+- not_applicable: the layer does not meaningfully apply to this event.
 
-Most triggers touch only 1-2 layers; the rest are not_applicable."""
-
-GROUND_HEADER = """
-
-CORPUS PRIORS (from training events before 2025 — use these base rates to calibrate, especially which layers are usually not_applicable or not_measured):
-"""
+Use these definitions without assuming a layer's typical coverage or how many layers are applicable."""
 
 CLOSE = """
 
@@ -113,68 +60,80 @@ TRIGGER DESCRIPTOR:
 - target kind: %(target_kind)s
 - year: %(year)s
 
-Reply with ONLY a JSON object mapping each layer to one coverage state, nothing else:
-{"l0_network":"...","l1_consensus":"...","l3_rpc":"...","l4_frontend":"...","asset_onchain":"...","offramp_cex":"..."}"""
+Reply with ONLY a JSON object mapping each of the six layer names to one coverage state."""
 
 
 def build_priors(train):
-    """Per-stratum per-layer coverage-state distribution from the train split."""
+    """Complete per-stratum counts, computed only from the supplied train set."""
     lines = []
-    for s in STRATA:
-        ev = [r for r in train if r["feat"]["stratum"] == s]
-        if not ev:
-            continue
-        parts = []
-        for L in LAYERS:
-            c = collections.Counter(r["labels"][L] for r in ev)
-            top = c.most_common(2)
-            frac = "/".join(f"{k.split('_')[0] if k!=NA else 'na'}:{v}" for k, v in top)
-            parts.append(f"{L.split('_')[0]}={frac}")
-        lines.append(f"  {s} (n={len(ev)}): " + "; ".join(parts))
+    for stratum in sorted({r["feat"]["stratum"] for r in train}):
+        events = [r for r in train if r["feat"]["stratum"] == stratum]
+        counts = {layer: dict(collections.Counter(r["labels"][layer] for r in events))
+                  for layer in LAYERS}
+        lines.append(f"{stratum} (n={len(events)}): {json.dumps(counts, sort_keys=True)}")
     return "\n".join(lines)
 
 
-def make_prompt(feat, priors):
-    p = BASE
+def make_prompt(feat, priors="", cutoff=None):
+    prompt = BASE
     if priors:
-        p += GROUND_HEADER + priors
-    return p + (CLOSE % feat)
+        window = f" (trigger year < {cutoff})" if cutoff is not None else ""
+        prompt += f"\n\nTRAINING-SPLIT COVERAGE COUNTS{window}:\n" + priors
+    return prompt + (CLOSE % feat)
 
 
-def llm_predict(args):
-    feat, prompt = args
+def llm_predict(task):
+    model, prompt = task
     try:
-        out = subprocess.run(["claude", "-p", prompt, "--model", MODEL,
-                              "--output-format", "json"],
+        out = subprocess.run(["claude", "-p", prompt, "--model", model,
+                              "--output-format", "json"], check=True,
                              capture_output=True, text=True, timeout=180)
-        res = json.loads(out.stdout)["result"]
-        obj = json.loads(res[res.index("{"):res.rindex("}") + 1])
-        return {L: (obj.get(L) if obj.get(L) in COVER else NA) for L in LAYERS}
-    except Exception as e:
-        sys.stderr.write(f"  parse fail ({e})\n")
-        return {L: NA for L in LAYERS}
+        result = json.loads(out.stdout)["result"]
+        obj = json.loads(result[result.index("{"):result.rindex("}") + 1])
+        if not isinstance(obj, dict):
+            raise ValueError("expected a JSON object")
+        return {layer: obj[layer] if obj.get(layer) in COVER else INVALID
+                for layer in LAYERS}
+    except (subprocess.SubprocessError, ValueError, KeyError, TypeError, OSError) as exc:
+        sys.stderr.write(f"prediction failed ({type(exc).__name__}); scored as invalid, not NA\n")
+        return {layer: INVALID for layer in LAYERS}
 
 
-rows = load()
-train = [r for r in rows if r["year"] < CUTOFF]
-test = [r for r in rows if r["year"] >= CUTOFF]
-priors = build_priors(train) if MODE == "grounded" else ""
-print(f"corpus={len(rows)} train={len(train)} test={len(test)} model={MODEL} mode={MODE} workers={WORKERS}")
-if priors:
-    print("--- injected corpus priors ---\n" + priors)
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("model")
+    parser.add_argument("mode", choices=("zeroshot", "grounded"))
+    parser.add_argument("cutoff", type=int, nargs="?", default=2025)
+    parser.add_argument("workers", type=int, nargs="?", default=8)
+    args = parser.parse_args(argv)
+    rows = load()
+    train = [r for r in rows if r["year"] < args.cutoff]
+    test = [r for r in rows if r["year"] >= args.cutoff]
+    if not train or not test or args.workers < 1:
+        parser.error("nonempty train/test splits and positive workers are required")
+    priors = build_priors(train) if args.mode == "grounded" else ""
+    prompts = [make_prompt(r["feat"], priors, args.cutoff) for r in test]
+    print(f"train={len(train)} test={len(test)} prompt={PROMPT_VERSION}", flush=True)
+    with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        predictions = list(executor.map(llm_predict, [(args.model, p) for p in prompts]))
+    gold = {layer: [r["labels"][layer] for r in test] for layer in LAYERS}
+    pred = {layer: [r[layer] for r in predictions] for layer in LAYERS}
+    artifact = {
+        "gold": gold, "pred": pred, "model": args.model, "mode": args.mode,
+        "n": len(test), "cutoff": args.cutoff, "event_ids": [r["event_id"] for r in test],
+        "train_event_ids": [r["event_id"] for r in train],
+        "prompt_version": PROMPT_VERSION, "metric_version": METRIC_VERSION,
+        "prompt_sha256": [hashlib.sha256(p.encode()).hexdigest() for p in prompts],
+        "caveat": "curated labels; independent validation and pretraining contamination unverified",
+    }
+    path = Path(f"/tmp/llmpred_{args.model}_{args.mode}_{args.cutoff}_{PROMPT_VERSION}.json")
+    path.write_text(json.dumps(artifact, indent=2, allow_nan=False) + "\n")
+    scores = [np.mean([metric(gold[layer], pred[layer]) for layer in LAYERS])
+              for metric in (macro_f1, scope_f1)]
+    print(f"Fixed-class coverage F1={scores[0]:.3f}; scope F1={scores[1]:.3f}; saved {path}")
+    print("Reference only: chronological splitting does not prove absence of LLM contamination.")
+    return 0
 
-tasks = [(r["feat"], make_prompt(r["feat"], priors)) for r in test]
-print(f"running {len(tasks)} parallel CLI calls...", flush=True)
-with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-    llm_preds = list(ex.map(llm_predict, tasks))
 
-gold = {L: [r["labels"][L] for r in test] for L in LAYERS}
-pred = {L: [p[L] for p in llm_preds] for L in LAYERS}
-json.dump({"gold": gold, "pred": pred, "model": MODEL, "mode": MODE, "n": len(test)},
-          open(f"/tmp/llmpred_{MODEL}_{MODE}_{CUTOFF}.json", "w"))
-
-f1 = np.mean([macro_f1(gold[L], pred[L]) for L in LAYERS])
-sc = np.mean([scope_f1(gold[L], pred[L]) for L in LAYERS])
-cq = np.nanmean([cond_quality(gold[L], pred[L]) for L in LAYERS])
-print(f"\nRESULT  LLM {MODEL}/{MODE} cutoff>={CUTOFF}  4cls-F1={f1:.3f}  scope-F1={sc:.3f}  cond-qual={cq:.3f}  (n={len(test)})")
-print(f"saved /tmp/llmpred_{MODEL}_{MODE}_{CUTOFF}.json")
+if __name__ == "__main__":
+    raise SystemExit(main())

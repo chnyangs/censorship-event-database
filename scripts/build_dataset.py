@@ -58,6 +58,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _dataset_meta import now_utc_iso, reproducible_python  # noqa: E402
+from sync_snapshot_descriptors import citation_text  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -277,6 +278,10 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
 
     dataset_version = read_cff_version()
     dataset_url = DATASET_URL
+    citation = yaml.safe_load(CITATION_CFF.read_text()) if CITATION_CFF.exists() else {
+        "title": "Cross-Layer Censorship Event Database", "version": dataset_version,
+        "repository-code": dataset_url,
+    }
     input_hash, input_count = source_input_hash()
     meta = {
         "dataset_name": DATASET_NAME,
@@ -311,11 +316,7 @@ def build_meta(events: list[dict]) -> dict[str, Any]:
             "python": reproducible_python(),
         },
         "dataset_url": dataset_url,
-        "citation_hint": (
-            f"Yang, Xiangwen. ({now_utc_iso()[:4]}). "
-            f"Cross-Layer Censorship Event Database (version {dataset_version}). "
-            f"{dataset_url}. See CITATION.cff for canonical BibTeX / APA / DOI."
-        ),
+        "citation_hint": citation_text(citation),
     }
     return meta
 

@@ -1,0 +1,111 @@
+Admitted events with a trigger year: 398
+Metric version: fixed_classes_v2; absent fixed classes contribute zero.
+Scores use curated corpus labels, not independent enforcement ground truth.
+Coverage CI resamples events within each layer; events are distinct rows.
+Test events per year: {2017: 12, 2018: 17, 2019: 14, 2020: 14, 2021: 40, 2022: 63, 2023: 83, 2024: 53, 2025: 31, 2026: 11}
+
+### B0 majority — rolling-origin temporal CV (test years 2017+, pooled)
+layer             4cls-F1  scope-F1  cond-qual  n_test  coverage F1 95% CI
+l0_network          0.241     0.482      0.000     338  [0.237, 0.244]
+  gold support: {'measured': 0, 'partially_measured': 5, 'not_measured': 19, 'not_applicable': 314}
+l1_consensus        0.243     0.486      0.000     338  [0.240, 0.247]
+  gold support: {'measured': 8, 'partially_measured': 8, 'not_measured': 2, 'not_applicable': 320}
+l3_rpc              0.245     0.490      0.000     338  [0.242, 0.247]
+  gold support: {'measured': 1, 'partially_measured': 6, 'not_measured': 6, 'not_applicable': 325}
+l4_frontend         0.200     0.401      0.000     338  [0.191, 0.210]
+  gold support: {'measured': 52, 'partially_measured': 17, 'not_measured': 43, 'not_applicable': 226}
+asset_onchain       0.230     0.461      0.000     338  [0.225, 0.236]
+  gold support: {'measured': 23, 'partially_measured': 4, 'not_measured': 22, 'not_applicable': 289}
+offramp_cex         0.195     0.448      0.294     338  [0.185, 0.204]
+  gold support: {'measured': 216, 'partially_measured': 37, 'not_measured': 21, 'not_applicable': 64}
+MEAN                0.226     0.461      0.049
+  Reaction on identical gold measured/partial cells: oracle vs coverage-gated end-to-end
+    l0_network       oracle       acc=1.000 F1=0.500 n=5 abstentions=0
+    l0_network       end_to_end   acc=0.000 F1=0.000 n=5 abstentions=5
+    l1_consensus     oracle       acc=0.625 F1=0.385 n=16 abstentions=0
+    l1_consensus     end_to_end   acc=0.000 F1=0.000 n=16 abstentions=16
+    l3_rpc           oracle       acc=0.857 F1=0.462 n=7 abstentions=0
+    l3_rpc           end_to_end   acc=0.000 F1=0.000 n=7 abstentions=7
+    l4_frontend      oracle       acc=0.884 F1=0.469 n=69 abstentions=0
+    l4_frontend      end_to_end   acc=0.000 F1=0.000 n=69 abstentions=69
+    asset_onchain    oracle       acc=0.963 F1=0.491 n=27 abstentions=0
+    asset_onchain    end_to_end   acc=0.000 F1=0.000 n=27 abstentions=27
+    offramp_cex      oracle       acc=0.656 F1=0.396 n=253 abstentions=0
+    offramp_cex      end_to_end   acc=0.656 F1=0.396 n=253 abstentions=0
+
+### B1 stratum — rolling-origin temporal CV (test years 2017+, pooled)
+layer             4cls-F1  scope-F1  cond-qual  n_test  coverage F1 95% CI
+l0_network          0.240     0.480      0.000     338  [0.236, 0.244]
+  gold support: {'measured': 0, 'partially_measured': 5, 'not_measured': 19, 'not_applicable': 314}
+l1_consensus        0.243     0.486      0.000     338  [0.240, 0.247]
+  gold support: {'measured': 8, 'partially_measured': 8, 'not_measured': 2, 'not_applicable': 320}
+l3_rpc              0.245     0.490      0.000     338  [0.242, 0.247]
+  gold support: {'measured': 1, 'partially_measured': 6, 'not_measured': 6, 'not_applicable': 325}
+l4_frontend         0.199     0.399      0.000     338  [0.189, 0.209]
+  gold support: {'measured': 52, 'partially_measured': 17, 'not_measured': 43, 'not_applicable': 226}
+asset_onchain       0.230     0.461      0.000     338  [0.225, 0.236]
+  gold support: {'measured': 23, 'partially_measured': 4, 'not_measured': 22, 'not_applicable': 289}
+offramp_cex         0.307     0.555      0.357     338  [0.248, 0.368]
+  gold support: {'measured': 216, 'partially_measured': 37, 'not_measured': 21, 'not_applicable': 64}
+MEAN                0.244     0.478      0.060
+  Reaction on identical gold measured/partial cells: oracle vs coverage-gated end-to-end
+    l0_network       oracle       acc=1.000 F1=0.500 n=5 abstentions=0
+    l0_network       end_to_end   acc=0.000 F1=0.000 n=5 abstentions=5
+    l1_consensus     oracle       acc=0.812 F1=0.768 n=16 abstentions=0
+    l1_consensus     end_to_end   acc=0.000 F1=0.000 n=16 abstentions=16
+    l3_rpc           oracle       acc=0.857 F1=0.462 n=7 abstentions=0
+    l3_rpc           end_to_end   acc=0.000 F1=0.000 n=7 abstentions=7
+    l4_frontend      oracle       acc=0.841 F1=0.533 n=69 abstentions=0
+    l4_frontend      end_to_end   acc=0.000 F1=0.000 n=69 abstentions=69
+    asset_onchain    oracle       acc=0.963 F1=0.491 n=27 abstentions=0
+    asset_onchain    end_to_end   acc=0.000 F1=0.000 n=27 abstentions=27
+    offramp_cex      oracle       acc=0.779 F1=0.730 n=253 abstentions=0
+    offramp_cex      end_to_end   acc=0.668 F1=0.680 n=253 abstentions=35
+
+### B2 stratum+trigger — rolling-origin temporal CV (test years 2017+, pooled)
+layer             4cls-F1  scope-F1  cond-qual  n_test  coverage F1 95% CI
+l0_network          0.240     0.480      0.000     338  [0.236, 0.244]
+  gold support: {'measured': 0, 'partially_measured': 5, 'not_measured': 19, 'not_applicable': 314}
+l1_consensus        0.243     0.486      0.000     338  [0.240, 0.247]
+  gold support: {'measured': 8, 'partially_measured': 8, 'not_measured': 2, 'not_applicable': 320}
+l3_rpc              0.245     0.490      0.000     338  [0.242, 0.247]
+  gold support: {'measured': 1, 'partially_measured': 6, 'not_measured': 6, 'not_applicable': 325}
+l4_frontend         0.203     0.420      0.012     338  [0.188, 0.225]
+  gold support: {'measured': 52, 'partially_measured': 17, 'not_measured': 43, 'not_applicable': 226}
+asset_onchain       0.229     0.458      0.000     338  [0.223, 0.234]
+  gold support: {'measured': 23, 'partially_measured': 4, 'not_measured': 22, 'not_applicable': 289}
+offramp_cex         0.316     0.572      0.355     338  [0.256, 0.376]
+  gold support: {'measured': 216, 'partially_measured': 37, 'not_measured': 21, 'not_applicable': 64}
+MEAN                0.246     0.485      0.061
+  Reaction on identical gold measured/partial cells: oracle vs coverage-gated end-to-end
+    l0_network       oracle       acc=1.000 F1=0.500 n=5 abstentions=0
+    l0_network       end_to_end   acc=0.000 F1=0.000 n=5 abstentions=5
+    l1_consensus     oracle       acc=0.812 F1=0.768 n=16 abstentions=0
+    l1_consensus     end_to_end   acc=0.000 F1=0.000 n=16 abstentions=16
+    l3_rpc           oracle       acc=0.857 F1=0.462 n=7 abstentions=0
+    l3_rpc           end_to_end   acc=0.000 F1=0.000 n=7 abstentions=7
+    l4_frontend      oracle       acc=0.841 F1=0.533 n=69 abstentions=0
+    l4_frontend      end_to_end   acc=0.029 F1=0.032 n=69 abstentions=67
+    asset_onchain    oracle       acc=0.963 F1=0.491 n=27 abstentions=0
+    asset_onchain    end_to_end   acc=0.000 F1=0.000 n=27 abstentions=27
+    offramp_cex      oracle       acc=0.767 F1=0.715 n=253 abstentions=0
+    offramp_cex      end_to_end   acc=0.652 F1=0.662 n=253 abstentions=37
+
+### Always measured — rolling-origin temporal CV (test years 2017+, pooled)
+layer             4cls-F1  scope-F1  cond-qual  n_test  coverage F1 95% CI
+l0_network          0.000     0.066      0.000     338  [0.000, 0.000]
+  gold support: {'measured': 0, 'partially_measured': 5, 'not_measured': 19, 'not_applicable': 314}
+l1_consensus        0.012     0.051      0.205     338  [0.004, 0.020]
+  gold support: {'measured': 8, 'partially_measured': 8, 'not_measured': 2, 'not_applicable': 320}
+l3_rpc              0.001     0.037      0.048     338  [0.000, 0.006]
+  gold support: {'measured': 1, 'partially_measured': 6, 'not_measured': 6, 'not_applicable': 325}
+l4_frontend         0.067     0.249      0.211     338  [0.053, 0.081]
+  gold support: {'measured': 52, 'partially_measured': 17, 'not_measured': 43, 'not_applicable': 226}
+asset_onchain       0.032     0.127      0.213     338  [0.020, 0.043]
+  gold support: {'measured': 23, 'partially_measured': 4, 'not_measured': 22, 'not_applicable': 289}
+offramp_cex         0.195     0.448      0.294     338  [0.185, 0.204]
+  gold support: {'measured': 216, 'partially_measured': 37, 'not_measured': 21, 'not_applicable': 64}
+MEAN                0.051     0.163      0.162
+  Reaction on identical gold measured/partial cells: oracle vs coverage-gated end-to-end
+Reaction metrics are undefined on unmeasured cells; no labels are imputed there.
+This benchmark predicts corpus coding/coverage choices; it does not validate those choices.

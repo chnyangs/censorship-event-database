@@ -112,8 +112,10 @@ Goal: turn base-layer non-measurement into a defensible measurement result.
 Deliverables:
 
 - `docs/l0-l3-denominator-appendix.md` explaining the denominator model.
-- `derived/l0_coverage_summary.*` documents every OONI/Censored-Planet
-  query window as measured, zero-result, or no-denominator.
+- `derived/l0_coverage_summary.*` documents the legacy OONI query cells;
+  Censored Planet ingestion remains unexecuted. Later bounded OONI metadata
+  and raw-record collections are tracked separately in
+  `analysis/validation_progress/`, without rewriting the legacy queries.
 - An L3/RPC provider census distinguishes public endpoints, provider
   documentation, GitHub-visible policy substrates, and private-only
   compliance channels.

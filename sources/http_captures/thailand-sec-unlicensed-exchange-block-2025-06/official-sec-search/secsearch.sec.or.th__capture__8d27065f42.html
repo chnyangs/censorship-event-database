@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SEC Search</title>
+	
+	
+	<link href="https://secsearch.sec.or.th/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	<link href="https://secsearch.sec.or.th/resource/core/css/Main.css" rel="stylesheet">
+	
+	
+    <link rel="shortcut icon" href=https://secsearch.sec.or.th/images/favicon.ico />
+
+
+
+	
+	
+
+
+
+	
+
+	
+		<link href="https://secsearch.sec.or.th/resource/update2072019/bootstrap.min.css" rel="stylesheet">
+		<script src="https://secsearch.sec.or.th/resource/update2072019/jquery.min.js" ></script>
+		<script src="https://secsearch.sec.or.th/resource/update2072019/bootstrap.bundle.js"></script>
+		<script src="https://secsearch.sec.or.th/resource/update2072019/bootstrap.min.js"></script>
+
+
+	
+
+    
+    <link href=" https://www-navigation.sec.or.th/core/CSS/Main_Navigation.css" rel="stylesheet" />
+    <link href=" https://www-navigation.sec.or.th/core/CSS/responsive_Navigation.css" rel="stylesheet" />
+    
+    <script src="https://www-navigation.sec.or.th/core/js/functionMain_Navigation.js"></script>
+
+
+
+
+
+
+
+
+
+
+		<script src="https://secsearch.sec.or.th/themeV3/js/jquery-3.3.1.js" type="text/javascript" ></script>
+		<script src="https://secsearch.sec.or.th/themeV3/js/bootstrap.min.js" type="text/javascript" ></script>
+		
+		<link href="https://secsearch.sec.or.th/themeV3/css/MasterPage.css" rel="stylesheet">
+
+
+		<script src="https://secsearch.sec.or.th/themeV3/js/functionMasterPage.js" type="text/javascript" ></script>
+ 		<!-- <link href="https://secsearch.sec.or.th/themeV3/css/bootstrap.min.css" rel="stylesheet">  -->
+
+		<link href="https://secsearch.sec.or.th/themeV3/css/_reboot.scss" rel="stylesheet">
+		<link href="https://secsearch.sec.or.th/themeV3/css/sliderStyle.css" rel="stylesheet">
+		<link href="https://secsearch.sec.or.th/themeV3/css/switch.css" rel="stylesheet">
+
+		<script src="https://secsearch.sec.or.th/themeV3/js/SliderScript.js" type="text/javascript" ></script>
+		<!-- <script src="https://secsearch.sec.or.th/themeV3/js/SecCookie.js" type="text/javascript" ></script> -->
+
+		<!-- <script src="https://gppc-app.onde.go.th/cdn/pdpa-cookieconsent.js"></script>
+ 		<script src="https://gppc-app.onde.go.th/cdn/pdpa-cookieconsent-init.js?client=ca-pub181131087520230913&adjust=true"></script>
+		 -->
+
+		<script src="https://gppc-app.onde.go.th/cdn/pdpa-cookieconsent.js"></script>
+        <script src="https://gppc-app.onde.go.th/cdn/pdpa-cookieconsent-init.js?client=ca-pub-181131087520230913&adjust=true"></script>
+
+		<!-- <script src="https://secsearch.sec.or.th/js/cookieJS/pdpa-cookieconsent.js"></script>
+ 		<script src="https://secsearch.sec.or.th/js/cookieJS/pdpa-cookieconsent-init.js?client=ca-pub181131087520230913&amp;adjust=true"></script> -->
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://secsearch.sec.or.th/css/jquery-ui.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://secsearch.sec.or.th/css/frontMain.css"> -->
+	<link rel="stylesheet" type="text/css" href="https://secsearch.sec.or.th/css/fixStyle.css">
+
+
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<script src="https://secsearch.sec.or.th/js/jquery-ui_1_12_1.js"></script>	
+<!-- define plus -->
+	<!-- <link rel="icon" href="https://secsearch.sec.or.th/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="https://secsearch.sec.or.th/bootstrap-4.0.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://secsearch.sec.or.th/css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://secsearch.sec.or.th/css/frontMain.css"> -->
+
+	<script type="text/javascript">
+		
+
+
+		function GetNavigation(s){
+			var url ;
+			var url_th = 'https://www-navigation.sec.or.th/api/navigation/header_portal?lang=th';
+			var url_us = 'https://www-navigation.sec.or.th/api/navigation/header_portal?Lang=en';
+			
+			if( "th".toLowerCase() == 'th' ){
+				url = url_th;
+			}else{
+				url = url_us;
+			}
+				$.get(url, function(data, status){
+					$(s).html(data);
+				}).fail(function(ex){
+					$(s).html(ex.responseText);
+				});
+		}
+
+		function GetFooter(s){
+			var url ;
+			var url_th = 'https://www-navigation.sec.or.th/api/navigation/footer_portal?lang=th';
+			var url_us = 'https://www-navigation.sec.or.th/api/navigation/footer_portal?lang=en';
+			if( "th".toLowerCase() == 'th' ){
+				url = url_th;
+			}else{
+				url = url_us;
+			}
+				$.get(url, function(data, status){		
+					$(s).html(data);
+				}).fail(function(ex){
+					$(s).html(ex.responseText);
+				});
+		}
+
+
+		function rePath(data){
+			var res ;
+			res = data.replace("../", "");
+			return res;
+		}
+
+		
+
+	</script>
+</head>
+<body>
+
+
+	<div class="container-First">
+		<div class="container-second">
+			<div class="container">
+				<div id="divHeader">
+												<script type="text/javascript">
+							GetNavigation($('#divHeader'));
+						</script>
+				</div>
+				<div id="divBody">
+
+						<!-- Cookie -->
+
+    <div>
+         <button type="button" data-cc="c-settings" style="border:none;display: contents;cursor: pointer;">
+            <img id="btnCookieclick" src="https://www.sec.or.th/Resource/core/img/IconSECCookie.png">
+        </button>
+    </div>
+    <!-- <button class="button" type="button" data-cc="c-settings">ปุ่มทดสอบการให้ความยินยอมคุกกีซํา (ReConsent)</button> -->
+
+	<!-- EndCookie -->
+	
+					<div class="row">
+  
+
+    <div class="col-12 col-sm-12 col-md-12">
+        <h3 style="float: left" class="colorTopic">Search</h3>
+        <button class="print d-none d-lg-block"></button>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12" id="nevpath">
+                    <label>คุณอยู่ที่ : 
+                <a href="http://www.sec.or.th/TH/"> หน้าแรก </a> > <a href="https://secsearch.sec.or.th"> Search </a> > <label class="active">Search Results</label>
+            </label>
+              
+
+            <div style="float: right;" class="search_div1">
+                          <div class="search_div2">
+                            <form action="" method="get" id="formsearch">
+                              <label class="d-none d-sm-block">search: </label>
+                              
+                               <input class="form-control searchbox" placeholder="search" name="search" id="search" type="text" value="1000x" autocomplete="off">
+                              <input type="submit" class="go" value="">
+                            </form>
+                            
+                            
+
+                          </div>
+            </div>
+
+
+    </div>
+</div>
+    <div class="clearfix hr"></div>
+					 <div class="clearfix hr"></div>
+				    <div class="row result-box">
+				        <div class="filter col-12 col-sm-3 col-md-3">
+				            
+				             
+				                    
+      <ul class="list-group"><li class="list-group-item justify-content-between list-group-item-info">ข้อมูลระบบงานเผยแพร่<span class="badge badge-default badge-pill"></span></li><li class="list-group-item justify-content-between "><a href="https://secsearch.sec.or.th?search=1000x+%5E100++OR+%221000x%22+OR+%22Thousand+times%22&rawSearch=1000x&type[]=system_name:SEC_News">SEC_News</a><span class="badge badge-default badge-pill"> ( 7 )</span></li><li class="list-group-item justify-content-between "><a href="https://secsearch.sec.or.th?search=1000x+%5E100++OR+%221000x%22+OR+%22Thousand+times%22&rawSearch=1000x&type[]=system_name:Enforcement">Enforcement</a><span class="badge badge-default badge-pill"> ( 2 )</span></li><li class="list-group-item justify-content-between "><a href="https://secsearch.sec.or.th?search=1000x+%5E100++OR+%221000x%22+OR+%22Thousand+times%22&rawSearch=1000x&type[]=system_name:%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%81%E0%B8%8F%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B8%A2">การบังคับใช้กฏหมาย</a><span class="badge badge-default badge-pill"> ( 2 )</span></li></ul> 
+       
+        
+				        </div>
+				        <div class="result col-12 col-sm-9 col-md-9">
+				                      <label style="display: none;">http://172.19.1.196:8983/solr/secweb/select?q=1000x ^100  OR "1000x" OR "Thousand times"&wt=json&indent=true&facet=true&facet.field=key_filetype&facet.field=key_sitemap&facet.field=system_name&facet.field=key_keywords&hl=on&hl.fragsize=200&hl.fl=id,title_th,searchcontent_th&defType=edismax&qf=searchcontent_th&qf=id&qf=title_th^1000000&pf=title_th~5^1&pf=searchcontent_th~5^10000&ps=2&mm=100&qf=title_th_default&start=0&rows=10<br></label>
+    
+
+          <div class="result">
+
+        
+        
+                            <div class="spellcheck">
+            
+                               <label>คำที่มีความหมายหรือสะกดใกล้เคียง : </label>
+                                                
+                                    
+                    <a href="https://secsearch.sec.or.th?search=10000">10000</a>
+                  
+                                                    
+                                      ,  
+                                    
+                    <a href="https://secsearch.sec.or.th?search=10001">10001</a>
+                  
+                  
+                                
+          </div>
+                          <label>
+          <span style="font-weight: bold;">
+                           1
+                          - 10 </span> of 11 results</label>
+
+        
+        <form class="form-inline" style="float: right;">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Sort by:</div>
+              <select class="" id="sort">
+                  <option value="">Relevance</option>
+                  <option value="desc" >Date (Newest)</option>
+                  <option value="asc" >Date (Oldest)</option>
+              </select>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+      <br>
+
+    
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12048" target="_blank" style="color:#0072bc;">
+                SEC urges investors to secure their assets before access restrictions of Bybit, <em>1000X</em>, CoinEx, OKX and XT.COM platforms take effect on 28 June 2025                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  , for further in-depth investigation.  Remark:* SEC News No. 134/2025, headlined: “SEC issues warning about blocking access to Bybit, <em>1000X</em>, CoinEx, OKX, and XT.COM platforms on 28 June 2025 to protect
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12048</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="https://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=11852" target="_blank" style="color:#0072bc;">
+                ก.ล.ต. ย้ำเตือนผู้ลงทุนกรณีการปิดกั้นแพลตฟอร์ม Bybit <em>1000X</em> CoinEx OKX และ XT.COM ให้ดำเนินการกับทรัพย์สินของตนก่อนครบกำหนดปิดกั้น ในวันที่ 28 มิถุนายน 2568                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                   <em>1000X</em> CoinEx OKX และ XT. COM วันที่ 28 มิถุนายน 2568 เพื่อคุ้มครองผู้ลงทุนและสกัดแพลตฟอร์มเถื่อนเป็นช่องทางการฟอกเงินของมิจฉาชีพ” https://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=11796
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">https://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=11852</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="https://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=11796" target="_blank" style="color:#0072bc;">
+                ก.ล.ต. แจ้งเตือนการปิดกั้นแพลตฟอร์ม Bybit <em>1000X</em> CoinEx OKX และ XT. COM วันที่ 28 มิถุนายน 2568 เพื่อคุ้มครองผู้ลงทุนและสกัดแพลตฟอร์มเถื่อนเป็นช่องทางการฟอกเงินของมิจฉาชีพ                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  ก.ล.ต. ตรวจสอบและพบว่า เว็บไซต์ Bybit .com (https : // www. bybit .com) เว็บไซต์ 1000x .live
+(https : // www. <em>1000x</em>
+.live) เว็บไซต์ CoinEx (https : // www. coinex .com/) เว็บไซต์ OKX (www. okx. com
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">https://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=11796</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12047" target="_blank" style="color:#0072bc;">
+                SEC issues warning about access restriction of Bybit, <em>1000X</em>, CoinEx, OKX, and XT.COM platforms on 28 June 2025 to protect investors and prevent illegal platforms from being used as money laundering                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  Recently, the Securities and Exchange Commission (SEC) has conducted investigations and found that Bybit .com (https://www. bybit .com), <em>1000x</em> .live (https://www. 1000x.live), CoinEx (https
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=12047</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="http://market.sec.or.th/public/idisc/en/Enforce" target="_blank" style="color:#0072bc;">
+                Criminal Complaint Filed with an Inquiry Official Dated 31/03/2023                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  Mr. Worawat Narknawdee From January 12, 2022, to June 30, 2022, Mr. Worawat Narknawdee, the owner and operator of ACTPAY, was responsible for providing a notification system that would notify <em>1000X</em>
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">http://market.sec.or.th/public/idisc/en/Enforce</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="http://market.sec.or.th/public/idisc/en/Enforce" target="_blank" style="color:#0072bc;">
+                Criminal Complaint Filed with an Inquiry Official Dated 31/03/2023                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  <em>1000X</em> Limited Since January 12, 2022, <em>1000X</em> Limited (&quot;<em>1000X</em>&quot;), the owner of https://www.1000x.live (&quot;1000x.live&quot;), has provided services or held itself out to the public as
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">http://market.sec.or.th/public/idisc/en/Enforce</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=10612" target="_blank" style="color:#0072bc;">
+                SEC files a criminal complaint against two entities relating to the website: 1000x.live for unlicensed operation of digital asset dealer business                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  Bangkok, 31 March 2023 – The Securities and Exchange
+Commission (SEC) has filed a criminal complaint against <em>1000X</em> Limited (<em>1000X</em>)
+and Mr. Worawat Narknawdee with the Economic Crime Suppression
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=10612</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=10592" target="_blank" style="color:#0072bc;">
+                SEC files criminal complaint against two individuals relating to the website: 1000x.live for unlicensed operation of digital asset dealer business                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  Following receipt of clue information, the SEC conducted an investigation and found that since 12 January 2022, <em>1000X</em>, the service provider of the website https://www.1000x.live (“1000x.live”), had
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=10592</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="http://market.sec.or.th/public/idisc/th/Enforce" target="_blank" style="color:#0072bc;">
+                การกล่าวโทษต่อพนักงานสอบสวน วันที่ 31/03/2566                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  <em>1000X</em> Limited ตั้งแต่วันที่ 12 มกราคม 2565 1000X Limited (&quot;<em>1000X</em>&quot;) เป็นผู้ให้บริการเว็บไซต์ https://www.1000x.live (&quot;เว็บไซต์ 1000x.live&quot;) ได้ให้บริการหรือแสดงต่อบุคคลทั่วไปว่า
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">http://market.sec.or.th/public/idisc/th/Enforce</label>
+      </div>
+      <hr class="style14">
+     
+            <div>
+        <label class="rank"> 
+              
+                              <img src="https://secsearch.sec.or.th/images/icon/STS_ListItem16.gif">
+              <a href="http://market.sec.or.th/public/idisc/th/Enforce" target="_blank" style="color:#0072bc;">
+                การกล่าวโทษต่อพนักงานสอบสวน วันที่ 31/03/2566                
+              </a>
+         </label>
+          <label class="disc">
+              <p>
+                                  ฝากถอนเกิดขึ้นกับ 5,000 wallet address บนเว็บไซต์ https://www.1000x.live (&quot;เว็บไซต์ 1000x.live&quot;) ที่ให้บริการโดย 1000X Limited (&quot;<em>1000X</em>&quot;)  การกระทำของนายวรวัฒน์ทำให้เว็บไซต์ 1000
+                              </p>
+         </label>
+         <label class="url" style="color:#008000;">http://market.sec.or.th/public/idisc/th/Enforce</label>
+      </div>
+      <hr class="style14">
+     
+      
+    
+				            
+
+  <div id="xs_mobile" class="d-block d-sm-none" >
+    <div class="paginate-div">
+                          <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                              <li class="page-item disabled"><a class="page-link"><</a></li><li class="page-item active"><a class="page-link">1</a></li><li class="page-item"><a class="page-link" style="cursor: default;">...</a></li><a class="page-link" href='https://secsearch.sec.or.th?search=1000x ^100  OR "1000x" OR "Thousand times"&rawSearch=1000x&page=2'>>></a><li class="page-item "><a class="page-link" href='https://secsearch.sec.or.th?search=1000x ^100  OR "1000x" OR "Thousand times"&rawSearch=1000x&page=2'>></a></li>
+                            </ul>
+                          </nav>    
+                      </div>
+  </div>
+  <div id="sm_mobile" class="d-none d-sm-block d-md-none">
+    <div class="paginate-div">
+                          <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                              <li class="page-item disabled"><a class="page-link"><</a></li><li class="page-item active"><a class="page-link">1</a></li><li class="page-item"><a class="page-link" style="cursor: default;">...</a></li><a class="page-link" href='https://secsearch.sec.or.th?search=1000x ^100  OR "1000x" OR "Thousand times"&rawSearch=1000x&page=2'>>></a><li class="page-item "><a class="page-link" href='https://secsearch.sec.or.th?search=1000x ^100  OR "1000x" OR "Thousand times"&rawSearch=1000x&page=2'>></a></li>
+                            </ul>
+                          </nav>    
+                      </div>
+  </div>
+  <div id="md_tablet" class="d-none d-md-block ">
+    <div class="paginate-div">
+                          <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                              <li class="page-item disabled"><a class="page-link">Previous</a></li><li class="page-item active"><a class="page-link">1</a></li><li class="page-item"><a class="page-link" href="https://secsearch.sec.or.th?search=1000x+%5E100++OR+%221000x%22+OR+%22Thousand+times%22&page=2&rawSearch=1000x">2</a></li><a class="page-link" href='https://secsearch.sec.or.th?search=1000x ^100  OR "1000x" OR "Thousand times"&rawSearch=1000x&page=2'>Last</a><li class="page-item "><a class="page-link" href='https://secsearch.sec.or.th?search=1000x ^100  OR "1000x" OR "Thousand times"&rawSearch=1000x&page=2'>Next</a></li>
+                            </ul>
+                          </nav>    
+                      </div>
+  </div>
+ 
+
+				        </div>
+				    </div> 
+				</div>
+				  
+				<div id="divFooter">
+						
+					<script>
+						GetFooter($('#divFooter'));
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+  var search_url =  'http://172.19.1.196:8983/solr/secweb/select?q=1000x ^100  OR &quot;1000x&quot; OR &quot;Thousand times&quot;&amp;wt=json&amp;indent=true&amp;facet=true&amp;facet.field=key_filetype&amp;facet.field=key_sitemap&amp;facet.field=system_name&amp;facet.field=key_keywords&amp;hl=on&amp;hl.fragsize=200&amp;hl.fl=id,title_th,searchcontent_th&amp;defType=edismax&amp;qf=searchcontent_th&amp;qf=id&amp;qf=title_th^1000000&amp;pf=title_th~5^1&amp;pf=searchcontent_th~5^10000&amp;ps=2&amp;mm=100&amp;qf=title_th_default&amp;start=0&amp;rows=10';
+  // console.log(search_url);
+  // Auto Complete
+  $( function() {
+    var availableTags = [];
+   
+
+
+
+    // $(document).on('keyup change','.searchbox',function(){ 
+    //     alert("Changed!"); 
+    // });
+
+    $(".searchbox").on('input propertychange',function(){
+            //console.log('getAutoCom');
+            var type = $(".searchbox").val().trim();
+            type = type.toLowerCase();
+            console.log('type '+ type );
+            $.ajax({
+                crossDomain: true,
+                type:"POST",
+                url: "https://secsearch.sec.or.th/getAutoCom",
+                data: {
+                        "_token": "PUoWXcydtNqIRICCADyezAkANew2xKtt9QcLejmx",
+                        data: type
+                      },
+                success:function(data) {
+                  
+                  data = JSON.parse(data);
+                  
+                  //availableTags  = Object.keys(data);
+                  availableTags  = data.filter( item => isNaN(item) );
+                  //console.log(availableTags);
+                }
+            }).done(function(){
+                   $( ".searchbox" ).autocomplete({
+                    source: availableTags,
+                  });
+            });
+    });
+
+    // sort 
+      $('#sort').on('change', function(){
+          var url = window.location.href;
+
+          url = url.replace("&sort=desc", "");
+          url = url.replace("&sort=asc", "");
+          var pattern  = /page\=.*[!0-9]/;
+          url = url.replace( pattern , 'page=1');
+          
+          window.location.replace(url +'&sort='+$('#sort').val());
+      })
+
+  });
+
+  //  change text show more
+$('.collap').click(function () {
+  var lang = "";
+  // console.log(lang);
+
+ // console.log(text);
+
+     if(lang == 'th'){
+          if( $(this).html() == 'ดูบางส่วน' ){
+              $(this).html('ดูเพิ่มเติม >>'); 
+          }else{
+              $(this).html('ดูบางส่วน'); 
+          }
+     }else{
+           if( $(this).html() == 'show fewer' ){
+              $(this).html('More >>'); 
+          }else{
+              $(this).html('show fewer'); 
+          }
+     }
+
+});
+
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        getBootstrapDeviceSize();
+    });
+    
+    function getBootstrapDeviceSize() {
+        // console.log($('#users-device-size').find('div:visible').first().attr('id') + " " + window.innerWidth);
+    }
+
+$(document).ready(function(){
+  $(".hamburger").click(function(){
+    $(this).toggleClass("is-active");
+  });
+});
+
+$('.print').click(function(){
+     window.print();
+});
+
+ // set height
+
+
+
+var header = $('#header-box').height();
+var body = $('#body-box').height();
+var footer = $('#footer-box').height();
+var h = window.innerHeight;
+// console.log( body );
+// console.log('h = '+h);
+// console.log('=============================');
+// console.log('header = '+header);
+// console.log('body = '+body);
+// console.log('footer = '+footer);
+// console.log('header+footer+body = '+(header+footer+body).toString());
+// console.log('=============================');
+if($('.result-box').height() < 50){
+    bodyheight = h - (header+body)-5 ;
+    $('.result-box').height(bodyheight);   
+}
+
+
+
+$('.dropdown-item').prepend( '• ');
+// alert(window.innerWidth);
+
+
+$( "#formsearch" ).submit(function( event ) {
+  var search_text = $('#search').val();
+  search_text = search_text.replace(/(<([^>]+)>)/ig,""); // Returns: bar
+  // console.log( search_text );
+  $('#search').val(search_text);
+  // event.preventDefault();
+});
+
+
+
+// replace link
+$(function(){
+  setTimeout(function() {
+     
+    var loc = location.href; 
+    var return_url = removeLang(loc);
+
+
+    if(return_url.indexOf("?") === -1){
+      return_url += "?";
+    }else{
+      return_url += "&";
+    }
+  
+    $('.language li').eq(0).find('a').attr('href', return_url+'lang=en');
+    $('.language li').eq(1).find('a').attr('href', return_url+'lang=th');
+
+   
+  }, 1000);
+
+});
+
+
+function removeLang(url){
+ url = url.split('?');
+ var option = "";
+  if(url.length > 1){
+   var raw_url =  url[0];
+   var query_string = url[1];
+   query_string = query_string.split('&');
+   
+    $.each(query_string, function( index, value ) {
+
+      if(value.toLowerCase() != 'lang=th' && value.toLowerCase() != 'lang=en'){
+       if(index == 0){
+        option += '?'+value;
+       }else{
+        option += '&'+value;
+       }
+      }
+    }); 
+   url = raw_url+option;
+  }
+ return url;
+}
+
+
+// $('.language li:nth-child(1)').find('a').attr('href', "lang=th");
+// $('.language li:nth-child(2)').find('a').attr('href', "lang=en");
+  </script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3HD0493ZJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E3HD0493ZJ');
+</script>
+
+</body>
+</html>

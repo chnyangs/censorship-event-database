@@ -2,11 +2,16 @@
 
 Dataset snapshot: `v0.1.0` · cutoff `2026-05-06`.
 
-This appendix is the paper-facing interpretation layer for two otherwise
-easy-to-misread results: `l0_network` and `l3_rpc` currently have no
-measured conditional-rate denominator. That is not a zero result. It is
-an audited absence of a measurement substrate under the v0.1 admission
-protocol.
+This appendix records the legacy v0.1 interpretation of `l0_network` and
+`l3_rpc`: neither had a measured conditional-rate denominator in that snapshot.
+That is not a negative outcome. The tables below preserve that historical
+scope; linked generated files may now describe a later snapshot.
+
+For current collection status, use the [validation progress report](../analysis/validation_progress/README.md).
+The later OONI campaign completed 624 metadata queries and recovered nine
+identity-valid Ethiopian raw records from the official POST archive. Those
+sidecars do not change the legacy zero-result queries, establish a censorship
+finding or create an independently adjudicated conditional-rate denominator.
 
 ## Denominator Semantics
 
@@ -25,9 +30,9 @@ observation.
 
 ## L0 Network Layer
 
-Current generated artifacts:
+Legacy v0.1 artifact interpretation:
 
-| artifact | current result | interpretation |
+| artifact | v0.1 result | interpretation |
 | --- | --- | --- |
 | [`derived/coverage_matrix.md`](../derived/coverage_matrix.md) | 22 applicable L0 event-layer rows, 0 measured denominators, 22 observability gaps | no event can support an L0 conditional rate |
 | [`derived/layer_observability.csv`](../derived/layer_observability.csv) | `l0_network`: `measured_count=0`, `not_measured_count=22` | Table 2 must report `—` |
@@ -50,22 +55,27 @@ All 22 L0-applicable events also carry `cp_not_ingested_v0_1`; Censored
 Planet is specified in the method but not yet committed as a derived
 denominator artifact.
 
-An L0 event becomes rate-eligible only if one of the following exists:
+Technical evidence for an L0 measurement denominator requires explicit
+observation units and coverage, for example:
 
 | eligible denominator source | minimum replay fields |
 | --- | --- |
 | OONI `web_connectivity` measurements | measurement IDs, probe countries, input URLs, query window, body hash |
 | Censored Planet or comparable raw slice | vantage universe, country/window coverage, query or export hash |
-| primary ISP / regulator block notice | named target, jurisdiction, effective time, archived source |
 
-Until then, the paper may say "L0 was not measured under this public
-evidence frame." It may not say "no L0 censorship occurred."
+A primary ISP or regulator notice can support a mandate, announcement or
+stated effective time. It cannot by itself supply a technical measurement
+denominator or establish that a block was executed. Raw retrieval also needs
+source-support and control review before a rate is eligible.
+
+For the legacy query frame, the paper may say "L0 had no measured denominator
+under this public evidence frame." It may not say "no L0 censorship occurred."
 
 ## L3 RPC Layer
 
-Current generated artifacts:
+Legacy v0.1 artifact interpretation:
 
-| artifact | current result | interpretation |
+| artifact | v0.1 result | interpretation |
 | --- | --- | --- |
 | [`derived/coverage_matrix.md`](../derived/coverage_matrix.md) | 9 applicable L3 event-layer rows, 0 measured denominators, 2 named partial rows, 7 observability gaps | the layer has named observations but no provider-universe denominator |
 | [`analysis/paper_tables/table2_layer_observability.md`](../analysis/paper_tables/table2_layer_observability.md) | `l3_rpc`: `changed/measured=—`, `changed/measured+partial=named-only; no rate` | do not cite an L3 conditional rate |
@@ -119,7 +129,7 @@ provider rate."
 Permitted:
 
 - "L0 and L3 have zero measured denominators in v0.1."
-- "The L0 OONI query cells returned no public measurements; this is an
+- "The 23 legacy L0 OONI query cells returned no public measurements; this is an
   observability gap, not an attested negative."
 - "The L3 Flashbots rows are named partial observations and support a
   mechanism case, not a provider-universe rate."
@@ -133,18 +143,17 @@ Forbidden:
 - "Public RPC providers generally censor / do not censor" because v0.1
   has no complete provider census.
 
-## A-Class Submission Gate
+## Submission interpretation check
 
-This appendix is sufficient for an A-class submission only if it is cited
-next to the primary result, not buried as an afterthought. Reviewers should
-be able to trace every L0/L3 `—` in Table 2 to the generated artifacts above.
+This appendix documents legacy denominator limits; it is not a submission
+readiness certificate. Reviewers should be able to trace every L0/L3 `—` in
+the current Table 2 to the corresponding current generated artifacts.
 
 Before submission:
 
 - rerun `make paper-tables` after any event or coverage edit;
-- verify that `analysis/paper_tables/table2_layer_observability.md` still
-  reports `l0_network` as `—` / `—` and `l3_rpc` as `—` /
-  `named-only; no rate`;
+- verify every current Table 2 rate against its declared denominator, without
+  assuming the v0.1 L0/L3 counts still describe the current corpus;
 - remove or rewrite any prose that converts an observability gap into a
   no-change finding;
 - keep the Flashbots rows as mechanism evidence only unless a provider

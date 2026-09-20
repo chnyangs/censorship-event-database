@@ -15,16 +15,20 @@ Reference documentation for the Cross-Layer Censorship Event Study Database. Alr
 | Topic | Doc |
 | --- | --- |
 | Single source of truth for what the paper argues (claims C1–C6, phrasing locks, claim-to-table-source matrix, sampling frame, prior-art delta, IRR κ-floor language) | [`paper_claims.md`](paper_claims.md) |
-| Draft manuscript wrapper generated from the claim lock and paper tables | [`paper.md`](paper.md) |
+| Current paper framing and execution status | [`paper.md`](paper.md) |
+| Offline validation progress, schema 1.1.0: collection stages, hashes and unresolved interpretation | [`../analysis/validation_progress/README.md`](../analysis/validation_progress/README.md) |
 | A-class submission readiness plan, go/no-go criteria, and phase gates | [`a-class-submission-readiness.md`](a-class-submission-readiness.md) |
 | Current A-class submission gap report generated from the live artifact state | [`../analysis/a_class_submission_gap_report.md`](../analysis/a_class_submission_gap_report.md) |
 | Longer A/A+ upgrade execution plan and expansion targets | [`top-venue-upgrade-plan.md`](top-venue-upgrade-plan.md) |
+| Current IMC 2027 target and provisional venue-compliance audit | [`venue-compliance-imc.md`](venue-compliance-imc.md) |
+| Integrated domain/measurement execution plan | [`two-arm-execution-plan.md`](two-arm-execution-plan.md) |
 | Final bounded collection pass before human audit / IRR | [`final-collection-protocol.md`](final-collection-protocol.md) |
 | Pre-admission selection surface and v0.2 case-expansion gaps | [`../analysis/trigger_registry/trigger_registry.md`](../analysis/trigger_registry/trigger_registry.md), [`../sampling/frame.yaml`](../sampling/frame.yaml) |
 | Event-by-layer denominator eligibility surface | [`../derived/coverage_matrix.md`](../derived/coverage_matrix.md) |
-| L0 OONI query denominator surface | [`../derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md) |
+| Legacy L0 OONI query denominator surface | [`../derived/l0_coverage_summary.md`](../derived/l0_coverage_summary.md) |
+| Later bounded OONI metadata and raw-record recovery | [`../analysis/evidence_repairs/l0_ooni_raw_recovery/README.md`](../analysis/evidence_repairs/l0_ooni_raw_recovery/README.md) |
 | L3 provider/event denominator census | [`../derived/l3_provider_census.md`](../derived/l3_provider_census.md) |
-| L0/L3 zero-denominator appendix and phrasing locks | [`l0-l3-denominator-appendix.md`](l0-l3-denominator-appendix.md) |
+| Legacy v0.1 L0/L3 denominator appendix and phrasing limits | [`l0-l3-denominator-appendix.md`](l0-l3-denominator-appendix.md) |
 | L2 rollup / sequencer scope boundary and allowed phrasing | [`l2-scope-boundary.md`](l2-scope-boundary.md) |
 | External benchmark crosswalk for OONI / Censored Planet / Tornado studies / MEV Watch / compliance-transparency sources | [`../analysis/external_crosschecks/README.md`](../analysis/external_crosschecks/README.md) |
 | Local source artifact hash manifest | [`../sources/source_manifest.md`](../sources/source_manifest.md) |
